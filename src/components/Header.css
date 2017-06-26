@@ -1,0 +1,54 @@
+.header {
+  background-color: #0A2A37;
+}
+
+.linksContainer {
+  max-width: 1024px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.mainLinks {
+  padding: 15px 0;
+  color: #FFFFFF;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.mainLinks a {
+  padding-right: 17px;
+}
+.mainLinks a:last-child {
+  padding-right: 21px;
+}
+
+.secondaryLinks {
+  padding: 15px 0;
+  display: inline-flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.secondaryLinks a {
+  padding-right: 30px;
+}
+
+.secondaryLinks a:first-child {
+  padding-left: 21px;
+}
+
+.login {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.divider {
+  display: inline-block;
+  height: 20px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
