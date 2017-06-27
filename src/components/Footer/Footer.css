@@ -1,0 +1,60 @@
+@value colors: "../../colors.css";
+@value midnightBlue, ebonyClayBlue, white, bambooOrange, gray75 from colors;
+
+.footer {
+  color: white;
+  background-color: ebonyClayBlue;
+  padding: 55px 0 0 0;
+}
+
+.linksAndDonate {
+  display: flex;
+  margin: auto;
+  max-width: 1024px;
+  align-items: baseline;
+  padding-bottom: 57px;
+}
+
+.links {
+  display: flex;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
+  color: gray75;
+  width: 550px;
+  justify-content: space-between;
+}
+
+.linkHeader {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.logoAndSocialWrapper {
+  background-color: midnightBlue;
+}
+
+.logoAndSocial {
+  max-width: 1024px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 33px 0;
+}
+
+.social {
+  margin-left: auto;
+}
+
+.donateButton {
+  margin-left: auto;
+  font-weight: 600;
+  color: white;
+  padding: 12px 51px;
+  background-color: bambooOrange;
+  border-radius: 2px;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+}
