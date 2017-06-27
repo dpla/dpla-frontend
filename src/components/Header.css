@@ -10,39 +10,42 @@
 }
 
 .mainLinks {
-  padding: 15px 0;
+  margin: 15px 0;
   color: #FFFFFF;
   display: inline-flex;
   justify-content: space-between;
+  font-size: 1rem;
 }
 
 .mainLinks a {
-  padding-right: 17px;
+  margin-right: 17px;
 }
 .mainLinks a:last-child {
-  padding-right: 21px;
+  margin-right: 21px;
 }
 
 .secondaryLinks {
-  padding: 15px 0;
+  font-size: 1rem;
+  margin: 15px 0;
   display: inline-flex;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.6);
 }
 
 .secondaryLinks a {
-  padding-right: 30px;
+  margin-right: 30px;
 }
 
 .secondaryLinks a:first-child {
-  padding-left: 21px;
+  margin-left: 21px;
 }
 
 .login {
-  background: none;
-  border: none;
+  font-size: 0.875rem;
   color: #FFFFFF;
   margin-left: auto;
+  font-weight: 600;
+  cursor: pointer;
   text-transform: uppercase;
 }
 
