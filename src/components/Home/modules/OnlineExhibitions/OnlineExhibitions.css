@@ -1,0 +1,46 @@
+@value colors: "../../../../colors.css";
+@value romanceGray, elephantBlue, onionBrown from colors;
+
+.onlineExhibitions {
+  padding: 72px 0 77px 0;
+  max-width: 1024px;
+  margin: auto;
+}
+
+.wrapper {
+  background-color: romanceGray;
+}
+
+.header {
+  color: elephantBlue;
+  font-family: "Source Serif Pro";
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 2.8125rem;
+  margin-bottom: 25px;
+}
+
+.items {
+  display: flex;
+}
+
+.item {
+  margin-right: 12px;
+}
+
+.item:last-child {
+  margin-right: 0;
+}
+
+.itemText {
+  color: onionBrown;
+  opacity: 0.8;
+  font-size: 1.125rem;
+  line-height: 1.25rem;
+}
+
+.itemImg {
+  box-shadow: 0 7px 13px 0 rgba(0, 0, 0, 0.21);
+  border-radius: 3px;
+  margin-bottom: 19px;
+}

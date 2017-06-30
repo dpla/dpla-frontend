@@ -1,0 +1,104 @@
+@value colors: "../../../../colors.css";
+@value white, bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from colors;
+
+/* TODO this needs to be an actual image at some point */
+.home {
+  background-color: rgb(47, 74, 87);
+  color: white;
+  padding: 42px 0 132px 0;
+}
+
+.content {
+  max-width: 673px;
+  margin: auto;
+}
+
+.text {
+  font-weight: bold;
+  font-size: 2.375rem;
+  line-height: 2.5625rem;
+  text-align: center;
+  font-family: 'Source Serif Pro';
+  margin-bottom: 72px;
+}
+
+.donateButton {
+  margin-left: auto;
+  font-weight: 600;
+  color: white;
+  padding: 12px 48px;
+  background-color: bambooOrange;
+  border-radius: 2px;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+}
+
+.logoAndDonate {
+  display: flex;
+  max-width: 1024px;
+  margin: auto;
+  justify-content: space-between;
+  margin-bottom: 62px;
+}
+
+.search {
+  display: flex;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+
+.searchInput {
+  border: none;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  padding: 0 0 0 24px;
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  flex-grow: 1;
+}
+
+.searchInput::placeholder {
+  color: elephantBlue;
+  opacity: 0.5;
+}
+
+.searchOptions {
+  height: 100%;
+  background-color: mysticGray;
+  color: elephantBlue;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  display: flex;
+  align-items: center;
+  padding: 0 24px 0 22px;
+}
+
+.searchButton {
+  height: 100%;
+  background-color: vikingBlue;
+  color: white;
+  font-weight: 600;
+  font-size: 1.4375rem;
+  line-height: 1.8125rem;
+  padding: 0 30px;
+  border-radius: 0 3px 3px 0;
+}
+
+.links {
+  font-family: "Helvetica Neue";
+  color: white50;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 323px;
+}
+
+.link {
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+}

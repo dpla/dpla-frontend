@@ -1,14 +1,13 @@
 import React from "react";
 
 import styles from "./Home.css";
+import LandingSection from "./modules/LandingSection";
+import OnlineExhibitions from "./modules/OnlineExhibitions";
 
 const Home = () =>
-  <div>
-    <div>logo</div>
-    <p>
-      A collection of 16,340,976 free digital artifacts from
-      over 120 libraries, archives and museums
-    </p>
+  <div className={styles.home}>
+    <LandingSection />
+    <OnlineExhibitions />
   </div>;
 
 export default Home;
