@@ -6,10 +6,11 @@
 @value romanceGray: #F9F6F0;
 @value gainsboroGray: #DCDCDC;
 @value charcoalGray: #424242;
-@value white6: rgba(255, 255, 255, 0.6);
-@value white5: rgba(255, 255, 255, 0.5);
-@value black6: rgba(0, 0, 0, 0.6);
+@value white60: rgba(255, 255, 255, 0.6);
+@value white50: rgba(255, 255, 255, 0.5);
+@value black60: rgba(0, 0, 0, 0.6);
 @value black12: rgba(0, 0, 0, 0.12);
+@value gray75: rgba(255, 255, 255, 0.75);
 @value casablancaOrange: #F9BA3F;
 @value bambooOrange: #DD5C00;
 @value tiberBlue: #0A2A37;

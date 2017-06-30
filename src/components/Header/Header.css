@@ -15,6 +15,7 @@
   display: inline-flex;
   justify-content: space-between;
   font-size: 1rem;
+  line-height: 1.25rem;
 }
 
 .mainLinks a {
@@ -26,6 +27,7 @@
 
 .secondaryLinks {
   font-size: 1rem;
+  line-height: 1.25rem;
   margin: 15px 0;
   display: inline-flex;
   justify-content: space-between;
@@ -47,6 +49,7 @@
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
+  line-height: 1.125rem;
 }
 
 .divider {
