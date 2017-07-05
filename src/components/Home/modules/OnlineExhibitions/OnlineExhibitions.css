@@ -1,5 +1,5 @@
 @value colors: "../../../../colors.css";
-@value romanceGray, elephantBlue, onionBrown from colors;
+@value romanceGray, elephantBlue, onionBrown, bambooOrange from colors;
 
 .onlineExhibitions {
   padding: 72px 0 77px 0;
@@ -9,6 +9,19 @@
 
 .wrapper {
   background-color: romanceGray;
+}
+
+.headerAndBrowse {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.browse {
+  color: bambooOrange;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4375rem;
 }
 
 .header {
@@ -48,7 +61,25 @@
 }
 
 .prevArrow {
+  position: absolute;
+  left: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 89px;
+  cursor: pointer;
 }
 
 .nextArrow {
+  position: absolute;
+  right: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 89px;
+  cursor: pointer;
+}
+
+/* react-slick style overrides */
+
+:global(.slick-list) {
+  padding-left: 10px;
 }
