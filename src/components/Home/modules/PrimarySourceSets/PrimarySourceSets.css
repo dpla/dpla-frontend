@@ -1,14 +1,14 @@
 @value colors: "../../../../colors.css";
-@value romanceGray, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from colors;
+@value romanceGray, elephantBlue, onionBrown, solitudeBlue, curiousBlue, black from colors;
 
-.onlineExhibitions {
+.primarySourceSets {
   padding: 72px 0 77px 0;
   max-width: 1024px;
   margin: auto;
 }
 
 .wrapper {
-  background-color: romanceGray;
+  background-color: solitudeBlue;
 }
 
 .headerAndBrowse {
@@ -18,7 +18,7 @@
 }
 
 .browse {
-  color: bambooOrange;
+  color: curiousBlue;
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.4375rem;
@@ -66,7 +66,7 @@
   left: -50px;
   z-index: 1;
   font-size: 50px;
-  top: 89px;
+  top: 56px;
   cursor: pointer;
 }
 
@@ -75,21 +75,8 @@
   right: -50px;
   z-index: 1;
   font-size: 50px;
-  top: 89px;
+  top: 56px;
   cursor: pointer;
-}
-
-.featured {
-  text-transform: uppercase;
-  color: black;
-  position: absolute;
-  background-color: casablancaOrange;
-  top: 5px;
-  left: -5px;
-  padding: 7px 12px;
-  font-weight: bold;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
 }
 
 /* react-slick style overrides */
