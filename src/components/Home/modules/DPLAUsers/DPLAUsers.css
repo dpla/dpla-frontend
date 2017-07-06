@@ -1,0 +1,130 @@
+@value colors: "../../../../colors.css";
+@value riceCakeWhite, sisalBrown, elephantBlue, charcoalGray, lisbonBrown, vanCleefRed, coldTurkeyRed, silver, rockBrown, bonjourRed, gainsboroGray, black, black60 from colors;
+
+.DPLAUsers {
+  padding: 72px 0 77px 0;
+  max-width: 100%;
+  margin: auto;
+}
+
+.header {
+  color: elephantBlue;
+  font-family: "Source Serif Pro";
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 3.75rem;
+  margin-bottom: 31px;
+  text-align: center;
+}
+
+.divider {
+  border-top: 4px solid elephantBlue;
+  opacity: 0.25;
+  max-width: 93px;
+  margin: 0 auto 54px;
+}
+
+.item {
+  padding-right: 4px;
+  width: 368px;
+}
+
+.item:first-child {
+  padding-left: 70px;
+}
+
+.content {
+  padding: 24px 21px 37px 24px;
+  height: 141px;
+}
+
+.itemHeader {
+  font-family: "Source Pro Serif";
+  font-size: 1.6875rem;
+  line-height: 2.125rem;
+  font-weight: 600;
+  padding-bottom: 11px;
+}
+
+.imageDiv {
+  height: 280px;
+  display: flex;
+  align-items: center;
+}
+
+.itemImg {
+  margin: auto;
+}
+
+.learners, .educators, .researchers, .genealogists {
+}
+
+.learners .imageDiv {
+  background-color: sisalBrown;
+}
+.educators .imageDiv {
+  background-color: coldTurkeyRed;
+}
+.genealogists .imageDiv {
+  background-color: silver;
+}
+.researchers .imageDiv {
+  background-color: silver;
+}
+
+.learners .content {
+  background-color: rockBrown;
+}
+.educators .content {
+  background-color: bonjourRed;
+}
+.genealogists .content {
+  background-color: gainsboroGray;
+}
+.researchers .content {
+  background-color: gainsboroGray;
+}
+
+.learners .itemHeader {
+  color: lisbonBrown;
+}
+.educators .itemHeader {
+  color: vanCleefRed;
+}
+.genealogists .itemHeader {
+  color: charcoalGray;
+}
+.researchers .itemHeader {
+  color: charcoalGray;
+}
+
+.text {
+  color: black60;
+  font-size: 1.1875rem;
+  line-height: 1.5rem;
+}
+
+.prevArrow {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  font-size: 50px;
+  top: 56px;
+  cursor: pointer;
+}
+
+.nextArrow {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  font-size: 50px;
+  top: 56px;
+  cursor: pointer;
+}
+
+.DPLAUsers :global(.slick-track) {
+  display: flex;
+}
+
+.DPLAUsers :global(.slick-list) {
+}

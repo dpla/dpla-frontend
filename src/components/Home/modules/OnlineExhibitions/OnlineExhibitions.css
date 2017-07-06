@@ -94,6 +94,6 @@
 
 /* react-slick style overrides */
 
-:global(.slick-list) {
+.onlineExhibitions :global(.slick-list) {
   padding-left: 10px;
 }
