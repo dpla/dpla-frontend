@@ -27,7 +27,7 @@
 
 .item {
   padding-right: 4px;
-  width: 368px;
+  flex-basis: 8.5%;
 }
 
 .content {
@@ -126,7 +126,7 @@
 }
 
 .DPLAUsers :global(.slick-slider) {
-  padding: 0 70px;
+  padding-left: 90px;
 }
 
 .DPLAUsers :global(.slick-list) {
