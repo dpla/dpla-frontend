@@ -88,5 +88,5 @@
 /* react-slick style overrides */
 
 .primarySourceSets :global(.slick-list) {
-  padding-left: 10px;
+  padding: 0 6px;
 }
