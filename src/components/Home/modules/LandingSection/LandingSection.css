@@ -35,10 +35,19 @@
 
 .logoAndDonate {
   display: flex;
-  max-width: 1024px;
-  margin: auto;
+  margin: 0 auto 62px;
   justify-content: space-between;
-  margin-bottom: 62px;
+}
+
+.logoAndDonate {
+  padding: 0 70px;
+}
+
+@media screen and (min-width: 1100px) {
+  .logoAndDonate {
+    padding: 0;
+    max-width: 1024px;
+  }
 }
 
 .search {

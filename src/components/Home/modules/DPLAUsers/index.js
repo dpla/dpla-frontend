@@ -26,6 +26,7 @@ const DPLAUsers = (/* data */) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
+        variableWidth={true}
       >
         <div className={[styles.item, styles.learners].join(" ")}>
           <div className={styles.imageDiv}>

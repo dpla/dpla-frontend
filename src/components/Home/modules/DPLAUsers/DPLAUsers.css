@@ -5,6 +5,7 @@
   padding: 72px 0 77px 0;
   max-width: 100%;
   margin: auto;
+  overflow: hidden;
 }
 
 .header {
@@ -27,10 +28,6 @@
 .item {
   padding-right: 4px;
   width: 368px;
-}
-
-.item:first-child {
-  padding-left: 70px;
 }
 
 .content {
@@ -122,9 +119,24 @@
   cursor: pointer;
 }
 
+/* react-slick style overrides */
+
 .DPLAUsers :global(.slick-track) {
   display: flex;
 }
 
+.DPLAUsers :global(.slick-slider) {
+  padding: 0 70px;
+}
+
 .DPLAUsers :global(.slick-list) {
+  overflow: visible;
+}
+
+.DPLAUsers :global(.slick-slide) {
+  transition: opacity 1s ease;
+}
+
+.DPLAUsers :global(.slick-slide):not(:global(.slick-active)) {
+  opacity: 0.45;
 }
