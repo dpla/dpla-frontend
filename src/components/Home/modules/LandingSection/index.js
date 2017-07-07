@@ -3,10 +3,12 @@ import React from "react";
 import styles from "./LandingSection.css";
 import { Link } from "react-router-dom";
 
+import dplaLogo from "../../../../images/dpla-logo.svg";
+
 const LandingSection = () =>
   <div className={styles.home}>
     <div className={styles.logoAndDonate}>
-      <div>logo</div>
+      <img className={styles.dplaLogo} alt="DPLA" src={dplaLogo} />
       <button className={styles.donateButton}>Donate</button>
     </div>
     <div className={styles.content}>

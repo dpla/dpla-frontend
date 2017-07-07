@@ -2,10 +2,15 @@
 @value riceCakeWhite, sisalBrown, elephantBlue, charcoalGray, lisbonBrown, vanCleefRed, coldTurkeyRed, silver, rockBrown, bonjourRed, gainsboroGray, black, black60 from colors;
 
 .DPLAUsers {
-  padding: 72px 0 77px 0;
-  max-width: 100%;
+  padding: 72px 70px 77px;
   margin: auto;
   overflow: hidden;
+}
+
+@@media (min-width: 1100px) {
+  .DPLAUsers {
+    max-width: 1024px;
+  }
 }
 
 .header {
@@ -27,7 +32,6 @@
 
 .item {
   padding-right: 4px;
-  flex-basis: 8.5%;
 }
 
 .content {
@@ -123,20 +127,4 @@
 
 .DPLAUsers :global(.slick-track) {
   display: flex;
-}
-
-.DPLAUsers :global(.slick-slider) {
-  padding-left: 90px;
-}
-
-.DPLAUsers :global(.slick-list) {
-  overflow: visible;
-}
-
-.DPLAUsers :global(.slick-slide) {
-  transition: opacity 1s ease;
-}
-
-.DPLAUsers :global(.slick-slide):not(:global(.slick-active)) {
-  opacity: 0.45;
 }

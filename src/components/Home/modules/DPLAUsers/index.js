@@ -26,14 +26,13 @@ const DPLAUsers = (/* data */) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
-        variableWidth={true}
       >
         <div className={[styles.item, styles.learners].join(" ")}>
           <div className={styles.imageDiv}>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://via.placeholder.com/187x214"
+              src="https://unsplash.it/187/211?random"
             />
           </div>
           <div className={styles.content}>
@@ -50,7 +49,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://via.placeholder.com/187x214"
+              src="https://unsplash.it/187/212?random"
             />
           </div>
           <div className={styles.content}>
@@ -66,7 +65,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://via.placeholder.com/187x214/ffffff"
+              src="https://unsplash.it/187/213?random"
             />
           </div>
           <div className={styles.content}>
@@ -83,7 +82,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://via.placeholder.com/187x214/ffffff"
+              src="https://unsplash.it/187/214?random"
             />
           </div>
           <div className={styles.content}>

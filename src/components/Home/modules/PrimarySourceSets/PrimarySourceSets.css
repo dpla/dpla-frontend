@@ -85,6 +85,25 @@
   cursor: pointer;
 }
 
+.nextChevron {
+  width: 25px;
+  height: 48px;
+}
+
+.backChevron {
+  width: 25px;
+  height: 48px;
+  transform: rotate(180deg);
+}
+
+.smallChevron {
+  width: 8px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  padding-left: 7px;
+}
+
 /* react-slick style overrides */
 
 .primarySourceSets :global(.slick-list) {

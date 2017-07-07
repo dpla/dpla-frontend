@@ -7,6 +7,10 @@
   padding: 55px 0 0 0;
 }
 
+.dplaLogo {
+  width: 300px;
+}
+
 .linksAndDonate {
   display: flex;
   margin: auto;
@@ -69,4 +73,14 @@
   border-radius: 2px;
   font-size: 1.125rem;
   line-height: 1.4375rem;
+}
+
+.socialButton {
+  width: 24px;
+  height: 24px;
+  padding-right: 17px;
+}
+
+.socialButton:-last-child {
+  padding: none;
 }

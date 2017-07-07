@@ -85,6 +85,17 @@
   cursor: pointer;
 }
 
+.nextChevron {
+  width: 25px;
+  height: 48px;
+}
+
+.backChevron {
+  width: 25px;
+  height: 48px;
+  transform: rotate(180deg);
+}
+
 .featured {
   text-transform: uppercase;
   color: black;
@@ -102,4 +113,12 @@
 
 .onlineExhibitions :global(.slick-list) {
   padding: 0 6px;
+}
+
+.smallChevron {
+  width: 8px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  padding-left: 7px;
 }

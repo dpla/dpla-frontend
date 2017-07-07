@@ -4,37 +4,40 @@ import { Link } from "react-router-dom";
 
 import styles from "./PrimarySourceSets.css";
 
+import smallChevron from "../../../../images/chevron-thick-blue.svg";
+import largeChevron from "../../../../images/chevron-thin.svg";
+
 const mockSourceSets = [
   {
     text: "Road to Revolution",
-    imageUrl: "http://via.placeholder.com/334x243",
+    imageUrl: "https://unsplash.it/334/245?random",
     id: 0
   },
   {
     text: "Early Chinese Immigration to the U.S.",
-    imageUrl: "http://via.placeholder.com/334x243",
+    imageUrl: "https://unsplash.it/334/246?random",
     id: 1
   },
   {
     text: "Mexican Labor and World War II",
-    imageUrl: "http://via.placeholder.com/334x243",
+    imageUrl: "https://unsplash.it/334/247?random",
     id: 2
   },
   {
     text: "The Impact of Television on News Media",
-    imageUrl: "http://via.placeholder.com/334x243",
+    imageUrl: "https://unsplash.it/334/248?random",
     id: 2
   }
 ];
 
 const NextArrow = ({ onClick }) =>
-  <div className={styles.nextArrow} onClick={onClick}>
-    ⇨
-  </div>;
+  <button className={styles.nextArrow} onClick={onClick}>
+    <img alt="" className={styles.nextChevron} src={largeChevron} />
+  </button>;
 
 const PrevArrow = ({ onClick }) =>
   <div className={styles.prevArrow} onClick={onClick}>
-    ⇦
+    <img alt="" className={styles.backChevron} src={largeChevron} />
   </div>;
 
 const PrimarySourceSets = (/* data */) =>
@@ -42,7 +45,14 @@ const PrimarySourceSets = (/* data */) =>
     <div className={styles.primarySourceSets}>
       <div className={styles.headerAndBrowse}>
         <h1 className={styles.header}>Primary Source Sets for Education</h1>
-        <Link className={styles.browse} to="">Browse all Sets</Link>
+        <Link className={styles.browse} to="">
+          <span>Browse all Sets</span>
+          <img
+            alt="browse sets"
+            className={styles.smallChevron}
+            src={smallChevron}
+          />
+        </Link>
       </div>
       <Slider
         slidesToShow={4}

@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 import styles from "./SocialMedia.css";
 
+import externalLinkIcon from "../../../../images/external-link.svg";
+
 const mockImages = [
-  { url: "http://via.placeholder.com/334x241", description: "placeholder" },
-  { url: "http://via.placeholder.com/334x242", description: "placeholder" },
-  { url: "http://via.placeholder.com/334x243", description: "placeholder" },
-  { url: "http://via.placeholder.com/334x244", description: "placeholder" }
+  { url: "https://unsplash.it/170/170?random", description: "placeholder" },
+  { url: "https://unsplash.it/170/171?random", description: "placeholder" },
+  { url: "https://unsplash.it/170/172?random", description: "placeholder" },
+  { url: "https://unsplash.it/170/173?random", description: "placeholder" }
 ];
 
 const Instagram = ({ images }) =>
@@ -22,7 +24,14 @@ const Instagram = ({ images }) =>
         </div>
       )}
     </div>
-    <Link to="" className={styles.visitLink}>Visit @digpublib</Link>
+    <Link to="" className={styles.visitLink}>
+      <span>Visit @digpublib</span>
+      <img
+        className={styles.externalLinkIcon}
+        alt="visit @digpublib"
+        src={externalLinkIcon}
+      />
+    </Link>
   </div>;
 
 const Twitter = ({ message, time }) =>
@@ -35,7 +44,14 @@ const Twitter = ({ message, time }) =>
       dangerouslySetInnerHTML={{ __html: message }}
     />
     <p className={styles.twitterDate}>{time}</p>
-    <Link to="" className={styles.visitLink}>Visit @DPLA</Link>
+    <Link to="" className={styles.visitLink}>
+      <span>Visit @DPLA</span>
+      <img
+        className={styles.externalLinkIcon}
+        alt="visit @DPLA"
+        src={externalLinkIcon}
+      />
+    </Link>
   </div>;
 
 const SocialMedia = (/* data */) =>

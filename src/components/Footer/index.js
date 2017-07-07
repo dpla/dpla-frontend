@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import dplaLogo from "../../images/dpla-logo.svg";
+import fbIcon from "../../images/facebook.svg";
+import igIcon from "../../images/instagram.svg";
+import rssIcon from "../../images/rss.svg";
+import tumblrIcon from "../../images/tumblr.svg";
+
 import styles from "./Footer.css";
 
 const Footer = () =>
@@ -47,12 +53,24 @@ const Footer = () =>
     </div>
     <div className={styles.logoAndSocialWrapper}>
       <div className={styles.logoAndSocial}>
-        <p>DPLA LOGO</p>
+        <img className={styles.dplaLogo} alt="DPLA" src={dplaLogo} />
         <div className={styles.social}>
-          <button>FB</button>
-          <button>IG</button>
-          <button>S</button>
-          <button>TW</button>
+          <Link to="">
+            <img className={styles.socialButton} alt="Facebook" src={fbIcon} />
+          </Link>
+          <Link to="">
+            <img className={styles.socialButton} alt="Instagram" src={igIcon} />
+          </Link>
+          <Link to="">
+            <img className={styles.socialButton} alt="RSS Feed" src={rssIcon} />
+          </Link>
+          <Link to="">
+            <img
+              className={styles.socialButton}
+              alt="Tumblr"
+              src={tumblrIcon}
+            />
+          </Link>
         </div>
       </div>
     </div>

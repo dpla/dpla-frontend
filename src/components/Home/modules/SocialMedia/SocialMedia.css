@@ -77,3 +77,11 @@
 .instagramImage:last-child {
   padding: none;
 }
+
+.externalLinkIcon {
+  width: 16px;
+  height: 16px;
+  padding-left: 9px;
+  position: relative;
+  top: 2px;
+}
