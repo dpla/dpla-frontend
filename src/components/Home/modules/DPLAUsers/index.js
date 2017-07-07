@@ -3,14 +3,16 @@ import Slider from "react-slick";
 
 import styles from "./DPLAUsers.css";
 
+import chevron from "../../../../images/chevron-thin.svg";
+
 const NextArrow = ({ onClick }) =>
-  <div className={styles.nextArrow} onClick={onClick}>
-    ⇨
-  </div>;
+  <button className={styles.nextArrow} onClick={onClick}>
+    <img alt="" className={styles.nextChevron} src={chevron} />
+  </button>;
 
 const PrevArrow = ({ onClick }) =>
   <div className={styles.prevArrow} onClick={onClick}>
-    ⇦
+    <img alt="" className={styles.backChevron} src={chevron} />
   </div>;
 
 const DPLAUsers = (/* data */) =>
