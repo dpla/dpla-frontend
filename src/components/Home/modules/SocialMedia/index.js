@@ -6,10 +6,10 @@ import styles from "./SocialMedia.css";
 import externalLinkIcon from "../../../../images/external-link.svg";
 
 const mockImages = [
-  { url: "https://unsplash.it/170/170?random", description: "placeholder" },
-  { url: "https://unsplash.it/170/171?random", description: "placeholder" },
-  { url: "https://unsplash.it/170/172?random", description: "placeholder" },
-  { url: "https://unsplash.it/170/173?random", description: "placeholder" }
+  { url: "http://lorempixel.com/170/170", description: "placeholder" },
+  { url: "http://lorempixel.com/170/171", description: "placeholder" },
+  { url: "http://lorempixel.com/170/172", description: "placeholder" },
+  { url: "http://lorempixel.com/170/173", description: "placeholder" }
 ];
 
 const Instagram = ({ images }) =>
