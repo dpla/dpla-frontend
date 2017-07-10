@@ -34,7 +34,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="https://unsplash.it/187/211?random"
+              src="http://lorempixel.com/187/211"
             />
           </div>
           <div className={styles.content}>
@@ -51,7 +51,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="https://unsplash.it/187/212?random"
+              src="http://lorempixel.com/187/212"
             />
           </div>
           <div className={styles.content}>
@@ -67,7 +67,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="https://unsplash.it/187/213?random"
+              src="http://lorempixel.com/187/213"
             />
           </div>
           <div className={styles.content}>
@@ -84,7 +84,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="https://unsplash.it/187/214?random"
+              src="http://lorempixel.com/187/214"
             />
           </div>
           <div className={styles.content}>
