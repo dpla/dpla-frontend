@@ -56,6 +56,7 @@ const PrimarySourceSets = (/* data */) =>
       </div>
       <Slider
         slidesToShow={4}
+        infinite={false}
         nextArrow={<NextArrow />}
         prevArrow={<PrevArrow />}
         draggable={false}

@@ -60,6 +60,7 @@ const OnlineExhibitions = (/* data */) =>
       </div>
       <Slider
         slidesToShow={3}
+        infinite={false}
         nextArrow={<NextArrow />}
         prevArrow={<PrevArrow />}
         draggable={false}
