@@ -54,6 +54,15 @@
   }
 }
 
+.chevron {
+  height: 14px;
+  margin-left: 9px;
+  position: relative;
+  top: 2px;
+  transform: rotate(90deg);
+  width: 8px;
+}
+
 .search {
   display: flex;
   height: 66px;
@@ -98,6 +107,15 @@
   line-height: 1.8125rem;
   padding: 0 30px;
   border-radius: 0 3px 3px 0;
+}
+
+.searchIcon {
+  transform: scaleX(-1);
+  width: 23px;
+  height: 23px;
+  position: relative;
+  top: 3px;
+  margin-right: 8px;
 }
 
 .links {
