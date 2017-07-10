@@ -1,0 +1,87 @@
+@value colors: "../../../../colors.css";
+@value merinoWhite, elephantBlue, dimGray, bambooOrange from colors;
+
+.socialMedia {
+  margin: auto;
+  padding: 72px 70px 77px;
+  display: flex;
+}
+
+@media screen and (min-width: 1100px) {
+  .socialMedia {
+    padding: 72px 0 77px 0;
+    max-width: 1024px;
+  }
+}
+
+.wrapper {
+  background-color: merinoWhite;
+}
+
+.header {
+  font-family: "Source Serif Pro";
+  font-weight: bold;
+  color: elephantBlue;
+  margin-bottom: 24px;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+  text-transform: uppercase;
+}
+
+.twitter {
+  flex: 1;
+  color: dimGray;
+  font-size: 1.0625rem;
+  line-height: 1.4375rem;
+  padding-right: 27px;
+}
+
+.twitterText {
+  margin-bottom: 6px;
+  height: 140px;
+}
+
+.twitterDate {
+  text-transform: uppercase;
+  color: bambooOrange;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.1875rem;
+  margin-bottom: 19px;
+}
+
+.visitLink {
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  font-weight: 600;
+  color: bambooOrange;
+}
+
+.instagram {
+  flex: 2;
+}
+
+.instagramImages {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.instagramImage {
+  width: 164px;
+  height: 164px;
+  padding-right: 6px;
+}
+
+.instagramImage:last-child {
+  padding: none;
+}
+
+.externalLinkIcon {
+  width: 16px;
+  height: 16px;
+  padding-left: 9px;
+  position: relative;
+  top: 2px;
+}
