@@ -6,6 +6,7 @@ import OnlineExhibitions from "./modules/OnlineExhibitions";
 import PrimarySourceSets from "./modules/PrimarySourceSets";
 import DPLAUsers from "./modules/DPLAUsers";
 import SocialMedia from "./modules/SocialMedia";
+import FromTheBlog from "./modules/FromTheBlog";
 
 const Home = () =>
   <div className={styles.home}>
@@ -14,6 +15,7 @@ const Home = () =>
     <PrimarySourceSets />
     <DPLAUsers />
     <SocialMedia />
+    <FromTheBlog />
   </div>;
 
 export default Home;
