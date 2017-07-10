@@ -4,6 +4,8 @@ import styles from "./LandingSection.css";
 import { Link } from "react-router-dom";
 
 import dplaLogo from "../../../../images/dpla-logo.svg";
+import searchIcon from "../../../../images/search.svg";
+import chevron from "../../../../images/chevron-thick-dark-blue.svg";
 
 const LandingSection = () =>
   <div className={styles.home}>
@@ -22,10 +24,12 @@ const LandingSection = () =>
           placeholder="Search the collection"
         />
         <div className={styles.searchOptions}>
-          All types
+          <span>All types</span>
+          <img alt="select types" className={styles.chevron} src={chevron} />
         </div>
         <button className={styles.searchButton}>
-          Search
+          <img alt="search" className={styles.searchIcon} src={searchIcon} />
+          <span>Search</span>
         </button>
       </div>
       <div className={styles.links}>

@@ -34,14 +34,22 @@ const mockExhibitionsData = [
   }
 ];
 
-const NextArrow = ({ onClick }) =>
+const NextArrow = ({ onClick, className }) =>
   <button className={styles.nextArrow} onClick={onClick}>
-    <img alt="" className={styles.nextChevron} src={largeChevron} />
+    <img
+      alt=""
+      className={[styles.nextChevron, className].join(" ")}
+      src={largeChevron}
+    />
   </button>;
 
-const PrevArrow = ({ onClick }) =>
+const PrevArrow = ({ onClick, className }) =>
   <div className={styles.prevArrow} onClick={onClick}>
-    <img alt="" className={styles.backChevron} src={largeChevron} />
+    <img
+      alt=""
+      className={[styles.backChevron, className].join(" ")}
+      src={largeChevron}
+    />
   </div>;
 
 const OnlineExhibitions = (/* data */) =>

@@ -109,3 +109,8 @@
 .primarySourceSets :global(.slick-list) {
   padding: 0 6px;
 }
+
+.primarySourceSets :global(.slick-next),
+.primarySourceSets :global(.slick-prev) {
+  position: static;
+}

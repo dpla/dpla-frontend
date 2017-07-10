@@ -40,7 +40,7 @@
 
 .twitterText {
   margin-bottom: 6px;
-  height: 140px;
+  min-height: 140px;
 }
 
 .twitterDate {

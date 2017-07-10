@@ -69,7 +69,7 @@
 
 .prevArrow {
   position: absolute;
-  left: -50px;
+  left: -50px !important;
   z-index: 1;
   font-size: 50px;
   top: 89px;
@@ -78,10 +78,11 @@
 
 .nextArrow {
   position: absolute;
-  right: -50px;
+  right: -50px !important;
   z-index: 1;
   font-size: 50px;
-  top: 89px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
@@ -113,6 +114,11 @@
 
 .onlineExhibitions :global(.slick-list) {
   padding: 0 6px;
+}
+
+.onlineExhibitions :global(.slick-prev),
+.onlineExhibitions :global(.slick-next) {
+  position: static;
 }
 
 .smallChevron {

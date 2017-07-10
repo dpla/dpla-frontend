@@ -115,9 +115,6 @@
   transform: translateY(-50%);
   width: 81px;
   height: 81px;
-  border-radius: 50%;
-  background-color: wildSandGray;
-  opacity: 0.9;
 }
 
 .nextArrow {
@@ -130,30 +127,41 @@
   transform: translateY(-50%);
   width: 81px;
   height: 81px;
-  border-radius: 50%;
-  background-color: wildSandGray;
-  opacity: 0.9;
 }
 
 .nextChevron {
   width: 27px;
   position: relative;
-  top: 7px;
-  right: -3px;
+  top: 47px;
+  right: 6px;
   height: 53px;
+  border-radius: 50%;
+  background-color: wildSandGray;
+  opacity: 0.9;
+  padding: 14px 27px;
 }
 
 .backChevron {
   width: 27px;
   position: relative;
-  top: 15px;
-  left: 23px;
+  top: 5px;
+  left: 4px;
   height: 53px;
   transform: rotate(180deg);
+  border-radius: 50%;
+  background-color: wildSandGray;
+  opacity: 0.9;
+  padding: 14px 27px;
 }
 
 /* react-slick style overrides */
 
 .DPLAUsers :global(.slick-track) {
   display: flex;
+}
+.DPLAUsers :global(.slick-next):hover,
+.DPLAUsers :global(.slick-next):focus,
+.DPLAUsers :global(.slick-prev):hover,
+.DPLAUsers :global(.slick-prev):focus {
+  background-color: wildSandGray !important;
 }
