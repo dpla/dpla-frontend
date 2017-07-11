@@ -9,16 +9,15 @@
   display: flex;
   flex-direction: column;
 }
-
-@media (min-width: mediumRem) {
-  .socialMedia {
-    padding: 72px 70px 77px;
-  }
-}
-
 @media (min-width: smallRem) {
   .socialMedia {
     flex-direction: row;
+    padding: 45px 50px 55px;
+  }
+}
+@media (min-width: mediumRem) {
+  .socialMedia {
+    padding: 72px 70px 77px;
   }
 }
 
@@ -83,7 +82,6 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-
 @media (min-width: mediumPlusRem) {
   .instagramImages {
     flex-wrap: nowrap;
@@ -94,10 +92,7 @@
   padding: 0px 6px 6px 0;
   width: calc(50% - 6px);
   height: calc(50% - 6px);
-  max-width: 225px;
-  max-height: 225px;
 }
-
 @media (min-width: mediumPlusRem) {
   .instagramImage {
     width: calc(25% - 6px);

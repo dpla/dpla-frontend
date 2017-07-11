@@ -8,6 +8,12 @@
   padding: 45px 25px 55px;
 }
 
+@media (min-width: smallRem) {
+  .onlineExhibitions {
+    padding: 45px 50px 55px;
+  }
+}
+
 @media (min-width: mediumRem) {
   .onlineExhibitions {
     padding: 72px 70px 77px;

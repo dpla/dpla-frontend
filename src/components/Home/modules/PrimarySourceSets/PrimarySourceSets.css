@@ -1,11 +1,17 @@
 @value colors: "../../../../colors.css";
 @value romanceGray, elephantBlue, onionBrown, solitudeBlue, curiousBlue, black from colors;
 @value breakpoints: "../../../../breakpoints.css";
-@value mediumRem from breakpoints;
+@value smallRem, mediumRem from breakpoints;
 
 .primarySourceSets {
   margin: auto;
   padding: 45px 25px 55px;
+}
+
+@media (min-width: smallRem) {
+  .primarySourceSets {
+    padding: 45px 50px 55px;
+  }
 }
 
 @media (min-width: mediumRem) {
