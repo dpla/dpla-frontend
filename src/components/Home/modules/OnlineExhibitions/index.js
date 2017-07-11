@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 import styles from "./OnlineExhibitions.css";
+import breakpoints from "../../../../breakpoints.css";
 
 import smallChevron from "../../../../images/chevron-thick-orange.svg";
 import largeChevron from "../../../../images/chevron-thin.svg";
@@ -73,6 +74,18 @@ const OnlineExhibitions = (/* data */) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
+        responsive={[
+          {
+            breakpoint: parseInt(breakpoints.smallPx),
+            settings: {
+              centerMode: true,
+              centerPadding: "15.5%",
+              slidesToShow: 1.33,
+              arrows: false,
+              draggable: true
+            }
+          }
+        ]}
       >
         {mockExhibitionsData.map(({ text, imageUrl, id, isFeatured }) =>
           <div className={styles.item}>

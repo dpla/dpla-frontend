@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 import styles from "./PrimarySourceSets.css";
+import breakpoints from "../../../../breakpoints.css";
 
 import smallChevron from "../../../../images/chevron-thick-blue.svg";
 import largeChevron from "../../../../images/chevron-thin.svg";
@@ -69,6 +70,19 @@ const PrimarySourceSets = (/* data */) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
+        responsive={[
+          {
+            breakpoint: parseInt(breakpoints.smallPx),
+            settings: {
+              centerMode: true,
+              centerPadding: "12.5%",
+              slidesToShow: 1.33,
+              slidesToShow: 1.25,
+              arrows: false,
+              draggable: true
+            }
+          }
+        ]}
       >
         {mockSourceSets.map(({ text, imageUrl, id }) =>
           <div className={styles.item}>
