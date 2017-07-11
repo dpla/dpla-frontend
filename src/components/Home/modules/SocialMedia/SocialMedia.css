@@ -82,10 +82,6 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-<<<<<<< 989befaa85a2d520defdb64e07676ff35be79d26
-=======
-
->>>>>>> wip
 @media (min-width: mediumPlusRem) {
   .instagramImages {
     flex-wrap: nowrap;
@@ -96,14 +92,9 @@
   padding: 0px 6px 6px 0;
   width: calc(50% - 6px);
   height: calc(50% - 6px);
-<<<<<<< 989befaa85a2d520defdb64e07676ff35be79d26
-}
-=======
   max-width: 225px;
   max-height: 225px;
 }
-
->>>>>>> wip
 @media (min-width: mediumPlusRem) {
   .instagramImage {
     width: calc(25% - 6px);

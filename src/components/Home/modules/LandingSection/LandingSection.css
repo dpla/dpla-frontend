@@ -43,6 +43,7 @@
   font-weight: bold;
   text-align: center;
   font-family: 'Source Serif Pro';
+<<<<<<< 9890d021b7341223cd0ae1a2d0afaaa15bf3c008
 <<<<<<< aa1caec606c87329069c50777f997166a1ed2ab9
   font-size: 2.375rem;
   line-height: 2.5625rem;
@@ -57,6 +58,11 @@
     font-size: 2.375rem;
     line-height: 2.5625rem;
   }
+>>>>>>> wip
+=======
+  font-size: 2.375rem;
+  line-height: 2.5625rem;
+  margin-bottom: 72px;
 >>>>>>> wip
 }
 
