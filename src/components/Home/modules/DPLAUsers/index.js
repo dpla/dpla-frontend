@@ -47,6 +47,15 @@ const DPLAUsers = (/* data */) =>
               arrows: false,
               draggable: true
             }
+          },
+          {
+            breakpoint: parseInt(breakpoints.mediumPx),
+            settings: {
+              centerMode: false,
+              slidesToShow: 2,
+              arrows: true,
+              draggable: false
+            }
           }
         ]}
       >
