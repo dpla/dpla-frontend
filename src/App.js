@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import HeaderSearchBar from "./components/HeaderSearchBar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
-import Main from "./components/Main";
+import PrimarySourceSets from "./components/PrimarySourceSets";
 
 const App = () =>
   <Router>
@@ -13,7 +13,14 @@ const App = () =>
 
       <Route path="/" exact={true} component={Home} />
 
-      <Route path="/(.+)" component={Main} />
+      <Route
+        path="/(.+)"
+        render={props =>
+          <div>
+            <HeaderSearchBar />
+            <Route path="/primary-source-sets" component={PrimarySourceSets} />
+          </div>}
+      />
 
       <Footer />
     </div>
