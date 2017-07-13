@@ -1,0 +1,21 @@
+@value colors: "../../../../colors.css";
+@value visualBrown, black50 from colors;
+
+.filtersWrapper {
+  width: 100%;
+  background-color: visualBrown;
+  box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.textInput::placeholder {
+  color: black50;
+}
+
+.textInput {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding: 10px 17px 12px;
+  border: 2px solid #F2EFE7;
+  border-radius: 3px;
+  width: 345px;
+}

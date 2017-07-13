@@ -31,7 +31,7 @@ const Footer = () =>
             <ul>
               <li>Search</li>
               <li>Exhibitions</li>
-              <li>Primary Source Sets</li>
+              <li><Link to="primary-source-sets">Primary Source Sets</Link></li>
               <li>Browse</li>
               <li>Timeline</li>
               <li>Map</li>

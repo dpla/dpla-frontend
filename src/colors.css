@@ -10,6 +10,7 @@
 @value white60: rgba(255, 255, 255, 0.6);
 @value white50: rgba(255, 255, 255, 0.5);
 @value black60: rgba(0, 0, 0, 0.6);
+@value black50: rgba(0, 0, 0, 0.5);
 @value black12: rgba(0, 0, 0, 0.12);
 @value gray75: rgba(255, 255, 255, 0.75);
 @value wildSandGray: #F4F4F4;
@@ -35,3 +36,4 @@
 @value rockBrown: #ECE9DA;
 @value bonjourRed: #E4DADA;
 @value dimGray: #6D6D6D;
+@value visualBrown #F9F8F5;

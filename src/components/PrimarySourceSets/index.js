@@ -1,22 +1,19 @@
 import React from "react";
 
 import styles from "./PrimarySourceSets.css";
+import { module } from "../../utils.css";
+
+import Filters from "./modules/Filters";
+import Header from "./modules/Header";
+import Sets from "./modules/Sets";
+
+import mockSets from "./mockSets";
 
 const PrimarySourceSets = () =>
   <div className={styles.primarySourceSets}>
-    <div className={styles.headerWrapper}>
-      <div className={styles.headerContent}>
-        <h1 className={styles.headerText}>
-          <div>Primary</div>
-          <div className={styles.nowrap}>Source Sets</div>
-        </h1>
-        <p className={styles.headerDescription}>
-          Primary source collections exploring topics in history, literature,
-          and culture developed by educators — complete with teaching guides
-          for class use.
-        </p>
-      </div>
-    </div>
+    <Header />
+    <Filters />
+    <Sets sets={mockSets} />
   </div>;
 
 export default PrimarySourceSets;

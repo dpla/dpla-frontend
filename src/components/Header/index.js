@@ -7,9 +7,9 @@ const Header = () =>
   <div className={styles.header}>
     <div className={styles.linksContainer}>
       <div className={styles.mainLinks}>
-        <Link to="">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="">Exhibitions</Link>
-        <Link to="">Primary Source Sets</Link>
+        <Link to="/primary-source-sets">Primary Source Sets</Link>
         <Link to="">Explore</Link>
       </div>
       <span className={styles.divider} />
