@@ -39,7 +39,7 @@ const DPLAUsers = (/* data */) =>
         slidesToScroll={1}
         responsive={[
           {
-            breakpoint: parseInt(breakpoints.smallPx),
+            breakpoint: parseInt(breakpoints.smallPx, 10),
             settings: {
               centerMode: true,
               centerPadding: "12.5%",
@@ -49,7 +49,7 @@ const DPLAUsers = (/* data */) =>
             }
           },
           {
-            breakpoint: parseInt(breakpoints.mediumPx),
+            breakpoint: parseInt(breakpoints.mediumPx, 10),
             settings: {
               centerMode: false,
               slidesToShow: 2,

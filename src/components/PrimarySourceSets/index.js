@@ -1,7 +1,6 @@
 import React from "react";
 
 import styles from "./PrimarySourceSets.css";
-import { module } from "../../utils.css";
 
 import Filters from "./modules/Filters";
 import Header from "./modules/Header";

@@ -11,7 +11,7 @@
 }
 
 .set {
-  flex-basis: calc(33% - 20px);
+  flex-basis: calc(33% - 4px);
   padding-right: 10px;
   margin-bottom: 36px;
 }

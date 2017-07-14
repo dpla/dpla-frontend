@@ -72,11 +72,10 @@ const PrimarySourceSets = (/* data */) =>
         slidesToScroll={1}
         responsive={[
           {
-            breakpoint: parseInt(breakpoints.smallPx),
+            breakpoint: parseInt(breakpoints.smallPx, 10),
             settings: {
               centerMode: true,
               centerPadding: "12.5%",
-              slidesToShow: 1.33,
               slidesToShow: 1.25,
               arrows: false,
               draggable: true
