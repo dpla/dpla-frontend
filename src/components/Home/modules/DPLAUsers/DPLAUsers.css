@@ -8,11 +8,19 @@
   overflow: hidden;
   padding: 45px 25px 55px;
 }
+<<<<<<< 9890d021b7341223cd0ae1a2d0afaaa15bf3c008
+
+=======
+>>>>>>> wip
 @media (min-width: smallRem) {
   .DPLAUsers {
     padding: 45px 50px 55px;
   }
 }
+<<<<<<< 9890d021b7341223cd0ae1a2d0afaaa15bf3c008
+
+=======
+>>>>>>> wip
 @media (min-width: mediumRem) {
   .DPLAUsers {
     padding: 72px 70px 77px;

@@ -6,6 +6,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1",
+    "react-select": "^1.0.0-rc.5",
     "react-slick": "^0.14.11"
   },
   "devDependencies": {
