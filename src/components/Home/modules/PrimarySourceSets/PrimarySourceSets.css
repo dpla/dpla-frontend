@@ -1,15 +1,7 @@
 @value colors: "../../../../colors.css";
 @value romanceGray, elephantBlue, onionBrown, solitudeBlue, curiousBlue, black from colors;
 @value breakpoints: "../../../../breakpoints.css";
-<<<<<<< 9890d021b7341223cd0ae1a2d0afaaa15bf3c008
-<<<<<<< aa1caec606c87329069c50777f997166a1ed2ab9
 @value smallRem, mediumRem from breakpoints;
-=======
-@value mediumRem from breakpoints;
->>>>>>> wip
-=======
-@value smallRem, mediumRem from breakpoints;
->>>>>>> wip
 
 .primarySourceSets {
   margin: auto;
