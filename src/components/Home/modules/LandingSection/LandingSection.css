@@ -1,15 +1,35 @@
 @value colors: "../../../../colors.css";
 @value white, bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from colors;
+@value breakpoints: "../../../../breakpoints.css";
+@value smallRem, mediumRem from breakpoints;
 
 /* TODO this needs to be an actual image at some point */
 .home {
   background-color: rgb(47, 74, 87);
   color: white;
-  padding: 42px 0 132px 0;
+  padding: 42px 25px 132px;
+}
+
+@media (min-width: smallRem) {
+  .onlineExhibitions {
+    padding: 42px 50px 132px;
+  }
+}
+
+@media (min-width: mediumRem) {
+  .home {
+    padding: 42px 0 77px;
+  }
 }
 
 .dplaLogo {
-  width: 404px;
+  width: 300px;
+}
+
+@media (min-width: smallRem) {
+  .dplaLogo {
+    width: 404px;
+  }
 }
 
 .content {
@@ -18,11 +38,13 @@
 }
 
 .text {
+  font-size: 1.5625rem;
+  line-height: 1.75rem;
   font-weight: bold;
-  font-size: 2.375rem;
-  line-height: 2.5625rem;
   text-align: center;
   font-family: 'Source Serif Pro';
+  font-size: 2.375rem;
+  line-height: 2.5625rem;
   margin-bottom: 72px;
 }
 
@@ -30,11 +52,17 @@
   margin-left: auto;
   font-weight: 600;
   color: white;
-  padding: 12px 48px;
   background-color: bambooOrange;
   border-radius: 2px;
   font-size: 1.25rem;
   line-height: 1.5625rem;
+  padding: 10px 44px;
+}
+
+@media (min-width: smallRem) {
+  .donateButton {
+    padding: 12px 48px;
+  }
 }
 
 .logoAndDonate {
@@ -43,8 +71,10 @@
   justify-content: space-between;
 }
 
-.logoAndDonate {
-  padding: 0 70px;
+@media (min-width: mediumRem) {
+  .logoAndDonate {
+    padding: 0 70px;
+  }
 }
 
 @media screen and (min-width: 1100px) {

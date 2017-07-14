@@ -19,9 +19,7 @@ const Instagram = ({ images }) =>
     </h1>
     <div className={styles.instagramImages}>
       {images.map(({ url, description }) =>
-        <div key={url}>
-          <img alt={description} className={styles.instagramImage} src={url} />
-        </div>
+        <img alt={description} className={styles.instagramImage} src={url} />
       )}
     </div>
     <Link to="" className={styles.visitLink}>

@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 
 import styles from "./DPLAUsers.css";
+import breakpoints from "../../../../breakpoints.css";
 
 import chevron from "../../../../images/chevron-thin.svg";
 
@@ -36,6 +37,27 @@ const DPLAUsers = (/* data */) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
+        responsive={[
+          {
+            breakpoint: parseInt(breakpoints.smallPx),
+            settings: {
+              centerMode: true,
+              centerPadding: "12.5%",
+              slidesToShow: 1.33,
+              arrows: false,
+              draggable: true
+            }
+          },
+          {
+            breakpoint: parseInt(breakpoints.mediumPx),
+            settings: {
+              centerMode: false,
+              slidesToShow: 2,
+              arrows: true,
+              draggable: false
+            }
+          }
+        ]}
       >
         <div className={[styles.item, styles.learners].join(" ")}>
           <div className={styles.imageDiv}>

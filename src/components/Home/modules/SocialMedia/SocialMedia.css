@@ -1,10 +1,24 @@
 @value colors: "../../../../colors.css";
 @value merinoWhite, elephantBlue, dimGray, bambooOrange from colors;
+@value breakpoints: "../../../../breakpoints.css";
+@value smallRem, mediumRem, mediumPlusRem from breakpoints;
 
 .socialMedia {
   margin: auto;
-  padding: 72px 70px 77px;
+  padding: 45px 25px 55px;
   display: flex;
+  flex-direction: column;
+}
+@media (min-width: smallRem) {
+  .socialMedia {
+    flex-direction: row;
+    padding: 45px 50px 55px;
+  }
+}
+@media (min-width: mediumRem) {
+  .socialMedia {
+    padding: 72px 70px 77px;
+  }
 }
 
 @media screen and (min-width: 1100px) {
@@ -36,11 +50,11 @@
   font-size: 1.0625rem;
   line-height: 1.4375rem;
   padding-right: 27px;
+  margin-bottom: 25px;
 }
 
 .twitterText {
   margin-bottom: 6px;
-  min-height: 140px;
 }
 
 .twitterDate {
@@ -66,16 +80,23 @@
 .instagramImages {
   display: flex;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+@media (min-width: mediumPlusRem) {
+  .instagramImages {
+    flex-wrap: nowrap;
+  }
 }
 
 .instagramImage {
-  width: 164px;
-  height: 164px;
-  padding-right: 6px;
+  padding: 0px 6px 6px 0;
+  width: calc(50% - 6px);
+  height: calc(50% - 6px);
 }
-
-.instagramImage:last-child {
-  padding: none;
+@media (min-width: mediumPlusRem) {
+  .instagramImage {
+    width: calc(25% - 6px);
+  }
 }
 
 .externalLinkIcon {
