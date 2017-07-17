@@ -9,8 +9,10 @@ const Sets = ({ sets }) =>
     <ul className={styles.sets}>
       {sets.map(set =>
         <li className={styles.set}>
-          <img alt={set.title} src={set.image} className={styles.image} />
-          <h3 className={styles.title}>{set.title}</h3>
+          <Link to={`primary-source-sets/${set.slug}`}>
+            <img alt={set.title} src={set.image} className={styles.image} />
+            <h3 className={styles.title}>{set.title}</h3>
+          </Link>
           <h4 className={styles.subtitle}>{set.subtitle}</h4>
           <ul className={styles.tags}>
             {set.tags.map((tag, i) =>
