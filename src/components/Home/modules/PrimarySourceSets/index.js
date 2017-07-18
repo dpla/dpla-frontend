@@ -41,13 +41,13 @@ const NextArrow = ({ onClick, className }) =>
   </button>;
 
 const PrevArrow = ({ onClick, className }) =>
-  <div className={styles.prevArrow} onClick={onClick}>
+  <button className={styles.prevArrow} onClick={onClick}>
     <img
       alt=""
       className={[styles.backChevron, className].join(" ")}
       src={largeChevron}
     />
-  </div>;
+  </button>;
 
 const PrimarySourceSets = (/* data */) =>
   <div className={styles.wrapper}>

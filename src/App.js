@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import PrimarySourceSets from "./components/PrimarySourceSets";
 import PrimarySourceSet from "./components/PrimarySourceSet";
+import PSSFooter from "./components/PSSFooter";
 
 const App = () =>
   <Router>
@@ -28,6 +29,7 @@ const App = () =>
               path="/primary-source-sets/:slug"
               component={PrimarySourceSet}
             />
+            <PSSFooter />
           </div>}
       />
 
