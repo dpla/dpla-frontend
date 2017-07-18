@@ -5,7 +5,7 @@ import styles from "./SourceSetInfo.css";
 import { module } from "../../../../utils.css";
 import heart from "../../../../images/heart.svg";
 
-const SourceSetInfo = ({ breadcrumbs }) =>
+const SourceSetInfo = () =>
   <div className={styles.wrapper}>
     <div className={[styles.sourceSetInfo, module].join(" ")}>
       <div className={styles.bannerAndDescription}>

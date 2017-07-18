@@ -1,0 +1,27 @@
+@value colors: "../../../../colors.css";
+@value visualBrown from colors;
+
+.sourceSetContent {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 94px;
+}
+
+.set {
+  flex-basis: calc(25% - 15px);
+  margin-right: 20px;
+  margin-bottom: 28px;
+}
+
+.set:nth-child(4n) {
+  margin-right: 0;
+}
+
+.imageWrapper {
+  background-color: visualBrown;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 172px;
+  margin-bottom: 9px;
+}
