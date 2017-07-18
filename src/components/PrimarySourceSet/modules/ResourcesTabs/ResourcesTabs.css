@@ -28,6 +28,7 @@
   line-height: 1.25rem;
   padding: 0 18px 16px;
   margin-right: 15px;
+  display: inline-block;
 }
 
 .tab:last-child {

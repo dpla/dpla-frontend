@@ -7,11 +7,11 @@ import SourceSetInfo from "./modules/SourceSetInfo";
 import RelatedSets from "./modules/RelatedSets";
 import ResourcesTabs from "./modules/ResourcesTabs";
 
-const PrimarySourceSet = () =>
+const PrimarySourceSet = props =>
   <div className={styles.primarySourceSet}>
     <BreadcrumbsModule />
     <SourceSetInfo />
-    <ResourcesTabs />
+    <ResourcesTabs routerProps={props} />
     <RelatedSets />
   </div>;
 

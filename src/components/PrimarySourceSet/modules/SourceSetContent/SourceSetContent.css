@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 94px;
+  padding-top: 50px;
 }
 
 .set {
@@ -24,4 +25,9 @@
   justify-content: center;
   height: 172px;
   margin-bottom: 9px;
+}
+
+.title {
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
 }
