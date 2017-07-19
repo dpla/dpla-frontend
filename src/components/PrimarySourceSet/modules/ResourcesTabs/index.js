@@ -10,30 +10,55 @@ import TeachingGuide from "../TeachingGuide";
 
 class ResourcesTabs extends React.Component {
   componentWillMount() {
-    const { pathname } = this.props.routerProps.location;
-    if (/\/primary-source-sets\/.+\/teaching-guide/.exec(pathname)) {
+    const { location, history } = this.props.routerProps;
+    const isStudentMode = location.search.includes("student");
+    if (/\/primary-source-sets\/.+\/teaching-guide/.exec(location.pathname)) {
+      if (isStudentMode) {
+        history.push(`${location.pathname}`);
+      }
       this.setState({ currentTab: "teachingGuide" });
     } else if (
-      /\/primary-source-sets\/.+\/additional-resources/.exec(pathname)
+      /\/primary-source-sets\/.+\/additional-resources/.exec(location.pathname)
     ) {
       this.setState({ currentTab: "additionalResources" });
     } else {
       this.setState({ currentTab: "sourceSet" });
     }
+
+    this.setState({ studentMode: isStudentMode });
   }
 
   onTabChange(newTab) {
     this.setState({ currentTab: newTab });
   }
 
+  // onToggleStudentMode() {
+  //   const { history, location } = this.props.routerProps;
+  //   if (!this.state.studentMode) {
+  //     const newPath = this.state.currentTab === "teachingGuide"
+  //       ? `${location.pathname.replace(
+  //           "teaching-guide",
+  //           "source-set"
+  //         )}/?student`
+  //       : `${location.pathname}/?student`;
+  //     history.push(newPath);
+  //   } else {
+  //     history.push(location.pathname);
+  //   }
+  //   this.setState({ studentMode: !this.state.studentMode });
+
   render() {
-    const { routerProps } = this.props;
+    const { location, match } = this.props.routerProps;
+    const { search } = location;
+    const { url } = match;
+    const isStudentMode = search.includes("student");
+
     return (
       <div className={styles.wrapper}>
         <div className={styles.tabsWrapper}>
           <div className={[styles.tabs, module].join(" ")}>
             <Link
-              to={`${routerProps.match.url}/source-set`}
+              to={`${url}/source-set/${search}`}
               onClick={() => this.onTabChange("sourceSet")}
               className={[
                 styles.tab,
@@ -43,7 +68,7 @@ class ResourcesTabs extends React.Component {
               Source Set
             </Link>
             <Link
-              to={`${routerProps.match.url}/additional-resources`}
+              to={`${url}/additional-resources/${search}`}
               onClick={() => this.onTabChange("additionalResources")}
               className={[
                 styles.tab,
@@ -53,16 +78,17 @@ class ResourcesTabs extends React.Component {
             >
               Additional Resources
             </Link>
-            <Link
-              to={`${routerProps.match.url}/teaching-guide`}
-              onClick={() => this.onTabChange("teachingGuide")}
-              className={[
-                styles.tab,
-                this.state.currentTab === "teachingGuide" && styles.activeTab
-              ].join(" ")}
-            >
-              Teaching Guide
-            </Link>
+            {!isStudentMode &&
+              <Link
+                to={`${url}/teaching-guide/${search}`}
+                onClick={() => this.onTabChange("teachingGuide")}
+                className={[
+                  styles.tab,
+                  this.state.currentTab === "teachingGuide" && styles.activeTab
+                ].join(" ")}
+              >
+                Teaching Guide
+              </Link>}
           </div>
         </div>
         <div className={[styles.resourcesTabs, module].join(" ")}>
@@ -79,7 +105,12 @@ class ResourcesTabs extends React.Component {
           <Route
             path="/primary-source-sets/:id/teaching-guide"
             exact={true}
-            component={TeachingGuide}
+            render={() =>
+              <TeachingGuide
+                onStudentModeRedirect={() =>
+                  this.props.onTabChange("source-set")}
+                routerProps={this.props.routerProps}
+              />}
           />
         </div>
       </div>
