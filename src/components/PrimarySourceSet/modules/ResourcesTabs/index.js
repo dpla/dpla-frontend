@@ -10,7 +10,16 @@ import TeachingGuide from "../TeachingGuide";
 
 class ResourcesTabs extends React.Component {
   componentWillMount() {
-    this.setState({ currentTab: "sourceSet" });
+    const { pathname } = this.props.routerProps.location;
+    if (/\/primary-source-sets\/.+\/teaching-guide/.exec(pathname)) {
+      this.setState({ currentTab: "teachingGuide" });
+    } else if (
+      /\/primary-source-sets\/.+\/additional-resources/.exec(pathname)
+    ) {
+      this.setState({ currentTab: "additionalResources" });
+    } else {
+      this.setState({ currentTab: "sourceSet" });
+    }
   }
 
   onTabChange(newTab) {
