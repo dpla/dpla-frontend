@@ -5,62 +5,62 @@ import { module } from "../../../../utils.css";
 
 const mockSets = [
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
-    img: "http://lorempixel.com/152/168",
+    img: "http://lorempixel.com/152/168/food",
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   }

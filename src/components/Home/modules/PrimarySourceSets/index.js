@@ -11,22 +11,22 @@ import largeChevron from "../../../../images/chevron-thin.svg";
 const mockSourceSets = [
   {
     text: "Road to Revolution",
-    imageUrl: "http://lorempixel.com/334/245",
+    imageUrl: "http://lorempixel.com/334/245/food",
     id: 0
   },
   {
     text: "Early Chinese Immigration to the U.S.",
-    imageUrl: "http://lorempixel.com/334/246",
+    imageUrl: "http://lorempixel.com/334/246/food",
     id: 1
   },
   {
     text: "Mexican Labor and World War II",
-    imageUrl: "http://lorempixel.com/334/247",
+    imageUrl: "http://lorempixel.com/334/247/food",
     id: 2
   },
   {
     text: "The Impact of Television on News Media",
-    imageUrl: "http://lorempixel.com/334/248",
+    imageUrl: "http://lorempixel.com/334/248/food",
     id: 2
   }
 ];

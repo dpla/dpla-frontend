@@ -12,7 +12,9 @@ const SourceSetInfo = () =>
         <div className={styles.banner}>
           <div
             className={styles.bannerImage}
-            style={{ backgroundImage: "url(http://lorempixel.com/400/200/)" }}
+            style={{
+              backgroundImage: "url(http://lorempixel.com/400/200/food)"
+            }}
           />
           <div className={styles.bannerTextWrapper}>
             <h3 className={styles.bannerResourceType}>Primary Source Set</h3>

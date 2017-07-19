@@ -6,19 +6,19 @@ import { module } from "../../../../utils.css";
 
 const mockSets = [
   {
-    img: "http://lorempixel.com/400/200/",
+    img: "http://lorempixel.com/400/200/food",
     title: "New York City"
   },
   {
-    img: "http://lorempixel.com/400/200/",
+    img: "http://lorempixel.com/400/200/food",
     title: "Early Chinese Immigration to the US"
   },
   {
-    img: "http://lorempixel.com/400/200/",
+    img: "http://lorempixel.com/400/200/food",
     title: "Mexican Labor and World War II: The Bracero..."
   },
   {
-    img: "http://lorempixel.com/400/200/",
+    img: "http://lorempixel.com/400/200/food",
     title: "The Impact of Television on News Media"
   }
 ];

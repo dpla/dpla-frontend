@@ -64,7 +64,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://lorempixel.com/187/211"
+              src="http://lorempixel.com/187/211/food"
             />
           </div>
           <div className={styles.content}>
@@ -81,7 +81,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://lorempixel.com/187/212"
+              src="http://lorempixel.com/187/212/food"
             />
           </div>
           <div className={styles.content}>
@@ -97,7 +97,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://lorempixel.com/187/213"
+              src="http://lorempixel.com/187/213/food"
             />
           </div>
           <div className={styles.content}>
@@ -114,7 +114,7 @@ const DPLAUsers = (/* data */) =>
             <img
               alt="text"
               className={styles.itemImg}
-              src="http://lorempixel.com/187/214"
+              src="http://lorempixel.com/187/214/food"
             />
           </div>
           <div className={styles.content}>

@@ -11,25 +11,25 @@ import largeChevron from "../../../../images/chevron-thin.svg";
 const mockExhibitionsData = [
   {
     text: "Building the First Transcontinental Railroad",
-    imageUrl: "http://lorempixel.com/334/241",
+    imageUrl: "http://lorempixel.com/334/241/food",
     id: 0,
     isFeatured: true
   },
   {
     text: "Race to the Moon",
-    imageUrl: "http://lorempixel.com/334/242",
+    imageUrl: "http://lorempixel.com/334/242/food",
     id: 1,
     isFeatured: false
   },
   {
     text: "In Focus: The Evolution of the Personal Camera",
-    imageUrl: "http://lorempixel.com/334/243",
+    imageUrl: "http://lorempixel.com/334/243/food",
     id: 2,
     isFeatured: false
   },
   {
     text: "Design Tenets",
-    imageUrl: "http://lorempixel.com/334/244",
+    imageUrl: "http://lorempixel.com/334/244/food",
     id: 2,
     isFeatured: false
   }
