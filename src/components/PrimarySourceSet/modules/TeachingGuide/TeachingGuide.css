@@ -1,0 +1,85 @@
+@value colors: "../../../../colors.css";
+@value hippieBlue from colors;
+
+.wrapper {
+  width: 100%;
+}
+
+.teachingGuide {
+  display: flex;
+}
+
+.content {
+  flex: 6;
+  margin-right: 73px;
+}
+
+.contentHeader {
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.sidebar {
+  flex: 3;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.sidebarHeader {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sidebarSection {
+  margin-bottom: 22px;
+}
+
+.teacherTools {
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.teacherTools .sidebarHeader {
+  margin-bottom: 20px;
+}
+
+/*
+  technique for changing ol number color from
+  https://www.lockedowndesign.com/ordered-list-ol-different-color-for-numbers/
+*/
+
+.question {
+  counter-increment: list;
+  list-style-type: none;
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.question:before {
+  color: hippieBlue;
+  content: counter(list) ".";
+  left: -32px;
+  position: absolute;
+  text-align: right;
+  width: 26px;
+}
+
+.questions {
+  padding-left: 20px;
+}
+
+.question:last-child {
+  margin-bottom: 0;
+}
+
+.ul {
+  list-style: initial;
+  margin-bottom: 10px;
+  padding-left: 27px;
+}

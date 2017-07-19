@@ -6,6 +6,7 @@ import styles from "./ResourcesTabs.css";
 import { module } from "../../../../utils.css";
 
 import SourceSetContent from "../SourceSetContent";
+import TeachingGuide from "../TeachingGuide";
 
 class ResourcesTabs extends React.Component {
   componentWillMount() {
@@ -65,6 +66,11 @@ class ResourcesTabs extends React.Component {
             path="/primary-source-sets/:id/source-set"
             exact={true}
             component={SourceSetContent}
+          />
+          <Route
+            path="/primary-source-sets/:id/teaching-guide"
+            exact={true}
+            component={TeachingGuide}
           />
         </div>
       </div>
