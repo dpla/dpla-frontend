@@ -9,7 +9,7 @@ import ResourcesTabs from "./modules/ResourcesTabs";
 
 const PrimarySourceSet = props =>
   <div className={styles.primarySourceSet}>
-    <BreadcrumbsModule />
+    <BreadcrumbsModule routerProps={props} />
     <SourceSetInfo />
     <ResourcesTabs routerProps={props} />
     <RelatedSets />

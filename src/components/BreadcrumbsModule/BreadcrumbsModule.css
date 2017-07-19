@@ -11,6 +11,8 @@
   padding: 22px 0;
   font-size: 1rem;
   line-height: 1.25rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .activeBreadcrumb {
@@ -26,4 +28,24 @@
 .chevron {
   height: 10px;
   padding: 0 11px;
+}
+
+.studentMode {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.1875rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.studentModeText {
+  display: inline;
+  margin-right: 8px;
+}
+
+.questionIcon {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 3px;
 }
