@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import styles from "./TeachingGuide.css";
 import { module } from "../../../../utils.css";
+import printer from "../../../../images/printer.svg";
+import link from "../../../../images/link.svg";
+import googleClassroom from "../../../../images/google-classroom.svg";
 
 const mockContent = {
   discussionQuestions: [
@@ -41,28 +44,49 @@ const TeachingGuide = () =>
             </li>
           )}
         </ol>
+        <div className={styles.aboutThis}>
+          <h3 className={styles.aboutThisHeader}>About This Guide</h3>
+          <p>
+            This teaching guide helps instructors use a specific primary source
+            set,{" "}
+            <Link className={styles.aboutThisLink} to="">
+              Women in the Civil War
+            </Link>, in the classroom. It
+            offers discussion
+            questions, classroom activities, and primary source analysis tools.
+            It
+            is intended to spark pedagogical creativity by giving a sample
+            approach to the material. Please feel free to share, reuse, and
+            adapt
+            the resources in this guide for your teaching purposes.
+          </p>
+        </div>
       </div>
       <div className={styles.sidebar}>
         <div className={[styles.teacherTools, styles.sidebarSection].join(" ")}>
           <h3 className={styles.sidebarHeader}>Teacher Tools</h3>
           <div className={styles.toolLinkAndIcon}>
-            <img alt="" className={styles.toolIcon} />
+            <img src={googleClassroom} alt="" className={styles.toolIcon} />
             <Link to="" className={styles.toolLink}>
               Share to Google Classroom
             </Link>
           </div>
           <div className={styles.toolLinkAndIcon}>
-            <img alt="" className={styles.toolIcon} />
+            <img src={printer} alt="" className={styles.toolIcon} />
             <Link to="" className={styles.toolLink}>
               Print this Guide
             </Link>
           </div>
           <div className={styles.toolLinkAndIcon}>
-            <img alt="" className={styles.toolIcon} />
+            <img src={link} alt="" className={styles.toolIcon} />
             <Link to="" className={styles.toolLink}>
               Link to Student View
             </Link>
           </div>
+          <p className={styles.studentViewNote}>
+            <span className={styles.semibold}>Student View</span> is a link to
+            this Primary Source Set with the Teaching Guide hidden.
+          </p>
         </div>
         <div className={styles.sidebarSection}>
           <h3 className={styles.sidebarHeader}>Primary source analysis</h3>
@@ -80,7 +104,8 @@ const TeachingGuide = () =>
             </li>
             <li>explain the relationships between sources</li>
             <li>
-              compare and contrast sources in terms of point of view and method
+              compare and contrast sources in terms of point of view and
+              method
             </li>
             <li>support conclusions and interpretations with evidence</li>
             <li>identify questions for further investigation</li>

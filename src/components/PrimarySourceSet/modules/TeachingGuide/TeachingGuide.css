@@ -1,5 +1,5 @@
 @value colors: "../../../../colors.css";
-@value hippieBlue from colors;
+@value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from colors;
 
 .wrapper {
   width: 100%;
@@ -10,7 +10,6 @@
 }
 
 .content {
-  flex: 6;
   margin-right: 73px;
 }
 
@@ -22,9 +21,10 @@
 }
 
 .sidebar {
-  flex: 3;
   font-size: 0.875rem;
   line-height: 1.125rem;
+  width: 295px;
+  flex-shrink: 0;
 }
 
 .sidebarHeader {
@@ -44,7 +44,41 @@
 }
 
 .teacherTools .sidebarHeader {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.toolLink {
+  color: curiousBlue;
+  border-bottom: 1px solid curiousBlue;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.toolIcon {
+  opacity: 0.4;
+  height: 22px;
+  width: 22px;
+  margin-right: 13px;
+  position: relative;
+  top: 8px;
+}
+
+.toolLinkAndIcon {
+  margin-bottom: 3px;
+}
+
+.toolLinkAndIcon:last-of-type {
+  margin-bottom: 17px;
+}
+
+.studentViewNote {
+  opacity: 0.65;
+}
+
+.semibold {
+  font-weight: 600;
 }
 
 /*
@@ -82,4 +116,29 @@
   list-style: initial;
   margin-bottom: 10px;
   padding-left: 27px;
+}
+
+.aboutThis {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  margin-top: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: visualBrown;
+  padding: 18px 20px 20px;
+}
+
+.aboutThisHeader {
+  color: elephantBlue;
+  font-family: "Source Serif Pro";
+  font-weight: 600;
+  line-height: 1.25rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.aboutThisLink {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
 }
