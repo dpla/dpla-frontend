@@ -1,0 +1,144 @@
+@value colors: "../../../../colors.css";
+@value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from colors;
+
+.wrapper {
+  width: 100%;
+}
+
+.teachingGuide {
+  display: flex;
+}
+
+.content {
+  margin-right: 73px;
+}
+
+.contentHeader {
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.sidebar {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  width: 295px;
+  flex-shrink: 0;
+}
+
+.sidebarHeader {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sidebarSection {
+  margin-bottom: 22px;
+}
+
+.teacherTools {
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.teacherTools .sidebarHeader {
+  margin-bottom: 10px;
+}
+
+.toolLink {
+  color: curiousBlue;
+  border-bottom: 1px solid curiousBlue;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.toolIcon {
+  opacity: 0.4;
+  height: 22px;
+  width: 22px;
+  margin-right: 13px;
+  position: relative;
+  top: 8px;
+}
+
+.toolLinkAndIcon {
+  margin-bottom: 3px;
+}
+
+.toolLinkAndIcon:last-of-type {
+  margin-bottom: 17px;
+}
+
+.studentViewNote {
+  opacity: 0.65;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+/*
+  technique for changing ol number color from
+  https://www.lockedowndesign.com/ordered-list-ol-different-color-for-numbers/
+*/
+
+.question {
+  counter-increment: list;
+  list-style-type: none;
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.question:before {
+  color: hippieBlue;
+  content: counter(list) ".";
+  left: -32px;
+  position: absolute;
+  text-align: right;
+  width: 26px;
+}
+
+.questions {
+  padding-left: 20px;
+}
+
+.question:last-child {
+  margin-bottom: 0;
+}
+
+.ul {
+  list-style: initial;
+  margin-bottom: 10px;
+  padding-left: 27px;
+}
+
+.aboutThis {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  margin-top: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: visualBrown;
+  padding: 18px 20px 20px;
+}
+
+.aboutThisHeader {
+  color: elephantBlue;
+  font-family: "Source Serif Pro";
+  font-weight: 600;
+  line-height: 1.25rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.aboutThisLink {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
+}

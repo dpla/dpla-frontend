@@ -5,6 +5,8 @@ import HeaderSearchBar from "./components/HeaderSearchBar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import PrimarySourceSets from "./components/PrimarySourceSets";
+import PrimarySourceSet from "./components/PrimarySourceSet";
+import PSSFooter from "./components/PSSFooter";
 
 const App = () =>
   <Router>
@@ -18,7 +20,16 @@ const App = () =>
         render={props =>
           <div>
             <HeaderSearchBar />
-            <Route path="/primary-source-sets" component={PrimarySourceSets} />
+            <Route
+              path="/primary-source-sets"
+              exact={true}
+              component={PrimarySourceSets}
+            />
+            <Route
+              path="/primary-source-sets/:slug"
+              component={PrimarySourceSet}
+            />
+            <PSSFooter />
           </div>}
       />
 

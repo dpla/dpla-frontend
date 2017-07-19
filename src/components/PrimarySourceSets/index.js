@@ -5,7 +5,6 @@ import styles from "./PrimarySourceSets.css";
 import Filters from "./modules/Filters";
 import Header from "./modules/Header";
 import Sets from "./modules/Sets";
-import OtherInfo from "./modules/OtherInfo";
 
 import mockSets from "./mockSets";
 
@@ -14,7 +13,6 @@ const PrimarySourceSets = () =>
     <Header />
     <Filters />
     <Sets sets={mockSets} />
-    <OtherInfo />
   </div>;
 
 export default PrimarySourceSets;
