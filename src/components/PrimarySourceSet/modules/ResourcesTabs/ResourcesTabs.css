@@ -1,6 +1,6 @@
 /*border-bottom: 1px solid rgba(53, 53, 53, 0.1);*/
 @value colors: "../../../../colors.css";
-@value visualBrown from colors;
+@value visualBrown, bambooOrange from colors;
 
 .wrapper {
   width: 100%;
@@ -14,6 +14,7 @@
 .tabsWrapper {
   background-color: visualBrown;
   width: 100%;
+  border-bottom: 1px solid rgba(53, 53, 53, 0.1);
 }
 
 .tabs {
@@ -29,6 +30,11 @@
   padding: 0 18px 16px;
   margin-right: 15px;
   display: inline-block;
+}
+
+.activeTab {
+  color: bambooOrange;
+  border-bottom: 3px solid bambooOrange;
 }
 
 .tab:last-child {
