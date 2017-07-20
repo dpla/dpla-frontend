@@ -20,7 +20,7 @@ const mockContent = {
   ]
 };
 
-const TeachingGuide = () =>
+const TeachingGuide = props =>
   <div className={styles.wrapper}>
     <div className={[styles.teachingGuide, module].join(" ")}>
       <div className={styles.content}>
@@ -79,7 +79,14 @@ const TeachingGuide = () =>
           </div>
           <div className={styles.toolLinkAndIcon}>
             <img src={link} alt="" className={styles.toolIcon} />
-            <Link to="" className={styles.toolLink}>
+            <Link
+              onClick={props.onStudentModeRedirect}
+              to={`${props.routerProps.location.pathname.replace(
+                "teaching-guide",
+                "source-set"
+              )}?student`}
+              className={styles.toolLink}
+            >
               Link to Student View
             </Link>
           </div>
