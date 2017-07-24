@@ -1,0 +1,187 @@
+@value colors: "../../../../css/colors.css";
+@value riceCakeWhite, sisalBrown, wildSandGray, white50, elephantBlue, charcoalGray, lisbonBrown, vanCleefRed, coldTurkeyRed, silver, rockBrown, bonjourRed, gainsboroGray, black, black60 from colors;
+@value breakpoints: "../../../../css/breakpoints.css";
+@value smallRem, mediumRem from breakpoints;
+
+.DPLAUsers {
+  margin: auto;
+  overflow: hidden;
+  padding: 45px 25px 55px;
+}
+@media (min-width: smallRem) {
+  .DPLAUsers {
+    padding: 45px 50px 55px;
+  }
+}
+@media (min-width: mediumRem) {
+  .DPLAUsers {
+    padding: 72px 70px 77px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .DPLAUsers {
+    max-width: 1024px;
+  }
+}
+
+.header {
+  color: elephantBlue;
+  font-family: "Source Serif Pro";
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 3.75rem;
+  margin-bottom: 31px;
+  text-align: center;
+}
+
+.divider {
+  border-top: 4px solid elephantBlue;
+  opacity: 0.25;
+  max-width: 93px;
+  margin: 0 auto 54px;
+}
+
+.item {
+  padding: 0 2px;
+}
+
+.item:first-child {
+  padding-left: 0;
+}
+
+.item:last-child {
+  padding-right: 0;
+}
+
+.content {
+  padding: 24px 21px 37px 24px;
+  height: 141px;
+}
+
+.itemHeader {
+  font-family: "Source Pro Serif";
+  font-size: 1.6875rem;
+  line-height: 2.125rem;
+  font-weight: 600;
+  padding-bottom: 11px;
+}
+
+.imageDiv {
+  height: 280px;
+  display: flex;
+  align-items: center;
+}
+
+.itemImg {
+  margin: auto;
+}
+
+.learners, .educators, .researchers, .genealogists {
+}
+
+.learners .imageDiv {
+  background-color: sisalBrown;
+}
+.educators .imageDiv {
+  background-color: coldTurkeyRed;
+}
+.genealogists .imageDiv {
+  background-color: silver;
+}
+.researchers .imageDiv {
+  background-color: silver;
+}
+
+.learners .content {
+  background-color: rockBrown;
+}
+.educators .content {
+  background-color: bonjourRed;
+}
+.genealogists .content {
+  background-color: gainsboroGray;
+}
+.researchers .content {
+  background-color: gainsboroGray;
+}
+
+.learners .itemHeader {
+  color: lisbonBrown;
+}
+.educators .itemHeader {
+  color: vanCleefRed;
+}
+.genealogists .itemHeader {
+  color: charcoalGray;
+}
+.researchers .itemHeader {
+  color: charcoalGray;
+}
+
+.text {
+  color: black60;
+  font-size: 1.1875rem;
+  line-height: 1.5rem;
+}
+
+.prevArrow {
+  position: absolute;
+  left: -41px;
+  z-index: 1;
+  font-size: 50px;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  width: 81px;
+  height: 81px;
+}
+
+.nextArrow {
+  position: absolute;
+  right: -41px;
+  z-index: 1;
+  font-size: 50px;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  width: 81px;
+  height: 81px;
+}
+
+.nextChevron {
+  width: 27px;
+  position: relative;
+  top: 47px;
+  right: 6px;
+  height: 53px;
+  border-radius: 50%;
+  background-color: wildSandGray;
+  opacity: 0.9;
+  padding: 14px 27px;
+}
+
+.backChevron {
+  width: 27px;
+  position: relative;
+  top: 5px;
+  left: 4px;
+  height: 53px;
+  transform: rotate(180deg);
+  border-radius: 50%;
+  background-color: wildSandGray;
+  opacity: 0.9;
+  padding: 14px 27px;
+}
+
+/* react-slick style overrides */
+
+.DPLAUsers :global(.slick-track) {
+  display: flex;
+}
+.DPLAUsers :global(.slick-next):hover,
+.DPLAUsers :global(.slick-next):focus,
+.DPLAUsers :global(.slick-prev):hover,
+.DPLAUsers :global(.slick-prev):focus {
+  background-color: wildSandGray !important;
+}
