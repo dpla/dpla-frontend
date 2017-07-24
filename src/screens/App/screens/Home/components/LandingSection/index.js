@@ -3,9 +3,9 @@ import React from "react";
 import styles from "./LandingSection.css";
 import { Link } from "react-router-dom";
 
-import dplaLogo from "images/dpla-logo.svg";
-import searchIcon from "images/search.svg";
-import chevron from "images/chevron-thick-dark-blue.svg";
+import dplaLogo from "../../../../../../images/dpla-logo.svg";
+import searchIcon from "../../../../../../images/search.svg";
+import chevron from "../../../../../../images/chevron-thick-dark-blue.svg";
 
 const LandingSection = () =>
   <div className={styles.home}>

@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./TeachingGuide.css";
-import { module } from "../../../../utils.css";
-import printer from "../../../../images/printer.svg";
-import link from "../../../../images/link.svg";
-import googleClassroom from "../../../../images/google-classroom.svg";
+import { module } from "../../../../../../../../css/utils.css";
+
+import printer from "../../../../../../../../../../images/printer.svg";
+import link from "../../../../../../../../../../images/link.svg";
+import googleClassroom from "../../../../../../../../../../images/google-classroom.svg";
 
 const mockContent = {
   discussionQuestions: [

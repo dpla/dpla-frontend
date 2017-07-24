@@ -1,6 +1,6 @@
-@value colors: "shared/colors.css";
+@value colors: "../../../../css/colors.css";
 @value alabasterGray, elephantBlue, bambooOrange, black from colors;
-@value breakpoints: "shared/breakpoints.css";
+@value breakpoints: "../../../../css/breakpoints.css";
 @value smallRem, mediumRem from breakpoints;
 
 .fromTheBlog {

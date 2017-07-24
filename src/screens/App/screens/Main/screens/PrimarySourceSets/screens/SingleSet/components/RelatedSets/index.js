@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import styles from "./RelatedSets.css";
-import { module } from "../../../../utils.css";
+import { module } from "../../../../../../../../css/utils.css";
 
 const mockSets = [
   {

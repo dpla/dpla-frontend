@@ -1,4 +1,4 @@
-@value colors: "../../../../colors.css";
+@value colors: "../../../../../../../../css/colors.css";
 @value visualBrown, white, black, cranberry, softPeach, iceBlue, curiousBlue from colors;
 
 .wrapper {

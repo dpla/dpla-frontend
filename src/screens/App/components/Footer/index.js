@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import dplaLogo from "../../../../shared/images/dpla-logo.svg";
-import fbIcon from "../../../../shared/images/facebook.svg";
-import igIcon from "../../../../shared/images/instagram.svg";
-import rssIcon from "../../../../shared/images/rss.svg";
-import tumblrIcon from "../../../../shared/images/tumblr.svg";
+import dplaLogo from "../../../../images/dpla-logo.svg";
+import fbIcon from "../../../../images/facebook.svg";
+import igIcon from "../../../../images/instagram.svg";
+import rssIcon from "../../../../images/rss.svg";
+import tumblrIcon from "../../../../images/tumblr.svg";
 
 import styles from "./Footer.css";
 

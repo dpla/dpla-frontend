@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./SourceSetContent.css";
-import { module } from "../../../../utils.css";
+import { module } from "../../../../../../../../css/utils.css";
 
 const mockSets = [
   {

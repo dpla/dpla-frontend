@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 import styles from "./OnlineExhibitions.css";
 
-import breakpoints from "shared/breakpoints.css";
-import smallChevron from "images/chevron-thick-orange.svg";
-import largeChevron from "images/chevron-thin.svg";
+import breakpoints from "../../../../css/breakpoints.css";
+import smallChevron from "../../../../../../images/chevron-thick-orange.svg";
+import largeChevron from "../../../../../../images/chevron-thin.svg";
 
 const mockExhibitionsData = [
   {

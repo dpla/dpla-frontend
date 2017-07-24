@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./BreadcrumbsModule.css";
-import { module } from "../../utils.css";
-import chevron from "../../images/chevron-thick-orange.svg";
-import question from "../../images/question.svg";
+import { module } from "../../css/utils.css";
+import chevron from "../../../../images/chevron-thick-orange.svg";
+import question from "../../../../images/question.svg";
 
 import Tooltip from "../Tooltip";
 

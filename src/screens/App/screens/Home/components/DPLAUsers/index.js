@@ -2,9 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 
 import styles from "./DPLAUsers.css";
-import breakpoints from "shared/breakpoints.css";
+import breakpoints from "../../../../css/breakpoints.css";
 
-import chevron from "images/chevron-thin.svg";
+import chevron from "../../../../../../images/chevron-thin.svg";
 
 const NextArrow = ({ onClick, className }) =>
   <button className={styles.nextArrow} onClick={onClick}>

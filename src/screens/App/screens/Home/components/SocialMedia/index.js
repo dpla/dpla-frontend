@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./SocialMedia.css";
 
-import externalLinkIcon from "images/external-link.svg";
+import externalLinkIcon from "../../../../../../images/external-link.svg";
 
 const mockImages = [
   { url: "http://lorempixel.com/170/170/food", description: "placeholder" },

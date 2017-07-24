@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Sets.css";
-import { module } from "../../../../utils.css";
+import { module } from "../../../../../../../../css/utils.css";
 
 const Sets = ({ sets }) =>
   <div className={[module, styles.setsWrapper].join(" ")}>

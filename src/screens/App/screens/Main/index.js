@@ -7,11 +7,7 @@ import PrimarySourceSets from "./screens/PrimarySourceSets";
 const Main = () =>
   <div>
     <HeaderSearchBar />
-    <Route
-      path="/primary-source-sets"
-      exact={true}
-      component={PrimarySourceSets}
-    />
+    <Route path="/primary-source-sets" component={PrimarySourceSets} />
   </div>;
 
 export default Main;

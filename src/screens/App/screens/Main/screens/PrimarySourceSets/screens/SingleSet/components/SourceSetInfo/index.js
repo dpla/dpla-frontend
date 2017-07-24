@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import styles from "./SourceSetInfo.css";
-import { module } from "../../../../utils.css";
-import heart from "../../../../images/heart.svg";
+import { module } from "../../../../../../../../css/utils.css";
+
+import heart from "../../../../../../../../../../images/heart.svg";
 
 const SourceSetInfo = () =>
   <div className={styles.wrapper}>

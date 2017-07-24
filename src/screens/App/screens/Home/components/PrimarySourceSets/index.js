@@ -3,10 +3,10 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 import styles from "./PrimarySourceSets.css";
-import breakpoints from "shared/breakpoints.css";
+import breakpoints from "../../../../css/breakpoints.css";
 
-import smallChevron from "images/chevron-thick-blue.svg";
-import largeChevron from "images/chevron-thin.svg";
+import smallChevron from "../../../../../../images/chevron-thick-blue.svg";
+import largeChevron from "../../../../../../images/chevron-thin.svg";
 
 const mockSourceSets = [
   {

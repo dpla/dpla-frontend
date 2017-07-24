@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, Switch } from "react-router-dom";
 
 import styles from "./ResourcesTabs.css";
-import { module } from "../../../../utils.css";
+import { module } from "../../../../../../../../css/utils.css";
 
 import SourceSetContent from "../SourceSetContent";
 import TeachingGuide from "../TeachingGuide";
@@ -32,21 +32,6 @@ class ResourcesTabs extends React.Component {
     this.setState({ currentTab: newTab });
   }
 
-  // onToggleStudentMode() {
-  //   const { history, location } = this.props.routerProps;
-  //   if (!this.state.studentMode) {
-  //     const newPath = this.state.currentTab === "teachingGuide"
-  //       ? `${location.pathname.replace(
-  //           "teaching-guide",
-  //           "source-set"
-  //         )}/?student`
-  //       : `${location.pathname}/?student`;
-  //     history.push(newPath);
-  //   } else {
-  //     history.push(location.pathname);
-  //   }
-  //   this.setState({ studentMode: !this.state.studentMode });
-
   render() {
     const { location, match } = this.props.routerProps;
     const { search } = location;
@@ -58,7 +43,10 @@ class ResourcesTabs extends React.Component {
         <div className={styles.tabsWrapper}>
           <div className={[styles.tabs, module].join(" ")}>
             <Link
-              to={`${url}/source-set/${search}`}
+              to={{
+                pathname: url,
+                search
+              }}
               onClick={() => this.onTabChange("sourceSet")}
               className={[
                 styles.tab,
@@ -68,7 +56,10 @@ class ResourcesTabs extends React.Component {
               Source Set
             </Link>
             <Link
-              to={`${url}/additional-resources/${search}`}
+              to={{
+                pathname: `${url}/additional-resources`,
+                search
+              }}
               onClick={() => this.onTabChange("additionalResources")}
               className={[
                 styles.tab,
@@ -80,7 +71,10 @@ class ResourcesTabs extends React.Component {
             </Link>
             {!isStudentMode &&
               <Link
-                to={`${url}/teaching-guide/${search}`}
+                to={{
+                  pathname: `${url}/teaching-guide`,
+                  search
+                }}
                 onClick={() => this.onTabChange("teachingGuide")}
                 className={[
                   styles.tab,
@@ -92,26 +86,21 @@ class ResourcesTabs extends React.Component {
           </div>
         </div>
         <div className={[styles.resourcesTabs, module].join(" ")}>
-          <Route
-            path="/primary-source-sets/:id/"
-            exact={true}
-            component={SourceSetContent}
-          />
-          <Route
-            path="/primary-source-sets/:id/source-set"
-            exact={true}
-            component={SourceSetContent}
-          />
-          <Route
-            path="/primary-source-sets/:id/teaching-guide"
-            exact={true}
-            render={() =>
-              <TeachingGuide
-                onStudentModeRedirect={() =>
-                  this.props.onTabChange("source-set")}
-                routerProps={this.props.routerProps}
-              />}
-          />
+          <Switch>
+            <Route
+              path="/primary-source-sets/:set/teaching-guide"
+              render={() =>
+                <TeachingGuide
+                  onStudentModeRedirect={() =>
+                    this.props.onTabChange("source-set")}
+                  routerProps={this.props.routerProps}
+                />}
+            />
+            <Route
+              path="/primary-source-sets/:set"
+              component={SourceSetContent}
+            />
+          </Switch>
         </div>
       </div>
     );

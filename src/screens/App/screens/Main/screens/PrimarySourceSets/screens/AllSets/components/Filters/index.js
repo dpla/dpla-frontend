@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import "react-select/dist/react-select.css";
 import styles from "./Filters.css";
-import { module } from "../../../../utils.css";
+import { module } from "../../../../../../../../css/utils.css";
 
 const SortValue = props =>
   <span className={styles.sortValue}>

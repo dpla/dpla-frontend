@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./FromTheBlog.css";
 
-import smallChevron from "images/chevron-thick-orange.svg";
+import smallChevron from "../../../../../../images/chevron-thick-orange.svg";
 
 const mockPosts = [
   {

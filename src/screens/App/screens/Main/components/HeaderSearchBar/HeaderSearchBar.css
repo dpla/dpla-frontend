@@ -1,6 +1,6 @@
-@value colors: "shared/colors.css";
+@value colors: "../../../../css/colors.css";
 @value hippieBlue, elephantBlue, white from colors;
-@value breakpoints: "shared/breakpoints.css";
+@value breakpoints: "../../../../css/breakpoints.css";
 @value mediumRem, smallRem from breakpoints;
 
 .headerSearchBar {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./PSSFooter.css";
-import { module } from "shared/utils.css";
+import { module } from "../../../../../../css/utils.css";
 
 const OtherInfo = () =>
   <div className={styles.wrapper}>

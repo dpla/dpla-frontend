@@ -1,6 +1,6 @@
-@value colors: "shared/colors.css";
+@value colors: "../../../../css/colors.css";
 @value riceCakeWhite, sisalBrown, wildSandGray, white50, elephantBlue, charcoalGray, lisbonBrown, vanCleefRed, coldTurkeyRed, silver, rockBrown, bonjourRed, gainsboroGray, black, black60 from colors;
-@value breakpoints: "shared/breakpoints.css";
+@value breakpoints: "../../../../css/breakpoints.css";
 @value smallRem, mediumRem from breakpoints;
 
 .DPLAUsers {

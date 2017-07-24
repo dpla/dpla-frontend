@@ -1,6 +1,6 @@
-@value colors: "shared/colors.css";
+@value colors: "../../../../css/colors.css";
 @value romanceGray, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from colors;
-@value breakpoints: "shared/breakpoints.css";
+@value breakpoints: "../../../../css/breakpoints.css";
 @value mediumRem, smallRem from breakpoints;
 
 .onlineExhibitions {

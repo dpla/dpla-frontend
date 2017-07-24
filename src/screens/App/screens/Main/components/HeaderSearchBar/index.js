@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import styles from "./HeaderSearchBar.css";
 
-import dplaLogo from "images/dpla-logo-white.svg";
-import searchIcon from "images/search.svg";
+import dplaLogo from "../../../../../../images/dpla-logo-white.svg";
+import searchIcon from "../../../../../../images/search.svg";
 
 const HeaderSearchBar = () =>
   <div className={styles.headerSearchBar}>
