@@ -1,0 +1,143 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value black, white, iceBlue, curiousBlue, visualBrown from colors;
+
+.contentAndMetadata {
+  display: flex;
+  padding-top: 23px;
+}
+
+.content {
+  flex: 5;
+  margin-right: 20px;
+}
+
+.contentHeader {
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 2rem;
+  margin-bottom: 26px;
+}
+
+.imageWrapper {
+  background-color: black;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.1875rem;
+}
+
+.metadata {
+  flex: 2;
+  margin-top: 90px;
+}
+
+.sourceInfo {
+  border: 1px solid #E7E7E7;
+  background-color: white;
+  padding: 18px 20px 24px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.button {
+  border-radius: 2px;
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4375rem;
+  padding: 10px 0;
+  width: 100%;
+  color: curiousBlue;
+  background-color: iceBlue;
+  margin-bottom: 15px;
+}
+
+.courtesyOf {
+  opacity: 0.65;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  margin-top: 3px;
+  margin-bottom: 17px;
+}
+
+.copyrightInfo {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin-bottom: 18px;
+}
+
+.divider {
+  border-bottom: 1px solid #000000;
+  height: 2px;
+  opacity: 0.1;
+  margin-bottom: 17px;
+}
+
+.linkWrapper {
+  margin-bottom: 15px;
+}
+
+.linkWrapper:last-child {
+  margin-bottom: 0px;
+}
+
+.sourceLink {
+  color: curiousBlue;
+  font-weight: 600;
+}
+
+.linkText {
+  border-bottom: 1px solid curiousBlue;
+}
+
+.linkIcon {
+  opacity: 0.5;
+  width: 20px;
+  margin-right: 13px;
+  position: relative;
+  top: 7px;
+}
+.externalIcon {
+  opacity: 0.4;
+  width: 18px;
+  margin-right: 13px;
+  position: relative;
+  top: 7px;
+}
+
+.tipsForStudents {
+  padding: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: visualBrown;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.tipsForStudentsHeader {
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin-bottom: 9px;
+  font-weight: bold;
+}
+
+.tips {
+  list-style: initial;
+  padding-left: 28px;
+}
+
+.tipDirections {
+  margin-bottom: 4px;
+}
+
+.tip {
+  padding-left: 10px;
+  margin-bottom: 2px;
+}
+
+.tip:last-child {
+  margin-bottom: 0;
+}
