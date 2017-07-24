@@ -1,4 +1,4 @@
-@value colors: "shared/colors.css";
+@value colors: "../../../../shared/colors.css";
 @value midnightBlue, ebonyClayBlue, white, bambooOrange, gray75 from colors;
 
 .footer {
