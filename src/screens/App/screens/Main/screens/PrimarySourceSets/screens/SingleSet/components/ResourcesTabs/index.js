@@ -5,7 +5,7 @@ import { Link, Switch } from "react-router-dom";
 import styles from "./ResourcesTabs.css";
 import { module } from "../../../../../../../../css/utils.css";
 
-import SourceSetContent from "../SourceSetContent";
+import SourceSetSources from "../SourceSetSources";
 import TeachingGuide from "../TeachingGuide";
 
 class ResourcesTabs extends React.Component {
@@ -98,7 +98,7 @@ class ResourcesTabs extends React.Component {
             />
             <Route
               path="/primary-source-sets/:set"
-              component={SourceSetContent}
+              component={SourceSetSources}
             />
           </Switch>
         </div>

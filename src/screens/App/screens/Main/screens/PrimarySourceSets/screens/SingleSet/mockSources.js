@@ -1,83 +1,76 @@
-import React from "react";
-
-import styles from "./SourceSetContent.css";
-import { module } from "../../../../../../../../css/utils.css";
-
-const mockSets = [
+const mockSources = [
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 0,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 1,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 2,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 3,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 4,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 5,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 6,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 7,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 8,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 9,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 10,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   },
   {
     img: "http://lorempixel.com/152/168/food",
+    id: 11,
     title:
       "A photographic portrait of Clara Barton attributed to Mathew Brady, ca. 1865."
   }
 ];
 
-const SourceSetContent = () =>
-  <div className={styles.wrapper}>
-    <div className={[styles.sourceSetContent, module].join(" ")}>
-      {mockSets.map(({ title, img }) =>
-        <div className={styles.set}>
-          <div className={styles.imageWrapper}>
-            <img alt={title} src={img} className={styles.image} />
-          </div>
-          <p className={styles.title}>{title}</p>
-        </div>
-      )}
-    </div>
-  </div>;
-
-export default SourceSetContent;
+export default mockSources;

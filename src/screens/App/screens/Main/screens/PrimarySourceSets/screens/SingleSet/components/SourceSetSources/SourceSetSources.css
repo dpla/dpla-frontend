@@ -1,7 +1,7 @@
 @value colors: "../../../../../../../../css/colors.css";
 @value visualBrown from colors;
 
-.sourceSetContent {
+.sourceSetSources {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 64px;
