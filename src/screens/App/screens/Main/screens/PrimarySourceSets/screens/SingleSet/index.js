@@ -7,9 +7,17 @@ import SourceSetInfo from "./components/SourceSetInfo";
 import RelatedSets from "./components/RelatedSets";
 import ResourcesTabs from "./components/ResourcesTabs";
 
+const mockSet = { title: "Civil War and Reconstruction" };
+
 const SingleSet = props =>
   <div className={styles.singleSet}>
-    <BreadcrumbsModule routerProps={props} />
+    <BreadcrumbsModule
+      breadcrumbs={[
+        { title: "Primary Source Sets", url: "/primary-source-sets" },
+        { title: mockSet.title, url: props.match.url }
+      ]}
+      routerProps={props}
+    />
     <SourceSetInfo />
     <ResourcesTabs routerProps={props} />
     <RelatedSets />

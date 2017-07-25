@@ -29,17 +29,34 @@ class BreadcrumbsModule extends React.Component {
     this.setState({ showTooltip: !this.state.showTooltip });
   }
 
+  breadcrumbsJSX() {
+    const { breadcrumbs } = this.props;
+    return breadcrumbs.map((breadcrumb, idx) => {
+      if (idx < breadcrumbs.length - 1) {
+        return (
+          <span>
+            <Link className={styles.breadcrumbLink} to={breadcrumb.url}>
+              {breadcrumb.title}
+            </Link>
+            <img alt="" src={chevron} className={styles.chevron} />
+          </span>
+        );
+      } else {
+        return (
+          <span className={styles.activeBreadcrumb}>{breadcrumb.title}</span>
+        );
+      }
+    });
+  }
+
   render() {
     const { routerProps } = this.props;
+
     return (
       <div className={styles.wrapper}>
         <div className={[styles.breadcrumbsModule, module].join(" ")}>
           <div className={styles.breadcrumbs}>
-            <Link className={styles.breadcrumbLink} to="/primary-source-sets">
-              Primary Source Sets
-            </Link>
-            <img alt="" src={chevron} className={styles.chevron} />
-            <div className={styles.activeBreadcrumb}>Race to the Moon</div>
+            {this.breadcrumbsJSX()}
           </div>
           {isStudentMode(routerProps.location) &&
             <button
