@@ -1,0 +1,114 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value romanceGray, onionBrown, visualBrown, curiousBlue, black from colors;
+@value breakpoints: "../../../../../../../../css/breakpoints.css";
+@value smallRem, mediumRem from breakpoints;
+
+.wrapper {
+  background-color: visualBrown;
+}
+
+.headerAndBrowse {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+@media (min-width: smallRem) {
+  .headerAndBrowse {
+    flex-direction: row;
+  }
+}
+
+.browse {
+  color: curiousBlue;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4375rem;
+}
+
+.header {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.items {
+  display: flex;
+}
+
+.item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.item:last-child {
+  margin-right: 0;
+}
+
+.itemText {
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+}
+
+.itemImg {
+  margin-bottom: 9px;
+  width: calc(100% - 9px);
+  height: 117px;
+}
+
+@media (min-width: smallRem) {
+  .itemImg {
+    max-width: calc(100% - 9px);
+  }
+}
+
+.prevArrow {
+  position: absolute;
+  left: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 56px;
+  cursor: pointer;
+}
+
+.nextArrow {
+  position: absolute;
+  right: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 56px;
+  cursor: pointer;
+}
+
+.nextChevron {
+  width: 25px;
+  height: 48px;
+}
+
+.backChevron {
+  width: 25px;
+  height: 48px;
+  transform: rotate(180deg);
+}
+
+.smallChevron {
+  width: 8px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  padding-left: 7px;
+}
+
+/* react-slick style overrides */
+
+.primarySourceSets :global(.slick-list) {
+  padding: 0 6px;
+}
+
+.primarySourceSets :global(.slick-next),
+.primarySourceSets :global(.slick-prev) {
+  position: static;
+}
