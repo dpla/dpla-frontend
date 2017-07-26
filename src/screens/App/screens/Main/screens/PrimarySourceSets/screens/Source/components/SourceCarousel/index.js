@@ -6,7 +6,7 @@ import styles from "./SourceCarousel.css";
 import breakpoints from "../../../../../../../../css/breakpoints.css";
 import { module } from "../../../../../../../../css/utils.css";
 
-import smallChevron from "../../../../../../../../../../images/chevron-thick-blue.svg";
+import smallChevron from "../../../../../../../../../../images/chevron-thick-orange.svg";
 import largeChevron from "../../../../../../../../../../images/chevron-thin.svg";
 
 const NextArrow = ({ onClick, className }) =>
@@ -30,16 +30,31 @@ const PrevArrow = ({ onClick, className }) =>
 const SourceCarousel = ({ sources }) =>
   <div className={styles.wrapper}>
     <div className={[styles.sourceCarousel, module].join(" ")}>
-      <div className={styles.headerAndBrowse}>
-        <h1 className={styles.header}>Primary Source Sets for Education</h1>
-        <Link className={styles.browse} to="">
-          <span>Browse all Sets</span>
-          <img
-            alt="browse sets"
-            className={styles.smallChevron}
-            src={smallChevron}
-          />
-        </Link>
+      <div className={styles.headerAndNav}>
+        <h1 className={styles.header}>
+          <span>Item 2 of 15 in the Primary Source Set </span>
+          <Link to="" className={styles.linkToSourceSet}>
+            Women in the Civil War
+          </Link>
+        </h1>
+        <div className={styles.prevAndNextArrows}>
+          <Link className={styles.nextOrPrevItemArrow} to="">
+            <img
+              alt="previous item"
+              className={[styles.smallChevron, styles.prevItemArrow].join(" ")}
+              src={smallChevron}
+            />
+            <span>Previous Item</span>
+          </Link>
+          <Link className={styles.nextOrPrevItemArrow} to="">
+            <span>Next Item</span>
+            <img
+              alt="next item"
+              className={styles.smallChevron}
+              src={smallChevron}
+            />
+          </Link>
+        </div>
       </div>
       <Slider
         slidesToShow={6}
