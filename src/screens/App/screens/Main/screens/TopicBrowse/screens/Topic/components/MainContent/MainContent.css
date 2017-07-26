@@ -37,7 +37,7 @@
 }
 
 .subtopic {
-  flex-basis: calc(33% - 17px);
+  flex-basis: calc(33% - 10px);
   padding-right: 20px;
   margin-bottom: 25px;
   position: relative;
