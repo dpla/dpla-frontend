@@ -9,7 +9,7 @@ const Topics = ({ topics }) =>
     <ul className={styles.topics}>
       {topics.map(topic =>
         <li className={styles.topic}>
-          <Link to={`browse-by-topics/${topic.slug}`}>
+          <Link to={`browse-by-topic/${topic.slug}`}>
             <img alt={topic.title} src={topic.image} className={styles.image} />
             <h3 className={styles.title}>{topic.title}</h3>
           </Link>
