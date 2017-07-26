@@ -9,8 +9,6 @@ import { module } from "../../../../../../../../css/utils.css";
 import smallChevron from "../../../../../../../../../../images/chevron-thick-blue.svg";
 import largeChevron from "../../../../../../../../../../images/chevron-thin.svg";
 
-import mockSources from "../../../SingleSet/mockSources";
-
 const NextArrow = ({ onClick, className }) =>
   <button className={styles.nextArrow} onClick={onClick}>
     <img
@@ -29,7 +27,7 @@ const PrevArrow = ({ onClick, className }) =>
     />
   </button>;
 
-const SourceCarousel = () =>
+const SourceCarousel = ({ sources }) =>
   <div className={styles.wrapper}>
     <div className={[styles.sourceCarousel, module].join(" ")}>
       <div className={styles.headerAndBrowse}>
@@ -63,7 +61,7 @@ const SourceCarousel = () =>
           }
         ]}
       >
-        {mockSources.map(({ title, img, id }) =>
+        {sources.map(({ title, img, id }) =>
           <div className={styles.item}>
             <img alt={title} className={styles.itemImg} src={img} />
             <p className={styles.itemText}>{title}</p>

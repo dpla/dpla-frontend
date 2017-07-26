@@ -6,6 +6,7 @@ import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
 import ContentAndMetadata from "./components/ContentAndMetadata";
 import SourceCarousel from "./components/SourceCarousel";
 import mockSource from "./mockSource";
+import mockSources from "../SingleSet/mockSources";
 
 const getSourceSetURL = url => /(\/[\w-]+\/[\w-]+)\/sources/.exec(url)[1];
 
@@ -20,7 +21,7 @@ const Source = props =>
       routerProps={props}
     />
     <ContentAndMetadata source={mockSource} />
-    <SourceCarousel />
+    <SourceCarousel sources={mockSources} />
   </div>;
 
 export default Source;
