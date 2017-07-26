@@ -4,8 +4,10 @@ import styles from "./Topic.css";
 
 import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
 import MainContent from "./components/MainContent";
+import Suggestions from "./components/Suggestions";
 
 import mockTopic from "./mockTopic";
+import mockSuggestions from "./mockSuggestions";
 
 const Topic = props =>
   <div className={styles.topic}>
@@ -17,6 +19,7 @@ const Topic = props =>
       routerProps={props}
     />
     <MainContent topic={mockTopic} />
+    <Suggestions suggestions={mockSuggestions} />
   </div>;
 
 export default Topic;

@@ -1,5 +1,11 @@
 @value colors: "../../../../../../../../css/colors.css";
-@value black, white, casablancaOrange from colors;
+@value black, white, visualBrown, casablancaOrange from colors;
+
+.wrapper {
+  padding-top: 58px;
+  background-color: visualBrown;
+  width: 100%;
+}
 
 .header {
   text-align: center;

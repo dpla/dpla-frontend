@@ -1,0 +1,80 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value pampasBrown, bambooOrange, casablancaOrange, white from colors;
+
+.suggestionsWrapper {
+  width: 100%;
+  background-color: pampasBrown;
+}
+
+.suggestions {
+  padding-top: 36px;
+  padding-bottom: 45px;
+}
+
+.header {
+  text-transform: uppercase;
+  font-family: "Source Serif Pro";
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin-bottom: 16px;
+  padding: 0;
+}
+
+.suggestedResources {
+  display: flex;
+}
+
+.imageWrapper {
+  width: 189px;
+  height: 138px;
+  background-size: cover;
+  border-radius: 3px;
+  margin-right: 19px;
+}
+
+.gradientBackground {
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.typeAndTitle {
+  padding-left: 11px;
+  position: absolute;
+  bottom: 15px;
+}
+
+.resourceType {
+  font-weight: bold;
+  font-size: 0.8125rem;
+  line-height: 0.9375rem;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.suggestionTitle {
+  font-size: 0.9375rem;
+  line-height: 1.1875rem;
+  font-weight: 600;
+  color: white;
+}
+
+.exhibition .imageWrapper {
+  border-top: 4px solid bambooOrange;
+}
+
+.exhibition .resourceType {
+  color: bambooOrange;
+}
+
+.topic .imageWrapper {
+  border-top: 4px solid casablancaOrange;
+}
+
+.topic .resourceType {
+  color: casablancaOrange;
+}
