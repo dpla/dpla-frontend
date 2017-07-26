@@ -10,7 +10,7 @@ const Header = () =>
         <Link to="/">Home</Link>
         <Link to="">Exhibitions</Link>
         <Link to="/primary-source-sets">Primary Source Sets</Link>
-        <Link to="">Explore</Link>
+        <Link to="/browse-by-topic">Browse</Link>
       </div>
       <span className={styles.divider} />
       <div className={styles.secondaryLinks}>

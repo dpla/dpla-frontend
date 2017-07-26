@@ -32,7 +32,7 @@ const Footer = () =>
               <li>Search</li>
               <li>Exhibitions</li>
               <li><Link to="primary-source-sets">Primary Source Sets</Link></li>
-              <li>Browse</li>
+              <li><Link to="browse-by-topic">Browse</Link></li>
               <li>Timeline</li>
               <li>Map</li>
             </ul>
