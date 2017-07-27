@@ -18,7 +18,7 @@ const Topic = props =>
       ]}
       routerProps={props}
     />
-    <MainContent topic={mockTopic} />
+    <MainContent routerProps={props} topic={mockTopic} />
     <Suggestions suggestions={mockSuggestions} />
   </div>;
 

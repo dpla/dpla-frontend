@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./MainContent.css";
 import { module } from "../../../../../../../../css/utils.css";
 
-const MainContent = ({ topic }) =>
+const MainContent = ({ routerProps, topic }) =>
   <div className={styles.wrapper}>
     <div className={module}>
       <h1 className={styles.header}>{topic.title}</h1>
@@ -13,7 +13,7 @@ const MainContent = ({ topic }) =>
       <ul className={styles.subtopics}>
         {topic.subtopics.map(subtopic =>
           <li className={styles.subtopic}>
-            <Link to={`browse-by-topic/${subtopic.slug}`}>
+            <Link to={`${routerProps.match.url}/${subtopic.slug}`}>
               <div
                 className={styles.imageWrapper}
                 style={{ backgroundImage: `url(${subtopic.image})` }}

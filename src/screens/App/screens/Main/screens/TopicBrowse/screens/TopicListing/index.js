@@ -9,11 +9,11 @@ import Callout from "./components/Callout";
 
 import mockTopics from "./mockTopics";
 
-const AllTopics = () =>
+const AllTopics = props =>
   <div className={styles.allTopics}>
     <Header />
     <Filters />
-    <Topics topics={mockTopics} />
+    <Topics routerProps={props} topics={mockTopics} />
     <Callout />
   </div>;
 
