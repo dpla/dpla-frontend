@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./TopicListing.css";
+import styles from "./TopicsList.css";
 
 import Filters from "./components/Filters";
 import Header from "./components/Header";
@@ -9,7 +9,7 @@ import Callout from "./components/Callout";
 
 import mockTopics from "./mockTopics";
 
-const AllTopics = props =>
+const TopicsList = props =>
   <div className={styles.allTopics}>
     <Header />
     <Filters />
@@ -17,4 +17,4 @@ const AllTopics = props =>
     <Callout />
   </div>;
 
-export default AllTopics;
+export default TopicsList;
