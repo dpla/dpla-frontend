@@ -14,9 +14,14 @@ const SingleSet = props =>
     <BreadcrumbsModule
       breadcrumbs={[
         { title: "Primary Source Sets", url: "/primary-source-sets" },
-        { title: mockSet.title, url: props.match.url }
+        {
+          title: mockSet.title,
+          url: props.match.url,
+          search: props.location.search
+        }
       ]}
       routerProps={props}
+      showStudentMode={true}
     />
     <SourceSetInfo />
     <ResourcesTabs routerProps={props} />
