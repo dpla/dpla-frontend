@@ -7,9 +7,7 @@ import question from "../../../../../../images/question.svg";
 
 import Tooltip from "../../../Tooltip";
 
-const isStudentMode = location =>
-  /\/primary-source-sets\/.+\/.+/.exec(location.pathname) &&
-  location.search.includes("student");
+const isStudentMode = location => location.search.includes("student");
 
 class StudentMode extends React.Component {
   componentWillMount() {
