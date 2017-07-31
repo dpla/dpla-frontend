@@ -1,3 +1,65 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value pampasBrown, casablancaOrange from colors;
+
 .sidebar {
+  width: 300px;
+}
+
+.subtopicInfo {
+  background-color: pampasBrown;
+  margin-bottom: 30px;
+}
+
+.subtopicInfoText {
+  padding: 0 27px 30px;
+}
+
+.image {
+  border-bottom: 4px solid casablancaOrange;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: "Source Serif Pro";
+  font-size: 1.5rem;
+  line-height: 1.625rem;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.relatedResources {
+  display: flex;
+}
+
+.relatedHeader {
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  margin-bottom: 15px;
+}
+
+.relatedResource {
+  margin-right: 7px;
   flex: 1;
+}
+
+.relatedResource:last-child {
+  margin-right: 0;
+}
+
+.relatedResourceType {
+  text-transform: uppercase;
+  opacity: 0.65;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+
+.relatedResourceTitle {
+  font-size: 0.875rem;
+  line-height: 0.9375rem;
+}
+
+.relatedResourceImage {
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: 5px;
 }

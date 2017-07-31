@@ -13,11 +13,13 @@ const Sidebar = ({ image, title, description }) =>
   <div className={styles.sidebar}>
     <div className={styles.subtopicInfo}>
       <img src={image} alt={title} className={styles.image} />
-      <h2 className={styles.title}>{title}</h2>
-      <p className={styles.description}>{description}</p>
+      <div className={styles.subtopicInfoText}>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.description}>{description}</p>
+      </div>
     </div>
+    <h3 className={styles.relatedHeader}>You might also enjoy</h3>
     <div className={styles.relatedResources}>
-      <h3 classname={styles.relatedHeader}>You may also enjoy</h3>
       <RelatedResource
         type="Exhibition"
         title="Race to the Moon"

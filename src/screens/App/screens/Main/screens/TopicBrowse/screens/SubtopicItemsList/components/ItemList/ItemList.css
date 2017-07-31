@@ -1,6 +1,5 @@
-.itemList {
-  flex: 3;
-}
+@value colors: "../../../../../../../../css/colors.css";
+@value black, white, visualBrown, casablancaOrange from colors;
 
 .itemListHeader {
   display: flex;
