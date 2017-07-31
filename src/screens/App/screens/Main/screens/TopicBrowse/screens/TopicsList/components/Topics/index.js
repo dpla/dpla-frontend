@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Topics.css";
 import { module } from "../../../../../../../../css/utils.css";
 
-const Topics = ({ topics }) =>
+const Topics = ({ routerProps, topics }) =>
   <div className={[module, styles.topicsWrapper].join(" ")}>
     <ul className={styles.topics}>
       {topics.map(topic =>

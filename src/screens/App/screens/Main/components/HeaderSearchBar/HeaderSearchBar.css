@@ -9,7 +9,7 @@
 }
 
 .flexWrapper {
-  padding: 27px 0;
+  padding: 20px 0;
   display: flex;
   align-items: center;
   height: 42px;
@@ -17,17 +17,17 @@
 }
 @media (min-width: smallRem) {
   .flexWrapper {
-    padding: 27px 50px;
+    padding: 20px 50px;
   }
 }
 @media (min-width: mediumRem) {
   .flexWrapper {
-    padding: 27px 70px;
+    padding: 20px 70px;
   }
 }
 @media screen and (min-width: 1100px) {
   .flexWrapper {
-    padding: 27px 0;
+    padding: 20px 0;
     max-width: 1024px;
   }
 }
@@ -76,5 +76,6 @@
 
 .logo {
   width: 290px;
+  display: inherit;
   height: 35px;
 }

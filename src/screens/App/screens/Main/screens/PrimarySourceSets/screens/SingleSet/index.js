@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./SingleSet.css";
 
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsModule from "../../components/BreadcrumbsModule";
 import SourceSetInfo from "./components/SourceSetInfo";
 import RelatedSets from "./components/RelatedSets";
 import ResourcesTabs from "./components/ResourcesTabs";
@@ -14,9 +14,14 @@ const SingleSet = props =>
     <BreadcrumbsModule
       breadcrumbs={[
         { title: "Primary Source Sets", url: "/primary-source-sets" },
-        { title: mockSet.title, url: props.match.url }
+        {
+          title: mockSet.title,
+          url: props.match.url,
+          search: props.location.search
+        }
       ]}
       routerProps={props}
+      showStudentMode={true}
     />
     <SourceSetInfo />
     <ResourcesTabs routerProps={props} />

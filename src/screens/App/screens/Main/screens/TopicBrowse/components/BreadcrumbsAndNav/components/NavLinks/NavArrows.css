@@ -1,0 +1,28 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value bambooOrange from colors;
+
+.navLinks {
+  color: bambooOrange;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.prevLink {
+  margin-right: 20px;
+}
+
+.nextArrow {
+  height: 9px;
+  position: relative;
+  top: -1px;
+  margin-left: 6px;
+}
+
+.prevArrow {
+  height: 9px;
+  position: relative;
+  top: -1px;
+  margin-right: 6px;
+  transform: rotate(180deg);
+}

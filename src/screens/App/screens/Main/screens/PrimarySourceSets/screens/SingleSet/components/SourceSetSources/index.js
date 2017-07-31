@@ -6,11 +6,17 @@ import styles from "./SourceSetSources.css";
 import { module } from "../../../../../../../../css/utils.css";
 import mockSources from "../../mockSources";
 
-const SourceSetSources = ({ match }) =>
+const SourceSetSources = ({ match, location }) =>
   <div className={styles.wrapper}>
     <div className={[styles.sourceSetSources, module].join(" ")}>
       {mockSources.map(({ title, img, id }) =>
-        <Link to={`${match.url}/sources/${id}`} className={styles.set}>
+        <Link
+          to={{
+            pathname: `${match.url}/sources/${id}`,
+            search: location.search
+          }}
+          className={styles.set}
+        >
           <div className={styles.imageWrapper}>
             <img alt={title} src={img} className={styles.image} />
           </div>

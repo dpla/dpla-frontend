@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Source.css";
 
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsModule from "../../components/BreadcrumbsModule";
 import ContentAndMetadata from "./components/ContentAndMetadata";
 import SourceCarousel from "./components/SourceCarousel";
 import mockSource from "./mockSource";
@@ -15,7 +15,11 @@ const Source = props =>
     <BreadcrumbsModule
       breadcrumbs={[
         { title: "Primary Source Sets", url: "/primary-source-sets" },
-        { title: mockSource.set, url: getSourceSetURL(props.match.url) },
+        {
+          title: mockSource.set,
+          url: getSourceSetURL(props.match.url),
+          search: props.location.search
+        },
         { title: mockSource.title, url: getSourceSetURL(props.match.url) }
       ]}
       routerProps={props}

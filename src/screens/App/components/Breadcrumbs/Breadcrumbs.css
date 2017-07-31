@@ -1,0 +1,27 @@
+@value colors: "../../css/colors.css";
+@value bambooOrange from colors;
+
+.activeBreadcrumb {
+  display: inline-block;
+  max-width: 215px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.breadcrumbLink {
+  display: inline-block;
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
+  max-width: 215px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.chevron {
+  height: 9px;
+  padding: 0 11px;
+  position: relative;
+  top: -5px;
+}
