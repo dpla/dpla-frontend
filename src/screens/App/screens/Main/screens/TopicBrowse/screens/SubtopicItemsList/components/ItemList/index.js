@@ -3,13 +3,14 @@ import React from "react";
 import styles from "./ItemList.css";
 
 import ListView from "../ListView";
+import GridView from "../GridView";
 
 import gridViewIcon from "../../../../../../../../../../images/grid-view-icon.svg";
 import listViewIcon from "../../../../../../../../../../images/list-view-icon.svg";
 
 class ItemList extends React.Component {
   componentWillMount() {
-    this.setState({ view: "list" });
+    this.setState({ view: "grid" });
   }
 
   updateView = view => this.setState({ view });
@@ -30,7 +31,11 @@ class ItemList extends React.Component {
                   ? styles.viewButtonActive
                   : styles.viewButtonInactive
               ].join(" ")}
-              onClick={() => this.updateView("list")}
+              onClick={() => {
+                if (view !== "list") {
+                  this.updateView("list");
+                }
+              }}
             >
               <img
                 className={styles.viewButtonIcon}
@@ -45,7 +50,11 @@ class ItemList extends React.Component {
                   ? styles.viewButtonActive
                   : styles.viewButtonInactive
               ].join(" ")}
-              onClick={() => this.updateView("grid")}
+              onClick={() => {
+                if (view !== "grid") {
+                  this.updateView("grid");
+                }
+              }}
             >
               <img
                 className={styles.viewButtonIcon}
@@ -55,7 +64,9 @@ class ItemList extends React.Component {
             </button>
           </div>
         </div>
-        {view === "grid" ? "" : <ListView items={items} />}
+        {view === "grid"
+          ? <GridView items={items} />
+          : <ListView items={items} />}
       </div>
     );
   }

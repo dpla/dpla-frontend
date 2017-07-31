@@ -1,0 +1,20 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  list-style: none;
+}
+
+.gridItem {
+  width: 33%;
+}
+
+.image {
+  width: 100%;
+}
+
+.link {
+  display: block;
+}
