@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./SingleSet.css";
 
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsModule from "../../components/BreadcrumbsModule";
 import SourceSetInfo from "./components/SourceSetInfo";
 import RelatedSets from "./components/RelatedSets";
 import ResourcesTabs from "./components/ResourcesTabs";

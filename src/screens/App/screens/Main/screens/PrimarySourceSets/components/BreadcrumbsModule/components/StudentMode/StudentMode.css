@@ -1,4 +1,4 @@
-@value colors: "../../../../css/colors.css";
+@value colors: "../../../../../../../../css/colors.css";
 @value pampasBrown, bambooOrange, white from colors;
 
 .studentMode {

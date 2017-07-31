@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Source.css";
 
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsModule from "../../components/BreadcrumbsModule";
 import ContentAndMetadata from "./components/ContentAndMetadata";
 import SourceCarousel from "./components/SourceCarousel";
 import mockSource from "./mockSource";

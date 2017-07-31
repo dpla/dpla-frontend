@@ -1,4 +1,4 @@
-@value colors: "../../css/colors.css";
+@value colors: "../../../../../../css/colors.css";
 @value pampasBrown from colors;
 
 .wrapper {

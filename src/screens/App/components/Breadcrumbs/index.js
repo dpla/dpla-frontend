@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Breadcrumbs.css";
-import chevron from "../../../../../../images/chevron-thick-orange.svg";
+import chevron from "../../../../images/chevron-thick-orange.svg";
 
 const Breadcrumbs = ({ breadcrumbs }) =>
   <div className={styles.breadcrumbs}>

@@ -1,4 +1,4 @@
-@value colors: "../../../../css/colors.css";
+@value colors: "../../css/colors.css";
 @value bambooOrange from colors;
 
 .activeBreadcrumb {
@@ -20,8 +20,8 @@
 }
 
 .chevron {
-  height: 10px;
+  height: 9px;
   padding: 0 11px;
   position: relative;
-  top: -4px;
+  top: -5px;
 }

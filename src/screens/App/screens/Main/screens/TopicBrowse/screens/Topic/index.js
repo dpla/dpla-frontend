@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Topic.css";
 
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsAndNav from "../../components/BreadcrumbsAndNav";
 import MainContent from "./components/MainContent";
 import Suggestions from "./components/Suggestions";
 
@@ -11,7 +11,7 @@ import mockSuggestions from "./mockSuggestions";
 
 const Topic = props =>
   <div className={styles.topic}>
-    <BreadcrumbsModule
+    <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
         { title: mockTopic.title, url: props.match.url }

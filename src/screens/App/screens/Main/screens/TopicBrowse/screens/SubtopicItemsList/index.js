@@ -1,13 +1,13 @@
 import React from "react";
 
 import styles from "./SubtopicItemsList.css";
-import BreadcrumbsModule from "../../../../../../components/BreadcrumbsModule";
+import BreadcrumbsAndNav from "../../components/BreadcrumbsAndNav";
 
 import mockSubtopic from "./mockSubtopic";
 
 const SubtopicItemsList = props =>
   <div className={styles.allTopics}>
-    <BreadcrumbsModule
+    <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {
@@ -19,7 +19,7 @@ const SubtopicItemsList = props =>
       routerProps={props}
       prevAndNextArrows={true}
     />
-    <BreadcrumbsModule
+    <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {

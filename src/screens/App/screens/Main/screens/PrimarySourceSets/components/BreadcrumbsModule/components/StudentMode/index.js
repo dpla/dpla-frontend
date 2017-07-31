@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import styles from "./StudentMode.css";
 
-import question from "../../../../../../images/question.svg";
+import question from "../../../../../../../../../../images/question.svg";
 
-import Tooltip from "../../../Tooltip";
+import Tooltip from "../../../../../../../../components/Tooltip";
 
 const isStudentMode = location => location.search.includes("student");
 
