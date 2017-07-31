@@ -28,7 +28,7 @@
 }
 
 .listViewButton {
-  border-radius: 2px 0 0 2px;
+  border-radius: 0 2px 2px 0;
   padding: 7px 7px 5px;
   transform: rotate(180deg);
 }

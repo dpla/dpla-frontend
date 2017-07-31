@@ -21,7 +21,7 @@ const mockItems = [
   },
   {
     image: "http://lorempixel.com/79/110/food",
-    title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
+    title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:
       "Image of children walking along the bank of a storm channel in New York City.",
@@ -51,7 +51,7 @@ const mockItems = [
   },
   {
     image: "http://lorempixel.com/79/110/food",
-    title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
+    title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:
       "Image of children walking along the bank of a storm channel in New York City.",
@@ -81,7 +81,7 @@ const mockItems = [
   },
   {
     image: "http://lorempixel.com/79/110/food",
-    title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
+    title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:
       "Image of children walking along the bank of a storm channel in New York City.",

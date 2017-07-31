@@ -42,6 +42,7 @@ const SubtopicItemsList = props =>
         { title: mockSubtopic.title, url: "" }
       ]}
       routerProps={props}
+      showNavLinks={true}
       prevAndNextArrows={true}
     />
   </div>;
