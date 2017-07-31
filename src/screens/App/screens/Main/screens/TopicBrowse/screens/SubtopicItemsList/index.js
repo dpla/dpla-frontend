@@ -22,7 +22,7 @@ const SubtopicItemsList = props =>
         { title: mockSubtopic.title, url: "" }
       ]}
       routerProps={props}
-      prevAndNextArrows={true}
+      showNavLinks={true}
     />
     <div className={[styles.sidebarAndItemList, module].join(" ")}>
       <Sidebar

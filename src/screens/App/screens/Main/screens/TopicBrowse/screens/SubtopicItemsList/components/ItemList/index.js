@@ -2,12 +2,14 @@ import React from "react";
 
 import styles from "./ItemList.css";
 
+import ListView from "../ListView";
+
 import gridViewIcon from "../../../../../../../../../../images/grid-view-icon.svg";
 import listViewIcon from "../../../../../../../../../../images/list-view-icon.svg";
 
 class ItemList extends React.Component {
   componentWillMount() {
-    this.setState({ view: "grid" });
+    this.setState({ view: "list" });
   }
 
   updateView = view => this.setState({ view });
@@ -53,6 +55,7 @@ class ItemList extends React.Component {
             </button>
           </div>
         </div>
+        {view === "grid" ? "" : <ListView items={items} />}
       </div>
     );
   }

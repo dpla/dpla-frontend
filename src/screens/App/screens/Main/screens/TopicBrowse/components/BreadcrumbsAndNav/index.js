@@ -10,7 +10,7 @@ const BreadcrumbsAndNav = ({ routerProps, showNavLinks, breadcrumbs }) =>
   <div className={styles.wrapper}>
     <div className={[styles.breadcrumbsAndNav, module].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      <NavLinks prevUrl="" nextUrl="" />
+      {showNavLinks && <NavLinks prevUrl="" nextUrl="" />}
     </div>
   </div>;
 

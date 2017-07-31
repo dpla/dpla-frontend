@@ -9,6 +9,7 @@
   display: flex;
   border-bottom: 2px solid riceCakeWhite;
   padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .itemCount {
