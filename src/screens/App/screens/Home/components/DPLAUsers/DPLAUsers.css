@@ -108,12 +108,11 @@
 
 .prevArrow {
   position: absolute;
-  left: -41px;
+  left: -50px;
   z-index: 1;
   font-size: 50px;
-  top: 50%;
+  top: 150px;
   cursor: pointer;
-  transform: translateY(-50%);
   width: 81px;
   height: 81px;
 }
@@ -140,9 +139,6 @@
 
 .backChevron {
   width: 27px;
-  position: relative;
-  top: 5px;
-  left: 4px;
   height: 53px;
   transform: rotate(180deg);
   border-radius: 50%;
