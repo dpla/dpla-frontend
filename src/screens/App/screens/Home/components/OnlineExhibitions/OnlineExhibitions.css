@@ -74,8 +74,8 @@
 }
 
 .itemText {
-  color: onionBrown;
-  opacity: 0.8;
+  color: black;
+  opacity: 0.75;
   font-size: 1.125rem;
   line-height: 1.25rem;
 }
