@@ -1,5 +1,5 @@
 @value colors: "../../../../css/colors.css";
-@value merinoWhite, elephantBlue, dimGray, bambooOrange from colors;
+@value merinoWhite, elephantBlue, dimGray, black, bambooOrange from colors;
 @value breakpoints: "../../../../css/breakpoints.css";
 @value smallRem, mediumRem, mediumPlusRem from breakpoints;
 
@@ -33,15 +33,15 @@
 }
 
 .header {
-  font-family: "Source Serif Pro";
-  font-weight: bold;
-  color: elephantBlue;
+  font-family: "Lora";
+  font-weight: normal;
   margin-bottom: 24px;
   white-space: nowrap;
-  letter-spacing: 2px;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-transform: uppercase;
+  color: black;
 }
 
 .twitter {

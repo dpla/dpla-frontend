@@ -38,10 +38,9 @@
 }
 
 .headerText {
-  color: elephantBlue;
-  font-family: "Source Serif Pro";
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-family: "Lora";
+  font-weight: normal;
+  margin-bottom: 23px;
   font-size: 2.25rem;
   line-height: 2.8125rem;
 }
@@ -64,7 +63,7 @@
   position: absolute;
   height: 18px;
   width: 9px;
-  right: -29px;
+  right: -20px;
   top: 5px;
 }
 
@@ -95,18 +94,19 @@
 
 .headline {
   color: bambooOrange;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   opacity: 0.9;
   font-weight: bold;
   display: block;
 }
 
 .date {
-  color: rgba(22, 63, 81, 0.54);
-  font-size: 0.9375rem;
+  color: black;
+  opacity: 0.75;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.1875rem;
-  padding-bottom: 9px;
+  line-height: 1.25rem;
+  padding-bottom: 7px;
   text-transform: uppercase;
 }
 

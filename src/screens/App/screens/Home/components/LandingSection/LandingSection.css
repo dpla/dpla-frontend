@@ -11,14 +11,14 @@
 }
 
 @media (min-width: smallRem) {
-  .onlineExhibitions {
+  .home {
     padding: 42px 50px 132px;
   }
 }
 
 @media (min-width: mediumRem) {
   .home {
-    padding: 42px 0 77px;
+    padding: 42px 0 132px;
   }
 }
 
@@ -28,7 +28,7 @@
 
 @media (min-width: smallRem) {
   .dplaLogo {
-    width: 404px;
+    width: 381px;
   }
 }
 
@@ -40,9 +40,9 @@
 .text {
   font-size: 1.5625rem;
   line-height: 1.75rem;
-  font-weight: bold;
   text-align: center;
-  font-family: 'Source Serif Pro';
+  font-family: 'Lora';
+  font-weight: normal;
   margin-bottom: 40px;
 }
 
@@ -62,13 +62,7 @@
   border-radius: 2px;
   font-size: 1.25rem;
   line-height: 1.5625rem;
-  padding: 10px 44px;
-}
-
-@media (min-width: smallRem) {
-  .donateButton {
-    padding: 12px 48px;
-  }
+  padding: 10px 41px;
 }
 
 .logoAndDonate {
@@ -109,8 +103,8 @@
 
 .searchInput {
   border: none;
-  font-size: 1.375rem;
-  line-height: 1.75rem;
+  font-size: 1.25em;
+  line-height: 1.5625rem;
   padding: 0 0 0 24px;
   height: 100%;
   border-radius: 3px 0 0 3px;
@@ -139,8 +133,8 @@
   background-color: vikingBlue;
   color: white;
   font-weight: 600;
-  font-size: 1.4375rem;
-  line-height: 1.8125rem;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
   padding: 0 30px;
   border-radius: 0 3px 3px 0;
 }

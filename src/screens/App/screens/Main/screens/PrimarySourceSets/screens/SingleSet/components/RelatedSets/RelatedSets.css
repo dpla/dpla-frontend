@@ -10,13 +10,12 @@
 }
 
 .header {
-  color: elephantBlue;
-  font-family: "Source Serif Pro";
-  font-size: 1.25rem;
-  letter-spacing: 2px;
-  line-height: 1.5625rem;
+  font-family: "Lora";
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 }
 
 .sets {

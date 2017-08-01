@@ -128,17 +128,14 @@
 }
 
 .aboutThisHeader {
-  color: elephantBlue;
-  font-family: "Source Serif Pro";
-  font-weight: 600;
+  font-family: "Lora";
+  font-weight: bold;
   line-height: 1.25rem;
   font-size: 1rem;
-  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .aboutThisLink {
   color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
 }
