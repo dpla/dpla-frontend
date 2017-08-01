@@ -26,11 +26,10 @@
 }
 
 .header {
-  color: elephantBlue;
-  font-family: "Source Serif Pro";
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 3.75rem;
+  font-family: "Lora";
+  font-weight: normal;
+  font-size: 2.375rem;
+  line-height: 2.625rem;
   margin-bottom: 31px;
   text-align: center;
 }
@@ -60,7 +59,7 @@
 }
 
 .itemHeader {
-  font-family: "Source Pro Serif";
+  font-family: "Lora";
   font-size: 1.6875rem;
   line-height: 2.125rem;
   font-weight: 600;

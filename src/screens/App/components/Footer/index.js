@@ -19,9 +19,7 @@ const Footer = () =>
             <ul>
               <li>About Us</li>
               <li>FAQ</li>
-              <li>Our Partners</li>
-              <li>Getting Started</li>
-              <li>Careers</li>
+              <li>Who Uses DPLA?</li>
               <li>Terms &amp; Conditions</li>
               <li>Contact Us</li>
             </ul>
@@ -32,19 +30,19 @@ const Footer = () =>
               <li>Search</li>
               <li>Exhibitions</li>
               <li><Link to="primary-source-sets">Primary Source Sets</Link></li>
-              <li><Link to="browse-by-topic">Browse</Link></li>
-              <li>Timeline</li>
-              <li>Map</li>
+              <li><Link to="browse-by-topic">Browse by Topic</Link></li>
+              <li>Browse by Partner</li>
             </ul>
           </div>
           <div>
             <h3 className={styles.linkHeader}>Pro Community</h3>
             <ul>
-              <li>Potential Hubs</li>
-              <li>Existing Hubs</li>
-              <li>Developers</li>
-              <li>Get Involved</li>
+              <li>About DPLA</li>
+              <li>Hubs</li>
               <li>Projects</li>
+              <li>Get Involved</li>
+              <li>Educators</li>
+              <li>Developers</li>
             </ul>
           </div>
         </div>

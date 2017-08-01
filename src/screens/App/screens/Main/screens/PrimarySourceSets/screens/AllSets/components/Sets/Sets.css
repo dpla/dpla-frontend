@@ -23,15 +23,23 @@
 .image {
   border-radius: 3px;
   max-width: 100%;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
+}
+
+.itemCount {
+  opacity: 0.50;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
 }
 
 .title {
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: normal;
   line-height: 1.25rem;
   color: black;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .subtitle {
@@ -39,7 +47,7 @@
   line-height: 1.1875rem;
   color: black50;
   font-weight: normal;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 
 .tags {

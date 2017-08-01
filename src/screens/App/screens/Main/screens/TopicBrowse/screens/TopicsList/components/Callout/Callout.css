@@ -25,7 +25,8 @@
 }
 
 .header {
-  font-family: "Source Serif Pro";
+  font-family: "Lora";
+  font-weight: normal;
   font-size: 1.5rem;
   line-height: 1.75rem;
   margin-bottom: 5px;

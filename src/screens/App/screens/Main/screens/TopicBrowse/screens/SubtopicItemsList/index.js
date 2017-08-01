@@ -11,7 +11,7 @@ import mockSubtopic from "./mockSubtopic";
 import mockItems from "./mockItems";
 
 const SubtopicItemsList = props =>
-  <div className={styles.ubtopicItemsList}>
+  <div className={styles.subtopicItemsList}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },

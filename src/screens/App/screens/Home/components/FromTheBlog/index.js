@@ -37,9 +37,9 @@ const FromTheBlog = (/* data */) =>
           From the Blog
         </h1>
         <Link to="" className={styles.headerLink}>
-          <span>Browse all News</span>
+          <span>Browse the blog</span>
           <img
-            alt="browse all news"
+            alt="browse the blog"
             src={smallChevron}
             className={styles.chevron}
           />
