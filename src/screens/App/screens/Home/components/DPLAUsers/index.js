@@ -42,14 +42,14 @@ const DPLAUsers = (/* data */) =>
             breakpoint: parseInt(breakpoints.smallPx, 10),
             settings: {
               centerMode: true,
-              centerPadding: "12.5%",
-              slidesToShow: 1.33,
+              centerPadding: "18%",
+              slidesToShow: 1.5,
               arrows: false,
               draggable: true
             }
           },
           {
-            breakpoint: parseInt(breakpoints.mediumPx, 10),
+            breakpoint: parseInt(breakpoints.largePx, 10),
             settings: {
               centerMode: false,
               slidesToShow: 2,
