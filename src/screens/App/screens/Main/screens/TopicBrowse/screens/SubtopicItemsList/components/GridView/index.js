@@ -6,14 +6,12 @@ import styles from "./GridView.css";
 
 const GridView = ({ items }) =>
   <div className={styles.wrapper}>
+    <div className={styles.gridSizer} />
     <Grid
       elementType="ul"
       className={styles.grid}
       options={{
-        gutter: 5,
-        columnWidth: 230,
-        disableImagesLoaded: true,
-        updateOnEachImageLoad: true
+        gutter: 5
       }}
     >
       {items.map(item =>

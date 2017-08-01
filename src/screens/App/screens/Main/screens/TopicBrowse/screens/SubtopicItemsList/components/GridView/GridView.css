@@ -8,7 +8,7 @@
 }
 
 .gridItem {
-  width: 33%;
+  width: calc(33% - 10px); /* accounts for padding */
 }
 
 .image {
