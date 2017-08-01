@@ -49,7 +49,7 @@ const DPLAUsers = (/* data */) =>
             }
           },
           {
-            breakpoint: parseInt(breakpoints.mediumPx, 10),
+            breakpoint: parseInt(breakpoints.largePx, 10),
             settings: {
               centerMode: false,
               slidesToShow: 2,
