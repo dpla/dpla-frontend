@@ -4,11 +4,13 @@ import App from "./screens/App";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.css";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+
 import app from "./reducers";
 
-const store = createStore(app);
-
+// Note: this API requires redux@>=3.1.0
+const store = createStore(app, applyMiddleware(thunk));
 render(
   <Provider store={store}>
     <App />

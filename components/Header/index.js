@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import styles from "./Header.css";
 
 const Header = () =>
-  <div className={styles.header}>
+  <div className="header">
     <div className={styles.linksContainer}>
       <div className={styles.mainLinks}>
         <Link to="/">Home</Link>
@@ -20,6 +20,7 @@ const Header = () =>
       </div>
       <button className={styles.login}>Log In</button>
     </div>
+    <style jsx>{styles}</style>
   </div>;
 
 export default Header;

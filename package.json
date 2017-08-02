@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "next": "^2.4.9",
+    "postcss-easy-import": "^2.1.0",
+    "postcss-loader": "^2.0.5",
+    "raw-loader": "^0.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-masonry-component": "^5.0.7",
@@ -59,14 +65,11 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "dev": "next"
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.css": [
       "prettier --write",
       "git add"
     ]
