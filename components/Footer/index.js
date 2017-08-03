@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "next/link";
-import FooterStyles from "./FooterStyles.scss";
+import FooterStyles from "./FooterStyles.css";
 
 const dplaLogo = "static/images/dpla-logo.svg";
 const fbIcon = "static/images/facebook.svg";

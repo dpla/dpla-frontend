@@ -14,7 +14,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _link = require("next/dist/lib/link.js");
 
-var _FooterStyles = require("./FooterStyles.scss");
+var _FooterStyles = require("./FooterStyles.css");
 
 var _FooterStyles2 = _interopRequireDefault(_FooterStyles);
 
