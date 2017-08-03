@@ -1,14 +1,17 @@
 import React from "react";
 
 import Head from "../components/Head";
-import LandingSection from "../components/HomePage/LandingSection";
-import OnlineExhibitions from "../components/HomePage/OnlineExhibitions";
-import PrimarySourceSets from "../components/HomePage/PrimarySourceSets";
-import DPLAUsers from "../components/HomePage/DPLAUsers";
-import SocialMedia from "../components/HomePage/SocialMedia";
-import FromTheBlog from "../components/HomePage/FromTheBlog";
+import LandingSection from "../components/HomePageComponents/LandingSection";
+import OnlineExhibitions from "../components/HomePageComponents/OnlineExhibitions";
+import PrimarySourceSets from "../components/HomePageComponents/PrimarySourceSets";
+import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
+import SocialMedia from "../components/HomePageComponents/SocialMedia";
+import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 
-import { classNames, stylesheet } from "../components/HomePage/Home.css";
+import {
+  classNames,
+  stylesheet
+} from "../components/HomePageComponents/Home.css";
 
 const Home = () =>
   <div className={classNames.home}>

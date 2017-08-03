@@ -1,19 +1,12 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 
-import AllSets from "./screens/AllSets";
-import SingleSet from "./screens/SingleSet";
-import Source from "./screens/Source";
-import PSSFooter from "./components/PSSFooter";
+import MainLayout from "../components/MainLayout";
 
 const PrimarySourceSets = ({ match }) =>
   <div>
-    <Switch>
-      <Route path={match.url} exact={true} component={AllSets} />
-      <Route path={`${match.url}/:set/sources/:sourceId`} component={Source} />
-      <Route path={`${match.url}/:set`} component={SingleSet} />
-    </Switch>
-    <PSSFooter />
+    <MainLayout>
+      <div>hey</div>
+    </MainLayout>
   </div>;
 
 export default PrimarySourceSets;
