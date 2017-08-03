@@ -6,6 +6,7 @@
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "next": "^2.4.9",
+    "node-sass": "^4.5.3",
     "postcss-easy-import": "^2.1.0",
     "postcss-loader": "^2.0.5",
     "raw-loader": "^0.5.1",
@@ -16,7 +17,8 @@
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.5",
     "react-slick": "^0.14.11",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",

@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "next/link";
-import FooterStyles from "./FooterStyles";
+import FooterStyles from "./FooterStyles.scss";
 
-const dplaLogo = "http://lorempixel.com/40/40/food";
-const fbIcon = "http://lorempixel.com/40/40/food";
-const igIcon = "http://lorempixel.com/40/40/food";
-const rssIcon = "http://lorempixel.com/40/40/food";
-const tumblrIcon = "http://lorempixel.com/40/40/food";
+const dplaLogo = "static/images/dpla-logo.svg";
+const fbIcon = "static/images/facebook.svg";
+const igIcon = "static/images/instagram.svg";
+const rssIcon = "static/images/rss.svg";
+const tumblrIcon = "static/images/tumblr.svg";
 
 const Footer = () =>
-  <div className="header">
+  <div className="footer">
     <div className="linksAndDonate">
       <div className="linksWrapper">
         <div className="links">
@@ -63,7 +63,7 @@ const Footer = () =>
         </div>
       </div>
     </div>
-    <FooterStyles />
+    <style jsx>{FooterStyles}</style>
   </div>;
 
 export default Footer;

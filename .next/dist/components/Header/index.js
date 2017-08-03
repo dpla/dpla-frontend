@@ -41,7 +41,7 @@ var Header = function Header() {
     _react2.default.createElement(
       "div",
       {
-        className: _Header2.default.linksContainer,
+        className: "linksContainer",
         "data-jsx-ext": _Header2.default.__scopedHash,
         __source: {
           fileName: _jsxFileName,
@@ -51,7 +51,7 @@ var Header = function Header() {
       _react2.default.createElement(
         "div",
         {
-          className: _Header2.default.mainLinks,
+          className: "mainLinks",
           "data-jsx-ext": _Header2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
@@ -61,50 +61,90 @@ var Header = function Header() {
         _react2.default.createElement(
           _link2.default,
           {
-            to: "/",
+            href: "/",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 10
             }
           },
-          "Home"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 10
+              }
+            },
+            "Home"
+          )
         ),
         _react2.default.createElement(
           _link2.default,
           {
-            to: "/browse-by-topic",
+            href: "/browse-by-topic",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 11
             }
           },
-          "Browse"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 11
+              }
+            },
+            "Browse"
+          )
         ),
         _react2.default.createElement(
           _link2.default,
           {
-            to: "",
+            href: "",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 12
             }
           },
-          "Exhibitions"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 12
+              }
+            },
+            "Exhibitions"
+          )
         ),
         _react2.default.createElement(
           _link2.default,
           {
-            to: "/primary-source-sets",
+            href: "/primary-source-sets",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 13
             }
           },
-          "Primary Source Sets"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 13
+              }
+            },
+            "Primary Source Sets"
+          )
         )
       ),
       _react2.default.createElement("span", {
-        className: _Header2.default.divider,
+        className: "divider",
         "data-jsx-ext": _Header2.default.__scopedHash,
         __source: {
           fileName: _jsxFileName,
@@ -114,7 +154,7 @@ var Header = function Header() {
       _react2.default.createElement(
         "div",
         {
-          className: _Header2.default.secondaryLinks,
+          className: "secondaryLinks",
           "data-jsx-ext": _Header2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
@@ -124,41 +164,71 @@ var Header = function Header() {
         _react2.default.createElement(
           _link2.default,
           {
-            to: "",
+            href: "",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 17
             }
           },
-          "About Us"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 17
+              }
+            },
+            "About Us"
+          )
         ),
         _react2.default.createElement(
           _link2.default,
           {
-            to: "",
+            href: "",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 18
             }
           },
-          "News"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 18
+              }
+            },
+            "News"
+          )
         ),
         _react2.default.createElement(
           _link2.default,
           {
-            to: "",
+            href: "",
             __source: {
               fileName: _jsxFileName,
               lineNumber: 19
             }
           },
-          "Pro Community"
+          _react2.default.createElement(
+            "a",
+            {
+              "data-jsx-ext": _Header2.default.__scopedHash,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 19
+              }
+            },
+            "Pro Community"
+          )
         )
       ),
       _react2.default.createElement(
         "button",
         {
-          className: _Header2.default.login,
+          className: "login",
           "data-jsx-ext": _Header2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,

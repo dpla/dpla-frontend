@@ -4,13 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _style = require("styled-jsx/style.js");
+
+var _style2 = _interopRequireDefault(_style);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 var _link = require("next/dist/lib/link.js");
 
-var _FooterStyles = require("./FooterStyles");
+var _FooterStyles = require("./FooterStyles.scss");
 
 var _FooterStyles2 = _interopRequireDefault(_FooterStyles);
 
@@ -21,17 +25,18 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Footer/index.js";
 
-var dplaLogo = "http://lorempixel.com/40/40/food";
-var fbIcon = "http://lorempixel.com/40/40/food";
-var igIcon = "http://lorempixel.com/40/40/food";
-var rssIcon = "http://lorempixel.com/40/40/food";
-var tumblrIcon = "http://lorempixel.com/40/40/food";
+var dplaLogo = "static/images/dpla-logo.svg";
+var fbIcon = "static/images/facebook.svg";
+var igIcon = "static/images/instagram.svg";
+var rssIcon = "static/images/rss.svg";
+var tumblrIcon = "static/images/tumblr.svg";
 
 var Footer = function Footer() {
   return _react2.default.createElement(
     "div",
     {
-      className: "header",
+      className: "footer",
+      "data-jsx-ext": _FooterStyles2.default.__scopedHash,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 12
@@ -41,6 +46,7 @@ var Footer = function Footer() {
       "div",
       {
         className: "linksAndDonate",
+        "data-jsx-ext": _FooterStyles2.default.__scopedHash,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 13
@@ -50,6 +56,7 @@ var Footer = function Footer() {
         "div",
         {
           className: "linksWrapper",
+          "data-jsx-ext": _FooterStyles2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 14
@@ -59,6 +66,7 @@ var Footer = function Footer() {
           "div",
           {
             className: "links",
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 15
@@ -67,6 +75,7 @@ var Footer = function Footer() {
           _react2.default.createElement(
             "div",
             {
+              "data-jsx-ext": _FooterStyles2.default.__scopedHash,
               __source: {
                 fileName: _jsxFileName,
                 lineNumber: 16
@@ -76,6 +85,7 @@ var Footer = function Footer() {
               "h3",
               {
                 className: "linkHeader",
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 17
@@ -86,6 +96,7 @@ var Footer = function Footer() {
             _react2.default.createElement(
               "ul",
               {
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 18
@@ -94,6 +105,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 19
@@ -104,6 +116,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 20
@@ -114,6 +127,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 21
@@ -124,6 +138,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 22
@@ -134,6 +149,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 23
@@ -146,6 +162,7 @@ var Footer = function Footer() {
           _react2.default.createElement(
             "div",
             {
+              "data-jsx-ext": _FooterStyles2.default.__scopedHash,
               __source: {
                 fileName: _jsxFileName,
                 lineNumber: 26
@@ -155,6 +172,7 @@ var Footer = function Footer() {
               "h3",
               {
                 className: "linkHeader",
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 27
@@ -165,6 +183,7 @@ var Footer = function Footer() {
             _react2.default.createElement(
               "ul",
               {
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 28
@@ -173,6 +192,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 29
@@ -183,6 +203,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 30
@@ -193,6 +214,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 31
@@ -203,6 +225,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 32
@@ -213,6 +236,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 33
@@ -225,6 +249,7 @@ var Footer = function Footer() {
           _react2.default.createElement(
             "div",
             {
+              "data-jsx-ext": _FooterStyles2.default.__scopedHash,
               __source: {
                 fileName: _jsxFileName,
                 lineNumber: 36
@@ -234,6 +259,7 @@ var Footer = function Footer() {
               "h3",
               {
                 className: "linkHeader",
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 37
@@ -244,6 +270,7 @@ var Footer = function Footer() {
             _react2.default.createElement(
               "ul",
               {
+                "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                 __source: {
                   fileName: _jsxFileName,
                   lineNumber: 38
@@ -252,6 +279,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 39
@@ -262,6 +290,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 40
@@ -272,6 +301,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 41
@@ -282,6 +312,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 42
@@ -292,6 +323,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 43
@@ -302,6 +334,7 @@ var Footer = function Footer() {
               _react2.default.createElement(
                 "li",
                 {
+                  "data-jsx-ext": _FooterStyles2.default.__scopedHash,
                   __source: {
                     fileName: _jsxFileName,
                     lineNumber: 44
@@ -317,6 +350,7 @@ var Footer = function Footer() {
         "button",
         {
           className: "donateButton",
+          "data-jsx-ext": _FooterStyles2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 49
@@ -329,6 +363,7 @@ var Footer = function Footer() {
       "div",
       {
         className: "logoAndSocialWrapper",
+        "data-jsx-ext": _FooterStyles2.default.__scopedHash,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 51
@@ -338,6 +373,7 @@ var Footer = function Footer() {
         "div",
         {
           className: "logoAndSocial",
+          "data-jsx-ext": _FooterStyles2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 52
@@ -347,6 +383,7 @@ var Footer = function Footer() {
           className: "dplaLogo",
           alt: "DPLA",
           src: dplaLogo,
+          "data-jsx-ext": _FooterStyles2.default.__scopedHash,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 53
@@ -356,6 +393,7 @@ var Footer = function Footer() {
           "div",
           {
             className: "social",
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 54
@@ -365,6 +403,7 @@ var Footer = function Footer() {
             className: "socialButton",
             alt: "Facebook",
             src: fbIcon,
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 55
@@ -374,6 +413,7 @@ var Footer = function Footer() {
             className: "socialButton",
             alt: "Instagram",
             src: igIcon,
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 57
@@ -383,6 +423,7 @@ var Footer = function Footer() {
             className: "socialButton",
             alt: "RSS Feed",
             src: rssIcon,
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 59
@@ -392,6 +433,7 @@ var Footer = function Footer() {
             className: "socialButton",
             alt: "Tumblr",
             src: tumblrIcon,
+            "data-jsx-ext": _FooterStyles2.default.__scopedHash,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 61
@@ -400,11 +442,9 @@ var Footer = function Footer() {
         )
       )
     ),
-    _react2.default.createElement(_FooterStyles2.default, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 66
-      }
+    _react2.default.createElement(_style2.default, {
+      styleId: _FooterStyles2.default.__scopedHash,
+      css: _FooterStyles2.default.__scoped
     })
   );
 };
