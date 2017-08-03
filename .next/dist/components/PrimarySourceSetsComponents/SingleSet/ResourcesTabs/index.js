@@ -141,8 +141,7 @@ var ResourcesTabs = (function(_React$Component) {
                   {
                     className: [
                       _ResourcesTabs.classNames.tab,
-                      this.state.currentTab === "sourceSet" &&
-                        _ResourcesTabs.classNames.activeTab
+                      _ResourcesTabs.classNames.activeTab
                     ].join(" "),
                     __source: {
                       fileName: _jsxFileName,
@@ -160,7 +159,7 @@ var ResourcesTabs = (function(_React$Component) {
                   },
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 53
+                    lineNumber: 48
                   }
                 },
                 _react2.default.createElement(
@@ -173,7 +172,7 @@ var ResourcesTabs = (function(_React$Component) {
                     ].join(" "),
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 54
+                      lineNumber: 49
                     }
                   },
                   "Additional Resources"
@@ -188,7 +187,7 @@ var ResourcesTabs = (function(_React$Component) {
                     },
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 65
+                      lineNumber: 60
                     }
                   },
                   _react2.default.createElement(
@@ -201,7 +200,7 @@ var ResourcesTabs = (function(_React$Component) {
                       ].join(" "),
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 66
+                        lineNumber: 61
                       }
                     },
                     "Teaching Guide"
@@ -214,7 +213,7 @@ var ResourcesTabs = (function(_React$Component) {
             dangerouslySetInnerHTML: { __html: _ResourcesTabs.stylesheet },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 79
+              lineNumber: 74
             }
           })
         );

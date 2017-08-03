@@ -41,12 +41,7 @@ class ResourcesTabs extends React.Component {
         <div className={classNames.tabsWrapper}>
           <div className={[classNames.tabs, module].join(" ")}>
             <Link onClick={() => this.onTabChange("sourceSet")}>
-              <a
-                className={[
-                  classNames.tab,
-                  this.state.currentTab === "sourceSet" && classNames.activeTab
-                ].join(" ")}
-              >
+              <a className={[classNames.tab, classNames.activeTab].join(" ")}>
                 Source Set
               </a>
             </Link>
