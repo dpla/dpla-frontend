@@ -1,12 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./OnlineExhibitions.css";
+import { stylesheet, classNames } from "./OnlineExhibitions.css";
 
 import breakpoints from "css/breakpoints.css";
-import smallChevron from "static/images/chevron-thick-orange.svg";
-import largeChevron from "static/images/chevron-thin.svg";
+const smallChevron = "static/images/chevron-thick-orange.svg";
+const largeChevron = "static/images/chevron-thin.svg";
 
 const mockExhibitionsData = [
   {
@@ -36,35 +36,37 @@ const mockExhibitionsData = [
 ];
 
 const NextArrow = ({ onClick, className }) =>
-  <button className={styles.nextArrow} onClick={onClick}>
+  <button className={classNames.nextArrow} onClick={onClick}>
     <img
       alt=""
-      className={[styles.nextChevron, className].join(" ")}
+      className={[classNames.nextChevron, className].join(" ")}
       src={largeChevron}
     />
   </button>;
 
 const PrevArrow = ({ onClick, className }) =>
-  <button className={styles.prevArrow} onClick={onClick}>
+  <button className={classNames.prevArrow} onClick={onClick}>
     <img
       alt=""
-      className={[styles.backChevron, className].join(" ")}
+      className={[classNames.backChevron, className].join(" ")}
       src={largeChevron}
     />
   </button>;
 
 const OnlineExhibitions = (/* data */) =>
-  <div className={styles.wrapper}>
-    <div className={styles.onlineExhibitions}>
-      <div className={styles.headerAndBrowse}>
-        <h1 className={styles.header}>Online Exhibitions</h1>
-        <Link className={styles.browse} to="">
-          <span>Browse all Exhibitions</span>
-          <img
-            alt="browse exhibitions"
-            className={styles.smallChevron}
-            src={smallChevron}
-          />
+  <div className={classNames.wrapper}>
+    <div className={classNames.onlineExhibitions}>
+      <div className={classNames.headerAndBrowse}>
+        <h1 className={classNames.header}>Online Exhibitions</h1>
+        <Link className={classNames.browse} to="">
+          <a>
+            <span>Browse all Exhibitions</span>
+            <img
+              alt="browse exhibitions"
+              className={classNames.smallChevron}
+              src={smallChevron}
+            />
+          </a>
         </Link>
       </div>
       <Slider
@@ -88,16 +90,17 @@ const OnlineExhibitions = (/* data */) =>
         ]}
       >
         {mockExhibitionsData.map(({ text, imageUrl, id, isFeatured }) =>
-          <div className={styles.item}>
-            <img alt={text} className={styles.itemImg} src={imageUrl} />
-            {isFeatured && <div className={styles.featured}>Featured</div>}
-            <p className={styles.itemText}>
+          <div className={classNames.item}>
+            <img alt={text} className={classNames.itemImg} src={imageUrl} />
+            {isFeatured && <div className={classNames.featured}>Featured</div>}
+            <p className={classNames.itemText}>
               {text}
             </p>
           </div>
         )}
       </Slider>
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default OnlineExhibitions;

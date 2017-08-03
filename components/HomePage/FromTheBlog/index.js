@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./FromTheBlog.css";
+import { stylesheet, classNames } from "./FromTheBlog.css";
 
-import smallChevron from "static/images/chevron-thick-orange.svg";
+const smallChevron = "static/images/chevron-thick-orange.svg";
 
 const mockPosts = [
   {
@@ -30,35 +30,40 @@ const mockPosts = [
 ];
 
 const FromTheBlog = (/* data */) =>
-  <div className={styles.wrapper}>
-    <div className={styles.fromTheBlog}>
-      <div className={styles.header}>
-        <h1 className={styles.headerText}>From the Blog</h1>
-        <Link to="" className={styles.headerLink}>
-          <span>Browse the blog</span>
-          <img
-            alt="browse the blog"
-            src={smallChevron}
-            className={styles.chevron}
-          />
+  <div className={classNames.wrapper}>
+    <div className={classNames.fromTheBlog}>
+      <div className={classNames.header}>
+        <h1 className={classNames.headerText}>From the Blog</h1>
+        <Link to="">
+          <a className={classNames.headerLink}>
+            <span>Browse the blog</span>
+            <img
+              alt="browse the blog"
+              src={smallChevron}
+              className={classNames.chevron}
+            />
+          </a>
         </Link>
       </div>
-      <ul className={styles.blogPosts}>
+      <ul className={classNames.blogPosts}>
         {mockPosts.map(post =>
-          <li key={post.id} className={styles.blogPost}>
-            <Link to="" className={styles.headline}>
-              {post.headline}
+          <li key={post.id} className={classNames.blogPost}>
+            <Link to="" className={classNames.headline}>
+              <a>
+                {post.headline}
+              </a>
             </Link>
-            <div className={styles.date}>
+            <div className={classNames.date}>
               {post.date}
             </div>
-            <p className={styles.bodyText}>
+            <p className={classNames.bodyText}>
               {post.bodyText}
             </p>
           </li>
         )}
       </ul>
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default FromTheBlog;

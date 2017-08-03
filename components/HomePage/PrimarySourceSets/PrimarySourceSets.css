@@ -1,7 +1,5 @@
-@value colors: "css/colors.css";
-@value romanceGray, elephantBlue, onionBrown, solitudeBlue, curiousBlue, black from colors;
-@value breakpoints: "css/breakpoints.css";
-@value smallRem, mediumRem from breakpoints;
+@value solitudeBlue, curiousBlue from "../../../css/colors.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .primarySourceSets {
   margin: auto;

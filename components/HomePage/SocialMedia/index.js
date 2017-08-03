@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./SocialMedia.css";
+import { stylesheet, classNames } from "./SocialMedia.css";
 
-import externalLinkIcon from "static/images/external-link.svg";
+const externalLinkIcon = "static/images/external-link.svg";
 
 const mockImages = [
   { url: "http://lorempixel.com/170/170/food", description: "placeholder" },
@@ -13,52 +13,63 @@ const mockImages = [
 ];
 
 const Instagram = ({ images }) =>
-  <div className={styles.instagram}>
-    <h1 className={styles.header}>On Instagram</h1>
-    <div className={styles.instagramImages}>
+  <div className={classNames.instagram}>
+    <h1 className={classNames.header}>On Instagram</h1>
+    <div className={classNames.instagramImages}>
       {images.map(({ url, description }) =>
-        <img alt={description} className={styles.instagramImage} src={url} />
+        <img
+          alt={description}
+          className={classNames.instagramImage}
+          src={url}
+        />
       )}
     </div>
-    <Link to="" className={styles.visitLink}>
-      <span>Visit @digpublib</span>
-      <img
-        className={styles.externalLinkIcon}
-        alt="visit @digpublib"
-        src={externalLinkIcon}
-      />
+    <Link to="" className={classNames.visitLink}>
+      <a>
+        <span>Visit @digpublib</span>
+        <img
+          className={classNames.externalLinkIcon}
+          alt="visit @digpublib"
+          src={externalLinkIcon}
+        />
+      </a>
     </Link>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 const Twitter = ({ message, time }) =>
-  <div className={styles.twitter}>
-    <h1 className={styles.header}>On Twitter</h1>
+  <div className={classNames.twitter}>
+    <h1 className={classNames.header}>On Twitter</h1>
     <p
-      className={styles.twitterText}
+      className={classNames.twitterText}
       dangerouslySetInnerHTML={{ __html: message }}
     />
-    <p className={styles.twitterDate}>
+    <p className={classNames.twitterDate}>
       {time}
     </p>
-    <Link to="" className={styles.visitLink}>
-      <span>Visit @DPLA</span>
-      <img
-        className={styles.externalLinkIcon}
-        alt="visit @DPLA"
-        src={externalLinkIcon}
-      />
+    <Link to="" className={classNames.visitLink}>
+      <a>
+        <span>Visit @DPLA</span>
+        <img
+          className={classNames.externalLinkIcon}
+          alt="visit @DPLA"
+          src={externalLinkIcon}
+        />
+      </a>
     </Link>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 const SocialMedia = (/* data */) =>
-  <div className={styles.wrapper}>
-    <div className={styles.socialMedia}>
+  <div className={classNames.wrapper}>
+    <div className={classNames.socialMedia}>
       <Twitter
         time="23H AGO"
         message="TODAY: Our friends @internetarchive host a live AMA on their @macfound #100andChange plan to open access to 4M books…"
       />
       <Instagram images={mockImages} />
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default SocialMedia;

@@ -1,5 +1,6 @@
 import React from "react";
 
+import Head from "../components/Head";
 import LandingSection from "../components/HomePage/LandingSection";
 import OnlineExhibitions from "../components/HomePage/OnlineExhibitions";
 import PrimarySourceSets from "../components/HomePage/PrimarySourceSets";
@@ -11,6 +12,7 @@ import { classNames, stylesheet } from "../components/HomePage/Home.css";
 
 const Home = () =>
   <div className={classNames.home}>
+    <Head />
     <LandingSection />
     <OnlineExhibitions />
     <PrimarySourceSets />

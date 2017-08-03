@@ -8,128 +8,256 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require("react-router-dom");
+var _link = require("next/dist/lib/link.js");
+
+var _link2 = _interopRequireDefault(_link);
 
 var _SocialMedia = require("./SocialMedia.css");
 
-var _SocialMedia2 = _interopRequireDefault(_SocialMedia);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-var _externalLink = require("../../../static/images/external-link.svg");
+var _jsxFileName =
+  "/Users/frankiesimms/Desktop/dpla-enduser-site/components/HomePage/SocialMedia/index.js";
 
-var _externalLink2 = _interopRequireDefault(_externalLink);
+var externalLinkIcon = "static/images/external-link.svg";
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/HomePage/SocialMedia/index.js";
-
-
-var mockImages = [{ url: "http://lorempixel.com/170/170/food", description: "placeholder" }, { url: "http://lorempixel.com/170/171/food", description: "placeholder" }, { url: "http://lorempixel.com/170/172/food", description: "placeholder" }, { url: "http://lorempixel.com/170/173/food", description: "placeholder" }];
+var mockImages = [
+  { url: "http://lorempixel.com/170/170/food", description: "placeholder" },
+  { url: "http://lorempixel.com/170/171/food", description: "placeholder" },
+  { url: "http://lorempixel.com/170/172/food", description: "placeholder" },
+  { url: "http://lorempixel.com/170/173/food", description: "placeholder" }
+];
 
 var Instagram = function Instagram(_ref) {
   var images = _ref.images;
-  return _react2.default.createElement("div", { className: _SocialMedia2.default.instagram, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    }
-  }, _react2.default.createElement("h1", { className: _SocialMedia2.default.header, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    }
-  }, "On Instagram"), _react2.default.createElement("div", { className: _SocialMedia2.default.instagramImages, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    }
-  }, images.map(function (_ref2) {
-    var url = _ref2.url,
-        description = _ref2.description;
-    return _react2.default.createElement("img", { alt: description, className: _SocialMedia2.default.instagramImage, src: url, __source: {
+  return _react2.default.createElement(
+    "div",
+    {
+      className: _SocialMedia.classNames.instagram,
+      __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 16
       }
-    });
-  })), _react2.default.createElement(_reactRouterDom.Link, { to: "", className: _SocialMedia2.default.visitLink, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    }
-  }, _react2.default.createElement("span", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    }
-  }, "Visit @digpublib"), _react2.default.createElement("img", {
-    className: _SocialMedia2.default.externalLinkIcon,
-    alt: "visit @digpublib",
-    src: _externalLink2.default,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    }
-  })));
+    },
+    _react2.default.createElement(
+      "h1",
+      {
+        className: _SocialMedia.classNames.header,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
+        }
+      },
+      "On Instagram"
+    ),
+    _react2.default.createElement(
+      "div",
+      {
+        className: _SocialMedia.classNames.instagramImages,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        }
+      },
+      images.map(function(_ref2) {
+        var url = _ref2.url,
+          description = _ref2.description;
+        return _react2.default.createElement("img", {
+          alt: description,
+          className: _SocialMedia.classNames.instagramImage,
+          src: url,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 20
+          }
+        });
+      })
+    ),
+    _react2.default.createElement(
+      _link2.default,
+      {
+        to: "",
+        className: _SocialMedia.classNames.visitLink,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      },
+      _react2.default.createElement(
+        "a",
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 28
+          }
+        },
+        _react2.default.createElement(
+          "span",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 29
+            }
+          },
+          "Visit @digpublib"
+        ),
+        _react2.default.createElement("img", {
+          className: _SocialMedia.classNames.externalLinkIcon,
+          alt: "visit @digpublib",
+          src: externalLinkIcon,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 30
+          }
+        })
+      )
+    ),
+    _react2.default.createElement("style", {
+      dangerouslySetInnerHTML: { __html: _SocialMedia.stylesheet },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 37
+      }
+    })
+  );
 };
 
 var Twitter = function Twitter(_ref3) {
   var message = _ref3.message,
-      time = _ref3.time;
-  return _react2.default.createElement("div", { className: _SocialMedia2.default.twitter, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
-    }
-  }, _react2.default.createElement("h1", { className: _SocialMedia2.default.header, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    }
-  }, "On Twitter"), _react2.default.createElement("p", {
-    className: _SocialMedia2.default.twitterText,
-    dangerouslySetInnerHTML: { __html: message },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    }
-  }), _react2.default.createElement("p", { className: _SocialMedia2.default.twitterDate, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 40
-    }
-  }, time), _react2.default.createElement(_reactRouterDom.Link, { to: "", className: _SocialMedia2.default.visitLink, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    }
-  }, _react2.default.createElement("span", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    }
-  }, "Visit @DPLA"), _react2.default.createElement("img", {
-    className: _SocialMedia2.default.externalLinkIcon,
-    alt: "visit @DPLA",
-    src: _externalLink2.default,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    }
-  })));
-};
-
-var SocialMedia = function SocialMedia() {
-  return (/* data */_react2.default.createElement("div", { className: _SocialMedia2.default.wrapper, __source: {
-        fileName: _jsxFileName,
-        lineNumber: 54
-      }
-    }, _react2.default.createElement("div", { className: _SocialMedia2.default.socialMedia, __source: {
-        fileName: _jsxFileName,
-        lineNumber: 55
-      }
-    }, _react2.default.createElement(Twitter, {
-      time: "23H AGO",
-      message: "TODAY: Our friends @internetarchive host a live AMA on their @macfound #100andChange plan to open access to 4M books\u2026",
+    time = _ref3.time;
+  return _react2.default.createElement(
+    "div",
+    {
+      className: _SocialMedia.classNames.twitter,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 41
       }
-    }), _react2.default.createElement(Instagram, { images: mockImages, __source: {
+    },
+    _react2.default.createElement(
+      "h1",
+      {
+        className: _SocialMedia.classNames.header,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42
+        }
+      },
+      "On Twitter"
+    ),
+    _react2.default.createElement("p", {
+      className: _SocialMedia.classNames.twitterText,
+      dangerouslySetInnerHTML: { __html: message },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 43
+      }
+    }),
+    _react2.default.createElement(
+      "p",
+      {
+        className: _SocialMedia.classNames.twitterDate,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
+        }
+      },
+      time
+    ),
+    _react2.default.createElement(
+      _link2.default,
+      {
+        to: "",
+        className: _SocialMedia.classNames.visitLink,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50
+        }
+      },
+      _react2.default.createElement(
+        "a",
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          }
+        },
+        _react2.default.createElement(
+          "span",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 52
+            }
+          },
+          "Visit @DPLA"
+        ),
+        _react2.default.createElement("img", {
+          className: _SocialMedia.classNames.externalLinkIcon,
+          alt: "visit @DPLA",
+          src: externalLinkIcon,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53
+          }
+        })
+      )
+    ),
+    _react2.default.createElement("style", {
+      dangerouslySetInnerHTML: { __html: _SocialMedia.stylesheet },
+      __source: {
         fileName: _jsxFileName,
         lineNumber: 60
       }
-    })))
+    })
+  );
+};
+
+var SocialMedia = function SocialMedia() {
+  return /* data */ _react2.default.createElement(
+    "div",
+    {
+      className: _SocialMedia.classNames.wrapper,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 64
+      }
+    },
+    _react2.default.createElement(
+      "div",
+      {
+        className: _SocialMedia.classNames.socialMedia,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65
+        }
+      },
+      _react2.default.createElement(Twitter, {
+        time: "23H AGO",
+        message:
+          "TODAY: Our friends @internetarchive host a live AMA on their @macfound #100andChange plan to open access to 4M books\u2026",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66
+        }
+      }),
+      _react2.default.createElement(Instagram, {
+        images: mockImages,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70
+        }
+      })
+    ),
+    _react2.default.createElement("style", {
+      dangerouslySetInnerHTML: { __html: _SocialMedia.stylesheet },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 72
+      }
+    })
   );
 };
 

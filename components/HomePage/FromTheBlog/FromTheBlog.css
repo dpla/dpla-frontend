@@ -1,7 +1,5 @@
-@value colors: "css/colors.css";
-@value alabasterGray, elephantBlue, bambooOrange, black from colors;
-@value breakpoints: "css/breakpoints.css";
-@value smallRem, mediumRem from breakpoints;
+@value alabasterGray, elephantBlue, bambooOrange, black from "../../../css/colors.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .fromTheBlog {
   margin: auto;

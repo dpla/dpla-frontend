@@ -1,7 +1,5 @@
-@value colors: "css/colors.css";
-@value merinoWhite, elephantBlue, dimGray, black, bambooOrange from colors;
-@value breakpoints: "css/breakpoints.css";
-@value smallRem, mediumRem, mediumPlusRem from breakpoints;
+@value merinoWhite, elephantBlue, dimGray, black, bambooOrange from "../../../css/colors.css";
+@value smallRem, mediumRem, mediumPlusRem from "../../../css/breakpoints.css";
 
 .socialMedia {
   margin: auto;

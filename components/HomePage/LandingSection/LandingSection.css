@@ -1,7 +1,5 @@
-@value colors: "css/colors.css";
-@value white, bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from colors;
-@value breakpoints: "css/breakpoints.css";
-@value smallRem, mediumRem from breakpoints;
+@value bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from "../../../css/colors.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 /* TODO this needs to be an actual image at some point */
 .home {
@@ -44,6 +42,7 @@
   font-family: 'Lora';
   font-weight: normal;
   margin-bottom: 40px;
+  color: white;
 }
 
 @media (min-width: smallRem) {

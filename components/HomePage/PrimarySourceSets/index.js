@@ -1,12 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./PrimarySourceSets.css";
+import { stylesheet, classNames } from "./PrimarySourceSets.css";
 import breakpoints from "css/breakpoints.css";
 
-import smallChevron from "static/images/chevron-thick-blue.svg";
-import largeChevron from "static/images/chevron-thin.svg";
+const smallChevron = "static/images/chevron-thick-blue.svg";
+const largeChevron = "static/images/chevron-thin.svg";
 
 const mockSourceSets = [
   {
@@ -32,35 +32,37 @@ const mockSourceSets = [
 ];
 
 const NextArrow = ({ onClick, className }) =>
-  <button className={styles.nextArrow} onClick={onClick}>
+  <button className={classNames.nextArrow} onClick={onClick}>
     <img
       alt=""
-      className={[styles.nextChevron, className].join(" ")}
+      className={[classNames.nextChevron, className].join(" ")}
       src={largeChevron}
     />
   </button>;
 
 const PrevArrow = ({ onClick, className }) =>
-  <button className={styles.prevArrow} onClick={onClick}>
+  <button className={classNames.prevArrow} onClick={onClick}>
     <img
       alt=""
-      className={[styles.backChevron, className].join(" ")}
+      className={[classNames.backChevron, className].join(" ")}
       src={largeChevron}
     />
   </button>;
 
 const PrimarySourceSets = (/* data */) =>
-  <div className={styles.wrapper}>
-    <div className={styles.primarySourceSets}>
-      <div className={styles.headerAndBrowse}>
-        <h1 className={styles.header}>Primary Source Sets for Education</h1>
-        <Link className={styles.browse} to="">
-          <span>Browse all Sets</span>
-          <img
-            alt="browse sets"
-            className={styles.smallChevron}
-            src={smallChevron}
-          />
+  <div className={classNames.wrapper}>
+    <div className={classNames.primarySourceSets}>
+      <div className={classNames.headerAndBrowse}>
+        <h1 className={classNames.header}>Primary Source Sets for Education</h1>
+        <Link className={classNames.browse} to="">
+          <a>
+            <span>Browse all Sets</span>
+            <img
+              alt="browse sets"
+              className={classNames.smallChevron}
+              src={smallChevron}
+            />
+          </a>
         </Link>
       </div>
       <Slider
@@ -84,15 +86,16 @@ const PrimarySourceSets = (/* data */) =>
         ]}
       >
         {mockSourceSets.map(({ text, imageUrl, id }) =>
-          <div className={styles.item}>
-            <img alt={text} className={styles.itemImg} src={imageUrl} />
-            <p className={styles.itemText}>
+          <div className={classNames.item}>
+            <img alt={text} className={classNames.itemImg} src={imageUrl} />
+            <p className={classNames.itemText}>
               {text}
             </p>
           </div>
         )}
       </Slider>
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default PrimarySourceSets;

@@ -8,6 +8,11 @@ module.exports = {
     );
 
     config.module.rules.push({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: ["file-loader?name=dist/static/images/[name].[ext]"]
+    });
+
+    config.module.rules.push({
       test: /\.css$/,
       use: [
         {
