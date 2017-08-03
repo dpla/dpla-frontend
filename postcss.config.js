@@ -3,8 +3,9 @@ module.exports = {
     require("postcss-icss-values"),
     require("postcss-cssnext")(),
     require("postcss-modules")({
-      generateScopedName: "[local]-[hash:base64:5]"
+      generateScopedName: "[name]__[local]___[hash:base64:5]"
     }),
-    require("cssnano")()
+    require("cssnano")(),
+    require("postcss-flexbugs-fixes")
   ]
 };

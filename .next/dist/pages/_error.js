@@ -1,3 +1,3 @@
-"use strict";
+'use strict';
 
-module.exports = require("next/dist/lib/error.js");
+module.exports = require('next/dist/lib/error.js');

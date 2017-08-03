@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "next/link";
 import { classNames, stylesheet } from "./Footer.css";
 
-const dplaLogo = "static/images/dpla-logo.svg";
-const fbIcon = "static/images/facebook.svg";
-const igIcon = "static/images/instagram.svg";
-const rssIcon = "static/images/rss.svg";
-const tumblrIcon = "static/images/tumblr.svg";
+const dplaLogo = "";
+const fbIcon = "";
+const igIcon = "";
+const rssIcon = "";
+const tumblrIcon = "";
 
 const Footer = () =>
   <div className={classNames.footer}>
@@ -75,7 +75,6 @@ const Footer = () =>
             alt="Tumblr"
             src={tumblrIcon}
           />
-
         </div>
       </div>
     </div>

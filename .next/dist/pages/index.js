@@ -8,52 +8,77 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Header = require("../components/Header");
+var _LandingSection = require("../components/HomePage/LandingSection");
 
-var _Header2 = _interopRequireDefault(_Header);
+var _LandingSection2 = _interopRequireDefault(_LandingSection);
 
-var _Footer = require("../components/Footer");
+var _OnlineExhibitions = require("../components/HomePage/OnlineExhibitions");
 
-var _Footer2 = _interopRequireDefault(_Footer);
+var _OnlineExhibitions2 = _interopRequireDefault(_OnlineExhibitions);
 
-var _Head = require("../components/Head");
+var _PrimarySourceSets = require("../components/HomePage/PrimarySourceSets");
 
-var _Head2 = _interopRequireDefault(_Head);
+var _PrimarySourceSets2 = _interopRequireDefault(_PrimarySourceSets);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+var _DPLAUsers = require("../components/HomePage/DPLAUsers");
 
-var _jsxFileName =
-  "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/index.js?entry";
+var _DPLAUsers2 = _interopRequireDefault(_DPLAUsers);
 
-var App = function App() {
-  return _react2.default.createElement(
-    "div",
-    {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7
-      }
-    },
-    _react2.default.createElement(_Head2.default, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 8
-      }
-    }),
-    _react2.default.createElement(_Header2.default, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 9
-      }
-    }),
-    _react2.default.createElement(_Footer2.default, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 10
-      }
-    })
-  );
+var _SocialMedia = require("../components/HomePage/SocialMedia");
+
+var _SocialMedia2 = _interopRequireDefault(_SocialMedia);
+
+var _FromTheBlog = require("../components/HomePage/FromTheBlog");
+
+var _FromTheBlog2 = _interopRequireDefault(_FromTheBlog);
+
+var _Home = require("../components/HomePage/Home.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/index.js?entry";
+
+
+var Home = function Home() {
+  return _react2.default.createElement("div", { className: _Home.classNames.home, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }, _react2.default.createElement(_LandingSection2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    }
+  }), _react2.default.createElement(_OnlineExhibitions2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    }
+  }), _react2.default.createElement(_PrimarySourceSets2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    }
+  }), _react2.default.createElement(_DPLAUsers2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    }
+  }), _react2.default.createElement(_SocialMedia2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    }
+  }), _react2.default.createElement(_FromTheBlog2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    }
+  }), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _Home.stylesheet }, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    }
+  }));
 };
-exports.default = App;
+
+exports.default = Home;

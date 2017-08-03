@@ -1,3 +1,3 @@
-"use strict";
+'use strict';
 
-module.exports = require("next/dist/server/document.js");
+module.exports = require('next/dist/server/document.js');

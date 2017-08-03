@@ -1,0 +1,153 @@
+@value colors: "css/colors.css";
+@value rockBrown, bonjourRed, black from colors;
+@value breakpoints: "css/breakpoints.css";
+@value smallRem, mediumRem, largeRem from breakpoints;
+
+.DPLAUsers {
+  margin: auto;
+  overflow: hidden;
+  padding: 45px 25px 55px;
+}
+@media (min-width: smallRem) {
+  .DPLAUsers {
+    padding: 45px 50px 55px;
+  }
+}
+@media (min-width: mediumRem) {
+  .DPLAUsers {
+    padding: 72px 70px 66px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .DPLAUsers {
+    max-width: 1024px;
+  }
+}
+
+.header {
+  font-family: "Lora";
+  font-weight: normal;
+  font-size: 2.375rem;
+  line-height: 2.625rem;
+  margin-bottom: 31px;
+  text-align: center;
+}
+
+.divider {
+  border: 2px solid #8C8C8C;
+  max-width: 40px;
+  margin: 0 auto 54px;
+}
+
+.item {
+  padding: 0 2px;
+}
+
+.item:first-child {
+  padding-left: 0;
+}
+
+.item:last-child {
+  padding-right: 0;
+}
+
+.content {
+  padding: 24px 15px 37px;
+  text-align: center;
+  height: 141px;
+  position: relative;
+  margin: auto;
+  top: -45px;
+}
+@media (min-width: largeRem) {
+  .content {
+    max-width: 310px;
+  }
+}
+
+.itemHeader {
+  font-family: "Lora";
+  font-weight: normal;
+  font-size: 1.6875rem;
+  line-height: 2.125rem;
+  padding-bottom: 11px;
+}
+
+.imageDiv {
+  height: 280px;
+  display: flex;
+  width: 255px;
+  margin: auto;
+  align-items: center;
+}
+
+.itemImg {
+  margin: auto;
+}
+
+.learners .imageDiv {
+  background-color: rgba(228, 218, 218, 0.4);
+}
+.educators .imageDiv {
+  background-color: rgba(236, 233, 218, 1);
+}
+.genealogists .imageDiv {
+  background-color: rgba(218, 228, 232, 1);
+}
+.researchers .imageDiv {
+  background-color: rgba(218, 228, 232, 1);
+}
+
+.text {
+  color: black;
+  opacity: 0.50;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+}
+
+.prevArrow {
+  position: absolute;
+  left: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 127px;
+  cursor: pointer;
+  width: 81px;
+  height: 81px;
+}
+
+.nextArrow {
+  position: absolute;
+  right: -50px;
+  z-index: 1;
+  font-size: 50px;
+  top: 170px;
+  background: transparent;
+  cursor: pointer;
+  width: 81px;
+  height: 81px;
+}
+
+.nextChevron {
+  width: 27px;
+  height: 53px;
+  border-radius: 50%;
+  opacity: 0.9;
+  padding: 14px 27px;
+}
+
+.backChevron {
+  width: 27px;
+  height: 53px;
+  transform: rotate(180deg);
+  border-radius: 50%;
+  opacity: 0.9;
+  padding: 14px 27px;
+}
+
+/* react-slick style overrides */
+
+.DPLAUsers :global(.slick-track) {
+  display: flex;
+}
