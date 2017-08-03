@@ -1,33 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./Breadcrumbs.css";
-import chevron from "../../../../images/chevron-thick-orange.svg";
+import { stylesheet, classNames } from "./Breadcrumbs.css";
+const chevron = "/static/images/chevron-thick-orange.svg";
 
 const Breadcrumbs = ({ breadcrumbs }) =>
-  <div className={styles.breadcrumbs}>
+  <div className={classNames.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
           <span>
             <Link
-              className={styles.breadcrumbLink}
               to={{
                 pathname: breadcrumb.url,
                 search: breadcrumb.search
               }}
             >
-              {breadcrumb.title}
+              <a className={classNames.breadcrumbLink}>
+                {breadcrumb.title}
+              </a>
             </Link>
-            <img alt="" src={chevron} className={styles.chevron} />
+            <img alt="" src={chevron} className={classNames.chevron} />
           </span>
         );
       } else {
         return (
-          <span className={styles.activeBreadcrumb}>{breadcrumb.title}</span>
+          <span className={classNames.activeBreadcrumb}>
+            {breadcrumb.title}
+          </span>
         );
       }
     })}
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Breadcrumbs;

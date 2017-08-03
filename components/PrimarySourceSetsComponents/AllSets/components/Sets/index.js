@@ -2,10 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./Sets.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStylesheet
-} from "css/utils.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
@@ -46,7 +43,6 @@ const Sets = ({ sets }) =>
       )}
     </ul>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;
 
 export default Sets;

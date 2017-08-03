@@ -3,10 +3,7 @@ import Select from "react-select";
 
 import "react-select/dist/react-select.css";
 import { stylesheet, classNames } from "./Filters.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStylesheet
-} from "css/utils.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
@@ -46,7 +43,6 @@ const Filters = () =>
       />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;
 
 export default Filters;

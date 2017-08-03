@@ -1,19 +1,24 @@
 import React from "react";
 import Head from "next/head";
 
+import {
+  stylesheet as utilStylesheet,
+  classNames as utilClassNames
+} from "css/utils.css";
+
+const { module } = utilClassNames;
+
 export default () =>
   <div>
     <style jsx global>{`
-      :root {
-        --color-red: red;
-      }
       body {
         margin: 0;
         padding: 0;
         font-family: 'Source Sans Pro', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
-      button, input {
+      button,
+      input {
         font-family: "Source Sans Pro";
       }
       a {
@@ -28,7 +33,14 @@ export default () =>
       ul {
         list-style: none;
       }
-      p, ul, h1, h2, h3, h4, h5, h6 {
+      p,
+      ul,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         margin: 0;
         padding: 0;
       }
@@ -63,4 +75,5 @@ export default () =>
       />
       <title>React App</title>
     </Head>
+    <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;

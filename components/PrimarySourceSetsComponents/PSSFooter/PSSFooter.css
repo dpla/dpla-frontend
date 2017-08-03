@@ -1,5 +1,4 @@
-@value colors: "../../../../../../css/colors.css";
-@value pampasBrown, bambooOrange from colors;
+@value pampasBrown, bambooOrange from "../../../css/colors.css";
 
 .wrapper {
   background-color: pampasBrown;

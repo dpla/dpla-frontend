@@ -1,4 +1,4 @@
-@value hippieBlue, elephantBlue, white from "../../../../css/colors.css";
+@value hippieBlue, elephantBlue from "../../../../css/colors.css";
 @value mediumRem, smallRem from "../../../../css/breakpoints.css";
 
 .headerSearchBar {

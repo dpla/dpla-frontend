@@ -21,11 +21,11 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/MainLayout/components/Footer/index.js";
 
-var dplaLogo = "static/images/dpla-logo.svg";
-var fbIcon = "static/images/facebook.svg";
-var igIcon = "static/images/instagram.svg";
-var rssIcon = "static/images/rss.svg";
-var tumblrIcon = "static/images/tumblr.svg";
+var dplaLogo = "/static/images/dpla-logo.svg";
+var fbIcon = "/static/images/facebook.svg";
+var igIcon = "/static/images/instagram.svg";
+var rssIcon = "/static/images/rss.svg";
+var tumblrIcon = "/static/images/tumblr.svg";
 
 var Footer = function Footer() {
   return _react2.default.createElement(

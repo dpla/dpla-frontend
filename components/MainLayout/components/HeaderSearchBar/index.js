@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { stylesheet, classNames } from "./HeaderSearchBar.css";
 
-const dplaLogo = "static/images/dpla-logo-white.svg";
-const searchIcon = "static/images/search.svg";
+const dplaLogo = "/static/images/dpla-logo-white.svg";
+const searchIcon = "/static/images/search.svg";
 
 const HeaderSearchBar = () =>
   <div className={classNames.headerSearchBar}>

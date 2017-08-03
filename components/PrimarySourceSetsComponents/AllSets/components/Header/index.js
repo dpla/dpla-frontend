@@ -1,10 +1,7 @@
 import React from "react";
 
 import { stylesheet, classNames } from "./Header.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStylesheet
-} from "css/utils.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
@@ -22,7 +19,6 @@ const Header = () =>
       </p>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;
 
 export default Header;

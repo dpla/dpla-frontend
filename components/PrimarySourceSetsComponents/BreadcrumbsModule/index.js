@@ -1,17 +1,20 @@
 import React from "react";
 
-import Breadcrumbs from "../../../../../../components/Breadcrumbs";
+import Breadcrumbs from "../../Breadcrumbs";
 import StudentMode from "./components/StudentMode";
 
-import styles from "./BreadcrumbsModule.css";
-import { module } from "../../../../../../css/utils.css";
+import { stylesheet, classNames } from "./BreadcrumbsModule.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
-const BreadcrumbsModule = ({ routerProps, showStudentMode, breadcrumbs }) =>
-  <div className={styles.wrapper}>
-    <div className={[styles.breadcrumbsModule, module].join(" ")}>
+const { module } = utilClassNames;
+
+const BreadcrumbsModule = ({ showStudentMode, breadcrumbs }) =>
+  <div className={classNames.wrapper}>
+    <div className={[module, classNames.breadcrumbsModule].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      {showStudentMode && <StudentMode routerProps={routerProps} />}
+      {showStudentMode && <StudentMode />}
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default BreadcrumbsModule;

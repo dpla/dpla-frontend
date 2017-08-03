@@ -21,8 +21,8 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/MainLayout/components/HeaderSearchBar/index.js";
 
-var dplaLogo = "static/images/dpla-logo-white.svg";
-var searchIcon = "static/images/search.svg";
+var dplaLogo = "/static/images/dpla-logo-white.svg";
+var searchIcon = "/static/images/search.svg";
 
 var HeaderSearchBar = function HeaderSearchBar() {
   return _react2.default.createElement(

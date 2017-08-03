@@ -1,5 +1,4 @@
-@value colors: "../../../../../../css/colors.css";
-@value pampasBrown from colors;
+@value pampasBrown from "../../../css/colors.css";
 
 .wrapper {
   width: 100%;
@@ -10,7 +9,7 @@
 
 .breadcrumbsModule {
   height: 100%;
-  padding-top: 0;
+  padding-top: 0; 
   padding-bottom: 0;
   font-size: 1rem;
   line-height: 1.25rem;

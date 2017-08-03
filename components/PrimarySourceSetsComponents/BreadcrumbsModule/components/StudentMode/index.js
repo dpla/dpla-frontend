@@ -2,12 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./StudentMode.css";
+import Tooltip from "../../../../Tooltip";
 
-import question from "../../../../../../../../../../images/question.svg";
+const question = "static/images/question.svg";
 
-import Tooltip from "../../../../../../../../components/Tooltip";
-
-const isStudentMode = location => location.search.includes("student");
+const isStudentMode = () => false; //TODO fix this
 
 class StudentMode extends React.Component {
   componentWillMount() {
@@ -27,9 +26,7 @@ class StudentMode extends React.Component {
   }
 
   render() {
-    const { routerProps } = this.props;
-
-    return isStudentMode(routerProps.location)
+    return isStudentMode()
       ? <button
           aria-describedby="student-mode-tooltip"
           className={styles.studentMode}
@@ -51,11 +48,8 @@ class StudentMode extends React.Component {
               You’re viewing this Primary Source Set with the teaching guides
               hidden.
             </p>
-            <Link
-              to={routerProps.location.pathname}
-              className={styles.tooltipLink}
-            >
-              Turn on Teaching Guides
+            <Link>
+              <a className={styles.tooltipLink}>Turn on Teaching Guides</a>
             </Link>
           </Tooltip>
         </button>

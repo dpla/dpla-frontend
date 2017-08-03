@@ -13,7 +13,6 @@
     "react-dom": "^15.6.1",
     "react-masonry-component": "^5.0.7",
     "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.5",
     "react-slick": "^0.14.11",
     "redux": "^3.7.2",
@@ -64,9 +63,6 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
     "precommit": "lint-staged",
     "dev": "next"
   },
