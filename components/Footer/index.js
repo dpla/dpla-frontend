@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "next/link";
-import FooterStyles from "./FooterStyles.css";
+import { classNames, stylesheet } from "./Footer.css";
 
 const dplaLogo = "static/images/dpla-logo.svg";
 const fbIcon = "static/images/facebook.svg";
@@ -9,12 +9,12 @@ const rssIcon = "static/images/rss.svg";
 const tumblrIcon = "static/images/tumblr.svg";
 
 const Footer = () =>
-  <div className="footer">
-    <div className="linksAndDonate">
-      <div className="linksWrapper">
-        <div className="links">
+  <div className={classNames.footer}>
+    <div className={classNames.linksAndDonate}>
+      <div className={classNames.linksWrapper}>
+        <div className={classNames.links}>
           <div>
-            <h3 className="linkHeader">DPLA</h3>
+            <h3 className={classNames.linkHeader}>DPLA</h3>
             <ul>
               <li>About Us</li>
               <li>FAQ</li>
@@ -24,7 +24,7 @@ const Footer = () =>
             </ul>
           </div>
           <div>
-            <h3 className="linkHeader">Tools</h3>
+            <h3 className={classNames.linkHeader}>Tools</h3>
             <ul>
               <li>Search</li>
               <li>Exhibitions</li>
@@ -34,7 +34,7 @@ const Footer = () =>
             </ul>
           </div>
           <div>
-            <h3 className="linkHeader">Pro Community</h3>
+            <h3 className={classNames.linkHeader}>Pro Community</h3>
             <ul>
               <li>About DPLA</li>
               <li>Hubs</li>
@@ -46,24 +46,40 @@ const Footer = () =>
           </div>
         </div>
       </div>
-      <button className="donateButton">Donate</button>
+      <button className={classNames.donateButton}>Donate</button>
     </div>
-    <div className="logoAndSocialWrapper">
-      <div className="logoAndSocial">
-        <img className="dplaLogo" alt="DPLA" src={dplaLogo} />
-        <div className="social">
-          <img className="socialButton" alt="Facebook" src={fbIcon} />
+    <div className={classNames.logoAndSocialWrapper}>
+      <div className={classNames.logoAndSocial}>
+        <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+        <div className={classNames.social}>
+          <img
+            className={classNames.socialButton}
+            alt="Facebook"
+            src={fbIcon}
+          />
 
-          <img className="socialButton" alt="Instagram" src={igIcon} />
+          <img
+            className={classNames.socialButton}
+            alt="Instagram"
+            src={igIcon}
+          />
 
-          <img className="socialButton" alt="RSS Feed" src={rssIcon} />
+          <img
+            className={classNames.socialButton}
+            alt="RSS Feed"
+            src={rssIcon}
+          />
 
-          <img className="socialButton" alt="Tumblr" src={tumblrIcon} />
+          <img
+            className={classNames.socialButton}
+            alt="Tumblr"
+            src={tumblrIcon}
+          />
 
         </div>
       </div>
     </div>
-    <style jsx>{FooterStyles}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Footer;

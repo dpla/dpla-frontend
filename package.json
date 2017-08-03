@@ -6,6 +6,7 @@
     "cssnano": "^3.10.0",
     "next": "^2.4.9",
     "postcss-cssnext": "^3.0.2",
+    "postcss-icss-values": "^2.0.1",
     "postcss-loader": "^2.0.5",
     "postcss-modules": "^0.8.0",
     "react": "^15.6.1",
