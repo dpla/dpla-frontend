@@ -1,0 +1,72 @@
+@value bambooOrange, elephantBlue, dimGray, vikingBlue from "../../../../css/colors.css";
+
+.listItem {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.imageWrapper {
+  width: 160px;
+  height: 120px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 13px;
+  flex-shrink: 0;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.itemTitle {
+  color: bambooOrange;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  margin-right: 8px;
+}
+
+.itemType {
+  color: elephantBlue;
+  opacity: 0.90;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+
+.itemDescription {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.itemSource {
+  display: block;
+  color: vikingBlue;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.externalLinkIcon {
+  height: 12px;
+  width: 12px;
+  position: relative;
+  top: 2px;
+}
+
+.itemSourceText {
+  margin-right: 6px;
+}
+
+.itemAuthor {
+  display: block;
+  color: dimGray;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}

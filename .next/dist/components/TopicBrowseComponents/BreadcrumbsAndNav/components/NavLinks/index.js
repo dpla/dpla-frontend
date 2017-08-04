@@ -39,30 +39,39 @@ var NavArrows = function NavArrows(_ref) {
       _link2.default,
       {
         to: prevUrl,
-        className: _NavArrows.classNames.prevLink,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 10
         }
       },
-      _react2.default.createElement("img", {
-        src: chevron,
-        alt: "",
-        className: _NavArrows.classNames.prevArrow,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11
-        }
-      }),
       _react2.default.createElement(
-        "span",
+        "a",
         {
+          className: _NavArrows.classNames.prevLink,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 11
+          }
+        },
+        _react2.default.createElement("img", {
+          src: chevron,
+          alt: "",
+          className: _NavArrows.classNames.prevArrow,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 12
           }
-        },
-        "Previous Section"
+        }),
+        _react2.default.createElement(
+          "span",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 13
+            }
+          },
+          "Previous Section"
+        )
       )
     ),
     _react2.default.createElement(
@@ -71,34 +80,43 @@ var NavArrows = function NavArrows(_ref) {
         to: nextUrl,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 16
         }
       },
       _react2.default.createElement(
-        "span",
+        "a",
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 15
+            lineNumber: 17
           }
         },
-        "Next Section"
-      ),
-      _react2.default.createElement("img", {
-        src: chevron,
-        alt: "",
-        className: _NavArrows.classNames.nextArrow,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        }
-      })
+        _react2.default.createElement(
+          "span",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 18
+            }
+          },
+          "Next Section"
+        ),
+        _react2.default.createElement("img", {
+          src: chevron,
+          alt: "",
+          className: _NavArrows.classNames.nextArrow,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19
+          }
+        })
+      )
     ),
     _react2.default.createElement("style", {
       dangerouslySetInnerHTML: { __html: _NavArrows.stylesheet },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 22
       }
     })
   );
