@@ -1,5 +1,4 @@
-@value colors: "../../../../../../../../css/colors.css";
-@value bambooOrange from colors;
+@value bambooOrange from "../../../../../css/colors.css";
 
 .navLinks {
   color: bambooOrange;

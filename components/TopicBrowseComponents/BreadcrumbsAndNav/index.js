@@ -1,17 +1,19 @@
 import React from "react";
 
-import Breadcrumbs from "../../../../../../components/Breadcrumbs";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 import NavLinks from "./components/NavLinks";
 
-import styles from "./BreadcrumbsAndNav.css";
-import { module } from "../../../../../../css/utils.css";
+import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
+import { classNames as utilClassNames } from "css/utils.css";
+const { module } = utilClassNames;
 
-const BreadcrumbsAndNav = ({ routerProps, showNavLinks, breadcrumbs }) =>
-  <div className={styles.wrapper}>
-    <div className={[styles.breadcrumbsAndNav, module].join(" ")}>
+const BreadcrumbsAndNav = ({ showNavLinks, breadcrumbs }) =>
+  <div className={classNames.wrapper}>
+    <div className={[classNames.breadcrumbsAndNav, module].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       {showNavLinks && <NavLinks prevUrl="" nextUrl="" />}
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default BreadcrumbsAndNav;

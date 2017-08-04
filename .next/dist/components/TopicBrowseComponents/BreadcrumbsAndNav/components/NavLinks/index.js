@@ -8,15 +8,11 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require("react-router-dom");
+var _link = require("next/dist/lib/link.js");
+
+var _link2 = _interopRequireDefault(_link);
 
 var _NavArrows = require("./NavArrows.css");
-
-var _NavArrows2 = _interopRequireDefault(_NavArrows);
-
-var _chevronThickOrange = require("../../../../../../../../../../images/chevron-thick-orange.svg");
-
-var _chevronThickOrange2 = _interopRequireDefault(_chevronThickOrange);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -25,32 +21,34 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/TopicBrowseComponents/BreadcrumbsAndNav/components/NavLinks/index.js";
 
+var chevron = "/static/images/chevron-thick-orange.svg";
+
 var NavArrows = function NavArrows(_ref) {
   var prevUrl = _ref.prevUrl,
     nextUrl = _ref.nextUrl;
   return _react2.default.createElement(
     "div",
     {
-      className: _NavArrows2.default.navLinks,
+      className: _NavArrows.classNames.navLinks,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 9
       }
     },
     _react2.default.createElement(
-      _reactRouterDom.Link,
+      _link2.default,
       {
         to: prevUrl,
-        className: _NavArrows2.default.prevLink,
+        className: _NavArrows.classNames.prevLink,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 10
         }
       },
       _react2.default.createElement("img", {
-        src: _chevronThickOrange2.default,
+        src: chevron,
         alt: "",
-        className: _NavArrows2.default.prevArrow,
+        className: _NavArrows.classNames.prevArrow,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 11
@@ -68,7 +66,7 @@ var NavArrows = function NavArrows(_ref) {
       )
     ),
     _react2.default.createElement(
-      _reactRouterDom.Link,
+      _link2.default,
       {
         to: nextUrl,
         __source: {
@@ -87,15 +85,22 @@ var NavArrows = function NavArrows(_ref) {
         "Next Section"
       ),
       _react2.default.createElement("img", {
-        src: _chevronThickOrange2.default,
+        src: chevron,
         alt: "",
-        className: _NavArrows2.default.nextArrow,
+        className: _NavArrows.classNames.nextArrow,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 16
         }
       })
-    )
+    ),
+    _react2.default.createElement("style", {
+      dangerouslySetInnerHTML: { __html: _NavArrows.stylesheet },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18
+      }
+    })
   );
 };
 

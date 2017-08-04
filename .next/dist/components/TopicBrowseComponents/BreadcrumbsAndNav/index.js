@@ -8,7 +8,7 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Breadcrumbs = require("../../../../../../components/Breadcrumbs");
+var _Breadcrumbs = require("../../../components/Breadcrumbs");
 
 var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
 
@@ -18,9 +18,7 @@ var _NavLinks2 = _interopRequireDefault(_NavLinks);
 
 var _BreadcrumbsAndNav = require("./BreadcrumbsAndNav.css");
 
-var _BreadcrumbsAndNav2 = _interopRequireDefault(_BreadcrumbsAndNav);
-
-var _utils = require("../../../../../../css/utils.css");
+var _utils = require("../../../css/utils.css");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -29,36 +27,37 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/TopicBrowseComponents/BreadcrumbsAndNav/index.js";
 
+var _module = _utils.classNames.module;
+
 var BreadcrumbsAndNav = function BreadcrumbsAndNav(_ref) {
-  var routerProps = _ref.routerProps,
-    showNavLinks = _ref.showNavLinks,
+  var showNavLinks = _ref.showNavLinks,
     breadcrumbs = _ref.breadcrumbs;
   return _react2.default.createElement(
     "div",
     {
-      className: _BreadcrumbsAndNav2.default.wrapper,
+      className: _BreadcrumbsAndNav.classNames.wrapper,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 10
+        lineNumber: 11
       }
     },
     _react2.default.createElement(
       "div",
       {
         className: [
-          _BreadcrumbsAndNav2.default.breadcrumbsAndNav,
-          _utils.module
+          _BreadcrumbsAndNav.classNames.breadcrumbsAndNav,
+          _module
         ].join(" "),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 12
         }
       },
       _react2.default.createElement(_Breadcrumbs2.default, {
         breadcrumbs: breadcrumbs,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 13
         }
       }),
       showNavLinks &&
@@ -67,10 +66,17 @@ var BreadcrumbsAndNav = function BreadcrumbsAndNav(_ref) {
           nextUrl: "",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 13
+            lineNumber: 14
           }
         })
-    )
+    ),
+    _react2.default.createElement("style", {
+      dangerouslySetInnerHTML: { __html: _BreadcrumbsAndNav.stylesheet },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 16
+      }
+    })
   );
 };
 
