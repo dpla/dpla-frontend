@@ -1,0 +1,48 @@
+@value colors: "../../../../../../../../css/colors.css";
+@value curiousBlue, black, white, bambooOrange, black50 from colors;
+
+.topicsWrapper {
+  padding-top: 40px;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.topic {
+  flex-basis: calc(25% - 15px);
+  padding-right: 20px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.topic:nth-child(4n) {
+  padding-right: 0;
+}
+
+.image {
+  border-radius: 3px;
+  max-width: 100%;
+  margin-bottom: 13px;
+}
+
+.title {
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  color: black;
+  font-weight: normal;
+}
+
+.ribbon {
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  background-color: bambooOrange;
+  top: 5px;
+  left: -5px;
+  padding: 7px 12px;
+  font-weight: bold;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}

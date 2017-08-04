@@ -1,0 +1,35 @@
+@value pampasBrown from "../../../../../css/colors.css";
+
+.headerWrapper {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: pampasBrown;
+}
+
+.headerContent {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  padding: 30px 25px;
+}
+
+.headerText {
+  font-weight: normal;
+  font-size: 2.75rem;
+  line-height: 2.9375rem;
+  font-family: "Lora";
+  width: 310px;
+  flex-shrink: 0;
+}
+
+.headerDescription {
+  font-size: 1.375rem;
+  line-height: 1.8125rem;
+  padding-left: 21px;
+  border-left: 1px solid rgba(89, 63, 23, 0.2);
+  opacity: 0.75;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
