@@ -1,5 +1,4 @@
-@value colors: "../../../../../../../../css/colors.css";
-@value curiousBlue, black, white, bambooOrange, black50 from colors;
+@value curiousBlue, bambooOrange, black50 from "../../../../../css/colors.css";
 
 .topicsWrapper {
   padding-top: 40px;
