@@ -10,9 +10,18 @@ app
   .then(() => {
     const server = express();
 
-    server.get("/browse-by-topic/:topicId", (req, res) => {
+    server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
-      const queryParams = { topicId: req.params.topicId };
+      const queryParams = { topic: req.params.topicId };
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
+      const actualPage = "/browse-by-topic/topic/subtopic";
+      const queryParams = {
+        topic: req.params.topic,
+        subtopic: req.params.subtopic
+      };
       app.render(req, res, actualPage, queryParams);
     });
 

@@ -10,7 +10,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 0,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     },
     {
       title: "Early Aviation",
@@ -19,7 +20,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 1,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     },
     {
       title: "Early Aviation",
@@ -28,7 +30,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 2,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     },
     {
       title: "Early Aviation",
@@ -37,7 +40,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 3,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     },
     {
       title: "Early Aviation",
@@ -46,7 +50,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 4,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     },
     {
       title: "Early Aviation",
@@ -55,7 +60,8 @@ const mockTopic = {
       numberOfItems: 65,
       slug: "early-aviation",
       id: 5,
-      image: "http://lorempixel.com/318/214/food"
+      image: "http://lorempixel.com/318/214/food",
+      topicId: 0
     }
   ],
   id: 0

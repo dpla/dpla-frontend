@@ -18,7 +18,10 @@ const MainContent = ({ topic }) =>
       <ul className={classNames.subtopics}>
         {topic.subtopics.map(subtopic =>
           <li className={classNames.subtopic}>
-            <Link>
+            <Link
+              as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
+              href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
+            >
               <a>
                 <div
                   className={classNames.imageWrapper}
