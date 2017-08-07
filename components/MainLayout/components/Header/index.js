@@ -4,7 +4,6 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./Header.css";
 
 const Header = () =>
-  console.log(classNames) ||
   <div className={classNames.header}>
     <div className={classNames.linksContainer}>
       <div className={classNames.mainLinks}>

@@ -1,4 +1,4 @@
-@value midnightBlue, ebonyClayBlue, bambooOrange, gray75 from "../../../../css/colors.css";
+@value minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../../../../css/colors.css";
 
 .footer {
   color: white;
@@ -42,7 +42,7 @@
 }
 
 .logoAndSocialWrapper {
-  background-color: midnightBlue;
+  background-color: minuitBlue;
 }
 
 .logoAndSocial {
