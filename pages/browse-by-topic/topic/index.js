@@ -12,8 +12,13 @@ const Topic = props =>
   <MainLayout>
     <BreadcrumbsAndNav
       breadcrumbs={[
-        { title: "Browse by Topic", url: "/browse-by-topic" },
-        { title: mockTopic.title, url: "" }
+        {
+          title: "Browse by Topic",
+          url: "/browse-by-topic"
+        },
+        {
+          title: mockTopic.title
+        }
       ]}
     />
     <MainContent topic={mockTopic} />

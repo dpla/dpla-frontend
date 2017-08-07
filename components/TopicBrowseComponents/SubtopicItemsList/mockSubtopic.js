@@ -3,7 +3,7 @@ const mockSubtopic = {
   description:
     "Explore key innovators and technologies in the early history of aviation, from early flight experimentation and the invention of the hot air balloon in the late eighteenth century to the era of dirigibles and airships spanning the late nineteenth and early twentieth centuries.",
   topicTitle: "Aviation",
-  topicSlug: "aviation",
+  topicSlug: "civil-war-and-reconstruction",
   items: [
     {
       image: "http://lorempixel.com/334/241/food",

@@ -21,7 +21,8 @@ const SubtopicItemsList = props =>
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {
           title: mockSubtopic.topicTitle,
-          url: `/browse-by-topic/${mockSubtopic.topicSlug}`
+          as: `/browse-by-topic/${mockSubtopic.topicSlug}`,
+          url: `/browse-by-topic/topic/?topic=${mockSubtopic.topicSlug}`
         },
         { title: mockSubtopic.title, url: "" }
       ]}

@@ -8,14 +8,11 @@ const Breadcrumbs = ({ breadcrumbs }) =>
   <div className={classNames.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
+        console.log("AS =", breadcrumb.as);
+        console.log("URL =", breadcrumb.url);
         return (
           <span>
-            <Link
-              to={{
-                pathname: breadcrumb.url,
-                search: breadcrumb.search
-              }}
-            >
+            <Link href={breadcrumb.url} as={breadcrumb.as}>
               <a className={classNames.breadcrumbLink}>
                 {breadcrumb.title}
               </a>

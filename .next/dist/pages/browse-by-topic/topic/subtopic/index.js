@@ -52,7 +52,8 @@ var SubtopicItemsList = function SubtopicItemsList(props) {
   }, _react2.default.createElement(_BreadcrumbsAndNav2.default, {
     breadcrumbs: [{ title: "Browse by Topic", url: "/browse-by-topic" }, {
       title: _mockSubtopic2.default.topicTitle,
-      url: "/browse-by-topic/" + _mockSubtopic2.default.topicSlug
+      as: "/browse-by-topic/" + _mockSubtopic2.default.topicSlug,
+      url: "/browse-by-topic/topic/?topic=" + _mockSubtopic2.default.topicSlug
     }, { title: _mockSubtopic2.default.title, url: "" }],
     showNavLinks: true,
     prevAndNextArrows: true,
@@ -62,7 +63,7 @@ var SubtopicItemsList = function SubtopicItemsList(props) {
     }
   }), _react2.default.createElement("div", { className: [_SubtopicItemsList.classNames.sidebarAndItemList, _module].join(" "), __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 32
     }
   }, _react2.default.createElement(_Sidebar2.default, {
     title: _mockSubtopic2.default.title,
@@ -70,11 +71,11 @@ var SubtopicItemsList = function SubtopicItemsList(props) {
     image: "http://lorempixel.com/300/200/food",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 33
     }
   }), _react2.default.createElement(_ItemList2.default, { items: _mockItems2.default, __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 38
     }
   })), _react2.default.createElement(_BreadcrumbsAndNav2.default, {
     breadcrumbs: [{ title: "Browse by Topic", url: "/browse-by-topic" }, {
@@ -85,11 +86,11 @@ var SubtopicItemsList = function SubtopicItemsList(props) {
     prevAndNextArrows: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 40
     }
   }), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _SubtopicItemsList.stylesheet }, __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 52
     }
   }));
 };

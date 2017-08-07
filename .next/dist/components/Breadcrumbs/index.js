@@ -28,39 +28,36 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     }
   }, breadcrumbs.map(function (breadcrumb, idx) {
     if (idx < breadcrumbs.length - 1) {
+      console.log("AS =", breadcrumb.as);
+      console.log("URL =", breadcrumb.url);
       return _react2.default.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 14
         }
-      }, _react2.default.createElement(_link2.default, {
-        to: {
-          pathname: breadcrumb.url,
-          search: breadcrumb.search
-        },
-        __source: {
+      }, _react2.default.createElement(_link2.default, { href: breadcrumb.url, as: breadcrumb.as, __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 15
         }
       }, _react2.default.createElement("a", { className: _Breadcrumbs.classNames.breadcrumbLink, __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 16
         }
       }, breadcrumb.title)), _react2.default.createElement("img", { alt: "", src: chevron, className: _Breadcrumbs.classNames.chevron, __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 20
         }
       }));
     } else {
       return _react2.default.createElement("span", { className: _Breadcrumbs.classNames.activeBreadcrumb, __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 25
         }
       }, breadcrumb.title);
     }
   }), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _Breadcrumbs.stylesheet }, __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 31
     }
   }));
 };
