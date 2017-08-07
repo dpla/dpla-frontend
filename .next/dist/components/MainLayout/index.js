@@ -24,40 +24,51 @@ var _Footer = require("./components/Footer");
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/MainLayout/index.js";
-
+var _jsxFileName =
+  "/Users/frankiesimms/Desktop/dpla-enduser-site/components/MainLayout/index.js";
 
 var MainLayout = function MainLayout(_ref) {
   var children = _ref.children,
-      hideSearchBar = _ref.hideSearchBar;
-  return _react2.default.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    }
-  }, _react2.default.createElement(_Head2.default, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    }
-  }), _react2.default.createElement(_Header2.default, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }), !hideSearchBar && _react2.default.createElement(_HeaderSearchBar2.default, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    }
-  }), children, _react2.default.createElement(_Footer2.default, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    }
-  }));
+    hideSearchBar = _ref.hideSearchBar;
+  return _react2.default.createElement(
+    "div",
+    {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9
+      }
+    },
+    _react2.default.createElement(_Head2.default, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 10
+      }
+    }),
+    _react2.default.createElement(_Header2.default, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 11
+      }
+    }),
+    !hideSearchBar &&
+      _react2.default.createElement(_HeaderSearchBar2.default, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12
+        }
+      }),
+    children,
+    _react2.default.createElement(_Footer2.default, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14
+      }
+    })
+  );
 };
 
 exports.default = MainLayout;

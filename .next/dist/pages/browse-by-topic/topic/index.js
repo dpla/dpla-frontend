@@ -32,32 +32,47 @@ var _mockSuggestions = require("../../../components/TopicBrowseComponents/Topic/
 
 var _mockSuggestions2 = _interopRequireDefault(_mockSuggestions);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/browse-by-topic/topic/index.js?entry";
-
+var _jsxFileName =
+  "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/browse-by-topic/topic/index.js?entry";
 
 var Topic = function Topic(props) {
-  return _react2.default.createElement(_MainLayout2.default, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    }
-  }, _react2.default.createElement(_BreadcrumbsAndNav2.default, {
-    breadcrumbs: [{ title: "Browse by Topic", url: "/browse-by-topic" }, { title: _mockTopic2.default.title, url: "" }],
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    }
-  }), _react2.default.createElement(_MainContent2.default, { topic: _mockTopic2.default, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    }
-  }), _react2.default.createElement(_Suggestions2.default, { suggestions: _mockSuggestions2.default, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 20
-    }
-  }));
+  return _react2.default.createElement(
+    _MainLayout2.default,
+    {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 12
+      }
+    },
+    _react2.default.createElement(_BreadcrumbsAndNav2.default, {
+      breadcrumbs: [
+        { title: "Browse by Topic", url: "/browse-by-topic" },
+        { title: _mockTopic2.default.title, url: "" }
+      ],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13
+      }
+    }),
+    _react2.default.createElement(_MainContent2.default, {
+      topic: _mockTopic2.default,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19
+      }
+    }),
+    _react2.default.createElement(_Suggestions2.default, {
+      suggestions: _mockSuggestions2.default,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 20
+      }
+    })
+  );
 };
 
 exports.default = Topic;

@@ -68,7 +68,11 @@
     "dev": "node server.js"
   },
   "lint-staged": {
-    "*.js": [
+    "{components,pages}/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "{server,postcss.config,next.config}.js": [
       "prettier --write",
       "git add"
     ]
