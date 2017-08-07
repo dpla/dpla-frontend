@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+import removeQueryParams from "utilFunctions/removeQueryParams";
 import { classNames, stylesheet } from "./TeachersGuide.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
@@ -83,8 +84,14 @@ const TeachersGuide = props =>
                 pathname: `/primary-source-sets/set`,
                 query: Object.assign(props.route.query, { studentMode: true })
               }}
-              as={`/primary-source-sets/${props.route.query
-                .set}?studentMode=true`}
+              as={{
+                pathname: `/primary-source-sets/${props.route.query.set}`,
+                query: Object.assign(
+                  {},
+                  removeQueryParams(props.route.query, ["set"]),
+                  { studentMode: true }
+                )
+              }}
             >
               <a className={classNames.toolLink}>Link to Student View</a>
             </Link>

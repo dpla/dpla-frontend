@@ -24,10 +24,6 @@ var _inherits2 = require("babel-runtime/helpers/inherits");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _assign = require("babel-runtime/core-js/object/assign");
-
-var _assign2 = _interopRequireDefault(_assign);
-
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -42,6 +38,10 @@ var _Tooltip = require("../../../../Tooltip");
 
 var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
+var _removeQueryParams = require("../../../../../utilFunctions/removeQueryParams");
+
+var _removeQueryParams2 = _interopRequireDefault(_removeQueryParams);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/PrimarySourceSetsComponents/BreadcrumbsModule/components/StudentMode/index.js";
@@ -49,10 +49,12 @@ var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Pri
 
 var question = "/static/images/question.svg";
 
-var removeStudentModeParam = function removeStudentModeParam(query) {
-  var dupedQuery = (0, _assign2.default)({}, query);
-  delete dupedQuery.studentMode;
-  return dupedQuery;
+var prettifyUrl = function prettifyUrl(url, set, source) {
+  var result = url.replace(/\/set/, "/" + set);
+  if (source) {
+    result = result.replace(/\/sources/, "/sources/" + source);
+  }
+  return result;
 };
 
 var StudentMode = function (_React$Component) {
@@ -89,6 +91,8 @@ var StudentMode = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var route = this.props.route;
+
       return _react2.default.createElement("button", {
         "aria-describedby": "student-mode-tooltip",
         className: _StudentMode.classNames.studentMode,
@@ -110,15 +114,15 @@ var StudentMode = function (_React$Component) {
         tabIndex: "0",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 39
         }
       }, _react2.default.createElement("h3", { className: _StudentMode.classNames.studentModeText, __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 49
         }
       }, "Student Mode"), _react2.default.createElement("img", { src: question, alt: "", className: _StudentMode.classNames.questionIcon, __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 50
         }
       }), _react2.default.createElement(_Tooltip2.default, {
         id: "student-mode-tooltip",
@@ -126,28 +130,32 @@ var StudentMode = function (_React$Component) {
         className: _StudentMode.classNames.tooltip,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 51
         }
       }, _react2.default.createElement("p", { className: _StudentMode.classNames.tooltipText, __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 56
         }
       }, "You\u2019re viewing this Primary Source Set with the teaching guides hidden."), _react2.default.createElement(_link2.default, {
         href: {
           pathname: this.props.route.pathname,
-          query: removeStudentModeParam(this.props.route.query)
+          query: (0, _removeQueryParams2.default)(route.query, ["studentMode"])
+        },
+        as: {
+          pathname: prettifyUrl(route.pathname, route.query.set, route.query.source),
+          query: (0, _removeQueryParams2.default)(route.query, ["studentMode", "set", "source"])
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 60
         }
       }, _react2.default.createElement("a", { className: _StudentMode.classNames.tooltipLink, __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 78
         }
       }, "Turn on Teaching Guides"))), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _StudentMode.stylesheet }, __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 81
         }
       }));
     }

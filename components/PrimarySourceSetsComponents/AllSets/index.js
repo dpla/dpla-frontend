@@ -8,11 +8,11 @@ import Sets from "./components/Sets";
 
 import mockSets from "./mockSets";
 
-const AllSets = () =>
+const AllSets = ({ route }) =>
   <div className={styles.allSets}>
     <Header />
     <Filters />
-    <Sets sets={mockSets} />
+    <Sets sets={mockSets} route={route} />
   </div>;
 
 export default AllSets;

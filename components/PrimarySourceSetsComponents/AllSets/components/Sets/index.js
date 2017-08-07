@@ -6,14 +6,20 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const Sets = ({ sets }) =>
+const Sets = ({ sets, route }) =>
   <div className={[module, classNames.setsWrapper].join(" ")}>
     <ul className={classNames.sets}>
       {sets.map(set =>
         <li className={classNames.set}>
           <Link
-            href={`/primary-source-sets/set?set=${set.slug}`}
-            as={`/primary-source-sets/${set.slug}`}
+            href={{
+              pathname: "/primary-source-sets/set",
+              query: Object.assign({}, route.query, { set: set.slug })
+            }}
+            as={{
+              pathname: `/primary-source-sets/${set.slug}`,
+              query: route.query
+            }}
           >
             <a>
               <img

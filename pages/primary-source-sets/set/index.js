@@ -8,6 +8,8 @@ import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleS
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
+import removeQueryParams from "/utilFunctions/removeQueryParams";
+
 const mockSet = {
   title: "Civil War and Reconstruction",
   slug: "civil-war-and-reconstruction"
@@ -17,7 +19,13 @@ const SingleSet = props =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
-        { title: "Primary Source Sets", url: "/primary-source-sets" },
+        {
+          title: "Primary Source Sets",
+          url: {
+            pathname: "/primary-source-sets/",
+            query: removeQueryParams(props.url.query, ["set"])
+          }
+        },
         { title: mockSet.title, search: "" }
       ]}
       route={props.url}

@@ -4,10 +4,10 @@ import MainLayout from "../../components/MainLayout";
 import AllSets from "../../components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "../../components/PrimarySourceSetsComponents/PSSFooter";
 
-const PrimarySourceSets = () =>
+const PrimarySourceSets = ({ url }) =>
   <div>
     <MainLayout>
-      <AllSets />
+      <AllSets route={url} />
       <PSSFooter />
     </MainLayout>
   </div>;

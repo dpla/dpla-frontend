@@ -4,13 +4,17 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./StudentMode.css";
 import Tooltip from "../../../../Tooltip";
 
+import removeQueryParams from "utilFunctions/removeQueryParams";
+
 const question = "/static/images/question.svg";
 
-const removeStudentModeParam = query => {
-  const dupedQuery = Object.assign({}, query);
-  delete dupedQuery.studentMode;
-  return dupedQuery;
-}
+const prettifyUrl = (url, set, source) => {
+  let result = url.replace(/\/set/, `/${set}`);
+  if (source) {
+    result = result.replace(/\/sources/, `/sources/${source}`);
+  }
+  return result;
+};
 
 class StudentMode extends React.Component {
   componentWillMount() {
@@ -30,6 +34,7 @@ class StudentMode extends React.Component {
   }
 
   render() {
+    const { route } = this.props;
     return (
       <button
         aria-describedby="student-mode-tooltip"
@@ -55,7 +60,19 @@ class StudentMode extends React.Component {
           <Link
             href={{
               pathname: this.props.route.pathname,
-              query: removeStudentModeParam(this.props.route.query)
+              query: removeQueryParams(route.query, ["studentMode"])
+            }}
+            as={{
+              pathname: prettifyUrl(
+                route.pathname,
+                route.query.set,
+                route.query.source
+              ),
+              query: removeQueryParams(route.query, [
+                "studentMode",
+                "set",
+                "source"
+              ])
             }}
           >
             <a className={classNames.tooltipLink}>Turn on Teaching Guides</a>

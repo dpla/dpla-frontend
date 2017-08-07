@@ -13,7 +13,10 @@ const SourceSetSources = ({ route }) =>
     <div className={[classNames.sourceSetSources, module].join(" ")}>
       {mockSources.map(({ title, img, id, setSlug }) =>
         <Link
-          as={`/primary-source-sets/${setSlug}/sources/${id}`}
+          as={{
+            pathname: `/primary-source-sets/${setSlug}/sources/${id}`,
+            query: route.query
+          }}
           href={{
             pathname: `/primary-source-sets/set/sources`,
             query: Object.assign({}, route.query, { source: id, set: setSlug })

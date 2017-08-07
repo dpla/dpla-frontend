@@ -6,6 +6,8 @@ import BreadcrumbsModule from "../../../../components/PrimarySourceSetsComponent
 import ContentAndMetadata from "../../../../components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
 
+import removeQueryParams from "utilFunctions/removeQueryParams";
+
 import mockSource from "../../../../components/PrimarySourceSetsComponents/Source/mockSource";
 import mockSources from "../../../../components/PrimarySourceSetsComponents/SingleSet/mockSources";
 
@@ -15,11 +17,23 @@ const Source = ({ url }) =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
-        { title: "Primary Source Sets", url: "/primary-source-sets" },
+        {
+          title: "Primary Source Sets",
+          url: {
+            pathname: "/primary-source-sets",
+            query: removeQueryParams(url.query, ["set", "source"])
+          }
+        },
         {
           title: mockSource.set,
-          as: `/primary-source-sets/${mockSource.slug}`,
-          url: `/primary-source-sets/set/?set=${mockSource.slug}`
+          as: {
+            pathname: `/primary-source-sets/${mockSource.slug}`,
+            query: removeQueryParams(url.query, ["set", "source"])
+          },
+          url: {
+            pathname: "/primary-source-sets/set/",
+            query: Object.assign({}, url.query, { set: mockSource.slug })
+          }
         },
         { title: mockSource.title, url: "" }
       ]}

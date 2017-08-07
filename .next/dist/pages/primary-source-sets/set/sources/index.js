@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _assign = require("babel-runtime/core-js/object/assign");
+
+var _assign2 = _interopRequireDefault(_assign);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -28,6 +32,10 @@ var _SourceCarousel = require("../../../../components/PrimarySourceSetsComponent
 
 var _SourceCarousel2 = _interopRequireDefault(_SourceCarousel);
 
+var _removeQueryParams = require("../../../../utilFunctions/removeQueryParams");
+
+var _removeQueryParams2 = _interopRequireDefault(_removeQueryParams);
+
 var _mockSource = require("../../../../components/PrimarySourceSetsComponents/Source/mockSource");
 
 var _mockSource2 = _interopRequireDefault(_mockSource);
@@ -48,31 +56,43 @@ var Source = function Source(_ref) {
   return _react2.default.createElement(_MainLayout2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 17
     }
   }, _react2.default.createElement(_BreadcrumbsModule2.default, {
-    breadcrumbs: [{ title: "Primary Source Sets", url: "/primary-source-sets" }, {
+    breadcrumbs: [{
+      title: "Primary Source Sets",
+      url: {
+        pathname: "/primary-source-sets",
+        query: (0, _removeQueryParams2.default)(url.query, ["set", "source"])
+      }
+    }, {
       title: _mockSource2.default.set,
-      as: "/primary-source-sets/" + _mockSource2.default.slug,
-      url: "/primary-source-sets/set/?set=" + _mockSource2.default.slug
+      as: {
+        pathname: "/primary-source-sets/" + _mockSource2.default.slug,
+        query: (0, _removeQueryParams2.default)(url.query, ["set", "source"])
+      },
+      url: {
+        pathname: "/primary-source-sets/set/",
+        query: (0, _assign2.default)({}, url.query, { set: _mockSource2.default.slug })
+      }
     }, { title: _mockSource2.default.title, url: "" }],
     route: url,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 18
     }
   }), _react2.default.createElement(_ContentAndMetadata2.default, { source: _mockSource2.default, __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 42
     }
   }), _react2.default.createElement(_SourceCarousel2.default, { sources: _mockSources2.default, __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 43
     }
   }), _react2.default.createElement(_PSSFooter2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 44
     }
   }));
 };
