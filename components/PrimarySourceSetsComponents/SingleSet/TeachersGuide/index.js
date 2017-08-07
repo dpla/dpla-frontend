@@ -78,7 +78,14 @@ const TeachersGuide = props =>
           </div>
           <div className={classNames.toolLinkAndIcon}>
             <img src={link} alt="" className={classNames.toolIcon} />
-            <Link onClick={props.onStudentModeRedirect} to="">
+            <Link
+              href={{
+                pathname: `/primary-source-sets/set`,
+                query: Object.assign(props.route.query, { studentMode: true })
+              }}
+              as={`/primary-source-sets/${props.route.query
+                .set}?studentMode=true`}
+            >
               <a className={classNames.toolLink}>Link to Student View</a>
             </Link>
           </div>

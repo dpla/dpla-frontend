@@ -10,8 +10,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _Tooltip = require("./Tooltip.css");
 
-var _Tooltip2 = _interopRequireDefault(_Tooltip);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Tooltip/index.js";
@@ -23,7 +21,7 @@ var Tooltip = function Tooltip(_ref) {
       isHidden = _ref.isHidden,
       children = _ref.children;
   return _react2.default.createElement("div", {
-    className: [className, isHidden && _Tooltip2.default.hidden].join(" "),
+    className: [className, isHidden && _Tooltip.classNames.hidden].join(" "),
     id: id || className,
     role: "tooltip",
     "aria-hidden": isHidden,
@@ -31,7 +29,11 @@ var Tooltip = function Tooltip(_ref) {
       fileName: _jsxFileName,
       lineNumber: 6
     }
-  }, children);
+  }, children, _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _Tooltip.stylesheet }, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }));
 };
 
 exports.default = Tooltip;

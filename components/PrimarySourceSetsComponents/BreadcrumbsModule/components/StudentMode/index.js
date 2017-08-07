@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import styles from "./StudentMode.css";
+import { stylesheet, classNames } from "./StudentMode.css";
 import Tooltip from "../../../../Tooltip";
 
-const question = "static/images/question.svg";
+const question = "/static/images/question.svg";
 
-const isStudentMode = () => false; //TODO fix this
+const removeStudentModeParam = query => {
+  const dupedQuery = Object.assign({}, query);
+  delete dupedQuery.studentMode;
+  return dupedQuery;
+}
 
 class StudentMode extends React.Component {
   componentWillMount() {
@@ -26,34 +30,40 @@ class StudentMode extends React.Component {
   }
 
   render() {
-    return isStudentMode()
-      ? <button
-          aria-describedby="student-mode-tooltip"
-          className={styles.studentMode}
-          onMouseOver={() => this.showTooltip()}
-          onFocus={() => this.showTooltip()}
-          onBlur={() => this.hideTooltip()}
-          onMouseLeave={() => this.hideTooltip()}
-          onClick={() => this.toggleTooltip()}
-          tabIndex="0"
+    return (
+      <button
+        aria-describedby="student-mode-tooltip"
+        className={classNames.studentMode}
+        onMouseOver={() => this.showTooltip()}
+        onFocus={() => this.showTooltip()}
+        onBlur={() => this.hideTooltip()}
+        onMouseLeave={() => this.hideTooltip()}
+        onClick={() => this.toggleTooltip()}
+        tabIndex="0"
+      >
+        <h3 className={classNames.studentModeText}>Student Mode</h3>
+        <img src={question} alt="" className={classNames.questionIcon} />
+        <Tooltip
+          id="student-mode-tooltip"
+          isHidden={!this.state.showTooltip}
+          className={classNames.tooltip}
         >
-          <h3 className={styles.studentModeText}>Student Mode</h3>
-          <img src={question} alt="" className={styles.questionIcon} />
-          <Tooltip
-            id="student-mode-tooltip"
-            isHidden={!this.state.showTooltip}
-            className={styles.tooltip}
+          <p className={classNames.tooltipText}>
+            You’re viewing this Primary Source Set with the teaching guides
+            hidden.
+          </p>
+          <Link
+            href={{
+              pathname: this.props.route.pathname,
+              query: removeStudentModeParam(this.props.route.query)
+            }}
           >
-            <p className={styles.tooltipText}>
-              You’re viewing this Primary Source Set with the teaching guides
-              hidden.
-            </p>
-            <Link>
-              <a className={styles.tooltipLink}>Turn on Teaching Guides</a>
-            </Link>
-          </Tooltip>
-        </button>
-      : null;
+            <a className={classNames.tooltipLink}>Turn on Teaching Guides</a>
+          </Link>
+        </Tooltip>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+      </button>
+    );
   }
 }
 

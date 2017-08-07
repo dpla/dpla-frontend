@@ -6,38 +6,10 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-// import SourceSetSources from "../SourceSetSources";
-// import TeachingGuide from "../TeachingGuide";
-
 class ResourcesTabs extends React.Component {
-  componentWillMount() {
-    // const { location, history } = this.props.routerProps;
-    // const isStudentMode = location.search.includes("student");
-    // if (/\/primary-source-sets\/.+\/teaching-guide/.exec(location.pathname)) {
-    //   if (isStudentMode) {
-    //     history.push(`${location.pathname}`);
-    //   }
-    //   this.setState({ currentTab: "teachingGuide" });
-    // } else if (
-    //   /\/primary-source-sets\/.+\/additional-resources/.exec(location.pathname)
-    // ) {
-    //   this.setState({ currentTab: "additionalResources" });
-    // } else {
-    //   this.setState({ currentTab: "sourceSet" });
-    // }
-
-    this.setState({ studentMode: false });
-  }
-
-  onTabChange(newTab) {
-    this.setState({ currentTab: newTab });
-  }
-
   render() {
-    const isStudentMode = false;
     const { slug } = this.props.set;
     const { currentTab } = this.props;
-    console.log(currentTab);
     return (
       <div className={classNames.wrapper}>
         <div className={classNames.tabsWrapper}>
@@ -65,7 +37,7 @@ class ResourcesTabs extends React.Component {
                 Additional Resources
               </a>
             </Link>
-            {!isStudentMode &&
+            {!this.props.route.query.studentMode &&
               <Link
                 href={`/primary-source-sets/set/teaching-guide?set=${slug}`}
                 as={`/primary-source-sets/${slug}/teaching-guide`}

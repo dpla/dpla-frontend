@@ -32,13 +32,13 @@ var _ResourcesTabs = require("../../../components/PrimarySourceSetsComponents/Si
 
 var _ResourcesTabs2 = _interopRequireDefault(_ResourcesTabs);
 
-var _SourceSetSources = require("../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources");
+var _TeachersGuide = require("../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide");
 
-var _SourceSetSources2 = _interopRequireDefault(_SourceSetSources);
+var _TeachersGuide2 = _interopRequireDefault(_TeachersGuide);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/primary-source-sets/set/index.js?entry";
+var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/pages/primary-source-sets/set/teaching-guide.js?entry";
 
 
 var mockSet = {
@@ -53,7 +53,11 @@ var SingleSet = function SingleSet(props) {
       lineNumber: 17
     }
   }, _react2.default.createElement(_BreadcrumbsModule2.default, {
-    breadcrumbs: [{ title: "Primary Source Sets", url: "/primary-source-sets" }, { title: mockSet.title, search: "" }],
+    breadcrumbs: [{ title: "Primary Source Sets", url: "/primary-source-sets" }, {
+      title: mockSet.title,
+      url: "",
+      search: ""
+    }],
     route: props.url,
     __source: {
       fileName: _jsxFileName,
@@ -62,25 +66,25 @@ var SingleSet = function SingleSet(props) {
   }), _react2.default.createElement(_SourceSetInfo2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 29
     }
-  }), _react2.default.createElement(_ResourcesTabs2.default, { route: props.url, currentTab: "sourceSet", set: mockSet, __source: {
+  }), _react2.default.createElement(_ResourcesTabs2.default, { route: props.url, currentTab: "teachingGuide", set: mockSet, __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 30
     }
-  }, _react2.default.createElement(_SourceSetSources2.default, { route: props.url, __source: {
+  }, _react2.default.createElement(_TeachersGuide2.default, { route: props.url, __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 31
     }
   })), _react2.default.createElement(_RelatedSets2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 33
     }
   }), _react2.default.createElement(_PSSFooter2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 34
     }
   }));
 };

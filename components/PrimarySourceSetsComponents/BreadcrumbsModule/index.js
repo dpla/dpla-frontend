@@ -8,11 +8,11 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const BreadcrumbsModule = ({ showStudentMode, breadcrumbs }) =>
+const BreadcrumbsModule = ({ route, breadcrumbs }) =>
   <div className={classNames.wrapper}>
     <div className={[module, classNames.breadcrumbsModule].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      {showStudentMode && <StudentMode />}
+      {route.query.studentMode && <StudentMode route={route} />}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

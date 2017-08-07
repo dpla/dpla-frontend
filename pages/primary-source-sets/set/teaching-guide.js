@@ -24,11 +24,11 @@ const SingleSet = props =>
           search: ""
         }
       ]}
-      showStudentMode={true}
+      route={props.url}
     />
     <SourceSetInfo />
-    <ResourcesTabs currentTab="teachingGuide" set={mockSet}>
-      <TeachersGuide />
+    <ResourcesTabs route={props.url} currentTab="teachingGuide" set={mockSet}>
+      <TeachersGuide route={props.url} />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />

@@ -43,9 +43,6 @@ var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Pri
 
 var _module = _utils.classNames.module;
 
-// import SourceSetSources from "../SourceSetSources";
-// import TeachingGuide from "../TeachingGuide";
-
 var ResourcesTabs = function (_React$Component) {
   (0, _inherits3.default)(ResourcesTabs, _React$Component);
 
@@ -56,93 +53,66 @@ var ResourcesTabs = function (_React$Component) {
   }
 
   (0, _createClass3.default)(ResourcesTabs, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      // const { location, history } = this.props.routerProps;
-      // const isStudentMode = location.search.includes("student");
-      // if (/\/primary-source-sets\/.+\/teaching-guide/.exec(location.pathname)) {
-      //   if (isStudentMode) {
-      //     history.push(`${location.pathname}`);
-      //   }
-      //   this.setState({ currentTab: "teachingGuide" });
-      // } else if (
-      //   /\/primary-source-sets\/.+\/additional-resources/.exec(location.pathname)
-      // ) {
-      //   this.setState({ currentTab: "additionalResources" });
-      // } else {
-      //   this.setState({ currentTab: "sourceSet" });
-      // }
-
-      this.setState({ studentMode: false });
-    }
-  }, {
-    key: "onTabChange",
-    value: function onTabChange(newTab) {
-      this.setState({ currentTab: newTab });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var isStudentMode = false;
       var slug = this.props.set.slug;
       var currentTab = this.props.currentTab;
 
-      console.log(currentTab);
       return _react2.default.createElement("div", { className: _ResourcesTabs.classNames.wrapper, __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 14
         }
       }, _react2.default.createElement("div", { className: _ResourcesTabs.classNames.tabsWrapper, __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 15
         }
       }, _react2.default.createElement("div", { className: [_ResourcesTabs.classNames.tabs, _module].join(" "), __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 16
         }
       }, _react2.default.createElement(_link2.default, {
         href: "/primary-source-sets/set?set=" + slug,
         as: "/primary-source-sets/" + slug,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 17
         }
       }, _react2.default.createElement("a", {
         className: [_ResourcesTabs.classNames.tab, currentTab === "sourceSet" && _ResourcesTabs.classNames.activeTab].join(" "),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 21
         }
       }, "Source Set")), _react2.default.createElement(_link2.default, { onClick: function onClick() {
           return _this2.onTabChange("additionalResources");
         }, __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 30
         }
       }, _react2.default.createElement("a", {
         className: [_ResourcesTabs.classNames.tab, currentTab === "additionalResources" && _ResourcesTabs.classNames.activeTab].join(" "),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 31
         }
-      }, "Additional Resources")), !isStudentMode && _react2.default.createElement(_link2.default, {
+      }, "Additional Resources")), !this.props.route.query.studentMode && _react2.default.createElement(_link2.default, {
         href: "/primary-source-sets/set/teaching-guide?set=" + slug,
         as: "/primary-source-sets/" + slug + "/teaching-guide",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 41
         }
       }, _react2.default.createElement("a", {
         className: [_ResourcesTabs.classNames.tab, currentTab === "teachingGuide" && _ResourcesTabs.classNames.activeTab].join(" "),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 45
         }
       }, "Teaching Guide")))), this.props.children, _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _ResourcesTabs.stylesheet }, __source: {
           fileName: _jsxFileName,
-          lineNumber: 85
+          lineNumber: 57
         }
       }));
     }

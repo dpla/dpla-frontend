@@ -20,11 +20,11 @@ const SingleSet = props =>
         { title: "Primary Source Sets", url: "/primary-source-sets" },
         { title: mockSet.title, search: "" }
       ]}
-      showStudentMode={true}
+      route={props.url}
     />
     <SourceSetInfo />
-    <ResourcesTabs currentTab="sourceSet" set={mockSet}>
-      <SourceSetSources />
+    <ResourcesTabs route={props.url} currentTab="sourceSet" set={mockSet}>
+      <SourceSetSources route={props.url} />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />

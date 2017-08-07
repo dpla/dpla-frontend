@@ -11,7 +11,7 @@ import mockSources from "../../../../components/PrimarySourceSetsComponents/Sing
 
 // const getSourceSetURL = url => /(\/[\w-]+\/[\w-]+)\/sources/.exec(url)[1];
 
-const Source = props =>
+const Source = ({ url }) =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -23,7 +23,7 @@ const Source = props =>
         },
         { title: mockSource.title, url: "" }
       ]}
-      routerProps={props}
+      route={url}
     />
     <ContentAndMetadata source={mockSource} />
     <SourceCarousel sources={mockSources} />

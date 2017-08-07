@@ -24,15 +24,19 @@ var _inherits2 = require("babel-runtime/helpers/inherits");
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _assign = require("babel-runtime/core-js/object/assign");
+
+var _assign2 = _interopRequireDefault(_assign);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = require("react-router-dom");
+var _link = require("next/dist/lib/link.js");
+
+var _link2 = _interopRequireDefault(_link);
 
 var _StudentMode = require("./StudentMode.css");
-
-var _StudentMode2 = _interopRequireDefault(_StudentMode);
 
 var _Tooltip = require("../../../../Tooltip");
 
@@ -43,11 +47,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/PrimarySourceSetsComponents/BreadcrumbsModule/components/StudentMode/index.js";
 
 
-var question = "static/images/question.svg";
+var question = "/static/images/question.svg";
 
-var isStudentMode = function isStudentMode() {
-  return false;
-}; //TODO fix this
+var removeStudentModeParam = function removeStudentModeParam(query) {
+  var dupedQuery = (0, _assign2.default)({}, query);
+  delete dupedQuery.studentMode;
+  return dupedQuery;
+};
 
 var StudentMode = function (_React$Component) {
   (0, _inherits3.default)(StudentMode, _React$Component);
@@ -83,9 +89,9 @@ var StudentMode = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return isStudentMode() ? _react2.default.createElement("button", {
+      return _react2.default.createElement("button", {
         "aria-describedby": "student-mode-tooltip",
-        className: _StudentMode2.default.studentMode,
+        className: _StudentMode.classNames.studentMode,
         onMouseOver: function onMouseOver() {
           return _this2.showTooltip();
         },
@@ -104,38 +110,46 @@ var StudentMode = function (_React$Component) {
         tabIndex: "0",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 34
         }
-      }, _react2.default.createElement("h3", { className: _StudentMode2.default.studentModeText, __source: {
+      }, _react2.default.createElement("h3", { className: _StudentMode.classNames.studentModeText, __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 44
         }
-      }, "Student Mode"), _react2.default.createElement("img", { src: question, alt: "", className: _StudentMode2.default.questionIcon, __source: {
+      }, "Student Mode"), _react2.default.createElement("img", { src: question, alt: "", className: _StudentMode.classNames.questionIcon, __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 45
         }
       }), _react2.default.createElement(_Tooltip2.default, {
         id: "student-mode-tooltip",
         isHidden: !this.state.showTooltip,
-        className: _StudentMode2.default.tooltip,
+        className: _StudentMode.classNames.tooltip,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 46
         }
-      }, _react2.default.createElement("p", { className: _StudentMode2.default.tooltipText, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 47
-        }
-      }, "You\u2019re viewing this Primary Source Set with the teaching guides hidden."), _react2.default.createElement(_reactRouterDom.Link, {
-        __source: {
+      }, _react2.default.createElement("p", { className: _StudentMode.classNames.tooltipText, __source: {
           fileName: _jsxFileName,
           lineNumber: 51
         }
-      }, _react2.default.createElement("a", { className: _StudentMode2.default.tooltipLink, __source: {
+      }, "You\u2019re viewing this Primary Source Set with the teaching guides hidden."), _react2.default.createElement(_link2.default, {
+        href: {
+          pathname: this.props.route.pathname,
+          query: removeStudentModeParam(this.props.route.query)
+        },
+        __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 55
         }
-      }, "Turn on Teaching Guides")))) : null;
+      }, _react2.default.createElement("a", { className: _StudentMode.classNames.tooltipLink, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 61
+        }
+      }, "Turn on Teaching Guides"))), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _StudentMode.stylesheet }, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        }
+      }));
     }
   }]);
 

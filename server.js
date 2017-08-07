@@ -5,6 +5,8 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
+
 app
   .prepare()
   .then(() => {
@@ -12,37 +14,43 @@ app
 
     server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
-      const queryParams = { topic: req.params.topicId };
-      app.render(req, res, actualPage, queryParams);
+      const params = { topic: req.params.topicId };
+      app.render(req, res, actualPage, params);
     });
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
       const actualPage = "/browse-by-topic/topic/subtopic";
-      const queryParams = {
+      const params = {
         topic: req.params.topic,
         subtopic: req.params.subtopic
       };
-      app.render(req, res, actualPage, queryParams);
+
+      app.render(req, res, actualPage, params);
     });
 
     server.get("/primary-source-sets/:set", (req, res) => {
       const actualPage = "/primary-source-sets/set";
-      const queryParams = { set: req.params.set };
-      app.render(req, res, actualPage, queryParams);
-    });
-    server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
-      const actualPage = "/primary-source-sets/set/teaching-guide";
-      const queryParams = {
+      const params = {
         set: req.params.set
       };
-      app.render(req, res, actualPage, queryParams);
+      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+    });
+    server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
+      if (req.query.studentMode) {
+        res.redirect(req.url.replace(/\/teaching-guide?/, ""));
+      }
+      const actualPage = "/primary-source-sets/set/teaching-guide";
+      const params = {
+        set: req.params.set
+      };
+      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
     });
     server.get("/primary-source-sets/:set/sources/:source", (req, res) => {
       const actualPage = "/primary-source-sets/set/sources";
-      const queryParams = {
+      const params = {
         set: req.params.set,
         source: req.params.source
       };
-      app.render(req, res, actualPage, queryParams);
+      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
     });
 
     server.get("*", (req, res) => {

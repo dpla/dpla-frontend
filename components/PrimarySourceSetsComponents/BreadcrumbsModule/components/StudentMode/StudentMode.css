@@ -1,5 +1,4 @@
-@value colors: "../../../../../../../../css/colors.css";
-@value pampasBrown, bambooOrange, white from colors;
+@value pampasBrown, bambooOrange from "../../../../../css/colors.css";
 
 .studentMode {
   font-weight: 600;

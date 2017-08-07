@@ -8,13 +8,16 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const SourceSetSources = () =>
+const SourceSetSources = ({ route }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetSources, module].join(" ")}>
       {mockSources.map(({ title, img, id, setSlug }) =>
         <Link
           as={`/primary-source-sets/${setSlug}/sources/${id}`}
-          href={`/primary-source-sets/set/sources?source=${id}&set=${setSlug}`}
+          href={{
+            pathname: `/primary-source-sets/set/sources`,
+            query: Object.assign({}, route.query, { source: id, set: setSlug })
+          }}
         >
           <a className={classNames.set}>
             <div className={classNames.imageWrapper}>

@@ -28,7 +28,7 @@ var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Pri
 var _module = _utils.classNames.module;
 
 var BreadcrumbsModule = function BreadcrumbsModule(_ref) {
-  var showStudentMode = _ref.showStudentMode,
+  var route = _ref.route,
       breadcrumbs = _ref.breadcrumbs;
   return _react2.default.createElement("div", { className: _BreadcrumbsModule.classNames.wrapper, __source: {
       fileName: _jsxFileName,
@@ -42,8 +42,7 @@ var BreadcrumbsModule = function BreadcrumbsModule(_ref) {
       fileName: _jsxFileName,
       lineNumber: 14
     }
-  }), showStudentMode && _react2.default.createElement(_StudentMode2.default, {
-    __source: {
+  }), route.query.studentMode && _react2.default.createElement(_StudentMode2.default, { route: route, __source: {
       fileName: _jsxFileName,
       lineNumber: 15
     }

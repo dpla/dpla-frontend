@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _assign = require("babel-runtime/core-js/object/assign");
+
+var _assign2 = _interopRequireDefault(_assign);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -27,7 +31,8 @@ var _jsxFileName = "/Users/frankiesimms/Desktop/dpla-enduser-site/components/Pri
 
 var _module = _utils.classNames.module;
 
-var SourceSetSources = function SourceSetSources() {
+var SourceSetSources = function SourceSetSources(_ref) {
+  var route = _ref.route;
   return _react2.default.createElement("div", { className: _SourceSetSources.classNames.wrapper, __source: {
       fileName: _jsxFileName,
       lineNumber: 12
@@ -36,38 +41,41 @@ var SourceSetSources = function SourceSetSources() {
       fileName: _jsxFileName,
       lineNumber: 13
     }
-  }, _mockSources2.default.map(function (_ref) {
-    var title = _ref.title,
-        img = _ref.img,
-        id = _ref.id,
-        setSlug = _ref.setSlug;
+  }, _mockSources2.default.map(function (_ref2) {
+    var title = _ref2.title,
+        img = _ref2.img,
+        id = _ref2.id,
+        setSlug = _ref2.setSlug;
     return _react2.default.createElement(_link2.default, {
       as: "/primary-source-sets/" + setSlug + "/sources/" + id,
-      href: "/primary-source-sets/set/sources?source=" + id + "&set=" + setSlug,
+      href: {
+        pathname: "/primary-source-sets/set/sources",
+        query: (0, _assign2.default)({}, route.query, { source: id, set: setSlug })
+      },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 15
       }
     }, _react2.default.createElement("a", { className: _SourceSetSources.classNames.set, __source: {
         fileName: _jsxFileName,
-        lineNumber: 19
+        lineNumber: 22
       }
     }, _react2.default.createElement("div", { className: _SourceSetSources.classNames.imageWrapper, __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 23
       }
     }, _react2.default.createElement("img", { alt: title, src: img, className: _SourceSetSources.classNames.image, __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 24
       }
     })), _react2.default.createElement("p", { className: _SourceSetSources.classNames.title, __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 26
       }
     }, title)));
   })), _react2.default.createElement("style", { dangerouslySetInnerHTML: { __html: _SourceSetSources.stylesheet }, __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 33
     }
   }));
 };
