@@ -31,7 +31,9 @@ function _interopRequireDefault(obj) {
 var _jsxFileName =
   "/Users/frankiesimms/Desktop/dpla-enduser-site/components/MainLayout/index.js";
 
-var MainLayout = function MainLayout(props) {
+var MainLayout = function MainLayout(_ref) {
+  var children = _ref.children,
+    hideSearchBar = _ref.hideSearchBar;
   return _react2.default.createElement(
     "div",
     {
@@ -52,13 +54,14 @@ var MainLayout = function MainLayout(props) {
         lineNumber: 11
       }
     }),
-    _react2.default.createElement(_HeaderSearchBar2.default, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 12
-      }
-    }),
-    props.children,
+    !hideSearchBar &&
+      _react2.default.createElement(_HeaderSearchBar2.default, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12
+        }
+      }),
+    children,
     _react2.default.createElement(_Footer2.default, {
       __source: {
         fileName: _jsxFileName,

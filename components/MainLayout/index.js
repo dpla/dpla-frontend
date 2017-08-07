@@ -5,12 +5,12 @@ import Header from "./components/Header";
 import HeaderSearchBar from "./components/HeaderSearchBar";
 import Footer from "./components/Footer";
 
-const MainLayout = props =>
+const MainLayout = ({ children, hideSearchBar }) =>
   <div>
     <Head />
     <Header />
-    <HeaderSearchBar />
-    {props.children}
+    {!hideSearchBar && <HeaderSearchBar />}
+    {children}
     <Footer />
   </div>;
 
