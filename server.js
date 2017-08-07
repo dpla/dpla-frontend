@@ -15,12 +15,32 @@ app
       const queryParams = { topic: req.params.topicId };
       app.render(req, res, actualPage, queryParams);
     });
-
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
       const actualPage = "/browse-by-topic/topic/subtopic";
       const queryParams = {
         topic: req.params.topic,
         subtopic: req.params.subtopic
+      };
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get("/primary-source-sets/:set", (req, res) => {
+      const actualPage = "/primary-source-sets/set";
+      const queryParams = { set: req.params.set };
+      app.render(req, res, actualPage, queryParams);
+    });
+    server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
+      const actualPage = "/primary-source-sets/set/teaching-guide";
+      const queryParams = {
+        set: req.params.set
+      };
+      app.render(req, res, actualPage, queryParams);
+    });
+    server.get("/primary-source-sets/:set/sources/:source", (req, res) => {
+      const actualPage = "/primary-source-sets/set/sources";
+      const queryParams = {
+        set: req.params.set,
+        source: req.params.source
       };
       app.render(req, res, actualPage, queryParams);
     });

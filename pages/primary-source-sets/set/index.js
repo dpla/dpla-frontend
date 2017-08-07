@@ -8,24 +8,22 @@ import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleS
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
-const mockSet = { title: "Civil War and Reconstruction" };
+const mockSet = {
+  title: "Civil War and Reconstruction",
+  slug: "civil-war-and-reconstruction"
+};
 
 const SingleSet = props =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
         { title: "Primary Source Sets", url: "/primary-source-sets" },
-        {
-          title: mockSet.title,
-          url: "",
-          search: ""
-        }
+        { title: mockSet.title, search: "" }
       ]}
-      routerProps={props}
       showStudentMode={true}
     />
     <SourceSetInfo />
-    <ResourcesTabs>
+    <ResourcesTabs currentTab="sourceSet" set={mockSet}>
       <SourceSetSources />
     </ResourcesTabs>
     <RelatedSets />

@@ -8,7 +8,10 @@ import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleS
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-const mockSet = { title: "Civil War and Reconstruction" };
+const mockSet = {
+  title: "Civil War and Reconstruction",
+  slug: "civil-war-and-reconstruction"
+};
 
 const SingleSet = props =>
   <MainLayout>
@@ -21,11 +24,10 @@ const SingleSet = props =>
           search: ""
         }
       ]}
-      routerProps={props}
       showStudentMode={true}
     />
     <SourceSetInfo />
-    <ResourcesTabs>
+    <ResourcesTabs currentTab="teachingGuide" set={mockSet}>
       <TeachersGuide />
     </ResourcesTabs>
     <RelatedSets />

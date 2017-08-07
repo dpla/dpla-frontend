@@ -8,11 +8,14 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const SourceSetSources = ({ match, location }) =>
+const SourceSetSources = () =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetSources, module].join(" ")}>
-      {mockSources.map(({ title, img, id }) =>
-        <Link>
+      {mockSources.map(({ title, img, id, setSlug }) =>
+        <Link
+          as={`/primary-source-sets/${setSlug}/sources/${id}`}
+          href={`/primary-source-sets/set/sources?source=${id}&set=${setSlug}`}
+        >
           <a className={classNames.set}>
             <div className={classNames.imageWrapper}>
               <img alt={title} src={img} className={classNames.image} />

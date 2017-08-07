@@ -8,8 +8,6 @@ const Breadcrumbs = ({ breadcrumbs }) =>
   <div className={classNames.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
-        console.log("AS =", breadcrumb.as);
-        console.log("URL =", breadcrumb.url);
         return (
           <span>
             <Link href={breadcrumb.url} as={breadcrumb.as}>

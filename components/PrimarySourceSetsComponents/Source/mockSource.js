@@ -9,7 +9,8 @@ const mockSource = {
   copyright: "No known copyright",
   dplaRecord: "",
   itemSource: "",
-  set: "Civil War and Reconstruction"
+  set: "Civil War and Reconstruction",
+  slug: "civil-war-and-reconstruction"
 };
 
 export default mockSource;

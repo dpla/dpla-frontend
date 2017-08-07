@@ -11,7 +11,10 @@ const Sets = ({ sets }) =>
     <ul className={classNames.sets}>
       {sets.map(set =>
         <li className={classNames.set}>
-          <Link href={`primary-source-sets/${set.slug}`}>
+          <Link
+            href={`/primary-source-sets/set?set=${set.slug}`}
+            as={`/primary-source-sets/${set.slug}`}
+          >
             <a>
               <img
                 alt={set.title}
@@ -21,7 +24,10 @@ const Sets = ({ sets }) =>
             </a>
           </Link>
           <p className={classNames.itemCount}>65 Items</p>
-          <Link href={`primary-source-sets/${set.slug}`}>
+          <Link
+            href={`/primary-source-sets/set?set=${set.slug}`}
+            as={`/primary-source-sets/${set.slug}`}
+          >
             <a className={classNames.title}>
               {set.title}
             </a>
