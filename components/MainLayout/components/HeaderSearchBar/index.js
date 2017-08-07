@@ -9,8 +9,10 @@ const searchIcon = "/static/images/search.svg";
 const HeaderSearchBar = () =>
   <div className={classNames.headerSearchBar}>
     <div className={classNames.flexWrapper}>
-      <Link to="/">
-        <img alt="DPLA" src={dplaLogo} className={classNames.logo} />
+      <Link href="/">
+        <a>
+          <img alt="DPLA" src={dplaLogo} className={classNames.logo} />
+        </a>
       </Link>
       <div className={classNames.searchBar}>
         <input

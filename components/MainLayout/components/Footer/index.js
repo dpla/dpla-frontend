@@ -28,8 +28,16 @@ const Footer = () =>
             <ul>
               <li>Search</li>
               <li>Exhibitions</li>
-              <li> Primary Source Sets </li>
-              <li>Browse by Topic</li>
+              <li>
+                <Link href="/primary-source-sets">
+                  <a>Primary Source Sets</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/browse-by-topic">
+                  <a>Browse by Topic</a>
+                </Link>
+              </li>
               <li>Browse by Partner</li>
             </ul>
           </div>

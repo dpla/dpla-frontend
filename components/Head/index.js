@@ -17,8 +17,7 @@ export default () =>
         font-family: 'Source Sans Pro', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
-      button,
-      input {
+      button, input {
         font-family: "Source Sans Pro";
       }
       a {
@@ -33,14 +32,7 @@ export default () =>
       ul {
         list-style: none;
       }
-      p,
-      ul,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
+      p, ul, h1, h2, h3, h4, h5, h6 {
         margin: 0;
         padding: 0;
       }

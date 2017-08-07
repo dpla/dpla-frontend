@@ -10,7 +10,10 @@ const Topics = ({ topics }) =>
     <ul className={classNames.topics}>
       {topics.map(topic =>
         <li className={classNames.topic}>
-          <Link to={`browse-by-topic/${topic.slug}`}>
+          <Link
+            as={`browse-by-topic/${topic.slug}`}
+            href={`browse-by-topic/topic?topic=${topic.slug}`}
+          >
             <a>
               <img
                 alt={topic.title}
