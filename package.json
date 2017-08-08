@@ -8,7 +8,6 @@
     "next": "^2.4.9",
     "postcss-cssnext": "^3.0.2",
     "postcss-icss-values": "^2.0.1",
-    "postcss-loader": "^2.0.5",
     "postcss-modules": "^0.8.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -76,31 +75,6 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    }
   },
   "babel": {
     "presets": [
