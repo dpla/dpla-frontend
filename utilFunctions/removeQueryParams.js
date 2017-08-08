@@ -1,6 +1,8 @@
-const removeQueryParams = (query, paramsToRemove) => {
+const queryParams = ["set", "source"];
+
+const removeQueryParams = query => {
   const dupedQuery = Object.assign({}, query);
-  paramsToRemove.forEach(param => delete dupedQuery[param]);
+  queryParams.forEach(param => delete dupedQuery[param]);
   return dupedQuery;
 };
 
