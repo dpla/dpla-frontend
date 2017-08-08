@@ -1,0 +1,22 @@
+@value pampasBrown, bambooOrange from "../../../css/colors.css";
+
+.wrapper {
+  background-color: pampasBrown;
+}
+
+.otherInfo {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.75);
+  justify-content: space-between;
+}
+
+.link {
+  color: bambooOrange;
+}
+
+.p {
+  max-width: 450px;
+  font-size: 0.875rem;
+  line-height: 1rem;
+}

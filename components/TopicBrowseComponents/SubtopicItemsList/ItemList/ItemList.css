@@ -1,0 +1,55 @@
+@value riceCakeWhite from "../../../../css/colors.css";
+
+.itemList {
+  flex: 1;
+  padding-bottom: 125px;
+}
+
+.itemListHeader {
+  display: flex;
+  border-bottom: 2px solid riceCakeWhite;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.itemCount {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+}
+
+.viewButtons {
+  margin-left: auto;
+}
+
+.gridViewButton {
+  border-radius: 2px 0 0 2px;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+}
+
+.listViewButton {
+  border-radius: 0 2px 2px 0;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+}
+
+.viewButtonInactive.gridViewButton {
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.viewButtonInactive.listViewButton {
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.viewButtonActive {
+  cursor: default;
+  background-color: #ebe9e8;
+}
+
+.viewButtonActive .viewButtonIcon {
+  opacity: 0.45;
+}
+
+.viewButtonIcon {
+  height: 18px;
+}
