@@ -1,61 +1,52 @@
 @value curiousBlue, black, black50 from "../../../../../css/colors.css";
 
-.setsWrapper {
+.exhibitionsWrapper {
   padding-top: 40px;
 }
 
-.sets {
+.columnFlex {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.set {
-  flex-basis: calc(33% - 4px);
-  padding-right: 10px;
-  margin-bottom: 36px;
+.topThreeExhibitions {
+  display: flex;
+  box-sizing: border-box;
 }
 
-.set:nth-child(3n) {
-  padding-right: 0;
+.exhibition {
+  height: 100%;
 }
 
-.image {
-  border-radius: 3px;
-  max-width: 100%;
+.featured {
+  flex: 1;
+}
+
+.exhibition {
+  position: relative;
   margin-bottom: 10px;
+  flex-basis: 32%;
 }
 
-.itemCount {
-  opacity: 0.50;
-  text-transform: uppercase;
-  margin-bottom: 2px;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 
-.title {
-  font-size: 1.125rem;
-  font-weight: normal;
-  line-height: 1.25rem;
-  color: black;
-  margin-bottom: 4px;
+.exhibition img {
+  height: 100%;
 }
 
-.subtitle {
-  font-size: 0.9375rem;
-  line-height: 1.1875rem;
-  color: black50;
-  font-weight: normal;
-  margin-bottom: 1px;
+.exhibitionTitle {
+  max-width: 100%;
 }
 
-.tags {
-  font-size: 0.9375rem;
-  line-height: 1.1875rem;
-  color: curiousBlue;
-  font-weight: normal;
-}
-
-.tag {
-  display: inline;
+.exhibitions {
+  flex-wrap: wrap;
+  display: flex;
 }
