@@ -5,7 +5,7 @@
   "dependencies": {
     "cssnano": "^3.10.0",
     "express": "^4.15.4",
-    "next": "^2.4.9",
+    "next": "^3.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-masonry-component": "^5.0.7",
