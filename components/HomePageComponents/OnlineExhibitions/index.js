@@ -58,8 +58,8 @@ const OnlineExhibitions = (/* data */) =>
     <div className={classNames.onlineExhibitions}>
       <div className={classNames.headerAndBrowse}>
         <h1 className={classNames.header}>Online Exhibitions</h1>
-        <Link className={classNames.browse} to="">
-          <a>
+        <Link to="">
+          <a className={classNames.browse}>
             <span>Browse all Exhibitions</span>
             <img
               alt="browse exhibitions"

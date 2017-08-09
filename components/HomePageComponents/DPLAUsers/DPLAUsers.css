@@ -1,5 +1,5 @@
-@value rockBrown, bonjourRed, black from "../../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value rockBrown, bonjourRed from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .DPLAUsers {
   margin: auto;

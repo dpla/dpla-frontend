@@ -34,7 +34,7 @@ const FromTheBlog = (/* data */) =>
     <div className={classNames.fromTheBlog}>
       <div className={classNames.header}>
         <h1 className={classNames.headerText}>From the Blog</h1>
-        <Link to="">
+        <Link href="">
           <a className={classNames.headerLink}>
             <span>Browse the blog</span>
             <img
@@ -48,8 +48,8 @@ const FromTheBlog = (/* data */) =>
       <ul className={classNames.blogPosts}>
         {mockPosts.map(post =>
           <li key={post.id} className={classNames.blogPost}>
-            <Link to="" className={classNames.headline}>
-              <a>
+            <Link to="">
+              <a className={classNames.headline}>
                 {post.headline}
               </a>
             </Link>
