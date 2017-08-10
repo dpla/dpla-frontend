@@ -18,14 +18,22 @@ const Exhibition = ({ className, exhibition }) =>
     </div>
   </div>;
 
+const ThreeUp = ({ exhibitions }) =>
+  <div className={classNames.threeUp}>
+    <Exhibition className="featured" exhibition={exhibitions[0]} />
+    <div className={classNames.twoVertical}>
+      <Exhibition exhibition={exhibitions[1]} />
+      <Exhibition exhibition={exhibitions[2]} />
+    </div>
+  </div>;
+
 const Exhibitions = ({ exhibitions, route }) =>
   <div className={[module, classNames.exhibitionsWrapper].join(" ")}>
-    <div className={classNames.threeUp}>
-      <Exhibition className="featured" exhibition={exhibitions[0]} />
-      <div className={classNames.twoVertical}>
-        <Exhibition exhibition={exhibitions[0]} />
-        <Exhibition exhibition={exhibitions[0]} />
-      </div>
+    <ThreeUp exhibitions={exhibitions.slice(0, 3)} />
+    <div className={classNames.remainingExhibitions}>
+      {exhibitions
+        .slice(3)
+        .map(exhibition => <Exhibition exhibition={exhibition} />)}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

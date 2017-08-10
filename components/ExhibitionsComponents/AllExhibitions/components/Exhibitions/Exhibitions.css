@@ -2,16 +2,18 @@
 
 .exhibitionsWrapper {
   padding-top: 40px;
+  padding-bottom: 58px;
 }
 
 .threeUp {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .twoVertical {
   display: flex;
   flex-direction: column;
-  flex-basis: calc(33% - 7px);
+  flex-basis: calc(33% - 10px);
 }
 
 .twoVertical .exhibition:first-child {
@@ -29,7 +31,13 @@
 
 .featured {
   margin-right: 10px;
-  flex-basis: 66%;
+  flex-basis: calc(66% - 10px);
+}
+
+.featured .exhibitionTitle {
+  font-size: 3.5rem;
+  line-height: 4.25rem;
+  padding: 0 30px 24px;
 }
 
 .exhibition {
@@ -37,6 +45,7 @@
 }
 
 .overlay {
+  border-radius: 3px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -44,17 +53,34 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);
 }
 
 .exhibition img {
   width: 100%;
+  border-radius: 3px;
 }
 
 .exhibitionTitle {
   max-width: 100%;
+  color: white;
+  font-family: "Lora";
+  line-height: 1.5rem;
+  font-size: 1.25rem;
+  padding: 0 20px 20px;
 }
 
-.exhibitions {
+.remainingExhibitions {
   flex-wrap: wrap;
   display: flex;
+}
+
+.remainingExhibitions .exhibition {
+  flex-basis: calc(33% - 10px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.remainingExhibitions .exhibition:nth-child(3n) {
+  margin-right: 0px;
 }
