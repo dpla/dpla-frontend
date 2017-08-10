@@ -20,7 +20,14 @@ const Exhibition = ({ className, exhibition }) =>
 
 const Exhibitions = ({ exhibitions, route }) =>
   <div className={[module, classNames.exhibitionsWrapper].join(" ")}>
-    hey
+    <div className={classNames.threeUp}>
+      <Exhibition className="featured" exhibition={exhibitions[0]} />
+      <div className={classNames.twoVertical}>
+        <Exhibition exhibition={exhibitions[0]} />
+        <Exhibition exhibition={exhibitions[0]} />
+      </div>
+    </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Exhibitions;

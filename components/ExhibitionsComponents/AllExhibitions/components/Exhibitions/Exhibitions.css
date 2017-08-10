@@ -4,28 +4,36 @@
   padding-top: 40px;
 }
 
+.threeUp {
+  display: flex;
+}
+
+.twoVertical {
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(33% - 7px);
+}
+
+.twoVertical .exhibition:first-child {
+  margin-bottom: 7px;
+}
+
 .columnFlex {
   display: flex;
   flex-direction: column;
 }
 
-.topThreeExhibitions {
-  display: flex;
-  box-sizing: border-box;
-}
-
 .exhibition {
-  height: 100%;
+  width: 100%;
 }
 
 .featured {
-  flex: 1;
+  margin-right: 10px;
+  flex-basis: 66%;
 }
 
 .exhibition {
   position: relative;
-  margin-bottom: 10px;
-  flex-basis: 32%;
 }
 
 .overlay {
@@ -39,7 +47,7 @@
 }
 
 .exhibition img {
-  height: 100%;
+  width: 100%;
 }
 
 .exhibitionTitle {
