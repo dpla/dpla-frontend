@@ -1,11 +1,8 @@
 @value bambooOrange from "../../../../css/colors.css";
 
-.imageAndCaption {
-  margin-bottom: 45px;
-}
-
 .image {
   border-radius: 3px;
+  width: 100%;
 }
 
 .overlay {

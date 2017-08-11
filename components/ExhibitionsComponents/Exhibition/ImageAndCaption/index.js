@@ -6,7 +6,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 const ImageAndCaption = ({ exhibition, route }) =>
-  <div className={classNames.wrapper}>
+  <figure className={classNames.wrapper}>
     <div className={[module, classNames.imageAndCaption].join(" ")}>
       <div className={classNames.imageWrapper}>
         <img
@@ -22,12 +22,12 @@ const ImageAndCaption = ({ exhibition, route }) =>
           </div>
         </div>
       </div>
-      <p className={classNames.caption}>
+      <figcaption className={classNames.caption}>
         <span className={classNames.captionLeadIn}>Image: </span>
         <span>{exhibition.caption}</span>
-      </p>
+      </figcaption>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </figure>;
 
 export default ImageAndCaption;

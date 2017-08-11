@@ -3,18 +3,12 @@ import React from "react";
 import MainLayout from "../../../components/MainLayout";
 import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ImageAndCaption from "../../../components/ExhibitionsComponents/Exhibition/ImageAndCaption";
+import Details from "../../../components/ExhibitionsComponents/Exhibition/Details";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
+import mockExhibition from "./mockExhibition";
 
-const mockExhibition = {
-  title: "Civil War and Reconstruction",
-  slug: "civil-war-and-reconstruction",
-  image: "http://lorempixel.com/1024/518/food",
-  caption:
-    "Astronaut Buzz Aldrin, the second man, after Neil Armstrong, to step foot on the Moon, July 20, 1969. Courtesy of the National Archives and Records Administration."
-};
-
-const SingleSet = props =>
+const Exhibition = props =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -30,6 +24,7 @@ const SingleSet = props =>
       route={props.url}
     />
     <ImageAndCaption exhibition={mockExhibition} />
+    <Details exhibition={mockExhibition} />
   </MainLayout>;
 
-export default SingleSet;
+export default Exhibition;
