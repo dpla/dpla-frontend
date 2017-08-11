@@ -13,7 +13,7 @@ const Header = () =>
         <Link href="/browse-by-topic">
           <a>Browse</a>
         </Link>
-        <Link href="">
+        <Link href="/exhibitions">
           <a>Exhibitions</a>
         </Link>
         <Link href="/primary-source-sets">

@@ -18,7 +18,9 @@ const ImageAndCaption = ({ exhibition, route }) =>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
             <div className={classNames.divider} />
-            <a className={classNames.exploreLink}>Explore Exhibition</a>
+            <Link href="">
+              <a className={classNames.exploreLink}>Explore Exhibition</a>
+            </Link>
           </div>
         </div>
       </div>

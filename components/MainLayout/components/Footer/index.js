@@ -27,7 +27,11 @@ const Footer = () =>
             <h3 className={classNames.linkHeader}>Tools</h3>
             <ul>
               <li>Search</li>
-              <li>Exhibitions</li>
+              <li>
+                <Link href="/exhibitions">
+                  <a>Exhibitions</a>
+                </Link>
+              </li>
               <li>
                 <Link href="/primary-source-sets">
                   <a>Primary Source Sets</a>

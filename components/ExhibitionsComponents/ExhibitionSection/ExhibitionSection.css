@@ -1,0 +1,119 @@
+@value visualBrown, bambooOrange, pampasBrown from "../../../css/colors.css";
+
+.content {
+  background-color: visualBrown;
+}
+
+.exhibitionsLink {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+.exhibitionTitle {
+  font-family: "Lora";
+  font-size: 2.625rem;
+  line-height: 3.1875rem;
+  font-weight: normal;
+  padding-bottom: 28px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+  width: 200px;
+}
+
+.sidebarSections {
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 13px;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  line-height: 1.125rem;
+  margin-bottom: 9px;
+  display: inline-block;
+}
+
+.subsectionTitle {
+  font-size: 1rem;
+  line-height: 1rem;
+  padding-left: 16px;
+  color: #6D6D6D;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.active {
+  font-weight: 600;
+  color: black;
+}
+
+.subsectionTitle.active::before {
+  content: "";
+  display: block;
+  height: 5px;
+  width: 5px;
+  background-color: bambooOrange;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 5px;
+}
+
+.subsectionTitle:last-child {
+  margin-bottom: 9px;
+}
+
+.body {
+  display: flex;
+}
+
+.footerWrapper {
+  width: 100%;
+  background-color: pampasBrown;
+}
+
+.header {
+  padding-bottom: 0;
+}
+
+.footerNav {
+  display: flex;
+  padding: 15px 0;
+}
+
+.navButtons {
+  margin-left: auto;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.dplaLogo {
+  max-width: 300px;
+  opacity: 0.5;
+}
+
+.nextButton, .prevButton {
+  background-color: bambooOrange;
+  color: white;
+  width: 158px;
+  padding: 9px 0 12px 0;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.prevButton {
+  margin-right: 18px;
+}

@@ -60,6 +60,15 @@ app
       };
       app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
     });
+    server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
+      const actualPage = "/exhibitions/exhibition/section/subsection";
+      const params = {
+        exhibition: req.params.exhibition,
+        section: req.params.source,
+        subsection: req.params.source
+      };
+      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+    });
 
     server.get("*", (req, res) => {
       return handle(req, res);
