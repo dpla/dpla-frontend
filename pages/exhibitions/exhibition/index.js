@@ -4,9 +4,9 @@ import MainLayout from "../../../components/MainLayout";
 import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ImageAndCaption from "../../../components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "../../../components/ExhibitionsComponents/Exhibition/Details";
+import mockExhibition from "../../../components/ExhibitionsComponents/Exhibition/mockExhibition";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
-import mockExhibition from "./mockExhibition";
 
 const Exhibition = props =>
   <MainLayout>
