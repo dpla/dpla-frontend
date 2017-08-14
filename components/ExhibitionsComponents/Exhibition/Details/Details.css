@@ -1,0 +1,97 @@
+@value visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+
+.details {
+  display: flex;
+  padding-bottom: 100px;
+}
+
+.tableOfContents {
+  width: 285px;
+  flex-shrink: 0;
+  padding-left: 45px;
+  margin-right: 32px;
+}
+
+.tableOfContentsHeader {
+  font-family: "Lora";
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.125rem;
+  text-transform: uppercase;
+  padding: 20px;
+  background-color: #F1F0ED;
+}
+
+.tableOfContentsContents {
+  padding: 20px 20px 26px;
+  background-color: visualBrown;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+
+.tableOfContentsSection {
+  margin-bottom: 20px;
+}
+.tableOfContentsSection:last-child {
+  margin-bottom: 27px;
+}
+
+.divider {
+  height: 2px;
+  border-bottom: 2px solid #DFDEDC;
+  margin-bottom: 20px;
+}
+
+.bodyText {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  padding-right: 55px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 18px; 
+}
+
+.buttons {
+  float: right;
+  border-radius: 3px;
+  border: 1px solid #E7E7E7;
+  padding: 25px 20px;
+  width: 283px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.citeThis {
+  display: block;
+  width: 100%;
+  background-color: iceBlue;
+  color: curiousBlue;
+  padding: 10px 0;
+  font-size: 600;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  font-weight: 600;
+}
+
+.addToFavorites {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  margin-bottom: 15px;
+  color: cranberry;
+  padding: 10px 0;
+  background-color: softPeach;
+}
+
+.credits {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  opacity: 0.50;
+}
+
+.creditsBold {
+  font-weight: 600;
+  text-transform: uppercase;
+}
