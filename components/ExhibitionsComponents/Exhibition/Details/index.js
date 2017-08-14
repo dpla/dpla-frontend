@@ -16,7 +16,7 @@ const Details = ({ exhibition, route }) =>
           <ul className={classNames.tableOfContentsSections}>
             {exhibition.sections.map(section =>
               <li className={classNames.tableOfContentsSection}>
-                {section.name}
+                {section.title}
               </li>
             )}
           </ul>
