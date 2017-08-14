@@ -7,7 +7,12 @@ const { module } = utilClassNames;
 
 const heart = "/static/images/heart.svg";
 
-const SourceSetInfo = () =>
+// only the time period has a sameAs field
+const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
+const extractSubjects = tags =>
+  tags.filter(tag => !tag.sameAs).map(tag => tag.name).join(", ");
+
+const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetInfo, module].join(" ")}>
       <div className={classNames.bannerAndDescription}>
@@ -15,27 +20,18 @@ const SourceSetInfo = () =>
           <div
             className={classNames.bannerImage}
             style={{
-              backgroundImage: "url(http://lorempixel.com/400/200/food)"
+              backgroundImage: `url(${set.set.thumbnailUrl})`
             }}
           />
           <div className={classNames.bannerTextWrapper}>
             <h3 className={classNames.bannerResourceType}>
               Primary Source Set
             </h3>
-            <h1 className={classNames.bannerTitle}>Women in the Civil War</h1>
+            <h1 className={classNames.bannerTitle}>{set.set.name}</h1>
           </div>
         </div>
         <p className={classNames.description}>
-          The American Civil War brought women new responsibilities on the
-          battlefield and at home. Many became providers for their families,
-          managing farms and businesses while male relatives served in the
-          military. Many also contributed to the Union or Confederacy. Some
-          raised money and supplies through ladies’ aid and soldiers’ aid
-          societies as well as the US Sanitary Commission, a private agency that
-          operated across the North and became critical to the Union victory.
-          Others nursed soldiers (Louisa May Alcott, author of the beloved novel
-          Little Women, worked as an army nurse), spied on the enemy, cooked and
-          laundered for enlisted men, and served as uniformed battlefield…
+          {set.set.text}
         </p>
       </div>
       <div className={classNames.sidebar}>
@@ -43,17 +39,16 @@ const SourceSetInfo = () =>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
             <p>
-              Melissa Strong, Community College of Philadelphia, Philadelphia,
-              Pennsylvania
+              {set.set.author[0].name}
             </p>
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <p>Civil War and Reconstruction (1850-1877)</p>
+            <p>{extractTimePeriod(set.set.about)}</p>
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
-            <p>U.S. History, Women</p>
+            <p>{extractSubjects(set.set.about)}</p>
           </div>
         </div>
         <button

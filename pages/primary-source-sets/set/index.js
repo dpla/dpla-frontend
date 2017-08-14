@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 import MainLayout from "../../../components/MainLayout";
 import PSSFooter from "../../../components/PrimarySourceSetsComponents/PSSFooter";
@@ -9,11 +10,6 @@ import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/Singl
 import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
-
-const mockSet = {
-  title: "Civil War and Reconstruction",
-  slug: "civil-war-and-reconstruction"
-};
 
 const SingleSet = props =>
   <MainLayout>
@@ -26,16 +22,27 @@ const SingleSet = props =>
             query: removeQueryParams(props.url.query, ["set"])
           }
         },
-        { title: mockSet.title, search: "" }
+        { title: props.set.name, search: "" }
       ]}
       route={props.url}
     />
-    <SourceSetInfo />
-    <ResourcesTabs route={props.url} currentTab="sourceSet" set={mockSet}>
+    <SourceSetInfo set={props.set} />
+    <ResourcesTabs route={props.url} currentTab="sourceSet" set={props.set}>
       <SourceSetSources route={props.url} />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />
   </MainLayout>;
+
+SingleSet.getInitialProps = async ({ req }) => {
+  const res = await fetch(
+    `https://dp.la/primary-source-sets/sets/${/\/primary-source-sets\/([-\w]*)/.exec(
+      req.url
+    )[1]}.json`
+  );
+
+  const json = await res.json();
+  return { set: json };
+};
 
 export default SingleSet;
