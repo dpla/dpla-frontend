@@ -21,7 +21,8 @@ class Filters extends React.Component {
   componentWillMount() {
     this.setState({
       sortValue: this.props.route.query.order || "recently_added",
-      subjectValue: this.props.route.query.tags || "all"
+      timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
+      subjectValue: this.props.route.query.subject || "all"
     });
   }
 
@@ -31,10 +32,20 @@ class Filters extends React.Component {
       query: Object.assign({}, this.props.route.query, { order: val.value })
     });
   };
+
   onSubjectChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { tags: val.value })
+      query: Object.assign({}, this.props.route.query, { subject: val.value })
+    });
+  };
+
+  onTimePeriodChange = val => {
+    Router.push({
+      pathname: "/primary-source-sets",
+      query: Object.assign({}, this.props.route.query, {
+        timePeriod: val.value
+      })
     });
   };
 
@@ -49,9 +60,10 @@ class Filters extends React.Component {
           <Select
             clearable={false}
             searchable={false}
-            value="all-time-periods"
+            value={this.state.timePeriodValue}
             className={classNames.select}
-            options={[{ value: "all-time-periods", label: "All Time Periods" }]}
+            onChange={this.onTimePeriodChange}
+            options={timePeriodOptions}
           />
           <Select
             clearable={false}

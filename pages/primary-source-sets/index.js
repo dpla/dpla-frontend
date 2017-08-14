@@ -16,10 +16,10 @@ const PrimarySourceSets = ({ url, sets }) =>
   </div>;
 
 PrimarySourceSets.getInitialProps = async ({ req }) => {
-  console.log("QUERY", req.query);
   const res = await fetch(
     `https://dp.la/primary-source-sets/sets.json?order=${req.query
-      .order}&tags%5B%5D=${req.query.tags}`
+      .order}&tags%5B%5D=${req.query.subject}&tags%5B%5D=${req.query
+      .timePeriod}`
   );
 
   const json = await res.json();
