@@ -21,14 +21,14 @@ const Source = ({ url }) =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets",
-            query: removeQueryParams(url.query, ["set", "source"])
+            query: removeQueryParams(url.query)
           }
         },
         {
           title: mockSource.set,
           as: {
             pathname: `/primary-source-sets/${mockSource.slug}`,
-            query: removeQueryParams(url.query, ["set", "source"])
+            query: removeQueryParams(url.query)
           },
           url: {
             pathname: "/primary-source-sets/set/",

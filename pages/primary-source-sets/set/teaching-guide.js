@@ -26,9 +26,9 @@ const SingleSet = props =>
       ]}
       route={props.url}
     />
-    <SourceSetInfo />
+    <SourceSetInfo set={props.set} />
     <ResourcesTabs route={props.url} currentTab="teachingGuide" set={mockSet}>
-      <TeachersGuide route={props.url} />
+      <TeachersGuide guide={props.set.hasPart[0]} route={props.url} />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />

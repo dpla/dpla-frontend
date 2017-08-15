@@ -12,6 +12,7 @@ import SourceSetSources from "../../../components/PrimarySourceSetsComponents/Si
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
 const SingleSet = props =>
+  console.log(props.url.query) ||
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -19,7 +20,7 @@ const SingleSet = props =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets/",
-            query: removeQueryParams(props.url.query, ["set"])
+            query: removeQueryParams(props.url.query)
           }
         },
         { title: props.set.name, search: "" }
@@ -28,17 +29,18 @@ const SingleSet = props =>
     />
     <SourceSetInfo set={props.set} />
     <ResourcesTabs route={props.url} currentTab="sourceSet" set={props.set}>
-      <SourceSetSources route={props.url} />
+      <SourceSetSources
+        sources={props.set.hasPart.slice(1)}
+        route={props.url}
+      />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />
   </MainLayout>;
 
-SingleSet.getInitialProps = async ({ req }) => {
+SingleSet.getInitialProps = async ({ query }) => {
   const res = await fetch(
-    `https://dp.la/primary-source-sets/sets/${/\/primary-source-sets\/([-\w]*)/.exec(
-      req.url
-    )[1]}.json`
+    `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
 
   const json = await res.json();
