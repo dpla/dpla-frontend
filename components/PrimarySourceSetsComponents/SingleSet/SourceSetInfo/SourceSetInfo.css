@@ -66,6 +66,14 @@
   line-height: 1.4375rem;
 }
 
+.description p {
+  margin-bottom: 25px;
+}
+
+.description p:last-of-type {
+  margin-bottom: 0;
+}
+
 .sidebar {
   border: 1px solid #E7E7E7;
   background-color: white;

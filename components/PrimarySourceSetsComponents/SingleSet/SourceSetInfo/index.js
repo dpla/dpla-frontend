@@ -1,4 +1,5 @@
 import React from "react";
+import { markdown } from "markdown";
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -27,29 +28,47 @@ const SourceSetInfo = set =>
             <h3 className={classNames.bannerResourceType}>
               Primary Source Set
             </h3>
-            <h1 className={classNames.bannerTitle}>{set.set.name}</h1>
+            <h1
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(set.set.name)
+              }}
+              className={classNames.bannerTitle}
+            />
           </div>
         </div>
-        <p className={classNames.description}>
-          {/* TODO: shouldn't have to get rid of the unwanted text this way */}
-          {set.set.text.split("1. [")[0]}
-        </p>
+        {/* TODO: shouldn't have to get rid of the extra text with split */}
+        <div
+          className={classNames.description}
+          dangerouslySetInnerHTML={{
+            __html: markdown.toHTML(set.set.text.split("1. [")[0])
+          }}
+        />
       </div>
       <div className={classNames.sidebar}>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
-            <p>
-              {set.set.author[0].name}
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(set.set.author[0].name)
+              }}
+            />
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <p>{extractTimePeriod(set.set.about)}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(extractTimePeriod(set.set.about))
+              }}
+            />
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
-            <p>{extractSubjects(set.set.about)}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(extractSubjects(set.set.about))
+              }}
+            />
           </div>
         </div>
         <button
