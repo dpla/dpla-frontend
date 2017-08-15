@@ -17,7 +17,7 @@ const OtherInfo = () =>
         <span>
           Feedback? Contact us at &nbsp;
         </span>
-        <a className={classNames.link} mailTo="education@dp.la">
+        <a className={classNames.link} href="mailto:education@dp.la">
           education@dp.la
         </a>
       </p>
