@@ -11,7 +11,7 @@ const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
 
-const TeachersGuide = ({ route, teachingGuide }) =>
+const TeachersGuide = ({ route, teachingGuide, setName }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, module].join(" ")}>
       <div className={classNames.content}>
@@ -42,8 +42,18 @@ const TeachersGuide = ({ route, teachingGuide }) =>
           <p>
             This teaching guide helps instructors use a specific primary source
             set,{" "}
-            <Link className={classNames.aboutThisLink} to="">
-              Women in the Civil War
+            <Link
+              href={{ pathname: route.pathname, query: route.query }}
+              as={{
+                pathname: `/primary-source-sets/${route.query.set}`,
+                query: removeQueryParams(route.query, ["set"])
+              }}
+            >
+              <a className={classNames.aboutThisLink}>
+                <span
+                  dangerouslySetInnerHTML={{ __html: markdown.toHTML(setName) }}
+                />
+              </a>
             </Link>, in the classroom. It offers discussion questions, classroom
             activities, and primary source analysis tools. It is intended to
             spark pedagogical creativity by giving a sample approach to the

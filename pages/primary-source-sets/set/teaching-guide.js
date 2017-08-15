@@ -29,7 +29,11 @@ const SingleSet = props =>
     />
     <SourceSetInfo set={props.set} />
     <ResourcesTabs route={props.url} currentTab="teachingGuide" set={mockSet}>
-      <TeachersGuide teachingGuide={props.teachingGuide} route={props.url} />
+      <TeachersGuide
+        teachingGuide={props.teachingGuide}
+        setName={props.set.name}
+        route={props.url}
+      />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />
