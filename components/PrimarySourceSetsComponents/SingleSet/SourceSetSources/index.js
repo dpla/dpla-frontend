@@ -12,7 +12,6 @@ const SourceSetSources = ({ route, sources }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetSources, module].join(" ")}>
       {sources.map(({ name, thumbnailUrl }, i) => {
-        console.log(sources[i]);
         const sourceId = /https:\/\/dp\.la\/primary-source-sets\/sources\/(\d+)/.exec(
           sources[i]["@id"]
         )[1];

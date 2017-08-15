@@ -49,6 +49,7 @@ app
       );
     });
     server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
+      console.log(req.query);
       if (req.query.studentMode) {
         res.redirect(req.url.replace(/\/teaching-guide?/, ""));
       }

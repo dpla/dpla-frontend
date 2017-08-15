@@ -12,7 +12,6 @@ import SourceSetSources from "../../../components/PrimarySourceSetsComponents/Si
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
 const SingleSet = props =>
-  console.log(props.url.query) ||
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[

@@ -31,7 +31,8 @@ const SourceSetInfo = set =>
           </div>
         </div>
         <p className={classNames.description}>
-          {set.set.text}
+          {/* TODO: shouldn't have to get rid of the unwanted text this way */}
+          {set.set.text.split("1. [")[0]}
         </p>
       </div>
       <div className={classNames.sidebar}>

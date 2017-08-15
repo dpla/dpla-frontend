@@ -23,26 +23,27 @@ const mockContent = {
   ]
 };
 
-const TeachersGuide = props =>
+const TeachersGuide = ({ route, teachingGuide }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, module].join(" ")}>
       <div className={classNames.content}>
-        <h2 className={classNames.contentHeader}>Discussion questions</h2>
-        <ol className={classNames.questions}>
+        {/* <h2 className={classNames.contentHeader}>Discussion questions</h2> */}
+        {/* <ol className={classNames.questions}>
           {mockContent.discussionQuestions.map(question =>
             <li className={classNames.question}>
               {question}
             </li>
           )}
-        </ol>
-        <h2 className={classNames.contentHeader}>Classroom activities</h2>
+        </ol> */}
+        {teachingGuide.text}
+        {/* <h2 className={classNames.contentHeader}>Classroom activities</h2>
         <ol className={classNames.questions}>
           {mockContent.classroomActivities.map(activity =>
             <li className={classNames.question}>
               {activity}
             </li>
           )}
-        </ol>
+        </ol> */}
         <div className={classNames.aboutThis}>
           <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
           <p>
@@ -82,13 +83,13 @@ const TeachersGuide = props =>
             <Link
               href={{
                 pathname: `/primary-source-sets/set`,
-                query: Object.assign(props.route.query, { studentMode: true })
+                query: Object.assign({}, route.query, { studentMode: true })
               }}
               as={{
-                pathname: `/primary-source-sets/${props.route.query.set}`,
+                pathname: `/primary-source-sets/${route.query.set}`,
                 query: Object.assign(
                   {},
-                  removeQueryParams(props.route.query, ["set"]),
+                  removeQueryParams(route.query, ["set"]),
                   { studentMode: true }
                 )
               }}
