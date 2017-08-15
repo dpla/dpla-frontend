@@ -16,7 +16,7 @@ const Exhibition = props =>
           title: "Exhibitions",
           url: {
             pathname: "/exhibitions/",
-            query: removeQueryParams(props.url.query)
+            query: removeQueryParams(props.url.query, ["exhibition"])
           }
         },
         { title: mockExhibition.title, search: "" }

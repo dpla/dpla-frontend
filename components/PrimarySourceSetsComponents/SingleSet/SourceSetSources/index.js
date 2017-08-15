@@ -20,7 +20,7 @@ const SourceSetSources = ({ route, sources }) =>
             as={{
               pathname: `/primary-source-sets/${route.query
                 .set}/sources/${sourceId}`,
-              query: removeQueryParams(route.query)
+              query: removeQueryParams(route.query, ["source", "set"])
             }}
             href={{
               pathname: `/primary-source-sets/set/sources`,

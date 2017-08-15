@@ -19,7 +19,7 @@ const SingleSet = props =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets/",
-            query: removeQueryParams(props.url.query)
+            query: removeQueryParams(props.url.query, ["set"])
           }
         },
         { title: props.set.name, search: "" }
