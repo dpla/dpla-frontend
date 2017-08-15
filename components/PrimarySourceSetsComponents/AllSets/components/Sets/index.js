@@ -1,4 +1,5 @@
 import React from "react";
+import { markdown } from "markdown";
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./Sets.css";
@@ -44,7 +45,9 @@ const Sets = ({ sets, route }) =>
             as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
           >
             <a className={classNames.title}>
-              {set.name}
+              <div
+                dangerouslySetInnerHTML={{ __html: markdown.toHTML(set.name) }}
+              />
             </a>
           </Link>
           <p className={classNames.subtitle}>

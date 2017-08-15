@@ -1,4 +1,5 @@
 import React from "react";
+import { markdown } from "markdown";
 
 import Link from "next/link";
 
@@ -38,9 +39,10 @@ const SourceSetSources = ({ route, sources }) =>
                   className={classNames.image}
                 />
               </div>
-              <p className={classNames.name}>
-                {name}
-              </p>
+              <div
+                className={classNames.title}
+                dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
+              />
             </a>
           </Link>
         );
