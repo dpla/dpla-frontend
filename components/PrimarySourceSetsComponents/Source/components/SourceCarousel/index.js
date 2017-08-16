@@ -105,6 +105,11 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
         prevArrow={<PrevArrow />}
         draggable={false}
         slidesToScroll={1}
+        initialSlide={
+          currentSourceIdx > sources.length - 6
+            ? sources.length - 6
+            : currentSourceIdx
+        }
         responsive={[
           {
             breakpoint: parseInt(breakpoints.smallPx, 10),
@@ -135,7 +140,12 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
               }}
             >
               <a className={classNames.item}>
-                <div className={classNames.itemImgWrapper}>
+                <div
+                  className={[
+                    classNames.itemImgWrapper,
+                    i === currentSourceIdx && classNames.currentItemImgWrapper
+                  ].join(" ")}
+                >
                   <img
                     alt={name}
                     className={classNames.itemImg}

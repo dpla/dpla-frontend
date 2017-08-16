@@ -1,4 +1,4 @@
-@value romanceGray, onionBrown, visualBrown, curiousBlue, bambooOrange, black from "../../../../../css/colors.css";
+@value romanceGray, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -57,6 +57,11 @@
 .itemImg {
   min-width: 100%;
   min-height: 100%;
+}
+
+.currentItemImgWrapper {
+  border: 6px solid casablancaOrange;
+  box-sizing: border-box;
 }
 
 @media (min-width: smallRem) {
