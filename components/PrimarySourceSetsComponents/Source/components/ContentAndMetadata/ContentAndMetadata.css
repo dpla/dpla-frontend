@@ -1,13 +1,17 @@
 @value iceBlue, curiousBlue, visualBrown from "../../../../../css/colors.css";
 
 .contentAndMetadata {
-  display: flex;
   padding-top: 23px;
 }
 
 .contentWrapper {
   flex: 5;
   margin-right: 20px;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: flex-start;
 }
 
 .contentHeader {
@@ -28,7 +32,6 @@
 
 .metadata {
   flex: 2;
-  margin-top: 90px;
 }
 
 .sourceInfo {

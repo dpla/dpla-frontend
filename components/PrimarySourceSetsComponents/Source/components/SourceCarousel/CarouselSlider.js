@@ -66,7 +66,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
                 src={thumbnailUrl}
               />
             </div>
-            <p
+            <div
               className={classNames.itemText}
               dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
             />

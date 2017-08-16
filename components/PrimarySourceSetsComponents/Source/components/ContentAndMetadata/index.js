@@ -24,81 +24,85 @@ const ContentAndMetadata = ({ source }) => {
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, module].join(" ")}>
-        <div className={classNames.contentWrapper}>
-          <h2
-            dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.name) }}
-            className={classNames.contentHeader}
-          />
-          <div className={classNames.content}>
-            <PDFViewer pathToFile={fullContentUrl} />
-          </div>
-          {source.text &&
-            <p
-              dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.text) }}
-              className={classNames.description}
-            />}
-        </div>
-        <div className={classNames.metadata}>
-          <div className={classNames.sourceInfo}>
-            {/* TODO: hook these up */}
-            <button className={classNames.button}>Cite this item</button>
-            <button className={classNames.button}>Download</button>
-            <p
-              className={classNames.courtesyOf}
-              dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(
-                  source.mainEntity[0]["dct:provenance"].name
-                )
-              }}
-            />
-            <div className={classNames.copyrightInfo}>
-              <img src="" alt="" className={classNames.copyrightIcon} />
-              {source.copyright &&
-                <p
-                  className={classNames.copyrightText}
-                  dangerouslySetInnerHTML={{
-                    __html: markdown.toHTML(source.copyright)
-                  }}
-                />}
+        <h2
+          dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.name) }}
+          className={classNames.contentHeader}
+        />
+        <div className={classNames.flexWrapper}>
+          <div className={classNames.contentWrapper}>
+            <div className={classNames.content}>
+              <PDFViewer pathToFile={fullContentUrl} />
             </div>
-            <div className={classNames.divider} />
-            {source.mainEntity[0]["dct:references"] &&
+            {source.text &&
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: markdown.toHTML(source.text)
+                }}
+                className={classNames.description}
+              />}
+          </div>
+          <div className={classNames.metadata}>
+            <div className={classNames.sourceInfo}>
+              {/* TODO: hook these up */}
+              <button className={classNames.button}>Cite this item</button>
+              <button className={classNames.button}>Download</button>
+              <p
+                className={classNames.courtesyOf}
+                dangerouslySetInnerHTML={{
+                  __html: markdown.toHTML(
+                    source.mainEntity[0]["dct:provenance"].name
+                  )
+                }}
+              />
+              <div className={classNames.copyrightInfo}>
+                <img src="" alt="" className={classNames.copyrightIcon} />
+                {source.copyright &&
+                  <p
+                    className={classNames.copyrightText}
+                    dangerouslySetInnerHTML={{
+                      __html: markdown.toHTML(source.copyright)
+                    }}
+                  />}
+              </div>
+              <div className={classNames.divider} />
+              {source.mainEntity[0]["dct:references"] &&
+                <div className={classNames.linkWrapper}>
+                  <a
+                    href={getSourceLink(source)}
+                    className={classNames.sourceLink}
+                  >
+                    <img alt="" src={link} className={classNames.linkIcon} />
+                    <span className={classNames.linkText}>Item source</span>
+                  </a>
+                </div>}
               <div className={classNames.linkWrapper}>
-                <a
-                  href={getSourceLink(source)}
-                  className={classNames.sourceLink}
-                >
-                  <img alt="" src={link} className={classNames.linkIcon} />
-                  <span className={classNames.linkText}>Item source</span>
-                </a>
-              </div>}
-            <div className={classNames.linkWrapper}>
-              <Link to={source.dplaRecord}>
-                <a className={classNames.sourceLink}>
-                  <img
-                    alt=""
-                    src={external}
-                    className={classNames.externalIcon}
-                  />
-                  {/* TODO: hook this up */}
-                  <span className={classNames.linkText}>DPLA record</span>
-                </a>
-              </Link>
+                <Link to={source.dplaRecord}>
+                  <a className={classNames.sourceLink}>
+                    <img
+                      alt=""
+                      src={external}
+                      className={classNames.externalIcon}
+                    />
+                    {/* TODO: hook this up */}
+                    <span className={classNames.linkText}>DPLA record</span>
+                  </a>
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className={classNames.tipsForStudents}>
-            <h3 className={classNames.tipsForStudentsHeader}>
-              Tips for Students
-            </h3>
-            <p className={classNames.tipDirections}>
-              For this source, consider:
-            </p>
-            <ul className={classNames.tips}>
-              <li className={classNames.tip}>the author's point of view</li>
-              <li className={classNames.tip}>the author's purpose</li>
-              <li className={classNames.tip}>historical context</li>
-              <li className={classNames.tip}>audience</li>
-            </ul>
+            <div className={classNames.tipsForStudents}>
+              <h3 className={classNames.tipsForStudentsHeader}>
+                Tips for Students
+              </h3>
+              <p className={classNames.tipDirections}>
+                For this source, consider:
+              </p>
+              <ul className={classNames.tips}>
+                <li className={classNames.tip}>the author's point of view</li>
+                <li className={classNames.tip}>the author's purpose</li>
+                <li className={classNames.tip}>historical context</li>
+                <li className={classNames.tip}>audience</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
