@@ -106,6 +106,7 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
         draggable={false}
         slidesToScroll={1}
         initialSlide={
+          // makes sure carousel is always showing 6 items
           currentSourceIdx > sources.length - 6
             ? sources.length - 6
             : currentSourceIdx
