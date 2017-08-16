@@ -21,6 +21,7 @@ const getDomain = thumbnailUrl => /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 const ContentAndMetadata = ({ source }) => {
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   const fullContentUrl = `https:${getDomain(source.thumbnailUrl)}${contentUrl}`;
+
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, module].join(" ")}>
@@ -34,9 +35,11 @@ const ContentAndMetadata = ({ source }) => {
               <PDFViewer pathToFile={fullContentUrl} />
             </div>
             {source.text &&
-              <p
+              <div
                 dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(source.text)
+                  __html: markdown
+                    .toHTML(source.text)
+                    .replace(/&lt;br&gt;/g, "<br>")
                 }}
                 className={classNames.description}
               />}
