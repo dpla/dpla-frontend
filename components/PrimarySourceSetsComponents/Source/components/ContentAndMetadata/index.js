@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { markdown } from "markdown";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -18,9 +19,10 @@ const ContentAndMetadata = ({ source }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.contentAndMetadata, module].join(" ")}>
       <div className={classNames.content}>
-        <h2 className={classNames.contentHeader}>
-          {source.name}
-        </h2>
+        <h2
+          dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.name) }}
+          className={classNames.contentHeader}
+        />
         <div className={classNames.imageWrapper}>
           <img
             src={source.thumbnailUrl}
@@ -28,20 +30,33 @@ const ContentAndMetadata = ({ source }) =>
             className={classNames.image}
           />
         </div>
-        {source.text && <p className={classNames.description}>{source.text}</p>}
+        {source.text &&
+          <p
+            dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.text) }}
+            className={classNames.description}
+          />}
       </div>
       <div className={classNames.metadata}>
         <div className={classNames.sourceInfo}>
           <button className={classNames.button}>Cite this item</button>
           <button className={classNames.button}>Download</button>
-          <p className={classNames.courtesyOf}>
-            {source.mainEntity[0]["dct:provenance"].name}
-          </p>
+          <p
+            className={classNames.courtesyOf}
+            dangerouslySetInnerHTML={{
+              __html: markdown.toHTML(
+                source.mainEntity[0]["dct:provenance"].name
+              )
+            }}
+          />
           <div className={classNames.copyrightInfo}>
             <img src="" alt="" className={classNames.copyrightIcon} />
-            <p className={classNames.copyrightText}>
-              {source.copyright}
-            </p>
+            {source.copyright &&
+              <p
+                className={classNames.copyrightText}
+                dangerouslySetInnerHTML={{
+                  __html: markdown.toHTML(source.copyright)
+                }}
+              />}
           </div>
           <div className={classNames.divider} />
           <div className={classNames.linkWrapper}>
