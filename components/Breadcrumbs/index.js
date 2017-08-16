@@ -11,18 +11,20 @@ const Breadcrumbs = ({ breadcrumbs }) =>
         return (
           <span>
             <Link href={breadcrumb.url} as={breadcrumb.as}>
-              <a className={classNames.breadcrumbLink}>
-                {breadcrumb.title}
-              </a>
+              <a
+                dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
+                className={classNames.breadcrumbLink}
+              />
             </Link>
             <img alt="" src={chevron} className={classNames.chevron} />
           </span>
         );
       } else {
         return (
-          <span className={classNames.activeBreadcrumb}>
-            {breadcrumb.title}
-          </span>
+          <span
+            className={classNames.activeBreadcrumb}
+            dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
+          />
         );
       }
     })}
