@@ -38,6 +38,7 @@ const ContentAndMetadata = ({ source }) =>
       </div>
       <div className={classNames.metadata}>
         <div className={classNames.sourceInfo}>
+          {/* TODO: hook these up */}
           <button className={classNames.button}>Cite this item</button>
           <button className={classNames.button}>Download</button>
           <p
@@ -73,6 +74,7 @@ const ContentAndMetadata = ({ source }) =>
                   src={external}
                   className={classNames.externalIcon}
                 />
+                {/* TODO: hook this up */}
                 <span className={classNames.linkText}>DPLA record</span>
               </a>
             </Link>
