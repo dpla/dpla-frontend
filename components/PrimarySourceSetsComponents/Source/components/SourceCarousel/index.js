@@ -43,29 +43,59 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
           </Link>
         </h1>
         <div className={classNames.prevAndNextArrows}>
-          <Link to="">
-            <a className={classNames.nextOrPrevItemArrow}>
-              <img
-                alt="previous item"
-                className={[
-                  classNames.smallChevron,
-                  classNames.prevItemArrow
-                ].join(" ")}
-                src={smallChevron}
-              />
-              <span>Previous Item</span>
-            </a>
-          </Link>
-          <Link to="">
-            <a className={classNames.nextOrPrevItemArrow}>
-              <span>Next Item</span>
-              <img
-                alt="next item"
-                className={classNames.smallChevron}
-                src={smallChevron}
-              />
-            </a>
-          </Link>
+          {currentSourceIdx > 0 &&
+            <Link
+              as={{
+                pathname: `/primary-source-sets/${route.query
+                  .set}/sources/${extractSourceId(
+                  sources[currentSourceIdx - 1]["@id"]
+                )}`,
+                query: removeQueryParams(route.query, ["source", "set"])
+              }}
+              href={{
+                pathname: `/primary-source-sets/set/sources`,
+                query: Object.assign({}, route.query, {
+                  source: extractSourceId(sources[currentSourceIdx - 1]["@id"])
+                })
+              }}
+            >
+              <a className={classNames.nextOrPrevItemArrow}>
+                <img
+                  alt="previous item"
+                  className={[
+                    classNames.smallChevron,
+                    classNames.prevItemArrow
+                  ].join(" ")}
+                  src={smallChevron}
+                />
+                <span>Previous Item</span>
+              </a>
+            </Link>}
+          {currentSourceIdx < sources.length - 1 &&
+            <Link
+              as={{
+                pathname: `/primary-source-sets/${route.query
+                  .set}/sources/${extractSourceId(
+                  sources[currentSourceIdx + 1]["@id"]
+                )}`,
+                query: removeQueryParams(route.query, ["source", "set"])
+              }}
+              href={{
+                pathname: `/primary-source-sets/set/sources`,
+                query: Object.assign({}, route.query, {
+                  source: extractSourceId(sources[currentSourceIdx + 1]["@id"])
+                })
+              }}
+            >
+              <a className={classNames.nextOrPrevItemArrow}>
+                <span>Next Item</span>
+                <img
+                  alt="next item"
+                  className={classNames.smallChevron}
+                  src={smallChevron}
+                />
+              </a>
+            </Link>}
         </div>
       </div>
       <Slider
@@ -105,11 +135,13 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
               }}
             >
               <a className={classNames.item}>
-                <img
-                  alt={name}
-                  className={classNames.itemImg}
-                  src={thumbnailUrl}
-                />
+                <div className={classNames.itemImgWrapper}>
+                  <img
+                    alt={name}
+                    className={classNames.itemImg}
+                    src={thumbnailUrl}
+                  />
+                </div>
                 <p className={classNames.itemText}>
                   {name}
                 </p>

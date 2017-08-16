@@ -45,10 +45,18 @@
   padding: 0 5px;
 }
 
-.itemImg {
+.itemImgWrapper {
   margin-bottom: 9px;
   width: calc(100% - 9px);
   height: 117px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.itemImg {
+  min-width: 100%;
+  min-height: 100%;
 }
 
 @media (min-width: smallRem) {
