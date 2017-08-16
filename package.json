@@ -5,6 +5,7 @@
   "dependencies": {
     "cssnano": "^3.10.0",
     "express": "^4.15.4",
+    "lru-cache": "^4.1.1",
     "next": "^3.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
