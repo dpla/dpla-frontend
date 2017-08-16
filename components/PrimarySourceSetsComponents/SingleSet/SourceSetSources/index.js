@@ -6,6 +6,7 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./SourceSetSources.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import removeQueryParams from "/utilFunctions/removeQueryParams";
+import extractSourceId from "/utilFunctions/extractSourceId";
 
 const { module } = utilClassNames;
 
@@ -13,9 +14,7 @@ const SourceSetSources = ({ route, sources }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetSources, module].join(" ")}>
       {sources.map(({ name, thumbnailUrl }, i) => {
-        const sourceId = /https:\/\/dp\.la\/primary-source-sets\/sources\/(\d+)/.exec(
-          sources[i]["@id"]
-        )[1];
+        const sourceId = extractSourceId(sources[i]["@id"]);
         return (
           <Link
             as={{

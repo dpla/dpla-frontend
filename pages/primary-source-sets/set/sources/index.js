@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 import MainLayout from "../../../../components/MainLayout";
 import PSSFooter from "../../../../components/PrimarySourceSetsComponents/PSSFooter";
@@ -38,6 +39,7 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
     <SourceCarousel
       sources={set.hasPart.slice(1)}
       currentSourceIdx={currentSourceIdx}
+      route={url}
     />
     <PSSFooter />
   </MainLayout>;
@@ -47,7 +49,7 @@ Source.getInitialProps = async ({ query }) => {
     `https://dp.la/primary-source-sets/sources/${query.source}.json`
   );
   const sourceJson = await sourceRes.json();
-  console.log(sourceJson.name);
+
   const setRes = await fetch(
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );

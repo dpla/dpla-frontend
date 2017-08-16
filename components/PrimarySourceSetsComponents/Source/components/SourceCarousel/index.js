@@ -2,6 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 
+import extractSourceId from "/utilFunctions/extractSourceId";
+import removeQueryParams from "/utilFunctions/removeQueryParams";
+
 import { classNames, stylesheet } from "./SourceCarousel.css";
 import breakpoints from "css/breakpoints.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -28,7 +31,7 @@ const PrevArrow = ({ onClick, className }) =>
     />
   </button>;
 
-const SourceCarousel = ({ sources, currentSourceIdx }) =>
+const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceCarousel, module].join(" ")}>
       <div className={classNames.headerAndNav}>
@@ -85,12 +88,33 @@ const SourceCarousel = ({ sources, currentSourceIdx }) =>
           }
         ]}
       >
-        {sources.map(({ title, img, id }) =>
-          <div className={classNames.item}>
-            <img alt={title} className={classNames.itemImg} src={img} />
-            <p className={classNames.itemText}>
-              {title}
-            </p>
+        {sources.map(({ name, thumbnailUrl }, i) =>
+          <div>
+            {/* for some reason react-slick can't have <Link/> as first child */}
+            <Link
+              as={{
+                pathname: `/primary-source-sets/${route.query
+                  .set}/sources/${extractSourceId(sources[i]["@id"])}`,
+                query: removeQueryParams(route.query, ["source", "set"])
+              }}
+              href={{
+                pathname: `/primary-source-sets/set/sources`,
+                query: Object.assign({}, route.query, {
+                  source: extractSourceId(sources[i]["@id"])
+                })
+              }}
+            >
+              <a className={classNames.item}>
+                <img
+                  alt={name}
+                  className={classNames.itemImg}
+                  src={thumbnailUrl}
+                />
+                <p className={classNames.itemText}>
+                  {name}
+                </p>
+              </a>
+            </Link>
           </div>
         )}
       </Slider>

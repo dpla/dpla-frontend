@@ -42,6 +42,7 @@
 .itemText {
   font-size: 0.875rem;
   line-height: 1.0625rem;
+  padding: 0 5px;
 }
 
 .itemImg {
