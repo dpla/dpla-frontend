@@ -39,7 +39,7 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
         </ol> */}
         <div className={classNames.aboutThis}>
           <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
-          <p>
+          <div>
             This teaching guide helps instructors use a specific primary source
             set,{" "}
             <Link
@@ -59,7 +59,7 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
             spark pedagogical creativity by giving a sample approach to the
             material. Please feel free to share, reuse, and adapt the resources
             in this guide for your teaching purposes.
-          </p>
+          </div>
         </div>
       </div>
       <div className={classNames.sidebar}>
