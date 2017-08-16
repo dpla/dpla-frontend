@@ -14,7 +14,6 @@ const mockSet = {
 };
 
 const SingleSet = props =>
-  console.log(props.teachingGuide) ||
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
