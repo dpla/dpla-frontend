@@ -8,30 +8,34 @@ const { module } = utilClassNames;
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";
 
+const getSourceLink = source =>
+  source.mainEntity[0]["dct:references"].filter(
+    ref => ref["@type"] === "WebPage"
+  )[0]["@id"];
+
 const ContentAndMetadata = ({ source }) =>
+  console.log(source.mainEntity[0]["dct:references"]) ||
   <div className={classNames.wrapper}>
     <div className={[classNames.contentAndMetadata, module].join(" ")}>
       <div className={classNames.content}>
         <h2 className={classNames.contentHeader}>
-          {source.title}
+          {source.name}
         </h2>
         <div className={classNames.imageWrapper}>
           <img
-            src={source.img}
-            alt={source.title}
+            src={source.thumbnailUrl}
+            alt={source.name}
             className={classNames.image}
           />
         </div>
-        <p className={classNames.description}>
-          {source.description}
-        </p>
+        {source.text && <p className={classNames.description}>{source.text}</p>}
       </div>
       <div className={classNames.metadata}>
         <div className={classNames.sourceInfo}>
           <button className={classNames.button}>Cite this item</button>
           <button className={classNames.button}>Download</button>
           <p className={classNames.courtesyOf}>
-            {source.courtesyOf}
+            {source.mainEntity[0]["dct:provenance"].name}
           </p>
           <div className={classNames.copyrightInfo}>
             <img src="" alt="" className={classNames.copyrightIcon} />
@@ -41,12 +45,10 @@ const ContentAndMetadata = ({ source }) =>
           </div>
           <div className={classNames.divider} />
           <div className={classNames.linkWrapper}>
-            <Link to={source.itemSource}>
-              <a className={classNames.sourceLink}>
-                <img alt="" src={link} className={classNames.linkIcon} />
-                <span className={classNames.linkText}>Item source</span>
-              </a>
-            </Link>
+            <a href={getSourceLink(source)} className={classNames.sourceLink}>
+              <img alt="" src={link} className={classNames.linkIcon} />
+              <span className={classNames.linkText}>Item source</span>
+            </a>
           </div>
           <div className={classNames.linkWrapper}>
             <Link to={source.dplaRecord}>

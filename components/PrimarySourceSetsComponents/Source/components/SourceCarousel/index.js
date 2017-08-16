@@ -28,12 +28,13 @@ const PrevArrow = ({ onClick, className }) =>
     />
   </button>;
 
-const SourceCarousel = ({ sources }) =>
+const SourceCarousel = ({ sources, currentSourceIdx }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceCarousel, module].join(" ")}>
       <div className={classNames.headerAndNav}>
         <h1 className={classNames.header}>
-          <span>Item 2 of 15 in the Primary Source Set </span>
+          <span>{`Item ${currentSourceIdx + 1} of ${sources.length -
+            1} in the Primary Source Set `}</span>
           <Link to="">
             <a className={classNames.linkToSourceSet}>Women in the Civil War</a>
           </Link>

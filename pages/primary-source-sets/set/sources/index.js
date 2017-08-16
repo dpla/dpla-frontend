@@ -8,12 +8,7 @@ import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/S
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
-import mockSource from "../../../../components/PrimarySourceSetsComponents/Source/mockSource";
-import mockSources from "../../../../components/PrimarySourceSetsComponents/SingleSet/mockSources";
-
-// const getSourceSetURL = url => /(\/[\w-]+\/[\w-]+)\/sources/.exec(url)[1];
-
-const Source = ({ url }) =>
+const Source = ({ url, source, set, currentSourceIdx }) =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -25,7 +20,7 @@ const Source = ({ url }) =>
           }
         },
         {
-          title: mockSource.set,
+          title: set.name,
           as: {
             pathname: `/primary-source-sets/${url.query.set}`,
             query: removeQueryParams(url.query, ["source", "set"])
@@ -35,13 +30,35 @@ const Source = ({ url }) =>
             query: Object.assign({}, removeQueryParams(url.query, ["source"]))
           }
         },
-        { title: mockSource.title, url: "" }
+        { title: source.name, url: "" }
       ]}
       route={url}
     />
-    <ContentAndMetadata source={mockSource} />
-    <SourceCarousel sources={mockSources} />
+    <ContentAndMetadata source={source} />
+    <SourceCarousel
+      sources={set.hasPart.slice(1)}
+      currentSourceIdx={currentSourceIdx}
+    />
     <PSSFooter />
   </MainLayout>;
+
+Source.getInitialProps = async ({ query }) => {
+  const sourceRes = await fetch(
+    `https://dp.la/primary-source-sets/sources/${query.source}.json`
+  );
+  const sourceJson = await sourceRes.json();
+  console.log(sourceJson.name);
+  const setRes = await fetch(
+    `https://dp.la/primary-source-sets/sets/${query.set}.json`
+  );
+  const setJson = await setRes.json();
+
+  const sourceId = sourceJson["@id"];
+  const currentSourceIdx = setJson.hasPart
+    .slice(1)
+    .findIndex(source => source["@id"] === sourceId);
+
+  return { source: sourceJson, set: setJson, currentSourceIdx };
+};
 
 export default Source;
