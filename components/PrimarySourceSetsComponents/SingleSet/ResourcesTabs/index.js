@@ -8,15 +8,15 @@ const { module } = utilClassNames;
 
 class ResourcesTabs extends React.Component {
   render() {
-    const { slug } = this.props.set;
-    const { currentTab } = this.props;
+    console.log("query", this.props.route.query);
+    const { currentTab, route } = this.props;
     return (
       <div className={classNames.wrapper}>
         <div className={classNames.tabsWrapper}>
           <div className={[classNames.tabs, module].join(" ")}>
             <Link
-              href={`/primary-source-sets/set?set=${slug}`}
-              as={`/primary-source-sets/${slug}`}
+              href={`/primary-source-sets/set?set=${route.query.set}`}
+              as={`/primary-source-sets/${route.query.set}`}
             >
               <a
                 className={[
@@ -37,10 +37,11 @@ class ResourcesTabs extends React.Component {
                 Additional Resources
               </a>
             </Link>
-            {!this.props.route.query.studentMode &&
+            {!route.query.studentMode &&
               <Link
-                href={`/primary-source-sets/set/teaching-guide?set=${slug}`}
-                as={`/primary-source-sets/${slug}/teaching-guide`}
+                href={`/primary-source-sets/set/teaching-guide?set=${route.query
+                  .set}`}
+                as={`/primary-source-sets/${route.query.set}/teaching-guide`}
               >
                 <a
                   className={[

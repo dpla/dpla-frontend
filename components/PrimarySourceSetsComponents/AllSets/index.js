@@ -6,13 +6,11 @@ import Filters from "./components/Filters";
 import Header from "./components/Header";
 import Sets from "./components/Sets";
 
-import mockSets from "./mockSets";
-
-const AllSets = ({ route }) =>
+const AllSets = ({ route, sets }) =>
   <div className={styles.allSets}>
     <Header />
-    <Filters />
-    <Sets sets={mockSets} route={route} />
+    <Filters route={route} />
+    <Sets sets={sets} route={route} />
   </div>;
 
 export default AllSets;

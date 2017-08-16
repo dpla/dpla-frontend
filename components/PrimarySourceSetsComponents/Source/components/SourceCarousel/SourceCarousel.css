@@ -1,4 +1,4 @@
-@value romanceGray, onionBrown, visualBrown, curiousBlue, bambooOrange, black from "../../../../../css/colors.css";
+@value romanceGray, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -42,12 +42,26 @@
 .itemText {
   font-size: 0.875rem;
   line-height: 1.0625rem;
+  padding: 0 5px;
 }
 
-.itemImg {
+.itemImgWrapper {
   margin-bottom: 9px;
   width: calc(100% - 9px);
   height: 117px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.itemImg {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.currentItemImgWrapper {
+  border: 6px solid casablancaOrange;
+  box-sizing: border-box;
 }
 
 @media (min-width: smallRem) {
@@ -110,6 +124,7 @@
 .linkToSourceSet {
   color: bambooOrange;
   border-bottom: 1px solid bambooOrange;
+  display: inline-block;
 }
 
 /* react-slick style overrides */

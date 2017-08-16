@@ -14,6 +14,7 @@ const mockSet = {
 };
 
 const SingleSet = props =>
+  console.log(props.teachingGuide) ||
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -26,12 +27,27 @@ const SingleSet = props =>
       ]}
       route={props.url}
     />
-    <SourceSetInfo />
+    <SourceSetInfo set={props.set} />
     <ResourcesTabs route={props.url} currentTab="teachingGuide" set={mockSet}>
-      <TeachersGuide route={props.url} />
+      <TeachersGuide
+        teachingGuide={props.teachingGuide}
+        setName={props.set.name}
+        route={props.url}
+      />
     </ResourcesTabs>
     <RelatedSets />
     <PSSFooter />
   </MainLayout>;
+
+SingleSet.getInitialProps = async ({ query }) => {
+  const setRes = await fetch(
+    `https://dp.la/primary-source-sets/sets/${query.set}.json`
+  );
+
+  const set = await setRes.json();
+  const teachingGuideRes = await fetch(`${set.hasPart[0]["@id"]}.json`);
+  const teachingGuide = await teachingGuideRes.json();
+  return { set, teachingGuide };
+};
 
 export default SingleSet;

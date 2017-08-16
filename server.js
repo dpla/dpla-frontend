@@ -33,6 +33,9 @@ app
       renderAndCache(req, res, actualPage, params);
     });
 
+    server.get("/primary-source-sets", (req, res) => {
+      app.render(req, res, "/primary-source-sets", req.query);
+    });
     server.get("/primary-source-sets/:set", (req, res) => {
       const actualPage = "/primary-source-sets/set";
       const params = {
@@ -46,6 +49,7 @@ app
       );
     });
     server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
+      console.log(req.query);
       if (req.query.studentMode) {
         res.redirect(req.url.replace(/\/teaching-guide?/, ""));
       }

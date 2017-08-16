@@ -85,7 +85,7 @@
   https://www.lockedowndesign.com/ordered-list-ol-different-color-for-numbers/
 */
 
-.question {
+.markdownWrapper li {
   counter-increment: list;
   list-style-type: none;
   position: relative;
@@ -94,7 +94,7 @@
   line-height: 1.25rem;
 }
 
-.question:before {
+.markdownWrapper li:before {
   color: hippieBlue;
   content: counter(list) ".";
   left: -32px;
@@ -103,11 +103,11 @@
   width: 26px;
 }
 
-.questions {
+.markdownWrapper ol {
   padding-left: 20px;
 }
 
-.question:last-child {
+.markdownWrapper li:last-child {
   margin-bottom: 0;
 }
 
@@ -137,4 +137,5 @@
 
 .aboutThisLink {
   color: bambooOrange;
+  display: inline-block;
 }

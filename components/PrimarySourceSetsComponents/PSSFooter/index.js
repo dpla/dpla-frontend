@@ -22,7 +22,7 @@ const OtherInfo = () =>
         <span>
           To give feedback or suggest a Source Set, contact us at&nbsp;
         </span>
-        <a className={classNames.link} mailto="education@dp.la">
+        <a className={classNames.link} href="mailto:education@dp.la">
           education@dp.la
         </a>
       </p>

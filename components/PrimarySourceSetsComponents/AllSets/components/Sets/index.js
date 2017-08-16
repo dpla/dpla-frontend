@@ -1,8 +1,10 @@
 import React from "react";
+import { markdown } from "markdown";
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./Sets.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
 
 const { module } = utilClassNames;
 
@@ -14,10 +16,14 @@ const Sets = ({ sets, route }) =>
           <Link
             href={{
               pathname: "/primary-source-sets/set",
-              query: Object.assign({}, route.query, { set: set.slug })
+              query: Object.assign({}, route.query, {
+                set: extractSourceSetSlug(set["@id"])
+              })
             }}
             as={{
-              pathname: `/primary-source-sets/${set.slug}`,
+              pathname: `/primary-source-sets/${extractSourceSetSlug(
+                set["@id"]
+              )}`,
               query: route.query
             }}
           >
@@ -29,13 +35,19 @@ const Sets = ({ sets, route }) =>
               />
             </a>
           </Link>
-          <p className={classNames.itemCount}>65 Items</p>
+          <p className={classNames.itemCount}>
+            {set.hasPart && set.hasPart.length}
+          </p>
           <Link
-            href={`/primary-source-sets/set?set=${set.slug}`}
-            as={`/primary-source-sets/${set.slug}`}
+            href={`/primary-source-sets/set?set=${extractSourceSetSlug(
+              set["@id"]
+            )}`}
+            as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
           >
             <a className={classNames.title}>
-              {set.title}
+              <div
+                dangerouslySetInnerHTML={{ __html: markdown.toHTML(set.name) }}
+              />
             </a>
           </Link>
           <p className={classNames.subtitle}>

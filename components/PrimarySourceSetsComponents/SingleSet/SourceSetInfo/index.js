@@ -1,4 +1,5 @@
 import React from "react";
+import { markdown } from "markdown";
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -7,7 +8,12 @@ const { module } = utilClassNames;
 
 const heart = "/static/images/heart.svg";
 
-const SourceSetInfo = () =>
+// only the time period has a sameAs field
+const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
+const extractSubjects = tags =>
+  tags.filter(tag => !tag.sameAs).map(tag => tag.name).join(", ");
+
+const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetInfo, module].join(" ")}>
       <div className={classNames.bannerAndDescription}>
@@ -15,45 +21,54 @@ const SourceSetInfo = () =>
           <div
             className={classNames.bannerImage}
             style={{
-              backgroundImage: "url(http://lorempixel.com/400/200/food)"
+              backgroundImage: `url(${set.set.thumbnailUrl})`
             }}
           />
           <div className={classNames.bannerTextWrapper}>
             <h3 className={classNames.bannerResourceType}>
               Primary Source Set
             </h3>
-            <h1 className={classNames.bannerTitle}>Women in the Civil War</h1>
+            <h1
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(set.set.name)
+              }}
+              className={classNames.bannerTitle}
+            />
           </div>
         </div>
-        <p className={classNames.description}>
-          The American Civil War brought women new responsibilities on the
-          battlefield and at home. Many became providers for their families,
-          managing farms and businesses while male relatives served in the
-          military. Many also contributed to the Union or Confederacy. Some
-          raised money and supplies through ladies’ aid and soldiers’ aid
-          societies as well as the US Sanitary Commission, a private agency that
-          operated across the North and became critical to the Union victory.
-          Others nursed soldiers (Louisa May Alcott, author of the beloved novel
-          Little Women, worked as an army nurse), spied on the enemy, cooked and
-          laundered for enlisted men, and served as uniformed battlefield…
-        </p>
+        {/* TODO: shouldn't have to get rid of the extra text with split */}
+        <div
+          className={classNames.description}
+          dangerouslySetInnerHTML={{
+            __html: markdown.toHTML(set.set.text.split("1. [")[0])
+          }}
+        />
       </div>
       <div className={classNames.sidebar}>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
-            <p>
-              Melissa Strong, Community College of Philadelphia, Philadelphia,
-              Pennsylvania
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(set.set.author[0].name)
+              }}
+            />
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <p>Civil War and Reconstruction (1850-1877)</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(extractTimePeriod(set.set.about))
+              }}
+            />
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
-            <p>U.S. History, Women</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: markdown.toHTML(extractSubjects(set.set.about))
+              }}
+            />
           </div>
         </div>
         <button

@@ -66,12 +66,21 @@
   line-height: 1.4375rem;
 }
 
+.description p {
+  margin-bottom: 25px;
+}
+
+.description p:last-of-type {
+  margin-bottom: 0;
+}
+
 .sidebar {
   border: 1px solid #E7E7E7;
   background-color: white;
   padding: 19px 20px 26px;
   flex: 1;
   border-radius: 3px;
+  align-self: baseline;
 }
 
 .metadata {
