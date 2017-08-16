@@ -1,11 +1,17 @@
 const express = require("express");
 const next = require("next");
+const LRUCache = require("lru-cache");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
+
+const ssrCache = new LRUCache({
+  max: 100,
+  maxAge: 1000 * 60 * 60 // 1hour
+});
 
 app
   .prepare()
@@ -15,7 +21,7 @@ app
     server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
       const params = { topic: req.params.topicId };
-      app.render(req, res, actualPage, params);
+      renderAndCache(req, res, actualPage, params);
     });
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
       const actualPage = "/browse-by-topic/topic/subtopic";
@@ -24,7 +30,7 @@ app
         subtopic: req.params.subtopic
       };
 
-      app.render(req, res, actualPage, params);
+      renderAndCache(req, res, actualPage, params);
     });
 
     server.get("/primary-source-sets/:set", (req, res) => {
@@ -32,7 +38,12 @@ app
       const params = {
         set: req.params.set
       };
-      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
     });
     server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
       if (req.query.studentMode) {
@@ -42,7 +53,12 @@ app
       const params = {
         set: req.params.set
       };
-      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
     });
     server.get("/primary-source-sets/:set/sources/:source", (req, res) => {
       const actualPage = "/primary-source-sets/set/sources";
@@ -50,7 +66,12 @@ app
         set: req.params.set,
         source: req.params.source
       };
-      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
     });
 
     server.get("/exhibitions/:exhibition", (req, res) => {
@@ -58,7 +79,12 @@ app
       const params = {
         exhibition: req.params.exhibition
       };
-      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
     });
     server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
       const actualPage = "/exhibitions/exhibition/section/subsection";
@@ -67,7 +93,12 @@ app
         section: req.params.source,
         subsection: req.params.source
       };
-      app.render(req, res, actualPage, mergeQueryAndParams(params, req.query));
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
     });
 
     server.get("*", (req, res) => {
@@ -83,3 +114,25 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+function renderAndCache(req, res, pagePath, queryParams) {
+  // If we have a page in the cache, let's serve it
+  if (ssrCache.has(req.url)) {
+    console.log(`CACHE HIT: ${req.url}`);
+    res.send(ssrCache.get(req.url));
+    return;
+  }
+  // If not let's render the page into HTML
+  app
+    .renderToHTML(req, res, pagePath, queryParams)
+    .then(html => {
+      // Let's cache this page
+      console.log(`CACHE MISS: ${req.url}`);
+      ssrCache.set(req.url, html);
+      res.send(html);
+    })
+    .catch(err => {
+      console.error(err.stack);
+      res.status(500).send("Internal Error");
+    });
+}
