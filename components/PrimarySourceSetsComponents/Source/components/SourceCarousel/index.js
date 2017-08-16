@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { markdown } from "markdown";
 
 import CarouselSlider from "./CarouselSlider";
 import extractSourceId from "/utilFunctions/extractSourceId";
@@ -10,7 +11,7 @@ const { module } = utilClassNames;
 
 const smallChevron = "/static/images/chevron-thick-orange.svg";
 
-const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
+const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceCarousel, module].join(" ")}>
       <div className={classNames.headerAndNav}>
@@ -18,7 +19,10 @@ const SourceCarousel = ({ sources, currentSourceIdx, route }) =>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
           <Link to="">
-            <a className={classNames.linkToSourceSet}>Women in the Civil War</a>
+            <a
+              dangerouslySetInnerHTML={{ __html: markdown.toHTML(set.name) }}
+              className={classNames.linkToSourceSet}
+            />
           </Link>
         </h1>
         <div className={classNames.prevAndNextArrows}>

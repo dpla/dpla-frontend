@@ -124,6 +124,7 @@
 .linkToSourceSet {
   color: bambooOrange;
   border-bottom: 1px solid bambooOrange;
+  display: inline-block;
 }
 
 /* react-slick style overrides */

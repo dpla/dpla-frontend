@@ -40,6 +40,7 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
       sources={set.hasPart.slice(1)}
       currentSourceIdx={currentSourceIdx}
       route={url}
+      set={set}
     />
     <PSSFooter />
   </MainLayout>;
