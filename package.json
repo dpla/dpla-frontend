@@ -67,7 +67,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js"
   },
