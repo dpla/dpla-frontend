@@ -18,7 +18,7 @@ export default class ZoomableImageViewer extends React.Component {
       id: "openseadragon1",
       tileSources: {
         type: "image",
-        url: this.props.imageUrl
+        url: this.props.pathToFile
       },
       prefixUrl: "/static/images/openseadragon/"
     });
@@ -32,7 +32,7 @@ export default class ZoomableImageViewer extends React.Component {
             <img
               className={classNames.noscriptImg}
               alt=""
-              src={this.props.imageUrl}
+              src={this.props.pathToFile}
             />
           </div>
         </Noscript>

@@ -17,12 +17,21 @@ const getSourceLink = source =>
     ref => ref["@type"] === "WebPage"
   )[0]["@id"];
 
+const getViewerComponent = (fileFormat, pathToFile) => {
+  if (fileFormat === "pdf") {
+    return <PDFViewer pathToFile={pathToFile} />;
+  } else if (/png|jpg|tiff|svg|gif/.test(fileFormat)) {
+    return <ZoomableImageViewer pathToFile={pathToFile} />;
+  }
+};
+
 const getDomain = thumbnailUrl => /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
 const ContentAndMetadata = ({ source }) => {
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   const fullContentUrl = `https:${getDomain(source.thumbnailUrl)}${contentUrl}`;
-  console.log(fullContentUrl);
+  const viewerComponent = getViewerComponent(fileFormat, fullContentUrl);
+
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, module].join(" ")}>
@@ -33,7 +42,7 @@ const ContentAndMetadata = ({ source }) => {
         <div className={classNames.flexWrapper}>
           <div className={classNames.contentWrapper}>
             <div className={classNames.content}>
-              <ZoomableImageViewer imageUrl={fullContentUrl} />
+              {viewerComponent}
             </div>
             {source.text &&
               <div
