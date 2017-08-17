@@ -1,6 +1,14 @@
 import React from "react";
+import ReactDOM from "react-dom/server";
 
 import { classNames } from "./ContentAndMetadata.css";
+
+// TODO: maybe move this into a shared directory
+// https://github.com/facebook/react/issues/1252
+const Noscript = ({ children }) => {
+  const staticMarkup = ReactDOM.renderToStaticMarkup(children);
+  return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
+};
 
 export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
@@ -18,7 +26,17 @@ export default class ZoomableImageViewer extends React.Component {
 
   render() {
     return (
-      <div id="openseadragon1" className={classNames.zoomableImageViewer} />
+      <div id="openseadragon1" className={classNames.zoomableImageViewer}>
+        <Noscript>
+          <div className={classNames.noscriptContainer}>
+            <img
+              className={classNames.noscriptImg}
+              alt=""
+              src={this.props.imageUrl}
+            />
+          </div>
+        </Noscript>
+      </div>
     );
   }
 }
