@@ -15,28 +15,12 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, module].join(" ")}>
       <div className={classNames.content}>
-        {/* <h2 className={classNames.contentHeader}>Discussion questions</h2> */}
-        {/* <ol className={classNames.questions}>
-          {mockContent.discussionQuestions.map(question =>
-            <li className={classNames.question}>
-              {question}
-            </li>
-          )}
-        </ol> */}
         <div
           className={classNames.markdownWrapper}
           dangerouslySetInnerHTML={{
             __html: markdown.toHTML(teachingGuide.text)
           }}
         />
-        {/* <h2 className={classNames.contentHeader}>Classroom activities</h2>
-        <ol className={classNames.questions}>
-          {mockContent.classroomActivities.map(activity =>
-            <li className={classNames.question}>
-              {activity}
-            </li>
-          )}
-        </ol> */}
         <div className={classNames.aboutThis}>
           <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
           <div>

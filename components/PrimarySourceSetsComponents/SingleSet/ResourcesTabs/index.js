@@ -26,7 +26,12 @@ class ResourcesTabs extends React.Component {
                 Source Set
               </a>
             </Link>
-            <Link onClick={() => this.onTabChange("additionalResources")}>
+            <Link
+              href={`/primary-source-sets/set/additional-resources?set=${route
+                .query.set}`}
+              as={`/primary-source-sets/${route.query
+                .set}/additional-resources`}
+            >
               <a
                 className={[
                   classNames.tab,

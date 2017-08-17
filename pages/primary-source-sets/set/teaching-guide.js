@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 import MainLayout from "../../../components/MainLayout";
 import PSSFooter from "../../../components/PrimarySourceSetsComponents/PSSFooter";
@@ -8,26 +9,25 @@ import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleS
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-const mockSet = {
-  title: "Civil War and Reconstruction",
-  slug: "civil-war-and-reconstruction"
-};
+import removeQueryParams from "utilFunctions/removeQueryParams";
 
 const SingleSet = props =>
   <MainLayout>
     <BreadcrumbsModule
       breadcrumbs={[
-        { title: "Primary Source Sets", url: "/primary-source-sets" },
         {
-          title: mockSet.title,
-          url: "",
-          search: ""
-        }
+          title: "Primary Source Sets",
+          url: {
+            pathname: "/primary-source-sets/",
+            query: removeQueryParams(props.url.query, ["set"])
+          }
+        },
+        { title: props.set.name, search: "" }
       ]}
       route={props.url}
     />
     <SourceSetInfo set={props.set} />
-    <ResourcesTabs route={props.url} currentTab="teachingGuide" set={mockSet}>
+    <ResourcesTabs route={props.url} currentTab="teachingGuide" set={props.set}>
       <TeachersGuide
         teachingGuide={props.teachingGuide}
         setName={props.set.name}
