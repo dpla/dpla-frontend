@@ -5,6 +5,7 @@ import { markdown } from "markdown";
 import PDFViewer from "./PDFViewer";
 import ZoomableImageViewer from "./ZoomableImageViewer";
 import AudioPlayer from "./AudioPlayer";
+import VideoPlayer from "./VideoPlayer";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -25,6 +26,10 @@ const getViewerComponent = (fileFormat, pathToFile) => {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
   } else if (/ogg|mp3|m4a/.test(fileFormat)) {
     return <AudioPlayer pathToFile={pathToFile} fileFormat={fileFormat} />;
+  } else if (/|mp4|webm/.test(fileFormat)) {
+    return <VideoPlayer pathToFile={pathToFile} fileFormat={fileFormat} />;
+  } else {
+    return <div />;
   }
 };
 

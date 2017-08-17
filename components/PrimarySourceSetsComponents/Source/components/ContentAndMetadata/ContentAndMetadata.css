@@ -7,7 +7,6 @@
 .contentWrapper {
   flex: 5;
   margin-right: 20px;
-  align-self: center;
 }
 
 .flexWrapper {
@@ -183,5 +182,9 @@
 }
 
 .audioPlayer {
+  width: 100%;
+}
+
+.videoPlayer {
   width: 100%;
 }
