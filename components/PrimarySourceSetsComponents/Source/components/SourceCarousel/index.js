@@ -18,7 +18,19 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
         <h1 className={classNames.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
-          <Link to="">
+          <Link
+            as={{
+              pathname: `/primary-source-sets/${route.query.set}`,
+              query: removeQueryParams(route.query, ["source", "set"])
+            }}
+            href={{
+              pathname: "/primary-source-sets/set/",
+              query: Object.assign(
+                {},
+                removeQueryParams(route.query, ["source"])
+              )
+            }}
+          >
             <a
               dangerouslySetInnerHTML={{ __html: markdown.toHTML(set.name) }}
               className={classNames.linkToSourceSet}
