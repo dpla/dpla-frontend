@@ -14,7 +14,8 @@ export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
     // const OpenSeaDragon = require("static/openseadragon/openseadragon.min.js");
     const OpenSeaDragon = require("openseadragon");
-    this.viewer = OpenSeaDragon({ //eslint-disable-line
+    this.viewer = OpenSeaDragon({
+      //eslint-disable-line
       id: "openseadragon1",
       tileSources: {
         type: "image",

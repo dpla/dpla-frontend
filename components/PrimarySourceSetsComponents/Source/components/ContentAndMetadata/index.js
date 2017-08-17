@@ -4,6 +4,7 @@ import { markdown } from "markdown";
 
 import PDFViewer from "./PDFViewer";
 import ZoomableImageViewer from "./ZoomableImageViewer";
+import AudioPlayer from "./AudioPlayer";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -22,14 +23,20 @@ const getViewerComponent = (fileFormat, pathToFile) => {
     return <PDFViewer pathToFile={pathToFile} />;
   } else if (/png|jpg|tiff|svg|gif/.test(fileFormat)) {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
+  } else if (/ogg|mp3|m4a/.test(fileFormat)) {
+    return <AudioPlayer pathToFile={pathToFile} fileFormat={fileFormat} />;
   }
 };
 
-const getDomain = thumbnailUrl => /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
+const getDomainFromThumbnail = thumbnailUrl =>
+  /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
 const ContentAndMetadata = ({ source }) => {
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
-  const fullContentUrl = `https:${getDomain(source.thumbnailUrl)}${contentUrl}`;
+  // some file types aren't stored with full domain
+  const fullContentUrl = source.thumbnailUrl
+    ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
+    : `https:${contentUrl}`;
   const viewerComponent = getViewerComponent(fileFormat, fullContentUrl);
 
   return (
@@ -67,16 +74,16 @@ const ContentAndMetadata = ({ source }) => {
                   )
                 }}
               />
-              <div className={classNames.copyrightInfo}>
-                <img src="" alt="" className={classNames.copyrightIcon} />
-                {source.copyright &&
+              {source.copyright &&
+                <div className={classNames.copyrightInfo}>
+                  <img src="" alt="" className={classNames.copyrightIcon} />
                   <p
                     className={classNames.copyrightText}
                     dangerouslySetInnerHTML={{
                       __html: markdown.toHTML(source.copyright)
                     }}
-                  />}
-              </div>
+                  />
+                </div>}
               <div className={classNames.divider} />
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
