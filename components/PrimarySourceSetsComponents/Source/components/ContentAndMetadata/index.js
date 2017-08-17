@@ -19,6 +19,11 @@ const getSourceLink = source =>
     ref => ref["@type"] === "WebPage"
   )[0]["@id"];
 
+const getDPLALink = source =>
+  source.mainEntity[0]["dct:references"].filter(
+    ref => ref["@type"] === "ore:Aggregation"
+  )[0]["@id"];
+
 const getViewerComponent = (fileFormat, pathToFile) => {
   if (fileFormat === "pdf") {
     return <PDFViewer pathToFile={pathToFile} />;
@@ -71,7 +76,9 @@ const ContentAndMetadata = ({ source }) => {
             <div className={classNames.sourceInfo}>
               {/* TODO: hook these up */}
               <button className={classNames.button}>Cite this item</button>
-              <button className={classNames.button}>Download</button>
+              <a href={fullContentUrl} download className={classNames.button}>
+                Download
+              </a>
               <div
                 className={classNames.courtesyOf}
                 dangerouslySetInnerHTML={{
@@ -109,8 +116,10 @@ const ContentAndMetadata = ({ source }) => {
                       src={external}
                       className={classNames.externalIcon}
                     />
-                    {/* TODO: hook this up */}
-                    <span className={classNames.linkText}>DPLA record</span>
+                    {/* TODO: hook this up to link to page on this site */}
+                    <a href={getDPLALink(source)}>
+                      <span className={classNames.linkText}>DPLA record</span>
+                    </a>
                   </a>
                 </Link>
               </div>
