@@ -109,19 +109,15 @@ const ContentAndMetadata = ({ source }) => {
                   </a>
                 </div>}
               <div className={classNames.linkWrapper}>
-                <Link to={source.dplaRecord}>
-                  <a className={classNames.sourceLink}>
-                    <img
-                      alt=""
-                      src={external}
-                      className={classNames.externalIcon}
-                    />
-                    {/* TODO: hook this up to link to page on this site */}
-                    <a href={getDPLALink(source)}>
-                      <span className={classNames.linkText}>DPLA record</span>
-                    </a>
-                  </a>
-                </Link>
+                {/* TODO: hook this up to link to new site once possible */}
+                <a href={getDPLALink(source)} className={classNames.sourceLink}>
+                  <img
+                    alt=""
+                    src={external}
+                    className={classNames.externalIcon}
+                  />
+                  <span className={classNames.linkText}>DPLA record</span>
+                </a>
               </div>
             </div>
             <div className={classNames.tipsForStudents}>
