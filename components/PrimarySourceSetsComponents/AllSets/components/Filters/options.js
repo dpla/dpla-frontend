@@ -15,7 +15,7 @@ export const subjectOptions = [
   { value: "asian-americans", label: "Asian Americans" },
   { value: "labor-history", label: "Labor History" },
   { value: "latino-americans", label: "Latino Americans" },
-  { value: "law-government", label: "Law &amp; Government" },
+  { value: "law-government", label: "Law & Government" },
   { value: "migration", label: "Migration" },
   { value: "native-americans", label: "Native Americans" },
   { value: "cultural-movements", label: "Social Movements" },

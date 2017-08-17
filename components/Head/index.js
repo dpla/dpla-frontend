@@ -34,6 +34,9 @@ export default () =>
       :global(.slick-disabled) {
         display: none;
       }
+      :global(.Select-value) {
+        padding-right: 25px;
+      }
     `}</style>
     <Head>
       <meta charset="utf-8" />
