@@ -1,12 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import {
-  stylesheet as utilStylesheet,
-  classNames as utilClassNames
-} from "css/utils.css";
-
-const { module } = utilClassNames;
+import { stylesheet as utilStylesheet } from "css/utils.css";
 
 export default () =>
   <div>

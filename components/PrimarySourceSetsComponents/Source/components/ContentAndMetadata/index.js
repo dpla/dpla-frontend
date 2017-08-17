@@ -3,6 +3,7 @@ import Link from "next/link";
 import { markdown } from "markdown";
 
 import PDFViewer from "./PDFViewer";
+import ZoomableImageViewer from "./ZoomableImageViewer";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -21,7 +22,7 @@ const getDomain = thumbnailUrl => /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 const ContentAndMetadata = ({ source }) => {
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   const fullContentUrl = `https:${getDomain(source.thumbnailUrl)}${contentUrl}`;
-
+  console.log(fullContentUrl);
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, module].join(" ")}>
@@ -32,7 +33,7 @@ const ContentAndMetadata = ({ source }) => {
         <div className={classNames.flexWrapper}>
           <div className={classNames.contentWrapper}>
             <div className={classNames.content}>
-              <PDFViewer pathToFile={fullContentUrl} />
+              <ZoomableImageViewer imageUrl={fullContentUrl} />
             </div>
             {source.text &&
               <div
