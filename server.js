@@ -36,6 +36,7 @@ app
     server.get("/primary-source-sets", (req, res) => {
       app.render(req, res, "/primary-source-sets", req.query);
     });
+
     server.get("/primary-source-sets/:set", (req, res) => {
       const actualPage = "/primary-source-sets/set";
       const params = {
@@ -48,8 +49,8 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
     server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
-      console.log(req.query);
       if (req.query.studentMode) {
         res.redirect(req.url.replace(/\/teaching-guide?/, ""));
       }
@@ -64,6 +65,20 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
+    server.get("/primary-source-sets/:set/additional-resources", (req, res) => {
+      const actualPage = "/primary-source-sets/set/additional-resources";
+      const params = {
+        set: req.params.set
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     server.get("/primary-source-sets/:set/sources/:source", (req, res) => {
       const actualPage = "/primary-source-sets/set/sources";
       const params = {

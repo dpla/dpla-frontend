@@ -111,6 +111,10 @@
   margin-bottom: 0;
 }
 
+.markdownWrapper a {
+  color: bambooOrange !important;
+}
+
 .ul {
   list-style: initial;
   margin-bottom: 10px;

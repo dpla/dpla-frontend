@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { markdown } from "markdown";
 
 import PDFViewer from "./PDFViewer";
@@ -108,17 +107,21 @@ const ContentAndMetadata = ({ source }) => {
                     <span className={classNames.linkText}>Item source</span>
                   </a>
                 </div>}
-              <div className={classNames.linkWrapper}>
-                {/* TODO: hook this up to link to new site once possible */}
-                <a href={getDPLALink(source)} className={classNames.sourceLink}>
-                  <img
-                    alt=""
-                    src={external}
-                    className={classNames.externalIcon}
-                  />
-                  <span className={classNames.linkText}>DPLA record</span>
-                </a>
-              </div>
+              {source.mainEntity[0]["dct:references"] &&
+                <div className={classNames.linkWrapper}>
+                  {/* TODO: hook this up to link to new site once possible */}
+                  <a
+                    href={getDPLALink(source)}
+                    className={classNames.sourceLink}
+                  >
+                    <img
+                      alt=""
+                      src={external}
+                      className={classNames.externalIcon}
+                    />
+                    <span className={classNames.linkText}>DPLA record</span>
+                  </a>
+                </div>}
             </div>
             <div className={classNames.tipsForStudents}>
               <h3 className={classNames.tipsForStudentsHeader}>

@@ -14,6 +14,7 @@ class ResourcesTabs extends React.Component {
         <div className={classNames.tabsWrapper}>
           <div className={[classNames.tabs, module].join(" ")}>
             <Link
+              prefetch
               href={`/primary-source-sets/set?set=${route.query.set}`}
               as={`/primary-source-sets/${route.query.set}`}
             >
@@ -26,7 +27,13 @@ class ResourcesTabs extends React.Component {
                 Source Set
               </a>
             </Link>
-            <Link onClick={() => this.onTabChange("additionalResources")}>
+            <Link
+              prefetch
+              href={`/primary-source-sets/set/additional-resources?set=${route
+                .query.set}`}
+              as={`/primary-source-sets/${route.query
+                .set}/additional-resources`}
+            >
               <a
                 className={[
                   classNames.tab,
@@ -38,6 +45,7 @@ class ResourcesTabs extends React.Component {
             </Link>
             {!route.query.studentMode &&
               <Link
+                prefetch
                 href={`/primary-source-sets/set/teaching-guide?set=${route.query
                   .set}`}
                 as={`/primary-source-sets/${route.query.set}/teaching-guide`}
