@@ -39,7 +39,7 @@ const getDomainFromThumbnail = thumbnailUrl =>
 const ContentAndMetadata = ({ source }) => {
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   // some file types aren't stored with full domain
-  const fullContentUrl = source.thumbnailUrl
+  const fullContentUrl = source.thumbnailUrl && !/^\/\//.test(contentUrl)
     ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
     : `https:${contentUrl}`;
   const viewerComponent = getViewerComponent(fileFormat, fullContentUrl);
