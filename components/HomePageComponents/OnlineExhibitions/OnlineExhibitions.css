@@ -1,6 +1,6 @@
 
 @value romanceGray, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from "../../../css/colors.css";
-@value mediumRem, smallRem from "../../../breakpoints.css";
+@value mediumRem, smallRem from "../../../css/breakpoints.css";
 
 .onlineExhibitions {
   margin: auto;
