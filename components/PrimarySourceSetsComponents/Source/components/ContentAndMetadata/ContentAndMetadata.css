@@ -1,13 +1,17 @@
-@value iceBlue, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value iceBlue, pampasBrown, curiousBlue, visualBrown from "../../../../../css/colors.css";
 
 .contentAndMetadata {
-  display: flex;
   padding-top: 23px;
 }
 
-.content {
+.contentWrapper {
   flex: 5;
   margin-right: 20px;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: flex-start;
 }
 
 .contentHeader {
@@ -15,11 +19,10 @@
   font-weight: 600;
   line-height: 2rem;
   margin-bottom: 26px;
+  max-width: 70%;
 }
 
-.imageWrapper {
-  background-color: black;
-  text-align: center;
+.content {
   margin-bottom: 20px;
 }
 
@@ -28,9 +31,16 @@
   line-height: 1.1875rem;
 }
 
+.description p {
+  margin-bottom: 20px;
+}
+
+.description p:last-child {
+  margin-bottom: 0;
+}
+
 .metadata {
   flex: 2;
-  margin-top: 90px;
 }
 
 .sourceInfo {
@@ -52,9 +62,10 @@
   color: curiousBlue;
   background-color: iceBlue;
   margin-bottom: 15px;
+  text-align: center;
 }
 
-.courtesyOf {
+.courtesyOf p {
   opacity: 0.65;
   font-size: 0.875rem;
   line-height: 1.125rem;
@@ -139,4 +150,42 @@
 
 .tip:last-child {
   margin-bottom: 0;
+}
+
+.zoomableImageViewer {
+  width: 100%;
+  height: 475px;
+  background-color: black;
+}
+
+.noscriptContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.noscriptImg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.audioPlayerWrapper {
+  width: 100%;
+  padding: 70px;
+  background-color: pampasBrown;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  align-self: center;
+}
+
+.audioPlayer {
+  width: 100%;
+}
+
+.videoPlayer {
+  width: 100%;
 }

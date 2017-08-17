@@ -120,6 +120,10 @@ app
   });
 
 function renderAndCache(req, res, pagePath, queryParams) {
+  if (dev) {
+    app.render(req, res, pagePath, queryParams);
+    return;
+  }
   // If we have a page in the cache, let's serve it
   if (ssrCache.has(req.url)) {
     console.log(`CACHE HIT: ${req.url}`);

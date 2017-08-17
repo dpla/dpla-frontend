@@ -79,8 +79,14 @@
 }
 
 :global(.Select-value-label) {
-  position: relative;
-  top: 3px;
+
+}
+
+:global .Select-value {
+  margin-top: 2px;
+  padding-right: 30px !important;
+  display: inline-block;
+  overflow: hidden;
 }
 
 :global(.Select-arrow-zone)::after {

@@ -18,6 +18,14 @@
   overflow: hidden;
 }
 
+.breadcrumbLink p,
+.activeBreadcrumb p {
+  max-width: 215px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .chevron {
   height: 9px;
   padding: 0 11px;

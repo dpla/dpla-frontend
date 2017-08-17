@@ -8,6 +8,7 @@
     "lru-cache": "^4.1.1",
     "markdown": "^0.5.0",
     "next": "^3.0.3",
+    "openseadragon": "2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-masonry-component": "^5.0.7",
@@ -66,7 +67,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js"
   },

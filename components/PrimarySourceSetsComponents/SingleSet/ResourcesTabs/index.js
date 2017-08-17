@@ -8,7 +8,6 @@ const { module } = utilClassNames;
 
 class ResourcesTabs extends React.Component {
   render() {
-    console.log("query", this.props.route.query);
     const { currentTab, route } = this.props;
     return (
       <div className={classNames.wrapper}>

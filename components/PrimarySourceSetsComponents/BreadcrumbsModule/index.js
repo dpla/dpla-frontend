@@ -1,4 +1,5 @@
 import React from "react";
+import { markdown } from "markdown";
 
 import Breadcrumbs from "../../Breadcrumbs";
 import StudentMode from "./components/StudentMode";
@@ -11,7 +12,13 @@ const { module } = utilClassNames;
 const BreadcrumbsModule = ({ route, breadcrumbs }) =>
   <div className={classNames.wrapper}>
     <div className={[module, classNames.breadcrumbsModule].join(" ")}>
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <Breadcrumbs
+        breadcrumbs={breadcrumbs.map(breadcrumb =>
+          Object.assign({}, breadcrumb, {
+            title: markdown.toHTML(breadcrumb.title)
+          })
+        )}
+      />
       {route.query.studentMode && <StudentMode route={route} />}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

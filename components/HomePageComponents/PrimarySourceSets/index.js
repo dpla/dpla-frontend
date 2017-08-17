@@ -54,7 +54,7 @@ const PrimarySourceSets = (/* data */) =>
     <div className={classNames.primarySourceSets}>
       <div className={classNames.headerAndBrowse}>
         <h1 className={classNames.header}>Primary Source Sets for Education</h1>
-        <Link href="">
+        <Link href="/primary-source-sets">
           <a className={classNames.browse}>
             <span>Browse all Sets</span>
             <img
