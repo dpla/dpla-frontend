@@ -50,7 +50,7 @@ const ContentAndMetadata = ({ source }) => {
               {/* TODO: hook these up */}
               <button className={classNames.button}>Cite this item</button>
               <button className={classNames.button}>Download</button>
-              <p
+              <div
                 className={classNames.courtesyOf}
                 dangerouslySetInnerHTML={{
                   __html: markdown.toHTML(
