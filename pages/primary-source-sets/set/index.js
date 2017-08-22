@@ -35,7 +35,7 @@ const SingleSet = props =>
         route={props.url}
       />
     </ResourcesTabs>
-    <RelatedSets />
+    <RelatedSets sets={props.set.isRelatedTo.slice(0, 4)} />
     <PSSFooter />
   </MainLayout>;
 
