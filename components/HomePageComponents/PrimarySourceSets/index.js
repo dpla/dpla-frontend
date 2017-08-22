@@ -1,35 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
+import { markdown } from "markdown";
 
 import { stylesheet, classNames } from "./PrimarySourceSets.css";
 import breakpoints from "css/breakpoints.css";
 
 const smallChevron = "static/images/chevron-thick-blue.svg";
 const largeChevron = "static/images/chevron-thin.svg";
-
-const mockSourceSets = [
-  {
-    text: "Road to Revolution",
-    imageUrl: "http://lorempixel.com/334/245/food",
-    id: 0
-  },
-  {
-    text: "Early Chinese Immigration to the U.S.",
-    imageUrl: "http://lorempixel.com/334/246/food",
-    id: 1
-  },
-  {
-    text: "Mexican Labor and World War II",
-    imageUrl: "http://lorempixel.com/334/247/food",
-    id: 2
-  },
-  {
-    text: "The Impact of Television on News Media",
-    imageUrl: "http://lorempixel.com/334/248/food",
-    id: 2
-  }
-];
 
 const NextArrow = ({ onClick, className }) =>
   <button className={classNames.nextArrow} onClick={onClick}>
@@ -49,7 +27,7 @@ const PrevArrow = ({ onClick, className }) =>
     />
   </button>;
 
-const PrimarySourceSets = (/* data */) =>
+const PrimarySourceSets = ({ sourceSets }) =>
   <div className={classNames.wrapper}>
     <div className={classNames.primarySourceSets}>
       <div className={classNames.headerAndBrowse}>
@@ -85,14 +63,22 @@ const PrimarySourceSets = (/* data */) =>
           }
         ]}
       >
-        {mockSourceSets.map(({ text, imageUrl, id }) =>
-          <div className={classNames.item}>
-            <img alt={text} className={classNames.itemImg} src={imageUrl} />
-            <p className={classNames.itemText}>
-              {text}
-            </p>
-          </div>
-        )}
+        {sourceSets.map(set => {
+          const { name, thumbnailUrl } = set;
+          return (
+            <div className={classNames.item}>
+              <img
+                alt={name}
+                className={classNames.itemImg}
+                src={thumbnailUrl}
+              />
+              <div
+                dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
+                className={classNames.itemText}
+              />
+            </div>
+          );
+        })}
       </Slider>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
