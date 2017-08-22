@@ -29,7 +29,9 @@ const SingleSet = props =>
     <SourceSetInfo set={props.set} />
     <ResourcesTabs route={props.url} currentTab="sourceSet" set={props.set}>
       <SourceSetSources
-        sources={props.set.hasPart.slice(1)}
+        sources={props.set.hasPart.filter(
+          item => item.disambiguatingDescription === "source"
+        )}
         route={props.url}
       />
     </ResourcesTabs>

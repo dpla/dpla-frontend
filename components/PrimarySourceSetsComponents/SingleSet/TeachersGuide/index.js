@@ -15,12 +15,26 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, module].join(" ")}>
       <div className={classNames.content}>
-        <div
-          className={classNames.markdownWrapper}
-          dangerouslySetInnerHTML={{
-            __html: markdown.toHTML(teachingGuide.text)
-          }}
-        />
+        <div className={classNames.markdownWrapper}>
+          <h2 className={classNames.contentHeader}>Discussion questions</h2>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: markdown.toHTML(
+                teachingGuide.hasPart.find(item => item.name === "Questions")
+                  .text
+              )
+            }}
+          />
+          <h2 className={classNames.contentHeader}>Classroom activities</h2>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: markdown.toHTML(
+                teachingGuide.hasPart.find(item => item.name === "Activity")
+                  .text
+              )
+            }}
+          />
+        </div>
         <div className={classNames.aboutThis}>
           <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
           <div>
@@ -35,7 +49,9 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
             >
               <a className={classNames.aboutThisLink}>
                 <span
-                  dangerouslySetInnerHTML={{ __html: markdown.toHTML(setName) }}
+                  dangerouslySetInnerHTML={{
+                    __html: markdown.toHTML(teachingGuide.isPartOf.name)
+                  }}
                 />
               </a>
             </Link>, in the classroom. It offers discussion questions, classroom

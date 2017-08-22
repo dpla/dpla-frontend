@@ -44,7 +44,11 @@ SingleSet.getInitialProps = async ({ query }) => {
   );
 
   const set = await setRes.json();
-  const teachingGuideRes = await fetch(`${set.hasPart[0]["@id"]}.json`);
+  const teachingGuideRes = await fetch(
+    `${set.hasPart.find(item => item.disambiguatingDescription === "guide")[
+      "@id"
+    ]}.json`
+  );
   const teachingGuide = await teachingGuideRes.json();
   return { set, teachingGuide };
 };
