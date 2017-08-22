@@ -40,7 +40,9 @@ const SingleSet = props =>
       <div
         className={[classNames.markdownWrapper, module].join(" ")}
         dangerouslySetInnerHTML={{
-          __html: markdown.toHTML(`1. [${props.set.text.split("1. [")[1]}`)
+          __html: markdown.toHTML(
+            props.set.hasPart.find(item => item.name === "Resources").text
+          )
         }}
       />
     </ResourcesTabs>
