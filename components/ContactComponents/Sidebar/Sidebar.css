@@ -1,0 +1,31 @@
+@value bambooOrange from "../../../css/colors.css";
+
+.link {
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.divider {
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  margin: 18px 0;
+}
+
+.selected {
+  font-weight: bold;
+  position: relative;
+}
+
+.selected::after {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  top: 14px;
+  left: -10px;
+  background-color: bambooOrange;
+  border-radius: 50%;
+}

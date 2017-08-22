@@ -1,0 +1,22 @@
+@value bambooOrange from "../../../css/colors.css";
+
+.header {
+  font-size: 3.4375rem;
+  line-height: 3.5625rem;
+  font-family: "Lora";
+  font-weight: normal;
+  margin-bottom: 56px;
+}
+
+.instructions {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+}
+
+.divider {
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  margin: 18px 0;
+}
