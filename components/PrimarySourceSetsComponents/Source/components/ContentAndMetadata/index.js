@@ -23,14 +23,14 @@ const getDPLALink = source =>
     ref => ref["@type"] === "ore:Aggregation"
   )[0]["@id"];
 
-const getViewerComponent = (fileFormat, pathToFile) => {
-  if (fileFormat === "pdf") {
+const getViewerComponent = (fileFormat, type, pathToFile) => {
+  if (type === "MediaObject") {
     return <PDFViewer pathToFile={pathToFile} />;
-  } else if (/png|jpg|tiff|svg|gif/.test(fileFormat)) {
+  } else if (type === "ImageObject") {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
-  } else if (/ogg|mp3|m4a/.test(fileFormat)) {
+  } else if (type === "AudioObject") {
     return <AudioPlayer pathToFile={pathToFile} fileFormat={fileFormat} />;
-  } else if (/|mp4|webm/.test(fileFormat)) {
+  } else if (type === "VideoObject") {
     return <VideoPlayer pathToFile={pathToFile} fileFormat={fileFormat} />;
   } else {
     return <div />;
@@ -41,13 +41,14 @@ const getDomainFromThumbnail = thumbnailUrl =>
   /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
 const ContentAndMetadata = ({ source }) => {
+  const type = source.mainEntity[0]["@type"];
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   // some file types aren't stored with full domain
   // so we determine what the full domain is here
   const fullContentUrl = source.thumbnailUrl && !/^\/\//.test(contentUrl)
     ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
     : `https:${contentUrl}`;
-  const viewerComponent = getViewerComponent(fileFormat, fullContentUrl);
+  const viewerComponent = getViewerComponent(fileFormat, type, fullContentUrl);
 
   return (
     <div className={classNames.wrapper}>
@@ -78,14 +79,15 @@ const ContentAndMetadata = ({ source }) => {
               <a href={fullContentUrl} download className={classNames.button}>
                 Download
               </a>
-              <div
-                className={classNames.courtesyOf}
-                dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(
-                    source.mainEntity[0]["dct:provenance"].name
-                  )
-                }}
-              />
+              {source.mainEntity[0]["dct:provenance"] &&
+                <div
+                  className={classNames.courtesyOf}
+                  dangerouslySetInnerHTML={{
+                    __html: markdown.toHTML(
+                      source.mainEntity[0]["dct:provenance"].name
+                    )
+                  }}
+                />}
               {source.copyright &&
                 <div className={classNames.copyrightInfo}>
                   <img src="" alt="" className={classNames.copyrightIcon} />

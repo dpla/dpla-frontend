@@ -26,6 +26,20 @@ class Filters extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.route.query.order !== this.state.order ||
+      nextProps.route.query.timePeriod !== this.state.timePeriod ||
+      nextProps.route.query.subject !== this.state.subject
+    ) {
+      this.setState({
+        sortValue: nextProps.route.query.order || "recently_added",
+        timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
+        subjectValue: nextProps.route.query.subject || "all"
+      });
+    }
+  }
+
   onSortChange = val => {
     Router.push({
       pathname: "/primary-source-sets",

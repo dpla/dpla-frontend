@@ -5,7 +5,6 @@ import MainLayout from "../../../components/MainLayout";
 import PSSFooter from "../../../components/PrimarySourceSetsComponents/PSSFooter";
 import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
-import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleSet/RelatedSets";
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
@@ -34,7 +33,6 @@ const SingleSet = props =>
         route={props.url}
       />
     </ResourcesTabs>
-    <RelatedSets />
     <PSSFooter />
   </MainLayout>;
 
@@ -44,7 +42,11 @@ SingleSet.getInitialProps = async ({ query }) => {
   );
 
   const set = await setRes.json();
-  const teachingGuideRes = await fetch(`${set.hasPart[0]["@id"]}.json`);
+  const teachingGuideRes = await fetch(
+    `${set.hasPart.find(item => item.disambiguatingDescription === "guide")[
+      "@id"
+    ]}.json`
+  );
   const teachingGuide = await teachingGuideRes.json();
   return { set, teachingGuide };
 };

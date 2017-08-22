@@ -37,7 +37,9 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
     />
     <ContentAndMetadata source={source} />
     <SourceCarousel
-      sources={set.hasPart.slice(1)}
+      sources={set.hasPart.filter(
+        item => item.disambiguatingDescription === "source"
+      )}
       currentSourceIdx={currentSourceIdx}
       route={url}
       set={set}

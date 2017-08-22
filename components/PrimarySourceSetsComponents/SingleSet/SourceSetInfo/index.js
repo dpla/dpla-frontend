@@ -41,7 +41,9 @@ const SourceSetInfo = set =>
         <div
           className={classNames.description}
           dangerouslySetInnerHTML={{
-            __html: markdown.toHTML(set.set.text.split("1. [")[0])
+            __html: markdown.toHTML(
+              set.set.hasPart.find(item => item.name === "Overview").text
+            )
           }}
         />
       </div>

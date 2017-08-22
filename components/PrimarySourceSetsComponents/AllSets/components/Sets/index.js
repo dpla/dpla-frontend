@@ -5,13 +5,17 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Sets.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
+import {
+  mapTimePeriodNameToSlug,
+  mapSubjectNameToSlug
+} from "../Filters/options";
 
 const { module } = utilClassNames;
 
 const Sets = ({ sets, route }) =>
   <div className={[module, classNames.setsWrapper].join(" ")}>
     <ul className={classNames.sets}>
-      {sets.map(set =>
+      {sets.itemListElement.map(set =>
         <li className={classNames.set}>
           <Link
             href={{
@@ -29,14 +33,14 @@ const Sets = ({ sets, route }) =>
           >
             <a>
               <img
-                alt={set.title}
-                src={set.image}
+                alt={set.name}
+                src={set.thumbnailUrl}
                 className={classNames.image}
               />
             </a>
           </Link>
           <p className={classNames.itemCount}>
-            {set.hasPart && set.hasPart.length}
+            {`${set.numberOfItems} Items`}
           </p>
           <Link
             href={`/primary-source-sets/set?set=${extractSourceSetSlug(
@@ -50,18 +54,49 @@ const Sets = ({ sets, route }) =>
               />
             </a>
           </Link>
-          <p className={classNames.subtitle}>
-            {set.subtitle}
-          </p>
+          <ul className={classNames.timePeriod}>
+            {set.about
+              .filter(
+                ({ disambiguatingDescription }) =>
+                  disambiguatingDescription === "Time Period"
+              )
+              .map((tag, i, tags) =>
+                <li className={classNames.tag}>
+                  <Link
+                    href={{
+                      pathname: "/primary-source-sets",
+                      query: { timePeriod: mapTimePeriodNameToSlug[tag.name] }
+                    }}
+                  >
+                    <a>
+                      {tag.name}
+                    </a>
+                  </Link>
+                  {i < tags.length - 1 && <span>, </span>}
+                </li>
+              )}
+          </ul>
           <ul className={classNames.tags}>
-            {set.tags.map((tag, i) =>
-              <li className={classNames.tag}>
-                <Link href="">
-                  {tag}
-                </Link>
-                {i < set.tags.length - 1 && <span>,&nbsp;</span>}
-              </li>
-            )}
+            {set.about
+              .filter(
+                ({ disambiguatingDescription }) =>
+                  disambiguatingDescription === "Subject"
+              )
+              .map((tag, i, tags) =>
+                <li className={classNames.tag}>
+                  <Link
+                    href={{
+                      pathname: "/primary-source-sets",
+                      query: { subject: mapSubjectNameToSlug[tag.name] }
+                    }}
+                  >
+                    <a>
+                      {tag.name.replace("&amp;", "&")}
+                    </a>
+                  </Link>
+                  {i < tags.length - 1 && <span>, </span>}
+                </li>
+              )}
           </ul>
         </li>
       )}
