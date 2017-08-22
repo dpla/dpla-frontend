@@ -63,7 +63,7 @@ export default () =>
         rel="stylesheet"
         href="https://unpkg.com/react-select/dist/react-select.css"
       />
-      <title>React App</title>
+      <title>DPLA</title>
     </Head>
     <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;
