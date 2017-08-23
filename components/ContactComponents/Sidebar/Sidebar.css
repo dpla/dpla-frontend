@@ -5,6 +5,10 @@
   line-height: 2rem;
 }
 
+.sidebar {
+  flex-shrink: 0;
+}
+
 .divider {
   height: 2px;
   background-color: rgba(0, 0, 0, 0.2);

@@ -3,7 +3,7 @@ import React from "react";
 import { classNames, stylesheet } from "./Sidebar.css";
 
 const Sidebar = () =>
-  <div>
+  <div className={classNames.sidebar}>
     <ul className={classNames.links}>
       <li className={classNames.link}>About Us</li>
       <li className={classNames.link}>FAQ</li>

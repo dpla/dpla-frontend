@@ -1,5 +1,11 @@
 @value bambooOrange from "../../../css/colors.css";
 
+.contactForm {
+  margin-bottom: 44px;
+  padding-bottom: 54px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
 .header {
   font-size: 3.4375rem;
   line-height: 3.5625rem;
@@ -11,6 +17,7 @@
 .instructions {
   font-size: 1.375rem;
   line-height: 1.75rem;
+  margin-bottom: 25px;
 }
 
 .divider {
@@ -19,4 +26,62 @@
   display: block;
   width: 100%;
   margin: 18px 0;
+}
+
+.submit {
+  background-color: bambooOrange;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  padding: 12px 49px;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.375rem;
+}
+
+.form :global(.mdc-textfield__input) {
+  width: 100%;
+  background-color: white;
+  border: 2px solid rgba(88, 79, 65, 0.15) !important;
+  border-radius: 2px;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  font-family: "Source Sans Pro";
+  padding: 27px 18px 9px;
+}
+
+.form label {
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  font-family: "Source Sans Pro";
+  bottom: 19px;
+  left: 20px;
+}
+
+.form :global(.mdc-textfield--multiline) label {
+  top: 15px;
+  left: 20px;
+}
+
+.form :global(.mdc-textfield) {
+  width: 100%;
+  margin: 0 0 14px !important;
+  height: 100% !important;
+}
+.form :global(.mdc-textfield__label--float-above) {
+  color: #0674A5 !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.0625rem;
+  font-weight: bold;
+  font-family: "Source Sans Pro";
+  text-transform: uppercase;
+  transform: translateY(-100%);
+}
+
+.form :global(.mdc-textfield--multiline .mdc-textfield__label--float-above) {
+  transform: translateY(-25%);
+}
+
+.form :global(.mdc-textfield--upgraded:not(.mdc-textfield--fullwidth):not(.mdc-textfield--box):not(.mdc-textfield--multiline):after) {
+  background-color: transparent;
 }

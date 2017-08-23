@@ -1,0 +1,42 @@
+@value bambooOrange, pampasBrown from "../../../css/colors.css";
+
+.header {
+  font-family: "Lora";
+  font-size: 1.625rem;
+  line-height: 2rem;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.contentTable {
+  background-color: pampasBrown;
+  padding: 40px 0 46px 42px;
+  width: 100%;
+}
+
+.tableHeading {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  opacity: 0.50;
+  font-weight: 600;
+  vertical-align: baseline;
+  width: 217px;
+}
+
+.tableItem {
+  vertical-align: baseline;
+  font-family: "Lora";
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.tableItem:first-child,
+.tableHeading:first-child {
+  padding-bottom: 36px;
+}
+
+.mailToLink {
+  border-bottom: 2px solid bambooOrange;
+  padding-bottom: 4px;
+}

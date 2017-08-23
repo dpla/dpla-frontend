@@ -5,9 +5,9 @@ import Header from "./components/Header";
 import HeaderSearchBar from "./components/HeaderSearchBar";
 import Footer from "./components/Footer";
 
-const MainLayout = ({ children, hideSearchBar }) =>
+const MainLayout = ({ children, hideSearchBar, headLinks }) =>
   <div>
-    <Head />
+    <Head additionalLinks={headLinks} />
     <Header />
     {!hideSearchBar && <HeaderSearchBar />}
     {children}
