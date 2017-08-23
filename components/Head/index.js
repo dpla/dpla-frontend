@@ -64,7 +64,7 @@ export default ({ additionalLinks }) =>
         href="https://unpkg.com/react-select/dist/react-select.css"
       />
       {additionalLinks}
-      <title>DPLA</title>
+      <title>Digital Public Library of America</title>
     </Head>
     <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;
