@@ -1,0 +1,16 @@
+@value pampasBrown from "../../../css/colors.css";
+
+.wrapper {
+  width: 100%;
+  background-color: pampasBrown;
+  box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.resultsCount {
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+}
+
+.resultsCountQuery {
+  font-weight: bold;
+}
