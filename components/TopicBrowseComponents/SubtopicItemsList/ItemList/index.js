@@ -2,8 +2,8 @@ import React from "react";
 
 import { classNames, stylesheet } from "./ItemList.css";
 
-import ListView from "../ListView";
-import GridView from "../GridView";
+import ListView from "components/shared/ListView";
+import GridView from "components/shared/GridView";
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
