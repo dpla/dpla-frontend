@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { stylesheet as utilStylesheet } from "css/utils.css";
 
-export default () =>
+export default ({ additionalLinks }) =>
   <div>
     <style jsx global>{`
       body {
@@ -63,6 +63,7 @@ export default () =>
         rel="stylesheet"
         href="https://unpkg.com/react-select/dist/react-select.css"
       />
+      {additionalLinks}
       <title>DPLA</title>
     </Head>
     <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
