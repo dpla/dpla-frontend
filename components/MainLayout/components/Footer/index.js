@@ -20,7 +20,11 @@ const Footer = () =>
               <li>FAQ</li>
               <li>Who Uses DPLA?</li>
               <li>Terms &amp; Conditions</li>
-              <li>Contact Us</li>
+              <li>
+                <Link href="/contact">
+                  <a>Contact Us</a>
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
