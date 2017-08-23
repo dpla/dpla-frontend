@@ -34,7 +34,9 @@ const Footer = () =>
                 <Link href="/search">
                   <a>Search</a>
                 </Link>
-              </li>              <li>
+              </li>{" "}
+                          {" "}
+              <li>
                 <Link href="/exhibitions">
                   <a>Exhibitions</a>
                 </Link>

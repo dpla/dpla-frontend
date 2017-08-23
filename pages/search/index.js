@@ -10,7 +10,7 @@ import {
 const Search = ({ url }) =>
   <MainLayout>
     <div className={classNames.wrapper}>
-      <OptionsBar />
+      <OptionsBar route={url} />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
