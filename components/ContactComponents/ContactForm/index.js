@@ -12,7 +12,7 @@ const ContactForm = () =>
     <form className={classNames.form}>
       <Textfield floatingLabel="Your name" value="" />
       <Textfield floatingLabel="Your email" value="" />
-      <Textfield multiline floatingLabel="Your message" value="" />
+      <Textfield multiline rows="5" floatingLabel="Your message" value="" />
       <input className={classNames.submit} type="submit" value="Submit" />
     </form>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
