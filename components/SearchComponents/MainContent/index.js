@@ -5,19 +5,18 @@ import GridView from "components/shared/GridView";
 import ListView from "components/shared/ListView";
 import Sidebar from "./Sidebar";
 import { classNames as utilClassNames } from "css/utils.css";
-import items from "components/TopicBrowseComponents/SubtopicItemsList/mockItems";
 const { module } = utilClassNames;
 
 const view = "list";
 
-const MainContent = () =>
+const MainContent = ({ results }) =>
   <div className={classNames.wrapper}>
     <div className={[module, classNames.mainContent].join(" ")}>
       <Sidebar />
       <div className={classNames.listWrapper}>
         {view === "grid"
-          ? <GridView items={items} />
-          : <ListView items={items} />}
+          ? <GridView items={results} />
+          : <ListView items={results} />}
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

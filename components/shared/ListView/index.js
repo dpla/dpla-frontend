@@ -9,7 +9,7 @@ const ListView = ({ items }) =>
     {items.map(item =>
       <li className={classNames.listItem}>
         <div className={classNames.imageWrapper}>
-          <img src={item.image} alt={item.title} className={classNames.image} />
+          <img src={item.thumbnailUrl} alt="" className={classNames.image} />
         </div>
         <div className={classNames.itemInfo}>
           <span className={classNames.itemTitle}>
@@ -18,9 +18,15 @@ const ListView = ({ items }) =>
           <span className={classNames.itemType}>
             {item.type}
           </span>
-          <span className={classNames.itemAuthor}>
-            {item.author}
-          </span>
+          {(item.date || item.creator) &&
+            <span className={classNames.itemAuthorAndDate}>
+              {item.date && <span>{item.date.displayDate}</span>}
+              {item.date &&
+                item.date.displayDate &&
+                item.creator &&
+                <span> · </span>}
+              {item.creator && <span>{item.creator}</span>}
+            </span>}
           <span className={classNames.itemDescription}>
             {item.description}
           </span>

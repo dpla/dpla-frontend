@@ -3,7 +3,7 @@ import { classNames, stylesheet } from "./OptionsBar.css";
 import Select from "react-select";
 import Router from "next/router";
 
-import { sortOptions, subjectOptions } from "./options";
+import { sortOptions, pageSizeOptions } from "./options";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
@@ -17,7 +17,7 @@ class OptionsBar extends React.Component {
     this.setState({
       sortValue: this.props.route.query.order || "recently_added",
       timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
-      subjectValue: this.props.route.query.subject || "all"
+      pageSizeValue: this.props.route.query.page_size || "10"
     });
   }
 
@@ -25,36 +25,27 @@ class OptionsBar extends React.Component {
     if (
       nextProps.route.query.order !== this.state.order ||
       nextProps.route.query.timePeriod !== this.state.timePeriod ||
-      nextProps.route.query.subject !== this.state.subject
+      nextProps.route.query.page_size !== this.state.page_size
     ) {
       this.setState({
         sortValue: nextProps.route.query.order || "recently_added",
         timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
-        subjectValue: nextProps.route.query.subject || "all"
+        pageSizeValue: nextProps.route.query.page_size || "10"
       });
     }
   }
 
-  onSortChange = val => {
+  onPageSizeChange = val => {
     Router.push({
-      pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { order: val.value })
+      pathname: "/search",
+      query: Object.assign({}, this.props.route.query, { page_size: val.label })
     });
   };
 
-  onSubjectChange = val => {
+  onSortByChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { subject: val.value })
-    });
-  };
-
-  onTimePeriodChange = val => {
-    Router.push({
-      pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
-        timePeriod: val.value
-      })
+      query: Object.assign({}, this.props.route.query, { sortBy: val.value })
     });
   };
 
@@ -74,12 +65,12 @@ class OptionsBar extends React.Component {
               <Select
                 clearable={false}
                 searchable={false}
-                value={this.state.subjectValue}
-                onChange={this.onSubjectChange}
+                value={this.state.pageSizeValue}
+                onChange={this.onPageSizeChange}
                 className={[classNames.select, classNames.itemsPerPage].join(
                   " "
                 )}
-                options={subjectOptions}
+                options={pageSizeOptions}
               />
             </div>
             <div className={classNames.optionWrapper}>
