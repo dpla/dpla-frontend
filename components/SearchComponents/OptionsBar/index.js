@@ -3,7 +3,12 @@ import { classNames, stylesheet } from "./OptionsBar.css";
 import Select from "react-select";
 import Router from "next/router";
 
-import { sortOptions, pageSizeOptions } from "./options";
+import {
+  sortOptions,
+  pageSizeOptions,
+  mapSortOptionsToParams,
+  getSortOptionFromParams
+} from "./options";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
@@ -14,23 +19,34 @@ const view = "list";
 
 class OptionsBar extends React.Component {
   componentWillMount() {
+    const { sort_by, sort_order, page_size } = this.props.route.query;
     this.setState({
-      sortValue: this.props.route.query.order || "recently_added",
-      timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
-      pageSizeValue: this.props.route.query.page_size || "10"
+      sortValue: getSortOptionFromParams({
+        sortBy: sort_by || "",
+        sortOrder: sort_order || ""
+      }),
+      pageSizeValue: page_size || "10"
     });
   }
 
   componentWillReceiveProps(nextProps) {
+    const { sort_by, sort_order, page_size } = this.props.route.query;
+    const {
+      sort_by: next_sort_by,
+      sort_order: next_sort_order,
+      page_size: next_page_size
+    } = nextProps.route.query;
     if (
-      nextProps.route.query.order !== this.state.order ||
-      nextProps.route.query.timePeriod !== this.state.timePeriod ||
-      nextProps.route.query.page_size !== this.state.page_size
+      next_sort_by !== sort_by ||
+      next_sort_order !== sort_order ||
+      next_page_size !== page_size
     ) {
       this.setState({
-        sortValue: nextProps.route.query.order || "recently_added",
-        timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
-        pageSizeValue: nextProps.route.query.page_size || "10"
+        sortValue: getSortOptionFromParams({
+          sortBy: next_sort_by || "",
+          sortOrder: next_sort_order || ""
+        }),
+        pageSizeValue: next_page_size || "10"
       });
     }
   }
@@ -42,10 +58,13 @@ class OptionsBar extends React.Component {
     });
   };
 
-  onSortByChange = val => {
+  onSortChange = val => {
     Router.push({
-      pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { sortBy: val.value })
+      pathname: "/search",
+      query: Object.assign({}, this.props.route.query, {
+        sort_by: mapSortOptionsToParams[val.value].sort_by,
+        sort_order: mapSortOptionsToParams[val.value].sort_order
+      })
     });
   };
 
@@ -54,8 +73,10 @@ class OptionsBar extends React.Component {
       <div className={classNames.wrapper}>
         <div className={[module, classNames.optionsBar].join(" ")}>
           <p className={classNames.resultsCount}>
-            <span>106,703 results for </span>
-            <span className={classNames.resultsCountQuery}>new york</span>
+            <span>{this.props.itemCount} results for </span>
+            <span className={classNames.resultsCountQuery}>
+              {this.props.route.query.q}
+            </span>
           </p>
           <div className={classNames.options}>
             <div className={classNames.optionWrapper}>

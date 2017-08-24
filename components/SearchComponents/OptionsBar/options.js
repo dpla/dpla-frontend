@@ -1,9 +1,3 @@
-export const sortOptions = [
-  { value: "recently_added", label: "Recently Added" },
-  { value: "chronology_asc", label: "Date Added Asc." },
-  { value: "chronology_desc", label: "Date Added Desc." }
-];
-
 export const pageSizeOptions = [
   { value: "10", label: "10" },
   { value: "20", label: "20" },
@@ -11,46 +5,43 @@ export const pageSizeOptions = [
   { value: "100", label: "100" }
 ];
 
-export const timePeriodOptions = [
-  { value: "all-time-periods", label: "All Time Periods" },
-  {
-    value: "three-worlds-meet-beginnings-to-1620",
-    label: "Three Worlds Meet (Beginnings to 1620)"
-  },
-  {
-    value: "colonization-and-settlement-1585-1763",
-    label: "Colonization and Settlement (1585-1763)"
-  },
-  {
-    value: "revolution-and-the-new-nation-1754-1820s",
-    label: "Revolution and the New Nation (1754-1820s)"
-  },
-  {
-    value: "expansion-and-reform-1801-1861",
-    label: "Expansion and Reform (1801-1861)"
-  },
-  {
-    value: "civil-war-and-reconstruction-1850-1877",
-    label: "Civil War and Reconstruction (1850-1877)"
-  },
-  {
-    value: "the-development-of-the-industrial-united-states-1870-1900",
-    label: "The Development of the Industrial United States (1870-1900)"
-  },
-  {
-    value: "the-emergence-of-modern-america-1890-1930",
-    label: "The Emergence of Modern America (1890-1930)"
-  },
-  {
-    value: "the-great-depression-and-world-war-ii-1929-1945",
-    label: "The Great Depression and World War II (1929-1945)"
-  },
-  {
-    value: "postwar-united-states-1945-to-early-1970s",
-    label: "Postwar United States (1945 to early 1970s)"
-  },
-  {
-    value: "contemporary-united-states-1968-to-the-present",
-    label: "Contemporary United States (1968 to the present)"
-  }
+export const sortOptions = [
+  { value: "relevance", label: "Relevance" },
+  { value: "a_to_z", label: "A–Z" },
+  { value: "z_to_a", label: "Z-A" },
+  { value: "old_to_new", label: "Oldest to Newest" },
+  { value: "new_to_old", label: "Newest to Oldest" }
 ];
+
+export const mapSortOptionsToParams = {
+  a_to_z: {
+    sort_by: "title",
+    sort_order: "asc"
+  },
+  z_to_a: {
+    sort_by: "title",
+    sort_order: "desc"
+  },
+  old_to_new: {
+    sort_by: "created",
+    sort_order: "asc"
+  },
+  new_to_old: {
+    sort_by: "title",
+    sort_order: "asc"
+  },
+  relevance: {
+    sort_by: "",
+    sort_order: ""
+  }
+};
+
+export const getSortOptionFromParams = ({ sortBy, sortOrder }) => {
+  if (sortBy === "created") {
+    return sortOrder === "asc" ? "old_to_new" : "new_to_old";
+  } else if (sortBy === "title") {
+    return sortOrder === "asc" ? "a_to_z" : "z_to_a";
+  } else {
+    return "relevance";
+  }
+};

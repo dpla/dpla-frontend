@@ -11,7 +11,7 @@ import {
 const Search = ({ url, results }) =>
   <MainLayout>
     <div className={classNames.wrapper}>
-      <OptionsBar route={url} />
+      <OptionsBar route={url} itemCount={results.count} />
       <MainContent
         route={url}
         results={results.docs.map(doc =>
@@ -31,8 +31,15 @@ const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 Search.getInitialProps = async ({ query }) => {
   const q = query.q || "";
   const page_size = query.page_size || 20;
+  let sort_by = "";
+  if (query.sort_by === "title") {
+    sort_by = "sourceResource.title";
+  } else if (query.sort_by === "created") {
+    sort_by = "sourceResource.date.begin";
+  }
+  const sort_order = query.sort_order || "";
   const res = await fetch(
-    `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&api_key=${API_KEY}`
+    `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}`
   );
 
   const json = await res.json();
