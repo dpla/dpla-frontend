@@ -73,10 +73,14 @@ class OptionsBar extends React.Component {
       <div className={classNames.wrapper}>
         <div className={[module, classNames.optionsBar].join(" ")}>
           <p className={classNames.resultsCount}>
-            <span>{this.props.itemCount} results for </span>
-            <span className={classNames.resultsCountQuery}>
-              {this.props.route.query.q}
-            </span>
+            <span>{this.props.itemCount} results </span>
+            {this.props.route.query.q &&
+              <span>
+                <span>for </span>
+                <span className={classNames.resultsCountQuery}>
+                  {this.props.route.query.q}
+                </span>
+              </span>}
           </p>
           <div className={classNames.options}>
             <div className={classNames.optionWrapper}>
