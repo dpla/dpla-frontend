@@ -5,7 +5,6 @@ import Grid from "react-masonry-component";
 import { classNames, stylesheet } from "./GridView.css";
 
 const GridView = ({ items }) =>
-  console.dir(items[0]) ||
   <div className={classNames.wrapper}>
     <Grid
       elementType="ul"

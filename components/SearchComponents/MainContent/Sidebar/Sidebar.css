@@ -3,3 +3,13 @@
   margin-right: 19px;
   flex-shrink: 0;
 }
+
+.facet {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.facetCount {
+  font-size: 0.8125rem;
+  color: #888888;
+}

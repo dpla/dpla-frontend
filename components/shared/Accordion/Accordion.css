@@ -4,6 +4,8 @@
   height: auto;
   background-color: visualBrown;
   padding: 9px 11px 13px;
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 .inactive .subitems {
@@ -27,6 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: 600;
 }
 
 .inactive:last-of-type .itemHeader {

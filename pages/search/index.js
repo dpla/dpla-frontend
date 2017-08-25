@@ -14,6 +14,7 @@ const Search = ({ url, results }) =>
       <OptionsBar route={url} itemCount={results.count} />
       <MainContent
         route={url}
+        facets={results.facets}
         results={results.docs.map(doc =>
           Object.assign({}, doc.sourceResource, {
             thumbnailUrl: Array.isArray(doc.object)
@@ -29,6 +30,16 @@ const Search = ({ url, results }) =>
 
 const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 Search.getInitialProps = async ({ query }) => {
+  // TODO: clean this up
+  const facets = [
+    "sourceResource.type",
+    "sourceResource.subject.name",
+    "sourceResource.spatial.name",
+    "sourceResource.language.name",
+    "dataProvider",
+    "provider.name"
+  ];
+
   const q = query.q || "";
   const page_size = query.page_size || 20;
   let sort_by = "";
@@ -38,8 +49,20 @@ Search.getInitialProps = async ({ query }) => {
     sort_by = "sourceResource.date.begin";
   }
   const sort_order = query.sort_order || "";
+
+  const facetQueries = facets
+    .map(facet => (query[facet] ? `${[facet]}=${query[facet]}` : ""))
+    .filter(facet => facet !== "")
+    .join("&");
+
+  const toFetch = `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
+    ","
+  )}&${facetQueries}`;
+  console.log(toFetch);
   const res = await fetch(
-    `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}`
+    `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
+      ","
+    )}&${facetQueries}`
   );
 
   const json = await res.json();
