@@ -21,9 +21,16 @@ const GridView = ({ items }) =>
               <img
                 className={classNames.image}
                 src={item.thumbnailUrl}
-                alt={item.title}
+                alt=""
               />
-              <div className={classNames.hoverText}>{item.title}</div>
+              <p
+                className={[
+                  classNames.hoverText,
+                  classNames.blockWithText
+                ].join(" ")}
+              >
+                {item.title}
+              </p>
             </a>
           </Link>
         </li>

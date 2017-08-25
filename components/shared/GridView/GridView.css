@@ -29,6 +29,10 @@
   padding: 14px 15px 18px;
   left: 0;
   right: 0;
+  max-height: 93px;
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.125rem;
 }
 
 .gridItem:hover .hoverText {
