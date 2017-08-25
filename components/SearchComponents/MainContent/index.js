@@ -11,7 +11,13 @@ const MainContent = ({ results, route, facets }) =>
   <div className={classNames.wrapper}>
     <div className={[module, classNames.mainContent].join(" ")}>
       <Sidebar route={route} facets={facets} />
-      <div className={classNames.listWrapper}>
+      <div
+        className={
+          route.query.list_view === "grid"
+            ? classNames.gridWrapper
+            : classNames.listWrapper
+        }
+      >
         {route.query.list_view === "grid"
           ? <GridView items={results} />
           : <ListView items={results} />}
