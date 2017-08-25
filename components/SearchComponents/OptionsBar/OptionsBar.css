@@ -118,6 +118,7 @@
   padding: 7px 7px 5px;
   transform: rotate(180deg);
   background-color: white;
+  display: inline-block;
 }
 
 .listViewButton {
@@ -125,6 +126,7 @@
   padding: 7px 7px 5px;
   transform: rotate(180deg);
   background-color: white;
+  display: inline-block;
 }
 
 .viewButtonInactive.gridViewButton {

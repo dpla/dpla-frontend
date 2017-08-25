@@ -7,14 +7,12 @@ import Sidebar from "./Sidebar";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
-const view = "list";
-
-const MainContent = ({ results }) =>
+const MainContent = ({ results, route }) =>
   <div className={classNames.wrapper}>
     <div className={[module, classNames.mainContent].join(" ")}>
       <Sidebar />
       <div className={classNames.listWrapper}>
-        {view === "grid"
+        {route.query.list_view === "grid"
           ? <GridView items={results} />
           : <ListView items={results} />}
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { classNames, stylesheet } from "./OptionsBar.css";
 import Select from "react-select";
 import Router from "next/router";
@@ -14,8 +15,6 @@ const { module } = utilClassNames;
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
-
-const view = "list";
 
 class OptionsBar extends React.Component {
   componentWillMount() {
@@ -89,6 +88,7 @@ class OptionsBar extends React.Component {
               </h3>
               <Select
                 clearable={false}
+                instanceId="options-bar-select"
                 searchable={false}
                 value={this.state.pageSizeValue}
                 onChange={this.onPageSizeChange}
@@ -116,44 +116,52 @@ class OptionsBar extends React.Component {
                 Layout
               </h3>
               <div className={classNames.viewButtons}>
-                <button
-                  className={[
-                    classNames.listViewButton,
-                    view === "list"
-                      ? classNames.viewButtonActive
-                      : classNames.viewButtonInactive
-                  ].join(" ")}
-                  onClick={() => {
-                    if (view !== "list") {
-                      this.updateView("list");
-                    }
+                <Link
+                  href={{
+                    pathname: this.props.route.pathname,
+                    query: Object.assign({}, this.props.route.query, {
+                      list_view: "list"
+                    })
                   }}
                 >
-                  <img
-                    className={classNames.viewButtonIcon}
-                    src={listViewIcon}
-                    alt="List View"
-                  />
-                </button>
-                <button
-                  className={[
-                    classNames.gridViewButton,
-                    view === "grid"
-                      ? classNames.viewButtonActive
-                      : classNames.viewButtonInactive
-                  ].join(" ")}
-                  onClick={() => {
-                    if (view !== "grid") {
-                      this.updateView("grid");
-                    }
+                  <a
+                    className={[
+                      classNames.listViewButton,
+                      this.props.route.query.list_view === "grid"
+                        ? classNames.viewButtonInactive
+                        : classNames.viewButtonActive
+                    ].join(" ")}
+                  >
+                    <img
+                      className={classNames.viewButtonIcon}
+                      src={listViewIcon}
+                      alt="List View"
+                    />
+                  </a>
+                </Link>
+                <Link
+                  href={{
+                    pathname: this.props.route.pathname,
+                    query: Object.assign({}, this.props.route.query, {
+                      list_view: "grid"
+                    })
                   }}
                 >
-                  <img
-                    className={classNames.viewButtonIcon}
-                    src={gridViewIcon}
-                    alt="Grid View"
-                  />
-                </button>
+                  <a
+                    className={[
+                      classNames.gridViewButton,
+                      this.props.route.query.list_view === "grid"
+                        ? classNames.viewButtonActive
+                        : classNames.viewButtonInactive
+                    ].join(" ")}
+                  >
+                    <img
+                      className={classNames.viewButtonIcon}
+                      src={gridViewIcon}
+                      alt="Grid View"
+                    />
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

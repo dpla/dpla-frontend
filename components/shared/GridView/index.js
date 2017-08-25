@@ -15,13 +15,13 @@ const GridView = ({ items }) =>
       }}
     >
       {items.map(item =>
-        <li className={classNames.gridItem}>
-          <Link to={item.sourceUrl}>
+        <li key={item.thumbnailUrl} className={classNames.gridItem}>
+          <Link href={item.sourceUrl}>
             <a className={classNames.link}>
               <img
                 className={classNames.image}
-                src={item.image}
-                alt={item.description}
+                src={item.thumbnailUrl}
+                alt={item.name}
               />
             </a>
           </Link>
