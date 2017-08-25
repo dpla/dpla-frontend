@@ -88,7 +88,7 @@ class OptionsBar extends React.Component {
               </h3>
               <Select
                 clearable={false}
-                instanceId="options-bar-select"
+                instanceId="options-bar-page-size"
                 searchable={false}
                 value={this.state.pageSizeValue}
                 onChange={this.onPageSizeChange}
@@ -105,6 +105,7 @@ class OptionsBar extends React.Component {
               <Select
                 clearable={false}
                 searchable={false}
+                instanceId="options-bar-sort-by"
                 value={this.state.sortValue}
                 className={[classNames.select, classNames.sortBy].join(" ")}
                 onChange={this.onSortChange}

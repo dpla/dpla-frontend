@@ -17,4 +17,20 @@
 
 .link {
   display: block;
+  position: relative;
+}
+
+.hoverText {
+  display: none;
+  position: absolute;
+  bottom: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 14px 15px 18px;
+  left: 0;
+  right: 0;
+}
+
+.gridItem:hover .hoverText {
+  display: block;
 }

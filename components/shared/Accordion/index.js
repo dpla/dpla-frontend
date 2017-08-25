@@ -27,6 +27,7 @@ class Accordion extends React.Component {
       <div>
         {this.state.items.map((item, i) =>
           <div
+            key={i}
             className={item.active ? classNames.active : classNames.inactive}
           >
             <button
@@ -48,7 +49,9 @@ class Accordion extends React.Component {
                 />}
             </button>
             <ul className={classNames.subitems}>
-              {item.subitems.map(subitem => <li>{subitem.content}</li>)}
+              {item.subitems.map((subitem, j) =>
+                <li key={j}>{subitem.content}</li>
+              )}
             </ul>
           </div>
         )}
