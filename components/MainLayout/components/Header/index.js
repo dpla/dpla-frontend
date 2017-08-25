@@ -32,7 +32,7 @@ const Header = () =>
           <a>Pro Community</a>
         </Link>
       </div>
-      <button className={classNames.login}>Log In</button>
+      {/* <button className={classNames.login}>Log In</button> */}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

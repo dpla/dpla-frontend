@@ -6,7 +6,6 @@ import { classNames, stylesheet } from "./GridView.css";
 
 const GridView = ({ items }) =>
   <div className={classNames.wrapper}>
-    <div className={classNames.gridSizer} />
     <Grid
       elementType="ul"
       className={classNames.grid}
@@ -15,14 +14,22 @@ const GridView = ({ items }) =>
       }}
     >
       {items.map(item =>
-        <li className={classNames.gridItem}>
-          <Link to={item.sourceUrl}>
+        <li key={item.thumbnailUrl} className={classNames.gridItem}>
+          <Link href={item.sourceUrl}>
             <a className={classNames.link}>
               <img
                 className={classNames.image}
-                src={item.image}
-                alt={item.description}
+                src={item.thumbnailUrl}
+                alt=""
               />
+              <p
+                className={[
+                  classNames.hoverText,
+                  classNames.blockWithText
+                ].join(" ")}
+              >
+                {item.title}
+              </p>
             </a>
           </Link>
         </li>

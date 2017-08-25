@@ -1,6 +1,6 @@
 const mockItems = [
   {
-    image: "http://lorempixel.com/79/170/food",
+    thumbnailUrl: "http://lorempixel.com/79/170/food",
     title: "Women in the Civil War",
     type: "image",
     description:
@@ -10,7 +10,7 @@ const mockItems = [
     id: 0
   },
   {
-    image: "http://lorempixel.com/179/110/food",
+    thumbnailUrl: "http://lorempixel.com/179/110/food",
     title: "Ida B. Wells and Anti-Lynching Activism",
     type: "image",
     description:
@@ -20,7 +20,7 @@ const mockItems = [
     id: 1
   },
   {
-    image: "http://lorempixel.com/790/1100/food",
+    thumbnailUrl: "http://lorempixel.com/790/1100/food",
     title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:
@@ -30,7 +30,7 @@ const mockItems = [
     id: 2
   },
   {
-    image: "http://lorempixel.com/79/110/food",
+    thumbnailUrl: "http://lorempixel.com/79/110/food",
     title: "Women in the Civil War",
     type: "image",
     description:
@@ -40,7 +40,7 @@ const mockItems = [
     id: 3
   },
   {
-    image: "http://lorempixel.com/55/80/food",
+    thumbnailUrl: "http://lorempixel.com/55/80/food",
     title: "Ida B. Wells and Anti-Lynching Activism",
     type: "image",
     description:
@@ -50,7 +50,7 @@ const mockItems = [
     id: 4
   },
   {
-    image: "http://lorempixel.com/79/180/food",
+    thumbnailUrl: "http://lorempixel.com/79/180/food",
     title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:
@@ -60,7 +60,7 @@ const mockItems = [
     id: 5
   },
   {
-    image: "http://lorempixel.com/100/100/food",
+    thumbnailUrl: "http://lorempixel.com/100/100/food",
     title: "Women in the Civil War",
     type: "image",
     description:
@@ -70,7 +70,7 @@ const mockItems = [
     id: 6
   },
   {
-    image: "http://lorempixel.com/120/120/food",
+    thumbnailUrl: "http://lorempixel.com/120/120/food",
     title: "Ida B. Wells and Anti-Lynching Activism",
     type: "image",
     description:
@@ -80,7 +80,7 @@ const mockItems = [
     id: 7
   },
   {
-    image: "http://lorempixel.com/79/110/food",
+    thumbnailUrl: "http://lorempixel.com/79/110/food",
     title: "The Absolutely True Diary of a Part-Time Indian",
     type: "image",
     description:

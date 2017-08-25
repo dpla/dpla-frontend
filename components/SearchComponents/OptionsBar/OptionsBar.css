@@ -1,0 +1,151 @@
+@value pampasBrown from "../../../css/colors.css";
+
+.wrapper {
+  width: 100%;
+  background-color: pampasBrown;
+  box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.optionsBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.sortBy :global(.Select-control) {
+  width: 161px;
+}
+
+.itemsPerPage :global(.Select-control) {
+  width: 90px;
+}
+
+.resultsCount {
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+}
+
+.resultsCountQuery {
+  font-weight: bold;
+}
+
+.select {
+  display: inline-block;
+}
+
+.select :global(.Select-control) {
+  height: 32px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  border: none;
+  margin-right: 14px;
+}
+
+.select :global(.Select-arrow) {
+  border-color: black transparent transparent;
+  border-width: 7px 7px 1.5px;
+  position: relative;
+  right: 5px;
+}
+
+.sortSelect :global(.Select-control) {
+  width: 204px;
+}
+
+.sortSelect :global(.Select-menu-outer) {
+  width: 204px;
+}
+
+.options {
+  margin-left: auto;
+  display: flex;
+}
+
+.optionWrapper {
+  display: inline-block;
+}
+
+.optionHeader {
+  font-size: 0.8125rem;
+  line-height: 1.0625rem;
+  opacity: 0.50;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+:global(.Select.is-open) :global(.Select-arrow) {
+  border-color: transparent transparent black !important;
+  border-width: 0 7px 7px !important;
+}
+
+:global(.Select-menu-outer) {
+  width: 188px;
+  box-sizing: content-box;
+}
+
+:global(.Select-value-label) {
+
+}
+
+:global .Select-value {
+  padding-right: 30px !important;
+  display: inline-block;
+  overflow: hidden;
+}
+
+:global(.Select-arrow-zone) {
+  padding-right: 0;
+}
+
+:global(.Select-arrow-zone)::after {
+  content: "";
+  height: 20px;
+  width: 1px;
+  opacity: 0.18;
+  position: absolute;
+  border-left: 1px solid black;
+  left: -8px;
+  top: 7px;
+}
+
+.viewButtons {
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
+.gridViewButton {
+  border-radius: 2px 0 0 2px;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+  background-color: white;
+  display: inline-block;
+}
+
+.listViewButton {
+  border-radius: 0 2px 2px 0;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+  background-color: white;
+  display: inline-block;
+}
+
+.viewButtonInactive.gridViewButton {
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.viewButtonInactive.listViewButton {
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.viewButtonActive {
+  cursor: default;
+  background-color: #ebe9e8;
+}
+
+.viewButtonActive .viewButtonIcon {
+  opacity: 0.45;
+}
+
+.viewButtonIcon {
+  height: 18px;
+}

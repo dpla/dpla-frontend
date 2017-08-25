@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  list-style: none;
+}
+
+.gridItem {
+  width: calc(33% - 10px); /* accounts for padding */
+}
+
+.image {
+  width: 100%;
+}
+
+.link {
+  display: block;
+  position: relative;
+}
+
+.hoverText {
+  display: none;
+  position: absolute;
+  bottom: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 14px 15px 18px;
+  left: 0;
+  right: 0;
+  max-height: 93px;
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.125rem;
+}
+
+.gridItem:hover .hoverText {
+  display: block;
+}

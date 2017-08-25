@@ -16,7 +16,6 @@ const ContactForm = () =>
       <input className={classNames.submit} type="submit" value="Submit" />
     </form>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default ContactForm;
