@@ -10,7 +10,7 @@ This is the repository for the Digital Public Library of America's new frontend.
 git clone https://github.com/postlight/dpla-frontend/
 cd dpla-frontend
 
-# instal dependencies
+# install dependencies
 yarn install
 
 # start the local development server
