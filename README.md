@@ -58,8 +58,8 @@ docs: commit style examples for readme
 
 ## Project Management
 
-[Desktop Design Prototype](https://invis.io/3FC6KEGQV)
-[Mobile Design Prototype](https://invis.io/VGD6W7ZDQ)
+[Desktop Design Prototype](https://invis.io/3FC6KEGQV)  
+[Mobile Design Prototype](https://invis.io/VGD6W7ZDQ)  
 [Project Task Board](https://github.com/postlight/dpla-frontend/projects/1)
 
 ## Scripts
