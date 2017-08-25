@@ -14,44 +14,54 @@ const possibleFacets = [
   "provider.name"
 ];
 
-const Sidebar = ({ facets, route }) =>
-  <div className={classNames.sidebar}>
-    <Accordion
-      subitemsWrapperClass={classNames.accordionSubitems}
-      itemHeaderClass={classNames.accordionItemHeader}
-      subitemClass={classNames.accordionSubitem}
-      activeItemClass={classNames.active}
-      inactiveItemClass={classNames.inactive}
-      items={Object.keys(facets).map((key, i) => ({
-        name: prettifiedFacetMap[key],
-        subitems: facets[key].terms.map(termObject => {
-          return {
-            content: possibleFacets[key]
-              ? <Link
-                  href={{
-                    pathname: route.pathname,
-                    query: Object.assign({}, route.query, {
-                      [key]: route.query[key]
-                        ? [route.query[key], [termObject.term]].join(",")
-                        : termObject.term
-                    })
-                  }}
-                >
-                  <a className={classNames.facet}>
-                    <span className={classNames.facetName}>
-                      {`${termObject.term} `}
-                    </span>
-                    <span className={classNames.facetCount}>
-                      ({termObject.count})
-                    </span>
-                  </a>
-                </Link>
-              : ""
-          };
-        })
-      }))}
-    />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+class Sidebar extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (
+      possibleFacets.some(
+        facet => nextProps.facets[facet] !== this.props.facets[facet]
+      )
+    ) {
+      this.forceUpdate();
+    }
+  }
+  render() {
+    const { route, facets } = this.props;
+    return (
+      <div className={classNames.sidebar}>
+        <Accordion
+          items={Object.keys(facets).map((key, i) => ({
+            name: prettifiedFacetMap[key],
+            subitems: facets[key].terms.map(termObject => {
+              return {
+                content: possibleFacets.includes(key)
+                  ? <Link
+                      href={{
+                        pathname: route.pathname,
+                        query: Object.assign({}, route.query, {
+                          [key]: route.query[key]
+                            ? [route.query[key], [termObject.term]].join(",")
+                            : termObject.term
+                        })
+                      }}
+                    >
+                      <a className={classNames.facet}>
+                        <span className={classNames.facetName}>
+                          {`${termObject.term} `}
+                        </span>
+                        <span className={classNames.facetCount}>
+                          ({termObject.count})
+                        </span>
+                      </a>
+                    </Link>
+                  : ""
+              };
+            })
+          }))}
+        />
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+      </div>
+    );
+  }
+}
 
 export default Sidebar;

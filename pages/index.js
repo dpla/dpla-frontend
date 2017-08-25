@@ -10,7 +10,6 @@ import SocialMedia from "../components/HomePageComponents/SocialMedia";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 
 const Home = ({ sourceSets }) =>
-  console.log(sourceSets) ||
   <MainLayout hideSearchBar>
     <LandingSection />
     <OnlineExhibitions />

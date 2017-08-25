@@ -11,7 +11,6 @@ import extractSourceId from "/utilFunctions/extractSourceId";
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
-  console.log(sources) ||
   <Slider
     slidesToShow={6}
     infinite={false}

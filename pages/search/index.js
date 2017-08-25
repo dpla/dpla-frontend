@@ -52,13 +52,9 @@ Search.getInitialProps = async ({ query }) => {
 
   const facetQueries = facets
     .map(facet => (query[facet] ? `${[facet]}=${query[facet]}` : ""))
-    .filter(facet => facet !== "")
+    .filter(facetQuery => facetQuery !== "")
     .join("&");
 
-  const toFetch = `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
-    ","
-  )}&${facetQueries}`;
-  console.log(toFetch);
   const res = await fetch(
     `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
       ","

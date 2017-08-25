@@ -10,6 +10,14 @@ class Accordion extends React.Component {
     this.setState({ items: this.props.items });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      items: nextProps.items.map((item, i) =>
+        Object.assign({}, item, { active: this.state.items[i].active })
+      )
+    });
+  }
+
   onClickItem = index => {
     const { items } = this.state;
     const newItemsArray = items.map((item, i) => {
