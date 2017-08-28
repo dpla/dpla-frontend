@@ -17,13 +17,19 @@
   font-size: 0.875rem;
   font-weight: 600;
 
+  @media (min-width: mediumRem) {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+
   @media (min-width: largeRem) {
-    padding: .75rem 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 .links {
-  color: #FFFFFF;
+  color: white;
   display: inline-flex;
   justify-content: space-between;
   text-transform: uppercase;
@@ -42,7 +48,7 @@
 }
 
 .login {
-  color: #FFFFFF;
+  color: white;
   margin-left: auto;
   cursor: pointer;
   text-transform: uppercase;

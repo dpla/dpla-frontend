@@ -2,7 +2,6 @@
   max-width: 1024px;
 }
 
-
 :global .border-box {
   box-sizing: border-box;
 }
@@ -10,22 +9,16 @@
 .module {
   padding: 30px 25px;
   margin: auto;
-}
 
-@media (min-width: smallRem) {
-  .module {
+  @media (min-width: smallRem) {
     padding: 30px 50px;
   }
-}
 
-@media (min-width: mediumRem) {
-  .module {
+  @media (min-width: mediumRem) {
     padding: 30px 70px;
   }
-}
 
-@media screen and (min-width: 1100px) {
-  .module {
+  @media screen and (min-width: 1100px) {
     padding: 30px 0;
     max-width: 1024px;
   }

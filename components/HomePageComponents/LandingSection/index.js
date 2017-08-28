@@ -8,13 +8,15 @@ const dplaLogo = "static/images/dpla-logo.svg";
 const chevron = "static/images/chevron-thick-dark-blue.svg";
 
 const LandingSection = () =>
-  <div className={classNames.home}>
-    <div className={classNames.logoAndDonate}>
-      <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+  <div className={classNames.wrapper}>
+    <div className={classNames.header}>
+      <div>
+        <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+      </div>
       <button className={classNames.donateButton}>Donate</button>
     </div>
     <div className={classNames.content}>
-      <p className={classNames.text}>
+      <p className={classNames.headline}>
         A collection of 16,340,976 free digital artifacts from over 120
         libraries, archives and museums
       </p>
@@ -41,10 +43,10 @@ const LandingSection = () =>
         </button>
       </div>
       <div className={classNames.links}>
-        <Link className={classNames.link} to="">
+        <Link to="">
           Browse by Topic
         </Link>
-        <Link className={classNames.link} to="">
+        <Link to="">
           New? Start Here
         </Link>
       </div>

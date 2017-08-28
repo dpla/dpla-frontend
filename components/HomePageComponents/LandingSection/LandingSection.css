@@ -1,59 +1,35 @@
 @value bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from "../../../css/colors.css";
-@value smallRem, mediumRem from "../../../css/breakpoints.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 /* TODO this needs to be an actual image at some point */
-.home {
+.wrapper {
   background-color: rgb(47, 74, 87);
   color: white;
-  padding: 42px 25px 132px;
-}
 
-@media (min-width: smallRem) {
-  .home {
-    padding: 42px 50px 132px;
+  @media (min-width: mediumRem) {
+    padding-top: 2rem;
   }
 }
 
-@media (min-width: mediumRem) {
-  .home {
-    padding: 42px 0 132px;
+.header {
+  background-color: elephantBlue;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
+
+  @media (min-width: mediumRem) {
+    background-color: transparent;
   }
-}
 
-.dplaLogo {
-  width: 300px;
-}
-
-@media (min-width: smallRem) {
-  .dplaLogo {
-    width: 381px;
-  }
-}
-
-.content {
-  max-width: 673px;
-  margin: auto;
-}
-
-.text {
-  font-size: 1.5625rem;
-  line-height: 1.75rem;
-  text-align: center;
-  font-family: 'Lora';
-  font-weight: normal;
-  margin-bottom: 40px;
-  color: white;
-}
-
-@media (min-width: smallRem) {
-  .text {
-    margin-bottom: 72px;
-    font-size: 2.375rem;
-    line-height: 2.5625rem;
+  @media (min-width: largeRem) {
+    padding: 0;
   }
 }
 
 .donateButton {
+  display: none;
   margin-left: auto;
   font-weight: 600;
   color: white;
@@ -62,24 +38,48 @@
   font-size: 1.25rem;
   line-height: 1.5625rem;
   padding: 10px 41px;
-}
 
-.logoAndDonate {
-  display: flex;
-  margin: 0 auto 62px;
-  justify-content: space-between;
-}
-
-@media (min-width: mediumRem) {
-  .logoAndDonate {
-    padding: 0 70px;
+  @media (min-width: mediumRem) {
+    display: block;
   }
 }
 
-@media screen and (min-width: 1100px) {
-  .logoAndDonate {
-    padding: 0;
-    max-width: 1024px;
+.dplaLogo {
+  width: 15rem;
+
+  @media (min-width: mediumRem) {
+    width: 24rem;
+  }
+}
+
+.content {
+  margin: auto;
+  padding: 2rem 1rem 3rem;
+  max-width: 44rem;
+
+  @media (min-width: mediumRem) {
+    padding: 4rem 0 6rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 4rem 0 8rem;
+  }
+}
+
+.headline {
+  font-family: 'Lora';
+  font-size: 1.5625rem;
+  font-weight: normal;
+  line-height: 1.25;
+  padding: 0 1rem;
+  text-align: center;
+
+  @media (min-width: smallRem) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: mediumRem) {
+    font-size: 2.25rem;
   }
 }
 
@@ -94,20 +94,32 @@
 
 .search {
   display: flex;
-  height: 66px;
+  height: 3rem;
   align-items: center;
   justify-content: center;
-  margin-bottom: 35px;
+  margin-top: 2rem;
+
+  @media (min-width: mediumRem) {
+    height: 4rem;
+  }
+
+  @media (min-width: largeRem) {
+    margin-top: 4rem;
+  }
 }
 
 .searchInput {
   border: none;
-  font-size: 1.25em;
-  line-height: 1.5625rem;
-  padding: 0 0 0 24px;
+  padding: 0;
+  padding-left: 1rem;
   height: 100%;
   border-radius: 3px 0 0 3px;
   flex-grow: 1;
+
+  @media (min-width: mediumRem) {
+    padding-left: 1.5rem;
+    font-size: 1.2rem;
+  }
 }
 
 .searchInput::placeholder {
@@ -116,15 +128,18 @@
 }
 
 .searchOptions {
+  display: none;
   height: 100%;
   background-color: mysticGray;
   color: elephantBlue;
   font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  display: flex;
   align-items: center;
   padding: 0 24px 0 22px;
+
+  @media (min-width: mediumRem) {
+    display: flex;
+    font-size: 1.2rem;
+  }
 }
 
 .searchButton {
@@ -132,33 +147,41 @@
   background-color: vikingBlue;
   color: white;
   font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
   padding: 0 30px;
   border-radius: 0 3px 3px 0;
+
+  @media (min-width: mediumRem) {
+    font-size: 1.2rem;
+  }
 }
 
 .searchIcon {
-  transform: scaleX(-1);
-  width: 23px;
-  height: 23px;
+  width: 1rem;
+  height: 1rem;
   position: relative;
   top: 3px;
   margin-right: 8px;
+
+  @media (min-width: mediumRem) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 .links {
-  font-family: "Helvetica Neue";
-  color: white50;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  max-width: 323px;
-}
+  font-size: 1rem;
+  margin: 2rem auto 0;
+  text-align: center;
+  opacity: .75;
 
-.link {
-  border-bottom: 1px solid;
-  padding-bottom: 2px;
+  @media (min-width: mediumRem) {
+    font-size: 1.25rem;
+  }
+
+  & a {
+    border-bottom: 1px solid;
+    padding-bottom: 2px;
+    display: inline-block;
+    margin: 0 1rem;
+  }
 }
