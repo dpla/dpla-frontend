@@ -61,7 +61,6 @@
 
 .currentItemImgWrapper {
   border: 6px solid casablancaOrange;
-  box-sizing: border-box;
 }
 
 @media (min-width: smallRem) {

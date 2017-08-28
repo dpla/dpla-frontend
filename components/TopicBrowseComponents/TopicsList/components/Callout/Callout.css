@@ -13,7 +13,6 @@
   border: 2px solid rgba(0, 0, 0, 0.04);
   background-color: pampasBrown;
   display: flex;
-  box-sizing: border-box;
   align-items: center;
 }
 
