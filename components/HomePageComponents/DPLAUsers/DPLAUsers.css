@@ -21,6 +21,7 @@
   font-style: italic;
   font-size: 1.5rem;
   text-align: center;
+  margin-bottom: 2rem;
 
   @media (min-width: smallRem) {
     font-size: 2rem;
@@ -34,10 +35,11 @@
 .divider {
   border: 1px solid black;
   width: 2.5rem;
-  margin: 1.5rem auto 2rem;
+  display: none;
 
   @media (min-width: smallRem) {
-    margin: 2rem auto 3rem;
+    display: block;
+    margin: 0 auto 3rem;
   }
 }
 
