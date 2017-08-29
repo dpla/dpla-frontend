@@ -1,8 +1,12 @@
-@value romanceGray, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from "../../../css/colors.css";
+@value romanceGray, solitudeBlue, curiousBlue, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from "../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../css/breakpoints.css";
 
 .wrapper {
   background-color: romanceGray;
+
+  &.theme_blue {
+    background-color: solitudeBlue;
+  }
 }
 
 .content {
@@ -24,6 +28,10 @@
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 1rem;
+
+  @media (min-width: largeRem) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .moreLink {
@@ -36,12 +44,24 @@
   }
 }
 
+.theme_blue .moreLink {
+  color: curiousBlue;
+}
+
 .moreLinkNoun {
   display: none;
 
   @media (min-width: smallRem) {
     display: inline;
   }
+}
+
+.moreLinkChevron {
+  width: 8px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  padding-left: 7px;
 }
 
 .title {
@@ -158,14 +178,6 @@
   }
 }
 
-.smallChevron {
-  width: 8px;
-  height: 14px;
-  position: relative;
-  top: 2px;
-  padding-left: 7px;
-}
-
 .featuredTag {
   text-transform: uppercase;
   position: absolute;
@@ -178,6 +190,7 @@
 
   @media (min-width: largeRem) {
     left: -0.25rem;
+    padding: .5rem 1rem;
   }
 }
 
