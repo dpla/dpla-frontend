@@ -1,126 +1,112 @@
-@value alabasterGray, elephantBlue, bambooOrange, black from "../../../css/colors.css";
-@value smallRem, mediumRem from "../../../css/breakpoints.css";
-
-.fromTheBlog {
-  margin: auto;
-  display: flex;
-  padding: 45px 25px 55px;
-  flex-direction: column;
-}
-@media (min-width: smallRem) {
-  .fromTheBlog {
-    padding: 45px 50px 55px;
-  }
-}
-@media (min-width: mediumRem) {
-  .fromTheBlog {
-    padding: 72px 70px 77px;
-    flex-direction: row;
-  }
-}
-
-@media screen and (min-width: 1100px) {
-  .fromTheBlog {
-    padding: 72px 0 77px 0;
-    max-width: 1024px;
-  }
-}
+@value merinoWhite, elephantBlue, bambooOrange, black from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .wrapper {
-  background-color: alabasterGray;
+  background-color: merinoWhite;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  @media (min-width: mediumRem) {
+    padding: 3rem 1rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 4rem 0;
+  }
+
+  & li {
+    margin-top: 1rem;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    @media (min-width: mediumRem) {
+      margin-top: 0;
+    }
+  }
 }
 
 .header {
-  flex: 1;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media (min-width: mediumRem) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 .headerText {
   font-family: "Lora";
   font-weight: normal;
-  margin-bottom: 23px;
-  font-size: 2.25rem;
-  line-height: 2.8125rem;
-}
-@media (min-width: mediumRem) {
-  .headerText {
-    font-size: 2.875rem;
-    line-height: 3.375rem;
+  font-size: 2rem;
+
+  @media (min-width: smallRem) {
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: largeRem) {
+    font-size: 3rem;
   }
 }
 
 .headerLink {
   color: bambooOrange;
   font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
-  position: relative;
+  font-size: 1rem;
+  margin-top: .25rem;
+  display: block;
+
+  @media (min-width: largeRem) {
+    margin-top: 1rem;
+  }
+
+  @media (min-width: largeRem) {
+    font-size: 1.25rem;
+  }
 }
 
 .chevron {
-  position: absolute;
-  height: 18px;
-  width: 9px;
-  right: -20px;
-  top: 5px;
+  height: .65rem;
+  margin-left: .5rem;
 }
 
-.blogPosts {
-  display: flex;
-  flex: 3;
-  flex-direction: column;
-}
-@media (min-width: mediumRem) {
-  .blogPosts {
-    flex-direction: row;
+.firstPost {
+  position: relative;
+
+  &:before {
+    @media (min-width: mediumRem) {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      left: -1.5rem;
+    }
   }
-}
-
-.blogPost {
-  padding-right: 25px;
-  padding-bottom: 10px;
-}
-@media (min-width: mediumRem) {
-  .blogPost {
-    padding-bottom: 0;
-  }
-}
-
-.blogPost:last-child {
-  padding-right: 0;
 }
 
 .headline {
   color: bambooOrange;
-  padding-bottom: 6px;
   opacity: 0.9;
   font-weight: bold;
   display: block;
 }
 
 .date {
-  color: black;
   opacity: 0.75;
-  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.25rem;
-  padding-bottom: 7px;
+  margin-top: .25rem;
   text-transform: uppercase;
 }
 
 .bodyText {
-  color: black;
   opacity: 0.75;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  padding-bottom: 5px;
-}
-
-@media (min-width: mediumRem) {
-  .blogPost:first-child .headline,
-  .blogPost:first-child .date,
-  .blogPost:first-child .bodyText {
-    padding-left: 22px;
-    border-left: 1px solid rgba(89, 63, 23, 0.2);
-  }
+  margin-top: .25rem;
 }

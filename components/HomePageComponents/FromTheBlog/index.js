@@ -31,34 +31,38 @@ const mockPosts = [
 
 const FromTheBlog = (/* data */) =>
   <div className={classNames.wrapper}>
-    <div className={classNames.fromTheBlog}>
-      <div className={classNames.header}>
-        <h1 className={classNames.headerText}>From the Blog</h1>
-        <Link href="">
-          <a className={classNames.headerLink}>
-            <span>Browse the blog</span>
-            <img
-              alt="browse the blog"
-              src={smallChevron}
-              className={classNames.chevron}
-            />
-          </a>
-        </Link>
-      </div>
-      <ul className={classNames.blogPosts}>
-        {mockPosts.map(post =>
-          <li key={post.id} className={classNames.blogPost}>
-            <Link to="">
-              <a className={classNames.headline}>
-                {post.headline}
+    <div className={`${classNames.content} site-max-width`}>
+      <ul className="row">
+        <div className="col-xs-12 col-md-3">
+          <div className={classNames.header}>
+            <h1 className={classNames.headerText}>From the Blog</h1>
+            <Link href="">
+              <a className={classNames.headerLink}>
+                <span>Browse the blog</span>
+                <img
+                  alt="browse the blog"
+                  src={smallChevron}
+                  className={classNames.chevron}
+                />
               </a>
             </Link>
-            <div className={classNames.date}>
-              {post.date}
+          </div>
+        </div>
+        {mockPosts.map((post, index) =>
+          <li key={post.id} className="col-xs-12 col-md-3">
+            <div className={index === 0 && classNames.firstPost}>
+              <Link to="">
+                <a className={classNames.headline}>
+                  {post.headline}
+                </a>
+              </Link>
+              <div className={classNames.date}>
+                {post.date}
+              </div>
+              <p className={classNames.bodyText}>
+                {post.bodyText}
+              </p>
             </div>
-            <p className={classNames.bodyText}>
-              {post.bodyText}
-            </p>
           </li>
         )}
       </ul>

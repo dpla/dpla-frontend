@@ -2,150 +2,78 @@
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .DPLAUsers {
-  margin: auto;
-  overflow: hidden;
-  padding: 45px 25px 55px;
-}
-@media (min-width: smallRem) {
-  .DPLAUsers {
-    padding: 45px 50px 55px;
-  }
-}
-@media (min-width: mediumRem) {
-  .DPLAUsers {
-    padding: 72px 70px 66px;
-  }
-}
+  margin: 0 auto;
+  padding: 2rem 1rem 0;
 
-@media (min-width: 1100px) {
-  .DPLAUsers {
-    max-width: 1024px;
+  @media (min-width: smallRem) {
+    padding-top: 3rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 4rem 0;
+    max-width: 70em;
   }
 }
 
 .header {
   font-family: "Lora";
   font-weight: normal;
-  font-size: 2.375rem;
-  line-height: 2.625rem;
-  margin-bottom: 31px;
+  font-style: italic;
+  font-size: 1.5rem;
   text-align: center;
+  margin-bottom: 2rem;
+
+  @media (min-width: smallRem) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: mediumRem) {
+    font-size: 2.25rem;
+  }
 }
 
 .divider {
-  border: 2px solid #8C8C8C;
-  max-width: 40px;
-  margin: 0 auto 54px;
+  border: 1px solid black;
+  width: 2.5rem;
+  display: none;
+
+  @media (min-width: smallRem) {
+    display: block;
+    margin: 0 auto 3rem;
+  }
+}
+
+.itemColumn {
+  margin-bottom: 1rem;
 }
 
 .item {
-  padding: 0 2px;
-}
-
-.item:first-child {
-  padding-left: 0;
-}
-
-.item:last-child {
-  padding-right: 0;
-}
-
-.content {
-  padding: 24px 15px 37px;
+  padding: 3rem 2rem 2rem;
+  height: 100%;
   text-align: center;
-  height: 141px;
-  position: relative;
-  margin: auto;
-  top: -45px;
-}
-@media (min-width: largeRem) {
-  .content {
-    max-width: 310px;
+
+  @media (min-width: smallRem) {
+    padding: 2rem 1rem;
   }
 }
 
 .itemHeader {
   font-family: "Lora";
   font-weight: normal;
-  font-size: 1.6875rem;
-  line-height: 2.125rem;
-  padding-bottom: 11px;
-}
-
-.imageDiv {
-  height: 280px;
-  display: flex;
-  width: 255px;
-  margin: auto;
-  align-items: center;
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 1rem 0 .5rem;
 }
 
 .itemImg {
-  margin: auto;
-}
-
-.learners .imageDiv {
-  background-color: rgba(228, 218, 218, 0.4);
-}
-.educators .imageDiv {
-  background-color: rgba(236, 233, 218, 1);
-}
-.genealogists .imageDiv {
-  background-color: rgba(218, 228, 232, 1);
-}
-.researchers .imageDiv {
-  background-color: rgba(218, 228, 232, 1);
+  margin: 0 auto;
+  mix-blend-mode: multiply;
 }
 
 .text {
   color: black;
   opacity: 0.50;
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-}
-
-.prevArrow {
-  position: absolute;
-  left: -50px;
-  z-index: 1;
-  font-size: 50px;
-  top: 127px;
-  cursor: pointer;
-  width: 81px;
-  height: 81px;
-}
-
-.nextArrow {
-  position: absolute;
-  right: -50px;
-  z-index: 1;
-  font-size: 50px;
-  top: 170px;
-  background: transparent;
-  cursor: pointer;
-  width: 81px;
-  height: 81px;
-}
-
-.nextChevron {
-  width: 27px;
-  height: 53px;
-  border-radius: 50%;
-  opacity: 0.9;
-  padding: 14px 27px;
-}
-
-.backChevron {
-  width: 27px;
-  height: 53px;
-  transform: rotate(180deg);
-  border-radius: 50%;
-  opacity: 0.9;
-  padding: 14px 27px;
-}
-
-/* react-slick style overrides */
-
-.DPLAUsers :global(.slick-track) {
-  display: flex;
+  font-size: 1rem;
+  max-width: 22rem;
+  margin: 0 auto;
 }

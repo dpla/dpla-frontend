@@ -1,57 +1,54 @@
+@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+
 .header {
+  display: none;
   background-color: #0A2A37;
+
+  @media (min-width: mediumRem) {
+    display: block;
+  }
 }
 
 .linksContainer {
   margin: auto;
   display: flex;
   align-items: center;
-  padding: 0 70px;
+  padding: .5rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1.125rem;
-}
 
-@media screen and (min-width: 1100px) {
-  .linksContainer {
-    max-width: 1024px;
-    padding: 0;
+  @media (min-width: mediumRem) {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
-.mainLinks {
-  margin: 15px 0;
-  color: #FFFFFF;
+.links {
+  color: white;
   display: inline-flex;
   justify-content: space-between;
   text-transform: uppercase;
-}
 
-.mainLinks a {
-  margin-right: 17px;
-}
-.mainLinks a:last-child {
-  margin-right: 21px;
+  & a {
+    margin-right: .75rem;
+
+    @media (min-width: largeRem) {
+      margin-right: 1rem;
+    }
+  }
 }
 
 .secondaryLinks {
-  margin: 15px 0;
-  display: inline-flex;
-  justify-content: space-between;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-}
-
-.secondaryLinks a {
-  margin-right: 30px;
-}
-
-.secondaryLinks a:first-child {
-  margin-left: 21px;
+  opacity: .7;
 }
 
 .login {
-  color: #FFFFFF;
+  color: white;
   margin-left: auto;
   cursor: pointer;
   text-transform: uppercase;
@@ -65,4 +62,9 @@
   height: 20px;
   width: 1px;
   background-color: rgba(255, 255, 255, 0.6);
+  margin-right: .75rem;
+
+  @media (min-width: largeRem) {
+    margin-right: 1rem;
+  }
 }

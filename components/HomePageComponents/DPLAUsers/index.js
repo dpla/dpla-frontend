@@ -1,131 +1,66 @@
 import React from "react";
-import Slider from "react-slick";
 
 import { stylesheet, classNames } from "./DPLAUsers.css";
-import breakpoints from "css/breakpoints.css";
+const educationImage = "static/placholderImages/education.png";
+const familyImage = "static/placholderImages/family.png";
+const learningImage = "static/placholderImages/learning.png";
+const researchImage = "static/placholderImages/research.png";
 
-const chevron = "static/images/chevron-thin.svg";
-
-const NextArrow = ({ onClick, className }) =>
-  <button className={classNames.nextArrow} onClick={onClick}>
-    <img
-      alt=""
-      className={[classNames.nextChevron, className].join(" ")}
-      src={chevron}
-    />
-  </button>;
-
-const PrevArrow = ({ onClick, className }) =>
-  <button className={classNames.prevArrow} onClick={onClick}>
-    <img
-      alt=""
-      className={[classNames.backChevron, className].join(" ")}
-      src={chevron}
-    />
-  </button>;
+const data = [
+  {
+    title: "Education",
+    content: `The DPLA content team creates curated Primary Source Sets, complete
+      with teacher’s notes for use in the classroom.`,
+    image: educationImage,
+    color: "#F7F6F0"
+  },
+  {
+    title: "Family Research",
+    content: `Genealogists and historians use search tools and filter controls
+      for finding artifacts related to their family or research topic.`,
+    image: familyImage,
+    color: "#F0F4F6"
+  },
+  {
+    title: "Lifelong Learning",
+    content: `Lifelong learners will enjoy browsing Exhibitions or using our
+      Topic Browse index to find library artifacts related to their interests.`,
+    image: learningImage,
+    color: "#F4F0F0"
+  },
+  {
+    title: "Scholarly Research",
+    content: `Researchers enjoy using our search tools and filter controls
+      for finding artifacts related to their research topic.`,
+    image: researchImage,
+    color: "#ECF4F0"
+  }
+];
 
 const DPLAUsers = (/* data */) =>
   <div className={classNames.wrapper}>
-    <div className={classNames.DPLAUsers}>
-      <h1 className={classNames.header}>Who Uses DPLA?</h1>
+    <div className={`${classNames.DPLAUsers} site-max-width`}>
+      <h1 className={classNames.header}>How can I use DPLA?</h1>
       <div className={classNames.divider} />
-      <Slider
-        slidesToShow={3}
-        infinite={false}
-        adaptiveHeight={true}
-        nextArrow={<NextArrow />}
-        prevArrow={<PrevArrow />}
-        draggable={false}
-        slidesToScroll={1}
-        responsive={[
-          {
-            breakpoint: parseInt(breakpoints.smallPx, 10),
-            settings: {
-              centerMode: true,
-              centerPadding: "18%",
-              slidesToShow: 1.5,
-              arrows: false,
-              draggable: true
-            }
-          },
-          {
-            breakpoint: parseInt(breakpoints.largePx, 10),
-            settings: {
-              centerMode: false,
-              slidesToShow: 2,
-              arrows: true,
-              draggable: false
-            }
-          }
-        ]}
-      >
-        <div className={[classNames.item, classNames.learners].join(" ")}>
-          <div className={classNames.imageDiv}>
-            <img
-              alt="text"
-              className={classNames.itemImg}
-              src="http://lorempixel.com/187/211/food"
-            />
-          </div>
-          <div className={classNames.content}>
-            <h1 className={classNames.itemHeader}>Lifelong learners</h1>
-            <p className={classNames.text}>
-              Lifelong learners will enjoy browsing Exhibitions or using our
-              Topic Browse index to find library artifacts related to their
-              interests.
-            </p>
-          </div>
-        </div>
-        <div className={[classNames.item, classNames.educators].join(" ")}>
-          <div className={classNames.imageDiv}>
-            <img
-              alt="text"
-              className={classNames.itemImg}
-              src="http://lorempixel.com/187/212/food"
-            />
-          </div>
-          <div className={classNames.content}>
-            <h1 className={classNames.itemHeader}>Educators</h1>
-            <p className={classNames.text}>
-              The DPLA content team creates curated Primary Source Sets,
-              complete with teacher’s notes for use in the classroom.
-            </p>
-          </div>
-        </div>
-        <div className={[classNames.item, classNames.genealogists].join(" ")}>
-          <div className={classNames.imageDiv}>
-            <img
-              alt="text"
-              className={classNames.itemImg}
-              src="http://lorempixel.com/187/213/food"
-            />
-          </div>
-          <div className={classNames.content}>
-            <h1 className={classNames.itemHeader}>Genealogists</h1>
-            <p className={classNames.text}>
-              Genealogists and historians enjoy using our search tools and
-              filter controls for finding artifacts related to their family or
-              research topic.
-            </p>
-          </div>
-        </div>
-        <div className={[classNames.item, classNames.researchers].join(" ")}>
-          <div className={classNames.imageDiv}>
-            <img
-              alt="text"
-              className={classNames.itemImg}
-              src="http://lorempixel.com/187/214/food"
-            />
-          </div>
-          <div className={classNames.content}>
-            <h1 className={classNames.itemHeader}>Researchers</h1>
-            <p className={classNames.text}>
-              Researchers Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's stand
-            </p>
-          </div>
-        </div>
-      </Slider>
+      <div className="row">
+        {data.map(({ title, content, image, color }, index) => {
+          return (
+            <div
+              className={`${classNames.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
+              key={index}
+            >
+              <div
+                className={classNames.item}
+                style={{ backgroundColor: color }}
+              >
+                <img alt={title} className={classNames.itemImg} src={image} />
+                <h1 className={classNames.itemHeader}>{title}</h1>
+                <p className={classNames.text}>{content}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

@@ -1,33 +1,27 @@
-@value merinoWhite, elephantBlue, dimGray, black, bambooOrange from "../../../css/colors.css";
-@value smallRem, mediumRem, mediumPlusRem from "../../../css/breakpoints.css";
+@value alabasterGray, elephantBlue, dimGray, black, bambooOrange from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem, mediumPlusRem from "../../../css/breakpoints.css";
 
 .socialMedia {
   margin: auto;
-  padding: 45px 25px 55px;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-}
-@media (min-width: smallRem) {
-  .socialMedia {
-    flex-direction: row;
-    padding: 45px 50px 55px;
-  }
-}
-@media (min-width: mediumRem) {
-  .socialMedia {
-    padding: 72px 70px 77px;
-  }
-}
 
-@media screen and (min-width: 1100px) {
-  .socialMedia {
-    padding: 72px 0 77px 0;
-    max-width: 1024px;
+  @media (min-width: smallRem) {
+    flex-direction: row;
+  }
+
+  @media (min-width: mediumRem) {
+    padding: 3rem 1rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 4rem 0;
   }
 }
 
 .wrapper {
-  background-color: merinoWhite;
+  background-color: alabasterGray;
 }
 
 .header {
@@ -79,9 +73,8 @@
   display: flex;
   margin-bottom: 20px;
   flex-wrap: wrap;
-}
-@media (min-width: mediumPlusRem) {
-  .instagramImages {
+
+  @media (min-width: mediumPlusRem) {
     flex-wrap: nowrap;
   }
 }
@@ -90,9 +83,8 @@
   padding: 0px 6px 6px 0;
   width: calc(50% - 6px);
   height: calc(50% - 6px);
-}
-@media (min-width: mediumPlusRem) {
-  .instagramImage {
+
+  @media (min-width: mediumPlusRem) {
     width: calc(25% - 6px);
   }
 }

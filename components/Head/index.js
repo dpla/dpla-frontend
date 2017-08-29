@@ -2,42 +2,10 @@ import React from "react";
 import Head from "next/head";
 
 import { stylesheet as utilStylesheet } from "css/utils.css";
+import { stylesheet as reset } from "css/reset.css";
 
 export default ({ additionalLinks }) =>
   <div>
-    <style jsx global>{`
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Source Sans Pro', sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      button, input {
-        font-family: "Source Sans Pro";
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-      ul {
-        list-style: none;
-      }
-      p, ul, h1, h2, h3, h4, h5, h6 {
-        margin: 0;
-        padding: 0;
-      }
-      :global(.slick-disabled) {
-        display: none;
-      }
-      :global(.Select-value) {
-        padding-right: 25px;
-      }
-    `}</style>
     <Head>
       <meta charset="utf-8" />
       <meta
@@ -46,7 +14,7 @@ export default ({ additionalLinks }) =>
       />
       <meta name="theme-color" content="#000000" />
       <link
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lora:400,700"
+        href="https://fonts.googleapis.com/css?family=Lora:400,400i,700|Source+Sans+Pro:400,400i,600,600i"
         rel="stylesheet"
       />
       <link
@@ -65,6 +33,7 @@ export default ({ additionalLinks }) =>
       />
       {additionalLinks}
       <title>Digital Public Library of America</title>
+      <style js>{reset}</style>
+      <style js>{utilStylesheet}</style>
     </Head>
-    <style dangerouslySetInnerHTML={{ __html: utilStylesheet }} />
   </div>;

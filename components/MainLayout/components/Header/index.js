@@ -5,8 +5,8 @@ import { stylesheet, classNames } from "./Header.css";
 
 const Header = () =>
   <div className={classNames.header}>
-    <div className={classNames.linksContainer}>
-      <div className={classNames.mainLinks}>
+    <div className={`${classNames.linksContainer} site-max-width`}>
+      <div className={classNames.links}>
         <Link href="/">
           <a>Home</a>
         </Link>
@@ -21,7 +21,7 @@ const Header = () =>
         </Link>
       </div>
       <span className={classNames.divider} />
-      <div className={classNames.secondaryLinks}>
+      <div className={`${classNames.links} ${classNames.secondaryLinks}`}>
         <Link href="">
           <a>About Us</a>
         </Link>

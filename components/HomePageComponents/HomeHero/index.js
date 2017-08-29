@@ -1,20 +1,22 @@
 import React from "react";
 
-import { stylesheet, classNames } from "./LandingSection.css";
+import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
 const searchIcon = "static/images/search.svg";
 const dplaLogo = "static/images/dpla-logo.svg";
 const chevron = "static/images/chevron-thick-dark-blue.svg";
 
-const LandingSection = () =>
-  <div className={classNames.home}>
-    <div className={classNames.logoAndDonate}>
-      <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+const HomeHero = () =>
+  <div className={classNames.wrapper}>
+    <div className={classNames.header}>
+      <div>
+        <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+      </div>
       <button className={classNames.donateButton}>Donate</button>
     </div>
     <div className={classNames.content}>
-      <p className={classNames.text}>
+      <p className={classNames.headline}>
         A collection of 16,340,976 free digital artifacts from over 120
         libraries, archives and museums
       </p>
@@ -41,15 +43,15 @@ const LandingSection = () =>
         </button>
       </div>
       <div className={classNames.links}>
-        <Link className={classNames.link} to="">
-          Browse by Topic
+        <Link href="/browse-by-topic">
+          <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>
         </Link>
-        <Link className={classNames.link} to="">
-          New? Start Here
+        <Link href="/guides">
+          <a title="View our Getting Started Guides">New? Start Here</a>
         </Link>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default LandingSection;
+export default HomeHero;
