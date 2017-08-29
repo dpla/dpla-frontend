@@ -1,9 +1,10 @@
-@value smallRem: 40rem;
-@value mediumRem: 52rem;
-@value mediumPlusRem: 59.25rem;
-@value largeRem: 64rem;
+@value xSmallRem: 30em;
+@value smallRem: 40em;
+@value mediumRem: 52em;
+@value mediumPlusRem: 59.25em;
+@value largeRem: 72em;
 
 @value smallPx: 640;
 @value mediumPx: 832;
 @value mediumPlusPx: 948;
-@value largePx: 1024;
+@value largePx: 1152;

@@ -14,7 +14,7 @@ export default ({ additionalLinks }) =>
       />
       <meta name="theme-color" content="#000000" />
       <link
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lora:400,700"
+        href="https://fonts.googleapis.com/css?family=Lora:400,400i,700|Source+Sans+Pro:400,400i,600,600i"
         rel="stylesheet"
       />
       <link
@@ -33,7 +33,7 @@ export default ({ additionalLinks }) =>
       />
       {additionalLinks}
       <title>Digital Public Library of America</title>
-      <style js global>{reset}</style>
+      <style js>{reset}</style>
       <style js>{utilStylesheet}</style>
     </Head>
   </div>;
