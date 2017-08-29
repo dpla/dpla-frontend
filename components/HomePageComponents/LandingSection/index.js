@@ -43,11 +43,11 @@ const LandingSection = () =>
         </button>
       </div>
       <div className={classNames.links}>
-        <Link to="">
-          Browse by Topic
+        <Link href="/browse-by-topic">
+          <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>
         </Link>
-        <Link to="">
-          New? Start Here
+        <Link href="/guides">
+          <a title="View our Getting Started Guides">New? Start Here</a>
         </Link>
       </div>
     </div>
