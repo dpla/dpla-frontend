@@ -31,7 +31,7 @@ const mockPosts = [
 
 const FromTheBlog = (/* data */) =>
   <div className={classNames.wrapper}>
-    <div className={classNames.fromTheBlog}>
+    <div className={`${classNames.fromTheBlog} site-max-width`}>
       <div className={classNames.header}>
         <h1 className={classNames.headerText}>From the Blog</h1>
         <Link href="">

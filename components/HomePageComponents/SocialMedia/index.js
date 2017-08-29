@@ -1,6 +1,11 @@
 import React from "react";
-import Link from "next/link";
 
+import {
+  INSTAGRAM_URL,
+  INSTAGRAM_LINK_TITLE,
+  TWITTER_URL,
+  TWITTER_LINK_TITLE
+} from "../../../constants/site.js";
 import { stylesheet, classNames } from "./SocialMedia.css";
 
 const externalLinkIcon = "static/images/external-link.svg";
@@ -24,16 +29,20 @@ const Instagram = ({ images }) =>
         />
       )}
     </div>
-    <Link to="" className={classNames.visitLink}>
-      <a>
-        <span>Visit @digpublib</span>
-        <img
-          className={classNames.externalLinkIcon}
-          alt="visit @digpublib"
-          src={externalLinkIcon}
-        />
-      </a>
-    </Link>
+    <a
+      href={INSTAGRAM_URL}
+      className={classNames.visitLink}
+      title={INSTAGRAM_LINK_TITLE}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Visit @digpublib</span>
+      <img
+        className={classNames.externalLinkIcon}
+        alt="visit @digpublib"
+        src={externalLinkIcon}
+      />
+    </a>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
@@ -47,22 +56,26 @@ const Twitter = ({ message, time }) =>
     <p className={classNames.twitterDate}>
       {time}
     </p>
-    <Link to="" className={classNames.visitLink}>
-      <a>
-        <span>Visit @DPLA</span>
-        <img
-          className={classNames.externalLinkIcon}
-          alt="visit @DPLA"
-          src={externalLinkIcon}
-        />
-      </a>
-    </Link>
+    <a
+      href={TWITTER_URL}
+      className={classNames.visitLink}
+      title={TWITTER_LINK_TITLE}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Visit @DPLA</span>
+      <img
+        className={classNames.externalLinkIcon}
+        alt="visit @DPLA"
+        src={externalLinkIcon}
+      />
+    </a>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 const SocialMedia = (/* data */) =>
   <div className={classNames.wrapper}>
-    <div className={classNames.socialMedia}>
+    <div className={`${classNames.socialMedia} site-max-width`}>
       <Twitter
         time="23H AGO"
         message="TODAY: Our friends @internetarchive host a live AMA on their @macfound #100andChange plan to open access to 4M books…"

@@ -56,8 +56,8 @@ const Home = ({ sourceSets }) =>
       theme="blue"
     />
     <DPLAUsers />
-    <SocialMedia />
     <FromTheBlog />
+    <SocialMedia />
   </MainLayout>;
 
 Home.getInitialProps = async () => {
