@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "../components/MainLayout";
-import LandingSection from "../components/HomePageComponents/LandingSection";
+import HomeHero from "../components/HomePageComponents/HomeHero";
 import OnlineExhibitions from "../components/HomePageComponents/OnlineExhibitions";
 import PrimarySourceSets from "../components/HomePageComponents/PrimarySourceSets";
 import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
@@ -11,7 +11,7 @@ import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 
 const Home = ({ sourceSets }) =>
   <MainLayout hideSearchBar>
-    <LandingSection />
+    <HomeHero />
     <OnlineExhibitions />
     <PrimarySourceSets sourceSets={sourceSets} />
     <DPLAUsers />

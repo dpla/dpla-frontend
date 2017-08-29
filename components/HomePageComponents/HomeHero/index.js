@@ -1,13 +1,13 @@
 import React from "react";
 
-import { stylesheet, classNames } from "./LandingSection.css";
+import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
 const searchIcon = "static/images/search.svg";
 const dplaLogo = "static/images/dpla-logo.svg";
 const chevron = "static/images/chevron-thick-dark-blue.svg";
 
-const LandingSection = () =>
+const HomeHero = () =>
   <div className={classNames.wrapper}>
     <div className={classNames.header}>
       <div>
@@ -54,4 +54,4 @@ const LandingSection = () =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default LandingSection;
+export default HomeHero;
