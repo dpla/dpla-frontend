@@ -4,14 +4,11 @@ import Router from "next/router";
 
 import "react-select/dist/react-select.css";
 import { stylesheet, classNames } from "./Filters.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { sortOptions, timePeriodOptions, subjectOptions } from "./options";
-
-const { module } = utilClassNames;
 
 const SortValue = props =>
   <span className={classNames.sortValue}>
-    <span className={classNames.sortByText}>Sort by </span>
+    <span className={classNames.sortByText}>Sort</span>
     <span>
       {props.value.label}
     </span>
@@ -22,7 +19,7 @@ class Filters extends React.Component {
     this.setState({
       sortValue: this.props.route.query.order || "recently_added",
       timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
-      subjectValue: this.props.route.query.subject || "all"
+      subjectValue: this.props.route.query.subject || "all-subjects"
     });
   }
 
@@ -35,7 +32,7 @@ class Filters extends React.Component {
       this.setState({
         sortValue: nextProps.route.query.order || "recently_added",
         timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
-        subjectValue: nextProps.route.query.subject || "all"
+        subjectValue: nextProps.route.query.subject || "all-subjects"
       });
     }
   }
@@ -66,36 +63,46 @@ class Filters extends React.Component {
   render() {
     return (
       <div className={classNames.filtersWrapper}>
-        <div className={[module, classNames.filters].join(" ")}>
-          <input
-            className={classNames.textInput}
-            placeholder="Filter by title"
-          />
-          <Select
-            clearable={false}
-            searchable={false}
-            value={this.state.timePeriodValue}
-            className={classNames.select}
-            onChange={this.onTimePeriodChange}
-            options={timePeriodOptions}
-          />
-          <Select
-            clearable={false}
-            searchable={false}
-            value={this.state.subjectValue}
-            onChange={this.onSubjectChange}
-            className={classNames.select}
-            options={subjectOptions}
-          />
-          <Select
-            clearable={false}
-            searchable={false}
-            value={this.state.sortValue}
-            className={[classNames.select, classNames.sortSelect].join(" ")}
-            onChange={this.onSortChange}
-            valueComponent={SortValue}
-            options={sortOptions}
-          />
+        <div className={`${classNames.filters} site-max-width`}>
+          <div className="row">
+            <div className={`${classNames.filter} col-xs-6 col-md-4`}>
+              <input
+                className={classNames.textInput}
+                placeholder="Filter by title"
+              />
+            </div>
+            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
+              <Select
+                clearable={false}
+                searchable={false}
+                value={this.state.timePeriodValue}
+                className={classNames.select}
+                onChange={this.onTimePeriodChange}
+                options={timePeriodOptions}
+              />
+            </div>
+            <div className={`${classNames.filter} col-xs-6 col-md-2`}>
+              <Select
+                clearable={false}
+                searchable={false}
+                value={this.state.subjectValue}
+                onChange={this.onSubjectChange}
+                className={classNames.select}
+                options={subjectOptions}
+              />
+            </div>
+            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
+              <Select
+                clearable={false}
+                searchable={false}
+                value={this.state.sortValue}
+                className={[classNames.select, classNames.sortSelect].join(" ")}
+                onChange={this.onSortChange}
+                valueComponent={SortValue}
+                options={sortOptions}
+              />
+            </div>
+          </div>
         </div>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>

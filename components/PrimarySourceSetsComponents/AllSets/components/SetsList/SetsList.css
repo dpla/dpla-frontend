@@ -2,16 +2,16 @@
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .setsWrapper {
-  margin: -0.2rem auto 0;
+  margin: -0.2rem auto 1rem;
 
   /* Overwrite flexbox-grid with a thinner gutter */
   & :global .row {
     margin-left: -0.1rem;
     margin-right: -0.1rem;
 
-    @media (min-width: largeRem) {
-      margin-left: -0.5rem;
-      margin-right: -0.5rem;
+    @media (min-width: mediumRem) {
+      margin-left: -0.25rem;
+      margin-right: -0.25rem;
     }
   }
 
@@ -20,28 +20,30 @@
     padding-left: .1rem;
     padding-right: .1rem;
 
-    @media (min-width: largeRem) {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+    @media (min-width: mediumRem) {
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
     }
   }
 
   @media (min-width: mediumRem) {
     padding: 0 1rem;
     margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 
   @media (min-width: largeRem) {
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
   }
 }
 
 .itemWrapper {
   margin-top: .2rem;
 
-  @media (min-width: largeRem) {
-    margin-top: 1rem;
+  @media (min-width: mediumRem) {
+    margin-top: 0.5rem;
   }
 }
 
