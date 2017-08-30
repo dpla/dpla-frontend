@@ -1,13 +1,14 @@
 import React from "react";
 
-import Header from "./components/Header";
+import FeatureHeader from "../../shared/FeatureHeader";
 import Exhibitions from "./components/Exhibitions";
-
 import mockExhibitions from "./mockExhibitions";
+
+import { TITLE, DESCRIPTION } from "../../../constants/exhibitions.js";
 
 const AllSets = ({ route }) =>
   <div>
-    <Header />
+    <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <Exhibitions exhibitions={mockExhibitions} route={route} />
   </div>;
 
