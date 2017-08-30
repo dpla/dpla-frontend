@@ -1,15 +1,15 @@
 import React from "react";
 
 import Head from "../Head";
-import Header from "./components/Header";
-import HeaderSearchBar from "./components/HeaderSearchBar";
+import GlobalHeader from "./components/GlobalHeader";
+import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
 const MainLayout = ({ children, hideSearchBar, headLinks }) =>
   <div>
     <Head additionalLinks={headLinks} />
-    <Header />
-    {!hideSearchBar && <HeaderSearchBar />}
+    <GlobalHeader />
+    {!hideSearchBar && <PageHeader />}
     {children}
     <Footer />
   </div>;

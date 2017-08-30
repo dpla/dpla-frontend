@@ -1,0 +1,83 @@
+@value hippieBlue, elephantBlue from "../../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+
+.headerSearchBar {
+  display: none;
+  background-color: hippieBlue;
+  width: 100%;
+
+  /* The SmallScreenHeader component handles the navigation on small screens */
+  @media (min-width: mediumRem) {
+    display: block;
+  }
+}
+
+.flexWrapper {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  margin: auto;
+
+  @media (min-width: largeRem) {
+    padding: 0;
+  }
+}
+
+.searchBar {
+  align-items: center;
+  display: flex;
+  height: 2.5rem;
+  width: 50%;
+  margin-left: auto;
+}
+
+.searchInput {
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  padding-left: 1rem;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.searchInput::placeholder {
+  color: elephantBlue;
+  opacity: 0.5;
+}
+
+.searchButton {
+  background-color: elephantBlue;
+  border-radius: 0 3px 3px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  padding: 0 1rem;
+}
+
+.searchIcon {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  margin-right: .5rem;
+  margin-top: .05rem;
+}
+
+.logo {
+  padding: 1rem 0;
+
+  @media (min-width: largeRem) {
+    padding: 1.5rem 0;
+  }
+}
+
+.logoImg {
+  width: 16rem;
+
+  @media (min-width: largeRem) {
+    width: 18rem;
+  }
+}

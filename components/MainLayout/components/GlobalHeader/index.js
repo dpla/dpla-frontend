@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./Header.css";
+import { stylesheet, classNames } from "./GlobalHeader.css";
 
-const Header = () =>
+const GlobalHeader = () =>
   <div className={classNames.header}>
     <div className={`${classNames.linksContainer} site-max-width`}>
       <div className={classNames.links}>
@@ -37,4 +37,4 @@ const Header = () =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default Header;
+export default GlobalHeader;

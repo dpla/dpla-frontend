@@ -1,6 +1,8 @@
+const sampleImage = "static/placeholderImages/sample-image.jpeg";
+
 const mockTopics = [
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Women in the Civil War",
     slug: "civil-war-and-reconstruction",
     isNew: true,
@@ -8,7 +10,7 @@ const mockTopics = [
     id: 0
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Ida B. Wells and Anti-Lynching Activism",
     slug: "ida-b-wells-and-anti-lynching-activism",
     isNew: false,
@@ -16,7 +18,7 @@ const mockTopics = [
     id: 1
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
     slug: "the-absolutely-true-diary-of-a-part-time-indian",
     isNew: false,
@@ -24,7 +26,7 @@ const mockTopics = [
     id: 2
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Women in the Civil War",
     slug: "civil-war-and-reconstruction",
     isNew: false,
@@ -32,7 +34,7 @@ const mockTopics = [
     id: 3
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Ida B. Wells and Anti-Lynching Activism",
     slug: "ida-b-wells-and-anti-lynching-activism",
     isNew: false,
@@ -40,7 +42,7 @@ const mockTopics = [
     id: 4
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
     slug: "the-absolutely-true-diary-of-a-part-time-indian",
     isNew: false,
@@ -48,7 +50,7 @@ const mockTopics = [
     id: 5
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Women in the Civil War",
     slug: "civil-war-and-reconstruction",
     isNew: true,
@@ -56,7 +58,7 @@ const mockTopics = [
     id: 6
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "Ida B. Wells and Anti-Lynching Activism",
     slug: "ida-b-wells-and-anti-lynching-activism",
     isNew: false,
@@ -64,7 +66,7 @@ const mockTopics = [
     id: 7
   },
   {
-    image: "http://lorempixel.com/334/241/food",
+    image: sampleImage,
     title: "The Absolutely True Diary of a Part-Time Indian by Sherman Alexie",
     slug: "the-absolutely-true-diary-of-a-part-time-indian",
     isNew: false,

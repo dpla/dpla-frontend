@@ -4,6 +4,7 @@
   display: none;
   background-color: #0A2A37;
 
+  /* The SmallScreenHeader component handles the navigation on small screens */
   @media (min-width: mediumRem) {
     display: block;
   }
