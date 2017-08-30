@@ -18,6 +18,19 @@ yarn run dev
 open http://localhost:3000/
 ```
 
+## CSS
+
+### CSS Compilation
+
+We're using the [next.js](https://github.com/zeit/next.js/) library for
+server-side rendering of the JavaScript. Next.js in turn uses
+[styled-jsx](https://github.com/zeit/styled-jsx) to compile and inject CSS files.
+
+### CSS Vendor libraries
+
+We're using a local copy of [flexboxgrid](https://github.com/kristoferjoseph/flexboxgrid)
+to manage a 12-column grid. Review <http://flexboxgrid.com/> for documentation.
+
 ## Pull requests
 
 We like clean commit histories:
