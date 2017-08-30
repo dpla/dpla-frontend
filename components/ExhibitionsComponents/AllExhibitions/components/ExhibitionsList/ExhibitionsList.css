@@ -1,0 +1,119 @@
+@value curiousBlue, black, black50 from "../../../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+
+.wrapper {
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+
+  @media (min-width: largeRem) {
+    padding: 0;
+    margin-top: 2rem;
+  }
+}
+
+.row {
+  margin-right: -0.25rem;
+  margin-left: -0.25rem;
+}
+
+.featuredExhibition {
+  @media (min-width: smallRem) {
+    width: 66%;
+  }
+
+  & .title {
+    @media (min-width: smallRem) {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    @media (min-width: mediumRem) {
+      font-size: 3rem;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    @media (min-width: largeRem) {
+      font-size: 3.5rem;
+      padding: 0 2rem 2rem;
+    }
+  }
+
+  & .exhibitionContent {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+  }
+
+  & img {
+    @media (min-width: smallRem) {
+      display: none;
+    }
+  }
+}
+
+.exhibition {
+  display: block;
+  padding: .25rem;
+  height: 100%;
+}
+
+.exhibitionContent {
+  position: relative;
+  height: 100%;
+}
+
+.threeUp {
+  @media (min-width: smallRem) {
+    display: flex;
+  }
+}
+
+.twoVertical {
+  @media (min-width: smallRem) {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+  }
+}
+
+.remainingExhibitions {
+  @media (min-width: smallRem) {
+    flex-wrap: wrap;
+    display: flex;
+  }
+}
+
+.remainingExhibitions .exhibition {
+  @media (min-width: smallRem) {
+    width: 33%;
+  }
+}
+
+.overlay {
+  border-radius: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);
+}
+
+.exhibition img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.title {
+  max-width: 100%;
+  color: white;
+  font-family: "Lora";
+  font-size: 1.25rem;
+  padding: 0 1rem 1rem;
+
+  @media (min-width: mediumRem) {
+    padding: 0 1.25rem 1.25rem;
+  }
+}
