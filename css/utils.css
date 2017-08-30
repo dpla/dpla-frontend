@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+:global .hover-underline:hover {
+  text-decoration: underline;
+}
+
 .module {
   padding: 30px 25px;
   margin: auto;
