@@ -1,4 +1,4 @@
-const sampleImage = "static/placeholderImages/sample-image.jpeg";
+const sampleImage = "/static/placeholderImages/sample-image.jpeg";
 
 const mockTopics = [
   {

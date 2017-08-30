@@ -6,7 +6,7 @@
   background-color: hippieBlue;
   width: 100%;
 
-  /* The SmallScreenHeader component handles the navigation on small screens */
+  /* The SmallScreenGlobalHeader component handles the navigation on small screens */
   @media (min-width: mediumRem) {
     display: block;
   }
