@@ -41,6 +41,7 @@
 
 .itemWrapper {
   margin-top: .2rem;
+  display: flex;
 
   @media (min-width: mediumRem) {
     margin-top: 0.5rem;
@@ -49,7 +50,6 @@
 
 .item {
   background-color: visualBrown;
-  height: 100%;
 }
 
 .itemContent {
