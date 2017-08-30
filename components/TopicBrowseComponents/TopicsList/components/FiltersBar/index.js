@@ -15,7 +15,7 @@ const SortValue = props =>
     </span>
   </span>;
 
-const FiltersBar = () =>
+const Filters = () =>
   <div className={classNames.filtersWrapper}>
     <div className={`${classNames.filters} site-max-width`}>
       <div className="row">
@@ -40,4 +40,4 @@ const FiltersBar = () =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default FiltersBar;
+export default Filters;

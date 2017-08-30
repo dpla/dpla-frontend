@@ -1,5 +1,5 @@
-@value visualBrown, black50 from "../../../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+@value visualBrown, black50 from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .filtersWrapper {
   width: 100%;

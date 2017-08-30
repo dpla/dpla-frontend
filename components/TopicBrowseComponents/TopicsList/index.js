@@ -1,6 +1,6 @@
 import React from "react";
 
-import Filters from "./components/Filters";
+import FiltersBar from "./components/FiltersBar";
 import FeatureHeader from "../../shared/FeatureHeader";
 import Topics from "./components/Topics";
 import Callout from "./components/Callout";
@@ -11,7 +11,7 @@ import { TITLE, DESCRIPTION } from "../../../constants/topicBrowse.js";
 const TopicsList = props =>
   <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
-    <Filters />
+    <FiltersBar />
     <Topics topics={mockTopics} />
     <Callout />
   </div>;
