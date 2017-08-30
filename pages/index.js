@@ -9,7 +9,7 @@ import SocialMedia from "../components/HomePageComponents/SocialMedia";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 
 // TODO: remove when we have real data for exhibitions
-const sampleImage = "static/placholderImages/sample-image.jpeg";
+const sampleImage = "static/placeholderImages/sample-image.jpeg";
 
 const mockExhibitionsData = [
   {

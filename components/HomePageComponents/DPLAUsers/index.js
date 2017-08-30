@@ -1,10 +1,10 @@
 import React from "react";
 
 import { stylesheet, classNames } from "./DPLAUsers.css";
-const educationImage = "static/placholderImages/education.png";
-const familyImage = "static/placholderImages/family.png";
-const learningImage = "static/placholderImages/learning.png";
-const researchImage = "static/placholderImages/research.png";
+const educationImage = "static/placeholderImages/education.png";
+const familyImage = "static/placeholderImages/family.png";
+const learningImage = "static/placeholderImages/learning.png";
+const researchImage = "static/placeholderImages/research.png";
 
 const data = [
   {
