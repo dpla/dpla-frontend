@@ -1,7 +1,5 @@
 import React from "react";
 
-import styles from "./TopicsList.css";
-
 import Filters from "./components/Filters";
 import FeatureHeader from "../../shared/FeatureHeader";
 import Topics from "./components/Topics";
@@ -11,7 +9,7 @@ import mockTopics from "./mockTopics";
 import { TITLE, DESCRIPTION } from "../../../constants/topicBrowse.js";
 
 const TopicsList = props =>
-  <div className={styles.allTopics}>
+  <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <Filters />
     <Topics topics={mockTopics} />

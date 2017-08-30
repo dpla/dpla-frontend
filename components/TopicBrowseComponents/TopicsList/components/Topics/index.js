@@ -2,19 +2,25 @@ import React from "react";
 import Link from "next/link";
 
 import { stylesheet, classNames } from "./Topics.css";
-import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
 
 const Topics = ({ topics }) =>
-  <div className={[module, classNames.topicsWrapper].join(" ")}>
-    <ul className={classNames.topics}>
+  <div className={`${classNames.topicsWrapper} site-max-width`}>
+    <ul className="row">
       {topics.map(topic =>
-        <li className={classNames.topic}>
+        <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <Link
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
           >
-            <a>
+            <a
+              className={classNames.topic}
+              title={`View the ${topic.title} topic`}
+            >
+              {topic.isFeatured &&
+                <div className={classNames.ribbon}>Featured</div>}
+              {topic.isNew &&
+                !topic.isFeatured &&
+                <div className={classNames.ribbon}>New</div>}
               <img
                 alt={topic.title}
                 src={topic.image}
@@ -25,11 +31,6 @@ const Topics = ({ topics }) =>
               </h3>
             </a>
           </Link>
-          {topic.isFeatured &&
-            <div className={classNames.ribbon}>Featured</div>}
-          {topic.isNew &&
-            !topic.isFeatured &&
-            <div className={classNames.ribbon}>New</div>}
         </li>
       )}
     </ul>

@@ -11,7 +11,7 @@
   padding: 0.5rem 1rem 1rem;
   margin: 0 auto;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: largeRem) {
     padding-left: 0;
     padding-right: 0;
   }
@@ -33,6 +33,7 @@
   box-sizing: border-box;
   padding: 0.5rem;
   width: 100%;
+  height: 100%;
 }
 
 .sortValue {
@@ -49,49 +50,4 @@
   @media (min-width: mediumRem) {
     display: inline-block;
   }
-}
-
-/* Vendor overrides for react-select */
-
-.select :global .Select-control {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  border: none;
-  height: auto;
-}
-
-.select :global .Select-arrow {
-  border-color: black transparent transparent;
-  border-width: 7px 7px 1.5px;
-  position: relative;
-  right: .25rem;
-}
-
-:global .Select.is-open :global .Select-arrow {
-  border-color: transparent transparent black !important;
-  border-width: 0 7px 7px !important;
-}
-
-:global .Select-menu-outer {
-  box-sizing: content-box;
-  box-shadow: 0 3px 10px 0px rgba(0, 0, 0, .25);
-  border: none;
-}
-
-:global .Select--single > .Select-control .Select-value {
-  display: inline-block;
-  line-height: 1.15;
-  padding: 0.5rem 3rem 0.5rem 0.5rem;
-}
-
-:global .Select-arrow-zone:after {
-  content: "";
-  height: 1.5rem;
-  width: 1px;
-  opacity: 0.1;
-  position: absolute;
-  border-left: 1px solid #000000;
-  left: -0.7rem;
-  top: 50%;
-  transform: translateY(-50%);
 }

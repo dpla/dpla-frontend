@@ -1,36 +1,45 @@
 @value curiousBlue, bambooOrange, black50 from "../../../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .topicsWrapper {
-  padding-top: 40px;
-}
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
 
-.topics {
-  display: flex;
-  flex-wrap: wrap;
+  @media (min-width: mediumRem) {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: mediumRem) {
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 0;
+  }
 }
 
 .topic {
-  flex-basis: calc(25% - 15px);
-  padding-right: 20px;
-  margin-bottom: 25px;
   position: relative;
-}
+  display: block;
+  margin-top: 1rem;
 
-.topic:nth-child(4n) {
-  padding-right: 0;
+  @media (min-width: mediumRem) {
+    margin-top: 1.5rem;
+  }
 }
 
 .image {
   border-radius: 3px;
-  max-width: 100%;
-  margin-bottom: 13px;
+  width: 100%;
 }
 
 .title {
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
+  font-size: 1rem;
   color: black;
   font-weight: normal;
+  margin-top: .5rem;
 }
 
 .ribbon {
@@ -38,10 +47,9 @@
   color: white;
   position: absolute;
   background-color: bambooOrange;
-  top: 5px;
-  left: -5px;
-  padding: 7px 12px;
+  top: 0.5rem;
+  left: -0.25rem;
+  padding: .35rem .65rem;
   font-weight: bold;
   font-size: 0.875rem;
-  line-height: 1.125rem;
 }
