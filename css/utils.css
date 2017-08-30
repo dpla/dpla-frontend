@@ -1,5 +1,5 @@
 :global .site-max-width {
-  max-width: 64em;
+  max-width: 64rem;
 }
 
 :global .border-box {
