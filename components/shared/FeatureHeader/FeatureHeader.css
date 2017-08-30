@@ -1,0 +1,56 @@
+@value pampasBrown from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+
+.wrapper {
+  background-color: pampasBrown;
+}
+
+.content {
+  margin: auto;
+  padding: 1rem 1rem 1.5rem;
+
+  @media (min-width: mediumRem) {
+    display: flex;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 1.5rem 0 2rem;
+  }
+}
+
+.text {
+  font-weight: normal;
+  font-size: 1.5rem;
+  font-family: "Lora";
+
+  @media (min-width: mediumRem) {
+    font-size: 2.5rem;
+    padding-right: 1rem;
+    width: 30%;
+  }
+
+  @media (min-width: largeRem) {
+    font-size: 3rem;
+  }
+}
+
+.description {
+  opacity: 0.5;
+  margin-top: .5rem;
+  line-height: 1.25;
+
+  @media (min-width: mediumRem) {
+    padding-left: 1rem;
+    font-size: 1.25rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    width: 70%;
+  }
+
+  @media (min-width: largeRem) {
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
