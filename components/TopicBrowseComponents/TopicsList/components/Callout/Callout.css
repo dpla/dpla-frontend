@@ -1,33 +1,48 @@
 @value visualBrown, pampasBrown, bambooOrange from "../../../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .calloutWrapper {
   background-color: visualBrown;
   width: 100%;
-  padding: 52px 0;
+  padding: 2rem 1rem;
+
+  @media (min-width: @smallRem) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 }
 
 .callout {
-  max-width: 816px;
+  max-width: 46rem;
   margin: auto;
-  padding: 32px 43px 35px 37px;
+  padding: 2rem;
   border: 2px solid rgba(0, 0, 0, 0.04);
   background-color: pampasBrown;
-  display: flex;
-  align-items: center;
+  text-align: center;
+
+  @media (min-width: mediumRem) {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.text {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  opacity: 0.55;
+.content {
+  @media (min-width: mediumRem) {
+    padding-right: 1rem;
+  }
 }
 
 .header {
   font-family: "Lora";
   font-weight: normal;
   font-size: 1.5rem;
-  line-height: 1.75rem;
-  margin-bottom: 5px;
+}
+
+.text {
+  margin-top: .5rem;;
+  font-size: 1.125rem;
+  opacity: 0.5;
 }
 
 .link {
@@ -35,8 +50,9 @@
   border-radius: 3px;
   background-color: bambooOrange;
   color: white;
-  padding: 10px 28px;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   font-weight: 600;
+  margin-top: 1rem;
+  display: inline-block;
 }
