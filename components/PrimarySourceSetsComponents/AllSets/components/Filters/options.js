@@ -5,7 +5,7 @@ export const sortOptions = [
 ];
 
 export const subjectOptions = [
-  { value: "all", label: "All" },
+  { value: "all-subjects", label: "All Subjects" },
   { value: "us-history", label: "US History" },
   { value: "american-literature", label: "American Literature" },
   { value: "science-and-technology", label: "Science and Technology" },
@@ -23,7 +23,7 @@ export const subjectOptions = [
 ];
 
 export const mapSubjectNameToSlug = {
-  All: "all",
+  "All Subjects": "all-subjects",
   "US History": "us-history",
   "American Literature": "american-literature",
   "Science and Technology": "science-and-technology",
