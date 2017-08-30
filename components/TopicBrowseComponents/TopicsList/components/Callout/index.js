@@ -6,7 +6,7 @@ import { classNames, stylesheet } from "./Callout.css";
 const Callout = ({ topics }) =>
   <div className={classNames.calloutWrapper}>
     <div className={classNames.callout}>
-      <div>
+      <div className={classNames.content}>
         <h2 className={classNames.header}>Enjoying these topics?</h2>
         <p className={classNames.text}>
           You might also like our Online Exhibitions.

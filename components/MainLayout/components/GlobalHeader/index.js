@@ -8,16 +8,16 @@ const GlobalHeader = () =>
     <div className={`${classNames.linksContainer} site-max-width`}>
       <div className={classNames.links}>
         <Link href="/">
-          <a>Home</a>
+          Home
         </Link>
         <Link href="/browse-by-topic">
-          <a>Browse</a>
+          Browse
         </Link>
         <Link href="/exhibitions">
-          <a>Exhibitions</a>
+          Exhibitions
         </Link>
         <Link href="/primary-source-sets">
-          <a>Primary Source Sets</a>
+          Primary Source Sets
         </Link>
       </div>
       <span className={classNames.divider} />

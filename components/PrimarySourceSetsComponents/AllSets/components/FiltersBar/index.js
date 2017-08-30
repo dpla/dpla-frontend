@@ -17,7 +17,7 @@ const SortValue = props =>
     </span>
   </span>;
 
-class FiltersBar extends React.Component {
+class Filters extends React.Component {
   componentWillMount() {
     this.setState({
       sortValue: this.props.route.query.order || "recently_added",
@@ -113,4 +113,4 @@ class FiltersBar extends React.Component {
   }
 }
 
-export default FiltersBar;
+export default Filters;
