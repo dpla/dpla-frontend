@@ -2,6 +2,7 @@
 
 .mainContent {
   display: flex;
+  padding-bottom: 150px;
 }
 
 .listWrapper,
