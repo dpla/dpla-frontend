@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Pagination.css";
 
+const chevron = "/static/images/chevron-thick-cascade-blue.svg";
+
 const PageLink = ({ route, page, className }) =>
   <Link
     href={{
@@ -31,7 +33,11 @@ const NextOrPrevButton = ({ route, currentPage, type = "next" }) =>
         type === "next" ? classNames.nextButton : classNames.previousButton
       }
     >
+      {type === "prev" &&
+        <img className={classNames.prevChevron} alt="" src={chevron} />}
       {type === "next" ? "Next" : "Previous"}
+      {type === "next" &&
+        <img className={classNames.nextChevron} alt="" src={chevron} />}
     </a>
   </Link>;
 

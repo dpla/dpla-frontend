@@ -8,9 +8,9 @@
 .link {
   color: cascadeBlue;
   font-size: 1.125rem;
-  padding: 0 7px;
+  padding: 3px 10px;
   margin: 0 3px;
-  box-sizing: border-box;
+  border-radius: 2px;
 }
 
 .link:first-child {
@@ -19,24 +19,47 @@
 
 .activeLink {
   color: black;
+  box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
+}
+
+.link:not(.activeLink):hover {
+  background-color: iceBlue;
 }
 
 .nextButton, .previousButton {
   background-color: iceBlue;
   display: inline-block;
-  padding: 10px 19px;
   border-radius: 2px;
   font-weight: 600;
   color: cascadeBlue;
   font-size: 1.125rem;
+  position: relative;
 }
 
 .previousButton {
+  padding: 10px 19px 10px 37px;
   margin-right: 10px;
 }
 
 .nextButton {
   margin-left: 10px;
+  padding: 10px 37px 10px 19px;
+}
+
+.nextChevron {
+  height: 14px;
+  width: 8px;
+  top: 13px;
+  position: absolute;
+  right: 19px;
+}
+
+.prevChevron {
+  height: 14px;
+  width: 8px;
+  transform: rotate(180deg);
+  position: absolute;
+  top: 13px;
+  left: 19px;
 }
