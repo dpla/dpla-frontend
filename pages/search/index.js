@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";

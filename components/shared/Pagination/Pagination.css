@@ -1,0 +1,42 @@
+@value cascadeBlue, iceBlue from "../../../css/colors.css";
+
+.pagination {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.link {
+  color: cascadeBlue;
+  font-size: 1.125rem;
+  padding: 0 7px;
+  margin: 0 3px;
+  box-sizing: border-box;
+}
+
+.link:first-child {
+  margin-left: 0;
+}
+
+.activeLink {
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.nextButton, .previousButton {
+  background-color: iceBlue;
+  display: inline-block;
+  padding: 10px 19px;
+  border-radius: 2px;
+  font-weight: 600;
+  color: cascadeBlue;
+  font-size: 1.125rem;
+}
+
+.previousButton {
+  margin-right: 10px;
+}
+
+.nextButton {
+  margin-left: 10px;
+}

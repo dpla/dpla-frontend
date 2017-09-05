@@ -25,7 +25,7 @@ const MainContent = ({ results, route, facets, paginationInfo }) =>
         <Pagination
           route={route}
           itemsPerPage={paginationInfo.pageSize}
-          currentPage={paginationInfo.currentPage}
+          currentPage={parseInt(paginationInfo.currentPage, 10)}
           pageCount={Math.floor(
             paginationInfo.pageCount / paginationInfo.pageSize
           )}
