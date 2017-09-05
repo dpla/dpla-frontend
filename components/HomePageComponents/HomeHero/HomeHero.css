@@ -16,7 +16,6 @@
   display: none;
   justify-content: space-between;
   padding: 1rem;
-  max-width: 1024px;
   margin: 0 auto;
 
   @media (min-width: mediumRem) {

@@ -9,7 +9,7 @@ const chevron = "static/images/chevron-thick-dark-blue.svg";
 
 const HomeHero = () =>
   <div className={classNames.wrapper}>
-    <div className={classNames.header}>
+    <div className={`${classNames.header} site-max-width`}>
       <div>
         <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
       </div>
