@@ -3,9 +3,9 @@ import React from "react";
 import MainLayout from "../../components/MainLayout";
 import TopicsList from "../../components/TopicBrowseComponents/TopicsList";
 
-const TopicBrowse = () =>
+const TopicBrowse = ({ url }) =>
   <div>
-    <MainLayout>
+    <MainLayout route={url}>
       <TopicsList />
     </MainLayout>
   </div>;

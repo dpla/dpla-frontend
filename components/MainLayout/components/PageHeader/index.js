@@ -6,7 +6,7 @@ import { stylesheet, classNames } from "./PageHeader.css";
 const dplaLogo = "/static/images/dpla-logo-white.svg";
 const searchIcon = "/static/images/search.svg";
 
-const PageHeader = () =>
+const PageHeader = ({ searchQuery }) =>
   <div className={classNames.headerSearchBar}>
     <div className={`${classNames.flexWrapper} site-max-width`}>
       <Link href="/">
@@ -18,12 +18,15 @@ const PageHeader = () =>
           />
         </a>
       </Link>
-      <div className={classNames.searchBar}>
+      <form action="/search" className={classNames.searchBar}>
         <input
           className={classNames.searchInput}
+          name="q"
+          type="search"
           placeholder="Search the collection"
+          defaultValue={searchQuery}
         />
-        <button className={classNames.searchButton}>
+        <button type="submit" className={classNames.searchButton}>
           <img
             alt="Search"
             src={searchIcon}
@@ -31,7 +34,7 @@ const PageHeader = () =>
           />
           <span>Search</span>
         </button>
-      </div>
+      </form>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

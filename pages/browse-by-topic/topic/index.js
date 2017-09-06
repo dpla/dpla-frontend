@@ -8,8 +8,8 @@ import Suggestions from "../../../components/TopicBrowseComponents/Topic/Suggest
 import mockTopic from "../../../components/TopicBrowseComponents/Topic/mockTopic";
 import mockSuggestions from "../../../components/TopicBrowseComponents/Topic/mockSuggestions";
 
-const Topic = props =>
-  <MainLayout>
+const Topic = ({ url }) =>
+  <MainLayout route={url}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         {

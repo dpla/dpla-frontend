@@ -20,28 +20,38 @@ const HomeHero = () =>
         A collection of 16,340,976 free digital artifacts from over 120
         libraries, archives and museums
       </p>
-      <div className={classNames.search}>
-        <input
-          className={classNames.searchInput}
-          placeholder="Search the collection"
-        />
-        <div className={classNames.searchOptions}>
-          <span>All types</span>
-          <img
-            alt="select types"
-            className={classNames.chevron}
-            src={chevron}
+      <form action="/search">
+        <div className={classNames.search}>
+          <input
+            className={classNames.searchInput}
+            placeholder="Search the collection"
+            name="q"
+            type="search"
           />
+          <div className={classNames.searchOptions}>
+            <select
+              name="sourceResource.type"
+              className={classNames.optionsSelect}
+            >
+              <option value="">All types</option>
+              <option value="text">Text</option>
+              <option value="image">Image</option>
+              <option value="sound">Sound</option>
+              <option value="moving image">Moving Image</option>
+              <option value="physical object">Physical Object</option>
+            </select>
+            <img alt="" className={classNames.chevron} src={chevron} />
+          </div>
+          <button type="submit" className={classNames.searchButton}>
+            <img
+              alt="search"
+              className={classNames.searchIcon}
+              src={searchIcon}
+            />
+            <span>Search</span>
+          </button>
         </div>
-        <button className={classNames.searchButton}>
-          <img
-            alt="search"
-            className={classNames.searchIcon}
-            src={searchIcon}
-          />
-          <span>Search</span>
-        </button>
-      </div>
+      </form>
       <div className={classNames.links}>
         <Link href="/browse-by-topic">
           <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>

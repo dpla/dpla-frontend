@@ -7,7 +7,8 @@ body {
 
 body,
 button,
-input {
+input,
+select {
   font-family: "Source Sans Pro";
 }
 
@@ -71,6 +72,12 @@ input[type="tel"],
 input[type="text"],
 input[type="url"] {
   box-sizing: border-box;
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
 }
 
 /*

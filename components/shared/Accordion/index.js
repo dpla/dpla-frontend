@@ -9,7 +9,7 @@ class Accordion extends React.Component {
   componentWillMount() {
     this.setState({
       items: this.props.items.map((item, i) => {
-        if (i < 2) {
+        if (i < 2 && item.subitems.length) {
           return Object.assign({}, item, { active: true });
         } else {
           return item;
@@ -41,35 +41,40 @@ class Accordion extends React.Component {
   render() {
     return (
       <div>
-        {this.state.items.map((item, i) =>
-          <div
-            key={i}
-            className={item.active ? classNames.active : classNames.inactive}
-          >
-            <button
-              className={classNames.itemHeader}
-              onClick={() => this.onClickItem(i)}
-            >
-              <span>{item.name}</span>
-              {item.active &&
-                <img
-                  src={subtractIcon}
-                  alt={item.name}
-                  className={classNames.subtractIcon}
-                />}
-              {!item.active &&
-                <img
-                  src={addIcon}
-                  alt={item.name}
-                  className={classNames.addIcon}
-                />}
-            </button>
-            <ul className={classNames.subitems}>
-              {item.subitems.map((subitem, j) =>
-                <li key={j}>{subitem.content}</li>
-              )}
-            </ul>
-          </div>
+        {this.state.items.map(
+          (item, i) =>
+            item.subitems.length
+              ? <div
+                  key={i}
+                  className={
+                    item.active ? classNames.active : classNames.inactive
+                  }
+                >
+                  <button
+                    className={classNames.itemHeader}
+                    onClick={() => this.onClickItem(i)}
+                  >
+                    <span>{item.name}</span>
+                    {item.active &&
+                      <img
+                        src={subtractIcon}
+                        alt={item.name}
+                        className={classNames.subtractIcon}
+                      />}
+                    {!item.active &&
+                      <img
+                        src={addIcon}
+                        alt={item.name}
+                        className={classNames.addIcon}
+                      />}
+                  </button>
+                  <ul className={classNames.subitems}>
+                    {item.subitems.map((subitem, j) =>
+                      <li key={j}>{subitem.content}</li>
+                    )}
+                  </ul>
+                </div>
+              : null
         )}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>

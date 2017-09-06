@@ -10,7 +10,7 @@ import {
 } from "components/SearchComponents/SearchComponents.css";
 
 const Search = ({ url, results }) =>
-  <MainLayout>
+  <MainLayout route={url}>
     <div className={classNames.wrapper}>
       <OptionsBar route={url} itemCount={results.count} />
       <MainContent
@@ -58,7 +58,7 @@ Search.getInitialProps = async ({ query }) => {
   const sort_order = query.sort_order || "";
 
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${[facet]}=${query[facet]}` : ""))
+    .map(facet => (query[facet] ? `${[facet]}="${query[facet]}"` : ""))
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
