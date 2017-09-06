@@ -58,9 +58,11 @@ Search.getInitialProps = async ({ query }) => {
   const sort_order = query.sort_order || "";
 
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${[facet]}=${query[facet]}` : ""))
+    .map(facet => (query[facet] ? `${[facet]}="${query[facet]}"` : ""))
     .filter(facetQuery => facetQuery !== "")
     .join("&");
+
+  console.dir(facets);
 
   const res = await fetch(
     `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(

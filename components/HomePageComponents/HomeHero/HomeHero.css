@@ -118,6 +118,10 @@
   opacity: 0.5;
 }
 
+.selectWrapper {
+  position: relative;
+}
+
 .searchOptions {
   display: none;
   height: 100%;
@@ -131,6 +135,14 @@
     display: flex;
     font-size: 1.2rem;
   }
+}
+
+.optionsSelect {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  width: 100%;
+  height: 100%;
 }
 
 .searchButton {

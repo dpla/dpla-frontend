@@ -73,6 +73,13 @@ input[type="url"] {
   box-sizing: border-box;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+}
+
 /*
 *
 Vendor Overrides

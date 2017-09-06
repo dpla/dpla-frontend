@@ -28,12 +28,18 @@ const HomeHero = () =>
             name="q"
           />
           <div className={classNames.searchOptions}>
-            <span>All types</span>
-            <img
-              alt="select types"
-              className={classNames.chevron}
-              src={chevron}
-            />
+            <select
+              name="sourceResource.type"
+              className={classNames.optionsSelect}
+            >
+              <option value="">All types</option>
+              <option value="text">Text</option>
+              <option value="image">Image</option>
+              <option value="sound">Sound</option>
+              <option value="moving image">Moving Image</option>
+              <option value="physical object">Physical Object</option>
+            </select>
+            <img alt="" className={classNames.chevron} src={chevron} />
           </div>
           <button type="submit" className={classNames.searchButton}>
             <img
