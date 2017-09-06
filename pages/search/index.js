@@ -58,7 +58,22 @@ Search.getInitialProps = async ({ query }) => {
   const sort_order = query.sort_order || "";
 
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${[facet]}="${query[facet]}"` : ""))
+    .map(facet => {
+      if (query[facet]) {
+        return (Array.isArray(query[facet]) ? query[facet] : [query[facet]])
+          .map(
+            param =>
+              facet === "sourceResource.type" &&
+                // types with spaces in their name need quotes around the value
+                /(image|text|sound)/.test(query[facet])
+                ? `${[facet]}=${param}`
+                : `${[facet]}="${param}"`
+          )
+          .join("&");
+      } else {
+        return "";
+      }
+    })
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
