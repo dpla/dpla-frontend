@@ -122,6 +122,6 @@ Vendor Overrides
   position: absolute;
   border-left: 1px solid #000000;
   left: -0.7rem;
-  top: 50%;
+  top: 50% !important;
   transform: translateY(-50%);
 }

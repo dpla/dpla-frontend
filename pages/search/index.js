@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
@@ -13,6 +14,11 @@ const Search = ({ url, results }) =>
     <div className={classNames.wrapper}>
       <OptionsBar route={url} itemCount={results.count} />
       <MainContent
+        paginationInfo={{
+          pageCount: results.count,
+          pageSize: url.query.page_size || 10,
+          currentPage: url.query.page || 1
+        }}
         route={url}
         facets={results.facets}
         results={results.docs.map(doc =>
@@ -42,6 +48,7 @@ Search.getInitialProps = async ({ query }) => {
 
   const q = query.q || "";
   const page_size = query.page_size || 20;
+  const page = query.page || 1;
   let sort_by = "";
   if (query.sort_by === "title") {
     sort_by = "sourceResource.title";
@@ -56,7 +63,7 @@ Search.getInitialProps = async ({ query }) => {
     .join("&");
 
   const res = await fetch(
-    `https://api.dp.la/v2/items?q=${q}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
+    `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
       ","
     )}&${facetQueries}`
   );

@@ -40,7 +40,8 @@ class Sidebar extends React.Component {
                         query: Object.assign({}, route.query, {
                           [key]: route.query[key]
                             ? [route.query[key], [termObject.term]].join(",")
-                            : termObject.term
+                            : termObject.term,
+                          page: 1
                         })
                       }}
                     >

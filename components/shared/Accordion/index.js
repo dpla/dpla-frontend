@@ -7,7 +7,15 @@ const subtractIcon = "/static/images/subtract.svg";
 
 class Accordion extends React.Component {
   componentWillMount() {
-    this.setState({ items: this.props.items });
+    this.setState({
+      items: this.props.items.map((item, i) => {
+        if (i < 2) {
+          return Object.assign({}, item, { active: true });
+        } else {
+          return item;
+        }
+      })
+    });
   }
 
   componentWillReceiveProps(nextProps) {

@@ -1,0 +1,61 @@
+@value cascadeBlue, iceBlue from "../../../css/colors.css";
+
+.pagination {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.link {
+  color: cascadeBlue;
+  font-size: 1.125rem;
+  padding: 3px 10px;
+  margin: 0 3px;
+  border-radius: 2px;
+}
+
+.link:first-child {
+  margin-left: 0;
+}
+
+.activeLink {
+  color: black;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.link:not(.activeLink):hover {
+  background-color: iceBlue;
+}
+
+.nextButton, .previousButton {
+  background-color: iceBlue;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 2px;
+  font-weight: 600;
+  color: cascadeBlue;
+  font-size: 1.125rem;
+}
+
+.previousButton {
+  padding: 10px 19px;
+  margin-right: 10px;
+}
+
+.nextButton {
+  margin-left: 10px;
+  padding: 10px 19px;
+}
+
+.nextChevron {
+  height: 14px;
+  width: 8px;
+  margin-left: 0.75rem;
+}
+
+.prevChevron {
+  height: 14px;
+  width: 8px;
+  transform: rotate(180deg);
+  margin-right: 0.75rem;
+}
