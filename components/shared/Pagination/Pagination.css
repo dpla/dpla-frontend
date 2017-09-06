@@ -29,37 +29,33 @@
 
 .nextButton, .previousButton {
   background-color: iceBlue;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border-radius: 2px;
   font-weight: 600;
   color: cascadeBlue;
   font-size: 1.125rem;
-  position: relative;
 }
 
 .previousButton {
-  padding: 10px 19px 10px 37px;
+  padding: 10px 19px;
   margin-right: 10px;
 }
 
 .nextButton {
   margin-left: 10px;
-  padding: 10px 37px 10px 19px;
+  padding: 10px 19px;
 }
 
 .nextChevron {
   height: 14px;
   width: 8px;
-  top: 13px;
-  position: absolute;
-  right: 19px;
+  margin-left: 0.75rem;
 }
 
 .prevChevron {
   height: 14px;
   width: 8px;
   transform: rotate(180deg);
-  position: absolute;
-  top: 13px;
-  left: 19px;
+  margin-right: 0.75rem;
 }
