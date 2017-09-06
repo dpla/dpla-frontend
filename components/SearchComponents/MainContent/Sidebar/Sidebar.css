@@ -1,3 +1,6 @@
+@value cascadeBlue from "../../../../css/colors.css";
+
+
 .sidebar {
   width: 294px;
   margin-right: 19px;
@@ -7,6 +10,11 @@
 .facet {
   font-size: 0.875rem;
   line-height: 1.125rem;
+}
+
+.activeFacetName {
+  color: cascadeBlue;
+  font-weight: bold;
 }
 
 .facetCount {

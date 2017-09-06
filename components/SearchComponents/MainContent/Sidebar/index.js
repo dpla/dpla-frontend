@@ -14,6 +14,41 @@ const possibleFacets = [
   "provider.name"
 ];
 
+const FacetLink = ({ route, key, termObject, disabled }) =>
+  disabled
+    ? <span className={[classNames.facet].join(" ")}>
+        <span
+          className={[classNames.facetName, classNames.activeFacetName].join(
+            " "
+          )}
+        >
+          {`${termObject.term} `}
+        </span>
+        <span className={classNames.facetCount}>
+          ({termObject.count})
+        </span>
+      </span>
+    : <Link
+        href={{
+          pathname: route.pathname,
+          query: Object.assign({}, route.query, {
+            [key]: route.query[key]
+              ? [route.query[key], [termObject.term]].join(",")
+              : termObject.term,
+            page: 1
+          })
+        }}
+      >
+        <a className={classNames.facet}>
+          <span className={classNames.facetName}>
+            {`${termObject.term} `}
+          </span>
+          <span className={classNames.facetCount}>
+            ({termObject.count})
+          </span>
+        </a>
+      </Link>;
+
 class Sidebar extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
@@ -34,26 +69,15 @@ class Sidebar extends React.Component {
             subitems: facets[key].terms.map(termObject => {
               return {
                 content: possibleFacets.includes(key)
-                  ? <Link
-                      href={{
-                        pathname: route.pathname,
-                        query: Object.assign({}, route.query, {
-                          [key]: route.query[key]
-                            ? [route.query[key], [termObject.term]].join(",")
-                            : termObject.term,
-                          page: 1
-                        })
-                      }}
-                    >
-                      <a className={classNames.facet}>
-                        <span className={classNames.facetName}>
-                          {`${termObject.term} `}
-                        </span>
-                        <span className={classNames.facetCount}>
-                          ({termObject.count})
-                        </span>
-                      </a>
-                    </Link>
+                  ? <FacetLink
+                      route={route}
+                      termObject={termObject}
+                      key={key}
+                      disabled={
+                        route.query[key] &&
+                        route.query[key].includes(termObject.term)
+                      }
+                    />
                   : ""
               };
             })
