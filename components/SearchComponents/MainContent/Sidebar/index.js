@@ -14,7 +14,7 @@ const possibleFacets = [
   "provider.name"
 ];
 
-const FacetLink = ({ route, key, termObject, disabled }) =>
+const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
     ? <span className={[classNames.facet].join(" ")}>
         <span
@@ -32,9 +32,12 @@ const FacetLink = ({ route, key, termObject, disabled }) =>
         href={{
           pathname: route.pathname,
           query: Object.assign({}, route.query, {
-            [key]: route.query[key]
-              ? [route.query[key], [termObject.term]].join(",")
-              : termObject.term,
+            // some facet names have spaces, and we need to wrap them in " "
+            [queryKey]: route.query[queryKey]
+              ? [`"${route.query[queryKey]}"`, `"${[termObject.term]}"`].join(
+                  ","
+                )
+              : `"${termObject.term}"`,
             page: 1
           })
         }}
@@ -72,7 +75,7 @@ class Sidebar extends React.Component {
                   ? <FacetLink
                       route={route}
                       termObject={termObject}
-                      key={key}
+                      queryKey={key}
                       disabled={
                         route.query[key] &&
                         route.query[key].includes(termObject.term)
