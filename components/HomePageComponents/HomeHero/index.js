@@ -20,28 +20,31 @@ const HomeHero = () =>
         A collection of 16,340,976 free digital artifacts from over 120
         libraries, archives and museums
       </p>
-      <div className={classNames.search}>
-        <input
-          className={classNames.searchInput}
-          placeholder="Search the collection"
-        />
-        <div className={classNames.searchOptions}>
-          <span>All types</span>
-          <img
-            alt="select types"
-            className={classNames.chevron}
-            src={chevron}
+      <form action="/search">
+        <div className={classNames.search}>
+          <input
+            className={classNames.searchInput}
+            placeholder="Search the collection"
+            name="q"
           />
+          <div className={classNames.searchOptions}>
+            <span>All types</span>
+            <img
+              alt="select types"
+              className={classNames.chevron}
+              src={chevron}
+            />
+          </div>
+          <button type="submit" className={classNames.searchButton}>
+            <img
+              alt="search"
+              className={classNames.searchIcon}
+              src={searchIcon}
+            />
+            <span>Search</span>
+          </button>
         </div>
-        <button className={classNames.searchButton}>
-          <img
-            alt="search"
-            className={classNames.searchIcon}
-            src={searchIcon}
-          />
-          <span>Search</span>
-        </button>
-      </div>
+      </form>
       <div className={classNames.links}>
         <Link href="/browse-by-topic">
           <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>

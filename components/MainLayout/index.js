@@ -5,11 +5,11 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
-const MainLayout = ({ children, hideSearchBar, headLinks }) =>
+const MainLayout = ({ children, route, hideSearchBar, headLinks }) =>
   <div>
     <Head additionalLinks={headLinks} />
     <GlobalHeader />
-    {!hideSearchBar && <PageHeader />}
+    {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
     {children}
     <Footer />
   </div>;

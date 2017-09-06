@@ -10,7 +10,7 @@ import {
 } from "components/SearchComponents/SearchComponents.css";
 
 const Search = ({ url, results }) =>
-  <MainLayout>
+  <MainLayout route={url}>
     <div className={classNames.wrapper}>
       <OptionsBar route={url} itemCount={results.count} />
       <MainContent

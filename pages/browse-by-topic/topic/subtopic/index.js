@@ -14,8 +14,8 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const SubtopicItemsList = props =>
-  <MainLayout>
+const SubtopicItemsList = ({ url }) =>
+  <MainLayout route={url}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
