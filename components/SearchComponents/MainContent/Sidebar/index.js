@@ -17,7 +17,9 @@ const possibleFacets = [
 const paramsToString = query =>
   Object.keys(query)
     .map(key => {
+      // if the query has more than 1 value it is formatted as an array
       if (Array.isArray(query[key])) {
+        // we have to map these into a single string
         return query[key].map(param => `${key}=${param}`).join("&");
       } else {
         return `${key}=${query[key]}`;

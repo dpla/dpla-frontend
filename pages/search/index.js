@@ -64,6 +64,7 @@ Search.getInitialProps = async ({ query }) => {
           .map(
             param =>
               facet === "sourceResource.type" &&
+                // types with spaces in their name need quotes around the value
                 /(image|text|sound)/.test(query[facet])
                 ? `${[facet]}=${param}`
                 : `${[facet]}="${param}"`
