@@ -26,6 +26,7 @@ const HomeHero = () =>
             className={classNames.searchInput}
             placeholder="Search the collection"
             name="q"
+            type="search"
           />
           <div className={classNames.searchOptions}>
             <select

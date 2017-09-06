@@ -22,6 +22,7 @@ const PageHeader = ({ searchQuery }) =>
         <input
           className={classNames.searchInput}
           name="q"
+          type="search"
           placeholder="Search the collection"
           defaultValue={searchQuery}
         />
