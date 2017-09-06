@@ -58,10 +58,26 @@ Search.getInitialProps = async ({ query }) => {
   const sort_order = query.sort_order || "";
 
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${[facet]}="${query[facet]}"` : ""))
+    .map(facet => {
+      if (query[facet]) {
+        return (Array.isArray(query[facet]) ? query[facet] : [query[facet]])
+          .map(
+            param =>
+              facet === "sourceResource.type" &&
+                /(image|text|sound)/.test(query[facet])
+                ? `${[facet]}=${param}`
+                : `${[facet]}="${param}"`
+          )
+          .join("&");
+      } else {
+        return "";
+      }
+    })
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
+  console.log(facetQueries);
+  console.log(query);
   const res = await fetch(
     `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
       ","

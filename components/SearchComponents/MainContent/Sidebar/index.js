@@ -14,6 +14,17 @@ const possibleFacets = [
   "provider.name"
 ];
 
+const paramsToString = query =>
+  Object.keys(query)
+    .map(key => {
+      if (Array.isArray(query[key])) {
+        return query[key].map(param => `${key}=${param}`).join("&");
+      } else {
+        return `${key}=${query[key]}`;
+      }
+    })
+    .join("&");
+
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
     ? <span className={[classNames.facet].join(" ")}>
@@ -29,18 +40,9 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
         </span>
       </span>
     : <Link
-        href={{
-          pathname: route.pathname,
-          query: Object.assign({}, route.query, {
-            // some facet names have spaces, and we need to wrap them in " "
-            [queryKey]: route.query[queryKey]
-              ? [`"${route.query[queryKey]}"`, `"${[termObject.term]}"`].join(
-                  ","
-                )
-              : `"${termObject.term}"`,
-            page: 1
-          })
-        }}
+        href={`${route.pathname}?${queryKey}=${termObject.term}&${paramsToString(
+          Object.assign({}, route.query, { page: 1 })
+        )}`}
       >
         <a className={classNames.facet}>
           <span className={classNames.facetName}>
