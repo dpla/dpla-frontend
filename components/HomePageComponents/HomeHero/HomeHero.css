@@ -76,9 +76,9 @@
 
 .chevron {
   height: 14px;
-  margin-left: 9px;
-  position: relative;
-  top: 2px;
+  right: 24px;
+  position: absolute;
+  margin-top: 2px;
   transform: rotate(90deg);
   width: 8px;
 }
@@ -129,7 +129,7 @@
   color: elephantBlue;
   font-weight: 600;
   align-items: center;
-  padding: 0 24px 0 22px;
+  position: relative;
 
   @media (min-width: mediumRem) {
     display: flex;
@@ -138,6 +138,7 @@
 }
 
 .optionsSelect {
+  padding: 0 48px 0 22px;
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
