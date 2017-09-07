@@ -16,7 +16,7 @@ const ListView = ({ items }) =>
             {item.title}
           </span>
           <span className={classNames.itemType}>
-            {item.type}
+            {Array.isArray(item.type) ? item.type.join(", ") : item.type}
           </span>
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>

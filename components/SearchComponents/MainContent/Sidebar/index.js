@@ -34,8 +34,8 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           query: Object.assign({}, route.query, {
             // some facet names have spaces, and we need to wrap them in " "
             [queryKey]: route.query[queryKey]
-              ? [`"${route.query[queryKey]}"`, `"${[termObject.term]}"`].join(
-                  ","
+              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join(
+                  "+AND+"
                 )
               : `"${termObject.term}"`,
             page: 1
@@ -78,7 +78,11 @@ class Sidebar extends React.Component {
                       queryKey={key}
                       disabled={
                         route.query[key] &&
-                        route.query[key].includes(termObject.term)
+                        // handles case of sources with both
+                        // "moving image" and "image" as types
+                        new RegExp('"' + termObject.term + '"').test(
+                          route.query[key]
+                        )
                       }
                     />
                   : ""

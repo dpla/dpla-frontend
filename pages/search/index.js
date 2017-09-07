@@ -34,6 +34,7 @@ const Search = ({ url, results }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
+// TODO: better API key storage?
 const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 Search.getInitialProps = async ({ query }) => {
   // TODO: clean this up
@@ -56,9 +57,8 @@ Search.getInitialProps = async ({ query }) => {
     sort_by = "sourceResource.date.begin";
   }
   const sort_order = query.sort_order || "";
-
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${[facet]}="${query[facet]}"` : ""))
+    .map(facet => (query[facet] ? `${facet}=${query[facet]}` : ""))
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
