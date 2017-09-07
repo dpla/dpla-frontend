@@ -7,7 +7,7 @@ import PSSFooter from "../../components/PrimarySourceSetsComponents/PSSFooter";
 
 const PrimarySourceSets = ({ url, sets }) =>
   <div>
-    <MainLayout>
+    <MainLayout route={url}>
       <AllSets route={url} sets={sets} />
       <PSSFooter />
     </MainLayout>

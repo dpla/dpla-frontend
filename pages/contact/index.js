@@ -12,6 +12,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Contact = ({ url }) =>
   <MainLayout
+    route={url}
     headLinks={
       <link
         rel="stylesheet"

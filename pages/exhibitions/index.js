@@ -5,7 +5,7 @@ import AllExhibitions from "../../components/ExhibitionsComponents/AllExhibition
 import Footer from "../../components/ExhibitionsComponents/Footer";
 
 const Exhibitions = ({ url }) =>
-  <MainLayout>
+  <MainLayout route={url}>
     <AllExhibitions route={url} />
     <Footer />
   </MainLayout>;
