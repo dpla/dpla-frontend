@@ -29,10 +29,7 @@ const HomeHero = () =>
             type="search"
           />
           <div className={classNames.searchOptions}>
-            <select
-              name="sourceResource.type"
-              className={classNames.optionsSelect}
-            >
+            <select name="type" className={classNames.optionsSelect}>
               <option value="all">All types</option>
               <option value="text">Text</option>
               <option value="image">Image</option>

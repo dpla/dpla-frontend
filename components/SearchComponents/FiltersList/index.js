@@ -15,9 +15,9 @@ const clearAllFacets = query => {
 const clearFacet = (query, queryKey, facet) => {
   const duped = Object.assign({}, query);
   duped[queryKey] = duped[queryKey]
-    .split("+AND+")
+    .split("|")
     .filter(facetPart => facetPart.replace(/"/g, "") !== facet)
-    .join("+AND+");
+    .join("|");
   if (!duped[queryKey]) {
     delete duped[queryKey];
   }
@@ -59,7 +59,7 @@ class FiltersList extends React.Component {
                     return (
                       query[queryKey] &&
                       query[queryKey]
-                        .split("+AND+")
+                        .split("|")
                         .map(paramValue =>
                           <Filter
                             route={this.props.route}

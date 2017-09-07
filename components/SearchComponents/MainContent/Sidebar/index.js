@@ -4,7 +4,7 @@ import { classNames, stylesheet } from "./Sidebar.css";
 
 import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
-import { possibleFacets } from "constants/search";
+import { possibleFacets, mapFacetsToURLPrettified } from "constants/search";
 import escapeForRegex from "utilFunctions/escapeForRegex";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
@@ -27,9 +27,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           query: Object.assign({}, route.query, {
             // some facet names have spaces, and we need to wrap them in " "
             [queryKey]: route.query[queryKey]
-              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join(
-                  "+AND+"
-                )
+              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
               : `"${termObject.term}"`,
             page: 1
           })
@@ -69,14 +67,14 @@ class Sidebar extends React.Component {
                   ? <FacetLink
                       route={route}
                       termObject={termObject}
-                      queryKey={key}
+                      queryKey={mapFacetsToURLPrettified[key]}
                       disabled={
-                        route.query[key] &&
+                        route.query[mapFacetsToURLPrettified[key]] &&
                         // handles case of sources with both
                         // "moving image" and "image" as types
                         new RegExp(
                           '"' + escapeForRegex(termObject.term) + '"'
-                        ).test(route.query[key])
+                        ).test(route.query[mapFacetsToURLPrettified[key]])
                       }
                     />
                   : ""
