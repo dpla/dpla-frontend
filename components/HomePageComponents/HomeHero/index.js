@@ -33,7 +33,7 @@ const HomeHero = () =>
               name="sourceResource.type"
               className={classNames.optionsSelect}
             >
-              <option value selected disabled>All types</option>
+              <option value="all">All types</option>
               <option value="text">Text</option>
               <option value="image">Image</option>
               <option value="sound">Sound</option>
