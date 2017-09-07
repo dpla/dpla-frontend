@@ -121,7 +121,6 @@ app
     });
 
     server.get("/search", (req, res) => {
-      console.log(req.query["sourceResource.type"]);
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
       if (
