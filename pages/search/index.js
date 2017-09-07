@@ -3,6 +3,7 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
+import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 import {
   classNames,
@@ -13,6 +14,7 @@ const Search = ({ url, results }) =>
   <MainLayout route={url}>
     <div className={classNames.wrapper}>
       <OptionsBar route={url} itemCount={results.count} />
+      <FiltersList route={url} facets={results.facets} />
       <MainContent
         paginationInfo={{
           pageCount: results.count,

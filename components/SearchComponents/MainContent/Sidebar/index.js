@@ -4,15 +4,7 @@ import { classNames, stylesheet } from "./Sidebar.css";
 
 import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
-
-const possibleFacets = [
-  "sourceResource.type",
-  "sourceResource.subject.name",
-  "sourceResource.spatial.name",
-  "sourceResource.language.name",
-  "dataProvider",
-  "provider.name"
-];
+import { possibleFacets } from "constants/search";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
