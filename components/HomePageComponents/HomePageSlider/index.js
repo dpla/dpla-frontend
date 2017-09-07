@@ -74,15 +74,23 @@ const HomePageSlider = ({
           }
         ]}
       >
-        {items.map(({ name, thumbnailUrl, isFeatured }, index) =>
-          <div className={classNames.item} key={index}>
-            <img alt={name} className={classNames.itemImg} src={thumbnailUrl} />
-            {isFeatured &&
-              <div className={classNames.featuredTag}>Featured</div>}
-            <div
-              dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
-              className={classNames.itemText}
-            />
+        {items.map(({ name, thumbnailUrl, isFeatured, href, as }, index) =>
+          <div>
+            <Link href={href} as={as}>
+              <a className={classNames.item} key={index}>
+                <img
+                  alt={name}
+                  className={classNames.itemImg}
+                  src={thumbnailUrl}
+                />
+                {isFeatured &&
+                  <div className={classNames.featuredTag}>Featured</div>}
+                <div
+                  dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
+                  className={classNames.itemText}
+                />
+              </a>
+            </Link>
           </div>
         )}
       </Slider>
