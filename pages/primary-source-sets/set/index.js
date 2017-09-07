@@ -11,31 +11,31 @@ import SourceSetSources from "../../../components/PrimarySourceSetsComponents/Si
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
-const SingleSet = props =>
-  <MainLayout>
+const SingleSet = ({ set, url }) =>
+  <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets/",
-            query: removeQueryParams(props.url.query, ["set"])
+            query: removeQueryParams(url.query, ["set"])
           }
         },
-        { title: props.set.name, search: "" }
+        { title: set.name, search: "" }
       ]}
-      route={props.url}
+      route={url}
     />
-    <SourceSetInfo set={props.set} />
-    <ResourcesTabs route={props.url} currentTab="sourceSet" set={props.set}>
+    <SourceSetInfo set={set} />
+    <ResourcesTabs route={url} currentTab="sourceSet" set={set}>
       <SourceSetSources
-        sources={props.set.hasPart.filter(
+        sources={set.hasPart.filter(
           item => item.disambiguatingDescription === "source"
         )}
-        route={props.url}
+        route={url}
       />
     </ResourcesTabs>
-    <RelatedSets sets={props.set.isRelatedTo.slice(0, 4)} />
+    <RelatedSets sets={set.isRelatedTo.slice(0, 4)} />
     <PSSFooter />
   </MainLayout>;
 

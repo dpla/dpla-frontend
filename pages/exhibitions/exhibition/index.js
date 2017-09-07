@@ -8,20 +8,20 @@ import mockExhibition from "../../../components/ExhibitionsComponents/Exhibition
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
-const Exhibition = props =>
-  <MainLayout>
+const Exhibition = ({ url }) =>
+  <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
           title: "Exhibitions",
           url: {
             pathname: "/exhibitions/",
-            query: removeQueryParams(props.url.query, ["exhibition"])
+            query: removeQueryParams(url.query, ["exhibition"])
           }
         },
         { title: mockExhibition.title, search: "" }
       ]}
-      route={props.url}
+      route={url}
     />
     <ImageAndCaption exhibition={mockExhibition} />
     <Details exhibition={mockExhibition} />

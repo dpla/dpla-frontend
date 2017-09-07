@@ -10,7 +10,7 @@ import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/S
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
 const Source = ({ url, source, set, currentSourceIdx }) =>
-  <MainLayout>
+  <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
