@@ -13,8 +13,8 @@ const Noscript = ({ children }) => {
 export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
     // const OpenSeaDragon = require("static/openseadragon/openseadragon.min.js");
-    const OpenSeaDragon = require("openseadragon");
-    this.viewer = OpenSeaDragon({
+    this.OpenSeaDragon = require("openseadragon");
+    this.viewer = this.OpenSeaDragon({
       //eslint-disable-line
       id: "openseadragon1",
       tileSources: {
@@ -23,6 +23,21 @@ export default class ZoomableImageViewer extends React.Component {
       },
       prefixUrl: "/static/images/openseadragon/"
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.pathToFile !== this.props.pathToFile) {
+      this.viewer.destroy();
+      this.viewer = this.OpenSeaDragon({
+        //eslint-disable-line
+        id: "openseadragon1",
+        tileSources: {
+          type: "image",
+          url: nextProps.pathToFile
+        },
+        prefixUrl: "/static/images/openseadragon/"
+      });
+    }
   }
 
   render() {
