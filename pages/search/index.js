@@ -12,6 +12,7 @@ import {
 class Search extends React.Component {
   render() {
     const { url, results } = this.props;
+    console.dir(results);
     return (
       <MainLayout route={url}>
         <div className={classNames.wrapper}>
@@ -62,29 +63,11 @@ Search.getInitialProps = async ({ query }) => {
     sort_by = "sourceResource.date.begin";
   }
   const sort_order = query.sort_order || "";
-  console.log(query);
   const facetQueries = facets
-    .map(facet => {
-      if (query[facet]) {
-        const paramValue = query[facet].replace(/\|/g, "+AND+");
-        return `${facet}=${paramValue}`;
-        // .split("|")
-        // .map(
-        //   param =>
-        //     facet === "sourceResource.type" &&
-        //       // types with spaces in their name need quotes around the value
-        //       /(image|text|sound)/.test(query[facet])
-        //       ? `${[facet]}=${param}`
-        //       : `${[facet]}="${param}"`
-        // )
-        // .join("&");
-      } else {
-        return "";
-      }
-    })
+    .map(facet => (query[facet] ? `${facet}=${query[facet]}` : ""))
     .filter(facetQuery => facetQuery !== "")
     .join("&");
-  console.log(facetQueries);
+
   const res = await fetch(
     `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
       ","

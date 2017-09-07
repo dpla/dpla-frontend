@@ -70,8 +70,6 @@ class Sidebar extends React.Component {
           items={Object.keys(facets).map((key, i) => ({
             name: prettifiedFacetMap[key],
             subitems: facets[key].terms.map(termObject => {
-              console.log(termObject.term);
-              console.log(route.query[key]);
               return {
                 content: possibleFacets.includes(key)
                   ? <FacetLink
