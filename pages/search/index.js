@@ -12,7 +12,7 @@ import {
 class Search extends React.Component {
   render() {
     const { url, results } = this.props;
-    console.dir(results);
+
     return (
       <MainLayout route={url}>
         <div className={classNames.wrapper}>

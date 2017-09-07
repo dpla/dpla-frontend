@@ -78,6 +78,8 @@ class Sidebar extends React.Component {
                       queryKey={key}
                       disabled={
                         route.query[key] &&
+                        // handles case of sources with both
+                        // "moving image" and "image" as types
                         new RegExp('"' + termObject.term + '"').test(
                           route.query[key]
                         )
