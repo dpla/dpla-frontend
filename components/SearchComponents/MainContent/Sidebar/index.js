@@ -34,8 +34,8 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           query: Object.assign({}, route.query, {
             // some facet names have spaces, and we need to wrap them in " "
             [queryKey]: route.query[queryKey]
-              ? [`"${route.query[queryKey]}"`, `"${[termObject.term]}"`].join(
-                  ","
+              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join(
+                  "+AND+"
                 )
               : `"${termObject.term}"`,
             page: 1
@@ -70,6 +70,8 @@ class Sidebar extends React.Component {
           items={Object.keys(facets).map((key, i) => ({
             name: prettifiedFacetMap[key],
             subitems: facets[key].terms.map(termObject => {
+              console.log(termObject.term);
+              console.log(route.query[key]);
               return {
                 content: possibleFacets.includes(key)
                   ? <FacetLink
@@ -78,7 +80,9 @@ class Sidebar extends React.Component {
                       queryKey={key}
                       disabled={
                         route.query[key] &&
-                        route.query[key].includes(termObject.term)
+                        new RegExp('"' + termObject.term + '"').test(
+                          route.query[key]
+                        )
                       }
                     />
                   : ""
