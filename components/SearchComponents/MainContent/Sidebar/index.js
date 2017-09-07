@@ -4,15 +4,8 @@ import { classNames, stylesheet } from "./Sidebar.css";
 
 import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
-
-const possibleFacets = [
-  "sourceResource.type",
-  "sourceResource.subject.name",
-  "sourceResource.spatial.name",
-  "sourceResource.language.name",
-  "dataProvider",
-  "provider.name"
-];
+import { possibleFacets } from "constants/search";
+import escapeForRegex from "utilFunctions/escapeForRegex";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
@@ -64,6 +57,7 @@ class Sidebar extends React.Component {
   }
   render() {
     const { route, facets } = this.props;
+
     return (
       <div className={classNames.sidebar}>
         <Accordion
@@ -80,9 +74,9 @@ class Sidebar extends React.Component {
                         route.query[key] &&
                         // handles case of sources with both
                         // "moving image" and "image" as types
-                        new RegExp('"' + termObject.term + '"').test(
-                          route.query[key]
-                        )
+                        new RegExp(
+                          '"' + escapeForRegex(termObject.term) + '"'
+                        ).test(route.query[key])
                       }
                     />
                   : ""
