@@ -47,18 +47,18 @@ Search.getInitialProps = async ({ query }) => {
     "provider.name"
   ];
 
-  const q = query.q || "";
-  const page_size = query.page_size || 20;
-  const page = query.page || 1;
+  const q = encodeURI(query.q) || "";
+  const page_size = encodeURI(query.page_size) || 20;
+  const page = encodeURI(query.page) || 1;
   let sort_by = "";
   if (query.sort_by === "title") {
     sort_by = "sourceResource.title";
   } else if (query.sort_by === "created") {
     sort_by = "sourceResource.date.begin";
   }
-  const sort_order = query.sort_order || "";
+  const sort_order = encodeURI(query.sort_order) || "";
   const facetQueries = facets
-    .map(facet => (query[facet] ? `${facet}=${query[facet]}` : ""))
+    .map(facet => (query[facet] ? `${facet}=${encodeURI(query[facet])}` : ""))
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
