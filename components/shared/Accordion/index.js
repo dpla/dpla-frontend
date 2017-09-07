@@ -9,8 +9,16 @@ class Accordion extends React.Component {
   componentWillMount() {
     this.setState({
       items: this.props.items.map((item, i) => {
-        if (i < 2 && item.subitems.length) {
-          return Object.assign({}, item, { active: true });
+        return Object.assign({}, item, { active: true });
+      })
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      items: this.state.items.map((item, i) => {
+        if (i >= 2 && item.subitems.length) {
+          return Object.assign({}, item, { active: false });
         } else {
           return item;
         }
