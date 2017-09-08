@@ -123,11 +123,8 @@ app
     server.get("/search", (req, res) => {
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
-      if (
-        req.query["sourceResource.type"] &&
-        req.query["sourceResource.type"] === "all"
-      ) {
-        delete req.query["sourceResource.type"];
+      if (req.query["type"] && req.query["type"] === "all") {
+        delete req.query["type"];
       }
       const actualPage = "/search";
 

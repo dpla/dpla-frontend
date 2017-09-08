@@ -48,7 +48,11 @@
   display: inline-block;
 }
 
-.xIcon {
+.filterText {
+  margin-right: 0.5rem;
+}
+
+.closeIcon {
   width: 9px;
   height: 9px;
 }
@@ -59,4 +63,12 @@
   font-size: 1rem;
   flex-shrink: 0;
   align-self: baseline;
+}
+
+.clearAllIcon {
+  height: 12px;
+  width: 12px;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 1px;
 }

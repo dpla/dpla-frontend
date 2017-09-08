@@ -2,13 +2,20 @@ import React from "react";
 import Link from "next/link";
 import { classNames, stylesheet } from "./FiltersList.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import { possibleFacets } from "constants/search";
+import {
+  possibleFacets,
+  mapURLPrettifiedFacetsToUgly,
+  mapFacetsToURLPrettified
+} from "constants/search";
 
-// const plusSign = "static/images/add-white.svg";
+const closeIcon = "static/images/close.svg";
+const clearAllIcon = "static/images/close-orange.svg";
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
-  possibleFacets.forEach(facet => delete duped[facet]);
+  possibleFacets.forEach(
+    facet => delete duped[mapFacetsToURLPrettified[facet]]
+  );
   return duped;
 };
 
@@ -33,8 +40,8 @@ const Filter = ({ name, queryKey, route }) =>
       }}
     >
       <a className={classNames.filterLink}>
-        <span>{name}</span>
-        {/* <img src={plusSign} className={classNames.xIcon} alt="" /> */}
+        <span className={classNames.filterText}>{name}</span>
+        <img src={closeIcon} className={classNames.closeIcon} alt="" />
       </a>
     </Link>
   </li>;
@@ -43,7 +50,7 @@ class FiltersList extends React.Component {
   render() {
     const { query } = this.props.route;
     return Object.keys(query).some(queryKey =>
-      possibleFacets.includes(queryKey)
+      possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey])
     )
       ? <div className={classNames.filtersListWrapper}>
           <div
@@ -55,7 +62,11 @@ class FiltersList extends React.Component {
               <span className={classNames.labelText}>Filtered by</span>
               <ul className={classNames.filters}>
                 {Object.keys(query).map(queryKey => {
-                  if (possibleFacets.includes(queryKey)) {
+                  if (
+                    possibleFacets.includes(
+                      mapURLPrettifiedFacetsToUgly[queryKey]
+                    )
+                  ) {
                     return (
                       query[queryKey] &&
                       query[queryKey]
@@ -81,7 +92,12 @@ class FiltersList extends React.Component {
               }}
             >
               <a className={classNames.clearAll}>
-                Clear all filters
+                <img
+                  src={clearAllIcon}
+                  className={classNames.clearAllIcon}
+                  alt=""
+                />
+                <span>Clear all filters</span>
               </a>
             </Link>
           </div>
