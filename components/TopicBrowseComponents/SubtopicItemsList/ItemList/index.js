@@ -67,8 +67,8 @@ class ItemList extends React.Component {
           </div>
         </div>
         {view === "grid"
-          ? <GridView items={items} />
-          : <ListView items={items} />}
+          ? <GridView route={this.props.route} items={items} />
+          : <ListView route={this.props.route} items={items} />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );

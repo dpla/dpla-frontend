@@ -35,7 +35,7 @@ const SubtopicItemsList = ({ url }) =>
         description={mockSubtopic.description}
         image="http://lorempixel.com/300/200/food"
       />
-      <ItemList items={mockItems} />
+      <ItemList route={url} items={mockItems} />
     </div>
     <BreadcrumbsAndNav
       breadcrumbs={[

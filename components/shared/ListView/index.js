@@ -9,20 +9,31 @@ const ItemDescription = ({ description }) =>
     {Array.isArray(description)
       ? <p className={classNames.itemDescription}>{description.join(" ")}</p>
       : <p className={classNames.itemDescription}>{description}</p>}
-
   </div>;
 
-const ListView = ({ items }) =>
+const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
     {items.map(item =>
-      <li className={classNames.listItem}>
-        <div className={classNames.imageWrapper}>
-          <img src={item.thumbnailUrl} alt="" className={classNames.image} />
-        </div>
+      <li key={item["@id"]} className={classNames.listItem}>
+        <Link href={item.linkHref} as={item.linkAs}>
+          <a className={classNames.listItemLink}>
+            <div className={classNames.imageWrapper}>
+              <img
+                src={item.thumbnailUrl}
+                alt=""
+                className={classNames.image}
+              />
+            </div>
+          </a>
+        </Link>
         <div className={classNames.itemInfo}>
-          <span className={classNames.itemTitle}>
-            {item.title}
-          </span>
+          <Link href={item.linkHref} as={item.linkAs}>
+            <a className={classNames.listItemLink}>
+              <span className={classNames.itemTitle}>
+                {item.title}
+              </span>
+            </a>
+          </Link>
           <span className={classNames.itemType}>
             {Array.isArray(item.type) ? item.type.join(", ") : item.type}
           </span>

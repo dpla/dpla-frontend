@@ -131,6 +131,19 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    server.get("/item/:itemId", (req, res) => {
+      const actualPage = "/item/";
+      const params = {
+        itemId: req.params.itemId
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     server.get("*", (req, res) => {
       return handle(req, res);
     });
