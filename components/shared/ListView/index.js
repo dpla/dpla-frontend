@@ -4,6 +4,14 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
+const ItemDescription = ({ description }) =>
+  <div>
+    {Array.isArray(description)
+      ? <p className={classNames.itemDescription}>{description.join(" ")}</p>
+      : <p className={classNames.itemDescription}>{description}</p>}
+
+  </div>;
+
 const ListView = ({ items }) =>
   <ul className={classNames.listView}>
     {items.map(item =>
@@ -27,9 +35,7 @@ const ListView = ({ items }) =>
                 <span> · </span>}
               {item.creator && <span>{item.creator}</span>}
             </span>}
-          <span className={classNames.itemDescription}>
-            {item.description}
-          </span>
+          <ItemDescription description={item.description} />
           <Link href={item.sourceUrl}>
             <a className={classNames.itemSource}>
               <span className={classNames.itemSourceText}>Source</span>
