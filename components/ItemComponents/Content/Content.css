@@ -1,9 +1,10 @@
-@value cascadeBlue from "../../../css/colors.css";
+@value cascadeBlue, bambooOrange from "../../../css/colors.css";
 @value tablePadding: 2.25rem;
 @value tableBorderBottom: 2px solid rgba(0, 0, 0, 0.1);
 
 .content {
   padding-bottom: 3rem;
+  margin-right: 3rem;
 }
 
 .tableHeading {
@@ -86,4 +87,9 @@
 .rightsText {
   color: #979797;
   font-size: 0.9375rem;
+}
+
+.link {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
 }

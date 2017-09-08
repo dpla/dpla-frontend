@@ -1,0 +1,8 @@
+.faveAndCiteButtons {
+  align-self: baseline;
+  flex-shrink: 0;
+}
+
+.contentWrapper {
+  display: flex;
+}

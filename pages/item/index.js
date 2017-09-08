@@ -4,8 +4,13 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
+import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
 import { API_KEY } from "constants/search";
 import { classNames as utilClassNames } from "css/utils.css";
+import {
+  classNames,
+  stylesheet
+} from "components/ItemComponents/itemComponent.css";
 
 const ItemDetail = ({ url, item }) =>
   <MainLayout route={url}>
@@ -22,10 +27,15 @@ const ItemDetail = ({ url, item }) =>
       ]}
       route={url}
     />
-    <div className={utilClassNames.module}>
+    <div
+      className={[utilClassNames.module, classNames.contentWrapper].join(" ")}
+    >
       <Content item={item} />
-
+      <div className={classNames.faveAndCiteButtons}>
+        <FaveAndCiteButtons />
+      </div>
     </div>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 ItemDetail.getInitialProps = async ({ query }) => {

@@ -48,41 +48,7 @@
   padding-right: 55px;
   padding-bottom: 50px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-  margin-bottom: 18px; 
-}
-
-.buttons {
-  float: right;
-  border-radius: 3px;
-  border: 1px solid #E7E7E7;
-  padding: 25px 20px;
-  width: 283px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
-.citeThis {
-  display: block;
-  width: 100%;
-  background-color: iceBlue;
-  color: curiousBlue;
-  padding: 10px 0;
-  font-size: 600;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  font-weight: 600;
-}
-
-.addToFavorites {
-  display: block;
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  margin-bottom: 15px;
-  color: cranberry;
-  padding: 10px 0;
-  background-color: softPeach;
+  margin-bottom: 18px;
 }
 
 .credits {
