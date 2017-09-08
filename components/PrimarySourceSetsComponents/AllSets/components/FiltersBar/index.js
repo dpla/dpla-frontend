@@ -72,12 +72,6 @@ class FiltersBar extends React.Component {
       <div className={classNames.filtersWrapper}>
         <div className={`${classNames.filters} site-max-width`}>
           <div className="row">
-            {/* <div className={`${classNames.filter} col-xs-6 col-md-4`}>
-              <input
-                className={classNames.textInput}
-                placeholder="Filter by title"
-              />
-            </div> */}
             <div className={`${classNames.filter} col-xs-6 col-md-3`}>
               <Select
                 clearable={false}
@@ -85,10 +79,14 @@ class FiltersBar extends React.Component {
                 value={this.state.timePeriodValue}
                 className={classNames.select}
                 onChange={this.onTimePeriodChange}
-                options={this.props.timePeriods.map(period => ({
-                  label: period.name,
-                  value: mapTimePeriodNameToSlug(period.name)
-                }))}
+                options={[
+                  { value: "all-time-periods", label: "All Time Periods" }
+                ].concat(
+                  this.props.timePeriods.map(period => ({
+                    label: period.name,
+                    value: mapTimePeriodNameToSlug(period.name)
+                  }))
+                )}
               />
             </div>
             <div className={`${classNames.filter} col-xs-6 col-md-2`}>
@@ -98,10 +96,14 @@ class FiltersBar extends React.Component {
                 value={this.state.subjectValue}
                 onChange={this.onSubjectChange}
                 className={classNames.select}
-                options={this.props.subjects.map(subject => ({
-                  label: subject.name,
-                  value: mapSubjectNameToSlug(subject.name)
-                }))}
+                options={[
+                  { value: "all-subjects", label: "All Subjects" }
+                ].concat(
+                  this.props.subjects.map(subject => ({
+                    label: subject.name,
+                    value: mapSubjectNameToSlug(subject.name)
+                  }))
+                )}
               />
             </div>
             <div className={`${classNames.filter} col-xs-6 col-md-3`}>
