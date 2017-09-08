@@ -7,6 +7,7 @@ import HomePageSlider from "../components/HomePageComponents/HomePageSlider";
 import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
 import SocialMedia from "../components/HomePageComponents/SocialMedia";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
+import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
 
 // TODO: remove when we have real data for exhibitions
 const sampleImage = "/static/placeholderImages/sample-image.jpeg";
@@ -64,7 +65,16 @@ Home.getInitialProps = async () => {
   const res = await fetch(`https://dp.la/primary-source-sets/sets.json`);
 
   const json = await res.json();
-  return { sourceSets: json.itemListElement.slice(0, 4) };
+  return {
+    sourceSets: json.itemListElement.slice(0, 8).map(set =>
+      Object.assign({}, set, {
+        href: `/primary-source-sets/set?set=${extractSourceSetSlug(
+          set["@id"]
+        )}`,
+        as: `/primary-source-sets/${extractSourceSetSlug(set["@id"])}`
+      })
+    )
+  };
 };
 
 export default Home;
