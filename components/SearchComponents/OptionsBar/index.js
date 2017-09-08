@@ -10,6 +10,7 @@ import {
   mapSortOptionsToParams,
   getSortOptionFromParams
 } from "./options";
+import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
@@ -72,7 +73,7 @@ class OptionsBar extends React.Component {
       <div className={classNames.wrapper}>
         <div className={[module, classNames.optionsBar].join(" ")}>
           <p className={classNames.resultsCount}>
-            <span>{this.props.itemCount} results </span>
+            <span>{addCommasToNumber(this.props.itemCount)} results </span>
             {this.props.route.query.q &&
               <span>
                 <span>for </span>

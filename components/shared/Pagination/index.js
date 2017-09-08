@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./Pagination.css";
+import addCommasToNumber from "utilFunctions/addCommasToNumber";
 
 const chevron = "/static/images/chevron-thick-cascade-blue.svg";
 
@@ -14,7 +15,7 @@ const PageLink = ({ route, page, className }) =>
       })
     }}
   >
-    <a className={className}>{page}</a>
+    <a className={className}>{addCommasToNumber(page)}</a>
   </Link>;
 
 const NextOrPrevButton = ({ route, currentPage, type = "next" }) =>

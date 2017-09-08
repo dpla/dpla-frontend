@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { classNames, stylesheet } from "./Sidebar.css";
 
+import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
 
@@ -25,7 +26,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           {`${termObject.term} `}
         </span>
         <span className={classNames.facetCount}>
-          ({termObject.count})
+          ({addCommasToNumber(termObject.count)})
         </span>
       </span>
     : <Link
@@ -47,7 +48,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
             {`${termObject.term} `}
           </span>
           <span className={classNames.facetCount}>
-            ({termObject.count})
+            ({addCommasToNumber(termObject.count)})
           </span>
         </a>
       </Link>;
