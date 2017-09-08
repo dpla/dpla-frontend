@@ -34,6 +34,12 @@ ItemDetail.getInitialProps = async ({ query }) => {
   );
   const json = await res.json();
 
-  return { item: json.docs[0].sourceResource };
+  return {
+    item: Object.assign({}, json.docs[0].sourceResource, {
+      thumbnailUrl: json.docs[0].object,
+      contributor: json.docs[0].dataProvider,
+      partner: json.docs[0].provider.name
+    })
+  };
 };
 export default ItemDetail;

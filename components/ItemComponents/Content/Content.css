@@ -1,25 +1,89 @@
-.contentTable {
-  background-color: pampasBrown;
-  padding: 40px 0 46px 42px;
-  width: 100%;
+@value cascadeBlue from "../../../css/colors.css";
+@value tablePadding: 2.25rem;
+@value tableBorderBottom: 2px solid rgba(0, 0, 0, 0.1);
+
+.content {
+  padding-bottom: 3rem;
 }
 
 .tableHeading {
   font-size: 0.875rem;
   opacity: 0.35;
   font-weight: 600;
-  vertical-align: baseline;
+  vertical-align: top;
   width: 140px;
+  padding-top: 0.25rem;
 }
 
 .tableItem {
-  vertical-align: baseline;
-  font-family: "Lora";
+  vertical-align: top;
   font-size: 1.25rem;
-  line-height: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.tableItem:first-child,
-.tableHeading:first-child {
-  padding-bottom: 36px;
+.tableRow td {
+  padding-bottom: 1rem;
+}
+
+.tableRow:last-child td {
+  padding-bottom: 0;
+}
+
+.title {
+  font-size: 1.625rem;
+  font-weight: 600;
+}
+
+.mainMetadata {
+  border-bottom: tableBorderBottom;
+  padding-bottom: tablePadding;
+}
+
+.mainMetadataText {
+  font-size: 1.25rem;
+}
+
+.thumbnail {
+  width: 242px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.sourceLink {
+  background-color: cascadeBlue;
+  width: 242px;
+  color: white;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.sourceLinkText {
+  margin-right: 0.5rem;
+}
+
+.externalLinkIcon {
+  height: 16px;
+  width: 16px;
+}
+
+.otherMetadata {
+  padding: tablePadding 0;
+  border-bottom: tableBorderBottom;
+}
+
+.otherMetadataItem {
+  font-size: 1rem;
+}
+
+.rightsMetadata {
+  padding-top: tablePadding;
+}
+
+.rightsText {
+  color: #979797;
+  font-size: 0.9375rem;
 }
