@@ -10,16 +10,17 @@ const Noscript = ({ children }) => {
   return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
 };
 
-const initOpenSeaDragon = url =>
-  this.OpenSeaDragon({
+const initOpenSeaDragon = url => {
+  const OpenSeaDragon = require("openseadragon");
+  return OpenSeaDragon({
     id: "openseadragon1",
     tileSources: { type: "image", url },
     prefixUrl: "/static/images/openseadragon/"
   });
+};
 
 export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
-    this.OpenSeaDragon = require("openseadragon");
     this.viewer = initOpenSeaDragon(this.props.pathToFile);
   }
 
