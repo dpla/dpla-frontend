@@ -14,6 +14,7 @@ import {
   classNames,
   stylesheet
 } from "components/SearchComponents/SearchComponents.css";
+import { API_KEY } from "constants/search";
 
 const Search = ({ url, results }) =>
   <MainLayout route={url}>
@@ -41,8 +42,6 @@ const Search = ({ url, results }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-// TODO: better API key storage?
-const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 Search.getInitialProps = async ({ query }) => {
   // TODO: clean this up
 

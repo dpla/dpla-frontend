@@ -1,9 +1,9 @@
 import React from "react";
-import { classNames, stylesheet } from "./MoreWaysToContact.css";
+import { classNames, stylesheet } from "./Content.css";
 
-const ContactForm = () =>
-  <div className={classNames.contactForm}>
-    <h2 className={classNames.header}>More Ways To Contact Us</h2>
+const Content = ({ item }) =>
+  console.log(item) ||
+  <div className={classNames.content}>
     <table className={classNames.contentTable}>
       <tbody>
         <tr className={classNames.tableRow}>
@@ -20,16 +20,11 @@ const ContactForm = () =>
           <td className={classNames.tableHeading}>
             Mailing Address
           </td>
-          <td className={[classNames.tableItem]}>
-            Digital Public Library of America<br />
-            c/o Boston Public Library<br />
-            700 Boylston Street<br />
-            Boston, MA 02116<br />
-          </td>
+          <td className={[classNames.tableItem]} />
         </tr>
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default ContactForm;
+export default Content;

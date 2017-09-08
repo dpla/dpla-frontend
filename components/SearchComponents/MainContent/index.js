@@ -16,7 +16,7 @@ const addLinkInfoToResults = (results, q) =>
         pathname: "/item",
         query: { q, itemId: extractItemId(item["@id"]) }
       },
-      linkAs: `/item/${extractItemId(item["@id"])}`
+      linkAs: `/item/${extractItemId(item["@id"])}?q=${q}`
     })
   );
 

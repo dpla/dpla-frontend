@@ -1,0 +1,25 @@
+.contentTable {
+  background-color: pampasBrown;
+  padding: 40px 0 46px 42px;
+  width: 100%;
+}
+
+.tableHeading {
+  font-size: 0.875rem;
+  opacity: 0.35;
+  font-weight: 600;
+  vertical-align: baseline;
+  width: 140px;
+}
+
+.tableItem {
+  vertical-align: baseline;
+  font-family: "Lora";
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.tableItem:first-child,
+.tableHeading:first-child {
+  padding-bottom: 36px;
+}

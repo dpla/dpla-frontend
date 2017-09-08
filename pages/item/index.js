@@ -3,12 +3,11 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
-// import {
-//   classNames,
-//   stylesheet
-// } from "components/ItemComponents/ItemComponents.css";
+import Content from "components/ItemComponents/Content";
+import { API_KEY } from "constants/search";
+import { classNames as utilClassNames } from "css/utils.css";
 
-const ItemDetail = ({ url, result }) =>
+const ItemDetail = ({ url, item }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -19,21 +18,22 @@ const ItemDetail = ({ url, result }) =>
             query: url.query
           }
         },
-        { title: "New York, New York", search: "" }
+        { title: item.title[0], search: "" }
       ]}
       route={url}
     />
-    <div>
-      Hey
+    <div className={utilClassNames.module}>
+      <Content item={item} />
+
     </div>
   </MainLayout>;
 
-// TODO: better API key storage?
-const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 ItemDetail.getInitialProps = async ({ query }) => {
-  const res = await fetch(`https://api.dp.la/v2/items?api_key=${API_KEY}`);
-
+  const res = await fetch(
+    `https://api.dp.la/v2/items/${query.itemId}?api_key=${API_KEY}`
+  );
   const json = await res.json();
-  return { result: json };
+
+  return { item: json.docs[0].sourceResource };
 };
 export default ItemDetail;
