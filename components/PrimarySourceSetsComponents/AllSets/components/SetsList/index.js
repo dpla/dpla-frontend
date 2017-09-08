@@ -70,7 +70,7 @@ const SetsList = ({ sets, route }) =>
                         href={{
                           pathname: "/primary-source-sets",
                           query: {
-                            timePeriod: mapTimePeriodNameToSlug[tag.name]
+                            timePeriod: mapTimePeriodNameToSlug(tag.name)
                           }
                         }}
                       >
@@ -93,7 +93,7 @@ const SetsList = ({ sets, route }) =>
                       <Link
                         href={{
                           pathname: "/primary-source-sets",
-                          query: { subject: mapSubjectNameToSlug[tag.name] }
+                          query: { subject: mapSubjectNameToSlug(tag.name) }
                         }}
                       >
                         <a className="hover-underline" title={tag.name}>
