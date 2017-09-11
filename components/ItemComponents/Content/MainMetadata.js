@@ -1,7 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import { classNames, stylesheet } from "./Content.css";
-
+import { joinIfArray } from "utilFunctions";
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
 const MainMetadata = ({ item }) =>
@@ -18,16 +17,14 @@ const MainMetadata = ({ item }) =>
               src={item.thumbnailUrl}
               alt={item.description.join(" ")}
             />
-            <Link>
-              <a className={classNames.sourceLink}>
-                <span className={classNames.sourceLinkText}>Source</span>
-                <img
-                  src={externalLinkIcon}
-                  alt=""
-                  className={classNames.externalLinkIcon}
-                />
-              </a>
-            </Link>
+            <a href={item.sourceUrl} className={classNames.sourceLink}>
+              <span className={classNames.sourceLinkText}>Source</span>
+              <img
+                src={externalLinkIcon}
+                alt=""
+                className={classNames.externalLinkIcon}
+              />
+            </a>
           </td>
         </tr>
         <tr className={classNames.tableRow}>
@@ -35,21 +32,23 @@ const MainMetadata = ({ item }) =>
             Title
           </td>
           <td className={[classNames.tableItem, classNames.title].join(" ")}>
-            {item.title.join(" ")}
+            {joinIfArray(item.title)}
           </td>
         </tr>
-        <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeading}>
-            Created Date
-          </td>
-          <td
-            className={[classNames.tableItem, classNames.mainMetadataText].join(
-              " "
-            )}
-          >
-            {item.date.displayDate}
-          </td>
-        </tr>
+        {item.date &&
+          <tr className={classNames.tableRow}>
+            <td className={classNames.tableHeading}>
+              Created Date
+            </td>
+            <td
+              className={[
+                classNames.tableItem,
+                classNames.mainMetadataText
+              ].join(" ")}
+            >
+              {item.date.displayDate}
+            </td>
+          </tr>}
         <tr className={classNames.tableRow}>
           <td className={classNames.tableHeading}>
             Description
@@ -59,7 +58,7 @@ const MainMetadata = ({ item }) =>
               " "
             )}
           >
-            {item.description.join(" ")}
+            {joinIfArray(item.description)}
           </td>
         </tr>
       </tbody>

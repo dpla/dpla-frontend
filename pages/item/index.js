@@ -11,6 +11,7 @@ import {
   classNames,
   stylesheet
 } from "components/ItemComponents/itemComponent.css";
+import { removeQueryParams, joinIfArray } from "utilFunctions";
 
 const ItemDetail = ({ url, item }) =>
   <MainLayout route={url}>
@@ -20,10 +21,10 @@ const ItemDetail = ({ url, item }) =>
           title: url.query.q ? `Search for “${url.query.q}”` : "Search",
           url: {
             pathname: "/search/",
-            query: url.query
+            query: removeQueryParams(url.query, ["itemId"])
           }
         },
-        { title: item.title[0], search: "" }
+        { title: joinIfArray(item.title), search: "" }
       ]}
       route={url}
     />
@@ -48,7 +49,8 @@ ItemDetail.getInitialProps = async ({ query }) => {
     item: Object.assign({}, json.docs[0].sourceResource, {
       thumbnailUrl: json.docs[0].object,
       contributor: json.docs[0].dataProvider,
-      partner: json.docs[0].provider.name
+      partner: json.docs[0].provider.name,
+      sourceUrl: json.docs[0].isShownAt
     })
   };
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
+import { joinIfArray } from "utilFunctions";
 
 const Row = ({ heading, value }) =>
   value
@@ -18,39 +19,19 @@ const Row = ({ heading, value }) =>
     : null;
 
 const OtherMetadata = ({ item }) =>
-  console.log(item) ||
   <div className={classNames.otherMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
-        <Row
-          heading="Creator"
-          value={
-            Array.isArray(item.creator) ? item.creator.join(" ") : item.creator
-          }
-        />
+        <Row heading="Creator" value={joinIfArray(item.creator)} />
         <Row heading="Partner" value={item.partner} />
         <Row heading="Contributor" value={item.contributor} />
-        <Row
-          heading="Publisher"
-          value={
-            Array.isArray(item.publisher)
-              ? item.publisher.join(" ")
-              : item.publisher
-          }
-        />
+        <Row heading="Publisher" value={joinIfArray(item.publisher)} />
         <Row
           heading="Subjects"
           value={item.subject && item.subject.map(subj => subj.name).join(", ")}
         />
         <Row heading="Type" value={item.type} />
-        <Row
-          heading="URL"
-          value={
-            Array.isArray(item.identifier)
-              ? item.identifier.join(" ")
-              : item.identifier
-          }
-        />
+        <Row heading="URL" value={item.sourceUrl} />
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
