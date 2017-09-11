@@ -9,10 +9,10 @@ const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={classNames.wrapper}>
     <div className={[module, classNames.imageAndCaption].join(" ")}>
       <div className={classNames.imageWrapper}>
-        <img
+        <div
           className={classNames.image}
           alt={exhibition.title}
-          src={exhibition.image}
+          style={{ backgroundImage: `url(${exhibition.thumbnailUrl})` }}
         />
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
@@ -26,7 +26,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
       </div>
       <figcaption className={classNames.caption}>
         <span className={classNames.captionLeadIn}>Image: </span>
-        <span>{exhibition.caption}</span>
+        <span dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
       </figcaption>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

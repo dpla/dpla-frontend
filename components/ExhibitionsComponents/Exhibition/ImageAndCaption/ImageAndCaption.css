@@ -3,6 +3,8 @@
 .image {
   border-radius: 3px;
   width: 100%;
+  /* 518 / 1024 ratio */
+  padding-top: 50.59%;
 }
 
 .overlay {
@@ -67,4 +69,8 @@
   opacity: 0.50;
   font-size: 0.875rem;
   line-height: 1.125rem;
+}
+
+.caption p {
+  display: inline;
 }
