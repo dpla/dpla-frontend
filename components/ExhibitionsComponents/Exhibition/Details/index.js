@@ -14,13 +14,27 @@ const Details = ({ exhibition, route }) =>
           In This Exhibition
         </p>
         <div className={classNames.tableOfContentsContents}>
-          {/* <ul className={classNames.tableOfContentsSections}>
+          <ul className={classNames.tableOfContentsSections}>
             {exhibition.sections.map(section =>
               <li className={classNames.tableOfContentsSection}>
-                {section.title}
+                <Link
+                  href={{
+                    pathname: route.pathname,
+                    query: Object.assign({}, route.query, {
+                      section: section.slug
+                    })
+                  }}
+                  as={{
+                    pathname: `${route.pathname}/${section.slug}`
+                  }}
+                >
+                  <a>
+                    {section.title}
+                  </a>
+                </Link>
               </li>
             )}
-          </ul> */}
+          </ul>
           <div className={classNames.divider} />
           <a>References</a>
         </div>
@@ -32,7 +46,7 @@ const Details = ({ exhibition, route }) =>
           dangerouslySetInnerHTML={{ __html: exhibition.text }}
         />
         <p className={classNames.credits}>
-          <span className={classNames.creditsBold}>Credit:</span>
+          <span className={classNames.creditsBold}>Credit: </span>
           <span>{exhibition.credits}</span>
         </p>
       </div>

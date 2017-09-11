@@ -14,14 +14,25 @@ const ImageAndCaption = ({ exhibition, route }) =>
           alt={exhibition.title}
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`,
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            backgroundPosition: "center"
           }}
         />
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
             <div className={classNames.divider} />
-            <Link href="">
+            <Link
+              href={{
+                pathname: route.pathname,
+                query: Object.assign({}, route.query, {
+                  section: exhibition.sections[0].slug
+                })
+              }}
+              as={{
+                pathname: `${route.pathname}/${exhibition.sections[0].slug}`
+              }}
+            >
               <a className={classNames.exploreLink}>Explore Exhibition</a>
             </Link>
           </div>
