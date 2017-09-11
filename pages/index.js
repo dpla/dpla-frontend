@@ -100,7 +100,7 @@ Home.getInitialProps = async () => {
       });
     })
   );
-  console.dir(exhibitions);
+
   return {
     sourceSets: pssJson.itemListElement.slice(0, 8).map(set =>
       Object.assign({}, set, {
