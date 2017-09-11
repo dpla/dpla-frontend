@@ -45,16 +45,18 @@
 .bodyText {
   font-size: 1.125rem;
   line-height: 1.5rem;
-  padding-right: 55px;
-  padding-bottom: 50px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-  margin-bottom: 18px;
+}
+
+.bodyText p:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 .credits {
   font-size: 0.875rem;
   line-height: 1.125rem;
   opacity: 0.50;
+  margin-top: 1rem;
 }
 
 .creditsBold {

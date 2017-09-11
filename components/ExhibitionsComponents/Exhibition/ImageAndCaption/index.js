@@ -12,7 +12,10 @@ const ImageAndCaption = ({ exhibition, route }) =>
         <div
           className={classNames.image}
           alt={exhibition.title}
-          style={{ backgroundImage: `url(${exhibition.thumbnailUrl})` }}
+          style={{
+            backgroundImage: `url(${exhibition.thumbnailUrl})`,
+            backgroundSize: "cover"
+          }}
         />
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>

@@ -29,7 +29,7 @@ const Exhibition = ({ url, exhibition }) =>
       route={url}
     />
     <ImageAndCaption exhibition={exhibition} />
-    <Details exhibition={mockExhibition} />
+    <Details exhibition={exhibition} />
   </MainLayout>;
 
 Exhibition.getInitialProps = async ({ query }) => {
@@ -45,14 +45,16 @@ Exhibition.getInitialProps = async ({ query }) => {
   );
   const exhibitJson = await exhibitPageRes.json();
 
-  const { item, caption } = exhibitJson[0].page_blocks[0].attachments[0];
+  const homePage = exhibitJson.find(exhibit => exhibit.slug === "home-page");
+  const { text } = homePage.page_blocks[0];
+  const { item, caption } = homePage.page_blocks[0].attachments[0];
 
   const filesRes = await fetch(`${FILES_ENDPOINT}?item=${item.id}`);
   const filesJson = await filesRes.json();
 
   const thumbnailUrl = filesJson[0].file_urls.fullsize;
   return {
-    exhibition: Object.assign({}, exhibition, { thumbnailUrl, caption })
+    exhibition: Object.assign({}, exhibition, { thumbnailUrl, caption, text })
   };
 };
 

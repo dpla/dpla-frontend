@@ -14,23 +14,26 @@ const Details = ({ exhibition, route }) =>
           In This Exhibition
         </p>
         <div className={classNames.tableOfContentsContents}>
-          <ul className={classNames.tableOfContentsSections}>
+          {/* <ul className={classNames.tableOfContentsSections}>
             {exhibition.sections.map(section =>
               <li className={classNames.tableOfContentsSection}>
                 {section.title}
               </li>
             )}
-          </ul>
+          </ul> */}
           <div className={classNames.divider} />
           <a>References</a>
         </div>
       </div>
       <div className={classNames.body}>
         <FaveAndCiteButtons />
-        <p className={classNames.bodyText}>{exhibition.copy}</p>
+        <span
+          className={classNames.bodyText}
+          dangerouslySetInnerHTML={{ __html: exhibition.text }}
+        />
         <p className={classNames.credits}>
           <span className={classNames.creditsBold}>Credit:</span>
-          <span>{exhibition.credit}</span>
+          <span>{exhibition.credits}</span>
         </p>
       </div>
     </div>
