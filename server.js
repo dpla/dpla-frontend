@@ -120,6 +120,17 @@ app
       );
     });
 
+    server.get("/search", (req, res) => {
+      // need this because the search API doesn't recognize "all" but we need
+      // to pass some value in through the select on the homepage
+      if (req.query["type"] && req.query["type"] === "all") {
+        delete req.query["type"];
+      }
+      const actualPage = "/search";
+
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     server.get("*", (req, res) => {
       return handle(req, res);
     });

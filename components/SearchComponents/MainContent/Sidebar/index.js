@@ -5,15 +5,8 @@ import { classNames, stylesheet } from "./Sidebar.css";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
-
-const possibleFacets = [
-  "sourceResource.type",
-  "sourceResource.subject.name",
-  "sourceResource.spatial.name",
-  "sourceResource.language.name",
-  "dataProvider",
-  "provider.name"
-];
+import { possibleFacets, mapFacetsToURLPrettified } from "constants/search";
+import escapeForRegex from "utilFunctions/escapeForRegex";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
@@ -35,9 +28,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           query: Object.assign({}, route.query, {
             // some facet names have spaces, and we need to wrap them in " "
             [queryKey]: route.query[queryKey]
-              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join(
-                  "+AND+"
-                )
+              ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
               : `"${termObject.term}"`,
             page: 1
           })
@@ -65,6 +56,7 @@ class Sidebar extends React.Component {
   }
   render() {
     const { route, facets } = this.props;
+
     return (
       <div className={classNames.sidebar}>
         <Accordion
@@ -76,14 +68,14 @@ class Sidebar extends React.Component {
                   ? <FacetLink
                       route={route}
                       termObject={termObject}
-                      queryKey={key}
+                      queryKey={mapFacetsToURLPrettified[key]}
                       disabled={
-                        route.query[key] &&
+                        route.query[mapFacetsToURLPrettified[key]] &&
                         // handles case of sources with both
                         // "moving image" and "image" as types
-                        new RegExp('"' + termObject.term + '"').test(
-                          route.query[key]
-                        )
+                        new RegExp(
+                          '"' + escapeForRegex(termObject.term) + '"'
+                        ).test(route.query[mapFacetsToURLPrettified[key]])
                       }
                     />
                   : ""

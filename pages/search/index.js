@@ -3,7 +3,13 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
+import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
+import {
+  possibleFacets,
+  mapFacetsToURLPrettified,
+  splitAndURIEncodeFacet
+} from "constants/search";
 import {
   classNames,
   stylesheet
@@ -13,6 +19,7 @@ const Search = ({ url, results }) =>
   <MainLayout route={url}>
     <div className={classNames.wrapper}>
       <OptionsBar route={url} itemCount={results.count} />
+      <FiltersList route={url} facets={results.facets} />
       <MainContent
         paginationInfo={{
           pageCount: results.count,
@@ -38,32 +45,32 @@ const Search = ({ url, results }) =>
 const API_KEY = "fb4132db4a42b89f14effa41bf280672";
 Search.getInitialProps = async ({ query }) => {
   // TODO: clean this up
-  const facets = [
-    "sourceResource.type",
-    "sourceResource.subject.name",
-    "sourceResource.spatial.name",
-    "sourceResource.language.name",
-    "dataProvider",
-    "provider.name"
-  ];
 
-  const q = encodeURI(query.q) || "";
-  const page_size = encodeURI(query.page_size) || 20;
-  const page = encodeURI(query.page) || 1;
+  const q = query.q || "";
+  const page_size = query.page_size || 20;
+  const page = query.page || 1;
   let sort_by = "";
   if (query.sort_by === "title") {
     sort_by = "sourceResource.title";
   } else if (query.sort_by === "created") {
     sort_by = "sourceResource.date.begin";
   }
-  const sort_order = encodeURI(query.sort_order) || "";
-  const facetQueries = facets
-    .map(facet => (query[facet] ? `${facet}=${encodeURI(query[facet])}` : ""))
+  const sort_order = query.sort_order || "";
+
+  const facetQueries = possibleFacets
+    .map(
+      facet =>
+        query[mapFacetsToURLPrettified[facet]]
+          ? `${facet}=${splitAndURIEncodeFacet(
+              query[mapFacetsToURLPrettified[facet]]
+            )}`
+          : ""
+    )
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
   const res = await fetch(
-    `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${facets.join(
+    `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${possibleFacets.join(
       ","
     )}&${facetQueries}`
   );
