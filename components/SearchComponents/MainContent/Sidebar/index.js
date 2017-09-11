@@ -56,12 +56,25 @@ class Sidebar extends React.Component {
   }
   render() {
     const { route, facets } = this.props;
-
+    const isFacetValueInQuery = (facetKey, value) =>
+      route.query[mapFacetsToURLPrettified[facetKey]] &&
+      // handles case of sources with both
+      // "moving image" and "image" as types
+      new RegExp('"' + escapeForRegex(value) + '"').test(
+        route.query[mapFacetsToURLPrettified[facetKey]]
+      );
     return (
       <div className={classNames.sidebar}>
         <Accordion
           items={Object.keys(facets).map((key, i) => ({
             name: prettifiedFacetMap[key],
+            // first two items should be expanded as well as any items
+            // with an active subitem found in the query string
+            active:
+              i < 2 ||
+                facets[key].terms.some(termObject =>
+                  isFacetValueInQuery(key, termObject.term)
+                ),
             subitems: facets[key].terms.map(termObject => {
               return {
                 content: possibleFacets.includes(key)
@@ -69,14 +82,7 @@ class Sidebar extends React.Component {
                       route={route}
                       termObject={termObject}
                       queryKey={mapFacetsToURLPrettified[key]}
-                      disabled={
-                        route.query[mapFacetsToURLPrettified[key]] &&
-                        // handles case of sources with both
-                        // "moving image" and "image" as types
-                        new RegExp(
-                          '"' + escapeForRegex(termObject.term) + '"'
-                        ).test(route.query[mapFacetsToURLPrettified[key]])
-                      }
+                      disabled={isFacetValueInQuery(key, termObject.term)}
                     />
                   : ""
               };

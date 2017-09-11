@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
 
 const { module } = utilClassNames;
 const Details = ({ exhibition, route }) =>
@@ -25,12 +26,7 @@ const Details = ({ exhibition, route }) =>
         </div>
       </div>
       <div className={classNames.body}>
-        <div className={classNames.buttons}>
-          <button className={classNames.addToFavorites}>
-            Add to favorites
-          </button>
-          <button className={classNames.citeThis}>Cite this Exhibition</button>
-        </div>
+        <FaveAndCiteButtons />
         <p className={classNames.bodyText}>{exhibition.copy}</p>
         <p className={classNames.credits}>
           <span className={classNames.creditsBold}>Credit:</span>

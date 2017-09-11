@@ -8,8 +8,8 @@ import {
   mapFacetsToURLPrettified
 } from "constants/search";
 
-const closeIcon = "static/images/close.svg";
-const clearAllIcon = "static/images/close-orange.svg";
+const closeIcon = "/static/images/close.svg";
+const clearAllIcon = "/static/images/close-orange.svg";
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);

@@ -1,5 +1,4 @@
 import React from "react";
-import { Textfield } from "react-mdc-web";
 import { classNames, stylesheet } from "./MoreWaysToContact.css";
 
 const ContactForm = () =>
