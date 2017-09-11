@@ -1,4 +1,4 @@
-@value curiousBlue, black, black50 from "../../../../../css/colors.css";
+@value curiousBlue, bambooOrange, casablancaOrange, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -16,7 +16,7 @@
   margin-left: -0.25rem;
 }
 
-.featuredExhibition {
+.firstExhibition {
   @media (min-width: smallRem) {
     width: 66%;
   }
@@ -28,12 +28,12 @@
     }
 
     @media (min-width: mediumRem) {
-      font-size: 3rem;
+      font-size: 2.5rem;
       padding: 0 1.5rem 1.5rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 3.5rem;
+      font-size: 2.625rem;
       padding: 0 2rem 2rem;
     }
   }
@@ -59,7 +59,9 @@
 
 .exhibitionContent {
   position: relative;
-  height: 100%;
+  /* 239px / 334px ratio */
+  padding-top: 71.55%;
+  border-radius: 3px;
 }
 
 .threeUp {
@@ -116,4 +118,25 @@
   @media (min-width: mediumRem) {
     padding: 0 1.25rem 1.25rem;
   }
+}
+
+.featuredBanner,
+.newBanner {
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  top: 6px;
+  left: -3px;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.featuredBanner {
+  background-color: casablancaOrange;
+  color: black;
+}
+
+.newBanner {
+  background-color: bambooOrange;
+  color: white;
 }

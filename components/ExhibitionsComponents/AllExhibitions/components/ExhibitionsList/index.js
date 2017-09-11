@@ -17,19 +17,31 @@ const Exhibition = ({ exhibition, route, featured }) =>
     <a className={classNames.exhibition}>
       <div
         className={classNames.exhibitionContent}
-        style={{ backgroundImage: featured && `url("${exhibition.image}")` }}
+        style={{
+          backgroundImage: `url("${exhibition.thumbnailUrl}")`,
+          backgroundSize: "cover"
+        }}
+        aria-labelledby={exhibition.slug}
       >
-        <img alt={exhibition.title} src={exhibition.image} />
         <div className={classNames.overlay}>
-          <p className={classNames.title}>{exhibition.title}</p>
+          <p id={exhibition.slug} className={classNames.title}>
+            {exhibition.title}
+          </p>
         </div>
+        {exhibition.featured &&
+          <div className={classNames.featuredBanner}>
+            Featured
+          </div>}
+        {exhibition.new &&
+          !exhibition.featured &&
+          <div className={classNames.newBanner}>New</div>}
       </div>
     </a>
   </Link>;
 
 const ThreeUp = ({ exhibitions, route }) =>
   <div className={classNames.threeUp}>
-    <div className={classNames.featuredExhibition}>
+    <div className={classNames.firstExhibition}>
       <Exhibition route={route} exhibition={exhibitions[0]} featured={true} />
     </div>
     <div className={classNames.twoVertical}>
