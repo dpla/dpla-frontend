@@ -1,4 +1,4 @@
-@value cascadeBlue, bambooOrange from "../../../css/colors.css";
+@value cascadeBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
 @value tablePadding: 2.25rem;
 @value tableBorderBottom: 2px solid rgba(0, 0, 0, 0.1);
 
@@ -92,4 +92,12 @@
 .link {
   color: bambooOrange;
   border-bottom: 1px solid bambooOrange;
+}
+
+.url {
+  font-family: "Input Mono", courier;
+  padding: 9px 12px 12px;
+  background-color: pampasBrown;
+  border-radius: 2px;
+  font-size: 0.875rem;
 }
