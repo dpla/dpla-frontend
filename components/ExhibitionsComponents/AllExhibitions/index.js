@@ -9,7 +9,7 @@ import { TITLE, DESCRIPTION } from "../../../constants/exhibitions.js";
 const AllSets = ({ route, exhibitions }) =>
   <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
-    <ExhibitionsList exhibitions={exhibitions} route={route} />
+    <ExhibitionsList exhibitions={mockExhibitions} route={route} />
   </div>;
 
 export default AllSets;
