@@ -104,6 +104,8 @@ const ContentAndMetadata = ({ source }) => {
                   <a
                     href={getSourceLink(source)}
                     className={classNames.sourceLink}
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <img alt="" src={link} className={classNames.linkIcon} />
                     <span className={classNames.linkText}>Item source</span>
