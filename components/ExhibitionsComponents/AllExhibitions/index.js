@@ -6,10 +6,10 @@ import mockExhibitions from "./mockExhibitions";
 
 import { TITLE, DESCRIPTION } from "../../../constants/exhibitions.js";
 
-const AllSets = ({ route }) =>
+const AllSets = ({ route, exhibitions }) =>
   <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
-    <ExhibitionsList exhibitions={mockExhibitions} route={route} />
+    <ExhibitionsList exhibitions={exhibitions} route={route} />
   </div>;
 
 export default AllSets;
