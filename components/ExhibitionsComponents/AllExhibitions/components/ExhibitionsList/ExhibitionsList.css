@@ -28,12 +28,12 @@
     }
 
     @media (min-width: mediumRem) {
-      font-size: 3rem;
+      font-size: 2.5rem;
       padding: 0 1.5rem 1.5rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 3.5rem;
+      font-size: 2.625rem;
       padding: 0 2rem 2rem;
     }
   }
@@ -59,7 +59,9 @@
 
 .exhibitionContent {
   position: relative;
-  height: 100%;
+  /* 239px / 334px ratio */
+  padding-top: 71.55%;
+  border-radius: 3px;
 }
 
 .threeUp {
