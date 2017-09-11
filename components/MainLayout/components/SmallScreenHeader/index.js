@@ -16,7 +16,7 @@ class SmallScreenHeader extends Component {
 
   toggleMenu = () => {
     // Lock scrolls when the overlay is active
-    document.body.classList.toggle("overflow-hidden");
+    document.body.classList.toggle("small-screen-overlay");
 
     this.setState({
       menuIsOpen: !this.state.menuIsOpen,
