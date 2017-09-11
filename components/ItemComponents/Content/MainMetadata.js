@@ -15,9 +15,14 @@ const MainMetadata = ({ item }) =>
             <img
               className={classNames.thumbnail}
               src={item.thumbnailUrl}
-              alt={item.description.join(" ")}
+              alt={joinIfArray(item.description)}
             />
-            <a href={item.sourceUrl} className={classNames.sourceLink}>
+            <a
+              href={item.sourceUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={classNames.sourceLink}
+            >
               <span className={classNames.sourceLinkText}>Source</span>
               <img
                 src={externalLinkIcon}
@@ -49,18 +54,20 @@ const MainMetadata = ({ item }) =>
               {item.date.displayDate}
             </td>
           </tr>}
-        <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeading}>
-            Description
-          </td>
-          <td
-            className={[classNames.tableItem, classNames.mainMetadataText].join(
-              " "
-            )}
-          >
-            {joinIfArray(item.description)}
-          </td>
-        </tr>
+        {item.description &&
+          <tr className={classNames.tableRow}>
+            <td className={classNames.tableHeading}>
+              Description
+            </td>
+            <td
+              className={[
+                classNames.tableItem,
+                classNames.mainMetadataText
+              ].join(" ")}
+            >
+              {joinIfArray(item.description)}
+            </td>
+          </tr>}
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

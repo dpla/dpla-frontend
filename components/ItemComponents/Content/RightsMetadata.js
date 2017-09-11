@@ -20,6 +20,8 @@ const RightsMetadata = ({ item }) =>
             organization that has made the Item available for more information.
             <a
               className={classNames.link}
+              target="_blank"
+              rel="noopener noreferrer"
               href="http://rightsstatements.org/vocab/NoC-US/1.0/"
             >
               {" "}http://rightsstatements.org/vocab/NoC-US/1.0/

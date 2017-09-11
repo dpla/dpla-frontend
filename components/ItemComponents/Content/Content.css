@@ -95,9 +95,18 @@
 }
 
 .url {
-  font-family: "Input Mono", courier;
+  font-family: courier, monospace;
   padding: 9px 12px 12px;
   background-color: pampasBrown;
   border-radius: 2px;
   font-size: 0.875rem;
+  display: block;
+}
+
+.facetLink {
+  color: bambooOrange;
+}
+
+.facetLinkText {
+  border-bottom: 1px solid bambooOrange;
 }

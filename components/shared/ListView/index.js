@@ -47,16 +47,19 @@ const ListView = ({ items, route }) =>
               {item.creator && <span>{item.creator}</span>}
             </span>}
           <ItemDescription description={item.description} />
-          <Link href={item.sourceUrl}>
-            <a className={classNames.itemSource}>
-              <span className={classNames.itemSourceText}>Source</span>
-              <img
-                className={classNames.externalLinkIcon}
-                src={externalLinkIcon}
-                alt=""
-              />
-            </a>
-          </Link>
+          <a
+            href={item.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classNames.itemSource}
+          >
+            <span className={classNames.itemSourceText}>Source</span>
+            <img
+              className={classNames.externalLinkIcon}
+              src={externalLinkIcon}
+              alt=""
+            />
+          </a>
         </div>
       </li>
     )}
