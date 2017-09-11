@@ -68,7 +68,7 @@ Search.getInitialProps = async ({ query }) => {
     )
     .filter(facetQuery => facetQuery !== "")
     .join("&");
-  console.dir(facetQueries);
+
   const res = await fetch(
     `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${possibleFacets.join(
       ","
