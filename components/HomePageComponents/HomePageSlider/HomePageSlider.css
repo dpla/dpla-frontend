@@ -108,6 +108,8 @@
 .itemImg {
   border-radius: 3px;
   width: 100%;
+  /* 243 / 334 ratio*/
+  padding-top: 72.75%;
 }
 
 .arrow {

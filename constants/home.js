@@ -1,0 +1,1 @@
+export const NUM_HOMEPAGE_EXHIBITIONS = 8;
