@@ -3,7 +3,7 @@ import { markdown } from "markdown";
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./SetsList.css";
-import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
+import { extractSourceSetSlug, removeQueryParams } from "utilFunctions/";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
@@ -18,15 +18,19 @@ const SetsList = ({ sets, route }) =>
             <Link
               href={{
                 pathname: "/primary-source-sets/set",
-                query: Object.assign({}, route.query, {
-                  set: extractSourceSetSlug(set["@id"])
-                })
+                query: Object.assign(
+                  {},
+                  removeQueryParams(route.query, ["subject", "timePeriod"]),
+                  {
+                    set: extractSourceSetSlug(set["@id"])
+                  }
+                )
               }}
               as={{
                 pathname: `/primary-source-sets/${extractSourceSetSlug(
                   set["@id"]
                 )}`,
-                query: route.query
+                query: removeQueryParams(route.query)
               }}
             >
               <a>
