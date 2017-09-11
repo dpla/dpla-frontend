@@ -28,13 +28,20 @@ const Exhibition = ({ exhibition, route, featured }) =>
             {exhibition.title}
           </p>
         </div>
+        {exhibition.featured &&
+          <div className={classNames.featuredBanner}>
+            Featured
+          </div>}
+        {exhibition.new &&
+          !exhibition.featured &&
+          <div className={classNames.newBanner}>New</div>}
       </div>
     </a>
   </Link>;
 
 const ThreeUp = ({ exhibitions, route }) =>
   <div className={classNames.threeUp}>
-    <div className={classNames.featuredExhibition}>
+    <div className={classNames.firstExhibition}>
       <Exhibition route={route} exhibition={exhibitions[0]} featured={true} />
     </div>
     <div className={classNames.twoVertical}>
