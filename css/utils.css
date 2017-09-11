@@ -10,6 +10,11 @@
   text-decoration: underline;
 }
 
+/* Used for locking scrolls on <body> when overlays are active */
+:global .overflow-hidden {
+  overflow: hidden;
+}
+
 .module {
   padding: 30px 25px;
   margin: auto;
