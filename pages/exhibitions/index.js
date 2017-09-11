@@ -26,7 +26,12 @@ Exhibitions.getInitialProps = async () => {
       );
       const exhibitJson = await exhibitPageRes.json();
 
-      const itemId = exhibitJson[0].page_blocks[0].attachments[0].item.id;
+      const itemId = exhibitJson.find(
+        exhibit =>
+          exhibit.slug === "home-page" ||
+          exhibit.slug === "homepage" ||
+          exhibit.order === 0
+      ).page_blocks[0].attachments[0].item.id;
       const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
       const filesJson = await filesRes.json();
 
