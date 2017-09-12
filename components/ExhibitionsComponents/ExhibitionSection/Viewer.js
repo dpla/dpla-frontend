@@ -18,7 +18,7 @@ const Viewer = ({ exhibition, section, subsection, route }) =>
       <div
         className={classNames.text}
         dangerouslySetInnerHTML={{
-          __html: subsection.page_blocks.find(block => block.order === 2).text
+          __html: subsection.page_blocks.find(block => block.text).text
         }}
       />
     </div>
