@@ -15,7 +15,12 @@ const Body = ({ exhibition, section, subsection, route }) =>
       currentSubsection={subsection}
       currentSection={section}
     />
-    <Viewer subsection={subsection} exhibition={exhibition} section={section} />
+    <Viewer
+      route={route}
+      subsection={subsection}
+      exhibition={exhibition}
+      section={section}
+    />
   </div>;
 
 export default Body;

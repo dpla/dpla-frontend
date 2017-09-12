@@ -14,6 +14,7 @@ const Subsection = ({ url, exhibition, section, subsection }) =>
   <div>
     <Head />
     <Content
+      route={url}
       exhibition={exhibition}
       section={section}
       subsection={subsection}
@@ -53,20 +54,31 @@ Subsection.getInitialProps = async ({ query }) => {
       })
     );
 
-  // const subsection = subsections.find(
-  //   subsection => subsection.slug === query.subsection
-  // );
+  const page_blocks = await Promise.all(
+    subsection.page_blocks
+      .sort((a, b) => a.order - b.order)
+      // for some reason there is sometimes an extra first page_block
+      // that isn't supposed to be first...this seems to fix it
+      .filter(block => block.order > 1 || (block.order !== 1 && block.text))
+      .map(async (block, i) => {
+        const itemId = block.attachments[0].item.id;
+        const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
+        const filesJson = await filesRes.json();
+        const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
+        const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
+        return Object.assign({}, block, {
+          fullsizeImgUrl,
+          thumbnailUrl,
+          isActive:
+            block.id === parseInt(query.item, 10) || (!query.item && i === 0)
+        });
+      })
+  );
 
-  // const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
-  // const filesJson = await filesRes.json();
-  // const thumbnailUrl = filesJson[0].file_urls.fullsize;
-  // console.dir({
-  //   exhibition: Object.assign({}, exhibition, { sections: sections })
-  // });
   return {
     exhibition: Object.assign({}, exhibition, { sections }),
     section,
-    subsection
+    subsection: Object.assign({}, subsection, { page_blocks })
   };
 };
 

@@ -8,7 +8,12 @@ import FooterNav from "./FooterNav";
 const ExhibitionView = ({ exhibition, section, subsection, route }) =>
   <div className={classNames.exhibitionView}>
     <Header title={exhibition.title} />
-    <Body exhibition={exhibition} section={section} subsection={subsection} />
+    <Body
+      route={route}
+      exhibition={exhibition}
+      section={section}
+      subsection={subsection}
+    />
     <FooterNav exhibition={exhibition} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
