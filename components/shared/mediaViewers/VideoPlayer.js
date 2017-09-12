@@ -1,6 +1,6 @@
 import React from "react";
 
-import { classNames } from "./ContentAndMetadata.css";
+import { classNames, stylesheet } from "./mediaViewers.css";
 
 const VideoPlayer = ({ pathToFile, fileFormat }) =>
   <div className={classNames.videoPlayerWrapper}>
@@ -13,6 +13,7 @@ const VideoPlayer = ({ pathToFile, fileFormat }) =>
       {/* TODO: actually add captions? don't know if that's a possibility */}
       <track kind="captions" />
     </video>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default VideoPlayer;
