@@ -66,9 +66,15 @@ Subsection.getInitialProps = async ({ query }) => {
         const filesJson = await filesRes.json();
         const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
         const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
+        const originalUrl = filesJson[0].file_urls.original;
+        const itemRes = await fetch(block.attachments[0].item.url);
+        const itemJson = await itemRes.json();
+        const fileType = itemJson.item_type.name;
         return Object.assign({}, block, {
           fullsizeImgUrl,
           thumbnailUrl,
+          originalUrl,
+          fileType,
           isActive:
             block.id === parseInt(query.item, 10) || (!query.item && i === 0)
         });

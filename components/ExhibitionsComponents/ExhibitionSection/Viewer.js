@@ -2,7 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
-
+import { ZoomableImageViewer, VideoPlayer, AudioPlayer } from "components/shared/mediaViewers";
+import { ITEM_TYPES } from "constants/exhibitions";
 const chevron = "/static/images/chevron-thick-black.svg";
 
 const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
@@ -33,13 +34,15 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
       </div>
       <div className={classNames.viewerContent}>
         <div className={classNames.mediaAndCaption}>
-          <img
-            className={classNames.mainImage}
-            src={activePage.fullsizeImgUrl}
-            alt=""
-          />
+          <div className={classNames.mainImage}>
+            {activePage.fileType === ITEM_TYPES.MOVING_IMAGE &&
+              <VideoPlayer pathToFile={activePage.originalUrl} />}
+            {activePage.fileType === ITEM_TYPES.STILL_IMAGE &&
+              <ZoomableImageViewer pathToFile={activePage.fullsizeImgUrl} />}
+            {activePage.fileType === ITEM_TYPES.SOUND &&
+              <AudioPlayer pathToFile={activePage.originalUrl} />}
+          </div>
           <ul className={classNames.itemLinks}>
-
             {subsection.page_blocks.map(block =>
               <li key={block.id}>
                 <ItemLink
@@ -58,10 +61,11 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
             }}
           />
         </div>
-        <div
-          className={classNames.text}
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
+        {text &&
+          <div
+            className={classNames.text}
+            dangerouslySetInnerHTML={{ __html: text }}
+          />}
       </div>
     </div>
   );
