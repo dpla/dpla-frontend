@@ -59,7 +59,12 @@ Subsection.getInitialProps = async ({ query }) => {
       .sort((a, b) => a.order - b.order)
       // for some reason there is sometimes an extra first page_block
       // that isn't supposed to be first...this seems to fix it
-      .filter(block => block.order > 1 || (block.order !== 1 && block.text))
+      .filter(
+        block =>
+          subsection.page_blocks.length === 1 ||
+          block.order > 1 ||
+          (block.order !== 1 && block.text)
+      )
       .map(async (block, i) => {
         const itemId = block.attachments[0].item.id;
         const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
@@ -69,7 +74,8 @@ Subsection.getInitialProps = async ({ query }) => {
         const originalUrl = filesJson[0].file_urls.original;
         const itemRes = await fetch(block.attachments[0].item.url);
         const itemJson = await itemRes.json();
-        const fileType = itemJson.item_type.name;
+        const fileType = itemJson.item_type && itemJson.item_type.name;
+
         return Object.assign({}, block, {
           fullsizeImgUrl,
           thumbnailUrl,

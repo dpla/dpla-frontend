@@ -159,8 +159,9 @@
   margin-bottom: 1.5rem;
 }
 
-.mainImage {
-  max-width: 100%;
+.mainMedia {
+  max-height: 600px;
+  margin-right: auto;
   margin-bottom: 1.75rem;
 }
 

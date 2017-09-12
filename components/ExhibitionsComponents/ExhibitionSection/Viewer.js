@@ -2,9 +2,32 @@ import React from "react";
 import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
-import { ZoomableImageViewer, VideoPlayer, AudioPlayer } from "components/shared/mediaViewers";
+import {
+  ZoomableImageViewer,
+  VideoPlayer,
+  AudioPlayer,
+  PDFViewer
+} from "components/shared/mediaViewers";
 import { ITEM_TYPES } from "constants/exhibitions";
 const chevron = "/static/images/chevron-thick-black.svg";
+
+// originalUrl will always exist for an item, so we have to test against that
+const getViewerComponent = (fileType, originalUrl, pathToFile) => {
+  if (fileType === ITEM_TYPES.MOVING_IMAGE || /\.mp4/.test(originalUrl)) {
+    return <VideoPlayer pathToFile={pathToFile} />;
+  } else if (
+    fileType === ITEM_TYPES.STILL_IMAGE ||
+    /\.jpg$/.test(originalUrl)
+  ) {
+    return <ZoomableImageViewer pathToFile={pathToFile} />;
+  } else if (fileType === ITEM_TYPES.SOUND || /\.mp3/.test(originalUrl)) {
+    return <AudioPlayer pathToFile={pathToFile} />;
+  } else if (/\.pdf/.test(originalUrl)) {
+    // fullsizeImgUrl will also exist for PDFs, but we want the path to the PDF,
+    // not to a thumbnail image
+    return <PDFViewer pathToFile={originalUrl} />;
+  }
+};
 
 const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
   <Link
@@ -34,13 +57,14 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
       </div>
       <div className={classNames.viewerContent}>
         <div className={classNames.mediaAndCaption}>
-          <div className={classNames.mainImage}>
-            {activePage.fileType === ITEM_TYPES.MOVING_IMAGE &&
-              <VideoPlayer pathToFile={activePage.originalUrl} />}
-            {activePage.fileType === ITEM_TYPES.STILL_IMAGE &&
-              <ZoomableImageViewer pathToFile={activePage.fullsizeImgUrl} />}
-            {activePage.fileType === ITEM_TYPES.SOUND &&
-              <AudioPlayer pathToFile={activePage.originalUrl} />}
+          <div className={classNames.mainMedia}>
+            {getViewerComponent(
+              activePage.fileType,
+              activePage.originalUrl,
+              activePage.fullsizeImgUrl
+                ? activePage.fullsizeImgUrl
+                : activePage.originalUrl
+            )}
           </div>
           <ul className={classNames.itemLinks}>
             {subsection.page_blocks.map(block =>
