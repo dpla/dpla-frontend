@@ -3,29 +3,56 @@ import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
 
-const Sidebar = ({ exhibition }) =>
+const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
   <div className={classNames.sidebar}>
     <ul className={classNames.sidebarSections}>
       {exhibition.sections.map(section =>
         <li>
-          <span
-            className={[
-              classNames.sectionTitle,
-              section.active && classNames.active
-            ].join(" ")}
+          <Link
+            href={{
+              pathname: `/exhibitions/exhibition/section/subsection`,
+              query: { exhibition: exhibition.slug, section: section.slug }
+            }}
+            as={{ pathname: `/exhibitions/${exhibition.slug}/${section.slug}` }}
           >
-            {section.title}
-          </span>
-          {section.active &&
+            <a
+              className={[
+                classNames.sectionTitle,
+                section.id === currentSection.id && classNames.active
+              ].join(" ")}
+            >
+              {section.title}
+            </a>
+          </Link>
+          {section.id === currentSection.id &&
             <ul>
               {section.subsections.map(subsection =>
                 <li
                   className={[
                     classNames.subsectionTitle,
-                    subsection.active && classNames.active
+                    subsection.id === currentSubsection.id && classNames.active
                   ].join(" ")}
                 >
-                  {subsection.title}
+                  <Link
+                    href={{
+                      pathname: `/exhibitions/exhibition/section/subsection`,
+                      query: {
+                        exhibition: exhibition.slug,
+                        section: section.slug,
+                        subsection: subsection.slug !== section.slug
+                          ? subsection.slug
+                          : ""
+                      }
+                    }}
+                    as={{
+                      pathname: `/exhibitions/${exhibition.slug}/${section.slug}/${subsection.slug !==
+                        section.slug
+                        ? subsection.slug
+                        : ""}`
+                    }}
+                  >
+                    <a>{subsection.title}</a>
+                  </Link>
                 </li>
               )}
             </ul>}
