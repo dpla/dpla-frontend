@@ -106,6 +106,7 @@
   height: 100%;
   border-radius: 3px 0 0 3px;
   flex-grow: 1;
+  line-height: 1.5;
 
   @media (min-width: mediumRem) {
     padding-left: 1.5rem;
@@ -149,7 +150,7 @@
 .searchButton {
   height: 100%;
   background-color: vikingBlue;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   color: white;
@@ -158,6 +159,7 @@
   border-radius: 0 3px 3px 0;
 
   @media (min-width: mediumRem) {
+    display: flex;
     font-size: 1.2rem;
   }
 }
