@@ -108,7 +108,7 @@ Subsection.getInitialProps = async ({ query }) => {
         block =>
           subsection.page_blocks.length === 1 ||
           block.order > 1 ||
-          (block.order !== 1 && block.text)
+          (block.order === 1 && block.text)
       )
       .map(async (block, i) => {
         const itemId = block.attachments[0].item.id;
