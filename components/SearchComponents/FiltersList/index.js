@@ -8,7 +8,7 @@ import {
   mapFacetsToURLPrettified
 } from "constants/search";
 
-const closeIcon = "/static/images/close.svg";
+const closeIcon = "/static/images/close-white.svg";
 const clearAllIcon = "/static/images/close-orange.svg";
 
 const clearAllFacets = query => {

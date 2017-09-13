@@ -20,8 +20,6 @@
   font-size: 2.625rem;
   line-height: 3.1875rem;
   font-weight: normal;
-  padding-bottom: 28px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
@@ -84,8 +82,29 @@
 }
 
 .header {
-  padding-bottom: 0;
+  padding-bottom: 1.75rem;
   max-width: 1200px;
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.closeExhibition {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.closeIcon {
+  background-color: black;
+  padding: 5px;
+  border-radius: 50%;
+  height: 19px;
+  width: 19px;
+  box-sizing: border-box;
+  position: relative;
+  top: 4px;
+  margin-right: 0.5rem;
 }
 
 .footerNav {
