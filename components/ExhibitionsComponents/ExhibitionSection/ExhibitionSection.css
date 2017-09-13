@@ -1,4 +1,4 @@
-@value visualBrown, bambooOrange, pampasBrown from "../../../css/colors.css";
+@value visualBrown, vikingBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
 
 .content {
   background-color: visualBrown;
@@ -208,5 +208,19 @@
 }
 
 .activeItemLink {
-  border: 6px solid #5AB4DC;
+  border: 6px solid vikingBlue;
+  position: relative;
+}
+
+.activeItemLink::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 10px solid #5ab4dc;
+  top: -16px;
+  left: 8px;
 }

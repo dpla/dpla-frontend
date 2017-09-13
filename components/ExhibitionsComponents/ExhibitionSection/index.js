@@ -5,7 +5,14 @@ import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
 
-const ExhibitionView = ({ exhibition, section, subsection, route }) =>
+const ExhibitionView = ({
+  exhibition,
+  section,
+  subsection,
+  route,
+  nextSubsection,
+  previousSubsection
+}) =>
   <div className={classNames.exhibitionView}>
     <Header title={exhibition.title} route={route} />
     <Body
@@ -14,7 +21,12 @@ const ExhibitionView = ({ exhibition, section, subsection, route }) =>
       section={section}
       subsection={subsection}
     />
-    <FooterNav exhibition={exhibition} />
+    <FooterNav
+      route={route}
+      exhibition={exhibition}
+      previousSubsection={previousSubsection}
+      nextSubsection={nextSubsection}
+    />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 

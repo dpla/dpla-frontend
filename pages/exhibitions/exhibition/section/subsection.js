@@ -10,32 +10,51 @@ import {
   FILES_ENDPOINT
 } from "constants/exhibitions";
 
-const Subsection = ({ url, exhibition, section, subsection }) =>
+const Subsection = ({
+  url,
+  exhibition,
+  section,
+  subsection,
+  nextSubsection,
+  previousSubsection
+}) =>
   <div>
     <Head />
     <Content
       route={url}
+      previousSubsection={previousSubsection}
+      nextSubsection={nextSubsection}
       exhibition={exhibition}
       section={section}
       subsection={subsection}
     />
   </div>;
 
+// TODO: refactor this so it isn't so long
 Subsection.getInitialProps = async ({ query }) => {
   const exhibitsRes = await fetch(EXHIBITS_ENDPOINT);
   const exhibitsJson = await exhibitsRes.json();
   const exhibition = exhibitsJson.find(
     exhibit => exhibit.slug === query.exhibition
   );
-
   const exhibitPageRes = await fetch(
     `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
   );
   const exhibitPageJson = await exhibitPageRes.json();
+
   const section = exhibitPageJson.find(page => page.slug === query.section);
+
   const subsection = !query.subsection
     ? Object.assign({}, section, { title: "Introduction" })
     : exhibitPageJson.find(page => page.slug === query.subsection);
+
+  const previousSubsection = exhibitPageJson.find(
+    page => page.order === subsection.order - 1 && page.order > 0
+  );
+
+  const nextSubsection = exhibitPageJson.find(
+    page => page.order === subsection.order + 1
+  );
 
   const sections = exhibitPageJson
     //filter out subsections and homepage
@@ -47,12 +66,13 @@ Subsection.getInitialProps = async ({ query }) => {
           // each section is basically also an "Introduction" subsection
           // so including it as such makes some of the logic easier
           Object.assign({}, section, { title: "Introduction" }),
-          ...exhibitPageJson.filter(
-            page => page.parent && page.parent.id === section.id
-          )
+          ...exhibitPageJson
+            .filter(page => page.parent && page.parent.id === section.id)
+            .sort((a, b) => a.order - b.order)
         ]
       })
     );
+  console.dir(sections[0].subsections);
 
   const page_blocks = await Promise.all(
     subsection.page_blocks
@@ -90,6 +110,8 @@ Subsection.getInitialProps = async ({ query }) => {
   return {
     exhibition: Object.assign({}, exhibition, { sections }),
     section,
+    nextSubsection,
+    previousSubsection,
     subsection: Object.assign({}, subsection, { page_blocks })
   };
 };
