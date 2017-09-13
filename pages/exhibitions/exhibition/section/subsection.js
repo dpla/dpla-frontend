@@ -20,6 +20,7 @@ const Subsection = ({
   section,
   subsection,
   nextQueryParams,
+  nextSubsectionTitle,
   previousQueryParams
 }) =>
   <div>
@@ -28,6 +29,7 @@ const Subsection = ({
       route={url}
       previousQueryParams={previousQueryParams}
       nextQueryParams={nextQueryParams}
+      nextSubsectionTitle={nextSubsectionTitle}
       exhibition={exhibition}
       section={section}
       subsection={subsection}
@@ -92,7 +94,7 @@ Subsection.getInitialProps = async ({ query }) => {
     section,
     query
   );
-  const nextQueryParams = getNextQueryParams(
+  const nextQueryParamsAndTitle = getNextQueryParams(
     sections,
     subsection,
     section,
@@ -135,8 +137,9 @@ Subsection.getInitialProps = async ({ query }) => {
   return {
     exhibition: Object.assign({}, exhibition, { sections }),
     section,
-    nextQueryParams,
-    previousQueryParams,
+    nextQueryParams: nextQueryParamsAndTitle.queryParams,
+    nextSubsectionTitle: nextQueryParamsAndTitle.title,
+    previousQueryParams: previousQueryParams.queryParams,
     subsection: Object.assign({}, subsection, { page_blocks })
   };
 };

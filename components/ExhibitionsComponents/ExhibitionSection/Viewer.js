@@ -45,7 +45,6 @@ const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
 
 const Viewer = ({ exhibition, section, subsection, route }) => {
   const pageWithText = subsection.page_blocks.find(block => block.text);
-  debugger;
   const text = pageWithText ? pageWithText.text : "";
   const activePage = subsection.page_blocks.find(block => block.isActive);
 

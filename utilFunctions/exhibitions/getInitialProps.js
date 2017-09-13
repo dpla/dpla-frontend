@@ -28,22 +28,30 @@ const getNextOrPreviousQueryParams = (
           : 0
       ];
   }
-  console.log(subsectInNextOrPrevSect);
 
-  let queryParams;
+  let queryParamsAndTitle;
   if (subsectInCurrentSect || subsectInNextOrPrevSect) {
-    queryParams = {
-      exhibition: query.exhibition,
-      section: subsectInCurrentSect
-        ? currentSection.slug
-        : nextOrPreviousSect.slug,
-      subsection: subsectInCurrentSect
-        ? subsectInCurrentSect.slug
-        : subsectInNextOrPrevSect.slug
+    queryParamsAndTitle = {
+      queryParams: {
+        exhibition: query.exhibition,
+        section: subsectInCurrentSect
+          ? currentSection.slug
+          : nextOrPreviousSect.slug,
+        subsection: subsectInCurrentSect
+          ? subsectInCurrentSect.slug
+          : subsectInNextOrPrevSect.slug
+      },
+      title: subsectInCurrentSect
+        ? subsectInCurrentSect.title
+        : subsectInNextOrPrevSect.title === "Introduction"
+          ? nextOrPreviousSect.title
+          : subsectInNextOrPrevSect.title
     };
+  } else {
+    queryParamsAndTitle = {};
   }
 
-  return queryParams;
+  return queryParamsAndTitle;
 };
 
 const getPreviousQueryParams = (sections, subsection, section, query) =>

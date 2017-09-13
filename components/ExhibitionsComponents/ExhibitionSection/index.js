@@ -11,6 +11,7 @@ const ExhibitionView = ({
   subsection,
   route,
   nextQueryParams,
+  nextSubsectionTitle,
   previousQueryParams
 }) =>
   <div className={classNames.exhibitionView}>
@@ -26,6 +27,7 @@ const ExhibitionView = ({
       exhibition={exhibition}
       previousQueryParams={previousQueryParams}
       nextQueryParams={nextQueryParams}
+      nextSubsectionTitle={nextSubsectionTitle}
     />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

@@ -135,6 +135,23 @@
   font-size: 1.25rem;
   line-height: 1.5625rem;
   font-weight: 600;
+  display: block;
+}
+
+.nextButtonAndTitleWrapper {
+  position: relative;
+}
+
+.nextSubsectionTitle {
+  opacity: 0.75;
+  font-size: 0.875rem;
+  position: absolute;
+  top: -1.5rem;
+  display: block;
+  max-width: 158px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .disabledButton {

@@ -15,7 +15,11 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
     ? <Link
         href={{
           pathname: route.pathname,
-          query: queryParams
+          query: {
+            exhibition: queryParams.exhibition,
+            section: queryParams.section,
+            subsection: queryParams.section
+          }
         }}
         as={`/exhibitions/${queryParams.exhibition}/${queryParams.section}/${queryParams.subsection}`}
       >
@@ -61,7 +65,8 @@ const FooterNav = ({
   exhibition,
   route,
   nextQueryParams,
-  previousQueryParams
+  previousQueryParams,
+  nextSubsectionTitle
 }) =>
   <div className={classNames.footerWrapper}>
     <div className={[module, classNames.footerNav].join(" ")}>
@@ -74,11 +79,18 @@ const FooterNav = ({
           queryParams={previousQueryParams}
           nextOrPrevious="previous"
         />
-        <NavButton
-          route={route}
-          queryParams={nextQueryParams}
-          nextOrPrevious="next"
-        />
+        <div className={classNames.nextButtonAndTitleWrapper}>
+          {nextSubsectionTitle &&
+            <span className={classNames.nextSubsectionTitle}>
+              {nextSubsectionTitle}
+            </span>}
+          <NavButton
+            route={route}
+            queryParams={nextQueryParams}
+            nextSubsectionTitle={nextQueryParams && nextSubsectionTitle}
+            nextOrPrevious="next"
+          />
+        </div>
       </div>
     </div>
   </div>;
