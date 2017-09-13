@@ -10,27 +10,27 @@ import TeachersGuide from "../../../components/PrimarySourceSetsComponents/Singl
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
-const SingleSet = props =>
-  <MainLayout>
+const SingleSet = ({ url, set, teachingGuide }) =>
+  <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets/",
-            query: removeQueryParams(props.url.query, ["set"])
+            query: removeQueryParams(url.query, ["set"])
           }
         },
-        { title: props.set.name, search: "" }
+        { title: set.name, search: "" }
       ]}
-      route={props.url}
+      route={url}
     />
-    <SourceSetInfo set={props.set} />
-    <ResourcesTabs route={props.url} currentTab="teachingGuide" set={props.set}>
+    <SourceSetInfo set={set} />
+    <ResourcesTabs route={url} currentTab="teachingGuide" set={set}>
       <TeachersGuide
-        teachingGuide={props.teachingGuide}
-        setName={props.set.name}
-        route={props.url}
+        teachingGuide={teachingGuide}
+        setName={set.name}
+        route={url}
       />
     </ResourcesTabs>
     <PSSFooter />

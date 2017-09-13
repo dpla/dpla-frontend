@@ -16,32 +16,28 @@ import {
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
-const SingleSet = props =>
-  <MainLayout>
+const SingleSet = ({ url, set }) =>
+  <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets/",
-            query: removeQueryParams(props.url.query, ["set"])
+            query: removeQueryParams(url.query, ["set"])
           }
         },
-        { title: props.set.name, search: "" }
+        { title: set.name, search: "" }
       ]}
-      route={props.url}
+      route={url}
     />
-    <SourceSetInfo set={props.set} />
-    <ResourcesTabs
-      route={props.url}
-      currentTab="additionalResources"
-      set={props.set}
-    >
+    <SourceSetInfo set={set} />
+    <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div
         className={[classNames.markdownWrapper, module].join(" ")}
         dangerouslySetInnerHTML={{
           __html: markdown.toHTML(
-            props.set.hasPart.find(item => item.name === "Resources").text
+            set.hasPart.find(item => item.name === "Resources").text
           )
         }}
       />
