@@ -3,6 +3,10 @@ import fetch from "isomorphic-fetch";
 
 import Head from "../../../../components/Head";
 import Content from "../../../../components/ExhibitionsComponents/ExhibitionSection";
+import {
+  getPreviousQueryParams,
+  getNextQueryParams
+} from "utilFunctions/exhibitions/getInitialProps";
 
 import {
   EXHIBITS_ENDPOINT,
@@ -15,15 +19,15 @@ const Subsection = ({
   exhibition,
   section,
   subsection,
-  nextSubsection,
-  previousSubsection
+  nextQueryParams,
+  previousQueryParams
 }) =>
   <div>
     <Head />
     <Content
       route={url}
-      previousSubsection={previousSubsection}
-      nextSubsection={nextSubsection}
+      previousQueryParams={previousQueryParams}
+      nextQueryParams={nextQueryParams}
       exhibition={exhibition}
       section={section}
       subsection={subsection}
@@ -45,16 +49,16 @@ Subsection.getInitialProps = async ({ query }) => {
   const section = exhibitPageJson.find(page => page.slug === query.section);
 
   const subsection = !query.subsection
-    ? Object.assign({}, section, { title: "Introduction" })
+    ? Object.assign({}, section, {
+        title: "Introduction",
+        order: -1,
+        parent: {
+          id: section.id,
+          resource: "exhibit_pages",
+          url: section.url
+        }
+      })
     : exhibitPageJson.find(page => page.slug === query.subsection);
-
-  const previousSubsection = exhibitPageJson.find(
-    page => page.order === subsection.order - 1 && page.order > 0
-  );
-
-  const nextSubsection = exhibitPageJson.find(
-    page => page.order === subsection.order + 1
-  );
 
   const sections = exhibitPageJson
     //filter out subsections and homepage
@@ -65,14 +69,35 @@ Subsection.getInitialProps = async ({ query }) => {
         subsections: [
           // each section is basically also an "Introduction" subsection
           // so including it as such makes some of the logic easier
-          Object.assign({}, section, { title: "Introduction" }),
+          Object.assign({}, section, {
+            title: "Introduction",
+            parent: {
+              id: section.id,
+              resource: "exhibit_pages",
+              url: section.url
+            },
+            order: -1,
+            slug: ""
+          }),
           ...exhibitPageJson
             .filter(page => page.parent && page.parent.id === section.id)
             .sort((a, b) => a.order - b.order)
         ]
       })
     );
-  console.dir(sections[0].subsections);
+
+  const previousQueryParams = getPreviousQueryParams(
+    sections,
+    subsection,
+    section,
+    query
+  );
+  const nextQueryParams = getNextQueryParams(
+    sections,
+    subsection,
+    section,
+    query
+  );
 
   const page_blocks = await Promise.all(
     subsection.page_blocks
@@ -110,8 +135,8 @@ Subsection.getInitialProps = async ({ query }) => {
   return {
     exhibition: Object.assign({}, exhibition, { sections }),
     section,
-    nextSubsection,
-    previousSubsection,
+    nextQueryParams,
+    previousQueryParams,
     subsection: Object.assign({}, subsection, { page_blocks })
   };
 };

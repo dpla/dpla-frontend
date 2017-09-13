@@ -25,7 +25,7 @@ const getViewerComponent = (fileType, originalUrl, pathToFile) => {
   } else if (/\.pdf/.test(originalUrl)) {
     // fullsizeImgUrl will also exist for PDFs, but we want the path to the PDF,
     // not to a thumbnail image
-    return <PDFViewer pathToFile={originalUrl} />;
+    return <PDFViewer height="600" pathToFile={originalUrl} />;
   }
 };
 

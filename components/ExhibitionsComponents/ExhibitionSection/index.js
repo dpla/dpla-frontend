@@ -10,8 +10,8 @@ const ExhibitionView = ({
   section,
   subsection,
   route,
-  nextSubsection,
-  previousSubsection
+  nextQueryParams,
+  previousQueryParams
 }) =>
   <div className={classNames.exhibitionView}>
     <Header title={exhibition.title} route={route} />
@@ -24,8 +24,8 @@ const ExhibitionView = ({
     <FooterNav
       route={route}
       exhibition={exhibition}
-      previousSubsection={previousSubsection}
-      nextSubsection={nextSubsection}
+      previousQueryParams={previousQueryParams}
+      nextQueryParams={nextQueryParams}
     />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
