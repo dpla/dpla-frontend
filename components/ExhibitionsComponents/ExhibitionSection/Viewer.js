@@ -13,7 +13,10 @@ const chevron = "/static/images/chevron-thick-black.svg";
 
 // originalUrl will always exist for an item, so we have to test against that
 const getViewerComponent = (fileType, originalUrl, pathToFile) => {
-  if (fileType === ITEM_TYPES.MOVING_IMAGE || /\.(mp4|webm|ogg)/.test(originalUrl)) {
+  if (
+    fileType === ITEM_TYPES.MOVING_IMAGE ||
+    /\.(mp4|webm|ogg)/.test(originalUrl)
+  ) {
     return <VideoPlayer pathToFile={pathToFile} />;
   } else if (
     fileType === ITEM_TYPES.STILL_IMAGE ||
