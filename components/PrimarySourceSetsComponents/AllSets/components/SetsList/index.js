@@ -7,7 +7,7 @@ import { extractSourceSetSlug, removeQueryParams } from "utilFunctions/";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
-} from "../FiltersBar/options";
+} from "constants/primarySourceSets";
 
 const SetsList = ({ sets, route }) =>
   <div className={`${classNames.setsWrapper} site-max-width`}>

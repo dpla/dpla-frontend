@@ -23,10 +23,12 @@ const getSourceLink = source =>
     ref => ref["@type"] === "WebPage"
   )[0]["@id"];
 
-  const getItemId = source =>
-    extractItemId(source.mainEntity[0]["dct:references"].filter(
+const getItemId = source =>
+  extractItemId(
+    source.mainEntity[0]["dct:references"].filter(
       ref => ref["@type"] === "ore:Aggregation"
-    )[0]["@id"]);
+    )[0]["@id"]
+  );
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
