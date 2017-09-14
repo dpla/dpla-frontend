@@ -103,8 +103,17 @@
   display: block;
 }
 
+.subjects .facetLink {
+  margin-bottom: 0.5rem;
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
 .facetLink {
   color: bambooOrange;
+  display: block;
 }
 
 .facetLinkText {

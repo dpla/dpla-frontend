@@ -3,9 +3,9 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Content.css";
 import { joinIfArray } from "utilFunctions";
 
-const Row = ({ heading, value, linkInfo, children }) =>
+const Row = ({ heading, value, linkInfo, children, className }) =>
   children
-    ? <tr className={classNames.tableRow}>
+    ? <tr className={[classNames.tableRow, className].join(" ")}>
         <td className={classNames.tableHeading}>
           {heading}
         </td>
@@ -24,7 +24,6 @@ const FacetLink = ({ facet, value, withComma }) =>
     <Link href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}>
       <a className={classNames.facetLink}>
         <span className={classNames.facetLinkText}>{value}</span>
-        {withComma && <span>, </span>}
       </a>
     </Link>
   </span>;
@@ -41,14 +40,10 @@ const OtherMetadata = ({ item }) =>
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
         <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
-        <Row heading="Subjects">
+        <Row className={classNames.subjects} heading="Subjects">
           {item.subject &&
             item.subject.map((subj, i) =>
-              <FacetLink
-                withComma={i < item.subject.length - 1}
-                facet="subject"
-                value={subj.name}
-              />
+              <FacetLink facet="subject" value={subj.name} />
             )}
         </Row>
         <Row heading="Type"><FacetLink facet="type" value={item.type} /></Row>
