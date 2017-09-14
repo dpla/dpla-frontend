@@ -20,7 +20,7 @@ const Topics = ({ topics }) =>
                 <div className={classNames.ribbon}>New</div>}
               <img
                 alt={topic.title}
-                src={topic.image}
+                src={topic.acf.category_image}
                 className={classNames.image}
               />
               <h3 className={classNames.title}>
