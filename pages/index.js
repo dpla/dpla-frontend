@@ -5,7 +5,7 @@ import MainLayout from "../components/MainLayout";
 import HomeHero from "../components/HomePageComponents/HomeHero";
 import HomePageSlider from "../components/HomePageComponents/HomePageSlider";
 import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
-import SocialMedia from "../components/HomePageComponents/SocialMedia";
+// import SocialMedia from "../components/HomePageComponents/SocialMedia";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
 import { NUM_HOMEPAGE_EXHIBITIONS } from "constants/home";
@@ -14,36 +14,6 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-
-// TODO: remove when we have real data for exhibitions
-const sampleImage = "/static/placeholderImages/sample-image.jpeg";
-
-const mockExhibitionsData = [
-  {
-    name: "Building the First Transcontinental Railroad",
-    thumbnailUrl: sampleImage,
-    id: 0,
-    isFeatured: true
-  },
-  {
-    name: "Race to the Moon",
-    thumbnailUrl: sampleImage,
-    id: 1,
-    isFeatured: false
-  },
-  {
-    name: "In Focus: The Evolution of the Personal Camera",
-    thumbnailUrl: sampleImage,
-    id: 2,
-    isFeatured: false
-  },
-  {
-    name: "Design Tenets",
-    thumbnailUrl: sampleImage,
-    id: 3,
-    isFeatured: false
-  }
-];
 
 const Home = ({ sourceSets, exhibitions }) =>
   <MainLayout hideSearchBar>
@@ -64,7 +34,7 @@ const Home = ({ sourceSets, exhibitions }) =>
     />
     <DPLAUsers />
     <FromTheBlog />
-    <SocialMedia />
+    {/* <SocialMedia /> */}
   </MainLayout>;
 
 Home.getInitialProps = async () => {
