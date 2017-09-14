@@ -1,6 +1,6 @@
 import React from "react";
 
-import { classNames } from "./ContentAndMetadata.css";
+import { classNames, stylesheet } from "./mediaViewers.css";
 
 const AudioPlayer = ({ pathToFile, fileFormat }) =>
   <div className={classNames.audioPlayerWrapper}>
@@ -13,6 +13,7 @@ const AudioPlayer = ({ pathToFile, fileFormat }) =>
       {/* TODO: actually add captions? don't know if that's a possibility */}
       <track kind="captions" />
     </audio>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default AudioPlayer;

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/server";
 
-import { classNames } from "./ContentAndMetadata.css";
+import { classNames, stylesheet } from "./mediaViewers.css";
 
 // TODO: maybe move this into a shared directory
 //  idea from https://github.com/facebook/react/issues/1252
@@ -43,6 +43,7 @@ export default class ZoomableImageViewer extends React.Component {
             />
           </div>
         </Noscript>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

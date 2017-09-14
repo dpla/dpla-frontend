@@ -1,10 +1,12 @@
 import React from "react";
 import { markdown } from "markdown";
 
-import PDFViewer from "./PDFViewer";
-import ZoomableImageViewer from "./ZoomableImageViewer";
-import AudioPlayer from "./AudioPlayer";
-import VideoPlayer from "./VideoPlayer";
+import {
+  ZoomableImageViewer,
+  AudioPlayer,
+  VideoPlayer,
+  PDFViewer
+} from "components/shared/mediaViewers";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";

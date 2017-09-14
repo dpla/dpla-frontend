@@ -16,7 +16,7 @@ const GlobalHeader = () =>
         <Link href="/exhibitions">
           Exhibitions
         </Link>
-        <Link href="/primary-source-sets">
+        <Link href="/primary-source-sets" prefetch>
           Primary Source Sets
         </Link>
       </div>

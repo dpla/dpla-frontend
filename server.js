@@ -109,8 +109,24 @@ app
       const actualPage = "/exhibitions/exhibition/section/subsection";
       const params = {
         exhibition: req.params.exhibition,
-        section: req.params.source,
-        subsection: req.params.source
+        section: req.params.section,
+        subsection: req.params.subsection
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
+    // empty subsection signals that the Introduction subsection should be used
+    server.get("/exhibitions/:exhibition/:section/", (req, res) => {
+      const actualPage = "/exhibitions/exhibition/section/subsection";
+      const params = {
+        exhibition: req.params.exhibition,
+        section: req.params.section,
+        subsection: ""
       };
       renderAndCache(
         req,
