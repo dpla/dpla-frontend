@@ -6,8 +6,6 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const heart = "/static/images/heart.svg";
-
 // only the time period has a sameAs field
 const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
 const extractSubjects = tags =>
@@ -74,12 +72,6 @@ const SourceSetInfo = set =>
             />
           </div>
         </div>
-        <button
-          className={[classNames.favoritesButton, classNames.button].join(" ")}
-        >
-          <img alt="" src={heart} className={classNames.heart} />
-          <span>Add to favorites</span>
-        </button>
         <button
           className={[classNames.citeButton, classNames.button].join(" ")}
         >
