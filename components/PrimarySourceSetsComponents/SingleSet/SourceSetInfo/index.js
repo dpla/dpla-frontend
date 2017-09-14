@@ -16,7 +16,6 @@ const SourceSetInfo = set =>
     <div className={[classNames.sourceSetInfo, module].join(" ")}>
       <div className={classNames.bannerAndDescription}>
         <div className={classNames.banner}>
-          {/* TODO: this shouldn't use backgroundImage */}
           <div
             className={classNames.bannerImage}
             style={{
