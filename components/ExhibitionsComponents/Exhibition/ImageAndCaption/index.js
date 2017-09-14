@@ -30,7 +30,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
                 })
               }}
               as={{
-                pathname: `${route.pathname}/${exhibition.sections[0].slug}`
+                pathname: `${exhibition.slug}/${exhibition.sections[0].slug}`
               }}
             >
               <a className={classNames.exploreLink}>Explore Exhibition</a>

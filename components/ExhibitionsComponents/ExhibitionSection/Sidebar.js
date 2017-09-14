@@ -59,7 +59,6 @@ const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
         </li>
       )}
     </ul>
-    <Link><a>References</a></Link>
   </div>;
 
 export default Sidebar;

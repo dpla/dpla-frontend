@@ -34,9 +34,6 @@
 .tableOfContentsSection {
   margin-bottom: 20px;
 }
-.tableOfContentsSection:last-child {
-  margin-bottom: 27px;
-}
 
 .divider {
   height: 2px;

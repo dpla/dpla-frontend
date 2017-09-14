@@ -9,7 +9,7 @@ const closeIcon = "/static/images/close-white.svg";
 
 const Header = ({ title, route }) =>
   <div className={[classNames.header, module].join(" ")}>
-    <div>
+    <div className={classNames.exhibitionsLinkAndTitle}>
       <Link href="/exhibitions">
         <a className={classNames.exhibitionsLink}>Exhibitions</a>
       </Link>

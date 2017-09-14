@@ -35,8 +35,6 @@ const Details = ({ exhibition, route }) =>
               </li>
             )}
           </ul>
-          <div className={classNames.divider} />
-          <a>References</a>
         </div>
       </div>
       <div className={classNames.body}>
