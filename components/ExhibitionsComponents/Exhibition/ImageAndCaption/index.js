@@ -9,16 +9,30 @@ const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={classNames.wrapper}>
     <div className={[module, classNames.imageAndCaption].join(" ")}>
       <div className={classNames.imageWrapper}>
-        <img
+        <div
           className={classNames.image}
           alt={exhibition.title}
-          src={exhibition.image}
+          style={{
+            backgroundImage: `url(${exhibition.thumbnailUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
         />
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
             <div className={classNames.divider} />
-            <Link href="">
+            <Link
+              href={{
+                pathname: route.pathname,
+                query: Object.assign({}, route.query, {
+                  section: exhibition.sections[0].slug
+                })
+              }}
+              as={{
+                pathname: `${exhibition.slug}/${exhibition.sections[0].slug}`
+              }}
+            >
               <a className={classNames.exploreLink}>Explore Exhibition</a>
             </Link>
           </div>
@@ -26,7 +40,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
       </div>
       <figcaption className={classNames.caption}>
         <span className={classNames.captionLeadIn}>Image: </span>
-        <span>{exhibition.caption}</span>
+        <span dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
       </figcaption>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

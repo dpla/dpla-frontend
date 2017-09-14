@@ -17,20 +17,35 @@ const Details = ({ exhibition, route }) =>
           <ul className={classNames.tableOfContentsSections}>
             {exhibition.sections.map(section =>
               <li className={classNames.tableOfContentsSection}>
-                {section.title}
+                <Link
+                  href={{
+                    pathname: route.pathname,
+                    query: Object.assign({}, route.query, {
+                      section: section.slug
+                    })
+                  }}
+                  as={{
+                    pathname: `${route.pathname}/${section.slug}`
+                  }}
+                >
+                  <a>
+                    {section.title}
+                  </a>
+                </Link>
               </li>
             )}
           </ul>
-          <div className={classNames.divider} />
-          <a>References</a>
         </div>
       </div>
       <div className={classNames.body}>
         <FaveAndCiteButtons />
-        <p className={classNames.bodyText}>{exhibition.copy}</p>
+        <span
+          className={classNames.bodyText}
+          dangerouslySetInnerHTML={{ __html: exhibition.text }}
+        />
         <p className={classNames.credits}>
-          <span className={classNames.creditsBold}>Credit:</span>
-          <span>{exhibition.credit}</span>
+          <span className={classNames.creditsBold}>Credit: </span>
+          <span>{exhibition.credits}</span>
         </p>
       </div>
     </div>

@@ -4,6 +4,10 @@
   background-color: visualBrown;
 }
 
+.exhibitionsLinkAndTitle {
+  max-width: 90%;
+}
+
 .exhibitionsLink {
   color: bambooOrange;
   border-bottom: 1px solid bambooOrange;
@@ -20,7 +24,6 @@
   font-size: 2.625rem;
   line-height: 3.1875rem;
   font-weight: normal;
-  max-width: 90%;
 }
 
 .sidebar {

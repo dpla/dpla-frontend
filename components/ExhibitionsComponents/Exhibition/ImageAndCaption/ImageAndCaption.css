@@ -3,6 +3,8 @@
 .image {
   border-radius: 3px;
   width: 100%;
+  /* 518 / 1024 ratio */
+  padding-top: 50.59%;
 }
 
 .overlay {
@@ -25,7 +27,7 @@
 }
 
 .overlayContent {
-  width: 600px;
+  width: 90%;
   text-align: center;
   position: absolute;
   padding-bottom: 56px;
@@ -33,8 +35,8 @@
 
 .exhibitionTitle {
   margin-bottom: 36px;
-  font-size: 4.5rem;
-  line-height: 3.875rem;
+  font-size: 3.75rem;
+  line-height: 1.1rem;
   font-family: "Lora";
 }
 
@@ -67,4 +69,8 @@
   opacity: 0.50;
   font-size: 0.875rem;
   line-height: 1.125rem;
+}
+
+.caption p {
+  display: inline;
 }
