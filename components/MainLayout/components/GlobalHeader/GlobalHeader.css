@@ -14,14 +14,9 @@
   margin: auto;
   display: flex;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 0 1rem;
   font-size: 0.875rem;
   font-weight: 600;
-
-  @media (min-width: mediumRem) {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-  }
 
   @media (min-width: largeRem) {
     padding-left: 0;
@@ -35,11 +30,20 @@
   justify-content: space-between;
   text-transform: uppercase;
 
-  & > li, & > a {
+  & > li {
     margin-right: .75rem;
 
     @media (min-width: largeRem) {
       margin-right: 1rem;
+    }
+  }
+
+  & > li > button, & > li > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+
+    @media (min-width: mediumRem) {
+      padding: 0.75rem 0;
     }
   }
 }
@@ -79,7 +83,7 @@
   background-color: white;
   text-transform: none;
   font-size: 1rem;
-  top: 1.5rem;
+  top: 2.25rem;
 }
 
 .browseLink {

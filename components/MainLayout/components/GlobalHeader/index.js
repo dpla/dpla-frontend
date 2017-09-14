@@ -45,17 +45,23 @@ const GlobalHeader = () =>
         </li>
       </ul>
       <span className={classNames.divider} />
-      <div className={`${classNames.links} ${classNames.secondaryLinks}`}>
-        <Link href="">
-          <a>About Us</a>
-        </Link>
-        <Link href="">
-          <a>News</a>
-        </Link>
-        <Link href="">
-          <a>Pro Community</a>
-        </Link>
-      </div>
+      <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
+        <li>
+          <Link href="">
+            <a>About Us</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="">
+            <a>News</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="">
+            <a>Pro Community</a>
+          </Link>
+        </li>
+      </ul>
       {/* <button className={classNames.login}>Log In</button> */}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
