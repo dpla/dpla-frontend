@@ -83,8 +83,46 @@ The project includes a number of scripts used for development, testing, and depl
 - `yarn run start` - begins bundling javascript with webpack and starts the server in production mode
 - `yarn run build` - builds the project for production
 
+
+### Docker
+
+This project uses a Docker container, which can be run locally or deployed to AWS Elastic Beanstalk.
+
+Once you have [Docker](https://www.docker.com/) installed on your computer, you can run the container locally using this command:
+
+```zsh
+# Build and run the container
+> npm run deploy
+```
+
+To deploy the container to AWS Elastic Beanstalk, you'll need to get set up first.
+
+1. Get AWS credentials and [install the eb-cli tool](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html) (tl;dr ```brew install awsebcli```).
+2. Using the terminal, run ```eb init```.
+3. Choose us-east-1, US East (N. Virginia) as the region.
+4. Enter your aws-access-id and aws-secret-key.
+5. At select an application to use, choose dpla-frontend.
+6. Opt out of CodeCommit.
+
+When you've completed the one-time setup, the following command will deploy the Docker container to AWS.
+
+```zsh
+> eb deploy dpla
+```
+
+A few other useful commands:
+
+```zsh
+# List environments
+> eb list
+
+# Open the app in your browser
+> eb open dpla
+```
+
 | Team        |
 | ------------- |
 | Grace Pelling |
 | Neil Renicker |
 | Frankie Simms |
+| Gina Trapani  |
