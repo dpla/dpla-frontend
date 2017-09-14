@@ -121,7 +121,11 @@ const ContentAndMetadata = ({ source }) => {
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
                   <Link href={`/item?itemId=${getItemId(source)}`}>
-                    <a className={classNames.sourceLink}>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classNames.sourceLink}
+                    >
                       <img
                         alt=""
                         src={external}
