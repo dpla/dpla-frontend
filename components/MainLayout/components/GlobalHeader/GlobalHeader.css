@@ -14,14 +14,9 @@
   margin: auto;
   display: flex;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 0 1rem;
   font-size: 0.875rem;
   font-weight: 600;
-
-  @media (min-width: mediumRem) {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-  }
 
   @media (min-width: largeRem) {
     padding-left: 0;
@@ -35,11 +30,20 @@
   justify-content: space-between;
   text-transform: uppercase;
 
-  & a {
+  & > li {
     margin-right: .75rem;
 
     @media (min-width: largeRem) {
       margin-right: 1rem;
+    }
+  }
+
+  & > li > button, & > li > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+
+    @media (min-width: mediumRem) {
+      padding: 0.75rem 0;
     }
   }
 }
@@ -68,4 +72,44 @@
   @media (min-width: largeRem) {
     margin-right: 1rem;
   }
+}
+
+.browseLinks {
+  display: none;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.9);
+  width: 200px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: white;
+  text-transform: none;
+  font-size: 1rem;
+  top: 2.25rem;
+}
+
+.browseLink {
+  padding: 0.75rem 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.browseLink:hover {
+  background-color: rgba(218, 228, 232, 0.47);
+}
+
+.browse {
+  position: relative;
+}
+
+.browseButton {
+  padding: 0;
+  font-weight: inherit;
+  color: inherit;
+  display: inline;
+  text-transform: uppercase;
+}
+
+.browseButton:hover + .browseLinks,
+.browseButton:focus + .browseLinks,
+.browseLinks:hover {
+  display: block;
 }
