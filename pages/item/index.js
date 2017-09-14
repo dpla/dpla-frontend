@@ -33,7 +33,7 @@ const ItemDetail = ({ url, item }) =>
     >
       <Content item={item} />
       <div className={classNames.faveAndCiteButtons}>
-        <FaveAndCiteButtons />
+        <FaveAndCiteButtons toCite="item" />
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

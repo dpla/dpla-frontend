@@ -1,4 +1,4 @@
-@value visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
 
 .wrapper {
   width: 100%;
@@ -119,6 +119,19 @@
 .citeButton {
   background-color: iceBlue;
   color: curiousBlue;
+}
+
+.link {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
+}
+
+.link p {
+  display: inline;
+}
+
+.comma {
+  color: bambooOrange;
 }
 
 .heart {

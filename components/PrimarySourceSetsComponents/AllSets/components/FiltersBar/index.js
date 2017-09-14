@@ -11,7 +11,7 @@ import {
   sortOptions,
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
-} from "./options";
+} from "constants/primarySourceSets";
 
 const SortValue = props =>
   <span className={classNames.sortValue}>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { markdown } from "markdown";
 
 import {
@@ -7,6 +8,8 @@ import {
   VideoPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
+
+import { extractItemId } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -20,10 +23,12 @@ const getSourceLink = source =>
     ref => ref["@type"] === "WebPage"
   )[0]["@id"];
 
-const getDPLALink = source =>
-  source.mainEntity[0]["dct:references"].filter(
-    ref => ref["@type"] === "ore:Aggregation"
-  )[0]["@id"];
+const getItemId = source =>
+  extractItemId(
+    source.mainEntity[0]["dct:references"].filter(
+      ref => ref["@type"] === "ore:Aggregation"
+    )[0]["@id"]
+  );
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
@@ -115,18 +120,16 @@ const ContentAndMetadata = ({ source }) => {
                 </div>}
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
-                  {/* TODO: hook this up to link to new site once possible */}
-                  <a
-                    href={getDPLALink(source)}
-                    className={classNames.sourceLink}
-                  >
-                    <img
-                      alt=""
-                      src={external}
-                      className={classNames.externalIcon}
-                    />
-                    <span className={classNames.linkText}>DPLA record</span>
-                  </a>
+                  <Link href={`/item?itemId=${getItemId(source)}`}>
+                    <a className={classNames.sourceLink}>
+                      <img
+                        alt=""
+                        src={external}
+                        className={classNames.externalIcon}
+                      />
+                      <span className={classNames.linkText}>DPLA record</span>
+                    </a>
+                  </Link>
                 </div>}
             </div>
             <div className={classNames.tipsForStudents}>

@@ -1,22 +1,26 @@
 import React from "react";
+import Link from "next/link";
 import { markdown } from "markdown";
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import {
+  mapTimePeriodNameToSlug,
+  mapSubjectNameToSlug
+} from "constants/primarySourceSets";
 
 const { module } = utilClassNames;
 
 // only the time period has a sameAs field
 const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
 const extractSubjects = tags =>
-  tags.filter(tag => !tag.sameAs).map(tag => tag.name).join(", ");
+  tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
 const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetInfo, module].join(" ")}>
       <div className={classNames.bannerAndDescription}>
         <div className={classNames.banner}>
-          {/* TODO: this shouldn't use backgroundImage */}
           <div
             className={classNames.bannerImage}
             style={{
@@ -57,19 +61,47 @@ const SourceSetInfo = set =>
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(extractTimePeriod(set.set.about))
+            <Link
+              href={{
+                pathname: "/primary-source-sets",
+                query: {
+                  timePeriod: mapTimePeriodNameToSlug(
+                    extractTimePeriod(set.set.about)
+                  )
+                }
               }}
-            />
+            >
+              <a
+                className={classNames.link}
+                dangerouslySetInnerHTML={{
+                  __html: markdown.toHTML(extractTimePeriod(set.set.about))
+                }}
+              />
+            </Link>
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(extractSubjects(set.set.about))
-              }}
-            />
+            {extractSubjects(set.set.about).map((subject, i, subjects) =>
+              <span key={subject}>
+                <Link
+                  href={{
+                    pathname: "/primary-source-sets",
+                    query: {
+                      subject: mapSubjectNameToSlug(subject)
+                    }
+                  }}
+                >
+                  <a
+                    className={classNames.link}
+                    dangerouslySetInnerHTML={{
+                      __html: markdown.toHTML(subject)
+                    }}
+                  />
+                </Link>
+                {i < subjects.length - 1 &&
+                  <span className={classNames.comma}>, </span>}
+              </span>
+            )}
           </div>
         </div>
         <button
