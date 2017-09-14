@@ -13,14 +13,14 @@ const chevron = "/static/images/chevron-thick-black.svg";
 
 // originalUrl will always exist for an item, so we have to test against that
 const getViewerComponent = (fileType, originalUrl, pathToFile) => {
-  if (fileType === ITEM_TYPES.MOVING_IMAGE || /\.mp4/.test(originalUrl)) {
+  if (fileType === ITEM_TYPES.MOVING_IMAGE || /\.(mp4|webm|ogg)/.test(originalUrl)) {
     return <VideoPlayer pathToFile={pathToFile} />;
   } else if (
     fileType === ITEM_TYPES.STILL_IMAGE ||
-    /\.jpg$/.test(originalUrl)
+    /\.(jpg|png|tif|gif)$/.test(originalUrl)
   ) {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
-  } else if (fileType === ITEM_TYPES.SOUND || /\.mp3/.test(originalUrl)) {
+  } else if (fileType === ITEM_TYPES.SOUND || /\.(mp3|wav)/.test(originalUrl)) {
     return <AudioPlayer pathToFile={pathToFile} />;
   } else if (/\.pdf/.test(originalUrl)) {
     // fullsizeImgUrl will also exist for PDFs, but we want the path to the PDF,
