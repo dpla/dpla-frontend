@@ -3,12 +3,16 @@ import React from "react";
 import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
+const bgImage = "static/images/home-hero-bg.png";
 const searchIcon = "static/images/search.svg";
 const dplaLogo = "static/images/dpla-logo.svg";
 const chevron = "static/images/chevron-thick-dark-blue.svg";
 
 const HomeHero = () =>
-  <div className={classNames.wrapper}>
+  <div
+    className={classNames.wrapper}
+    style={{ backgroundImage: `url(${bgImage})` }}
+  >
     <div className={`${classNames.header} site-max-width`}>
       <div>
         <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />

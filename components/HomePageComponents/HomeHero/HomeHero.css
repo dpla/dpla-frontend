@@ -1,9 +1,9 @@
 @value bambooOrange, mysticGray, elephantBlue, vikingBlue, white50 from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
-/* TODO this needs to be an actual image at some point */
 .wrapper {
   background-color: rgb(47, 74, 87);
+  background-size: cover;
   color: white;
 
   @media (min-width: mediumRem) {
