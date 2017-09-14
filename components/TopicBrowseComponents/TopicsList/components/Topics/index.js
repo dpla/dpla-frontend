@@ -12,10 +12,7 @@ const Topics = ({ topics }) =>
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
           >
-            <a
-              className={classNames.topic}
-              title={`View the ${topic.title} topic`}
-            >
+            <a className={classNames.topic}>
               {topic.isFeatured &&
                 <div className={classNames.ribbon}>Featured</div>}
               {topic.isNew &&
@@ -23,11 +20,11 @@ const Topics = ({ topics }) =>
                 <div className={classNames.ribbon}>New</div>}
               <img
                 alt={topic.title}
-                src={topic.image}
+                src={topic.acf.category_image}
                 className={classNames.image}
               />
               <h3 className={classNames.title}>
-                {topic.title}
+                {topic.name}
               </h3>
             </a>
           </Link>

@@ -13,13 +13,13 @@
 }
 
 .flexWrapper {
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   margin: auto;
 
   @media (min-width: largeRem) {
-    padding: 0;
+    padding: 0.5rem 0;
   }
 }
 
@@ -67,10 +67,10 @@
 }
 
 .logo {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 
   @media (min-width: largeRem) {
-    padding: 1.5rem 0;
+    padding: 1rem 0;
   }
 }
 

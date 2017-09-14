@@ -36,7 +36,7 @@
 .exhibitionTitle {
   margin-bottom: 36px;
   font-size: 3.75rem;
-  line-height: 1.1rem;
+  line-height: 1.1;
   font-family: "Lora";
 }
 
