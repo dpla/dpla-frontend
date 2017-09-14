@@ -78,10 +78,12 @@ const HomePageSlider = ({
           <div>
             <Link href={href} as={as}>
               <a className={classNames.item} key={index}>
-                <img
-                  alt={name}
+                <div
                   className={classNames.itemImg}
-                  src={thumbnailUrl}
+                  style={{
+                    backgroundImage: `url(${thumbnailUrl})`,
+                    backgroundSize: "cover"
+                  }}
                 />
                 {isFeatured &&
                   <div className={classNames.featuredTag}>Featured</div>}
