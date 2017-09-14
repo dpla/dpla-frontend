@@ -12,10 +12,7 @@ const Topics = ({ topics }) =>
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
           >
-            <a
-              className={classNames.topic}
-              title={`View the ${topic.title} topic`}
-            >
+            <a className={classNames.topic}>
               {topic.isFeatured &&
                 <div className={classNames.ribbon}>Featured</div>}
               {topic.isNew &&
@@ -27,7 +24,7 @@ const Topics = ({ topics }) =>
                 className={classNames.image}
               />
               <h3 className={classNames.title}>
-                {topic.title}
+                {topic.title && topic.title.rendered}
               </h3>
             </a>
           </Link>
