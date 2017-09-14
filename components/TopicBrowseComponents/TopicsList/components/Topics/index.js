@@ -24,7 +24,7 @@ const Topics = ({ topics }) =>
                 className={classNames.image}
               />
               <h3 className={classNames.title}>
-                {topic.title && topic.title.rendered}
+                {topic.name}
               </h3>
             </a>
           </Link>

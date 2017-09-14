@@ -15,8 +15,9 @@ const TopicBrowse = ({ url, topics }) =>
 TopicBrowse.getInitialProps = async ({ query }) => {
   const res = await fetch(API_ENDPOINT_ALL_ITEMS);
   const json = await res.json();
-
-  return { topics: json };
+  const topics = json.filter(topic => !topic.parent);
+  console.log(topics[0]._links);
+  return { topics };
 };
 
 export default TopicBrowse;
