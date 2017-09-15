@@ -7,13 +7,13 @@ const chevron = "/static/images/chevron-thick-orange.svg";
 
 const NavArrows = ({ prevUrl, nextUrl }) =>
   <div className={classNames.navLinks}>
-    <Link to={prevUrl}>
+    <Link prefetch href={prevUrl}>
       <a className={classNames.prevLink}>
         <img src={chevron} alt="" className={classNames.prevArrow} />
         <span>Previous Section</span>
       </a>
     </Link>
-    <Link to={nextUrl}>
+    <Link prefetch href={nextUrl}>
       <a>
         <span>Next Section</span>
         <img src={chevron} alt="" className={classNames.nextArrow} />

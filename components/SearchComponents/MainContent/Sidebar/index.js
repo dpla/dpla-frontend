@@ -23,6 +23,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
         </span>
       </span>
     : <Link
+        prefetch
         href={{
           pathname: route.pathname,
           query: Object.assign({}, route.query, {

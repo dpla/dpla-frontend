@@ -54,10 +54,10 @@ const HomeHero = () =>
         </div>
       </form>
       <div className={classNames.links}>
-        <Link href="/browse-by-topic">
+        <Link prefetch href="/browse-by-topic">
           <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>
         </Link>
-        <Link href="/guides">
+        <Link prefetch href="/guides">
           <a title="View our Getting Started Guides">New? Start Here</a>
         </Link>
       </div>

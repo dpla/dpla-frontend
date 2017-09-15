@@ -13,6 +13,7 @@ const disabledChevron = "/static/images/chevron-thick-black.svg";
 const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
   queryParams
     ? <Link
+        prefetch
         href={{
           pathname: route.pathname,
           query: {
@@ -70,7 +71,7 @@ const FooterNav = ({
 }) =>
   <div className={classNames.footerWrapper}>
     <div className={[module, classNames.footerNav].join(" ")}>
-      <Link href="/">
+      <Link prefetch href="/">
         <img src={dplaLogo} alt="DPLA" className={classNames.dplaLogo} />
       </Link>
       <div className={classNames.navButtons}>

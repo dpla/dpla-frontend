@@ -42,7 +42,7 @@ const HomePageSlider = ({
     <div className={`${classNames.content} site-max-width`}>
       <div className={classNames.heading}>
         <h1 className={classNames.title}>{title}</h1>
-        <Link href={browseLinkUrl}>
+        <Link prefetch href={browseLinkUrl}>
           <a className={classNames.moreLink}>
             <span>
               Browse all{" "}
@@ -76,7 +76,7 @@ const HomePageSlider = ({
       >
         {items.map(({ name, thumbnailUrl, isFeatured, href, as }, index) =>
           <div>
-            <Link href={href} as={as}>
+            <Link prefetch href={href} as={as}>
               <a className={classNames.item} key={index}>
                 <div
                   className={classNames.itemImg}

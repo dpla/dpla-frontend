@@ -9,6 +9,7 @@ const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
       {exhibition.sections.map(section =>
         <li>
           <Link
+            prefetch
             href={{
               pathname: `/exhibitions/exhibition/section/subsection`,
               query: { exhibition: exhibition.slug, section: section.slug }
@@ -34,6 +35,7 @@ const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
                   ].join(" ")}
                 >
                   <Link
+                    prefetch
                     href={{
                       pathname: `/exhibitions/exhibition/section/subsection`,
                       query: {

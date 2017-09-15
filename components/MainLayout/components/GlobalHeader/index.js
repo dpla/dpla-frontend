@@ -8,7 +8,7 @@ const GlobalHeader = () =>
     <div className={`${classNames.linksContainer} site-max-width`}>
       <ul className={classNames.links}>
         <li>
-          <Link href="/">
+          <Link prefetch href="/">
             <a>
               Home
             </a>
@@ -18,26 +18,26 @@ const GlobalHeader = () =>
           <button className={classNames.browseButton}>Browse</button>
           <ul className={classNames.browseLinks}>
             <li>
-              <Link href="/browse-by-topic">
+              <Link prefetch href="/browse-by-topic">
                 <a className={classNames.browseLink}>Browse by Topic</a>
               </Link>
             </li>
             <li>
-              <Link>
+              <Link prefetch href="">
                 <a className={classNames.browseLink}>Browse by Partner</a>
               </Link>
             </li>
           </ul>
         </li>
         <li>
-          <Link href="/exhibitions">
+          <Link prefetch href="/exhibitions">
             <a>
               Exhibitions
             </a>
           </Link>
         </li>
         <li>
-          <Link href="/primary-source-sets">
+          <Link prefetch href="/primary-source-sets">
             <a>
               Primary Source Sets
             </a>
@@ -47,17 +47,17 @@ const GlobalHeader = () =>
       <span className={classNames.divider} />
       <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
         <li>
-          <Link href="">
+          <Link prefetch href="">
             <a>About Us</a>
           </Link>
         </li>
         <li>
-          <Link href="">
+          <Link prefetch href="">
             <a>News</a>
           </Link>
         </li>
         <li>
-          <Link href="">
+          <Link prefetch href="">
             <a>Pro Community</a>
           </Link>
         </li>

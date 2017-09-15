@@ -5,6 +5,7 @@ import { classNames, stylesheet } from "./ExhibitionsList.css";
 
 const Exhibition = ({ exhibition, route, featured }) =>
   <Link
+    prefetch
     href={{
       pathname: "/exhibitions/exhibition",
       query: Object.assign({}, route.query, { exhibition: exhibition.slug })

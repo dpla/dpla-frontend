@@ -18,6 +18,7 @@ const Details = ({ exhibition, route }) =>
             {exhibition.sections.map(section =>
               <li className={classNames.tableOfContentsSection}>
                 <Link
+                  prefetch
                   href={{
                     pathname: route.pathname,
                     query: Object.assign({}, route.query, {

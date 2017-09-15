@@ -54,7 +54,7 @@ class SmallScreenHeader extends Component {
           </form>
         </div>
         <div className={classNames.header}>
-          <Link href="/">
+          <Link prefetch href="/">
             <a className={classNames.logo}>
               <img src={dplaLogo} alt="DPLA Logo" />
             </a>
@@ -87,27 +87,27 @@ class SmallScreenHeader extends Component {
           style={{ zIndex: 99 }}
         >
           <div className={classNames.links}>
-            <Link href="/">
+            <Link prefetch href="/">
               Home
             </Link>
-            <Link href="/browse-by-topic">
+            <Link prefetch href="/browse-by-topic">
               Browse
             </Link>
-            <Link href="/exhibitions">
+            <Link prefetch href="/exhibitions">
               Exhibitions
             </Link>
-            <Link href="/primary-source-sets">
+            <Link prefetch href="/primary-source-sets">
               Primary Source Sets
             </Link>
           </div>
           <div className={`${classNames.links} ${classNames.secondaryLinks}`}>
-            <Link href="">
+            <Link prefetch href="">
               <a>About Us</a>
             </Link>
-            <Link href="">
+            <Link prefetch href="">
               <a>News</a>
             </Link>
-            <Link href="">
+            <Link prefetch href="">
               <a>Pro Community</a>
             </Link>
           </div>

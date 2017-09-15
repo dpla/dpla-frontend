@@ -10,7 +10,7 @@ const closeIcon = "/static/images/close-white.svg";
 const Header = ({ title, route }) =>
   <div className={[classNames.header, module].join(" ")}>
     <div className={classNames.exhibitionsLinkAndTitle}>
-      <Link href="/exhibitions">
+      <Link prefetch href="/exhibitions">
         <a className={classNames.exhibitionsLink}>Exhibitions</a>
       </Link>
       <h1 className={classNames.exhibitionTitle}>
@@ -18,6 +18,7 @@ const Header = ({ title, route }) =>
       </h1>
     </div>
     <Link
+      prefetch
       href={`/exhibitions/exhibition?exhibition=${route.query.exhibition}`}
       as={`/exhibitions/${route.query.exhibition}`}
     >

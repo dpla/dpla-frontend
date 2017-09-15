@@ -62,6 +62,7 @@ const SourceSetInfo = set =>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
             <Link
+              prefetch
               href={{
                 pathname: "/primary-source-sets",
                 query: {
@@ -84,6 +85,7 @@ const SourceSetInfo = set =>
             {extractSubjects(set.set.about).map((subject, i, subjects) =>
               <span key={subject}>
                 <Link
+                  prefetch
                   href={{
                     pathname: "/primary-source-sets",
                     query: {

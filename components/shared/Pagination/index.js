@@ -8,6 +8,7 @@ const chevron = "/static/images/chevron-thick-cascade-blue.svg";
 
 const PageLink = ({ route, page, className }) =>
   <Link
+    prefetch
     href={{
       pathname: route.pathname,
       query: Object.assign({}, route.query, {
@@ -20,6 +21,7 @@ const PageLink = ({ route, page, className }) =>
 
 const NextOrPrevButton = ({ route, currentPage, type = "next" }) =>
   <Link
+    prefetch
     href={{
       pathname: route.pathname,
       query: Object.assign({}, route.query, {
