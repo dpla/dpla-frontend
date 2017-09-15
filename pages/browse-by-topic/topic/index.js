@@ -4,7 +4,7 @@ import fetch from "isomorphic-fetch";
 import BreadcrumbsAndNav from "../../../components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "../../../components/TopicBrowseComponents/Topic/MainContent";
 import MainLayout from "../../../components/MainLayout";
-import { API_ENDPOINT_SINGLE_TOPIC } from "constants/topicBrowse";
+import { API_ENDPOINT_ALL_TOPICS } from "constants/topicBrowse";
 
 import mockTopic from "../../../components/TopicBrowseComponents/Topic/mockTopic";
 import mockSuggestions from "../../../components/TopicBrowseComponents/Topic/mockSuggestions";
@@ -26,10 +26,12 @@ const Topic = ({ url }) =>
   </MainLayout>;
 
 Topic.getInitialProps = async ({ query }) => {
-  // const res = await fetch(API_ENDPOINT_ALL_TOPICS);
-  // const json = await res.json();
-  // const topics = json.filter(topic => !topic.parent);
-  //
+  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS);
+  const topicsJson = await topicsRes.json();
+  const currentTopic = topicsJson.find(topic => topic.slug === query.topic);
+  const topicId = currentTopic.id;
+  const subtopics = topicsJson.filter(topic => topic.parent === currentTopic.id)
+  console.log(subtopics);
   return {};
 };
 
