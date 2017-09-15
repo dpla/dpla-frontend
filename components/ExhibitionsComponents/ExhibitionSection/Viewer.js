@@ -34,6 +34,7 @@ const getViewerComponent = (fileType, originalUrl, pathToFile) => {
 
 const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
   <Link
+    prefetch
     href={{
       pathname: route.pathname,
       query: Object.assign({}, route.query, { item: itemId })

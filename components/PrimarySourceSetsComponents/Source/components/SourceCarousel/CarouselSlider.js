@@ -39,8 +39,9 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   >
     {sources.map(({ name, thumbnailUrl }, i) =>
       <div>
-        {/* for some reason react-slick can't have <Link/> as first child */}
+        {/* for some reason react-slick can't have <Link /> as direct child */}
         <Link
+          prefetch
           as={{
             pathname: `/primary-source-sets/${route.query
               .set}/sources/${extractSourceId(sources[i]["@id"])}`,

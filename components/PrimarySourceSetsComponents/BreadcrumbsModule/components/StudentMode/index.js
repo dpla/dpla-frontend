@@ -58,6 +58,7 @@ class StudentMode extends React.Component {
             hidden.
           </p>
           <Link
+            prefetch
             href={{
               pathname: this.props.route.pathname,
               query: removeQueryParams(route.query, ["studentMode"])

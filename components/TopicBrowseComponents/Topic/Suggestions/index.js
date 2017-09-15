@@ -25,7 +25,7 @@ const Suggestions = ({ suggestions }) =>
               mapTypeToClass(suggestion.type)
             ].join(" ")}
           >
-            <Link to={`browse-by-topic/${suggestion.slug}`}>
+            <Link prefetch href={`browse-by-topic/${suggestion.slug}`}>
               <a
                 className={classNames.imageWrapper}
                 style={{ backgroundImage: `url(${suggestion.image})` }}

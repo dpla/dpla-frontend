@@ -19,6 +19,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
           <Link
+            prefetch
             as={{
               pathname: `/primary-source-sets/${route.query.set}`,
               query: removeQueryParams(route.query, ["source", "set"])
@@ -40,6 +41,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
         <div className={classNames.prevAndNextArrows}>
           {currentSourceIdx > 0 &&
             <Link
+              prefetch
               as={{
                 pathname: `/primary-source-sets/${route.query
                   .set}/sources/${extractSourceId(
@@ -68,6 +70,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
             </Link>}
           {currentSourceIdx < sources.length - 1 &&
             <Link
+              prefetch
               as={{
                 pathname: `/primary-source-sets/${route.query
                   .set}/sources/${extractSourceId(

@@ -9,7 +9,7 @@ const searchIcon = "/static/images/search.svg";
 const PageHeader = ({ searchQuery }) =>
   <div className={classNames.headerSearchBar}>
     <div className={`${classNames.flexWrapper} site-max-width`}>
-      <Link href="/">
+      <Link prefetch href="/">
         <a className={classNames.logo} title="DPLA Home Page">
           <img
             alt="Logo for the Digital Public Library of America"

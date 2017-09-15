@@ -119,6 +119,7 @@ class OptionsBar extends React.Component {
               </h3>
               <div className={classNames.viewButtons}>
                 <Link
+                  prefetch
                   href={{
                     pathname: this.props.route.pathname,
                     query: Object.assign({}, this.props.route.query, {
@@ -142,6 +143,7 @@ class OptionsBar extends React.Component {
                   </a>
                 </Link>
                 <Link
+                  prefetch
                   href={{
                     pathname: this.props.route.pathname,
                     query: Object.assign({}, this.props.route.query, {

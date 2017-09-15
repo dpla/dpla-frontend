@@ -21,7 +21,10 @@ const Row = ({ heading, value, linkInfo, children, className }) =>
 
 const FacetLink = ({ facet, value, withComma }) =>
   <span>
-    <Link href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}>
+    <Link
+      prefetch
+      href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}
+    >
       <a className={classNames.facetLink}>
         <span className={classNames.facetLinkText}>{value}</span>
       </a>

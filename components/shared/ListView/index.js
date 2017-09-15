@@ -15,7 +15,7 @@ const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
     {items.map(item =>
       <li key={item["@id"]} className={classNames.listItem}>
-        <Link href={item.linkHref} as={item.linkAs}>
+        <Link prefetch href={item.linkHref} as={item.linkAs}>
           <a className={classNames.listItemLink}>
             <div className={classNames.imageWrapper}>
               <img
@@ -27,7 +27,7 @@ const ListView = ({ items, route }) =>
           </a>
         </Link>
         <div className={classNames.itemInfo}>
-          <Link href={item.linkHref} as={item.linkAs}>
+          <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
               <span className={classNames.itemTitle}>
                 {item.title}

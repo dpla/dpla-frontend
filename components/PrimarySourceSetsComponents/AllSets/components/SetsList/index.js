@@ -16,6 +16,7 @@ const SetsList = ({ sets, route }) =>
         <li className={`${classNames.itemWrapper} col-xs-6 col-md-4`}>
           <div className={classNames.item}>
             <Link
+              prefetch
               href={{
                 pathname: "/primary-source-sets/set",
                 query: Object.assign(
@@ -46,6 +47,7 @@ const SetsList = ({ sets, route }) =>
                 {`${set.numberOfItems} Items`}
               </p>
               <Link
+                prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
                   set["@id"]
                 )}`}
@@ -71,6 +73,7 @@ const SetsList = ({ sets, route }) =>
                   .map((tag, i, tags) =>
                     <li className={classNames.tag}>
                       <Link
+                        prefetch
                         href={{
                           pathname: "/primary-source-sets",
                           query: {
@@ -93,8 +96,9 @@ const SetsList = ({ sets, route }) =>
                       disambiguatingDescription === "Subject"
                   )
                   .map((tag, i, tags) =>
-                    <li className={classNames.tag}>
+                    <li key={tag.name} className={classNames.tag}>
                       <Link
+                        prefetch
                         href={{
                           pathname: "/primary-source-sets",
                           query: { subject: mapSubjectNameToSlug(tag.name) }

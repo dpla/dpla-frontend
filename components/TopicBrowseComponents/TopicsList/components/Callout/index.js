@@ -12,7 +12,7 @@ const Callout = ({ topics }) =>
           You might also like our Online Exhibitions.
         </p>
       </div>
-      <Link href="/exhibitions">
+      <Link prefetch href="/exhibitions">
         <a className={classNames.link}>Visit Online Exhibitions</a>
       </Link>
     </div>

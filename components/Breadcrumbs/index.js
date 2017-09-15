@@ -10,7 +10,7 @@ const Breadcrumbs = ({ breadcrumbs }) =>
       if (idx < breadcrumbs.length - 1) {
         return (
           <span>
-            <Link href={breadcrumb.url} as={breadcrumb.as}>
+            <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
               <a
                 dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
                 className={classNames.breadcrumbLink}

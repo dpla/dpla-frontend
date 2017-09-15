@@ -41,6 +41,7 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
             This teaching guide helps instructors use a specific primary source
             set,{" "}
             <Link
+              prefetch
               href={{ pathname: route.pathname, query: route.query }}
               as={{
                 pathname: `/primary-source-sets/${route.query.set}`,
@@ -71,19 +72,20 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
           <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
           <div className={classNames.toolLinkAndIcon}>
             <img src={googleClassroom} alt="" className={classNames.toolIcon} />
-            <Link to="">
+            <Link prefetch href="">
               <a className={classNames.toolLink}>Share to Google Classroom</a>
             </Link>
           </div>
           <div className={classNames.toolLinkAndIcon}>
             <img src={printer} alt="" className={classNames.toolIcon} />
-            <Link to="">
+            <Link prefetch href="">
               <a className={classNames.toolLink}>Print this Guide</a>
             </Link>
           </div>
           <div className={classNames.toolLinkAndIcon}>
             <img src={link} alt="" className={classNames.toolIcon} />
             <Link
+              prefetch
               href={{
                 pathname: `/primary-source-sets/set`,
                 query: Object.assign({}, route.query, { studentMode: true })

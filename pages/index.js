@@ -46,29 +46,32 @@ Home.getInitialProps = async () => {
 
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
-    exhibitsJson.slice(0, NUM_HOMEPAGE_EXHIBITIONS).map(async exhibit => {
-      const exhibitPageRes = await fetch(
-        `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
-      );
-      const exhibitJson = await exhibitPageRes.json();
+    exhibitsJson
+      .reverse()
+      .slice(0, NUM_HOMEPAGE_EXHIBITIONS)
+      .map(async exhibit => {
+        const exhibitPageRes = await fetch(
+          `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
+        );
+        const exhibitJson = await exhibitPageRes.json();
 
-      const itemId = exhibitJson.find(
-        exhibit =>
-          exhibit.slug === "home-page" ||
-          exhibit.slug === "homepage" ||
-          exhibit.order === 0
-      ).page_blocks[0].attachments[0].item.id;
-      const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
-      const filesJson = await filesRes.json();
+        const itemId = exhibitJson.find(
+          exhibit =>
+            exhibit.slug === "home-page" ||
+            exhibit.slug === "homepage" ||
+            exhibit.order === 0
+        ).page_blocks[0].attachments[0].item.id;
+        const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
+        const filesJson = await filesRes.json();
 
-      const thumbnailUrl = filesJson[0].file_urls.fullsize;
-      return Object.assign({}, exhibit, {
-        thumbnailUrl,
-        name: exhibit.title,
-        isFeatured: exhibit.featured,
-        id: exhibit.slug
-      });
-    })
+        const thumbnailUrl = filesJson[0].file_urls.fullsize;
+        return Object.assign({}, exhibit, {
+          thumbnailUrl,
+          name: exhibit.title,
+          isFeatured: exhibit.featured,
+          id: exhibit.slug
+        });
+      })
   );
 
   return {
@@ -80,14 +83,12 @@ Home.getInitialProps = async () => {
         as: `/primary-source-sets/${extractSourceSetSlug(set["@id"])}`
       })
     ),
-    exhibitions: exhibitions
-      .slice(0, NUM_HOMEPAGE_EXHIBITIONS)
-      .map(exhibition =>
-        Object.assign({}, exhibition, {
-          href: `/exhibitions/exhibition?exhibition=${exhibition.slug}`,
-          as: `/exhibitions/${exhibition.slug}`
-        })
-      )
+    exhibitions: exhibitions.map(exhibition =>
+      Object.assign({}, exhibition, {
+        href: `/exhibitions/exhibition?exhibition=${exhibition.slug}`,
+        as: `/exhibitions/${exhibition.slug}`
+      })
+    )
   };
 };
 

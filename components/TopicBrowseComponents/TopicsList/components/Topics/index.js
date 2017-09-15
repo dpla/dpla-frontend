@@ -9,6 +9,7 @@ const Topics = ({ topics }) =>
       {topics.map(topic =>
         <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <Link
+            prefetch
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
           >

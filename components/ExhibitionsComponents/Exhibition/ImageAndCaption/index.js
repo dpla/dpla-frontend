@@ -23,6 +23,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
             <div className={classNames.divider} />
             <Link
+              prefetch
               href={{
                 pathname: route.pathname,
                 query: Object.assign({}, route.query, {

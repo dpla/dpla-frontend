@@ -17,6 +17,7 @@ const SourceSetSources = ({ route, sources }) =>
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
           <Link
+            prefetch
             as={{
               pathname: `/primary-source-sets/${route.query
                 .set}/sources/${sourceId}`,
