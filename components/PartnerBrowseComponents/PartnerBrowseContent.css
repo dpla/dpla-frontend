@@ -9,14 +9,23 @@
   padding-bottom: 5.5rem;
 }
 
-.partnersWrapper :global .col-md-6:first-child {
+.partners:first-child {
   @media (min-width: mediumRem) {
     padding-right: 3rem;
   }
 }
-.partnersWrapper :global .col-md-6:last-child {
+.partners:last-child {
+  & .partner:last-child {
+    border-bottom: none;
+  }
   @media (min-width: mediumRem) {
     padding-left: 3rem;
+  }
+}
+
+.partner:last-child {
+  @media (min-width: mediumRem) {
+    border: none;
   }
 }
 
