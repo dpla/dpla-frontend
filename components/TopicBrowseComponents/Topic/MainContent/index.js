@@ -9,7 +9,7 @@ const MainContent = ({ topic }) =>
   <div className={classNames.wrapper}>
     <div className={module}>
       <h1 className={classNames.header}>
-        {topic.title}
+        {topic.name}
       </h1>
       <p className={classNames.topicDescription}>
         {topic.description}
@@ -26,7 +26,7 @@ const MainContent = ({ topic }) =>
               <a>
                 <div
                   className={classNames.imageWrapper}
-                  style={{ backgroundImage: `url(${subtopic.image})` }}
+                  style={{ backgroundImage: `url(${subtopic.thumbnailUrl})` }}
                 >
                   <div className={classNames.gradientBackground}>
                     <div className={classNames.itemCountAndSubtopicTitle}>
@@ -34,7 +34,7 @@ const MainContent = ({ topic }) =>
                         {subtopic.numberOfItems} Items
                       </p>
                       <h3 className={classNames.subtopicTitle}>
-                        {subtopic.title}
+                        {subtopic.name}
                       </h3>
                     </div>
                   </div>
