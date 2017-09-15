@@ -20,7 +20,14 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const SubtopicItemsList = ({ url, topic, subtopic, items }) =>
+const SubtopicItemsList = ({
+  url,
+  topic,
+  subtopic,
+  previousSubtopic,
+  nextSubtopic,
+  items
+}) =>
   <MainLayout route={url}>
     <BreadcrumbsAndNav
       breadcrumbs={[
@@ -33,7 +40,10 @@ const SubtopicItemsList = ({ url, topic, subtopic, items }) =>
         { title: subtopic.name, url: "" }
       ]}
       showNavLinks={true}
-      prevAndNextArrows={true}
+      previousSubtopic={previousSubtopic}
+      nextSubtopic={nextSubtopic}
+      topic={topic}
+      route={url}
     />
     <div className={[classNames.sidebarAndItemList, module].join(" ")}>
       <Sidebar
@@ -52,8 +62,10 @@ const SubtopicItemsList = ({ url, topic, subtopic, items }) =>
         },
         { title: subtopic.name, url: "" }
       ]}
-      showNavLinks={true}
-      prevAndNextArrows={true}
+      previousSubtopic={previousSubtopic}
+      nextSubtopic={nextSubtopic}
+      topic={topic}
+      route={url}
     />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
@@ -64,9 +76,19 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
   const currentSubtopic = topicsJson.find(
     topic => topic.slug === query.subtopic
   );
+  const currentSubtopicIdx = topicsJson.findIndex(
+    topic => topic.id === currentSubtopic.id
+  );
+  const subtopics = topicsJson.filter(
+    topic => topic.parent === currentSubtopic.parent
+  );
   const currentTopic = topicsJson.find(
     topic => topic.id === currentSubtopic.parent
   );
+  const previousSubtopicIdx =
+    currentSubtopicIdx - 1 >= 0 && currentSubtopicIdx - 1;
+  const nextSubtopicIdx =
+    currentSubtopicIdx + 1 < subtopics.length && currentSubtopicIdx + 1;
 
   const itemsRes = await fetch(
     `${API_ENDPOINT_ALL_ITEMS}/?categories=${currentSubtopic.id}`
@@ -95,7 +117,9 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
     subtopic: Object.assign({}, currentSubtopic, {
       thumbnailUrl: currentSubtopic.acf.category_image
     }),
-    items
+    items,
+    previousSubtopic: subtopics[previousSubtopicIdx],
+    nextSubtopic: subtopics[nextSubtopicIdx]
   };
 };
 
