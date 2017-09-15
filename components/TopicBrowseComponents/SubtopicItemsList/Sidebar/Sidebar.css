@@ -17,6 +17,7 @@
 .image {
   border-bottom: 4px solid casablancaOrange;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .title {

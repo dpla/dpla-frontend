@@ -7,11 +7,22 @@ import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
-const BreadcrumbsAndNav = ({ showNavLinks, breadcrumbs }) =>
+const BreadcrumbsAndNav = ({
+  breadcrumbs,
+  previousSubtopic,
+  nextSubtopic,
+  topic,
+  route
+}) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.breadcrumbsAndNav, module].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      {showNavLinks && <NavLinks prevUrl="" nextUrl="" />}
+      <NavLinks
+        route={route}
+        previousSubtopic={previousSubtopic}
+        nextSubtopic={nextSubtopic}
+        topic={topic}
+      />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
