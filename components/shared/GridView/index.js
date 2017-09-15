@@ -15,7 +15,7 @@ const GridView = ({ items }) =>
     >
       {items.map(item =>
         <li key={item.thumbnailUrl} className={classNames.gridItem}>
-          <Link prefetch href={item.linkHref}>
+          <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.link}>
               <img
                 className={classNames.image}
