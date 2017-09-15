@@ -23,7 +23,7 @@ const GlobalHeader = () =>
               </Link>
             </li>
             <li>
-              <Link prefetch href="">
+              <Link prefetch href="/browse-by-partner">
                 <a className={classNames.browseLink}>Browse by Partner</a>
               </Link>
             </li>
