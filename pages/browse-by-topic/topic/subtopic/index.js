@@ -9,48 +9,94 @@ import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/Brea
 import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "../../../../components/MainLayout";
 import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
-import mockSubtopic from "../../../../components/TopicBrowseComponents/SubtopicItemsList/mockSubtopic";
-import mockItems from "../../../../components/TopicBrowseComponents/SubtopicItemsList/mockItems";
+import { extractItemId } from "utilFunctions";
+import { API_KEY } from "constants/search";
+import {
+  API_ENDPOINT_ALL_TOPICS,
+  API_ENDPOINT_ALL_ITEMS
+} from "constants/topicBrowse";
+import { API_ENDPOINT as DPLA_ITEM_ENDPOINT } from "constants/items";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
 
-const SubtopicItemsList = ({ url }) =>
+const SubtopicItemsList = ({ url, topic, subtopic, items }) =>
   <MainLayout route={url}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {
-          title: mockSubtopic.topicTitle,
-          as: `/browse-by-topic/${mockSubtopic.topicSlug}`,
-          url: `/browse-by-topic/topic/?topic=${mockSubtopic.topicSlug}`
+          title: topic.name,
+          as: `/browse-by-topic/${topic.slug}`,
+          url: `/browse-by-topic/topic/?topic=${topic.slug}`
         },
-        { title: mockSubtopic.title, url: "" }
+        { title: subtopic.name, url: "" }
       ]}
       showNavLinks={true}
       prevAndNextArrows={true}
     />
     <div className={[classNames.sidebarAndItemList, module].join(" ")}>
       <Sidebar
-        title={mockSubtopic.title}
-        description={mockSubtopic.description}
-        image="http://lorempixel.com/300/200/food"
+        title={subtopic.name}
+        description={subtopic.description}
+        image={subtopic.thumbnailUrl}
       />
-      <ItemList route={url} items={mockItems} />
+      <ItemList route={url} items={items} />
     </div>
     <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {
-          title: mockSubtopic.topicTitle,
-          url: `/browse-by-topic/${mockSubtopic.topicSlug}`
+          title: topic.name,
+          url: `/browse-by-topic/${topic.slug}`
         },
-        { title: mockSubtopic.title, url: "" }
+        { title: subtopic.name, url: "" }
       ]}
       showNavLinks={true}
       prevAndNextArrows={true}
     />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
+
+SubtopicItemsList.getInitialProps = async ({ query }) => {
+  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS);
+  const topicsJson = await topicsRes.json();
+  const currentSubtopic = topicsJson.find(
+    topic => topic.slug === query.subtopic
+  );
+  const currentTopic = topicsJson.find(
+    topic => topic.id === currentSubtopic.parent
+  );
+
+  const itemsRes = await fetch(
+    `${API_ENDPOINT_ALL_ITEMS}/?categories=${currentSubtopic.id}`
+  );
+  const itemsJson = await itemsRes.json();
+  const items = await Promise.all(
+    itemsJson.map(async item => {
+      const itemDplaId = extractItemId(item.acf.dpla_url);
+      const itemRes = await fetch(
+        `${DPLA_ITEM_ENDPOINT}/${itemDplaId}?api_key=${API_KEY}`
+      );
+      const itemJson = await itemRes.json();
+      return Object.assign({}, item, {
+        title: item.title.rendered,
+        linkHref: `/items?item=${itemDplaId}`,
+        asHref: `/items/${itemDplaId}`,
+        type: itemJson.docs[0].sourceResource.type,
+        thumbnailUrl: itemJson.docs[0].object,
+        sourceUrl: itemJson.docs[0].isShownAt
+      });
+    })
+  );
+
+  return {
+    topic: currentTopic,
+    subtopic: Object.assign({}, currentSubtopic, {
+      thumbnailUrl: currentSubtopic.acf.category_image
+    }),
+    items
+  };
+};
 
 export default SubtopicItemsList;

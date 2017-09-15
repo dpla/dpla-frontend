@@ -2,16 +2,16 @@ import React from "react";
 
 import { classNames, stylesheet } from "./Sidebar.css";
 
-const RelatedResource = ({ type, title, image }) =>
-  <div className={classNames.relatedResource}>
-    <img alt={title} src={image} className={classNames.relatedResourceImage} />
-    <p className={classNames.relatedResourceTitle}>
-      {title}
-    </p>
-    <p className={classNames.relatedResourceType}>
-      {type}
-    </p>
-  </div>;
+// const RelatedResource = ({ type, title, image }) =>
+//   <div className={classNames.relatedResource}>
+//     <img alt={title} src={image} className={classNames.relatedResourceImage} />
+//     <p className={classNames.relatedResourceTitle}>
+//       {title}
+//     </p>
+//     <p className={classNames.relatedResourceType}>
+//       {type}
+//     </p>
+//   </div>;
 
 const Sidebar = ({ image, title, description }) =>
   <div className={classNames.sidebar}>
@@ -26,7 +26,7 @@ const Sidebar = ({ image, title, description }) =>
         </p>
       </div>
     </div>
-    <h3 className={classNames.relatedHeader}>You might also enjoy</h3>
+    {/* <h3 className={classNames.relatedHeader}>You might also enjoy</h3>
     <div className={classNames.relatedResources}>
       <RelatedResource
         type="Exhibition"
@@ -38,7 +38,7 @@ const Sidebar = ({ image, title, description }) =>
         title="Race to the Moon"
         image="http://lorempixel.com/140/100/food"
       />
-    </div>
+    </div> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
