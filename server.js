@@ -20,7 +20,7 @@ app
 
     server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
-      const params = { topic: req.params.topicId };
+      const params = { topic: req.params.topic };
       renderAndCache(req, res, actualPage, params);
     });
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
