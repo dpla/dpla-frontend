@@ -104,7 +104,7 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
       return Object.assign({}, item, {
         title: item.title.rendered,
         linkHref: `/items?item=${itemDplaId}`,
-        asHref: `/items/${itemDplaId}`,
+        linkAs: `/items/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
         thumbnailUrl: itemJson.docs[0].object,
         sourceUrl: itemJson.docs[0].isShownAt
