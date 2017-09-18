@@ -30,9 +30,6 @@ const MainContent = ({ topic }) =>
                 >
                   <div className={classNames.gradientBackground}>
                     <div className={classNames.itemCountAndSubtopicTitle}>
-                      <p className={classNames.itemCount}>
-                        {subtopic.numberOfItems} Items
-                      </p>
                       <h3 className={classNames.subtopicTitle}>
                         {subtopic.name}
                       </h3>

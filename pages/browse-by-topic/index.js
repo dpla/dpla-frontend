@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "../../components/MainLayout";
 import TopicsList from "../../components/TopicBrowseComponents/TopicsList";
-import { API_ENDPOINT_ALL_TOPICS } from "constants/topicBrowse";
+import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
 
 const TopicBrowse = ({ url, topics }) =>
   <div>
@@ -13,9 +13,9 @@ const TopicBrowse = ({ url, topics }) =>
   </div>;
 
 TopicBrowse.getInitialProps = async ({ query }) => {
-  const res = await fetch(API_ENDPOINT_ALL_TOPICS);
+  const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   const json = await res.json();
-  const topics = json.filter(topic => !topic.parent);
+  const topics = json.filter(topic => !topic.parent && topic.name !== "Uncategorized");
 
   return { topics };
 };
