@@ -1,6 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
+import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
@@ -23,7 +24,7 @@ const Contact = ({ url }) =>
   >
     <div className={classNames.wrapper}>
       <div className={[utilClassNames.module, classNames.content].join(" ")}>
-        <ContentPagesSidebar />
+        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.CONTACT} />
         <div className={classNames.formAndMoreWays}>
           <ContactForm />
           <MoreWaysToContact />

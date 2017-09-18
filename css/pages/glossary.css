@@ -2,6 +2,7 @@
 
 .sidebarAndContentWrapper {
   display: flex;
+  padding-top: 71px;
 }
 
 .content {
@@ -13,6 +14,9 @@
     font-weight: normal;
     font-size: 3.4375rem;
     margin-bottom: 3rem;
+    & b {
+      font-weight: normal;
+    }
   }
 
   & h2 {

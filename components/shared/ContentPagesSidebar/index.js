@@ -21,9 +21,9 @@ const Sidebar = ({ page }) =>
   <div className={classNames.sidebar}>
     <ul className={classNames.links}>
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT_US}
+        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT}
         title="About Us"
-        url="/about-us"
+        url="/about"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.FAQ}
@@ -59,9 +59,9 @@ const Sidebar = ({ page }) =>
       />
       <div className={classNames.divider} />
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT_US}
+        isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT}
         title="Contact Us"
-        url="/contact-us"
+        url="/contact"
       />
     </ul>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
