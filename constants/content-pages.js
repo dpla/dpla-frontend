@@ -1,7 +1,7 @@
 export const CONTENT_PAGE_NAMES = {
   ABOUT: "about",
   FAQ: "faq",
-  WHO_USES_DPLA: "who-uses-dpla",
+  GUIDES: "guides",
   EDUCATION: "education",
   FAMILY_RESEARCH: "family",
   LIFELONG_LEARNING: "lifelong-learning",
@@ -19,3 +19,5 @@ export const GLOSSARY_ENDPOINT =
   "https://dpla.wpengine.com/wp-json/wp/v2/pages/133";
 export const SEARCH_TIPS_ENDPOINT =
   "https://dpla.wpengine.com/wp-json/wp/v2/pages/132";
+export const GUIDES_ENDPOINT =
+  "http://dpla.wpengine.com/wp-json/wp/v2/pages?parent=2394";

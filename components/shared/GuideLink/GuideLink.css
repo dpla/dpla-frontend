@@ -1,0 +1,36 @@
+@value smallRem from "../../../css/breakpoints.css";
+
+.itemColumn {
+  margin-bottom: 1rem;
+}
+
+.item {
+  padding: 3rem 2rem 2rem;
+  height: 100%;
+  text-align: center;
+
+  @media (min-width: smallRem) {
+    padding: 2rem 1rem;
+  }
+}
+
+.itemHeader {
+  font-family: "Lora";
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 1rem 0 .5rem;
+}
+
+.itemImg {
+  margin: 0 auto;
+  mix-blend-mode: multiply;
+}
+
+.text {
+  color: black;
+  opacity: 0.50;
+  font-size: 1rem;
+  max-width: 22rem;
+  margin: 0 auto;
+}

@@ -43,9 +43,9 @@ const Sidebar = ({ page }) =>
         />
       </ul>
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.WHO_USES_DPLA}
-        title="Who Uses DPLA?"
-        url="/who-uses-dpla"
+        isCurrentLink={page === CONTENT_PAGE_NAMES.GUIDES}
+        title="How can I use DPLA?"
+        url="/guides"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}

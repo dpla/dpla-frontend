@@ -2,7 +2,7 @@
 
 .sidebarAndContentWrapper {
   display: flex;
-  padding-top: 71px;
+  margin-top: 71px;
 }
 
 .content {
