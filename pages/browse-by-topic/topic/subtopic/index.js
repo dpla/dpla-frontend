@@ -12,8 +12,8 @@ import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsL
 import { extractItemId } from "utilFunctions";
 import { API_KEY } from "constants/search";
 import {
-  API_ENDPOINT_ALL_TOPICS,
-  API_ENDPOINT_ALL_ITEMS
+  API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
+  API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
 import { API_ENDPOINT as DPLA_ITEM_ENDPOINT } from "constants/items";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -71,7 +71,7 @@ const SubtopicItemsList = ({
   </MainLayout>;
 
 SubtopicItemsList.getInitialProps = async ({ query }) => {
-  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS);
+  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   const topicsJson = await topicsRes.json();
   const currentSubtopic = topicsJson.find(
     topic => topic.slug === query.subtopic
@@ -91,9 +91,10 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
     currentSubtopicIdx + 1 < subtopics.length && currentSubtopicIdx + 1;
 
   const itemsRes = await fetch(
-    `${API_ENDPOINT_ALL_ITEMS}/?categories=${currentSubtopic.id}`
+    `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.id}`
   );
   const itemsJson = await itemsRes.json();
+
   const items = await Promise.all(
     itemsJson.map(async item => {
       const itemDplaId = extractItemId(item.acf.dpla_url);
