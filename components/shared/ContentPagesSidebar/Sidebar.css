@@ -19,6 +19,7 @@
 
 .selected {
   font-weight: bold;
+  color: black;
   position: relative;
 }
 
@@ -32,4 +33,12 @@
   left: -10px;
   background-color: bambooOrange;
   border-radius: 50%;
+}
+
+.sidebar ul ul {
+  margin-left: 1.25rem;
+
+  & .link:not(.selected) {
+    color: #6D6D6D;
+  }
 }

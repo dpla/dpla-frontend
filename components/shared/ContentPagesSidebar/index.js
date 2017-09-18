@@ -5,7 +5,11 @@ import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames, stylesheet } from "./Sidebar.css";
 
 const SidebarLink = ({ isCurrentLink, title, url }) =>
-  <li className={[classNames.link, isCurrentLink ? classNames.selected : ""].join(" ")}>
+  <li
+    className={[classNames.link, isCurrentLink ? classNames.selected : ""].join(
+      " "
+    )}
+  >
     <Link href={url}>
       <a>
         {title}
@@ -17,15 +21,27 @@ const Sidebar = ({ page }) =>
   <div className={classNames.sidebar}>
     <ul className={classNames.links}>
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT_US}
+        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT}
         title="About Us"
-        url="/about-us"
+        url="/about"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.FAQ}
         title="FAQ"
         url="/faq"
       />
+      <ul>
+        <SidebarLink
+          isCurrentLink={page === CONTENT_PAGE_NAMES.GLOSSARY}
+          title="Glossary"
+          url="/faq/glossary"
+        />
+        <SidebarLink
+          isCurrentLink={page === CONTENT_PAGE_NAMES.SEARCH_TIPS}
+          title="Search Tips"
+          url="/faq/search-tips"
+        />
+      </ul>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.WHO_USES_DPLA}
         title="Who Uses DPLA?"
@@ -43,9 +59,9 @@ const Sidebar = ({ page }) =>
       />
       <div className={classNames.divider} />
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT_US}
+        isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT}
         title="Contact Us"
-        url="/contact-us"
+        url="/contact"
       />
     </ul>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
