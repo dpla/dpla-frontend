@@ -19,6 +19,7 @@
 
 .selected {
   font-weight: bold;
+  color: black;
   position: relative;
 }
 
@@ -37,7 +38,7 @@
 .sidebar ul ul {
   margin-left: 1.25rem;
 
-  & .link {
+  & .link:not(.selected) {
     color: #6D6D6D;
   }
 }

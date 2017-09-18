@@ -9,7 +9,9 @@ export const CONTENT_PAGE_NAMES = {
   DEVELOPERS: "developers",
   TERMS_AND_CONDITIONS: "t-and-c",
   DONATE: "donate",
-  CONTACT_US: "contact"
+  CONTACT_US: "contact",
+  SEARCH_TIPS: "search-tips",
+  GLOSSARY: "glossary"
 };
 
 export const FAQ_ENDPOINT = "https://dpla.wpengine.com/wp-json/wp/v2/pages/131";

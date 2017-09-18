@@ -3,11 +3,14 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import { classNames, stylesheet } from "css/pages/faq.css";
-import { FAQ_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
+import { classNames, stylesheet } from "css/pages/search-tips.css";
+import {
+  SEARCH_TIPS_ENDPOINT,
+  CONTENT_PAGE_NAMES
+} from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Faq = ({ url, faq }) =>
+const SearchTips = ({ url, searchTips }) =>
   <MainLayout route={url}>
     <div>
       <div
@@ -16,20 +19,22 @@ const Faq = ({ url, faq }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.FAQ} />
+        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.SEARCH_TIPS} />
         <div className={classNames.content}>
-          <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: searchTips.content.rendered }}
+          />
         </div>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-Faq.getInitialProps = async () => {
-  const res = await fetch(FAQ_ENDPOINT);
+SearchTips.getInitialProps = async () => {
+  const res = await fetch(SEARCH_TIPS_ENDPOINT);
   const json = await res.json();
 
-  return { faq: json };
+  return { searchTips: json };
 };
 
-export default Faq;
+export default SearchTips;
