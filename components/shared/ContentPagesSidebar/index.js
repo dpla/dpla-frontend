@@ -26,6 +26,18 @@ const Sidebar = ({ page }) =>
         title="FAQ"
         url="/faq"
       />
+      <ul>
+        <SidebarLink
+          isCurrentLink={page === CONTENT_PAGE_NAMES.GLOSSARY}
+          title="Glossary"
+          url="/faq/glossary"
+        />
+        <SidebarLink
+          isCurrentLink={page === CONTENT_PAGE_NAMES.SEARCH_TIPS}
+          title="Search Tips"
+          url="/faq/search-tips"
+        />
+      </ul>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.WHO_USES_DPLA}
         title="Who Uses DPLA?"
