@@ -18,7 +18,12 @@ const Faq = ({ url, faq }) =>
     }
   >
     <div>
-      <div className={[utilClassNames.module, classNames.sidebarAndContentWrapper].join(" ")}>
+      <div
+        className={[
+          utilClassNames.module,
+          classNames.sidebarAndContentWrapper
+        ].join(" ")}
+      >
         <ContentPagesSidebar page={CONTENT_PAGE_NAMES.FAQ} />
         <div className={classNames.content}>
           <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
