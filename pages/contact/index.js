@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
-import Sidebar from "components/ContactComponents/Sidebar";
+import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
 import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import {
@@ -23,7 +23,7 @@ const Contact = ({ url }) =>
   >
     <div className={classNames.wrapper}>
       <div className={[utilClassNames.module, classNames.content].join(" ")}>
-        <Sidebar />
+        <ContentPagesSidebar />
         <div className={classNames.formAndMoreWays}>
           <ContactForm />
           <MoreWaysToContact />
