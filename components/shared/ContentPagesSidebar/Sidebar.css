@@ -7,6 +7,7 @@
 
 .sidebar {
   flex-shrink: 0;
+  max-width: 240px;
 }
 
 .divider {
@@ -40,5 +41,10 @@
 
   & .link:not(.selected) {
     color: #6D6D6D;
+  }
+
+  & .link {
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
   }
 }

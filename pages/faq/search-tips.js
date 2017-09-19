@@ -6,11 +6,12 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/search-tips.css";
 import {
   SEARCH_TIPS_ENDPOINT,
-  CONTENT_PAGE_NAMES
+  CONTENT_PAGE_NAMES,
+  GUIDES_ENDPOINT
 } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const SearchTips = ({ url, searchTips }) =>
+const SearchTips = ({ url, searchTips, guides }) =>
   <MainLayout route={url}>
     <div>
       <div
@@ -19,7 +20,7 @@ const SearchTips = ({ url, searchTips }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.SEARCH_TIPS} />
+        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.SEARCH_TIPS} />
         <div className={classNames.content}>
           <div
             dangerouslySetInnerHTML={{ __html: searchTips.content.rendered }}
@@ -31,10 +32,18 @@ const SearchTips = ({ url, searchTips }) =>
   </MainLayout>;
 
 SearchTips.getInitialProps = async () => {
-  const res = await fetch(SEARCH_TIPS_ENDPOINT);
-  const json = await res.json();
+  const searchTipsRes = await fetch(SEARCH_TIPS_ENDPOINT);
+  const searchTipsJson = await searchTipsRes.json();
 
-  return { searchTips: json };
+  const guidesRes = await fetch(GUIDES_ENDPOINT);
+  const guidesJson = await guidesRes.json();
+  const guides = guidesJson.map(guide =>
+    Object.assign({}, guide, {
+      title: guide.title.rendered
+    })
+  );
+
+  return { searchTips: searchTipsJson, guides };
 };
 
 export default SearchTips;

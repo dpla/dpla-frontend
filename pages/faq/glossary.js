@@ -4,7 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/glossary.css";
-import { GLOSSARY_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
+import { GLOSSARY_ENDPOINT, CONTENT_PAGE_NAMES, GUIDES_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Glossary = ({ url, glossary }) =>
@@ -16,7 +16,7 @@ const Glossary = ({ url, glossary }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.GLOSSARY} />
+        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.GLOSSARY} />
         <div className={classNames.content}>
           <div
             dangerouslySetInnerHTML={{ __html: glossary.content.rendered }}
@@ -28,10 +28,18 @@ const Glossary = ({ url, glossary }) =>
   </MainLayout>;
 
 Glossary.getInitialProps = async () => {
-  const res = await fetch(GLOSSARY_ENDPOINT);
-  const json = await res.json();
+  const glossaryRes = await fetch(GLOSSARY_ENDPOINT);
+  const glossaryJson = await glossaryRes.json();
 
-  return { glossary: json };
+  const guidesRes = await fetch(GUIDES_ENDPOINT);
+  const guidesJson = await guidesRes.json();
+  const guides = guidesJson.map(guide =>
+    Object.assign({}, guide, {
+      title: guide.title.rendered
+    })
+  );
+
+  return { glossary: glossaryJson, guides };
 };
 
 export default Glossary;
