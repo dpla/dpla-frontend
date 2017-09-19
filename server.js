@@ -160,6 +160,19 @@ app
       );
     });
 
+    server.get("/guides/:guide", (req, res) => {
+      const actualPage = "/guides/guide";
+      const params = {
+        guide: req.params.guide
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     server.get("*", (req, res) => {
       return handle(req, res);
     });
