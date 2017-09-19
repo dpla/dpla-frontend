@@ -21,3 +21,5 @@ export const SEARCH_TIPS_ENDPOINT =
   "https://dpla.wpengine.com/wp-json/wp/v2/pages/132";
 export const GUIDES_ENDPOINT =
   "http://dpla.wpengine.com/wp-json/wp/v2/pages?parent=2394";
+export const T_AND_C_ENDPOINT =
+  "https://dpla.wpengine.com/wp-json/wp/v2/pages/2406";

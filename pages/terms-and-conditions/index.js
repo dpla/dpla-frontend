@@ -3,15 +3,15 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import { classNames, stylesheet } from "css/pages/glossary.css";
+import { classNames, stylesheet } from "css/pages/terms-and-conditions.css";
 import {
-  GLOSSARY_ENDPOINT,
+  T_AND_C_ENDPOINT,
   CONTENT_PAGE_NAMES,
   GUIDES_ENDPOINT
 } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Glossary = ({ url, glossary, guides }) =>
+const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
   <MainLayout route={url}>
     <div>
       <div
@@ -23,11 +23,17 @@ const Glossary = ({ url, glossary, guides }) =>
         <ContentPagesSidebar
           route={url}
           guides={guides}
-          page={CONTENT_PAGE_NAMES.GLOSSARY}
+          page={CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
         />
         <div className={classNames.content}>
+          <h1
+            dangerouslySetInnerHTML={{ __html: termsAndConditions.title }}
+            className={classNames.title}
+          />
           <div
-            dangerouslySetInnerHTML={{ __html: glossary.content.rendered }}
+            dangerouslySetInnerHTML={{
+              __html: termsAndConditions.content
+            }}
           />
         </div>
       </div>
@@ -35,9 +41,13 @@ const Glossary = ({ url, glossary, guides }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-Glossary.getInitialProps = async () => {
-  const glossaryRes = await fetch(GLOSSARY_ENDPOINT);
-  const glossaryJson = await glossaryRes.json();
+TermsAndConditions.getInitialProps = async () => {
+  const termsAndConditionsRes = await fetch(T_AND_C_ENDPOINT);
+  const termsAndConditionsJson = await termsAndConditionsRes.json();
+  const termsAndConditions = Object.assign({}, termsAndConditionsJson, {
+    title: termsAndConditionsJson.title.rendered,
+    content: termsAndConditionsJson.content.rendered
+  });
 
   const guidesRes = await fetch(GUIDES_ENDPOINT);
   const guidesJson = await guidesRes.json();
@@ -47,7 +57,7 @@ Glossary.getInitialProps = async () => {
     })
   );
 
-  return { glossary: glossaryJson, guides };
+  return { termsAndConditions, guides };
 };
 
-export default Glossary;
+export default TermsAndConditions;
