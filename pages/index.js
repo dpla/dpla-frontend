@@ -14,8 +14,9 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
+import { GUIDES_ENDPOINT } from "constants/content-pages";
 
-const Home = ({ sourceSets, exhibitions }) =>
+const Home = ({ sourceSets, exhibitions, guides }) =>
   <MainLayout hideSearchBar>
     <HomeHero />
     <HomePageSlider
@@ -32,7 +33,7 @@ const Home = ({ sourceSets, exhibitions }) =>
       slidesToShow={4}
       theme="blue"
     />
-    <DPLAUsers />
+    <DPLAUsers guides={guides} />
     <FromTheBlog />
     {/* <SocialMedia /> */}
   </MainLayout>;
@@ -74,6 +75,17 @@ Home.getInitialProps = async () => {
       })
   );
 
+  const guidesRes = await fetch(GUIDES_ENDPOINT);
+  const guidesJson = await guidesRes.json();
+  const guides = guidesJson.map(guide =>
+    Object.assign({}, guide, {
+      summary: guide.acf.summary,
+      title: guide.title.rendered,
+      color: guide.acf.color,
+      illustration: guide.acf.illustration
+    })
+  );
+
   return {
     sourceSets: pssJson.itemListElement.slice(0, 8).map(set =>
       Object.assign({}, set, {
@@ -83,6 +95,7 @@ Home.getInitialProps = async () => {
         as: `/primary-source-sets/${extractSourceSetSlug(set["@id"])}`
       })
     ),
+    guides,
     exhibitions: exhibitions.map(exhibition =>
       Object.assign({}, exhibition, {
         href: `/exhibitions/exhibition?exhibition=${exhibition.slug}`,
