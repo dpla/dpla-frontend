@@ -17,7 +17,7 @@ const SidebarLink = ({ isCurrentLink, title, url }) =>
     </Link>
   </li>;
 
-const Sidebar = ({ page }) =>
+const Sidebar = ({ page, guides, route }) =>
   <div className={classNames.sidebar}>
     <ul className={classNames.links}>
       <SidebarLink
@@ -47,6 +47,17 @@ const Sidebar = ({ page }) =>
         title="How can I use DPLA?"
         url="/guides"
       />
+      {guides &&
+        <ul>
+          {guides.map(guide =>
+            <SidebarLink
+              key={guide.title}
+              title={guide.title}
+              url={`/guides/${guide.slug}`}
+              isCurrentLink={route.query.guide === guide.slug}
+            />
+          )}
+        </ul>}
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
         title="Terms & Conditions"

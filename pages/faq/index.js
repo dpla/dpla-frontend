@@ -4,10 +4,14 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/faq.css";
-import { FAQ_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
+import {
+  FAQ_ENDPOINT,
+  CONTENT_PAGE_NAMES,
+  GUIDES_ENDPOINT
+} from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Faq = ({ url, faq }) =>
+const Faq = ({ url, faq, guides }) =>
   <MainLayout route={url}>
     <div>
       <div
@@ -16,7 +20,11 @@ const Faq = ({ url, faq }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar page={CONTENT_PAGE_NAMES.FAQ} />
+        <ContentPagesSidebar
+          route={url}
+          guides={guides}
+          page={CONTENT_PAGE_NAMES.FAQ}
+        />
         <div className={classNames.content}>
           <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
         </div>
@@ -26,10 +34,18 @@ const Faq = ({ url, faq }) =>
   </MainLayout>;
 
 Faq.getInitialProps = async () => {
-  const res = await fetch(FAQ_ENDPOINT);
-  const json = await res.json();
+  const faqRes = await fetch(FAQ_ENDPOINT);
+  const faqJson = await faqRes.json();
 
-  return { faq: json };
+  const guidesRes = await fetch(GUIDES_ENDPOINT);
+  const guidesJson = await guidesRes.json();
+  const guides = guidesJson.map(guide =>
+    Object.assign({}, guide, {
+      title: guide.title.rendered
+    })
+  );
+
+  return { faq: faqJson, guides };
 };
 
 export default Faq;
