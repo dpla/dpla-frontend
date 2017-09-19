@@ -1,0 +1,32 @@
+@value elephantBlue from "../colors.css";
+
+.sidebarAndContentWrapper {
+  display: flex;
+  margin-top: 71px;
+  margin-bottom: 71px;
+}
+
+.header {
+  font-size: 3.4375rem;
+  font-weight: normal;
+  margin-bottom: 3rem;
+  font-family: "Lora";
+}
+
+.content {
+  margin-left: 4rem;
+  max-width: 47.25rem;
+  width: 100%;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.link {
+  margin-right: 1rem;
+}
+
+.itemColumn {
+  margin-bottom: 1rem;
+}

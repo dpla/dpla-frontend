@@ -15,7 +15,9 @@ const TopicBrowse = ({ url, topics }) =>
 TopicBrowse.getInitialProps = async ({ query }) => {
   const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   const json = await res.json();
-  const topics = json.filter(topic => !topic.parent && topic.name !== "Uncategorized");
+  const topics = json.filter(
+    topic => !topic.parent && topic.name !== "Uncategorized"
+  );
 
   return { topics };
 };
