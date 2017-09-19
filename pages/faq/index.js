@@ -4,7 +4,11 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/faq.css";
-import { FAQ_ENDPOINT, CONTENT_PAGE_NAMES, GUIDES_ENDPOINT } from "constants/content-pages";
+import {
+  FAQ_ENDPOINT,
+  CONTENT_PAGE_NAMES,
+  GUIDES_ENDPOINT
+} from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Faq = ({ url, faq, guides }) =>
@@ -16,7 +20,11 @@ const Faq = ({ url, faq, guides }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.FAQ} />
+        <ContentPagesSidebar
+          route={url}
+          guides={guides}
+          page={CONTENT_PAGE_NAMES.FAQ}
+        />
         <div className={classNames.content}>
           <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
         </div>

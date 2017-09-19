@@ -20,7 +20,11 @@ const SearchTips = ({ url, searchTips, guides }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.SEARCH_TIPS} />
+        <ContentPagesSidebar
+          route={url}
+          guides={guides}
+          page={CONTENT_PAGE_NAMES.SEARCH_TIPS}
+        />
         <div className={classNames.content}>
           <div
             dangerouslySetInnerHTML={{ __html: searchTips.content.rendered }}

@@ -4,7 +4,11 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/glossary.css";
-import { GLOSSARY_ENDPOINT, CONTENT_PAGE_NAMES, GUIDES_ENDPOINT } from "constants/content-pages";
+import {
+  GLOSSARY_ENDPOINT,
+  CONTENT_PAGE_NAMES,
+  GUIDES_ENDPOINT
+} from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Glossary = ({ url, glossary }) =>
@@ -16,7 +20,11 @@ const Glossary = ({ url, glossary }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.GLOSSARY} />
+        <ContentPagesSidebar
+          route={url}
+          guides={guides}
+          page={CONTENT_PAGE_NAMES.GLOSSARY}
+        />
         <div className={classNames.content}>
           <div
             dangerouslySetInnerHTML={{ __html: glossary.content.rendered }}

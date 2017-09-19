@@ -18,7 +18,11 @@ const Guides = ({ url, guides }) =>
           classNames.sidebarAndContentWrapper
         ].join(" ")}
       >
-        <ContentPagesSidebar route={url} guides={guides} page={CONTENT_PAGE_NAMES.GUIDES} />
+        <ContentPagesSidebar
+          route={url}
+          guides={guides}
+          page={CONTENT_PAGE_NAMES.GUIDES}
+        />
         <div className={classNames.content}>
           <h1 className={classNames.header}>
             How can I use DPLA?
