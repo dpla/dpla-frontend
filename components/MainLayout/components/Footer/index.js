@@ -31,7 +31,7 @@ const Footer = () =>
               </Link>
             </li>
             <li>
-              <Link prefetch href="terms-and-conditions">
+              <Link prefetch href="/terms-and-conditions">
                 Terms &amp; Conditions
               </Link>
             </li>
