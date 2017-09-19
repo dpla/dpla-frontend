@@ -9,40 +9,7 @@ import { classNames, stylesheet } from "css/pages/guides.css";
 import { GUIDES_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const mockGuides = [
-  {
-    title: "Education",
-    summary: "Education education education",
-    color: "blue",
-    thumbnailUrl: "/static/placeholderImages/education.png"
-  },
-  {
-    title: "Education",
-    summary: "Education education education",
-    color: "#F8f8f8",
-    thumbnailUrl: "/static/placeholderImages/education.png"
-  },
-  {
-    title: "Education",
-    summary: "Education education education",
-    color: "blue",
-    thumbnailUrl: "/static/placeholderImages/education.png"
-  },
-  {
-    title: "Education",
-    summary: "Education education education",
-    color: "blue",
-    thumbnailUrl: "/static/placeholderImages/education.png"
-  },
-  {
-    title: "Education",
-    summary: "Education education education",
-    color: "blue",
-    thumbnailUrl: "/static/placeholderImages/education.png"
-  }
-];
-
-const Guides = ({ url, guides = mockGuides }) =>
+const Guides = ({ url, guides }) =>
   <MainLayout route={url}>
     <div>
       <div
@@ -72,11 +39,19 @@ const Guides = ({ url, guides = mockGuides }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-// Guides.getInitialProps = async () => {
-//   const res = await fetch(GUIDES_ENDPOINT);
-//   const json = await res.json();
-//
-//   return { guides: json };
-// };
+Guides.getInitialProps = async () => {
+  const res = await fetch(GUIDES_ENDPOINT);
+  const json = await res.json();
+  const guides = json.map(guide =>
+    Object.assign({}, guide, {
+      summary: guide.acf.summary,
+      title: guide.title.rendered,
+      color: guide.acf.color,
+      illustration: guide.acf.illustration
+    })
+  );
+  console.log(guides);
+  return { guides };
+};
 
 export default Guides;
