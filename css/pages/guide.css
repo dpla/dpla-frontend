@@ -1,0 +1,30 @@
+.sidebarAndContentWrapper {
+  display: flex;
+  margin-top: 71px;
+  margin-bottom: 71px;
+}
+
+.content {
+  margin-left: 4rem;
+  max-width: 47.25rem;
+  width: 100%;
+}
+
+.illustration {
+  margin-bottom: 2rem;
+}
+
+.guideTitle {
+  font-size: 3.4375rem;
+  font-family: "Lora";
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.divider {
+  height: 2px;
+  width: 50px;
+  background-color: black;
+  margin: 0 auto 2.5rem;
+}

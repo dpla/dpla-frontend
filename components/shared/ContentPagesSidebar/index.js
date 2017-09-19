@@ -4,13 +4,13 @@ import Link from "next/link";
 import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames, stylesheet } from "./Sidebar.css";
 
-const SidebarLink = ({ isCurrentLink, title, url }) =>
+const SidebarLink = ({ isCurrentLink, title, href, as }) =>
   <li
     className={[classNames.link, isCurrentLink ? classNames.selected : ""].join(
       " "
     )}
   >
-    <Link href={url}>
+    <Link href={href} as={as}>
       <a>
         {title}
       </a>
@@ -23,29 +23,29 @@ const Sidebar = ({ page, guides, route }) =>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT}
         title="About Us"
-        url="/about"
+        href="/about"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.FAQ}
         title="FAQ"
-        url="/faq"
+        href="/faq"
       />
       <ul>
         <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.GLOSSARY}
-          title="Glossary"
-          url="/faq/glossary"
-        />
-        <SidebarLink
           isCurrentLink={page === CONTENT_PAGE_NAMES.SEARCH_TIPS}
           title="Search Tips"
-          url="/faq/search-tips"
+          href="/faq/search-tips"
+        />
+        <SidebarLink
+          isCurrentLink={page === CONTENT_PAGE_NAMES.GLOSSARY}
+          title="Glossary"
+          href="/faq/glossary"
         />
       </ul>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.GUIDES}
         title="How can I use DPLA?"
-        url="/guides"
+        href="/guides"
       />
       {guides &&
         <ul>
@@ -53,7 +53,8 @@ const Sidebar = ({ page, guides, route }) =>
             <SidebarLink
               key={guide.title}
               title={guide.title}
-              url={`/guides/${guide.slug}`}
+              as={`/guides/${guide.slug}`}
+              href={`/guides/guide?guide=${guide.slug}`}
               isCurrentLink={route.query.guide === guide.slug}
             />
           )}
@@ -61,18 +62,18 @@ const Sidebar = ({ page, guides, route }) =>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
         title="Terms & Conditions"
-        url="/terms-and-conditions"
+        href="/terms-and-conditions"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.DONATE}
         title="Donate"
-        url="/donate"
+        href="/donate"
       />
       <div className={classNames.divider} />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT}
         title="Contact Us"
-        url="/contact"
+        href="/contact"
       />
     </ul>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
