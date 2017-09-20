@@ -23,7 +23,11 @@ const Guides = ({ url, guides, guide }) =>
       >
         <ContentPagesSidebar route={url} guides={guides} />
         <div className={[classNames.content, contentClasses.content].join(" ")}>
-          <img src={guide.illustration} alt="" className={classNames.illustration} />
+          <img
+            src={guide.illustration}
+            alt=""
+            className={classNames.illustration}
+          />
           <h1 className={classNames.guideTitle}>{guide.title}</h1>
           <div className={classNames.divider} />
           <div dangerouslySetInnerHTML={{ __html: guide.content }} />
