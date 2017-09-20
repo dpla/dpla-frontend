@@ -43,6 +43,10 @@
     color: #6D6D6D;
   }
 
+  & .selected::after {
+    top: 9px;
+  }
+
   & .link {
     line-height: 1.05;
     margin-bottom: 0.5rem;
