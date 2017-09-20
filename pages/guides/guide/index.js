@@ -39,7 +39,7 @@ Guides.getInitialProps = async ({ query }) => {
   const json = await res.json();
   const guides = json.map(guide =>
     Object.assign({}, guide, {
-      title: guide.title.rendered
+      displayTitle: guide.acf.display_title
     })
   );
   const guide = json.find(guide => guide.slug === query.guide);

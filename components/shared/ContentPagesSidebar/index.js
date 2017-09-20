@@ -51,8 +51,8 @@ const Sidebar = ({ page, guides, route }) =>
         <ul>
           {guides.map(guide =>
             <SidebarLink
-              key={guide.title}
-              title={guide.title}
+              key={guide.slug}
+              title={guide.displayTitle}
               as={`/guides/${guide.slug}`}
               href={`/guides/guide?guide=${guide.slug}`}
               isCurrentLink={route.query.guide === guide.slug}

@@ -12,7 +12,7 @@ const DPLAUsers = ({ guides }) =>
         {guides.map(guide =>
           <div
             className={`${classNames.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
-            key={guide.title}
+            key={guide.slug}
           >
             <GuideLink guide={guide} />
           </div>
