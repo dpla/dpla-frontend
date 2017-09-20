@@ -41,9 +41,10 @@ Glossary.getInitialProps = async () => {
 
   const guidesRes = await fetch(GUIDES_ENDPOINT);
   const guidesJson = await guidesRes.json();
+
   const guides = guidesJson.map(guide =>
     Object.assign({}, guide, {
-      title: guide.title.rendered
+      displayTitle: guide.acf.display_title
     })
   );
 

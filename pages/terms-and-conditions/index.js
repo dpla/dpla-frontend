@@ -53,7 +53,7 @@ TermsAndConditions.getInitialProps = async () => {
   const guidesJson = await guidesRes.json();
   const guides = guidesJson.map(guide =>
     Object.assign({}, guide, {
-      title: guide.title.rendered
+      displayTitle: guide.acf.display_title
     })
   );
 
