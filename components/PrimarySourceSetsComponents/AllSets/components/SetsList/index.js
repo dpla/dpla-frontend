@@ -76,9 +76,9 @@ const SetsList = ({ sets, route }) =>
                         prefetch
                         href={{
                           pathname: "/primary-source-sets",
-                          query: {
+                          query: Object.assign({}, route.query, {
                             timePeriod: mapTimePeriodNameToSlug(tag.name)
-                          }
+                          })
                         }}
                       >
                         <a className="hover-underline" title={tag.name}>
@@ -101,7 +101,9 @@ const SetsList = ({ sets, route }) =>
                         prefetch
                         href={{
                           pathname: "/primary-source-sets",
-                          query: { subject: mapSubjectNameToSlug(tag.name) }
+                          query: Object.assign({}, route.query, {
+                            subject: mapSubjectNameToSlug(tag.name)
+                          })
                         }}
                       >
                         <a className="hover-underline" title={tag.name}>
