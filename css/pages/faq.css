@@ -1,44 +1,9 @@
-@value elephantBlue from "../colors.css";
-
 .sidebarAndContentWrapper {
   display: flex;
   margin-top: 71px;
 }
 
-.content {
-  margin-left: 4rem;
-  max-width: 42.25rem;
-
-  & h1 {
-    font-family: "Lora";
-    font-weight: normal;
-    font-size: 3.4375rem;
-    margin-bottom: 3rem;
-    & b {
-      font-weight: normal;
-    }
-  }
-
-  & h2 {
-    color: elephantBlue;
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-    font-weight: 600;
-  }
-
-  & h3 {
-    font-weight: 600;
-    font-size: 1.375rem;
-    margin-bottom: 0.5rem;
-  }
-
-  & p {
-    font-size: 1.375rem;
-    margin-bottom: 2rem;
-  }
-
-  & p + h2 {
-    border-top: 2px solid rgba(0, 0, 0, 0.1);
-    padding-top: 2rem;
-  }
+.content  p + h2 {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1.5rem;
 }

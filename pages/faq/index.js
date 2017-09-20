@@ -5,6 +5,10 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import { classNames, stylesheet } from "css/pages/faq.css";
 import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
+import {
   FAQ_ENDPOINT,
   CONTENT_PAGE_NAMES,
   GUIDES_ENDPOINT
@@ -25,12 +29,13 @@ const Faq = ({ url, faq, guides }) =>
           guides={guides}
           page={CONTENT_PAGE_NAMES.FAQ}
         />
-        <div className={classNames.content}>
+        <div className={`${classNames.content} ${contentClasses.content}`}>
           <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
         </div>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Faq.getInitialProps = async () => {
