@@ -18,7 +18,7 @@ const Guides = ({ url, guides, guide }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar route={url} guides={guides} />

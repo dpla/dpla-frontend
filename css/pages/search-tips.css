@@ -1,6 +1,0 @@
-@value elephantBlue from "../colors.css";
-
-.sidebarAndContentWrapper {
-  display: flex;
-  margin-top: 71px;
-}

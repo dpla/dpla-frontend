@@ -21,7 +21,7 @@ const Glossary = ({ url, glossary, guides }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar

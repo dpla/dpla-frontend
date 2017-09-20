@@ -1,8 +1,3 @@
-.sidebarAndContentWrapper {
-  display: flex;
-  margin-top: 71px;
-}
-
 .content {
   margin-left: 4rem;
   max-width: 42.25rem;

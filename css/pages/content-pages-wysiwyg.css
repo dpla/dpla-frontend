@@ -1,9 +1,16 @@
-@value cascadeBlue from "../colors.css";
+@value cascadeBlue, bambooOrange from "../colors.css";
+
+.sidebarAndContentWrapper {
+  display: flex;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
 
 .content {
   margin-left: 4rem;
   max-width: 42.25rem;
   width: 100%;
+  line-height: 1.25;
 
   & h1 {
     font-family: "Lora";
@@ -92,6 +99,7 @@
     border: 1px solid #CCCCCC;
     border-collapse: collapse;
     margin-bottom: 2rem;
+    width: 100%;
   }
 
   & td:not(:first-child) {
@@ -107,5 +115,10 @@
 
   & tr:not(:last-child) {
     border-bottom: 1px solid #CCCCCC;
+  }
+
+  & a {
+    color: bambooOrange;
+    border-bottom: 1px solid bambooOrange;
   }
 }

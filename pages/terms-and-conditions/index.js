@@ -21,7 +21,7 @@ const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar

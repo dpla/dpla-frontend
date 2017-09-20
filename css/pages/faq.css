@@ -1,9 +1,5 @@
-.sidebarAndContentWrapper {
-  display: flex;
-  margin-top: 71px;
-}
-
 .content  p + h2 {
   border-top: 2px solid rgba(0, 0, 0, 0.1);
-  padding-top: 1.5rem;
+  padding-top: 3rem;
+  margin-top: 3rem;
 }
