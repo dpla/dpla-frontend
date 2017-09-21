@@ -12,6 +12,11 @@ select {
   font-family: "Source Sans Pro";
 }
 
+input {
+  /* fixes an issue with Safari in particular */
+  -webkit-appearance: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
