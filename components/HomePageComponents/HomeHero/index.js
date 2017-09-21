@@ -32,17 +32,6 @@ const HomeHero = () =>
             name="q"
             type="search"
           />
-          <div className={classNames.searchOptions}>
-            <select name="type" className={classNames.optionsSelect}>
-              <option value="all">All types</option>
-              <option value="text">Text</option>
-              <option value="image">Image</option>
-              <option value="sound">Sound</option>
-              <option value="moving image">Moving Image</option>
-              <option value="physical object">Physical Object</option>
-            </select>
-            <img alt="" className={classNames.chevron} src={chevron} />
-          </div>
           <button type="submit" className={classNames.searchButton}>
             <img
               alt="search"
