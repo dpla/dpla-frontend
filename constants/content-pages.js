@@ -1,5 +1,5 @@
 export const CONTENT_PAGE_NAMES = {
-  ABOUT: "about",
+  ABOUT_US: "about-us",
   FAQ: "faq",
   GUIDES: "guides",
   EDUCATION: "education",
@@ -9,7 +9,7 @@ export const CONTENT_PAGE_NAMES = {
   DEVELOPERS: "developers",
   TERMS_AND_CONDITIONS: "t-and-c",
   DONATE: "donate",
-  CONTACT: "contact",
+  CONTACT: "contact-us",
   SEARCH_TIPS: "search-tips",
   GLOSSARY: "glossary"
 };
@@ -23,3 +23,5 @@ export const GUIDES_ENDPOINT =
   "http://dpla.wpengine.com/wp-json/wp/v2/pages?parent=2394";
 export const T_AND_C_ENDPOINT =
   "https://dpla.wpengine.com/wp-json/wp/v2/pages/2406";
+export const ABOUT_US_ENDPOINT =
+  "https://dpla.wpengine.com/wp-json/wp/v2/pages/2536";

@@ -21,7 +21,7 @@ const Sidebar = ({ page, guides, route }) =>
   <div className={classNames.sidebar}>
     <ul className={classNames.links}>
       <SidebarLink
-        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT}
+        isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT_US}
         title="About Us"
         href="/about-us"
       />

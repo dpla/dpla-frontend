@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import MainLayout from "components/MainLayout";
