@@ -43,8 +43,9 @@
 
 .bodyText {
   font-size: 1.125rem;
+  display: block;
   line-height: 1.5rem;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+  padding-right: 45px;
 }
 
 .bodyText p:not(:last-child) {
