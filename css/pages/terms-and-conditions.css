@@ -1,8 +1,3 @@
-.sidebarAndContentWrapper {
-  display: flex;
-  margin-top: 71px;
-}
-
 .content {
   margin-left: 4rem;
   max-width: 42.25rem;
@@ -13,50 +8,4 @@
   font-weight: normal;
   font-size: 3.4375rem;
   margin-bottom: 3rem;
-}
-
-.content {
-  & h2 {
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-    font-weight: 600;
-  }
-
-  & h3 {
-    font-size: 1.375rem;
-  }
-
-  & h4 {
-    font-size: 1.25rem;
-  }
-  & h5 {
-    font-size: 1.125rem;
-  }
-
-  & h3, & h4, & h5 {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  & p {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-  }
-
-  & p + ul, & p + ol {
-    margin-top: -1rem;
-  }
-
-  & p + h2 {
-    border-top: 2px solid rgba(0, 0, 0, 0.1);
-    padding-top: 2rem;
-  }
-
-  & li {
-    margin-bottom: 0.75rem;
-  }
-
-  & ul + h5 {
-    margin-top: 2rem;
-  }
 }

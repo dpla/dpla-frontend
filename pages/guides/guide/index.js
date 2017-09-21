@@ -4,9 +4,12 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import GuideLink from "components/shared/GuideLink";
 import { classNames, stylesheet } from "css/pages/guide.css";
-import { GUIDES_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
+import { GUIDES_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, guides, guide }) =>
@@ -15,11 +18,11 @@ const Guides = ({ url, guides, guide }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar route={url} guides={guides} />
-        <div className={classNames.content}>
+        <div className={[classNames.content, contentClasses.content].join(" ")}>
           <img
             src={guide.illustration}
             alt=""
@@ -32,6 +35,7 @@ const Guides = ({ url, guides, guide }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Guides.getInitialProps = async ({ query }) => {

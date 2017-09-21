@@ -9,6 +9,10 @@ import {
   CONTENT_PAGE_NAMES,
   GUIDES_ENDPOINT
 } from "constants/content-pages";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
@@ -17,7 +21,7 @@ const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar
@@ -25,7 +29,7 @@ const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
           guides={guides}
           page={CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
         />
-        <div className={classNames.content}>
+        <div className={[classNames.content, contentClasses.content].join(" ")}>
           <h1
             dangerouslySetInnerHTML={{ __html: termsAndConditions.title }}
             className={classNames.title}
@@ -39,6 +43,7 @@ const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 TermsAndConditions.getInitialProps = async () => {

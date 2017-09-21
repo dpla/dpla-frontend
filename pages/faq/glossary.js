@@ -9,6 +9,10 @@ import {
   CONTENT_PAGE_NAMES,
   GUIDES_ENDPOINT
 } from "constants/content-pages";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Glossary = ({ url, glossary, guides }) =>
@@ -17,7 +21,7 @@ const Glossary = ({ url, glossary, guides }) =>
       <div
         className={[
           utilClassNames.module,
-          classNames.sidebarAndContentWrapper
+          contentClasses.sidebarAndContentWrapper
         ].join(" ")}
       >
         <ContentPagesSidebar
@@ -25,7 +29,7 @@ const Glossary = ({ url, glossary, guides }) =>
           guides={guides}
           page={CONTENT_PAGE_NAMES.GLOSSARY}
         />
-        <div className={classNames.content}>
+        <div className={[classNames.content, contentClasses.content].join(" ")}>
           <div
             dangerouslySetInnerHTML={{ __html: glossary.content.rendered }}
           />
@@ -33,6 +37,7 @@ const Glossary = ({ url, glossary, guides }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Glossary.getInitialProps = async () => {
