@@ -5,8 +5,8 @@ teaching guides for class use.`;
 
 export const sortOptions = [
   { value: "recently_added", label: "Recently Added" },
-  { value: "chronology_asc", label: "Date Added Asc." },
-  { value: "chronology_desc", label: "Date Added Desc." }
+  { value: "chronology_asc", label: "Chronology, oldest first" },
+  { value: "chronology_desc", label: "Chronology, most recent first" }
 ];
 
 export const subjectOptions = [

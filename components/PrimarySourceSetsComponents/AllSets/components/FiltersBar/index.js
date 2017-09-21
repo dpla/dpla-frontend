@@ -15,7 +15,7 @@ import {
 
 const SortValue = props =>
   <span className={classNames.sortValue}>
-    <span className={classNames.sortByText}>Sort</span>
+    <span className={classNames.sortByText}>Sort by</span>
     <span>
       {props.value.label}
     </span>
@@ -106,7 +106,7 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
+            <div className={`${classNames.filter} col-xs-6 col-md-4`}>
               <Select
                 clearable={false}
                 searchable={false}
