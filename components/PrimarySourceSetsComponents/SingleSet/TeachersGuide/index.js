@@ -3,6 +3,7 @@ import Link from "next/link";
 import { markdown } from "markdown";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
+import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { classNames, stylesheet } from "./TeachersGuide.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
@@ -11,7 +12,7 @@ const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
 
-const TeachersGuide = ({ route, teachingGuide, setName }) =>
+const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, module].join(" ")}>
       <div className={classNames.content}>
@@ -72,9 +73,18 @@ const TeachersGuide = ({ route, teachingGuide, setName }) =>
           <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
           <div className={classNames.toolLinkAndIcon}>
             <img src={googleClassroom} alt="" className={classNames.toolIcon} />
-            <Link prefetch href="">
-              <a className={classNames.toolLink}>Share to Google Classroom</a>
-            </Link>
+            <a
+              href={
+                currentPath
+                  ? `${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath}`
+                  : window.location.pathname.replace("teaching-guide", "")
+              }
+              className={classNames.toolLink}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Share to Google Classroom
+            </a>
           </div>
           <div className={classNames.toolLinkAndIcon}>
             <img src={printer} alt="" className={classNames.toolIcon} />
