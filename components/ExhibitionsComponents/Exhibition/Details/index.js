@@ -20,13 +20,15 @@ const Details = ({ exhibition, route }) =>
                 <Link
                   prefetch
                   href={{
-                    pathname: route.pathname,
+                    pathname: "/exhibitions/exhibition/section/subsection",
                     query: Object.assign({}, route.query, {
-                      section: section.slug
+                      section: section.slug,
+                      exhibition: exhibition.slug,
+                      subsection: ""
                     })
                   }}
                   as={{
-                    pathname: `${route.pathname}/${section.slug}`
+                    pathname: `/exhibitions/${exhibition.slug}/${section.slug}/`
                   }}
                 >
                   <a>

@@ -25,13 +25,15 @@ const ImageAndCaption = ({ exhibition, route }) =>
             <Link
               prefetch
               href={{
-                pathname: route.pathname,
+                pathname: "/exhibitions/exhibition/section/subsection",
                 query: Object.assign({}, route.query, {
-                  section: exhibition.sections[0].slug
+                  section: exhibition.sections[0].slug,
+                  exhibition: exhibition.slug,
+                  subsection: ""
                 })
               }}
               as={{
-                pathname: `${exhibition.slug}/${exhibition.sections[0].slug}`
+                pathname: `${exhibition.slug}/${exhibition.sections[0].slug}/`
               }}
             >
               <a className={classNames.exploreLink}>Explore Exhibition</a>
