@@ -29,10 +29,9 @@ const ListView = ({ items, route }) =>
         <div className={classNames.itemInfo}>
           <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
-              <span
-                dangerouslySetInnerHTML={{ __html: item.title }}
-                className={classNames.itemTitle}
-              />
+              <span className={classNames.itemTitle}>
+                {item.title}
+              </span>
             </a>
           </Link>
           <span className={classNames.itemType}>

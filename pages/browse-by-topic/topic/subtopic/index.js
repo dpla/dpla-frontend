@@ -9,7 +9,7 @@ import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/Brea
 import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "../../../../components/MainLayout";
 import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
-import { extractItemId } from "utilFunctions";
+import { decodeHTMLEntities, extractItemId } from "utilFunctions";
 import { API_KEY } from "constants/search";
 import {
   API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
@@ -104,7 +104,7 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
       const itemJson = await itemRes.json();
 
       return Object.assign({}, item, {
-        title: item.title.rendered,
+        title: decodeHTMLEntities(item.title.rendered),
         linkHref: `/item?itemId=${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
