@@ -23,7 +23,7 @@ const Sidebar = ({ page, guides, route }) =>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT}
         title="About Us"
-        href="/about"
+        href="/about-us"
       />
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.FAQ}
@@ -73,7 +73,7 @@ const Sidebar = ({ page, guides, route }) =>
       <SidebarLink
         isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT}
         title="Contact Us"
-        href="/contact"
+        href="/contact-us"
       />
     </ul>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
