@@ -89,7 +89,7 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-6 col-md-2`}>
+            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
               <Select
                 clearable={false}
                 searchable={false}
