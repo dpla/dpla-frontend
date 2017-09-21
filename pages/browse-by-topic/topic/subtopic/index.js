@@ -102,13 +102,17 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
         `${DPLA_ITEM_ENDPOINT}/${itemDplaId}?api_key=${API_KEY}`
       );
       const itemJson = await itemRes.json();
+
       return Object.assign({}, item, {
         title: item.title.rendered,
         linkHref: `/item?itemId=${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
         thumbnailUrl: itemJson.docs[0].object,
-        sourceUrl: itemJson.docs[0].isShownAt
+        sourceUrl: itemJson.docs[0].isShownAt,
+        date: itemJson.docs[0].sourceResource.date,
+        creator: itemJson.docs[0].sourceResource.creator,
+        description: itemJson.docs[0].sourceResource.description
       });
     })
   );
