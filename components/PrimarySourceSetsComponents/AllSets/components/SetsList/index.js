@@ -43,9 +43,6 @@ const SetsList = ({ sets, route }) =>
               </a>
             </Link>
             <div className={classNames.itemContent}>
-              <p className={classNames.itemCount}>
-                {`${set.numberOfItems} Items`}
-              </p>
               <Link
                 prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
