@@ -74,11 +74,9 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <div className={classNames.toolLinkAndIcon}>
             <img src={googleClassroom} alt="" className={classNames.toolIcon} />
             <a
-              href={
-                currentPath
-                  ? `${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath}`
-                  : window.location.pathname.replace("teaching-guide", "")
-              }
+              href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
+                ? currentPath
+                : window.location.href.replace("teaching-guide", "")}`}
               className={classNames.toolLink}
               rel="noopener noreferrer"
               target="_blank"
