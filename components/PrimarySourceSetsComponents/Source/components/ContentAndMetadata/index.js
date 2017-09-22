@@ -45,14 +45,15 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 };
 
 const getDomainFromThumbnail = thumbnailUrl =>
-  /^(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
+  /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
 const ContentAndMetadata = ({ source }) => {
   const type = source.mainEntity[0]["@type"];
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
   // some file types aren't stored with full domain
   // so we determine what the full domain is here
-  const fullContentUrl = source.thumbnailUrl && !/^\/\//.test(contentUrl)
+  const fullContentUrl = source.thumbnailUrl &&
+    !/^(?:https?:)?\/\//.test(contentUrl)
     ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
     : `https:${contentUrl}`;
   const viewerComponent = getViewerComponent(fileFormat, type, fullContentUrl);
