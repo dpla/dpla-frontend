@@ -143,3 +143,12 @@
   color: bambooOrange;
   display: inline-block;
 }
+
+.additionalToolWrapper {
+  margin-bottom: 0.5rem;
+}
+
+.additionalToolLink {
+  color: bambooOrange;
+  border-bottom: 1px solid bambooOrange;
+}
