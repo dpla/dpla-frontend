@@ -11,6 +11,7 @@ import {
   getSortOptionFromParams
 } from "./options";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
+import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
@@ -25,7 +26,7 @@ class OptionsBar extends React.Component {
         sortBy: sort_by || "",
         sortOrder: sort_order || ""
       }),
-      pageSizeValue: page_size || "10"
+      pageSizeValue: page_size || DEFAULT_PAGE_SIZE
     });
   }
 
