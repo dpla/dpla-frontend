@@ -47,7 +47,7 @@ const GlobalHeader = () =>
       <span className={classNames.divider} />
       <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
         <li>
-          <Link prefetch href="">
+          <Link prefetch href="/about-us">
             <a>About Us</a>
           </Link>
         </li>

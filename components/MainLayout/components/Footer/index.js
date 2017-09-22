@@ -16,7 +16,7 @@ const Footer = () =>
           <h3 className={classNames.linkHeader}>DPLA</h3>
           <ul>
             <li>
-              <Link prefetch href="/about">
+              <Link prefetch href="/about-us">
                 About Us
               </Link>
             </li>
@@ -36,7 +36,7 @@ const Footer = () =>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/contact">
+              <Link prefetch href="/contact-us">
                 Contact Us
               </Link>
             </li>
