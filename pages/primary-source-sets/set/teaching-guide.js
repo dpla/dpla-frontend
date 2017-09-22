@@ -10,7 +10,7 @@ import TeachersGuide from "../../../components/PrimarySourceSetsComponents/Singl
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
-const SingleSet = ({ url, set, teachingGuide }) =>
+const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -31,15 +31,20 @@ const SingleSet = ({ url, set, teachingGuide }) =>
         teachingGuide={teachingGuide}
         setName={set.name}
         route={url}
+        currentPath={currentPath}
       />
     </ResourcesTabs>
     <PSSFooter />
   </MainLayout>;
 
-SingleSet.getInitialProps = async ({ query }) => {
+SingleSet.getInitialProps = async ({ query, req }) => {
   const setRes = await fetch(
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
+
+  const currentPath = req
+    ? `${req.get("Host")}/primary-source-sets/${query.set}`
+    : "";
 
   const set = await setRes.json();
   const teachingGuideRes = await fetch(
@@ -48,7 +53,7 @@ SingleSet.getInitialProps = async ({ query }) => {
     ]}.json`
   );
   const teachingGuide = await teachingGuideRes.json();
-  return { set, teachingGuide };
+  return { set, teachingGuide, currentPath };
 };
 
 export default SingleSet;
