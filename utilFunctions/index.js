@@ -4,6 +4,7 @@ import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
 import joinIfArray from "./joinIfArray";
 import removeQueryParams from "./removeQueryParams";
+import decodeHTMLEntities from "./decodeHTMLEntities";
 
 export {
   addCommasToNumber,
@@ -11,5 +12,6 @@ export {
   extractSourceId,
   extractSourceSetSlug,
   joinIfArray,
-  removeQueryParams
+  removeQueryParams,
+  decodeHTMLEntities
 };
