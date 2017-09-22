@@ -14,7 +14,7 @@ import {
   classNames,
   stylesheet
 } from "components/SearchComponents/SearchComponents.css";
-import { API_KEY } from "constants/search";
+import { API_KEY, DEFAULT_PAGE_SIZE } from "constants/search";
 
 const Search = ({ url, results }) =>
   <MainLayout route={url}>
@@ -24,7 +24,7 @@ const Search = ({ url, results }) =>
       <MainContent
         paginationInfo={{
           pageCount: results.count,
-          pageSize: url.query.page_size || 10,
+          pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
           currentPage: url.query.page || 1
         }}
         route={url}
@@ -46,7 +46,7 @@ Search.getInitialProps = async ({ query }) => {
   // TODO: clean this up
 
   const q = query.q || "";
-  const page_size = query.page_size || 20;
+  const page_size = query.page_size || DEFAULT_PAGE_SIZE;
   const page = query.page || 1;
   let sort_by = "";
   if (query.sort_by === "title") {
