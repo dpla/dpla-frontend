@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./PSSFooter.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import { DPLA_CONTACT_EMAIL, PSS_SUGGESTION_URL } from "constants/site";
 
 const { module } = utilClassNames;
 const OtherInfo = () =>
@@ -20,11 +21,19 @@ const OtherInfo = () =>
       </p>
       <p className={classNames.p}>
         <span>
-          To give feedback or suggest a Source Set, contact us at&nbsp;
+          To give feedback, contact us at {" "}
+          <a className={classNames.link} href={`mailto:${DPLA_CONTACT_EMAIL}`}>
+            education@dp.la
+          </a>. You can also
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classNames.link}
+            href={PSS_SUGGESTION_URL}
+          >
+            {" "}suggest a primary source set topic
+          </a>.
         </span>
-        <a className={classNames.link} href="mailto:education@dp.la">
-          education@dp.la
-        </a>
       </p>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
