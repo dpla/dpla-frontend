@@ -140,8 +140,26 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
         <div className={classNames.sidebarSection}>
           <h3 className={classNames.sidebarHeader}>Additional tools</h3>
           <ul className={classNames.ul}>
-            <li>Document Analysis Worksheets from the National Archives</li>
-            <li>Using Primary Sources from the Library of Congress</li>
+            <li className={classNames.additionalToolWrapper}>
+              <a
+                className={classNames.additionalToolLink}
+                href="https://www.archives.gov/education/lessons/worksheets"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Document Analysis Worksheets from the National Archives
+              </a>
+            </li>
+            <li className={classNames.additionalToolWrapper}>
+              <a
+                className={classNames.additionalToolLink}
+                href="https://www.loc.gov/teachers/usingprimarysources/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Using Primary Sources from the Library of Congress
+              </a>
+            </li>
           </ul>
         </div>
       </div>
