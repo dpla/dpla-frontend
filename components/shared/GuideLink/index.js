@@ -7,11 +7,13 @@ const GuideLink = ({ guide }) =>
     <Link href={`/guides/${guide.slug}`}>
       <a className={classNames.itemLink}>
         <img
-          alt={guide.title}
+          alt={guide.illustration.alt || guide.title}
           className={classNames.itemImg}
-          src={guide.illustration}
+          src={guide.illustration.url}
         />
-        <h1 className={classNames.itemHeader}>{guide.title}</h1>
+        <h1 className={classNames.itemHeader}>
+          {guide.displayTitle || guide.title}
+        </h1>
         <p className={classNames.text}>{guide.summary}</p>
       </a>
     </Link>

@@ -81,6 +81,7 @@ Home.getInitialProps = async () => {
     Object.assign({}, guide, {
       summary: guide.acf.summary,
       title: guide.title.rendered,
+      displayTitle: guide.acf.display_title,
       color: guide.acf.color,
       illustration: guide.acf.illustration
     })
