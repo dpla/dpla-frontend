@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
@@ -8,6 +7,10 @@ import GuideLink from "components/shared/GuideLink";
 import { classNames, stylesheet } from "css/pages/guides.css";
 import { GUIDES_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
 
 const Guides = ({ url, guides }) =>
   <MainLayout route={url}>
@@ -41,6 +44,7 @@ const Guides = ({ url, guides }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Guides.getInitialProps = async () => {
