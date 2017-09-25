@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
@@ -192,7 +194,7 @@ app
     server.get(
       "/api/exhibitions/",
       proxy({
-        target: "http://omeka.internal.dp.la",
+        target: process.env.OMEKA_URL,
         changeOrigin: true,
         logLevel: "error",
         pathRewrite: { "^/api/exhibitions": "/api/exhibits" }
@@ -201,7 +203,7 @@ app
     server.get(
       "/api/exhibition_pages",
       proxy({
-        target: "http://omeka.internal.dp.la",
+        target: process.env.OMEKA_URL,
         changeOrigin: true,
         logLevel: "error",
         pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
@@ -210,9 +212,27 @@ app
     server.get(
       "/api/files/",
       proxy({
-        target: "http://omeka.internal.dp.la",
+        target: process.env.OMEKA_URL,
         changeOrigin: true,
         logLevel: "error"
+      })
+    );
+
+    server.get(
+      ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
+      proxy({
+        target: process.env.API_URL,
+        changeOrigin: true,
+        logLevel: "error",
+        pathRewrite: function(path, req) {
+          console.log(`visiting: ${path}`);
+          var newPath = path.replace(
+            /^\/api\/dpla(.*)$/,
+            "$1&api_key=" + process.env.API_KEY
+          );
+          console.log(newPath);
+          return newPath;
+        }
       })
     );
 
