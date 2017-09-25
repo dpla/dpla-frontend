@@ -194,7 +194,7 @@ app
       proxy({
         target: "http://omeka.internal.dp.la",
         changeOrigin: true,
-        logLevel: "debug",
+        logLevel: "error",
         pathRewrite: { "^/api/exhibitions": "/api/exhibits" }
       })
     );
@@ -203,7 +203,7 @@ app
       proxy({
         target: "http://omeka.internal.dp.la",
         changeOrigin: true,
-        logLevel: "debug",
+        logLevel: "error",
         pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
       })
     );
@@ -212,7 +212,15 @@ app
       proxy({
         target: "http://omeka.internal.dp.la",
         changeOrigin: true,
-        logLevel: "debug"
+        logLevel: "error"
+      })
+    );
+    server.get(
+      "/api/items/",
+      proxy({
+        target: "http://omeka.internal.dp.la",
+        changeOrigin: true,
+        logLevel: "error"
       })
     );
 
