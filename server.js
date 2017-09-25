@@ -218,6 +218,7 @@ app
       })
     );
 
+    // wrapper for DPLA API
     server.get(
       ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
       proxy({
@@ -225,12 +226,11 @@ app
         changeOrigin: true,
         logLevel: "error",
         pathRewrite: function(path, req) {
-          console.log(`visiting: ${path}`);
+          var separator = path.indexOf("?") == -1 ? "?" : "&";
           var newPath = path.replace(
             /^\/api\/dpla(.*)$/,
-            "$1&api_key=" + process.env.API_KEY
+            "$1" + separator + "api_key=" + process.env.API_KEY
           );
-          console.log(newPath);
           return newPath;
         }
       })
