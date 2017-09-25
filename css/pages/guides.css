@@ -1,12 +1,5 @@
 @value elephantBlue from "../colors.css";
 
-.header {
-  font-size: 3.4375rem;
-  font-weight: normal;
-  margin-bottom: 3rem;
-  font-family: "Lora";
-}
-
 .content {
   margin-left: 4rem;
   max-width: 47.25rem;

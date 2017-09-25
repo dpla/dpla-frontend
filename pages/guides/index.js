@@ -27,16 +27,13 @@ const Guides = ({ url, guides }) =>
           page={CONTENT_PAGE_NAMES.GUIDES}
         />
         <div className={classNames.content}>
-          <h1 className={classNames.header}>
-            How can I use DPLA?
-          </h1>
           <ul className={`${classNames.links} row`}>
             {guides.map((guide, i) =>
               <li
                 key={i}
                 className={`col-xs-12 col-md-6 col-lg-4 ${classNames.itemColumn}`}
               >
-                <GuideLink guide={guide} route={url} />
+                <GuideLink guide={guide} />
               </li>
             )}
           </ul>
