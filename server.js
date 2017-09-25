@@ -1,6 +1,7 @@
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
+const proxy = require("http-proxy-middleware");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -18,6 +19,8 @@ app
   .then(() => {
     const server = express();
 
+    // browse by topic routes
+
     server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
       const params = { topic: req.params.topic };
@@ -32,6 +35,8 @@ app
 
       renderAndCache(req, res, actualPage, params);
     });
+
+    // primary source sets routes
 
     server.get("/primary-source-sets", (req, res) => {
       app.render(req, res, "/primary-source-sets", req.query);
@@ -93,6 +98,8 @@ app
       );
     });
 
+    // exhibitions routes
+
     server.get("/exhibitions/:exhibition", (req, res) => {
       const actualPage = "/exhibitions/exhibition";
       const params = {
@@ -105,6 +112,7 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
     server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
       const actualPage = "/exhibitions/exhibition/section/subsection";
       const params = {
@@ -136,6 +144,8 @@ app
       );
     });
 
+    // search routes
+
     server.get("/search", (req, res) => {
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
@@ -146,6 +156,8 @@ app
 
       renderAndCache(req, res, actualPage, req.query);
     });
+
+    // item routes
 
     server.get("/item/:itemId", (req, res) => {
       const actualPage = "/item/";
@@ -160,6 +172,8 @@ app
       );
     });
 
+    // guides routes
+
     server.get("/guides/:guide", (req, res) => {
       const actualPage = "/guides/guide";
       const params = {
@@ -172,6 +186,37 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
+    // API proxy routes
+
+    server.get(
+      "/api/exhibitions/",
+      proxy({
+        target: "http://omeka.internal.dp.la",
+        changeOrigin: true,
+        logLevel: "debug",
+        pathRewrite: { "^/api/exhibitions": "/api/exhibits" }
+      })
+    );
+    server.get(
+      "/api/exhibition_pages",
+      proxy({
+        target: "http://omeka.internal.dp.la",
+        changeOrigin: true,
+        logLevel: "debug",
+        pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
+      })
+    );
+    server.get(
+      "/api/files/",
+      proxy({
+        target: "http://omeka.internal.dp.la",
+        changeOrigin: true,
+        logLevel: "debug"
+      })
+    );
+
+    // handle all other requests
 
     server.get("*", (req, res) => {
       return handle(req, res);
