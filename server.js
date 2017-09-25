@@ -216,7 +216,7 @@ app
       })
     );
     server.get(
-      "/api/items/",
+      "/api/items/*",
       proxy({
         target: "http://omeka.internal.dp.la",
         changeOrigin: true,
