@@ -1,9 +1,9 @@
 import React from "react";
 
-const PDFViewer = ({ pathToFile, height = "750px" }) =>
+const PDFViewer = ({ pathToFile, height = "650px" }) =>
   <iframe
     title="dpla-pdf-viewer"
-    src={pathToFile}
+    src={`https://docs.google.com/gview?url=${pathToFile}&embedded=true`}
     style={{ width: "100%", height }}
     frameBorder="0"
   />;
