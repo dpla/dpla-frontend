@@ -3,7 +3,6 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Viewer from "./Viewer";
 
-import mockExhibition from "../Exhibition/mockExhibition";
 import { classNames } from "./ExhibitionSection.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
