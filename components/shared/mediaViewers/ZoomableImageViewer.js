@@ -26,8 +26,7 @@ export default class ZoomableImageViewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.pathToFile !== this.props.pathToFile) {
-      this.viewer.destroy();
-      this.viewer = initOpenSeaDragon(nextProps.pathToFile);
+      this.viewer.open(nextProps.pathToFile);
     }
   }
 
