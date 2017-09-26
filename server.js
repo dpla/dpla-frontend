@@ -207,22 +207,16 @@ app
         pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
       })
     );
-    server.get("/api/files/", (req, res, next) => {
-      proxy({
-        target: "http://omeka.internal.dp.la",
-        changeOrigin: true,
-        logLevel: "error"
-      });
-    });
 
     server.get(
-      "/api/files/{original,thumbnails,square_thumbnails,fullsize}",
+      "/api/files/",
       proxy({
         target: "http://omeka.internal.dp.la",
         changeOrigin: true,
         logLevel: "error"
       })
     );
+
     server.get(
       "/api/items/*",
       proxy({
