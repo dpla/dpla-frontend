@@ -109,18 +109,6 @@ const ContentAndMetadata = ({ source }) => {
               <div className={classNames.divider} />
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
-                  <a
-                    href={getSourceLink(source)}
-                    className={classNames.sourceLink}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img alt="" src={link} className={classNames.linkIcon} />
-                    <span className={classNames.linkText}>Item source</span>
-                  </a>
-                </div>}
-              {source.mainEntity[0]["dct:references"] &&
-                <div className={classNames.linkWrapper}>
                   <Link prefetch href={`/item?itemId=${getItemId(source)}`}>
                     <a
                       target="_blank"
@@ -128,13 +116,29 @@ const ContentAndMetadata = ({ source }) => {
                       className={classNames.sourceLink}
                     >
                       <img
-                        alt=""
-                        src={external}
-                        className={classNames.externalIcon}
+                        alt="Link icon"
+                        src={link}
+                        className={classNames.linkIcon}
                       />
                       <span className={classNames.linkText}>DPLA record</span>
                     </a>
                   </Link>
+                </div>}
+              {source.mainEntity[0]["dct:references"] &&
+                <div className={classNames.linkWrapper}>
+                  <a
+                    href={getSourceLink(source)}
+                    className={classNames.sourceLink}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      alt="External link icon"
+                      src={external}
+                      className={classNames.externalIcon}
+                    />
+                    <span className={classNames.linkText}>Item source</span>
+                  </a>
                 </div>}
             </div>
             <div className={classNames.tipsForStudents}>
