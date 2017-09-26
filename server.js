@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
@@ -15,6 +13,11 @@ const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60 // 1hour
 });
+
+if (process.env.NODE_ENV !== "production") {
+  // require environment variables from .env file
+  require("dotenv").config();
+}
 
 app
   .prepare()
