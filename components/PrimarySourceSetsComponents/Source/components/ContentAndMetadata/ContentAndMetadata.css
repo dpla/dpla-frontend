@@ -28,7 +28,10 @@
 
 .description {
   font-size: 1rem;
-  line-height: 1.1875rem;
+  line-height: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E7E7E7;
 }
 
 .description p {
@@ -120,14 +123,14 @@
 
 .tipsForStudents {
   padding: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.04);
-  background-color: visualBrown;
+  border: 1px solid #E7E7E7;
   font-size: 0.875rem;
   line-height: 1.125rem;
 }
 
 .tipsForStudentsHeader {
   text-transform: uppercase;
+  font-family: "Lora";
   font-size: 1rem;
   line-height: 1.25rem;
   margin-bottom: 9px;
