@@ -239,6 +239,17 @@ app
       })
     );
 
+    // wrapper for DPLA thumbnails
+    server.get(
+      "/api/assets/:id",
+      proxy({
+        target: process.env.THUMB_SERVER,
+        changeOrigin: true,
+        logLevel: "error",
+        pathRewrite: { "^/api/assets": "" }
+      })
+    );
+
     // handle all other requests
 
     server.get("*", (req, res) => {
