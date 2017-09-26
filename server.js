@@ -1,12 +1,14 @@
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
-const proxy = require("http-proxy-middleware");
+const proxy = require("express-http-proxy");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const replaceWithProxyEndpoint = endpoint =>
+  endpoint.replace("omeka.internal.dp.la", "localhost:3000/api");
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({
@@ -196,55 +198,57 @@ app
 
     server.get(
       "/api/exhibitions/",
-      proxy({
-        target: process.env.OMEKA_URL,
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: { "^/api/exhibitions": "/api/exhibits" }
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibitions", "api/exhibits");
+        }
       })
     );
     server.get(
       "/api/exhibition_pages",
-      proxy({
-        target: process.env.OMEKA_URL,
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
-      })
-    );
-    server.get(
-      "/api/files/",
-      proxy({
-        target: process.env.OMEKA_URL,
-        changeOrigin: true,
-        logLevel: "error"
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibition_pages", "api/exhibit_pages");
+        }
       })
     );
 
-    // wrapper for DPLA API
-    // server.get(
-    //   ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
-    //   proxy({
-    //     target: process.env.API_URL,
-    //     changeOrigin: true,
-    //     logLevel: "error",
-    //     pathRewrite: function(path, req) {
-    //       var separator = path.indexOf("?") == -1 ? "?" : "&";
-    //       var newPath = path.replace(
-    //         /^\/api\/dpla(.*)$/,
-    //         "$1" + separator + "api_key=" + process.env.API_KEY
-    //       );
-    //       return newPath;
-    //     }
-    //   })
-    // );
+    server.get(
+      "/api/files/",
+      proxy(process.env.OMEKA_URL, {
+        userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
+          const data = JSON.parse(proxyResData.toString("utf8"));
+          const file_urls = data[0].file_urls;
+          Object.keys(file_urls).forEach(key => {
+            file_urls[key] = replaceWithProxyEndpoint(file_urls[key]);
+          });
+          return JSON.stringify(data);
+        }
+      })
+    );
+
+    server.get(
+      [
+        "/api/files/square_thumbnails/*",
+        "/api/files/thumbnails/*",
+        "/api/files/original/*",
+        "/api/files/fullsize/*"
+      ],
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/files", "/files");
+        }
+      })
+    );
+
+    server.get("/api/items/*", proxy(process.env.OMEKA_URL));
 
     server.get(
       ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
       proxy(process.env.API_URL, {
         proxyReqPathResolver: function(req) {
-          var separator = path.indexOf("?") == -1 ? "?" : "&";
-          var newPath = path.replace(
+          var separator = req.url.indexOf("?") == -1 ? "?" : "&";
+          var newPath = req.url.replace(
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
           );
@@ -253,14 +257,12 @@ app
       })
     );
 
-    // wrapper for DPLA thumbnails
     server.get(
-      "/api/assets/:id",
-      proxy({
-        target: process.env.THUMB_SERVER,
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: { "^/api/assets": "" }
+      "/api/assets/*",
+      proxy(process.env.THUMB_SERVER, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/assets", "/thumb");
+        }
       })
     );
 
