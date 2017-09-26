@@ -222,13 +222,27 @@ app
     );
 
     // wrapper for DPLA API
+    // server.get(
+    //   ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
+    //   proxy({
+    //     target: process.env.API_URL,
+    //     changeOrigin: true,
+    //     logLevel: "error",
+    //     pathRewrite: function(path, req) {
+    //       var separator = path.indexOf("?") == -1 ? "?" : "&";
+    //       var newPath = path.replace(
+    //         /^\/api\/dpla(.*)$/,
+    //         "$1" + separator + "api_key=" + process.env.API_KEY
+    //       );
+    //       return newPath;
+    //     }
+    //   })
+    // );
+
     server.get(
       ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
-      proxy({
-        target: process.env.API_URL,
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: function(path, req) {
+      proxy(process.env.API_URL, {
+        proxyReqPathResolver: function(req) {
           var separator = path.indexOf("?") == -1 ? "?" : "&";
           var newPath = path.replace(
             /^\/api\/dpla(.*)$/,
