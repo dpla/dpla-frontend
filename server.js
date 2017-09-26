@@ -1,12 +1,14 @@
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
-const proxy = require("http-proxy-middleware");
+const proxy = require("express-http-proxy");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const replaceWithProxyEndpoint = endpoint =>
+  endpoint.replace("omeka.internal.dp.la", "localhost:3000/api");
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({
@@ -191,40 +193,50 @@ app
 
     server.get(
       "/api/exhibitions/",
-      proxy({
-        target: "http://omeka.internal.dp.la",
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: { "^/api/exhibitions": "/api/exhibits" }
+      proxy("http://omeka.internal.dp.la", {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibitions", "api/exhibits");
+        }
       })
     );
     server.get(
       "/api/exhibition_pages",
-      proxy({
-        target: "http://omeka.internal.dp.la",
-        changeOrigin: true,
-        logLevel: "error",
-        pathRewrite: { "^/api/exhibition_pages": "/api/exhibit_pages" }
+      proxy("http://omeka.internal.dp.la", {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibition_pages", "api/exhibit_pages");
+        }
       })
     );
 
     server.get(
       "/api/files/",
-      proxy({
-        target: "http://omeka.internal.dp.la",
-        changeOrigin: true,
-        logLevel: "error"
+      proxy("http://omeka.internal.dp.la", {
+        userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
+          const data = JSON.parse(proxyResData.toString("utf8"));
+          const file_urls = data[0].file_urls;
+          Object.keys(file_urls).forEach(key => {
+            file_urls[key] = replaceWithProxyEndpoint(file_urls[key]);
+          });
+          return JSON.stringify(data);
+        }
       })
     );
 
     server.get(
-      "/api/items/*",
-      proxy({
-        target: "http://omeka.internal.dp.la",
-        changeOrigin: true,
-        logLevel: "error"
+      [
+        "/api/files/square_thumbnails/*",
+        "/api/files/thumbnails/*",
+        "/api/files/original/*",
+        "/api/files/fullsize/*"
+      ],
+      proxy("http://omeka.internal.dp.la", {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/files", "/files");
+        }
       })
     );
+
+    server.get("/api/items/*", proxy("http://omeka.internal.dp.la"));
 
     // handle all other requests
 
