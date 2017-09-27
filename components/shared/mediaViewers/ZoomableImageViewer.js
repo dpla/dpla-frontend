@@ -26,7 +26,9 @@ export default class ZoomableImageViewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.pathToFile !== this.props.pathToFile) {
-      this.viewer.open(nextProps.pathToFile);
+      this.viewer.open(
+        "http://omeka.internal.dp.la/files/fullsize/1e656ab5e02524bf3e7df72509064d46.jpg"
+      );
     }
   }
 
