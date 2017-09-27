@@ -14,7 +14,9 @@ import {
   classNames,
   stylesheet
 } from "components/SearchComponents/SearchComponents.css";
-import { API_KEY, DEFAULT_PAGE_SIZE } from "constants/search";
+import { DEFAULT_PAGE_SIZE } from "constants/search";
+import { API_ENDPOINT } from "constants/items";
+import { getCurrentUrl } from "utilFunctions";
 
 const Search = ({ url, results }) =>
   <MainLayout route={url}>
@@ -42,9 +44,10 @@ const Search = ({ url, results }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-Search.getInitialProps = async ({ query }) => {
+Search.getInitialProps = async ({ query, req }) => {
   // TODO: clean this up
 
+  const currentUrl = getCurrentUrl(req);
   const q = query.q || "";
   const page_size = query.page_size || DEFAULT_PAGE_SIZE;
   const page = query.page || 1;
@@ -69,7 +72,7 @@ Search.getInitialProps = async ({ query }) => {
     .join("&");
 
   const res = await fetch(
-    `https://api.dp.la/v2/items?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&api_key=${API_KEY}&facets=${possibleFacets.join(
+    `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
       ","
     )}&${facetQueries}`
   );
