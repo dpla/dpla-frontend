@@ -83,9 +83,8 @@
 }
 
 .item {
-  display: flex;
+  display: block;
   position: relative;
-  flex-direction: column;
   padding-right: .5rem;
 
   &:last-child {
