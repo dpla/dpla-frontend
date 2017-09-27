@@ -104,11 +104,21 @@
   }
 }
 
-.itemImg {
+.itemImgWrapper {
+  overflow: hidden;
   border-radius: 3px;
-  width: 100%;
-  /* 243 / 334 ratio*/
+}
+
+.itemImg {
+  /*
+    This small scale improves the visual appearance of these slider items
+    by truncating border artifacts around the edges of the cover images.
+   */
+  transform: scale(1.15);
   padding-top: 72.75%;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .arrow {

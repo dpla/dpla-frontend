@@ -78,15 +78,16 @@ const HomePageSlider = ({
           <div>
             <Link prefetch href={href} as={as}>
               <a className={classNames.item} key={index}>
-                <div
-                  className={classNames.itemImg}
-                  style={{
-                    backgroundImage: `url(${thumbnailUrl})`,
-                    backgroundSize: "cover"
-                  }}
-                />
-                {isFeatured &&
-                  <div className={classNames.featuredTag}>Featured</div>}
+                <div className={classNames.itemImgWrapper}>
+                  <div
+                    className={classNames.itemImg}
+                    style={{
+                      backgroundImage: `url(${thumbnailUrl})`
+                    }}
+                  />
+                  {isFeatured &&
+                    <div className={classNames.featuredTag}>Featured</div>}
+                </div>
                 <div
                   dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
                   className={classNames.itemText}
