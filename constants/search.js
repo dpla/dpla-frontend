@@ -28,6 +28,4 @@ export const mapURLPrettifiedFacetsToUgly = {
 export const splitAndURIEncodeFacet = facet =>
   facet.split("|").map(param => encodeURIComponent(param)).join("+AND+");
 
-export const API_KEY = "fb4132db4a42b89f14effa41bf280672";
-
 export const DEFAULT_PAGE_SIZE = "20";
