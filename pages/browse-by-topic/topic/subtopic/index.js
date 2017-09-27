@@ -9,7 +9,7 @@ import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/Brea
 import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "../../../../components/MainLayout";
 import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
-import { decodeHTMLEntities, extractItemId } from "utilFunctions";
+import { decodeHTMLEntities, extractItemId, getCurrentUrl } from "utilFunctions";
 import { API_KEY } from "constants/search";
 import {
   API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
@@ -70,7 +70,8 @@ const SubtopicItemsList = ({
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-SubtopicItemsList.getInitialProps = async ({ query }) => {
+SubtopicItemsList.getInitialProps = async ({ query, req }) => {
+  const currentUrl = getCurrentUrl(req);
   const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   const topicsJson = await topicsRes.json();
   const currentSubtopic = topicsJson.find(
@@ -99,7 +100,7 @@ SubtopicItemsList.getInitialProps = async ({ query }) => {
     itemsJson.map(async item => {
       const itemDplaId = extractItemId(item.acf.dpla_url);
       const itemRes = await fetch(
-        `${DPLA_ITEM_ENDPOINT}/${itemDplaId}?api_key=${API_KEY}`
+        `${currentUrl}${DPLA_ITEM_ENDPOINT}/${itemDplaId}`
       );
       const itemJson = await itemRes.json();
 

@@ -244,7 +244,12 @@ app
     server.get("/api/items/*", proxy(process.env.OMEKA_URL));
 
     server.get(
-      ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
+      [
+        "/api/dpla/items",
+        "/api/dpla/items*",
+        "/api/dpla/items",
+        "/api/dpla/items/*"
+      ],
       proxy(process.env.API_URL, {
         proxyReqPathResolver: function(req) {
           var separator = req.url.indexOf("?") === -1 ? "?" : "&";
@@ -252,6 +257,7 @@ app
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
           );
+          console.log(newPath);
           return newPath;
         }
       })
