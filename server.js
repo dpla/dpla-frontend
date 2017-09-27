@@ -7,10 +7,10 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const replaceWithProxyEndpoint = endpoint =>
+const replaceWithProxyEndpoint = (endpoint, req) =>
   endpoint.replace(
     process.env.OMEKA_URL.substr(process.env.OMEKA_URL.indexOf("://") + 3),
-    "localhost:3000/api"
+    `${req.get("host")}/api`
   );
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
@@ -223,7 +223,7 @@ app
           const data = JSON.parse(proxyResData.toString("utf8"));
           const file_urls = data[0].file_urls;
           Object.keys(file_urls).forEach(key => {
-            file_urls[key] = replaceWithProxyEndpoint(file_urls[key]);
+            file_urls[key] = replaceWithProxyEndpoint(file_urls[key], userReq);
           });
           return JSON.stringify(data);
         }
@@ -250,7 +250,7 @@ app
       ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
       proxy(process.env.API_URL, {
         proxyReqPathResolver: function(req) {
-          var separator = req.url.indexOf("?") == -1 ? "?" : "&";
+          var separator = req.url.indexOf("?") === -1 ? "?" : "&";
           var newPath = req.url.replace(
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
