@@ -117,6 +117,7 @@
   transform: scale(1.15);
   padding-top: 72.75%;
   background-size: cover;
+  background-position: center;
   height: 100%;
   width: 100%;
 }
