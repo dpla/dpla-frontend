@@ -7,6 +7,7 @@ import {
   getPreviousQueryParams,
   getNextQueryParams
 } from "utilFunctions/exhibitions/getInitialProps";
+import { getCurrentUrl } from "utilFunctions";
 
 import {
   EXHIBITS_ENDPOINT,
@@ -38,14 +39,16 @@ const Subsection = ({
   </div>;
 
 // TODO: refactor this so it isn't so long
-Subsection.getInitialProps = async ({ query }) => {
-  const exhibitsRes = await fetch(EXHIBITS_ENDPOINT);
+Subsection.getInitialProps = async ({ query, req }) => {
+  const currentUrl = getCurrentUrl(req);
+
+  const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
   const exhibitsJson = await exhibitsRes.json();
   const exhibition = exhibitsJson.find(
     exhibit => exhibit.slug === query.exhibition
   );
   const exhibitPageRes = await fetch(
-    `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
+    `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
   );
   const exhibitPageJson = await exhibitPageRes.json();
 
@@ -115,12 +118,14 @@ Subsection.getInitialProps = async ({ query }) => {
       )
       .map(async (block, i) => {
         const itemId = block.attachments[0].item.id;
-        const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
+        const filesRes = await fetch(
+          `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+        );
         const filesJson = await filesRes.json();
         const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
         const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
         const originalUrl = filesJson[0].file_urls.original;
-        const itemRes = await fetch(`${ITEMS_ENDPOINT}/${itemId}`);
+        const itemRes = await fetch(`${currentUrl}${ITEMS_ENDPOINT}/${itemId}`);
         const itemJson = await itemRes.json();
         const fileType = itemJson.item_type && itemJson.item_type.name;
 

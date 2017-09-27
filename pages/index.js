@@ -7,7 +7,7 @@ import HomePageSlider from "../components/HomePageComponents/HomePageSlider";
 import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
 // import SocialMedia from "../components/HomePageComponents/SocialMedia";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
-import extractSourceSetSlug from "utilFunctions/extractSourceSetSlug";
+import { getCurrentUrl, extractSourceSetSlug } from "utilFunctions";
 import { NUM_HOMEPAGE_EXHIBITIONS } from "constants/home";
 import {
   EXHIBITS_ENDPOINT,
@@ -38,12 +38,12 @@ const Home = ({ sourceSets, exhibitions, guides }) =>
     {/* <SocialMedia /> */}
   </MainLayout>;
 
-Home.getInitialProps = async () => {
+Home.getInitialProps = async ({ req }) => {
   const pssRes = await fetch(`https://dp.la/primary-source-sets/sets.json`);
 
   const pssJson = await pssRes.json();
-
-  const exhibitsRes = await fetch(EXHIBITS_ENDPOINT);
+  const currentUrl = getCurrentUrl(req);
+  const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
 
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
@@ -52,7 +52,7 @@ Home.getInitialProps = async () => {
       .slice(0, NUM_HOMEPAGE_EXHIBITIONS)
       .map(async exhibit => {
         const exhibitPageRes = await fetch(
-          `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
+          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
         );
         const exhibitJson = await exhibitPageRes.json();
 
@@ -62,7 +62,9 @@ Home.getInitialProps = async () => {
             exhibit.slug === "homepage" ||
             exhibit.order === 0
         ).page_blocks[0].attachments[0].item.id;
-        const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
+        const filesRes = await fetch(
+          `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+        );
         const filesJson = await filesRes.json();
 
         const thumbnailUrl = filesJson[0].file_urls.fullsize;

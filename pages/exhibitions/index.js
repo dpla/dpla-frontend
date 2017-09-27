@@ -4,6 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "../../components/MainLayout";
 import AllExhibitions from "../../components/ExhibitionsComponents/AllExhibitions";
 import Footer from "../../components/ExhibitionsComponents/Footer";
+import { getCurrentUrl } from "utilFunctions";
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
@@ -16,15 +17,15 @@ const Exhibitions = ({ url, exhibitions }) =>
     <Footer />
   </MainLayout>;
 
-Exhibitions.getInitialProps = async () => {
+Exhibitions.getInitialProps = async ({ req }) => {
   const exhibitsRes = await fetch(EXHIBITS_ENDPOINT);
-
+  const currentUrl = getCurrentUrl(req);
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
     exhibitsJson
       .map(async exhibit => {
         const exhibitPageRes = await fetch(
-          `${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
+          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
         );
         const exhibitJson = await exhibitPageRes.json();
 
@@ -34,7 +35,9 @@ Exhibitions.getInitialProps = async () => {
             exhibit.slug === "homepage" ||
             exhibit.order === 0
         ).page_blocks[0].attachments[0].item.id;
-        const filesRes = await fetch(`${FILES_ENDPOINT}?item=${itemId}`);
+        const filesRes = await fetch(
+          `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+        );
         const filesJson = await filesRes.json();
 
         const thumbnailUrl = filesJson[0].file_urls.fullsize;

@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
