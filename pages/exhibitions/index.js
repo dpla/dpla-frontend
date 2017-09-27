@@ -18,8 +18,8 @@ const Exhibitions = ({ url, exhibitions }) =>
   </MainLayout>;
 
 Exhibitions.getInitialProps = async ({ req }) => {
-  const exhibitsRes = await fetch(EXHIBITS_ENDPOINT);
   const currentUrl = getCurrentUrl(req);
+  const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
     exhibitsJson
