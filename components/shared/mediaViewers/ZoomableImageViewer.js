@@ -29,7 +29,8 @@ export default class ZoomableImageViewer extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.pathToFile !== this.props.pathToFile) {
       // this is the only way that seems to work; this.viewer.destroy and
-      // this.viewer.open break things
+      // this.viewer.open break things, seemingly because of our API proxying
+      // and server-side rendering
       const { parentNode } = this.ref;
       parentNode.removeChild(this.ref);
       const newDiv = document.createElement("div");
