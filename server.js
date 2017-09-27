@@ -8,7 +8,10 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const replaceWithProxyEndpoint = endpoint =>
-  endpoint.replace("omeka.internal.dp.la", "localhost:3000/api");
+  endpoint.replace(
+    process.env.OMEKA_URL.substr(process.env.OMEKA_URL.indexOf("://") + 3),
+    "localhost:3000/api"
+  );
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({
