@@ -7,8 +7,17 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const replaceWithProxyEndpoint = (endpoint, req) =>
-  endpoint.replace(process.env.OMEKA_URL, `https://${req.get("host")}/api`);
+const replaceWithProxyEndpoint = (endpoint, req) => {
+  if (endpoint) {
+    const protocol = req.host.includes("localhost") ? "http" : "https";
+    return endpoint.replace(
+      process.env.OMEKA_URL,
+      `${protocol}://${req.get("host")}/api`
+    );
+  } else {
+    return null;
+  }
+};
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({
@@ -244,7 +253,12 @@ app
     server.get("/api/items/*", proxy(process.env.OMEKA_URL));
 
     server.get(
-      ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
+      [
+        "/api/dpla/items",
+        "/api/dpla/items*",
+        "/api/dpla/items",
+        "/api/dpla/items/*"
+      ],
       proxy(process.env.API_URL, {
         proxyReqPathResolver: function(req) {
           var separator = req.url.indexOf("?") === -1 ? "?" : "&";
@@ -252,6 +266,7 @@ app
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
           );
+
           return newPath;
         }
       })
