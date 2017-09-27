@@ -7,8 +7,17 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const replaceWithProxyEndpoint = (endpoint, req) =>
-  endpoint.replace(process.env.OMEKA_URL, `https://${req.get("host")}/api`);
+const replaceWithProxyEndpoint = (endpoint, req) => {
+  if (endpoint) {
+    const protocol = req.host.includes("localhost") ? "http" : "https";
+    return endpoint.replace(
+      process.env.OMEKA_URL,
+      `${protocol}://${req.get("host")}/api`
+    );
+  } else {
+    return null;
+  }
+};
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({

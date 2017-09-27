@@ -9,8 +9,12 @@ import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/Brea
 import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "../../../../components/MainLayout";
 import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
-import { decodeHTMLEntities, extractItemId, getCurrentUrl } from "utilFunctions";
-import { API_KEY } from "constants/search";
+import {
+  decodeHTMLEntities,
+  extractItemId,
+  getCurrentUrl
+} from "utilFunctions";
+
 import {
   API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
