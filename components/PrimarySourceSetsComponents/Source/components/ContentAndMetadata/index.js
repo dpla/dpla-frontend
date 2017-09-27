@@ -83,7 +83,7 @@ const ContentAndMetadata = ({ source }) => {
           <div className={classNames.metadata}>
             <div className={classNames.sourceInfo}>
               {/* TODO: hook these up */}
-              <button className={classNames.button}>Cite this item</button>
+              <button className={classNames.button}>Cite this source</button>
               <a href={fullContentUrl} download className={classNames.button}>
                 Download
               </a>
@@ -120,7 +120,7 @@ const ContentAndMetadata = ({ source }) => {
                         src={link}
                         className={classNames.linkIcon}
                       />
-                      <span className={classNames.linkText}>DPLA record</span>
+                      <span className={classNames.linkText}>View in DPLA</span>
                     </a>
                   </Link>
                 </div>}
