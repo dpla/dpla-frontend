@@ -266,7 +266,7 @@ app
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
           );
-          console.log(newPath);
+
           return newPath;
         }
       })
