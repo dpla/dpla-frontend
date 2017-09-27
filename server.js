@@ -250,7 +250,7 @@ app
       ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
       proxy(process.env.API_URL, {
         proxyReqPathResolver: function(req) {
-          var separator = req.url.indexOf("?") == -1 ? "?" : "&";
+          var separator = req.url.indexOf("?") === -1 ? "?" : "&";
           var newPath = req.url.replace(
             /^\/api\/dpla(.*)$/,
             "$1" + separator + "api_key=" + process.env.API_KEY
