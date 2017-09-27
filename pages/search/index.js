@@ -45,8 +45,6 @@ const Search = ({ url, results }) =>
   </MainLayout>;
 
 Search.getInitialProps = async ({ query, req }) => {
-  // TODO: clean this up
-
   const currentUrl = getCurrentUrl(req);
   const q = query.q || "";
   const page_size = query.page_size || DEFAULT_PAGE_SIZE;
