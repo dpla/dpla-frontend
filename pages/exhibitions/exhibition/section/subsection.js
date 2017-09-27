@@ -11,7 +11,8 @@ import {
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
-  FILES_ENDPOINT
+  FILES_ENDPOINT,
+  ITEMS_ENDPOINT
 } from "constants/exhibitions";
 
 const Subsection = ({
@@ -119,7 +120,7 @@ Subsection.getInitialProps = async ({ query }) => {
         const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
         const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
         const originalUrl = filesJson[0].file_urls.original;
-        const itemRes = await fetch(block.attachments[0].item.url);
+        const itemRes = await fetch(`${ITEMS_ENDPOINT}/${itemId}`);
         const itemJson = await itemRes.json();
         const fileType = itemJson.item_type && itemJson.item_type.name;
 

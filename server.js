@@ -1,11 +1,17 @@
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
+const proxy = require("express-http-proxy");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const replaceWithProxyEndpoint = endpoint =>
+  endpoint.replace(
+    process.env.OMEKA_URL.substr(process.env.OMEKA_URL.indexOf("://") + 3),
+    "localhost:3000/api"
+  );
 const mergeQueryAndParams = (query, params) => Object.assign({}, query, params);
 
 const ssrCache = new LRUCache({
@@ -13,10 +19,17 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60 // 1hour
 });
 
+if (process.env.NODE_ENV !== "production") {
+  // require environment variables from .env file
+  require("dotenv").config();
+}
+
 app
   .prepare()
   .then(() => {
     const server = express();
+
+    // browse by topic routes
 
     server.get("/browse-by-topic/:topic", (req, res) => {
       const actualPage = "/browse-by-topic/topic";
@@ -32,6 +45,8 @@ app
 
       renderAndCache(req, res, actualPage, params);
     });
+
+    // primary source sets routes
 
     server.get("/primary-source-sets", (req, res) => {
       app.render(req, res, "/primary-source-sets", req.query);
@@ -93,6 +108,8 @@ app
       );
     });
 
+    // exhibitions routes
+
     server.get("/exhibitions/:exhibition", (req, res) => {
       const actualPage = "/exhibitions/exhibition";
       const params = {
@@ -105,6 +122,7 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
     server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
       const actualPage = "/exhibitions/exhibition/section/subsection";
       const params = {
@@ -136,6 +154,8 @@ app
       );
     });
 
+    // search routes
+
     server.get("/search", (req, res) => {
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
@@ -146,6 +166,8 @@ app
 
       renderAndCache(req, res, actualPage, req.query);
     });
+
+    // item routes
 
     server.get("/item/:itemId", (req, res) => {
       const actualPage = "/item/";
@@ -160,6 +182,8 @@ app
       );
     });
 
+    // guides routes
+
     server.get("/guides/:guide", (req, res) => {
       const actualPage = "/guides/guide";
       const params = {
@@ -172,6 +196,80 @@ app
         mergeQueryAndParams(params, req.query)
       );
     });
+
+    // API proxy routes
+
+    server.get(
+      "/api/exhibitions/",
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibitions", "api/exhibits");
+        }
+      })
+    );
+    server.get(
+      "/api/exhibition_pages",
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("api/exhibition_pages", "api/exhibit_pages");
+        }
+      })
+    );
+
+    server.get(
+      "/api/files/",
+      proxy(process.env.OMEKA_URL, {
+        userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
+          const data = JSON.parse(proxyResData.toString("utf8"));
+          const file_urls = data[0].file_urls;
+          Object.keys(file_urls).forEach(key => {
+            file_urls[key] = replaceWithProxyEndpoint(file_urls[key]);
+          });
+          return JSON.stringify(data);
+        }
+      })
+    );
+
+    server.get(
+      [
+        "/api/files/square_thumbnails/*",
+        "/api/files/thumbnails/*",
+        "/api/files/original/*",
+        "/api/files/fullsize/*"
+      ],
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/files", "/files");
+        }
+      })
+    );
+
+    server.get("/api/items/*", proxy(process.env.OMEKA_URL));
+
+    server.get(
+      ["/api/dpla", "/api/dpla*", "/api/dpla/", "/api/dpla/*"],
+      proxy(process.env.API_URL, {
+        proxyReqPathResolver: function(req) {
+          var separator = req.url.indexOf("?") == -1 ? "?" : "&";
+          var newPath = req.url.replace(
+            /^\/api\/dpla(.*)$/,
+            "$1" + separator + "api_key=" + process.env.API_KEY
+          );
+          return newPath;
+        }
+      })
+    );
+
+    server.get(
+      "/api/assets/*",
+      proxy(process.env.THUMB_SERVER, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/assets", "/thumb");
+        }
+      })
+    );
+
+    // handle all other requests
 
     server.get("*", (req, res) => {
       return handle(req, res);
