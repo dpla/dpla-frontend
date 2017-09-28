@@ -70,8 +70,9 @@ Search.getInitialProps = async ({ query, req }) => {
 
   const json = await res.json();
   const docs = json.docs.map(result => {
-    const thumbnailUrl = result.object ?
-      `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}` : getDefaultThumbnail(result.sourceResource.type)
+    const thumbnailUrl = result.object
+      ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+      : getDefaultThumbnail(result.sourceResource.type);
     return Object.assign({}, result.sourceResource, {
       thumbnailUrl,
       sourceUrl: result.isShownAt,
