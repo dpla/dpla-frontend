@@ -106,6 +106,9 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
       const itemRes = await fetch(
         `${currentUrl}${DPLA_ITEM_ENDPOINT}/${itemDplaId}`
       );
+      if (!itemRes.ok) {
+        return null;
+      }
       const itemJson = await itemRes.json();
 
       return Object.assign({}, item, {
@@ -122,12 +125,14 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
     })
   );
 
+  const filteredItems = items.filter(item => item);
+
   return {
     topic: currentTopic,
     subtopic: Object.assign({}, currentSubtopic, {
       thumbnailUrl: currentSubtopic.acf.category_image
     }),
-    items,
+    items: filteredItems,
     previousSubtopic: subtopics[previousSubtopicIdx],
     nextSubtopic: subtopics[nextSubtopicIdx]
   };
