@@ -5,7 +5,8 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
-import { API_KEY } from "constants/search";
+import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import { getCurrentUrl } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames,
@@ -39,15 +40,15 @@ const ItemDetail = ({ url, item }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
-ItemDetail.getInitialProps = async ({ query }) => {
-  const res = await fetch(
-    `https://api.dp.la/v2/items/${query.itemId}?api_key=${API_KEY}`
-  );
+ItemDetail.getInitialProps = async ({ query, req }) => {
+  const currentUrl = getCurrentUrl(req);
+  const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
   const json = await res.json();
+  const thumbnailUrl = `${currentUrl}${THUMBNAIL_ENDPOINT}/${json.docs[0].id}`;
 
   return {
     item: Object.assign({}, json.docs[0].sourceResource, {
-      thumbnailUrl: json.docs[0].object,
+      thumbnailUrl,
       contributor: json.docs[0].dataProvider,
       partner: json.docs[0].provider.name,
       sourceUrl: json.docs[0].isShownAt
