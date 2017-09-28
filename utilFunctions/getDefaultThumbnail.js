@@ -5,7 +5,7 @@ const videoIcon = "static/placeholderImages/Video.svg";
 const textIcon = "static/placeholderImages/Text.svg";
 
 const getDefaultThumbnail = type => {
-  if (type === resourceTypes.TYPE) {
+  if (type === resourceTypes.TEXT) {
     return textIcon;
   } else if (type === resourceTypes.SOUND) {
     return soundIcon;

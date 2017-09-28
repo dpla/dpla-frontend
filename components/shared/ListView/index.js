@@ -23,12 +23,6 @@ const ListView = ({ items, route }) =>
                 src={item.thumbnailUrl}
                 alt=""
                 className={classNames.image}
-                onError={e => {
-                  e.target.onerror = "";
-                  e.target.src = null;
-                  e.target.src = getDefaultThumbnail(item.type);
-                  e.target.parentElement.classList.add(classNames.defaultImageWrapper);
-                }}
               />
             </div>
           </a>
