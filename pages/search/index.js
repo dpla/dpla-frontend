@@ -16,7 +16,7 @@ import {
 } from "components/SearchComponents/SearchComponents.css";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl, getDefaultThumbnail } from "utilFunctions";
 
 const Search = ({ url, results }) =>
   <MainLayout route={url}>
@@ -70,10 +70,12 @@ Search.getInitialProps = async ({ query, req }) => {
 
   const json = await res.json();
   const docs = json.docs.map(result => {
-    const thumbnailUrl = `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`;
+    const thumbnailUrl = result.object ?
+      `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}` : getDefaultThumbnail(result.sourceResource.type)
     return Object.assign({}, result.sourceResource, {
       thumbnailUrl,
-      sourceUrl: result.isShownAt
+      sourceUrl: result.isShownAt,
+      useDefaultImage: !result.object
     });
   });
   return { results: Object.assign({}, json, { docs }) };

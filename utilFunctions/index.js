@@ -6,6 +6,7 @@ import joinIfArray from "./joinIfArray";
 import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
+import getDefaultThumbnail from "./getDefaultThumbnail";
 
 export {
   addCommasToNumber,
@@ -15,5 +16,6 @@ export {
   joinIfArray,
   removeQueryParams,
   decodeHTMLEntities,
-  getCurrentUrl
+  getCurrentUrl,
+  getDefaultThumbnail
 };
