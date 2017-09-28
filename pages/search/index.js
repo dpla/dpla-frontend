@@ -15,7 +15,7 @@ import {
   stylesheet
 } from "components/SearchComponents/SearchComponents.css";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
-import { API_ENDPOINT } from "constants/items";
+import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl } from "utilFunctions";
 
 const Search = ({ url, results }) =>
@@ -31,14 +31,7 @@ const Search = ({ url, results }) =>
         }}
         route={url}
         facets={results.facets}
-        results={results.docs.map(doc =>
-          Object.assign({}, doc.sourceResource, {
-            thumbnailUrl: Array.isArray(doc.object)
-              ? doc.object[0]
-              : doc.object,
-            sourceUrl: doc.isShownAt
-          })
-        )}
+        results={results.docs}
       />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
@@ -76,6 +69,13 @@ Search.getInitialProps = async ({ query, req }) => {
   );
 
   const json = await res.json();
-  return { results: json };
+  const docs = json.docs.map(result => {
+    const thumbnailUrl = `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`;
+    return Object.assign({}, result.sourceResource, {
+      thumbnailUrl,
+      sourceUrl: result.isShownAt
+    });
+  });
+  return { results: Object.assign({}, json, { docs }) };
 };
 export default Search;
