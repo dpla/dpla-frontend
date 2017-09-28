@@ -90,17 +90,21 @@
   &:last-child {
     margin-right: 0;
   }
-}
 
-.itemText {
-  color: black;
-  opacity: 0.75;
-  font-size: 1rem;
-  margin-top: .5rem;
+  & .itemImgWrapper {
+    transition: box-shadow .25s ease-in-out;
+  }
 
-  @media (min-width: largeRem) {
-    font-size: 1.25rem;
-    margin-top: 1rem;
+  & .itemImg {
+    transition: transform .25s ease-in-out;
+  }
+
+  &:hover .itemImgWrapper {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  &:hover .itemImg {
+    transform: scale(1.18);
   }
 }
 
@@ -120,6 +124,18 @@
   background-position: center;
   height: 100%;
   width: 100%;
+}
+
+.itemText {
+  color: black;
+  opacity: 0.75;
+  font-size: 1rem;
+  margin-top: .5rem;
+
+  @media (min-width: largeRem) {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
 }
 
 .arrow {
