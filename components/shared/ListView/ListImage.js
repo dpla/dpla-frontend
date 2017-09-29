@@ -20,13 +20,12 @@ class ListImage extends React.Component {
   render() {
     const { title, type, url, useDefaultImage } = this.props;
     const { updateToDefaultImage } = this.state;
+    const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
 
     return (
       <div
         className={`${classNames.imageWrapper}
-          ${updateToDefaultImage || useDefaultImage
-            ? classNames.defaultImageWrapper
-            : ""}`}
+          ${useDefaultWrapper && classNames.defaultImageWrapper}`}
       >
         <img
           src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
