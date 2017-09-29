@@ -88,7 +88,7 @@
   }
 
   & .itemImg {
-    transition: transform .15s ease-in-out;
+    transition: transform .25s ease-in-out;
     backface-visibility: hidden;
   }
 
@@ -97,7 +97,7 @@
   }
 
   &:hover .itemImg {
-    transition: transform .25s ease-in-out;
+    transition: transform .35s ease-in-out;
     transform: scale(1.18);
   }
 
