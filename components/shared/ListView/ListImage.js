@@ -1,6 +1,6 @@
 import React from "react";
 
-import { classNames, stylesheet } from "./ListView.css";
+import { classNames } from "./ListView.css";
 import { getDefaultThumbnail } from "utilFunctions";
 
 class ListImage extends React.Component {
@@ -9,6 +9,7 @@ class ListImage extends React.Component {
   };
 
   componentDidMount() {
+    // Check for images that error so we can replace them with a default image
     const _img = document.createElement("img");
     _img.src = this.props.url;
     _img.onerror = () => {
