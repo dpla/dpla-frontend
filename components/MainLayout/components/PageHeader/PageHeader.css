@@ -38,6 +38,14 @@
   padding-left: 1rem;
   flex-grow: 1;
   height: 100%;
+
+  /* Remove browser search input defaults */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
 }
 
 .searchInput::placeholder {
