@@ -1,0 +1,12 @@
+@value smallRem from "../../../css/breakpoints.css";
+
+.rule {
+  border: 2px solid;
+  width: 2.5rem;
+  margin: 1rem auto 2rem;
+
+  @media (min-width: smallRem) {
+    margin: 2rem auto 3.5rem;
+    width: 3rem;
+  }
+}

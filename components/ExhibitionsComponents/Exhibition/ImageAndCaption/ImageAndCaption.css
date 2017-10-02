@@ -34,18 +34,9 @@
 }
 
 .exhibitionTitle {
-  margin-bottom: 36px;
   font-size: 3.75rem;
   line-height: 1.1;
   font-family: "Lora";
-}
-
-.divider {
-  display: block;
-  width: 65px;
-  border-bottom: 4px solid #FFFFFF;
-  opacity: 0.75;
-  margin: 0 auto 51px;;
 }
 
 .exploreLink {

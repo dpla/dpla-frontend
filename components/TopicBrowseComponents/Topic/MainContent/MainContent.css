@@ -36,17 +36,6 @@
   opacity: 0.50;
 }
 
-.divider {
-  width: 48px;
-  height: 5px;
-  background-color: casablancaOrange;
-  margin: 1rem auto 2rem;
-
-  @media (min-width: smallRem) {
-    margin: 2rem auto 3.5rem;
-  }
-}
-
 .subtopic {
   margin-bottom: 1rem;
   position: relative;

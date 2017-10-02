@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+import HeadingRule from "components/shared/HeadingRule";
 import { classNames, stylesheet } from "./MainContent.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
@@ -11,7 +12,7 @@ const MainContent = ({ topic }) => (
       {topic.description && (
         <p className={classNames.topicDescription}>{topic.description}</p>
       )}
-      <div className={classNames.divider} />
+      <HeadingRule color="#F9BA3F"/>
       <ul className="row">
         {topic.subtopics.map(subtopic => (
           <li className={`${classNames.subtopic} col-xs-12 col-sm-6 col-md-4`}>
