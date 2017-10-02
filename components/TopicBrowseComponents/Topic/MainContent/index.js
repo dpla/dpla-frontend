@@ -12,10 +12,13 @@ const MainContent = ({ topic }) => (
       {topic.description && (
         <p className={classNames.topicDescription}>{topic.description}</p>
       )}
-      <HeadingRule color="#F9BA3F"/>
+      <HeadingRule color="#F9BA3F" />
       <ul className="row">
-        {topic.subtopics.map(subtopic => (
-          <li className={`${classNames.subtopic} col-xs-12 col-sm-6 col-md-4`}>
+        {topic.subtopics.map((subtopic, index) => (
+          <li
+            className={`${classNames.subtopic} col-xs-12 col-sm-6 col-md-4`}
+            key={`${subtopic.name}-${index}`}
+          >
             <Link
               prefetch
               as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}

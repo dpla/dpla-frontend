@@ -9,7 +9,7 @@ const Breadcrumbs = ({ breadcrumbs }) =>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
-          <span>
+          <span key={`${breadcrumb.title}-${idx}`}>
             <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
               <a
                 dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
@@ -24,6 +24,7 @@ const Breadcrumbs = ({ breadcrumbs }) =>
           <span
             className={classNames.activeBreadcrumb}
             dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
+            key={`${breadcrumb.title}-${idx}`}
           />
         );
       }
