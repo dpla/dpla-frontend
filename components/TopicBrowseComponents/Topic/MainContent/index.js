@@ -23,18 +23,19 @@ const MainContent = ({ topic }) =>
               as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
               href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
             >
-              <a>
+              <a className={classNames.subtopicAnchor}>
                 <div
                   className={classNames.imageWrapper}
-                  style={{ backgroundImage: `url(${subtopic.thumbnailUrl})` }}
                 >
-                  <div className={classNames.gradientBackground}>
-                    <div className={classNames.itemCountAndSubtopicTitle}>
-                      <h3 className={classNames.subtopicTitle}>
-                        {subtopic.name}
-                      </h3>
-                    </div>
+                  <div
+                    className={classNames.image}
+                    style={{ backgroundImage: `url(${subtopic.thumbnailUrl})` }}
+                    >
+                    <div className={classNames.gradientBackground} />
                   </div>
+                  <h3 className={classNames.subtopicTitle}>
+                    {subtopic.name}
+                  </h3>
                 </div>
                 <p className={classNames.subtopicDescription}>
                   {subtopic.description}
