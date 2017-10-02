@@ -233,9 +233,10 @@
 }
 
 .mainMedia {
-  max-height: 600px;
   margin-right: auto;
   margin-bottom: 1.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #e4e2db;
 }
 
 .caption {
