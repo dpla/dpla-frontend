@@ -3,7 +3,7 @@
 .zoomableImageViewer {
   width: 100%;
   height: 32rem;
-  background-color: #F9F8F5;
+  background-color: pampasBrown;
   cursor: pointer;
 
   & img {
