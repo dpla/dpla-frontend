@@ -1,7 +1,9 @@
-@value visualBrown, vikingBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
+@value visualBrown, vikingBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
 
 .exhibitionView {
   background-color: visualBrown;
+  min-height: 100vh;
+  padding-bottom: 7.125rem;
 }
 
 .exhibitionsLinkAndTitle {
@@ -81,8 +83,12 @@
 }
 
 .footerWrapper {
+  background-color: #e4e2db;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  bottom: 0;
+  left: 0;
+  position: fixed;
   width: 100%;
-  background-color: pampasBrown;
 }
 
 .header {
@@ -114,7 +120,7 @@
 
 .footerNav {
   display: flex;
-  padding: 15px 0;
+  padding: 0.75rem 0;
   max-width: 1200px;
 }
 
@@ -123,10 +129,11 @@
   align-items: center;
   display: flex;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .dplaLogo {
-  max-width: 300px;
+  max-width: 275px;
   opacity: 0.5;
 }
 
@@ -152,7 +159,6 @@
   font-size: 0.875rem;
   position: absolute;
   top: -1.5rem;
-  display: block;
   max-width: 158px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -160,8 +166,9 @@
 }
 
 .disabledButton {
-  background-color: rgb(88, 79, 65, 0.1);
+  background-color: rgba(0,0,0,0.1);
   color: black;
+  opacity: .5;
 }
 
 .prevButton {
