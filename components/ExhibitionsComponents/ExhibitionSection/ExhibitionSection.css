@@ -1,4 +1,4 @@
-@value visualBrown, vikingBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
+@value vikingBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
 
 .exhibitionView {
   background-color: visualBrown;
