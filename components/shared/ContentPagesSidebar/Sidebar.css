@@ -3,7 +3,7 @@
 
 .sidebar {
   background-color: pampasBrown;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
 
   @media (min-width: mediumRem) {
     background-color: transparent;
@@ -14,25 +14,36 @@
 }
 
 .sidebar ul ul {
-  margin-left: 1.25rem;
+  margin-left: 1rem;
+
+  @media (min-width: mediumRem) {
+    margin-left: 1.3rem;
+  }
 
   & .link:not(.selected) {
-    color: #6D6D6D;
+    color: rgba(0, 0, 0, 0.55);
   }
 
   & .selected::after {
-    top: 9px;
+    top: .45rem;
+
+    @media (min-width: mediumRem) {
+      top: .6rem;
+    }
   }
 
   & .link {
-    line-height: 1.05;
-    margin-bottom: 0.5rem;
+    margin-bottom: .35rem;
   }
 }
 
 .link {
-  font-size: 1.25rem;
-  line-height: 2rem;
+  font-size: 1rem;
+  margin-bottom: .55rem;
+
+  @media (min-width: mediumRem) {
+    font-size: 1.2rem;
+  }
 }
 
 .divider {
@@ -40,7 +51,11 @@
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
   width: 100%;
-  margin: 18px 0;
+  margin: .75rem 0;
+
+  @media (min-width: mediumRem) {
+    margin: 1rem 0;
+  }
 }
 
 .selected {
@@ -55,8 +70,12 @@
   position: absolute;
   height: 5px;
   width: 5px;
-  top: 14px;
+  top: .45rem;
   left: -10px;
   background-color: bambooOrange;
   border-radius: 50%;
+
+  @media (min-width: mediumRem) {
+    top: .6rem;
+  }
 }
