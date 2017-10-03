@@ -82,9 +82,9 @@ const FooterNav = ({
         />
         <div className={classNames.nextButtonAndTitleWrapper}>
           {nextSubsectionTitle &&
-            <span className={classNames.nextSubsectionTitle}>
+            <div className={classNames.nextSubsectionTitle}>
               {nextSubsectionTitle}
-            </span>}
+            </div>}
           <NavButton
             route={route}
             queryParams={nextQueryParams}

@@ -107,6 +107,15 @@
   flex-grow: 1;
   border-radius: 3px;
   line-height: 1.5;
+  appearance: none;
+
+  /* Remove browser search input defaults */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
 
   @media (min-width: mediumRem) {
     border-radius: 3px 0 0 3px;
@@ -162,6 +171,7 @@
   @media (min-width: mediumRem) {
     display: flex;
     font-size: 1.2rem;
+    padding: 0 2rem;
   }
 }
 

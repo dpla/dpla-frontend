@@ -62,31 +62,33 @@ const HomePageSlider = ({
         nextArrow={<NextArrow />}
         prevArrow={<PrevArrow />}
         draggable={false}
-        slidesToScroll={1}
+        slidesToScroll={slidesToShow ? slidesToShow : 3}
         responsive={[
           {
             breakpoint: ~~breakpoints.smallPx,
             settings: {
               slidesToShow: 1.125,
               arrows: false,
-              draggable: true
+              draggable: true,
+              slidesToScroll: 1,
             }
           }
         ]}
       >
-        {items.map(({ name, thumbnailUrl, isFeatured, href, as }, index) =>
+        {items.map(({ name, thumbnailUrl, href, as }, index) =>
           <div>
             <Link prefetch href={href} as={as}>
               <a className={classNames.item} key={index}>
-                <div
-                  className={classNames.itemImg}
-                  style={{
-                    backgroundImage: `url(${thumbnailUrl})`,
-                    backgroundSize: "cover"
-                  }}
-                />
-                {isFeatured &&
-                  <div className={classNames.featuredTag}>Featured</div>}
+                <div className={classNames.itemImgWrapper}>
+                  <div
+                    className={classNames.itemImg}
+                    style={{
+                      backgroundImage: `url(${thumbnailUrl})`
+                    }}
+                  />
+                  {index === 0 &&
+                    <div className={classNames.featuredTag}>Featured</div>}
+                </div>
                 <div
                   dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
                   className={classNames.itemText}

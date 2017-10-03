@@ -45,6 +45,7 @@ class SmallScreenHeader extends Component {
               className={classNames.searchInput}
               autoComplete="off"
               placeholder="Search the collection"
+              autoComplete="off"
               name="q"
               ref={input => {
                 this.searchInput = input;
