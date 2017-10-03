@@ -37,7 +37,7 @@ const SetsList = ({ sets, route }) =>
               <a>
                 <img
                   alt={set.name}
-                  src={set.thumbnailUrl}
+                  src={set.repImageUrl || set.thumbnailUrl}
                   className={classNames.image}
                 />
               </a>
