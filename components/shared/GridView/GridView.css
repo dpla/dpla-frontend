@@ -38,3 +38,15 @@
 .gridItem:hover .hoverText {
   display: block;
 }
+
+.imageWrapper:not(.defaultImageWrapper) {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.defaultImageWrapper {
+  background-color: visualBrown;
+
+  & img {
+    opacity: 0.35;
+  }
+}

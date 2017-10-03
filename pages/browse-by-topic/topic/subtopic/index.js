@@ -119,14 +119,14 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         linkHref: `/item?itemId=${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
-        thumbnailUrl: itemJson.docs[0].object
+        thumbnailUrl: !itemJson.docs[0].object
           ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${itemDplaId}`
           : getDefaultThumbnail(itemJson.docs[0].sourceResource.type),
         sourceUrl: itemJson.docs[0].isShownAt,
         date: itemJson.docs[0].sourceResource.date,
         creator: itemJson.docs[0].sourceResource.creator,
         description: itemJson.docs[0].sourceResource.description,
-        useDefaultImage: !itemJson.docs[0].object
+        useDefaultImage: itemJson.docs[0].object
       });
     })
   );
