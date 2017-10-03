@@ -1,4 +1,5 @@
 import { resourceTypes } from "constants/site";
+
 const imageIcon = "/static/placeholderImages/Image.svg";
 const soundIcon = "/static/placeholderImages/Sound.svg";
 const videoIcon = "/static/placeholderImages/Video.svg";
