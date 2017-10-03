@@ -70,7 +70,7 @@ const HomePageSlider = ({
               slidesToShow: 1.125,
               arrows: false,
               draggable: true,
-              slidesToScroll: 1,
+              slidesToScroll: 1
             }
           }
         ]}
@@ -80,18 +80,19 @@ const HomePageSlider = ({
             { name, repImageUrl, thumbnailUrl, isFeatured, href, as },
             index
           ) => (
-            <div>
+            <div key={`${name}—${index}`}>
               <Link prefetch href={href} as={as}>
-                <a className={classNames.item} key={index}>
+                <a className={classNames.item}>
                   <div className={classNames.itemImgWrapper}>
                     <div
                       className={classNames.itemImg}
                       style={{
-                        backgroundImage: `url(${repImageUrl || thumbnailUrl})`,
+                        backgroundImage: `url(${repImageUrl || thumbnailUrl})`
                       }}
                     />
-                    {index === 0 &&
-                      <div className={classNames.featuredTag}>Featured</div>}
+                    {index === 0 && (
+                      <div className={classNames.featuredTag}>Featured</div>
+                    )}
                   </div>
                   <div
                     dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
