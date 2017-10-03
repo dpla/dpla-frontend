@@ -11,6 +11,9 @@ import SourceSetSources from "../../../components/PrimarySourceSetsComponents/Si
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
+const videoIcon = "/static/placeholderImages/Video.svg";
+const audioIcon = "/static/placeholderImages/Sound.svg";
+
 const SingleSet = ({ set, url }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
@@ -44,8 +47,18 @@ SingleSet.getInitialProps = async ({ query }) => {
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
   const json = await res.json();
-
-  return { set: json };
+  const parts = json.hasPart.map(part => {
+    let thumbnailUrl = part.thumbnailUrl;
+    const type =
+      part.mainEntity && part.mainEntity[0] && part.mainEntity[0]["@type"];
+    if (type === "AudioObject") {
+      thumbnailUrl = audioIcon;
+    } else if (type === "VideoObject") {
+      thumbnailUrl = videoIcon;
+    }
+    return Object.assign({}, part, { thumbnailUrl });
+  });
+  return { set: Object.assign({}, json, { hasPart: parts }) };
 };
 
 export default SingleSet;
