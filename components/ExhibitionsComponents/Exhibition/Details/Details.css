@@ -20,19 +20,19 @@
   font-size: 1rem;
   line-height: 1.125rem;
   text-transform: uppercase;
-  padding: 20px;
+  padding: 1.25rem;
   background-color: #F1F0ED;
 }
 
 .tableOfContentsContents {
-  padding: 20px 20px 26px;
+  padding: 1.25rem;
   background-color: visualBrown;
   font-size: 1.25rem;
   line-height: 1.25rem;
 }
 
-.tableOfContentsSection {
-  margin-bottom: 20px;
+.tableOfContentsSection:not(:last-of-type) {
+  margin-bottom: 1rem;
 }
 
 .divider {

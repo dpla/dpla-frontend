@@ -24,6 +24,7 @@ const PageHeader = ({ searchQuery }) =>
           name="q"
           type="search"
           placeholder="Search the collection"
+          autoComplete="off"
           defaultValue={searchQuery}
         />
         <button type="submit" className={classNames.searchButton}>

@@ -1,13 +1,14 @@
 import React from "react";
 
 import GuideLink from "components/shared/GuideLink";
+import HeadingRule from "components/shared/HeadingRule";
 import { stylesheet, classNames } from "./DPLAUsers.css";
 
 const DPLAUsers = ({ guides }) =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.DPLAUsers} site-max-width`}>
       <h1 className={classNames.header}>How can I use DPLA?</h1>
-      <div className={classNames.divider} />
+      <HeadingRule />
       <div className="row">
         {guides.map(guide =>
           <div

@@ -16,12 +16,15 @@ const Exhibition = ({ exhibition, route, featured }) =>
     }}
   >
     <a className={classNames.exhibition}>
+      {exhibition.featured &&
+        <div className={classNames.featuredBanner}>
+          Featured
+        </div>}
+      {exhibition.new &&
+        !exhibition.featured &&
+        <div className={classNames.newBanner}>New</div>}
       <div
         className={classNames.exhibitionContent}
-        style={{
-          backgroundImage: `url("${exhibition.thumbnailUrl}")`,
-          backgroundSize: "cover"
-        }}
         aria-labelledby={exhibition.slug}
       >
         <div className={classNames.overlay}>
@@ -29,13 +32,12 @@ const Exhibition = ({ exhibition, route, featured }) =>
             {exhibition.title}
           </p>
         </div>
-        {exhibition.featured &&
-          <div className={classNames.featuredBanner}>
-            Featured
-          </div>}
-        {exhibition.new &&
-          !exhibition.featured &&
-          <div className={classNames.newBanner}>New</div>}
+        <div
+          className={classNames.exhibitionImage}
+          style={{
+            backgroundImage: `url("${exhibition.thumbnailUrl}")`,
+          }}
+        />
       </div>
     </a>
   </Link>;

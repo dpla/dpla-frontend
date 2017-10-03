@@ -4,8 +4,8 @@ import Grid from "react-masonry-component";
 
 import { classNames, stylesheet } from "./GridView.css";
 
-const GridView = ({ items }) =>
-  <div className={classNames.wrapper}>
+const GridView = ({ items, style }) =>
+  <div className={classNames.wrapper} style={style}>
     <Grid
       elementType="ul"
       className={classNames.grid}

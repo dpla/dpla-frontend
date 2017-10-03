@@ -7,6 +7,7 @@
 
 .partnerBrowse {
   padding-bottom: 5.5rem;
+  line-height: 1.25;
 }
 
 .partners:first-child {
@@ -14,41 +15,40 @@
     padding-right: 3rem;
   }
 }
+
 .partners:last-child {
-  & .partner:last-child {
-    border-bottom: none;
-  }
   @media (min-width: mediumRem) {
     padding-left: 3rem;
   }
 }
 
-.partner:last-child {
-  @media (min-width: mediumRem) {
-    border: none;
+.partnerLink {
+  display: flex;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:hover .name {
+    opacity: 1;
+  }
+
+  &:hover .itemCount {
+    opacity: 1;
   }
 }
 
-.partner {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0.25rem 0;
-}
-
-.partnerLink {
-  display: flex;
-  padding: 0.75rem 0 0.5rem 0;
-}
-
 .name {
+  transition: opacity .2s ease-in-out;
   font-family: "Lora";
   font-size: 1.3125rem;
   max-width: 75%;
   margin-right: 0.75rem;
+  opacity: .85;
 }
 
 .itemCount {
+  transition: opacity .2s ease-in-out;
   margin-left: auto;
   color: #584F41;
-  opacity: 0.65;
+  opacity: 0.5;
   font-size: 1.25rem;
 }

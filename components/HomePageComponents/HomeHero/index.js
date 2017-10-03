@@ -30,6 +30,7 @@ const HomeHero = () =>
             className={classNames.searchInput}
             placeholder="Search the collection"
             name="q"
+            autoComplete="off"
             type="search"
           />
           <button type="submit" className={classNames.searchButton}>

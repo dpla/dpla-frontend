@@ -7,7 +7,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 const { module } = utilClassNames;
 
 const Partner = ({ name, itemCount }) =>
-  <li className={classNames.partner}>
+  <li>
     <Link href={`/search?partner="${name}"`}>
       <a className={classNames.partnerLink}>
         <span className={classNames.name}>
