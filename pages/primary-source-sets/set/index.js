@@ -43,8 +43,8 @@ SingleSet.getInitialProps = async ({ query }) => {
   const res = await fetch(
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
-
   const json = await res.json();
+
   return { set: json };
 };
 
