@@ -3,7 +3,6 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import { classNames, stylesheet } from "css/pages/faq.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
@@ -17,24 +16,26 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Faq = ({ url, faq, guides }) =>
   <MainLayout route={url}>
-    <div>
-      <div
-        className={`
-          ${utilClassNames.container}
-          ${contentClasses.sidebarAndContentWrapper}
-        `}
-      >
+    <div
+      className={`
+        ${utilClassNames.container}
+        ${contentClasses.sidebarAndContentWrapper}
+      `}
+    >
+      <div className="row">
         <ContentPagesSidebar
           route={url}
           guides={guides}
           page={CONTENT_PAGE_NAMES.FAQ}
         />
-        <div className={`${classNames.content} ${contentClasses.content}`}>
-          <div dangerouslySetInnerHTML={{ __html: faq.content.rendered }} />
+        <div className="col-xs-12 col-md-7">
+          <div
+            className={contentClasses.content}
+            dangerouslySetInnerHTML={{ __html: faq.content.rendered }}
+          />
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 

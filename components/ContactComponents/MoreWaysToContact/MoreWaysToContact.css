@@ -1,42 +1,59 @@
 @value bambooOrange, pampasBrown from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .header {
   font-family: "Lora";
-  font-size: 1.625rem;
-  line-height: 2rem;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   font-weight: normal;
 }
 
 .contentTable {
   background-color: pampasBrown;
-  padding: 40px 0 46px 42px;
+  padding: 1rem 1.5rem;
   width: 100%;
+
+  @media (min-width: mediumRem) {
+    padding: 2rem 3rem;
+  }
 }
 
 .tableHeading {
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: .8rem;
   text-transform: uppercase;
   opacity: 0.50;
   font-weight: 600;
   vertical-align: baseline;
-  width: 217px;
+
+  @media (min-width: mediumRem) {
+    font-size: 1rem;
+  }
 }
 
 .tableItem {
   vertical-align: baseline;
   font-family: "Lora";
-  font-size: 1.25rem;
-  line-height: 1.5rem;
+  line-height: 1.25;
+  margin-top: .5rem;
+
+  @media (min-width: smallRem) {
+    margin-top: 0;
+  }
+
+  @media (min-width: mediumRem) {
+    font-size: 1.25rem;
+  }
 }
 
-.tableItem:first-child,
-.tableHeading:first-child {
-  padding-bottom: 36px;
+.firstRow {
+  margin-bottom: 1.5rem;
+
+  @media (min-width: mediumRem) {
+    margin-bottom: 2rem;
+  }
 }
 
 .mailToLink {
   border-bottom: 2px solid bambooOrange;
-  padding-bottom: 4px;
+  padding-bottom: .25rem;
 }

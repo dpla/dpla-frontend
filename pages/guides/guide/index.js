@@ -14,23 +14,25 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, guides, guide }) =>
   <MainLayout route={url}>
-    <div>
-      <div
-        className={`
-          ${utilClassNames.container}
-          ${contentClasses.sidebarAndContentWrapper}
-        `}
-      >
+    <div
+      className={`
+        ${utilClassNames.container}
+        ${contentClasses.sidebarAndContentWrapper}
+      `}
+    >
+      <div className="row">
         <ContentPagesSidebar route={url} guides={guides} />
-        <div className={[classNames.content, contentClasses.content].join(" ")}>
-          <img
-            src={guide.bannerImage}
-            alt=""
-            className={classNames.bannerImage}
-          />
-          <h1 className={classNames.guideTitle}>{guide.title}</h1>
-          <HeadingRule />
-          <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+        <div className="col-xs-12 col-md-7">
+          <div className={[classNames.content, contentClasses.content].join(" ")}>
+            <img
+              src={guide.bannerImage}
+              alt=""
+              className={classNames.bannerImage}
+            />
+            <h1 className={classNames.guideTitle}>{guide.title}</h1>
+            <HeadingRule />
+            <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+          </div>
         </div>
       </div>
     </div>

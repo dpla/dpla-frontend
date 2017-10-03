@@ -1,18 +1,43 @@
-@value bambooOrange from "../../../css/colors.css";
+@value bambooOrange, visualBrown, pampasBrown from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+
+.sidebar {
+  background-color: pampasBrown;
+  padding: 1rem 2rem;
+
+  @media (min-width: mediumRem) {
+    background-color: transparent;
+    padding: 0;
+    /* inline-block to prevent the divider from spanning the full width */
+    display: inline-block;
+  }
+}
+
+.sidebar ul ul {
+  margin-left: 1.25rem;
+
+  & .link:not(.selected) {
+    color: #6D6D6D;
+  }
+
+  & .selected::after {
+    top: 9px;
+  }
+
+  & .link {
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+}
 
 .link {
   font-size: 1.25rem;
   line-height: 2rem;
 }
 
-.sidebar {
-  flex-shrink: 0;
-  max-width: 240px;
-}
-
 .divider {
   height: 2px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   display: block;
   width: 100%;
   margin: 18px 0;
@@ -34,21 +59,4 @@
   left: -10px;
   background-color: bambooOrange;
   border-radius: 50%;
-}
-
-.sidebar ul ul {
-  margin-left: 1.25rem;
-
-  & .link:not(.selected) {
-    color: #6D6D6D;
-  }
-
-  & .selected::after {
-    top: 9px;
-  }
-
-  & .link {
-    line-height: 1.05;
-    margin-bottom: 0.5rem;
-  }
 }

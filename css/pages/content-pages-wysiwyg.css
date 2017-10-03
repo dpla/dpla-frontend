@@ -1,26 +1,48 @@
-@value cascadeBlue, bambooOrange from "../colors.css";
+@value cascadeBlue, visualBrown, bambooOrange, silver from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
+.backgroundTint {
+  background-color: visualBrown;
+}
+
 .sidebarAndContentWrapper {
-  display: flex;
-  margin-top: 2rem;
-  margin-bottom: 8rem;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: smallRem) {
+    padding-top: 2rem;
+  }
+
+  @media (min-width: mediumRem) {
+    padding-bottom: 8rem;
+  }
+
+  @media (min-width: largeRem) {
+    padding-top: 3rem;
+  }
 }
 
 .content {
-  margin-left: 4rem;
-  max-width: 42.25rem;
-  width: 100%;
+  margin-top: 2rem;
   line-height: 1.25;
+
+  @media (min-width: largeRem) {
+    margin-top: 0;
+  }
 
   & h1 {
     font-family: "Lora";
     font-weight: normal;
-    font-size: 3.375rem;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 
     & bold {
       font-weight: normal;
+    }
+
+    @media (min-width: mediumRem) {
+      font-size: 3rem;
+      margin-bottom: 3rem;
     }
   }
 
@@ -31,9 +53,13 @@
   }
 
   & h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+
+    @media (min-width: mediumRem) {
+      font-size: 1.5rem;
+    }
   }
 
   & h4 {
@@ -102,14 +128,14 @@
   }
 
   & table {
-    border: 1px solid #CCCCCC;
+    border: 1px solid silver;
     border-collapse: collapse;
     margin-bottom: 2rem;
     width: 100%;
   }
 
   & td:not(:first-child) {
-    border-left: 1px solid #CCCCCC;
+    border-left: 1px solid silver;
   }
   & td {
     padding: 1.5rem 2rem;
@@ -120,7 +146,7 @@
   }
 
   & tr:not(:last-child) {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid silver;
   }
 
   & a {
@@ -133,7 +159,7 @@
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
-    @media (min-width: largeRem) {
+    @media (min-width: mediumRem) {
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
