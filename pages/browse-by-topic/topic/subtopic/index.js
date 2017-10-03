@@ -12,14 +12,18 @@ import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsL
 import {
   decodeHTMLEntities,
   extractItemId,
-  getCurrentUrl
+  getCurrentUrl,
+  getDefaultThumbnail
 } from "utilFunctions";
 
 import {
   API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
-import { API_ENDPOINT as DPLA_ITEM_ENDPOINT } from "constants/items";
+import {
+  API_ENDPOINT as DPLA_ITEM_ENDPOINT,
+  THUMBNAIL_ENDPOINT
+} from "constants/items";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const { module } = utilClassNames;
@@ -110,17 +114,19 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         return null;
       }
       const itemJson = await itemRes.json();
-
       return Object.assign({}, item, {
         title: decodeHTMLEntities(item.title.rendered),
         linkHref: `/item?itemId=${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
-        thumbnailUrl: itemJson.docs[0].object,
+        thumbnailUrl: itemJson.docs[0].object
+          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${itemDplaId}`
+          : getDefaultThumbnail(itemJson.docs[0].sourceResource.type),
         sourceUrl: itemJson.docs[0].isShownAt,
         date: itemJson.docs[0].sourceResource.date,
         creator: itemJson.docs[0].sourceResource.creator,
-        description: itemJson.docs[0].sourceResource.description
+        description: itemJson.docs[0].sourceResource.description,
+        useDefaultImage: !itemJson.docs[0].object
       });
     })
   );

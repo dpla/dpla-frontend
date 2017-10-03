@@ -2,7 +2,7 @@ import React from "react";
 
 import { classNames, stylesheet } from "./HeadingRule.css";
 
-const HeadingRule = ({ color }) => (
+const HeadingRule = ({ color }) =>
   <div>
     <div
       className={classNames.rule}
@@ -11,7 +11,6 @@ const HeadingRule = ({ color }) => (
       }}
     />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>
-);
+  </div>;
 
 export default HeadingRule;

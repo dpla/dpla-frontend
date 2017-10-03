@@ -16,7 +16,7 @@ import {
 } from "constants/exhibitions";
 import { GUIDES_ENDPOINT } from "constants/content-pages";
 
-const Home = ({ sourceSets, exhibitions, guides }) => (
+const Home = ({ sourceSets, exhibitions, guides }) =>
   <MainLayout hideSearchBar>
     <HomeHero />
     <HomePageSlider
@@ -36,8 +36,7 @@ const Home = ({ sourceSets, exhibitions, guides }) => (
     <DPLAUsers guides={guides} />
     <FromTheBlog />
     {/* <SocialMedia /> */}
-  </MainLayout>
-);
+  </MainLayout>;
 
 Home.getInitialProps = async ({ req }) => {
   const pssRes = await fetch(`https://dp.la/primary-source-sets/sets.json`);

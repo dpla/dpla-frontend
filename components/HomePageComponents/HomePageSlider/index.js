@@ -70,7 +70,7 @@ const HomePageSlider = ({
               slidesToShow: 1.125,
               arrows: false,
               draggable: true,
-              slidesToScroll: 1,
+              slidesToScroll: 1
             }
           }
         ]}

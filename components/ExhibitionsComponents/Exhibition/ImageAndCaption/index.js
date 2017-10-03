@@ -22,7 +22,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
-            <HeadingRule color="rgba(255,255,255,0.75)"/>
+            <HeadingRule color="rgba(255,255,255,0.75)" />
             <Link
               prefetch
               href={{
