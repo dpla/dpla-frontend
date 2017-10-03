@@ -21,11 +21,11 @@ class ItemImage extends React.Component {
     const { title, type, url, useDefaultImage, defaultImageClass } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
-
     return (
       <div
         className={`${classNames.imageWrapper}
-          ${useDefaultWrapper && classNames.defaultImageWrapper + " " + defaultImageClass}`}
+          ${useDefaultWrapper &&
+            classNames.defaultImageWrapper + " " + defaultImageClass}`}
       >
         <img
           src={updateToDefaultImage ? getDefaultThumbnail(type) : url}

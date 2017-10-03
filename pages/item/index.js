@@ -12,7 +12,11 @@ import {
   classNames,
   stylesheet
 } from "components/ItemComponents/itemComponent.css";
-import { removeQueryParams, joinIfArray, getDefaultThumbnail } from "utilFunctions";
+import {
+  removeQueryParams,
+  joinIfArray,
+  getDefaultThumbnail
+} from "utilFunctions";
 
 const ItemDetail = ({ url, item }) =>
   <MainLayout route={url}>

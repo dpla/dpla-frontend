@@ -9,9 +9,24 @@ import {
   PDFViewer
 } from "components/shared/mediaViewers";
 import { ITEM_TYPES } from "constants/exhibitions";
+import { resourceTypes } from "constants/site";
+import { getDefaultThumbnail } from "utilFunctions";
+import ItemImage from "components/ItemComponents/Content/ItemImage";
 const chevron = "/static/images/chevron-thick-black.svg";
 
-// originalUrl will always exist for an item, so we have to test against that
+const getFileType = (fileType, originalUrl) => {
+  if (
+    fileType === ITEM_TYPES.MOVING_IMAGE ||
+    /\.(mp4|webm|ogg)/.test(originalUrl)
+  ) {
+    return resourceTypes;
+  } else if (fileType === ITEM_TYPES.SOUND || /\.(mp3|wav)/.test(originalUrl)) {
+    return resourceTypes.SOUND;
+  } else {
+    return resourceTypes.IMAGE;
+  }
+};
+
 const getViewerComponent = (fileType, originalUrl, pathToFile) => {
   if (
     fileType === ITEM_TYPES.MOVING_IMAGE ||
@@ -32,7 +47,14 @@ const getViewerComponent = (fileType, originalUrl, pathToFile) => {
   }
 };
 
-const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
+const ItemLink = ({
+  thumbnailUrl,
+  itemId,
+  className,
+  route,
+  fileType,
+  originalUrl
+}) =>
   <Link
     prefetch
     href={{
@@ -43,7 +65,16 @@ const ItemLink = ({ thumbnailUrl, itemId, className, route }) =>
       .query.subsection}?item=${itemId}`}
   >
     <a className={[classNames.itemLink, className].join(" ")}>
-      <img className={classNames.itemLinkImage} src={thumbnailUrl} alt="" />
+      <ItemImage
+        // title={item.title}
+        type={getFileType(fileType, originalUrl)}
+        url={
+          thumbnailUrl ||
+          getDefaultThumbnail(getFileType(fileType, originalUrl))
+        }
+        defaultImageClass={classNames.defaultItemImage}
+        useDefaultImage={!thumbnailUrl}
+      />
     </a>
   </Link>;
 
@@ -74,10 +105,12 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
             {subsection.page_blocks.map(block =>
               <li key={block.id}>
                 <ItemLink
+                  fileType={block.type}
                   route={route}
                   className={block.isActive && classNames.activeItemLink}
                   itemId={block.id}
                   thumbnailUrl={block.thumbnailUrl}
+                  originalUrl={block.originalUrl}
                 />
               </li>
             )}
