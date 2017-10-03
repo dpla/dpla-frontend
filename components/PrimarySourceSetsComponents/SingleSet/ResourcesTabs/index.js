@@ -4,7 +4,7 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./ResourcesTabs.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 class ResourcesTabs extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class ResourcesTabs extends React.Component {
     return (
       <div className={classNames.wrapper}>
         <div className={classNames.tabsWrapper}>
-          <div className={[classNames.tabs, module].join(" ")}>
+          <div className={[classNames.tabs, container].join(" ")}>
             <Link
               prefetch
               href={`/primary-source-sets/set?set=${route.query.set}`}

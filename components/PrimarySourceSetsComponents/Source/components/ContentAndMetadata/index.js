@@ -13,7 +13,7 @@ import { extractItemId } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";
@@ -60,7 +60,7 @@ const ContentAndMetadata = ({ source }) => {
 
   return (
     <div className={classNames.wrapper}>
-      <div className={[classNames.contentAndMetadata, module].join(" ")}>
+      <div className={[classNames.contentAndMetadata, container].join(" ")}>
         <h2
           dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.name) }}
           className={classNames.contentHeader}

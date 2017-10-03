@@ -22,7 +22,7 @@ const Contact = ({ url }) =>
     }
   >
     <div className={classNames.wrapper}>
-      <div className={[utilClassNames.module, classNames.content].join(" ")}>
+      <div className={`${utilClassNames.container} ${classNames.content}`}>
         <ContentPagesSidebar route={url} page={CONTENT_PAGE_NAMES.CONTACT} />
         <div className={classNames.formAndMoreWays}>
           <ContactForm />

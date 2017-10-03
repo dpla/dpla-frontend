@@ -22,7 +22,7 @@ import {
 import { API_ENDPOINT as DPLA_ITEM_ENDPOINT } from "constants/items";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const SubtopicItemsList = ({
   url,
@@ -49,7 +49,7 @@ const SubtopicItemsList = ({
       topic={topic}
       route={url}
     />
-    <div className={[classNames.sidebarAndItemList, module].join(" ")}>
+    <div className={[classNames.sidebarAndItemList, container].join(" ")}>
       <Sidebar
         title={subtopic.name}
         description={subtopic.description}

@@ -43,6 +43,10 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
+figure {
+  margin: 0;
+}
+
 html,
 body,
 div,

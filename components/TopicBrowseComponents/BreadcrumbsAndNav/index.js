@@ -5,7 +5,7 @@ import NavLinks from "./components/NavLinks";
 
 import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const BreadcrumbsAndNav = ({
   breadcrumbs,
@@ -15,7 +15,7 @@ const BreadcrumbsAndNav = ({
   route
 }) =>
   <div className={classNames.wrapper}>
-    <div className={[classNames.breadcrumbsAndNav, module].join(" ")}>
+    <div className={[classNames.breadcrumbsAndNav, container].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <NavLinks
         route={route}

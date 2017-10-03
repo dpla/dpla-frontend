@@ -5,10 +5,10 @@ import { classNames, stylesheet } from "./PSSFooter.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import { DPLA_CONTACT_EMAIL, PSS_SUGGESTION_URL } from "constants/site";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 const OtherInfo = () =>
   <div className={classNames.wrapper}>
-    <div className={[module, classNames.otherInfo].join(" ")}>
+    <div className={[container, classNames.otherInfo].join(" ")}>
       <p className={classNames.p}>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;

@@ -7,7 +7,7 @@ import Pagination from "components/shared/Pagination";
 import Sidebar from "./Sidebar";
 import extractItemId from "utilFunctions/extractItemId";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const addLinkInfoToResults = (results, q) =>
   results.map(item =>
@@ -22,7 +22,7 @@ const addLinkInfoToResults = (results, q) =>
 
 const MainContent = ({ results, route, facets, paginationInfo }) =>
   <div className={classNames.wrapper}>
-    <div className={[module, classNames.mainContent].join(" ")}>
+    <div className={[container, classNames.mainContent].join(" ")}>
       <Sidebar route={route} facets={facets} />
       <div
         className={

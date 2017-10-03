@@ -6,7 +6,7 @@ import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { classNames, stylesheet } from "./TeachersGuide.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
@@ -14,7 +14,7 @@ const googleClassroom = "/static/images/google-classroom.svg";
 
 const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
-    <div className={[classNames.teachingGuide, module].join(" ")}>
+    <div className={[classNames.teachingGuide, container].join(" ")}>
       <div className={classNames.content}>
         <div className={classNames.markdownWrapper}>
           <h2 className={classNames.contentHeader}>Discussion questions</h2>

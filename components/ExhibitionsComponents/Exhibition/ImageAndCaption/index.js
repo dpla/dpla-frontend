@@ -5,10 +5,10 @@ import HeadingRule from "components/shared/HeadingRule";
 import { classNames, stylesheet } from "./ImageAndCaption.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={classNames.wrapper}>
-    <div className={[module, classNames.imageAndCaption].join(" ")}>
+    <div className={[container, classNames.imageAndCaption].join(" ")}>
       <div className={classNames.imageWrapper}>
         <div
           className={classNames.image}

@@ -16,10 +16,10 @@ const Guides = ({ url, guides, guide }) =>
   <MainLayout route={url}>
     <div>
       <div
-        className={[
-          utilClassNames.module,
-          contentClasses.sidebarAndContentWrapper
-        ].join(" ")}
+        className={`
+          ${utilClassNames.container}
+          ${contentClasses.sidebarAndContentWrapper}
+        `}
       >
         <ContentPagesSidebar route={url} guides={guides} />
         <div className={[classNames.content, contentClasses.content].join(" ")}>

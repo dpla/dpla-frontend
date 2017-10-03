@@ -9,7 +9,7 @@ import {
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 // only the time period has a sameAs field
 const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
@@ -18,7 +18,7 @@ const extractSubjects = tags =>
 
 const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
-    <div className={[classNames.sourceSetInfo, module].join(" ")}>
+    <div className={[classNames.sourceSetInfo, container].join(" ")}>
       <div className={classNames.bannerAndDescription}>
         <div className={classNames.banner}>
           <div
