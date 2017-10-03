@@ -24,9 +24,9 @@ const Guides = ({ url, guides, guide }) =>
         <ContentPagesSidebar route={url} guides={guides} />
         <div className={[classNames.content, contentClasses.content].join(" ")}>
           <img
-            src={guide.illustration}
+            src={guide.bannerImage}
             alt=""
-            className={classNames.illustration}
+            className={classNames.bannerImage}
           />
           <h1 className={classNames.guideTitle}>{guide.title}</h1>
           <HeadingRule />
@@ -54,7 +54,7 @@ Guides.getInitialProps = async ({ query }) => {
       summary: guide.acf.summary,
       title: guide.title.rendered,
       color: guide.acf.color,
-      illustration: guide.acf.illustration,
+      bannerImage: guide.acf.banner_image,
       content: guide.content.rendered
     })
   };
