@@ -49,14 +49,17 @@ SingleSet.getInitialProps = async ({ query }) => {
   const json = await res.json();
   const parts = json.hasPart.map(part => {
     let thumbnailUrl = part.thumbnailUrl;
+    let useDefaultImage = false;
     const type =
       part.mainEntity && part.mainEntity[0] && part.mainEntity[0]["@type"];
     if (type === "AudioObject") {
       thumbnailUrl = audioIcon;
+      useDefaultImage = true;
     } else if (type === "VideoObject") {
       thumbnailUrl = videoIcon;
+      useDefaultImage = true;
     }
-    return Object.assign({}, part, { thumbnailUrl });
+    return Object.assign({}, part, { thumbnailUrl, useDefaultImage });
   });
   return { set: Object.assign({}, json, { hasPart: parts }) };
 };
