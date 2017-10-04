@@ -37,7 +37,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
       }
     ]}
   >
-    {sources.map(({ name, thumbnailUrl }, i) =>
+    {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) =>
       <div>
         {/* for some reason react-slick can't have <Link /> as direct child */}
         <Link
@@ -58,6 +58,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
             <div
               className={[
                 classNames.itemImgWrapper,
+                useDefaultImage ? classNames.defaultImageWrapper : "",
                 i === currentSourceIdx && classNames.currentItemImgWrapper
               ].join(" ")}
             >
