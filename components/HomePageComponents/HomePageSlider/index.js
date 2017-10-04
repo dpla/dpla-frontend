@@ -76,10 +76,7 @@ const HomePageSlider = ({
         ]}
       >
         {items.map(
-          (
-            { name, repImageUrl, thumbnailUrl, isFeatured, href, as },
-            index
-          ) => (
+          ({ name, repImageUrl, thumbnailUrl, isFeatured, href, as }, index) =>
             <div key={`${name}—${index}`}>
               <Link prefetch href={href} as={as}>
                 <a className={classNames.item}>
@@ -90,9 +87,8 @@ const HomePageSlider = ({
                         backgroundImage: `url(${repImageUrl || thumbnailUrl})`
                       }}
                     />
-                    {index === 0 && (
-                      <div className={classNames.featuredTag}>Featured</div>
-                    )}
+                    {index === 0 &&
+                      <div className={classNames.featuredTag}>Featured</div>}
                   </div>
                   <div
                     dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
@@ -101,7 +97,6 @@ const HomePageSlider = ({
                 </a>
               </Link>
             </div>
-          )
         )}
       </Slider>
     </div>

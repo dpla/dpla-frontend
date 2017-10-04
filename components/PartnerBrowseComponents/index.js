@@ -5,7 +5,7 @@ import { classNames, stylesheet } from "./PartnerBrowseContent.css";
 import { addCommasToNumber } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Partner = ({ name, itemCount }) => (
+const Partner = ({ name, itemCount }) =>
   <li>
     <Link href={`/search?partner="${name}"`}>
       <a className={classNames.partnerLink}>
@@ -15,8 +15,7 @@ const Partner = ({ name, itemCount }) => (
         </span>
       </a>
     </Link>
-  </li>
-);
+  </li>;
 
 const mapPartnersToComponents = partners =>
   partners.map(partner =>

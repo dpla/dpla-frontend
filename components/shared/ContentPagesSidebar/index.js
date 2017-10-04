@@ -5,9 +5,7 @@ import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames, stylesheet } from "./Sidebar.css";
 
 const SidebarLink = ({ isCurrentLink, title, href, as }) =>
-  <li
-    className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
-  >
+  <li className={`${classNames.link} ${isCurrentLink && classNames.selected}`}>
     <Link href={href} as={as}>
       <a>
         {title}

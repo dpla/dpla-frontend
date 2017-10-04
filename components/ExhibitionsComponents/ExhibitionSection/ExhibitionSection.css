@@ -1,10 +1,14 @@
-@value vikingBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
+@value vikingBlue, elephantBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 
 .exhibitionView {
   background-color: visualBrown;
   min-height: 100vh;
-  padding-bottom: 7.125rem;
-  padding-top: 2rem;
+  padding-bottom: 3rem;
+  @media (min-width: smallRem) {
+    padding-bottom: 7.125rem;
+    padding-top: 2rem;
+  }
 }
 
 .exhibitionsLinkAndTitle {
@@ -12,27 +16,63 @@
 }
 
 .exhibitionsLink {
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
+  color: white;
+  opacity: 0.5;
+  border-bottom: 1px solid white;
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
   text-transform: uppercase;
   margin-bottom: 3px;
   display: inline-block;
+  @media (min-width: smallRem) {
+    color: bambooOrange;
+    font-size: 1rem;
+    opacity: 1;
+    border-bottom: 1px solid bambooOrange;
+  }
 }
 
 .exhibitionTitle {
   font-family: "Lora";
-  font-size: 2.625rem;
-  line-height: 3.1875rem;
   font-weight: normal;
+  font-size: 1.125;
+  color: white;
+  @media (min-width: smallRem) {
+    font-size: 2.625rem;
+    color: black;
+  }
+}
+
+.menuButtonAndBreadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.menuButton {
+  background-color: rgba(0, 0, 0, 0.12);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.75rem;
+  @media (min-width: smallRem) {
+    display: none;
+  }
+}
+
+.menuButtonIcon {
+  height: 0.875rem;
+  width: 1.125rem;
 }
 
 .sidebar {
-  width: 197px;
-  margin-right: 1.25rem;
-  flex-shrink: 0;
+  display: none;
+  @media (min-width: smallRem) {
+    width: 197px;
+    margin-right: 1.25rem;
+    flex-shrink: 0;
+    display: block;
+  }
 }
 
 .sidebarSections {
@@ -80,8 +120,13 @@
 
 .body {
   display: flex;
-  margin-top: 2rem;
   max-width: 1200px;
+  padding: 0 0 1rem;
+  @media (min-width: smallRem) {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .footerWrapper {
@@ -94,12 +139,19 @@
 }
 
 .header {
-  padding-bottom: 1.75rem;
   max-width: 1200px;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
   justify-content: space-between;
   display: flex;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   align-items: center;
+  background-color: elephantBlue;
+  @media (min-width: smallRem) {
+    padding-bottom: 1.75rem;
+    padding-top: 1.75rem;
+    background-color: inherit;
+  }
 }
 
 .closeExhibition {
@@ -108,63 +160,102 @@
   flex-shrink: 0;
 }
 
+.closeExhibitionText {
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline;
+  }
+}
+
 .closeIcon {
-  background-color: black;
+  background-color: white;
   padding: 5px;
   border-radius: 50%;
-  height: 19px;
-  width: 19px;
   box-sizing: border-box;
   position: relative;
   top: 4px;
+  height: 22px;
+  width: 22px;
   margin-right: 0.5rem;
+  @media (min-width: smallRem) {
+    height: 19px;
+    width: 19px;
+    background-color: black;
+  }
+}
+
+.closeIconX {
+  fill: elephantBlue;
+  @media (min-width: smallRem) {
+    fill: white;
+  }
 }
 
 .footerNav {
   display: flex;
-  padding: 0.75rem 0;
-  max-width: 1200px;
+  padding: 0;
+  @media (min-width: smallRem) {
+    padding: 0.75rem;
+    max-width: 1200px;
+  }
 }
 
 .navButtons {
-  margin-left: auto;
   align-items: center;
   display: flex;
+  width: 100%;
   align-items: center;
-  margin-top: 1rem;
+  @media (min-width: smallRem) {
+    width: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+  }
 }
 
 .dplaLogo {
-  max-width: 275px;
-  opacity: 0.5;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    max-width: 275px;
+    opacity: 0.5;
+  }
 }
 
 .nextButton, .prevButton {
   background-color: bambooOrange;
   color: white;
-  width: 158px;
+  flex-shrink: 0;
+  flex: 1;
   padding: 9px 0 12px 0;
-  border-radius: 2px;
   text-align: center;
   font-size: 1.25rem;
   line-height: 1.5625rem;
   font-weight: 600;
   display: block;
+  @media (min-width: smallRem) {
+    width: 158px;
+    border-radius: 2px;
+  }
 }
 
 .nextButtonAndTitleWrapper {
   position: relative;
+  flex: 1;
 }
 
 .nextSubsectionTitle {
-  opacity: 0.75;
-  font-size: 0.875rem;
-  position: absolute;
-  top: -1.5rem;
-  max-width: 158px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    opacity: 0.75;
+    font-size: 0.875rem;
+    position: absolute;
+    top: -1.5rem;
+    max-width: 158px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 .disabledButton {
@@ -174,7 +265,9 @@
 }
 
 .prevButton {
-  margin-right: 18px;
+  @media (min-width: smallRem) {
+    margin-right: 18px;
+  }
 }
 
 .previousChevron {
@@ -198,36 +291,62 @@
 }
 
 .breadcrumbs {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  @media (min-width: smallRem) {
+    font-size: 1.5rem;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
 }
 
 .sectionBreadcrumb {
   font-weight: 600;
+  font-size: 1rem;
+  @media (min-width: smallRem) {
+    font-size: 1.5rem;
+  }
 }
 
 .breadcrumbChevron {
-  opacity: 0.35;
-  margin: 0 1rem;
-  height: 14px;
-  width: 8px;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    opacity: 0.35;
+    margin: 0 1rem;
+    height: 14px;
+    width: 8px;
+  }
 }
 
 .viewerContent {
   display: flex;
+  flex-direction: column;
+  @media (min-width: smallRem) {
+    flex-direction: row;
+  }
 }
 
 .mediaAndCaption {
   flex: 2;
-  margin-right: 1.25rem;
+  @media (min-width: smallRem) {
+    margin-right: 1.25rem;
+  }
 }
 
 .text {
   flex: 1;
-  font-size: 1rem;
   max-height: 600px;
+  font-size: 0.875rem;
   flex-shrink: 0;
   overflow-y: scroll;
+  padding: 0 1rem;
+  @media (min-width: smallRem) {
+    font-size: 1rem;
+    padding: 0;
+  }
 }
 
 .text p:not(:last-child) {
@@ -236,37 +355,75 @@
 
 .mainMedia {
   margin-right: auto;
-  margin-bottom: 1.75rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: #e4e2db;
+  margin-bottom: 0.5rem;
+  & :global(#openseadragon1) {
+    height: 15rem;
+  }
+  @media (min-width: smallRem) {
+    margin-bottom: 1.75rem;
+    & :global(#openseadragon1) {
+      height: 28rem;
+    }
+  }
 }
 
 .caption {
   font-style: italic;
   font-size: 0.875rem;
   max-width: 90%;
+  margin: 0 1rem 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #DE630B;
+  @media (min-width: smallRem) {
+    margin: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
 }
 
 .itemLinks {
   display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
+  @media (min-width: smallRem) {
+    justify-content: flex-start;
+  }
 }
 
 .itemLink {
-  width: 58px;
-  height: 58px;
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: rgba(88, 79, 65, 0.4);
+  border-radius: 50%;
   display: block;
-  margin-right: 0.75rem;
+  margin-right: 0.25rem;
+  @media (min-width: smallRem) {
+    border-radius: 0;
+    width: 58px;
+    background-color: inherit;
+    height: 58px;
+    margin-right: 0.75rem;
+  }
 }
 
 .itemLinkImage {
-  width: 100%;
-  height: 100%;
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .activeItemLink {
-  border: 6px solid vikingBlue;
-  position: relative;
+  background-color: bambooOrange;
+  @media (min-width: smallRem) {
+    background-color: inherit;
+    border: 6px solid vikingBlue;
+    position: relative;
+  }
 }
 
 .activeItemLink::before {
