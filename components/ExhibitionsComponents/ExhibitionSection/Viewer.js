@@ -87,13 +87,13 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   return (
     <div className={classNames.viewer}>
       <div className={classNames.menuButtonAndBreadcrumbs}>
-        <button className={classNames.menuButton}>
+        <div className={classNames.menuButton}>
           <img
             alt=""
             src={menuButtonIcon}
             className={classNames.menuButtonIcon}
           />
-        </button>
+        </div>
         <div className={classNames.breadcrumbs}>
           <span className={classNames.sectionBreadcrumb}>{section.title}</span>
           <img src={chevron} alt="" className={classNames.breadcrumbChevron} />

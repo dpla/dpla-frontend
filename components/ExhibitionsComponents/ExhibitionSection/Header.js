@@ -5,8 +5,6 @@ import { classNames } from "./ExhibitionSection.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
 
-const closeIcon = "/static/images/close-white.svg";
-
 const Header = ({ title, route }) =>
   <div className={[classNames.header, container].join(" ")}>
     <div className={classNames.exhibitionsLinkAndTitle}>

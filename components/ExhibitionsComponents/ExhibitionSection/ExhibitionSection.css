@@ -222,18 +222,16 @@
 }
 
 .nextButton, .prevButton {
-  background-color: bambooOrange;
-  color: white;
   flex-shrink: 0;
   flex: 1;
   padding: 9px 0 12px 0;
   text-align: center;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
   font-weight: 600;
+  font-size: 0.875rem;
   display: block;
   @media (min-width: smallRem) {
     width: 158px;
+    font-size: 1.25rem;
     border-radius: 2px;
   }
 }
@@ -259,15 +257,20 @@
 }
 
 .disabledButton {
-  background-color: rgba(0,0,0,0.1);
   color: black;
   opacity: .5;
 }
 
 .prevButton {
+  background-color: rgba(0,0,0,0.1);
   @media (min-width: smallRem) {
     margin-right: 18px;
   }
+}
+
+.nextButton {
+  background-color: bambooOrange;
+  color: white;
 }
 
 .previousChevron {
@@ -281,9 +284,13 @@
 
 .previousChevron, .nextChevron {
   position: relative;
+  height: 12px;
+  width: 7px;
   top: 1px;
-  height: 14px;
-  width: 8px;
+  @media (min-width: smallRem) {
+    height: 14px;
+    width: 8px;
+  }
 }
 
 .disabledButton {

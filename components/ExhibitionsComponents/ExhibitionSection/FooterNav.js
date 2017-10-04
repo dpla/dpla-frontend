@@ -8,7 +8,7 @@ const { container } = utilClassNames;
 
 const dplaLogo = "/static/images/dpla-logo-black.svg";
 const chevron = "/static/images/chevron-thick-white.svg";
-const disabledChevron = "/static/images/chevron-thick-black.svg";
+const blackChevron = "/static/images/chevron-thick-black.svg";
 
 const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
   queryParams
@@ -32,7 +32,11 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
           }
         >
           {nextOrPrevious === "previous" &&
-            <img src={chevron} className={classNames.previousChevron} alt="" />}
+            <img
+              src={blackChevron}
+              className={classNames.previousChevron}
+              alt=""
+            />}
           <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
           {nextOrPrevious === "next" &&
             <img src={chevron} className={classNames.nextChevron} alt="" />}
@@ -49,17 +53,13 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
       >
         {nextOrPrevious === "previous" &&
           <img
-            src={disabledChevron}
+            src={blackChevron}
             className={classNames.previousChevron}
             alt=""
           />}
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
-          <img
-            src={disabledChevron}
-            className={classNames.nextChevron}
-            alt=""
-          />}
+          <img src={blackChevron} className={classNames.nextChevron} alt="" />}
       </button>;
 
 const FooterNav = ({
