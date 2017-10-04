@@ -1,6 +1,7 @@
 @value pampasBrown from "../../../css/colors.css";
 
 .mainContent {
+  margin-top: 2rem;
   display: flex;
   padding-bottom: 150px;
 }

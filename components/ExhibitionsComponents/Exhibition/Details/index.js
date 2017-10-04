@@ -5,10 +5,10 @@ import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 const Details = ({ exhibition, route }) =>
   <div className={classNames.wrapper}>
-    <div className={[module, classNames.details].join(" ")}>
+    <div className={[container, classNames.details].join(" ")}>
       <div className={classNames.tableOfContents}>
         <p className={classNames.tableOfContentsHeader}>
           In This Exhibition

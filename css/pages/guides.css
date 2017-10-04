@@ -1,17 +1,11 @@
-@value elephantBlue from "../colors.css";
+@value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
-.content {
-  margin-left: 4rem;
-  max-width: 47.25rem;
-  width: 100%;
-}
-.links {
-  display: flex;
-  flex-wrap: wrap;
-}
+.wrapper {
+  margin-top: 2rem;
 
-.link {
-  margin-right: 1rem;
+  @media (min-width: mediumRem) {
+    margin-top: 0;
+  }
 }
 
 .itemColumn {

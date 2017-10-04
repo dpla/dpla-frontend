@@ -1,5 +1,9 @@
 @value bambooOrange from "../../../../css/colors.css";
 
+.wrapper {
+  margin-top: 2rem;
+}
+
 .image {
   border-radius: 3px;
   width: 100%;

@@ -16,20 +16,21 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutUs = ({ url, content, guides }) =>
   <MainLayout route={url}>
-    <div>
-      <div
-        className={[
-          utilClassNames.module,
-          contentClasses.sidebarAndContentWrapper
-        ].join(" ")}
-      >
+    <div
+      className={`${utilClassNames.container}
+      ${contentClasses.sidebarAndContentWrapper}`}
+    >
+      <div className="row">
         <ContentPagesSidebar
           route={url}
           guides={guides}
           page={CONTENT_PAGE_NAMES.ABOUT_US}
         />
-        <div className={contentClasses.content}>
-          <div dangerouslySetInnerHTML={{ __html: content.content.rendered }} />
+        <div className="col-xs-12 col-md-7">
+          <div
+            className={contentClasses.content}
+            dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+          />
         </div>
       </div>
     </div>

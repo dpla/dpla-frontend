@@ -2,9 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 import { stylesheet, classNames } from "./Topics.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const Topics = ({ topics }) =>
-  <div className={`${classNames.topicsWrapper} site-max-width`}>
+  <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
     <ul className="row">
       {topics.map(topic =>
         <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">

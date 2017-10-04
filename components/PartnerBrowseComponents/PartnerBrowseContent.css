@@ -8,6 +8,11 @@
 .partnerBrowse {
   padding-bottom: 5.5rem;
   line-height: 1.25;
+  margin-top: 2rem;
+
+  @media (min-width: largeRem) {
+    margin-top: 4rem;
+  }
 }
 
 .partners:first-child {

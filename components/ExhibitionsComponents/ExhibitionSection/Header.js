@@ -3,12 +3,12 @@ import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const closeIcon = "/static/images/close-white.svg";
 
 const Header = ({ title, route }) =>
-  <div className={[classNames.header, module].join(" ")}>
+  <div className={[classNames.header, container].join(" ")}>
     <div className={classNames.exhibitionsLinkAndTitle}>
       <Link prefetch href="/exhibitions">
         <a className={classNames.exhibitionsLink}>Exhibitions</a>

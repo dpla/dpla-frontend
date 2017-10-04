@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Suggestions.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const mapTypeToClass = type => {
   if (type === "Exhibition") {
@@ -15,7 +15,7 @@ const mapTypeToClass = type => {
 
 const Suggestions = ({ suggestions }) =>
   <div className={classNames.suggestionsWrapper}>
-    <div className={[classNames.suggestions, module].join(" ")}>
+    <div className={[classNames.suggestions, container].join(" ")}>
       <h3 className={classNames.header}>You might also enjoy</h3>
       <ul className={classNames.suggestedResources}>
         {suggestions.map(suggestion =>

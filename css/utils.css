@@ -1,21 +1,12 @@
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid*/
 /* TODO replace breakpoints in breakpoints.css with these */
+
 :root {
   --gutter-width: 1rem;
-  --outer-margin: 2rem;
+  --outer-padding: 1rem;
   --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
   --half-gutter-width: calc((var(--gutter-width) * 0.5));
-  --xs-min: 30;
-  --sm-min: 40;
-  --md-min: 52;
-  --lg-min: 72;
-  --screen-xs-min: var(--xs-min)em;
-  --screen-sm-min: var(--sm-min)em;
-  --screen-md-min: var(--md-min)em;
-  --screen-lg-min: var(--lg-min)em;
-  --container-sm: calc(var(--sm-min) + var(--gutter-width));
-  --container-md: calc(var(--md-min) + var(--gutter-width));
-  --container-lg: calc(var(--lg-min) + var(--gutter-width));
+  --site-max-width: 64rem;
 }
 
 @custom-media --sm-viewport only screen and (min-width: 40em);
@@ -23,7 +14,7 @@
 @custom-media --lg-viewport only screen and (min-width: 72em);
 
 :global .site-max-width {
-  max-width: 64rem;
+  max-width: var(--site-max-width);
 }
 
 :global .border-box {
@@ -43,33 +34,17 @@
   }
 }
 
-.module {
-  padding: 30px 25px;
-  margin: auto;
-
-  @media (min-width: smallRem) {
-    padding: 30px 50px;
-  }
-
-  @media (min-width: mediumRem) {
-    padding: 30px 70px;
-  }
-
-  @media screen and (min-width: 1100px) {
-    padding: 30px 0;
-    max-width: 64em;
-  }
-}
-
-:global .container-fluid,
-:global .container {
-  margin-right: auto;
+.container {
+  padding-left: var(--outer-padding);
+  padding-right: var(--outer-padding);
   margin-left: auto;
-}
+  margin-right: auto;
+  max-width: var(--site-max-width);
 
-:global .container-fluid {
-  padding-right: var(--outer-margin, 2rem);
-  padding-left: var(--outer-margin, 2rem);
+  @media (--lg-viewport) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 :global .row {
@@ -279,10 +254,6 @@
 }
 
 @media (--sm-viewport) {
-  :global .container {
-    width: var(--container-sm, 46rem);
-  }
-
   :global .col-sm,
   :global .col-sm-1,
   :global .col-sm-2,
@@ -474,10 +445,6 @@
 }
 
 @media (--md-viewport) {
-  :global .container {
-    width: var(--container-md, 61rem);
-  }
-
   :global .col-md,
   :global .col-md-1,
   :global .col-md-2,
@@ -669,10 +636,6 @@
 }
 
 @media (--lg-viewport) {
-  :global .container {
-    width: var(--container-lg, 71rem);
-  }
-
   :global .col-lg,
   :global .col-lg-1,
   :global .col-lg-2,

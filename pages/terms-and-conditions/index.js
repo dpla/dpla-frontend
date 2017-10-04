@@ -17,27 +17,24 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const TermsAndConditions = ({ url, termsAndConditions, guides }) =>
   <MainLayout route={url}>
-    <div>
-      <div
-        className={[
-          utilClassNames.module,
-          contentClasses.sidebarAndContentWrapper
-        ].join(" ")}
-      >
+    <div
+      className={`
+        ${utilClassNames.container}
+        ${contentClasses.sidebarAndContentWrapper}
+      `}
+    >
+      <div className="row">
         <ContentPagesSidebar
           route={url}
           guides={guides}
           page={CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
         />
-        <div className={[classNames.content, contentClasses.content].join(" ")}>
-          <h1
-            dangerouslySetInnerHTML={{ __html: termsAndConditions.title }}
-            className={classNames.title}
-          />
+        <div className="col-xs-12 col-md-7">
           <div
             dangerouslySetInnerHTML={{
               __html: termsAndConditions.content
             }}
+            className={contentClasses.content}
           />
         </div>
       </div>

@@ -2,8 +2,8 @@
 
 .details {
   display: flex;
-  padding-bottom: 100px;
-  padding-top: 0;
+  padding-bottom: 6rem;
+  margin-top: 2rem;
 }
 
 .tableOfContents {
