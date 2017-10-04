@@ -12,8 +12,6 @@ import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
-const chevron = "/static/images/chevron-thick-black.svg";
-const menuButtonIcon = "/static/images/menu-black.svg";
 
 const getFileType = (fileType, originalUrl) => {
   if (
@@ -86,20 +84,6 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
 
   return (
     <div className={classNames.viewer}>
-      <div className={classNames.menuButtonAndBreadcrumbs}>
-        <div className={classNames.menuButton}>
-          <img
-            alt=""
-            src={menuButtonIcon}
-            className={classNames.menuButtonIcon}
-          />
-        </div>
-        <div className={classNames.breadcrumbs}>
-          <span className={classNames.sectionBreadcrumb}>{section.title}</span>
-          <img src={chevron} alt="" className={classNames.breadcrumbChevron} />
-          <span>{subsection.title}</span>
-        </div>
-      </div>
       <div className={classNames.viewerContent}>
         <div className={classNames.mediaAndCaption}>
           <div className={classNames.mainMedia}>

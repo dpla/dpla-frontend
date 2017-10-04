@@ -42,7 +42,8 @@
   }
 }
 
-.menuButtonAndBreadcrumbs {
+.menuButtonAndBreadcrumbs,
+.menuHeader {
   display: flex;
   align-items: center;
 }
@@ -67,6 +68,7 @@
 
 .sidebar {
   display: none;
+
   @media (min-width: smallRem) {
     width: 197px;
     margin-right: 1.25rem;
@@ -75,9 +77,23 @@
   }
 }
 
+@media (max-width: smallRem) {
+  .sidebar.active {
+    display: block;
+    padding: 1rem;
+    position: fixed;
+    top: 132px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: visualBrown;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
 .sidebarSections {
   padding-bottom: 20px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 13px;
 }
 
@@ -452,4 +468,26 @@
     width: 50%;
     height: 50%;
   }
+}
+.closeMenuButton {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 100%;
+  padding: 1.125rem;
+  display: flex;
+  margin-right: 0.75rem;
+}
+
+.menuHeader {
+  background-color: bambooOrange;
+}
+
+.closeMenuButtonIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.menuHeaderText {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
 }

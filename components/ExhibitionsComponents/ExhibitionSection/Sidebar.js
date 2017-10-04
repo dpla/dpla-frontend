@@ -3,8 +3,15 @@ import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
 
-const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
-  <div className={classNames.sidebar}>
+const Sidebar = ({
+  exhibition,
+  currentSubsection,
+  currentSection,
+  isShowing
+}) =>
+  <div
+    className={`${classNames.sidebar} ${isShowing ? classNames.active : ""}`}
+  >
     <ul className={classNames.sidebarSections}>
       {exhibition.sections.map(section =>
         <li>
