@@ -12,7 +12,11 @@ import {
   classNames,
   stylesheet
 } from "components/ItemComponents/itemComponent.css";
-import { removeQueryParams, joinIfArray } from "utilFunctions";
+import {
+  removeQueryParams,
+  joinIfArray,
+  getDefaultThumbnail
+} from "utilFunctions";
 
 const ItemDetail = ({ url, item }) =>
   <MainLayout route={url}>
@@ -44,14 +48,17 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
   const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
   const json = await res.json();
-  const thumbnailUrl = `${currentUrl}${THUMBNAIL_ENDPOINT}/${json.docs[0].id}`;
-
+  const doc = json.docs[0];
+  const thumbnailUrl = doc.object
+    ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${doc.id}`
+    : getDefaultThumbnail(doc.sourceResource.type);
   return {
-    item: Object.assign({}, json.docs[0].sourceResource, {
+    item: Object.assign({}, doc.sourceResource, {
       thumbnailUrl,
-      contributor: json.docs[0].dataProvider,
-      partner: json.docs[0].provider.name,
-      sourceUrl: json.docs[0].isShownAt
+      contributor: doc.dataProvider,
+      partner: doc.provider.name,
+      sourceUrl: doc.isShownAt,
+      useDefaultImage: !doc.object
     })
   };
 };

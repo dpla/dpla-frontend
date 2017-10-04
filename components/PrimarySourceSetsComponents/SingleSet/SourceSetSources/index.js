@@ -13,7 +13,7 @@ const { container } = utilClassNames;
 const SourceSetSources = ({ route, sources }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceSetSources, container].join(" ")}>
-      {sources.map(({ name, thumbnailUrl }, i) => {
+      {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
           <Link
@@ -32,7 +32,7 @@ const SourceSetSources = ({ route, sources }) =>
             }}
           >
             <a className={classNames.set}>
-              <div className={classNames.imageWrapper}>
+              <div className={`${classNames.imageWrapper} ${useDefaultImage ? classNames.defaultImageWrapper : ""}`}>
                 <img
                   alt={name}
                   src={thumbnailUrl}

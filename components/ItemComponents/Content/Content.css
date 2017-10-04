@@ -31,6 +31,10 @@
   padding-bottom: 0;
 }
 
+.defaultItemImage {
+  padding: 32% 0;
+}
+
 .title {
   font-size: 1.625rem;
   font-weight: 600;

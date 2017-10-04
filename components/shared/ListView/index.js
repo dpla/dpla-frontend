@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
@@ -17,13 +18,12 @@ const ListView = ({ items, route }) =>
       <li key={item["@id"] || item.id} className={classNames.listItem}>
         <Link prefetch href={item.linkHref} as={item.linkAs}>
           <a className={classNames.listItemLink}>
-            <div className={classNames.imageWrapper}>
-              <img
-                src={item.thumbnailUrl}
-                alt=""
-                className={classNames.image}
-              />
-            </div>
+            <ListImage
+              title={item.title}
+              type={item.type}
+              url={item.thumbnailUrl}
+              useDefaultImage={item.useDefaultImage}
+            />
           </a>
         </Link>
         <div className={classNames.itemInfo}>

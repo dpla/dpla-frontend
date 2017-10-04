@@ -281,3 +281,11 @@
   top: -16px;
   left: 8px;
 }
+
+.defaultItemImage {
+  background-color: #e4e2db;
+  & img {
+    width: 50%;
+    height: 50%;
+  }
+}

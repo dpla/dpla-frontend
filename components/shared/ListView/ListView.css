@@ -1,4 +1,4 @@
-@value bambooOrange, elephantBlue, dimmerGray, vikingBlue from "../../../css/colors.css";
+@value bambooOrange, elephantBlue, dimmerGray, vikingBlue, visualBrown from "../../../css/colors.css";
 
 .listItem {
   padding: 15px 0;
@@ -6,16 +6,31 @@
   display: flex;
 }
 
+.listItemLink {
+  flex-shrink: 0;
+}
+
 .imageWrapper {
   width: 160px;
   height: 120px;
   border-radius: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 13px;
   flex-shrink: 0;
+}
+
+.imageWrapper:not(.defaultImageWrapper) {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.defaultImageWrapper {
+  background-color: visualBrown;
+
+  & img {
+    opacity: 0.35;
+  }
 }
 
 .image {

@@ -9,6 +9,9 @@ import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/S
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
+const videoIcon = "/static/placeholderImages/Video.svg";
+const audioIcon = "/static/placeholderImages/Sound.svg";
+
 const Source = ({ url, source, set, currentSourceIdx }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
@@ -57,13 +60,31 @@ Source.getInitialProps = async ({ query }) => {
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
   const setJson = await setRes.json();
+  const parts = setJson.hasPart.map(part => {
+    let thumbnailUrl = part.thumbnailUrl;
+    let useDefaultImage = false;
+    const type =
+      part.mainEntity && part.mainEntity[0] && part.mainEntity[0]["@type"];
+    if (type === "AudioObject") {
+      thumbnailUrl = audioIcon;
+      useDefaultImage = true;
+    } else if (type === "VideoObject") {
+      thumbnailUrl = videoIcon;
+      useDefaultImage = true;
+    }
+    return Object.assign({}, part, { thumbnailUrl, useDefaultImage });
+  });
 
   const sourceId = sourceJson["@id"];
   const currentSourceIdx = setJson.hasPart
     .slice(1)
     .findIndex(source => source["@id"] === sourceId);
 
-  return { source: sourceJson, set: setJson, currentSourceIdx };
+  return {
+    source: sourceJson,
+    set: Object.assign({}, setJson, { hasPart: parts }),
+    currentSourceIdx
+  };
 };
 
 export default Source;

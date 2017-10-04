@@ -26,6 +26,12 @@
   margin-bottom: 9px;
 }
 
+.defaultImageWrapper {
+  & img {
+    opacity: 0.35;
+  }
+}
+
 .image {
   max-width: 100%;
   max-height: 100%;

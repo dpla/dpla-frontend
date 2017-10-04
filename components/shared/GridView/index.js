@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Grid from "react-masonry-component";
 
+import GridImage from "./GridImage";
+
 import { classNames, stylesheet } from "./GridView.css";
 
 const GridView = ({ items, style }) =>
@@ -14,13 +16,14 @@ const GridView = ({ items, style }) =>
       }}
     >
       {items.map(item =>
-        <li key={item.thumbnailUrl} className={classNames.gridItem}>
+        <li key={item.id} className={classNames.gridItem}>
           <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.link}>
-              <img
-                className={classNames.image}
-                src={item.thumbnailUrl}
-                alt=""
+              <GridImage
+                title={item.title}
+                type={item.type}
+                url={item.thumbnailUrl}
+                useDefaultImage={item.useDefaultImage}
               />
               <p
                 className={[

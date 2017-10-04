@@ -35,7 +35,7 @@ const Exhibition = ({ exhibition, route, featured }) =>
         <div
           className={classNames.exhibitionImage}
           style={{
-            backgroundImage: `url("${exhibition.thumbnailUrl}")`,
+            backgroundImage: `url("${exhibition.thumbnailUrl}")`
           }}
         />
       </div>

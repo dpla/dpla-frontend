@@ -66,11 +66,13 @@ class ItemList extends React.Component {
             </button>
           </div>
         </div>
-        {view === "grid" ? <GridView
-            route={this.props.route}
-            items={items}
-            style={{ marginTop: "15px" }}
-          /> : <ListView route={this.props.route} items={items} />}
+        {view === "grid"
+          ? <GridView
+              route={this.props.route}
+              items={items}
+              style={{ marginTop: "15px" }}
+            />
+          : <ListView route={this.props.route} items={items} />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );

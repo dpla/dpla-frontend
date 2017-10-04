@@ -1,6 +1,7 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
 import { joinIfArray } from "utilFunctions";
+import ItemImage from "./ItemImage";
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
 const MainMetadata = ({ item }) =>
@@ -12,10 +13,12 @@ const MainMetadata = ({ item }) =>
             Item
           </td>
           <td className={classNames.tableItem}>
-            <img
-              className={classNames.thumbnail}
-              src={item.thumbnailUrl}
-              alt={joinIfArray(item.description)}
+            <ItemImage
+              title={item.title}
+              type={item.type}
+              url={item.thumbnailUrl}
+              defaultImageClass={classNames.defaultItemImage}
+              useDefaultImage={item.useDefaultImage}
             />
             <a
               href={item.sourceUrl}

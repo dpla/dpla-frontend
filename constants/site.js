@@ -8,3 +8,10 @@ export const GOOGLE_CLASSROOMS_SHARE_URL =
 export const DPLA_CONTACT_EMAIL = "education@dp.la";
 export const PSS_SUGGESTION_URL =
   "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
+
+export const resourceTypes = {
+  TEXT: "text",
+  IMAGE: "image",
+  SOUND: "sound",
+  VIDEO: "moving image"
+};

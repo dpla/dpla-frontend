@@ -1,3 +1,6 @@
+@value visualBrown from "../../../css/colors.css";
+
+
 .wrapper {
   width: 100%;
   height: 100%;
@@ -37,4 +40,22 @@
 
 .gridItem:hover .hoverText {
   display: block;
+}
+
+.imageWrapper:not(.defaultImageWrapper) {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.defaultImageWrapper {
+  background-color: visualBrown;
+  padding-bottom: 25%;
+  padding-top: 25%;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & img {
+    opacity: 0.35;
+    width: auto;
+  }
 }

@@ -1,4 +1,4 @@
-@value romanceGray, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
+@value romanceGray, pampasBrown, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -136,4 +136,18 @@
 
 .sourceCarousel :global(.slick-next), .sourceCarousel :global(.slick-prev) {
   position: static;
+}
+
+
+.defaultImageWrapper {
+  background-color: pampasBrown;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  & img {
+    opacity: 0.35;
+    min-width: auto;
+    min-height: auto;
+  }
 }
