@@ -14,20 +14,20 @@ import {
 
 const Guides = ({ url, guides }) =>
   <MainLayout route={url}>
-    <div>
-      <div
-        className={[
-          utilClassNames.module,
-          contentClasses.sidebarAndContentWrapper
-        ].join(" ")}
-      >
+    <div
+      className={`
+        ${utilClassNames.container}
+        ${contentClasses.sidebarAndContentWrapper}
+      `}
+    >
+      <div className="row">
         <ContentPagesSidebar
           route={url}
           guides={guides}
           page={CONTENT_PAGE_NAMES.GUIDES}
         />
-        <div className={classNames.content}>
-          <ul className={`${classNames.links} row`}>
+        <div className={`${classNames.wrapper} col-xs-12 col-md-8`}>
+          <ul className="row">
             {guides.map((guide, i) =>
               <li
                 key={i}

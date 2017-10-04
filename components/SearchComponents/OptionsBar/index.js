@@ -13,7 +13,7 @@ import {
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
@@ -72,7 +72,7 @@ class OptionsBar extends React.Component {
   render() {
     return (
       <div className={classNames.wrapper}>
-        <div className={[module, classNames.optionsBar].join(" ")}>
+        <div className={[container, classNames.optionsBar].join(" ")}>
           <p className={classNames.resultsCount}>
             <span>{addCommasToNumber(this.props.itemCount)} results </span>
             {this.props.route.query.q &&

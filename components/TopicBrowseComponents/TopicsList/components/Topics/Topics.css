@@ -2,21 +2,15 @@
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .topicsWrapper {
-  margin: 0 auto 2rem;
-  padding: 0 1rem;
+  margin-top: 1rem;
 
   @media (min-width: mediumRem) {
-    margin-top: 1rem;
     margin-bottom: 4rem;
   }
 
   @media (min-width: mediumRem) {
     margin-top: 2rem;
     margin-bottom: 6rem;
-  }
-
-  @media (min-width: largeRem) {
-    padding: 0;
   }
 }
 

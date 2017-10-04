@@ -34,7 +34,7 @@ const ItemDetail = ({ url, item }) =>
       route={url}
     />
     <div
-      className={[utilClassNames.module, classNames.contentWrapper].join(" ")}
+      className={`${utilClassNames.container} ${classNames.contentWrapper}`}
     >
       <Content item={item} />
       <div className={classNames.faveAndCiteButtons}>

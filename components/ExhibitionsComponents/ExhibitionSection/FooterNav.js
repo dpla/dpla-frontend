@@ -4,7 +4,7 @@ import Link from "next/link";
 import { classNames } from "./ExhibitionSection.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const dplaLogo = "/static/images/dpla-logo-black.svg";
 const chevron = "/static/images/chevron-thick-white.svg";
@@ -70,7 +70,7 @@ const FooterNav = ({
   nextSubsectionTitle
 }) =>
   <div className={classNames.footerWrapper}>
-    <div className={[module, classNames.footerNav].join(" ")}>
+    <div className={[container, classNames.footerNav].join(" ")}>
       <Link prefetch href="/">
         <img src={dplaLogo} alt="DPLA" className={classNames.dplaLogo} />
       </Link>

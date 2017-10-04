@@ -13,7 +13,10 @@ const SetsList = ({ sets, route }) =>
   <div className={`${classNames.setsWrapper} site-max-width`}>
     <ul className="row">
       {sets.itemListElement.map(set =>
-        <li className={`${classNames.itemWrapper} col-xs-6 col-md-4`}>
+        <li
+          className={`${classNames.itemWrapper} col-xs-6 col-md-4`}
+          key={set.name}
+        >
           <div className={classNames.item}>
             <Link
               prefetch
@@ -37,7 +40,7 @@ const SetsList = ({ sets, route }) =>
               <a>
                 <img
                   alt={set.name}
-                  src={set.thumbnailUrl}
+                  src={set.repImageUrl || set.thumbnailUrl}
                   className={classNames.image}
                 />
               </a>
@@ -68,7 +71,7 @@ const SetsList = ({ sets, route }) =>
                       disambiguatingDescription === "Time Period"
                   )
                   .map((tag, i, tags) =>
-                    <li className={classNames.tag}>
+                    <li className={classNames.tag} key={`${tag}—${i}`}>
                       <Link
                         prefetch
                         href={{

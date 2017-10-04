@@ -7,13 +7,13 @@ import extractSourceId from "/utilFunctions/extractSourceId";
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 import { classNames, stylesheet } from "./SourceCarousel.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const smallChevron = "/static/images/chevron-thick-orange.svg";
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={classNames.wrapper}>
-    <div className={[classNames.sourceCarousel, module].join(" ")}>
+    <div className={[classNames.sourceCarousel, container].join(" ")}>
       <div className={classNames.headerAndNav}>
         <h1 className={classNames.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}

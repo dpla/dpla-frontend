@@ -6,18 +6,14 @@
 }
 
 .content {
-  margin: auto;
-  padding: 1rem 1rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
   @media (min-width: mediumRem) {
     display: flex;
     align-items: center;
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-
-  @media (min-width: largeRem) {
-    padding: 1.5rem 0 2rem;
   }
 }
 

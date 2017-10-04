@@ -4,6 +4,7 @@
   background-color: visualBrown;
   min-height: 100vh;
   padding-bottom: 7.125rem;
+  padding-top: 2rem;
 }
 
 .exhibitionsLinkAndTitle {
@@ -79,6 +80,7 @@
 
 .body {
   display: flex;
+  margin-top: 2rem;
   max-width: 1200px;
 }
 

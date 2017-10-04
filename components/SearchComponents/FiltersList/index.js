@@ -55,9 +55,7 @@ class FiltersList extends React.Component {
     )
       ? <div className={classNames.filtersListWrapper}>
           <div
-            className={[classNames.filtersList, utilClassNames.module].join(
-              " "
-            )}
+            className={`${classNames.filtersList} ${utilClassNames.container}`}
           >
             <div className={classNames.labelAndFilters}>
               <span className={classNames.labelText}>Filtered by</span>
