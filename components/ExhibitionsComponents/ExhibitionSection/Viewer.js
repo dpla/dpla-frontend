@@ -19,7 +19,7 @@ const getFileType = (fileType, originalUrl) => {
     fileType === ITEM_TYPES.MOVING_IMAGE ||
     /\.(mp4|webm|ogg)/.test(originalUrl)
   ) {
-    return resourceTypes;
+    return resourceTypes.VIDEO;
   } else if (fileType === ITEM_TYPES.SOUND || /\.(mp3|wav)/.test(originalUrl)) {
     return resourceTypes.SOUND;
   } else {
