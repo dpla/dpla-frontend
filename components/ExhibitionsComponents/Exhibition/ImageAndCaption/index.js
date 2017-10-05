@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import HeadingRule from "components/shared/HeadingRule";
+import Button from "components/shared/Button";
 import { classNames, stylesheet } from "./ImageAndCaption.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
@@ -23,9 +24,12 @@ const ImageAndCaption = ({ exhibition, route }) =>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
             <HeadingRule color="rgba(255,255,255,0.75)" />
-            <Link
+            <Button
+              type="primary"
+              size="large"
               prefetch
-              href={{
+              className={classNames.exploreLink}
+              url={{
                 pathname: "/exhibitions/exhibition/section/subsection",
                 query: Object.assign({}, route.query, {
                   section: exhibition.sections[0].slug,
@@ -38,8 +42,8 @@ const ImageAndCaption = ({ exhibition, route }) =>
                   .sections[0].slug}/`
               }}
             >
-              <a className={classNames.exploreLink}>Explore Exhibition</a>
-            </Link>
+              Explore Exhibition
+            </Button>
           </div>
         </div>
       </div>

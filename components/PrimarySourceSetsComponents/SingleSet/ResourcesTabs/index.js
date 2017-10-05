@@ -4,15 +4,13 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./ResourcesTabs.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const { container } = utilClassNames;
-
 class ResourcesTabs extends React.Component {
   render() {
     const { currentTab, route } = this.props;
     return (
       <div className={classNames.wrapper}>
         <div className={classNames.tabsWrapper}>
-          <div className={[classNames.tabs, container].join(" ")}>
+          <div className={`${classNames.tabs} ${utilClassNames.container}`}>
             <Link
               prefetch
               href={`/primary-source-sets/set?set=${route.query.set}`}

@@ -4,22 +4,26 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Button.css";
 
 const Button = ({
+  as,
   children,
-  type,
-  size,
-  url,
-  style,
+  className,
   icon,
   onClick,
+  prefetch,
+  size,
+  style,
   title,
-  className,
-  prefetch
+  type,
+  url
 }) => {
   let buttonClasses = `${className} ${classNames.buttonBase}`;
 
   switch (type) {
     case "primary":
       buttonClasses = `${buttonClasses} ${classNames.buttonPrimary}`;
+      break;
+    case "ghost":
+      buttonClasses = `${buttonClasses} ${classNames.buttonGhost}`;
       break;
   }
 
@@ -32,7 +36,7 @@ const Button = ({
   return (
     <div>
       {url ? (
-        <Link prefetch={prefetch} href={url}>
+        <Link prefetch={prefetch} href={url} as={as}>
           <a title={title} className={buttonClasses} style={style}>
             {children}
           </a>

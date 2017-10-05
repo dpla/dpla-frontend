@@ -147,7 +147,7 @@
 }
 
 .searchButton {
-  transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-out;
   position: absolute;
   right: 0;
   top: 0;
@@ -161,7 +161,6 @@
   z-index: 2;
 
   &:hover {
-    /* TODO: use css-next color() function to darken */
     background-color: #53A9D2;
   }
 

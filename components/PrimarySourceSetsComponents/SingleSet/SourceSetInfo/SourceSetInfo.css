@@ -101,24 +101,13 @@
 }
 
 .button {
-  display: block;
-  padding: 10px 0;
   width: 100%;
-  border-radius: 2px;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  font-weight: 600;
 }
 
 .favoritesButton {
   background-color: softPeach;
   color: cranberry;
   margin-bottom: 15px;
-}
-
-.citeButton {
-  background-color: iceBlue;
-  color: curiousBlue;
 }
 
 .link {

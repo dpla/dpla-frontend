@@ -3,8 +3,8 @@
 .sourceSetSources {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 64px;
-  padding-top: 50px;
+  margin-bottom: 4rem;
+  margin-top: 3rem;
 }
 
 .set {

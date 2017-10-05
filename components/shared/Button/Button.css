@@ -1,13 +1,13 @@
-@value cascadeBlue, iceBlue, bambooOrange from "../../../css/colors.css";
+@value cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 
 .buttonBase {
-  display: block;
   font-weight: 600;
   border-radius: 2px;
   font-size: 1rem;
   padding: .75rem 2rem;
+  transition: background-color .15s ease-out;
 }
 
 /* Types */
@@ -15,10 +15,18 @@
 .buttonPrimary {
   color: white;
   background-color: bambooOrange;
-  transition: background-color .15s ease-out;
 
   &:hover {
     background-color: #CD570A;
+  }
+}
+
+.buttonGhost {
+  color: cascadeBlue;
+  background-color: iceBlue;
+
+  &:hover {
+    background-color: #D4E6EF;
   }
 }
 

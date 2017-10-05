@@ -1,35 +1,13 @@
-@value cranberry, softPeach, iceBlue, curiousBlue from "../../../css/colors.css";
-
 .buttons {
   float: right;
   border-radius: 3px;
   border: 1px solid #E7E7E7;
-  padding: 25px 20px;
+  padding: 1.5rem;
   width: 283px;
   margin-left: 20px;
   margin-bottom: 20px;
 }
 
 .citeThis {
-  display: block;
   width: 100%;
-  background-color: iceBlue;
-  color: curiousBlue;
-  padding: 10px 0;
-  font-size: 600;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  font-weight: 600;
-}
-
-.addToFavorites {
-  display: block;
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  margin-bottom: 15px;
-  color: cranberry;
-  padding: 10px 0;
-  background-color: softPeach;
 }

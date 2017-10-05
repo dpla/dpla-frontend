@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import Button from "../../../../shared/Button";
+import Button from "components/shared/Button";
 import { classNames, stylesheet } from "./Callout.css";
 
 const Callout = ({ topics }) =>

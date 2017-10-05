@@ -46,14 +46,20 @@
   &::-webkit-search-results-decoration {
     -webkit-appearance: none;
   }
+
+  &:focus::placeholder {
+    opacity: 0.25;
+  }
 }
 
 .searchInput::placeholder {
+  transition: opacity .2s ease-out;
   color: elephantBlue;
   opacity: 0.5;
 }
 
 .searchButton {
+  transition: background-color .2s ease-out;
   background-color: elephantBlue;
   border-radius: 0 3px 3px 0;
   display: flex;
@@ -64,6 +70,10 @@
   font-weight: 600;
   color: white;
   padding: 0 1rem;
+
+  &:hover {
+    background-color: #123544;
+  }
 }
 
 .searchIcon {

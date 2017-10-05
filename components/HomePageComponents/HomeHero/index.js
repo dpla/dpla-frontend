@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../../shared/Button";
+import Button from "components/shared/Button";
 import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 

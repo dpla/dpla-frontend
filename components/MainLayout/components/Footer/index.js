@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { classNames, stylesheet } from "./Footer.css";
 
-import Button from "../../../shared/Button";
+import Button from "components/shared/Button";
 const logo = "/static/images/dpla-logo.svg";
 const fbIcon = "/static/images/facebook.svg";
 const igIcon = "/static/images/instagram.svg";
