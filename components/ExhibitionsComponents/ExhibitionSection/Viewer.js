@@ -12,6 +12,7 @@ import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
+const chevron = "/static/images/chevron-thin.svg";
 
 const getFileType = (fileType, originalUrl) => {
   if (
@@ -65,7 +66,6 @@ const ItemLink = ({
   >
     <a className={[classNames.itemLink, className].join(" ")}>
       <ItemImage
-        // title={item.title}
         type={getFileType(fileType, originalUrl)}
         url={
           thumbnailUrl ||
@@ -78,15 +78,43 @@ const ItemLink = ({
   </Link>;
 
 const Viewer = ({ exhibition, section, subsection, route }) => {
-  const pageWithText = subsection.page_blocks.find(block => block.text);
+  const pageBlocks = subsection.page_blocks;
+  const pageWithText = pageBlocks.find(block => block.text);
   const text = pageWithText ? pageWithText.text : "";
-  const activePage = subsection.page_blocks.find(block => block.isActive);
+  const activePageIdx = pageBlocks.findIndex(block => block.isActive);
+  const activePage = pageBlocks[activePageIdx];
+  const previousPage = activePageIdx - 1 >= 0
+    ? pageBlocks[activePageIdx - 1]
+    : null;
+  const nextPage = activePageIdx + 1 < pageBlocks.length
+    ? pageBlocks[activePageIdx + 1]
+    : null;
 
   return (
     <div className={classNames.viewer}>
       <div className={classNames.viewerContent}>
         <div className={classNames.mediaAndCaption}>
           <div className={classNames.mainMedia}>
+            {previousPage &&
+              <Link
+                prefetch
+                href={{
+                  pathname: route.pathname,
+                  query: Object.assign({}, route.query, {
+                    item: previousPage.id
+                  })
+                }}
+                as={`/exhibitions/${route.query.exhibition}/${route.query
+                  .section}/${route.query.subsection}?item=${previousPage.id}`}
+              >
+                <a className={classNames.previousItemButton}>
+                  <img
+                    src={chevron}
+                    alt=""
+                    className={classNames.previousItemChevron}
+                  />
+                </a>
+              </Link>}
             {getViewerComponent(
               activePage.fileType,
               activePage.originalUrl,
@@ -94,6 +122,24 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 ? activePage.fullsizeImgUrl
                 : activePage.originalUrl
             )}
+            {nextPage &&
+              <Link
+                prefetch
+                href={{
+                  pathname: route.pathname,
+                  query: Object.assign({}, route.query, { item: nextPage.id })
+                }}
+                as={`/exhibitions/${route.query.exhibition}/${route.query
+                  .section}/${route.query.subsection}?item=${nextPage.id}`}
+              >
+                <a className={classNames.nextItemButton}>
+                  <img
+                    src={chevron}
+                    alt=""
+                    className={classNames.nextItemChevron}
+                  />
+                </a>
+              </Link>}
           </div>
           <ul className={classNames.itemLinks}>
             {subsection.page_blocks.map(block =>

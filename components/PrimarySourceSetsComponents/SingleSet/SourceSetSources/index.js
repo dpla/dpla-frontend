@@ -32,7 +32,11 @@ const SourceSetSources = ({ route, sources }) =>
             }}
           >
             <a className={classNames.set}>
-              <div className={`${classNames.imageWrapper} ${useDefaultImage ? classNames.defaultImageWrapper : ""}`}>
+              <div
+                className={`${classNames.imageWrapper} ${useDefaultImage
+                  ? classNames.defaultImageWrapper
+                  : ""}`}
+              >
                 <img
                   alt={name}
                   src={thumbnailUrl}
