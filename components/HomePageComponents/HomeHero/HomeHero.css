@@ -108,7 +108,7 @@
   opacity: .25;
   position: absolute;
   top: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity .15s ease-out;
   width: 100%;
 }
 
@@ -129,7 +129,7 @@
   }
 
   &::placeholder {
-    transition: opacity .2s ease-in-out;
+    transition: opacity .15s ease-out;
     color: elephantBlue;
     opacity: 0.5;
   }
@@ -198,16 +198,21 @@
   font-size: 1rem;
   margin: 2rem auto 0;
   text-align: center;
-  opacity: .75;
 
   @media (min-width: mediumRem) {
     font-size: 1.25rem;
   }
 
   & a {
-    border-bottom: 1px solid;
+    border-bottom: 2px solid rgba(255,255,255,.25);
     padding-bottom: 2px;
     display: inline-block;
     margin: 0 1rem;
+    opacity: .75;
+    transition: opacity .15s ease-out;
+  }
+
+  & a:hover {
+    opacity: 1;
   }
 }
