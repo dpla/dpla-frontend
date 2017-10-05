@@ -27,18 +27,6 @@
   }
 }
 
-.donateButton {
-  display: block;
-  margin-left: auto;
-  font-weight: 600;
-  color: white;
-  background-color: bambooOrange;
-  border-radius: 2px;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
-  padding: 10px 41px;
-}
-
 .dplaLogo {
   width: 24rem;
 }
@@ -118,13 +106,16 @@
   border: none;
   height: 100%;
   line-height: 1.5;
-  padding: 1rem 0 xxxx;
+  padding: 1rem;
   position: relative;
   width: 100%;
   z-index: 1;
 
   /* Remove browser search input defaults */
-  &::search-cancel-button {
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
     appearance: none;
   }
 
@@ -149,6 +140,8 @@
   @media (min-width: mediumRem) {
     border-radius: 3px;
     padding-left: 1.5rem;
+    /* Clear right for button */
+    padding-right: 11rem;
     font-size: 1.2rem;
   }
 }

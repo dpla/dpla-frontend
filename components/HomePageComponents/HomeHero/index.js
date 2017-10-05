@@ -1,5 +1,6 @@
 import React from "react";
 
+import Button from "../../shared/Button";
 import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
@@ -17,7 +18,7 @@ const HomeHero = () =>
       <div>
         <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
       </div>
-      <button className={classNames.donateButton}>Donate</button>
+      <Button type="primary" size="large">Donate</Button>
     </div>
     <div className={classNames.content}>
       <p className={classNames.headline}>
