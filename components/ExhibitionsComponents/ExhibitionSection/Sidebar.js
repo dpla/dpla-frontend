@@ -38,6 +38,7 @@ const Sidebar = ({
             <ul>
               {section.subsections.map(subsection =>
                 <li
+                  key={subsection.id}
                   className={[
                     classNames.subsectionTitle,
                     subsection.id === currentSubsection.id && classNames.active
