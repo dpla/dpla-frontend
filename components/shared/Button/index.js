@@ -12,7 +12,8 @@ const Button = ({
   icon,
   onClick,
   title,
-  className
+  className,
+  prefetch
 }) => {
   let buttonClasses = `${className} ${classNames.buttonBase}`;
 
@@ -31,7 +32,7 @@ const Button = ({
   return (
     <div>
       {url ? (
-        <Link href={url}>
+        <Link prefetch={prefetch} href={url}>
           <a title={title} className={buttonClasses} style={style}>
             {children}
           </a>
