@@ -16,7 +16,7 @@ const Sidebar = ({
   >
     <ul className={classNames.sidebarSections}>
       {exhibition.sections.map(section =>
-        <li>
+        <li key={section.id}>
           <Link
             prefetch
             href={{
