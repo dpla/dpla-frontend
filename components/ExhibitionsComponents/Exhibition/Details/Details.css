@@ -1,16 +1,26 @@
 @value visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value smallRem from "../../../../css/breakpoints.css";
 
 .details {
   display: flex;
+  flex-direction: column;
   padding-bottom: 6rem;
   margin-top: 2rem;
+  @media (min-width: smallRem) {
+    flex-direction: row;
+  }
 }
 
 .tableOfContents {
-  width: 285px;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: 285px;
+    padding-left: 45px;
+    margin-right: 32px;
+    margin-bottom: 0;
+  }
+  margin-bottom: 2rem;
   flex-shrink: 0;
-  padding-left: 45px;
-  margin-right: 32px;
   box-sizing: content-box;
 }
 
@@ -46,6 +56,14 @@
   display: block;
   line-height: 1.5rem;
   padding-right: 45px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: smallRem) {
+    display: block;
+  }
 }
 
 .bodyText p:not(:last-child) {
