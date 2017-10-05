@@ -18,7 +18,9 @@ const HomeHero = () =>
       <div>
         <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
       </div>
-      <Button type="primary" size="large">Donate</Button>
+      <Button type="primary" size="large">
+        Donate
+      </Button>
     </div>
     <div className={classNames.content}>
       <p className={classNames.headline}>

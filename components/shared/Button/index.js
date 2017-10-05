@@ -3,8 +3,18 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Button.css";
 
-const Button = ({ children, type, size, url, style, icon, onClick, title }) => {
-  let buttonClasses = `${classNames.buttonBase}`;
+const Button = ({
+  children,
+  type,
+  size,
+  url,
+  style,
+  icon,
+  onClick,
+  title,
+  className
+}) => {
+  let buttonClasses = `${className} ${classNames.buttonBase}`;
 
   switch (type) {
     case "primary":

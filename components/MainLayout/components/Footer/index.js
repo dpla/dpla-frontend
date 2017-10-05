@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { classNames, stylesheet } from "./Footer.css";
 
+import Button from "../../../shared/Button";
 const logo = "/static/images/dpla-logo.svg";
 const fbIcon = "/static/images/facebook.svg";
 const igIcon = "/static/images/instagram.svg";
@@ -108,7 +109,13 @@ const Footer = () =>
           </ul>
         </div>
         <div className="col-xs-12 col-md-3">
-          <button className={classNames.donateButton}>Donate</button>
+          <Button
+            type="primary"
+            size="large"
+            className={classNames.donateButton}
+          >
+            Donate
+          </Button>
         </div>
       </div>
     </div>
