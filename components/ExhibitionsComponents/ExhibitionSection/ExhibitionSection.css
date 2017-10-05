@@ -443,7 +443,7 @@
   }
 }
 
-.itemLinkImage {
+.itemLink img {
   display: none;
   @media (min-width: smallRem) {
     display: block;
