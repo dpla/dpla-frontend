@@ -33,6 +33,7 @@ const HomeHero = () =>
             autoComplete="off"
             type="search"
           />
+          <div className={classNames.shadow} />
           <button type="submit" className={classNames.searchButton}>
             <img
               alt="search"
