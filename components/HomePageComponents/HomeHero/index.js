@@ -6,7 +6,6 @@ import Link from "next/link";
 const bgImage = "static/images/home-hero-bg.png";
 const searchIcon = "static/images/search.svg";
 const dplaLogo = "static/images/dpla-logo.svg";
-const chevron = "static/images/chevron-thick-dark-blue.svg";
 
 const HomeHero = () =>
   <div
@@ -21,8 +20,8 @@ const HomeHero = () =>
     </div>
     <div className={classNames.content}>
       <p className={classNames.headline}>
-        A collection of 16,340,976 free digital artifacts from over 120
-        libraries, archives and museums
+        Discover 17,820,245 images, texts, videos, and sounds from across
+        the United States
       </p>
       <form action="/search">
         <div className={classNames.search}>
