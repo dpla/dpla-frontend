@@ -10,11 +10,13 @@ const Sidebar = ({
   isShowing
 }) =>
   <div
-    className={`${classNames.sidebar} ${isShowing ? classNames.active : ""}`}
+    className={`${classNames.sidebar} ${isShowing
+      ? classNames.overlayActive
+      : ""}`}
   >
     <ul className={classNames.sidebarSections}>
       {exhibition.sections.map(section =>
-        <li key={section.id}>
+        <li>
           <Link
             prefetch
             href={{

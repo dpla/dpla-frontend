@@ -1,5 +1,5 @@
 @value vikingBlue, elephantBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
-@value smallRem from "../../../css/breakpoints.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .exhibitionView {
   background-color: visualBrown;
@@ -44,8 +44,18 @@
 
 .menuButtonAndBreadcrumbs,
 .menuHeader {
-  display: flex;
   align-items: center;
+}
+
+.menuButtonAndBreadcrumbs {
+  display: flex;
+}
+
+.openMenu .menuButtonAndBreadcrumbs {
+  display: none;
+  @media (min-width: smallRem) {
+    display: flex;
+  }
 }
 
 .menuButton {
@@ -77,8 +87,8 @@
   }
 }
 
-@media (max-width: smallRem) {
-  .sidebar.active {
+.sidebar.overlayActive {
+  @media (max-width: smallRem) {
     display: block;
     padding: 1rem;
     position: fixed;
@@ -137,7 +147,7 @@
 .body {
   display: flex;
   max-width: 1200px;
-  padding: 0 0 1rem;
+  padding: 0 0 3rem;
   @media (min-width: smallRem) {
     margin-top: 2rem;
     margin-left: auto;
@@ -472,13 +482,24 @@
 .closeMenuButton {
   background-color: rgba(0, 0, 0, 0.12);
   height: 100%;
-  padding: 1.125rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 0.75rem;
 }
 
 .menuHeader {
+  display: none;
   background-color: bambooOrange;
+}
+
+.openMenu .menuHeader {
+  display: flex;
+  @media (min-width: smallRem) {
+    display: none;
+  }
 }
 
 .closeMenuButtonIcon {
