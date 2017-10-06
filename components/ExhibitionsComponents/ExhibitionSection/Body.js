@@ -12,17 +12,13 @@ class Body extends React.Component {
 
   toggleMenu() {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
-      if (this.state.isMenuOpen) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "auto";
-      }
+      document.body.classList.toggle("small-screen-overlay");
     });
   }
 
   componentWillUnmount() {
-    if (document.body.style.overflow === "hidden") {
-      document.body.style.overflow = "auto";
+    if (document.body.classList.contains("small-screen-overlay")) {
+      document.body.classList.remove("small-screen-overlay");
     }
   }
 
