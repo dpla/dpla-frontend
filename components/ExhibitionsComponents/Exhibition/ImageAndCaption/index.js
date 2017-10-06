@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
@@ -23,7 +22,9 @@ const ImageAndCaption = ({ exhibition, route }) =>
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
-            <HeadingRule color="rgba(255,255,255,0.75)" />
+            <div className={classNames.headingRule}>
+              <HeadingRule color="rgba(255,255,255,0.75)" />
+            </div>
             <Button
               type="primary"
               size="large"

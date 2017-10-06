@@ -55,7 +55,9 @@
   font-size: 1.125rem;
   display: block;
   line-height: 1.5rem;
-  padding-right: 45px;
+  @media (min-width: smallRem) {
+    padding-right: 45px;
+  }
 }
 
 .body {

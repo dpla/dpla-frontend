@@ -1,12 +1,22 @@
 @value bambooOrange from "../../../../css/colors.css";
-@value smallRem from "../../../../css/breakpoints.css";
+@value smallRem, xSmallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .wrapper {
   margin-top: 2rem;
 }
 
+.imageAndCaption {
+  width: 100%;
+  padding: 0;
+  @media (min-width: smallRem) {
+    padding: 1rem;
+  }
+}
+
 .image {
-  border-radius: 3px;
+  @media (min-width: smallRem) {
+    border-radius: 3px;
+  }
   width: 100%;
   /* 518 / 1024 ratio */
   padding-top: 50.59%;
@@ -32,22 +42,46 @@
 }
 
 .overlayContent {
-  width: 90%;
   text-align: center;
   padding-bottom: 1rem;
+  width: 95%;
   @media (min-width: smallRem) {
+    width: 90%;
+    padding-bottom: 1.5rem;
+  }
+  @media (min-width: mediumRem) {
     padding-bottom: 3.5rem;
   }
 }
 
+.headingRule {
+  display: none;
+  @media (min-width: xSmallRem) {
+    display: inline-block;
+  }
+}
+
 .exhibitionTitle {
-  font-size: 3.75rem;
   line-height: 1.1;
   font-family: "Lora";
+  font-size: 1.75rem;
+  @media (min-width: xSmallRem) {
+    font-size: 2.5rem;
+  }
+  @media (min-width: mediumRem) {
+    font-size: 3rem;
+  }
 }
 
 .exploreLink {
   display: inline-block;
+  margin-top: 1.5rem;
+  @media (min-width: xSmallRem) {
+    margin-top: -1rem;
+  }
+  @media (min-width: mediumRem) {
+    margin-top: 0;
+  }
 }
 
 .captionLeadIn {
@@ -56,6 +90,7 @@
 }
 
 .caption {
+  padding: 0 1rem;
   @media (min-width: smallRem) {
     padding: 0 45px;
   }
