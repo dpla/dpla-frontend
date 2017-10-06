@@ -20,6 +20,12 @@ class Body extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    if (document.body.style.overflow === "hidden") {
+      document.body.style.overflow = "auto";
+    }
+  }
+
   render() {
     const { exhibition, section, subsection, route } = this.props;
     return (

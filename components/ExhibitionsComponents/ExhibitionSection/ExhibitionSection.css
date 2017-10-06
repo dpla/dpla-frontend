@@ -7,7 +7,6 @@
   padding-bottom: 3rem;
   @media (min-width: smallRem) {
     padding-bottom: 7.125rem;
-    padding-top: 2rem;
   }
 }
 
@@ -78,7 +77,6 @@
 
 .sidebar {
   display: none;
-
   @media (min-width: smallRem) {
     width: 197px;
     margin-right: 1.25rem;
@@ -98,7 +96,7 @@
     bottom: 0;
     background-color: visualBrown;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
   }
 }
 
@@ -252,12 +250,13 @@
 .nextButton, .prevButton {
   flex-shrink: 0;
   flex: 1;
-  padding: 9px 0 12px 0;
+  padding: 1rem 0;
   text-align: center;
   font-weight: 600;
   font-size: 0.875rem;
   display: block;
   @media (min-width: smallRem) {
+    padding: 9px 0 12px 0;
     width: 158px;
     font-size: 1.25rem;
     border-radius: 2px;
@@ -373,10 +372,8 @@
 
 .text {
   flex: 1;
-  max-height: 600px;
   font-size: 0.875rem;
   flex-shrink: 0;
-  overflow-y: scroll;
   padding: 0 1rem;
   @media (min-width: smallRem) {
     font-size: 1rem;
