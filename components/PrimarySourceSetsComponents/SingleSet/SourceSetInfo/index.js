@@ -8,6 +8,7 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+import Button from "components/shared/Button";
 
 const { container } = utilClassNames;
 
@@ -106,11 +107,9 @@ const SourceSetInfo = set =>
             )}
           </div>
         </div>
-        <button
-          className={[classNames.citeButton, classNames.button].join(" ")}
-        >
+        <Button type="ghost" className={classNames.button}>
           Cite this set
-        </button>
+        </Button>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

@@ -50,12 +50,6 @@
 }
 
 .donateButton {
-  font-weight: 600;
-  color: white;
-  padding: 1rem 2rem;
-  background-color: bambooOrange;
-  border-radius: 2px;
-  font-size: 1rem;
   width: 100%;
   margin-top: 2rem;
 
@@ -64,8 +58,6 @@
   }
 
   @media (min-width: largeRem) {
-    font-size: 1.25rem;
-    padding: 1rem 3rem;
     float: right;
     width: auto;
   }

@@ -27,18 +27,6 @@
   }
 }
 
-.donateButton {
-  display: block;
-  margin-left: auto;
-  font-weight: 600;
-  color: white;
-  background-color: bambooOrange;
-  border-radius: 2px;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
-  padding: 10px 41px;
-}
-
 .dplaLogo {
   width: 24rem;
 }
@@ -84,11 +72,13 @@
 }
 
 .search {
-  display: flex;
   height: 3rem;
-  align-items: center;
-  justify-content: center;
   margin-top: 2rem;
+  position: relative;
+
+  &:focus {
+    box-shadow: 0 6px 30px 0 rgba(0, 0, 0, 0.35);
+  }
 
   @media (min-width: mediumRem) {
     height: 4rem;
@@ -99,79 +89,87 @@
   }
 }
 
-.searchInput {
-  border: none;
-  padding: 0;
-  padding-left: 1rem;
+.shadow {
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5);
   height: 100%;
-  flex-grow: 1;
-  border-radius: 3px;
-  line-height: 1.5;
+  left: 0;
+  opacity: .25;
+  position: absolute;
+  top: 0;
+  transition: opacity .15s ease-out;
+  width: 100%;
+}
+
+.searchInput {
   appearance: none;
+  border-radius: 3px;
+  border: none;
+  height: 100%;
+  line-height: 1.5;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  z-index: 1;
 
   /* Remove browser search input defaults */
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,
   &::-webkit-search-results-button,
   &::-webkit-search-results-decoration {
-    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &::placeholder {
+    transition: opacity .15s ease-out;
+    color: elephantBlue;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus + .shadow {
+    opacity: 1;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.25;
   }
 
   @media (min-width: mediumRem) {
-    border-radius: 3px 0 0 3px;
+    border-radius: 3px;
     padding-left: 1.5rem;
+    /* Clear right for button */
+    padding-right: 11rem;
     font-size: 1.2rem;
   }
-}
-
-.searchInput::placeholder {
-  color: elephantBlue;
-  opacity: 0.5;
-}
-
-.selectWrapper {
-  position: relative;
-}
-
-.searchOptions {
-  display: none;
-  height: 100%;
-  background-color: mysticGray;
-  color: elephantBlue;
-  font-weight: 600;
-  align-items: center;
-  position: relative;
-
-  @media (min-width: mediumRem) {
-    display: flex;
-    font-size: 1.2rem;
-  }
-}
-
-.optionsSelect {
-  padding: 0 48px 0 22px;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  width: 100%;
-  height: 100%;
 }
 
 .searchButton {
+  transition: background-color .2s ease-out;
+  position: absolute;
+  right: 0;
+  top: 0;
   height: 100%;
   background-color: vikingBlue;
   display: none;
-  align-items: center;
-  justify-content: center;
   color: white;
   font-weight: 600;
   padding: 0 1rem;
   border-radius: 0 3px 3px 0;
+  z-index: 2;
+
+  &:hover {
+    background-color: #53A9D2;
+  }
 
   @media (min-width: mediumRem) {
     display: flex;
     font-size: 1.2rem;
     padding: 0 2rem;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -192,16 +190,21 @@
   font-size: 1rem;
   margin: 2rem auto 0;
   text-align: center;
-  opacity: .75;
 
   @media (min-width: mediumRem) {
     font-size: 1.25rem;
   }
 
   & a {
-    border-bottom: 1px solid;
+    border-bottom: 2px solid rgba(255,255,255,.25);
     padding-bottom: 2px;
     display: inline-block;
     margin: 0 1rem;
+    opacity: .75;
+    transition: opacity .15s ease-out;
+  }
+
+  & a:hover {
+    opacity: 1;
   }
 }

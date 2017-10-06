@@ -1,0 +1,43 @@
+@value cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+
+
+.buttonBase {
+  font-weight: 600;
+  border-radius: 2px;
+  font-size: 1rem;
+  padding: .75rem 2rem;
+  transition: background-color .15s ease-out;
+}
+
+/* Types */
+
+.buttonPrimary {
+  color: white;
+  background-color: bambooOrange;
+
+  &:hover {
+    background-color: #CD570A;
+  }
+}
+
+.buttonGhost {
+  color: cascadeBlue;
+  background-color: iceBlue;
+
+  &:hover {
+    background-color: #D4E6EF;
+  }
+}
+
+/* Sizes */
+
+.buttonLarge {
+  font-size: 1rem;
+  padding: .75rem 2rem;
+
+  @media (min-width: mediumRem) {
+    font-size: 1.25rem;
+    padding: 1rem 2.5rem;
+  }
+}

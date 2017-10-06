@@ -1,6 +1,7 @@
 @value pampasBrown, bambooOrange from "../../../css/colors.css";
 
 .wrapper {
+  margin-top: 2rem;
   background-color: pampasBrown;
   padding: 1.5rem 0;
 }

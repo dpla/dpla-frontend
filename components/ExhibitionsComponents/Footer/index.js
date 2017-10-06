@@ -6,7 +6,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
 const OtherInfo = () =>
   <div className={classNames.wrapper}>
-    <div className={[container, classNames.otherInfo].join(" ")}>
+    <div className={`${container} ${classNames.otherInfo}`}>
       <p className={classNames.p}>
         Exhibitions are curated by the DPLA Curation team, DPLA Hubs staff,
         graduate students in library and information science and public history,

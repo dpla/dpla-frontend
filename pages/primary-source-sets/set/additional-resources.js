@@ -14,7 +14,7 @@ import {
   stylesheet
 } from "/components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { module } = utilClassNames;
+const { container } = utilClassNames;
 
 const SingleSet = ({ url, set }) =>
   <MainLayout route={url}>
@@ -34,7 +34,7 @@ const SingleSet = ({ url, set }) =>
     <SourceSetInfo set={set} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div
-        className={[classNames.markdownWrapper, module].join(" ")}
+        className={`${classNames.markdownWrapper} ${container}`}
         dangerouslySetInnerHTML={{
           __html: markdown.toHTML(
             set.hasPart.find(item => item.name === "Resources").text

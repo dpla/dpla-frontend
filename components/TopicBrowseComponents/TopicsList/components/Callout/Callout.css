@@ -24,12 +24,16 @@
     text-align: left;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 }
 
 .content {
+  margin-bottom: 1rem;
+
   @media (min-width: mediumRem) {
     padding-right: 1rem;
+    margin-bottom: 0;
   }
 }
 
@@ -43,16 +47,4 @@
   margin-top: .5rem;;
   font-size: 1.125rem;
   opacity: 0.5;
-}
-
-.link {
-  margin-left: auto;
-  border-radius: 3px;
-  background-color: bambooOrange;
-  color: white;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: 1rem;
-  display: inline-block;
 }
