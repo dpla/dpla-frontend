@@ -23,7 +23,9 @@ const Guides = ({ url, guides, guide }) =>
       <div className="row">
         <ContentPagesSidebar route={url} guides={guides} />
         <div className="col-xs-12 col-md-7">
-          <div className={[classNames.content, contentClasses.content].join(" ")}>
+          <div
+            className={[classNames.content, contentClasses.content].join(" ")}
+          >
             <img
               src={guide.bannerImage}
               alt=""

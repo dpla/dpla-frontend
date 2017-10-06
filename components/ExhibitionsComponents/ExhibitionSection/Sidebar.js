@@ -3,11 +3,20 @@ import Link from "next/link";
 
 import { classNames } from "./ExhibitionSection.css";
 
-const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
-  <div className={classNames.sidebar}>
+const Sidebar = ({
+  exhibition,
+  currentSubsection,
+  currentSection,
+  isShowing
+}) =>
+  <div
+    className={`${classNames.sidebar} ${isShowing
+      ? classNames.overlayActive
+      : ""}`}
+  >
     <ul className={classNames.sidebarSections}>
       {exhibition.sections.map(section =>
-        <li>
+        <li key={section.id}>
           <Link
             prefetch
             href={{
@@ -29,6 +38,7 @@ const Sidebar = ({ exhibition, currentSubsection, currentSection }) =>
             <ul>
               {section.subsections.map(subsection =>
                 <li
+                  key={subsection.id}
                   className={[
                     classNames.subsectionTitle,
                     subsection.id === currentSubsection.id && classNames.active

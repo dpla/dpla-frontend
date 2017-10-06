@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  CONTENT_PAGE_NAMES,
-  GUIDES_ENDPOINT
-} from "constants/content-pages";
+import { CONTENT_PAGE_NAMES, GUIDES_ENDPOINT } from "constants/content-pages";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
@@ -25,7 +22,7 @@ const Contact = ({ url, guides }) =>
       <div
         className={`${utilClassNames.container}
         ${classNames.sidebarAndContentWrapper}`}
-        >
+      >
         <div className="row">
           <ContentPagesSidebar
             route={url}
@@ -53,6 +50,5 @@ Contact.getInitialProps = async () => {
 
   return { guides };
 };
-
 
 export default Contact;

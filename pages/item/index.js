@@ -33,9 +33,7 @@ const ItemDetail = ({ url, item }) =>
       ]}
       route={url}
     />
-    <div
-      className={`${utilClassNames.container} ${classNames.contentWrapper}`}
-    >
+    <div className={`${utilClassNames.container} ${classNames.contentWrapper}`}>
       <Content item={item} />
       <div className={classNames.faveAndCiteButtons}>
         <FaveAndCiteButtons toCite="item" />
