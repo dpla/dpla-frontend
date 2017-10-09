@@ -97,7 +97,7 @@
 .caption {
   padding: 0 1rem;
   @media (min-width: smallRem) {
-    padding: 0 45px;
+    padding: 0;
   }
   @media (min-width: largeRem) {
     padding: 0 1.75rem;

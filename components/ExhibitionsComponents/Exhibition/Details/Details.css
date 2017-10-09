@@ -1,5 +1,5 @@
 @value visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
-@value smallRem from "../../../../css/breakpoints.css";
+@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .details {
   display: flex;
@@ -16,9 +16,11 @@
   margin-bottom: 1.5rem;
   @media (min-width: smallRem) {
     width: 285px;
-    padding-left: 45px;
     margin-right: 32px;
     margin-bottom: 1.5rem;
+  }
+  @media (min-width: largeRem) {
+    padding-left: 45px;
   }
   margin-bottom: 2rem;
   flex-shrink: 0;
@@ -51,7 +53,10 @@
 }
 
 .tableOfContentsSection:not(:last-of-type) {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  @media (min-width: largeRem) {
+    margin-bottom: 1rem;
+  }
 }
 
 .divider {
@@ -64,7 +69,7 @@
   font-size: 1.125rem;
   display: block;
   line-height: 1.5rem;
-  @media (min-width: smallRem) {
+  @media (min-width: largeRem) {
     padding-right: 45px;
   }
 }
