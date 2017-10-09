@@ -3,6 +3,9 @@
 
 .wrapper {
   margin-top: 1rem;
+  @media (min-width: mediumRem) {
+    margin-top: 2rem;
+  }
 }
 
 .imageAndCaption {
@@ -10,6 +13,9 @@
   padding: 0;
   @media (min-width: smallRem) {
     padding: 0 1rem 1rem;
+  }
+  @media (min-width: largeRem) {
+    padding: 0 0 1rem;
   }
 }
 
@@ -73,11 +79,14 @@
   line-height: 1.1;
   font-family: "Lora";
   font-size: 1.75rem;
-  @media (min-width: xSmallRem) {
+  @media (min-width: smallRem) {
     font-size: 3rem;
   }
   @media (min-width: smallRem) {
     display: none;
+  }
+  @media (min-width: mediumRem) {
+    font-size: 3.75rem;
   }
 }
 
@@ -100,7 +109,7 @@
     padding: 0;
   }
   @media (min-width: largeRem) {
-    padding: 0 1.75rem;
+    padding: 0 45px;
   }
   color: #0D0D17;
   opacity: 0.50;
