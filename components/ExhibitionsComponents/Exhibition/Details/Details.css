@@ -26,20 +26,28 @@
 }
 
 .tableOfContentsHeader {
+  padding: 1rem;
+  font-size: 0.75rem;
   font-family: "Lora";
   font-weight: bold;
-  font-size: 1rem;
   line-height: 1.125rem;
   text-transform: uppercase;
-  padding: 1.25rem;
   background-color: #F1F0ED;
+  @media (min-width: mediumRem) {
+    font-size: 1rem;
+    padding: 1.25rem;
+  }
 }
 
 .tableOfContentsContents {
-  padding: 1.25rem;
+  padding: 1rem;
+  font-size: 1rem;
   background-color: visualBrown;
-  font-size: 1.25rem;
   line-height: 1.25rem;
+  @media (min-width: mediumRem) {
+    font-size: 1.25rem;
+    padding: 1.25rem;
+  }
 }
 
 .tableOfContentsSection:not(:last-of-type) {
