@@ -77,19 +77,6 @@
   }
 }
 
-.faveAndCiteButtonsWrapper {
-  & > div {
-    border: 0;
-    width: 100%;
-    padding: 0;
-    @media (min-width: smallRem) {
-      padding: 1.5rem;
-      width: auto;
-      border: 1px solid #e7e7e7;
-    }
-  }
-}
-
 .bodyText p:not(:last-child) {
   margin-bottom: 1.5rem;
 }
@@ -106,4 +93,10 @@
 .creditsBold {
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.faveAndCiteButtonsWrapper {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }

@@ -1,5 +1,5 @@
 @value bambooOrange from "../../../../css/colors.css";
-@value smallRem, xSmallRem, mediumRem from "../../../../css/breakpoints.css";
+@value smallRem, xSmallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .wrapper {
   margin-top: 1rem;
@@ -98,6 +98,9 @@
   padding: 0 1rem;
   @media (min-width: smallRem) {
     padding: 0 45px;
+  }
+  @media (min-width: largeRem) {
+    padding: 0 1.75rem;
   }
   color: #0D0D17;
   opacity: 0.50;
