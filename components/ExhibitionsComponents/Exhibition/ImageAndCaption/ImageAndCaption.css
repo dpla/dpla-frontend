@@ -2,7 +2,10 @@
 @value smallRem, xSmallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .wrapper {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  @media (min-width: smallRem) {
+    margin-top: 2rem;
+  }
 }
 
 .imageAndCaption {
@@ -43,11 +46,17 @@
 
 .overlayContent {
   text-align: center;
-  padding-bottom: 1rem;
+  padding-bottom: 1.75rem;
   width: 95%;
+  & .exhibitionTitle {
+    padding: 0;
+    display: none;
+  }
   @media (min-width: smallRem) {
+    & .exhibitionTitle {
+      display: block;
+    }
     width: 90%;
-    padding-bottom: 1.5rem;
   }
   @media (min-width: mediumRem) {
     padding-bottom: 3.5rem;
@@ -56,17 +65,21 @@
 
 .headingRule {
   display: none;
-  @media (min-width: xSmallRem) {
+  @media (min-width: smallRem) {
     display: inline-block;
   }
 }
 
 .exhibitionTitle {
+  padding: 0 1rem 1rem;
   line-height: 1.1;
   font-family: "Lora";
   font-size: 1.75rem;
   @media (min-width: xSmallRem) {
     font-size: 2.5rem;
+  }
+  @media (min-width: smallRem) {
+    display: none;
   }
   @media (min-width: mediumRem) {
     font-size: 3rem;
@@ -76,11 +89,9 @@
 .exploreLink {
   display: inline-block;
   margin-top: 1.5rem;
-  @media (min-width: xSmallRem) {
-    margin-top: -1rem;
-  }
-  @media (min-width: mediumRem) {
-    margin-top: 0;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: auto;
   }
 }
 

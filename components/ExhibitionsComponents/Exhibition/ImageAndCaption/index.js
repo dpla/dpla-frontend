@@ -9,6 +9,7 @@ const { container } = utilClassNames;
 const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={classNames.wrapper}>
     <div className={[container, classNames.imageAndCaption].join(" ")}>
+      <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
       <div className={classNames.imageWrapper}>
         <div
           className={classNames.image}
