@@ -39,9 +39,11 @@ const Details = ({ exhibition, route }) =>
             )}
           </ul>
         </div>
+        <div className={classNames.faveAndCiteButtonsWrapper}>
+          <FaveAndCiteButtons />
+        </div>
       </div>
       <div className={classNames.body}>
-        <FaveAndCiteButtons />
         <span
           className={classNames.bodyText}
           dangerouslySetInnerHTML={{ __html: exhibition.text }}

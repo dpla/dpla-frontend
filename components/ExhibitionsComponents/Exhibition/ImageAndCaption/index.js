@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
@@ -10,6 +9,7 @@ const { container } = utilClassNames;
 const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={classNames.wrapper}>
     <div className={[container, classNames.imageAndCaption].join(" ")}>
+      <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
       <div className={classNames.imageWrapper}>
         <div
           className={classNames.image}
@@ -23,7 +23,9 @@ const ImageAndCaption = ({ exhibition, route }) =>
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
             <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
-            <HeadingRule color="rgba(255,255,255,0.75)" />
+            <div className={classNames.headingRule}>
+              <HeadingRule color="rgba(255,255,255,0.75)" />
+            </div>
             <Button
               type="primary"
               size="large"
