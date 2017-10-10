@@ -1,4 +1,4 @@
-@value pampasBrown from "../../../css/colors.css";
+@value pampasBrown, cascadeBlue from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .wrapper {
@@ -199,4 +199,23 @@
 
 .showFilters .filtersButtonChevron {
   transform: rotate(-90deg);
+}
+
+.activeFacetCount {
+  display: none;
+}
+@media (max-width: smallRem) {
+  .withActiveFacets {
+    color: cascadeBlue;
+    & .filtersButtonChevron {
+      & path {
+        fill: cascadeBlue;
+      }
+    }
+  }
+
+  .activeFacetCount {
+    display: inline-block;
+    margin-left: 0.15rem;
+  }
 }

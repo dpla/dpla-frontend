@@ -28,7 +28,7 @@ class Search extends React.Component {
   };
 
   render() {
-    const { url, results } = this.props;
+    const { url, results, numberOfActiveFacets } = this.props;
     return (
       <MainLayout useSmallScreenSearchHeader={true} route={url}>
         <div className={classNames.wrapper}>
@@ -38,6 +38,7 @@ class Search extends React.Component {
             route={url}
             itemCount={results.count}
             onClickToggleFilters={this.toggleFilters}
+            numberOfActiveFacets={numberOfActiveFacets}
           />
           <FiltersList route={url} facets={results.facets} />
           <MainContent
@@ -89,6 +90,10 @@ Search.getInitialProps = async ({ query, req }) => {
     )}&${facetQueries}`
   );
 
+  const numberOfActiveFacets = facetQueries
+    .split(/(&|\+AND\+)/)
+    .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
+
   const json = await res.json();
   const docs = json.docs.map(result => {
     const thumbnailUrl = result.object
@@ -100,6 +105,6 @@ Search.getInitialProps = async ({ query, req }) => {
       useDefaultImage: !result.object
     });
   });
-  return { results: Object.assign({}, json, { docs }) };
+  return { results: Object.assign({}, json, { docs }), numberOfActiveFacets };
 };
 export default Search;
