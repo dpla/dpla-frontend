@@ -39,7 +39,7 @@ const OtherMetadata = ({ item }) =>
         <Row heading="Partner">
           <FacetLink facet="partner" value={item.partner} />
         </Row>
-        <Row heading="Contributor">
+        <Row heading="Contributing Institution">
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
         <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
