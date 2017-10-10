@@ -1,7 +1,5 @@
-export const TITLE = "Browse By Topic";
-export const DESCRIPTION = `Materials from libraries, archives and museums
-across the United States, organized by DPLA's content curation staff into easy
-to navigate sub-topics.`;
+export const TITLE = "Browse by Topic";
+export const DESCRIPTION = `Highlights of collections from libraries, archives and museums across the United States, organized into easy-to-navigate topics.`;
 
 export const API_ENDPOINT_ALL_TOPICS =
   "https://dpla.wpengine.com/wp-json/wp/v2/categories";
