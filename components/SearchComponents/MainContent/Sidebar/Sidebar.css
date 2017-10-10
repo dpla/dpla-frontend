@@ -5,7 +5,7 @@
 .sidebar {
   width: 100%;
   @media (min-width: smallRem) {
-    width: 250px;
+    width: 225px;
   }
   @media (min-width: mediumRem) {
     width: 294px;

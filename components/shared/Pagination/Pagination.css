@@ -115,3 +115,10 @@
     width: 8px;
   }
 }
+
+.hideOnLargeScreens {
+  cursor: not-allowed;
+  @media (min-width: smallRem) {
+    display: none;
+  }
+}
