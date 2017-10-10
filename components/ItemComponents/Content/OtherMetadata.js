@@ -42,6 +42,11 @@ const OtherMetadata = ({ item }) =>
         <Row heading="Contributing Institution">
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
+        <Row heading="Supporting Institution">
+          {item.intermediateProvider &&
+            <FacetLink facet="provider" value={item.intermediateProvider} />
+          }
+        </Row>
         <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
         <Row className={classNames.subjects} heading="Subjects">
           {item.subject &&
@@ -49,7 +54,17 @@ const OtherMetadata = ({ item }) =>
               <FacetLink facet="subject" value={subj.name} />
             )}
         </Row>
+        <Row heading="Format">
+          {item.format &&
+            <span>{item.format}</span>
+          }
+        </Row>
         <Row heading="Type"><FacetLink facet="type" value={item.type} /></Row>
+        <Row heading="Language">
+          {item.language &&
+            <FacetLink facet="language" value={joinIfArray(item.language)} />
+          }
+        </Row>
         <Row heading="URL">
           {item.sourceUrl &&
             <span className={classNames.url}>{item.sourceUrl}</span>}
