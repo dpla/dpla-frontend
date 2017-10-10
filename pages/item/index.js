@@ -53,11 +53,18 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
   const date = doc.sourceResource.date && Array.isArray(doc.sourceResource.date)
     ? doc.sourceResource.date[0]
     : doc.sourceResource.date;
-  return {
+  const language = doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
+    ? doc.sourceResource.language.map((lang) => {
+      return lang.name;
+    })
+    : doc.sourceResource.language;
+    return {
     item: Object.assign({}, doc.sourceResource, {
       thumbnailUrl,
       contributor: doc.dataProvider,
+      intermediateProvider: doc.intermediateProvider,
       date: date,
+      language: language,
       partner: doc.provider.name,
       sourceUrl: doc.isShownAt,
       useDefaultImage: !doc.object
