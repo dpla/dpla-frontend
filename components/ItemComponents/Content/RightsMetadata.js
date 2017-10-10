@@ -28,7 +28,7 @@ const RightsMetadata = ({ item }) =>
             </a>
           </td>
         </tr>
-        <tr className={classNames.tableRow}>
+        {item.rights && <tr className={classNames.tableRow}>
           <td className={classNames.tableHeading}>
             Rights
           </td>
@@ -37,7 +37,7 @@ const RightsMetadata = ({ item }) =>
           >
             {Array.isArray(item.rights) ? item.rights.join(" ") : item.rights}
           </td>
-        </tr>
+        </tr>}
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
