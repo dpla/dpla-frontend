@@ -18,24 +18,45 @@ import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getDefaultThumbnail } from "utilFunctions";
 
-const Search = ({ url, results }) =>
-  <MainLayout route={url}>
-    <div className={classNames.wrapper}>
-      <OptionsBar route={url} itemCount={results.count} />
-      <FiltersList route={url} facets={results.facets} />
-      <MainContent
-        paginationInfo={{
-          pageCount: results.count,
-          pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
-          currentPage: url.query.page || 1
-        }}
-        route={url}
-        facets={results.facets}
-        results={results.docs}
-      />
-    </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </MainLayout>;
+class Search extends React.Component {
+  state = {
+    showSidebar: false
+  };
+
+  toggleFilters = () => {
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
+
+  render() {
+    const { url, results } = this.props;
+    return (
+      <MainLayout route={url}>
+        <div className={classNames.wrapper}>
+          <OptionsBar
+            showFilters={this.state.showSidebar}
+            currentPage={url.query.page || 1}
+            route={url}
+            itemCount={results.count}
+            onClickToggleFilters={this.toggleFilters}
+          />
+          <FiltersList route={url} facets={results.facets} />
+          <MainContent
+            hideSidebar={!this.state.showSidebar}
+            paginationInfo={{
+              pageCount: results.count,
+              pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
+              currentPage: url.query.page || 1
+            }}
+            route={url}
+            facets={results.facets}
+            results={results.docs}
+          />
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+      </MainLayout>
+    );
+  }
+}
 
 Search.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);

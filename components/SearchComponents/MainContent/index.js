@@ -20,10 +20,12 @@ const addLinkInfoToResults = (results, q) =>
     })
   );
 
-const MainContent = ({ results, route, facets, paginationInfo }) =>
+const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={classNames.wrapper}>
     <div className={[container, classNames.mainContent].join(" ")}>
-      <Sidebar route={route} facets={facets} />
+      <div className={`${hideSidebar ? classNames.hiddenSidebar : ""}`}>
+        <Sidebar route={route} facets={facets} />
+      </div>
       <div
         className={
           route.query.list_view === "grid"

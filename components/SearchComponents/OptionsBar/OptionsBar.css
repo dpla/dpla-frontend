@@ -169,3 +169,34 @@
 .viewButtonIcon {
   height: 18px;
 }
+
+.pageNumber {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.5);
+  @media (min-width: smallRem) {
+    display: none;
+  }
+}
+
+.toggleFilters {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  @media (min-width: smallRem) {
+    display: none;
+  }
+}
+
+.filtersButtonChevron {
+  height: 1.5rem;
+  width: 0.5rem;
+  margin-left: 0.5rem;
+  transform: rotate(90deg);
+}
+
+.showFilters .filtersButtonChevron {
+  transform: rotate(-90deg);
+}

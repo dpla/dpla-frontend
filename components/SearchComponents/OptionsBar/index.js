@@ -16,6 +16,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
+const chevron = "/static/images/chevron-thick-black.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
 
 class OptionsBar extends React.Component {
@@ -69,7 +70,12 @@ class OptionsBar extends React.Component {
     });
   };
 
+  toggleFilters = () => {
+    this.setState({ showFilters: !this.state.showFilters });
+  };
+
   render() {
+    const { currentPage, onClickToggleFilters, showFilters } = this.props;
     return (
       <div className={classNames.wrapper}>
         <div className={[container, classNames.optionsBar].join(" ")}>
@@ -83,6 +89,14 @@ class OptionsBar extends React.Component {
                 </span>
               </span>}
           </p>
+          <p className={classNames.pageNumber}>Page {currentPage}</p>
+          <button
+            onClick={() => onClickToggleFilters()}
+            className={`${classNames.toggleFilters} ${showFilters ? classNames.showFilters : ""}`}
+          >
+            <span>Filters</span>
+            <img src={chevron} alt="" className={classNames.filtersButtonChevron} />
+          </button>
           <div className={classNames.options}>
             <div className={classNames.optionWrapper}>
               <h3 className={classNames.optionHeader}>
