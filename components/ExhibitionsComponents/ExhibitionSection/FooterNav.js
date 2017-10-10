@@ -19,7 +19,7 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
           query: {
             exhibition: queryParams.exhibition,
             section: queryParams.section,
-            subsection: queryParams.section
+            subsection: queryParams.subsection
           }
         }}
         as={`/exhibitions/${queryParams.exhibition}/${queryParams.section}/${queryParams.subsection}`}
