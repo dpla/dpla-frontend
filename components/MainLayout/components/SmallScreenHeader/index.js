@@ -5,6 +5,7 @@ import { stylesheet, classNames } from "./SmallScreenHeader.css";
 
 const dplaLogo = "/static/images/dpla-logo.svg";
 const searchIcon = "/static/images/search.svg";
+const searchIconGray = "/static/images/search-gray.svg";
 const menuIcon = "/static/images/menu-white.svg";
 const closeIcon = "/static/images/close-white.svg";
 
@@ -33,19 +34,20 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
+    const { isSearchPage } = this.props;
 
     return (
-      <div className={classNames.wrapper}>
+      <div className={`${classNames.wrapper} ${isSearchPage ? classNames.searchPageWrapper : ""}`}>
         <div
           className={`${classNames.searchContainer} ${searchIsOpen &&
             classNames.isOpen} site-max-width`}
         >
           <form action="/search">
+            {isSearchPage && <img src={searchIconGray} alt="" className={classNames.searchBarIcon} />}
             <input
               className={classNames.searchInput}
               autoComplete="off"
-              placeholder="Search the collection"
-              autoComplete="off"
+              placeholder={isSearchPage ? "" : "Search the collection"}
               name="q"
               ref={input => {
                 this.searchInput = input;

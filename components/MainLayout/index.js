@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 const MainLayout = ({ children, route, hideSearchBar, headLinks }) =>
   <div>
     <Head additionalLinks={headLinks} />
-    <SmallScreenHeader />
+    <SmallScreenHeader isSearchPage={true} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
     {children}
