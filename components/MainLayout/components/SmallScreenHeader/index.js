@@ -34,7 +34,7 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage } = this.props;
+    const { isSearchPage, route } = this.props;
 
     return (
       <div className={`${classNames.wrapper} ${isSearchPage ? classNames.searchPageWrapper : ""}`}>
@@ -49,6 +49,7 @@ class SmallScreenHeader extends Component {
               autoComplete="off"
               placeholder={isSearchPage ? "" : "Search the collection"}
               name="q"
+              defaultValue={isSearchPage ? route.query.q : ""}
               ref={input => {
                 this.searchInput = input;
               }}
