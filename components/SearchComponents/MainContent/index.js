@@ -26,22 +26,24 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
       <div className={`${hideSidebar ? classNames.hiddenSidebar : ""}`}>
         <Sidebar route={route} facets={facets} />
       </div>
-      <div
-        className={
-          route.query.list_view === "grid"
-            ? classNames.gridWrapper
-            : classNames.listWrapper
-        }
-      >
-        {route.query.list_view === "grid"
-          ? <GridView
-              route={route}
-              items={addLinkInfoToResults(results, route.query.q)}
-            />
-          : <ListView
-              route={route}
-              items={addLinkInfoToResults(results, route.query.q)}
-            />}
+      <div className={classNames.resultsAndPagination}>
+        <div
+          className={
+            route.query.list_view === "grid"
+              ? classNames.gridWrapper
+              : classNames.listWrapper
+          }
+        >
+          {route.query.list_view === "grid"
+            ? <GridView
+                route={route}
+                items={addLinkInfoToResults(results, route.query.q)}
+              />
+            : <ListView
+                route={route}
+                items={addLinkInfoToResults(results, route.query.q)}
+              />}
+        </div>
         <Pagination
           route={route}
           itemsPerPage={paginationInfo.pageSize}

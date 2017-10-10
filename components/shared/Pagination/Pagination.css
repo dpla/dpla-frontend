@@ -1,16 +1,32 @@
-@value cascadeBlue, iceBlue from "../../../css/colors.css";
+@value cascadeBlue, iceBlue, bambooOrange from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 
 .pagination {
+  display: flex;
   margin-top: 20px;
   text-align: right;
+  @media (min-width: smallRem) {
+    display: block;
+  }
 }
 
 .link {
-  color: cascadeBlue;
-  font-size: 1.125rem;
-  padding: 3px 10px;
-  margin: 0 3px;
-  border-radius: 2px;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    color: cascadeBlue;
+    font-size: 1.125rem;
+    padding: 3px 10px;
+    margin: 0 3px;
+    border-radius: 2px;
+  }
+}
+
+.ellipses {
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+  }
 }
 
 .link:first-child {
@@ -28,34 +44,74 @@
 }
 
 .nextButton, .previousButton {
-  background-color: iceBlue;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  font-size: 0.875rem;
   align-items: center;
-  border-radius: 2px;
   font-weight: 600;
-  color: cascadeBlue;
-  font-size: 1.125rem;
+  width: 100%;
+  @media (min-width: smallRem) {
+    font-size: 1.125rem;
+    border-radius: 2px;
+    width: auto;
+    display: inline-flex;
+    justify-content: initial;
+  }
 }
 
 .previousButton {
-  padding: 10px 19px;
-  margin-right: 10px;
+  padding: 1rem 0;
+  background-color: #E3E0DA;
+  color: black;
+  @media (min-width: smallRem) {
+    background-color: iceBlue;
+    color: cascadeBlue;
+    padding: 10px 19px;
+    margin-right: 10px;
+  }
 }
 
 .nextButton {
-  margin-left: 10px;
-  padding: 10px 19px;
+  padding: 1rem 0;
+  background-color: bambooOrange;
+  color: white;
+  @media (min-width: smallRem) {
+    background-color: iceBlue;
+    color: cascadeBlue;
+    padding: 10px 19px;
+    margin-left: 10px;
+  }
 }
 
 .nextChevron {
-  height: 14px;
-  width: 8px;
-  margin-left: 0.75rem;
+  height: 12px;
+  width: 6px;
+  & path {
+    fill: white;
+    @media (min-width: smallRem) {
+      fill: cascadeBlue;
+    }
+  }
+  @media (min-width: smallRem) {
+    height: 14px;
+    width: 8px;
+  }
+  margin-left: 0.5rem;
 }
 
 .prevChevron {
-  height: 14px;
-  width: 8px;
+  height: 12px;
+  width: 6px;
   transform: rotate(180deg);
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
+  & path {
+    fill: black;
+    @media (min-width: smallRem) {
+      fill: cascadeBlue;
+    }
+  }
+  @media (min-width: smallRem) {
+    height: 14px;
+    width: 8px;
+  }
 }
