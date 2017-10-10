@@ -50,6 +50,11 @@ const OtherMetadata = ({ item }) =>
             )}
         </Row>
         <Row heading="Type"><FacetLink facet="type" value={item.type} /></Row>
+        <Row heading="Language">
+          {item.language &&
+            <FacetLink facet="language" value={item.language.name} />
+          }
+        </Row>
         <Row heading="URL">
           {item.sourceUrl &&
             <span className={classNames.url}>{item.sourceUrl}</span>}
