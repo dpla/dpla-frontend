@@ -37,13 +37,22 @@ class SmallScreenHeader extends Component {
     const { isSearchPage, route } = this.props;
 
     return (
-      <div className={`${classNames.wrapper} ${isSearchPage ? classNames.searchPageWrapper : ""}`}>
+      <div
+        className={`${classNames.wrapper} ${isSearchPage
+          ? classNames.searchPageWrapper
+          : ""}`}
+      >
         <div
           className={`${classNames.searchContainer} ${searchIsOpen &&
             classNames.isOpen} site-max-width`}
         >
           <form action="/search">
-            {isSearchPage && <img src={searchIconGray} alt="" className={classNames.searchBarIcon} />}
+            {isSearchPage &&
+              <img
+                src={searchIconGray}
+                alt=""
+                className={classNames.searchBarIcon}
+              />}
             <input
               className={classNames.searchInput}
               autoComplete="off"
