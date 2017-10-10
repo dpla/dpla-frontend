@@ -1,4 +1,5 @@
 @value bambooOrange, elephantBlue, dimmerGray, vikingBlue, visualBrown from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 
 .listItem {
   padding: 15px 0;
@@ -22,7 +23,9 @@
 }
 
 .imageWrapper:not(.defaultImageWrapper) {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  @media (min-width: smallRem) {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
 
 .defaultImageWrapper {
@@ -39,19 +42,27 @@
 }
 
 .itemTitle {
-  color: bambooOrange;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  margin-right: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  @media (min-width: smallRem) {
+    font-weight: normal;
+    color: bambooOrange;
+    font-size: 1.125rem;
+    margin-right: 8px;
+  }
 }
 
 .itemType {
-  color: elephantBlue;
-  opacity: 0.90;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    color: elephantBlue;
+    opacity: 0.90;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+  }
 }
 
 .itemDescription {
@@ -61,11 +72,14 @@
 }
 
 .itemSource {
-  display: block;
-  color: vikingBlue;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+    color: vikingBlue;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
 }
 
 .externalLinkIcon {

@@ -3,13 +3,13 @@
 
 .mainContent {
   display: flex;
-  padding-bottom: 150px;
   flex-direction: column;
   @media (max-width: smallRem) {
     padding-right: 0;
     padding-left: 0;
   }
   @media (min-width: smallRem) {
+    padding-bottom: 150px;
     margin-top: 2rem;
     flex-direction: row;
   }

@@ -92,10 +92,16 @@ class OptionsBar extends React.Component {
           <p className={classNames.pageNumber}>Page {currentPage}</p>
           <button
             onClick={() => onClickToggleFilters()}
-            className={`${classNames.toggleFilters} ${showFilters ? classNames.showFilters : ""}`}
+            className={`${classNames.toggleFilters} ${showFilters
+              ? classNames.showFilters
+              : ""}`}
           >
             <span>Filters</span>
-            <img src={chevron} alt="" className={classNames.filtersButtonChevron} />
+            <img
+              src={chevron}
+              alt=""
+              className={classNames.filtersButtonChevron}
+            />
           </button>
           <div className={classNames.options}>
             <div className={classNames.optionWrapper}>
