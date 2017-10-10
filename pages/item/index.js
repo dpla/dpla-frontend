@@ -50,10 +50,14 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
   const thumbnailUrl = doc.object
     ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${doc.id}`
     : getDefaultThumbnail(doc.sourceResource.type);
+  const date = doc.sourceResource.date && Array.isArray(doc.sourceResource.date)
+    ? doc.sourceResource.date[0]
+    : doc.sourceResource.date;
   return {
     item: Object.assign({}, doc.sourceResource, {
       thumbnailUrl,
       contributor: doc.dataProvider,
+      date: date,
       partner: doc.provider.name,
       sourceUrl: doc.isShownAt,
       useDefaultImage: !doc.object
