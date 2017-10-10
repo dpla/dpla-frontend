@@ -1,15 +1,28 @@
 @value pampasBrown from "../../../css/colors.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .mainContent {
-  margin-top: 2rem;
   display: flex;
   padding-bottom: 150px;
+  flex-direction: column;
+  @media (max-width: smallRem) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @media (min-width: smallRem) {
+    margin-top: 2rem;
+    flex-direction: row;
+  }
 }
 
 .listWrapper,
 .gridWrapper {
   width: 100%;
   height: 100%;
+  @media (max-width: smallRem) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .listWrapper {

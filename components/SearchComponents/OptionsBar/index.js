@@ -76,9 +76,9 @@ class OptionsBar extends React.Component {
           <p className={classNames.resultsCount}>
             <span>{addCommasToNumber(this.props.itemCount)} results </span>
             {this.props.route.query.q &&
-              <span>
+              <span className={classNames.resultsCountQuery}>
                 <span>for </span>
-                <span className={classNames.resultsCountQuery}>
+                <span className={classNames.resultsCountQueryText}>
                   {this.props.route.query.q}
                 </span>
               </span>}

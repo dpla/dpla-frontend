@@ -1,8 +1,15 @@
 @value cascadeBlue from "../../../../css/colors.css";
+@value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 
 .sidebar {
-  width: 294px;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: 250px;
+  }
+  @media (min-width: mediumRem) {
+    width: 294px;
+  }
   margin-right: 19px;
   flex-shrink: 0;
 }

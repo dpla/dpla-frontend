@@ -78,6 +78,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
         page =>
           page > 1 && page < pageCount
             ? <PageLink
+                key={page}
                 className={[
                   classNames.link,
                   page === parseInt(currentPage, 10) && classNames.activeLink
