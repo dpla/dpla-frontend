@@ -98,7 +98,9 @@ class OptionsBar extends React.Component {
             onClick={() => onClickToggleFilters()}
             className={`${classNames.toggleFilters} ${showFilters
               ? classNames.showFilters
-              : ""} ${numberOfActiveFacets !== 0 ? classNames.withActiveFacets : ""}`}
+              : ""} ${numberOfActiveFacets !== 0
+              ? classNames.withActiveFacets
+              : ""}`}
           >
             <span>Filter</span>
             {numberOfActiveFacets !== 0 &&
