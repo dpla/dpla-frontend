@@ -19,6 +19,8 @@
 .gridWrapper {
   width: 100%;
   height: 100%;
+}
+.gridWrapper {
   @media (max-width: smallRem) {
     padding-left: 1rem;
     padding-right: 1rem;

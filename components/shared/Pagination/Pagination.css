@@ -46,12 +46,14 @@
 .nextButton, .previousButton {
   display: flex;
   justify-content: center;
-  font-size: 0.875rem;
   align-items: center;
   font-weight: 600;
   width: 100%;
+  font-size: 1rem;
+  padding: .75rem 2rem;
   @media (min-width: smallRem) {
     font-size: 1.125rem;
+    padding: 10px 19px;
     border-radius: 2px;
     width: auto;
     display: inline-flex;
@@ -60,25 +62,21 @@
 }
 
 .previousButton {
-  padding: 1rem 0;
   background-color: #E3E0DA;
   color: black;
   @media (min-width: smallRem) {
     background-color: iceBlue;
     color: cascadeBlue;
-    padding: 10px 19px;
     margin-right: 10px;
   }
 }
 
 .nextButton {
-  padding: 1rem 0;
   background-color: bambooOrange;
   color: white;
   @media (min-width: smallRem) {
     background-color: iceBlue;
     color: cascadeBlue;
-    padding: 10px 19px;
     margin-left: 10px;
   }
 }

@@ -1,5 +1,5 @@
 @value bambooOrange, elephantBlue, dimmerGray, vikingBlue, visualBrown from "../../../css/colors.css";
-@value smallRem from "../../../css/breakpoints.css";
+@value smallRem, largeRem from "../../../css/breakpoints.css";
 
 .listItem {
   padding: 15px 0;
@@ -7,19 +7,36 @@
   display: flex;
 }
 
+.listItem:last-of-type {
+  border-bottom: 0;
+}
+
 .listItemLink {
   flex-shrink: 0;
 }
 
+.listItemImageLink {
+  width: 33%;
+  @media (min-width: largeRem) {
+    width: inherit;
+  }
+}
+
 .imageWrapper {
-  width: 160px;
-  height: 120px;
+  @media (max-width: smallRem) {
+    margin-left: 1rem
+  }
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 13px;
   flex-shrink: 0;
+  flex-basis: 33%;
+  @media (min-width: largeRem) {
+    width: 160px;
+    height: 120px;
+  }
 }
 
 .imageWrapper:not(.defaultImageWrapper) {
@@ -30,10 +47,22 @@
 
 .defaultImageWrapper {
   background-color: visualBrown;
-
+  padding-bottom: 20%;
+  padding-top: 20%;
+  @media (min-width: largeRem) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
   & img {
     opacity: 0.35;
   }
+}
+
+.itemInfo {
+  @media (min-width: smallRem) {
+    padding-right: 0
+  }
+  padding-right: 1rem
 }
 
 .image {
