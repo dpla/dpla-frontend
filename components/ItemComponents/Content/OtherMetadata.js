@@ -54,6 +54,11 @@ const OtherMetadata = ({ item }) =>
               <FacetLink facet="subject" value={subj.name} />
             )}
         </Row>
+        <Row heading="Type">
+          {item.type &&
+            <FacetLink facet="type" value={item.type} />
+          }
+        </Row>
         <Row heading="Format">
           {item.format &&
             <span>{item.format}</span>
@@ -67,7 +72,8 @@ const OtherMetadata = ({ item }) =>
         </Row>
         <Row heading="URL">
           {item.sourceUrl &&
-            <span className={classNames.url}>{item.sourceUrl}</span>}
+            <span className={classNames.url}>{item.sourceUrl}</span>
+          }
         </Row>
       </tbody>
     </table>
