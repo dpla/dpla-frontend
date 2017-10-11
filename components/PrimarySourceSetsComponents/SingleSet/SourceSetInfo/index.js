@@ -16,6 +16,8 @@ const { container } = utilClassNames;
 const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
+const extractAuthors = authors =>
+  authors.map(author => author.name);
 
 const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
@@ -54,11 +56,13 @@ const SourceSetInfo = set =>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(set.set.author[0].name)
-              }}
-            />
+            {extractAuthors(set.set.author).map((name) =>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: markdown.toHTML(name)
+                }}
+              />
+            )}
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
