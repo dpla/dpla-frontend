@@ -23,6 +23,8 @@
 }
 
 .imageWrapper {
+  position: relative;
+  padding-top: 75%;
   @media (max-width: smallRem) {
     margin-left: 1rem
   }
@@ -36,10 +38,22 @@
   @media (min-width: largeRem) {
     width: 160px;
     height: 120px;
+    padding-top: 0;
   }
 }
 
 .imageWrapper:not(.defaultImageWrapper) {
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    @media (min-width: largeRem) {
+      position: static;
+    }
+  }
   @media (min-width: smallRem) {
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
