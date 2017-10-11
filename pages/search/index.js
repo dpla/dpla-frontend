@@ -18,24 +18,46 @@ import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getDefaultThumbnail } from "utilFunctions";
 
-const Search = ({ url, results }) =>
-  <MainLayout route={url}>
-    <div className={classNames.wrapper}>
-      <OptionsBar route={url} itemCount={results.count} />
-      <FiltersList route={url} facets={results.facets} />
-      <MainContent
-        paginationInfo={{
-          pageCount: results.count,
-          pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
-          currentPage: url.query.page || 1
-        }}
-        route={url}
-        facets={results.facets}
-        results={results.docs}
-      />
-    </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </MainLayout>;
+class Search extends React.Component {
+  state = {
+    showSidebar: false
+  };
+
+  toggleFilters = () => {
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
+
+  render() {
+    const { url, results, numberOfActiveFacets } = this.props;
+    return (
+      <MainLayout isSearchPage={true} route={url}>
+        <div className={classNames.wrapper}>
+          <OptionsBar
+            showFilters={this.state.showSidebar}
+            currentPage={url.query.page || 1}
+            route={url}
+            itemCount={results.count}
+            onClickToggleFilters={this.toggleFilters}
+            numberOfActiveFacets={numberOfActiveFacets}
+          />
+          <FiltersList route={url} facets={results.facets} />
+          <MainContent
+            hideSidebar={!this.state.showSidebar}
+            paginationInfo={{
+              pageCount: results.count,
+              pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
+              currentPage: url.query.page || 1
+            }}
+            route={url}
+            facets={results.facets}
+            results={results.docs}
+          />
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+      </MainLayout>
+    );
+  }
+}
 
 Search.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
@@ -68,6 +90,10 @@ Search.getInitialProps = async ({ query, req }) => {
     )}&${facetQueries}`
   );
 
+  const numberOfActiveFacets = facetQueries
+    .split(/(&|\+AND\+)/)
+    .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
+
   const json = await res.json();
   const docs = json.docs.map(result => {
     const thumbnailUrl = result.object
@@ -79,6 +105,6 @@ Search.getInitialProps = async ({ query, req }) => {
       useDefaultImage: !result.object
     });
   });
-  return { results: Object.assign({}, json, { docs }) };
+  return { results: Object.assign({}, json, { docs }), numberOfActiveFacets };
 };
 export default Search;

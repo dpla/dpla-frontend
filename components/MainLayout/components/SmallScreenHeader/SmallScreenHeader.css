@@ -139,3 +139,42 @@
   padding-top: 1rem;
   border-top: 2px solid rgba(255, 255, 255, 0.5);
 }
+
+/* different styles for /search page */
+
+@media (max-width: smallRem) {
+  .searchPageWrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .searchPageWrapper .searchButton {
+    display: none;
+  }
+
+  .searchPageWrapper .searchContainer {
+    position: relative;
+    background-color: elephantBlue;
+    visibility: visible;
+    height: 3.5rem;
+    padding: .5rem 1rem;
+  }
+
+  .searchPageWrapper .searchInput {
+    background-color: white;
+    height: 32px;
+    font-size: 0.875rem;
+    border-radius: 1px;
+    color: elephantBlue;
+    padding-left: 2rem;
+  }
+
+  .searchPageWrapper .searchBarIcon {
+    width: 1rem;
+    height: 1rem;
+    top: 16px;
+    left: 23px;
+    position: absolute;
+    transform: rotate(-90deg);
+  }
+}

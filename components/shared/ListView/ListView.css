@@ -1,4 +1,5 @@
 @value bambooOrange, elephantBlue, dimmerGray, vikingBlue, visualBrown from "../../../css/colors.css";
+@value smallRem, largeRem from "../../../css/breakpoints.css";
 
 .listItem {
   padding: 15px 0;
@@ -6,31 +7,76 @@
   display: flex;
 }
 
+.listItem:last-of-type {
+  border-bottom: 0;
+}
+
 .listItemLink {
   flex-shrink: 0;
 }
 
+.listItemImageLink {
+  width: 33%;
+  @media (min-width: largeRem) {
+    width: inherit;
+  }
+}
+
 .imageWrapper {
-  width: 160px;
-  height: 120px;
+  position: relative;
+  padding-top: 75%;
+  @media (max-width: smallRem) {
+    margin-left: 1rem
+  }
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 13px;
   flex-shrink: 0;
+  flex-basis: 33%;
+  @media (min-width: largeRem) {
+    width: 160px;
+    height: 120px;
+    padding-top: 0;
+  }
 }
 
 .imageWrapper:not(.defaultImageWrapper) {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    @media (min-width: largeRem) {
+      position: static;
+    }
+  }
+  @media (min-width: smallRem) {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
 
 .defaultImageWrapper {
   background-color: visualBrown;
-
+  padding-bottom: 20%;
+  padding-top: 20%;
+  @media (min-width: largeRem) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
   & img {
     opacity: 0.35;
   }
+}
+
+.itemInfo {
+  @media (min-width: smallRem) {
+    padding-right: 0
+  }
+  padding-right: 1rem
 }
 
 .image {
@@ -39,19 +85,27 @@
 }
 
 .itemTitle {
-  color: bambooOrange;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
-  margin-right: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  @media (min-width: smallRem) {
+    font-weight: normal;
+    color: bambooOrange;
+    font-size: 1.125rem;
+    margin-right: 8px;
+  }
 }
 
 .itemType {
-  color: elephantBlue;
-  opacity: 0.90;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+    color: elephantBlue;
+    opacity: 0.90;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+  }
 }
 
 .itemDescription {
@@ -61,11 +115,14 @@
 }
 
 .itemSource {
-  display: block;
-  color: vikingBlue;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+    color: vikingBlue;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
 }
 
 .externalLinkIcon {
