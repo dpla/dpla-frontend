@@ -7,6 +7,7 @@ import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
+import makeURLsClickable from "./makeURLsClickable";
 
 export {
   addCommasToNumber,
@@ -17,5 +18,6 @@ export {
   removeQueryParams,
   decodeHTMLEntities,
   getCurrentUrl,
-  getDefaultThumbnail
+  getDefaultThumbnail,
+  makeURLsClickable
 };
