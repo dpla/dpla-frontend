@@ -86,9 +86,9 @@ const ContentAndMetadata = ({ source }) => {
             <div className={classNames.sourceInfo}>
               {/* TODO: hook these up */}
               <button className={classNames.button}>Cite this source</button>
-              <a href={fullContentUrl} download className={classNames.button}>
+              {/* <a href={fullContentUrl} download className={classNames.button}>
                 Download
-              </a>
+              </a> */}
               {source.mainEntity[0]["dct:provenance"] &&
                 <div
                   className={classNames.courtesyOf}
