@@ -5,8 +5,8 @@
 
 .content {
   padding-bottom: 1rem;
-  margin-right: 3rem;
   @media (min-width: smallRem) {
+    margin-right: 3rem;
     padding-bottom: 3rem;
   }
 }
@@ -56,6 +56,7 @@
 .title {
   font-size: 1.625rem;
   font-weight: 600;
+  margin-bottom: 0;
 }
 
 .mainMetadata {

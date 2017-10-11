@@ -12,10 +12,11 @@
 }
 
 .contentWrapper {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   @media (min-width: smallRem) {
+    margin-top: 2rem;
     flex-direction: row;
   }
 }
