@@ -72,7 +72,7 @@ const OtherMetadata = ({ item }) =>
         </Row>
         <Row heading="URL">
           {item.sourceUrl &&
-            <span className={classNames.url}>{item.sourceUrl}</span>
+            <a className={classNames.link} href={item.sourceUrl}>{item.sourceUrl}</a>
           }
         </Row>
       </tbody>
