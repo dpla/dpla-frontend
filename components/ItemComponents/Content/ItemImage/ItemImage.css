@@ -1,5 +1,5 @@
 @value visualBrown from "../../../../css/colors.css";
-@value smallRem from "../../../../css/colors.css";
+@value smallRem from "../../../../css/breakpoints.css";
 
 .imageWrapper {
   width: 100%;
