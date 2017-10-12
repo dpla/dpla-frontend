@@ -22,7 +22,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             dangerouslySetInnerHTML={{
               __html: markdown.toHTML(
                 teachingGuide.hasPart.find(item => item.name === "Questions")
-                  .text
+                  .text.replace(/(http|https):\/\/dp.la\/primary-source-sets\//, '')
               )
             }}
           />
