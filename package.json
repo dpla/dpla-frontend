@@ -8,7 +8,7 @@
     "express": "^4.15.4",
     "express-http-proxy": "^1.0.6",
     "lru-cache": "^4.1.1",
-    "markdown": "^0.5.0",
+    "markdown-it": "^8.4.0",
     "next": "^3.0.3",
     "openseadragon": "2.2.1",
     "react": "^15.6.1",
