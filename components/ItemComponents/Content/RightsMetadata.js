@@ -1,35 +1,36 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
 import { makeURLsClickable } from "utilFunctions";
+import { rightsURLs } from "../../../constants/site.js";
 
 const RightsMetadata = ({ item }) =>
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
+      {item.edmRights &&
         <tr className={classNames.tableRow}>
           <td className={classNames.tableHeading}>
             Standardized Rights Statement
           </td>
           <td
-            className={[classNames.tableItem, classNames.rightsText].join(" ")}
+            className={[
+              classNames.tableItem,
+              classNames.rightsText
+            ].join(" ")}
           >
-            The organization that has made the Item available believes that the
-            Item is in the Public Domain under the laws of the United States,
-            but a determination was not made as to its copyright status under
-            the copyright laws of other countries. The Item may not be in the
-            Public Domain under the laws of other countries. Please refer to the
-            organization that has made the Item available for more information.
-            <a
+            { rightsURLs[item.edmRights].description} <br />
+
+            <a href={item.edmRights}
               className={classNames.link}
               target="_blank"
-              rel="noopener noreferrer"
-              href="http://rightsstatements.org/vocab/NoC-US/1.0/"
-            >
-              {" "}http://rightsstatements.org/vocab/NoC-US/1.0/
+              rel="noopener noreferrer">
+                {item.edmRights}
             </a>
           </td>
         </tr>
-        {item.rights && <tr className={classNames.tableRow}>
+      }
+      {item.rights && 
+        <tr className={classNames.tableRow}>
           <td className={classNames.tableHeading}>
             Rights
           </td>
@@ -37,11 +38,12 @@ const RightsMetadata = ({ item }) =>
             className={[classNames.tableItem, classNames.rightsText].join(" ")}
             dangerouslySetInnerHTML={{
               __html: Array.isArray(item.rights) 
-              ? makeURLsClickable(item.rights.join(" ")) 
+              ? makeURLsClickable(item.rights.join("<br/> ")) 
               : makeURLsClickable(item.rights)
             }}
           />
-        </tr>}
+        </tr>
+      }
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
