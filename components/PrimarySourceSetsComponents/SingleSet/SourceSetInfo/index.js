@@ -51,6 +51,8 @@ const SourceSetInfo = set =>
           }}
         />
       </div>
+      <div className={classNames.sidebarWrapper}>
+
       <div className={classNames.sidebar}>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
@@ -114,10 +116,11 @@ const SourceSetInfo = set =>
               </span>
             )}
           </div>
+          </div>
+          <Button type="ghost" className={classNames.button}>
+            Cite this set
+          </Button>
         </div>
-        <Button type="ghost" className={classNames.button}>
-          Cite this set
-        </Button>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
