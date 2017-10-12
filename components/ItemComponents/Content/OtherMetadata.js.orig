@@ -57,12 +57,17 @@ const OtherMetadata = ({ item }) =>
           {item.type && <FacetLink facet="type" value={item.type} />}
         </Row>
         <Row heading="Format">
+<<<<<<< 0bc3c63a293759e8497bebb93dbf80f81e7fd8ff
           {item.format &&
             <span>{joinIfArray(item.format, ", ")}</span>
           }
+=======
+          {item.format && <span>{item.format}</span>}
+>>>>>>> chore: add some key props, run prettier
         </Row>
         <Row heading="Language">
           {item.language &&
+<<<<<<< 0bc3c63a293759e8497bebb93dbf80f81e7fd8ff
             <FacetLink facet="language" value={joinIfArray(item.language, ", ")} />
           }
         </Row>
@@ -70,6 +75,15 @@ const OtherMetadata = ({ item }) =>
           {item.sourceUrl &&
             <a className="link" href={item.sourceUrl}>{item.sourceUrl}</a>
           }
+=======
+            <FacetLink facet="language" value={joinIfArray(item.language)} />}
+        </Row>
+        <Row heading="URL">
+          {item.sourceUrl &&
+            <a className={classNames.link} href={item.sourceUrl}>
+              {item.sourceUrl}
+            </a>}
+>>>>>>> chore: add some key props, run prettier
         </Row>
       </tbody>
     </table>

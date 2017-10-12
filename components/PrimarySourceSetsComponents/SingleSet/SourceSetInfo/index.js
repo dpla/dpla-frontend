@@ -13,7 +13,7 @@ import Button from "components/shared/Button";
 const { container } = utilClassNames;
 
 // only the time period has a sameAs field
-const extractTimePeriod = tags => 
+const extractTimePeriod = tags =>
   tags.filter(tag => tag.sameAs).map(tag => tag.name);
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
@@ -57,6 +57,7 @@ const SourceSetInfo = set =>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
             {set.set.author.map((author) =>
               <div
+                key={name}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(author.name + ", " + author.affiliation.name)
                 }}
