@@ -13,7 +13,7 @@ import Button from "components/shared/Button";
 const { container } = utilClassNames;
 
 // only the time period has a sameAs field
-const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
+const extractTimePeriod = tags => tags.filter(tag => tag.sameAs).map(tag => tag.name);
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 const extractAuthors = authors =>
@@ -66,24 +66,28 @@ const SourceSetInfo = set =>
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <Link
-              prefetch
-              href={{
-                pathname: "/primary-source-sets",
-                query: {
-                  timePeriod: mapTimePeriodNameToSlug(
-                    extractTimePeriod(set.set.about)
-                  )
-                }
-              }}
-            >
-              <a
-                className={classNames.link}
-                dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(extractTimePeriod(set.set.about))
+            {extractTimePeriod(set.set.about).map((period, i, periods) =>
+            <span key={period}>
+              <Link
+                prefetch
+                href={{
+                  pathname: "/primary-source-sets",
+                  query: {
+                    timePeriod: mapTimePeriodNameToSlug(period)
+                  }
                 }}
-              />
-            </Link>
+              >
+                <a
+                  className={classNames.link}
+                  dangerouslySetInnerHTML={{
+                    __html: markdown.toHTML(period)
+                  }}
+                />
+              </Link>
+              {i < periods.length - 1 &&
+                <span className={classNames.comma}>, </span>}
+            </span>
+            )}
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
