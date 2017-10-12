@@ -1,5 +1,6 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
+import { makeURLsClickable } from "utilFunctions";
 
 const RightsMetadata = ({ item }) =>
   <div className={classNames.rightsMetadata}>
@@ -34,9 +35,12 @@ const RightsMetadata = ({ item }) =>
           </td>
           <td
             className={[classNames.tableItem, classNames.rightsText].join(" ")}
-          >
-            {Array.isArray(item.rights) ? item.rights.join(" ") : item.rights}
-          </td>
+            dangerouslySetInnerHTML={{
+              __html: Array.isArray(item.rights) 
+              ? makeURLsClickable(item.rights.join(" ")) 
+              : makeURLsClickable(item.rights)
+            }}
+          />
         </tr>}
       </tbody>
     </table>
