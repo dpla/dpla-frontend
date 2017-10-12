@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import { stylesheet, classNames } from "./HomePageSlider.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
@@ -91,7 +91,9 @@ const HomePageSlider = ({
                       <div className={classNames.featuredTag}>Featured</div>}
                   </div>
                   <div
-                    dangerouslySetInnerHTML={{ __html: markdownit.render(name) }}
+                    dangerouslySetInnerHTML={{
+                      __html: markdownit.render(name)
+                    }}
                     className={classNames.itemText}
                   />
                 </a>

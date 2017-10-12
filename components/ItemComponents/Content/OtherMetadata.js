@@ -57,19 +57,18 @@ const OtherMetadata = ({ item }) =>
           {item.type && <FacetLink facet="type" value={item.type} />}
         </Row>
         <Row heading="Format">
-          {item.format &&
-            <span>{joinIfArray(item.format, ", ")}</span>
-          }
+          {item.format && <span>{joinIfArray(item.format, ", ")}</span>}
         </Row>
         <Row heading="Language">
           {item.language &&
-            <FacetLink facet="language" value={joinIfArray(item.language, ", ")} />
-          }
+            <FacetLink
+              facet="language"
+              value={joinIfArray(item.language, ", ")}
+            />}
         </Row>
         <Row heading="URL">
           {item.sourceUrl &&
-            <a className="link" href={item.sourceUrl}>{item.sourceUrl}</a>
-          }
+            <a className="link" href={item.sourceUrl}>{item.sourceUrl}</a>}
         </Row>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import {
   ZoomableImageViewer,
@@ -75,7 +75,8 @@ const ContentAndMetadata = ({ source }) => {
             {source.text &&
               <div
                 dangerouslySetInnerHTML={{
-                  __html: markdownit.render(source.text)
+                  __html: markdownit
+                    .render(source.text)
                     .replace(/&lt;br&gt;/g, "<br>")
                 }}
                 className={classNames.description}

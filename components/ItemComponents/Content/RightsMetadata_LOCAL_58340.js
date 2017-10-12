@@ -3,11 +3,11 @@ import { classNames, stylesheet } from "./Content.css";
 import { makeURLsClickable } from "utilFunctions";
 import { rightsURLs } from "../../../constants/site.js";
 
-const RightsMetadata = ({ item }) => (
+const RightsMetadata = ({ item }) =>
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
-        {item.edmRights && (
+        {item.edmRights &&
           <tr className={classNames.tableRow}>
             <td className={classNames.tableHeading}>
               Standardized Rights Statement
@@ -27,9 +27,8 @@ const RightsMetadata = ({ item }) => (
                 {item.edmRights}
               </a>
             </td>
-          </tr>
-        )}
-        {item.rights && (
+          </tr>}
+        {item.rights &&
           <tr className={classNames.tableRow}>
             <td className={classNames.tableHeading}>Rights</td>
             <td
@@ -42,12 +41,10 @@ const RightsMetadata = ({ item }) => (
                   : makeURLsClickable(item.rights, "link")
               }}
             />
-          </tr>
-        )}
+          </tr>}
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>
-);
+  </div>;
 
 export default RightsMetadata;

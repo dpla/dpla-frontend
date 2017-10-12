@@ -28,16 +28,19 @@ const RightsMetadata = ({ item }) =>
             </a>
           </td>
         </tr>
-        {item.rights && <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeading}>
-            Rights
-          </td>
-          <td
-            className={[classNames.tableItem, classNames.rightsText].join(" ")}
-          >
-            {Array.isArray(item.rights) ? item.rights.join(" ") : item.rights}
-          </td>
-        </tr>}
+        {item.rights &&
+          <tr className={classNames.tableRow}>
+            <td className={classNames.tableHeading}>
+              Rights
+            </td>
+            <td
+              className={[classNames.tableItem, classNames.rightsText].join(
+                " "
+              )}
+            >
+              {Array.isArray(item.rights) ? item.rights.join(" ") : item.rights}
+            </td>
+          </tr>}
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import NextArrow from "./NextArrow";
 import PrevArrow from "./PrevArrow";

@@ -1,4 +1,4 @@
-@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .wrapper {
@@ -16,9 +16,11 @@
   @media (min-width: smallRem) {
     padding-bottom: 82px;
     padding-top: 23px;
-    flex-direction: row;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  @media (min-width: mediumRem) {
+    flex-direction: row;
   }
 }
 
@@ -94,6 +96,9 @@
   @media (min-width: smallRem) {
     font-size: 1.125rem;
     padding: 0;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: mediumRem) {
     margin-bottom: 0;
   }
 }
@@ -168,4 +173,44 @@
   margin-right: 9px;
   position: relative;
   top: 1px;
+}
+
+.hideDetailsWrapper {
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 1.25rem;
+  @media (min-width: smallRem) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.hideDetailsButton {
+  color: cascadeBlue;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.hiddenOnSmallScreens {
+  display: none;
+  visibility: hidden;
+  @media (min-width: smallRem) {
+    display: inherit;
+    visibility: visible;
+  }
+  & ~ .hideDetailsWrapper .chevron {
+    transform: rotate(90deg);
+  }
+}
+
+.chevron {
+  transform: rotate(-90deg);
+  width: 7px;
+  height: 12px;
+  margin-left: 0.5rem;
 }
