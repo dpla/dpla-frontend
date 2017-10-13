@@ -104,9 +104,17 @@
   font-weight: 600;
   margin-top: .25rem;
   text-transform: uppercase;
+
+  @media (min-width: mediumRem) {
+    margin-top: .5rem;
+  }
 }
 
 .bodyText {
   opacity: 0.75;
   margin-top: .25rem;
+
+  @media (min-width: mediumRem) {
+    margin-top: .5rem;
+  }
 }
