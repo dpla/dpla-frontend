@@ -1,3 +1,5 @@
+@value bambooOrange from "./colors.css";
+
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid*/
 /* TODO replace breakpoints in breakpoints.css with these */
 
@@ -19,6 +21,15 @@
 
 :global .border-box {
   box-sizing: border-box;
+}
+
+:global .link {
+  color: bambooOrange;
+  text-decoration: underline;
+}
+
+:global .underline {
+  text-decoration: underline;
 }
 
 :global .hover-underline:hover {

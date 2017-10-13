@@ -92,6 +92,10 @@
   }
 }
 
+.postLink:hover .headline {
+  text-decoration: underline;
+}
+
 .headline {
   color: bambooOrange;
   opacity: 0.9;
