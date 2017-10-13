@@ -1,4 +1,5 @@
 @value iceBlue, pampasBrown, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value smallRem from "../../../../../css/breakpoints.css";
 
 .contentAndMetadata {
   padding-top: 23px;
@@ -12,12 +13,15 @@
 .flexWrapper {
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
+  @media (min-width: smallRem) {
+    flex-direction: row;
+  }
 }
 
 .contentHeader {
   font-size: 1.625rem;
   font-weight: 600;
-  line-height: 2rem;
   margin-bottom: 26px;
   max-width: 70%;
 }
@@ -31,8 +35,10 @@
   font-size: 1rem;
   line-height: 1.25rem;
   margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #E7E7E7;
+  @media (min-width: smallRem) {
+    padding-top: 1rem;
+    border-top: 1px solid #E7E7E7;
+  }
 }
 
 .description p {
@@ -45,6 +51,12 @@
 
 .metadata {
   flex: 2;
+  margin-top: 0.75rem;
+  width: 100%;
+  @media (min-width: smallRem) {
+    margin-top: 0;
+    width: auto;
+  }
 }
 
 .sourceInfo {

@@ -2,9 +2,18 @@
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
-  background-color: visualBrown;
   margin-top: 4rem;
   padding: 2rem 0;
+  @media (min-width: smallRem) {
+    background-color: visualBrown;
+  }
+}
+
+:global .slick-list {
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
 }
 
 .headerAndNav {
@@ -22,9 +31,12 @@
 }
 
 .header {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: normal;
+  @media (min-width: smallRem) {
+    font-weight: 600;
+    font-size: 1rem;
+  }
 }
 
 .items {
@@ -78,7 +90,11 @@
   font-size: 50px;
   top: 30px;
   cursor: pointer;
-}
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
+ }
 
 .nextArrow {
   position: absolute;
@@ -87,7 +103,11 @@
   font-size: 50px;
   top: 56px;
   cursor: pointer;
-}
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
+ }
 
 .nextChevron {
   width: 25px;
@@ -144,7 +164,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   & img {
     opacity: 0.35;
     min-width: auto;
