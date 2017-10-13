@@ -61,12 +61,12 @@ const OtherMetadata = ({ item }) =>
         </Row>
         <Row heading="Format">
           {item.format &&
-            <span>{item.format}</span>
+            <span>{joinIfArray(item.format, ", ")}</span>
           }
         </Row>
         <Row heading="Language">
           {item.language &&
-            <FacetLink facet="language" value={joinIfArray(item.language)} />
+            <FacetLink facet="language" value={joinIfArray(item.language, ", ")} />
           }
         </Row>
         <Row heading="URL">
