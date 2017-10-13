@@ -9,8 +9,8 @@
 }
 
 .set {
-  flex-basis: calc(50% - 20px);
-  margin-right: 40px;
+  flex-basis: calc(50% - 0.25rem);
+  margin-right: 0.25rem;
   &:nth-child(2n) {
     margin-right: 0;
   }
