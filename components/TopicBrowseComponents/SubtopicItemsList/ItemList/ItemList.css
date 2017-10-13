@@ -1,4 +1,5 @@
 @value riceCakeWhite from "../../../../css/colors.css";
+@value smallRem from "../../../../css/breakpoints.css";
 
 .itemList {
   flex: 1;
@@ -9,6 +10,12 @@
   display: flex;
   border-bottom: 1px solid rgba(0,0,0,.1);
   padding-bottom: 10px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  @media (min-width: smallRem) {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .itemCount {
