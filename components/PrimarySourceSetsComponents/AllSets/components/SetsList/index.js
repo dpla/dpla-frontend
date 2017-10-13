@@ -1,5 +1,5 @@
 import React from "react";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 import Link from "next/link";
 
 import { classNames, stylesheet } from "./SetsList.css";
@@ -59,7 +59,7 @@ const SetsList = ({ sets, route }) =>
                 >
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: markdown.toHTML(set.name)
+                      __html: markdownit.render(set.name)
                     }}
                   />
                 </a>
