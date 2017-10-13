@@ -12,9 +12,6 @@ const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
 
-const extractAuthors = authors =>
-  authors.map(author => author);
-
 const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, container].join(" ")}>
@@ -74,11 +71,11 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           )}
         >
           <h3 className={classNames.sidebarHeader}>Prepared By</h3>
-            {extractAuthors(teachingGuide.author).map((author) =>
+            {teachingGuide.author.map((author) =>
               <div
                 className={classNames.sidebarSection}
                 dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(author.name + ", " + author.affiliation.name)
+                  __html: markdownit.render(author.name + ", " + author.affiliation.name)
                 }}
               />
             )}
