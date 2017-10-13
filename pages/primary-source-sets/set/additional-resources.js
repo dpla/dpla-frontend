@@ -1,5 +1,5 @@
 import React from "react";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "/components/MainLayout";
@@ -36,7 +36,7 @@ const SingleSet = ({ url, set }) =>
       <div
         className={`${classNames.markdownWrapper} ${container}`}
         dangerouslySetInnerHTML={{
-          __html: markdown.toHTML(
+          __html: markdownit.render(
             set.hasPart.find(item => item.name === "Resources").text
           )
         }}
