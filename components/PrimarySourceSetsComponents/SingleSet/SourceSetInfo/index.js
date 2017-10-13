@@ -84,7 +84,7 @@ const SourceSetInfo = set =>
                 />
               </Link>
               {i < periods.length - 1 &&
-                <span className={classNames.comma}>, </span>}
+                <br />}
             </span>
             )}
           </div>
@@ -109,7 +109,7 @@ const SourceSetInfo = set =>
                   />
                 </Link>
                 {i < subjects.length - 1 &&
-                  <span className={classNames.comma}>, </span>}
+                  <br />}
               </span>
             )}
           </div>
