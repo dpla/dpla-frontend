@@ -10,13 +10,14 @@
 
 .set {
   flex-basis: calc(50% - 20px);
-  margin-right: 20px;
+  margin-right: 40px;
   &:nth-child(2n) {
     margin-right: 0;
   }
   margin-bottom: 28px;
   @media (min-width: xSmallRem) {
     flex-basis: calc(33% - 15px);
+    margin-right: 29px;
     &:nth-child(2n) {
       margin-right: 20px;
     }
@@ -26,6 +27,7 @@
   }
   @media (min-width: smallRem) {
     flex-basis: calc(25% - 15px);
+    margin-right: 20px;
     &:nth-child(2n) {
       margin-right: 20px;
     }
