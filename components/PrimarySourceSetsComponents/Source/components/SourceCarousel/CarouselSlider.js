@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import NextArrow from "./NextArrow";
 import PrevArrow from "./PrevArrow";
@@ -70,7 +70,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
             </div>
             <div
               className={classNames.itemText}
-              dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
+              dangerouslySetInnerHTML={{ __html: markdownit.render(name) }}
             />
           </a>
         </Link>

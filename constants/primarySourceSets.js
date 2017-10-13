@@ -3,20 +3,6 @@ export const DESCRIPTION = `Primary source collections exploring topics in
 history, literature, and culture developed by educators — complete with
 teaching guides for class use.`;
 
-export const rightsURLs = [
-  "http://rightsstatements.org/vocab/NoC-US/1.0/",
-  "http://rightsstatements.org/vocab/NoC-CR/1.0/",
-  "http://rightsstatements.org/vocab/NoC-NC/1.0/",
-  "http://rightsstatements.org/vocab/NoC-OKLR/1.0/",
-  "http://rightsstatements.org/vocab/NKC/1.0/",
-  "https://creativecommons.org/licenses/by/4.0/",
-  "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "https://creativecommons.org/licenses/by-sa/4.0/",
-  "https://creativecommons.org/licenses/by-nd/4.0/",
-  "https://creativecommons.org/licenses/by-nc/4.0/",
-  "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-  "https://creativecommons.org/publicdomain/zero/1.0/"];
-
 export const sortOptions = [
   { value: "recently_added", label: "Recently Added" },
   { value: "chronology_asc", label: "Chronology, oldest first" },

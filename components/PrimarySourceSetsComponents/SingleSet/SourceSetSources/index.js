@@ -1,5 +1,5 @@
 import React from "react";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import Link from "next/link";
 
@@ -45,7 +45,7 @@ const SourceSetSources = ({ route, sources }) =>
               </div>
               <div
                 className={classNames.title}
-                dangerouslySetInnerHTML={{ __html: markdown.toHTML(name) }}
+                dangerouslySetInnerHTML={{ __html: markdownit.render(name) }}
               />
             </a>
           </Link>

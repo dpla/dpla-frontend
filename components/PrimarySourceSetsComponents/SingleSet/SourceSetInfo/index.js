@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -36,7 +36,7 @@ const SourceSetInfo = set =>
             </h3>
             <h1
               dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(set.set.name)
+                __html: markdownit.render(set.set.name)
               }}
               className={classNames.bannerTitle}
             />
@@ -46,7 +46,7 @@ const SourceSetInfo = set =>
         <div
           className={classNames.description}
           dangerouslySetInnerHTML={{
-            __html: markdown.toHTML(
+            __html: markdownit.render(
               set.set.hasPart.find(item => item.name === "Overview").text
             )
           }}
@@ -59,7 +59,7 @@ const SourceSetInfo = set =>
             {extractAuthors(set.set.author).map((name) =>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(name)
+                  __html: markdownit.render(name)
                 }}
               />
             )}
@@ -80,12 +80,12 @@ const SourceSetInfo = set =>
                 <a
                   className={classNames.link}
                   dangerouslySetInnerHTML={{
-                    __html: markdown.toHTML(period)
+                    __html: markdownit.render(period)
                   }}
                 />
               </Link>
               {i < periods.length - 1 &&
-                <span className={classNames.comma}>, </span>}
+                <br />}
             </span>
             )}
           </div>
@@ -105,12 +105,12 @@ const SourceSetInfo = set =>
                   <a
                     className={classNames.link}
                     dangerouslySetInnerHTML={{
-                      __html: markdown.toHTML(subject)
+                      __html: markdownit.render(subject)
                     }}
                   />
                 </Link>
                 {i < subjects.length - 1 &&
-                  <span className={classNames.comma}>, </span>}
+                  <br />}
               </span>
             )}
           </div>

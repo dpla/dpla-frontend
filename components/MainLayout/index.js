@@ -6,10 +6,16 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
-const MainLayout = ({ children, route, hideSearchBar, headLinks }) =>
+const MainLayout = ({
+  children,
+  route,
+  hideSearchBar,
+  isSearchPage,
+  headLinks
+}) =>
   <div>
     <Head additionalLinks={headLinks} />
-    <SmallScreenHeader />
+    <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
     {children}
