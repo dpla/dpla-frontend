@@ -1,5 +1,5 @@
 import React from "react";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import Breadcrumbs from "../../Breadcrumbs";
 import StudentMode from "./components/StudentMode";
@@ -15,7 +15,7 @@ const BreadcrumbsModule = ({ route, breadcrumbs }) =>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: markdown.toHTML(breadcrumb.title)
+            title: markdownit.render(breadcrumb.title)
           })
         )}
       />

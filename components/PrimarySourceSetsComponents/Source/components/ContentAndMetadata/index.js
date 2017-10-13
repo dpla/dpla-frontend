@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import {
   ZoomableImageViewer,
@@ -64,7 +64,7 @@ const ContentAndMetadata = ({ source }) => {
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, container].join(" ")}>
         <h2
-          dangerouslySetInnerHTML={{ __html: markdown.toHTML(source.name) }}
+          dangerouslySetInnerHTML={{ __html: markdownit.render(source.name) }}
           className={classNames.contentHeader}
         />
         <div className={classNames.flexWrapper}>
@@ -75,8 +75,7 @@ const ContentAndMetadata = ({ source }) => {
             {source.text &&
               <div
                 dangerouslySetInnerHTML={{
-                  __html: markdown
-                    .toHTML(source.text)
+                  __html: markdownit.render(source.text)
                     .replace(/&lt;br&gt;/g, "<br>")
                 }}
                 className={classNames.description}
@@ -86,14 +85,14 @@ const ContentAndMetadata = ({ source }) => {
             <div className={classNames.sourceInfo}>
               {/* TODO: hook these up */}
               <button className={classNames.button}>Cite this source</button>
-              <a href={fullContentUrl} download className={classNames.button}>
+              {/* <a href={fullContentUrl} download className={classNames.button}>
                 Download
-              </a>
+              </a> */}
               {source.mainEntity[0]["dct:provenance"] &&
                 <div
                   className={classNames.courtesyOf}
                   dangerouslySetInnerHTML={{
-                    __html: markdown.toHTML(
+                    __html: markdownit.render(
                       source.mainEntity[0]["dct:provenance"].name
                     )
                   }}
@@ -104,7 +103,7 @@ const ContentAndMetadata = ({ source }) => {
                   <p
                     className={classNames.copyrightText}
                     dangerouslySetInnerHTML={{
-                      __html: markdown.toHTML(source.copyright)
+                      __html: markdownit.render(source.copyright)
                     }}
                   />
                 </div>}

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import CarouselSlider from "./CarouselSlider";
 import extractSourceId from "/utilFunctions/extractSourceId";
@@ -33,7 +33,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
             }}
           >
             <a
-              dangerouslySetInnerHTML={{ __html: markdown.toHTML(set.name) }}
+              dangerouslySetInnerHTML={{ __html: markdownit.render(set.name) }}
               className={classNames.linkToSourceSet}
             />
           </Link>

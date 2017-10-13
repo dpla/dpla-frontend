@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -13,9 +13,11 @@ import Button from "components/shared/Button";
 const { container } = utilClassNames;
 
 // only the time period has a sameAs field
-const extractTimePeriod = tags => tags.filter(tag => tag.sameAs)[0].name;
+const extractTimePeriod = tags => tags.filter(tag => tag.sameAs).map(tag => tag.name);
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
+const extractAuthors = authors =>
+  authors.map(author => author.name);
 
 const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
@@ -34,7 +36,7 @@ const SourceSetInfo = set =>
             </h3>
             <h1
               dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(set.set.name)
+                __html: markdownit.render(set.set.name)
               }}
               className={classNames.bannerTitle}
             />
@@ -44,7 +46,7 @@ const SourceSetInfo = set =>
         <div
           className={classNames.description}
           dangerouslySetInnerHTML={{
-            __html: markdown.toHTML(
+            __html: markdownit.render(
               set.set.hasPart.find(item => item.name === "Overview").text
             )
           }}
@@ -54,32 +56,38 @@ const SourceSetInfo = set =>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(set.set.author[0].name)
-              }}
-            />
+            {extractAuthors(set.set.author).map((name) =>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: markdownit.render(name)
+                }}
+              />
+            )}
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Time Period</h3>
-            <Link
-              prefetch
-              href={{
-                pathname: "/primary-source-sets",
-                query: {
-                  timePeriod: mapTimePeriodNameToSlug(
-                    extractTimePeriod(set.set.about)
-                  )
-                }
-              }}
-            >
-              <a
-                className={classNames.link}
-                dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(extractTimePeriod(set.set.about))
+            {extractTimePeriod(set.set.about).map((period, i, periods) =>
+            <span key={period}>
+              <Link
+                prefetch
+                href={{
+                  pathname: "/primary-source-sets",
+                  query: {
+                    timePeriod: mapTimePeriodNameToSlug(period)
+                  }
                 }}
-              />
-            </Link>
+              >
+                <a
+                  className={classNames.link}
+                  dangerouslySetInnerHTML={{
+                    __html: markdownit.render(period)
+                  }}
+                />
+              </Link>
+              {i < periods.length - 1 &&
+                <span className={classNames.comma}>, </span>}
+            </span>
+            )}
           </div>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Subjects</h3>
@@ -97,7 +105,7 @@ const SourceSetInfo = set =>
                   <a
                     className={classNames.link}
                     dangerouslySetInnerHTML={{
-                      __html: markdown.toHTML(subject)
+                      __html: markdownit.render(subject)
                     }}
                   />
                 </Link>

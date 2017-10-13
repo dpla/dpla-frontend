@@ -1,10 +1,14 @@
 @value cascadeBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 @value tablePadding: 2.25rem;
 @value tableBorderBottom: 2px solid rgba(0, 0, 0, 0.1);
 
 .content {
-  padding-bottom: 3rem;
-  margin-right: 3rem;
+  padding-bottom: 1rem;
+  @media (min-width: smallRem) {
+    margin-right: 3rem;
+    padding-bottom: 3rem;
+  }
 }
 
 .tableHeading {
@@ -17,6 +21,14 @@
   display: block;
 }
 
+.tableRow {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: smallRem) {
+    display: table-row;
+  }
+}
+
 .tableItem {
   vertical-align: top;
   font-size: 1.25rem;
@@ -24,11 +36,17 @@
 }
 
 .tableRow td {
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  @media (min-width: smallRem) {
+    padding-bottom: 1rem;
+  }
 }
 
 .tableRow:last-child td {
-  padding-bottom: 0;
+  padding-bottom: 0.5rem;
+  @media (min-width: smallRem) {
+    padding-bottom: 0;
+  }
 }
 
 .defaultItemImage {
@@ -38,15 +56,23 @@
 .title {
   font-size: 1.625rem;
   font-weight: 600;
+  margin-bottom: 0;
 }
 
 .mainMetadata {
   border-bottom: tableBorderBottom;
-  padding-bottom: tablePadding;
+  padding-bottom: 1rem;
+  @media (min-width: smallRem) {
+    padding-bottom: tablePadding;
+  }
 }
 
 .mainMetadataText {
-  font-size: 1.25rem;
+  font-size: 1rem;
+  margin-bottom: 0;
+  @media (min-width: smallRem) {
+    font-size: 1.25rem;
+  }
 }
 
 .thumbnail {
@@ -57,7 +83,7 @@
 
 .sourceLink {
   background-color: cascadeBlue;
-  width: 242px;
+  width: 100%;
   color: white;
   border-radius: 2px;
   display: inline-flex;
@@ -66,6 +92,9 @@
   padding: 0.75rem 0;
   font-size: 1.125rem;
   font-weight: 600;
+  @media (min-width: smallRem) {
+    width: 242px;
+  }
 }
 .sourceLinkText {
   margin-right: 0.5rem;
@@ -77,8 +106,11 @@
 }
 
 .otherMetadata {
-  padding: tablePadding 0;
+  padding: 1rem 0 0;
   border-bottom: tableBorderBottom;
+  @media (min-width: smallRem) {
+    padding: tablePadding 0;
+  }
 }
 
 .otherMetadataItem {
@@ -86,7 +118,10 @@
 }
 
 .rightsMetadata {
-  padding-top: tablePadding;
+  padding-top: 1rem;
+  @media (min-width: smallRem) {
+    padding-top: tablePadding;
+  }
 }
 
 .rightsText {
@@ -106,6 +141,7 @@
   border-radius: 2px;
   font-size: 0.875rem;
   display: block;
+  word-break: break-all;
 }
 
 .subjects .facetLink {
