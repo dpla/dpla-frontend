@@ -1,4 +1,5 @@
 @value bambooOrange from "../../css/colors.css";
+@value smallRem from "../../css/breakpoints.css";
 
 .activeBreadcrumb {
   display: inline-block;
@@ -6,6 +7,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: .75rem;
+  @media (min-width: smallRem) {
+    font-size: 1rem;
+  }
 }
 
 .breadcrumbLink {
@@ -16,6 +21,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: .75rem;
+  @media (min-width: smallRem) {
+    font-size: 1rem;
+  }
 }
 
 .breadcrumbLink p,
