@@ -52,3 +52,10 @@
 .tab:last-child {
   margin-right: 0;
 }
+
+.hideOnSmallScreen {
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+  }
+}
