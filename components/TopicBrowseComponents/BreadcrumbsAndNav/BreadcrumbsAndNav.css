@@ -15,10 +15,11 @@
   font-size: 1rem;
   line-height: 1.25rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  align-items: baseline;
   @media (min-width: smallRem) {
+    align-items: center;
     flex-direction: row;
   }
 }
