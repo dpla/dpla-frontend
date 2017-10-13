@@ -21,7 +21,7 @@ const extractSubjects = tags =>
 
 class SourceSetInfo extends React.Component {
   state = {
-    hideDetailsOnSmallScreens: false
+    hideDetailsOnSmallScreens: true
   };
 
   toggleHideDetails = () => {

@@ -38,7 +38,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
     ]}
   >
     {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) =>
-      <div>
+      <div key={name}>
         {/* for some reason react-slick can't have <Link /> as direct child */}
         <Link
           prefetch

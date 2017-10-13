@@ -11,7 +11,7 @@ const RelatedSets = ({ sets }) =>
       <h3 className={classNames.header}>Related Primary Source Sets</h3>
       <div className={classNames.sets}>
         {sets.map(({ img, name, thumbnailUrl }) =>
-          <div className={classNames.set}>
+          <div key={name} className={classNames.set}>
             <img
               alt={name}
               src={thumbnailUrl}

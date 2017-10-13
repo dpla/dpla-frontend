@@ -34,7 +34,7 @@
 .banner {
   width: 100%;
   position: relative;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   @media (min-width: smallRem) {
     margin-bottom: 1.5rem;
   }
@@ -56,9 +56,10 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 0 0 11px 22px;
   color: white;
+  padding: 0 0 11px 1rem;
   @media (min-width: smallRem) {
+    padding: 0 0 11px 22px;
     border-radius: 3px;
   }
 }
