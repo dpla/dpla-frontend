@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -17,8 +17,6 @@ const extractTimePeriod = tags =>
   tags.filter(tag => tag.sameAs).map(tag => tag.name);
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
-const extractAuthors = authors =>
-  authors.map(author => author);
 
 const SourceSetInfo = set =>
   <div className={classNames.wrapper}>
@@ -37,7 +35,7 @@ const SourceSetInfo = set =>
             </h3>
             <h1
               dangerouslySetInnerHTML={{
-                __html: markdown.toHTML(set.set.name)
+                __html: markdownit.render(set.set.name)
               }}
               className={classNames.bannerTitle}
             />
@@ -47,7 +45,7 @@ const SourceSetInfo = set =>
         <div
           className={classNames.description}
           dangerouslySetInnerHTML={{
-            __html: markdown.toHTML(
+            __html: markdownit.render(
               set.set.hasPart.find(item => item.name === "Overview").text
             )
           }}
@@ -57,10 +55,10 @@ const SourceSetInfo = set =>
         <div className={classNames.metadata}>
           <div className={classNames.metadatum}>
             <h3 className={classNames.metadataHeader}>Prepared By</h3>
-            {extractAuthors(set.set.author).map((author) =>
+            {set.set.author.map((author) =>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: markdown.toHTML(author.name + ", " + author.affiliation.name)
+                  __html: markdownit.render(author.name + ", " + author.affiliation.name)
                 }}
               />
             )}
@@ -81,7 +79,7 @@ const SourceSetInfo = set =>
                 <a
                   className={classNames.link}
                   dangerouslySetInnerHTML={{
-                    __html: markdown.toHTML(period)
+                    __html: markdownit.render(period)
                   }}
                 />
               </Link>
@@ -106,7 +104,7 @@ const SourceSetInfo = set =>
                   <a
                     className={classNames.link}
                     dangerouslySetInnerHTML={{
-                      __html: markdown.toHTML(subject)
+                      __html: markdownit.render(subject)
                     }}
                   />
                 </Link>

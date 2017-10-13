@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { markdown } from "markdown";
+const markdownit = require("markdown-it")({html: true});
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
@@ -23,16 +23,16 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <h2 className={classNames.contentHeader}>Discussion questions</h2>
           <div
             dangerouslySetInnerHTML={{
-              __html: markdown.toHTML(
+              __html: markdownit.render(
                 teachingGuide.hasPart.find(item => item.name === "Questions")
-                  .text
+                  .text.replace(/(http|https):\/\/dp.la\/primary-source-sets\//, '')
               )
             }}
           />
           <h2 className={classNames.contentHeader}>Classroom activities</h2>
           <div
             dangerouslySetInnerHTML={{
-              __html: markdown.toHTML(
+              __html: markdownit.render(
                 teachingGuide.hasPart.find(item => item.name === "Activity")
                   .text
               )
@@ -55,7 +55,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               <a className={classNames.aboutThisLink}>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: markdown.toHTML(teachingGuide.isPartOf.name)
+                    __html: markdownit.render(teachingGuide.isPartOf.name)
                   }}
                 />
               </a>

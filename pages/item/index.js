@@ -67,7 +67,8 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
       language: language,
       partner: doc.provider.name,
       sourceUrl: doc.isShownAt,
-      useDefaultImage: !doc.object
+      useDefaultImage: !doc.object,
+      edmRights: doc.rights
     })
   };
 };
