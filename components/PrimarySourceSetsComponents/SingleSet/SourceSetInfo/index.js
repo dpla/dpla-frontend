@@ -78,7 +78,7 @@ const SourceSetInfo = set =>
                 }}
               >
                 <a
-                  className={classNames.link}
+                  className={`link ${classNames.link}`}
                   dangerouslySetInnerHTML={{
                     __html: markdownit.render(period)
                   }}
@@ -103,7 +103,7 @@ const SourceSetInfo = set =>
                   }}
                 >
                   <a
-                    className={classNames.link}
+                    className={`link ${classNames.link}`}
                     dangerouslySetInnerHTML={{
                       __html: markdownit.render(subject)
                     }}

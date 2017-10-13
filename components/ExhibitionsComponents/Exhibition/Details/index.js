@@ -31,7 +31,7 @@ const Details = ({ exhibition, route }) =>
                     pathname: `/exhibitions/${exhibition.slug}/${section.slug}/`
                   }}
                 >
-                  <a>
+                  <a className="hover-underline">
                     {section.title}
                   </a>
                 </Link>

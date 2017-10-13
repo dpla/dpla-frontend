@@ -41,6 +41,10 @@
   font-size: 1rem;
   margin-bottom: .55rem;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media (min-width: mediumRem) {
     font-size: 1.2rem;
   }

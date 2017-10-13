@@ -13,6 +13,10 @@ import {
   classNames,
   stylesheet
 } from "/components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.css";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
 
@@ -34,7 +38,7 @@ const SingleSet = ({ url, set }) =>
     <SourceSetInfo set={set} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div
-        className={`${classNames.markdownWrapper} ${container}`}
+        className={`${contentClasses.content} ${container}`}
         dangerouslySetInnerHTML={{
           __html: markdownit.render(
             set.hasPart.find(item => item.name === "Resources").text
@@ -44,6 +48,7 @@ const SingleSet = ({ url, set }) =>
     </ResourcesTabs>
     <PSSFooter />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query }) => {

@@ -5,9 +5,13 @@ const markdownit = require("markdown-it")({html: true});
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { classNames, stylesheet } from "./TeachersGuide.css";
+import {
+  classNames as contentClasses,
+  stylesheet as contentStyles
+} from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
-const { container } = utilClassNames;
 
+const { container } = utilClassNames;
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
@@ -16,8 +20,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.teachingGuide, container].join(" ")}>
       <div className={classNames.content}>
-        <div className={classNames.markdownWrapper}>
-          <h2 className={classNames.contentHeader}>Discussion questions</h2>
+        <div className={contentClasses.content}>
+          <h3>Discussion questions</h3>
           <div
             dangerouslySetInnerHTML={{
               __html: markdownit.render(
@@ -26,7 +30,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               )
             }}
           />
-          <h2 className={classNames.contentHeader}>Classroom activities</h2>
+          <h3>Classroom activities</h3>
           <div
             dangerouslySetInnerHTML={{
               __html: markdownit.render(
@@ -49,7 +53,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                 query: removeQueryParams(route.query, ["set"])
               }}
             >
-              <a className={classNames.aboutThisLink}>
+              <a className={`link ${classNames.aboutThisLink}`}>
                 <span
                   dangerouslySetInnerHTML={{
                     __html: markdownit.render(teachingGuide.isPartOf.name)
@@ -142,7 +146,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <ul className={classNames.ul}>
             <li className={classNames.additionalToolWrapper}>
               <a
-                className={classNames.additionalToolLink}
+                className="link"
                 href="https://www.archives.gov/education/lessons/worksheets"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -152,7 +156,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             </li>
             <li className={classNames.additionalToolWrapper}>
               <a
-                className={classNames.additionalToolLink}
+                className="link"
                 href="https://www.loc.gov/teachers/usingprimarysources/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -165,6 +169,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </div>;
 
 export default TeachersGuide;
