@@ -1,4 +1,4 @@
-@value romanceGray, pampasBrown, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
+@value romanceGray, pampasBrown, vikingBlue, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -92,7 +92,7 @@
 
 .currentItemImgWrapper {
   padding-top: calc(70% - 12px);
-  border: 6px solid casablancaOrange;
+  border: 6px solid vikingBlue;
 }
 
 @media (min-width: smallRem) {
@@ -241,8 +241,6 @@
 }
 
 .linkToSourceSet {
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
   display: inline-block;
 }
 
