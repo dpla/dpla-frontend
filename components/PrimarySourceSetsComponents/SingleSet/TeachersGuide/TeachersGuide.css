@@ -12,13 +12,6 @@
   margin-right: 73px;
 }
 
-.contentHeader {
-  font-size: 1.5rem;
-  line-height: 1.9375rem;
-  margin-bottom: 8px;
-  font-weight: normal;
-}
-
 .sidebar {
   font-size: 0.875rem;
   line-height: 1.125rem;
@@ -48,11 +41,11 @@
 
 .toolLink {
   color: curiousBlue;
-  border-bottom: 1px solid curiousBlue;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 600;
   display: inline-block;
+  text-decoration: underline;
 }
 
 .toolIcon {
@@ -80,41 +73,6 @@
   font-weight: 600;
 }
 
-/*
-  technique for changing ol number color from
-  https://www.lockedowndesign.com/ordered-list-ol-different-color-for-numbers/
-*/
-
-.markdownWrapper li {
-  counter-increment: list;
-  list-style-type: none;
-  position: relative;
-  margin-bottom: 20px;
-  font-size: 1rem;
-  line-height: 1.25rem;
-}
-
-.markdownWrapper li:before {
-  color: hippieBlue;
-  content: counter(list) ".";
-  left: -32px;
-  position: absolute;
-  text-align: right;
-  width: 26px;
-}
-
-.markdownWrapper ol {
-  padding-left: 20px;
-}
-
-.markdownWrapper li:last-child {
-  margin-bottom: 0;
-}
-
-.markdownWrapper a {
-  color: bambooOrange !important;
-}
-
 .ul {
   list-style: initial;
   margin-bottom: 10px;
@@ -133,22 +91,15 @@
 .aboutThisHeader {
   font-family: "Lora";
   font-weight: bold;
-  line-height: 1.25rem;
   font-size: 1rem;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: .25rem;
 }
 
 .aboutThisLink {
-  color: bambooOrange;
   display: inline-block;
 }
 
 .additionalToolWrapper {
   margin-bottom: 0.5rem;
-}
-
-.additionalToolLink {
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
 }

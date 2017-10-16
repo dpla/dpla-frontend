@@ -15,7 +15,7 @@ const OtherInfo = () =>
         <span>
           Feedback? Interested in curating an exhibition for DPLA? Contact us at&nbsp;
         </span>
-        <a className={classNames.link} href="mailto:education@dp.la">
+        <a className="link" href="mailto:education@dp.la">
           education@dp.la
         </a>.
       </p>

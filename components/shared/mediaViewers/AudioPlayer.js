@@ -7,6 +7,7 @@ const AudioPlayer = ({ pathToFile, fileFormat }) =>
     <audio
       className={classNames.audioPlayer}
       controls
+      controlsList="nodownload"
       src={pathToFile}
       type={`audio/${fileFormat}`}
     >

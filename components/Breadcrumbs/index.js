@@ -13,7 +13,7 @@ const Breadcrumbs = ({ breadcrumbs }) =>
             <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
               <a
                 dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
-                className={classNames.breadcrumbLink}
+                className={`link ${classNames.breadcrumbLink}`}
               />
             </Link>
             <img alt="" src={chevron} className={classNames.chevron} />

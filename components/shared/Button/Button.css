@@ -1,4 +1,4 @@
-@value cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
+@value black80, cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 
@@ -18,6 +18,15 @@
 
   &:hover {
     background-color: #CD570A;
+  }
+}
+
+.buttonSecondary {
+  color: white;
+  background-color: black;
+
+  &:hover {
+    background-color: black80;
   }
 }
 

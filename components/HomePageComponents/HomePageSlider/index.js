@@ -43,7 +43,7 @@ const HomePageSlider = ({
       <div className={classNames.heading}>
         <h1 className={classNames.title}>{title}</h1>
         <Link prefetch href={browseLinkUrl}>
-          <a className={classNames.moreLink}>
+          <a className={`hover-underline ${classNames.moreLink}`}>
             <span>
               Browse all{" "}
               <span className={classNames.moreLinkNoun}>{browseLinkName}</span>

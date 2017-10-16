@@ -75,6 +75,11 @@
   flex-shrink: 0;
   font-size: 0.875rem;
   margin-top: 2px;
+
+  &:hover span {
+    text-decoration: underline;
+  }
+
   @media (min-width: smallRem) {
     font-size: 1rem;
     align-self: baseline;

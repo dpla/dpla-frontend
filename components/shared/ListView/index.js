@@ -29,7 +29,7 @@ const ListView = ({ items, route }) =>
         <div className={classNames.itemInfo}>
           <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
-              <span className={classNames.itemTitle}>
+              <span className={`hover-underline ${classNames.itemTitle}`}>
                 {item.title}
               </span>
             </a>
@@ -51,7 +51,7 @@ const ListView = ({ items, route }) =>
             href={item.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={classNames.itemSource}
+            className={`hover-underline ${classNames.itemSource}`}
           >
             <span className={classNames.itemSourceText}>Source</span>
             <img

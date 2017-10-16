@@ -10,8 +10,6 @@
 
 .breadcrumbLink {
   display: inline-block;
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
   max-width: 215px;
   white-space: nowrap;
   text-overflow: ellipsis;

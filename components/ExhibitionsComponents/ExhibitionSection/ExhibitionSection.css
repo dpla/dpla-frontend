@@ -77,6 +77,11 @@
 
 .sidebar {
   display: none;
+
+  & a:hover {
+    text-decoration: underline;
+  }
+
   @media (min-width: smallRem) {
     width: 197px;
     margin-right: 1.25rem;

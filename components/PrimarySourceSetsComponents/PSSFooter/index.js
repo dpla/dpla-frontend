@@ -14,7 +14,7 @@ const OtherInfo = () =>
           These sets were created and reviewed by the teachers on the&nbsp;
         </span>
         <Link prefetch href="">
-          <a className={classNames.link}>
+          <a className="link">
             DPLA's Education Advisory Committee.
           </a>
         </Link>
@@ -22,13 +22,13 @@ const OtherInfo = () =>
       <p className={classNames.p}>
         <span>
           To give feedback, contact us at {" "}
-          <a className={classNames.link} href={`mailto:${DPLA_CONTACT_EMAIL}`}>
+          <a className="link" href={`mailto:${DPLA_CONTACT_EMAIL}`}>
             education@dp.la
           </a>. You can also
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className={classNames.link}
+            className="link"
             href={PSS_SUGGESTION_URL}
           >
             {" "}suggest a primary source set topic

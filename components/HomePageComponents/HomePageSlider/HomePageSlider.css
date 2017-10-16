@@ -86,24 +86,6 @@
   &:last-child {
     margin-right: 0;
   }
-
-  & .itemImg {
-    transition: transform .25s ease-in-out;
-    backface-visibility: hidden;
-  }
-
-  & .itemText {
-    transition: opacity .25s ease-in-out;
-  }
-
-  &:hover .itemImg {
-    transition: transform .35s ease-in-out;
-    transform: scale(1.18);
-  }
-
-  &:hover .itemText {
-    opacity: 0.9;
-  }
 }
 
 .itemImgWrapper {
@@ -126,7 +108,6 @@
 
 .itemText {
   color: black;
-  opacity: 0.75;
   font-size: 1rem;
   margin-top: 0.5rem;
   font-weight: 600;

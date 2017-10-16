@@ -25,8 +25,8 @@ const FacetLink = ({ facet, value, withComma }) =>
       prefetch
       href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}
     >
-      <a className={classNames.facetLink}>
-        <span className={classNames.facetLinkText}>{value}</span>
+      <a className="link">
+        {value}
       </a>
     </Link>
   </span>;
@@ -71,7 +71,7 @@ const OtherMetadata = ({ item }) =>
         </Row>
         <Row heading="URL">
           {item.sourceUrl &&
-            <a className={classNames.link} href={item.sourceUrl}>{item.sourceUrl}</a>
+            <a className="link" href={item.sourceUrl}>{item.sourceUrl}</a>
           }
         </Row>
       </tbody>

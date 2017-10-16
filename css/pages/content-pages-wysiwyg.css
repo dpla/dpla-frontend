@@ -95,23 +95,16 @@
   }
 
   & ol li {
-    counter-increment: list;
-    list-style-type: none;
     position: relative;
     padding-left: 0.75rem;
   }
 
-  & ol li:before {
-    content: counter(list, lower-alpha) ".";
-    left: -32px;
-    position: absolute;
-    text-align: right;
-    width: 26px;
-    opacity: 0.65;
+  & li {
+    margin-bottom: .5rem;
   }
 
-  & li {
-    margin-bottom: 1.5rem;
+  & ul {
+    list-style-type: disc;
   }
 
   & ul, & ol {
@@ -121,18 +114,6 @@
   & ul li {
     position: relative;
     padding-left: 0.75rem;
-  }
-
-  & ul li::before {
-    content: "";
-    display: block;
-    width: 4px;
-    height: 4px;
-    left: -17px;
-    top: 8px;
-    border-radius: 50%;
-    background-color: black;
-    position: absolute;
   }
 
   & table {
@@ -159,7 +140,7 @@
 
   & a {
     color: bambooOrange;
-    border-bottom: 1px solid bambooOrange;
+    text-decoration: underline;
   }
 
   & hr {
@@ -171,5 +152,57 @@
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+  }
+
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  & :global .alignright,
+  & :global .alignleft,
+  & :global .wp-caption {
+    margin-bottom: 1.5rem;
+
+    @media (min-width: largeRem) {
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  & :global .alignleft {
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: smallRem) {
+      float: left;
+      margin-right: 1rem;
+    }
+  }
+
+  & :global .aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  & :global .alignright {
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: smallRem) {
+      float: right;
+      margin-left: 1rem;
+    }
+  }
+
+  & :global .wp-caption-text {
+    font-size: .875rem;
+    font-weight: 600;
+    margin-top: .5rem;
+    margin-bottom: 0;
+  }
+
+  & :global .wp-caption {
+    max-width: 100%;
   }
 }
