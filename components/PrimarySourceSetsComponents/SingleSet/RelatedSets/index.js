@@ -13,7 +13,7 @@ const RelatedSets = ({ sets }) => {
       <div className={[container, classNames.relatedSets].join(" ")}>
         <h3 className={classNames.header}>Related Primary Source Sets</h3>
         <div className="row">
-          {sets.map((set, index) => (
+          {sets.map((set, index) =>
             <div
               key={`${set.name}-${index}`}
               className="col-12 col-xs-6 col-md-3"
@@ -35,7 +35,7 @@ const RelatedSets = ({ sets }) => {
                 </a>
               </Link>
             </div>
-          ))}
+          )}
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
