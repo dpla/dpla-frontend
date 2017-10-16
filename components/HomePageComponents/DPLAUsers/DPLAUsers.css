@@ -1,4 +1,4 @@
-@value rockBrown, bonjourRed from "../../../css/colors.css";
+@value rockBrown, black80, bonjourRed from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .DPLAUsers {
@@ -64,4 +64,38 @@
   font-size: 1rem;
   max-width: 22rem;
   margin: 0 auto;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: black80;
+
+  & p {
+    max-width: 80%;
+    margin: 0 auto;
+    line-height: 1.25;
+
+    @media (min-width: smallRem) {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: mediumRem) {
+      max-width: 60%;
+    }
+  }
+
+  @media (min-width: mediumRem) {
+    margin-top: 2rem;
+  }
+}
+
+.captionButton {
+  display: inline-block;
+  margin-top: 2rem;
+
+  @media (min-width: mediumRem) {
+    margin-top: 2.5rem;
+  }
 }

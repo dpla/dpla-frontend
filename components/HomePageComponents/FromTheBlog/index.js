@@ -37,7 +37,7 @@ const FromTheBlog = (/* data */) =>
           <div className={classNames.header}>
             <h1 className={classNames.headerText}>From the Blog</h1>
             <Link prefetch href="">
-              <a className={classNames.headerLink}>
+              <a className={`hover-underline ${classNames.headerLink}`}>
                 <span>Browse the blog</span>
                 <img
                   alt="browse the blog"
@@ -52,16 +52,16 @@ const FromTheBlog = (/* data */) =>
           <li key={post.id} className="col-xs-12 col-md-3">
             <div className={index === 0 && classNames.firstPost}>
               <Link prefetch href="">
-                <a className={classNames.headline}>
-                  {post.headline}
+                <a className={classNames.postLink}>
+                  <span className={classNames.headline}>{post.headline}</span>
+                  <div className={classNames.date}>
+                    {post.date}
+                  </div>
+                  <p className={classNames.bodyText}>
+                    {post.bodyText}
+                  </p>
                 </a>
               </Link>
-              <div className={classNames.date}>
-                {post.date}
-              </div>
-              <p className={classNames.bodyText}>
-                {post.bodyText}
-              </p>
             </div>
           </li>
         )}

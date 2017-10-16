@@ -46,8 +46,9 @@
   font-size: 1rem;
   background-color: visualBrown;
   line-height: 1.25rem;
+
   @media (min-width: mediumRem) {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     padding: 1.25rem;
   }
 }

@@ -15,26 +15,41 @@
   flex-shrink: 0;
 }
 
+.itemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  @media (min-width: smallRem) {
+    font-weight: normal;
+    color: bambooOrange;
+    font-size: 1.125rem;
+    margin-right: 8px;
+  }
+}
+
+
 .listItemImageLink {
   width: 33%;
+
   @media (min-width: largeRem) {
     width: inherit;
   }
 }
 
 .imageWrapper {
-  position: relative;
+  align-items: center;
+  border-radius: 2px;
+  display: flex;
+  flex-basis: 33%;
+  flex-shrink: 0;
+  justify-content: center;
+  margin-right: 13px;
   padding-top: 75%;
+  position: relative;
+
   @media (max-width: smallRem) {
     margin-left: 1rem
   }
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 13px;
-  flex-shrink: 0;
-  flex-basis: 33%;
+
   @media (min-width: largeRem) {
     width: 160px;
     height: 120px;
@@ -84,17 +99,6 @@
   max-height: 100%;
 }
 
-.itemTitle {
-  font-size: 0.875rem;
-  font-weight: 600;
-  @media (min-width: smallRem) {
-    font-weight: normal;
-    color: bambooOrange;
-    font-size: 1.125rem;
-    margin-right: 8px;
-  }
-}
-
 .itemType {
   display: none;
   @media (min-width: smallRem) {
@@ -112,16 +116,18 @@
   display: block;
   font-size: 0.875rem;
   line-height: 1.125rem;
+  margin-top: .25rem;
 }
 
 .itemSource {
   display: none;
+
   @media (min-width: smallRem) {
     display: block;
     color: vikingBlue;
     font-weight: 600;
     font-size: 0.875rem;
-    line-height: 1.125rem;
+    margin-top: .25rem;
   }
 }
 
@@ -133,12 +139,12 @@
 }
 
 .itemSourceText {
-  margin-right: 6px;
+  margin-right: .3rem;
 }
 
 .itemAuthorAndDate {
+  margin-top: .25rem;
   display: block;
   color: dimmerGray;
   font-size: 0.875rem;
-  line-height: 1.125rem;
 }

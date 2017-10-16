@@ -1,4 +1,4 @@
-@value cascadeBlue from "../../../../css/colors.css";
+@value cascadeBlue, black50 from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 
@@ -17,6 +17,10 @@
 .facet {
   font-size: 0.875rem;
   line-height: 1.125rem;
+
+  &:hover .facetName {
+    text-decoration: underline;
+  }
 }
 
 .activeFacetName {
@@ -26,5 +30,6 @@
 
 .facetCount {
   font-size: 0.8125rem;
-  color: #888888;
+  color: black50;
+  margin-left: .25rem;
 }

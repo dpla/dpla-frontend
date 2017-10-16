@@ -22,6 +22,9 @@ const Button = ({
     case "primary":
       buttonClasses = `${buttonClasses} ${classNames.buttonPrimary}`;
       break;
+    case "secondary":
+      buttonClasses = `${buttonClasses} ${classNames.buttonSecondary}`;
+      break;
     case "ghost":
       buttonClasses = `${buttonClasses} ${classNames.buttonGhost}`;
       break;
@@ -35,15 +38,17 @@ const Button = ({
 
   return (
     <div>
-      {url
-        ? <Link prefetch={prefetch} href={url} as={as}>
-            <a title={title} className={buttonClasses} style={style}>
-              {children}
-            </a>
-          </Link>
-        : <button onClick={onClick} className={buttonClasses} style={style}>
+      {url ? (
+        <Link prefetch={prefetch} href={url} as={as}>
+          <a title={title} className={buttonClasses} style={style}>
             {children}
-          </button>}
+          </a>
+        </Link>
+      ) : (
+        <button onClick={onClick} className={buttonClasses} style={style}>
+          {children}
+        </button>
+      )}
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </div>
   );

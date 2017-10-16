@@ -129,11 +129,6 @@
   font-size: 0.9375rem;
 }
 
-.link {
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
-}
-
 .url {
   font-family: courier, monospace;
   padding: 9px 12px 12px;
@@ -150,13 +145,4 @@
   &:not(:last-child) {
     margin-bottom: 0;
   }
-}
-
-.facetLink {
-  color: bambooOrange;
-  display: block;
-}
-
-.facetLinkText {
-  border-bottom: 1px solid bambooOrange;
 }
