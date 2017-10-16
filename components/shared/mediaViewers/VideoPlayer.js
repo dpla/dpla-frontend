@@ -7,6 +7,7 @@ const VideoPlayer = ({ pathToFile, fileFormat }) =>
     <video
       className={classNames.videoPlayer}
       controls
+      controlsList="nodownload"
       src={pathToFile}
       type={`video/${fileFormat}`}
     >
