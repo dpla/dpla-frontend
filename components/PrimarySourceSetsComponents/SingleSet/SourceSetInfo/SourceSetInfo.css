@@ -1,4 +1,5 @@
-@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
+@value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;
@@ -6,29 +7,48 @@
 }
 
 .sourceSetInfo {
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0.75rem;
   display: flex;
-  padding-bottom: 82px;
-  padding-top: 23px;
+  flex-direction: column;
+  @media (min-width: smallRem) {
+    padding-bottom: 82px;
+    padding-top: 23px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: mediumRem) {
+    flex-direction: row;
+  }
 }
 
 .bannerAndDescription {
   flex-basis: 70%;
-  padding-right: 18px;
+  @media (min-width: smallRem) {
+    padding-right: 18px;
+  }
 }
 
 .banner {
   width: 100%;
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 1rem;
+  @media (min-width: smallRem) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .bannerImage {
   width: 100%;
-  height: 169px;
+  padding-top: 32%;
   opacity: 0.95;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 3px;
+  @media (min-width: smallRem) {
+    border-radius: 3px;
+  }
 }
 
 .bannerTextWrapper {
@@ -36,44 +56,74 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 0 0 11px 22px;
   color: white;
-  border-radius: 3px;
+  padding: 0 0 11px 1rem;
+  @media (min-width: smallRem) {
+    padding: 0 0 11px 22px;
+    border-radius: 3px;
+  }
 }
 
 .bannerResourceType {
   text-transform: uppercase;
   padding-right: 18px;
-  font-size: 1rem;
-  line-height: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: bold;
   opacity: 0.85;
   margin-bottom: 1px;
   color: white;
+  @media (min-width: smallRem) {
+    font-size: 1rem;
+  }
 }
 
 .bannerTitle {
   font-family: "Lora";
-  font-size: 2.875rem;
-  line-height: 3.4375rem;
   font-weight: normal;
+  font-size: 1.5rem;
   color: white;
+  @media (min-width: smallRem) {
+    font-size: 2rem;
+  }
+  @media (min-width: mediumRem) {
+    font-size: 2.875rem;
+  }
 }
 
 .description {
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  @media (min-width: smallRem) {
+    font-size: 1.125rem;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: mediumRem) {
+    margin-bottom: 0;
+  }
 }
 
 .description p {
-  margin-bottom: 25px;
+  margin-bottom: 1rem;
+  @media (min-width: smallRem) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .description p:last-of-type {
   margin-bottom: 0;
 }
 
+.sidebarWrapper {
+  padding: 0 1rem;
+  @media (min-width: smallRem) {
+    padding: 0;
+  }
+}
+
 .sidebar {
+  width: 100%;
   border: 1px solid #E7E7E7;
   background-color: white;
   padding: 19px 20px 26px;
@@ -124,4 +174,44 @@
   margin-right: 9px;
   position: relative;
   top: 1px;
+}
+
+.hideDetailsWrapper {
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 1.25rem;
+  @media (min-width: smallRem) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.hideDetailsButton {
+  color: cascadeBlue;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.hiddenOnSmallScreens {
+  display: none;
+  visibility: hidden;
+  @media (min-width: smallRem) {
+    display: inherit;
+    visibility: visible;
+  }
+  & ~ .hideDetailsWrapper .chevron {
+    transform: rotate(90deg);
+  }
+}
+
+.chevron {
+  transform: rotate(-90deg);
+  width: 7px;
+  height: 12px;
+  margin-left: 0.5rem;
 }

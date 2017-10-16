@@ -38,17 +38,15 @@ const Button = ({
 
   return (
     <div>
-      {url ? (
-        <Link prefetch={prefetch} href={url} as={as}>
-          <a title={title} className={buttonClasses} style={style}>
+      {url
+        ? <Link prefetch={prefetch} href={url} as={as}>
+            <a title={title} className={buttonClasses} style={style}>
+              {children}
+            </a>
+          </Link>
+        : <button onClick={onClick} className={buttonClasses} style={style}>
             {children}
-          </a>
-        </Link>
-      ) : (
-        <button onClick={onClick} className={buttonClasses} style={style}>
-          {children}
-        </button>
-      )}
+          </button>}
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </div>
   );

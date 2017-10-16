@@ -1,5 +1,5 @@
 import React from "react";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import Breadcrumbs from "../../Breadcrumbs";
 

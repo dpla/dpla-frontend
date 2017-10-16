@@ -1,4 +1,6 @@
 @value visualBrown, elephantBlue from "../../../../css/colors.css";
+@value largeRem from "../../../../css/breakpoints.css";
+
 
 .wrapper {
   background-color: visualBrown;
@@ -6,31 +8,38 @@
 }
 
 .relatedSets {
+  padding: 2rem 1rem;
+
+  @media (min-width: largeRem) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .header {
   font-family: "Lora";
   font-weight: bold;
   font-size: 1rem;
-  line-height: 1.25rem;
   text-transform: uppercase;
-  margin-bottom: 25px;
 }
 
-.sets {
-  display: flex;
+.setLink {
+  display: block;
+  margin-top: 1rem;
 }
 
-.set {
-  flex-basis: 20%;
-  margin-right: 19px;
+.setLink:hover .title {
+  text-decoration: underline;
 }
 
-.set:last-child {
-  margin-right: 0;
+.title {
+  font-size: .875rem;
+  font-weight: 600;
+  margin-top: .5rem;
 }
 
 .setImage {
   width: 100%;
   height: auto;
+  border-radius: 3px;
 }

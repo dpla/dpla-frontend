@@ -1,5 +1,5 @@
 import React from "react";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import Link from "next/link";
 
@@ -17,6 +17,7 @@ const SourceSetSources = ({ route, sources }) =>
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
           <Link
+            key={name}
             prefetch
             as={{
               pathname: `/primary-source-sets/${route.query

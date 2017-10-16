@@ -1,10 +1,29 @@
-@value romanceGray, pampasBrown, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
+@value romanceGray, pampasBrown, vikingBlue, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
-  background-color: visualBrown;
-  margin-top: 4rem;
-  padding: 2rem 0;
+  padding: 0.75rem 0 0 0;
+  @media (min-width: smallRem) {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    background-color: visualBrown;
+  }
+}
+
+.sourceCarousel {
+  padding-right: 0;
+  padding-left: 0;
+  @media (min-width: smallRem) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+:global .slick-list {
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
 }
 
 .headerAndNav {
@@ -12,7 +31,9 @@
   justify-content: space-between;
   align-items: baseline;
   flex-direction: column;
-  margin-bottom: 16px;
+  @media (min-width: smallRem) {
+    margin-bottom: 1rem;
+  }
 }
 
 @media (min-width: smallRem) {
@@ -22,9 +43,16 @@
 }
 
 .header {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: normal;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  @media (min-width: smallRem) {
+    font-weight: 600;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1rem;
+  }
 }
 
 .items {
@@ -50,24 +78,37 @@
 .itemImgWrapper {
   margin-bottom: 9px;
   width: calc(100% - 9px);
-  height: 117px;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background-size: cover;
+  padding-top: 70%;
 }
 
 .itemImg {
-  min-width: 100%;
-  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .currentItemImgWrapper {
-  border: 6px solid casablancaOrange;
+  padding-top: calc(70% - 12px);
+  border: 6px solid vikingBlue;
 }
 
 @media (min-width: smallRem) {
   .itemImg {
     max-width: calc(100% - 9px);
+  }
+}
+
+.prevAndNextButtons {
+  display: flex;
+  text-align: center;
+  margin-top: 0.75rem;
+  justify-content: flex-end;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: auto;
   }
 }
 
@@ -78,7 +119,11 @@
   font-size: 50px;
   top: 30px;
   cursor: pointer;
-}
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
+ }
 
 .nextArrow {
   position: absolute;
@@ -87,7 +132,11 @@
   font-size: 50px;
   top: 56px;
   cursor: pointer;
-}
+  display: none;
+  @media (min-width: smallRem) {
+    display: block;
+  }
+ }
 
 .nextChevron {
   width: 25px;
@@ -107,11 +156,43 @@
   padding-left: 6px;
 }
 
-.nextOrPrevItemArrow {
-  color: bambooOrange;
+.nextItemButton,
+.previousItemButton {
+  width: 100%;
   font-size: 1rem;
-  line-height: 1.25rem;
+  padding: .75rem 2rem;
   font-weight: 600;
+  @media (min-width: smallRem) {
+    padding: 0;
+    width: auto;
+  }
+}
+
+.nextItemButton {
+  background-color: bambooOrange;
+  color: white;
+  @media (min-width: smallRem) {
+    background-color: transparent;
+  }
+  @media (min-width: smallRem) {
+    color: bambooOrange;
+  }
+}
+
+.previousItemButton {
+  color: black;
+  background-color: #E3E0DA;
+  @media (min-width: smallRem) {
+    color: bambooOrange;
+    background-color: transparent;
+  }
+}
+
+.disabledNextOrPrevButton {
+  cursor: not-allowed;
+  @media (min-width: smallRem) {
+    display: none;
+  }
 }
 
 .nextOrPrevItemArrow:first-child {
@@ -120,11 +201,46 @@
 
 .prevItemArrow {
   transform: rotate(180deg);
+  position: relative;
+  top: 1px;
+  & path {
+    fill: black;
+  }
+  margin-right: 0.5rem;
+  width: 7px;
+  height: 12px;
+  @media (min-width: smallRem) {
+    position: static;
+    margin-right: 0;
+    width: 5px;
+    height: 9px;
+    & path {
+      fill: bambooOrange;
+    }
+  }
+}
+
+.nextItemArrow {
+  position: relative;
+  top: 1px;
+  margin-left: 0.5rem;
+  width: 7px;
+  height: 12px;
+  & path {
+    fill: white;
+  }
+  @media (min-width: smallRem) {
+    position: static;
+    margin-left: 0;
+    width: 5px;
+    height: 9px;
+    & path {
+      fill: bambooOrange;
+    }
+  }
 }
 
 .linkToSourceSet {
-  color: bambooOrange;
-  border-bottom: 1px solid bambooOrange;
   display: inline-block;
 }
 
@@ -144,7 +260,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   & img {
     opacity: 0.35;
     min-width: auto;

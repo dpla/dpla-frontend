@@ -124,59 +124,66 @@ const Footer = () =>
       <div className={`${classNames.smallFooter} site-max-width`}>
         <img className={classNames.logo} alt="DPLA" src={logo} />
         <div className={classNames.socialIcons}>
-          <a  href="https://www.facebook.com/digitalpubliclibraryofamerica"
-              title="Facebook"
-              rel="noopener noreferrer" 
-              target="_blank">
+          <a
+            href="https://www.facebook.com/digitalpubliclibraryofamerica"
+            title="Facebook"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <img
               className={classNames.socialButton}
               alt="Facebook"
               src={fbIcon}
             />
           </a>
-         <a href="https://www.instagram.com/digpublib/"
+          <a
+            href="https://www.instagram.com/digpublib/"
             title="Instagram"
-            rel="noopener noreferrer" 
-            target="_blank">
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <img
               className={classNames.socialButton}
               alt="Instagram"
               src={igIcon}
             />
-        </a>
-        <a
-          href="https://dp.la/info/feed/" 
-          title="RSS Feed"
-          rel="noopener noreferrer" 
-          target="_blank">              
-          <img
-            className={classNames.socialButton}
-            alt="RSS Feed"
-            src={rssIcon}
+          </a>
+          <a
+            href="https://dp.la/info/feed/"
+            title="RSS Feed"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              className={classNames.socialButton}
+              alt="RSS Feed"
+              src={rssIcon}
             />
-        </a>
-        <a  
-          href="http://digitalpubliclibraryofamerica.tumblr.com/" 
-          title="Tumblr"
-          rel="noopener noreferrer" 
-          target="_blank">
-          <img
-            className={classNames.socialButton}
-            alt="Tumblr"
-            src={tumblrIcon}            
-          />
-        </a>
-        <a  
-          href="https://twitter.com/dpla" 
-          title="Twitter"
-          rel="noopener noreferrer" 
-          target="_blank">
-          <img
-            className={classNames.socialButton}
-            alt="Twitter"
-            src={twitterIcon}            
-          />
-        </a>
+          </a>
+          <a
+            href="http://digitalpubliclibraryofamerica.tumblr.com/"
+            title="Tumblr"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              className={classNames.socialButton}
+              alt="Tumblr"
+              src={tumblrIcon}
+            />
+          </a>
+          <a
+            href="https://twitter.com/dpla"
+            title="Twitter"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              className={classNames.socialButton}
+              alt="Twitter"
+              src={twitterIcon}
+            />
+          </a>
         </div>
       </div>
     </div>

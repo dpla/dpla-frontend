@@ -1,10 +1,11 @@
 @value vikingBlue, elephantBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
-@value smallRem, mediumPlusRem from "../../../css/breakpoints.css";
+@value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 
 .exhibitionView {
   background-color: visualBrown;
   min-height: 100vh;
   padding-bottom: 3rem;
+
   @media (min-width: smallRem) {
     padding-bottom: 7.125rem;
   }
@@ -22,6 +23,7 @@
   text-transform: uppercase;
   margin-bottom: 3px;
   display: inline-block;
+
   @media (min-width: smallRem) {
     color: bambooOrange;
     font-size: 1rem;
@@ -33,11 +35,17 @@
 .exhibitionTitle {
   font-family: "Lora";
   font-weight: normal;
-  font-size: 1.125;
+  margin-top: .5rem;
+  font-size: 1.5rem;
   color: white;
+
   @media (min-width: smallRem) {
-    font-size: 2.625rem;
+    font-size: 1.5rem;
     color: black;
+  }
+
+  @media (min-width: mediumPlusRem) {
+    font-size: 2.15rem;
   }
 }
 
@@ -149,19 +157,23 @@
 
 .body {
   display: flex;
-  max-width: 1200px;
   padding: 0 0 3rem;
+
   @media (min-width: smallRem) {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-top: 2rem;
+    padding: 0 1rem 1.5rem;
+    margin-top: 1.5rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  @media (min-width: xLargeRem) {
+    max-width: 80rem;
+    padding: 0;
   }
 }
 
 .footerWrapper {
-  background-color: #e4e2db;
+  background-color: rgba(228, 226, 219, 0.98);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   bottom: 0;
   left: 0;
@@ -170,7 +182,6 @@
 }
 
 .header {
-  max-width: 1200px;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
   justify-content: space-between;
@@ -178,10 +189,15 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   align-items: center;
   background-color: elephantBlue;
+
   @media (min-width: smallRem) {
-    padding-bottom: 1.75rem;
-    padding-top: 1.75rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     background-color: inherit;
+  }
+
+  @media (min-width: xLargeRem) {
+    max-width: 80rem;
   }
 }
 
@@ -208,6 +224,7 @@
   height: 22px;
   width: 22px;
   margin-right: 0.5rem;
+
   @media (min-width: smallRem) {
     height: 19px;
     width: 19px;
@@ -225,9 +242,13 @@
 .footerNav {
   display: flex;
   padding: 0;
+
   @media (min-width: smallRem) {
-    padding: 0.75rem;
-    max-width: 1200px;
+    padding: 1rem;
+  }
+
+  @media (min-width: xLargeRem) {
+    max-width: 80rem;
   }
 }
 
@@ -236,6 +257,7 @@
   display: flex;
   width: 100%;
   align-items: center;
+
   @media (min-width: smallRem) {
     width: auto;
     margin-left: auto;
@@ -245,10 +267,15 @@
 
 .dplaLogo {
   display: none;
+
   @media (min-width: smallRem) {
     display: inline-block;
-    max-width: 275px;
+    max-width: 200px;
     opacity: 0.5;
+  }
+
+  @media (min-width: mediumPlusRem) {
+    max-width: 275px;
   }
 }
 
@@ -275,6 +302,7 @@
 
 .nextSubsectionTitle {
   display: none;
+
   @media (min-width: smallRem) {
     display: inline-block;
     opacity: 0.75;
@@ -319,6 +347,7 @@
   height: 12px;
   width: 7px;
   top: 1px;
+
   @media (min-width: smallRem) {
     height: 14px;
     width: 8px;
@@ -329,40 +358,35 @@
   cursor: not-allowed;
 }
 
-.breadcrumbs {
+.title {
   display: flex;
   flex-direction: column;
   font-size: 0.875rem;
+
   @media (min-width: smallRem) {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     flex-direction: row;
     align-items: center;
     margin-bottom: 1rem;
   }
 }
 
-.sectionBreadcrumb {
+.titleSection {
   font-weight: 600;
-  font-size: 1rem;
+
   @media (min-width: smallRem) {
-    font-size: 1.5rem;
+    margin-right: .5rem;
   }
 }
 
-.breadcrumbChevron {
-  display: none;
-  @media (min-width: smallRem) {
-    display: inline-block;
-    opacity: 0.35;
-    margin: 0 1rem;
-    height: 14px;
-    width: 8px;
-  }
+.titleSubsection {
+  opacity: .5;
 }
 
 .viewerContent {
   display: flex;
   flex-direction: column;
+
   @media (min-width: mediumPlusRem) {
     flex-direction: row;
   }
@@ -370,6 +394,7 @@
 
 .mediaAndCaption {
   flex: 2;
+
   @media (min-width: smallRem) {
     margin-right: 1.25rem;
   }
@@ -380,9 +405,16 @@
   font-size: 0.875rem;
   flex-shrink: 0;
   padding: 0 1rem;
+
   @media (min-width: smallRem) {
-    font-size: 1rem;
+    font-size: .95rem;
     padding: 0;
+  }
+
+  & h1,
+  & h2 {
+    font-size: 1.25rem;
+    margin-bottom: .5rem;
   }
 }
 
@@ -396,13 +428,16 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: #e4e2db;
   margin-bottom: 0.5rem;
+
   & :global(#openseadragon1) {
     height: 15rem;
   }
+
   @media (min-width: smallRem) {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.25rem;
+
     & :global(#openseadragon1) {
-      height: 28rem;
+      height: 24rem;
     }
   }
 }
@@ -414,6 +449,7 @@
   margin: 0 1rem 0.75rem;
   padding-left: 0.5rem;
   border-left: 1px solid #DE630B;
+
   @media (min-width: smallRem) {
     margin: 0 0 0.75rem;
     padding-left: 0;
@@ -425,6 +461,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+
   @media (min-width: smallRem) {
     justify-content: flex-start;
   }
@@ -437,17 +474,19 @@
   border-radius: 50%;
   display: block;
   margin-right: 0.25rem;
+
   @media (min-width: smallRem) {
+    width: 3.25rem;
+    height: 3.25rem;
     border-radius: 0;
-    width: 58px;
     background-color: inherit;
-    height: 58px;
-    margin-right: 0.75rem;
+    margin-right: 0.5rem;
   }
 }
 
 .itemLink img {
   display: none;
+
   @media (min-width: smallRem) {
     display: block;
     width: 100%;
@@ -457,9 +496,10 @@
 
 .activeItemLink {
   background-color: bambooOrange;
+
   @media (min-width: smallRem) {
     background-color: inherit;
-    border: 6px solid vikingBlue;
+    border: 4px solid vikingBlue;
     position: relative;
   }
 }
@@ -470,11 +510,12 @@
   display: block;
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 10px solid #5ab4dc;
-  top: -16px;
-  left: 8px;
+  border-left: .8rem solid transparent;
+  border-right: .8rem solid transparent;
+  border-bottom: .65rem solid #5ab4dc;
+  top: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .defaultItemImage {

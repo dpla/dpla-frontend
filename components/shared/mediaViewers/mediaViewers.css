@@ -46,4 +46,5 @@
 
 .videoPlayer {
   width: 100%;
+  display: block;
 }

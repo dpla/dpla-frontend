@@ -1,4 +1,5 @@
 @value visualBrown, bambooOrange from "../../../../css/colors.css";
+@value xSmallRem, smallRem from "../../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;
@@ -19,16 +20,31 @@
 .tabs {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @media (min-width: xSmallRem) {
+    width: auto;
+    padding: 0 1rem;
+    display: block;
+    text-align: left;
+  }
 }
 
 .tab {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 0.75rem;
   padding: 0 18px 16px;
   margin-right: 15px;
   display: inline-block;
+  flex: 1;
+  @media (min-width: smallRem) {
+    font-size: 1rem;
+  }
 }
 
 .activeTab {
@@ -38,4 +54,11 @@
 
 .tab:last-child {
   margin-right: 0;
+}
+
+.hideOnSmallScreen {
+  display: none;
+  @media (min-width: smallRem) {
+    display: inline-block;
+  }
 }

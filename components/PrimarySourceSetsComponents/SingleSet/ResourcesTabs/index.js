@@ -22,7 +22,7 @@ class ResourcesTabs extends React.Component {
                   currentTab === "sourceSet" && classNames.activeTab
                 ].join(" ")}
               >
-                Source Set
+                <span className={classNames.hideOnSmallScreen}>Source </span>{" "}Set
               </a>
             </Link>
             <Link
@@ -38,7 +38,9 @@ class ResourcesTabs extends React.Component {
                   currentTab === "additionalResources" && classNames.activeTab
                 ].join(" ")}
               >
-                Additional Resources
+                <span className={classNames.hideOnSmallScreen}>
+                  Additional
+                </span>{" "}Resources
               </a>
             </Link>
             {!route.query.studentMode &&
