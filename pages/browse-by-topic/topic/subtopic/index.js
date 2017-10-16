@@ -138,7 +138,7 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
     subtopic: Object.assign({}, currentSubtopic, {
       thumbnailUrl: currentSubtopic.acf.category_image
     }),
-    items: filteredItems,
+    items: filteredItems.sort((a, b) => a.acf.order - b.acf.order),
     previousSubtopic: subtopics[previousSubtopicIdx],
     nextSubtopic: subtopics[nextSubtopicIdx]
   };
