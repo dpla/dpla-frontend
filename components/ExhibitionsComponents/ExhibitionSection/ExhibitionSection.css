@@ -168,6 +168,7 @@
 
   @media (min-width: xLargeRem) {
     max-width: 80rem;
+    padding: 0;
   }
 }
 
