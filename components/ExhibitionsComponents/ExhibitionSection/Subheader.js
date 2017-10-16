@@ -1,7 +1,6 @@
 import React from "react";
 
 import { classNames } from "./ExhibitionSection.css";
-const chevron = "/static/images/chevron-thick-black.svg";
 const menuButtonIcon = "/static/images/menu-black.svg";
 const closeIcon = "/static/images/close-white.svg";
 
@@ -28,10 +27,9 @@ const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
           className={classNames.menuButtonIcon}
         />
       </button>
-      <div className={classNames.breadcrumbs}>
-        <span className={classNames.sectionBreadcrumb}>{section.title}</span>
-        <img src={chevron} alt="" className={classNames.breadcrumbChevron} />
-        <span>{subsection.title}</span>
+      <div className={classNames.title}>
+        <span className={classNames.titleSection}>{section.title}</span>
+        <span className={classNames.titleSubsection}>{subsection.title}</span>
       </div>
     </div>
   </div>;
