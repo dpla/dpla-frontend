@@ -1,4 +1,6 @@
 @value visualBrown, elephantBlue from "../../../../css/colors.css";
+@value largeRem from "../../../../css/breakpoints.css";
+
 
 .wrapper {
   background-color: visualBrown;
@@ -7,6 +9,11 @@
 
 .relatedSets {
   padding: 2rem 1rem;
+
+  @media (min-width: largeRem) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .header {
