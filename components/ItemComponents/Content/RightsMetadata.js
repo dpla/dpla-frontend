@@ -38,8 +38,8 @@ const RightsMetadata = ({ item }) =>
             className={[classNames.tableItem, classNames.rightsText].join(" ")}
             dangerouslySetInnerHTML={{
               __html: Array.isArray(item.rights) 
-              ? makeURLsClickable(item.rights.join("<br/> ")) 
-              : makeURLsClickable(item.rights)
+              ? makeURLsClickable(item.rights.join("<br/> "), classNames.link) 
+              : makeURLsClickable(item.rights, classNames.link)
             }}
           />
         </tr>
