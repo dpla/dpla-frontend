@@ -1,8 +1,14 @@
 @value pampasBrown, casablancaOrange from "../../../../css/colors.css";
+@value smallRem from "../../../../css/breakpoints.css";
 
 .sidebar {
-  width: 300px;
-  margin-right: 20px;
+  width: 100%;
+  padding: 0 1rem;
+  @media (min-width: smallRem) {
+    width: 300px;
+    padding: 0;
+    margin-right: 20px;
+  }
 }
 
 .subtopicInfo {
