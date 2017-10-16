@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import NextArrow from "./NextArrow";
 import PrevArrow from "./PrevArrow";
@@ -38,7 +38,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
     ]}
   >
     {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) =>
-      <div>
+      <div key={name}>
         {/* for some reason react-slick can't have <Link /> as direct child */}
         <Link
           prefetch

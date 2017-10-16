@@ -8,12 +8,14 @@ const OtherInfo = () =>
   <div className={classNames.wrapper}>
     <div className={`${container} ${classNames.otherInfo}`}>
       <p className={classNames.p}>
-        Exhibitions curated by DPLA staff, DPLA partner institutions, and graduate students in library
+        Exhibitions curated by DPLA staff, DPLA partner institutions, and
+        graduate students in library
         and information science and public history.
       </p>
       <p className={classNames.p}>
         <span>
-          Feedback? Interested in curating an exhibition for DPLA? Contact us at&nbsp;
+          Feedback? Interested in curating an exhibition for DPLA? Contact us
+          at&nbsp;
         </span>
         <a className="link" href="mailto:education@dp.la">
           education@dp.la

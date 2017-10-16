@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
@@ -25,8 +25,12 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <div
             dangerouslySetInnerHTML={{
               __html: markdownit.render(
-                teachingGuide.hasPart.find(item => item.name === "Questions")
-                  .text.replace(/(http|https):\/\/dp.la\/primary-source-sets\//, '')
+                teachingGuide.hasPart
+                  .find(item => item.name === "Questions")
+                  .text.replace(
+                    /(http|https):\/\/dp.la\/primary-source-sets\//,
+                    ""
+                  )
               )
             }}
           />
@@ -75,14 +79,16 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           )}
         >
           <h3 className={classNames.sidebarHeader}>Prepared By</h3>
-            {teachingGuide.author.map((author) =>
-              <div
-                className={classNames.sidebarSection}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(author.name + ", " + author.affiliation.name)
-                }}
-              />
-            )}
+          {teachingGuide.author.map(author =>
+            <div
+              className={classNames.sidebarSection}
+              dangerouslySetInnerHTML={{
+                __html: markdownit.render(
+                  author.name + ", " + author.affiliation.name
+                )
+              }}
+            />
+          )}
           <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
           <div className={classNames.toolLinkAndIcon}>
             <img src={googleClassroom} alt="" className={classNames.toolIcon} />

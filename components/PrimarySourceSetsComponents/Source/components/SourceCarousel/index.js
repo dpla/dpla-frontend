@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-const markdownit = require("markdown-it")({html: true});
+const markdownit = require("markdown-it")({ html: true });
 
 import CarouselSlider from "./CarouselSlider";
 import extractSourceId from "/utilFunctions/extractSourceId";
