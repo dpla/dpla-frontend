@@ -33,11 +33,12 @@ export const rightsURLs = {
     description: "Use of this Item is not restricted by copyright and/or related rights. In one or more jurisdictions, laws other than copyright are known to impose restrictions on the use of this Item. Please refer to the organization that has made the Item available for more information.",
     image: ""
   },
+
   "http://rightsstatements.org/vocab/NKC/1.0/": {
     description: "The organization that has made the Item available reasonably believes that the Item is not restricted by copyright or related rights, but a conclusive determination could not be made. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
     image: ""
   },
-  "http://rightsstatements.org/page/InC/1.0/": {
+  "http://rightsstatements.org/vocab/InC/1.0/": {
     description: "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. For other uses you need to obtain permission from the rights-holder(s).a",
     image: ""
   },
@@ -45,15 +46,15 @@ export const rightsURLs = {
     description: "This Item has been identified as an orphan work in the country of first publication and in line with Directive 2012/28/EU of the European Parliament and of the Council of 25 October 2012 on certain permitted uses of orphan works. For this Item, either (a) no rights-holder(s) have been identified or (b) one or more rights-holder(s) have been identified but none have been located even though a diligent search for the rights-holder(s) has been conducted. The results of the diligent search are available in the EU Orphan Works Database. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
     image: ""
   },
-  "http://rightsstatements.org/page/InC-EDU/1.0/": {
+  "http://rightsstatements.org/vocab/InC-EDU/1.0/": {
     description: "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for educational uses. For other uses, you need to obtain permission from the rights-holder(s).",
     image: ""
   },
-  "http://rightsstatements.org/page/InC-NC/1.0/": {
+  "http://rightsstatements.org/vocab/InC-NC/1.0/": {
     description: "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for non-commercial uses. For other uses you need to obtain permission from the rights-holder(s).",
     image: ""
   },
-  "http://rightsstatements.org/page/InC-RUU/1.0/": {
+  "http://rightsstatements.org/vocab/InC-RUU/1.0/": {
     description: "This Item is protected by copyright and/or related rights. However, for this Item, either (a) no rights-holder(s) have been identified or (b) one or more rights-holder(s) have been identified but none have been located. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
     image: ""
   },
