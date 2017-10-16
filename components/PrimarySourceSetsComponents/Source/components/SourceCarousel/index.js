@@ -44,7 +44,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
           >
             <a
               dangerouslySetInnerHTML={{ __html: markdownit.render(set.name) }}
-              className={classNames.linkToSourceSet}
+              className={`link ${classNames.linkToSourceSet}`}
             />
           </Link>
         </h1>
@@ -68,7 +68,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a className={classNames.previousItemButton}>
+                <a className={`${classNames.previousItemButton} hover-underline`}>
                   <NavChevron type="previous" />
                   <span>Previous Item</span>
                 </a>
@@ -98,7 +98,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a className={classNames.nextItemButton}>
+                <a className={`${classNames.nextItemButton} hover-underline`}>
                   <span>Next Item</span>
                   <NavChevron type="next" />
                 </a>
