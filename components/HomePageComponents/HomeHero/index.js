@@ -8,7 +8,7 @@ const bgImage = "static/images/home-hero-bg.png";
 const searchIcon = "static/images/search.svg";
 const dplaLogo = "static/images/dpla-logo.svg";
 
-const HomeHero = () =>
+const HomeHero = ({ headerDescription }) =>
   <div
     className={classNames.wrapper}
     style={{ backgroundImage: `url(${bgImage})` }}
@@ -22,10 +22,7 @@ const HomeHero = () =>
       </Button>
     </div>
     <div className={classNames.content}>
-      <p className={classNames.headline}>
-        Discover 17,820,245 images, texts, videos, and sounds from across
-        the United States
-      </p>
+      <p className={classNames.headline}>{headerDescription}</p>
       <form action="/search">
         <div className={classNames.search}>
           <input
