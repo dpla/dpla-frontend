@@ -28,6 +28,7 @@ Topic.getInitialProps = async ({ query }) => {
   const currentTopic = topicsJson.find(topic => topic.slug === query.topic);
   const subtopics = topicsJson
     .filter(topic => topic.parent === currentTopic.id)
+    .sort((a, b) => a.acf.order - b.acf.order)
     .map(subtopic =>
       Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
     );
