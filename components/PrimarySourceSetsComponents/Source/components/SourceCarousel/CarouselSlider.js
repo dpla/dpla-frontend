@@ -56,17 +56,18 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
         >
           <a className={classNames.item}>
             <div
+              style={{ backgroundImage: `url(${thumbnailUrl})` }}
               className={[
                 classNames.itemImgWrapper,
                 useDefaultImage ? classNames.defaultImageWrapper : "",
                 i === currentSourceIdx && classNames.currentItemImgWrapper
               ].join(" ")}
             >
-              <img
+              {/* <img
                 alt={name}
                 className={classNames.itemImg}
                 src={thumbnailUrl}
-              />
+              /> */}
             </div>
             <div
               className={classNames.itemText}
