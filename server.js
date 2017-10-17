@@ -203,6 +203,19 @@ app
       );
     });
 
+    server.get("/about/:section", (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     // API proxy routes
 
     server.get(
@@ -280,6 +293,22 @@ app
         }
       })
     );
+
+    // dynamic About Menu routes
+
+    server.get("/:section/:subsection", (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section,
+        subsection: req.params.subsection
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
 
     // handle all other requests
 
