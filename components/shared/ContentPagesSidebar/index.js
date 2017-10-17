@@ -4,18 +4,14 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Sidebar.css";
 import { decodeHTMLEntities } from "utilFunctions";
 
-const SidebarLink = ({ isCurrentLink, title, url }) => {
-  const pathname = url.match(/\/\/[\w.]+(\/[-\w/]+)/)[1];
-  const pathSegments = pathname.split("/").slice(1);
-  const section = pathSegments[0];
-  const subsection = pathSegments[1];
+const SidebarLink = ({ isCurrentLink, title, section, subsection }) => {
   return (
     <li
       className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
     >
       <Link
         as={`/${section}/${subsection ? subsection : ""}`}
-        href={`/?section=${section}${subsection
+        href={`/about?section=${section}${subsection
           ? `&subsection=${subsection}`
           : ""}`}
       >
@@ -41,6 +37,7 @@ const Sidebar = ({ activeItemId, items, route }) =>
                   key={item.ID}
                   title={decodeHTMLEntities(item.title)}
                   url={item.url}
+                  section={item.post_name}
                   isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
                 />
                 <ul>
@@ -48,7 +45,8 @@ const Sidebar = ({ activeItemId, items, route }) =>
                     <SidebarLink
                       key={child.ID}
                       title={decodeHTMLEntities(child.title)}
-                      url={child.url}
+                      section={item.post_name}
+                      subsection={child.post_name}
                       isCurrentLink={child.url.match(
                         new RegExp(activeItemId + "$")
                       )}
@@ -59,7 +57,7 @@ const Sidebar = ({ activeItemId, items, route }) =>
             : <SidebarLink
                 key={item.ID}
                 title={decodeHTMLEntities(item.title)}
-                url={item.url}
+                section={item.post_name}
                 isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
               />;
         })}

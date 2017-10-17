@@ -40,9 +40,12 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   const json = await response.json();
 
   const pageItem = json.items.find(item => item.post_name === pageName);
-  console.log(pageItem);
   if (pageItem.url === GUIDES_ENDPOINT) {
-    res.redirect("/guides");
+    if (res) {
+      res.redirect("/guides");
+    } else {
+      Router.push("/guides");
+    }
     return {};
   }
   const pageRes = await fetch(pageItem.url);
