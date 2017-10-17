@@ -296,12 +296,26 @@ app
 
     // dynamic About Menu routes
 
-    server.get("/:section/:subsection", (req, res) => {
+    server.get("/about/:section/:subsection", (req, res) => {
       const actualPage = "/about";
       const params = {
         section: req.params.section,
         subsection: req.params.subsection
       };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
+    server.get(["/about/:section/", "/about/:section"], (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section
+      };
+
       renderAndCache(
         req,
         res,

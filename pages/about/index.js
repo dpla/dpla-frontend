@@ -7,11 +7,7 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import {
-  ABOUT_US_ENDPOINT,
-  CONTENT_PAGE_NAMES,
-  GUIDES_ENDPOINT
-} from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutMenuPage = ({ url, content, items }) =>
@@ -23,6 +19,7 @@ const AboutMenuPage = ({ url, content, items }) =>
       <div className="row">
         <ContentPagesSidebar
           route={url}
+          urlBase="about"
           items={items}
           activeItemId={content.id}
         />
@@ -38,12 +35,10 @@ const AboutMenuPage = ({ url, content, items }) =>
   </MainLayout>;
 
 AboutMenuPage.getInitialProps = async ({ req, query }) => {
-  const url = query.section + query.subsection ? query.subsection : "";
-  const res = await fetch(
-    "https://dpla.wpengine.com/wp-json/menus/v1/menus/about-us"
-  );
+  const url = `/${query.section}${query.subsection ? `/${query.subsection}` : ""}`;
+  const res = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await res.json();
-  const regex = new RegExp(url + "/$");
+  const regex = new RegExp(url);
   const pageItem = json.items.find(item => item.url.match(regex));
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
