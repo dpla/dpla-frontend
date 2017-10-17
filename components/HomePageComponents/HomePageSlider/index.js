@@ -87,8 +87,6 @@ const HomePageSlider = ({
                         backgroundImage: `url(${repImageUrl || thumbnailUrl})`
                       }}
                     />
-                    {index === 0 &&
-                      <div className={classNames.featuredTag}>Featured</div>}
                   </div>
                   <div
                     dangerouslySetInnerHTML={{
