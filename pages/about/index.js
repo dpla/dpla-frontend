@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
@@ -7,7 +8,7 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutMenuPage = ({ url, content, items }) =>
@@ -19,7 +20,6 @@ const AboutMenuPage = ({ url, content, items }) =>
       <div className="row">
         <ContentPagesSidebar
           route={url}
-          urlBase="about"
           items={items}
           activeItemId={content.id}
         />
@@ -34,12 +34,17 @@ const AboutMenuPage = ({ url, content, items }) =>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
-AboutMenuPage.getInitialProps = async ({ req, query }) => {
-  const url = `/${query.section}${query.subsection ? `/${query.subsection}` : ""}`;
-  const res = await fetch(ABOUT_MENU_ENDPOINT);
-  const json = await res.json();
-  const regex = new RegExp(url);
-  const pageItem = json.items.find(item => item.url.match(regex));
+AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
+  const pageName = query.subsection || query.section;
+  const response = await fetch(ABOUT_MENU_ENDPOINT);
+  const json = await response.json();
+
+  const pageItem = json.items.find(item => item.post_name === pageName);
+  console.log(pageItem);
+  if (pageItem.url === GUIDES_ENDPOINT) {
+    res.redirect("/guides");
+    return {};
+  }
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
   return { content: pageJson, items: json.items };

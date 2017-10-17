@@ -203,6 +203,11 @@ app
       );
     });
 
+    server.get("/guides", (req, res) => {
+      const actualPage = "/guides";
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     server.get("/about/:section", (req, res) => {
       const actualPage = "/about";
       const params = {
@@ -296,7 +301,11 @@ app
 
     // dynamic About Menu routes
 
-    server.get("/about/:section/:subsection", (req, res) => {
+    server.get("/robots.txt", (req, res) => {
+      return handle(req, res);
+    });
+
+    server.get("/:section/:subsection", (req, res) => {
       const actualPage = "/about";
       const params = {
         section: req.params.section,
@@ -310,7 +319,7 @@ app
       );
     });
 
-    server.get(["/about/:section/", "/about/:section"], (req, res) => {
+    server.get(["/:section/", "/:section"], (req, res) => {
       const actualPage = "/about";
       const params = {
         section: req.params.section

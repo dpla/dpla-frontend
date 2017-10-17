@@ -4,7 +4,7 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Sidebar.css";
 import { decodeHTMLEntities } from "utilFunctions";
 
-const SidebarLink = ({ isCurrentLink, title, url, urlBase }) => {
+const SidebarLink = ({ isCurrentLink, title, url }) => {
   const pathname = url.match(/\/\/[\w.]+(\/[-\w/]+)/)[1];
   const pathSegments = pathname.split("/").slice(1);
   const section = pathSegments[0];
@@ -14,8 +14,8 @@ const SidebarLink = ({ isCurrentLink, title, url, urlBase }) => {
       className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
     >
       <Link
-        as={`/${urlBase}/${section}/${subsection ? subsection : ""}`}
-        href={`/${urlBase}?section=${section}${subsection
+        as={`/${section}/${subsection ? subsection : ""}`}
+        href={`/?section=${section}${subsection
           ? `&subsection=${subsection}`
           : ""}`}
       >
@@ -27,41 +27,40 @@ const SidebarLink = ({ isCurrentLink, title, url, urlBase }) => {
   );
 };
 
-const Sidebar = ({ activeItemId, items, route, urlBase }) =>
+const Sidebar = ({ activeItemId, items, route }) =>
   <div className="col-xs-12 col-md-4">
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
-        {items.filter(item => !item.post_parent).map(item => {
+        {items.filter(item => item.menu_item_parent === "0").map(item => {
           const children = items.filter(
-            child => child.post_parent === Number(item.object_id)
+            child => child.menu_item_parent === item.object_id
           );
           return children.length
             ? <div key={item.ID}>
                 <SidebarLink
                   key={item.ID}
-                  urlBase={urlBase}
                   title={decodeHTMLEntities(item.title)}
                   url={item.url}
-                  isCurrentLink={activeItemId === item.object_id}
+                  isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
                 />
                 <ul>
                   {children.map(child =>
                     <SidebarLink
                       key={child.ID}
-                      urlBase={urlBase}
                       title={decodeHTMLEntities(child.title)}
                       url={child.url}
-                      isCurrentLink={activeItemId === Number(child.object_id)}
+                      isCurrentLink={child.url.match(
+                        new RegExp(activeItemId + "$")
+                      )}
                     />
                   )}
                 </ul>
               </div>
             : <SidebarLink
                 key={item.ID}
-                urlBase={urlBase}
                 title={decodeHTMLEntities(item.title)}
                 url={item.url}
-                isCurrentLink={activeItemId === item.object_id}
+                isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
               />;
         })}
       </ul>
