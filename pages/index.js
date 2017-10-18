@@ -22,7 +22,7 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { GUIDES_ENDPOINT } from "constants/content-pages";
+import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
@@ -104,16 +104,26 @@ Home.getInitialProps = async ({ req }) => {
       })
   );
 
-  const guidesRes = await fetch(GUIDES_ENDPOINT);
-  const guidesJson = await guidesRes.json();
-  const guides = guidesJson.map(guide =>
-    Object.assign({}, guide, {
-      summary: guide.acf.summary,
-      title: guide.title.rendered,
-      displayTitle: guide.acf.display_title,
-      color: guide.acf.color,
-      illustration: guide.acf.illustration
-    })
+  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
+  const aboutMenuJson = await aboutMenuRes.json();
+  const indexPageItem = aboutMenuJson.items.find(
+    item => item.url === GUIDES_ENDPOINT
+  );
+  const guides = await Promise.all(
+    aboutMenuJson.items
+      .filter(item => item.menu_item_parent === indexPageItem.object_id)
+      .map(async guide => {
+        const guideRes = await fetch(guide.url);
+        const guideJson = await guideRes.json();
+        return Object.assign({}, guide, {
+          slug: guide.post_name,
+          summary: guideJson.acf.summary,
+          title: guideJson.title.rendered,
+          displayTitle: guideJson.acf.display_title,
+          color: guideJson.acf.color,
+          illustration: guideJson.acf.illustration
+        });
+      })
   );
 
   return {
