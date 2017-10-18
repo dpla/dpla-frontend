@@ -1,11 +1,16 @@
 import React from "react";
 import { classNames } from "./ShareButton.css";
 
+const openShareModal = (currentFullUrl) => {
+  window.open(`http://www.pinterest.com/pin/create/bookmarklet/?url=${currentFullUrl}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');
+};
+
 const PinterestButton = ({ currentFullUrl }) =>
   <a
     href={`http://www.pinterest.com/pin/create/bookmarklet/?url=${currentFullUrl}`}
     target="_blank"
     className={classNames.shareButton}
+    onClick={() => openShareModal(currentFullUrl)}
   >
     <svg
       aria-labelledby="simpleicons-pinterest-icon"

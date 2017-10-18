@@ -1,11 +1,16 @@
 import React from "react";
 import { classNames } from "./ShareButton.css";
 
+const openShareModal = (currentFullUrl) => {
+  window.open(`https://www.twitter.com/intent/tweet?url=${currentFullUrl}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');
+};
+
 const TwitterButton = ({ currentFullUrl }) =>
   <a
     href={`https://www.twitter.com/intent/tweet?url=${currentFullUrl}`}
     target="_blank"
     className={classNames.shareButton}
+    onClick={() => openShareModal(currentFullUrl)}
   >
     <svg
       className={classNames.twitterIcon}
