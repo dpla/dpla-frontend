@@ -1,8 +1,12 @@
 import React from "react";
 import { classNames } from "./ShareButton.css";
 
-const openShareModal = (currentFullUrl) => {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentFullUrl}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');
+const openShareModal = currentFullUrl => {
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${currentFullUrl}`,
+    "",
+    "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480"
+  );
 };
 
 const FacebookButton = ({ currentFullUrl, title }) =>

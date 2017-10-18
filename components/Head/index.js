@@ -56,6 +56,11 @@ export default ({ additionalLinks, pageTitle }) =>
       />
       {additionalLinks}
       <title>{pageTitle || "Digital Public Library of America"}</title>
+      <meta
+        property="og:title"
+        content={pageTitle || "Digital Public Library of America"}
+      />
+
       <style js>{reset}</style>
       <style js>{utilStylesheet}</style>
     </Head>

@@ -42,7 +42,10 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
         </div>
         <div className={classNames.faveAndCiteButtonsWrapper}>
           <FaveAndCiteButtons />
-          <ShareButton className={classNames.shareButton} currentFullUrl={currentFullUrl} />
+          <ShareButton
+            className={classNames.shareButton}
+            currentFullUrl={currentFullUrl}
+          />
         </div>
       </div>
       <div className={classNames.body}>

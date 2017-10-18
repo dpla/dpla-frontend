@@ -30,7 +30,11 @@ const Exhibition = ({ url, exhibition, currentFullUrl }) =>
       route={url}
     />
     <ImageAndCaption exhibition={exhibition} route={url} />
-    <Details exhibition={exhibition} route={url} currentFullUrl={currentFullUrl} />
+    <Details
+      exhibition={exhibition}
+      route={url}
+      currentFullUrl={currentFullUrl}
+    />
   </MainLayout>;
 
 Exhibition.getInitialProps = async ({ query, req }) => {
