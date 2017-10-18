@@ -7,6 +7,7 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+import ShareButton from "components/shared/ShareButton";
 import Button from "components/shared/Button";
 
 const chevron = "/static/images/chevron-thick-cascade-blue.svg";
@@ -145,9 +146,15 @@ class SourceSetInfo extends React.Component {
                   )}
                 </div>
               </div>
-              <Button type="ghost" className={classNames.button}>
+              <Button
+                type="ghost"
+                className={`${classNames.button} ${classNames.citeButton}`}
+              >
                 Cite this set
               </Button>
+              <ShareButton
+                className={`${classNames.button} ${classNames.shareButton}`}
+              />
             </div>
           </div>
           <div className={classNames.hideDetailsWrapper}>

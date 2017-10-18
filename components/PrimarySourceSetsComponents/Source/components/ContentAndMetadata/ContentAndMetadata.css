@@ -167,3 +167,11 @@
 .tip:last-child {
   margin-bottom: 0;
 }
+
+.buttons button {
+  width: 100%;
+}
+
+.shareButton, .citeButton {
+  margin-bottom: 0.5rem;
+}
