@@ -203,6 +203,24 @@ app
       );
     });
 
+    server.get("/guides", (req, res) => {
+      const actualPage = "/guides";
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
+    server.get("/about/:section", (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     // API proxy routes
 
     server.get(
@@ -280,6 +298,41 @@ app
         }
       })
     );
+
+    // dynamic About Menu routes
+
+    // this is necessary to get the next parts to work
+    server.get("/robots.txt", (req, res) => {
+      return handle(req, res);
+    });
+
+    server.get("/:section/:subsection", (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section,
+        subsection: req.params.subsection
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
+    server.get(["/:section/", "/:section"], (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section
+      };
+
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
 
     // handle all other requests
 

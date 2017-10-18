@@ -9,10 +9,10 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { GUIDES_ENDPOINT } from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Guides = ({ url, guides, guide }) =>
+const Guides = ({ url, sidebarItems, guide }) =>
   <MainLayout route={url}>
     <div
       className={`
@@ -21,7 +21,11 @@ const Guides = ({ url, guides, guide }) =>
       `}
     >
       <div className="row">
-        <ContentPagesSidebar route={url} guides={guides} />
+        <ContentPagesSidebar
+          route={url}
+          items={sidebarItems}
+          activeItemId={guide.slug}
+        />
         <div className="col-xs-12 col-md-7">
           <div
             className={[classNames.content, contentClasses.content].join(" ")}
@@ -43,23 +47,22 @@ const Guides = ({ url, guides, guide }) =>
   </MainLayout>;
 
 Guides.getInitialProps = async ({ query }) => {
-  const res = await fetch(GUIDES_ENDPOINT);
-  const json = await res.json();
-  const guides = json.map(guide =>
-    Object.assign({}, guide, {
-      displayTitle: guide.acf.display_title
-    })
-  );
-  const guide = json.find(guide => guide.slug === query.guide);
+  const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
+  const menuItemsJson = await menuItemsRes.json();
+  const guideSlug = query.guide;
+  const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
+  const guideRes = await fetch(guide.url);
+  const guideJson = await guideRes.json();
 
   return {
-    guides,
-    guide: Object.assign({}, guide, {
-      summary: guide.acf.summary,
-      title: guide.title.rendered,
-      color: guide.acf.color,
-      bannerImage: guide.acf.banner_image,
-      content: guide.content.rendered
+    sidebarItems: menuItemsJson.items,
+    guide: Object.assign({}, guideJson, {
+      slug: guide.url,
+      summary: guideJson.acf.summary,
+      title: guideJson.title.rendered,
+      color: guideJson.acf.color,
+      bannerImage: guideJson.acf.banner_image,
+      content: guideJson.content.rendered
     })
   };
 };
