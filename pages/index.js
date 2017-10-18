@@ -28,7 +28,7 @@ const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
     <HomeHero headerDescription={headerDescription} />
     {exhibitions &&
-      exhibitions.length &&
+      exhibitions.length > 0 &&
       <HomePageSlider
         items={exhibitions}
         title="Online Exhibitions"
@@ -36,7 +36,7 @@ const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
         browseLinkName="Exhibitions"
       />}
     {sourceSets &&
-      sourceSets.length &&
+      sourceSets.length > 0 &&
       <HomePageSlider
         items={sourceSets}
         title="Primary Source Sets"
@@ -81,7 +81,7 @@ Home.getInitialProps = async ({ req }) => {
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
     exhibitsJson
-      .filter(exhibit => featuredExhibitIds.includes(exhibit.id))
+      .filter(exhibit => featuredExhibitIds.includes(String(exhibit.id)))
       .map(async exhibit => {
         const exhibitPageRes = await fetch(
           `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
