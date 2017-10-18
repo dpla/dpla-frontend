@@ -13,7 +13,7 @@ const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
 const Source = ({ url, source, set, currentSourceIdx }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={source.name}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

@@ -36,7 +36,7 @@ const SubtopicItemsList = ({
   nextSubtopic,
   items
 }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={subtopic.name}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         { title: "Browse by Topic", url: "/browse-by-topic" },

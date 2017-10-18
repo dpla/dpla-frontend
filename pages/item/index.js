@@ -20,7 +20,7 @@ import {
 } from "utilFunctions";
 
 const ItemDetail = ({ url, item, currentFullUrl }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={item.title}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

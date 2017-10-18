@@ -21,7 +21,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
 
 const SingleSet = ({ url, set }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={set.name}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

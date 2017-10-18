@@ -15,7 +15,7 @@ import {
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
 const Exhibition = ({ url, exhibition, currentFullUrl }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={exhibition.title}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
