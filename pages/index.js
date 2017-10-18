@@ -27,20 +27,24 @@ import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
     <HomeHero headerDescription={headerDescription} />
-    <HomePageSlider
-      items={exhibitions}
-      title="Online Exhibitions"
-      browseLinkUrl="/exhibitions"
-      browseLinkName="Exhibitions"
-    />
-    <HomePageSlider
-      items={sourceSets}
-      title="Primary Source Sets"
-      browseLinkUrl="/primary-source-sets"
-      browseLinkName="Sets"
-      slidesToShow={4}
-      theme="blue"
-    />
+    {exhibitions &&
+      exhibitions.length &&
+      <HomePageSlider
+        items={exhibitions}
+        title="Online Exhibitions"
+        browseLinkUrl="/exhibitions"
+        browseLinkName="Exhibitions"
+      />}
+    {sourceSets &&
+      sourceSets.length &&
+      <HomePageSlider
+        items={sourceSets}
+        title="Primary Source Sets"
+        browseLinkUrl="/primary-source-sets"
+        browseLinkName="Sets"
+        slidesToShow={4}
+        theme="blue"
+      />}
     <DPLAUsers guides={guides} />
     <FromTheBlog />
     {/* <SocialMedia /> */}
@@ -52,8 +56,8 @@ Home.getInitialProps = async ({ req }) => {
   const homepageRes = await fetch(DPLA_HOMEPAGE_ENDPOINT);
   const homepageJson = await homepageRes.json();
   const featuredExhibits = homepageJson.acf.featured_exhibits;
-  const featuredExhibitSlugs = featuredExhibits.map(
-    exhibit => exhibit.exhibit_slug
+  const featuredExhibitIds = featuredExhibits.map(
+    exhibit => exhibit.exhibit_id
   );
   const featuredPrimarySourceSets =
     homepageJson.acf.featured_primary_source_sets;
@@ -77,7 +81,7 @@ Home.getInitialProps = async ({ req }) => {
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
     exhibitsJson
-      .filter(exhibit => featuredExhibitSlugs.includes(exhibit.slug))
+      .filter(exhibit => featuredExhibitIds.includes(exhibit.id))
       .map(async exhibit => {
         const exhibitPageRes = await fetch(
           `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
