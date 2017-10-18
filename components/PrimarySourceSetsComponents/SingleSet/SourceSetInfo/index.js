@@ -154,6 +154,7 @@ class SourceSetInfo extends React.Component {
               </Button>
               <ShareButton
                 toShareText="set"
+                title={set.name}
                 currentFullUrl={currentFullUrl}
                 className={`${classNames.button} ${classNames.shareButton}`}
               />

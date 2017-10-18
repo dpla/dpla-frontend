@@ -1,9 +1,9 @@
 import React from "react";
 import { classNames } from "./ShareButton.css";
 
-const FacebookButton = ({ currentFullUrl }) =>
+const FacebookButton = ({ currentFullUrl, title }) =>
   <a
-    href={`https://www.facebook.com/sharer/sharer.php?u=${currentFullUrl}`}
+    href={`https://www.facebook.com/sharer/sharer.php?u=${currentFullUrl}&t=${title}`}
     className={classNames.shareButton}
     target="_blank"
   >
