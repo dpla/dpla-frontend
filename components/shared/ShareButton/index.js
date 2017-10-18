@@ -16,7 +16,7 @@ class ShareButton extends React.Component {
   };
 
   render() {
-    const { className } = this.props;
+    const { className, currentFullUrl } = this.props;
     return (
       <div className={classNames.wrapper}>
         <Button
@@ -36,9 +36,9 @@ class ShareButton extends React.Component {
             : classNames.hidden}`}
         >
           <div className={classNames.buttonsWrapper}>
-            <FacebookButton />
-            <TwitterButton />
-            <GooglePlusButton />
+            <FacebookButton currentFullUrl={currentFullUrl} />
+            <TwitterButton currentFullUrl={currentFullUrl} />
+            <GooglePlusButton currentFullUrl={currentFullUrl} />
           </div>
         </div>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

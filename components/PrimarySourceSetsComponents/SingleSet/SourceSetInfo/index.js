@@ -39,7 +39,7 @@ class SourceSetInfo extends React.Component {
   };
 
   render() {
-    const { set } = this.props;
+    const { set, currentFullUrl } = this.props;
     return (
       <div className={classNames.wrapper}>
         <div className={[classNames.sourceSetInfo, container].join(" ")}>
@@ -153,6 +153,7 @@ class SourceSetInfo extends React.Component {
                 Cite this set
               </Button>
               <ShareButton
+                currentFullUrl={currentFullUrl}
                 className={`${classNames.button} ${classNames.shareButton}`}
               />
             </div>

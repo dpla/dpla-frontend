@@ -1,8 +1,12 @@
 import React from "react";
 import { classNames } from "./ShareButton.css";
 
-const FacebookButton = () =>
-  <button className={classNames.shareButton}>
+const FacebookButton = ({ currentFullUrl }) =>
+  <a
+    href={`https://www.facebook.com/sharer/sharer.php?u=${currentFullUrl}`}
+    className={classNames.shareButton}
+    target="_blank"
+  >
     <svg
       className={classNames.facebookIcon}
       width="24px"
@@ -30,6 +34,6 @@ const FacebookButton = () =>
         </g>
       </g>
     </svg>
-  </button>;
+  </a>;
 
 export default FacebookButton;
