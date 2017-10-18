@@ -67,7 +67,11 @@ Guides.getInitialProps = async () => {
       })
   );
 
-  return { guides, sidebarItems: aboutMenuJson.items, activeItemId: indexPageItem.url };
+  return {
+    guides,
+    sidebarItems: aboutMenuJson.items,
+    activeItemId: indexPageItem.url
+  };
 };
 
 export default Guides;

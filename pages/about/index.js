@@ -38,13 +38,20 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;
   const response = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await response.json();
-
   const pageItem = json.items.find(item => item.post_name === pageName);
-  if (pageItem.url === GUIDES_ENDPOINT) {
+  const guidesPageItem = json.items.find(item => item.url === GUIDES_ENDPOINT);
+  if (pageItem === guidesPageItem) {
     if (res) {
       res.redirect("/guides");
     } else {
       Router.push("/guides");
+    }
+    return {};
+  } else if (pageItem.menu_item_parent === guidesPageItem.object_id) {
+    if (res) {
+      res.redirect(`/guides/${pageItem.post_name}`);
+    } else {
+      Router.push(`/guides/${pageItem.post_name}`);
     }
     return {};
   }
