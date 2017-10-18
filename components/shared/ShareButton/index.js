@@ -5,6 +5,7 @@ import { classNames, stylesheet } from "./ShareButton.css";
 import FacebookButton from "./FacebookButton";
 import TwitterButton from "./TwitterButton";
 import GooglePlusButton from "./GooglePlusButton";
+import PinterestButton from "./PinterestButton";
 
 class ShareButton extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class ShareButton extends React.Component {
   };
 
   render() {
-    const { className, currentFullUrl } = this.props;
+    const { className, currentFullUrl, toShareText } = this.props;
     return (
       <div className={classNames.wrapper}>
         <Button
@@ -27,11 +28,11 @@ class ShareButton extends React.Component {
             ? classNames.activeButton
             : ""}`}
         >
-          Share this item
+          Share this {toShareText}
         </Button>
 
         <div
-          className={`${className.shareButtons} ${this.state.showShareButtons
+          className={`${classNames.shareButtons} ${this.state.showShareButtons
             ? ""
             : classNames.hidden}`}
         >
@@ -39,6 +40,7 @@ class ShareButton extends React.Component {
             <FacebookButton currentFullUrl={currentFullUrl} />
             <TwitterButton currentFullUrl={currentFullUrl} />
             <GooglePlusButton currentFullUrl={currentFullUrl} />
+            <PinterestButton currentFullUrl={currentFullUrl} />
           </div>
         </div>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

@@ -7,7 +7,7 @@
   width: 100%;
   margin-bottom: 1rem;
   @media (min-width: smallRem) {
-    width: auto;
+    width: 225px;
   }
 }
 
@@ -19,4 +19,9 @@
     margin-top: 2rem;
     flex-direction: row;
   }
+}
+
+.shareButton {
+  margin-top: 0.5rem;
+  width: 100%;
 }

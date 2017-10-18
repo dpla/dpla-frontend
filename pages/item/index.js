@@ -5,8 +5,9 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
+import ShareButton from "components/shared/ShareButton";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames,
@@ -18,7 +19,7 @@ import {
   getDefaultThumbnail
 } from "utilFunctions";
 
-const ItemDetail = ({ url, item }) =>
+const ItemDetail = ({ url, item, currentFullUrl }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -37,12 +38,18 @@ const ItemDetail = ({ url, item }) =>
       <Content item={item} />
       <div className={classNames.faveAndCiteButtons}>
         <FaveAndCiteButtons toCite="item" />
+        <ShareButton
+          className={classNames.shareButton}
+          currentFullUrl={currentFullUrl}
+          toShareText="item"
+        />
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 ItemDetail.getInitialProps = async ({ query, req }) => {
+  const currentFullUrl = getCurrentFullUrl(req);
   const currentUrl = getCurrentUrl(req);
   const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
   const json = await res.json();
@@ -60,6 +67,7 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
       })
     : doc.sourceResource.language;
   return {
+    currentFullUrl,
     item: Object.assign({}, doc.sourceResource, {
       thumbnailUrl,
       contributor: doc.dataProvider,

@@ -55,6 +55,17 @@
   }
 }
 
+.pinterestIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  & path {
+    fill: elephantBlue;
+  }
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
 .googlePlusIcon {
   width: 2rem;
   height: 2rem;
