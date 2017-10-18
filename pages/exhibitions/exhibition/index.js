@@ -5,7 +5,7 @@ import MainLayout from "../../../components/MainLayout";
 import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ImageAndCaption from "../../../components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "../../../components/ExhibitionsComponents/Exhibition/Details";
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
@@ -14,7 +14,7 @@ import {
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
-const Exhibition = ({ url, exhibition }) =>
+const Exhibition = ({ url, exhibition, currentFullUrl }) =>
   <MainLayout route={url}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -30,10 +30,11 @@ const Exhibition = ({ url, exhibition }) =>
       route={url}
     />
     <ImageAndCaption exhibition={exhibition} route={url} />
-    <Details exhibition={exhibition} route={url} />
+    <Details exhibition={exhibition} route={url} currentFullUrl={currentFullUrl} />
   </MainLayout>;
 
 Exhibition.getInitialProps = async ({ query, req }) => {
+  const currentFullUrl = getCurrentFullUrl(req);
   const currentUrl = getCurrentUrl(req);
   const { exhibition: exhibitionSlug } = query;
   const exhibitionsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
@@ -66,6 +67,7 @@ Exhibition.getInitialProps = async ({ query, req }) => {
 
   const thumbnailUrl = filesJson[0].file_urls.fullsize;
   return {
+    currentFullUrl,
     exhibition: Object.assign({}, exhibition, {
       thumbnailUrl,
       caption,

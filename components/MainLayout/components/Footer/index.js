@@ -25,7 +25,7 @@ const Footer = () =>
             <li>
               <Link
                 prefetch
-                as="/"
+                as="/frequently-asked-questions"
                 href="/about?section=frequently-asked-questions"
               >
                 FAQ

@@ -116,6 +116,11 @@ app
 
     // exhibitions routes
 
+    server.get(["/exhibitions/", "/exhibitions"], (req, res) => {
+      const actualPage = "/exhibitions";
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     server.get("/exhibitions/:exhibition", (req, res) => {
       const actualPage = "/exhibitions/exhibition";
       const params = {
