@@ -1,4 +1,4 @@
 const getCurrentFullUrl = req =>
-  req ? `${req.protocol}://${req.get("host")}${req.url}` : window.location.href;
+  req ? `${req.protocol}://${req.get("host")}${req.url}` : "";
 
 export default getCurrentFullUrl;
