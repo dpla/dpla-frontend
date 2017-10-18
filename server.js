@@ -301,6 +301,7 @@ app
 
     // dynamic About Menu routes
 
+    // this is necessary to get the next parts to work
     server.get("/robots.txt", (req, res) => {
       return handle(req, res);
     });
