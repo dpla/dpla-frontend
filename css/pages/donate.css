@@ -51,7 +51,8 @@
   padding: 2.1rem 2rem;
 }
 
-.buttonGroup {
+.donateButton {
+  width: 100%;
 }
 
 .link {
@@ -85,5 +86,9 @@
 
   @media (max-width: smallRem) {
     margin-right: 0;
+
+    & img {
+      transform: none;
+    }
   }
 }

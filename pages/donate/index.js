@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
+import DonateForm from "components/DonateComponents/DonateForm";
 import Button from "components/shared/Button";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
@@ -18,53 +19,7 @@ const Donate = ({ url }) =>
       <div className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
-            <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
-              {/* donate form */}
-              <h1 className={contentClasses.title}>
-                Thank you for supporting DPLA
-              </h1>
-              <p>
-                Your generous contribution to DPLA will help make it a valuable
-                national resource for years to come. DPLA is a 501(c)(3)
-                nonprofit
-                organization. All donations are tax deductible.
-              </p>
-              <hr />
-              <h2>Frequency</h2>
-              <div className={`${contentClasses.buttonGroup} row start-xs`}>
-                <Button type="donate">
-                  Give Once
-                </Button>
-                <Button type="donate">
-                  Monthly
-                </Button>
-              </div>
-              <h2>Donation amount</h2>
-              <div className={`${contentClasses.buttonGroup} row`}>
-                <Button type="donate">
-                  $10
-                </Button>
-                <Button type="donate">
-                  $25
-                </Button>
-                <Button type="donate">
-                  $50
-                </Button>
-                <Button type="donate">
-                  $75
-                </Button>
-                <Button type="donate">
-                  $100
-                </Button>
-                <div className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
-                  <input type="text" placeholder="$ Other amount" />
-                </div>
-              </div>
-              <hr />
-              <Button type="primary" className={classNames.donateButton}>
-                Donate
-              </Button>
-            </div>
+            <DonateForm />
             <div className={`${contentClasses.byMail} ${classNames.content}`}>
               <h2>Or donate by mail</h2>
               <p>
@@ -85,7 +40,7 @@ const Donate = ({ url }) =>
             <div
               className={`${classNames.content} ${contentClasses.testimonialImage}`}
             >
-              <img src="http://fillmurray.com/300/200" />
+              <img src="http://fillmurray.com/350/200" />
               <span>Travis Olson, a student at Maryland Public Schools</span>
             </div>
             <div className={classNames.content}>
