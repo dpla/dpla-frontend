@@ -4,7 +4,7 @@ import Link from "next/link";
 import { stylesheet, classNames } from "./RelatedSets.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import { extractSourceSetSlug } from "utilFunctions/";
-
+const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 const RelatedSets = ({ sets }) => {
@@ -31,7 +31,12 @@ const RelatedSets = ({ sets }) => {
                     src={set.repImageUrl || set.thumbnailUrl}
                     className={classNames.setImage}
                   />
-                  <p className={classNames.title}>{set.name}</p>
+                  <p
+                    className={classNames.title}
+                    dangerouslySetInnerHTML={{
+                      __html: markdownit.render(set.name)
+                    }}
+                  />
                 </a>
               </Link>
             </div>
