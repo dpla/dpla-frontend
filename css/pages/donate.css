@@ -1,40 +1,74 @@
-@value silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
-.title {
-  font-family: "Lora";
-  font-size: 1.5rem;
-  line-height: 1.625rem;
-  margin-bottom: 10px;
-  font-weight: normal;
+.donateContent {
+  box-shadow: 0 1rem 2rem silver;
 }
 
-.testimonial {
-  background-color: elephantBlue;
-  color: white;
+.byPaypal, .byMail {
+  & h1 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
 
-  & img {
-    width: 100%;
+  & h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+
+  & hr {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 }
 
 .byPaypal {
   background-color: white;
+  padding: 2.1rem 2rem;
+  margin: 0 -.5rem;
+}
+
+.otherAmount {
+  & input {
+    border: 2px solid iceBlue;
+    padding: .6rem 1.6rem;
+    width: 100%;
+  }
 }
 
 .byMail {
-
+  padding: 2.1rem 2rem;
 }
 
 .buttonGroup {
-
 }
 
 .link {
   color: bambooOrange;
 }
 
-.image {
-  width: 100%;
-  transform: rotateZ(-2deg);
+.testimonial {
+  background-color: elephantBlue;
+  color: white;
+  padding: 1.6rem 1.5rem;
+
+  & p {
+    font-size: 1rem;
+  }
+}
+
+.testimonialImage {
+  margin-right: -2.2rem;
+  margin-bottom: 2rem;
+
+  & span {
+    font-size: .9rem;
+    display: block;
+    margin-top: .9rem;
+  }
+
+  & img {
+    width: 100%;
+    transform: rotateZ(-1.3deg);
+  }
 }

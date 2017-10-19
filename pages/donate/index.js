@@ -19,9 +19,9 @@ const Donate = ({ url }) =>
         className={`${utilClassNames.container}
         ${classNames.sidebarAndContentWrapper}`}
       >
-        <div className="row">
+        <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-7`}>
-            <div className={contentClasses.byPaypal}>
+            <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
               {/* donate form */}
               <h1 className={contentClasses.title}>
                 Thank you for supporting DPLA
@@ -42,18 +42,13 @@ const Donate = ({ url }) =>
               <hr />
               <h2>Frequency</h2>
               <div className={`${contentClasses.buttonGroup} row start-xs`}>
-                
                 <Button type="donate">
                   Give Once
                 </Button>
-              
-                
                 <Button type="donate">
                   Monthly
                 </Button>
-              
               </div>
-              <hr />
               <h2>Donation amount</h2>
               <div className={`${contentClasses.buttonGroup} row`}>
                 <Button type="donate">
@@ -71,16 +66,19 @@ const Donate = ({ url }) =>
                 <Button type="donate">
                   $100
                 </Button>
+                <div className={`${contentClasses.otherAmount} col-xs-4`}>
+                  <input
+                    type="text"
+                    placeholder="$ Other amount"
+                  />
+                </div>
               </div>
               <hr />
-              <Button
-                type="primary"
-                className={classNames.donateButton}
-              >
+              <Button type="primary" className={classNames.donateButton}>
                 Donate
               </Button>
             </div>
-            <div className={contentClasses.byMail}>
+            <div className={`${contentClasses.byMail} ${classNames.content}`}>
               <h2>Or donate by mail</h2>
               <p>
                 Please make your check payable to Digital Public Library of
@@ -88,23 +86,22 @@ const Donate = ({ url }) =>
               </p>
 
               <p>
-                Digital Public Library of America
-                c/o Boston Public Library
-                700 Boylston Street
-                Boston, MA 02116
+                Digital Public Library of America<br />
+                c/o Boston Public Library<br />
+                700 Boylston Street<br />
+                Boston, MA 02116<br />
               </p>
             </div>
           </div>
           <div className={`${contentClasses.testimonial} col-xs-5`}>
             {/* testimonial */}
-            <div>
-              <img
-                src="http://fillmurray.com/300/200"
-                className={contentClasses.image}
-              />
+            <div
+              className={`${classNames.content} ${contentClasses.testimonialImage}`}
+            >
+              <img src="http://fillmurray.com/300/200" />
               <span>Travis Olson, a student at Maryland Public Schools</span>
             </div>
-            <div>
+            <div className={classNames.content}>
               <p>
                 Your donation will directly support the development and
                 expansion of America's largest digital library for people like
