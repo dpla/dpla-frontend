@@ -9,9 +9,9 @@ const openShareModal = currentFullUrl => {
   );
 };
 
-const TwitterButton = ({ currentFullUrl }) =>
+const TwitterButton = ({ currentFullUrl, title }) =>
   <a
-    href={`https://www.twitter.com/intent/tweet?url=${currentFullUrl}`}
+    href={`https://www.twitter.com/intent/tweet?url=${currentFullUrl}&text=${title}`}
     target="_blank"
     className={classNames.shareButton}
     onClick={() => openShareModal(currentFullUrl)}
