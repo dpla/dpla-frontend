@@ -47,7 +47,7 @@ const JsonLdMarkup = ({ item, url }) => {
     var mapped = all.map(x => { 
       return { "@type": "Organization", "name": x } });
 
-    const dpla = { "@type": "Organiztion", 
+    const dpla = { "@type": "Organization", 
                    "name": "Digital Public Library of America",
                     // TODO Is there a better way to generate homepage URL?
                     "url": "https://dp.la/" }
@@ -146,7 +146,7 @@ const JsonLdMarkup = ({ item, url }) => {
     */
   const publisher = () => {
     const all = definedAndFlattened([item.publisher])
-    return all.map(x => { return { "@type": "Organiztion", "name": x } }) }
+    return all.map(x => { return { "@type": "Organization", "name": x } }) }
 
   /**
     * @retrun Array[Object]
