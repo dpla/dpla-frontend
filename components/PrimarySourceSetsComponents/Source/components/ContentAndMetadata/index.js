@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-const markdownit = require("markdown-it")({ html: true });
 
 import {
   ZoomableImageViewer,
@@ -8,11 +7,14 @@ import {
   VideoPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
+import ShareButton from "components/shared/ShareButton";
+import Button from "components/shared/Button";
 
 import { extractItemId } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
+const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 const link = "/static/images/link.svg";
@@ -85,7 +87,14 @@ const ContentAndMetadata = ({ source }) => {
           <div className={classNames.metadata}>
             <div className={classNames.sourceInfo}>
               {/* TODO: hook these up */}
-              <button className={classNames.button}>Cite this source</button>
+              <div className={classNames.buttons}>
+                <div className={classNames.citeButton}>
+                  <Button type="ghost">Cite this source</Button>
+                </div>
+                <div className={classNames.shareButton}>
+                  <ShareButton />
+                </div>
+              </div>
               {/* <a href={fullContentUrl} download className={classNames.button}>
                 Download
               </a> */}

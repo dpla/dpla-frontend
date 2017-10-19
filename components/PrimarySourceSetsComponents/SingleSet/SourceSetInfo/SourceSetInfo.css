@@ -154,6 +154,14 @@
   width: 100%;
 }
 
+.shareButton {
+
+}
+
+.citeButton {
+  margin-bottom: 0.5rem;
+}
+
 .favoritesButton {
   background-color: softPeach;
   color: cranberry;

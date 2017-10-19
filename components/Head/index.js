@@ -4,7 +4,7 @@ import Head from "next/head";
 import { stylesheet as utilStylesheet } from "css/utils.css";
 import { stylesheet as reset } from "css/reset.css";
 
-export default ({ additionalLinks }) =>
+export default ({ additionalLinks, pageTitle }) =>
   <div>
     <Head>
       <meta charset="utf-8" />
@@ -55,7 +55,12 @@ export default ({ additionalLinks }) =>
         href="https://unpkg.com/react-select/dist/react-select.css"
       />
       {additionalLinks}
-      <title>Digital Public Library of America</title>
+      <title>{pageTitle || "Digital Public Library of America"}</title>
+      <meta
+        property="og:title"
+        content={pageTitle || "Digital Public Library of America"}
+      />
+
       <style js>{reset}</style>
       <style js>{utilStylesheet}</style>
     </Head>

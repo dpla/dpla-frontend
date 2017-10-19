@@ -26,7 +26,7 @@ const Subsection = ({
   previousQueryParams
 }) =>
   <div>
-    <Head />
+    <Head pageTitle={section.title} />
     <Content
       route={url}
       previousQueryParams={previousQueryParams}

@@ -1,77 +1,66 @@
 import React from "react";
 import Link from "next/link";
 
-import { CONTENT_PAGE_NAMES } from "constants/content-pages";
 import { classNames, stylesheet } from "./Sidebar.css";
+import { decodeHTMLEntities } from "utilFunctions";
 
-const SidebarLink = ({ isCurrentLink, title, href, as }) =>
-  <li className={`${classNames.link} ${isCurrentLink && classNames.selected}`}>
-    <Link href={href} as={as}>
-      <a>
-        {title}
-      </a>
-    </Link>
-  </li>;
+const SidebarLink = ({ isCurrentLink, title, section, subsection }) => {
+  return (
+    <li
+      className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
+    >
+      <Link
+        as={`/${section}/${subsection ? subsection : ""}`}
+        href={`/about?section=${section}${subsection
+          ? `&subsection=${subsection}`
+          : ""}`}
+      >
+        <a>
+          {title}
+        </a>
+      </Link>
+    </li>
+  );
+};
 
-const Sidebar = ({ page, guides, route }) =>
+const Sidebar = ({ activeItemId, items, route }) =>
   <div className="col-xs-12 col-md-4">
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.ABOUT_US}
-          title="About Us"
-          href="/about-us"
-        />
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.FAQ}
-          title="FAQ"
-          href="/faq"
-        />
-        <ul>
-          <SidebarLink
-            isCurrentLink={page === CONTENT_PAGE_NAMES.SEARCH_TIPS}
-            title="Search Tips"
-            href="/faq/search-tips"
-          />
-          <SidebarLink
-            isCurrentLink={page === CONTENT_PAGE_NAMES.GLOSSARY}
-            title="Glossary"
-            href="/faq/glossary"
-          />
-        </ul>
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.GUIDES}
-          title="How can I use DPLA?"
-          href="/guides"
-        />
-        {guides &&
-          <ul>
-            {guides.map(guide =>
-              <SidebarLink
-                key={guide.slug}
-                title={guide.displayTitle}
-                as={`/guides/${guide.slug}`}
-                href={`/guides/guide?guide=${guide.slug}`}
-                isCurrentLink={route.query.guide === guide.slug}
-              />
-            )}
-          </ul>}
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.TERMS_AND_CONDITIONS}
-          title="Terms & Conditions"
-          href="/terms-and-conditions"
-        />
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.DONATE}
-          title="Donate"
-          href="/donate"
-        />
-        <div className={classNames.divider} />
-        <SidebarLink
-          isCurrentLink={page === CONTENT_PAGE_NAMES.CONTACT}
-          title="Contact Us"
-          href="/contact-us"
-        />
+        {items.filter(item => item.menu_item_parent === "0").map(item => {
+          const children = items.filter(
+            child => child.menu_item_parent === item.object_id
+          );
+          return children.length
+            ? <div key={item.ID}>
+                <SidebarLink
+                  key={item.ID}
+                  title={decodeHTMLEntities(item.title)}
+                  url={item.url}
+                  section={item.post_name}
+                  isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
+                />
+                <ul>
+                  {children.map(child =>
+                    <SidebarLink
+                      key={child.ID}
+                      title={decodeHTMLEntities(child.title)}
+                      section={item.post_name}
+                      subsection={child.post_name}
+                      isCurrentLink={child.url.match(
+                        new RegExp(activeItemId + "$")
+                      )}
+                    />
+                  )}
+                </ul>
+              </div>
+            : <SidebarLink
+                key={item.ID}
+                title={decodeHTMLEntities(item.title)}
+                section={item.post_name}
+                isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
+              />;
+        })}
       </ul>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
