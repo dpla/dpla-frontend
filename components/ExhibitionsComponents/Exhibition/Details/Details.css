@@ -106,3 +106,8 @@
   padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.shareButton {
+  width: 100%;
+  margin-top: 0.5rem;
+}

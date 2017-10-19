@@ -11,7 +11,7 @@ import TeachersGuide from "../../../components/PrimarySourceSetsComponents/Singl
 import removeQueryParams from "utilFunctions/removeQueryParams";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={set.name}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

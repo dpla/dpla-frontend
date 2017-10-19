@@ -8,6 +8,7 @@ import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import makeURLsClickable from "./makeURLsClickable";
+import getCurrentFullUrl from "./getCurrentFullUrl";
 
 export {
   addCommasToNumber,
@@ -19,5 +20,6 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
-  makeURLsClickable
+  makeURLsClickable,
+  getCurrentFullUrl
 };

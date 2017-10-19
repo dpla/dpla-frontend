@@ -5,14 +5,14 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import GuideLink from "components/shared/GuideLink";
 import { classNames, stylesheet } from "css/pages/guides.css";
-import { GUIDES_ENDPOINT, CONTENT_PAGE_NAMES } from "constants/content-pages";
+import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 
-const Guides = ({ url, guides }) =>
+const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url}>
     <div
       className={`
@@ -23,8 +23,8 @@ const Guides = ({ url, guides }) =>
       <div className="row">
         <ContentPagesSidebar
           route={url}
-          guides={guides}
-          page={CONTENT_PAGE_NAMES.GUIDES}
+          items={sidebarItems}
+          activeItemId={activeItemId}
         />
         <div className={`${classNames.wrapper} col-xs-12 col-md-8`}>
           <ul className="row">
@@ -45,19 +45,33 @@ const Guides = ({ url, guides }) =>
   </MainLayout>;
 
 Guides.getInitialProps = async () => {
-  const res = await fetch(GUIDES_ENDPOINT);
-  const json = await res.json();
-  const guides = json.map(guide =>
-    Object.assign({}, guide, {
-      summary: guide.acf.summary,
-      title: guide.title.rendered,
-      displayTitle: guide.acf.display_title,
-      color: guide.acf.color,
-      illustration: guide.acf.illustration
-    })
+  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
+  const aboutMenuJson = await aboutMenuRes.json();
+  const indexPageItem = aboutMenuJson.items.find(
+    item => item.url === GUIDES_ENDPOINT
+  );
+  const guides = await Promise.all(
+    aboutMenuJson.items
+      .filter(item => item.menu_item_parent === indexPageItem.object_id)
+      .map(async guide => {
+        const guideRes = await fetch(guide.url);
+        const guideJson = await guideRes.json();
+        return Object.assign({}, guide, {
+          slug: guide.post_name,
+          summary: guideJson.acf.summary,
+          title: guideJson.title.rendered,
+          displayTitle: guideJson.acf.display_title,
+          color: guideJson.acf.color,
+          illustration: guideJson.acf.illustration
+        });
+      })
   );
 
-  return { guides };
+  return {
+    guides,
+    sidebarItems: aboutMenuJson.items,
+    activeItemId: indexPageItem.url
+  };
 };
 
 export default Guides;

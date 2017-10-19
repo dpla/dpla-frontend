@@ -22,25 +22,29 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { GUIDES_ENDPOINT } from "constants/content-pages";
+import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
     <HomeHero headerDescription={headerDescription} />
-    <HomePageSlider
-      items={exhibitions}
-      title="Online Exhibitions"
-      browseLinkUrl="/exhibitions"
-      browseLinkName="Exhibitions"
-    />
-    <HomePageSlider
-      items={sourceSets}
-      title="Primary Source Sets"
-      browseLinkUrl="/primary-source-sets"
-      browseLinkName="Sets"
-      slidesToShow={4}
-      theme="blue"
-    />
+    {exhibitions &&
+      exhibitions.length > 0 &&
+      <HomePageSlider
+        items={exhibitions}
+        title="Online Exhibitions"
+        browseLinkUrl="/exhibitions"
+        browseLinkName="Exhibitions"
+      />}
+    {sourceSets &&
+      sourceSets.length > 0 &&
+      <HomePageSlider
+        items={sourceSets}
+        title="Primary Source Sets"
+        browseLinkUrl="/primary-source-sets"
+        browseLinkName="Sets"
+        slidesToShow={4}
+        theme="blue"
+      />}
     <DPLAUsers guides={guides} />
     <FromTheBlog />
     {/* <SocialMedia /> */}
@@ -52,8 +56,8 @@ Home.getInitialProps = async ({ req }) => {
   const homepageRes = await fetch(DPLA_HOMEPAGE_ENDPOINT);
   const homepageJson = await homepageRes.json();
   const featuredExhibits = homepageJson.acf.featured_exhibits;
-  const featuredExhibitSlugs = featuredExhibits.map(
-    exhibit => exhibit.exhibit_slug
+  const featuredExhibitIds = featuredExhibits.map(
+    exhibit => exhibit.exhibit_id
   );
   const featuredPrimarySourceSets =
     homepageJson.acf.featured_primary_source_sets;
@@ -77,7 +81,7 @@ Home.getInitialProps = async ({ req }) => {
   const exhibitsJson = await exhibitsRes.json();
   const exhibitions = await Promise.all(
     exhibitsJson
-      .filter(exhibit => featuredExhibitSlugs.includes(exhibit.slug))
+      .filter(exhibit => featuredExhibitIds.includes(String(exhibit.id)))
       .map(async exhibit => {
         const exhibitPageRes = await fetch(
           `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
@@ -104,16 +108,26 @@ Home.getInitialProps = async ({ req }) => {
       })
   );
 
-  const guidesRes = await fetch(GUIDES_ENDPOINT);
-  const guidesJson = await guidesRes.json();
-  const guides = guidesJson.map(guide =>
-    Object.assign({}, guide, {
-      summary: guide.acf.summary,
-      title: guide.title.rendered,
-      displayTitle: guide.acf.display_title,
-      color: guide.acf.color,
-      illustration: guide.acf.illustration
-    })
+  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
+  const aboutMenuJson = await aboutMenuRes.json();
+  const indexPageItem = aboutMenuJson.items.find(
+    item => item.url === GUIDES_ENDPOINT
+  );
+  const guides = await Promise.all(
+    aboutMenuJson.items
+      .filter(item => item.menu_item_parent === indexPageItem.object_id)
+      .map(async guide => {
+        const guideRes = await fetch(guide.url);
+        const guideJson = await guideRes.json();
+        return Object.assign({}, guide, {
+          slug: guide.post_name,
+          summary: guideJson.acf.summary,
+          title: guideJson.title.rendered,
+          displayTitle: guideJson.acf.display_title,
+          color: guideJson.acf.color,
+          illustration: guideJson.acf.illustration
+        });
+      })
   );
 
   return {
