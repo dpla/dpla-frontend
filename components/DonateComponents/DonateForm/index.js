@@ -26,6 +26,7 @@ class DualStateButton extends React.Component {
     return (
       <Button
         type="donate"
+        size={this.props.size}
         onClick={() => this.props.onClick()}
         state={this.props.active ? "active" : ""}
       >
@@ -93,6 +94,7 @@ class DonateForm extends React.Component {
                 key={"freq" + i}
                 text={freq.k}
                 value={freq.v}
+                size="large"
                 onClick={() => this.handleFrequencyClick(freq.v)}
                 active={this.state.frequency === freq.v}
               />

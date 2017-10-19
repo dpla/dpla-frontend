@@ -49,7 +49,9 @@ const Button = ({
   return (
     <div
       className={
-        type === "donate"
+        type === "donate" && size === "large"
+        ? `col-xs-12 col-md-4`
+        : type === "donate"
         ? `col-xs-6 col-md-4`
         : ""
       }
