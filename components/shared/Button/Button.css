@@ -40,6 +40,18 @@
   }
 }
 
+.buttonDonate {
+  color: cascadeBlue;
+  background-color: iceBlue;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background-color: #D4E6EF;
+  }
+}
+
 /* Sizes */
 
 .buttonLarge {

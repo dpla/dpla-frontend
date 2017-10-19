@@ -1,4 +1,4 @@
-@value minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
 .title {
@@ -10,7 +10,8 @@
 }
 
 .testimonial {
-  background-color: ebonyClayBlue;
+  background-color: elephantBlue;
+  color: white;
 
   & img {
     width: 100%;
@@ -18,7 +19,7 @@
 }
 
 .byPaypal {
-
+  background-color: white;
 }
 
 .byMail {
@@ -35,4 +36,5 @@
 
 .image {
   width: 100%;
+  transform: rotateZ(-2deg);
 }

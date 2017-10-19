@@ -40,37 +40,41 @@ const Donate = ({ url }) =>
                 </Link>
               </p>
               <hr />
-              <div className={contentClasses.buttonGroup}>
-                <h2>Frequency</h2>
-                <Button type="ghost" size="large">
+              <h2>Frequency</h2>
+              <div className={`${contentClasses.buttonGroup} row start-xs`}>
+                
+                <Button type="donate">
                   Give Once
                 </Button>
-                <Button type="ghost" size="large">
-                  Give Monthly
+              
+                
+                <Button type="donate">
+                  Monthly
                 </Button>
+              
               </div>
               <hr />
-              <div className={contentClasses.buttonGroup}>
-                <h2>Donation amount</h2>
-                <Button type="ghost" size="large">
+              <h2>Donation amount</h2>
+              <div className={`${contentClasses.buttonGroup} row`}>
+                <Button type="donate">
                   $10
                 </Button>
-                <Button type="ghost" size="large">
+                <Button type="donate">
                   $25
                 </Button>
-                <Button type="ghost" size="large">
+                <Button type="donate">
                   $50
                 </Button>
-                <Button type="ghost" size="large">
+                <Button type="donate">
                   $75
                 </Button>
-                <Button type="ghost" size="large">
+                <Button type="donate">
                   $100
                 </Button>
               </div>
+              <hr />
               <Button
                 type="primary"
-                size="large"
                 className={classNames.donateButton}
               >
                 Donate
@@ -102,25 +106,25 @@ const Donate = ({ url }) =>
             </div>
             <div>
               <p>
-                Your donation will directly support the maintenance and
-                expansion of America’s largest digital library for people like
-                Travis Olson. Travis is a middle school student in Maryland who
-                uses our Primary Source Sets to do reseasrch in his American
-                history class.
+                Your donation will directly support the development and
+                expansion of America's largest digital library for people like
+                Adena, a high school school teacher in West Virginia. Adena uses
+                Primary Source Sets in her teaching, and here's a few of her own
+                words on how important they are to her:{" "}
               </p>
               <p>
-                100% of your generous contribution will be used for maintenance,
-                curation, and expansion of DPLA. You’ll be helping support our
-                programmers and curators as they build improvements and engaging
-                curated collections on the website, as well as helping us grow
-                our collection of America’s vast historical record.
+                "I teach in a rural West Virginia high school. Many of my
+                students have never left the state of West Virginia, but the
+                Digital Public Library of America's Primary Source Sets deliver
+                context and new landscapes while allowing my students to
+                experience the highs and lows of American History, and to view
+                history through a variety of viewpoints, collected from the
+                nation's cultural heritage institutions."
               </p>
               <p>
-                We couldn’t do it without you—so sincerely, thank-you!
-              </p>
-              <p>
-                Michele Kimpton<br />
-                Executive Director, DPLA
+                Please consider making a donation to the Digital Public Library
+                of America so we can continue to build these important
+                educational materials.
               </p>
             </div>
           </div>

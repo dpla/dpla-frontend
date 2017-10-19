@@ -28,6 +28,9 @@ const Button = ({
     case "ghost":
       buttonClasses = `${buttonClasses} ${classNames.buttonGhost}`;
       break;
+    case "donate":
+      buttonClasses = `${buttonClasses} ${classNames.buttonDonate}`;
+      break;
   }
 
   switch (size) {
@@ -37,7 +40,13 @@ const Button = ({
   }
 
   return (
-    <div>
+    <div
+      className={
+        type === "donate"
+        ? `col-xs-4`
+        : ""
+      }
+    >
       {url
         ? <Link prefetch={prefetch} href={url} as={as}>
             <a title={title} className={buttonClasses} style={style}>
