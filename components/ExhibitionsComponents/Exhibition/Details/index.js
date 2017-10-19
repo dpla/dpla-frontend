@@ -4,9 +4,10 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
+import ShareButton from "components/shared/ShareButton";
 
 const { container } = utilClassNames;
-const Details = ({ exhibition, route }) =>
+const Details = ({ exhibition, route, currentFullUrl }) =>
   <div className={classNames.wrapper}>
     <div className={[container, classNames.details].join(" ")}>
       <div className={classNames.tableOfContents}>
@@ -41,6 +42,10 @@ const Details = ({ exhibition, route }) =>
         </div>
         <div className={classNames.faveAndCiteButtonsWrapper}>
           <FaveAndCiteButtons />
+          <ShareButton
+            className={classNames.shareButton}
+            currentFullUrl={currentFullUrl}
+          />
         </div>
       </div>
       <div className={classNames.body}>

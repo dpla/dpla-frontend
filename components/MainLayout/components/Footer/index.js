@@ -18,12 +18,16 @@ const Footer = () =>
           <h3 className={classNames.linkHeader}>DPLA</h3>
           <ul>
             <li>
-              <Link prefetch href="/about-us">
+              <Link prefetch as="/about-us" href="/about?section=about-us">
                 About Us
               </Link>
             </li>
             <li>
-              <Link prefetch href="/faq">
+              <Link
+                prefetch
+                as="/frequently-asked-questions"
+                href="/about?section=frequently-asked-questions"
+              >
                 FAQ
               </Link>
             </li>
@@ -33,7 +37,11 @@ const Footer = () =>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/terms-and-conditions">
+              <Link
+                prefetch
+                as="terms-conditions"
+                href="/about?section=terms-conditions"
+              >
                 Terms &amp; Conditions
               </Link>
             </li>

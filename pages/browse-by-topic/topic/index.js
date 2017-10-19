@@ -7,7 +7,7 @@ import MainLayout from "../../../components/MainLayout";
 import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
 
 const Topic = ({ url, topic, subtopics }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={topic.name}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         {

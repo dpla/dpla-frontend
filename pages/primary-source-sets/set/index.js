@@ -10,12 +10,13 @@ import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/Singl
 import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
+import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-const SingleSet = ({ set, url }) =>
-  <MainLayout route={url}>
+const SingleSet = ({ set, url, currentFullUrl }) =>
+  <MainLayout route={url} pageTitle={set.name}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
@@ -29,7 +30,7 @@ const SingleSet = ({ set, url }) =>
       ]}
       route={url}
     />
-    <SourceSetInfo set={set} />
+    <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
     <ResourcesTabs route={url} currentTab="sourceSet" set={set}>
       <SourceSetSources
         sources={set.hasPart.filter(
@@ -42,7 +43,8 @@ const SingleSet = ({ set, url }) =>
     <PSSFooter />
   </MainLayout>;
 
-SingleSet.getInitialProps = async ({ query }) => {
+SingleSet.getInitialProps = async ({ query, req }) => {
+  const currentFullUrl = getCurrentFullUrl(req);
   const res = await fetch(
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
@@ -61,7 +63,7 @@ SingleSet.getInitialProps = async ({ query }) => {
     }
     return Object.assign({}, part, { thumbnailUrl, useDefaultImage });
   });
-  return { set: Object.assign({}, json, { hasPart: parts }) };
+  return { set: Object.assign({}, json, { hasPart: parts }), currentFullUrl };
 };
 
 export default SingleSet;
