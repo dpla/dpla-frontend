@@ -43,7 +43,7 @@ const Button = ({
     <div
       className={
         type === "donate"
-        ? `col-xs-4`
+        ? `col-xs-6 col-md-4`
         : ""
       }
     >

@@ -17,7 +17,7 @@ const Donate = ({ url }) =>
     <div className={contentClasses.donateBackground}>
       <div className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
-          <div className={`col-xs-7`}>
+          <div className={`col-xs-12 col-md-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
               {/* donate form */}
               <h1 className={contentClasses.title}>
@@ -56,7 +56,7 @@ const Donate = ({ url }) =>
                 <Button type="donate">
                   $100
                 </Button>
-                <div className={`${contentClasses.otherAmount} col-xs-4`}>
+                <div className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
                   <input type="text" placeholder="$ Other amount" />
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Donate = ({ url }) =>
               </p>
             </div>
           </div>
-          <div className={`${contentClasses.testimonial} col-xs-5`}>
+          <div className={`${contentClasses.testimonial} col-xs-12 col-md-5`}>
             {/* testimonial */}
             <div
               className={`${classNames.content} ${contentClasses.testimonialImage}`}

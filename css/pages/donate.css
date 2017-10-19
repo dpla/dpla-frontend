@@ -82,4 +82,8 @@
     width: 100%;
     transform: rotateZ(-1.3deg);
   }
+
+  @media (max-width: smallRem) {
+    margin-right: 0;
+  }
 }

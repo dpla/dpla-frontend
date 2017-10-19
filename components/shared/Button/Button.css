@@ -47,6 +47,11 @@
   width: 100%;
   margin-bottom: 1rem;
 
+  &.active {
+    background-color: cascadeBlue;
+    color: iceBlue;
+  }
+
   &:hover {
     background-color: #D4E6EF;
   }
