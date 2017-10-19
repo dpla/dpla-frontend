@@ -1,0 +1,38 @@
+@value minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value smallRem, mediumRem, largeRem from "../breakpoints.css";
+
+.title {
+  font-family: "Lora";
+  font-size: 1.5rem;
+  line-height: 1.625rem;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.testimonial {
+  background-color: ebonyClayBlue;
+
+  & img {
+    width: 100%;
+  }
+}
+
+.byPaypal {
+
+}
+
+.byMail {
+
+}
+
+.buttonGroup {
+
+}
+
+.link {
+  color: bambooOrange;
+}
+
+.image {
+  width: 100%;
+}

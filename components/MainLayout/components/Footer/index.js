@@ -114,6 +114,7 @@ const Footer = () =>
             type="primary"
             size="large"
             className={classNames.donateButton}
+            url="/donate"
           >
             Donate
           </Button>

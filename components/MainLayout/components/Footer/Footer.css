@@ -20,7 +20,7 @@
     padding: 3rem 0;
   }
 
-  & a {
+  & li a {
     &:hover {
       text-decoration: underline;
     }
@@ -56,6 +56,10 @@
 .donateButton {
   width: 100%;
   margin-top: 2rem;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   @media (min-width: mediumRem) {
     margin-top: 0;
