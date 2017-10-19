@@ -1,7 +1,6 @@
 @value black80, cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
-
 .buttonBase {
   font-weight: 600;
   border-radius: 2px;
@@ -54,6 +53,12 @@
 
   &:hover {
     background-color: #D4E6EF;
+    color: cascadeBlue;
+  }
+
+  &:active {
+    background-color: cascadeBlue;
+    color: iceBlue;
   }
 }
 

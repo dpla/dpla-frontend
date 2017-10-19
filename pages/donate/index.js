@@ -40,7 +40,7 @@ const Donate = ({ url }) =>
             <div
               className={`${classNames.content} ${contentClasses.testimonialImage}`}
             >
-              <img src="http://fillmurray.com/350/200" />
+              <img src="http://fillmurray.com/300/200" />
               <span>Travis Olson, a student at Maryland Public Schools</span>
             </div>
             <div className={classNames.content}>
