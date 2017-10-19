@@ -10,6 +10,8 @@ const mapTypeToClass = type => {
     return classNames.exhibition;
   } else if (type === "Topic") {
     return classNames.topic;
+  } else if (type === "Primary Source Set") {
+    return classNames.topic;
   }
 };
 
@@ -20,24 +22,23 @@ const Suggestions = ({ suggestions }) =>
       <ul className={classNames.suggestedResources}>
         {suggestions.map(suggestion =>
           <li
+            key={suggestion.title}
             className={[
               classNames.suggestedItem,
               mapTypeToClass(suggestion.type)
             ].join(" ")}
           >
-            <Link prefetch href={`browse-by-topic/${suggestion.slug}`}>
+            <Link prefetch href={suggestion.href} as={suggestion.as}>
               <a
                 className={classNames.imageWrapper}
-                style={{ backgroundImage: `url(${suggestion.image})` }}
+                style={{ backgroundImage: `url(${suggestion.thumbnailUrl})` }}
               >
                 <div className={classNames.gradientBackground}>
                   <div className={classNames.typeAndTitle}>
                     <p className={classNames.resourceType}>
                       {suggestion.type}
                     </p>
-                    <h3 className={classNames.suggestionTitle}>
-                      {suggestion.title}
-                    </h3>
+                    <h3 dangerouslySetInnerHTML={{ __html: suggestion.title }} className={classNames.suggestionTitle} />
                   </div>
                 </div>
               </a>
