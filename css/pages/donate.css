@@ -1,8 +1,19 @@
-@value iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
+.donateBackground {
+  background-color: visualBrown;
+  background-image: url("static/images/home-hero-bg.png");
+  background-blend-mode: multiply;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
 .donateContent {
-  box-shadow: 0 1rem 2rem silver;
+  background-color: visualBrown;
+  margin-bottom: 4rem;
+  margin-top: 1rem;
+  box-shadow: 0 1rem 2rem gray;
 }
 
 .byPaypal, .byMail {

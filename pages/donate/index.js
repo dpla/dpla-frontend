@@ -14,11 +14,8 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Donate = ({ url }) =>
   <MainLayout route={url}>
-    <div className={classNames.backgroundTint}>
-      <div
-        className={`${utilClassNames.container}
-        ${classNames.sidebarAndContentWrapper}`}
-      >
+    <div className={contentClasses.donateBackground}>
+      <div className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
@@ -31,13 +28,6 @@ const Donate = ({ url }) =>
                 national resource for years to come. DPLA is a 501(c)(3)
                 nonprofit
                 organization. All donations are tax deductible.
-              </p>
-              <p>
-                <Link href="">
-                  <a className={`${contentClasses.link} hover-underline`}>
-                    Donation FAQ's
-                  </a>
-                </Link>
               </p>
               <hr />
               <h2>Frequency</h2>
@@ -67,10 +57,7 @@ const Donate = ({ url }) =>
                   $100
                 </Button>
                 <div className={`${contentClasses.otherAmount} col-xs-4`}>
-                  <input
-                    type="text"
-                    placeholder="$ Other amount"
-                  />
+                  <input type="text" placeholder="$ Other amount" />
                 </div>
               </div>
               <hr />
@@ -128,6 +115,7 @@ const Donate = ({ url }) =>
         </div>
       </div>
     </div>
+
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
