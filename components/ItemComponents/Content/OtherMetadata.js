@@ -49,8 +49,11 @@ const OtherMetadata = ({ item }) =>
         <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
         <Row className={classNames.subjects} heading="Subjects">
           {item.subject &&
-            item.subject.map((subj, i) =>
-              <FacetLink facet="subject" value={subj.name} />
+            item.subject.map((subj, i, subjects) =>
+              <span>
+                <FacetLink facet="subject" value={subj.name} />
+                {i < subjects.length - 1 && <br />}
+              </span>
             )}
         </Row>
         <Row heading="Type">
