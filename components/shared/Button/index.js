@@ -6,7 +6,7 @@ import { classNames, stylesheet } from "./Button.css";
 const Button = ({
   as,
   children,
-  className,
+  className="",
   icon,
   onClick,
   prefetch,
@@ -14,6 +14,7 @@ const Button = ({
   style,
   title,
   type,
+  state,
   url
 }) => {
   let buttonClasses = `${className} ${classNames.buttonBase}`;
@@ -28,6 +29,9 @@ const Button = ({
     case "ghost":
       buttonClasses = `${buttonClasses} ${classNames.buttonGhost}`;
       break;
+    case "donate":
+      buttonClasses = `${buttonClasses} ${classNames.buttonDonate}`;
+      break;
   }
 
   switch (size) {
@@ -36,15 +40,29 @@ const Button = ({
       break;
   }
 
+  switch (state) {
+    case "active":
+      buttonClasses = `${buttonClasses} ${classNames.active}`;
+      break;
+  }
+
   return (
-    <div>
+    <div
+      className={
+        type === "donate" && size === "large"
+        ? `col-xs-12 col-md-4`
+        : type === "donate"
+        ? `col-xs-6 col-md-4`
+        : ""
+      }
+    >
       {url
         ? <Link prefetch={prefetch} href={url} as={as}>
             <a title={title} className={buttonClasses} style={style}>
               {children}
             </a>
           </Link>
-        : <button onClick={onClick} className={buttonClasses} style={style}>
+        : <button type="button" onClick={onClick} className={buttonClasses} style={style}>
             {children}
           </button>}
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
