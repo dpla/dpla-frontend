@@ -1,4 +1,5 @@
 @value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from "../../../../css/colors.css";;
+@value mediumRem from "../../../../css/breakpoints.css";;
 
 .wrapper {
   width: 100%;
@@ -6,10 +7,16 @@
 
 .teachingGuide {
   display: flex;
+  flex-direction: column-reverse;
+  @media (min-width: mediumRem) {
+    flex-direction: row;
+  }
 }
 
 .content {
-  margin-right: 73px;
+  @media (min-width: mediumRem) {
+    margin-right: 73px;
+  }
 }
 
 .sidebar {
@@ -86,6 +93,7 @@
   border: 2px solid rgba(0, 0, 0, 0.04);
   background-color: visualBrown;
   padding: 18px 20px 20px;
+  margin-bottom: 1rem;
 }
 
 .aboutThisHeader {

@@ -18,9 +18,10 @@
 }
 
 .p {
-  max-width: 450px;
   font-size: 0.875rem;
-  line-height: 1rem;
+  @media (min-width: smallRem) {
+    max-width: 450px;
+  }
 }
 
 .p:first-child {

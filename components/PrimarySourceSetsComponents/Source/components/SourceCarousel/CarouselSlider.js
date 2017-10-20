@@ -16,8 +16,8 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
     <Slider
       slidesToShow={6}
       infinite={false}
-      nextArrow={<NextArrow />}
-      prevArrow={<PrevArrow />}
+      nextArrow={<NextArrow className={classNames.carouselNavArrow} />}
+      prevArrow={<PrevArrow className={classNames.carouselNavArrow} />}
       draggable={false}
       slidesToScroll={1}
       initialSlide={
@@ -28,12 +28,12 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
       }
       responsive={[
         {
-          breakpoint: parseInt(breakpoints.smallPx, 10),
+          breakpoint: ~~breakpoints.smallPx,
           settings: {
+            arrows: false,
             centerMode: true,
             centerPadding: "12.5%",
             slidesToShow: 1.25,
-            arrows: false,
             draggable: true
           }
         }
@@ -64,13 +64,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
                   useDefaultImage ? classNames.defaultImageWrapper : "",
                   i === currentSourceIdx && classNames.currentItemImgWrapper
                 ].join(" ")}
-              >
-                {/* <img
-                alt={name}
-                className={classNames.itemImg}
-                src={thumbnailUrl}
-              /> */}
-              </div>
+              />
               <div
                 className={classNames.itemText}
                 dangerouslySetInnerHTML={{ __html: markdownit.render(name) }}

@@ -13,19 +13,27 @@
 .sourceCarousel {
   padding-right: 0;
   padding-left: 0;
-  @media (min-width: smallRem) {
-    padding-right: 1rem;
-    padding-left: 1rem;
-  }
   /* overrides for react-slick css*/
   & :global .slick-prev:before,
   & :global .slick-next:before {
     content: none;
   }
-
-  & :global .slick-disabled {
+  & :global .slick-disabled,
+  & :global .slick-next,
+  & :global .slick-prev {
     display: none;
   }
+  @media (min-width: smallRem) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    & :global .slick-next,
+    & :global .slick-prev {
+      display: block;
+    }
+  }
+
+
+
 }
 
 :global .slick-list {
@@ -191,8 +199,8 @@
 .previousItemButton {
   color: black;
   background-color: #E3E0DA;
-  margin-right: 1rem;
   @media (min-width: smallRem) {
+    margin-right: 1rem;
     color: bambooOrange;
     background-color: transparent;
   }
@@ -271,4 +279,9 @@
     min-width: auto;
     min-height: auto;
   }
+}
+
+
+.carouselNavArrow {
+  display: none;
 }

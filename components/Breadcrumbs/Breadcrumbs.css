@@ -1,5 +1,5 @@
 @value bambooOrange from "../../css/colors.css";
-@value smallRem from "../../css/breakpoints.css";
+@value xSmallRem, smallRem from "../../css/breakpoints.css";
 
 .activeBreadcrumb {
   display: inline-block;
@@ -27,15 +27,24 @@
 
 .breadcrumbLink p,
 .activeBreadcrumb p {
-  max-width: 215px;
+  max-width: 115px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media (min-width: xSmallRem) {
+    max-width: 175px;
+  }
+  @media (min-width: smallRem) {
+    max-width: 215px;
+  }
 }
 
 .chevron {
   height: 9px;
-  padding: 0 11px;
+  padding: 0 0.5rem;
   position: relative;
   top: -5px;
+  @media (min-width: smallRem) {
+    padding: 0 0.75rem;
+  }
 }

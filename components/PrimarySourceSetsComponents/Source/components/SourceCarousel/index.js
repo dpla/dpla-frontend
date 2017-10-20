@@ -25,9 +25,9 @@ const NavChevron = ({ type }) =>
     <g
       id="Styles"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     >
       <g id="Artboard" transform="translate(-183.000000, -205.000000)">
         <path
