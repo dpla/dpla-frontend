@@ -17,7 +17,7 @@ const HomeHero = ({ headerDescription }) =>
       <div>
         <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
       </div>
-      <Button type="primary" size="large">
+      <Button type="primary" size="large" url="/donate">
         Donate
       </Button>
     </div>

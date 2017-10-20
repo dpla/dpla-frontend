@@ -1,13 +1,13 @@
 @value black80, cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
-
 .buttonBase {
   font-weight: 600;
   border-radius: 2px;
   font-size: 1rem;
   padding: .75rem 2rem;
   transition: background-color .15s ease-out;
+  display: inline-block;
 }
 
 /* Types */
@@ -36,6 +36,29 @@
 
   &:hover {
     background-color: #D4E6EF;
+  }
+}
+
+.buttonDonate {
+  color: cascadeBlue;
+  background-color: iceBlue;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &.active {
+    background-color: cascadeBlue;
+    color: iceBlue;
+  }
+
+  &:hover {
+    background-color: #D4E6EF;
+    color: cascadeBlue;
+  }
+
+  &:active {
+    background-color: cascadeBlue;
+    color: iceBlue;
   }
 }
 
