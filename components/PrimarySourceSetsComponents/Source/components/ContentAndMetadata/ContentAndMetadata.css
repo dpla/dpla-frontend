@@ -8,6 +8,10 @@
 .contentWrapper {
   flex: 5;
   margin-right: 20px;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: auto;
+  }
 }
 
 .flexWrapper {

@@ -182,6 +182,7 @@
 .previousItemButton {
   color: black;
   background-color: #E3E0DA;
+  margin-right: 1rem;
   @media (min-width: smallRem) {
     color: bambooOrange;
     background-color: transparent;

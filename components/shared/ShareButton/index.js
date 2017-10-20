@@ -18,7 +18,7 @@ class ShareButton extends React.Component {
 
   render() {
     const { className, currentFullUrl, toShareText, title } = this.props;
-    const url = currentFullUrl || window.location.href;
+    const url = currentFullUrl;
     return (
       <div className={classNames.wrapper}>
         <Button
