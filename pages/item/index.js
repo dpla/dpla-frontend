@@ -42,6 +42,7 @@ const ItemDetail = ({ url, item, currentFullUrl }) =>
           className={classNames.shareButton}
           currentFullUrl={currentFullUrl}
           toShareText="item"
+          title={item.title}
         />
       </div>
     </div>
