@@ -29,7 +29,7 @@ const JsonLdMarkup = ({ item, url }) => {
     if (Array.isArray(item.type)) {
       return "CreativeWork"
     } else {
-      switch (item.type.toLowerCase()) {
+      switch (item.type) {
         case "text" : return "TextDigitalDocument"
         case "image" : return "ImageObject"
         case "moving image" : return "VideoObject"
@@ -71,7 +71,7 @@ const JsonLdMarkup = ({ item, url }) => {
     */
   const potentialAction = () => {
     const action = () => {
-      switch (item.type.toLowerCase()) {
+      switch (item.type) {
         case "text" : return "ReadAction";
         case "image" : return "ViewAction";
         case "moving image" : return "WatchAction";
