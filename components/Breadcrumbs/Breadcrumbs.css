@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   @media (min-width: xSmallRem) {
-    max-width: 175px;
+    max-width: 145px;
   }
   @media (min-width: smallRem) {
     max-width: 215px;
@@ -43,8 +43,9 @@
   height: 9px;
   padding: 0 0.5rem;
   position: relative;
-  top: -5px;
+  top: -1px;
   @media (min-width: smallRem) {
     padding: 0 0.75rem;
+    top: -3px;
   }
 }
