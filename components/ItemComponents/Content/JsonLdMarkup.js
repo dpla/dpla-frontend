@@ -134,12 +134,19 @@ const JsonLdMarkup = ({ item, url }) => {
   const spatial = () => {
     const all = definedAndFlattened([item.spatial])
     return all.map(x => {
+      var lat = null;
+      var lon = null;
+      const coordinates = x.coordinates;
+      if (coordinates !== undefined) {
+        lat = coordinates.split(",")[0];
+        lon = coordinates.split(",")[1].trim();
+      }
       return { "@type": "Place",
                "name": x.name,
                "geo": { "@type": "GeoCoordinates",
                         "addressCountry": x.country,
-                        "latitude": x.coordinates.split(",")[0],
-                        "longitude": x.coordinates.split(",")[1].trim() } } }) }
+                        "latitude": lat,
+                        "longitude": lon } } }) }
 
   /**
     * @return Array[Object]
