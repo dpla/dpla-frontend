@@ -38,7 +38,10 @@ const Suggestions = ({ suggestions }) =>
                     <p className={classNames.resourceType}>
                       {suggestion.type}
                     </p>
-                    <h3 dangerouslySetInnerHTML={{ __html: suggestion.title }} className={classNames.suggestionTitle} />
+                    <h3
+                      dangerouslySetInnerHTML={{ __html: suggestion.title }}
+                      className={classNames.suggestionTitle}
+                    />
                   </div>
                 </div>
               </a>
