@@ -17,6 +17,15 @@
     padding-right: 1rem;
     padding-left: 1rem;
   }
+  /* overrides for react-slick css*/
+  & :global .slick-prev:before,
+  & :global .slick-next:before {
+    content: none;
+  }
+
+  & :global .slick-disabled {
+    display: none;
+  }
 }
 
 :global .slick-list {
@@ -250,11 +259,6 @@
 .sourceCarousel :global(.slick-list) {
   padding: 0 6px;
 }
-
-.sourceCarousel :global(.slick-next), .sourceCarousel :global(.slick-prev) {
-  position: static;
-}
-
 
 .defaultImageWrapper {
   background-color: pampasBrown;
