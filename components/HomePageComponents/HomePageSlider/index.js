@@ -1,11 +1,10 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-const markdownit = require("markdown-it")({ html: true });
-
 import { stylesheet, classNames } from "./HomePageSlider.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 
+const markdownit = require("markdown-it")({ html: true });
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
 const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
 const largeChevron = "static/images/chevron-thin.svg";
