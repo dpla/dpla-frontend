@@ -13,7 +13,6 @@ const markdownit = require("markdown-it")({ html: true });
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   <div>
-
     <Slider
       slidesToShow={6}
       infinite={false}
