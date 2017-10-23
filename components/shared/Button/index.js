@@ -6,7 +6,7 @@ import { classNames, stylesheet } from "./Button.css";
 const Button = ({
   as,
   children,
-  className="",
+  className = "",
   icon,
   onClick,
   prefetch,
@@ -50,10 +50,8 @@ const Button = ({
     <div
       className={
         type === "donate" && size === "large"
-        ? `col-xs-12 col-md-4`
-        : type === "donate"
-        ? `col-xs-6 col-md-4`
-        : ""
+          ? `col-xs-12 col-md-4`
+          : type === "donate" ? `col-xs-6 col-md-4` : ""
       }
     >
       {url
@@ -62,7 +60,12 @@ const Button = ({
               {children}
             </a>
           </Link>
-        : <button type="button" onClick={onClick} className={buttonClasses} style={style}>
+        : <button
+            type="button"
+            onClick={onClick}
+            className={buttonClasses}
+            style={style}
+          >
             {children}
           </button>}
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
