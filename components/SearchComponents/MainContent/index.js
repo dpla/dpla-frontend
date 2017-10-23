@@ -11,7 +11,7 @@ const { container } = utilClassNames;
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {
-    const previous = idx - 1;
+    const previous = idx > 0 ? idx - 1 : "";
     const next = idx < results.length - 1 ? idx + 1 : null;
     return Object.assign({}, item, {
       linkHref: {

@@ -10,46 +10,6 @@ const markdownit = require("markdown-it")({ html: true });
 
 const { container } = utilClassNames;
 
-// const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
-//   const { previous, next } = paginationInfo;
-//   const { id: previousItemId } = previous;
-//   const previousIdx = parseInt(query.previous, 10);
-//   const nextIdx = parseInt(query.next, 10);
-//   const page_size = parseInt(query.page_size, 10);
-//   const page = parseInt(query.page, 10);
-//   const newPage = page > 0 && previous === -1 ? page - 1 : page;
-//
-//   const newPrevious = previous > 0
-//     ? previous - 1
-//     : newPage !== page ? page_size - 1 : "";
-//   return (
-//     <Link
-//       href={{
-//         pathname: "/item",
-//         query: {
-//           ...query,
-//           itemId: previousItemId,
-//           previous: newPrevious,
-//           next: nextIdx && nextIdx < searchItemCount - 1 ? nextIdx - 1 : "",
-//           page: newPage
-//         }
-//       }}
-//       as={{
-//         pathname: `/item/${previousItemId}`,
-//         query: {
-//           ...query,
-//           previous: previous > 0 && previous >= 0 ? previous - 1 : "",
-//           next: nextIdx && nextIdx < searchItemCount - 1 ? nextIdx - 1 : ""
-//         }
-//       }}
-//     >
-//       <a>
-//         Previous
-//       </a>
-//     </Link>
-//   );
-// };
-
 const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { previous } = paginationInfo;
   const { id: previousItemId, page: previousItemPage } = previous;
@@ -63,7 +23,8 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
           ...query,
           itemId: previousItemId,
           previous: previousIdx > 0 ? previousIdx - 1 : "",
-          next: previousIdx > 0 ? nextIdx - 1 : nextIdx
+          next: previousIdx > 0 ? nextIdx - 1 : nextIdx,
+          page: previousItemPage
         }
       }}
       as={{
@@ -71,7 +32,8 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
         query: {
           ...removeQueryParams(query, ["itemId"]),
           previous: previousIdx > 0 ? previousIdx - 1 : "",
-          next: previousIdx > 0 ? nextIdx - 1 : nextIdx
+          next: previousIdx > 0 ? nextIdx - 1 : nextIdx,
+          page: previousItemPage
         }
       }}
     >
@@ -84,7 +46,12 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
 const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { next } = paginationInfo;
   const { id: nextItemId, page: nextItemPage } = next;
-  const previousIdx = parseInt(query.previous, 10);
+  let previousIdx;
+  if (previousIdx >= 0) {
+    previousIdx = parseInt(query.previous, 10);
+  } else if (parseInt(query.next, 10) + 1 === 2) {
+    previousIdx = -1;
+  }
   const nextIdx = parseInt(query.next, 10);
   return (
     <Link
@@ -125,6 +92,7 @@ const BreadcrumbsModule = ({
   searchItemCount,
   paginationInfo
 }) =>
+  console.log(route.query.previous && route.query.previous >= 0) ||
   <div className={classNames.wrapper}>
     <div className={[container, classNames.breadcrumbsModule].join(" ")}>
       <Breadcrumbs
@@ -134,16 +102,19 @@ const BreadcrumbsModule = ({
           })
         )}
       />
-      <PreviousItemLink
-        query={route.query}
-        searchItemCount={searchItemCount}
-        paginationInfo={paginationInfo}
-      />
-      <NextItemLink
-        query={route.query}
-        searchItemCount={searchItemCount}
-        paginationInfo={paginationInfo}
-      />
+      {route.query.previous &&
+        route.query.previous >= 0 &&
+        <PreviousItemLink
+          query={route.query}
+          searchItemCount={searchItemCount}
+          paginationInfo={paginationInfo}
+        />}
+      {route.query.next < searchItemCount &&
+        <NextItemLink
+          query={route.query}
+          searchItemCount={searchItemCount}
+          paginationInfo={paginationInfo}
+        />}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
