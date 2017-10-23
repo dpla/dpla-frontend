@@ -63,6 +63,12 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    // partner browse routes
+
+    server.get("/browse-by-partner", (req, res) => {
+      app.render(req, res, "/browse-by-partner", req.query);
+    });
+
     // primary source sets routes
 
     server.get("/primary-source-sets", (req, res) => {
@@ -176,9 +182,21 @@ app
       );
     });
 
+    // donate routes
+
+    server.get(["/donate", "/donate/"], (req, res) => {
+      app.render(req, res, "/donate", req.query);
+    });
+
+    // contact us routes
+
+    server.get(["/contact-us", "/contact-us/"], (req, res) => {
+      app.render(req, res, "/contact-us", req.query);
+    });
+
     // search routes
 
-    server.get("/search", (req, res) => {
+    server.get(["/search", "/search/"], (req, res) => {
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
       if (req.query["type"] && req.query["type"] === "all") {
