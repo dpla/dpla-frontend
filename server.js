@@ -37,11 +37,6 @@ app
 
     // browse by topic routes
 
-    server.get("/browse-by-topic/:topic", (req, res) => {
-      const actualPage = "/browse-by-topic/topic";
-      const params = { topic: req.params.topic };
-      renderAndCache(req, res, actualPage, params);
-    });
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
       const actualPage = "/browse-by-topic/topic/subtopic";
       const params = {
@@ -50,6 +45,17 @@ app
       };
 
       renderAndCache(req, res, actualPage, params);
+    });
+
+    server.get("/browse-by-topic/:topic", (req, res) => {
+      const actualPage = "/browse-by-topic/topic";
+      const params = { topic: req.params.topic };
+      renderAndCache(req, res, actualPage, params);
+    });
+
+    server.get("/browse-by-topic", (req, res) => {
+      const actualPage = "/browse-by-topic";
+      renderAndCache(req, res, actualPage, req.query);
     });
 
     // primary source sets routes

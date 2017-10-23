@@ -35,13 +35,14 @@ const ItemDetail = ({ url, item, currentFullUrl }) =>
       route={url}
     />
     <div className={`${utilClassNames.container} ${classNames.contentWrapper}`}>
-      <Content item={item} />
+      <Content item={item} url={url} />
       <div className={classNames.faveAndCiteButtons}>
         <FaveAndCiteButtons toCite="item" />
         <ShareButton
           className={classNames.shareButton}
           currentFullUrl={currentFullUrl}
           toShareText="item"
+          title={item.title}
         />
       </div>
     </div>
