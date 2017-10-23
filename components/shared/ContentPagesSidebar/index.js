@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Sidebar.css";
 import { decodeHTMLEntities } from "utilFunctions";
+import HeadingRule from "components/shared/HeadingRule";
 
 const SidebarLink = ({ isCurrentLink, title, section, subsection }) => {
   return (
@@ -61,6 +62,12 @@ const Sidebar = ({ activeItemId, items, route }) =>
                 isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
               />;
         })}
+        <div className={classNames.divider} />
+        <SidebarLink
+          title="Contact Us"
+          section="contact-us"
+          isCurrentLink={activeItemId === "contact-us"}
+        />
       </ul>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

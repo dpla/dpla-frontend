@@ -55,10 +55,10 @@
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
   width: 100%;
-  margin: .75rem 0;
+  margin: 1rem 0;
 
   @media (min-width: mediumRem) {
-    margin: 1rem 0;
+    margin: 1.25rem 0;
   }
 }
 
