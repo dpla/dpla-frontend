@@ -8,6 +8,11 @@ import {
 } from "css/pages/donate.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
+import {
+  PAYPAL_DONATE_SINGLE,
+  PAYPAL_DONATE_MONTHLY
+} from "constants/site.js";
+
 const frequencyMap = [
   { v: "once", k: "Give Once" },
   { v: "monthly", k: "Monthly" }
@@ -42,6 +47,16 @@ class DonateForm extends React.Component {
     amount: amountMap[0].v,
     amountText: ""
   };
+
+  buildDonationAndSend() {
+    // encode the period
+    const amountStr = this.state.amount.toString().replace(".", "%2e");
+    let url = this.state.frequency === "monthly"
+    ? PAYPAL_DONATE_MONTHLY
+    : PAYPAL_DONATE_SINGLE;
+    url = url.replace("{amount}", amountStr);
+    document.location = url;
+  }
 
   handleFrequencyClick(freq) {
     this.setState({
@@ -126,6 +141,7 @@ class DonateForm extends React.Component {
               <Button
                 type="primary"
                 className={`${contentClasses.donateButton}`}
+                onClick={() => this.buildDonationAndSend()}
               >
                 Donate
               </Button>
