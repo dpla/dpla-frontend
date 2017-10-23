@@ -3,39 +3,54 @@
 
 .donateBackground {
   background-color: visualBrown;
-  background-image: url("static/images/home-hero-bg.png");
+  background-image: url("static/images/collage_light.jpg");
+  background-size: cover;
   background-blend-mode: multiply;
   padding-top: 1rem;
   padding-bottom: 4rem;
+
+  @media (max-width: smallRem) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .donateContent {
   background-color: visualBrown;
-  margin-bottom: 4rem;
-  margin-top: 1rem;
+  margin: 1rem 0 4rem;
   box-shadow: 0 1rem 2rem gray;
+
+  @media (max-width: smallRem) {
+    box-shadow: none;
+    margin: 0 -1rem;
+  }
 }
 
 .byPaypal, .byMail {
+  padding: 2.5rem 2rem;
+
+  @media (max-width: smallRem) {
+    padding: 2.1rem 1rem;
+  }
+
   & h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: .5rem;
   }
 
   & h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: normal;
   }
 
   & hr {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     margin-top: 1rem;
   }
 }
 
 .byPaypal {
   background-color: white;
-  padding: 2.1rem 2rem;
   margin: 0 -.5rem;
 }
 
@@ -48,7 +63,6 @@
 }
 
 .byMail {
-  padding: 2.1rem 2rem;
 }
 
 .donateButton {
@@ -64,8 +78,22 @@
   color: white;
   padding: 1.6rem 1.5rem;
 
+  & h2 {
+    font-family: "Lora";
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+
   & p {
     font-size: 1rem;
+    opacity: .85;
+    margin-bottom: 0;
+  }
+
+  & blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    opacity: .85;
   }
 }
 
@@ -77,6 +105,7 @@
     font-size: .9rem;
     display: block;
     margin-top: .9rem;
+    opacity: .85;
   }
 
   & img {
