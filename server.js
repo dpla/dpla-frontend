@@ -35,6 +35,11 @@ app
   .then(() => {
     const server = express();
 
+    server.get("/donate", (req, res) => {
+      const actualPage = "/donate";
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     // browse by topic routes
 
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
