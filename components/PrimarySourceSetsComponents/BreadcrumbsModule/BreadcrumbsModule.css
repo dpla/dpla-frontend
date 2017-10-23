@@ -1,19 +1,27 @@
 @value pampasBrown from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;
-  height: 44px;
   background-color: pampasBrown;
+  padding: 0.5rem 0;
   box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+  @media (min-width: smallRem) {
+    padding: 0.75rem 0;
+  }
 }
 
 .breadcrumbsModule {
   height: 100%;
-  padding-top: 0; 
+  padding-top: 0;
   padding-bottom: 0;
   font-size: 1rem;
-  line-height: 1.25rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: baseline;
+  @media (min-width: smallRem) {
+    align-items: center;
+    flex-direction: row;
+  }
 }

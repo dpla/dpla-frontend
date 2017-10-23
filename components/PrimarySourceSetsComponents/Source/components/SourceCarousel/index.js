@@ -1,13 +1,14 @@
 import React from "react";
 import Link from "next/link";
-const markdownit = require("markdown-it")({ html: true });
 
 import CarouselSlider from "./CarouselSlider";
 import extractSourceId from "/utilFunctions/extractSourceId";
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 import { classNames, stylesheet } from "./SourceCarousel.css";
 import { classNames as utilClassNames } from "css/utils.css";
+
 const { container } = utilClassNames;
+const markdownit = require("markdown-it")({ html: true });
 
 const NavChevron = ({ type }) =>
   <svg
@@ -24,9 +25,9 @@ const NavChevron = ({ type }) =>
     <g
       id="Styles"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     >
       <g id="Artboard" transform="translate(-183.000000, -205.000000)">
         <path

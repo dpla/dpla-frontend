@@ -13,10 +13,27 @@
 .sourceCarousel {
   padding-right: 0;
   padding-left: 0;
+  /* overrides for react-slick css*/
+  & :global .slick-prev:before,
+  & :global .slick-next:before {
+    content: none;
+  }
+  & :global .slick-disabled,
+  & :global .slick-next,
+  & :global .slick-prev {
+    display: none;
+  }
   @media (min-width: smallRem) {
     padding-right: 1rem;
     padding-left: 1rem;
+    & :global .slick-next,
+    & :global .slick-prev {
+      display: block;
+    }
   }
+
+
+
 }
 
 :global .slick-list {
@@ -183,6 +200,7 @@
   color: black;
   background-color: #E3E0DA;
   @media (min-width: smallRem) {
+    margin-right: 1rem;
     color: bambooOrange;
     background-color: transparent;
   }
@@ -250,11 +268,6 @@
   padding: 0 6px;
 }
 
-.sourceCarousel :global(.slick-next), .sourceCarousel :global(.slick-prev) {
-  position: static;
-}
-
-
 .defaultImageWrapper {
   background-color: pampasBrown;
   display: flex;
@@ -266,4 +279,9 @@
     min-width: auto;
     min-height: auto;
   }
+}
+
+
+.carouselNavArrow {
+  display: none;
 }

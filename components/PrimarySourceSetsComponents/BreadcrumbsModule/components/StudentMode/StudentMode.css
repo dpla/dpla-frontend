@@ -9,8 +9,12 @@
     increase hitbox of button so that tooltip
     doesn't disappear before you can hover over it, then recenter it
   */
-  padding-bottom: 22px;
-  margin-top: 20px;
+  padding: 0 0 22px;
+  align-self: flex-end;
+  @media (min-width: smallRem) {
+    margin-top: 20px;
+    align-self: center;
+  }
 }
 
 .studentModeText {
@@ -41,6 +45,7 @@
   left: -125px;
   top: 45px;
   border-radius: 2px;
+  z-index: 1;
 }
 
 .tooltip::before {
