@@ -110,5 +110,9 @@ export const rightsURLs = {
   "https://creativecommons.org/publicdomain/zero/1.0/": {
     description: "",
     image: ""
+  },
+  "https://creativecommons.org/licenses/by-nc-sa/3.0/us/": {
+    description: "",
+    image: ""
   }
 };
