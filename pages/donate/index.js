@@ -49,6 +49,7 @@ const Donate = ({ url }) =>
               <span>Adena, a high school school teacher in West Virginia</span>
             </div>
             <div className={classNames.content}>
+              <h2>How will DPLA use your donation?</h2>
               <p>
                 Your donation will directly support the development and
                 expansion of America's largest digital library for people like

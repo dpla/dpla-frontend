@@ -4,6 +4,7 @@
 .donateBackground {
   background-color: visualBrown;
   background-image: url("static/images/collage_light.jpg");
+  background-size: cover;
   background-blend-mode: multiply;
   padding-top: 1rem;
   padding-bottom: 4rem;
@@ -77,8 +78,21 @@
   color: white;
   padding: 1.6rem 1.5rem;
 
+  & h2 {
+    font-family: "Lora";
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+
   & p {
     font-size: 1rem;
+    opacity: .85;
+  }
+
+  & blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    opacity: .85;
   }
 }
 
@@ -90,6 +104,7 @@
     font-size: .9rem;
     display: block;
     margin-top: .9rem;
+    opacity: .85;
   }
 
   & img {
