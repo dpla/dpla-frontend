@@ -11,8 +11,7 @@
 
 .donateContent {
   background-color: visualBrown;
-  margin-bottom: 4rem;
-  margin-top: 1rem;
+  margin: 1rem 0 4rem;
   box-shadow: 0 1rem 2rem gray;
 }
 
