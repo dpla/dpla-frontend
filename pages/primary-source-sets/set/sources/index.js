@@ -54,8 +54,8 @@ Source.getInitialProps = async ({ query }) => {
   const sourceRes = await fetch(
     `https://dp.la/primary-source-sets/sources/${query.source}.json`
   );
-  const sourceJson = await sourceRes.json();
-
+  const sourceJson = await sourceRes.text();
+  const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
   const setRes = await fetch(
     `https://dp.la/primary-source-sets/sets/${query.set}.json`
   );
@@ -75,13 +75,13 @@ Source.getInitialProps = async ({ query }) => {
     return Object.assign({}, part, { thumbnailUrl, useDefaultImage });
   });
 
-  const sourceId = sourceJson["@id"];
+  const sourceId = sanitizedSourceJson["@id"];
   const currentSourceIdx = setJson.hasPart
     .slice(1)
     .findIndex(source => source["@id"] === sourceId);
 
   return {
-    source: sourceJson,
+    source: sanitizedSourceJson,
     set: Object.assign({}, setJson, { hasPart: parts }),
     currentSourceIdx
   };

@@ -4,9 +4,6 @@
 .wrapper {
   background-color: pampasBrown;
   padding: 1.5rem 0;
-  @media (min-width: smallRem) {
-    /*margin-top: 2rem;*/
-  }
 }
 
 .otherInfo {
@@ -21,9 +18,10 @@
 }
 
 .p {
-  max-width: 450px;
   font-size: 0.875rem;
-  line-height: 1rem;
+  @media (min-width: smallRem) {
+    max-width: 450px;
+  }
 }
 
 .p:first-child {
