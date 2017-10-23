@@ -8,6 +8,10 @@
 .contentWrapper {
   flex: 5;
   margin-right: 20px;
+  width: 100%;
+  @media (min-width: smallRem) {
+    width: auto;
+  }
 }
 
 .flexWrapper {
@@ -23,7 +27,9 @@
   font-size: 1.625rem;
   font-weight: 600;
   margin-bottom: 26px;
-  max-width: 70%;
+  @media (min-width: smallRem) {
+    max-width: 70%;
+  }
 }
 
 .content {

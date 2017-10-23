@@ -46,6 +46,11 @@
   width: 100%;
   margin-bottom: 1rem;
 
+  &.buttonLarge {
+    font-size: 1rem;
+    padding: .75rem 2rem;
+  }
+
   &.active {
     background-color: cascadeBlue;
     color: iceBlue;
