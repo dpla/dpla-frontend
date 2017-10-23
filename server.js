@@ -58,6 +58,12 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    // partner browse routes
+
+    server.get("/browse-by-partner", (req, res) => {
+      app.render(req, res, "/browse-by-partner", req.query);
+    });
+
     // primary source sets routes
 
     server.get("/primary-source-sets", (req, res) => {
@@ -169,6 +175,18 @@ app
         actualPage,
         mergeQueryAndParams(params, req.query)
       );
+    });
+
+    // donate routes
+
+    server.get("/donate", (req, res) => {
+      app.render(req, res, "/donate", req.query);
+    });
+
+    // contact us routes
+
+    server.get("/contact-us", (req, res) => {
+      app.render(req, res, "/contact-us", req.query);
     });
 
     // search routes
