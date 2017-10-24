@@ -85,7 +85,8 @@ Topic.getInitialProps = async ({ query, req }) => {
           type: "Exhibition"
         };
       } else if (item.related_content_type === "Primary Source Set") {
-        const sourceSetRes = await fetch(`${item.primary_source_set_id}.json`);
+        const setId = item.primary_source_set_id.replace(" ", "");
+        const sourceSetRes = await fetch(`${setId}.json`);
         const sourceSetJson = await sourceSetRes.json();
         const slug = extractSourceSetSlug(sourceSetJson["@id"]);
         return {
