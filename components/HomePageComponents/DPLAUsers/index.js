@@ -24,8 +24,8 @@ const DPLAUsers = ({ guides }) =>
         <p>
           If you’re new to DPLA, these research guides will give you a head
           start using our site. The guides reflect a few key activities that
-          attract visitors to DPLA, but there are many other interests we
-          support too.
+          attract visitors to DPLA, but you can explore many other interests
+          here too.
         </p>
         <Button
           type="secondary"
