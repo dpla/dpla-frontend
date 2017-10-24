@@ -22,7 +22,16 @@ const DonateThankYou = ({ url }) =>
                 Thank you for your donation
               </h1>
               <p>
-                From all of us at the DPLA, thank you! Your support makes our work possible. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at <a href="//www.paypal.com/us">www.paypal.com/us</a> to view details of this transaction. For those receiving a donation gift, please note that it may take 1-2 weeks to reach your designated shipping address. If you encounter any issues along the way, please don’t hesitate to <a href="/contact-us">contact us</a>.
+                From all of us at the DPLA, thank you! Your support makes our
+                work possible. Your transaction has been completed, and a
+                receipt for your purchase has been emailed to you. You may log
+                into your account at{" "}
+                <a href="//www.paypal.com/us">www.paypal.com/us</a> to view
+                details of this transaction. For those receiving a donation
+                gift, please note that it may take 1-2 weeks to reach your
+                designated shipping address. If you encounter any issues along
+                the way, please don’t hesitate to{" "}
+                <a href="/contact-us">contact us</a>.
               </p>
             </div>
           </div>
