@@ -1,6 +1,7 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
-import { CONTENT_PAGE_NAMES, GUIDES_ENDPOINT } from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
@@ -8,7 +9,7 @@ import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Contact = ({ url, guides }) =>
+const Contact = ({ url, sidebarItems }) =>
   <MainLayout
     route={url}
     headLinks={
@@ -26,8 +27,8 @@ const Contact = ({ url, guides }) =>
         <div className="row">
           <ContentPagesSidebar
             route={url}
-            page={CONTENT_PAGE_NAMES.CONTACT}
-            guides={guides}
+            activeItemId="contact-us"
+            items={sidebarItems}
           />
           <div className="col-xs-12 col-md-8">
             <ContactForm />
@@ -40,15 +41,10 @@ const Contact = ({ url, guides }) =>
   </MainLayout>;
 
 Contact.getInitialProps = async () => {
-  const guidesRes = await fetch(GUIDES_ENDPOINT);
-  const guidesJson = await guidesRes.json();
-  const guides = guidesJson.map(guide =>
-    Object.assign({}, guide, {
-      displayTitle: guide.acf.display_title
-    })
-  );
+  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
+  const aboutMenuJson = await aboutMenuRes.json();
 
-  return { guides };
+  return { sidebarItems: aboutMenuJson.items };
 };
 
 export default Contact;

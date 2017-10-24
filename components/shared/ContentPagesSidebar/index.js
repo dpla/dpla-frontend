@@ -3,17 +3,32 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Sidebar.css";
 import { decodeHTMLEntities } from "utilFunctions";
+import HeadingRule from "components/shared/HeadingRule";
 
-const SidebarLink = ({ isCurrentLink, title, section, subsection }) => {
+const SidebarLink = ({
+  isCurrentLink,
+  linkObject,
+  title,
+  section,
+  subsection
+}) => {
   return (
     <li
       className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
     >
       <Link
-        as={`/${section}/${subsection ? subsection : ""}`}
-        href={`/about?section=${section}${subsection
-          ? `&subsection=${subsection}`
-          : ""}`}
+        as={
+          linkObject && linkObject.as
+            ? linkObject.as
+            : `/${section}/${subsection ? subsection : ""}`
+        }
+        href={
+          linkObject && linkObject.href
+            ? linkObject.href
+            : `/about?section=${section}${subsection
+                ? `&subsection=${subsection}`
+                : ""}`
+        }
       >
         <a>
           {title}
@@ -61,6 +76,16 @@ const Sidebar = ({ activeItemId, items, route }) =>
                 isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
               />;
         })}
+        <div className={classNames.divider} />
+        <SidebarLink
+          title="Contact Us"
+          section="contact-us"
+          isCurrentLink={activeItemId === "contact-us"}
+          linkObject={{
+            as: "/contact-us",
+            href: "/contact-us"
+          }}
+        />
       </ul>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
