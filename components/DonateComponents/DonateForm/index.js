@@ -8,6 +8,8 @@ import {
 } from "css/pages/donate.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
+import { getCurrentFullUrl } from "utilFunctions";
+
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 const frequencyMap = [
@@ -52,6 +54,11 @@ class DonateForm extends React.Component {
       ? PAYPAL_DONATE_MONTHLY
       : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
+    let returnUrl = getCurrentFullUrl();
+    returnUrl = returnUrl.endsWith("/")
+      ? returnUrl + "thank-you"
+      : returnUrl + "/thank-you";
+    url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
     document.location = url;
   }
 
