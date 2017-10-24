@@ -1,4 +1,4 @@
-@value pampasBrown from "../../../css/colors.css";
+@value pampasBrown, bambooOrange from "../../../css/colors.css";
 
 .wrapper {
   width: 100%;
@@ -13,6 +13,38 @@
   padding-bottom: 0;
   font-size: 1rem;
   line-height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.previousItemButton,
+.nextItemButton {
+  color: bambooOrange;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.previousChevron,
+.nextChevron {
+  height: 9px;
+  width: 5px;
+}
+
+.previousChevron {
+  transform: rotate(180deg);
+  margin-right: 0.5rem;
+}
+
+.nextChevron {
+  margin-left: 0.5rem;
+}
+
+.previousItemButton {
+  margin-right: 2rem;
+}
+
+.navButtonsWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;

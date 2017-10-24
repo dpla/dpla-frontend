@@ -9,6 +9,7 @@ import { removeQueryParams } from "utilFunctions";
 const markdownit = require("markdown-it")({ html: true });
 
 const { container } = utilClassNames;
+const chevron = "/static/images/chevron-thick-orange.svg";
 
 const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { previous } = paginationInfo;
@@ -40,8 +41,9 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
         }
       }}
     >
-      <a>
-        Previous
+      <a className={classNames.previousItemButton}>
+        <img src={chevron} alt="" className={classNames.previousChevron} />
+        <span>Previous</span>
       </a>
     </Link>
   );
@@ -76,8 +78,9 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
         }
       }}
     >
-      <a>
-        Next
+      <a className={classNames.nextItemButton}>
+        <span>Next</span>
+        <img src={chevron} alt="" className={classNames.nextChevron} />
       </a>
     </Link>
   );
@@ -98,20 +101,23 @@ const BreadcrumbsModule = ({
           })
         )}
       />
-      {route.query.previous &&
-        route.query.previous >= 0 &&
-        <PreviousItemLink
-          query={route.query}
-          searchItemCount={searchItemCount}
-          paginationInfo={paginationInfo}
-        />}
-      {route.query.next &&
-        route.query.next < searchItemCount &&
-        <NextItemLink
-          query={route.query}
-          searchItemCount={searchItemCount}
-          paginationInfo={paginationInfo}
-        />}
+      {(route.query.previous >= 0 || route.query.next) &&
+      <div className={classNames.navButtonsWrapper}>
+        { route.query.previous &&
+          route.query.previous >= 0 &&
+          <PreviousItemLink
+            query={route.query}
+            searchItemCount={searchItemCount}
+            paginationInfo={paginationInfo}
+          />}
+          {route.query.next &&
+            route.query.next < searchItemCount &&
+            <NextItemLink
+              query={route.query}
+              searchItemCount={searchItemCount}
+              paginationInfo={paginationInfo}
+            />}
+      </div>}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
