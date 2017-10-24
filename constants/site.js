@@ -3,8 +3,8 @@ export const INSTAGRAM_LINK_TITLE = "Visit DPLA on Instagram";
 export const TWITTER_URL = "https://twitter.com/dpla";
 export const TWITTER_LINK_TITLE = "Visit DPLA on Instagram";
 
-export const PAYPAL_DONATE_SINGLE = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40dp%2ela&item_name=One%20time%20donation%20to%20DPLA&amount={amount}&currency_code=USD&no_note=1";
-export const PAYPAL_DONATE_MONTHLY = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&business=info%40dp%2ela&item_name=Monthly%20donation%20to%20DPLA&a3={amount}&currency_code=USD&no_note=1&t3=M&p3=1&src=1&no_shipping=1";
+export const PAYPAL_DONATE_SINGLE = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40dp%2ela&item_name=One%20time%20donation%20to%20DPLA&amount={amount}&currency_code=USD&no_note=1&return=https%3A%2F%2Fdp.la%2Fdonate%2Fthank-you";
+export const PAYPAL_DONATE_MONTHLY = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&business=info%40dp%2ela&item_name=Monthly%20donation%20to%20DPLA&a3={amount}&currency_code=USD&no_note=1&t3=M&p3=1&src=1&no_shipping=1&return=https%3A%2F%2Fdp.la%2Fdonate%2Fthank-you";
 
 export const GOOGLE_CLASSROOMS_SHARE_URL =
   "https://classroom.google.com/u/0/share";
