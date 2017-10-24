@@ -14,7 +14,10 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { previous } = paginationInfo;
   const { id: previousItemId, page: previousItemPage } = previous;
   const previousIdx = parseInt(query.previous, 10);
-  const nextIdx = parseInt(query.next, 10);
+  let nextIdx = parseInt(query.next, 10);
+  if (!nextIdx >= 0 && previousIdx <= searchItemCount - 2) {
+    nextIdx = previousIdx + 2;
+  }
   return (
     <Link
       href={{
@@ -23,7 +26,7 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
           ...query,
           itemId: previousItemId,
           previous: previousIdx > 0 ? previousIdx - 1 : "",
-          next: previousIdx > 0 ? nextIdx - 1 : nextIdx,
+          next: previousIdx >= 0 ? nextIdx - 1 : nextIdx,
           page: previousItemPage
         }
       }}
@@ -32,7 +35,7 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
         query: {
           ...removeQueryParams(query, ["itemId"]),
           previous: previousIdx > 0 ? previousIdx - 1 : "",
-          next: previousIdx > 0 ? nextIdx - 1 : nextIdx,
+          next: previousIdx >= 0 ? nextIdx - 1 : nextIdx,
           page: previousItemPage
         }
       }}
@@ -46,10 +49,8 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
 const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { next } = paginationInfo;
   const { id: nextItemId, page: nextItemPage } = next;
-  let previousIdx;
-  if (previousIdx >= 0) {
-    previousIdx = parseInt(query.previous, 10);
-  } else if (parseInt(query.next, 10) + 1 === 2) {
+  let previousIdx = parseInt(query.previous, 10);
+  if (parseInt(query.next, 10) + 1 === 2) {
     previousIdx = -1;
   }
   const nextIdx = parseInt(query.next, 10);
@@ -60,9 +61,7 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
         query: {
           ...query,
           itemId: nextItemId,
-          previous: nextIdx < searchItemCount - 1
-            ? previousIdx + 1
-            : previousIdx,
+          previous: nextIdx < searchItemCount ? previousIdx + 1 : previousIdx,
           next: nextIdx < searchItemCount - 1 ? nextIdx + 1 : "",
           page: nextItemPage
         }
@@ -71,9 +70,7 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
         pathname: `/item/${nextItemId}`,
         query: {
           ...removeQueryParams(query, ["itemId"]),
-          previous: nextIdx < searchItemCount - 1
-            ? previousIdx + 1
-            : previousIdx,
+          previous: nextIdx < searchItemCount ? previousIdx + 1 : previousIdx,
           next: nextIdx < searchItemCount - 1 ? nextIdx + 1 : "",
           page: nextItemPage
         }
@@ -92,7 +89,6 @@ const BreadcrumbsModule = ({
   searchItemCount,
   paginationInfo
 }) =>
-  console.log(route.query.previous && route.query.previous >= 0) ||
   <div className={classNames.wrapper}>
     <div className={[container, classNames.breadcrumbsModule].join(" ")}>
       <Breadcrumbs
@@ -109,7 +105,8 @@ const BreadcrumbsModule = ({
           searchItemCount={searchItemCount}
           paginationInfo={paginationInfo}
         />}
-      {route.query.next < searchItemCount &&
+      {route.query.next &&
+        route.query.next < searchItemCount &&
         <NextItemLink
           query={route.query}
           searchItemCount={searchItemCount}

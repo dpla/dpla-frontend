@@ -8,6 +8,7 @@ import Sidebar from "./Sidebar";
 import extractItemId from "utilFunctions/extractItemId";
 import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
+import { removeQueryParams } from "utilFunctions";
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {
@@ -20,7 +21,10 @@ const addLinkInfoToResults = (results, query) =>
       },
       linkAs: {
         pathname: `/item/${extractItemId(item["@id"])}`,
-        query: Object.assign({}, query, { next, previous })
+        query: Object.assign({}, removeQueryParams(query, ["itemId"]), {
+          next,
+          previous
+        })
       }
     });
   });

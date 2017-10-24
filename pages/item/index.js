@@ -41,7 +41,7 @@ const ItemDetail = ({
           title: url.query.q ? `Search for “${url.query.q}”` : "Search",
           url: {
             pathname: "/search/",
-            query: removeQueryParams(url.query, ["itemId"])
+            query: removeQueryParams(url.query, ["itemId, next, previous"])
           }
         },
         { title: joinIfArray(item.title), search: "" }
@@ -82,15 +82,19 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
         return lang.name;
       })
     : doc.sourceResource.language;
+
+  // set up search API calls for previous/next items in the current search.
+  // a lot of this is copied from `/search`'s getInitialProps, so could be
+  // refactored
   const page_size = parseInt(query.page_size, 10) || DEFAULT_PAGE_SIZE;
   const page = parseInt(query.page, 10) || 1;
   const q = query.q;
-
   let previousItemPage = page;
   let nextItemPage = page;
   let previousItemId;
   let nextItemId;
   let searchItemCount;
+
   if (query.next || query.previous) {
     let sort_by = "";
     if (query.sort_by === "title") {
@@ -113,7 +117,7 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
       .join("&");
 
     let currentPage = page;
-    if (query.previous % page_size === 0) {
+    if (query.previous > 0 && query.previous % page_size === 0) {
       currentPage = page + 1;
     }
 
@@ -125,7 +129,7 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
     const searchJson = await searchRes.json();
     searchItemCount = searchJson.count;
 
-    const nextIdx = query.next % page_size;
+    const nextItemIdx = query.next && query.next % page_size;
     if (
       query.next > page * page_size - 1 &&
       searchItemCount > page * page_size
@@ -137,13 +141,13 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
         )}&${facetQueries}`
       );
       const nextPageJson = await nextPageRes.json();
-      nextItemId = nextPageJson.docs[nextIdx].id;
+      nextItemId = nextPageJson.docs[nextItemIdx].id;
     } else {
-      nextItemId = query.next ? searchJson.docs[nextIdx].id : "";
+      nextItemId = query.next ? searchJson.docs[nextItemIdx].id : "";
     }
 
-    const previousIdx = query.previous % page_size;
-    if (query.previous < page * page_size - 1 && page - 1 > 0) {
+    const previousItemIdx = query.previous % page_size;
+    if (query.previous < (page - 1) * page_size && page - 1 > 0) {
       previousItemPage = page - 1;
       const previousPageRes = await fetch(
         `${currentUrl}${API_ENDPOINT}?q=${q}&page=${previousItemPage}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
@@ -151,9 +155,11 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
         )}&${facetQueries}`
       );
       const previousPageJson = await previousPageRes.json();
-      previousItemId = previousPageJson.docs[previousIdx].id;
+      previousItemId = previousPageJson.docs[previousItemIdx].id;
     } else {
-      previousItemId = query.previous ? searchJson.docs[previousIdx].id : "";
+      previousItemId = query.previous >= 0
+        ? searchJson.docs[previousItemIdx].id
+        : "";
     }
   }
 
