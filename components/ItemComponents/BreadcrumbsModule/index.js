@@ -16,6 +16,7 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
   const { id: previousItemId, page: previousItemPage } = previous;
   const previousIdx = parseInt(query.previous, 10);
   let nextIdx = parseInt(query.next, 10);
+  // sets next to the last item in the search results, based on the previous item
   if (!nextIdx >= 0 && previousIdx <= searchItemCount - 2) {
     nextIdx = previousIdx + 2;
   }

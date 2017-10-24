@@ -117,10 +117,13 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
       .join("&");
 
     let currentPage = page;
+    // in this case, the previous item is the last item on the current page,
+    // so we increment the page number
     if (query.previous > 0 && query.previous % page_size === 0) {
       currentPage = page + 1;
     }
 
+    // make a request for the current page of search results
     const searchRes = await fetch(
       `${currentUrl}${API_ENDPOINT}?q=${q}&page=${currentPage}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
         ","
@@ -130,6 +133,8 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
     searchItemCount = searchJson.count;
 
     const nextItemIdx = query.next && query.next % page_size;
+    // make a request for the next page of search results if next item is
+    // not on the current page
     if (
       query.next > page * page_size - 1 &&
       searchItemCount > page * page_size
@@ -147,6 +152,8 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
     }
 
     const previousItemIdx = query.previous % page_size;
+    // make a request for the previous page of search results if previous item is
+    // not on the current page
     if (query.previous < (page - 1) * page_size && page - 1 > 0) {
       previousItemPage = page - 1;
       const previousPageRes = await fetch(
