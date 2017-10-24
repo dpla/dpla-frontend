@@ -40,6 +40,11 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    server.get("/donate/thank-you", (req, res) => {
+      const actualPage = "/donate/thank-you";
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     // browse by topic routes
 
     server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
