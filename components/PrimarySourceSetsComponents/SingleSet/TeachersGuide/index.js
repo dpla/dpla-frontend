@@ -16,7 +16,7 @@ const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
 
-const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
+const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.teachingGuide} ${container}`}>
       <div className="row">
@@ -49,7 +49,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
             <div className={classNames.aboutThis}>
               <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
               <div>
-                This teaching guide helps instructors use a specific primary source
+                This teaching guide helps instructors use a specific primary
+                source
                 set,{" "}
                 <Link
                   prefetch
@@ -66,10 +67,12 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
                       }}
                     />
                   </a>
-                </Link>, in the classroom. It offers discussion questions, classroom
+                </Link>, in the classroom. It offers discussion questions,
+                classroom
                 activities, and primary source analysis tools. It is intended to
                 spark pedagogical creativity by giving a sample approach to the
-                material. Please feel free to share, reuse, and adapt the resources
+                material. Please feel free to share, reuse, and adapt the
+                resources
                 in this guide for your teaching purposes.
               </div>
             </div>
@@ -77,12 +80,13 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
         </div>
         <div className={`col-xs-12 col-md-4 ${classNames.sidebar}`}>
           <div
-            className={[classNames.teacherTools, classNames.sidebarSection].join(
-              " "
-            )}
+            className={[
+              classNames.teacherTools,
+              classNames.sidebarSection
+            ].join(" ")}
           >
             <h3 className={classNames.sidebarHeader}>Created By</h3>
-            {teachingGuide.author.map(author => (
+            {teachingGuide.author.map(author =>
               <div
                 className={classNames.sidebarSection}
                 dangerouslySetInnerHTML={{
@@ -91,10 +95,14 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
                   )
                 }}
               />
-            ))}
+            )}
             <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
             <div className={classNames.toolLinkAndIcon}>
-              <img src={googleClassroom} alt="" className={classNames.toolIcon} />
+              <img
+                src={googleClassroom}
+                alt=""
+                className={classNames.toolIcon}
+              />
               <a
                 href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
                   ? currentPath
@@ -133,12 +141,15 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
               </Link>
             </div>
             <p className={classNames.studentViewNote}>
-              <span className={classNames.semibold}>Student View</span> is a link
+              <span className={classNames.semibold}>Student View</span> is a
+              link
               to this Primary Source Set with the Teaching Guide hidden.
             </p>
           </div>
           <div className={classNames.sidebarSection}>
-            <h3 className={classNames.sidebarHeader}>Primary source analysis</h3>
+            <h3 className={classNames.sidebarHeader}>
+              Primary source analysis
+            </h3>
             <p>For each source, ask students to indicate:</p>
             <ul className={classNames.ul}>
               <li>the author's point of view</li>
@@ -153,7 +164,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
               </li>
               <li>explain the relationships between sources</li>
               <li>
-                compare and contrast sources in terms of point of view and method
+                compare and contrast sources in terms of point of view and
+                method
               </li>
               <li>support conclusions and interpretations with evidence</li>
               <li>identify questions for further investigation</li>
@@ -189,7 +201,6 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) => (
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
-  </div>
-);
+  </div>;
 
 export default TeachersGuide;

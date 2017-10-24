@@ -47,7 +47,7 @@ class ResourcesTabs extends React.Component {
                 Resources
               </a>
             </Link>
-            {!route.query.studentMode && (
+            {!route.query.studentMode &&
               <Link
                 prefetch
                 href={`/primary-source-sets/set/teaching-guide?set=${route.query
@@ -62,8 +62,7 @@ class ResourcesTabs extends React.Component {
                 >
                   Teaching Guide
                 </a>
-              </Link>
-            )}
+              </Link>}
           </div>
         </div>
         {this.props.children}
