@@ -119,25 +119,23 @@
 .sourceLink {
   color: curiousBlue;
   font-weight: 600;
+  display: flex;
 }
 
 .linkText {
-  border-bottom: 1px solid curiousBlue;
+  text-decoration: underline;
 }
 
 .linkIcon {
   opacity: 0.5;
   width: 20px;
   margin-right: 13px;
-  position: relative;
-  top: 6px;
 }
+
 .externalIcon {
   opacity: 0.4;
   width: 18px;
   margin-right: 13px;
-  position: relative;
-  top: 6px;
 }
 
 .tipsForStudents {
