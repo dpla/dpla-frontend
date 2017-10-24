@@ -105,6 +105,7 @@ Search.getInitialProps = async ({ query, req }) => {
       useDefaultImage: !result.object
     });
   });
+
   return { results: Object.assign({}, json, { docs }), numberOfActiveFacets };
 };
 export default Search;
