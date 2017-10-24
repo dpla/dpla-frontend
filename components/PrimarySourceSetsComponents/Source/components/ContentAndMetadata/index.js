@@ -149,7 +149,7 @@ const ContentAndMetadata = ({ source }) => {
                       className={classNames.externalIcon}
                     />
                     <span className={classNames.linkText}>
-                      View on {source.mainEntity[0].provider.name}
+                      View in {source.mainEntity[0].provider.name}
                     </span>
                   </a>
                 </div>}
