@@ -55,7 +55,7 @@ Topic.getInitialProps = async ({ query, req }) => {
             parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
         );
         const exhibitPageRes = await fetch(
-          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.id}`
+          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.exhibition_id}`
         );
         const exhibitPageJson = await exhibitPageRes.json();
         const homePage =
@@ -63,7 +63,6 @@ Topic.getInitialProps = async ({ query, req }) => {
             exhibit =>
               exhibit.slug === "home-page" || exhibit.slug === "homepage"
           ) || exhibitPageJson[0];
-
         const { item: homePageItem } = homePage.page_blocks[0].attachments[0];
         const filesRes = await fetch(
           `${currentUrl}${FILES_ENDPOINT}?item=${homePageItem.id}`
