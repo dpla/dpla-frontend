@@ -1,4 +1,5 @@
 @value pampasBrown, bambooOrange from "../../../css/colors.css";
+@value smallRem from "../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;
@@ -22,13 +23,19 @@
 .nextItemButton {
   color: bambooOrange;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.75rem;
+  @media(min-width: smallRem) {
+    font-size: 1rem;
+  }
 }
 
 .previousChevron,
 .nextChevron {
-  height: 9px;
+  height: 8px;
   width: 5px;
+  @media (min-width: smallRem) {
+    height: 9px;
+  }
 }
 
 .previousChevron {
