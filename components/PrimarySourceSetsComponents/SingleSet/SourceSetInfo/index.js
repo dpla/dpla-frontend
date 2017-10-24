@@ -85,7 +85,7 @@ class SourceSetInfo extends React.Component {
             <div className={classNames.sidebar}>
               <div className={classNames.metadata}>
                 <div className={classNames.metadatum}>
-                  <h3 className={classNames.metadataHeader}>Prepared By</h3>
+                  <h3 className={classNames.metadataHeader}>Created By</h3>
                   {set.author.map(author =>
                     <div
                       key={author.name}

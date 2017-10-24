@@ -78,7 +78,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             " "
           )}
         >
-          <h3 className={classNames.sidebarHeader}>Prepared By</h3>
+          <h3 className={classNames.sidebarHeader}>Created By</h3>
           {teachingGuide.author.map(author =>
             <div
               className={classNames.sidebarSection}
