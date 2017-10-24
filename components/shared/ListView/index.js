@@ -1,16 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import { joinIfArray } from "utilFunctions";
-
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
-
-const ItemDescription = ({ description }) =>
-  <div>
-    <p className={classNames.itemDescription}>{joinIfArray(description)}</p>
-  </div>;
 
 const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
