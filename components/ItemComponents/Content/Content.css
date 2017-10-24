@@ -51,7 +51,7 @@
 }
 
 .defaultItemImage {
-  padding: 32% 0;
+  padding: 5rem 0;
 }
 
 .title {
@@ -63,7 +63,7 @@
 .mainMetadata {
   border-bottom: tableBorderBottom;
   padding-bottom: 1rem;
-  
+
   @media (min-width: smallRem) {
     padding-bottom: tablePadding;
   }
