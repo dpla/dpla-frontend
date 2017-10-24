@@ -1,15 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
+import { joinIfArray } from "utilFunctions";
+
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
 const ItemDescription = ({ description }) =>
   <div>
-    {Array.isArray(description)
-      ? <p className={classNames.itemDescription}>{description.join(" ")}</p>
-      : <p className={classNames.itemDescription}>{description}</p>}
+    <p className={classNames.itemDescription}>{joinIfArray(description)}</p>
   </div>;
 
 const ListView = ({ items, route }) =>
@@ -36,19 +36,11 @@ const ListView = ({ items, route }) =>
               </span>
             </a>
           </Link>
-          <span className={classNames.itemType}>
-            {Array.isArray(item.type) ? item.type.join(", ") : item.type}
-          </span>
-          {(item.date || item.creator) &&
+          {item.creator &&
             <span className={classNames.itemAuthorAndDate}>
-              {item.date && <span>{item.date.displayDate}</span>}
-              {item.date &&
-                item.date.displayDate &&
-                item.creator &&
-                <span> · </span>}
-              {item.creator && <span>{item.creator}</span>}
+              {item.creator}
             </span>}
-          <ItemDescription description={item.description} />
+
           <a
             href={item.sourceUrl}
             target="_blank"
