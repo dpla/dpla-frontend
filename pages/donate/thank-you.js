@@ -19,8 +19,8 @@ const DonateThankYou = ({ url, content, items }) =>
       ${contentClasses.sidebarAndContentWrapper}`}
     >
       <div className="row">
-        <div className={`col-xs-2`} />
-        <div className={`${contentClasses.content} col-xs-8`}>
+        <div className={`col-md-2 col-xs-12`} />
+        <div className={`${contentClasses.content} col-md-8 col-xs-12`}>
           <h1>
             Thank you for your donation
           </h1>
