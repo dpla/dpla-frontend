@@ -20,7 +20,9 @@ const DonateThankYou = ({ url, content, items }) =>
     >
       <div className="row">
         <div className={`col-md-2 col-xs-12`} />
-        <div className={`${contentClasses.content} col-md-8 col-xs-12`}>
+        <div
+          className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
+        >
           <h1>
             Thank you for your donation
           </h1>
@@ -35,6 +37,7 @@ const DonateThankYou = ({ url, content, items }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 export default DonateThankYou;

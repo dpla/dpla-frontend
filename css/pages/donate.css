@@ -26,6 +26,12 @@
   }
 }
 
+.thankYou {
+  & h1 {
+    margin-bottom: 1.5rem;
+  }
+}
+
 .byPaypal, .byMail {
   padding: 2.5rem 2rem;
 
