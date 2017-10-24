@@ -20,7 +20,7 @@ const Donate = ({ url }) =>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
-              <h1 className={contentClasses.title}>
+              <h1>
                 Thank you for supporting DPLA
               </h1>
               <p>
