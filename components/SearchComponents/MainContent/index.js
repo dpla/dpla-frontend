@@ -8,17 +8,26 @@ import Sidebar from "./Sidebar";
 import extractItemId from "utilFunctions/extractItemId";
 import { classNames as utilClassNames } from "css/utils.css";
 const { container } = utilClassNames;
+import { removeQueryParams } from "utilFunctions";
 
-const addLinkInfoToResults = (results, q) =>
-  results.map(item =>
-    Object.assign({}, item, {
+const addLinkInfoToResults = (results, query) =>
+  results.map((item, idx) => {
+    const previous = idx > 0 ? idx - 1 : "";
+    const next = idx < results.length - 1 ? idx + 1 : null;
+    return Object.assign({}, item, {
       linkHref: {
         pathname: "/item",
-        query: { q, itemId: extractItemId(item["@id"]) }
+        query: { ...query, itemId: extractItemId(item["@id"]), previous, next }
       },
-      linkAs: `/item/${extractItemId(item["@id"])}?q=${q}`
-    })
-  );
+      linkAs: {
+        pathname: `/item/${extractItemId(item["@id"])}`,
+        query: Object.assign({}, removeQueryParams(query, ["itemId"]), {
+          next,
+          previous
+        })
+      }
+    });
+  });
 
 const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={classNames.wrapper}>
@@ -37,11 +46,11 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
           {route.query.list_view === "grid"
             ? <GridView
                 route={route}
-                items={addLinkInfoToResults(results, route.query.q)}
+                items={addLinkInfoToResults(results, route.query)}
               />
             : <ListView
                 route={route}
-                items={addLinkInfoToResults(results, route.query.q)}
+                items={addLinkInfoToResults(results, route.query)}
               />}
         </div>
         <Pagination
