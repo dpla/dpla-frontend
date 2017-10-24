@@ -44,7 +44,7 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
     >
       <a className={classNames.previousItemButton}>
         <img src={chevron} alt="" className={classNames.previousChevron} />
-        <span>Previous</span>
+        <span>Previous Item</span>
       </a>
     </Link>
   );
@@ -80,7 +80,7 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
       }}
     >
       <a className={classNames.nextItemButton}>
-        <span>Next</span>
+        <span>Next Item</span>
         <img src={chevron} alt="" className={classNames.nextChevron} />
       </a>
     </Link>
@@ -103,14 +103,14 @@ const BreadcrumbsModule = ({
         )}
       />
       {(route.query.previous >= 0 || route.query.next) &&
-      <div className={classNames.navButtonsWrapper}>
-        { route.query.previous &&
-          route.query.previous >= 0 &&
-          <PreviousItemLink
-            query={route.query}
-            searchItemCount={searchItemCount}
-            paginationInfo={paginationInfo}
-          />}
+        <div className={classNames.navButtonsWrapper}>
+          {route.query.previous &&
+            route.query.previous >= 0 &&
+            <PreviousItemLink
+              query={route.query}
+              searchItemCount={searchItemCount}
+              paginationInfo={paginationInfo}
+            />}
           {route.query.next &&
             route.query.next < searchItemCount &&
             <NextItemLink
@@ -118,7 +118,7 @@ const BreadcrumbsModule = ({
               searchItemCount={searchItemCount}
               paginationInfo={paginationInfo}
             />}
-      </div>}
+        </div>}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
