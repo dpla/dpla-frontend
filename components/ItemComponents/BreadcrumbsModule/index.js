@@ -42,9 +42,11 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
         }
       }}
     >
-      <a className={classNames.previousItemButton}>
+      <a className={`${classNames.previousItemButton} hover-underline`}>
         <img src={chevron} alt="" className={classNames.previousChevron} />
-        <span>Previous <span className={classNames.hideOnSmallScreens}>Item</span></span>
+        <span>
+          Previous <span className={classNames.hideOnSmallScreens}>Item</span>
+        </span>
       </a>
     </Link>
   );
@@ -79,8 +81,10 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
         }
       }}
     >
-      <a className={classNames.nextItemButton}>
-        <span>Next <span className={classNames.hideOnSmallScreens}>Item</span></span>
+      <a className={`${classNames.nextItemButton} hover-underline`}>
+        <span>
+          Next <span className={classNames.hideOnSmallScreens}>Item</span>
+        </span>
         <img src={chevron} alt="" className={classNames.nextChevron} />
       </a>
     </Link>
@@ -92,7 +96,7 @@ const BreadcrumbsModule = ({
   breadcrumbs,
   searchItemCount,
   paginationInfo
-}) =>
+}) => (
   <div className={classNames.wrapper}>
     <div className={[container, classNames.breadcrumbsModule].join(" ")}>
       <Breadcrumbs
@@ -102,25 +106,29 @@ const BreadcrumbsModule = ({
           })
         )}
       />
-      {(route.query.previous >= 0 || route.query.next) &&
-        <div className={classNames.navButtonsWrapper}>
-          {route.query.previous &&
-            route.query.previous >= 0 &&
-            <PreviousItemLink
-              query={route.query}
-              searchItemCount={searchItemCount}
-              paginationInfo={paginationInfo}
-            />}
-          {route.query.next &&
-            route.query.next < searchItemCount &&
-            <NextItemLink
-              query={route.query}
-              searchItemCount={searchItemCount}
-              paginationInfo={paginationInfo}
-            />}
-        </div>}
+      {(route.query.previous >= 0 || route.query.next) && (
+          <div className={classNames.navButtonsWrapper}>
+            {route.query.previous &&
+              route.query.previous >= 0 && (
+                <PreviousItemLink
+                  query={route.query}
+                  searchItemCount={searchItemCount}
+                  paginationInfo={paginationInfo}
+                />
+              )}
+            {route.query.next &&
+              route.query.next < searchItemCount && (
+                <NextItemLink
+                  query={route.query}
+                  searchItemCount={searchItemCount}
+                  paginationInfo={paginationInfo}
+                />
+              )}
+          </div>
+        )}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </div>
+);
 
 export default BreadcrumbsModule;
