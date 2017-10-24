@@ -1,5 +1,4 @@
 import React from "react";
-const markdownit = require("markdown-it")({ html: true });
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "/components/MainLayout";
@@ -18,6 +17,8 @@ import {
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
+
+const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 const SingleSet = ({ url, set }) =>
@@ -37,14 +38,18 @@ const SingleSet = ({ url, set }) =>
     />
     <SourceSetInfo set={set} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
-      <div
-        className={`${contentClasses.content} ${container}`}
-        dangerouslySetInnerHTML={{
-          __html: markdownit.render(
-            set.hasPart.find(item => item.name === "Resources").text
-          )
-        }}
-      />
+      <div className={classNames.content}>
+        <div className={container}>
+          <div
+            className={`${contentClasses.content} ${container}`}
+            dangerouslySetInnerHTML={{
+              __html: markdownit.render(
+                set.hasPart.find(item => item.name === "Resources").text
+              )
+            }}
+          />
+        </div>
+      </div>
     </ResourcesTabs>
     <PSSFooter />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

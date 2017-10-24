@@ -81,11 +81,7 @@
     "deploy": "npm run docker:build && npm run docker:clean && npm run docker:run"
   },
   "lint-staged": {
-    "{components,pages}/*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "{server,postcss.config,next.config}.js": [
+    "*.js": [
       "prettier --write",
       "git add"
     ]

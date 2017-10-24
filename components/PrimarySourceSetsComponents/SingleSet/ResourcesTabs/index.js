@@ -22,7 +22,10 @@ class ResourcesTabs extends React.Component {
                   currentTab === "sourceSet" && classNames.activeTab
                 ].join(" ")}
               >
-                <span className={classNames.hideOnSmallScreen}>Source </span>{" "}Set
+                <span className={classNames.hideOnSmallScreen}>
+                  Source{" "}
+                </span>{" "}
+                Set
               </a>
             </Link>
             <Link
@@ -40,10 +43,11 @@ class ResourcesTabs extends React.Component {
               >
                 <span className={classNames.hideOnSmallScreen}>
                   Additional
-                </span>{" "}Resources
+                </span>{" "}
+                Resources
               </a>
             </Link>
-            {!route.query.studentMode &&
+            {!route.query.studentMode && (
               <Link
                 prefetch
                 href={`/primary-source-sets/set/teaching-guide?set=${route.query
@@ -58,7 +62,8 @@ class ResourcesTabs extends React.Component {
                 >
                   Teaching Guide
                 </a>
-              </Link>}
+              </Link>
+            )}
           </div>
         </div>
         {this.props.children}

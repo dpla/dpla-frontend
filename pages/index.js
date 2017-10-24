@@ -5,7 +5,7 @@ import MainLayout from "../components/MainLayout";
 import HomeHero from "../components/HomePageComponents/HomeHero";
 import HomePageSlider from "../components/HomePageComponents/HomePageSlider";
 import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
-// import SocialMedia from "../components/HomePageComponents/SocialMedia";
+import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
 import {
   getCurrentUrl,
@@ -116,6 +116,7 @@ Home.getInitialProps = async ({ req }) => {
   const guides = await Promise.all(
     aboutMenuJson.items
       .filter(item => item.menu_item_parent === indexPageItem.object_id)
+      .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
       .map(async guide => {
         const guideRes = await fetch(guide.url);
         const guideJson = await guideRes.json();
