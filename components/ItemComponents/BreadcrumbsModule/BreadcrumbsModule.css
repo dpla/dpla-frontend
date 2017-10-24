@@ -1,5 +1,5 @@
 @value pampasBrown, bambooOrange from "../../../css/colors.css";
-@value smallRem from "../../../css/breakpoints.css";
+@value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;
@@ -40,19 +40,37 @@
 
 .previousChevron {
   transform: rotate(180deg);
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
+  @media (min-width: smallRem) {
+    margin-right: 0.5rem
+  }
 }
 
 .nextChevron {
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
+  @media (min-width: smallRem) {
+    margin-left: 0.5rem
+  }
 }
 
 .previousItemButton {
-  margin-right: 2rem;
+  margin-right: 0.75rem;
+  @media (min-width: smallRem) {
+    margin-right: 2rem;
+  }
 }
 
 .navButtonsWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.hideOnSmallScreens {
+  display: none;
+  visibility: hidden;
+  @media (min-width: mediumRem) {
+    display: inherit;
+    visibility: visible;
+  }
 }

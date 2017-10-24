@@ -44,7 +44,7 @@ const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
     >
       <a className={classNames.previousItemButton}>
         <img src={chevron} alt="" className={classNames.previousChevron} />
-        <span>Previous Item</span>
+        <span>Previous <span className={classNames.hideOnSmallScreens}>Item</span></span>
       </a>
     </Link>
   );
@@ -80,7 +80,7 @@ const NextItemLink = ({ query, searchItemCount, paginationInfo }) => {
       }}
     >
       <a className={classNames.nextItemButton}>
-        <span>Next Item</span>
+        <span>Next <span className={classNames.hideOnSmallScreens}>Item</span></span>
         <img src={chevron} alt="" className={classNames.nextChevron} />
       </a>
     </Link>
