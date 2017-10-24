@@ -9,7 +9,6 @@ import {
 import { classNames as utilClassNames } from "css/utils.css";
 
 import { getCurrentFullUrl } from "utilFunctions";
-
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 const frequencyMap = [

@@ -5,6 +5,7 @@
 
 .content {
   padding-bottom: 1rem;
+  flex: 1;
   @media (min-width: smallRem) {
     margin-right: 3rem;
     padding-bottom: 3rem;
@@ -50,7 +51,7 @@
 }
 
 .defaultItemImage {
-  padding: 32% 0;
+  padding: 5rem 0;
 }
 
 .title {
@@ -62,6 +63,7 @@
 .mainMetadata {
   border-bottom: tableBorderBottom;
   padding-bottom: 1rem;
+
   @media (min-width: smallRem) {
     padding-bottom: tablePadding;
   }

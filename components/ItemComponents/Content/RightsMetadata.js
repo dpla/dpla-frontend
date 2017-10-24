@@ -2,8 +2,10 @@ import React from "react";
 import { classNames, stylesheet } from "./Content.css";
 import { makeURLsClickable } from "utilFunctions";
 import { rightsURLs } from "../../../constants/site.js";
+import { joinIfArray } from "utilFunctions";
 
 const RightsMetadata = ({ item }) =>
+  console.log(joinIfArray(item.edmRights)) ||
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
@@ -17,7 +19,7 @@ const RightsMetadata = ({ item }) =>
                 " "
               )}
             >
-              {rightsURLs[item.edmRights].description} <br />
+              {rightsURLs[joinIfArray(item.edmRights)].description} <br />
               <a
                 href={item.edmRights}
                 className="link"

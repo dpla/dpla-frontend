@@ -9,6 +9,12 @@ import ShareButton from "components/shared/ShareButton";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
+import { DEFAULT_PAGE_SIZE } from "constants/search";
+import {
+  possibleFacets,
+  mapFacetsToURLPrettified,
+  splitAndURIEncodeFacet
+} from "constants/search";
 import {
   classNames,
   stylesheet
@@ -19,15 +25,23 @@ import {
   getDefaultThumbnail
 } from "utilFunctions";
 
-const ItemDetail = ({ url, item, currentFullUrl }) =>
+const ItemDetail = ({
+  url,
+  item,
+  currentFullUrl,
+  paginationInfo,
+  searchItemCount
+}) =>
   <MainLayout route={url} pageTitle={item.title}>
     <BreadcrumbsModule
+      searchItemCount={searchItemCount}
+      paginationInfo={paginationInfo}
       breadcrumbs={[
         {
           title: url.query.q ? `Search for “${url.query.q}”` : "Search",
           url: {
             pathname: "/search/",
-            query: removeQueryParams(url.query, ["itemId"])
+            query: removeQueryParams(url.query, ["itemId, next, previous"])
           }
         },
         { title: joinIfArray(item.title), search: "" }
@@ -52,6 +66,7 @@ const ItemDetail = ({ url, item, currentFullUrl }) =>
 ItemDetail.getInitialProps = async ({ query, req }) => {
   const currentFullUrl = getCurrentFullUrl(req);
   const currentUrl = getCurrentUrl(req);
+
   const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
   const json = await res.json();
   const doc = json.docs[0];
@@ -67,8 +82,107 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
         return lang.name;
       })
     : doc.sourceResource.language;
+
+  // set up search API calls for previous/next items in the current search.
+  // a lot of this is copied from `/search`'s getInitialProps, so could be
+  // refactored
+  const page_size = parseInt(query.page_size, 10) || DEFAULT_PAGE_SIZE;
+  const page = parseInt(query.page, 10) || 1;
+  const q = query.q;
+  let previousItemPage = page;
+  let nextItemPage = page;
+  let previousItemId;
+  let nextItemId;
+  let searchItemCount;
+
+  if (query.next || query.previous) {
+    let sort_by = "";
+    if (query.sort_by === "title") {
+      sort_by = "sourceResource.title";
+    } else if (query.sort_by === "created") {
+      sort_by = "sourceResource.date.begin";
+    }
+    const sort_order = query.sort_order || "";
+
+    const facetQueries = possibleFacets
+      .map(
+        facet =>
+          query[mapFacetsToURLPrettified[facet]]
+            ? `${facet}=${splitAndURIEncodeFacet(
+                query[mapFacetsToURLPrettified[facet]]
+              )}`
+            : ""
+      )
+      .filter(facetQuery => facetQuery !== "")
+      .join("&");
+
+    let currentPage = page;
+    // in this case, the previous item is the last item on the current page,
+    // so we increment the page number
+    if (query.previous > 0 && query.previous % page_size === 0) {
+      currentPage = page + 1;
+    }
+
+    // make a request for the current page of search results
+    const searchRes = await fetch(
+      `${currentUrl}${API_ENDPOINT}?q=${q}&page=${currentPage}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+        ","
+      )}&${facetQueries}`
+    );
+    const searchJson = await searchRes.json();
+    searchItemCount = searchJson.count;
+
+    const nextItemIdx = query.next && query.next % page_size;
+    // make a request for the next page of search results if next item is
+    // not on the current page
+    if (
+      query.next > page * page_size - 1 &&
+      searchItemCount > page * page_size
+    ) {
+      nextItemPage = page + 1;
+      const nextPageRes = await fetch(
+        `${currentUrl}${API_ENDPOINT}?q=${q}&page=${nextItemPage}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+          ","
+        )}&${facetQueries}`
+      );
+      const nextPageJson = await nextPageRes.json();
+      nextItemId = nextPageJson.docs[nextItemIdx].id;
+    } else {
+      nextItemId = query.next ? searchJson.docs[nextItemIdx].id : "";
+    }
+
+    const previousItemIdx = query.previous % page_size;
+    // make a request for the previous page of search results if previous item is
+    // not on the current page
+    if (query.previous < (page - 1) * page_size && page - 1 > 0) {
+      previousItemPage = page - 1;
+      const previousPageRes = await fetch(
+        `${currentUrl}${API_ENDPOINT}?q=${q}&page=${previousItemPage}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+          ","
+        )}&${facetQueries}`
+      );
+      const previousPageJson = await previousPageRes.json();
+      previousItemId = previousPageJson.docs[previousItemIdx].id;
+    } else {
+      previousItemId = query.previous >= 0
+        ? searchJson.docs[previousItemIdx].id
+        : "";
+    }
+  }
+
   return {
     currentFullUrl,
+    paginationInfo: {
+      next: {
+        id: nextItemId,
+        page: nextItemPage
+      },
+      previous: {
+        id: previousItemId,
+        page: previousItemPage
+      }
+    },
+    searchItemCount,
     item: Object.assign({}, doc.sourceResource, {
       thumbnailUrl,
       contributor: doc.dataProvider,
