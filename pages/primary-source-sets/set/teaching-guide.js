@@ -7,8 +7,8 @@ import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/B
 import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
-
 import removeQueryParams from "utilFunctions/removeQueryParams";
+import { PSS_BASE_URL } from "constants/site";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
   <MainLayout route={url} pageTitle={set.name}>
@@ -38,20 +38,20 @@ const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query, req }) => {
-  const setRes = await fetch(
-    `https://dp.la/primary-source-sets/sets/${query.set}.json`
-  );
+  const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
   const currentPath = req
     ? `${req.get("Host")}/primary-source-sets/${query.set}`
     : "";
 
   const set = await setRes.json();
-  const teachingGuideRes = await fetch(
-    `${set.hasPart.find(item => item.disambiguatingDescription === "guide")[
-      "@id"
-    ]}.json`
-  );
+  const guidePage = set.hasPart.find(
+    item => item.disambiguatingDescription === "guide"
+  )["@id"];
+  const guideEndpoint =
+    guidePage.replace(/^.*primary-source-sets(.*)/, `${PSS_BASE_URL}$1`) +
+    ".json";
+  const teachingGuideRes = await fetch(guideEndpoint);
   const teachingGuide = await teachingGuideRes.json();
   return { set, teachingGuide, currentPath };
 };

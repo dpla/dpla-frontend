@@ -29,10 +29,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   __html: markdownit.render(
                     teachingGuide.hasPart
                       .find(item => item.name === "Questions")
-                      .text.replace(
-                        /(http|https):\/\/dp.la\/primary-source-sets\//,
-                        ""
-                      )
+                      .text.replace(/https?:\/\/.*?\/primary-source-sets\//, "")
                   )
                 }}
               />
@@ -86,9 +83,10 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             ].join(" ")}
           >
             <h3 className={classNames.sidebarHeader}>Created By</h3>
-            {teachingGuide.author.map(author =>
+            {teachingGuide.author.map((author, i) =>
               <div
                 className={classNames.sidebarSection}
+                key={i}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
                     author.name + ", " + author.affiliation.name
