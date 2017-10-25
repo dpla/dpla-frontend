@@ -1,4 +1,4 @@
-const truncateString = (theString, length = 100, suffix = "…") => {
+const truncateString = (theString, length = 200, suffix = "…") => {
   let str = theString;
   if (str.length > length) {
     str = str.length > length ? str.substr(0, length) : str;

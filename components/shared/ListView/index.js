@@ -45,9 +45,17 @@ const ListView = ({ items, route }) =>
               </span>
             </a>
           </Link>
-          {item.creator &&
+          {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
-              <span>{item.creator}</span>
+              {route.pathname.indexOf("/search") !== -1 &&
+                item.date &&
+                <span>{item.date.displayDate}</span>}
+              {route.pathname.indexOf("/search") !== -1 &&
+                item.date &&
+                item.date.displayDate &&
+                item.creator &&
+                <span> · </span>}
+              <span>{joinIfArray(item.creator, ", ")}</span>
             </span>}
           <ItemDescription description={item.description} />
           <a
