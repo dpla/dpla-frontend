@@ -330,10 +330,10 @@ app
     );
 
     server.get(
-      "/api/assets/*",
+      "/thumb/*",
       proxy(process.env.THUMB_SERVER, {
         proxyReqPathResolver: function(req) {
-          return req.url.replace("/api/assets", "/thumb");
+          return req.url;
         }
       })
     );
