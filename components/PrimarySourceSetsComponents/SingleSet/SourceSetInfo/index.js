@@ -59,7 +59,7 @@ class SourceSetInfo extends React.Component {
                 <div className={classNames.metadata}>
                   <div className={classNames.metadatum}>
                     <h3 className={classNames.metadataHeader}>Created By</h3>
-                    {set.author.map(author => (
+                    {set.author.map(author =>
                       <div
                         key={author.name}
                         dangerouslySetInnerHTML={{
@@ -68,11 +68,11 @@ class SourceSetInfo extends React.Component {
                           )
                         }}
                       />
-                    ))}
+                    )}
                   </div>
                   <div className={classNames.metadatum}>
                     <h3 className={classNames.metadataHeader}>Time Period</h3>
-                    {extractTimePeriod(set.about).map((period, i, periods) => (
+                    {extractTimePeriod(set.about).map((period, i, periods) =>
                       <span key={period}>
                         <Link
                           prefetch
@@ -92,11 +92,11 @@ class SourceSetInfo extends React.Component {
                         </Link>
                         {i < periods.length - 1 && <br />}
                       </span>
-                    ))}
+                    )}
                   </div>
                   <div className={classNames.metadatum}>
                     <h3 className={classNames.metadataHeader}>Subjects</h3>
-                    {extractSubjects(set.about).map((subject, i, subjects) => (
+                    {extractSubjects(set.about).map((subject, i, subjects) =>
                       <span key={subject}>
                         <Link
                           prefetch
@@ -116,7 +116,7 @@ class SourceSetInfo extends React.Component {
                         </Link>
                         {i < subjects.length - 1 && <br />}
                       </span>
-                    ))}
+                    )}
                   </div>
                 </div>
                 <Button

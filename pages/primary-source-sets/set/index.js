@@ -39,7 +39,7 @@ const SingleSet = ({ set, url, currentFullUrl }) =>
         route={url}
       />
     </ResourcesTabs>
-    <RelatedSets sets={set.isRelatedTo.slice(0, 4)} />
+    <RelatedSets sets={set.isRelatedTo} />
     <PSSFooter />
   </MainLayout>;
 
