@@ -148,7 +148,9 @@ const ContentAndMetadata = ({ source }) => {
                       src={external}
                       className={classNames.externalIcon}
                     />
-                    <span className={classNames.linkText}>Item source</span>
+                    <span className={classNames.linkText}>
+                      View in {source.mainEntity[0].provider.name}
+                    </span>
                   </a>
                 </div>}
             </div>
