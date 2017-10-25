@@ -10,6 +10,16 @@
 .relatedSets {
   padding: 2rem 1rem;
 
+  /* overrides for react-slick css*/
+  & :global .slick-prev:before,
+  & :global .slick-next:before {
+    content: none;
+  }
+
+  & :global .slick-disabled {
+    display: none;
+  }
+
   @media (min-width: largeRem) {
     padding-left: 0;
     padding-right: 0;

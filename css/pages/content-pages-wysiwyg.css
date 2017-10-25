@@ -85,16 +85,25 @@
   & ul,
   & ol {
     margin-bottom: 1.5rem;
-    font-size: 1.125rem;
     font-weight: normal;
     opacity: 0.85;
+    font-size: 1rem;
+
+    @media (min-width: mediumRem) {
+      font-size: 1.125rem;
+    }
 
     @media (min-width: largeRem) {
       margin-bottom: 1.75rem;
     }
   }
 
-  & ol li {
+  & ul, & ol {
+    padding-left: 1.125rem;
+  }
+
+  & ol li,
+  & ul li {
     position: relative;
     padding-left: 0.75rem;
   }
@@ -105,15 +114,6 @@
 
   & ul {
     list-style-type: disc;
-  }
-
-  & ul, & ol {
-    padding-left: 1.125rem;
-  }
-
-  & ul li {
-    position: relative;
-    padding-left: 0.75rem;
   }
 
   & table {

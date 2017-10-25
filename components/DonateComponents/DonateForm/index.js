@@ -8,6 +8,7 @@ import {
 } from "css/pages/donate.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
+import { getCurrentFullUrl } from "utilFunctions";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 const frequencyMap = [
@@ -52,6 +53,11 @@ class DonateForm extends React.Component {
       ? PAYPAL_DONATE_MONTHLY
       : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
+    let returnUrl = getCurrentFullUrl();
+    returnUrl = returnUrl.endsWith("/")
+      ? returnUrl + "thank-you"
+      : returnUrl + "/thank-you";
+    url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
     document.location = url;
   }
 
@@ -87,61 +93,49 @@ class DonateForm extends React.Component {
   render() {
     return (
       <form action="">
-        <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
-          <h1 className={contentClasses.title}>
-            Thank you for supporting DPLA
-          </h1>
-          <p>
-            Your generous contribution to DPLA will help make it a valuable
-            national resource for years to come. DPLA is a 501(c)(3)
-            nonprofit
-            organization. All donations are tax deductible.
-          </p>
-          <hr />
-          <h2>Frequency</h2>
-          <div className={`row start-xs`}>
-            {frequencyMap.map((freq, i) =>
-              <DualStateButton
-                key={"freq" + i}
-                text={freq.k}
-                value={freq.v}
-                size="large"
-                onClick={() => this.handleFrequencyClick(freq.v)}
-                active={this.state.frequency === freq.v}
-              />
-            )}
+        <h2>Frequency</h2>
+        <div className={`row start-xs`}>
+          {frequencyMap.map((freq, i) =>
+            <DualStateButton
+              key={"freq" + i}
+              text={freq.k}
+              value={freq.v}
+              size="large"
+              onClick={() => this.handleFrequencyClick(freq.v)}
+              active={this.state.frequency === freq.v}
+            />
+          )}
+        </div>
+        <h2>Donation amount</h2>
+        <div className={`row`}>
+          {amountMap.map((amt, i) =>
+            <DualStateButton
+              key={"amt" + i}
+              text={amt.k}
+              value={amt.v}
+              onClick={() => this.handleAmountClick(amt.v)}
+              active={this.state.amount === amt.v}
+            />
+          )}
+          <div className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
+            <input
+              type="text"
+              placeholder="$ Other amount"
+              value={this.state.amountText}
+              onChange={e => this.handleAmountText(e)}
+            />
           </div>
-          <h2>Donation amount</h2>
-          <div className={`row`}>
-            {amountMap.map((amt, i) =>
-              <DualStateButton
-                key={"amt" + i}
-                text={amt.k}
-                value={amt.v}
-                onClick={() => this.handleAmountClick(amt.v)}
-                active={this.state.amount === amt.v}
-              />
-            )}
-            <div className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
-              <input
-                type="text"
-                placeholder="$ Other amount"
-                value={this.state.amountText}
-                onChange={e => this.handleAmountText(e)}
-              />
-            </div>
-          </div>
-          <hr />
-          <div className={`row`}>
-            <div className={`col-xs-12 col-md-4`}>
-              <Button
-                type="primary"
-                className={`${contentClasses.donateButton}`}
-                onClick={() => this.buildDonationAndSend()}
-              >
-                Donate
-              </Button>
-            </div>
+        </div>
+        <hr />
+        <div className={`row`}>
+          <div className={`col-xs-12 col-md-4`}>
+            <Button
+              type="primary"
+              className={`${contentClasses.donateButton}`}
+              onClick={() => this.buildDonationAndSend()}
+            >
+              Donate
+            </Button>
           </div>
         </div>
       </form>

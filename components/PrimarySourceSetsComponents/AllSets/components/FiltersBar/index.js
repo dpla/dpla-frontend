@@ -72,7 +72,7 @@ class FiltersBar extends React.Component {
       <div className={classNames.filtersWrapper}>
         <div className={`${classNames.filters} site-max-width`}>
           <div className="row">
-            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
+            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
               <Select
                 clearable={false}
                 searchable={false}
@@ -89,7 +89,7 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-6 col-md-3`}>
+            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
               <Select
                 clearable={false}
                 searchable={false}
@@ -106,7 +106,7 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-6 col-md-4`}>
+            <div className={`${classNames.filter} col-xs-12 col-md-4`}>
               <Select
                 clearable={false}
                 searchable={false}

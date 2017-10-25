@@ -105,7 +105,7 @@
   border-bottom: 1px solid #000000;
   height: 2px;
   opacity: 0.1;
-  margin-bottom: 17px;
+  margin: 1rem 0;
 }
 
 .linkWrapper {
@@ -176,6 +176,6 @@
   width: 100%;
 }
 
-.shareButton, .citeButton {
+.citeButton {
   margin-bottom: 0.5rem;
 }

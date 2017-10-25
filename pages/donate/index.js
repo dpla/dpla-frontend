@@ -19,7 +19,19 @@ const Donate = ({ url }) =>
       <div className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
-            <DonateForm />
+            <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
+              <h1>
+                Thank you for supporting DPLA
+              </h1>
+              <p>
+                Your generous contribution to DPLA will help make it a valuable
+                national resource for years to come. DPLA is a 501(c)(3)
+                nonprofit
+                organization. All donations are tax deductible.
+              </p>
+              <hr />
+              <DonateForm />
+            </div>
             <div className={`${contentClasses.byMail} ${classNames.content}`}>
               <h2>Or donate by mail</h2>
               <p>
@@ -80,12 +92,5 @@ const Donate = ({ url }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
-
-Donate.getInitialProps = async () => {
-  const content = {
-    hello: "world"
-  };
-  return { content };
-};
 
 export default Donate;

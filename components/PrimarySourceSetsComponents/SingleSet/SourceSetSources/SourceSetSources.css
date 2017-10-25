@@ -1,11 +1,14 @@
 @value visualBrown from "../../../../css/colors.css";
-@value xSmallRem, smallRem from "../../../../css/breakpoints.css";
+@value xSmallRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 
 .sourceSetSources {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 4rem;
-  margin-top: 3rem;
+
+  @media (min-width: largeRem) {
+    margin-top: 3rem;
+  }
 }
 
 .set {

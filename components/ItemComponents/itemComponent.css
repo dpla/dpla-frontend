@@ -1,4 +1,4 @@
-@value smallRem from "../../css/breakpoints.css";
+@value smallRem, mediumRem from "../../css/breakpoints.css";
 
 
 .faveAndCiteButtons {
@@ -6,7 +6,7 @@
   flex-shrink: 0;
   width: 100%;
   margin-bottom: 1rem;
-  @media (min-width: smallRem) {
+  @media (min-width: mediumRem) {
     width: 225px;
   }
 }
@@ -15,7 +15,7 @@
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  @media (min-width: smallRem) {
+  @media (min-width: mediumRem) {
     margin-top: 2rem;
     flex-direction: row;
   }

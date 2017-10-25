@@ -1,29 +1,37 @@
 @value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from "../../../../css/colors.css";;
-@value mediumRem from "../../../../css/breakpoints.css";;
+@value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";;
 
 .wrapper {
   width: 100%;
 }
 
 .teachingGuide {
-  display: flex;
-  flex-direction: column-reverse;
+  /*flex-direction: column-reverse;
+
   @media (min-width: mediumRem) {
     flex-direction: row;
-  }
+  }*/
 }
 
 .content {
   @media (min-width: mediumRem) {
-    margin-right: 73px;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: largeRem) {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
   }
 }
 
 .sidebar {
   font-size: 0.875rem;
   line-height: 1.125rem;
-  width: 295px;
-  flex-shrink: 0;
+  margin-top: 1rem;
+
+  @media (min-width: smallRem) {
+    margin-top: 2rem;
+  }
 }
 
 .sidebarHeader {
@@ -34,11 +42,11 @@
 }
 
 .sidebarSection {
-  margin-bottom: 22px;
+  margin-bottom: 1.5rem;
 }
 
 .teacherTools {
-  padding-bottom: 22px;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
