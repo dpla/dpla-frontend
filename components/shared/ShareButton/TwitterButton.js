@@ -3,7 +3,9 @@ import { classNames } from "./ShareButton.css";
 
 const openShareModal = (currentFullUrl, title) => {
   window.open(
-    `https://www.twitter.com/intent/tweet?url=${currentFullUrl}&text=${title}`,
+    `https://www.twitter.com/intent/tweet?url=${currentFullUrl}&text=${encodeURIComponent(
+      title
+    )}`,
     "",
     "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480"
   );
@@ -11,7 +13,9 @@ const openShareModal = (currentFullUrl, title) => {
 
 const TwitterButton = ({ currentFullUrl, title }) =>
   <a
-    href={`https://www.twitter.com/intent/tweet?url=${currentFullUrl}&text=${title}`}
+    href={`https://www.twitter.com/intent/tweet?url=${currentFullUrl}&text=${encodeURIComponent(
+      title
+    )}`}
     target="_blank"
     className={classNames.shareButton}
     onClick={() => openShareModal(currentFullUrl, title)}

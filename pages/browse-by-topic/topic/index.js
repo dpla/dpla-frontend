@@ -15,6 +15,14 @@ import {
 import { getCurrentUrl } from "utilFunctions";
 const markdownit = require("markdown-it")({ html: true });
 
+const sanitizeSourceSetId = id => {
+  let sanitized = id.replace(" ", "");
+  if (sanitized[sanitized.length - 1] === "/") {
+    sanitized = sanitized.slice(0, sanitized.length - 1);
+  }
+  return sanitized;
+};
+
 const Topic = ({ url, topic, subtopics, suggestions }) =>
   <MainLayout route={url} pageTitle={topic.name}>
     <BreadcrumbsAndNav
@@ -45,6 +53,7 @@ Topic.getInitialProps = async ({ query, req }) => {
     .map(subtopic =>
       Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
     );
+
   const suggestions = await Promise.all(
     currentTopic.acf.related_content.map(async item => {
       if (item.related_content_type === "Exhibition") {
@@ -85,7 +94,7 @@ Topic.getInitialProps = async ({ query, req }) => {
           type: "Exhibition"
         };
       } else if (item.related_content_type === "Primary Source Set") {
-        const setId = item.primary_source_set_id.replace(" ", "");
+        const setId = sanitizeSourceSetId(item.primary_source_set_id);
         const sourceSetRes = await fetch(`${setId}.json`);
         const sourceSetJson = await sourceSetRes.json();
         const slug = extractSourceSetSlug(sourceSetJson["@id"]);

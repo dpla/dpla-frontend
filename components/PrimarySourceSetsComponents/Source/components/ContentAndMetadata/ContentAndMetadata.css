@@ -105,7 +105,7 @@
   border-bottom: 1px solid #000000;
   height: 2px;
   opacity: 0.1;
-  margin-bottom: 17px;
+  margin: 1rem 0;
 }
 
 .linkWrapper {
@@ -119,25 +119,25 @@
 .sourceLink {
   color: curiousBlue;
   font-weight: 600;
+  display: flex;
 }
 
 .linkText {
-  border-bottom: 1px solid curiousBlue;
+  text-decoration: underline;
 }
 
 .linkIcon {
   opacity: 0.5;
-  width: 20px;
-  margin-right: 13px;
-  position: relative;
-  top: 6px;
-}
-.externalIcon {
-  opacity: 0.4;
   width: 18px;
+  height: 18px;
   margin-right: 13px;
-  position: relative;
-  top: 6px;
+}
+
+.externalIcon {
+  opacity: 0.5;
+  width: 16px;
+  height: 16px;
+  margin-right: 15px;
 }
 
 .tipsForStudents {
@@ -178,6 +178,6 @@
   width: 100%;
 }
 
-.shareButton, .citeButton {
+.citeButton {
   margin-bottom: 0.5rem;
 }
