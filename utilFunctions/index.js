@@ -8,6 +8,7 @@ import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import makeURLsClickable from "./makeURLsClickable";
+import truncateString from "./truncateString";
 import getCurrentFullUrl from "./getCurrentFullUrl";
 
 export {
@@ -21,5 +22,6 @@ export {
   getCurrentUrl,
   getDefaultThumbnail,
   makeURLsClickable,
+  truncateString,
   getCurrentFullUrl
 };
