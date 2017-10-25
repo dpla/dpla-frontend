@@ -86,7 +86,8 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
   // set up search API calls for previous/next items in the current search.
   // a lot of this is copied from `/search`'s getInitialProps, so could be
   // refactored
-  const page_size = parseInt(query.page_size, 10) || DEFAULT_PAGE_SIZE;
+  const page_size =
+    parseInt(query.page_size, 10) || parseInt(DEFAULT_PAGE_SIZE, 10);
   const page = parseInt(query.page, 10) || 1;
   const q = query.q;
   let previousItemPage = page;
