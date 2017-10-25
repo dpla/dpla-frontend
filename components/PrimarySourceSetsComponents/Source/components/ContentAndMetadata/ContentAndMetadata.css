@@ -128,14 +128,16 @@
 
 .linkIcon {
   opacity: 0.5;
-  width: 20px;
+  width: 18px;
+  height: 18px;
   margin-right: 13px;
 }
 
 .externalIcon {
-  opacity: 0.4;
-  width: 18px;
-  margin-right: 13px;
+  opacity: 0.5;
+  width: 16px;
+  height: 16px;
+  margin-right: 15px;
 }
 
 .tipsForStudents {
