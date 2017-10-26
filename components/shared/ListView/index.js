@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { joinIfArray } from "utilFunctions";
 import { truncateString } from "utilFunctions";
-import { endsWith } from "utilFunctions";
 
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
@@ -48,10 +47,10 @@ const ListView = ({ items, route }) =>
           </Link>
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
-              {endsWith(route.pathname, "/search") === 0 &&
+              {route.pathname.indexOf("/search") === 0 &&
                 item.date &&
                 <span>{item.date.displayDate}</span>}
-              {endsWith(route.pathname, "/search") === 0 &&
+              {route.pathname.indexOf("/search") === 0 &&
                 item.date &&
                 item.date.displayDate &&
                 item.creator &&
