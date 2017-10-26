@@ -47,10 +47,10 @@ const ListView = ({ items, route }) =>
           </Link>
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
-              {route.pathname.indexOf("/search") !== -1 &&
+              {route.pathname.startsWith("/search") &&
                 item.date &&
                 <span>{item.date.displayDate}</span>}
-              {route.pathname.indexOf("/search") !== -1 &&
+              {route.pathname.startsWith("/search") &&
                 item.date &&
                 item.date.displayDate &&
                 item.creator &&
