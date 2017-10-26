@@ -35,7 +35,7 @@ const OtherMetadata = ({ item }) =>
   <div className={classNames.otherMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
-        <Row heading="Creator">{joinIfArray(item.creator)}</Row>
+        <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
         <Row heading="Partner">
           <FacetLink facet="partner" value={item.partner} />
         </Row>

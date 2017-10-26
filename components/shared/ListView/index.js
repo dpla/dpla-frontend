@@ -1,16 +1,26 @@
 import React from "react";
 import Link from "next/link";
 
+import { joinIfArray } from "utilFunctions";
+import { truncateString } from "utilFunctions";
+import { endsWith } from "utilFunctions";
+
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
+
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
-const ItemDescription = ({ description }) =>
-  <div>
-    {Array.isArray(description)
-      ? <p className={classNames.itemDescription}>{description.join(" ")}</p>
-      : <p className={classNames.itemDescription}>{description}</p>}
-  </div>;
+const ItemDescription = ({ description }) => {
+  let str = joinIfArray(description);
+  str = truncateString(str);
+  return (
+    <div>
+      <p className={classNames.itemDescription}>
+        {str}
+      </p>
+    </div>
+  );
+};
 
 const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
@@ -36,17 +46,17 @@ const ListView = ({ items, route }) =>
               </span>
             </a>
           </Link>
-          <span className={classNames.itemType}>
-            {Array.isArray(item.type) ? item.type.join(", ") : item.type}
-          </span>
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
-              {item.date && <span>{item.date.displayDate}</span>}
-              {item.date &&
+              {endsWith(route.pathname, "/search") === 0 &&
+                item.date &&
+                <span>{item.date.displayDate}</span>}
+              {endsWith(route.pathname, "/search") === 0 &&
+                item.date &&
                 item.date.displayDate &&
                 item.creator &&
                 <span> · </span>}
-              {item.creator && <span>{item.creator}</span>}
+              <span>{joinIfArray(item.creator, ", ")}</span>
             </span>}
           <ItemDescription description={item.description} />
           <a
