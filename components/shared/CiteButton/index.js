@@ -7,7 +7,7 @@ import { classNames, stylesheet } from "./CiteButton.css";
 
 class CiteButton extends React.Component {
   state = {
-    showCitation: true
+    showCitation: false
   };
 
   toggleCiteButton = () => {
