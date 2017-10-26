@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { joinIfArray } from "utilFunctions";
 import { truncateString } from "utilFunctions";
+import { endsWith } from "utilFunctions";
 
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
@@ -11,7 +12,7 @@ const externalLinkIcon = "/static/images/external-link-blue.svg";
 
 const ItemDescription = ({ description }) => {
   let str = joinIfArray(description);
-  str = str ? truncateString(str) : str;
+  str = truncateString(str);
   return (
     <div>
       <p className={classNames.itemDescription}>
@@ -47,10 +48,10 @@ const ListView = ({ items, route }) =>
           </Link>
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
-              {route.pathname.startsWith("/search") &&
+              {endsWith(route.pathname, "/search") === 0 &&
                 item.date &&
                 <span>{item.date.displayDate}</span>}
-              {route.pathname.startsWith("/search") &&
+              {endsWith(route.pathname, "/search") === 0 &&
                 item.date &&
                 item.date.displayDate &&
                 item.creator &&

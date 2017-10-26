@@ -9,6 +9,7 @@ import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import makeURLsClickable from "./makeURLsClickable";
 import truncateString from "./truncateString";
+import endsWith from "./endsWith";
 import getCurrentFullUrl from "./getCurrentFullUrl";
 
 export {
@@ -23,5 +24,6 @@ export {
   getDefaultThumbnail,
   makeURLsClickable,
   truncateString,
+  endsWith,
   getCurrentFullUrl
 };
