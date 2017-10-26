@@ -4,7 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
-import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
+import CiteButton from "components/shared/CiteButton";
 import ShareButton from "components/shared/ShareButton";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
@@ -51,7 +51,13 @@ const ItemDetail = ({
     <div className={`${utilClassNames.container} ${classNames.contentWrapper}`}>
       <Content item={item} url={url} />
       <div className={classNames.faveAndCiteButtons}>
-        <FaveAndCiteButtons toCite="item" />
+        <CiteButton
+          item={item}
+          className={classNames.shareButton}
+          currentFullUrl={currentFullUrl}
+          toCiteText="item"
+          title={item.title}
+        />
         <ShareButton
           className={classNames.shareButton}
           currentFullUrl={currentFullUrl}

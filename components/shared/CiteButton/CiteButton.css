@@ -1,0 +1,58 @@
+@value elephantBlue, iceBlue, oysterBayBlue from "../../../css/colors.css";
+@value monoFont from "../../../css/typography.css";
+
+.wrapper {
+  border-radius: 3px;
+  width: 100%;
+}
+
+.button.activeButton {
+  background-color: #D4E6EF;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.citeButton {
+  padding: 0;
+}
+
+.citationsWrapper {
+  background-color: iceBlue;
+  padding: .5rem .5rem;
+  border-radius: 0 0 .25rem .25rem;
+}
+
+.citationList {
+  margin: 0;
+  width: 100%;
+  word-wrap: break-word;
+
+  & dt {
+    font-weight: bold;
+    margin: .5rem .5rem .25rem;
+  }
+
+  & dd {
+    background-color: oysterBayBlue;
+    border-radius: .25rem;
+    font-family: monoFont;
+    font-size: .9rem;
+    margin: 0 0 1rem;
+    padding: .5rem;
+
+    &:last-child {
+      margin-bottom: .5rem;
+    }
+  }
+}
+
+.disclaimer {
+  display: block;
+  margin: .5rem;
+  font-size: .8rem;
+}
