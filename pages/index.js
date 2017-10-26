@@ -55,15 +55,86 @@ Home.getInitialProps = async ({ req }) => {
 
   const homepageRes = await fetch(DPLA_HOMEPAGE_ENDPOINT);
   const homepageJson = await homepageRes.json();
+
+  // fetch featured exhibits data
+
   const featuredExhibits = homepageJson.acf.featured_exhibits;
   const featuredExhibitIds = featuredExhibits.map(
     exhibit => exhibit.exhibit_id
   );
+
+  const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
+
+  const exhibitsJson = await exhibitsRes.json();
+  const featuredExhibitions = [];
+  featuredExhibitIds.forEach(id => {
+    const featuredExhibit = exhibitsJson.find(
+      exhibit => exhibit.id === parseInt(id, 10)
+    );
+    if (featuredExhibit) {
+      featuredExhibitions.push(
+        Object.assign({}, featuredExhibit, {
+          href: `/exhibitions/exhibition?exhibition=${featuredExhibit.slug}`,
+          as: `/exhibitions/${featuredExhibit.slug}`
+        })
+      );
+    }
+  });
+  const featuredExhibitionsWithData = await Promise.all(
+    featuredExhibitions.map(async exhibit => {
+      const exhibitPageRes = await fetch(
+        `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
+      );
+      const exhibitJson = await exhibitPageRes.json();
+
+      const itemId = exhibitJson.find(
+        exhibit =>
+          exhibit.slug === "home-page" ||
+          exhibit.slug === "homepage" ||
+          exhibit.order === 0
+      ).page_blocks[0].attachments[0].item.id;
+      const filesRes = await fetch(
+        `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+      );
+      const filesJson = await filesRes.json();
+
+      const thumbnailUrl = filesJson[0].file_urls.fullsize;
+      return Object.assign({}, exhibit, {
+        thumbnailUrl,
+        name: exhibit.title,
+        id: exhibit.slug
+      });
+    })
+  );
+
+  // fetch featured primary source sets data
+
+  const pssRes = await fetch(`https://dp.la/primary-source-sets/sets.json`);
+  const pssJson = await pssRes.json();
+
   const featuredPrimarySourceSets =
     homepageJson.acf.featured_primary_source_sets;
   const featuredPrimarySourceSetIds = featuredPrimarySourceSets.map(
     set => set.primary_source_set_id
   );
+
+  const sourceSets = [];
+  featuredPrimarySourceSetIds.forEach(setId => {
+    const featuredSet = pssJson.itemListElement.find(
+      item => item["@id"] === setId
+    );
+    if (featuredSet) {
+      const setWithLinkInfo = Object.assign({}, featuredSet, {
+        href: `/primary-source-sets/set?set=${extractSourceSetSlug(
+          featuredSet["@id"]
+        )}`,
+        as: `/primary-source-sets/${extractSourceSetSlug(featuredSet["@id"])}`
+      });
+      sourceSets.push(setWithLinkInfo);
+    }
+  });
+
+  // fetch item count
 
   const itemsRes = await fetch(`${currentUrl}${ITEMS_API_ENDPOINT}`);
   const itemsJson = await itemsRes.json();
@@ -73,40 +144,7 @@ Home.getInitialProps = async ({ req }) => {
     addCommasToNumber(itemCount)
   );
 
-  const pssRes = await fetch(`https://dp.la/primary-source-sets/sets.json`);
-
-  const pssJson = await pssRes.json();
-  const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
-
-  const exhibitsJson = await exhibitsRes.json();
-  const exhibitions = await Promise.all(
-    exhibitsJson
-      .filter(exhibit => featuredExhibitIds.includes(String(exhibit.id)))
-      .map(async exhibit => {
-        const exhibitPageRes = await fetch(
-          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
-        );
-        const exhibitJson = await exhibitPageRes.json();
-
-        const itemId = exhibitJson.find(
-          exhibit =>
-            exhibit.slug === "home-page" ||
-            exhibit.slug === "homepage" ||
-            exhibit.order === 0
-        ).page_blocks[0].attachments[0].item.id;
-        const filesRes = await fetch(
-          `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
-        );
-        const filesJson = await filesRes.json();
-
-        const thumbnailUrl = filesJson[0].file_urls.fullsize;
-        return Object.assign({}, exhibit, {
-          thumbnailUrl,
-          name: exhibit.title,
-          id: exhibit.slug
-        });
-      })
-  );
+  // fetch user guides data
 
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
@@ -132,23 +170,9 @@ Home.getInitialProps = async ({ req }) => {
   );
 
   return {
-    sourceSets: pssJson.itemListElement
-      .filter(set => featuredPrimarySourceSetIds.includes(set["@id"]))
-      .map(set =>
-        Object.assign({}, set, {
-          href: `/primary-source-sets/set?set=${extractSourceSetSlug(
-            set["@id"]
-          )}`,
-          as: `/primary-source-sets/${extractSourceSetSlug(set["@id"])}`
-        })
-      ),
+    sourceSets,
     guides,
-    exhibitions: exhibitions.map(exhibition =>
-      Object.assign({}, exhibition, {
-        href: `/exhibitions/exhibition?exhibition=${exhibition.slug}`,
-        as: `/exhibitions/${exhibition.slug}`
-      })
-    ),
+    exhibitions: featuredExhibitionsWithData,
     headerDescription
   };
 };
