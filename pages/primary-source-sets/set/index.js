@@ -8,9 +8,9 @@ import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/Singl
 import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleSet/RelatedSets";
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
-
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
+import { PSS_BASE_URL } from "constants/site";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -45,9 +45,7 @@ const SingleSet = ({ set, url, currentFullUrl }) =>
 
 SingleSet.getInitialProps = async ({ query, req }) => {
   const currentFullUrl = getCurrentFullUrl(req);
-  const res = await fetch(
-    `https://dp.la/primary-source-sets/sets/${query.set}.json`
-  );
+  const res = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
   const json = await res.json();
   const parts = json.hasPart.map(part => {
     let thumbnailUrl = part.thumbnailUrl;

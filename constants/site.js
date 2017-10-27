@@ -2,6 +2,7 @@ export const INSTAGRAM_URL = "https://www.instagram.com/digpublib/";
 export const INSTAGRAM_LINK_TITLE = "Visit DPLA on Instagram";
 export const TWITTER_URL = "https://twitter.com/dpla";
 export const TWITTER_LINK_TITLE = "Visit DPLA on Instagram";
+export const PSS_BASE_URL = "https://dplabeta.org/pssapi";
 
 export const PAYPAL_DONATE_SINGLE =
   "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40dp%2ela&item_name=One%20time%20donation%20to%20DPLA&amount={amount}&currency_code=USD&no_note=1&return={returnUrl}";
