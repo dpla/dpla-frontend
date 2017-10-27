@@ -52,9 +52,11 @@ const ItemDetail = ({
       <Content item={item} url={url} />
       <div className={classNames.faveAndCiteButtons}>
         <CiteButton
-          item={item}
+          creator={item.creator}
+          displayDate={item.date ? item.date.displayDate : item.date}
+          spatialName={item.spatial ? item.spatial.name : item.spatial}
+          sourceUrl={item.sourceUrl}
           className={classNames.shareButton}
-          currentFullUrl={currentFullUrl}
           toCiteText="item"
           title={item.title}
         />
