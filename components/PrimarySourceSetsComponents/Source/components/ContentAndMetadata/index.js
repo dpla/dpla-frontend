@@ -7,7 +7,6 @@ import {
   VideoPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
-import ShareButton from "components/shared/ShareButton";
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
@@ -96,14 +95,9 @@ const ContentAndMetadata = ({ source }) => {
                       source.mainEntity.spatial ? source.mainEntity.spatial.name : source.mainEntity.spatial
                     } */
                     /* sourceUrl={source.mainEntity.sourceUrl} */
-                    className={classNames.shareButton}
                     toCiteText="item"
                     title={source.name}
                   />
-
-                </div>
-                <div className={classNames.shareButton}>
-                  <ShareButton />
                 </div>
               </div>
               {/* <a href={fullContentUrl} download className={classNames.button}>

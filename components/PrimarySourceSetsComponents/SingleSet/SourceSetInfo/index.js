@@ -7,8 +7,8 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
-import ShareButton from "components/shared/ShareButton";
 import Button from "components/shared/Button";
+import CiteButton from "components/shared/CiteButton";
 
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
@@ -22,6 +22,7 @@ const extractSubjects = tags =>
 class SourceSetInfo extends React.Component {
   render() {
     const { set, currentFullUrl } = this.props;
+    const authorList = set.author.map(author => author.name);
     return (
       <div className={classNames.wrapper}>
         <div className={[classNames.sourceSetInfo, container].join(" ")}>
@@ -119,18 +120,16 @@ class SourceSetInfo extends React.Component {
                     )}
                   </div>
                 </div>
-                <Button
-                  type="ghost"
-                  className={`${classNames.button} ${classNames.citeButton}`}
-                >
-                  Cite this set
-                </Button>
-                <ShareButton
-                  toShareText="set"
-                  title={set.name}
-                  currentFullUrl={currentFullUrl}
-                  className={`${classNames.button} ${classNames.shareButton}`}
-                />
+                <div className={classNames.citeButton}>
+                  <CiteButton
+                    creator={authorList}
+                    displayDate={new Date(set.dateCreated).getFullYear()}
+                    sourceUrl={currentFullUrl}
+                    className={classNames.citeButton}
+                    toCiteText="set"
+                    title={set.title}
+                  />
+                </div>
               </div>
             </div>
           </div>

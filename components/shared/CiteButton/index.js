@@ -55,8 +55,8 @@ class CiteButton extends React.Component {
                 {title ? title + ". " : ""}
                 {spatialName ? spatialName + ", " : ""}
                 {displayDate ? displayDate + ". " : ""}
-                Retrieved from the Digital Public Library of America{" "}
-                {sourceUrl ? ", " + sourceUrl + ". " : ""}
+                Retrieved from the Digital Public Library of America
+                {sourceUrl ? ", " + sourceUrl + ". " : " "}
                 (Accessed {this.formatCurrentDate()}.)
               </dd>
               <dt>APA citation style</dt>
@@ -65,14 +65,14 @@ class CiteButton extends React.Component {
                 {displayDate ? "(" + displayDate + ") " : ""}
                 {title ? title + ". " : ""}
                 {spatialName ? spatialName + ". " : ""}
-                Retrieved from the Digital Public Library of America{" "}
+                Retrieved from the Digital Public Library of America
                 {sourceUrl ? ", " + sourceUrl : ""}
               </dd>
               <dt>MLA citation style</dt>
               <dd>
                 {creator ? joinIfArray(creator, ", ") + ". " : ""}
-                Retrieved from the Digital Public Library of America{" "}
-                {sourceUrl ? "&lt;" + sourceUrl + "&gt;. " : ""}
+                Retrieved from the Digital Public Library of America
+                {sourceUrl ? " <" + sourceUrl + ">. " : ""}
               </dd>
             </dl>
             <span className={classNames.disclaimer}>
