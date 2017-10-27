@@ -8,9 +8,10 @@ import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/Singl
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 import removeQueryParams from "utilFunctions/removeQueryParams";
+import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
 import { PSS_BASE_URL } from "constants/site";
 
-const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
+const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -25,7 +26,7 @@ const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
       ]}
       route={url}
     />
-    <SourceSetInfo set={set} />
+    <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
     <ResourcesTabs route={url} currentTab="teachingGuide" set={set}>
       <TeachersGuide
         teachingGuide={teachingGuide}
@@ -38,6 +39,7 @@ const SingleSet = ({ url, set, teachingGuide, currentPath }) =>
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query, req }) => {
+  const currentFullUrl = getCurrentFullUrl(req);
   const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
   const currentPath = req
@@ -53,7 +55,7 @@ SingleSet.getInitialProps = async ({ query, req }) => {
     ".json";
   const teachingGuideRes = await fetch(guideEndpoint);
   const teachingGuide = await teachingGuideRes.json();
-  return { set, teachingGuide, currentPath };
+  return { set, teachingGuide, currentPath, currentFullUrl };
 };
 
 export default SingleSet;

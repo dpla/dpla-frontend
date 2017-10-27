@@ -8,6 +8,7 @@ import SourceSetInfo from "/components/PrimarySourceSetsComponents/SingleSet/Sou
 import ResourcesTabs from "/components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import { PSS_BASE_URL } from "constants/site";
 
+import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import {
   classNames,
@@ -22,7 +23,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
-const SingleSet = ({ url, set }) =>
+const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
     <BreadcrumbsModule
       breadcrumbs={[
@@ -37,7 +38,7 @@ const SingleSet = ({ url, set }) =>
       ]}
       route={url}
     />
-    <SourceSetInfo set={set} />
+    <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div className={classNames.content}>
         <div className={container}>
@@ -57,11 +58,12 @@ const SingleSet = ({ url, set }) =>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
-SingleSet.getInitialProps = async ({ query }) => {
+SingleSet.getInitialProps = async ({ query, req }) => {
+  const currentFullUrl = getCurrentFullUrl(req);
   const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
   const set = await setRes.json();
-  return { set };
+  return { set, currentFullUrl };
 };
 
 export default SingleSet;
