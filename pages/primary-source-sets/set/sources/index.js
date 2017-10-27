@@ -6,8 +6,8 @@ import PSSFooter from "../../../../components/PrimarySourceSetsComponents/PSSFoo
 import BreadcrumbsModule from "../../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ContentAndMetadata from "../../../../components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
-
 import removeQueryParams from "utilFunctions/removeQueryParams";
+import { PSS_BASE_URL } from "constants/site";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -51,14 +51,10 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
   </MainLayout>;
 
 Source.getInitialProps = async ({ query }) => {
-  const sourceRes = await fetch(
-    `https://dp.la/primary-source-sets/sources/${query.source}.json`
-  );
+  const sourceRes = await fetch(`${PSS_BASE_URL}/sources/${query.source}.json`);
   const sourceJson = await sourceRes.text();
   const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
-  const setRes = await fetch(
-    `https://dp.la/primary-source-sets/sets/${query.set}.json`
-  );
+  const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
   const setJson = await setRes.json();
   const parts = setJson.hasPart.map(part => {
     let thumbnailUrl = part.thumbnailUrl;

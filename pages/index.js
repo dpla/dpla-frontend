@@ -23,6 +23,7 @@ import {
   FILES_ENDPOINT
 } from "constants/exhibitions";
 import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { PSS_BASE_URL } from "constants/site";
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
@@ -109,7 +110,7 @@ Home.getInitialProps = async ({ req }) => {
 
   // fetch featured primary source sets data
 
-  const pssRes = await fetch(`https://dp.la/primary-source-sets/sets.json`);
+  const pssRes = await fetch(`${PSS_BASE_URL}/sets.json`);
   const pssJson = await pssRes.json();
 
   const featuredPrimarySourceSets =

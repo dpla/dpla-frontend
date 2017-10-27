@@ -6,6 +6,7 @@ import PSSFooter from "/components/PrimarySourceSetsComponents/PSSFooter";
 import BreadcrumbsModule from "/components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import SourceSetInfo from "/components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "/components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
+import { PSS_BASE_URL } from "constants/site";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import {
@@ -57,9 +58,7 @@ const SingleSet = ({ url, set }) =>
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query }) => {
-  const setRes = await fetch(
-    `https://dp.la/primary-source-sets/sets/${query.set}.json`
-  );
+  const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
   const set = await setRes.json();
   return { set };
