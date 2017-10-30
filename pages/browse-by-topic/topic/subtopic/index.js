@@ -116,7 +116,7 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
       const itemJson = await itemRes.json();
       return Object.assign({}, item, {
         title: decodeHTMLEntities(item.title.rendered),
-        linkHref: `/item?itemId=${itemDplaId}`,
+        linkHref: `/item/${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
         thumbnailUrl: itemJson.docs[0].object
