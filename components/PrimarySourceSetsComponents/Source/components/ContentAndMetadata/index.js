@@ -12,6 +12,7 @@ import CiteButton from "components/shared/CiteButton";
 import { extractItemId, joinIfArray } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
+
 import { classNames as utilClassNames } from "css/utils.css";
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
@@ -94,7 +95,9 @@ const ContentAndMetadata = ({ source }) => {
             <div className={classNames.sourceInfo}>
               <div className={classNames.buttons}>
                 {getSourceCitation(source) &&
-                  <div className={classNames.citeButton}>
+                  <div
+                    className={`${classNames.citeButton} ${classNames.faveAndCiteButtons}`}
+                  >
                     <CiteButton
                       toCiteText="item"
                       freeText={getSourceCitation(source)}

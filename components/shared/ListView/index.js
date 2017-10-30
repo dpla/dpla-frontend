@@ -41,7 +41,9 @@ const ListView = ({ items, route }) =>
           <Link prefetch href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
               <span className={`hover-underline ${classNames.itemTitle}`}>
-                {item.title}
+                {route.pathname.indexOf("/search") === 0 && item.title
+                  ? truncateString(item.title, 150)
+                  : item.title}
               </span>
             </a>
           </Link>
