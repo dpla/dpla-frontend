@@ -1,6 +1,6 @@
 import React from "react";
 
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray, removeEndPunctuation } from "utilFunctions";
 
 import Button from "components/shared/Button";
 import { classNames, stylesheet } from "./CiteButton.css";
@@ -52,9 +52,9 @@ class CiteButton extends React.Component {
               <dt>Chicago citation style</dt>
               <dd>
                 {creator ? joinIfArray(creator, ", ") + ". " : ""}
-                {title ? title + ". " : ""}
-                {spatialName ? spatialName + ", " : ""}
-                {displayDate ? displayDate + ". " : ""}
+                {title ? removeEndPunctuation(title) + ". " : ""}
+                {spatialName ? removeEndPunctuation(spatialName) + ", " : ""}
+                {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
                 Retrieved from the Digital Public Library of America
                 {sourceUrl ? ", " + sourceUrl + ". " : " "}
                 (Accessed {this.formatCurrentDate()}.)
@@ -62,9 +62,11 @@ class CiteButton extends React.Component {
               <dt>APA citation style</dt>
               <dd>
                 {creator ? joinIfArray(creator, ", ") + ", " : ""}
-                {displayDate ? "(" + displayDate + ") " : ""}
-                {title ? title + ". " : ""}
-                {spatialName ? spatialName + ". " : ""}
+                {displayDate
+                  ? "(" + removeEndPunctuation(displayDate) + ") "
+                  : ""}
+                {title ? removeEndPunctuation(title) + ". " : ""}
+                {spatialName ? removeEndPunctuation(spatialName) + ". " : ""}
                 Retrieved from the Digital Public Library of America
                 {sourceUrl ? ", " + sourceUrl : ""}
               </dd>
