@@ -127,7 +127,7 @@ class SourceSetInfo extends React.Component {
                     sourceUrl={currentFullUrl}
                     className={classNames.citeButton}
                     toCiteText="set"
-                    title={set.name}
+                    title={set.name.replace(/\*/g, "")}
                   />
                 </div>
               </div>
