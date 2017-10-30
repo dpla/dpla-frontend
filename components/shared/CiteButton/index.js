@@ -1,6 +1,6 @@
 import React from "react";
 
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray, removeEndPunctuation } from "utilFunctions";
 
 import Button from "components/shared/Button";
 import { classNames, stylesheet } from "./CiteButton.css";
@@ -20,8 +20,15 @@ class CiteButton extends React.Component {
   };
 
   render() {
-    const { item, className, currentFullUrl, toCiteText, title } = this.props;
-    const url = currentFullUrl;
+    const {
+      creator,
+      displayDate,
+      spatialName,
+      sourceUrl,
+      className,
+      toCiteText,
+      title
+    } = this.props;
     return (
       <div className={classNames.wrapper}>
         <Button
@@ -44,33 +51,30 @@ class CiteButton extends React.Component {
             <dl className={classNames.citationList}>
               <dt>Chicago citation style</dt>
               <dd>
-                {item.creator ? joinIfArray(item.creator, ", ") + ". " : ""}
-                {item.title ? item.title + ". " : ""}
-                {item.spatial && item.spatial.name
-                  ? item.spatial.name + ", "
-                  : ""}
-                {item.date ? item.date.displayDate + ". " : ""}
-                Retrieved from the Digital Public Library of America,{" "}
-                {item.sourceUrl}.
+                {creator ? joinIfArray(creator, ", ") + ". " : ""}
+                {title ? removeEndPunctuation(title) + ". " : ""}
+                {spatialName ? removeEndPunctuation(spatialName) + ", " : ""}
+                {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
+                Retrieved from the Digital Public Library of America
+                {sourceUrl ? ", " + sourceUrl + ". " : " "}
                 (Accessed {this.formatCurrentDate()}.)
               </dd>
               <dt>APA citation style</dt>
               <dd>
-                {item.creator ? joinIfArray(item.creator, ", ") + ", " : ""}
-                {item.date ? "(" + item.date.displayDate + ") " : ""}
-                {item.title ? item.title + ". " : ""}
-                {item.spatial && item.spatial.name
-                  ? item.spatial.name + ". "
+                {creator ? joinIfArray(creator, ", ") + ", " : ""}
+                {displayDate
+                  ? "(" + removeEndPunctuation(displayDate) + ") "
                   : ""}
-                Retrieved from the Digital Public Library of America,{" "}
-                {item.sourceUrl}
+                {title ? removeEndPunctuation(title) + ". " : ""}
+                {spatialName ? removeEndPunctuation(spatialName) + ". " : ""}
+                Retrieved from the Digital Public Library of America
+                {sourceUrl ? ", " + sourceUrl : ""}
               </dd>
               <dt>MLA citation style</dt>
               <dd>
-                {item.creator ? joinIfArray(item.creator, ", ") + ". " : ""}
-                Retrieved from the Digital Public Library of America &lt;{
-                  item.sourceUrl
-                }&gt;.
+                {creator ? joinIfArray(creator, ", ") + ". " : ""}
+                Retrieved from the Digital Public Library of America
+                {sourceUrl ? " <" + sourceUrl + ">. " : ""}
               </dd>
             </dl>
             <span className={classNames.disclaimer}>

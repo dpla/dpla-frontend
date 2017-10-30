@@ -7,7 +7,7 @@ import { stylesheet as reset } from "css/reset.css";
 export default ({ additionalLinks, pageTitle }) =>
   <div>
     <Head>
-      <meta charset="utf-8" />
+      <meta charSet="utf-8" />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -61,7 +61,7 @@ export default ({ additionalLinks, pageTitle }) =>
         content={pageTitle || "Digital Public Library of America"}
       />
 
-      <style js>{reset}</style>
-      <style js>{utilStylesheet}</style>
+      <style>{reset}</style>
+      <style>{utilStylesheet}</style>
     </Head>
   </div>;

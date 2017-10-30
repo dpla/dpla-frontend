@@ -7,8 +7,8 @@ import {
   VideoPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
-import ShareButton from "components/shared/ShareButton";
 import Button from "components/shared/Button";
+import CiteButton from "components/shared/CiteButton";
 
 import { extractItemId } from "utilFunctions";
 
@@ -86,13 +86,18 @@ const ContentAndMetadata = ({ source }) => {
           </div>
           <div className={classNames.metadata}>
             <div className={classNames.sourceInfo}>
-              {/* TODO: hook these up */}
               <div className={classNames.buttons}>
                 <div className={classNames.citeButton}>
-                  <Button type="ghost">Cite this source</Button>
-                </div>
-                <div className={classNames.shareButton}>
-                  <ShareButton />
+                  <CiteButton
+                    /* creator={source.mainEntity.creator} */
+                    /* displayDate={source.mainEntity.date ? source.mainEntity.date.displayDate : source.mainEntity.date} */
+                    /* spatialName={
+                      source.mainEntity.spatial ? source.mainEntity.spatial.name : source.mainEntity.spatial
+                    } */
+                    /* sourceUrl={source.mainEntity.sourceUrl} */
+                    toCiteText="item"
+                    title={source.name}
+                  />
                 </div>
               </div>
               {/* <a href={fullContentUrl} download className={classNames.button}>

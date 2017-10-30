@@ -5,7 +5,6 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import CiteButton from "components/shared/CiteButton";
-import ShareButton from "components/shared/ShareButton";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -52,16 +51,12 @@ const ItemDetail = ({
       <Content item={item} url={url} />
       <div className={classNames.faveAndCiteButtons}>
         <CiteButton
-          item={item}
-          className={classNames.shareButton}
-          currentFullUrl={currentFullUrl}
+          creator={item.creator}
+          displayDate={item.date ? item.date.displayDate : item.date}
+          spatialName={item.spatial ? item.spatial.name : item.spatial}
+          sourceUrl={item.sourceUrl}
+          className={classNames.citeButton}
           toCiteText="item"
-          title={item.title}
-        />
-        <ShareButton
-          className={classNames.shareButton}
-          currentFullUrl={currentFullUrl}
-          toShareText="item"
           title={item.title}
         />
       </div>
