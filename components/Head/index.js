@@ -12,6 +12,26 @@ export default ({ additionalLinks, pageTitle }) =>
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
+      <meta
+        name="referrer"
+        content="origin-when-cross-origin"
+      />
+      <meta 
+        name="og:site_name"
+        content="Digital Pulic Library of America"
+      />
+      <meta
+        name="twitter:card"
+        content="summary"
+      />
+      <meta
+        name="twitter:site"
+        content="@dpla"
+      />
+      <meta
+        name="twitter:creator"
+        content="@dpla"
+      />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -57,10 +77,9 @@ export default ({ additionalLinks, pageTitle }) =>
       {additionalLinks}
       <title>{pageTitle || "Digital Public Library of America"}</title>
       <meta
-        property="og:title"
+        name="og:title"
         content={pageTitle || "Digital Public Library of America"}
       />
-
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
     </Head>
