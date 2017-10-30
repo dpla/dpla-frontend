@@ -1,4 +1,4 @@
 const getCurrentUrl = req =>
-  req ? `//${req.get("host")}` : `//${window.location.host}`;
+  req ? `${req.protocol}://${req.get("host")}` : `//${window.location.host}`;
 
 export default getCurrentUrl;
