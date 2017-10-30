@@ -26,7 +26,11 @@ const MainMetadata = ({ item }) =>
               target="_blank"
               className={classNames.sourceLink}
             >
-              <span className={classNames.sourceLinkText}>Source</span>
+              <span className={classNames.sourceLinkText}>
+                {item.type === "image"
+                  ? "View Full Image"
+                  : item.type === "text" ? "View Full Text" : "View Full Item"}
+              </span>
               <img
                 src={externalLinkIcon}
                 alt=""
