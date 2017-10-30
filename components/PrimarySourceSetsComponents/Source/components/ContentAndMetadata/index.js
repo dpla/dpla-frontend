@@ -10,7 +10,7 @@ import {
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
-import { extractItemId } from "utilFunctions";
+import { extractItemId, joinIfArray } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -24,6 +24,13 @@ const getSourceLink = source =>
   source.mainEntity[0]["dct:references"].filter(
     ref => ref["@type"] === "WebPage"
   )[0]["@id"];
+
+const getSourceCitation = (source, type = "citation") =>
+  source.mainEntity[0]["citation"]
+    ? source.mainEntity[0]["citation"].filter(
+        ref => ref["disabmiguationDescription"] === type
+      )[0]["text"]
+    : source.mainEntity[0]["citation"];
 
 const getItemId = source =>
   extractItemId(
@@ -87,22 +94,27 @@ const ContentAndMetadata = ({ source }) => {
           <div className={classNames.metadata}>
             <div className={classNames.sourceInfo}>
               <div className={classNames.buttons}>
-                <div className={classNames.citeButton}>
-                  <CiteButton
-                    /* creator={source.mainEntity.creator} */
-                    /* displayDate={source.mainEntity.date ? source.mainEntity.date.displayDate : source.mainEntity.date} */
-                    /* spatialName={
-                      source.mainEntity.spatial ? source.mainEntity.spatial.name : source.mainEntity.spatial
-                    } */
-                    /* sourceUrl={source.mainEntity.sourceUrl} */
-                    toCiteText="item"
-                    title={source.name}
-                  />
-                </div>
+                {getSourceCitation(source) &&
+                  <div className={classNames.citeButton}>
+                    <CiteButton
+                      toCiteText="item"
+                      freeText={getSourceCitation(source)}
+                      title={source.name}
+                    />
+                  </div>}
               </div>
               {/* <a href={fullContentUrl} download className={classNames.button}>
                 Download
               </a> */}
+              {getSourceCitation(source, "credits") &&
+                <div
+                  className={classNames.courtesyOf}
+                  dangerouslySetInnerHTML={{
+                    __html: markdownit.render(
+                      joinIfArray(getSourceCitation(source, "credits"))
+                    )
+                  }}
+                />}
               {source.mainEntity[0]["dct:provenance"] &&
                 <div
                   className={classNames.courtesyOf}

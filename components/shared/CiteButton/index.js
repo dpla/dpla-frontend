@@ -27,6 +27,7 @@ class CiteButton extends React.Component {
       sourceUrl,
       className,
       toCiteText,
+      freeText,
       title
     } = this.props;
     return (
@@ -48,35 +49,48 @@ class CiteButton extends React.Component {
             : classNames.hidden}`}
         >
           <div className={classNames.citationsWrapper}>
-            <dl className={classNames.citationList}>
-              <dt>Chicago citation style</dt>
-              <dd>
-                {creator ? joinIfArray(creator, ", ") + ". " : ""}
-                {title ? removeEndPunctuation(title) + ". " : ""}
-                {spatialName ? removeEndPunctuation(spatialName) + ", " : ""}
-                {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
-                Retrieved from the Digital Public Library of America
-                {sourceUrl ? ", " + sourceUrl + ". " : " "}
-                (Accessed {this.formatCurrentDate()}.)
-              </dd>
-              <dt>APA citation style</dt>
-              <dd>
-                {creator ? joinIfArray(creator, ", ") + ", " : ""}
-                {displayDate
-                  ? "(" + removeEndPunctuation(displayDate) + ") "
-                  : ""}
-                {title ? removeEndPunctuation(title) + ". " : ""}
-                {spatialName ? removeEndPunctuation(spatialName) + ". " : ""}
-                Retrieved from the Digital Public Library of America
-                {sourceUrl ? ", " + sourceUrl : ""}
-              </dd>
-              <dt>MLA citation style</dt>
-              <dd>
-                {creator ? joinIfArray(creator, ", ") + ". " : ""}
-                Retrieved from the Digital Public Library of America
-                {sourceUrl ? " <" + sourceUrl + ">. " : ""}
-              </dd>
-            </dl>
+            {/*freeText &&
+              <dl className={classNames.citationList}>
+                <dt>Citation Information</dt>
+                <dd>{freeText}</dd>
+            </dl>*/}
+            {freeText &&
+              <dl className={classNames.citationList}>
+                <dt>Chicago citation style</dt>
+                <dd>
+                  Giraldo, Richard, “Group at the County Convention of the
+                  Freedom Democratic Party during Freedom Summer,” Digital
+                  Public Library of America,
+                  http://dp.la/item/34f340f27814f55833c885a8258fea88.
+                </dd>
+                <dt>Chicago citation style</dt>
+                <dd>
+                  {creator ? joinIfArray(creator, ", ") + ". " : ""}
+                  {title ? removeEndPunctuation(title) + ". " : ""}
+                  {spatialName ? removeEndPunctuation(spatialName) + ", " : ""}
+                  {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
+                  Retrieved from the Digital Public Library of America
+                  {sourceUrl ? ", " + sourceUrl + ". " : " "}
+                  (Accessed {this.formatCurrentDate()}.)
+                </dd>
+                <dt>APA citation style</dt>
+                <dd>
+                  {creator ? joinIfArray(creator, ", ") + ", " : ""}
+                  {displayDate
+                    ? "(" + removeEndPunctuation(displayDate) + ") "
+                    : ""}
+                  {title ? removeEndPunctuation(title) + ". " : ""}
+                  {spatialName ? removeEndPunctuation(spatialName) + ". " : ""}
+                  Retrieved from the Digital Public Library of America
+                  {sourceUrl ? ", " + sourceUrl : ""}
+                </dd>
+                <dt>MLA citation style</dt>
+                <dd>
+                  {creator ? joinIfArray(creator, ", ") + ". " : ""}
+                  Retrieved from the Digital Public Library of America
+                  {sourceUrl ? " <" + sourceUrl + ">. " : ""}
+                </dd>
+              </dl>}
             <span className={classNames.disclaimer}>
               <strong>Note:</strong> These citations are programmatically
               generated and may be incomplete.
