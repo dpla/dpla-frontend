@@ -49,12 +49,17 @@ class CiteButton extends React.Component {
             : classNames.hidden}`}
         >
           <div className={classNames.citationsWrapper}>
-            {/*freeText &&
+            {freeText ||
               <dl className={classNames.citationList}>
                 <dt>Citation Information</dt>
-                <dd>{freeText}</dd>
-            </dl>*/}
-            {freeText &&
+                <dd>
+                  Giraldo, Richard, “Group at the County Convention of the
+                  Freedom Democratic Party during Freedom Summer,” Digital
+                  Public Library of America,
+                  http://dp.la/item/34f340f27814f55833c885a8258fea88.
+                </dd>
+              </dl>}
+            {freeText ||
               <dl className={classNames.citationList}>
                 <dt>Chicago citation style</dt>
                 <dd>

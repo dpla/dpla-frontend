@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import {
   ZoomableImageViewer,
@@ -137,20 +136,17 @@ const ContentAndMetadata = ({ source }) => {
               <div className={classNames.divider} />
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
-                  <Link prefetch href={`/item/${getItemId(source)}`}>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={classNames.sourceLink}
-                    >
-                      <img
-                        alt="Link icon"
-                        src={link}
-                        className={classNames.linkIcon}
-                      />
-                      <span className={classNames.linkText}>View in DPLA</span>
-                    </a>
-                  </Link>
+                  <a
+                    className={classNames.sourceLink}
+                    href={`/item/${getItemId(source)}`}
+                  >
+                    <img
+                      alt="Link icon"
+                      src={link}
+                      className={classNames.linkIcon}
+                    />
+                    <span className={classNames.linkText}>View in DPLA</span>
+                  </a>
                 </div>}
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>

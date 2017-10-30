@@ -50,7 +50,7 @@ const OtherMetadata = ({ item }) =>
         <Row className={classNames.subjects} heading="Subjects">
           {item.subject &&
             item.subject.map((subj, i, subjects) =>
-              <span>
+              <span key={i}>
                 <FacetLink facet="subject" value={subj.name} />
                 {i < subjects.length - 1 && <br />}
               </span>
