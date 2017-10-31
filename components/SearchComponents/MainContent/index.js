@@ -12,19 +12,19 @@ import { removeQueryParams } from "utilFunctions";
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {
-    const previous = idx > 0 ? idx - 1 : "";
-    const next = idx < results.length - 1 ? idx + 1 : null;
+    // const previous = idx > 0 ? idx - 1 : "";
+    // const next = idx < results.length - 1 ? idx + 1 : null;
     return Object.assign({}, item, {
       linkHref: {
         pathname: "/item",
-        query: { ...query, itemId: extractItemId(item["@id"]), previous, next }
+        query: { ...query, itemId: extractItemId(item["@id"]) } //, previous, next }
       },
       linkAs: {
         pathname: `/item/${extractItemId(item["@id"])}`,
-        query: Object.assign({}, removeQueryParams(query, ["itemId"]), {
-          next,
-          previous
-        })
+        query: Object.assign({}, removeQueryParams(query, ["itemId"])) //, {
+        //   next,
+        //   previous
+        // })
       }
     });
   });
