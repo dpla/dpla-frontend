@@ -57,7 +57,7 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
           route={route}
           itemsPerPage={paginationInfo.pageSize}
           currentPage={parseInt(paginationInfo.currentPage, 10)}
-          pageCount={Math.floor(
+          pageCount={Math.ceil(
             paginationInfo.pageCount / paginationInfo.pageSize
           )}
         />
