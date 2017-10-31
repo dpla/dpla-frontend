@@ -54,62 +54,68 @@ Topic.getInitialProps = async ({ query, req }) => {
       Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
     );
 
-  const suggestions = await Promise.all(
-    currentTopic.acf.related_content.map(async item => {
-      if (item.related_content_type === "Exhibition") {
-        const exhibitionsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
-        const exhibitionsJson = await exhibitionsRes.json();
-        const exhibition = exhibitionsJson.find(
-          exhibition =>
-            parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
-        );
-        const exhibitPageRes = await fetch(
-          `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.exhibition_id}`
-        );
-        const exhibitPageJson = await exhibitPageRes.json();
-        const homePage =
-          exhibitPageJson.find(
-            exhibit =>
-              exhibit.slug === "home-page" || exhibit.slug === "homepage"
-          ) || exhibitPageJson[0];
-        const { item: homePageItem } = homePage.page_blocks[0].attachments[0];
-        const filesRes = await fetch(
-          `${currentUrl}${FILES_ENDPOINT}?item=${homePageItem.id}`
-        );
-        const filesJson = await filesRes.json();
+  const suggestions = !currentTopic.acf.related_content
+    ? []
+    : await Promise.all(
+        currentTopic.acf.related_content.map(async item => {
+          if (item.related_content_type === "Exhibition") {
+            const exhibitionsRes = await fetch(
+              `${currentUrl}${EXHIBITS_ENDPOINT}`
+            );
+            const exhibitionsJson = await exhibitionsRes.json();
+            const exhibition = exhibitionsJson.find(
+              exhibition =>
+                parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
+            );
+            const exhibitPageRes = await fetch(
+              `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.exhibition_id}`
+            );
+            const exhibitPageJson = await exhibitPageRes.json();
+            const homePage =
+              exhibitPageJson.find(
+                exhibit =>
+                  exhibit.slug === "home-page" || exhibit.slug === "homepage"
+              ) || exhibitPageJson[0];
+            const {
+              item: homePageItem
+            } = homePage.page_blocks[0].attachments[0];
+            const filesRes = await fetch(
+              `${currentUrl}${FILES_ENDPOINT}?item=${homePageItem.id}`
+            );
+            const filesJson = await filesRes.json();
 
-        const title = exhibition.title;
-        const thumbnailUrl = filesJson[0].file_urls.fullsize;
-        const slug = exhibition.slug;
-        if (!slug) {
-          return null;
-        }
-        const href = `/exhibitions/exhibition?exhibition=${slug}`;
-        const as = `/exhibitions/${slug}`;
-        return {
-          title,
-          thumbnailUrl,
-          as,
-          href,
-          type: "Exhibition"
-        };
-      } else if (item.related_content_type === "Primary Source Set") {
-        const setId = sanitizeSourceSetId(item.primary_source_set_id);
-        const sourceSetRes = await fetch(`${setId}.json`);
-        const sourceSetJson = await sourceSetRes.json();
-        const slug = extractSourceSetSlug(sourceSetJson["@id"]);
-        return {
-          title: markdownit.render(sourceSetJson.name),
-          thumbnailUrl: sourceSetJson.thumbnailUrl,
-          as: `/primary-source-sets/${slug}`,
-          href: `/primary-source-sets/set?set=${slug}`,
-          type: "Primary Source Set"
-        };
-      } else {
-        return null;
-      }
-    })
-  );
+            const title = exhibition.title;
+            const thumbnailUrl = filesJson[0].file_urls.fullsize;
+            const slug = exhibition.slug;
+            if (!slug) {
+              return null;
+            }
+            const href = `/exhibitions/exhibition?exhibition=${slug}`;
+            const as = `/exhibitions/${slug}`;
+            return {
+              title,
+              thumbnailUrl,
+              as,
+              href,
+              type: "Exhibition"
+            };
+          } else if (item.related_content_type === "Primary Source Set") {
+            const setId = sanitizeSourceSetId(item.primary_source_set_id);
+            const sourceSetRes = await fetch(`${setId}.json`);
+            const sourceSetJson = await sourceSetRes.json();
+            const slug = extractSourceSetSlug(sourceSetJson["@id"]);
+            return {
+              title: markdownit.render(sourceSetJson.name),
+              thumbnailUrl: sourceSetJson.thumbnailUrl,
+              as: `/primary-source-sets/${slug}`,
+              href: `/primary-source-sets/set?set=${slug}`,
+              type: "Primary Source Set"
+            };
+          } else {
+            return null;
+          }
+        })
+      );
   return {
     topic: Object.assign({}, currentTopic, { subtopics }),
     suggestions: suggestions.filter(suggestion => !!suggestion)
