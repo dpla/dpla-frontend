@@ -125,7 +125,7 @@ const ContentAndMetadata = ({ source }) => {
               <div className={classNames.divider} />
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
-                  <Link prefetch href={`/item?itemId=${getItemId(source)}`}>
+                  <Link prefetch href={`/item/${getItemId(source)}`}>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"

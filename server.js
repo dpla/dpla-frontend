@@ -407,6 +407,7 @@ function renderAndCache(req, res, pagePath, queryParams) {
       // Let's cache this page
       console.log(`CACHE MISS: ${req.url}`);
       ssrCache.set(req.url, html);
+      res.header("Cache-Control", "no-cache, must-revalidate");
       res.send(html);
     })
     .catch(err => {
