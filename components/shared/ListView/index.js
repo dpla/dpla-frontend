@@ -66,7 +66,11 @@ const ListView = ({ items, route }) =>
             rel="noopener noreferrer"
             className={`hover-underline ${classNames.itemSource}`}
           >
-            <span className={classNames.itemSourceText}>Source</span>
+            <span className={classNames.itemSourceText}>
+              {item.type === "image"
+                ? "View Full Image"
+                : item.type === "text" ? "View Full Text" : "View Full Item"}
+            </span>
             <img
               className={classNames.externalLinkIcon}
               src={externalLinkIcon}
