@@ -8,13 +8,13 @@ class ResourcesTabs extends React.Component {
   render() {
     const { currentTab, route } = this.props;
     return (
-      <div className={classNames.wrapper}>
+      <div id="tabs" className={classNames.wrapper}>
         <div className={classNames.tabsWrapper}>
           <div className={`${classNames.tabs} ${utilClassNames.container}`}>
             <Link
               prefetch
-              href={`/primary-source-sets/set?set=${route.query.set}`}
-              as={`/primary-source-sets/${route.query.set}`}
+              href={`/primary-source-sets/set?set=${route.query.set}#tabs`}
+              as={`/primary-source-sets/${route.query.set}#tabs`}
             >
               <a
                 className={[
@@ -31,9 +31,9 @@ class ResourcesTabs extends React.Component {
             <Link
               prefetch
               href={`/primary-source-sets/set/additional-resources?set=${route
-                .query.set}`}
+                .query.set}#tabs`}
               as={`/primary-source-sets/${route.query
-                .set}/additional-resources`}
+                .set}/additional-resources#tabs`}
             >
               <a
                 className={[
@@ -51,8 +51,9 @@ class ResourcesTabs extends React.Component {
               <Link
                 prefetch
                 href={`/primary-source-sets/set/teaching-guide?set=${route.query
-                  .set}`}
-                as={`/primary-source-sets/${route.query.set}/teaching-guide`}
+                  .set}#tabs`}
+                as={`/primary-source-sets/${route.query
+                  .set}/teaching-guide#tabs`}
               >
                 <a
                   className={[
