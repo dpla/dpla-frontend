@@ -167,7 +167,7 @@ class OptionsBar extends React.Component {
                 options={sortOptions}
               />
             </div>
-            <div>
+            {/* <div>
               <h3 className={classNames.optionHeader}>
                 Layout
               </h3>
@@ -221,7 +221,7 @@ class OptionsBar extends React.Component {
                   </a>
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
