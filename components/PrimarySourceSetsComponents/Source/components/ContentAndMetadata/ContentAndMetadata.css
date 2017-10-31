@@ -1,5 +1,5 @@
 @value iceBlue, pampasBrown, curiousBlue, visualBrown from "../../../../../css/colors.css";
-@value smallRem from "../../../../../css/breakpoints.css";
+@value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .contentAndMetadata {
   padding-top: 23px;
@@ -176,6 +176,17 @@
 
 .buttons button {
   width: 100%;
+}
+
+.faveAndCiteButtons {
+  align-self: baseline;
+  flex-shrink: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media (min-width: mediumRem) {
+    max-width: 245px;
+  }
 }
 
 .citeButton {
