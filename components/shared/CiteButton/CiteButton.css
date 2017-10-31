@@ -12,13 +12,19 @@
   border-bottom-right-radius: 0;
 }
 
-.hidden {
-  display: none;
-  visibility: hidden;
-}
-
 .citeButton {
   padding: 0;
+  max-height: 200rem;
+  transition: max-height 1s ease-in;
+  overflow: hidden;
+
+  &.hidden {
+    /* display: none;
+    visibility: hidden; */
+    overflow: hidden;
+    transition: max-height .5s ease-out;
+    max-height: 0rem;
+  }
 }
 
 .citationsWrapper {

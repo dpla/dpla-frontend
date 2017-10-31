@@ -3,8 +3,7 @@ import Link from "next/link";
 
 import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import FaveAndCiteButtons from "components/shared/FaveAndCiteButtons";
-import ShareButton from "components/shared/ShareButton";
+import CiteButton from "components/shared/CiteButton";
 
 const { container } = utilClassNames;
 const Details = ({ exhibition, route, currentFullUrl }) =>
@@ -41,10 +40,11 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
           </ul>
         </div>
         <div className={classNames.faveAndCiteButtonsWrapper}>
-          <FaveAndCiteButtons />
-          <ShareButton
-            className={classNames.shareButton}
-            currentFullUrl={currentFullUrl}
+          <CiteButton
+            toCiteText="exhibition"
+            className={classNames.citeButton}
+            freeText={exhibition.description}
+            title={exhibition.name}
           />
         </div>
       </div>

@@ -25,7 +25,7 @@ const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
     {items.map(item =>
       <li key={item["@id"] || item.id} className={classNames.listItem}>
-        <Link prefetch href={item.linkHref} as={item.linkAs}>
+        <Link href={item.linkHref} as={item.linkAs}>
           <a
             className={`${classNames.listItemLink} ${classNames.listItemImageLink}`}
           >
@@ -38,7 +38,7 @@ const ListView = ({ items, route }) =>
           </a>
         </Link>
         <div className={classNames.itemInfo}>
-          <Link prefetch href={item.linkHref} as={item.linkAs}>
+          <Link href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
               <span className={`hover-underline ${classNames.itemTitle}`}>
                 {route.pathname.indexOf("/search") === 0 && item.title

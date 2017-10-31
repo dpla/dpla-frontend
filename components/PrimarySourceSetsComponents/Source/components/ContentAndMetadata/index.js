@@ -101,6 +101,7 @@ const ContentAndMetadata = ({ source }) => {
                     <CiteButton
                       toCiteText="item"
                       freeText={getSourceCitation(source)}
+                      className={""}
                       title={source.name}
                     />
                   </div>}
