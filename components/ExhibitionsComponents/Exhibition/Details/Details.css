@@ -1,4 +1,4 @@
-@value visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value linkColor, visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .details {
@@ -105,9 +105,13 @@
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  & a {
+    color: linkColor;
+    text-decoration: underline;
+  }
 }
 
-.shareButton {
+.citeButton {
   width: 100%;
-  margin-top: 0.5rem;
 }
