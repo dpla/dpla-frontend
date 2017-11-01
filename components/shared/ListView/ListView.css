@@ -5,10 +5,14 @@
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
-}
 
-.listItem:last-of-type {
-  border-bottom: 0;
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
 }
 
 .listItemLink {
@@ -25,7 +29,6 @@
     margin-right: 8px;
   }
 }
-
 
 .listItemImageLink {
   width: 33%;
@@ -47,7 +50,7 @@
   position: relative;
 
   @media (max-width: smallRem) {
-    margin-left: 1rem
+    margin-left: 1rem;
   }
 
   @media (min-width: largeRem) {
@@ -89,9 +92,9 @@
 
 .itemInfo {
   @media (min-width: smallRem) {
-    padding-right: 0
+    padding-right: 0;
   }
-  padding-right: 1rem
+  padding-right: 1rem;
 }
 
 .image {

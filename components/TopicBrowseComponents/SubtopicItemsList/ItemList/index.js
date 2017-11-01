@@ -21,11 +21,8 @@ class ItemList extends React.Component {
 
     return (
       <div className={classNames.itemList}>
-        <div className={classNames.itemListHeader}>
-          <p className={classNames.itemCount}>
-            {items.length} Items
-          </p>
-          {/* <div className={classNames.viewButtons}>
+        {/* <div className={classNames.itemListHeader}>
+          <div className={classNames.viewButtons}>
             <button
               className={[
                 classNames.listViewButton,
@@ -64,8 +61,8 @@ class ItemList extends React.Component {
                 alt="Grid View"
               />
             </button>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
         {view === "grid"
           ? <GridView
               route={this.props.route}
