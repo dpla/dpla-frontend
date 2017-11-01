@@ -132,6 +132,14 @@
   }
 }
 
+.rightsStatement {
+  padding: 1rem 0 0;
+
+  & img {
+    max-height: 1.5rem;
+  }
+}
+
 .rightsText {
   color: #979797;
   font-size: 0.9375rem;

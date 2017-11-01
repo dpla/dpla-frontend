@@ -24,11 +24,3 @@
   margin-top: 0.5rem;
   width: 100%;
 }
-
-.rightsStatement {
-  padding: 1rem 2rem 0;
-
-  & img {
-    max-height: 2rem;
-  }
-}
