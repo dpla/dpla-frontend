@@ -5,7 +5,6 @@ import { rightsURLs } from "../../../constants/site.js";
 import { joinIfArray } from "utilFunctions";
 
 const RightsMetadata = ({ item }) =>
-  // console.log(joinIfArray(item.edmRights)) ||
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
