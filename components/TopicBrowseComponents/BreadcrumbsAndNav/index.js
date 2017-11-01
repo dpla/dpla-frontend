@@ -17,12 +17,6 @@ const BreadcrumbsAndNav = ({
   <div className={classNames.wrapper}>
     <div className={[classNames.breadcrumbsAndNav, container].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      <NavLinks
-        route={route}
-        previousSubtopic={previousSubtopic}
-        nextSubtopic={nextSubtopic}
-        topic={topic}
-      />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

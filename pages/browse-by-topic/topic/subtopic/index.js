@@ -47,7 +47,6 @@ const SubtopicItemsList = ({
         },
         { title: subtopic.name, url: "" }
       ]}
-      showNavLinks={true}
       previousSubtopic={previousSubtopic}
       nextSubtopic={nextSubtopic}
       topic={topic}
