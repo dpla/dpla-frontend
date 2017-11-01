@@ -2,7 +2,22 @@ import React from "react";
 import { classNames, stylesheet } from "./Content.css";
 import { joinIfArray } from "utilFunctions";
 import ItemImage from "./ItemImage";
+import { rightsURLs } from "constants/site.js";
+
 const externalLinkIcon = "/static/images/external-link-white.svg";
+
+const RightsBadge = ({ url }) => {
+  return rightsURLs[url]
+    ? <div className={classNames.rightsStatement}>
+        <a
+          href={url}
+          title="Learn more about the copyright status of this item"
+        >
+          <img src={rightsURLs[url].image} alt={rightsURLs[url].description} />
+        </a>
+      </div>
+    : null;
+};
 
 const MainMetadata = ({ item }) =>
   <div className={classNames.mainMetadata}>
@@ -37,6 +52,19 @@ const MainMetadata = ({ item }) =>
                 className={classNames.externalLinkIcon}
               />
             </a>
+            {item.edmRights &&
+              <RightsBadge url={item.edmRights.toLowerCase()} />}
+            {/* 
+        for situations where the rights are in sourceResource
+        see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
+         */}
+            {item.rights && Array.isArray(item.rights)
+              ? item.rights.map(theRight => {
+                  return <RightsBadge url={theRight.toLowerCase()} />;
+                })
+              : item.rights
+                ? <RightsBadge url={item.rights.toLowerCase()} />
+                : null}
           </td>
         </tr>
         <tr className={classNames.tableRow}>

@@ -12,6 +12,12 @@
   }
 }
 
+.contentTable {
+  @media (max-width: smallRem) {
+    width: 100%;
+  }
+}
+
 .tableHeading {
   font-size: 0.875rem;
   opacity: 0.35;
@@ -123,6 +129,14 @@
   padding-top: 1rem;
   @media (min-width: smallRem) {
     padding-top: tablePadding;
+  }
+}
+
+.rightsStatement {
+  padding: 1rem 0 0;
+
+  & img {
+    max-height: 1.5rem;
   }
 }
 
