@@ -5,7 +5,7 @@ import { rightsURLs } from "../../../constants/site.js";
 import { joinIfArray } from "utilFunctions";
 
 const RightsMetadata = ({ item }) =>
-  console.log(joinIfArray(item.edmRights)) ||
+  // console.log(joinIfArray(item.edmRights)) ||
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
@@ -19,7 +19,11 @@ const RightsMetadata = ({ item }) =>
                 " "
               )}
             >
-              {rightsURLs[joinIfArray(item.edmRights)].description} <br />
+              {
+                rightsURLs[joinIfArray(item.edmRights).toLowerCase()]
+                  .description
+              }{" "}
+              <br />
               <a
                 href={item.edmRights}
                 className="link"
@@ -38,9 +42,10 @@ const RightsMetadata = ({ item }) =>
                 " "
               )}
               dangerouslySetInnerHTML={{
-                __html: Array.isArray(item.rights)
-                  ? makeURLsClickable(item.rights.join("<br/> "), "link")
-                  : makeURLsClickable(item.rights, "link")
+                __html: makeURLsClickable(
+                  joinIfArray(item.rights, "<br/> "),
+                  "link"
+                )
               }}
             />
           </tr>}

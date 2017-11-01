@@ -23,6 +23,20 @@ import {
   joinIfArray,
   getDefaultThumbnail
 } from "utilFunctions";
+import { rightsURLs } from "constants/site.js";
+
+const RightsBadge = ({ url }) => {
+  return rightsURLs[url]
+    ? <div className={classNames.rightsStatement}>
+        <a
+          href={url}
+          title="Learn more about the copyright status of this item"
+        >
+          <img src={rightsURLs[url].image} alt={rightsURLs[url].description} />
+        </a>
+      </div>
+    : null;
+};
 
 const ItemDetail = ({
   url,
@@ -59,6 +73,15 @@ const ItemDetail = ({
           toCiteText="item"
           title={item.title}
         />
+        {item.edmRights && <RightsBadge url={item.edmRights.toLowerCase()} />}
+        {/* 
+        for situations where the rights are in sourceResource
+        see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
+         */}
+        {item.rights &&
+          item.rights.map(theRight => {
+            return <RightsBadge url={theRight.toLowerCase()} />;
+          })}
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
