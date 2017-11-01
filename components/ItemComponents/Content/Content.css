@@ -12,6 +12,12 @@
   }
 }
 
+.contentTable {
+  @media (max-width: smallRem) {
+    width: 100%;
+  }
+}
+
 .tableHeading {
   font-size: 0.875rem;
   opacity: 0.35;
