@@ -10,7 +10,7 @@ const RightsBadge = ({ url }) => {
   return rightsURLs[url]
     ? <div className={classNames.rightsStatement}>
         <a
-          href={url}
+          href={rightsURLs[url].url}
           title="Learn more about the copyright status of this item"
         >
           <img src={rightsURLs[url].image} alt={rightsURLs[url].description} />
