@@ -1,8 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import ReactPaginate from "react-paginate";
 
 import { classNames, stylesheet } from "./Pagination.css";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
+
+const buildPageLink = ({ route, page }) => {
+  return {
+    pathname: route.pathname,
+    query: Object.assign({}, route.query, {
+      page: page
+    })
+  };
+};
 
 const Chevron = ({ className }) =>
   <svg
@@ -96,6 +106,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
       pageCount > 5 &&
       <span className={classNames.ellipses}>...</span>}
     {/* TODO: this is sloppy, should refactor */}
+    {[]}
     {[
       currentPage + 4 <= 5 ? currentPage + 4 : currentPage - 2,
       currentPage + 3 <= 5 ? currentPage + 3 : currentPage - 1,
@@ -141,7 +152,21 @@ const Pagination = ({ route, pageCount, currentPage }) =>
       currentPage={currentPage}
       type="next"
     />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <ReactPaginate
+      previousLabel={"Previous"}
+      nextLabel={"Next"}
+      breakLabel={<span>...</span>}
+      breakClassName={classNames.ellipses}
+      pageCount={pageCount}
+      marginPagesDisplayed={2}
+      pageRangeDisplayed={5}
+      hrefBuilder={page => buildPageLink({ route: route, page: page })}
+      //onPageChange={this.handlePageClick}
+      containerClassName={classNames.pagination}
+      //subContainerClassName={"pages pagination"}
+      activeClassName={classNames.activeLink}
+    />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Pagination;
