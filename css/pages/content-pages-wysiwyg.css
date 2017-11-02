@@ -30,12 +30,7 @@
     margin-top: 0;
   }
 
-  & h1,
-  & h2,
-  & h3,
-  & h4,
-  & h5,
-  & h6 {
+  & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1.15;
     margin-bottom: .75rem;
   }
@@ -63,7 +58,7 @@
 
   & h3 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 400;
 
     @media (min-width: mediumRem) {
       font-size: 1.5rem;
@@ -81,9 +76,7 @@
     text-transform: uppercase;
   }
 
-  & p,
-  & ul,
-  & ol {
+  & p, & ul, & ol {
     margin-bottom: 1.5rem;
     font-weight: normal;
     opacity: 0.85;
@@ -102,8 +95,7 @@
     padding-left: 1.125rem;
   }
 
-  & ol li,
-  & ul li {
+  & ol li, & ul li {
     position: relative;
     padding-left: 0.75rem;
   }
@@ -117,14 +109,14 @@
   }
 
   & table {
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     border-collapse: collapse;
     margin-bottom: 2rem;
     width: 100%;
   }
 
   & td:not(:first-child) {
-    border-left: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0, 0, 0, .1);
   }
   & td {
     padding: 1.5rem 2rem;
@@ -135,7 +127,7 @@
   }
 
   & tr:not(:last-child) {
-    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
 
   & a {
@@ -144,7 +136,7 @@
   }
 
   & hr {
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
@@ -159,9 +151,7 @@
     height: auto;
   }
 
-  & :global .alignright,
-  & :global .alignleft,
-  & :global .wp-caption {
+  & :global .alignright, & :global .alignleft, & :global .wp-caption {
     margin-bottom: 1.5rem;
 
     @media (min-width: largeRem) {
