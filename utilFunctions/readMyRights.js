@@ -9,7 +9,6 @@ const readMyRights = theString => {
   if (/\d\.\d/.test(theString)) {
     // it could be a proper URI, replace with placeholder
     const str = theString.replace(/\d\.\d/, "{version}");
-    console.log(theString, ":" + str + ":", rightsURLs[str]);
     if (rightsURLs[str]) {
       let myRights = rightsURLs[str];
       const version = theString.match(/\d\.\d/)[0]; // only takes 1st occurrence
