@@ -11,7 +11,6 @@
     "markdown-it": "^8.4.0",
     "next": "^3.0.3",
     "openseadragon": "2.2.1",
-    "rc-pagination": "^1.12.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-masonry-component": "^5.0.7",

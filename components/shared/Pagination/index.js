@@ -1,17 +1,25 @@
 import React from "react";
 import Link from "next/link";
-import ReactPaginate from "react-paginate";
 
 import { classNames, stylesheet } from "./Pagination.css";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 
-const buildPageLink = ({ route, page }) => {
-  return {
-    pathname: route.pathname,
-    query: Object.assign({}, route.query, {
-      page: page
-    })
-  };
+const centerWindow = (current, pageCount) => {
+  let windowArray = [];
+  if (current + 2 < pageCount) {
+    windowArray.push(current + 2);
+  }
+  if (current + 1 < pageCount) {
+    windowArray.push(current + 1);
+  }
+  if (current - 2 > 1) {
+    windowArray.push(current - 2);
+  }
+  if (current - 1 > 1) {
+    windowArray.push(current - 1);
+  }
+  windowArray.push(current);
+  return windowArray.sort((a, b) => a - b);
 };
 
 const Chevron = ({ className }) =>
@@ -85,7 +93,7 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
         </a>
       </Link>;
 
-const Pagination = ({ route, pageCount, currentPage }) =>
+const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
   <div className={classNames.pagination}>
     <NextOrPrevButton
       disabled={!(currentPage > 1 && pageCount > 1)}
@@ -105,34 +113,20 @@ const Pagination = ({ route, pageCount, currentPage }) =>
     {currentPage >= 5 &&
       pageCount > 5 &&
       <span className={classNames.ellipses}>...</span>}
-    {/* TODO: this is sloppy, should refactor */}
-    {[]}
-    {[
-      currentPage + 4 <= 5 ? currentPage + 4 : currentPage - 2,
-      currentPage + 3 <= 5 ? currentPage + 3 : currentPage - 1,
-      currentPage,
-      currentPage - 4 >= pageCount - 5 && pageCount > 5
-        ? currentPage - 4
-        : currentPage + 2,
-      currentPage - 3 >= pageCount - 5 && pageCount > 5
-        ? currentPage - 3
-        : currentPage + 1
-    ]
-      .sort((a, b) => a - b)
-      .map(
-        page =>
-          page > 1 && page < pageCount
-            ? <PageLink
-                key={page}
-                className={[
-                  classNames.link,
-                  page === parseInt(currentPage, 10) && classNames.activeLink
-                ].join(" ")}
-                route={route}
-                page={page}
-              />
-            : null
-      )}
+    {centerWindow(currentPage, pageCount).map(
+      page =>
+        page > 1 && page < pageCount
+          ? <PageLink
+              key={page}
+              className={[
+                classNames.link,
+                page === parseInt(currentPage, 10) && classNames.activeLink
+              ].join(" ")}
+              route={route}
+              page={page}
+            />
+          : null
+    )}
 
     {currentPage <= pageCount - 4 &&
       pageCount > 5 &&
@@ -151,20 +145,6 @@ const Pagination = ({ route, pageCount, currentPage }) =>
       route={route}
       currentPage={currentPage}
       type="next"
-    />
-    <ReactPaginate
-      previousLabel={"Previous"}
-      nextLabel={"Next"}
-      breakLabel={<span>...</span>}
-      breakClassName={classNames.ellipses}
-      pageCount={pageCount}
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={5}
-      hrefBuilder={page => buildPageLink({ route: route, page: page })}
-      //onPageChange={this.handlePageClick}
-      containerClassName={classNames.pagination}
-      //subContainerClassName={"pages pagination"}
-      activeClassName={classNames.activeLink}
     />
     <style>{stylesheet}</style>
   </div>;

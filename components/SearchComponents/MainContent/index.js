@@ -57,13 +57,14 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
           route={route}
           itemsPerPage={paginationInfo.pageSize}
           currentPage={parseInt(paginationInfo.currentPage, 10)}
+          totalItems={paginationInfo.pageCount}
           pageCount={Math.ceil(
             paginationInfo.pageCount / paginationInfo.pageSize
           )}
         />
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default MainContent;
