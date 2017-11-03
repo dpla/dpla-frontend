@@ -17,10 +17,13 @@ const chevron = "/static/images/chevron-thin.svg";
 const getFileType = (fileType, originalUrl) => {
   if (
     fileType === ITEM_TYPES.MOVING_IMAGE ||
-    /\.(mp4|webm|ogg)/.test(originalUrl)
+    /\.(mp4|webm|ogg)/i.test(originalUrl)
   ) {
     return resourceTypes.VIDEO;
-  } else if (fileType === ITEM_TYPES.SOUND || /\.(mp3|wav)/.test(originalUrl)) {
+  } else if (
+    fileType === ITEM_TYPES.SOUND ||
+    /\.(mp3|wav)/i.test(originalUrl)
+  ) {
     return resourceTypes.SOUND;
   } else {
     return resourceTypes.IMAGE;
@@ -30,17 +33,20 @@ const getFileType = (fileType, originalUrl) => {
 const getViewerComponent = (fileType, originalUrl, pathToFile) => {
   if (
     fileType === ITEM_TYPES.MOVING_IMAGE ||
-    /\.(mp4|webm|ogg)/.test(originalUrl)
+    /\.(mp4|webm|ogg)/i.test(originalUrl)
   ) {
     return <VideoPlayer pathToFile={pathToFile} />;
   } else if (
     fileType === ITEM_TYPES.STILL_IMAGE ||
-    /\.(jpg|png|tif|gif)$/.test(originalUrl)
+    /\.(jpg|jpeg|png|tif|tiff|gif)$/i.test(originalUrl)
   ) {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
-  } else if (fileType === ITEM_TYPES.SOUND || /\.(mp3|wav)/.test(originalUrl)) {
+  } else if (
+    fileType === ITEM_TYPES.SOUND ||
+    /\.(mp3|wav)/i.test(originalUrl)
+  ) {
     return <AudioPlayer pathToFile={pathToFile} />;
-  } else if (/\.pdf/.test(originalUrl)) {
+  } else if (/\.pdf/i.test(originalUrl)) {
     // fullsizeImgUrl will also exist for PDFs, but we want the path to the PDF,
     // not to a thumbnail image
     return <PDFViewer height="24rem" pathToFile={originalUrl} />;
