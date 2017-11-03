@@ -98,56 +98,47 @@ export const rightsURLs = {
   },
   "https://creativecommons.org/licenses/by/4.0/": {
     url: "https://creativecommons.org/licenses/by/4.0/",
-    description:
-      "The CC BY license lets users distribute, remix, tweak, and build upon an author's work, even commercially, as long as they credit the author for the original creation.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by.svg"
   },
   "https://creativecommons.org/licenses/by-nc-nd/4.0/": {
     url: "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-    description:
-      "The CC BY-NC-ND license only allows users to download an author's works and share them with others as long as they credit the author, but they can’t change them in any way or use them commercially.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-nc-nd.svg"
   },
   "https://creativecommons.org/licenses/by-sa/4.0/": {
     url: "https://creativecommons.org/licenses/by-sa/4.0/",
-    description:
-      "The CC BY-SA license lets users remix, tweak, and build upon an author's work even for commercial purposes, as long as they credit the author and license their new creations under the identical terms.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-sa.svg"
   },
   "https://creativecommons.org/licenses/by-nd/4.0/": {
     url: "https://creativecommons.org/licenses/by-nd/4.0/",
-    description:
-      "The CC BY-ND license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to the author.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-nd.svg"
   },
   "https://creativecommons.org/licenses/by-nc/4.0/": {
     url: "https://creativecommons.org/licenses/by-nc/4.0/",
-    description:
-      "The CC BY-NC license lets users remix, tweak, and build upon an author's work non-commercially, and although their new works must also acknowledge the author and be non-commercial, they don’t have to license their derivative works on the same terms.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-nc.svg"
   },
   "https://creativecommons.org/licenses/by-nc-sa/4.0/": {
     url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-    description:
-      "The CC NC-SA license lets users remix, tweak, and build upon an author's work non-commercially, as long as they credit the author and license their new creations under the identical terms.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-nc-sa.svg"
   },
   "https://creativecommons.org/publicdomain/zero/1.0/": {
     url: "https://creativecommons.org/publicdomain/zero/1.0/",
-    description:
-      "CC0 indicates that a copyright holder has waived rights to works and thereby placed them as completely as possible in the public domain, so that others may freely build upon, enhance and reuse the works for any purposes without restriction.",
+    description: "",
     image: "/static/images/rightsstatements/cc-zero.svg"
   },
   "https://creativecommons.org/licenses/by-nc-sa/3.0/us/": {
     url: "https://creativecommons.org/licenses/by-nc-sa/3.0/us/",
-    description:
-      "The CC NC-SA license lets users remix, tweak, and build upon an author's work non-commercially, as long as they credit the author and license their new creations under the identical terms.",
+    description: "",
     image: "/static/images/rightsstatements/cc-by-nc-sa.svg"
   },
   "https://creativecommons.org/publicdomain/mark/1.0/": {
     url: "https://creativecommons.org/publicdomain/mark/1.0/",
-    description:
-      "This work has been identified as being free of known restrictions under copyright law, including all related and neighboring rights. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
+    description: "",
     image: "/static/images/rightsstatements/publicdomain.svg"
   }
 };
