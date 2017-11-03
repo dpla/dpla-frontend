@@ -143,5 +143,11 @@ export const rightsURLs = {
     description:
       "The CC NC-SA license lets users remix, tweak, and build upon an author's work non-commercially, as long as they credit the author and license their new creations under the identical terms.",
     image: "/static/images/rightsstatements/cc-by-nc-sa.svg"
+  },
+  "https://creativecommons.org/publicdomain/mark/1.0/": {
+    url: "https://creativecommons.org/publicdomain/mark/1.0/",
+    description:
+      "This work has been identified as being free of known restrictions under copyright law, including all related and neighboring rights. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
+    image: "/static/images/rightsstatements/publicdomain.svg"
   }
 };
