@@ -1,19 +1,20 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray, readMyRights } from "utilFunctions";
 import ItemImage from "./ItemImage";
 import { rightsURLs } from "constants/site.js";
 
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
 const RightsBadge = ({ url }) => {
-  return rightsURLs[url]
+  const myRights = readMyRights(url);
+  return myRights
     ? <div className={classNames.rightsStatement}>
         <a
-          href={rightsURLs[url].url}
+          href={myRights.url}
           title="Learn more about the copyright status of this item"
         >
-          <img src={rightsURLs[url].image} alt={rightsURLs[url].description} />
+          <img src={myRights.image} alt={myRights.description} />
         </a>
       </div>
     : null;
@@ -52,19 +53,17 @@ const MainMetadata = ({ item }) =>
                 className={classNames.externalLinkIcon}
               />
             </a>
-            {item.edmRights &&
-              <RightsBadge url={item.edmRights.toLowerCase()} />}
+            {item.edmRights && <RightsBadge url={item.edmRights} />}
             {/* 
         for situations where the rights are in sourceResource
         see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
+        items should not have multiple rights but showing them in case a proper uri is present
          */}
             {item.rights && Array.isArray(item.rights)
               ? item.rights.map(theRight => {
-                  return <RightsBadge url={theRight.toLowerCase()} />;
+                  return <RightsBadge url={theRight} />;
                 })
-              : item.rights
-                ? <RightsBadge url={item.rights.toLowerCase()} />
-                : null}
+              : item.rights ? <RightsBadge url={item.rights} /> : null}
           </td>
         </tr>
         <tr className={classNames.tableRow}>
@@ -105,7 +104,7 @@ const MainMetadata = ({ item }) =>
           </tr>}
       </tbody>
     </table>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default MainMetadata;

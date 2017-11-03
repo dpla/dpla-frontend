@@ -1,14 +1,14 @@
 import React from "react";
 import { classNames, stylesheet } from "./Content.css";
-import { makeURLsClickable } from "utilFunctions";
+import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
 import { rightsURLs } from "../../../constants/site.js";
-import { joinIfArray } from "utilFunctions";
 
 const RightsMetadata = ({ item }) =>
   <div className={classNames.rightsMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
         {item.edmRights &&
+          readMyRights(item.edmRights) &&
           <tr className={classNames.tableRow}>
             <td className={classNames.tableHeading}>
               Standardized Rights Statement
@@ -18,15 +18,11 @@ const RightsMetadata = ({ item }) =>
                 " "
               )}
             >
-              {
-                rightsURLs[joinIfArray(item.edmRights).toLowerCase()]
-                  .description
-              }{" "}
-              <br />
+              {readMyRights(item.edmRights).description}
+              {readMyRights(item.edmRights).description !== "" && <br />}
               <a
                 href={item.edmRights}
                 className="link"
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 {item.edmRights}
@@ -50,7 +46,7 @@ const RightsMetadata = ({ item }) =>
           </tr>}
       </tbody>
     </table>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default RightsMetadata;

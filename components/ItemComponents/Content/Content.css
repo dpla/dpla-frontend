@@ -136,7 +136,7 @@
   padding: 1rem 0 0;
 
   & img {
-    max-height: 1.5rem;
+    height: 2rem;
   }
 }
 
