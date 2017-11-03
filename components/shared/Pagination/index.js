@@ -4,6 +4,24 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Pagination.css";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 
+const centerWindow = (current, pageCount) => {
+  let windowArray = [];
+  if (current + 2 < pageCount) {
+    windowArray.push(current + 2);
+  }
+  if (current + 1 < pageCount) {
+    windowArray.push(current + 1);
+  }
+  if (current - 2 > 1) {
+    windowArray.push(current - 2);
+  }
+  if (current - 1 > 1) {
+    windowArray.push(current - 1);
+  }
+  windowArray.push(current);
+  return windowArray.sort((a, b) => a - b);
+};
+
 const Chevron = ({ className }) =>
   <svg
     className={className}
@@ -75,7 +93,7 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
         </a>
       </Link>;
 
-const Pagination = ({ route, pageCount, currentPage }) =>
+const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
   <div className={classNames.pagination}>
     <NextOrPrevButton
       disabled={!(currentPage > 1 && pageCount > 1)}
@@ -95,33 +113,20 @@ const Pagination = ({ route, pageCount, currentPage }) =>
     {currentPage >= 5 &&
       pageCount > 5 &&
       <span className={classNames.ellipses}>...</span>}
-    {/* TODO: this is sloppy, should refactor */}
-    {[
-      currentPage + 4 <= 5 ? currentPage + 4 : currentPage - 2,
-      currentPage + 3 <= 5 ? currentPage + 3 : currentPage - 1,
-      currentPage,
-      currentPage - 4 >= pageCount - 5 && pageCount > 5
-        ? currentPage - 4
-        : currentPage + 2,
-      currentPage - 3 >= pageCount - 5 && pageCount > 5
-        ? currentPage - 3
-        : currentPage + 1
-    ]
-      .sort((a, b) => a - b)
-      .map(
-        page =>
-          page > 1 && page < pageCount
-            ? <PageLink
-                key={page}
-                className={[
-                  classNames.link,
-                  page === parseInt(currentPage, 10) && classNames.activeLink
-                ].join(" ")}
-                route={route}
-                page={page}
-              />
-            : null
-      )}
+    {centerWindow(currentPage, pageCount).map(
+      page =>
+        page > 1 && page < pageCount
+          ? <PageLink
+              key={page}
+              className={[
+                classNames.link,
+                page === parseInt(currentPage, 10) && classNames.activeLink
+              ].join(" ")}
+              route={route}
+              page={page}
+            />
+          : null
+    )}
 
     {currentPage <= pageCount - 4 &&
       pageCount > 5 &&
@@ -141,7 +146,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
       currentPage={currentPage}
       type="next"
     />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Pagination;

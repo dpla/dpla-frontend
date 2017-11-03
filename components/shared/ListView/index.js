@@ -80,7 +80,7 @@ const ListView = ({ items, route }) =>
         </div>
       </li>
     )}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </ul>;
 
 export default ListView;
