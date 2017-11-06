@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 
 const replaceWithProxyEndpoint = (endpoint, req) => {
   if (endpoint) {
-    const protocol = req.host.includes("localhost") ? "http" : "https";
+    const protocol = req.hostname.includes("localhost") ? "http" : "https";
     return endpoint.replace(
       process.env.OMEKA_URL,
       `${protocol}://${req.get("host")}/api`
