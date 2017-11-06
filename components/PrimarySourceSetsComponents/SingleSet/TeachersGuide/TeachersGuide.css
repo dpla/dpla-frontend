@@ -22,6 +22,10 @@
     margin-top: 2rem;
     margin-bottom: 4rem;
   }
+
+  @media print {
+    margin-top: 0;
+  }
 }
 
 .sidebar {
