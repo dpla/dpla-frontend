@@ -11,8 +11,8 @@ import {
 import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const AboutMenuPage = ({ url, content, items }) =>
-  <MainLayout route={url}>
+const AboutMenuPage = ({ url, content, items, pageTitle }) =>
+  <MainLayout route={url} pageTitle={pageTitle}>
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}
@@ -60,7 +60,7 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   }
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
-  return { content: pageJson, items: json.items };
+  return { content: pageJson, items: json.items, pageTitle: pageItem.title };
 };
 
 export default AboutMenuPage;

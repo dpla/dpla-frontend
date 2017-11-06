@@ -8,10 +8,12 @@ import ContactForm from "components/ContactComponents/ContactForm";
 import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import { TITLE } from "constants/contact";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout
     route={url}
+    pageTitle={TITLE}
     headLinks={
       <link
         rel="stylesheet"

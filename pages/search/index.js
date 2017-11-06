@@ -30,7 +30,11 @@ class Search extends React.Component {
   render() {
     const { url, results, numberOfActiveFacets } = this.props;
     return (
-      <MainLayout isSearchPage={true} route={url}>
+      <MainLayout 
+        isSearchPage={true}
+        route={url}
+        pageTitle={`${url.query.q} | Search Results`}
+      >
         <div className={classNames.wrapper}>
           <OptionsBar
             showFilters={this.state.showSidebar}

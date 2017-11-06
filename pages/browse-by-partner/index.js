@@ -11,7 +11,7 @@ import { classNames } from "components/PartnerBrowseComponents/PartnerBrowseCont
 
 const PartnerBrowse = ({ partners, url }) =>
   <div>
-    <MainLayout route={url}>
+    <MainLayout route={url} pageTitle={TITLE}>
       <FeatureHeader
         titleClassName={classNames.featureTitle}
         title={TITLE}

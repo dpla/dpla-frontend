@@ -7,8 +7,7 @@ import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/B
 import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
-import removeQueryParams from "utilFunctions/removeQueryParams";
-import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
+import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
 import { PSS_BASE_URL } from "constants/site";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>

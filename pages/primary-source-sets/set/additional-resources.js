@@ -7,9 +7,7 @@ import BreadcrumbsModule from "/components/PrimarySourceSetsComponents/Breadcrum
 import SourceSetInfo from "/components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "/components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import { PSS_BASE_URL } from "constants/site";
-
-import getCurrentFullUrl from "/utilFunctions/getCurrentFullUrl";
-import removeQueryParams from "utilFunctions/removeQueryParams";
+import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
 import {
   classNames,
   stylesheet

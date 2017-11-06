@@ -11,9 +11,10 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { stylesheet, classNames } from "css/pages/donate.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import { SEO_TITLE } from "constants/donate";
 
 const DonateThankYou = ({ url, content, items }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}

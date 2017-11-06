@@ -4,10 +4,11 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "../../components/MainLayout";
 import TopicsList from "../../components/TopicBrowseComponents/TopicsList";
 import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
+import { TITLE } from "constants/topicBrowse";
 
 const TopicBrowse = ({ url, topics }) =>
   <div>
-    <MainLayout route={url}>
+    <MainLayout route={url} pageTitle={TITLE}>
       <TopicsList topics={topics} />
     </MainLayout>
   </div>;

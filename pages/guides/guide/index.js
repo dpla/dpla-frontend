@@ -13,7 +13,7 @@ import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, sidebarItems, guide }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={guide.title}>
     <div
       className={`
         ${utilClassNames.container}

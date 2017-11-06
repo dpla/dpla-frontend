@@ -7,6 +7,7 @@ import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
+import getMetaPageTitle from "./getMetaPageTitle";
 import makeURLsClickable from "./makeURLsClickable";
 import truncateString from "./truncateString";
 import endsWith from "./endsWith";
@@ -24,6 +25,7 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
+  getMetaPageTitle,
   makeURLsClickable,
   truncateString,
   endsWith,

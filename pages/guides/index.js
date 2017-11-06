@@ -11,9 +11,10 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
+import { TITLE } from "constants/guides";
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={TITLE}>
     <div
       className={`
         ${utilClassNames.container}

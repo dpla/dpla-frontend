@@ -12,9 +12,10 @@ import {
   classNames as contentClasses
 } from "css/pages/donate.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import { SEO_TITLE } from "constants/donate";
 
 const Donate = ({ url }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={contentClasses.donateBackground}>
       <div className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
