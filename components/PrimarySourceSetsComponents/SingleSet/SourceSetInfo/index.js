@@ -39,7 +39,7 @@ class SourceSetInfo extends React.Component {
                 <div className={classNames.bannerTextWrapper}>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.render(set.name)
+                      __html: markdownit.disable(["paragraph"]).render(set.name)
                     }}
                     className={classNames.bannerTitle}
                   />
@@ -59,7 +59,9 @@ class SourceSetInfo extends React.Component {
               <div className={classNames.sidebar}>
                 <div className={classNames.metadata}>
                   <div className={classNames.metadatum}>
-                    <h3 className={classNames.metadataHeader}>Created By</h3>
+                    <h3 className={classNames.metadataHeader}>
+                      Created By
+                    </h3>
                     {set.author.map(author =>
                       <div
                         key={author.name}
@@ -72,7 +74,9 @@ class SourceSetInfo extends React.Component {
                     )}
                   </div>
                   <div className={classNames.metadatum}>
-                    <h3 className={classNames.metadataHeader}>Time Period</h3>
+                    <h3 className={classNames.metadataHeader}>
+                      Time Period
+                    </h3>
                     {extractTimePeriod(set.about).map((period, i, periods) =>
                       <span key={period}>
                         <Link

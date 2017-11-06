@@ -1,5 +1,5 @@
-@value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from "../../../../css/colors.css";;
-@value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";;
+@value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from "../../../../css/colors.css";
+@value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 
 .wrapper {
   width: 100%;

@@ -38,6 +38,10 @@
   @media (min-width: smallRem) {
     border-radius: 3px;
   }
+
+  @media print {
+    padding: 0;
+  }
 }
 
 .bannerTextWrapper {
@@ -60,6 +64,11 @@
   @media (min-width: largeRem) {
     padding: 2rem;
   }
+
+  @media print {
+    height: auto;
+    background: transparent;
+  }
 }
 
 .bannerTitle {
@@ -75,6 +84,10 @@
 
   @media (min-width: largeRem) {
     font-size: 2.5rem;
+  }
+
+  @media print {
+    color: black;
   }
 }
 
