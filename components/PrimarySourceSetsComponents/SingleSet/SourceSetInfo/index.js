@@ -47,7 +47,7 @@ class SourceSetInfo extends React.Component {
               </div>
               {/* TODO: shouldn't have to get rid of the extra text with split */}
               <div
-                className={classNames.description}
+                className={`${classNames.description} sourceSetDescription`}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
                     set.hasPart.find(item => item.name === "Overview").text
@@ -56,7 +56,7 @@ class SourceSetInfo extends React.Component {
               />
             </div>
             <div className="col-xs-12 col-md-4">
-              <div className={classNames.sidebar}>
+              <div className={`${classNames.sidebar} sourceSetSidebar`}>
                 <div className={classNames.metadata}>
                   <div className={classNames.metadatum}>
                     <h3 className={classNames.metadataHeader}>
@@ -138,7 +138,7 @@ class SourceSetInfo extends React.Component {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </div>
     );
   }

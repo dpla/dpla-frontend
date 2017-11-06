@@ -95,54 +95,57 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               />
             )}
             <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
-            <div className={classNames.toolLinkAndIcon}>
-              <img
-                src={googleClassroom}
-                alt=""
-                className={classNames.toolIcon}
-              />
-              <a
-                href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
-                  ? currentPath
-                  : window.location.href.replace("teaching-guide", "")}`}
-                className={classNames.toolLink}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Share to Google Classroom
-              </a>
+            <div className={classNames.tools}>
+              <div className={classNames.toolLinkAndIcon}>
+                <img
+                  src={googleClassroom}
+                  alt=""
+                  className={classNames.toolIcon}
+                />
+                <a
+                  href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
+                    ? currentPath
+                    : window.location.href.replace("teaching-guide", "")}`}
+                  className={classNames.toolLink}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Share to Google Classroom
+                </a>
+              </div>
+              <div className={classNames.toolLinkAndIcon}>
+                <img src={printer} alt="" className={classNames.toolIcon} />
+                <Link prefetch href="">
+                  <a className={classNames.toolLink}>Print this Guide</a>
+                </Link>
+              </div>
+              <div className={classNames.toolLinkAndIcon}>
+                <img src={link} alt="" className={classNames.toolIcon} />
+                <Link
+                  prefetch
+                  href={{
+                    pathname: `/primary-source-sets/set`,
+                    query: Object.assign({}, route.query, { studentMode: true })
+                  }}
+                  as={{
+                    pathname: `/primary-source-sets/${route.query.set}`,
+                    query: Object.assign(
+                      {},
+                      removeQueryParams(route.query, ["set"]),
+                      { studentMode: true }
+                    )
+                  }}
+                >
+                  <a className={classNames.toolLink}>Link to Student View</a>
+                </Link>
+              </div>
+              <p className={classNames.studentViewNote}>
+                <span className={classNames.semibold}>Student View</span> is a
+                link
+                to this Primary Source Set with the Teaching Guide hidden.
+              </p>
+
             </div>
-            <div className={classNames.toolLinkAndIcon}>
-              <img src={printer} alt="" className={classNames.toolIcon} />
-              <Link prefetch href="">
-                <a className={classNames.toolLink}>Print this Guide</a>
-              </Link>
-            </div>
-            <div className={classNames.toolLinkAndIcon}>
-              <img src={link} alt="" className={classNames.toolIcon} />
-              <Link
-                prefetch
-                href={{
-                  pathname: `/primary-source-sets/set`,
-                  query: Object.assign({}, route.query, { studentMode: true })
-                }}
-                as={{
-                  pathname: `/primary-source-sets/${route.query.set}`,
-                  query: Object.assign(
-                    {},
-                    removeQueryParams(route.query, ["set"]),
-                    { studentMode: true }
-                  )
-                }}
-              >
-                <a className={classNames.toolLink}>Link to Student View</a>
-              </Link>
-            </div>
-            <p className={classNames.studentViewNote}>
-              <span className={classNames.semibold}>Student View</span> is a
-              link
-              to this Primary Source Set with the Teaching Guide hidden.
-            </p>
           </div>
           <div className={classNames.sidebarSection}>
             <h3 className={classNames.sidebarHeader}>
@@ -197,8 +200,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style>{stylesheet}</style>
+    <style>{contentStyles}</style>
   </div>;
 
 export default TeachersGuide;

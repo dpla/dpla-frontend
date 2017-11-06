@@ -8,8 +8,8 @@ class ResourcesTabs extends React.Component {
   render() {
     const { currentTab, route } = this.props;
     return (
-      <div id="tabs" className={classNames.wrapper}>
-        <div className={classNames.tabsWrapper}>
+      <div id="tabs" className={`${classNames.wrapper}`}>
+        <div className={`${classNames.tabsWrapper} sourceSetTabsWrapper`}>
           <div className={`${classNames.tabs} ${utilClassNames.container}`}>
             <Link
               prefetch
