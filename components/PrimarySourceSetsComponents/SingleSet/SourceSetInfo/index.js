@@ -39,7 +39,7 @@ class SourceSetInfo extends React.Component {
                 <div className={classNames.bannerTextWrapper}>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.disable(["paragraph"]).render(set.name)
+                      __html: markdownit.renderInline(set.name)
                     }}
                     className={classNames.bannerTitle}
                   />
