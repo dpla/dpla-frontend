@@ -4,6 +4,10 @@
 .wrapper {
   color: white;
   background-color: ebonyClayBlue;
+
+  @media print {
+    display: none;
+  }
 }
 
 .footer {
@@ -25,7 +29,7 @@
       text-decoration: underline;
     }
 
-    @media (min-width: largeRem){
+    @media (min-width: largeRem) {
       font-size: 1.15rem;
     }
   }
@@ -33,7 +37,7 @@
 
 /* Select all but the first two */
 .linkGroup {
-  &:nth-of-type(n+3) {
+  &:nth-of-type(n + 3) {
     margin-top: 1rem;
 
     @media (min-width: smallRem) {

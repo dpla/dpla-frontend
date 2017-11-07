@@ -45,6 +45,12 @@
   }
 }
 
+:global .print-hide {
+  @media print {
+    display: none;
+  }
+}
+
 .container {
   padding-left: var(--outer-padding);
   padding-right: var(--outer-padding);

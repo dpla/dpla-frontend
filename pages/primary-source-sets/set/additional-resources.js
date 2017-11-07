@@ -54,7 +54,6 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
       </div>
     </ResourcesTabs>
     <PSSFooter />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 

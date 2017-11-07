@@ -146,7 +146,7 @@ const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
       currentPage={currentPage}
       type="next"
     />
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Pagination;
