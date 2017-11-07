@@ -1,4 +1,4 @@
-@value cascadeBlue, visualBrown, bambooOrange, silver from "../colors.css";
+@value cascadeBlue, visualBrown, linkColor, silver from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
 .backgroundTint {
@@ -129,8 +129,12 @@
   }
 
   & a {
-    color: bambooOrange;
+    color: linkColor;
     text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   & hr {
