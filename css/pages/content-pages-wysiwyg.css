@@ -67,7 +67,6 @@
 
   & h4 {
     font-size: 1.125rem;
-    opacity: 0.75;
   }
 
   & h5, & h6 {
@@ -79,7 +78,6 @@
   & p, & ul, & ol {
     margin-bottom: 1.5rem;
     font-weight: normal;
-    opacity: 0.85;
     font-size: 1rem;
 
     @media (min-width: mediumRem) {
