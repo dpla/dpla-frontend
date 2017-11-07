@@ -68,7 +68,7 @@ const Button = ({
           >
             {children}
           </button>}
-      <style>{stylesheet}</style>
+      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </div>
   );
 };

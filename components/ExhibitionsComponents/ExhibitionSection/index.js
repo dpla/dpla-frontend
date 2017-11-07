@@ -29,7 +29,7 @@ const ExhibitionView = ({
       nextQueryParams={nextQueryParams}
       nextSubsectionTitle={nextSubsectionTitle}
     />
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default ExhibitionView;

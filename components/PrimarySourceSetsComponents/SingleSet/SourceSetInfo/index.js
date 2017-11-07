@@ -138,7 +138,7 @@ class SourceSetInfo extends React.Component {
             </div>
           </div>
         </div>
-        <style>{stylesheet}</style>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

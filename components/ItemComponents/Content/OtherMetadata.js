@@ -75,7 +75,7 @@ const OtherMetadata = ({ item }) =>
         </Row>
       </tbody>
     </table>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default OtherMetadata;

@@ -30,7 +30,7 @@ const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
               <img src={chevron} alt="" className={classNames.nextArrow} />
             </a>
           </Link>}
-        <style>{stylesheet}</style>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     : null;
 

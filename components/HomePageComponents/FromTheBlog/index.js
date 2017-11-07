@@ -67,7 +67,7 @@ const FromTheBlog = (/* data */) =>
         )}
       </ul>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default FromTheBlog;

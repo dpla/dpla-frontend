@@ -60,7 +60,7 @@ export default class ZoomableImageViewer extends React.Component {
             </div>
           </Noscript>
         </div>
-        <style>{stylesheet}</style>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

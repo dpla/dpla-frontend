@@ -11,7 +11,7 @@ const Content = ({ item, url }) =>
     <MainMetadata item={item} />
     <OtherMetadata item={item} />
     <RightsMetadata item={item} />
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <JsonLdMarkup item={item} url={url} />
   </div>;
 

@@ -36,8 +36,8 @@ const DonateThankYou = ({ url, content, items }) =>
         </div>
       </div>
     </div>
-    <style>{contentStyles}</style>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 export default DonateThankYou;

@@ -15,7 +15,7 @@ const ContactForm = () =>
       <Textfield multiline rows="5" floatingLabel="Your message" value="" />
       <input className={classNames.submit} type="submit" value="Submit" />
     </form>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default ContactForm;

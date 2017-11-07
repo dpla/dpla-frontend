@@ -74,7 +74,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
         </div>
       )}
     </Slider>
-    <style>{navArrowStyles}</style>
+    <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
   </div>;
 
 export default CarouselSlider;

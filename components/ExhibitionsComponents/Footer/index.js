@@ -22,7 +22,7 @@ const OtherInfo = () =>
         </a>.
       </p>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default OtherInfo;

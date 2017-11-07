@@ -54,7 +54,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
         <span dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
       </figcaption>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </figure>;
 
 export default ImageAndCaption;

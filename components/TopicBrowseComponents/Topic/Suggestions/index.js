@@ -86,8 +86,8 @@ const Suggestions = ({ suggestions }) =>
         </Slider>
       </ul>
     </div>
-    <style>{stylesheet}</style>
-    <style>{navArrowStyles}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
   </div>;
 
 export default Suggestions;

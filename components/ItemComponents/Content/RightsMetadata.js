@@ -46,7 +46,7 @@ const RightsMetadata = ({ item }) =>
           </tr>}
       </tbody>
     </table>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default RightsMetadata;

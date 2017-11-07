@@ -40,8 +40,8 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
         </div>
       </div>
     </div>
-    <style>{stylesheet}</style>
-    <style>{contentStyles}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Guides.getInitialProps = async () => {

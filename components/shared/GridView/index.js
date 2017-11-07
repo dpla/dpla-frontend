@@ -38,7 +38,7 @@ const GridView = ({ items, style }) =>
         </li>
       )}
     </Grid>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default GridView;

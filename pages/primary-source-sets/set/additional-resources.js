@@ -54,7 +54,7 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
       </div>
     </ResourcesTabs>
     <PSSFooter />
-    <style>{contentStyles}</style>
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query, req }) => {

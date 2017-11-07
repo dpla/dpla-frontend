@@ -61,7 +61,7 @@ const ItemDetail = ({
         />
       </div>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 ItemDetail.getInitialProps = async ({ query, req }) => {

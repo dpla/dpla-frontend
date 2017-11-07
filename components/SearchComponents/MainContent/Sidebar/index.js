@@ -90,7 +90,7 @@ class Sidebar extends React.Component {
             })
           }))}
         />
-        <style>{stylesheet}</style>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

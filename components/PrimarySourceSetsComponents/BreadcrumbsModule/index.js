@@ -21,7 +21,7 @@ const BreadcrumbsModule = ({ route, breadcrumbs }) =>
       />
       {route.query.studentMode && <StudentMode route={route} />}
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default BreadcrumbsModule;

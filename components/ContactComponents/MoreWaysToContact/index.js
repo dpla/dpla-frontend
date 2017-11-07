@@ -29,7 +29,7 @@ const ContactForm = () =>
         </tr>
       </tbody>
     </table>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default ContactForm;

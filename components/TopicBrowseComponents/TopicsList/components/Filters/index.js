@@ -37,7 +37,7 @@ const FiltersBar = () =>
         </div>
       </div>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default FiltersBar;

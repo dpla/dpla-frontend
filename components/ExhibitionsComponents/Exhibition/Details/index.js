@@ -59,7 +59,7 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
         </p>
       </div>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Details;

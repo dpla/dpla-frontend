@@ -88,7 +88,7 @@ const Sidebar = ({ activeItemId, items, route }) =>
         />
       </ul>
     </div>
-    <style>{stylesheet}</style>
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Sidebar;

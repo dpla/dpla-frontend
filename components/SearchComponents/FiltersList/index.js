@@ -110,7 +110,7 @@ class FiltersList extends React.Component {
               </a>
             </Link>
           </div>
-          <style>{stylesheet}</style>
+          <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </div>
       : null;
   }

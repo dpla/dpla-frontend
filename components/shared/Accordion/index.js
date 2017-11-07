@@ -68,7 +68,7 @@ class Accordion extends React.Component {
                 </div>
               : null
         )}
-        <style>{stylesheet}</style>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }
