@@ -64,7 +64,7 @@
   }
 }
 
-:global a {
+a {
   color: linkColor;
   text-decoration: underline;
 

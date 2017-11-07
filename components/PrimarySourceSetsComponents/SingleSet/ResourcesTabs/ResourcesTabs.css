@@ -1,4 +1,4 @@
-@value visualBrown, bambooOrange from "../../../../css/colors.css";
+@value visualBrown, linkColor from "../../../../css/colors.css";
 @value xSmallRem, smallRem from "../../../../css/breakpoints.css";
 
 .wrapper {
@@ -42,14 +42,16 @@
   margin-right: 15px;
   display: inline-block;
   flex: 1;
+  text-decoration: none;
+  color: black;
   @media (min-width: smallRem) {
     font-size: 1rem;
   }
 }
 
 .activeTab {
-  color: bambooOrange;
-  border-bottom: 3px solid bambooOrange;
+  color: linkColor;
+  border-bottom: 3px solid linkColor;
 }
 
 .tab:last-child {
