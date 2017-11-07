@@ -23,10 +23,16 @@
   }
 }
 
+.removeScroll {
+  margin-right: 0;
+  padding-right: 0;
+}
+
 .banner {
   width: 100%;
   position: relative;
   margin-bottom: 1rem;
+
   @media (min-width: smallRem) {
     margin-bottom: 1.5rem;
   }
