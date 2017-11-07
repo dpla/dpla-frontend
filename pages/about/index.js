@@ -8,11 +8,14 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
+import { 
+  ABOUT_MENU_ENDPOINT,
+  GUIDES_ENDPOINT,
+  SEO_TYPE } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutMenuPage = ({ url, content, items, pageTitle }) =>
-  <MainLayout route={url} pageTitle={pageTitle}>
+  <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}

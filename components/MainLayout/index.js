@@ -12,10 +12,11 @@ const MainLayout = ({
   hideSearchBar,
   isSearchPage,
   headLinks,
-  pageTitle
+  pageTitle,
+  seoType
 }) =>
   <div>
-    <Head additionalLinks={headLinks} pageTitle={pageTitle} />
+    <Head additionalLinks={headLinks} pageTitle={pageTitle} seoType={seoType} />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}

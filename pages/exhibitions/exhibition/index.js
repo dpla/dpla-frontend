@@ -11,11 +11,12 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
+import { SEO_TYPE } from "constants/exhibition";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
 const Exhibition = ({ url, exhibition, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={exhibition.title}>
+  <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

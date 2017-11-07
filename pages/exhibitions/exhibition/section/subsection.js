@@ -16,6 +16,8 @@ import {
   ITEMS_ENDPOINT
 } from "constants/exhibitions";
 
+import { SEO_TYPE } from "constants/exhibition";
+
 const Subsection = ({
   url,
   exhibition,
@@ -26,7 +28,7 @@ const Subsection = ({
   previousQueryParams
 }) =>
   <div>
-    <Head pageTitle={section.title} />
+    <Head pageTitle={section.title} seoType={SEO_TYPE} />
     <Content
       route={url}
       previousQueryParams={previousQueryParams}

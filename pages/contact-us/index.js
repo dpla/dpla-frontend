@@ -9,11 +9,13 @@ import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import { TITLE } from "constants/contact";
+import { SEO_TYPE } from "constants/content-pages";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout
     route={url}
     pageTitle={TITLE}
+    seoType={SEO_TYPE}
     headLinks={
       <link
         rel="stylesheet"
