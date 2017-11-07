@@ -79,7 +79,7 @@ class StudentMode extends React.Component {
             <a className={classNames.tooltipLink}>Turn on Teaching Guides</a>
           </Link>
         </Tooltip>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </button>
     );
   }

@@ -33,7 +33,7 @@ const Topics = ({ topics }) =>
         </li>
       )}
     </ul>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Topics;

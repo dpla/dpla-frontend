@@ -43,7 +43,7 @@ const Instagram = ({ images }) =>
         src={externalLinkIcon}
       />
     </a>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 const Twitter = ({ message, time }) =>
@@ -70,7 +70,7 @@ const Twitter = ({ message, time }) =>
         src={externalLinkIcon}
       />
     </a>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 const SocialMedia = (/* data */) =>
@@ -82,7 +82,7 @@ const SocialMedia = (/* data */) =>
       />
       <Instagram images={mockImages} />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default SocialMedia;

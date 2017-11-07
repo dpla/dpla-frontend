@@ -67,7 +67,7 @@ class ResourcesTabs extends React.Component {
           </div>
         </div>
         {this.props.children}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </div>
     );
   }

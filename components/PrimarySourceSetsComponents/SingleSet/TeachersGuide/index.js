@@ -16,6 +16,8 @@ const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
 
+const printHandler = () => window.print();
+
 const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.teachingGuide} ${container}`}>
@@ -115,9 +117,12 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               </div>
               <div className={classNames.toolLinkAndIcon}>
                 <img src={printer} alt="" className={classNames.toolIcon} />
-                <Link prefetch href="">
-                  <a className={classNames.toolLink}>Print this Guide</a>
-                </Link>
+                <a
+                  onClick={printHandler}
+                  className={`${classNames.toolLink} ${classNames.print}`}
+                >
+                  Print this Guide
+                </a>
               </div>
               <div className={classNames.toolLinkAndIcon}>
                 <img src={link} alt="" className={classNames.toolIcon} />

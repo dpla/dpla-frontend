@@ -14,7 +14,7 @@ const VideoPlayer = ({ pathToFile, fileFormat }) =>
       {/* TODO: actually add captions? don't know if that's a possibility */}
       <track kind="captions" />
     </video>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default VideoPlayer;

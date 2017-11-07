@@ -32,7 +32,7 @@ class ItemImage extends React.Component {
           alt={title}
           className={classNames.image}
         />
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </div>
     );
   }

@@ -36,7 +36,7 @@ const PartnerBrowseContent = ({ route, partners }) =>
         </ul>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default PartnerBrowseContent;

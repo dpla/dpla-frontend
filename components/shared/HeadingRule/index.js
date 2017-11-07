@@ -10,7 +10,7 @@ const HeadingRule = ({ color }) =>
         borderColor: color ? color : "rgba(0,0,0,.15)"
       }}
     />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default HeadingRule;

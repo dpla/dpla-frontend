@@ -37,7 +37,7 @@ const Contact = ({ url, sidebarItems }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </MainLayout>;
 
 Contact.getInitialProps = async () => {

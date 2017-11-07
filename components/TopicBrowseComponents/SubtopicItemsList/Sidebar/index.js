@@ -39,7 +39,7 @@ const Sidebar = ({ image, title, description }) =>
         image="http://lorempixel.com/140/100/food"
       />
     </div> */}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Sidebar;

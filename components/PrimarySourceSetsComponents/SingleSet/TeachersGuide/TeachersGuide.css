@@ -13,6 +13,10 @@
   }*/
 }
 
+.print {
+  cursor: pointer;
+}
+
 .content {
   @media (min-width: mediumRem) {
     margin-bottom: 2rem;

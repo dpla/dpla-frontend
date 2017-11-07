@@ -18,7 +18,7 @@ const BreadcrumbsAndNav = ({
     <div className={[classNames.breadcrumbsAndNav, container].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default BreadcrumbsAndNav;

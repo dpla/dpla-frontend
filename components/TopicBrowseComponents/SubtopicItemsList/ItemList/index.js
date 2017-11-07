@@ -70,7 +70,7 @@ class ItemList extends React.Component {
               style={{ marginTop: "15px" }}
             />
           : <ListView route={this.props.route} items={items} />}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </div>
     );
   }

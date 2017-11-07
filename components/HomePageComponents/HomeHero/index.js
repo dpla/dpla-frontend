@@ -52,7 +52,7 @@ const HomeHero = ({ headerDescription }) =>
         </Link>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default HomeHero;

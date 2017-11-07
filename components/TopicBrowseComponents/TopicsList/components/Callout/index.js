@@ -22,7 +22,7 @@ const Callout = ({ topics }) =>
         Visit Online Exhibitions
       </Button>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Callout;

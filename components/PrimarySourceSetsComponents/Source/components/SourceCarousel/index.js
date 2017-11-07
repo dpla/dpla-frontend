@@ -131,7 +131,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
         route={route}
       />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default SourceCarousel;

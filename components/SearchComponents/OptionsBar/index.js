@@ -224,7 +224,7 @@ class OptionsBar extends React.Component {
             </div> */}
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </div>
     );
   }

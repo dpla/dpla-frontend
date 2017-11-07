@@ -31,7 +31,7 @@ const AboutMenuPage = ({ url, content, items }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style>{contentStyles}</style>
   </MainLayout>;
 
 AboutMenuPage.getInitialProps = async ({ req, query, res }) => {

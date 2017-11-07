@@ -74,8 +74,8 @@ const RelatedSets = ({ sets }) => {
           )}
         </Slider>
       </div>
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-      <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
+      <style>{stylesheet}</style>
+      <style>{navArrowStyles}</style>
     </div>
   );
 };

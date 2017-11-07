@@ -64,7 +64,7 @@ const GlobalHeader = () =>
       </ul>
       {/* <button className={classNames.login}>Log In</button> */}
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default GlobalHeader;

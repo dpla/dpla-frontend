@@ -14,7 +14,7 @@ const AudioPlayer = ({ pathToFile, fileFormat }) =>
       {/* TODO: actually add captions? don't know if that's a possibility */}
       <track kind="captions" />
     </audio>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default AudioPlayer;

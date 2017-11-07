@@ -10,7 +10,7 @@ const Tooltip = ({ className, id, isHidden, children }) =>
     aria-hidden={isHidden}
   >
     {children}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default Tooltip;

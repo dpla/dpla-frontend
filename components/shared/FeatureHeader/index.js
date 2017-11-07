@@ -9,7 +9,7 @@ const FeatureHeader = ({ title, description, titleClassName }) =>
       <h1 className={`${titleClassName} ${classNames.text}`}>{title}</h1>
       {description && <p className={classNames.description}>{description}</p>}
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </div>;
 
 export default FeatureHeader;

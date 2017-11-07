@@ -74,7 +74,7 @@ const SubtopicItemsList = ({
       topic={topic}
       route={url}
     />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style>{stylesheet}</style>
   </MainLayout>;
 
 SubtopicItemsList.getInitialProps = async ({ query, req }) => {

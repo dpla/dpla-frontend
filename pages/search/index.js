@@ -53,7 +53,7 @@ class Search extends React.Component {
             results={results.docs}
           />
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <style>{stylesheet}</style>
       </MainLayout>
     );
   }
