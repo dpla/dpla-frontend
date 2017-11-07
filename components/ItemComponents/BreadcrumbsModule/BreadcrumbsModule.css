@@ -19,18 +19,16 @@
   justify-content: space-between;
 }
 
-.previousItemButton,
-.nextItemButton {
+.previousItemButton, .nextItemButton {
   color: bambooOrange;
   font-weight: 600;
   font-size: 0.75rem;
-  @media(min-width: smallRem) {
+  @media (min-width: smallRem) {
     font-size: 1rem;
   }
 }
 
-.previousChevron,
-.nextChevron {
+.previousChevron, .nextChevron {
   height: 8px;
   width: 5px;
   @media (min-width: smallRem) {
@@ -42,14 +40,14 @@
   transform: rotate(180deg);
   margin-right: 0.25rem;
   @media (min-width: smallRem) {
-    margin-right: 0.5rem
+    margin-right: 0.5rem;
   }
 }
 
 .nextChevron {
   margin-left: 0.25rem;
   @media (min-width: smallRem) {
-    margin-left: 0.5rem
+    margin-left: 0.5rem;
   }
 }
 
