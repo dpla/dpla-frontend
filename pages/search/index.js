@@ -16,7 +16,10 @@ import {
 } from "components/SearchComponents/SearchComponents.css";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
-import { getCurrentUrl, getDefaultThumbnail } from "utilFunctions";
+import { 
+  getCurrentUrl,
+  getDefaultThumbnail,
+  getSearchPageTitle } from "utilFunctions";
 
 class Search extends React.Component {
   state = {
@@ -33,7 +36,7 @@ class Search extends React.Component {
       <MainLayout 
         isSearchPage={true}
         route={url}
-        pageTitle={`${url.query.q} | Search Results`}
+        pageTitle={getSearchPageTitle(url.query.q)}
       >
         <div className={classNames.wrapper}>
           <OptionsBar
