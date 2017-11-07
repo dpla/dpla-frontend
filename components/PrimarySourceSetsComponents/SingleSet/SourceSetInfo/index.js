@@ -33,8 +33,8 @@ class SourceSetInfo extends React.Component {
     return (
       <div className={classNames.wrapper}>
         <div className={[classNames.sourceSetInfo, container].join(" ")}>
-          <div className="row">
-            <div className="col-xs-12 col-md-8">
+          <div className={`${classNames.removeScroll} row`}>
+            <div className={`${classNames.removeScroll} col-xs-12 col-md-8`}>
               <div className={classNames.banner}>
                 <div
                   className={classNames.bannerImage}
@@ -52,7 +52,6 @@ class SourceSetInfo extends React.Component {
                   />
                 </div>
               </div>
-              {/* TODO: shouldn't have to get rid of the extra text with split */}
               <div
                 id="dpla-description"
                 className={`${classNames.description} sourceSetDescription`}
@@ -71,7 +70,7 @@ class SourceSetInfo extends React.Component {
                 </span>
               </div>
             </div>
-            <div className="col-xs-12 col-md-4">
+            <div className={`${classNames.removeScroll} col-xs-12 col-md-4`}>
               <div className={`${classNames.sidebar} sourceSetSidebar`}>
                 <div className={classNames.metadata}>
                   <div className={classNames.metadatum}>
