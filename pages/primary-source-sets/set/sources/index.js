@@ -6,7 +6,7 @@ import PSSFooter from "../../../../components/PrimarySourceSetsComponents/PSSFoo
 import BreadcrumbsModule from "../../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ContentAndMetadata from "../../../../components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
-import removeQueryParams from "utilFunctions/removeQueryParams";
+import { removeQueryParams } from "utilFunctions";
 import { PSS_BASE_URL } from "constants/site";
 
 const videoIcon = "/static/placeholderImages/Video.svg";

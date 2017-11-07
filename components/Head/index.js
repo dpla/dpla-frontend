@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { stylesheet as utilStylesheet } from "css/utils.css";
 import { stylesheet as reset } from "css/reset.css";
+import { getMetaPageTitle } from "utilFunctions";
 
 export default ({ additionalLinks, pageTitle }) =>
   <div>
@@ -75,7 +76,7 @@ export default ({ additionalLinks, pageTitle }) =>
         href="https://unpkg.com/react-select/dist/react-select.css"
       />
       {additionalLinks}
-      <title>{pageTitle || "Digital Public Library of America"}</title>
+      <title>{getMetaPageTitle(pageTitle)}</title>
       <meta
         name="og:title"
         content={pageTitle || "Digital Public Library of America"}

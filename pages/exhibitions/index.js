@@ -6,13 +6,14 @@ import AllExhibitions from "../../components/ExhibitionsComponents/AllExhibition
 import Footer from "../../components/ExhibitionsComponents/Footer";
 import { getCurrentUrl } from "utilFunctions";
 import {
+  TITLE,
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
 
 const Exhibitions = ({ url, exhibitions }) =>
-  <MainLayout route={url}>
+  <MainLayout route={url} pageTitle={TITLE}>
     <AllExhibitions route={url} exhibitions={exhibitions} />
     <Footer />
   </MainLayout>;
