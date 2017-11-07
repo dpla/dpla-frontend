@@ -19,6 +19,14 @@ const extractTimePeriod = tags =>
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
+const showMoreDescription = className => {
+  const description = document.getElementById("dpla-description");
+  const showmore = document.getElementById("dpla-showmore");
+  description.classList.add(className);
+  showmore.remove();
+  console.log("moar");
+};
+
 class SourceSetInfo extends React.Component {
   render() {
     const { set, currentFullUrl } = this.props;
@@ -47,6 +55,7 @@ class SourceSetInfo extends React.Component {
               </div>
               {/* TODO: shouldn't have to get rid of the extra text with split */}
               <div
+                id="dpla-description"
                 className={`${classNames.description} sourceSetDescription`}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
@@ -54,6 +63,14 @@ class SourceSetInfo extends React.Component {
                   )
                 }}
               />
+              <div id="dpla-showmore" aria-hidden="true">
+                <span
+                  className={`${classNames.showMore} link`}
+                  onClick={() => showMoreDescription(classNames.open)}
+                >
+                  Show full description
+                </span>
+              </div>
             </div>
             <div className="col-xs-12 col-md-4">
               <div className={`${classNames.sidebar} sourceSetSidebar`}>
