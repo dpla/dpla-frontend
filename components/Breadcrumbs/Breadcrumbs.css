@@ -3,6 +3,7 @@
 
 .breadcrumbs {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -13,6 +14,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: .75rem;
+  line-height: 1.2;
   @media (min-width: smallRem) {
     font-size: 1rem;
   }
@@ -25,6 +27,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: .75rem;
+  line-height: 1.2;
   @media (min-width: smallRem) {
     font-size: 1rem;
   }
@@ -35,8 +38,7 @@
   align-items: center;
 }
 
-.breadcrumbLink p,
-.activeBreadcrumb p {
+.breadcrumbLink p, .activeBreadcrumb p {
   max-width: 115px;
   white-space: nowrap;
   text-overflow: ellipsis;
