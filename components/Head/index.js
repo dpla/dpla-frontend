@@ -5,7 +5,7 @@ import { stylesheet as utilStylesheet } from "css/utils.css";
 import { stylesheet as reset } from "css/reset.css";
 import { getMetaPageTitle } from "utilFunctions";
 
-export default ({ additionalLinks, pageTitle }) =>
+export default ({ additionalLinks, pageTitle, seoType }) =>
   <div>
     <Head>
       <meta charSet="utf-8" />
@@ -80,6 +80,10 @@ export default ({ additionalLinks, pageTitle }) =>
       <meta
         name="og:title"
         content={pageTitle || "Digital Public Library of America"}
+      />
+      <meta
+        name="og:type"
+        content={seoType || "website"}
       />
       <style>{reset}</style>
       <style>{utilStylesheet}</style>

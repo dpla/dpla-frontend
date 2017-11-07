@@ -9,11 +9,11 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, sidebarItems, guide }) =>
-  <MainLayout route={url} pageTitle={guide.title}>
+  <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
     <div
       className={`
         ${utilClassNames.container}
