@@ -24,7 +24,6 @@ const showMoreDescription = className => {
   const showmore = document.getElementById("dpla-showmore");
   description.classList.add(className);
   showmore.remove();
-  console.log("moar");
 };
 
 class SourceSetInfo extends React.Component {
