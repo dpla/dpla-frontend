@@ -65,7 +65,8 @@ const SubtopicItemsList = ({
         { title: "Browse by Topic", url: "/browse-by-topic" },
         {
           title: topic.name,
-          url: `/browse-by-topic/${topic.slug}`
+          as: `/browse-by-topic/${topic.slug}`,
+          url: `/browse-by-topic/topic/?topic=${topic.slug}`
         },
         { title: subtopic.name, url: "" }
       ]}
