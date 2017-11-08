@@ -3,7 +3,7 @@ import { rightsURLs } from "constants/site.js";
 const readMyRights = theString => {
   // in case it's an http url
   theString = theString
-    ? theString.toLowerCase().replace(/https?:\/\//, "")
+    ? theString.toString().toLowerCase().replace(/https?:\/\//, "")
     : null;
   // check to see if url has a version (only works for "1.0" pattern)
   if (/\d\.\d/.test(theString)) {
