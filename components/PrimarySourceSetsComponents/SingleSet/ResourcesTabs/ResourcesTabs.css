@@ -44,6 +44,11 @@
   flex: 1;
   text-decoration: none;
   color: black;
+
+  &:hover {
+    text-decoration: none;
+  }
+
   @media (min-width: smallRem) {
     font-size: 1rem;
   }

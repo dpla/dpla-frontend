@@ -1,7 +1,6 @@
 @value cascadeBlue, black50 from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
-
 .sidebar {
   width: 100%;
   @media (min-width: smallRem) {
@@ -17,6 +16,7 @@
 .facet {
   font-size: 0.875rem;
   line-height: 1.125rem;
+  color: black;
 
   &:hover .facetName {
     text-decoration: underline;

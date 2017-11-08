@@ -5,6 +5,10 @@
   background-color: pampasBrown;
   padding: 1rem 1.5rem;
 
+  & a {
+    color: rgba(0, 0, 0, 0.65);
+  }
+
   @media (min-width: mediumRem) {
     background-color: transparent;
     padding: 0 1.25rem 0 0;
@@ -18,10 +22,6 @@
 
   @media (min-width: mediumRem) {
     margin-left: 1.3rem;
-  }
-
-  & .link:not(.selected) {
-    color: rgba(0, 0, 0, 0.55);
   }
 
   & .selected::after {
@@ -64,8 +64,11 @@
 
 .selected {
   font-weight: bold;
-  color: black;
   position: relative;
+
+  & a {
+    color: rgba(0, 0, 0, 1);
+  }
 }
 
 .selected::after {

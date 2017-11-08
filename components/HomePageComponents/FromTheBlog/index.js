@@ -54,14 +54,14 @@ const FromTheBlog = (/* data */) =>
               <Link prefetch href="">
                 <a className={classNames.postLink}>
                   <span className={classNames.headline}>{post.headline}</span>
-                  <div className={classNames.date}>
-                    {post.date}
-                  </div>
-                  <p className={classNames.bodyText}>
-                    {post.bodyText}
-                  </p>
                 </a>
               </Link>
+              <div className={classNames.date}>
+                {post.date}
+              </div>
+              <p className={classNames.bodyText}>
+                {post.bodyText}
+              </p>
             </div>
           </li>
         )}

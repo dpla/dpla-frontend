@@ -92,8 +92,7 @@
   }
 }
 
-.postLink:hover .headline {
-  text-decoration: underline;
+.postLink {
 }
 
 .headline {
@@ -115,7 +114,6 @@
 }
 
 .bodyText {
-  opacity: 0.75;
   margin-top: .25rem;
 
   @media (min-width: mediumRem) {
