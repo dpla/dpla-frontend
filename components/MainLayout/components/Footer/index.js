@@ -33,7 +33,7 @@ const Footer = () =>
             </li>
             <li>
               <Link prefetch href="/guides">
-                Who Uses DPLA?
+                How Can I Use DPLA?
               </Link>
             </li>
             <li>
