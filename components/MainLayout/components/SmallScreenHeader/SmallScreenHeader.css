@@ -30,8 +30,7 @@
   display: block;
 }
 
-.searchButton,
-.menuButton {
+.searchButton, .menuButton {
   height: 3.5rem;
   width: 3.25rem;
   padding: 0;
@@ -42,7 +41,7 @@
   }
 
   &.isOpen {
-    background-color: rgba(0,0,0,.15);
+    background-color: rgba(0, 0, 0, .15);
   }
 }
 
@@ -114,7 +113,9 @@
   visibility: hidden;
   transform: scale(0.95);
   opacity: 0;
-  transition: transform 0.2s ease-in-out, visibility 0s 0.2s, opacity 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out,
+    visibility 0s 0.2s,
+    opacity 0.2s ease-in-out;
 
   &.isOpen {
     visibility: visible;
@@ -125,9 +126,8 @@
 }
 
 .links {
-  color: white;
-
   & a {
+    color: white;
     display: block;
     margin: 1rem 0;
   }
