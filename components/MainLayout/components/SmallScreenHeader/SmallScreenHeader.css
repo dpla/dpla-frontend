@@ -104,7 +104,7 @@
   background-color: tiberBlue;
   margin: auto;
   padding: 1rem 2rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   position: fixed;
   width: 100%;
   height: calc(100% - 3.5rem);
@@ -129,15 +129,26 @@
   & a {
     color: white;
     display: block;
-    margin: 1rem 0;
+    margin: .75rem 0;
   }
 }
 
+.divider {
+  display: none;
+}
+
 .secondaryLinks {
+  opacity: .85;
+}
+
+.tertiaryLinks {
   opacity: .7;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.secondaryLinks, .tertiaryLinks {
+  margin-top: 1.5rem;
+  padding-top: .75rem;
+  border-top: .075rem solid rgba(255, 255, 255, 0.5);
 }
 
 /* different styles for /search page */
