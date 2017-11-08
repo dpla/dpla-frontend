@@ -196,15 +196,8 @@
   }
 
   & a {
-    border-bottom: 2px solid rgba(255,255,255,.25);
-    padding-bottom: 2px;
     display: inline-block;
     margin: 0 1rem;
-    opacity: .75;
-    transition: opacity .15s ease-out;
-  }
-
-  & a:hover {
-    opacity: 1;
+    color: white;
   }
 }

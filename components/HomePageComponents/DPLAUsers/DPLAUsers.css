@@ -95,6 +95,10 @@
   display: inline-block;
   margin-top: 2rem;
 
+  &:hover {
+    text-decoration: none;
+  }
+
   @media (min-width: mediumRem) {
     margin-top: 2.5rem;
   }

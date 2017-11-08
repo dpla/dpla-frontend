@@ -123,13 +123,17 @@
 }
 
 .itemSource {
-  display: none;
+  /* display: none; */
+  font-size: 0.875rem;
+  color: vikingBlue;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   @media (min-width: smallRem) {
     display: block;
-    color: vikingBlue;
     font-weight: 600;
-    font-size: 0.875rem;
     margin-top: .25rem;
   }
 }

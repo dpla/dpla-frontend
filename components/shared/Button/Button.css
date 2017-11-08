@@ -8,6 +8,10 @@
   padding: .75rem 2rem;
   transition: background-color .15s ease-out;
   display: inline-block;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 /* Types */

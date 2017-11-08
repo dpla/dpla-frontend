@@ -1,4 +1,4 @@
-@value visualBrown, curiousBlue, black from "../../../../../css/colors.css";
+@value visualBrown, subLinkColor, black from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .setsWrapper {
@@ -15,8 +15,7 @@
     }
   }
 
-  & :global .col-xs-6,
-  & :global .col-md-4 {
+  & :global .col-xs-6, & :global .col-md-4 {
     padding-left: .1rem;
     padding-right: .1rem;
 
@@ -92,6 +91,10 @@
 .title {
   font-weight: 600;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media (mediumRem) {
     font-size: 1.25rem;
   }
@@ -100,7 +103,10 @@
 .timePeriod {
   font-size: .875rem;
   margin-top: .25rem;
-  opacity: .6;
+
+  & a {
+    color: subLinkColor;
+  }
 
   @media (mediumRem) {
     font-size: 1.25rem;
@@ -109,8 +115,11 @@
 
 .tags {
   font-size: .875rem;
-  color: curiousBlue;
   margin-top: .25rem;
+
+  & a {
+    color: subLinkColor;
+  }
 }
 
 .tag {
