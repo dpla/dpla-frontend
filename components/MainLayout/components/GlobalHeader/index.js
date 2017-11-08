@@ -57,7 +57,7 @@ const GlobalHeader = () =>
           </Link>
         </li>
         <li>
-          <Link prefetch href="">
+          <Link prefetch href="//pro.dp.la">
             <a>Pro Community</a>
           </Link>
         </li>
