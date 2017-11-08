@@ -1,4 +1,4 @@
-@value bambooOrange from "./colors.css";
+@value linkColor from "./colors.css";
 
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid*/
 /* TODO replace breakpoints in breakpoints.css with these */
@@ -24,7 +24,7 @@
 }
 
 :global .link {
-  color: bambooOrange;
+  color: linkColor;
   text-decoration: underline;
 }
 
@@ -33,7 +33,7 @@
 }
 
 :global .hover-underline:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Used for locking scrolls on <body> when overlays are active */
@@ -61,6 +61,15 @@
   @media (--lg-viewport) {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+a {
+  color: linkColor;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
   }
 }
 

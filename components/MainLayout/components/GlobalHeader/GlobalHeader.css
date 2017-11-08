@@ -43,6 +43,8 @@
   }
 
   & > li > button, & > li > a {
+    color: white;
+    text-decoration: none;
     display: inline-block;
     padding: 0.5rem 0;
 
@@ -116,4 +118,9 @@
 .browseButton:focus + .browseLinks,
 .browseLinks:hover {
   display: block;
+
+  & a {
+    color: black;
+    text-decoration: none;
+  }
 }
