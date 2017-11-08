@@ -19,7 +19,7 @@ const Footer = () =>
           <ul>
             <li>
               <Link prefetch as="/about-us" href="/about?section=about-us">
-                About Us
+                About DPLA
               </Link>
             </li>
             <li>
@@ -82,36 +82,31 @@ const Footer = () =>
             </li>
           </ul>
         </div>
-        <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+        <div className={`${classNames.linkGroup} col-xs-12 col-sm-4 col-md-3`}>
           <h3 className={classNames.linkHeader}>Pro Community</h3>
           <ul>
             <li>
-              <Link prefetch href="">
-                About DPLA
+              <Link prefetch href="//pro.dp.la/about">
+                About DPLA Pro Community
               </Link>
             </li>
             <li>
-              <Link prefetch href="">
+              <Link prefetch href="//pro.dp.la/hubs">
                 Hubs
               </Link>
             </li>
             <li>
-              <Link prefetch href="">
+              <Link prefetch href="//pro.dp.la/projects">
                 Projects
               </Link>
             </li>
             <li>
-              <Link prefetch href="">
-                Get Involved
-              </Link>
-            </li>
-            <li>
-              <Link prefetch href="">
+              <Link prefetch href="//pro.dp.la/educators">
                 Educators
               </Link>
             </li>
             <li>
-              <Link prefetch href="">
+              <Link prefetch href="//pro.dp.la/developers">
                 Developers
               </Link>
             </li>
