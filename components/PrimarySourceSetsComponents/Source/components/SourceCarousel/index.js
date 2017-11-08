@@ -55,7 +55,9 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
             }}
           >
             <a
-              dangerouslySetInnerHTML={{ __html: markdownit.render(set.name) }}
+              dangerouslySetInnerHTML={{
+                __html: markdownit.renderInline(set.name)
+              }}
               className={`link ${classNames.linkToSourceSet}`}
             />
           </Link>
