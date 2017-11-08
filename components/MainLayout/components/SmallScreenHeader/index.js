@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import UserNavigation from "../shared/UserNavigation";
 
-import { stylesheet, classNames } from "./SmallScreenHeader.css";
+import { stylesheet, classNames } from "../shared/SmallScreenStyles.css";
 
 const dplaLogo = "/static/images/dpla-logo.svg";
 const searchIcon = "/static/images/search.svg";
