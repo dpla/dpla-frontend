@@ -1,5 +1,6 @@
 const fs = require("fs");
 const trash = require("trash");
+const dotenv = require("dotenv").config();
 
 module.exports = {
   webpack: config => {

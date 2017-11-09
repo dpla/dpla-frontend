@@ -9,10 +9,11 @@ import {
 
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
-    <UserNavigation
-      className={`${desktopClassNames.linksContainer} site-max-width`}
-      classNames={desktopClassNames}
-    />
+    {process.env.SITE_ENV === "user" &&
+      <UserNavigation
+        className={`${desktopClassNames.linksContainer} site-max-width`}
+        classNames={desktopClassNames}
+      />}
     <style dangerouslySetInnerHTML={{ __html: desktopStylesheet }} />
   </div>;
 

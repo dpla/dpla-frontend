@@ -1,0 +1,191 @@
+@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value tiberBlue, elephantBlue from "../../../../css/colors.css";
+
+.wrapper {
+  display: block;
+  background-color: elephantBlue;
+
+  /* The GlobalHeader component handles the navigation on larger screens */
+  @media (min-width: mediumRem) {
+    display: none;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.logo {
+  width: 60%;
+  max-width: 15rem;
+  padding: .5rem 1rem;
+  height: 100%;
+  display: flex;
+}
+
+.logo img {
+  width: 100%;
+  display: block;
+}
+
+.searchButton, .menuButton {
+  height: 3.5rem;
+  width: 3.25rem;
+  padding: 0;
+
+  & img {
+    display: block;
+    margin: auto;
+  }
+
+  &.isOpen {
+    background-color: rgba(0, 0, 0, .15);
+  }
+}
+
+.searchButton img {
+  width: 1.25rem;
+}
+
+.menuButton {
+  &.isOpen img {
+    width: 1.15rem;
+  }
+
+  & img {
+    width: 1.35rem;
+  }
+}
+
+.searchContainer {
+  background-color: tiberBlue;
+  height: 0;
+  visibility: hidden;
+  transition: height 0.15s ease-in-out, visibility 0s 0.15s;
+  color: white;
+
+  &.isOpen {
+    visibility: visible;
+    height: 3.5rem;
+    transition: height 0.15s ease-in-out;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0 1rem;
+  height: 3.5rem;
+  line-height: 1.5;
+  color: white;
+
+  /* Remove browser search input defaults */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: white;
+    opacity: .5;
+  }
+}
+
+.menuContainer {
+  background-color: tiberBlue;
+  margin: auto;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  position: fixed;
+  width: 100%;
+  height: calc(100% - 3.5rem);
+  top: 3.5rem;
+  left: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.2s ease-in-out,
+    visibility 0s 0.2s,
+    opacity 0.2s ease-in-out;
+
+  &.isOpen {
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.links {
+  & a {
+    color: white;
+    display: block;
+    margin: .75rem 0;
+  }
+}
+
+.divider {
+  display: none;
+}
+
+.secondaryLinks {
+  opacity: .85;
+}
+
+.tertiaryLinks {
+  opacity: .7;
+}
+
+.secondaryLinks, .tertiaryLinks {
+  margin-top: 1.5rem;
+  padding-top: .75rem;
+  border-top: .075rem solid rgba(255, 255, 255, 0.5);
+}
+
+/* different styles for /search page */
+
+@media (max-width: smallRem) {
+  .searchPageWrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .searchPageWrapper .searchButton {
+    display: none;
+  }
+
+  .searchPageWrapper .searchContainer {
+    position: relative;
+    background-color: elephantBlue;
+    visibility: visible;
+    height: 3.5rem;
+    padding: .5rem 1rem;
+  }
+
+  .searchPageWrapper .searchInput {
+    background-color: white;
+    height: 32px;
+    font-size: 0.875rem;
+    border-radius: 1px;
+    color: elephantBlue;
+    padding-left: 2rem;
+  }
+
+  .searchPageWrapper .searchBarIcon {
+    width: 1rem;
+    height: 1rem;
+    top: 16px;
+    left: 23px;
+    position: absolute;
+    transform: rotate(-90deg);
+  }
+}

@@ -95,12 +95,13 @@ class SmallScreenHeader extends Component {
             </button>
           </div>
         </div>
-        <UserNavigation
-          className={`${classNames.menuContainer} ${menuIsOpen &&
-            classNames.isOpen} site-max-width`}
-          style={{ zIndex: 99 }}
-          classNames={classNames}
-        />
+        {process.env.SITE_ENV === "user" &&
+          <UserNavigation
+            className={`${classNames.menuContainer} ${menuIsOpen &&
+              classNames.isOpen} site-max-width`}
+            style={{ zIndex: 99 }}
+            classNames={classNames}
+          />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );

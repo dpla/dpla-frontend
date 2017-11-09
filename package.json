@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-plugin-inline-dotenv": "^1.1.1",
+    "babel-plugin-transform-inline-environment-variables": "^0.2.0",
     "cssnano": "^3.10.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
@@ -62,7 +64,7 @@
     "style-loader": "0.17.0",
     "sw-precache-webpack-plugin": "0.9.1",
     "url-loader": "0.5.8",
-    "webpack": "2.6.1",
+    "webpack": "^3.6.0",
     "webpack-dev-server": "2.4.5",
     "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.3"
@@ -74,22 +76,19 @@
     "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t dpla .",
     "docker:clean": "docker rm -f dpla || true",
-    "docker:run": "docker run -p 3000:3000 -d --name dpla dpla && npm run docker:logs",
+    "docker:run":
+      "docker run -p 3000:3000 -d --name dpla dpla && npm run docker:logs",
     "docker:stop": "docker stop dpla",
     "docker:start": "docker start dpla && npm run docker:logs",
     "docker:logs": "docker logs -f dpla",
-    "deploy": "npm run docker:build && npm run docker:clean && npm run docker:run"
+    "deploy":
+      "npm run docker:build && npm run docker:clean && npm run docker:run"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
     "extends": "react-app"
