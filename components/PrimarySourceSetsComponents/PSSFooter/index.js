@@ -13,7 +13,7 @@ const OtherInfo = () =>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;
         </span>
-        <Link prefetch href="/education/education-advisory-committee/">
+        <Link href="//pro.dp.la/education/education-advisory-committee/">
           <a className="link">
             DPLA's Education Advisory Committee.
           </a>
