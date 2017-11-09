@@ -25,6 +25,11 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60 // 1hour
 });
 
+// if (process.env.NODE_ENV !== "production") {
+//   // require environment variables from .env file
+//   require("dotenv").config();
+// }
+
 app
   .prepare()
   .then(() => {
