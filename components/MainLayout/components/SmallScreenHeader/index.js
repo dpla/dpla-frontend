@@ -95,7 +95,7 @@ class SmallScreenHeader extends Component {
             </button>
           </div>
         </div>
-        {process.env.SITE_ENV === "user" &&
+        {process.env.SITE_ENV !== "pro" &&
           <UserNavigation
             className={`${classNames.menuContainer} ${menuIsOpen &&
               classNames.isOpen} site-max-width`}

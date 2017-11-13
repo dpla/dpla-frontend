@@ -76,19 +76,22 @@
     "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t dpla .",
     "docker:clean": "docker rm -f dpla || true",
-    "docker:run":
-      "docker run -p 3000:3000 -d --name dpla dpla && npm run docker:logs",
+    "docker:run": "docker run -p 3000:3000 -d --name dpla dpla && npm run docker:logs",
     "docker:stop": "docker stop dpla",
     "docker:start": "docker start dpla && npm run docker:logs",
     "docker:logs": "docker logs -f dpla",
-    "deploy":
-      "npm run docker:build && npm run docker:clean && npm run docker:run"
+    "deploy": "npm run docker:build && npm run docker:clean && npm run docker:run"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

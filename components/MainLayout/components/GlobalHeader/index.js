@@ -9,7 +9,7 @@ import {
 
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
-    {process.env.SITE_ENV === "user" &&
+    {process.env.SITE_ENV !== "pro" &&
       <UserNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
