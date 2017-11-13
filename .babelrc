@@ -1,16 +1,39 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "inline-dotenv",
+          {
+            "include": ["SITE_ENV"]
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "transform-inline-environment-variables",
+          {
+            "include": ["SITE_ENV"]
+          }
+        ]
+      ]
+    }
+  },
   "plugins": [
-    ["module-resolver", {
-      "root": ["./"],
-      "alias": {
-        "css": "./css",
-        "static": "./static",
-        "utilFunctions": "./utilFunctions",
-        "components": "./components"
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "css": "./css",
+          "static": "./static",
+          "utilFunctions": "./utilFunctions",
+          "components": "./components"
+        }
       }
-    }]
+    ]
   ]
 }

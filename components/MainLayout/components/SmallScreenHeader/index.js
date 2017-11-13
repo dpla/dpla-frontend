@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Link from "next/link";
+import UserNavigation from "../shared/UserNavigation";
 
-import { stylesheet, classNames } from "./SmallScreenHeader.css";
+import { stylesheet, classNames } from "../shared/SmallScreenStyles.css";
 
 const dplaLogo = "/static/images/dpla-logo.svg";
 const searchIcon = "/static/images/search.svg";
@@ -56,7 +57,7 @@ class SmallScreenHeader extends Component {
             <input
               className={classNames.searchInput}
               autoComplete="off"
-              placeholder={isSearchPage ? "" : "Search the collection"}
+              placeholder={isSearchPage ? "" : "Type keyword(s) here"}
               name="q"
               defaultValue={isSearchPage ? route.query.q : ""}
               ref={input => {
@@ -94,37 +95,13 @@ class SmallScreenHeader extends Component {
             </button>
           </div>
         </div>
-        <div
-          className={`${classNames.menuContainer} ${menuIsOpen &&
-            classNames.isOpen} site-max-width`}
-          style={{ zIndex: 99 }}
-        >
-          <div className={classNames.links}>
-            <Link prefetch href="/">
-              Home
-            </Link>
-            <Link prefetch href="/browse-by-topic">
-              Browse
-            </Link>
-            <Link prefetch href="/exhibitions">
-              Exhibitions
-            </Link>
-            <Link prefetch href="/primary-source-sets">
-              Primary Source Sets
-            </Link>
-          </div>
-          <div className={`${classNames.links} ${classNames.secondaryLinks}`}>
-            <Link prefetch href="">
-              <a>About Us</a>
-            </Link>
-            <Link prefetch href="">
-              <a>News</a>
-            </Link>
-            <Link prefetch href="">
-              <a>Pro Community</a>
-            </Link>
-          </div>
-        </div>
+        {process.env.SITE_ENV === "user" &&
+          <UserNavigation
+            className={`${classNames.menuContainer} ${menuIsOpen &&
+              classNames.isOpen} site-max-width`}
+            style={{ zIndex: 99 }}
+            classNames={classNames}
+          />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );

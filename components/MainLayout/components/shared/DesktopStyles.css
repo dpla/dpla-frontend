@@ -55,17 +55,11 @@
 }
 
 .secondaryLinks {
-  opacity: .7;
+  opacity: .85;
 }
 
-.login {
-  color: white;
-  margin-left: auto;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.125rem;
+.tertiaryLinks {
+  opacity: .7;
 }
 
 .divider {
@@ -77,50 +71,5 @@
 
   @media (min-width: largeRem) {
     margin-right: 1rem;
-  }
-}
-
-.browseLinks {
-  display: none;
-  position: absolute;
-  color: rgba(0, 0, 0, 0.9);
-  width: 200px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  background-color: white;
-  text-transform: none;
-  font-size: 1rem;
-  top: 2.25rem;
-}
-
-.browseLink {
-  padding: 0.75rem 1rem;
-  display: inline-block;
-  width: 100%;
-}
-
-.browseLink:hover {
-  background-color: rgba(218, 228, 232, 0.47);
-}
-
-.browse {
-  position: relative;
-}
-
-.browseButton {
-  padding: 0;
-  font-weight: inherit;
-  color: inherit;
-  display: inline;
-  text-transform: uppercase;
-}
-
-.browseButton:hover + .browseLinks,
-.browseButton:focus + .browseLinks,
-.browseLinks:hover {
-  display: block;
-
-  & a {
-    color: black;
-    text-decoration: none;
   }
 }
