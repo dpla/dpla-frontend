@@ -27,8 +27,8 @@ export const mapSortOptionsToParams = {
     sort_order: "asc"
   },
   new_to_old: {
-    sort_by: "title",
-    sort_order: "asc"
+    sort_by: "created",
+    sort_order: "desc"
   },
   relevance: {
     sort_by: "",
