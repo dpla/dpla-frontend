@@ -55,7 +55,10 @@ class OptionsBar extends React.Component {
   onPageSizeChange = val => {
     Router.push({
       pathname: "/search",
-      query: Object.assign({}, this.props.route.query, { page_size: val.label })
+      query: Object.assign({}, this.props.route.query, {
+        page_size: val.label,
+        page: 1
+      })
     });
   };
 
@@ -64,7 +67,8 @@ class OptionsBar extends React.Component {
       pathname: "/search",
       query: Object.assign({}, this.props.route.query, {
         sort_by: mapSortOptionsToParams[val.value].sort_by,
-        sort_order: mapSortOptionsToParams[val.value].sort_order
+        sort_order: mapSortOptionsToParams[val.value].sort_order,
+        page: 1
       })
     });
   };
