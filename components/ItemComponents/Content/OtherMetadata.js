@@ -4,34 +4,31 @@ import { classNames, stylesheet } from "./Content.css";
 import { joinIfArray } from "utilFunctions";
 
 const Row = ({ heading, value, linkInfo, children, className }) =>
-  children
-    ? <tr className={[classNames.tableRow, className].join(" ")}>
-        <td className={classNames.tableHeading}>
-          {heading}
-        </td>
-        <td
-          className={[classNames.tableItem, classNames.otherMetadataItem].join(
-            " "
-          )}
-        >
-          {children}
-        </td>
-      </tr>
-    : null;
+  children ? (
+    <tr className={[classNames.tableRow, className].join(" ")}>
+      <td className={classNames.tableHeading}>{heading}</td>
+      <td
+        className={[classNames.tableItem, classNames.otherMetadataItem].join(
+          " "
+        )}
+      >
+        {children}
+      </td>
+    </tr>
+  ) : null;
 
-const FacetLink = ({ facet, value, withComma }) =>
+const FacetLink = ({ facet, value, withComma }) => (
   <span>
     <Link
       prefetch
       href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}
     >
-      <a className="link">
-        {value}
-      </a>
+      <a className="link">{value}</a>
     </Link>
-  </span>;
+  </span>
+);
 
-const OtherMetadata = ({ item }) =>
+const OtherMetadata = ({ item }) => (
   <div className={classNames.otherMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
@@ -43,19 +40,27 @@ const OtherMetadata = ({ item }) =>
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
         <Row heading="Supporting Institution">
-          {item.intermediateProvider &&
-            <FacetLink facet="provider" value={item.intermediateProvider} />}
+          {item.intermediateProvider && (
+            <FacetLink facet="provider" value={item.intermediateProvider} />
+          )}
         </Row>
         <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
         <Row className={classNames.subjects} heading="Subjects">
           {item.subject &&
-            item.subject.map((subj, i, subjects) =>
+            item.subject.map((subj, i, subjects) => (
               <span key={i}>
                 <FacetLink facet="subject" value={subj.name} />
                 {i < subjects.length - 1 && <br />}
               </span>
-            )}
+            ))}
         </Row>
+        {item.spatial && (
+          <Row heading="Location">
+            {item.type && (
+              <FacetLink facet="location" value={item.spatial[0].name} />
+            )}
+          </Row>
+        )}
         <Row heading="Type">
           {item.type && <FacetLink facet="type" value={item.type} />}
         </Row>
@@ -63,19 +68,24 @@ const OtherMetadata = ({ item }) =>
           {item.format && <span>{joinIfArray(item.format, ", ")}</span>}
         </Row>
         <Row heading="Language">
-          {item.language &&
+          {item.language && (
             <FacetLink
               facet="language"
               value={joinIfArray(item.language, ", ")}
-            />}
+            />
+          )}
         </Row>
         <Row heading="URL">
-          {item.sourceUrl &&
-            <a className="link" href={item.sourceUrl}>{item.sourceUrl}</a>}
+          {item.sourceUrl && (
+            <a className="link" href={item.sourceUrl}>
+              {item.sourceUrl}
+            </a>
+          )}
         </Row>
       </tbody>
     </table>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </div>
+);
 
 export default OtherMetadata;
