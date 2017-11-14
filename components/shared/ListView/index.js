@@ -9,12 +9,22 @@ import { classNames, stylesheet } from "./ListView.css";
 
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
+/**
+  * @param item, object with item info
+  * @return string with provider or null
+  */
+const getItemProvider = item => item.provider["name"];
+
+/**
+  * @param description, item description object
+  * @return HTML with truncated item description
+  */
 const ItemDescription = ({ description }) => {
   let str = joinIfArray(description);
   str = truncateString(str);
   return (
-    <div>
-      <p className={classNames.itemDescription}>
+    <div className={classNames.itemDescription}>
+      <p>
         {str}
       </p>
     </div>
@@ -77,6 +87,10 @@ const ListView = ({ items, route }) =>
               alt=""
             />
           </a>
+          {item.provider &&
+            <span className={`${classNames.itemProvider}`}>
+              &nbsp; in {getItemProvider(item)}
+            </span>}
         </div>
       </li>
     )}
