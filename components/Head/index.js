@@ -66,10 +66,7 @@ export default ({ additionalLinks, pageTitle, seoType }) =>
         name="og:title"
         content={pageTitle || "Digital Public Library of America"}
       />
-      <meta
-        name="og:type"
-        content={seoType || "website"}
-      />
+      <meta name="og:type" content={seoType || "website"} />
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
     </Head>
