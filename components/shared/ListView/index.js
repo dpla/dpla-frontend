@@ -10,12 +10,6 @@ import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
 /**
-  * @param item, object with item info
-  * @return string with provider or null
-  */
-const getItemProvider = item => item.provider["name"];
-
-/**
   * @param description, item description object
   * @return HTML with truncated item description
   */
@@ -87,9 +81,9 @@ const ListView = ({ items, route }) =>
               alt=""
             />
           </a>
-          {item.provider &&
+          {item.dataProvider &&
             <span className={`${classNames.itemProvider}`}>
-              &nbsp; in {getItemProvider(item)}
+              &nbsp; in {item.dataProvider}
             </span>}
         </div>
       </li>
