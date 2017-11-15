@@ -1,21 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./Content.css";
-import { joinIfArray } from "utilFunctions";
+import Row from "./Row";
 
-const Row = ({ heading, value, linkInfo, children, className }) =>
-  children ? (
-    <tr className={[classNames.tableRow, className].join(" ")}>
-      <td className={classNames.tableHeading}>{heading}</td>
-      <td
-        className={[classNames.tableItem, classNames.otherMetadataItem].join(
-          " "
-        )}
-      >
-        {children}
-      </td>
-    </tr>
-  ) : null;
+import { classNames, stylesheet } from "./Content.css";
+import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
 
 const FacetLink = ({ facet, value, withComma }) => (
   <span>
@@ -32,7 +20,6 @@ const OtherMetadata = ({ item }) => (
   <div className={classNames.otherMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
-        <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
         <Row heading="Partner">
           <FacetLink facet="partner" value={item.partner} />
         </Row>
@@ -65,7 +52,11 @@ const OtherMetadata = ({ item }) => (
           {item.type && <FacetLink facet="type" value={item.type} />}
         </Row>
         <Row heading="Format">
-          {item.format && <span>{joinIfArray(item.format, ", ")}</span>}
+          {item.format && !Array.isArray(item.format) ? (
+            <div>{item.format}</div>
+          ) : (
+            item.format.map((format, i, formats) => <div key={i}>{format}</div>)
+          )}
         </Row>
         <Row heading="Language">
           {item.language && (
@@ -82,9 +73,30 @@ const OtherMetadata = ({ item }) => (
             </a>
           )}
         </Row>
+        {item.edmRights &&
+        readMyRights(item.edmRights) && (
+          <Row heading="Standardized Rights Statement">
+            {readMyRights(item.edmRights).description}
+            {readMyRights(item.edmRights).description !== "" && <br />}
+            <a href={item.edmRights} className="link" rel="noopener noreferrer">
+              {item.edmRights}
+            </a>
+          </Row>
+        )}
+        {item.rights && (
+          <Row heading="Rights">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: makeURLsClickable(
+                  joinIfArray(item.rights, "<br/> "),
+                  "link"
+                )
+              }}
+            />
+          </Row>
+        )}
       </tbody>
     </table>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>
 );
 

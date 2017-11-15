@@ -17,10 +17,13 @@ const addLinkInfoToResults = (results, query) =>
     return Object.assign({}, item, {
       linkHref: {
         pathname: "/item",
-        query: { ...query, itemId: extractItemId(item["@id"]) } //, previous, next }
+        query: {
+          ...query,
+          itemId: item.id ? item.id : extractItemId(item["@id"])
+        } //, previous, next }
       },
       linkAs: {
-        pathname: `/item/${extractItemId(item["@id"])}`,
+        pathname: `/item/${item.id ? item.id : extractItemId(item["@id"])}`,
         query: Object.assign({}, removeQueryParams(query, ["itemId"])) //, {
         //   next,
         //   previous
@@ -29,7 +32,13 @@ const addLinkInfoToResults = (results, query) =>
     });
   });
 
-const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
+const MainContent = ({
+  results,
+  route,
+  facets,
+  paginationInfo,
+  hideSidebar
+}) => (
   <div className={classNames.wrapper}>
     <div className={[container, classNames.mainContent].join(" ")}>
       <div className={`${hideSidebar ? classNames.hiddenSidebar : ""}`}>
@@ -38,20 +47,24 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
       <div className={classNames.resultsAndPagination}>
         <div
           className={
-            route.query.list_view === "grid"
-              ? classNames.gridWrapper
-              : classNames.listWrapper
+            route.query.list_view === "grid" ? (
+              classNames.gridWrapper
+            ) : (
+              classNames.listWrapper
+            )
           }
         >
-          {route.query.list_view === "grid"
-            ? <GridView
-                route={route}
-                items={addLinkInfoToResults(results, route.query)}
-              />
-            : <ListView
-                route={route}
-                items={addLinkInfoToResults(results, route.query)}
-              />}
+          {route.query.list_view === "grid" ? (
+            <GridView
+              route={route}
+              items={addLinkInfoToResults(results, route.query)}
+            />
+          ) : (
+            <ListView
+              route={route}
+              items={addLinkInfoToResults(results, route.query)}
+            />
+          )}
         </div>
         <Pagination
           route={route}
@@ -65,6 +78,7 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </div>
+);
 
 export default MainContent;

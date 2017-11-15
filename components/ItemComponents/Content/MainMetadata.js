@@ -1,8 +1,11 @@
 import React from "react";
-import { classNames, stylesheet } from "./Content.css";
-import { joinIfArray, readMyRights } from "utilFunctions";
 import ItemImage from "./ItemImage";
+import Row from "./Row";
+
+import { joinIfArray, readMyRights } from "utilFunctions";
 import { rightsURLs } from "constants/site.js";
+
+import { classNames, stylesheet } from "./Content.css";
 
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
@@ -12,26 +15,24 @@ const externalLinkIcon = "/static/images/external-link-white.svg";
   */
 const RightsBadge = ({ url }) => {
   const myRights = readMyRights(url);
-  return myRights
-    ? <div className={classNames.rightsStatement}>
-        <a
-          href={myRights.url}
-          title="Learn more about the copyright status of this item"
-        >
-          <img src={myRights.image} alt={myRights.description} />
-        </a>
-      </div>
-    : null;
+  return myRights ? (
+    <div className={classNames.rightsStatement}>
+      <a
+        href={myRights.url}
+        title="Learn more about the copyright status of this item"
+      >
+        <img src={myRights.image} alt={myRights.description} />
+      </a>
+    </div>
+  ) : null;
 };
 
-const MainMetadata = ({ item }) =>
+const MainMetadata = ({ item }) => (
   <div className={classNames.mainMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
         <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeading}>
-            Item
-          </td>
+          <td className={classNames.tableHeading}>Item</td>
           <td className={classNames.tableItem}>
             <ItemImage
               title={item.title}
@@ -47,9 +48,13 @@ const MainMetadata = ({ item }) =>
               className={classNames.sourceLink}
             >
               <span className={classNames.sourceLinkText}>
-                {item.type === "image"
-                  ? "View Full Image"
-                  : item.type === "text" ? "View Full Text" : "View Full Item"}
+                {item.type === "image" ? (
+                  "View Full Image"
+                ) : item.type === "text" ? (
+                  "View Full Text"
+                ) : (
+                  "View Full Item"
+                )}
               </span>
               <img
                 src={externalLinkIcon}
@@ -63,26 +68,24 @@ const MainMetadata = ({ item }) =>
         see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
         items should not have multiple rights but showing them in case a proper uri is present
          */}
-            {item.rights && Array.isArray(item.rights)
-              ? item.rights.map(theRight => {
-                  return <RightsBadge url={theRight} />;
-                })
-              : item.rights ? <RightsBadge url={item.rights} /> : null}
+            {item.rights && Array.isArray(item.rights) ? (
+              item.rights.map(theRight => {
+                return <RightsBadge url={theRight} />;
+              })
+            ) : item.rights ? (
+              <RightsBadge url={item.rights} />
+            ) : null}
           </td>
         </tr>
         <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeading}>
-            Title
-          </td>
+          <td className={classNames.tableHeading}>Title</td>
           <td className={[classNames.tableItem, classNames.title].join(" ")}>
             {joinIfArray(item.title)}
           </td>
         </tr>
-        {item.date &&
+        {item.date && (
           <tr className={classNames.tableRow}>
-            <td className={classNames.tableHeading}>
-              Created Date
-            </td>
+            <td className={classNames.tableHeading}>Created Date</td>
             <td
               className={[
                 classNames.tableItem,
@@ -91,12 +94,11 @@ const MainMetadata = ({ item }) =>
             >
               {item.date.displayDate}
             </td>
-          </tr>}
-        {item.description &&
+          </tr>
+        )}
+        {item.description && (
           <tr className={classNames.tableRow}>
-            <td className={classNames.tableHeading}>
-              Description
-            </td>
+            <td className={classNames.tableHeading}>Description</td>
             <td
               className={[
                 classNames.tableItem,
@@ -105,10 +107,12 @@ const MainMetadata = ({ item }) =>
             >
               {joinIfArray(item.description)}
             </td>
-          </tr>}
+          </tr>
+        )}
+        <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
       </tbody>
     </table>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </div>
+);
 
 export default MainMetadata;

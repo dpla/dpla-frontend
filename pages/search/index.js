@@ -109,6 +109,7 @@ Search.getInitialProps = async ({ query, req }) => {
       : getDefaultThumbnail(result.sourceResource.type);
     return Object.assign({}, result.sourceResource, {
       thumbnailUrl,
+      id: result.id ? result.id : result.sourceResource["@id"],
       sourceUrl: result.isShownAt,
       dataProvider: result.dataProvider,
       useDefaultImage: !result.object
