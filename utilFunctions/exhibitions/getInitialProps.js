@@ -20,9 +20,7 @@ const getNextOrPreviousQueryParams = (
   if (!subsectInCurrentSect) {
     subsectInNextOrPrevSect =
       nextOrPreviousSect &&
-      nextOrPreviousSect.subsections.sort(
-        (a, b) => nextOrPrevious === a.order - b.order
-      )[
+      nextOrPreviousSect.subsections.sort((a, b) => a.order - b.order)[
         nextOrPrevious === "previous"
           ? nextOrPreviousSect.subsections.length - 1
           : 0
