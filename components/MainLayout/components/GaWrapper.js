@@ -4,11 +4,7 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-
-// Tracking ID for DPLA TEST.
-// TODO: Change tracking ID after we've verified that the tracking is working
-// as expected.
-const gaTrackingId = "UA-28197764-2";
+import { gaTrackingId } from "constants/site";
 
 export default WrappedComponent =>
   class GaWrapper extends React.Component {
@@ -43,6 +39,7 @@ export default WrappedComponent =>
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(gaTrackingId);
         window.GA_INITIALIZED = true;
+        alert(gaTrackingId);
       }
     }
 
