@@ -26,10 +26,16 @@ export default WrappedComponent =>
       Router.router.events.off("routeChangeComplete", this.trackPageview);
     }
 
-    trackPageview(path = window.location.pathname) {
-      if (path !== this.lastTrackedPath) {
-        ReactGA.pageview(path);
-        this.lastTrackedPath = path;
+    trackPageview() {
+      // The pathname technically should not contain any parameters, but in this
+      // app, it sometimes does.
+      const path = window.location.pathname.split("?")[0];
+      const search = window.location.search;
+      const fullPath = path + search;
+
+      if (fullPath !== this.lastTrackedPath) {
+        ReactGA.pageview(fullPath);
+        this.lastTrackedPath = fullPath;
       }
     }
 
