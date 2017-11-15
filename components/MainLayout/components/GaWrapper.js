@@ -39,7 +39,6 @@ export default WrappedComponent =>
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(gaTrackingId);
         window.GA_INITIALIZED = true;
-        alert(gaTrackingId);
       }
     }
 
