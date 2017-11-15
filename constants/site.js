@@ -18,6 +18,7 @@ export const PSS_SUGGESTION_URL =
 // Tracking ID for DPLA TEST.
 // TODO: Change tracking ID after we've verified that the tracking is working
 // as expected.
+// TODO: Make this an environmental variable.
 export const gaTrackingId = "UA-28197764-2";
 
 export const resourceTypes = {
