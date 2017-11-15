@@ -17,12 +17,15 @@ export default WrappedComponent =>
       this.trackPageview = this.trackPageview.bind(this);
     }
 
+    // Using componentDidMount enables access to the window, which is necessary
+    // for Google Analytics tracking.
     componentDidMount() {
       this.initGa();
       this.trackPageview();
       Router.router.events.on("routeChangeComplete", this.trackPageview);
     }
 
+    // Cleanup, prevents multiple pageviews being counted for a single route.
     componentWillUnmount() {
       Router.router.events.off("routeChangeComplete", this.trackPageview);
     }
@@ -34,6 +37,8 @@ export default WrappedComponent =>
       }
     }
 
+    // Initialization will occur on the initial pageload, and also when
+    // switching between pages of different types.
     initGa() {
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(gaTrackingId);
