@@ -69,7 +69,10 @@ class Search extends React.Component {
 
 Search.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
-  const q = query.q || "";
+  const q =
+    encodeURIComponent(query.q)
+      .replace(/'/g, "%27")
+      .replace(/"/g, "%22") || "";
   const page_size = query.page_size || DEFAULT_PAGE_SIZE;
   const page = query.page || 1;
   let sort_by = "";
@@ -93,7 +96,9 @@ Search.getInitialProps = async ({ query, req }) => {
     .join("&");
 
   const res = await fetch(
-    `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+    `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${
+      page_size
+    }&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
       ","
     )}&${facetQueries}`
   );
