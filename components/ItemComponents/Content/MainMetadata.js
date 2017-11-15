@@ -6,6 +6,10 @@ import { rightsURLs } from "constants/site.js";
 
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
+/**
+  * @param url, url to check for rights info
+  * @return HTML with rights badge or null
+  */
 const RightsBadge = ({ url }) => {
   const myRights = readMyRights(url);
   return myRights

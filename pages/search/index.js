@@ -110,6 +110,7 @@ Search.getInitialProps = async ({ query, req }) => {
     return Object.assign({}, result.sourceResource, {
       thumbnailUrl,
       sourceUrl: result.isShownAt,
+      dataProvider: result.dataProvider,
       useDefaultImage: !result.object
     });
   });
