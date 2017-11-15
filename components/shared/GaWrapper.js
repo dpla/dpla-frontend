@@ -29,7 +29,7 @@ export default WrappedComponent =>
     trackPageview() {
       // The pathname technically should not contain any parameters, but in this
       // app, it sometimes does.
-      const path = window.location.pathname.split("?")[0];
+      const path = window.location.pathname;
       const search = window.location.search;
       const fullPath = path + search;
 
