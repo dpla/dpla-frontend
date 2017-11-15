@@ -41,6 +41,13 @@ const OtherMetadata = ({ item }) => (
               </span>
             ))}
         </Row>
+        {item.spatial && (
+          <Row heading="Location">
+            {item.type && (
+              <FacetLink facet="location" value={item.spatial[0].name} />
+            )}
+          </Row>
+        )}
         <Row heading="Type">
           {item.type && <FacetLink facet="type" value={item.type} />}
         </Row>

@@ -4,19 +4,22 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Pagination.css";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 
+/**
+  * @param current, current page number
+  * @param pageCount, total pages
+  * @return array sorted with page numbers to show
+  */
 const centerWindow = (current, pageCount) => {
+  const windowSize = 2;
   let windowArray = [];
-  if (current + 2 < pageCount) {
-    windowArray.push(current + 2);
-  }
-  if (current + 1 < pageCount) {
-    windowArray.push(current + 1);
-  }
-  if (current - 2 > 1) {
-    windowArray.push(current - 2);
-  }
-  if (current - 1 > 1) {
-    windowArray.push(current - 1);
+  for (var i = 1; i <= windowSize; i++) {
+    if (current + i < pageCount) {
+      windowArray.push(current + i);
+    }
+
+    if (current - i > 1) {
+      windowArray.push(current - i);
+    }
   }
   windowArray.push(current);
   return windowArray.sort((a, b) => a - b);

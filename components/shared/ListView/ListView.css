@@ -1,4 +1,4 @@
-@value bambooOrange, elephantBlue, dimmerGray, vikingBlue, visualBrown from "../../../css/colors.css";
+@value linkColor, elephantBlue, dimmerGray, outgoingLinkColor, visualBrown from "../../../css/colors.css";
 @value smallRem, largeRem from "../../../css/breakpoints.css";
 
 .listItem {
@@ -24,7 +24,7 @@
   font-weight: 600;
   @media (min-width: smallRem) {
     font-weight: normal;
-    color: bambooOrange;
+    color: linkColor;
     font-size: 1.125rem;
     margin-right: 8px;
   }
@@ -121,22 +121,25 @@
   font-size: 0.875rem;
   line-height: 1.125rem;
   margin-top: .25rem;
+  padding-bottom: 0.25rem;
 }
 
 .itemSource {
-  /* display: none; */
   font-size: 0.875rem;
-  color: vikingBlue;
+  color: outgoingLinkColor;
 
   &:hover {
     text-decoration: underline;
   }
 
   @media (min-width: smallRem) {
-    display: block;
     font-weight: 600;
     margin-top: .25rem;
   }
+}
+
+.itemProvider {
+  font-size: 0.875rem;
 }
 
 .externalLinkIcon {

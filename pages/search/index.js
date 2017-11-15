@@ -111,6 +111,7 @@ Search.getInitialProps = async ({ query, req }) => {
       thumbnailUrl,
       id: result.id ? result.id : result.sourceResource["@id"],
       sourceUrl: result.isShownAt,
+      dataProvider: result.dataProvider,
       useDefaultImage: !result.object
     });
   });
