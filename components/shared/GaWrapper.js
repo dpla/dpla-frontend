@@ -30,7 +30,6 @@ export default WrappedComponent =>
       if (path !== this.lastTrackedPath) {
         ReactGA.pageview(path);
         this.lastTrackedPath = path;
-        alert(path);
       }
     }
 
@@ -40,7 +39,6 @@ export default WrappedComponent =>
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(gaTrackingId);
         window.GA_INITIALIZED = true;
-        alert(gaTrackingId);
       }
     }
 
