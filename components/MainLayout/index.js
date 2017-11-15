@@ -5,7 +5,7 @@ import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
-import GaWrapper from "./components/GaWrapper";
+import GaWrapper from "../shared/GaWrapper";
 
 const MainLayout = ({
   children,
