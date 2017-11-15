@@ -26,63 +26,74 @@ const OtherMetadata = ({ item }) => (
         <Row heading="Contributing Institution">
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
-        <Row heading="Supporting Institution">
-          {item.intermediateProvider && (
+        {item.intermediateProvider && (
+          <Row heading="Supporting Institution">
             <FacetLink facet="provider" value={item.intermediateProvider} />
-          )}
-        </Row>
-        <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
-        <Row className={classNames.subjects} heading="Subjects">
-          {item.subject &&
-            item.subject.map((subj, i, subjects) => (
+          </Row>
+        )}
+        {item.publisher && (
+          <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
+        )}
+        {item.subject && (
+          <Row className={classNames.subjects} heading="Subjects">
+            {item.subject.map((subj, i, subjects) => (
               <span key={i}>
                 <FacetLink facet="subject" value={subj.name} />
                 {i < subjects.length - 1 && <br />}
               </span>
             ))}
-        </Row>
+          </Row>
+        )}
         {item.spatial && (
           <Row heading="Location">
-            {item.type && (
-              <FacetLink facet="location" value={item.spatial[0].name} />
+            <FacetLink facet="location" value={item.spatial[0].name} />
+          </Row>
+        )}
+        {item.type && (
+          <Row heading="Type">
+            <FacetLink facet="type" value={item.type} />
+          </Row>
+        )}
+        {item.format && (
+          <Row heading="Format">
+            {!Array.isArray(item.format) ? (
+              <div>{item.format}</div>
+            ) : (
+              item.format.map((format, i, formats) => (
+                <div key={i}>{format}</div>
+              ))
             )}
           </Row>
         )}
-        <Row heading="Type">
-          {item.type && <FacetLink facet="type" value={item.type} />}
-        </Row>
-        <Row heading="Format">
-          {item.format && !Array.isArray(item.format) ? (
-            <div>{item.format}</div>
-          ) : (
-            item.format.map((format, i, formats) => <div key={i}>{format}</div>)
-          )}
-        </Row>
-        <Row heading="Language">
-          {item.language && (
+        {item.language && (
+          <Row heading="Language">
             <FacetLink
               facet="language"
               value={joinIfArray(item.language, ", ")}
             />
-          )}
-        </Row>
-        <Row heading="URL">
-          {item.sourceUrl && (
+          </Row>
+        )}
+        {item.sourceUrl && (
+          <Row heading="URL">
             <a className="link" href={item.sourceUrl}>
               {item.sourceUrl}
             </a>
-          )}
-        </Row>
-        {item.edmRights &&
-        readMyRights(item.edmRights) && (
-          <Row heading="Standardized Rights Statement">
-            {readMyRights(item.edmRights).description}
-            {readMyRights(item.edmRights).description !== "" && <br />}
-            <a href={item.edmRights} className="link" rel="noopener noreferrer">
-              {item.edmRights}
-            </a>
           </Row>
         )}
+        {item.edmRights &&
+          readMyRights(item.edmRights) && (
+            <Row heading="Standardized Rights Statement">
+              {readMyRights(item.edmRights).description}
+              {readMyRights(item.edmRights).description !== "" && <br />}
+              <a
+                href={item.edmRights}
+                className="link"
+                rel="noopener noreferrer"
+              >
+                {item.edmRights}
+              </a>
+            </Row>
+          )}
         {item.rights && (
           <Row heading="Rights">
             <div
