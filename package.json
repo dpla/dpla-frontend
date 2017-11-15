@@ -15,6 +15,7 @@
     "openseadragon": "2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-ga": "^2.3.5",
     "react-masonry-component": "^5.0.7",
     "react-mdc-web": "^0.14.0",
     "react-redux": "^5.0.5",
