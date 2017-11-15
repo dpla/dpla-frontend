@@ -116,6 +116,10 @@
   @media (max-width: mediumRem) {
     padding: .25rem 1rem 1rem;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .description {
@@ -124,6 +128,12 @@
   margin-bottom: 1rem;
   max-height: 4.75rem;
   overflow: hidden;
+
+  @media print {
+    overflow: inherit;
+    max-height: none;
+    padding-bottom: 1rem;
+  }
 
   &.open {
     max-height: none;
