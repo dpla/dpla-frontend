@@ -1,11 +1,13 @@
 import React from "react";
+import Link from "next/link";
 
 import { classNames } from "./ListView.css";
 import { getDefaultThumbnail } from "utilFunctions";
 
 class ListImage extends React.Component {
   state = {
-    updateToDefaultImage: false
+    updateToDefaultImage: false,
+    item: this.props.item
   };
 
   componentDidMount() {
@@ -27,11 +29,15 @@ class ListImage extends React.Component {
         className={`${classNames.imageWrapper}
           ${useDefaultWrapper && classNames.defaultImageWrapper}`}
       >
-        <img
-          src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
-          alt={title}
-          className={classNames.image}
-        />
+        <Link href={this.state.item.linkHref} as={this.state.item.linkAs}>
+          <a className={`${classNames.listItemImageLink}`}>
+            <img
+              src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
+              alt={title}
+              className={classNames.image}
+            />
+          </a>
+        </Link>
       </div>
     );
   }
