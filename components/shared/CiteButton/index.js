@@ -1,8 +1,8 @@
 import React from "react";
+import Button from "components/shared/Button";
 
 import { joinIfArray, removeEndPunctuation } from "utilFunctions";
 
-import Button from "components/shared/Button";
 import { classNames, stylesheet } from "./CiteButton.css";
 
 class CiteButton extends React.Component {

@@ -63,6 +63,7 @@ const Button = ({
         : <button
             type="button"
             onClick={onClick}
+            onTouchEnd={onClick}
             className={buttonClasses}
             style={style}
           >
