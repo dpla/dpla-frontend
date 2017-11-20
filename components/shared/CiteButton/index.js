@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "components/shared/Button";
+import Intl from "intl";
+import en from "intl/locale-data/jsonp/en";
 
 import { joinIfArray, removeEndPunctuation } from "utilFunctions";
 
