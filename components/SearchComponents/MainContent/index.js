@@ -41,31 +41,25 @@ const MainContent = ({
 }) => (
   <div className={classNames.wrapper}>
     <div className={[container, classNames.mainContent].join(" ")}>
-      <div className={`${hideSidebar ? classNames.hiddenSidebar : ""}`}>
+      <div
+        className={`${hideSidebar ? classNames.hiddenSidebar : ""} ${
+          classNames.sidebar
+        }`}
+      >
         <Sidebar route={route} facets={facets} />
       </div>
       <div className={classNames.resultsAndPagination}>
-        <div
-          className={
-            route.query.list_view === "grid" ? (
-              classNames.gridWrapper
-            ) : (
-              classNames.listWrapper
-            )
-          }
-        >
-          {route.query.list_view === "grid" ? (
-            <GridView
-              route={route}
-              items={addLinkInfoToResults(results, route.query)}
-            />
-          ) : (
-            <ListView
-              route={route}
-              items={addLinkInfoToResults(results, route.query)}
-            />
-          )}
-        </div>
+        {route.query.list_view === "grid" ? (
+          <GridView
+            route={route}
+            items={addLinkInfoToResults(results, route.query)}
+          />
+        ) : (
+          <ListView
+            route={route}
+            items={addLinkInfoToResults(results, route.query)}
+          />
+        )}
         <Pagination
           route={route}
           itemsPerPage={paginationInfo.pageSize}

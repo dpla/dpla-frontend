@@ -10,37 +10,30 @@ import { classNames, stylesheet } from "./ListView.css";
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
 /**
-  * @param description, item description object
-  * @return HTML with truncated item description
-  */
+ * @param description, item description object
+ * @return HTML with truncated item description
+ */
 const ItemDescription = ({ description }) => {
   let str = joinIfArray(description);
   str = truncateString(str);
   return (
     <div className={classNames.itemDescription}>
-      <p>
-        {str}
-      </p>
+      <p>{str}</p>
     </div>
   );
 };
 
-const ListView = ({ items, route }) =>
+const ListView = ({ items, route }) => (
   <ul className={classNames.listView}>
-    {items.map(item =>
+    {items.map(item => (
       <li key={item["@id"] || item.id} className={classNames.listItem}>
-        <Link href={item.linkHref} as={item.linkAs}>
-          <a
-            className={`${classNames.listItemLink} ${classNames.listItemImageLink}`}
-          >
-            <ListImage
-              title={item.title}
-              type={item.type}
-              url={item.thumbnailUrl}
-              useDefaultImage={item.useDefaultImage}
-            />
-          </a>
-        </Link>
+        <ListImage
+          item={item}
+          title={item.title}
+          type={item.type}
+          url={item.thumbnailUrl}
+          useDefaultImage={item.useDefaultImage}
+        />
         <div className={classNames.itemInfo}>
           <Link href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
@@ -51,18 +44,17 @@ const ListView = ({ items, route }) =>
               </span>
             </a>
           </Link>
-          {(item.date || item.creator) &&
+          {(item.date || item.creator) && (
             <span className={classNames.itemAuthorAndDate}>
               {route.pathname.indexOf("/search") === 0 &&
-                item.date &&
-                <span>{item.date.displayDate}</span>}
+                item.date && <span>{item.date.displayDate}</span>}
               {route.pathname.indexOf("/search") === 0 &&
                 item.date &&
                 item.date.displayDate &&
-                item.creator &&
-                <span> · </span>}
+                item.creator && <span> · </span>}
               <span>{joinIfArray(item.creator, ", ")}</span>
-            </span>}
+            </span>
+          )}
           <ItemDescription description={item.description} />
           <a
             href={item.sourceUrl}
@@ -81,14 +73,16 @@ const ListView = ({ items, route }) =>
               alt=""
             />
           </a>
-          {item.dataProvider &&
+          {item.dataProvider && (
             <span className={`${classNames.itemProvider}`}>
               &nbsp; in {item.dataProvider}
-            </span>}
+            </span>
+          )}
         </div>
       </li>
-    )}
+    ))}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </ul>;
+  </ul>
+);
 
 export default ListView;

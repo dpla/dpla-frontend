@@ -8,6 +8,7 @@
   padding: .75rem 2rem;
   transition: background-color .15s ease-out;
   display: inline-block;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;

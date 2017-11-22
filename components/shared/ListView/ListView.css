@@ -15,10 +15,6 @@
   }
 }
 
-.listItemLink {
-  flex-shrink: 0;
-}
-
 .itemTitle {
   font-size: 0.875rem;
   font-weight: 600;
@@ -30,50 +26,12 @@
   }
 }
 
-.listItemImageLink {
-  width: 33%;
+.itemInfo {
+  flex-basis: 66%;
+  padding-right: 1rem;
 
-  @media (min-width: largeRem) {
-    width: inherit;
-  }
-}
-
-.imageWrapper {
-  align-items: center;
-  border-radius: 2px;
-  display: flex;
-  flex-basis: 33%;
-  flex-shrink: 0;
-  justify-content: center;
-  margin-right: 13px;
-  padding-top: 75%;
-  position: relative;
-
-  @media (max-width: smallRem) {
-    margin-left: 1rem;
-  }
-
-  @media (min-width: largeRem) {
-    width: 160px;
-    height: 120px;
-    padding-top: 0;
-  }
-}
-
-.imageWrapper:not(.defaultImageWrapper) {
-  & img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    @media (min-width: largeRem) {
-      position: static;
-    }
-  }
   @media (min-width: smallRem) {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-right: 0;
   }
 }
 
@@ -90,30 +48,44 @@
   }
 }
 
-.itemInfo {
-  @media (min-width: smallRem) {
-    padding-right: 0;
+.imageWrapper {
+  flex-basis: 33%;
+  height: 10rem;
+  margin-right: .5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  @media (max-width: smallRem) {
+    margin-left: 1rem;
   }
-  padding-right: 1rem;
+
+  @media (min-width: largeRem) {
+    width: inherit;
+  }
+}
+
+.listItemImageLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  height: 100%;
+  width: 100%;
 }
 
 .image {
-  max-width: 100%;
   max-height: 100%;
-  overflow: hidden;
+  max-width: 100%;
 }
 
 .itemType {
-  display: none;
-  @media (min-width: smallRem) {
-    display: inline-block;
-    color: elephantBlue;
-    opacity: 0.90;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 0.75rem;
-    line-height: 0.9375rem;
-  }
+  display: inline-block;
+  color: elephantBlue;
+  opacity: 0.90;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
 }
 
 .itemDescription {
