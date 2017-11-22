@@ -1,5 +1,6 @@
-@value visualBrown, casablancaOrange from "../../../../css/colors.css";
+@value linkColor, visualBrown, lightLinkColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
+@value serifFont from "../../../../css/typography.css";
 
 .wrapper {
   background-color: visualBrown;
@@ -22,7 +23,7 @@
 .header {
   text-align: center;
   font-size: 3rem;
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
 
   @media (min-width: smallRem) {
@@ -46,6 +47,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
 
   &, &:hover {
     text-decoration: none;
@@ -80,45 +84,30 @@
   margin-right: 0;
 }
 
-.imageWrapper {
-  height: 214px;
-  overflow: hidden;
-  position: relative;
-}
-
 .image {
   transition: transform .45s ease-in-out;
-  height: 100%;
+  width: 100%;
   background-size: cover;
 }
 
-.gradientBackground {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-  height: 100%;
-  opacity: .9;
-  transition: opacity .45s ease-in-out;
-  width: 100%;
+.textWrapper {
+  border-top: 0.25rem solid lightLinkColor;
+  padding-top: 1rem;
+  z-index: 1;
+  background-color: white;
 }
 
 .subtopicTitle {
-  bottom: 24px;
-  color: white;
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1.75rem;
   font-weight: normal;
-  left: 50%;
   line-height: 2rem;
   opacity: 0.90;
-  position: absolute;
-  text-align: center;
-  transform: translateX(-50%);
-  width: calc(100% - 58px);
+  padding: 0 2rem;
 }
 
 .subtopicDescription {
-  padding: 26px 29px 35px;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.75);
+  padding: 1rem 2rem 2rem;
   font-size: 1rem;
   line-height: 1.25rem;
   flex: 1;

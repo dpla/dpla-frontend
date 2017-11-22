@@ -1,4 +1,4 @@
-@value pampasBrown, casablancaOrange from "../../../../css/colors.css";
+@value pampasBrown, lightLinkColor from "../../../../css/colors.css";
 @value smallRem from "../../../../css/breakpoints.css";
 
 .sidebar {
@@ -21,7 +21,7 @@
 }
 
 .image {
-  border-bottom: 4px solid casablancaOrange;
+  border-bottom: 4px solid lightLinkColor;
   margin-bottom: 15px;
   width: 100%;
 }
