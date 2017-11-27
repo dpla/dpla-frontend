@@ -65,7 +65,7 @@ const RelatedSets = ({ sets }) => {
                   <p
                     className={classNames.title}
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.render(set.name)
+                      __html: markdownit.renderInline(set.name)
                     }}
                   />
                 </a>
