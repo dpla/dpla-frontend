@@ -46,7 +46,9 @@ const SourceSetSources = ({ route, sources }) =>
               </div>
               <div
                 className={classNames.title}
-                dangerouslySetInnerHTML={{ __html: markdownit.render(name) }}
+                dangerouslySetInnerHTML={{
+                  __html: markdownit.renderInline(name)
+                }}
               />
             </a>
           </Link>
