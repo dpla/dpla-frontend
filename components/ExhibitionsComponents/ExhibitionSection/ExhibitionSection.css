@@ -533,6 +533,15 @@
     height: 50%;
   }
 }
+
+.viewItemLink {
+  position: absolute;
+  left: 0.2rem;
+  bottom: 0.2rem;
+  background: white;
+  padding: .5rem .75rem;
+}
+
 .closeMenuButton {
   background-color: rgba(0, 0, 0, 0.12);
   height: 100%;

@@ -14,6 +14,11 @@ import { getDefaultThumbnail } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 const chevron = "/static/images/chevron-thin.svg";
 
+const getItemIdFromOmeka = itemJson =>
+  itemJson.element_texts
+    .filter(element_text => element_text.element.name === "Has Version")
+    .map(element_text => element_text.text)[0];
+
 const getFileType = (fileType, originalUrl) => {
   if (
     fileType === ITEM_TYPES.MOVING_IMAGE ||
@@ -95,6 +100,7 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   const nextPage = activePageIdx + 1 < pageBlocks.length
     ? pageBlocks[activePageIdx + 1]
     : null;
+  const itemId = getItemIdFromOmeka(activePage.itemJson);
 
   return (
     <div className={classNames.viewer}>
@@ -128,6 +134,14 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 ? activePage.fullsizeImgUrl
                 : activePage.originalUrl
             )}
+            {itemId &&
+              <Link
+                prefetch
+                as={`/item/${itemId}`}
+                href={`/item?itemId=${itemId}`}
+              >
+                <a className={classNames.viewItemLink}>View item in DPLA</a>
+              </Link>}
             {nextPage &&
               <Link
                 prefetch
@@ -153,7 +167,7 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 <ItemLink
                   fileType={block.type}
                   route={route}
-                  className={block.isActive && classNames.activeItemLink}
+                  className={block.isActive ? classNames.activeItemLink : ""}
                   itemId={block.id}
                   thumbnailUrl={block.thumbnailUrl}
                   originalUrl={block.originalUrl}

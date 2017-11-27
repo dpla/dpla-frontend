@@ -2,6 +2,7 @@
 @value smallRem from "../../../../css/breakpoints.css";
 
 .imageWrapper {
+  height: 100%;
   width: 100%;
   border-radius: 2px;
   display: flex;

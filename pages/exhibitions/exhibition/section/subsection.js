@@ -136,6 +136,7 @@ Subsection.getInitialProps = async ({ query, req }) => {
           thumbnailUrl,
           originalUrl,
           fileType,
+          itemJson,
           isActive:
             block.id === parseInt(query.item, 10) || (!query.item && i === 0)
         });
