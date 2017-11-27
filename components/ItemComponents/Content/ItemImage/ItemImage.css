@@ -1,5 +1,5 @@
 @value visualBrown from "../../../../css/colors.css";
-@value smallRem from "../../../../css/breakpoints.css";
+@value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .imageWrapper {
   height: 100%;
@@ -11,8 +11,13 @@
   margin-right: 13px;
   flex-shrink: 0;
   margin-bottom: 0.75rem;
+
+  @media (max-width: mediumRem) {
+    height: auto;
+  }
+
   @media (min-width: smallRem) {
-    max-width: 242px;
+    max-width: 20rem;
   }
 }
 
