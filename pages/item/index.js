@@ -56,7 +56,7 @@ const ItemDetail = ({
             Item not found
           </h1>
           <p>
-            We're sorry but the item requested was not found.{" "}
+            We’re sorry but the item requested was not found.{" "}
             <Link prefetch href="/search">
               <a>View all items</a>
             </Link>.
