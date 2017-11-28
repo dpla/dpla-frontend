@@ -56,7 +56,7 @@ class SourceSetInfo extends React.Component {
                 id="dpla-description"
                 className={`${classNames.description} sourceSetDescription`}
                 dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
+                  __html: markdownit.renderInline(
                     set.hasPart.find(item => item.name === "Overview").text
                   )
                 }}
@@ -81,7 +81,7 @@ class SourceSetInfo extends React.Component {
                       <div
                         key={author.name}
                         dangerouslySetInnerHTML={{
-                          __html: markdownit.render(
+                          __html: markdownit.renderInline(
                             author.name + ", " + author.affiliation.name
                           )
                         }}
@@ -106,7 +106,7 @@ class SourceSetInfo extends React.Component {
                           <a
                             className={`link ${classNames.link}`}
                             dangerouslySetInnerHTML={{
-                              __html: markdownit.render(period)
+                              __html: markdownit.renderInline(period)
                             }}
                           />
                         </Link>
@@ -130,7 +130,7 @@ class SourceSetInfo extends React.Component {
                           <a
                             className={`link ${classNames.link}`}
                             dangerouslySetInnerHTML={{
-                              __html: markdownit.render(subject)
+                              __html: markdownit.renderInline(subject)
                             }}
                           />
                         </Link>

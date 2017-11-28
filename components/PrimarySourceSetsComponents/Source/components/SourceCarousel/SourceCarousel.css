@@ -93,13 +93,11 @@
 }
 
 .itemImgWrapper {
-  margin-bottom: 9px;
-  width: calc(100% - 9px);
-  display: flex;
+  margin-bottom: 0.5rem;
+  width: calc(100% - 0.5rem);
   align-items: center;
-  overflow: hidden;
   background-size: cover;
-  padding-top: 70%;
+  padding-top: 7rem;
 }
 
 .itemImg {
@@ -108,13 +106,13 @@
 }
 
 .currentItemImgWrapper {
-  padding-top: calc(70% - 12px);
+  padding-top: calc(7rem - 12px);
   border: 6px solid vikingBlue;
 }
 
 @media (min-width: smallRem) {
   .itemImg {
-    max-width: calc(100% - 9px);
+    max-width: calc(100% - 0.5rem);
   }
 }
 
@@ -168,7 +166,7 @@
 
 .smallChevron {
   width: 5px;
-  height: 9px;
+  height: 0.5rem;
   position: relative;
   padding-left: 6px;
 }
@@ -231,7 +229,7 @@
     position: static;
     margin-right: 0;
     width: 5px;
-    height: 9px;
+    height: 0.5rem;
     & path {
       fill: bambooOrange;
     }
@@ -251,7 +249,7 @@
     position: static;
     margin-left: 0;
     width: 5px;
-    height: 9px;
+    height: 0.5rem;
     & path {
       fill: bambooOrange;
     }

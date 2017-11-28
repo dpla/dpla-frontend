@@ -89,7 +89,7 @@ const HomePageSlider = ({
                   </div>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.render(name)
+                      __html: markdownit.renderInline(name)
                     }}
                     className={classNames.itemText}
                   />

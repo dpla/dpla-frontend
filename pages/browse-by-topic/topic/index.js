@@ -105,7 +105,7 @@ Topic.getInitialProps = async ({ query, req }) => {
             const sourceSetJson = await sourceSetRes.json();
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
             return {
-              title: markdownit.render(sourceSetJson.name),
+              title: markdownit.renderInline(sourceSetJson.name),
               thumbnailUrl: sourceSetJson.thumbnailUrl,
               as: `/primary-source-sets/${slug}`,
               href: `/primary-source-sets/set?set=${slug}`,

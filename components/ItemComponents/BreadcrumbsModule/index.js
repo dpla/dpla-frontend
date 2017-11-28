@@ -102,7 +102,7 @@ const BreadcrumbsModule = ({
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: markdownit.render(breadcrumb.title)
+            title: markdownit.renderInline(breadcrumb.title)
           })
         )}
       />

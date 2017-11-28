@@ -62,7 +62,9 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   <a className={`link ${classNames.aboutThisLink}`}>
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: markdownit.render(teachingGuide.isPartOf.name)
+                        __html: markdownit.renderInline(
+                          teachingGuide.isPartOf.name
+                        )
                       }}
                     />
                   </a>
@@ -90,7 +92,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                 className={classNames.sidebarSection}
                 key={i}
                 dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
+                  __html: markdownit.renderInline(
                     author.name + ", " + author.affiliation.name
                   )
                 }}

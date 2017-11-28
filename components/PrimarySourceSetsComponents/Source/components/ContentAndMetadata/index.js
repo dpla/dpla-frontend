@@ -73,7 +73,9 @@ const ContentAndMetadata = ({ source }) => {
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, container].join(" ")}>
         <h2
-          dangerouslySetInnerHTML={{ __html: markdownit.render(source.name) }}
+          dangerouslySetInnerHTML={{
+            __html: markdownit.renderInline(source.name)
+          }}
           className={classNames.contentHeader}
         />
         <div className={classNames.flexWrapper}>
@@ -113,7 +115,7 @@ const ContentAndMetadata = ({ source }) => {
                 <div
                   className={classNames.courtesyOf}
                   dangerouslySetInnerHTML={{
-                    __html: markdownit.render(
+                    __html: markdownit.renderInline(
                       joinIfArray(getSourceCitation(source, "credits"))
                     )
                   }}
@@ -122,7 +124,7 @@ const ContentAndMetadata = ({ source }) => {
                 <div
                   className={classNames.courtesyOf}
                   dangerouslySetInnerHTML={{
-                    __html: markdownit.render(
+                    __html: markdownit.renderInline(
                       source.mainEntity[0]["dct:provenance"].name
                     )
                   }}
@@ -133,7 +135,7 @@ const ContentAndMetadata = ({ source }) => {
                   <p
                     className={classNames.copyrightText}
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.render(source.copyright)
+                      __html: markdownit.renderInline(source.copyright)
                     }}
                   />
                 </div>}
