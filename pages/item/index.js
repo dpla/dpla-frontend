@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
@@ -25,6 +26,7 @@ import {
 } from "utilFunctions";
 
 const ItemDetail = ({
+  statusCode,
   url,
   item,
   currentFullUrl
@@ -48,18 +50,33 @@ const ItemDetail = ({
       route={url}
     />
     <div className={`${utilClassNames.container} ${classNames.contentWrapper}`}>
-      <Content item={item} url={url} />
-      <div className={classNames.faveAndCiteButtons}>
-        <CiteButton
-          creator={item.creator}
-          displayDate={item.date ? item.date.displayDate : item.date}
-          spatialName={item.spatial ? item.spatial.name : item.spatial}
-          sourceUrl={item.sourceUrl}
-          className={classNames.citeButton}
-          toCiteText="item"
-          title={item.title}
-        />
-      </div>
+      {statusCode === 404 &&
+        <div className={classNames.notFound}>
+          <h1>
+            Item not found
+          </h1>
+          <p>
+            We're sorry but the item requested was not found.{" "}
+            <Link prefetch href="/search">
+              <a>View all items</a>
+            </Link>.
+          </p>
+        </div>}
+      {statusCode === 200 &&
+        <div>
+          <Content item={item} url={url} />
+          <div className={classNames.faveAndCiteButtons}>
+            <CiteButton
+              creator={item.creator}
+              displayDate={item.date ? item.date.displayDate : item.date}
+              spatialName={item.spatial ? item.spatial.name : item.spatial}
+              sourceUrl={item.sourceUrl}
+              className={classNames.citeButton}
+              toCiteText="item"
+              title={item.title}
+            />
+          </div>
+        </div>}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
@@ -70,6 +87,23 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
 
   const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
   const json = await res.json();
+
+  // check if item is found
+  let statusCode = 200;
+  const notFound = json.message && json.message === "Document not found";
+  if (notFound) {
+    statusCode = 404;
+    return {
+      statusCode,
+      currentFullUrl,
+      item: Object.assign(
+        {},
+        {
+          title: "Item not found"
+        }
+      )
+    };
+  }
   const doc = json.docs[0];
   const thumbnailUrl = doc.object
     ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${doc.id}`
@@ -173,6 +207,7 @@ ItemDetail.getInitialProps = async ({ query, req }) => {
   // }
 
   return {
+    statusCode,
     currentFullUrl,
     // paginationInfo: {
     //   next: {
