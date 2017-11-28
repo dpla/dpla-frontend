@@ -57,7 +57,16 @@ class SourceSetInfo extends React.Component {
                 className={`${classNames.description} sourceSetDescription`}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.renderInline(
-                    set.hasPart.find(item => item.name === "Overview").text
+                    set.hasPart
+                      .find(item => item.name === "Overview")
+                      .text.replace(
+                        /https?:\/\/.*?\/primary-source-sets\/sources\//g,
+                        "sources/"
+                      )
+                      .replace(
+                        /https?:\/\/.*?\/primary-source-sets\/sets\//g,
+                        "/primary-source-sets/"
+                      )
                   )
                 }}
               />
