@@ -17,7 +17,7 @@ import { SEO_TITLE } from "constants/donate";
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={contentClasses.donateBackground}>
-      <div className={`${utilClassNames.container}`}>
+      <div id="main" className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>

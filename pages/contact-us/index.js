@@ -34,7 +34,7 @@ const Contact = ({ url, sidebarItems }) =>
             activeItemId="contact-us"
             items={sidebarItems}
           />
-          <div className="col-xs-12 col-md-8">
+          <div id="main" className="col-xs-12 col-md-8">
             <ContactForm />
             <MoreWaysToContact />
           </div>

@@ -32,34 +32,26 @@ const addLinkInfoToResults = (results, query) =>
     });
   });
 
-const MainContent = ({
-  results,
-  route,
-  facets,
-  paginationInfo,
-  hideSidebar
-}) => (
+const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={classNames.wrapper}>
     <div className={[container, classNames.mainContent].join(" ")}>
       <div
-        className={`${hideSidebar ? classNames.hiddenSidebar : ""} ${
-          classNames.sidebar
-        }`}
+        className={`${hideSidebar
+          ? classNames.hiddenSidebar
+          : ""} ${classNames.sidebar}`}
       >
         <Sidebar route={route} facets={facets} />
       </div>
-      <div className={classNames.resultsAndPagination}>
-        {route.query.list_view === "grid" ? (
-          <GridView
-            route={route}
-            items={addLinkInfoToResults(results, route.query)}
-          />
-        ) : (
-          <ListView
-            route={route}
-            items={addLinkInfoToResults(results, route.query)}
-          />
-        )}
+      <div id="main" className={classNames.resultsAndPagination}>
+        {route.query.list_view === "grid"
+          ? <GridView
+              route={route}
+              items={addLinkInfoToResults(results, route.query)}
+            />
+          : <ListView
+              route={route}
+              items={addLinkInfoToResults(results, route.query)}
+            />}
         <Pagination
           route={route}
           itemsPerPage={paginationInfo.pageSize}
@@ -72,7 +64,6 @@ const MainContent = ({
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>
-);
+  </div>;
 
 export default MainContent;

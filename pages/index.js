@@ -27,28 +27,30 @@ import { PSS_BASE_URL } from "constants/site";
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
-    <HomeHero headerDescription={headerDescription} />
-    {exhibitions &&
-      exhibitions.length > 0 &&
-      <HomePageSlider
-        items={exhibitions}
-        title="Online Exhibitions"
-        browseLinkUrl="/exhibitions"
-        browseLinkName="Exhibitions"
-      />}
-    {sourceSets &&
-      sourceSets.length > 0 &&
-      <HomePageSlider
-        items={sourceSets}
-        title="Primary Source Sets"
-        browseLinkUrl="/primary-source-sets"
-        browseLinkName="Sets"
-        slidesToShow={4}
-        theme="blue"
-      />}
-    <DPLAUsers guides={guides} />
-    <FromTheBlog />
-    {/* <SocialMedia /> */}
+    <div id="main">
+      <HomeHero headerDescription={headerDescription} />
+      {exhibitions &&
+        exhibitions.length > 0 &&
+        <HomePageSlider
+          items={exhibitions}
+          title="Online Exhibitions"
+          browseLinkUrl="/exhibitions"
+          browseLinkName="Exhibitions"
+        />}
+      {sourceSets &&
+        sourceSets.length > 0 &&
+        <HomePageSlider
+          items={sourceSets}
+          title="Primary Source Sets"
+          browseLinkUrl="/primary-source-sets"
+          browseLinkName="Sets"
+          slidesToShow={4}
+          theme="blue"
+        />}
+      <DPLAUsers guides={guides} />
+      <FromTheBlog />
+      {/* <SocialMedia /> */}
+    </div>
   </MainLayout>;
 
 Home.getInitialProps = async ({ req }) => {
