@@ -1,5 +1,5 @@
 import React from "react";
-
+import Helmet from "react-helmet";
 import { classNames, stylesheet } from "./ExhibitionSection.css";
 import Header from "./Header";
 import Body from "./Body";
@@ -16,6 +16,7 @@ const ExhibitionView = ({
   previousQueryParams
 }) =>
   <div className={classNames.exhibitionView}>
+    <Helmet htmlAttributes={{ lang: "en" }} />
     <Header title={exhibition.title} route={route} />
     <Body
       route={route}
