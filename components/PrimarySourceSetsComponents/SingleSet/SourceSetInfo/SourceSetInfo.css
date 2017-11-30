@@ -1,5 +1,6 @@
 @value visualBrown, linkColor, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   width: 100%;
@@ -88,7 +89,7 @@
 }
 
 .bannerTitle {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 1.5rem;
   color: white;

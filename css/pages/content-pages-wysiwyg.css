@@ -1,5 +1,6 @@
 @value cascadeBlue, visualBrown, linkColor, silver from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
+@value monoFont, serifFont from "../typography.css";
 
 .backgroundTint {
   background-color: visualBrown;
@@ -36,7 +37,7 @@
   }
 
   & h1 {
-    font-family: "Lora";
+    font-family: serifFont;
     font-weight: normal;
     font-size: 2rem;
     margin-bottom: 1rem;

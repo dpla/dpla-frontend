@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, pampasBrown, vikingBlue, onionBrown, visualBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, warmerBackgroundColor, vikingBlue, onionBrown, visualBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -267,7 +267,7 @@
 }
 
 .defaultImageWrapper {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   display: flex;
   align-items: center;
   justify-content: center;

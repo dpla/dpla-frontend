@@ -1,5 +1,6 @@
 @value linkColor, warmerBackgroundColor, colderBackgroundColor, subLinkColor, elephantBlue, onionBrown, black, casablancaOrange from "../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .wrapper {
   background-color: warmerBackgroundColor;
@@ -57,7 +58,7 @@
 }
 
 .title {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 1.25rem;
 

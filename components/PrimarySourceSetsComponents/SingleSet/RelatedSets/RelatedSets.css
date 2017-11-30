@@ -1,6 +1,6 @@
 @value visualBrown, elephantBlue from "../../../../css/colors.css";
 @value largeRem from "../../../../css/breakpoints.css";
-
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   background-color: visualBrown;
@@ -27,7 +27,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

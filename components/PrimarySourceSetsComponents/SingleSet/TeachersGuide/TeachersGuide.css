@@ -1,5 +1,6 @@
 @value elephantBlue, hippieBlue, curiousBlue, visualBrown, linkColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   width: 100%;
@@ -119,7 +120,7 @@
 }
 
 .aboutThisHeader {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

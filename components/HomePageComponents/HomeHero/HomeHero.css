@@ -1,4 +1,4 @@
-@value linkColor, homeButtonColor, mysticGray, elephantBlue, white50 from "../../../css/colors.css";
+@value linkColor, searchButtonColor, mysticGray, elephantBlue, white50 from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .wrapper {
@@ -152,7 +152,7 @@
   right: 0;
   top: 0;
   height: 100%;
-  background-color: homeButtonColor;
+  background-color: searchButtonColor;
   display: none;
   color: white;
   font-weight: 600;

@@ -1,5 +1,6 @@
 @value alabasterGray, elephantBlue, dimGray, black, linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem, mediumPlusRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .socialMedia {
   margin: auto;
@@ -25,7 +26,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   margin-bottom: 24px;
   white-space: nowrap;

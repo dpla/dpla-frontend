@@ -1,4 +1,4 @@
-@value pampasBrown, linkColor from "../../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor from "../../../../../css/colors.css";
 
 .studentMode {
   font-weight: 600;

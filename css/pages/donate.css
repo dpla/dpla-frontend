@@ -1,5 +1,6 @@
 @value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
+@value monoFont, serifFont from "../typography.css";
 
 .donateBackground {
   background-color: visualBrown;
@@ -82,7 +83,7 @@
   padding: 1.6rem 1.5rem;
 
   & h2 {
-    font-family: "Lora";
+    font-family: serifFont;
     text-transform: uppercase;
     font-size: 1rem;
   }

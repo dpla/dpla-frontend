@@ -1,8 +1,9 @@
-@value pampasBrown from "../../../css/colors.css";
+@value warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .wrapper {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .content {
@@ -20,7 +21,7 @@
 .text {
   font-weight: normal;
   font-size: 1.5rem;
-  font-family: "Lora";
+  font-family: serifFont;
 
   @media (min-width: mediumRem) {
     font-size: 2.5rem;

@@ -1,5 +1,6 @@
-@value iceBlue, pampasBrown, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value iceBlue, warmerBackgroundColor, curiousBlue, visualBrown from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../../css/typography.css";
 
 .contentAndMetadata {
   padding-top: 23px;
@@ -149,7 +150,7 @@
 
 .tipsForStudentsHeader {
   text-transform: uppercase;
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1rem;
   line-height: 1.25rem;
   margin-bottom: 9px;

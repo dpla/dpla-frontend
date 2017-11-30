@@ -1,8 +1,8 @@
-@value linkColor, visualBrown, pampasBrown from "../../../css/colors.css";
+@value linkColor, visualBrown, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .sidebar {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   padding: 1rem 1.5rem;
 
   & a {

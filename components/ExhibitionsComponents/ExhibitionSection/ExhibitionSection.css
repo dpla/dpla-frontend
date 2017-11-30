@@ -1,5 +1,6 @@
-@value vikingBlue, elephantBlue, linkColor, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
+@value vikingBlue, elephantBlue, linkColor, visualBrown, rockBrown, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .exhibitionView {
   background-color: visualBrown;
@@ -31,7 +32,7 @@
 }
 
 .exhibitionTitle {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   margin-top: .5rem;
   font-size: 1.5rem;

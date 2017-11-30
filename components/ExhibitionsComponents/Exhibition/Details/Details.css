@@ -1,5 +1,6 @@
 @value linkColor, visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .details {
   display: flex;
@@ -30,7 +31,7 @@
 .tableOfContentsHeader {
   padding: 1rem;
   font-size: 0.75rem;
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   line-height: 1.125rem;
   text-transform: uppercase;

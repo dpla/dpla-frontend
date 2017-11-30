@@ -1,5 +1,6 @@
 @value visualBrown from "../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../css/breakpoints.css";
+@value monoFont, serifFont from "../../css/typography.css";
 
 .featureTitle {
   width: 100%;
@@ -43,7 +44,7 @@
 
 .name {
   transition: opacity .2s ease-in-out;
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1.3125rem;
   max-width: 75%;
   margin-right: 0.75rem;
