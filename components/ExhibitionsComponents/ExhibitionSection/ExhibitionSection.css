@@ -1,9 +1,9 @@
-@value vikingBlue, elephantBlue, linkColor, visualBrown, rockBrown, warmerBackgroundColor from "../../../css/colors.css";
+@value linkColor, dimmedTextColor, warmerBackgroundColor, vikingBlue, elephantBlue, rockBrown from "../../../css/colors.css";
 @value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
 .exhibitionView {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   min-height: 100vh;
   padding-bottom: 3rem;
 
@@ -105,7 +105,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: visualBrown;
+    background-color: warmerBackgroundColor;
     width: 100%;
     z-index: 2;
   }
@@ -132,7 +132,7 @@
   position: relative;
 
   &, & a {
-    color: #6D6D6D;
+    color: dimmedTextColor;
   }
 }
 
@@ -390,7 +390,7 @@
 }
 
 .titleSubsection {
-  opacity: .5;
+  color: dimmedTextColor;
 }
 
 .viewerContent {

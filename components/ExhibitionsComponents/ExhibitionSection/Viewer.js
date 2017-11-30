@@ -78,6 +78,7 @@ const ItemLink = ({
     <a className={[classNames.itemLink, className].join(" ")}>
       <ItemImage
         type={getFileType(fileType, originalUrl)}
+        title="Show item in viewer"
         url={
           thumbnailUrl ||
           getDefaultThumbnail(getFileType(fileType, originalUrl))
