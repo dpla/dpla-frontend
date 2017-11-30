@@ -1,4 +1,4 @@
-@value alabasterGray, elephantBlue, dimGray, black, bambooOrange from "../../../css/colors.css";
+@value alabasterGray, elephantBlue, dimGray, black, linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem, mediumPlusRem from "../../../css/breakpoints.css";
 
 .socialMedia {
@@ -51,7 +51,7 @@
 
 .twitterDate {
   text-transform: uppercase;
-  color: bambooOrange;
+  color: linkColor;
   font-weight: 600;
   font-size: 0.9375rem;
   line-height: 1.1875rem;
@@ -62,7 +62,7 @@
   font-size: 1.125rem;
   line-height: 1.4375rem;
   font-weight: 600;
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .instagram {

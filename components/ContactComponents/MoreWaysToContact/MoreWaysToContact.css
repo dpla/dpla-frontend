@@ -1,4 +1,4 @@
-@value bambooOrange, pampasBrown from "../../../css/colors.css";
+@value linkColor, pampasBrown from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .header {
@@ -54,6 +54,6 @@
 }
 
 .mailToLink {
-  border-bottom: 2px solid bambooOrange;
+  border-bottom: 2px solid linkColor;
   padding-bottom: .25rem;
 }

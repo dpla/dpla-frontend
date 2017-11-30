@@ -43,14 +43,12 @@ const HomePageSlider = ({
         <h1 className={classNames.title}>{title}</h1>
         <Link prefetch href={browseLinkUrl}>
           <a className={`hover-underline ${classNames.moreLink}`}>
-            <span>
-              Browse all{" "}
-              <span className={classNames.moreLinkNoun}>{browseLinkName}</span>
-            </span>
+            Browse all{" "}
+            <span className={classNames.moreLinkNoun}>{browseLinkName}</span>
             <img
               alt="Browse exhibitions"
               className={classNames.moreLinkChevron}
-              src={theme === "blue" ? moreLinkChevronBlue : moreLinkChevron}
+              src={moreLinkChevron}
             />
           </a>
         </Link>
@@ -99,7 +97,6 @@ const HomePageSlider = ({
         )}
       </Slider>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default HomePageSlider;

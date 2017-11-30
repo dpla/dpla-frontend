@@ -1,4 +1,4 @@
-@value visualBrown, pampasBrown, bambooOrange from "../../../../../css/colors.css";
+@value visualBrown, pampasBrown, linkColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .calloutWrapper {

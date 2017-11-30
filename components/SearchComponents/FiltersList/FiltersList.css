@@ -1,8 +1,8 @@
-@value visualBrown, bambooOrange, elephantBlue, vikingBlue from "../../../css/colors.css";
+@value visualBrown, linkColor, elephantBlue, vikingBlue from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .filtersListWrapper {
-  background-color: bambooOrange;
+  background-color: linkColor;
   width: 100%;
   @media (min-width: smallRem) {
     background-color: visualBrown;
@@ -88,7 +88,7 @@
   @media (min-width: smallRem) {
     font-size: 1rem;
     align-self: baseline;
-    color: bambooOrange;
+    color: linkColor;
   }
 }
 
@@ -103,6 +103,6 @@
 .clearAllIconPath {
   fill: white;
   @media (min-width: smallRem) {
-    fill: bambooOrange;
+    fill: linkColor;
   }
 }

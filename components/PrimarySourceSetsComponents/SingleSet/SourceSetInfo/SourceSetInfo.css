@@ -1,4 +1,4 @@
-@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
+@value visualBrown, linkColor, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .wrapper {
@@ -212,5 +212,5 @@
 }
 
 .comma {
-  color: bambooOrange;
+  color: linkColor;
 }

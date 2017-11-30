@@ -1,4 +1,4 @@
-@value cascadeBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
+@value subLinkColor, linkColor, pampasBrown from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 @value tablePadding: 1.125rem;
 @value tableBorderBottom: 0.1rem solid rgba(0, 0, 0, 0.1);
@@ -89,7 +89,7 @@
 }
 
 .sourceLink {
-  background-color: cascadeBlue;
+  background-color: subLinkColor;
   width: 100%;
   color: white;
   border-radius: 2px;

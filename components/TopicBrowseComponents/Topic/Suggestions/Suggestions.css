@@ -1,4 +1,4 @@
-@value pampasBrown, bambooOrange, casablancaOrange from "../../../../css/colors.css";
+@value pampasBrown, linkColor, casablancaOrange from "../../../../css/colors.css";
 
 .suggestionsWrapper {
   width: 100%;
@@ -72,11 +72,11 @@
 }
 
 .exhibition .imageWrapper {
-  border-top: 4px solid bambooOrange;
+  border-top: 4px solid linkColor;
 }
 
 .exhibition .resourceType {
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .topic .imageWrapper {

@@ -1,4 +1,4 @@
-@value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 
 .donateBackground {
@@ -73,7 +73,7 @@
 }
 
 .link {
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .testimonial {

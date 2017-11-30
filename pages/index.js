@@ -25,6 +25,9 @@ import {
 import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { PSS_BASE_URL } from "constants/site";
 
+import { stylesheet } from "../components/HomePageComponents/HomePageSlider/HomePageSlider.css";
+import { stylesheet as guidesStylesheet } from "../components/shared/GuideLink/GuideLink.css";
+
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
     <HomeHero headerDescription={headerDescription} />
@@ -49,6 +52,8 @@ const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
     <DPLAUsers guides={guides} />
     <FromTheBlog />
     {/* <SocialMedia /> */}
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;
 
 Home.getInitialProps = async ({ req }) => {

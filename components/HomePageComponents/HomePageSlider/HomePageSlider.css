@@ -1,11 +1,11 @@
-@value romanceGray, solitudeBlue, curiousBlue, elephantBlue, onionBrown, bambooOrange, black, casablancaOrange from "../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, colderBackgroundColor, subLinkColor, elephantBlue, onionBrown, black, casablancaOrange from "../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../css/breakpoints.css";
 
 .wrapper {
-  background-color: romanceGray;
+  background-color: warmerBackgroundColor;
 
   &.theme_blue {
-    background-color: solitudeBlue;
+    background-color: colderBackgroundColor;
   }
 }
 
@@ -35,13 +35,9 @@
 }
 
 .moreLink {
-  color: bambooOrange;
+  color: linkColor;
   font-size: 1.125rem;
   font-weight: 600;
-}
-
-.theme_blue .moreLink {
-  color: curiousBlue;
 }
 
 .moreLinkNoun {

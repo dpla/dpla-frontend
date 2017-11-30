@@ -1,4 +1,4 @@
-@value black80, cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
+@value black80, cascadeBlue, iceBlue, linkColor, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .buttonBase {
@@ -17,16 +17,16 @@
 
 /* Types */
 
-.buttonPrimary {
+.buttonPrimary, .buttonPrimary:visited {
   color: white;
-  background-color: bambooOrange;
+  background-color: linkColor;
 
   &:hover {
     background-color: #CD570A;
   }
 }
 
-.buttonSecondary {
+.buttonSecondary, .buttonSecondary:visited {
   color: white;
   background-color: black;
 

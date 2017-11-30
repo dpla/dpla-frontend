@@ -1,8 +1,9 @@
+@value navColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .header {
   display: none;
-  background-color: #0A2A37;
+  background-color: navColor;
 
   /* The SmallScreenGlobalHeader component handles the navigation on small screens */
   @media (min-width: mediumRem) {

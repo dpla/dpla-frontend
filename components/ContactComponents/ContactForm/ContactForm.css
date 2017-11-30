@@ -1,4 +1,4 @@
-@value bambooOrange from "../../../css/colors.css";
+@value linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .contactForm {
@@ -43,7 +43,7 @@
 }
 
 .submit {
-  background-color: bambooOrange;
+  background-color: linkColor;
   border: none;
   color: white;
   border-radius: 2px;

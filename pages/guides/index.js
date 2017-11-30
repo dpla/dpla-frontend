@@ -11,6 +11,8 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
+import { stylesheet as guidesStylesheet } from "components/shared/GuideLink/GuideLink.css";
+
 import { TITLE } from "constants/guides";
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
@@ -43,6 +45,7 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;
 
 Guides.getInitialProps = async () => {

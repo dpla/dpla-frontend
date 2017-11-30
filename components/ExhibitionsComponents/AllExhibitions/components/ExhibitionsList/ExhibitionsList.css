@@ -1,4 +1,4 @@
-@value curiousBlue, bambooOrange, casablancaOrange, black50 from "../../../../../css/colors.css";
+@value curiousBlue, linkColor, casablancaOrange, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -166,6 +166,6 @@
 }
 
 .newBanner {
-  background-color: bambooOrange;
+  background-color: linkColor;
   color: white;
 }

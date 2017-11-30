@@ -1,4 +1,4 @@
-@value bambooOrange, visualBrown, pampasBrown from "../../../css/colors.css";
+@value linkColor, visualBrown, pampasBrown from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .sidebar {
@@ -79,7 +79,7 @@
   width: 5px;
   top: .45rem;
   left: -10px;
-  background-color: bambooOrange;
+  background-color: linkColor;
   border-radius: 50%;
 
   @media (min-width: mediumRem) {
