@@ -1,4 +1,4 @@
-@value linkColor, visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value linkColor, visualBrown, cranberry, softPeach, colderBackgroundColor, curiousBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 
@@ -95,6 +95,11 @@
   margin-top: 3.125rem;
   border-top: 2px solid rgba(0, 0, 0, 0.15);
   padding-top: 1.125rem;
+  display: flex;
+
+  & span:first-child {
+    margin-right: 0.25rem;
+  }
 }
 
 .creditsBold {

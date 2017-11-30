@@ -1,4 +1,4 @@
-@value visualBrown, linkColor, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
+@value visualBrown, linkColor, cranberry, softPeach, colderBackgroundColor, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 

@@ -39,7 +39,7 @@
   align-items: flex-end;
   justify-content: center;
   border-radius: 3px;
-  background: linear-gradient(180deg, rgba(13,13,23,0) 0%, #000000 100%);
+  background: linear-gradient(180deg, rgba(13,13,23,0.15) 0%, #000000 100%);
 }
 
 .imageWrapper {
@@ -102,6 +102,7 @@
 .captionLeadIn {
   font-weight: 600;
   text-transform: uppercase;
+  margin-right: 0.25rem;
 }
 
 .caption {
@@ -116,8 +117,5 @@
   opacity: 0.50;
   font-size: 0.875rem;
   line-height: 1.125rem;
-}
-
-.caption p {
-  display: inline;
+  display: flex;
 }

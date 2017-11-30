@@ -1,4 +1,4 @@
-@value iceBlue, warmerBackgroundColor, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value colderBackgroundColor, warmerBackgroundColor, curiousBlue, visualBrown from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
@@ -83,7 +83,7 @@
   padding: 10px 0;
   width: 100%;
   color: curiousBlue;
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
   margin-bottom: 15px;
   text-align: center;
 }

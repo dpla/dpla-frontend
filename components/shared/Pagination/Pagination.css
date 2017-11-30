@@ -1,4 +1,4 @@
-@value cascadeBlue, iceBlue, linkColor from "../../../css/colors.css";
+@value cascadeBlue, colderBackgroundColor, linkColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .pagination {
@@ -40,7 +40,7 @@
 }
 
 .link:not(.activeLink):hover {
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
 }
 
 .nextButton, .previousButton {
@@ -65,7 +65,7 @@
   background-color: #E3E0DA;
   color: black;
   @media (min-width: smallRem) {
-    background-color: iceBlue;
+    background-color: colderBackgroundColor;
     color: cascadeBlue;
     margin-right: 10px;
   }
@@ -75,7 +75,7 @@
   background-color: linkColor;
   color: white;
   @media (min-width: smallRem) {
-    background-color: iceBlue;
+    background-color: colderBackgroundColor;
     color: cascadeBlue;
     margin-left: 10px;
   }

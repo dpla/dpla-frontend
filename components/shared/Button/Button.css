@@ -1,4 +1,4 @@
-@value black80, cascadeBlue, iceBlue, linkColor, curiousBlue from "../../../css/colors.css";
+@value colderBackgroundColor, black80, cascadeBlue, linkColor, curiousBlue from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .buttonBase {
@@ -37,16 +37,16 @@
 
 .buttonGhost {
   color: cascadeBlue;
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
 
   &:hover {
-    background-color: #D4E6EF;
+    background-color: colderBackgroundColor;
   }
 }
 
 .buttonDonate {
   color: cascadeBlue;
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
   display: block;
   width: 100%;
   margin-bottom: 1rem;
@@ -58,12 +58,12 @@
 
   &.active, &:hover {
     background-color: cascadeBlue;
-    color: iceBlue;
+    color: colderBackgroundColor;
   }
 
   &:active {
     background-color: cascadeBlue;
-    color: iceBlue;
+    color: colderBackgroundColor;
   }
 }
 

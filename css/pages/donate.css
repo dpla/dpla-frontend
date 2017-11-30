@@ -1,4 +1,4 @@
-@value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
+@value onionBrown, visualBrown, colderBackgroundColor, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value monoFont, serifFont from "../typography.css";
 
@@ -63,7 +63,7 @@
 
 .otherAmount {
   & input {
-    border: 2px solid iceBlue;
+    border: 2px solid colderBackgroundColor;
     padding: .6rem 1.6rem;
     width: 100%;
   }
