@@ -1,4 +1,4 @@
-@value romanceGray, pampasBrown, vikingBlue, onionBrown, visualBrown, curiousBlue, bambooOrange, casablancaOrange from "../../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, secondaryButtonColor, onionBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -6,7 +6,7 @@
   @media (min-width: smallRem) {
     margin-top: 4rem;
     padding: 2rem 0;
-    background-color: visualBrown;
+    background-color: warmerBackgroundColor;
   }
 }
 
@@ -107,7 +107,7 @@
 
 .currentItemImgWrapper {
   padding-top: calc(7rem - 12px);
-  border: 6px solid vikingBlue;
+  border: 6px solid secondaryButtonColor;
 }
 
 @media (min-width: smallRem) {
@@ -184,13 +184,13 @@
 }
 
 .nextItemButton {
-  background-color: bambooOrange;
+  background-color: linkColor;
   color: white;
   @media (min-width: smallRem) {
     background-color: transparent;
   }
   @media (min-width: smallRem) {
-    color: bambooOrange;
+    color: linkColor;
   }
 }
 
@@ -199,7 +199,7 @@
   background-color: #E3E0DA;
   @media (min-width: smallRem) {
     margin-right: 1rem;
-    color: bambooOrange;
+    color: linkColor;
     background-color: transparent;
   }
 }
@@ -231,7 +231,7 @@
     width: 5px;
     height: 0.5rem;
     & path {
-      fill: bambooOrange;
+      fill: linkColor;
     }
   }
 }
@@ -251,7 +251,7 @@
     width: 5px;
     height: 0.5rem;
     & path {
-      fill: bambooOrange;
+      fill: linkColor;
     }
   }
 }
@@ -267,7 +267,7 @@
 }
 
 .defaultImageWrapper {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   display: flex;
   align-items: center;
   justify-content: center;

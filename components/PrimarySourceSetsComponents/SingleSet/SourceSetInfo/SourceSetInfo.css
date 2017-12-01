@@ -1,9 +1,10 @@
-@value visualBrown, bambooOrange, cranberry, softPeach, iceBlue, curiousBlue, cascadeBlue from "../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, cranberry, softPeach, colderBackgroundColor, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   width: 100%;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .sourceSetInfo {
@@ -60,7 +61,7 @@
 }
 
 .bannerTextWrapper {
-  background: linear-gradient(180deg, rgba(54, 44, 36, 0) 0%, #312921 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -88,7 +89,7 @@
 }
 
 .bannerTitle {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 1.5rem;
   color: white;
@@ -212,5 +213,5 @@
 }
 
 .comma {
-  color: bambooOrange;
+  color: linkColor;
 }

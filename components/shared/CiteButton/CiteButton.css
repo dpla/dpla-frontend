@@ -1,4 +1,4 @@
-@value elephantBlue, iceBlue, oysterBayBlue from "../../../css/colors.css";
+@value colderBackgroundColor, elephantBlue, oysterBayBlue from "../../../css/colors.css";
 @value monoFont from "../../../css/typography.css";
 
 .wrapper {
@@ -7,7 +7,7 @@
 }
 
 .button.activeButton {
-  background-color: #D4E6EF;
+  background-color: colderBackgroundColor;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -28,7 +28,7 @@
 }
 
 .citationsWrapper {
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
   padding: .5rem .5rem;
   border-radius: 0 0 .25rem .25rem;
 }
@@ -44,7 +44,7 @@
   }
 
   & dd {
-    background-color: oysterBayBlue;
+    background-color: white;
     border-radius: .25rem;
     font-family: monoFont;
     font-size: .9rem;

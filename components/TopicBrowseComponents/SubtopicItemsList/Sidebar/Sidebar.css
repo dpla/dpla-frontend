@@ -1,5 +1,6 @@
-@value pampasBrown, lightLinkColor from "../../../../css/colors.css";
+@value warmerBackgroundColor, lightLinkColor from "../../../../css/colors.css";
 @value smallRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .sidebar {
   width: 100%;
@@ -12,7 +13,7 @@
 }
 
 .subtopicInfo {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   margin-bottom: 30px;
 }
 
@@ -27,7 +28,7 @@
 }
 
 .title {
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1.5rem;
   line-height: 1.625rem;
   margin-bottom: 10px;

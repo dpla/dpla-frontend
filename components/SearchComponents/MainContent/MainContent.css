@@ -1,4 +1,4 @@
-@value pampasBrown from "../../../css/colors.css";
+@value warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem from "../../../css/breakpoints.css";
 
 .mainContent {

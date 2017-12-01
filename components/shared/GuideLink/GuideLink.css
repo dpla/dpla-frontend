@@ -1,4 +1,5 @@
 @value smallRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .itemColumn {
   margin-bottom: 1rem;
@@ -29,7 +30,7 @@
 }
 
 .itemHeader {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-style: italic;
   font-size: 1.25rem;

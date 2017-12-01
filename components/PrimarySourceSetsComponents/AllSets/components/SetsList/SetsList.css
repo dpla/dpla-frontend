@@ -1,4 +1,4 @@
-@value visualBrown, subLinkColor, black from "../../../../../css/colors.css";
+@value warmerBackgroundColor, subLinkColor, black from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .setsWrapper {
@@ -48,7 +48,7 @@
 }
 
 .item {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 
   @media (min-width: mediumRem) {
     background-color: transparent;

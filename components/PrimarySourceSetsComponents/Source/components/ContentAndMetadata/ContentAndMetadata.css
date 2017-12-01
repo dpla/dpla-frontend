@@ -1,5 +1,6 @@
-@value iceBlue, pampasBrown, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value colderBackgroundColor, warmerBackgroundColor, curiousBlue from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../../css/typography.css";
 
 .contentAndMetadata {
   padding-top: 23px;
@@ -34,7 +35,7 @@
 
 .content {
   margin-bottom: 20px;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .description {
@@ -82,7 +83,7 @@
   padding: 10px 0;
   width: 100%;
   color: curiousBlue;
-  background-color: iceBlue;
+  background-color: colderBackgroundColor;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -149,7 +150,7 @@
 
 .tipsForStudentsHeader {
   text-transform: uppercase;
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1rem;
   line-height: 1.25rem;
   margin-bottom: 9px;

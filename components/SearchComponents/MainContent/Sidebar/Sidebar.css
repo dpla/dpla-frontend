@@ -1,4 +1,4 @@
-@value cascadeBlue, black50 from "../../../../css/colors.css";
+@value cascadeBlue, dimmedTextColor from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
 
 .sidebar {
@@ -22,6 +22,6 @@
 
 .facetCount {
   font-size: 0.8125rem;
-  color: black50;
+  color: dimmedTextColor;
   margin-left: .25rem;
 }

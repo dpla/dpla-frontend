@@ -1,4 +1,4 @@
-@value linkColor from "./colors.css";
+@value linkColor, visitedLinkColor from "./colors.css";
 
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid*/
 /* TODO replace breakpoints in breakpoints.css with these */
@@ -71,6 +71,10 @@
 a {
   color: linkColor;
   text-decoration: none;
+
+  &:visited {
+    color: visitedLinkColor;
+  }
 
   &:hover {
     text-decoration: underline;

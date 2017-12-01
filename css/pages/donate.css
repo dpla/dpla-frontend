@@ -1,8 +1,9 @@
-@value onionBrown, visualBrown, iceBlue, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, bambooOrange, gray75 from "../colors.css";
+@value onionBrown, warmerBackgroundColor, colderBackgroundColor, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
+@value monoFont, serifFont from "../typography.css";
 
 .donateBackground {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   background-image: url("static/images/collage_light.jpg");
   background-size: cover;
   background-blend-mode: multiply;
@@ -16,7 +17,7 @@
 }
 
 .donateContent {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   margin: 1rem 0 4rem;
   box-shadow: 0 1rem 2rem gray;
 
@@ -62,7 +63,7 @@
 
 .otherAmount {
   & input {
-    border: 2px solid iceBlue;
+    border: 2px solid colderBackgroundColor;
     padding: .6rem 1.6rem;
     width: 100%;
   }
@@ -73,7 +74,7 @@
 }
 
 .link {
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .testimonial {
@@ -82,7 +83,7 @@
   padding: 1.6rem 1.5rem;
 
   & h2 {
-    font-family: "Lora";
+    font-family: serifFont;
     text-transform: uppercase;
     font-size: 1rem;
   }

@@ -1,5 +1,6 @@
-@value alabasterGray, elephantBlue, dimGray, black, bambooOrange from "../../../css/colors.css";
+@value alabasterGray, elephantBlue, dimGray, black, linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem, mediumPlusRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .socialMedia {
   margin: auto;
@@ -25,7 +26,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   margin-bottom: 24px;
   white-space: nowrap;
@@ -51,7 +52,7 @@
 
 .twitterDate {
   text-transform: uppercase;
-  color: bambooOrange;
+  color: linkColor;
   font-weight: 600;
   font-size: 0.9375rem;
   line-height: 1.1875rem;
@@ -62,7 +63,7 @@
   font-size: 1.125rem;
   line-height: 1.4375rem;
   font-weight: 600;
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .instagram {

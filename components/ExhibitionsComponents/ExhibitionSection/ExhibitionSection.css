@@ -1,8 +1,9 @@
-@value vikingBlue, elephantBlue, bambooOrange, visualBrown, rockBrown, pampasBrown from "../../../css/colors.css";
+@value linkColor, dimmedTextColor, warmerBackgroundColor, secondaryButtonColor, elephantBlue, rockBrown from "../../../css/colors.css";
 @value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .exhibitionView {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   min-height: 100vh;
   padding-bottom: 3rem;
 
@@ -24,14 +25,14 @@
   display: inline-block;
 
   @media (min-width: smallRem) {
-    color: bambooOrange;
+    color: linkColor;
     font-size: 1rem;
     opacity: 1;
   }
 }
 
 .exhibitionTitle {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   margin-top: .5rem;
   font-size: 1.5rem;
@@ -104,7 +105,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: visualBrown;
+    background-color: warmerBackgroundColor;
     width: 100%;
     z-index: 2;
   }
@@ -131,7 +132,7 @@
   position: relative;
 
   &, & a {
-    color: #6D6D6D;
+    color: dimmedTextColor;
   }
 }
 
@@ -145,7 +146,7 @@
   display: block;
   height: 5px;
   width: 5px;
-  background-color: bambooOrange;
+  background-color: linkColor;
   border-radius: 50%;
   position: absolute;
   top: 6px;
@@ -338,7 +339,7 @@
 }
 
 .nextButton {
-  background-color: bambooOrange;
+  background-color: linkColor;
   color: white;
 }
 
@@ -389,7 +390,7 @@
 }
 
 .titleSubsection {
-  opacity: .5;
+  color: dimmedTextColor;
 }
 
 .viewerContent {
@@ -503,11 +504,11 @@
 }
 
 .activeItemLink {
-  background-color: bambooOrange;
+  background-color: linkColor;
 
   @media (min-width: smallRem) {
     background-color: inherit;
-    border: 4px solid vikingBlue;
+    border: 4px solid secondaryButtonColor;
     position: relative;
   }
 }
@@ -555,7 +556,7 @@
 
 .menuHeader {
   display: none;
-  background-color: bambooOrange;
+  background-color: linkColor;
 }
 
 .openMenu .menuHeader {

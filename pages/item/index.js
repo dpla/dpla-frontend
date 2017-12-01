@@ -49,8 +49,10 @@ const ItemDetail = ({
       ]}
       route={url}
     />
-    <div className={`${utilClassNames.container} ${classNames.contentWrapper}`}>
-      {statusCode === 404 &&
+    {statusCode === 404 &&
+      <div
+        className={`${utilClassNames.container} ${classNames.contentWrapper}`}
+      >
         <div className={classNames.notFound}>
           <h1>
             Item not found
@@ -61,23 +63,25 @@ const ItemDetail = ({
               <a>View all items</a>
             </Link>.
           </p>
-        </div>}
-      {statusCode === 200 &&
-        <div>
-          <Content item={item} url={url} />
-          <div className={classNames.faveAndCiteButtons}>
-            <CiteButton
-              creator={item.creator}
-              displayDate={item.date ? item.date.displayDate : item.date}
-              spatialName={item.spatial ? item.spatial.name : item.spatial}
-              sourceUrl={item.sourceUrl}
-              className={classNames.citeButton}
-              toCiteText="item"
-              title={item.title}
-            />
-          </div>
-        </div>}
-    </div>
+        </div>
+      </div>}
+    {statusCode === 200 &&
+      <div
+        className={`${utilClassNames.container} ${classNames.contentWrapper}`}
+      >
+        <Content item={item} url={url} />
+        <div className={classNames.faveAndCiteButtons}>
+          <CiteButton
+            creator={item.creator}
+            displayDate={item.date ? item.date.displayDate : item.date}
+            spatialName={item.spatial ? item.spatial.name : item.spatial}
+            sourceUrl={item.sourceUrl}
+            className={classNames.citeButton}
+            toCiteText="item"
+            title={item.title}
+          />
+        </div>
+      </div>}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 

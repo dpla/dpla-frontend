@@ -1,5 +1,6 @@
-@value bambooOrange from "../../../css/colors.css";
+@value linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .contactForm {
   margin-top: 2rem;
@@ -13,7 +14,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -43,7 +44,7 @@
 }
 
 .submit {
-  background-color: bambooOrange;
+  background-color: linkColor;
   border: none;
   color: white;
   border-radius: 2px;

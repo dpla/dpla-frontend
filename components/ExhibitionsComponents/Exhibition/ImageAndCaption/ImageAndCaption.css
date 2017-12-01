@@ -1,5 +1,6 @@
-@value bambooOrange from "../../../../css/colors.css";
+@value linkColor from "../../../../css/colors.css";
 @value smallRem, xSmallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   margin-top: 1rem;
@@ -38,7 +39,7 @@
   align-items: flex-end;
   justify-content: center;
   border-radius: 3px;
-  background: linear-gradient(180deg, rgba(13,13,23,0) 0%, #000000 100%);
+  background: linear-gradient(180deg, rgba(13,13,23,0.15) 0%, #000000 100%);
 }
 
 .imageWrapper {
@@ -77,7 +78,7 @@
 .exhibitionTitle {
   padding: 0 1rem 1rem;
   line-height: 1.1;
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1.75rem;
   @media (min-width: smallRem) {
     font-size: 3rem;
@@ -101,6 +102,7 @@
 .captionLeadIn {
   font-weight: 600;
   text-transform: uppercase;
+  margin-right: 0.25rem;
 }
 
 .caption {
@@ -115,8 +117,5 @@
   opacity: 0.50;
   font-size: 0.875rem;
   line-height: 1.125rem;
-}
-
-.caption p {
-  display: inline;
+  display: flex;
 }

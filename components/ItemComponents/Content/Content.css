@@ -1,4 +1,4 @@
-@value cascadeBlue, bambooOrange, pampasBrown from "../../../css/colors.css";
+@value subLinkColor, linkColor, warmerBackgroundColor, dimmedTextColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 @value tablePadding: 1.125rem;
 @value tableBorderBottom: 0.1rem solid rgba(0, 0, 0, 0.1);
@@ -20,8 +20,8 @@
 
 .tableHeading {
   font-size: 0.875rem;
-  opacity: 0.35;
   font-weight: 600;
+  color: dimmedTextColor;
   vertical-align: top;
   width: 140px;
   padding-top: 0.25rem;
@@ -89,7 +89,7 @@
 }
 
 .sourceLink {
-  background-color: cascadeBlue;
+  background-color: subLinkColor;
   width: 100%;
   color: white;
   border-radius: 2px;
@@ -150,7 +150,7 @@
 .url {
   font-family: courier, monospace;
   padding: 9px 12px 12px;
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   border-radius: 2px;
   font-size: 0.875rem;
   display: block;
