@@ -1,4 +1,5 @@
 @value linkColor, warmerBackgroundColor from "../../../css/colors.css";
+@value dimmedTextColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -22,7 +23,7 @@
 .tableHeading {
   font-size: .8rem;
   text-transform: uppercase;
-  opacity: 0.50;
+  color: dimmedTextColor;
   font-weight: 600;
   vertical-align: baseline;
 
