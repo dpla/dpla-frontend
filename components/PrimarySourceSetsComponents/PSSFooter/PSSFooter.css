@@ -9,7 +9,6 @@
 .otherInfo {
   display: flex;
   align-items: center;
-  color: rgba(0, 0, 0, 0.75);
   justify-content: space-between;
   flex-direction: column;
   @media (min-width: smallRem) {

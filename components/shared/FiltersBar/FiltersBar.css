@@ -1,4 +1,4 @@
-@value visualBrown, black50 from "../../../css/colors.css";
+@value dimmedTextColor, visualBrown, black50 from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .filtersWrapper {
@@ -44,7 +44,7 @@
 
 .sortByText {
   display: none;
-  opacity: 0.5;
+  color: dimmedTextColor;
   margin-right: 0.25rem;
 
   @media (min-width: mediumRem) {
