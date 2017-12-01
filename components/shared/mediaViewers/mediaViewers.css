@@ -1,4 +1,4 @@
-@value visualBrown from "../../../css/colors.css";
+@value warmerBackgroundColor from "../../../css/colors.css";
 
 .zoomableImageViewer {
   width: 100%;
@@ -33,7 +33,7 @@
 .audioPlayerWrapper {
   width: 100%;
   padding: 70px;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   display: flex;
   align-items: center;
   justify-content: center;

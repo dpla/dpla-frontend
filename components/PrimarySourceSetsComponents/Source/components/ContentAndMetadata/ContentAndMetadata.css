@@ -1,4 +1,4 @@
-@value colderBackgroundColor, warmerBackgroundColor, curiousBlue, visualBrown from "../../../../../css/colors.css";
+@value colderBackgroundColor, warmerBackgroundColor, curiousBlue from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
@@ -35,7 +35,7 @@
 
 .content {
   margin-bottom: 20px;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .description {

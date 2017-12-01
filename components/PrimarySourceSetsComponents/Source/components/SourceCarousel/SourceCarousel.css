@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, warmerBackgroundColor, vikingBlue, onionBrown, visualBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, vikingBlue, onionBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -6,7 +6,7 @@
   @media (min-width: smallRem) {
     margin-top: 4rem;
     padding: 2rem 0;
-    background-color: visualBrown;
+    background-color: warmerBackgroundColor;
   }
 }
 

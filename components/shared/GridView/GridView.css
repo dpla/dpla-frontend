@@ -1,4 +1,4 @@
-@value visualBrown from "../../../css/colors.css";
+@value warmerBackgroundColor from "../../../css/colors.css";
 
 
 .wrapper {
@@ -47,7 +47,7 @@
 }
 
 .defaultImageWrapper {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   padding-bottom: 25%;
   padding-top: 25%;
   margin-bottom: 0.25rem;

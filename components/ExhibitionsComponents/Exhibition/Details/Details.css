@@ -1,4 +1,4 @@
-@value linkColor, visualBrown, cranberry, softPeach, colderBackgroundColor, curiousBlue from "../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, cranberry, softPeach, colderBackgroundColor, curiousBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 
@@ -45,7 +45,7 @@
 .tableOfContentsContents {
   padding: 1rem;
   font-size: 1rem;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   line-height: 1.25rem;
 
   @media (min-width: mediumRem) {

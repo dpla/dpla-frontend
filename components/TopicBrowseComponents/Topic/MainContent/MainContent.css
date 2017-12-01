@@ -1,9 +1,9 @@
-@value linkColor, visualBrown, lightLinkColor from "../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, lightLinkColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 @value serifFont from "../../../../css/typography.css";
 
 .wrapper {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .container {

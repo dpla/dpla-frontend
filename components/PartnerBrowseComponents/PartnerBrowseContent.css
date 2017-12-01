@@ -1,4 +1,4 @@
-@value visualBrown from "../../css/colors.css";
+@value warmerBackgroundColor from "../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../css/breakpoints.css";
 @value monoFont, serifFont from "../../css/typography.css";
 

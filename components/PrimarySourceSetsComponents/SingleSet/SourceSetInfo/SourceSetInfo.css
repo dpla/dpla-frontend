@@ -1,10 +1,10 @@
-@value visualBrown, linkColor, cranberry, softPeach, colderBackgroundColor, curiousBlue, cascadeBlue from "../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, cranberry, softPeach, colderBackgroundColor, curiousBlue, cascadeBlue from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   width: 100%;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .sourceSetInfo {
