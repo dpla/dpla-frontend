@@ -61,7 +61,7 @@
 }
 
 .bannerTextWrapper {
-  background: linear-gradient(180deg, rgba(54, 44, 36, 0) 0%, #312921 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   color: white;
   display: flex;
   flex-direction: column;
