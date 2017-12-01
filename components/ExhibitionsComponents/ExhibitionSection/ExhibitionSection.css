@@ -1,4 +1,4 @@
-@value linkColor, dimmedTextColor, warmerBackgroundColor, vikingBlue, elephantBlue, rockBrown from "../../../css/colors.css";
+@value linkColor, dimmedTextColor, warmerBackgroundColor, secondaryButtonColor, elephantBlue, rockBrown from "../../../css/colors.css";
 @value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -508,7 +508,7 @@
 
   @media (min-width: smallRem) {
     background-color: inherit;
-    border: 4px solid vikingBlue;
+    border: 4px solid secondaryButtonColor;
     position: relative;
   }
 }

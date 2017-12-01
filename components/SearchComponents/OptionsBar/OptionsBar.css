@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, cascadeBlue from "../../../css/colors.css";
+@value warmerBackgroundColor, dimmedTextColor, cascadeBlue from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .wrapper {
@@ -91,7 +91,7 @@
 .optionHeader {
   font-size: 0.8125rem;
   line-height: 1.0625rem;
-  opacity: 0.50;
+  color: dimmedTextColor;
   font-weight: normal;
   margin-bottom: 5px;
 }

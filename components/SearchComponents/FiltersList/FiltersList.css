@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, linkColor, elephantBlue, vikingBlue from "../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, elephantBlue, secondaryButtonColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .filtersListWrapper {
@@ -45,7 +45,7 @@
 }
 
 .filter {
-  background-color: vikingBlue;
+  background-color: secondaryButtonColor;
   color: white;
   font-size: 0.875rem;
   font-weight: 600;

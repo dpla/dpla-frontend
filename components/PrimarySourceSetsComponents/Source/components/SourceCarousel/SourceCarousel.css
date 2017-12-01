@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, vikingBlue, onionBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, secondaryButtonColor, onionBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {
@@ -107,7 +107,7 @@
 
 .currentItemImgWrapper {
   padding-top: calc(7rem - 12px);
-  border: 6px solid vikingBlue;
+  border: 6px solid secondaryButtonColor;
 }
 
 @media (min-width: smallRem) {

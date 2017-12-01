@@ -1,4 +1,4 @@
-@value hippieBlue, searchButtonColor from "../../../../css/colors.css";
+@value hippieBlue, secondaryButtonColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .headerSearchBar {
@@ -54,13 +54,13 @@
 
 .searchInput::placeholder {
   transition: opacity .2s ease-out;
-  color: searchButtonColor;
+  color: secondaryButtonColor;
   opacity: 0.5;
 }
 
 .searchButton {
   transition: background-color .2s ease-out;
-  background-color: searchButtonColor;
+  background-color: secondaryButtonColor;
   border-radius: 0 3px 3px 0;
   display: flex;
   align-items: center;
