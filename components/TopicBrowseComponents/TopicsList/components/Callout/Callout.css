@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, linkColor from "../../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, dimmedTextColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
@@ -45,5 +45,5 @@
 .text {
   margin-top: .5rem;;
   font-size: 1.125rem;
-  opacity: 0.5;
+  color: dimmedTextColor;
 }
