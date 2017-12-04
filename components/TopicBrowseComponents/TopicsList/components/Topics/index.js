@@ -25,9 +25,9 @@ const Topics = ({ topics }) =>
                 src={topic.acf.category_image}
                 className={classNames.image}
               />
-              <h3 className={classNames.title}>
+              <div className={classNames.title}>
                 {topic.name}
-              </h3>
+              </div>
             </a>
           </Link>
         </li>
