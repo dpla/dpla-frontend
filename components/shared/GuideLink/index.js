@@ -3,7 +3,7 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./GuideLink.css";
 
 const GuideLink = ({ guide }) =>
-  <div className={classNames.item} style={{ backgroundColor: guide.color }}>
+  <div className={classNames.item}>
     <Link
       href={`/guides/guide?guide=${guide.slug}`}
       as={`/guides/${guide.slug}`}

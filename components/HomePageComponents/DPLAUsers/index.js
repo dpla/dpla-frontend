@@ -1,8 +1,8 @@
 import React from "react";
 
-import GuideLink from "components/shared/GuideLink";
-import HeadingRule from "components/shared/HeadingRule";
-import Button from "components/shared/Button";
+import GuideLink from "../../../components/shared/GuideLink";
+import HeadingRule from "../../../components/shared/HeadingRule";
+import Button from "../../../components/shared/Button";
 import { stylesheet, classNames } from "./DPLAUsers.css";
 
 const DPLAUsers = ({ guides }) =>
