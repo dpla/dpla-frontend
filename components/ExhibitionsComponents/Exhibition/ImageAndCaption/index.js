@@ -22,7 +22,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
         />
         <div className={classNames.overlay}>
           <div className={classNames.overlayContent}>
-            <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
+            <h1 className={classNames.exhibitionTitle}>{exhibition.title}</h1>
             <div className={classNames.headingRule}>
               <HeadingRule color="rgba(255,255,255,0.75)" />
             </div>
