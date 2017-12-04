@@ -1,3 +1,4 @@
+@value colderBackgroundColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -11,6 +12,8 @@
 }
 
 .itemLink {
+  background-color: colderBackgroundColor;
+  border-radius: 0.3rem;
   padding: 3rem 2rem 2rem;
   width: 100%;
   height: 100%;

@@ -190,14 +190,15 @@
   font-size: 1rem;
   margin: 2rem auto 0;
   text-align: center;
-
+  
   @media (min-width: mediumRem) {
     font-size: 1.25rem;
   }
-
+  
   & a {
     display: inline-block;
     margin: 0 1rem;
     color: white;
+    text-decoration: underline;
   }
 }
