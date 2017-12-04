@@ -5,7 +5,10 @@ import Row from "./Row";
 import { classNames, stylesheet } from "./Content.css";
 import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
 
-const FacetLink = ({ facet, value, withComma }) => (
+const getItemSpatial = item =>
+  Array.isArray(item.spatial) ? item.spatial[0].name : item.spatial.name;
+
+const FacetLink = ({ facet, value, withComma }) =>
   <span>
     <Link
       prefetch
@@ -13,10 +16,9 @@ const FacetLink = ({ facet, value, withComma }) => (
     >
       <a className="link">{value}</a>
     </Link>
-  </span>
-);
+  </span>;
 
-const OtherMetadata = ({ item }) => (
+const OtherMetadata = ({ item }) =>
   <div className={classNames.otherMetadata}>
     <table className={classNames.contentTable}>
       <tbody>
@@ -26,75 +28,60 @@ const OtherMetadata = ({ item }) => (
         <Row heading="Contributing Institution">
           <FacetLink facet="provider" value={item.contributor} />
         </Row>
-        {item.intermediateProvider && (
+        {item.intermediateProvider &&
           <Row heading="Supporting Institution">
             <FacetLink facet="provider" value={item.intermediateProvider} />
-          </Row>
-        )}
-        {item.publisher && (
-          <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>
-        )}
-        {item.subject && (
+          </Row>}
+        {item.publisher &&
+          <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>}
+        {item.subject &&
           <Row className={classNames.subjects} heading="Subjects">
-            {item.subject.map((subj, i, subjects) => (
+            {item.subject.map((subj, i, subjects) =>
               <span key={i}>
                 <FacetLink facet="subject" value={subj.name} />
                 {i < subjects.length - 1 && <br />}
               </span>
-            ))}
-          </Row>
-        )}
-        {item.spatial && (
+            )}
+          </Row>}
+        {item.spatial &&
           <Row heading="Location">
-            <FacetLink facet="location" value={item.spatial[0].name} />
-          </Row>
-        )}
-        {item.type && (
+            <FacetLink facet="location" value={getItemSpatial(item)} />
+          </Row>}
+        {item.type &&
           <Row heading="Type">
             <FacetLink facet="type" value={item.type} />
-          </Row>
-        )}
-        {item.format && (
+          </Row>}
+        {item.format &&
           <Row heading="Format">
-            {!Array.isArray(item.format) ? (
-              <div>{item.format}</div>
-            ) : (
-              item.format.map((format, i, formats) => (
-                <div key={i}>{format}</div>
-              ))
-            )}
-          </Row>
-        )}
-        {item.language && (
+            {!Array.isArray(item.format)
+              ? <div>{item.format}</div>
+              : item.format.map((format, i, formats) =>
+                  <div key={i}>{format}</div>
+                )}
+          </Row>}
+        {item.language &&
           <Row heading="Language">
             <FacetLink
               facet="language"
               value={joinIfArray(item.language, ", ")}
             />
-          </Row>
-        )}
-        {item.sourceUrl && (
+          </Row>}
+        {item.sourceUrl &&
           <Row heading="URL">
             <a className="link" href={item.sourceUrl}>
               {item.sourceUrl}
             </a>
-          </Row>
-        )}
+          </Row>}
         {item.edmRights &&
-          readMyRights(item.edmRights) && (
-            <Row heading="Standardized Rights Statement">
-              {readMyRights(item.edmRights).description}
-              {readMyRights(item.edmRights).description !== "" && <br />}
-              <a
-                href={item.edmRights}
-                className="link"
-                rel="noopener noreferrer"
-              >
-                {item.edmRights}
-              </a>
-            </Row>
-          )}
-        {item.rights && (
+          readMyRights(item.edmRights) &&
+          <Row heading="Standardized Rights Statement">
+            {readMyRights(item.edmRights).description}
+            {readMyRights(item.edmRights).description !== "" && <br />}
+            <a href={item.edmRights} className="link" rel="noopener noreferrer">
+              {item.edmRights}
+            </a>
+          </Row>}
+        {item.rights &&
           <Row heading="Rights">
             <div
               dangerouslySetInnerHTML={{
@@ -104,11 +91,9 @@ const OtherMetadata = ({ item }) => (
                 )
               }}
             />
-          </Row>
-        )}
+          </Row>}
       </tbody>
     </table>
-  </div>
-);
+  </div>;
 
 export default OtherMetadata;
