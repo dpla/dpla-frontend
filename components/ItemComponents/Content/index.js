@@ -7,7 +7,7 @@ import JsonLdMarkup from "./JsonLdMarkup";
 
 const Content = ({ item, url }) =>
   <div className={classNames.content}>
-    <h1 className={classNames.hidden}>{item.title}</h1>
+    <h1 className="invisible">{item.title}</h1>
     <MainMetadata item={item} />
     <OtherMetadata item={item} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

@@ -86,7 +86,7 @@ class OptionsBar extends React.Component {
     } = this.props;
     return (
       <div className={classNames.wrapper}>
-        <h1 className={classNames.hidden}>Search</h1>
+        <h1 className="invisible">Search</h1>
         <div className={[container, classNames.optionsBar].join(" ")}>
           <p className={classNames.resultsCount}>
             <span>{addCommasToNumber(this.props.itemCount)} results </span>

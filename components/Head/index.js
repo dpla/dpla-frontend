@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { stylesheet as reset } from "css/reset.css";
 import { stylesheet as utilStylesheet } from "css/utils.css";
+import { stylesheet as accessibility } from "css/accessibility.css";
 import { getMetaPageTitle } from "utilFunctions";
 
 export default ({ additionalLinks, pageTitle, seoType }) =>
@@ -69,5 +70,6 @@ export default ({ additionalLinks, pageTitle, seoType }) =>
       <meta name="og:type" content={seoType || "website"} />
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
+      <style>{accessibility}</style>
     </Head>
   </div>;
