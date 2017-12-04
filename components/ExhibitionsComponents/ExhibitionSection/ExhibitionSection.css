@@ -326,7 +326,7 @@
   opacity: .5;
 }
 
-.prevButton {
+.prevButton, .prevButton:visited {
   background-color: rgba(0, 0, 0, 0.1);
   color: black;
 
@@ -335,7 +335,7 @@
   }
 }
 
-.nextButton {
+.nextButton, .nextButton:visited {
   background-color: linkColor;
   color: white;
 }
