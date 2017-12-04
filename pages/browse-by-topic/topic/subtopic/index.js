@@ -126,6 +126,7 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         date: itemJson.docs[0].sourceResource.date,
         creator: itemJson.docs[0].sourceResource.creator,
         description: itemJson.docs[0].sourceResource.description,
+        dataProvider: itemJson.docs[0].dataProvider,
         useDefaultImage: !itemJson.docs[0].object
       });
     })

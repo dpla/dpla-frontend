@@ -1,4 +1,4 @@
-@value colderBackgroundColor, warmerBackgroundColor, curiousBlue from "../../../../../css/colors.css";
+@value colderBackgroundColor, warmerBackgroundColor, subLinkColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
@@ -82,7 +82,7 @@
   line-height: 1.4375rem;
   padding: 10px 0;
   width: 100%;
-  color: curiousBlue;
+  color: subLinkColor;
   background-color: colderBackgroundColor;
   margin-bottom: 15px;
   text-align: center;
@@ -117,8 +117,8 @@
   margin-bottom: 0px;
 }
 
-.sourceLink {
-  color: curiousBlue;
+.sourceLink, .sourceLink:visited {
+  color: subLinkColor;
   font-weight: 600;
   display: flex;
 }

@@ -42,7 +42,7 @@
   position: relative;
 }
 
-.subtopicAnchor {
+.subtopicAnchor, .subtopicAnchor:visited {
   position: relative;
   display: flex;
   flex-direction: column;

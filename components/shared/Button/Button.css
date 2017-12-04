@@ -1,4 +1,4 @@
-@value colderBackgroundColor, black80, cascadeBlue, linkColor, curiousBlue from "../../../css/colors.css";
+@value colderBackgroundColor, black80, donateFormButtonColor, linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .buttonBase {
@@ -36,7 +36,7 @@
 }
 
 .buttonGhost {
-  color: cascadeBlue;
+  color: donateFormButtonColor;
   background-color: colderBackgroundColor;
 
   &:hover {
@@ -45,7 +45,7 @@
 }
 
 .buttonDonate {
-  color: cascadeBlue;
+  color: donateFormButtonColor;
   background-color: colderBackgroundColor;
   display: block;
   width: 100%;
@@ -57,12 +57,12 @@
   }
 
   &.active, &:hover {
-    background-color: cascadeBlue;
+    background-color: donateFormButtonColor;
     color: colderBackgroundColor;
   }
 
   &:active {
-    background-color: cascadeBlue;
+    background-color: donateFormButtonColor;
     color: colderBackgroundColor;
   }
 }
