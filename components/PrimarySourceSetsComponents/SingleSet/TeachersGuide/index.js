@@ -20,6 +20,7 @@ const printHandler = () => window.print();
 
 const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div className={classNames.wrapper}>
+    <h2 className="invisible">Teaching Guide</h2>
     <div className={`${classNames.teachingGuide} ${container}`}>
       <div className="row">
         <div className="col-xs-12 col-md-8">

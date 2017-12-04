@@ -40,6 +40,7 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div className={classNames.content}>
         <div className={container}>
+          <h2 className="invisible">Additional Resources</h2>
           <div
             className={`${contentClasses.content} ${container}`}
             dangerouslySetInnerHTML={{
