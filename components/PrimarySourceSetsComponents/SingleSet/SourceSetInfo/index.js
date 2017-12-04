@@ -83,9 +83,9 @@ class SourceSetInfo extends React.Component {
               <div className={`${classNames.sidebar} sourceSetSidebar`}>
                 <div className={classNames.metadata}>
                   <div className={classNames.metadatum}>
-                    <h3 className={classNames.metadataHeader}>
+                    <h2 className={classNames.metadataHeader}>
                       Created By
-                    </h3>
+                    </h2>
                     {set.author.map(author =>
                       <div
                         key={author.name}
@@ -98,9 +98,9 @@ class SourceSetInfo extends React.Component {
                     )}
                   </div>
                   <div className={classNames.metadatum}>
-                    <h3 className={classNames.metadataHeader}>
+                    <h2 className={classNames.metadataHeader}>
                       Time Period
-                    </h3>
+                    </h2>
                     {extractTimePeriod(set.about).map((period, i, periods) =>
                       <span key={period}>
                         <Link
@@ -124,7 +124,7 @@ class SourceSetInfo extends React.Component {
                     )}
                   </div>
                   <div className={classNames.metadatum}>
-                    <h3 className={classNames.metadataHeader}>Subjects</h3>
+                    <h2 className={classNames.metadataHeader}>Subjects</h2>
                     {extractSubjects(set.about).map((subject, i, subjects) =>
                       <span key={subject}>
                         <Link
