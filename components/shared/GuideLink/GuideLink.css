@@ -44,6 +44,7 @@
   max-width: 100%;
   max-height: 7rem;
   margin: 0 auto;
+  filter: grayscale(1) sepia(1) hue-rotate(140deg);
 }
 
 .text {
