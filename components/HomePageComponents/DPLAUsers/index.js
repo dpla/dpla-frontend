@@ -8,7 +8,7 @@ import { stylesheet, classNames } from "./DPLAUsers.css";
 const DPLAUsers = ({ guides }) =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.DPLAUsers} site-max-width`}>
-      <h1 className={classNames.header}>How can I use DPLA?</h1>
+      <h2 className={classNames.header}>How can I use DPLA?</h2>
       <HeadingRule />
       <div className="row">
         {guides.map(guide =>

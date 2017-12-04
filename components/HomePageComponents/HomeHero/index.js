@@ -22,6 +22,7 @@ const HomeHero = ({ headerDescription }) =>
       </Button>
     </div>
     <div className={classNames.content}>
+      <h1 className={classNames.hidden}>Digital Public Library of America</h1>
       <p className={classNames.headline}>{headerDescription}</p>
       <form action="/search">
         <div className={classNames.search}>

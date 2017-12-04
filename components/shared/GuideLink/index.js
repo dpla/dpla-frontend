@@ -14,9 +14,9 @@ const GuideLink = ({ guide }) =>
           className={classNames.itemImg}
           src={guide.illustration.url}
         />
-        <h1 className={classNames.itemHeader}>
+        <div className={classNames.itemHeader}>
           {guide.displayTitle || guide.title}
-        </h1>
+        </div>
         <p className={classNames.text}>{guide.summary}</p>
       </a>
     </Link>
