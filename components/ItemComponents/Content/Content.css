@@ -88,7 +88,7 @@
   display: block;
 }
 
-.sourceLink {
+.sourceLink, .sourceLink:visited {
   background-color: subLinkColor;
   width: 100%;
   color: white;

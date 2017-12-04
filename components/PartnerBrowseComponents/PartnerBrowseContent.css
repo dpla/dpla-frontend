@@ -1,4 +1,4 @@
-@value warmerBackgroundColor from "../../css/colors.css";
+@value warmerBackgroundColor, dimmedTextColor from "../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../css/breakpoints.css";
 @value monoFont, serifFont from "../../css/typography.css";
 
@@ -32,29 +32,17 @@
   display: flex;
   padding: 0.85rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-  &:hover .name {
-    opacity: 1;
-  }
-
-  &:hover .itemCount {
-    opacity: 1;
-  }
 }
 
 .name {
-  transition: opacity .2s ease-in-out;
   font-family: serifFont;
   font-size: 1.3125rem;
   max-width: 75%;
   margin-right: 0.75rem;
-  opacity: .85;
 }
 
 .itemCount {
-  transition: opacity .2s ease-in-out;
   margin-left: auto;
-  color: #584F41;
-  opacity: 0.5;
+  color: dimmedTextColor;
   font-size: 1.25rem;
 }
