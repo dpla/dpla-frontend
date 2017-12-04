@@ -1,4 +1,5 @@
 import React from "react";
+import { joinIfArray } from "utilFunctions";
 
 /**
   * @param item, DPLA Item
@@ -185,10 +186,10 @@ const JsonLdMarkup = ({ item, url }) => {
     return all.map(x => {
       var lat = null;
       var lon = null;
-      const coordinates = x.coordinates;
+      let coordinates = joinIfArray(x.coordinates);
       if (coordinates !== undefined) {
-        lat = coordinates.split(",")[0];
-        lon = coordinates.split(",")[1].trim();
+        lat = Number(coordinates.split(",")[0]);
+        lon = Number(coordinates.split(",")[1].trim());
       }
       return {
         "@type": "Place",
