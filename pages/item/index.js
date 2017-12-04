@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "components/MainLayout";
-import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
-import Content from "components/ItemComponents/Content";
-import CiteButton from "components/shared/CiteButton";
+import MainLayout from "/components/MainLayout";
+import BreadcrumbsModule from "/components/ItemComponents/BreadcrumbsModule";
+import Content from "/components/ItemComponents/Content";
+import CiteButton from "/components/shared/CiteButton";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -18,7 +18,7 @@ import {
 import {
   classNames,
   stylesheet
-} from "components/ItemComponents/itemComponent.css";
+} from "/components/ItemComponents/itemComponent.css";
 import {
   removeQueryParams,
   joinIfArray,
@@ -51,6 +51,7 @@ const ItemDetail = ({
     />
     {statusCode === 404 &&
       <div
+        id="main"
         className={`${utilClassNames.container} ${classNames.contentWrapper}`}
       >
         <div className={classNames.notFound}>
@@ -67,6 +68,7 @@ const ItemDetail = ({
       </div>}
     {statusCode === 200 &&
       <div
+        id="main"
         className={`${utilClassNames.container} ${classNames.contentWrapper}`}
       >
         <Content item={item} url={url} />

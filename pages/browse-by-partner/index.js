@@ -12,12 +12,14 @@ import { classNames } from "components/PartnerBrowseComponents/PartnerBrowseCont
 const PartnerBrowse = ({ partners, url }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <FeatureHeader
-        titleClassName={classNames.featureTitle}
-        title={TITLE}
-        description={DESCRIPTION}
-      />
-      <PartnerBrowseContent partners={partners} />
+      <div id="main">
+        <FeatureHeader
+          titleClassName={classNames.featureTitle}
+          title={TITLE}
+          description={DESCRIPTION}
+        />
+        <PartnerBrowseContent partners={partners} />
+      </div>
     </MainLayout>
   </div>;
 

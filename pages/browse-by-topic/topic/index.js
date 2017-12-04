@@ -36,10 +36,12 @@ const Topic = ({ url, topic, subtopics, suggestions }) =>
         }
       ]}
     />
-    <MainContent topic={topic} />
-    {topic.acf.related_content &&
-      topic.acf.related_content.length > 0 &&
-      <Suggestions suggestions={suggestions} />}
+    <div id="main">
+      <MainContent topic={topic} />
+      {topic.acf.related_content &&
+        topic.acf.related_content.length > 0 &&
+        <Suggestions suggestions={suggestions} />}
+    </div>
   </MainLayout>;
 
 Topic.getInitialProps = async ({ query, req }) => {

@@ -22,6 +22,7 @@ const DonateThankYou = ({ url, content, items }) =>
       <div className="row">
         <div className={`col-md-2 col-xs-12`} />
         <div
+          id="main"
           className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
         >
           <h1>

@@ -31,7 +31,7 @@ class SourceSetInfo extends React.Component {
     const { set, currentFullUrl } = this.props;
     const authorList = set.author.map(author => author.name);
     return (
-      <div className={classNames.wrapper}>
+      <div id="main" className={classNames.wrapper}>
         <div className={[classNames.sourceSetInfo, container].join(" ")}>
           <div className={`${classNames.removeScroll} row`}>
             <div className={`${classNames.removeScroll} col-xs-12 col-md-8`}>

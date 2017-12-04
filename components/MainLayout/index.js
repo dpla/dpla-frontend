@@ -1,6 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Head from "../Head";
+import SkipToContent from "../shared/SkipToContent";
 import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
@@ -19,6 +20,7 @@ const MainLayout = ({
   <div>
     <Helmet htmlAttributes={{ lang: "en" }} />
     <Head additionalLinks={headLinks} pageTitle={pageTitle} seoType={seoType} />
+    <SkipToContent />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
