@@ -27,10 +27,10 @@ const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
           className={classNames.menuButtonIcon}
         />
       </button>
-      <div className={classNames.title}>
+      <h2 className={classNames.title}>
         <span className={classNames.titleSection}>{section.title}</span>
         <span className={classNames.titleSubsection}>{subsection.title}</span>
-      </div>
+      </h2>
     </div>
   </div>;
 
