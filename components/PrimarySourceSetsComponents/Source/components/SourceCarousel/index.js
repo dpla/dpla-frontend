@@ -37,7 +37,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={classNames.wrapper}>
     <div className={[classNames.sourceCarousel, container].join(" ")}>
       <div className={classNames.headerAndNav}>
-        <h1 className={classNames.header}>
+        <h2 className={classNames.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
           <Link
@@ -61,7 +61,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               className={`link ${classNames.linkToSourceSet}`}
             />
           </Link>
-        </h1>
+        </h2>
         <div className={classNames.prevAndNextButtons}>
           {currentSourceIdx > 0
             ? <Link
