@@ -8,10 +8,11 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { 
+import {
   ABOUT_MENU_ENDPOINT,
   GUIDES_ENDPOINT,
-  SEO_TYPE } from "constants/content-pages";
+  SEO_TYPE
+} from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutMenuPage = ({ url, content, items, pageTitle }) =>
@@ -28,6 +29,7 @@ const AboutMenuPage = ({ url, content, items, pageTitle }) =>
         />
         <div className="col-xs-12 col-md-7">
           <div
+            id="main"
             className={contentClasses.content}
             dangerouslySetInnerHTML={{ __html: content.content.rendered }}
           />

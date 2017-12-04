@@ -10,7 +10,9 @@ import { TITLE } from "constants/primarySourceSets";
 const PrimarySourceSets = ({ url, sets }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <AllSets route={url} sets={sets} />
+      <div id="main">
+        <AllSets route={url} sets={sets} />
+      </div>
       <PSSFooter />
     </MainLayout>
   </div>;

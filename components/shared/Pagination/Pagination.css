@@ -1,4 +1,4 @@
-@value cascadeBlue, colderBackgroundColor, linkColor from "../../../css/colors.css";
+@value paginationLinkColor, colderBackgroundColor, linkColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 
 .pagination {
@@ -14,7 +14,7 @@
   display: none;
   @media (min-width: smallRem) {
     display: inline-block;
-    color: cascadeBlue;
+    color: paginationLinkColor;
     font-size: 1.125rem;
     padding: 3px 10px;
     margin: 0 3px;
@@ -66,7 +66,7 @@
   color: black;
   @media (min-width: smallRem) {
     background-color: colderBackgroundColor;
-    color: cascadeBlue;
+    color: paginationLinkColor;
     margin-right: 10px;
   }
 }
@@ -76,7 +76,7 @@
   color: white;
   @media (min-width: smallRem) {
     background-color: colderBackgroundColor;
-    color: cascadeBlue;
+    color: paginationLinkColor;
     margin-left: 10px;
   }
 }
@@ -87,7 +87,7 @@
   & path {
     fill: white;
     @media (min-width: smallRem) {
-      fill: cascadeBlue;
+      fill: paginationLinkColor;
     }
   }
   @media (min-width: smallRem) {
@@ -105,7 +105,7 @@
   & path {
     fill: black;
     @media (min-width: smallRem) {
-      fill: cascadeBlue;
+      fill: paginationLinkColor;
     }
   }
   @media (min-width: smallRem) {

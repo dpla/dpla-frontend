@@ -32,7 +32,7 @@ class Body extends React.Component {
           currentSection={section}
           isShowing={this.state.isMenuOpen}
         />
-        <div>
+        <div id="main">
           <Subheader
             onClickMenuButton={() => this.toggleMenu()}
             section={section}

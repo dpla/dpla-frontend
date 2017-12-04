@@ -30,28 +30,30 @@ import { stylesheet as guidesStylesheet } from "../components/shared/GuideLink/G
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
-    <HomeHero headerDescription={headerDescription} />
-    {exhibitions &&
-      exhibitions.length > 0 &&
-      <HomePageSlider
-        items={exhibitions}
-        title="Online Exhibitions"
-        browseLinkUrl="/exhibitions"
-        browseLinkName="Exhibitions"
-      />}
-    {sourceSets &&
-      sourceSets.length > 0 &&
-      <HomePageSlider
-        items={sourceSets}
-        title="Primary Source Sets"
-        browseLinkUrl="/primary-source-sets"
-        browseLinkName="Sets"
-        slidesToShow={4}
-        theme="blue"
-      />}
-    <DPLAUsers guides={guides} />
-    <FromTheBlog />
-    {/* <SocialMedia /> */}
+    <div id="main">
+      <HomeHero headerDescription={headerDescription} />
+      {exhibitions &&
+        exhibitions.length > 0 &&
+        <HomePageSlider
+          items={exhibitions}
+          title="Online Exhibitions"
+          browseLinkUrl="/exhibitions"
+          browseLinkName="Exhibitions"
+        />}
+      {sourceSets &&
+        sourceSets.length > 0 &&
+        <HomePageSlider
+          items={sourceSets}
+          title="Primary Source Sets"
+          browseLinkUrl="/primary-source-sets"
+          browseLinkName="Sets"
+          slidesToShow={4}
+          theme="blue"
+        />}
+      <DPLAUsers guides={guides} />
+      <FromTheBlog />
+      {/* <SocialMedia /> */}
+    </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;

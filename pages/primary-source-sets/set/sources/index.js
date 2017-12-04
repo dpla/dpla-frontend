@@ -38,7 +38,9 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
       ]}
       route={url}
     />
-    <ContentAndMetadata source={source} />
+    <div id="main">
+      <ContentAndMetadata source={source} />
+    </div>
     <SourceCarousel
       sources={set.hasPart.filter(
         item => item.disambiguatingDescription === "source"

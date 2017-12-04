@@ -52,7 +52,10 @@ const SubtopicItemsList = ({
       topic={topic}
       route={url}
     />
-    <div className={[classNames.sidebarAndItemList, container].join(" ")}>
+    <div
+      id="main"
+      className={[classNames.sidebarAndItemList, container].join(" ")}
+    >
       <Sidebar
         title={subtopic.name}
         description={subtopic.description}

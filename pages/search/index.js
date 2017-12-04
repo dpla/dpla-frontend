@@ -1,10 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "components/MainLayout";
-import OptionsBar from "components/SearchComponents/OptionsBar";
-import FiltersList from "components/SearchComponents/FiltersList";
-import MainContent from "components/SearchComponents/MainContent";
+import MainLayout from "../../components/MainLayout";
+import OptionsBar from "../../components/SearchComponents/OptionsBar";
+import FiltersList from "../../components/SearchComponents/FiltersList";
+import MainContent from "../../components/SearchComponents/MainContent";
 import {
   possibleFacets,
   mapFacetsToURLPrettified,
@@ -13,7 +13,7 @@ import {
 import {
   classNames,
   stylesheet
-} from "components/SearchComponents/SearchComponents.css";
+} from "../../components/SearchComponents/SearchComponents.css";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import {

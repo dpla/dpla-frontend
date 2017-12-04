@@ -28,6 +28,7 @@ const Guides = ({ url, sidebarItems, guide }) =>
         />
         <div className="col-xs-12 col-md-7">
           <div
+            id="main"
             className={[classNames.content, contentClasses.content].join(" ")}
           >
             <img
