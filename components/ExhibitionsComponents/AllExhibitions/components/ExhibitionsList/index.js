@@ -35,7 +35,7 @@ const Exhibition = ({ exhibition, route, featured }) =>
         <div
           className={classNames.exhibitionImage}
           style={{
-            backgroundImage: `url("${exhibition.thumbnailUrl}")`
+            background: `black url("${exhibition.thumbnailUrl}")`
           }}
         />
       </div>
@@ -61,7 +61,11 @@ const ExhibitionsList = ({ exhibitions, route }) =>
         {exhibitions
           .slice(3)
           .map(exhibition =>
-            <Exhibition route={route} exhibition={exhibition} />
+            <Exhibition
+              route={route}
+              exhibition={exhibition}
+              key={exhibition.slug}
+            />
           )}
       </div>
     </div>

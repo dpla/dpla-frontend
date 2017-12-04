@@ -1,4 +1,4 @@
-@value linkColor, elephantBlue, dimmerGray, outgoingLinkColor, visualBrown from "../../../css/colors.css";
+@value linkColor, elephantBlue, dimmedTextColor, outgoingLinkColor, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, largeRem from "../../../css/breakpoints.css";
 
 .listItem {
@@ -36,7 +36,7 @@
 }
 
 .defaultImageWrapper {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   padding-bottom: 20%;
   padding-top: 20%;
   @media (min-width: largeRem) {
@@ -96,7 +96,7 @@
   padding-bottom: 0.25rem;
 }
 
-.itemSource {
+.itemSource, .itemSource:visited {
   font-size: 0.875rem;
   color: outgoingLinkColor;
 
@@ -128,6 +128,6 @@
 .itemAuthorAndDate {
   margin-top: .25rem;
   display: block;
-  color: dimmerGray;
+  color: dimmedTextColor;
   font-size: 0.875rem;
 }

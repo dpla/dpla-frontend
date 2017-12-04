@@ -1,8 +1,8 @@
-@value pampasBrown, visualBrown from "../../../css/colors.css";
+@value warmerBackgroundColor from "../../../css/colors.css";
 
 .subitems {
   height: auto;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   padding: 9px 11px 13px;
   max-height: 240px;
   overflow-y: scroll;
@@ -19,7 +19,7 @@
 }
 
 .itemHeader {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   font-size: 0.9375rem;
   line-height: 1.1875rem;
   padding: 10px 13px 10px 11px;

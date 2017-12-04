@@ -51,11 +51,13 @@ const FromTheBlog = (/* data */) =>
         {mockPosts.map((post, index) =>
           <li key={post.id} className="col-xs-12 col-md-3">
             <div className={index === 0 && classNames.firstPost}>
-              <Link prefetch href="">
-                <a className={classNames.postLink}>
-                  <span className={classNames.headline}>{post.headline}</span>
-                </a>
-              </Link>
+              <h2 className={classNames.postLink}>
+                <Link prefetch href="">
+                  <a>
+                    {post.headline}
+                  </a>
+                </Link>
+              </h2>
               <div className={classNames.date}>
                 {post.date}
               </div>

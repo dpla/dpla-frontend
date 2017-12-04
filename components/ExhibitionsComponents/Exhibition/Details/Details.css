@@ -1,5 +1,6 @@
-@value linkColor, visualBrown, cranberry, softPeach, iceBlue, curiousBlue from "../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, colderBackgroundColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .details {
   display: flex;
@@ -30,7 +31,7 @@
 .tableOfContentsHeader {
   padding: 1rem;
   font-size: 0.75rem;
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   line-height: 1.125rem;
   text-transform: uppercase;
@@ -44,7 +45,7 @@
 .tableOfContentsContents {
   padding: 1rem;
   font-size: 1rem;
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   line-height: 1.25rem;
 
   @media (min-width: mediumRem) {
@@ -94,6 +95,11 @@
   margin-top: 3.125rem;
   border-top: 2px solid rgba(0, 0, 0, 0.15);
   padding-top: 1.125rem;
+  display: flex;
+
+  & span:first-child {
+    margin-right: 0.25rem;
+  }
 }
 
 .creditsBold {

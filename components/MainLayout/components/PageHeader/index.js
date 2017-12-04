@@ -24,16 +24,13 @@ const PageHeader = ({ searchQuery }) =>
           name="q"
           type="search"
           placeholder="Search the collection"
+          aria-label="Search the collection"
           autoComplete="off"
           defaultValue={searchQuery}
         />
         <button type="submit" className={classNames.searchButton}>
-          <img
-            alt="Search"
-            src={searchIcon}
-            className={classNames.searchIcon}
-          />
-          <span>Search</span>
+          <img aria-hidden src={searchIcon} className={classNames.searchIcon} />
+          Search
         </button>
       </form>
     </div>

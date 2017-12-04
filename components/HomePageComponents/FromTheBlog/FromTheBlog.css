@@ -1,5 +1,6 @@
-@value merinoWhite, elephantBlue, bambooOrange, black from "../../../css/colors.css";
+@value merinoWhite, elephantBlue, linkColor, black from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .wrapper {
   background-color: merinoWhite;
@@ -42,7 +43,7 @@
 }
 
 .headerText {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 2rem;
 
@@ -56,7 +57,7 @@
 }
 
 .headerLink {
-  color: bambooOrange;
+  color: linkColor;
   font-weight: 600;
   font-size: 1rem;
   margin-top: .25rem;
@@ -93,13 +94,8 @@
 }
 
 .postLink {
-}
-
-.headline {
-  color: bambooOrange;
-  opacity: 0.9;
   font-weight: bold;
-  display: block;
+  font-size: 1rem;
 }
 
 .date {

@@ -1,5 +1,6 @@
-@value elephantBlue, hippieBlue, curiousBlue, visualBrown, bambooOrange from "../../../../css/colors.css";
+@value linkColor, subLinkColor, warmerBackgroundColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .wrapper {
   width: 100%;
@@ -63,7 +64,7 @@
 }
 
 .toolLink {
-  color: curiousBlue;
+  color: subLinkColor;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 600;
@@ -107,7 +108,7 @@
   line-height: 1.125rem;
   margin-top: 50px;
   border: 2px solid rgba(0, 0, 0, 0.04);
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   padding: 18px 20px 20px;
   margin-bottom: 1rem;
 }
@@ -119,7 +120,7 @@
 }
 
 .aboutThisHeader {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

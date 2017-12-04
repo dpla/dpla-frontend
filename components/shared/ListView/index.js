@@ -23,9 +23,9 @@ const ItemDescription = ({ description }) => {
   );
 };
 
-const ListView = ({ items, route }) => (
+const ListView = ({ items, route }) =>
   <ul className={classNames.listView}>
-    {items.map(item => (
+    {items.map(item =>
       <li key={item["@id"] || item.id} className={classNames.listItem}>
         <ListImage
           item={item}
@@ -44,17 +44,18 @@ const ListView = ({ items, route }) => (
               </span>
             </a>
           </Link>
-          {(item.date || item.creator) && (
+          {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
               {route.pathname.indexOf("/search") === 0 &&
-                item.date && <span>{item.date.displayDate}</span>}
+                item.date &&
+                <span>{item.date.displayDate}</span>}
               {route.pathname.indexOf("/search") === 0 &&
                 item.date &&
                 item.date.displayDate &&
-                item.creator && <span> · </span>}
+                item.creator &&
+                <span> · </span>}
               <span>{joinIfArray(item.creator, ", ")}</span>
-            </span>
-          )}
+            </span>}
           <ItemDescription description={item.description} />
           <a
             href={item.sourceUrl}
@@ -73,16 +74,14 @@ const ListView = ({ items, route }) => (
               alt=""
             />
           </a>
-          {item.dataProvider && (
+          {item.dataProvider &&
             <span className={`${classNames.itemProvider}`}>
               &nbsp; in {item.dataProvider}
-            </span>
-          )}
+            </span>}
         </div>
       </li>
-    ))}
+    )}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </ul>
-);
+  </ul>;
 
 export default ListView;

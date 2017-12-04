@@ -1,15 +1,17 @@
-@value bambooOrange, pampasBrown from "../../../css/colors.css";
+@value linkColor, warmerBackgroundColor from "../../../css/colors.css";
+@value dimmedTextColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   font-weight: normal;
 }
 
 .contentTable {
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
   padding: 1rem 1.5rem;
   width: 100%;
 
@@ -21,7 +23,7 @@
 .tableHeading {
   font-size: .8rem;
   text-transform: uppercase;
-  opacity: 0.50;
+  color: dimmedTextColor;
   font-weight: 600;
   vertical-align: baseline;
 
@@ -32,7 +34,7 @@
 
 .tableItem {
   vertical-align: baseline;
-  font-family: "Lora";
+  font-family: serifFont;
   line-height: 1.25;
   margin-top: .5rem;
 
@@ -54,6 +56,6 @@
 }
 
 .mailToLink {
-  border-bottom: 2px solid bambooOrange;
+  border-bottom: 2px solid linkColor;
   padding-bottom: .25rem;
 }

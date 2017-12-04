@@ -1,8 +1,9 @@
-@value visualBrown, pampasBrown, bambooOrange from "../../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, dimmedTextColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../../css/typography.css";
 
 .calloutWrapper {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   width: 100%;
   padding: 2rem 1rem;
 
@@ -16,9 +17,7 @@
   max-width: 46rem;
   margin: auto;
   padding: 2rem;
-  border: 2px solid rgba(0, 0, 0, 0.04);
-  background-color: pampasBrown;
-  text-align: center;
+  background-color: warmerBackgroundColor;
 
   @media (min-width: mediumRem) {
     text-align: left;
@@ -38,7 +37,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-size: 1.5rem;
 }
@@ -46,5 +45,5 @@
 .text {
   margin-top: .5rem;;
   font-size: 1.125rem;
-  opacity: 0.5;
+  color: dimmedTextColor;
 }

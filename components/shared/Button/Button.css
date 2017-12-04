@@ -1,4 +1,4 @@
-@value black80, cascadeBlue, iceBlue, bambooOrange, curiousBlue from "../../../css/colors.css";
+@value colderBackgroundColor, black80, donateFormButtonColor, linkColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .buttonBase {
@@ -17,16 +17,16 @@
 
 /* Types */
 
-.buttonPrimary {
+.buttonPrimary, .buttonPrimary:visited {
   color: white;
-  background-color: bambooOrange;
+  background-color: linkColor;
 
   &:hover {
     background-color: #CD570A;
   }
 }
 
-.buttonSecondary {
+.buttonSecondary, .buttonSecondary:visited {
   color: white;
   background-color: black;
 
@@ -36,17 +36,17 @@
 }
 
 .buttonGhost {
-  color: cascadeBlue;
-  background-color: iceBlue;
+  color: donateFormButtonColor;
+  background-color: colderBackgroundColor;
 
   &:hover {
-    background-color: #D4E6EF;
+    background-color: colderBackgroundColor;
   }
 }
 
 .buttonDonate {
-  color: cascadeBlue;
-  background-color: iceBlue;
+  color: donateFormButtonColor;
+  background-color: colderBackgroundColor;
   display: block;
   width: 100%;
   margin-bottom: 1rem;
@@ -57,13 +57,13 @@
   }
 
   &.active, &:hover {
-    background-color: cascadeBlue;
-    color: iceBlue;
+    background-color: donateFormButtonColor;
+    color: colderBackgroundColor;
   }
 
   &:active {
-    background-color: cascadeBlue;
-    color: iceBlue;
+    background-color: donateFormButtonColor;
+    color: colderBackgroundColor;
   }
 }
 

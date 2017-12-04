@@ -20,7 +20,6 @@ const GuideLink = ({ guide }) =>
         <p className={classNames.text}>{guide.summary}</p>
       </a>
     </Link>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default GuideLink;

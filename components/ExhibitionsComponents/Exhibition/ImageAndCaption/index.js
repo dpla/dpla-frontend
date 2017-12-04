@@ -51,7 +51,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
       </div>
       <figcaption className={classNames.caption}>
         <span className={classNames.captionLeadIn}>Image: </span>
-        <span dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
+        <div dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
       </figcaption>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

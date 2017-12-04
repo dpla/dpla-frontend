@@ -1,9 +1,9 @@
-@value linkColor, visualBrown, lightLinkColor from "../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, lightLinkColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 @value serifFont from "../../../../css/typography.css";
 
 .wrapper {
-  background-color: visualBrown;
+  background-color: white;
 }
 
 .container {
@@ -42,12 +42,12 @@
   position: relative;
 }
 
-.subtopicAnchor {
+.subtopicAnchor, .subtopicAnchor:visited {
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: white;
+  background-color: warmerBackgroundColor;
   color: rgba(0, 0, 0, 0.75);
   overflow: hidden;
 
@@ -94,7 +94,7 @@
   border-top: 0.25rem solid lightLinkColor;
   padding-top: 1rem;
   z-index: 1;
-  background-color: white;
+  background-color: warmerBackgroundColor;
 }
 
 .subtopicTitle {

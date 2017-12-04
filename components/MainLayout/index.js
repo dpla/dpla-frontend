@@ -1,5 +1,5 @@
 import React from "react";
-
+import Helmet from "react-helmet";
 import Head from "../Head";
 import SkipToContent from "../shared/SkipToContent";
 import SmallScreenHeader from "./components/SmallScreenHeader";
@@ -18,6 +18,7 @@ const MainLayout = ({
   seoType
 }) =>
   <div>
+    <Helmet htmlAttributes={{ lang: "en" }} />
     <Head additionalLinks={headLinks} pageTitle={pageTitle} seoType={seoType} />
     <SkipToContent />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />

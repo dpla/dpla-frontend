@@ -1,7 +1,7 @@
-@value bambooOrange from "../../../../../css/colors.css";
+@value linkColor from "../../../../../css/colors.css";
 
 .navLinks {
-  color: bambooOrange;
+  color: linkColor;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 600;

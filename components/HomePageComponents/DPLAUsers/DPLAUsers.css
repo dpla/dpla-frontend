@@ -1,5 +1,6 @@
 @value rockBrown, black80, bonjourRed from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../css/typography.css";
 
 .DPLAUsers {
   margin: 0 auto;
@@ -16,7 +17,7 @@
 }
 
 .header {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-style: italic;
   font-size: 1.5rem;
@@ -46,7 +47,7 @@
 }
 
 .itemHeader {
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: normal;
   font-style: italic;
   font-size: 1.25rem;

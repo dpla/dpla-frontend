@@ -1,5 +1,6 @@
-@value curiousBlue, bambooOrange, casablancaOrange, black50 from "../../../../../css/colors.css";
+@value linkColor, featuredBannerColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+@value monoFont, serifFont from "../../../../../css/typography.css";
 
 .wrapper {
   margin: 1rem auto 2rem;
@@ -126,7 +127,7 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 100%);
   opacity: 0.9;
   transition: opacity .45s ease-in-out;
 }
@@ -161,11 +162,11 @@
 }
 
 .featuredBanner {
-  background-color: casablancaOrange;
+  background-color: featuredBannerColor;
   color: black;
 }
 
 .newBanner {
-  background-color: bambooOrange;
+  background-color: linkColor;
   color: white;
 }

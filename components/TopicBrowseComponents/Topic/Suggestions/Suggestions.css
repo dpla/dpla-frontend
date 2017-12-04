@@ -1,8 +1,9 @@
-@value pampasBrown, bambooOrange, casablancaOrange from "../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, casablancaOrange from "../../../../css/colors.css";
+@value monoFont, serifFont from "../../../../css/typography.css";
 
 .suggestionsWrapper {
   width: 100%;
-  background-color: pampasBrown;
+  background-color: warmerBackgroundColor;
 }
 
 .suggestions {
@@ -22,7 +23,7 @@
 
 .header {
   text-transform: uppercase;
-  font-family: "Lora";
+  font-family: serifFont;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -40,7 +41,7 @@
 
 .gradientBackground {
   border-radius: 3px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, #000000 100%);
   width: 100%;
   height: 100%;
   position: relative;
@@ -72,11 +73,11 @@
 }
 
 .exhibition .imageWrapper {
-  border-top: 4px solid bambooOrange;
+  border-top: 4px solid linkColor;
 }
 
 .exhibition .resourceType {
-  color: bambooOrange;
+  color: linkColor;
 }
 
 .topic .imageWrapper {

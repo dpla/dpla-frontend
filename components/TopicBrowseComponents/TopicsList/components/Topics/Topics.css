@@ -1,4 +1,4 @@
-@value curiousBlue, bambooOrange, black50 from "../../../../../css/colors.css";
+@value linkColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .topicsWrapper {
@@ -39,7 +39,7 @@
   text-transform: uppercase;
   color: white;
   position: absolute;
-  background-color: bambooOrange;
+  background-color: linkColor;
   top: 0.5rem;
   left: -0.25rem;
   padding: .35rem .65rem;

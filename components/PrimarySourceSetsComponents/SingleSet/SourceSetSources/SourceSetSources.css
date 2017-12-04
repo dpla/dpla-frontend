@@ -1,4 +1,4 @@
-@value visualBrown from "../../../../css/colors.css";
+@value warmerBackgroundColor from "../../../../css/colors.css";
 @value xSmallRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 
 .sourceSetSources {
@@ -44,7 +44,7 @@
 }
 
 .imageWrapper {
-  background-color: visualBrown;
+  background-color: warmerBackgroundColor;
   display: flex;
   align-items: center;
   justify-content: center;
