@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, secondaryButtonColor, onionBrown, curiousBlue, casablancaOrange from "../../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, secondaryButtonColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 
 .wrapper {

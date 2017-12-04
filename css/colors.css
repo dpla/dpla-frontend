@@ -44,13 +44,15 @@
 
 /* semantic colors */
 
-@value linkColor: #BA5302;
+@value linkColor: #CA4316;
 @value visitedLinkColor: #AD5C1D;
 @value navColor: tiberBlue;
 @value secondaryButtonColor: #0080a5;
 @value warmerBackgroundColor: romanceGray;
 @value colderBackgroundColor: #F3F7F8;
 @value lightLinkColor: casablancaOrange;
+@value featuredBannerColor: casablancaOrange;
 @value subLinkColor: #007294;
 @value outgoingLinkColor: subLinkColor;
 @value dimmedTextColor: dimmerGray;
+@value donateFormButtonColor: cascadeBlue;

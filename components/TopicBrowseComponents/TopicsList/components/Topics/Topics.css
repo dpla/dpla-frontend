@@ -1,4 +1,4 @@
-@value curiousBlue, linkColor, black50 from "../../../../../css/colors.css";
+@value linkColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 
 .topicsWrapper {
