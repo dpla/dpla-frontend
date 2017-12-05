@@ -8,6 +8,7 @@ const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
   <div className={`${isMenuOpen ? classNames.openMenu : ""}`}>
     <div className={classNames.menuHeader}>
       <button
+        aria-hidden="true"
         onClick={onClickMenuButton}
         className={classNames.closeMenuButton}
       >
@@ -20,7 +21,11 @@ const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
       <div className={classNames.menuHeaderText}>Jump to a section</div>
     </div>
     <div className={classNames.menuButtonAndBreadcrumbs}>
-      <button onClick={onClickMenuButton} className={classNames.menuButton}>
+      <button
+        onClick={onClickMenuButton}
+        className={classNames.menuButton}
+        aria-hidden="true"
+      >
         <img
           alt=""
           src={menuButtonIcon}
