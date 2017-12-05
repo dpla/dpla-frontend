@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import HeadingRule from "components/shared/HeadingRule";
+import MainLayout from "../../../components/MainLayout";
+import ContentPagesSidebar from "../../../components/shared/ContentPagesSidebar";
+import HeadingRule from "../../../components/shared/HeadingRule";
 import { classNames, stylesheet } from "css/pages/guide.css";
 import {
   classNames as contentClasses,
