@@ -13,27 +13,64 @@ const SidebarLink = ({
   subsection
 }) => {
   return (
-    <li
-      className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
+    <Link
+      as={
+        linkObject && linkObject.as
+          ? linkObject.as
+          : `/${section}/${subsection ? subsection : ""}`
+      }
+      href={
+        linkObject && linkObject.href
+          ? linkObject.href
+          : `/about?section=${section}${subsection
+              ? `&subsection=${subsection}`
+              : ""}`
+      }
     >
-      <Link
-        as={
-          linkObject && linkObject.as
-            ? linkObject.as
-            : `/${section}/${subsection ? subsection : ""}`
-        }
-        href={
-          linkObject && linkObject.href
-            ? linkObject.href
-            : `/about?section=${section}${subsection
-                ? `&subsection=${subsection}`
-                : ""}`
-        }
+      <a
+        className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
       >
-        <a>
-          {title}
-        </a>
-      </Link>
+        {title}
+      </a>
+    </Link>
+  );
+};
+
+const NestedSidebarLinks = ({
+  key,
+  isCurrentLink,
+  linkObject,
+  title,
+  section,
+  subsection,
+  activeItemId,
+  children
+}) => {
+  return (
+    <li>
+      <SidebarLink
+        linkObject={linkObject}
+        title={title}
+        section={section}
+        subsection={subsection}
+        isCurrentLink={isCurrentLink}
+      />
+      {children.length
+        ? <ul>
+            {children.map(child =>
+              <li key={child.id}>
+                <SidebarLink
+                  title={decodeHTMLEntities(child.title)}
+                  section={section}
+                  subsection={child.post_name}
+                  isCurrentLink={child.url.match(
+                    new RegExp(activeItemId + "$")
+                  )}
+                />
+              </li>
+            )}
+          </ul>
+        : null}
     </li>
   );
 };
@@ -46,37 +83,21 @@ const Sidebar = ({ activeItemId, items, route }) =>
           const children = items.filter(
             child => child.menu_item_parent === item.object_id
           );
-          return children.length
-            ? <div key={item.ID}>
-                <SidebarLink
-                  key={item.ID}
-                  title={decodeHTMLEntities(item.title)}
-                  url={item.url}
-                  section={item.post_name}
-                  isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
-                />
-                <ul>
-                  {children.map(child =>
-                    <SidebarLink
-                      key={child.ID}
-                      title={decodeHTMLEntities(child.title)}
-                      section={item.post_name}
-                      subsection={child.post_name}
-                      isCurrentLink={child.url.match(
-                        new RegExp(activeItemId + "$")
-                      )}
-                    />
-                  )}
-                </ul>
-              </div>
-            : <SidebarLink
-                key={item.ID}
-                title={decodeHTMLEntities(item.title)}
-                section={item.post_name}
-                isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
-              />;
+          return (
+            <NestedSidebarLinks
+              key={item.ID}
+              title={decodeHTMLEntities(item.title)}
+              url={item.url}
+              section={item.post_name}
+              isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
+              children={children}
+              activeItemId={activeItemId}
+            />
+          );
         })}
-        <div className={classNames.divider} />
+      </ul>
+      <div className={classNames.divider} />
+      <ul>
         <SidebarLink
           title="Contact Us"
           section="contact-us"

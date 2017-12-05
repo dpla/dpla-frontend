@@ -5,8 +5,16 @@
   background-color: warmerBackgroundColor;
   padding: 1rem 1.5rem;
 
-  & a {
+  & .link {
+    display: inline-block;
     color: rgba(0, 0, 0, 0.65);
+    margin-bottom: .55rem;
+  }
+
+  & .link.selected {
+    color: rgba(0, 0, 0, 1);
+    font-weight: bold;
+    position: relative;
   }
 
   @media (min-width: mediumRem) {
@@ -15,6 +23,10 @@
     /* inline-block to prevent the divider from spanning the full width */
     display: inline-block;
   }
+}
+
+.sidebar ul:first-child > li:last-child .link:last-child {
+  margin-bottom: 0;
 }
 
 .sidebar ul ul {
@@ -31,15 +43,10 @@
       top: .6rem;
     }
   }
-
-  & .link {
-    margin-bottom: .35rem;
-  }
 }
 
 .link {
   font-size: 1rem;
-  margin-bottom: .55rem;
 
   &:hover {
     text-decoration: underline;
@@ -59,15 +66,6 @@
 
   @media (min-width: mediumRem) {
     margin: 1.25rem 0;
-  }
-}
-
-.selected {
-  font-weight: bold;
-  position: relative;
-
-  & a {
-    color: rgba(0, 0, 0, 1);
   }
 }
 
