@@ -34,11 +34,6 @@ const HomeHero = ({ headerDescription }) =>
           />
           <div className={classNames.shadow} />
           <button type="submit" className={classNames.searchButton}>
-            <img
-              alt="search"
-              className={classNames.searchIcon}
-              src={searchIcon}
-            />
             <span>Search</span>
           </button>
         </div>
