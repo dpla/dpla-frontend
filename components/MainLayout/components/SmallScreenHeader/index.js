@@ -46,8 +46,9 @@ class SmallScreenHeader extends Component {
           : ""}`}
       >
         <div
-          className={`${classNames.searchContainer} ${searchIsOpen &&
-            classNames.isOpen} site-max-width`}
+          className={`${classNames.searchContainer} ${searchIsOpen
+            ? classNames.isOpen
+            : ""} site-max-width`}
         >
           <form action="/search">
             {isSearchPage &&
@@ -78,17 +79,20 @@ class SmallScreenHeader extends Component {
           <div>
             <button
               type="button"
+              aria-expanded={this.searchIsOpen}
               onClick={this.toggleSearch}
-              className={`${classNames.searchButton} ${searchIsOpen &&
-                classNames.isOpen}`}
+              className={`${classNames.searchButton} ${searchIsOpen
+                ? classNames.isOpen
+                : ""}`}
             >
               <img src={searchIcon} alt="Search the DPLA collection" />
             </button>
             <button
               type="button"
               onClick={this.toggleMenu}
-              className={`${classNames.menuButton} ${menuIsOpen &&
-                classNames.isOpen}`}
+              className={`${classNames.menuButton} ${menuIsOpen
+                ? classNames.isOpen
+                : ""}`}
             >
               <img
                 src={menuIsOpen ? closeIcon : menuIcon}
@@ -99,8 +103,9 @@ class SmallScreenHeader extends Component {
         </div>
         {process.env.SITE_ENV !== "pro" &&
           <UserNavigation
-            className={`${classNames.menuContainer} ${menuIsOpen &&
-              classNames.isOpen} site-max-width`}
+            className={`${classNames.menuContainer} ${menuIsOpen
+              ? classNames.isOpen
+              : ""} site-max-width`}
             style={{ zIndex: 99 }}
             classNames={classNames}
           />}
