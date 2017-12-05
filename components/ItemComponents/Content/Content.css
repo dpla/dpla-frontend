@@ -18,14 +18,17 @@
   }
 }
 
-.tableHeading {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: dimmedTextColor;
+.tableHeadingWrapper {
   vertical-align: top;
   width: 140px;
   padding-top: 0.25rem;
   display: block;
+}
+
+.tableHeading {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: dimmedTextColor;
 }
 
 .tableRow {
