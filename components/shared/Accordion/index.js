@@ -50,13 +50,13 @@ class Accordion extends React.Component {
                     {item.active &&
                       <img
                         src={subtractIcon}
-                        alt={item.name}
+                        alt=""
                         className={classNames.subtractIcon}
                       />}
                     {!item.active &&
                       <img
                         src={addIcon}
-                        alt={item.name}
+                        alt=""
                         className={classNames.addIcon}
                       />}
                   </button>
