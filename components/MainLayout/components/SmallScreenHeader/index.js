@@ -17,9 +17,6 @@ class SmallScreenHeader extends Component {
   };
 
   toggleMenu = () => {
-    // Lock scrolls when the overlay is active
-    document.body.classList.toggle("small-screen-overlay");
-
     this.setState({
       menuIsOpen: !this.state.menuIsOpen,
       searchIsOpen: false
@@ -31,6 +28,11 @@ class SmallScreenHeader extends Component {
       searchIsOpen: !this.state.searchIsOpen,
       menuIsOpen: false
     });
+    setTimeout(() => {
+      if (this.state.searchIsOpen) {
+        this.searchInput.focus();
+      }
+    }, 100);
   };
 
   render() {
