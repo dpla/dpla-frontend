@@ -46,7 +46,7 @@ const HomePageSlider = ({
             Browse all{" "}
             <span className={classNames.moreLinkNoun}>{browseLinkName}</span>
             <img
-              alt="Browse exhibitions"
+              alt={`Browse ${browseLinkName}`}
               className={classNames.moreLinkChevron}
               src={moreLinkChevron}
             />
