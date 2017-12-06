@@ -4,12 +4,6 @@ import UserNavigation from "../shared/UserNavigation";
 
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
 
-const dplaLogo = "/static/images/dpla-logo.svg";
-const searchIcon = "/static/images/search.svg";
-const searchIconGray = "/static/images/search-gray.svg";
-const menuIcon = "/static/images/menu-white.svg";
-const closeIcon = "/static/images/close-white.svg";
-
 class SmallScreenHeader extends Component {
   state = {
     menuIsOpen: false,
@@ -43,7 +37,7 @@ class SmallScreenHeader extends Component {
         <div className={classNames.header}>
           <Link prefetch href="/">
             <a className={classNames.logo}>
-              <img src={dplaLogo} alt="DPLA Logo" />
+              <span>Digital Public Library of America</span>
             </a>
           </Link>
           <button
