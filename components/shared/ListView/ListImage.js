@@ -33,7 +33,7 @@ class ListImage extends React.Component {
           <a className={`${classNames.listItemImageLink}`}>
             <img
               src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
-              alt={title}
+              alt=""
               className={classNames.image}
             />
           </a>

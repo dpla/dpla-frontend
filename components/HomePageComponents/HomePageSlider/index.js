@@ -47,6 +47,7 @@ const HomePageSlider = ({
             <span className={classNames.moreLinkNoun}>{browseLinkName}</span>
             <img
               alt="Browse exhibitions"
+              aria-hidden="true"
               className={classNames.moreLinkChevron}
               src={moreLinkChevron}
             />

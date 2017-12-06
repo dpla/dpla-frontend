@@ -58,7 +58,7 @@ const RelatedSets = ({ sets }) => {
               >
                 <a className={classNames.setLink}>
                   <img
-                    alt={set.name}
+                    alt=""
                     src={set.repImageUrl || set.thumbnailUrl}
                     className={classNames.setImage}
                   />

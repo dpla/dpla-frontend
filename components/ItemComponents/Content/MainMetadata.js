@@ -37,7 +37,7 @@ const MainMetadata = ({ item }) =>
           </td>
           <td className={classNames.tableItem}>
             <ItemImage
-              title={item.title}
+              title=""
               type={item.type}
               url={item.thumbnailUrl}
               defaultImageClass={classNames.defaultItemImage}
