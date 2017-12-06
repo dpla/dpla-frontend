@@ -23,7 +23,7 @@ const mapTypeToClass = type => {
 const Suggestions = ({ suggestions }) =>
   <div className={classNames.suggestionsWrapper}>
     <div className={[classNames.suggestions, container].join(" ")}>
-      <h3 className={classNames.header}>You might also enjoy</h3>
+      <h2 className={classNames.header}>You might also enjoy</h2>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css
         class to target the arrows */}
@@ -73,7 +73,7 @@ const Suggestions = ({ suggestions }) =>
                       <p className={classNames.resourceType}>
                         {suggestion.type}
                       </p>
-                      <h3
+                      <div
                         dangerouslySetInnerHTML={{ __html: suggestion.title }}
                         className={classNames.suggestionTitle}
                       />
