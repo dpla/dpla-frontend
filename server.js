@@ -35,6 +35,10 @@ app
   .then(() => {
     const server = express();
 
+    server.get("/healthcheck", (req, res) => {
+      res.send("OK");
+    });
+
     server.get("/donate", (req, res) => {
       const actualPage = "/donate";
       renderAndCache(req, res, actualPage, req.query);
