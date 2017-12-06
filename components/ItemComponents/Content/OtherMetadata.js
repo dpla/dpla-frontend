@@ -8,13 +8,18 @@ import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
 const getItemSpatial = item =>
   Array.isArray(item.spatial) ? item.spatial[0].name : item.spatial.name;
 
-const FacetLink = ({ facet, value, withComma }) =>
+const FacetLink = ({ facet, value, facetLabel }) =>
   <span>
     <Link
       prefetch
       href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}
     >
-      <a className="link">{value}</a>
+      <a
+        className="link"
+        title={`Find more items with ${facetLabel || facet} "${value}"`}
+      >
+        {value}
+      </a>
     </Link>
   </span>;
 
@@ -26,7 +31,11 @@ const OtherMetadata = ({ item }) =>
           <FacetLink facet="partner" value={item.partner} />
         </Row>
         <Row heading="Contributing Institution">
-          <FacetLink facet="provider" value={item.contributor} />
+          <FacetLink
+            facet="provider"
+            value={item.contributor}
+            facetLabel="contributing institution"
+          />
         </Row>
         {item.intermediateProvider &&
           <Row heading="Supporting Institution">
