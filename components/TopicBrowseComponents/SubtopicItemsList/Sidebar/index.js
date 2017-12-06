@@ -18,9 +18,9 @@ const Sidebar = ({ image, title, description }) =>
     <div className={classNames.subtopicInfo}>
       <img src={image} alt={title} className={classNames.image} />
       <div className={classNames.subtopicInfoText}>
-        <h2 className={classNames.title}>
+        <h1 className={classNames.title}>
           {title}
-        </h2>
+        </h1>
         <p className={classNames.description}>
           {description}
         </p>

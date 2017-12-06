@@ -37,13 +37,14 @@ const ListView = ({ items, route }) =>
         <div className={classNames.itemInfo}>
           <Link href={item.linkHref} as={item.linkAs}>
             <a className={classNames.listItemLink}>
-              <span className={`hover-underline ${classNames.itemTitle}`}>
+              <h2 className={`hover-underline ${classNames.itemTitle}`}>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
                   : item.title}
-              </span>
+              </h2>
             </a>
           </Link>
+
           {(item.date || item.creator) &&
             <span className={classNames.itemAuthorAndDate}>
               {route.pathname.indexOf("/search") === 0 &&
