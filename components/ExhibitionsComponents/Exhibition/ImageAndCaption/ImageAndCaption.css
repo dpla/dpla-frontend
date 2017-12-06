@@ -80,6 +80,7 @@
   line-height: 1.1;
   font-family: serifFont;
   font-size: 1.75rem;
+  font-weight: normal;
   @media (min-width: smallRem) {
     font-size: 3rem;
   }

@@ -11,11 +11,11 @@ const tumblrIcon = "/static/images/tumblr.svg";
 const twitterIcon = "/static/images/twitter.svg";
 
 const Footer = () =>
-  <div className={classNames.wrapper}>
+  <footer className={classNames.wrapper}>
     <div className={`${classNames.footer} site-max-width`}>
       <div className="row">
         <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
-          <h3 className={classNames.linkHeader}>DPLA</h3>
+          <h2 className={classNames.linkHeader}>DPLA</h2>
           <ul>
             <li>
               <Link prefetch as="/about-us" href="/about?section=about-us">
@@ -53,7 +53,7 @@ const Footer = () =>
           </ul>
         </div>
         <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
-          <h3 className={classNames.linkHeader}>Tools</h3>
+          <h2 className={classNames.linkHeader}>Tools</h2>
           <ul>
             <li>
               <Link prefetch href="/search">
@@ -83,7 +83,7 @@ const Footer = () =>
           </ul>
         </div>
         <div className={`${classNames.linkGroup} col-xs-12 col-sm-4 col-md-3`}>
-          <h3 className={classNames.linkHeader}>Pro Community</h3>
+          <h2 className={classNames.linkHeader}>Pro Community</h2>
           <ul>
             <li>
               <Link prefetch href="//pro.dp.la/about">
@@ -192,6 +192,6 @@ const Footer = () =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </div>;
+  </footer>;
 
 export default Footer;

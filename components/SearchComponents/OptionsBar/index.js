@@ -87,7 +87,7 @@ class OptionsBar extends React.Component {
     return (
       <div className={classNames.wrapper}>
         <div className={[container, classNames.optionsBar].join(" ")}>
-          <p className={classNames.resultsCount}>
+          <h1 className={classNames.resultsCount}>
             <span>{addCommasToNumber(this.props.itemCount)} results </span>
             {this.props.route.query.q &&
               <span className={classNames.resultsCountQuery}>
@@ -96,7 +96,7 @@ class OptionsBar extends React.Component {
                   {this.props.route.query.q}
                 </span>
               </span>}
-          </p>
+          </h1>
           <p className={classNames.pageNumber}>Page {currentPage}</p>
           <button
             onClick={() => onClickToggleFilters()}

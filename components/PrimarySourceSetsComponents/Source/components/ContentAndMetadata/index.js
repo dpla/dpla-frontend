@@ -72,7 +72,7 @@ const ContentAndMetadata = ({ source }) => {
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, container].join(" ")}>
-        <h2
+        <h1
           dangerouslySetInnerHTML={{
             __html: markdownit.renderInline(source.name)
           }}
@@ -174,9 +174,9 @@ const ContentAndMetadata = ({ source }) => {
                 </div>}
             </div>
             <div className={classNames.tipsForStudents}>
-              <h3 className={classNames.tipsForStudentsHeader}>
+              <h2 className={classNames.tipsForStudentsHeader}>
                 Tips for Students
-              </h3>
+              </h2>
               <p className={classNames.tipDirections}>
                 For this source, consider:
               </p>

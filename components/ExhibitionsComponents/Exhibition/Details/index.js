@@ -10,9 +10,9 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
   <div className={classNames.wrapper}>
     <div className={[container, classNames.details].join(" ")}>
       <div className={classNames.tableOfContents}>
-        <p className={classNames.tableOfContentsHeader}>
+        <h2 className={classNames.tableOfContentsHeader}>
           In This Exhibition
-        </p>
+        </h2>
         <div className={classNames.tableOfContentsContents}>
           <ul className={classNames.tableOfContentsSections}>
             {exhibition.sections.map(section =>

@@ -16,7 +16,7 @@ const RelatedSets = ({ sets }) => {
   return (
     <div className={classNames.wrapper}>
       <div className={[container, classNames.relatedSets].join(" ")}>
-        <h3 className={classNames.header}>Related Primary Source Sets</h3>
+        <h2 className={classNames.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={5}
           infinite={false}

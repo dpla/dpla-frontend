@@ -40,7 +40,7 @@ const HomePageSlider = ({
   >
     <div className={`${classNames.content} site-max-width`}>
       <div className={classNames.heading}>
-        <h1 className={classNames.title}>{title}</h1>
+        <h2 className={classNames.title}>{title}</h2>
         <Link prefetch href={browseLinkUrl}>
           <a className={`hover-underline ${classNames.moreLink}`}>
             Browse all{" "}
