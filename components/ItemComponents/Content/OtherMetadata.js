@@ -16,7 +16,7 @@ const FacetLink = ({ facet, value, facetLabel }) =>
     >
       <a
         className="link"
-        title={`Find more items from ${facetLabel || facet} ${value}`}
+        title={`Find more items with ${facetLabel || facet} "${value}"`}
       >
         {value}
       </a>
