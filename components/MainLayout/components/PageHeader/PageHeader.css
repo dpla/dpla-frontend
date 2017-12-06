@@ -1,15 +1,9 @@
-@value hippieBlue, secondaryButtonColor from "../../../../css/colors.css";
+@value userSiteColor, secondaryButtonColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .headerSearchBar {
-  display: none;
-  background-color: hippieBlue;
+  background-color: userSiteColor;
   width: 100%;
-
-  /* The SmallScreenGlobalHeader component handles the navigation on small screens */
-  @media (min-width: mediumRem) {
-    display: block;
-  }
 }
 
 .flexWrapper {
@@ -27,8 +21,12 @@
   align-items: center;
   display: flex;
   height: 2.5rem;
-  width: 50%;
+  width: auto;
   margin-left: auto;
+
+  @media (min-width: mediumRem) {
+    width: 50%;
+  }
 }
 
 .searchInput {
@@ -76,16 +74,13 @@
   }
 }
 
-.searchIcon {
-  width: 1rem;
-  height: 1rem;
-  position: relative;
-  margin-right: .5rem;
-  margin-top: .05rem;
-}
-
 .logo {
   padding: 0.5rem 0;
+  display: none; /* hide logo in small screens */
+
+  @media (min-width: mediumRem) {
+    display: block;
+  }
 
   @media (min-width: largeRem) {
     padding: 1rem 0;

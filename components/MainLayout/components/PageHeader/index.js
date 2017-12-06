@@ -29,7 +29,6 @@ const PageHeader = ({ searchQuery }) =>
           defaultValue={searchQuery}
         />
         <button type="submit" className={classNames.searchButton}>
-          <img aria-hidden src={searchIcon} className={classNames.searchIcon} />
           Search
         </button>
       </form>
