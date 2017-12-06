@@ -28,7 +28,6 @@ const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
         />
       </button>
       <h2 className={classNames.title}>
-        <span className={classNames.titleSection}>{section.title}</span>
         <span className={classNames.titleSubsection}>{subsection.title}</span>
       </h2>
     </div>
