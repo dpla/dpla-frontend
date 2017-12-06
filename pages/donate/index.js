@@ -57,7 +57,7 @@ const Donate = ({ url }) =>
                 srcset="/static/images/adena_lo.jpg,
                         /static/images/adena_hi.jpg 2x"
                 src="/static/images/adena_lo.jpg"
-                alt="Adena, a high school school teacher in West Virginia, leads her students through a demonstration of DPLA's web site"
+                alt="Adena, a high school school teacher in West Virginia, leads her students in a U.S. History lesson using DPLA Primary Source Sets."
               />
               <span>Adena, a high school school teacher in West Virginia</span>
             </div>
