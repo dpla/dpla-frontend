@@ -12,6 +12,7 @@ const { container } = utilClassNames;
 
 const SourceSetSources = ({ route, sources }) =>
   <div className={classNames.wrapper}>
+    <h2 className="invisible">Source Set</h2>
     <div className={[classNames.sourceSetSources, container].join(" ")}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);

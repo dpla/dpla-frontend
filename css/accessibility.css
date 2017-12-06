@@ -1,0 +1,10 @@
+/* Semantic, nonvisible element for accessibility and SEO */
+/* @see https://webaim.org/techniques/css/invisiblecontent/ */
+:global .invisible {
+  position: absolute;
+  left: -1000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

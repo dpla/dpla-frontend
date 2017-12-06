@@ -35,7 +35,7 @@ const FromTheBlog = (/* data */) =>
       <ul className="row">
         <div className="col-xs-12 col-md-3">
           <div className={classNames.header}>
-            <h1 className={classNames.headerText}>From the Blog</h1>
+            <h2 className={classNames.headerText}>From the Blog</h2>
             <Link prefetch href="">
               <a className={`hover-underline ${classNames.headerLink}`}>
                 <span>Browse the blog</span>
@@ -51,13 +51,13 @@ const FromTheBlog = (/* data */) =>
         {mockPosts.map((post, index) =>
           <li key={post.id} className="col-xs-12 col-md-3">
             <div className={index === 0 && classNames.firstPost}>
-              <h2 className={classNames.postLink}>
+              <div className={classNames.postLink}>
                 <Link prefetch href="">
                   <a>
                     {post.headline}
                   </a>
                 </Link>
-              </h2>
+              </div>
               <div className={classNames.date}>
                 {post.date}
               </div>
