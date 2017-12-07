@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, colderBackgroundColor, subLinkColor, elephantBlue, onionBrown, black, casablancaOrange from "../../../css/colors.css";
+@value linkColor, outlineColor, warmerBackgroundColor, colderBackgroundColor, subLinkColor, elephantBlue, onionBrown, black, casablancaOrange from "../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -145,7 +145,7 @@
   }
 
   &:focus {
-    outline: none;
+    outline: 4px solid outlineColor;
   }
 
   & img {

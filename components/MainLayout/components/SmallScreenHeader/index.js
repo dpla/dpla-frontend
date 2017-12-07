@@ -29,11 +29,7 @@ class SmallScreenHeader extends Component {
     const { isSearchPage, route } = this.props;
 
     return (
-      <div
-        className={`${classNames.wrapper} ${isSearchPage
-          ? classNames.searchPageWrapper
-          : ""}`}
-      >
+      <div className={`${classNames.wrapper}`}>
         <div className={classNames.header}>
           <Link prefetch href="/">
             <a className={classNames.logo}>

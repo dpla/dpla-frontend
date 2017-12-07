@@ -127,11 +127,6 @@
   &::placeholder {
     transition: opacity .15s ease-out;
     color: elephantBlue;
-    opacity: 0.5;
-  }
-
-  &:focus {
-    outline: none;
   }
 
   &:focus + .shadow {

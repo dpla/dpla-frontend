@@ -1,3 +1,4 @@
+@value outlineColor from "../../../css/colors.css";
 @value smallRem, largeRem from "../../../css/breakpoints.css";
 
 .arrow {
@@ -31,7 +32,7 @@
   }
 
   &:focus {
-    outline: none;
+    outline: 4px solid outlineColor;
   }
 
   & img {
