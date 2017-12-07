@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const bgImage = "static/images/home-hero-bg.png";
 const searchIcon = "static/images/search.svg";
-const dplaLogo = "static/images/dpla-logo.svg";
 
 const HomeHero = ({ headerDescription }) =>
   <div
@@ -14,15 +13,14 @@ const HomeHero = ({ headerDescription }) =>
     style={{ backgroundImage: `url(${bgImage})` }}
   >
     <div className={`${classNames.header} site-max-width`}>
-      <div>
-        <img className={classNames.dplaLogo} alt="DPLA" src={dplaLogo} />
+      <div className={classNames.dplaLogo}>
+        <h1>Digital Public Library of America</h1>
       </div>
       <Button type="primary" size="large" url="/donate">
         Donate
       </Button>
     </div>
     <div className={classNames.content}>
-      <h1 className="invisible">Digital Public Library of America</h1>
       <p className={classNames.headline}>{headerDescription}</p>
       <form action="/search">
         <div className={classNames.search}>
