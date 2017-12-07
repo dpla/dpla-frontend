@@ -29,6 +29,11 @@
 
 .dplaLogo {
   width: 24rem;
+  background: url("static/images/dpla-logo.svg") no-repeat 0 50%;
+
+  & h1 {
+    margin-left: -1000rem;
+  }
 }
 
 .content {
