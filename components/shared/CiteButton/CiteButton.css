@@ -27,6 +27,10 @@
   }
 }
 
+.button h2 {
+  font-size: 1rem;
+}
+
 .citationsWrapper {
   background-color: colderBackgroundColor;
   padding: .5rem .5rem;
