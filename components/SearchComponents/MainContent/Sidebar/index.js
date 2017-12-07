@@ -66,6 +66,7 @@ class Sidebar extends React.Component {
       );
     return (
       <div className={classNames.sidebar}>
+        <h2>Refine your search</h2>
         <Accordion
           items={Object.keys(facets).map((key, i) => ({
             name: prettifiedFacetMap[key],

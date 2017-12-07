@@ -46,7 +46,7 @@ class Accordion extends React.Component {
                     className={classNames.itemHeader}
                     onClick={() => this.onClickItem(i)}
                   >
-                    <span>{item.name}</span>
+                    <h3>{item.name}</h3>
                     {item.active &&
                       <img
                         src={subtractIcon}
