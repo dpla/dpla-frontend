@@ -42,7 +42,7 @@ class CiteButton extends React.Component {
             ? classNames.activeButton
             : ""}`}
         >
-          Cite this {toCiteText}
+          <h2>Cite this {toCiteText}</h2>
         </Button>
 
         <div
