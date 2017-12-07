@@ -73,6 +73,9 @@ Topic.getInitialProps = async ({ query, req }) => {
               `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.exhibition_id}`
             );
             const exhibitPageJson = await exhibitPageRes.json();
+            // skip a nil exhibit
+            if (exhibitPageJson.length === 0) return;
+            // end skip nil exhibit
             const homePage =
               exhibitPageJson.find(
                 exhibit =>
