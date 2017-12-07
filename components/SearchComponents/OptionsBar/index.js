@@ -142,10 +142,14 @@ class OptionsBar extends React.Component {
           </button>
           <div className={classNames.options}>
             <div className={classNames.optionWrapper}>
-              <h3 className={classNames.optionHeader}>
+              <h3
+                id="options-bar-page-size-label"
+                className={classNames.optionHeader}
+              >
                 Items per page
               </h3>
               <Select
+                aria-labelledby="options-bar-page-size-label"
                 clearable={false}
                 instanceId="options-bar-page-size"
                 searchable={false}
@@ -158,10 +162,14 @@ class OptionsBar extends React.Component {
               />
             </div>
             <div className={classNames.optionWrapper}>
-              <h3 className={classNames.optionHeader}>
+              <h3
+                id="options-bar-sort-by-label"
+                className={classNames.optionHeader}
+              >
                 Sort by
               </h3>
               <Select
+                aria-labelledby="options-bar-sort-by-label"
                 clearable={false}
                 searchable={false}
                 instanceId="options-bar-sort-by"
