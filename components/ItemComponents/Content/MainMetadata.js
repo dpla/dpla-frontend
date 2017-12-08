@@ -32,9 +32,7 @@ const MainMetadata = ({ item }) =>
     <table className={classNames.contentTable}>
       <tbody>
         <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeadingWrapper}>
-            <h2 className={classNames.tableHeading}>Item</h2>
-          </td>
+          <td className={classNames.tableHeadingWrapper} />
           <td className={classNames.tableItem}>
             <ItemImage
               title=""
