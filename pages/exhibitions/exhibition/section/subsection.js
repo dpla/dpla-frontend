@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import Head from "/components/Head";
-import SkipToContent from "/components/shared/SkipToContent";
-import Content from "/components/ExhibitionsComponents/ExhibitionSection";
+import Head from "../../../../components/Head";
+import SkipToContent from "../../../../components/shared/SkipToContent";
+import Content from "../../../../components/ExhibitionsComponents/ExhibitionSection";
 import {
   getPreviousQueryParams,
   getNextQueryParams

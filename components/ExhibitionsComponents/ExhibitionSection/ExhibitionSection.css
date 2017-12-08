@@ -1,4 +1,4 @@
-@value linkColor, dimmedTextColor, warmerBackgroundColor, secondaryButtonColor, elephantBlue, rockBrown from "../../../css/colors.css";
+@value linkColor, dimmedTextColor, outlineColor, warmerBackgroundColor, secondaryButtonColor, elephantBlue, rockBrown from "../../../css/colors.css";
 @value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -430,6 +430,10 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: #e4e2db;
   margin-bottom: 0.5rem;
+
+  &:focus {
+    outline: 4px solid outlineColor;
+  }
 
   & :global(#openseadragon1) {
     height: 15rem;
