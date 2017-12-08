@@ -36,6 +36,8 @@ class CiteButton extends React.Component {
       <div className={classNames.wrapper}>
         <Button
           onClick={this.toggleCiteButton}
+          controls="citation-content"
+          expanded={this.state.showCitation}
           type="ghost"
           className={`${classNames.button} ${className} ${this.state
             .showCitation
@@ -46,6 +48,8 @@ class CiteButton extends React.Component {
         </Button>
 
         <div
+          id="citation-content"
+          aria-hidden={!this.state.showCitation}
           className={`${classNames.citeButton} ${this.state.showCitation
             ? ""
             : classNames.hidden}`}
