@@ -4,8 +4,11 @@ import Slider from "react-slick";
 
 import { classNames, stylesheet } from "./Suggestions.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
-import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
+import {
+  NextArrow,
+  PrevArrow
+} from "../../../../components/shared/CarouselNavArrows";
+import { stylesheet as navArrowStyles } from "../../../../components/shared/CarouselNavArrows/CarouselNavArrows.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 
 const { container } = utilClassNames;
@@ -27,14 +30,14 @@ const Suggestions = ({ suggestions }) =>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css
         class to target the arrows */}
-      <ul className="dpla-related-resources-carousel">
+      <div className="dpla-related-resources-carousel">
         <Slider
-          slidesToShow={5}
+          slidesToShow={4.5}
           infinite={false}
           nextArrow={<NextArrow className={classNames.navArrow} />}
           prevArrow={<PrevArrow className={classNames.navArrow} />}
           draggable={false}
-          slidesToScroll={5}
+          slidesToScroll={4}
           responsive={[
             {
               breakpoint: ~~breakpoints.smallPx,
@@ -44,19 +47,11 @@ const Suggestions = ({ suggestions }) =>
                 draggable: true,
                 slidesToScroll: 2
               }
-            },
-            {
-              breakpoint: ~~breakpoints.mediumPx,
-              settings: {
-                slidesToShow: 4,
-                draggable: true,
-                slidesToScroll: 4
-              }
             }
           ]}
         >
           {suggestions.map(suggestion =>
-            <li
+            <div
               key={suggestion.title}
               className={[
                 classNames.suggestedItem,
@@ -81,10 +76,10 @@ const Suggestions = ({ suggestions }) =>
                   </div>
                 </a>
               </Link>
-            </li>
+            </div>
           )}
         </Slider>
-      </ul>
+      </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />

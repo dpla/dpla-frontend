@@ -1,6 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
+
+import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
+
 import { stylesheet, classNames } from "./HomePageSlider.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 
@@ -8,22 +11,6 @@ const markdownit = require("markdown-it")({ html: true });
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
 const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
 const largeChevron = "static/images/chevron-thin.svg";
-
-const NextArrow = ({ onClick, className }) =>
-  <button
-    className={`${classNames.arrow} ${classNames.nextArrow} ${className}`}
-    onClick={onClick}
-  >
-    <img alt="Right-pointing arrow" src={largeChevron} />
-  </button>;
-
-const PrevArrow = ({ onClick, className }) =>
-  <button
-    className={`${classNames.arrow} ${classNames.prevArrow} ${className}`}
-    onClick={onClick}
-  >
-    <img alt="Left-pointing arrow" src={largeChevron} />
-  </button>;
 
 const HomePageSlider = ({
   browseLinkName,
@@ -57,8 +44,16 @@ const HomePageSlider = ({
       <Slider
         slidesToShow={slidesToShow ? slidesToShow : 3}
         infinite={false}
-        nextArrow={<NextArrow />}
-        prevArrow={<PrevArrow />}
+        nextArrow={
+          <NextArrow
+            className={`${classNames.arrow} ${classNames.nextArrow}`}
+          />
+        }
+        prevArrow={
+          <PrevArrow
+            className={`${classNames.arrow} ${classNames.prevArrow}`}
+          />
+        }
         draggable={false}
         slidesToScroll={slidesToShow ? slidesToShow : 3}
         responsive={[
