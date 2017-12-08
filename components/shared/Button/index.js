@@ -7,6 +7,8 @@ const Button = ({
   as,
   children,
   className = "",
+  controls,
+  expanded,
   icon,
   onClick,
   prefetch,
@@ -18,6 +20,10 @@ const Button = ({
   url
 }) => {
   let buttonClasses = `${className} ${classNames.buttonBase}`;
+
+  let props = {};
+  if (controls) props["aria-controls"] = controls;
+  if (expanded !== undefined) props["aria-expanded"] = expanded;
 
   switch (type) {
     case "primary":
@@ -56,11 +62,12 @@ const Button = ({
     >
       {url
         ? <Link prefetch={prefetch} href={url} as={as}>
-            <a title={title} className={buttonClasses} style={style}>
+            <a {...props} title={title} className={buttonClasses} style={style}>
               {children}
             </a>
           </Link>
         : <button
+            {...props}
             type="button"
             onClick={onClick}
             onTouchEnd={onClick}
