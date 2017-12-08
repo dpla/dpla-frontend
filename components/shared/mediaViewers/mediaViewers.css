@@ -1,4 +1,4 @@
-@value warmerBackgroundColor from "../../../css/colors.css";
+@value warmerBackgroundColor, outlineColor from "../../../css/colors.css";
 
 .zoomableImageViewer {
   width: 100%;
@@ -11,9 +11,10 @@
     width: 35px;
   }
 
+  &:focus,
   & canvas:focus,
   & div:focus {
-    outline: none;
+    outline: 4px solid outlineColor;
   }
 }
 
