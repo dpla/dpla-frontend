@@ -16,12 +16,12 @@ const Exhibition = ({ exhibition, route, featured }) =>
     }}
   >
     <a className={classNames.exhibition}>
-      {exhibition.featured &&
+      {featured &&
         <div className={classNames.featuredBanner}>
           Featured
         </div>}
       {exhibition.new &&
-        !exhibition.featured &&
+        !featured &&
         <div className={classNames.newBanner}>New</div>}
       <div
         className={classNames.exhibitionContent}
