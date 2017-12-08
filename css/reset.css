@@ -1,3 +1,6 @@
+@value sansFont from "./typography.css";
+@value linkColor, outlineColor from "./colors.css";
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +9,7 @@ body {
 }
 
 body, button, input, select {
-  font-family: "Source Sans Pro";
+  font-family: sansFont;
 }
 
 input {
@@ -33,6 +36,12 @@ button, input, optgroup, select, textarea {
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
+}
+
+a, button, input, optgroup, select, textarea {
+  &:focus {
+    outline: 4px solid outlineColor;
+  }
 }
 
 figure {
