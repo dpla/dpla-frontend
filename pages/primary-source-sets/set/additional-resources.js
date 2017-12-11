@@ -39,8 +39,11 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
     <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div className={classNames.content}>
-        <div className={container}>
-          <h2 className="invisible">Additional Resources</h2>
+        <div
+          className={container}
+          role="tabpanel"
+          aria-labelledby="tab-teachingguide"
+        >
           <div
             className={`${contentClasses.content} ${container}`}
             dangerouslySetInnerHTML={{
