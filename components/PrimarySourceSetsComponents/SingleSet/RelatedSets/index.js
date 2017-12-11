@@ -18,12 +18,12 @@ const RelatedSets = ({ sets }) => {
       <div className={[container, classNames.relatedSets].join(" ")}>
         <h2 className={classNames.header}>Related Primary Source Sets</h2>
         <Slider
-          slidesToShow={5}
+          slidesToShow={4.5}
           infinite={false}
           nextArrow={<NextArrow className={classNames.navArrow} />}
           prevArrow={<PrevArrow className={classNames.navArrow} />}
           draggable={false}
-          slidesToScroll={5}
+          slidesToScroll={4}
           responsive={[
             {
               breakpoint: ~~breakpoints.smallPx,
@@ -32,14 +32,6 @@ const RelatedSets = ({ sets }) => {
                 arrows: false,
                 draggable: true,
                 slidesToScroll: 2
-              }
-            },
-            {
-              breakpoint: ~~breakpoints.mediumPx,
-              settings: {
-                slidesToShow: 4,
-                draggable: true,
-                slidesToScroll: 4
               }
             }
           ]}

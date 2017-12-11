@@ -43,11 +43,7 @@
 }
 
 .sortByText {
-  display: none;
+  display: inline-block;
   color: dimmedTextColor;
   margin-right: 0.25rem;
-
-  @media (min-width: mediumRem) {
-    display: inline-block;
-  }
 }

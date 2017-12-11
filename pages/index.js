@@ -27,6 +27,7 @@ import { PSS_BASE_URL } from "constants/site";
 
 import { stylesheet } from "../components/HomePageComponents/HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "../components/shared/GuideLink/GuideLink.css";
+import { stylesheet as arrowStylesheet } from "../components/shared/CarouselNavArrows/CarouselNavArrows.css";
 
 const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <MainLayout hideSearchBar>
@@ -55,6 +56,7 @@ const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
       {/* <SocialMedia /> */}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;
 
