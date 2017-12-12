@@ -135,14 +135,6 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 ? activePage.fullsizeImgUrl
                 : activePage.originalUrl
             )}
-            {itemId &&
-              <Link
-                prefetch
-                as={`/item/${itemId}`}
-                href={`/item?itemId=${itemId}`}
-              >
-                <a className={classNames.viewItemLink}>View item in DPLA</a>
-              </Link>}
             {nextPage &&
               <Link
                 prefetch
@@ -176,6 +168,14 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
               </li>
             )}
           </ul>
+          {itemId &&
+            <Link
+              prefetch
+              as={`/item/${itemId}`}
+              href={`/item?itemId=${itemId}`}
+            >
+              <a className={classNames.viewItemLink}>View item in DPLA</a>
+            </Link>}
           <div
             className={classNames.caption}
             dangerouslySetInnerHTML={{

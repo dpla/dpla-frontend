@@ -4,12 +4,6 @@
 
 .exhibitionView {
   background-color: warmerBackgroundColor;
-  min-height: 100vh;
-  padding-bottom: 3rem;
-
-  @media (min-width: smallRem) {
-    padding-bottom: 7.125rem;
-  }
 }
 
 .exhibitionsLinkAndTitle {
@@ -174,10 +168,6 @@
 .footerWrapper {
   background-color: rgba(228, 226, 219, 0.98);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  width: 100%;
 }
 
 .header {
@@ -533,11 +523,6 @@
 }
 
 .viewItemLink {
-  position: absolute;
-  left: 0.2rem;
-  bottom: 0.2rem;
-  background: white;
-  padding: .5rem .75rem;
 }
 
 .closeMenuButton {
