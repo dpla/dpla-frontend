@@ -24,6 +24,14 @@ const Footer = () =>
             </li>
             <li>
               <Link
+                as="/about/our-supporters"
+                href="/about?section=our-supporters"
+              >
+                <a>Our Supporters</a>
+              </Link>
+            </li>
+            <li>
+              <Link
                 as="/about/frequently-asked-questions"
                 href="/about?section=frequently-asked-questions"
               >
