@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
 
+import { GUIDES_PARENT_ID } from "constants/content-pages";
 import { classNames, stylesheet } from "./Sidebar.css";
 import { decodeHTMLEntities } from "utilFunctions";
 import HeadingRule from "components/shared/HeadingRule";
 
 const SidebarLink = ({
   isCurrentLink,
+  isGuide,
   linkObject,
   title,
   section,
@@ -17,7 +19,9 @@ const SidebarLink = ({
       as={
         linkObject && linkObject.as
           ? linkObject.as
-          : `/${section}/${subsection ? subsection : ""}`
+          : `/${isGuide ? `guides` : `about`}${!subsection && !isGuide
+              ? `/${section}`
+              : ``}${subsection ? `/${subsection}` : ""}`
       }
       href={
         linkObject && linkObject.href
@@ -37,8 +41,8 @@ const SidebarLink = ({
 };
 
 const NestedSidebarLinks = ({
-  key,
   isCurrentLink,
+  isGuide,
   linkObject,
   title,
   section,
@@ -47,22 +51,24 @@ const NestedSidebarLinks = ({
   children
 }) => {
   return (
-    <li>
+    <div>
       <SidebarLink
         linkObject={linkObject}
         title={title}
         section={section}
         subsection={subsection}
+        isGuide={isGuide}
         isCurrentLink={isCurrentLink}
       />
       {children.length
         ? <ul>
             {children.map(child =>
-              <li key={child.id}>
+              <li key={child.ID}>
                 <SidebarLink
                   title={decodeHTMLEntities(child.title)}
                   section={section}
                   subsection={child.post_name}
+                  isGuide={isGuide}
                   isCurrentLink={child.url.match(
                     new RegExp(activeItemId + "$")
                   )}
@@ -71,7 +77,7 @@ const NestedSidebarLinks = ({
             )}
           </ul>
         : null}
-    </li>
+    </div>
   );
 };
 
@@ -84,15 +90,20 @@ const Sidebar = ({ activeItemId, items, route }) =>
             child => child.menu_item_parent === item.object_id
           );
           return (
-            <NestedSidebarLinks
-              key={item.ID}
-              title={decodeHTMLEntities(item.title)}
-              url={item.url}
-              section={item.post_name}
-              isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
-              children={children}
-              activeItemId={activeItemId}
-            />
+            <li key={item.ID}>
+              <NestedSidebarLinks
+                title={decodeHTMLEntities(item.title)}
+                url={item.url}
+                section={item.post_name}
+                isGuide={
+                  item.menu_item_parent === GUIDES_PARENT_ID ||
+                  item.ID === GUIDES_PARENT_ID
+                }
+                isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
+                children={children}
+                activeItemId={activeItemId}
+              />
+            </li>
           );
         })}
       </ul>

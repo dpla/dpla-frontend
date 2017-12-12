@@ -142,7 +142,7 @@ app
 
     // exhibitions routes
 
-    server.get(["/exhibitions/", "/exhibitions"], (req, res) => {
+    server.get(["/exhibitions", "/exhibitions"], (req, res) => {
       const actualPage = "/exhibitions";
       renderAndCache(req, res, actualPage, req.query);
     });
@@ -176,7 +176,7 @@ app
     });
 
     // empty subsection signals that the Introduction subsection should be used
-    server.get("/exhibitions/:exhibition/:section/", (req, res) => {
+    server.get("/exhibitions/:exhibition/:section", (req, res) => {
       const actualPage = "/exhibitions/exhibition/section/subsection";
       const params = {
         exhibition: req.params.exhibition,
@@ -193,19 +193,19 @@ app
 
     // donate routes
 
-    server.get(["/donate", "/donate/"], (req, res) => {
+    server.get(["/donate", "/donate"], (req, res) => {
       app.render(req, res, "/donate", req.query);
     });
 
     // contact us routes
 
-    server.get(["/contact-us", "/contact-us/"], (req, res) => {
+    server.get(["/contact-us", "/contact-us"], (req, res) => {
       app.render(req, res, "/contact-us", req.query);
     });
 
     // search routes
 
-    server.get(["/search", "/search/"], (req, res) => {
+    server.get(["/search", "/search"], (req, res) => {
       // need this because the search API doesn't recognize "all" but we need
       // to pass some value in through the select on the homepage
       if (req.query["type"] && req.query["type"] === "all") {
@@ -219,7 +219,7 @@ app
     // item routes
 
     server.get("/item/:itemId", (req, res) => {
-      const actualPage = "/item/";
+      const actualPage = "/item";
       const params = {
         itemId: req.params.itemId
       };
@@ -251,6 +251,17 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    server.get("/about", (req, res) => {
+      const actualPage = "/about";
+      const params = { section: "about-us" }; // because WP has 'about-us'
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     server.get("/about/:section", (req, res) => {
       const actualPage = "/about";
       const params = {
@@ -264,10 +275,24 @@ app
       );
     });
 
+    server.get("/about/:section/:subsection", (req, res) => {
+      const actualPage = "/about";
+      const params = {
+        section: req.params.section,
+        subsection: req.params.subsection
+      };
+      renderAndCache(
+        req,
+        res,
+        actualPage,
+        mergeQueryAndParams(params, req.query)
+      );
+    });
+
     // API proxy routes
 
     server.get(
-      "/api/exhibitions/",
+      "/api/exhibitions",
       proxy(process.env.OMEKA_URL, {
         proxyReqPathResolver: function(req) {
           return req.url.replace("api/exhibitions", "api/exhibits");
@@ -284,7 +309,7 @@ app
     );
 
     server.get(
-      "/api/files/",
+      "/api/files",
       proxy(process.env.OMEKA_URL, {
         userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
           const data = JSON.parse(proxyResData.toString("utf8"));
@@ -349,34 +374,6 @@ app
       return handle(req, res);
     });
 
-    server.get("/:section/:subsection", (req, res) => {
-      const actualPage = "/about";
-      const params = {
-        section: req.params.section,
-        subsection: req.params.subsection
-      };
-      renderAndCache(
-        req,
-        res,
-        actualPage,
-        mergeQueryAndParams(params, req.query)
-      );
-    });
-
-    server.get(["/:section/", "/:section"], (req, res) => {
-      const actualPage = "/about";
-      const params = {
-        section: req.params.section
-      };
-
-      renderAndCache(
-        req,
-        res,
-        actualPage,
-        mergeQueryAndParams(params, req.query)
-      );
-    });
-
     // handle all other requests
 
     server.get("*", (req, res) => {
@@ -393,29 +390,35 @@ app
     process.exit(1);
   });
 
+/*
+ * NB: make sure to modify this to take into account anything that should trigger
+ * an immediate page change (e.g a locale stored in req.session)
+ */
+function getCacheKey(req) {
+  return `${req.url}`;
+}
+
 function renderAndCache(req, res, pagePath, queryParams) {
-  if (dev) {
-    app.render(req, res, pagePath, queryParams);
-    return;
-  }
+  const key = getCacheKey(req);
+
   // If we have a page in the cache, let's serve it
-  if (ssrCache.has(req.url)) {
-    console.log(`CACHE HIT: ${req.url}`);
-    res.send(ssrCache.get(req.url));
+  if (ssrCache.has(key)) {
+    console.log(`CACHE HIT: ${key}`);
+    res.send(ssrCache.get(key));
     return;
   }
+
   // If not let's render the page into HTML
   app
     .renderToHTML(req, res, pagePath, queryParams)
     .then(html => {
       // Let's cache this page
-      console.log(`CACHE MISS: ${req.url}`);
-      ssrCache.set(req.url, html);
-      res.header("Cache-Control", "no-cache, must-revalidate");
+      console.log(`CACHE MISS: ${key}`);
+      ssrCache.set(key, html);
+
       res.send(html);
     })
     .catch(err => {
-      console.error(err.stack);
-      res.status(500).send("Internal Error");
+      app.renderError(err, req, res, pagePath, queryParams);
     });
 }
