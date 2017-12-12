@@ -18,36 +18,42 @@ const Footer = () =>
           <h2 className={classNames.linkHeader}>DPLA</h2>
           <ul>
             <li>
-              <Link prefetch as="/about-us" href="/about?section=about-us">
-                About DPLA
+              <Link as="/about" href="/about?section=about-us">
+                <a>About DPLA</a>
               </Link>
             </li>
             <li>
               <Link
-                prefetch
-                as="/frequently-asked-questions"
+                as="/about/our-supporters"
+                href="/about?section=our-supporters"
+              >
+                <a>Our Supporters</a>
+              </Link>
+            </li>
+            <li>
+              <Link
+                as="/about/frequently-asked-questions"
                 href="/about?section=frequently-asked-questions"
               >
-                FAQ
+                <a>FAQ</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/guides">
-                How Can I Use DPLA?
+              <Link href="/guides">
+                <a>How Can I Use DPLA?</a>
               </Link>
             </li>
             <li>
               <Link
-                prefetch
-                as="terms-conditions"
+                as="/about/terms-conditions"
                 href="/about?section=terms-conditions"
               >
-                Terms &amp; Conditions
+                <a>Terms &amp; Conditions</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/contact-us">
-                Contact Us
+              <Link href="/contact-us">
+                <a>Contact Us</a>
               </Link>
             </li>
           </ul>
@@ -56,28 +62,28 @@ const Footer = () =>
           <h2 className={classNames.linkHeader}>Tools</h2>
           <ul>
             <li>
-              <Link prefetch href="/search">
-                Search
+              <Link href="/search">
+                <a>Search</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/exhibitions">
-                Exhibitions
+              <Link href="/exhibitions">
+                <a>Exhibitions</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/primary-source-sets">
-                Primary Source Sets
+              <Link href="/primary-source-sets">
+                <a>Primary Source Sets</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/browse-by-topic">
-                Browse by Topic
+              <Link href="/browse-by-topic">
+                <a>Browse by Topic</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/browse-by-partner">
-                Browse by Partner
+              <Link href="/browse-by-partner">
+                <a>Browse by Partner</a>
               </Link>
             </li>
           </ul>
@@ -86,28 +92,28 @@ const Footer = () =>
           <h2 className={classNames.linkHeader}>Pro Community</h2>
           <ul>
             <li>
-              <Link prefetch href="//pro.dp.la/about">
-                About DPLA Pro Community
+              <Link href="//pro.dp.la/about">
+                <a>About DPLA Pro Community</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="//pro.dp.la/hubs">
-                Hubs
+              <Link href="//pro.dp.la/hubs">
+                <a>Hubs</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="//pro.dp.la/projects">
-                Projects
+              <Link href="//pro.dp.la/projects">
+                <a>Projects</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="//pro.dp.la/educators">
-                Educators
+              <Link href="//pro.dp.la/educators">
+                <a>Educators</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="//pro.dp.la/developers">
-                Developers
+              <Link href="//pro.dp.la/developers">
+                <a>Developers</a>
               </Link>
             </li>
           </ul>

@@ -16,15 +16,14 @@
   }
 }
 
-.partners:first-child {
-  @media (min-width: mediumRem) {
-    padding-right: 3rem;
-  }
-}
+.partners {
+  padding: 0 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 6rem;
 
-.partners:last-child {
-  @media (min-width: mediumRem) {
-    padding-left: 3rem;
+  @media (max-width: mediumRem) {
+    grid-template-columns: 1fr;
   }
 }
 
