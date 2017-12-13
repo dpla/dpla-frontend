@@ -37,7 +37,7 @@ const SetsList = ({ sets, route }) =>
                 query: removeQueryParams(route.query)
               }}
             >
-              <a>
+              <a aria-hidden>
                 <img
                   alt=""
                   src={set.repImageUrl || set.thumbnailUrl}
