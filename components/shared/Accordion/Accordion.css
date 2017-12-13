@@ -10,6 +10,7 @@
 
 .inactive .subitems {
   overflow: hidden;
+  visibility: hidden;
   padding: 0 !important;
   height: 0;
 }
