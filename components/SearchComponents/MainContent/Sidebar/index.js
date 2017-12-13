@@ -19,7 +19,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           {`${termObject.term} `}
         </span>
         <span className={classNames.facetCount}>
-          ({addCommasToNumber(termObject.count)})
+          {addCommasToNumber(termObject.count)}
         </span>
       </span>
     : <Link
@@ -40,7 +40,7 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
             {`${termObject.term} `}
           </span>
           <span className={classNames.facetCount}>
-            ({addCommasToNumber(termObject.count)})
+            {addCommasToNumber(termObject.count)}
           </span>
         </a>
       </Link>;
