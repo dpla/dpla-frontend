@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "components/shared/Button";
+import Button from "../../shared/Button";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
@@ -28,12 +28,14 @@ class DualStateButton extends React.Component {
   render() {
     return (
       <Button
+        labelledby={this.props.labelledby}
         type="donate"
         size={this.props.size}
         onClick={() => this.props.onClick()}
         state={this.props.active ? "active" : ""}
+        selected={this.props.active}
       >
-        {this.props.text}
+        <span id={this.props.id}>{this.props.text}</span>
       </Button>
     );
   }
@@ -92,40 +94,49 @@ class DonateForm extends React.Component {
 
   render() {
     return (
-      <form action="">
-        <h2>Frequency</h2>
-        <div className={`row start-xs`}>
+      <form action="" className={contentClasses.donateForm}>
+        <h2 id="donation-frequency">Frequency</h2>
+        <ul className={`row start-xs`}>
           {frequencyMap.map((freq, i) =>
-            <DualStateButton
-              key={"freq" + i}
-              text={freq.k}
-              value={freq.v}
-              size="large"
-              onClick={() => this.handleFrequencyClick(freq.v)}
-              active={this.state.frequency === freq.v}
-            />
+            <li className={`col-xs-12 col-md-4`}>
+              <DualStateButton
+                id={"freq" + i}
+                labelledby={"donation-frequency freq" + i}
+                key={"freq" + i}
+                text={freq.k}
+                value={freq.v}
+                size="large"
+                onClick={() => this.handleFrequencyClick(freq.v)}
+                active={this.state.frequency === freq.v}
+              />
+            </li>
           )}
-        </div>
-        <h2>Donation amount</h2>
-        <div className={`row`}>
+        </ul>
+        <h2 id="donation-amount">Donation amount</h2>
+        <ul className={`row`}>
           {amountMap.map((amt, i) =>
-            <DualStateButton
-              key={"amt" + i}
-              text={amt.k}
-              value={amt.v}
-              onClick={() => this.handleAmountClick(amt.v)}
-              active={this.state.amount === amt.v}
-            />
+            <li className={`col-xs-6 col-md-4`}>
+              <DualStateButton
+                id={"amt" + i}
+                labelledby={"donation-amount amt" + i}
+                key={"amt" + i}
+                text={amt.k}
+                value={amt.v}
+                onClick={() => this.handleAmountClick(amt.v)}
+                active={this.state.amount === amt.v}
+              />
+            </li>
           )}
-          <div className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
+          <li className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
             <input
               type="text"
+              aria-label="Give other amount"
               placeholder="$ Other amount"
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
             />
-          </div>
-        </div>
+          </li>
+        </ul>
         <hr />
         <div className={`row`}>
           <div className={`col-xs-12 col-md-4`}>

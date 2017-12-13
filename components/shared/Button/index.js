@@ -4,10 +4,14 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Button.css";
 
 const Button = ({
+  id,
   as,
   children,
   className = "",
   controls,
+  label,
+  labelledby,
+  selected,
   expanded,
   icon,
   onClick,
@@ -22,7 +26,11 @@ const Button = ({
   let buttonClasses = `${className} ${classNames.buttonBase}`;
 
   let props = {};
+  if (id) props["id"] = id;
   if (controls) props["aria-controls"] = controls;
+  if (label) props["aria-label"] = label;
+  if (selected) props["aria-selected"] = selected;
+  if (labelledby) props["aria-labelledby"] = labelledby;
   if (expanded !== undefined) props["aria-expanded"] = expanded;
 
   switch (type) {
@@ -55,9 +63,7 @@ const Button = ({
   return (
     <div
       className={
-        type === "donate" && size === "large"
-          ? `col-xs-12 col-md-4`
-          : type === "donate" ? `col-xs-6 col-md-4` : ""
+        type === "donate" && size === "large" ? `` : type === "donate" ? "" : ""
       }
     >
       {url
