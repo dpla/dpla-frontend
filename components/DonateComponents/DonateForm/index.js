@@ -28,14 +28,14 @@ class DualStateButton extends React.Component {
   render() {
     return (
       <Button
-        labelledby={this.props.labelledby}
+        role="radio"
         type="donate"
         size={this.props.size}
         onClick={() => this.props.onClick()}
         state={this.props.active ? "active" : ""}
-        selected={this.props.active}
+        checked={this.props.active}
       >
-        <span id={this.props.id}>{this.props.text}</span>
+        {this.props.text}
       </Button>
     );
   }
@@ -101,7 +101,6 @@ class DonateForm extends React.Component {
             <li className={`col-xs-12 col-md-4`}>
               <DualStateButton
                 id={"freq" + i}
-                labelledby={"donation-frequency freq" + i}
                 key={"freq" + i}
                 text={freq.k}
                 value={freq.v}

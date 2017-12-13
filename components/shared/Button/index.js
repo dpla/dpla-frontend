@@ -11,7 +11,9 @@ const Button = ({
   controls,
   label,
   labelledby,
+  role,
   selected,
+  checked,
   expanded,
   icon,
   onClick,
@@ -29,7 +31,9 @@ const Button = ({
   if (id) props["id"] = id;
   if (controls) props["aria-controls"] = controls;
   if (label) props["aria-label"] = label;
+  if (role) props["role"] = role;
   if (selected) props["aria-selected"] = selected;
+  if (checked) props["aria-checked"] = checked;
   if (labelledby) props["aria-labelledby"] = labelledby;
   if (expanded !== undefined) props["aria-expanded"] = expanded;
 
