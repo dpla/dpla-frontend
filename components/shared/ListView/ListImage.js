@@ -30,7 +30,7 @@ class ListImage extends React.Component {
           ${useDefaultWrapper && classNames.defaultImageWrapper}`}
       >
         <Link href={this.state.item.linkHref} as={this.state.item.linkAs}>
-          <a className={`${classNames.listItemImageLink}`}>
+          <a className={`${classNames.listItemImageLink}`} aria-hidden>
             <img
               src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
               alt=""
