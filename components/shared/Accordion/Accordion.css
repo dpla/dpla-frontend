@@ -3,15 +3,16 @@
 .subitems {
   height: auto;
   background-color: warmerBackgroundColor;
-  padding: 9px 11px 13px;
-  max-height: 240px;
+  padding: 0.5rem 0.7rem 0.7rem;
+  max-height: 18rem;
   overflow-y: scroll;
+  transition: all 0.2s ease-in-out;
 }
 
 .inactive .subitems {
-  overflow: hidden;
-  padding: 0 !important;
-  height: 0;
+  visibility: hidden;
+  padding: 0 0.7rem;
+  max-height: 0;
 }
 
 .inactive, .active {

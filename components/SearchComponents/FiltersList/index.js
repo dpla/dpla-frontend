@@ -39,7 +39,11 @@ const Filter = ({ name, queryKey, route }) =>
         query: Object.assign({}, clearFacet(route.query, queryKey, name))
       }}
     >
-      <a className={classNames.filterLink}>
+      <a
+        className={classNames.filterLink}
+        title={`Remove ${name} filter`}
+        aria-label={`Remove ${name} filter`}
+      >
         <span className={classNames.filterText}>{name}</span>
         <img src={closeIcon} className={classNames.closeIcon} alt="" />
       </a>

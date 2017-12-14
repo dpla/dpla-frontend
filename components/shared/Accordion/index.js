@@ -32,11 +32,11 @@ class Accordion extends React.Component {
 
   render() {
     return (
-      <div>
+      <ul>
         {this.state.items.map(
           (item, i) =>
             item.subitems.length
-              ? <div
+              ? <li
                   key={i}
                   className={
                     item.active ? classNames.active : classNames.inactive
@@ -44,6 +44,8 @@ class Accordion extends React.Component {
                 >
                   <button
                     className={classNames.itemHeader}
+                    aria-controls={`facets_${i}`}
+                    aria-expanded={item.active}
                     onClick={() => this.onClickItem(i)}
                   >
                     <h3>{item.name}</h3>
@@ -60,16 +62,16 @@ class Accordion extends React.Component {
                         className={classNames.addIcon}
                       />}
                   </button>
-                  <ul className={classNames.subitems}>
+                  <ul id={`facets_${i}`} className={classNames.subitems}>
                     {item.subitems.map((subitem, j) =>
                       <li key={j}>{subitem.content}</li>
                     )}
                   </ul>
-                </div>
+                </li>
               : null
         )}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-      </div>
+      </ul>
     );
   }
 }

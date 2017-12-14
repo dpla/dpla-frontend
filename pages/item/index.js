@@ -39,7 +39,7 @@ const ItemDetail = ({
       /* paginationInfo={paginationInfo} */
       breadcrumbs={[
         {
-          title: url.query.q ? `Search for “${url.query.q}”` : "Search",
+          title: url.query.q ? `Search for: ${url.query.q}` : "Search",
           url: {
             pathname: "/search",
             query: removeQueryParams(url.query, ["itemId, next, previous"])
