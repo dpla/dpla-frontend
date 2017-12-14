@@ -11,33 +11,27 @@ class Body extends React.Component {
   state = { isMenuOpen: false };
 
   toggleMenu() {
-    this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
-      document.body.classList.toggle("small-screen-overlay");
-    });
+    this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {});
   }
 
-  componentWillUnmount() {
-    if (document.body.classList.contains("small-screen-overlay")) {
-      document.body.classList.remove("small-screen-overlay");
-    }
-  }
+  componentWillUnmount() {}
 
   render() {
     const { exhibition, section, subsection, route } = this.props;
     return (
       <div className={[container, classNames.body].join(" ")}>
-        <Sidebar
-          exhibition={exhibition}
-          currentSubsection={subsection}
-          currentSection={section}
-          isShowing={this.state.isMenuOpen}
+        <Subheader
+          onClickMenuButton={() => this.toggleMenu()}
+          section={section}
+          subsection={subsection}
+          isMenuOpen={this.state.isMenuOpen}
         />
-        <div id="main">
-          <Subheader
-            onClickMenuButton={() => this.toggleMenu()}
-            section={section}
-            subsection={subsection}
-            isMenuOpen={this.state.isMenuOpen}
+        <div id="main" className={classNames.mainContent}>
+          <Sidebar
+            exhibition={exhibition}
+            currentSubsection={subsection}
+            currentSection={section}
+            isShowing={this.state.isMenuOpen}
           />
           <Viewer
             route={route}

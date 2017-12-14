@@ -12,7 +12,7 @@ import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
-const chevron = "/static/images/chevron-thin.svg";
+const chevron = "/static/images/chevron-thick-black.svg";
 
 const getItemIdFromOmeka = itemJson =>
   itemJson.element_texts
@@ -105,6 +105,9 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
 
   return (
     <div className={classNames.viewer}>
+      <h2 className={classNames.titleSubsection}>
+        {subsection.title}
+      </h2>
       <div className={classNames.viewerContent}>
         <div className={classNames.mediaAndCaption}>
           <div className={classNames.mainMedia}>

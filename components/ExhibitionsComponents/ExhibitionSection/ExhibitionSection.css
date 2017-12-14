@@ -1,5 +1,5 @@
-@value linkColor, dimmedTextColor, outlineColor, warmerBackgroundColor, secondaryButtonColor, elephantBlue, rockBrown from "../../../css/colors.css";
-@value smallRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
+@value linkColor, dimmedTextColor, outlineColor, warmerBackgroundColor, secondaryButtonColor, mobileNavColor, lightLinkColor from "../../../css/colors.css";
+@value smallRem, mediumRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
 .exhibitionView {
@@ -10,14 +10,17 @@
   max-width: 90%;
 }
 
-.exhibitionsLink {
-  color: linkColor;
+.exhibitionsLink, .exhibitionsLink:visited {
+  color: lightLinkColor;
+  text-decoration: underline;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 3px;
   display: inline-block;
 
   @media (min-width: smallRem) {
+    color: linkColor;
+    text-decoration: none;
     font-size: 1rem;
   }
 }
@@ -45,12 +48,17 @@
 
 .menuButtonAndBreadcrumbs {
   display: flex;
+  border-bottom: 0.05rem solid black;
+
+  @media (min-width: smallRem) {
+    display: none;
+  }
 }
 
-.openMenu .menuButtonAndBreadcrumbs {
-  display: none;
+.openMenu .menuHeader {
+  display: flex;
   @media (min-width: smallRem) {
-    display: flex;
+    display: none;
   }
 }
 
@@ -59,52 +67,88 @@
   width: 3rem;
   height: 3rem;
   display: flex;
+  text-transform: uppercase;
+  font-size: 0.75rem;
   justify-content: center;
   align-items: center;
   margin-right: 0.75rem;
-  @media (min-width: smallRem) {
+  border-radius: 0;
+  
+  @media (min-width: mediumRem) {
     display: none;
   }
 }
 
-.menuButtonIcon {
-  height: 0.875rem;
-  width: 1.125rem;
+.breadcrumbSubsection {
+
+}
+
+.closeMenuButton {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 100%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+
+.menuHeader {
+  display: none;
+  background-color: linkColor;
+}
+
+.closeMenuButtonIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.menuHeaderText {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
 }
 
 .sidebar {
-  display: none;
-
+  width: 11rem;
+  margin-right: 1.25rem;
+  flex-shrink: 0;
+  display: block;
+  max-height: 0;
+  transition: all 0.2s ease-in-out;
+  
   & a:hover {
     text-decoration: underline;
   }
-
-  @media (min-width: smallRem) {
-    width: 197px;
-    margin-right: 1.25rem;
-    flex-shrink: 0;
-    display: block;
-  }
-}
-
-.sidebar.overlayActive {
+  
   @media (max-width: smallRem) {
-    display: block;
+    padding: 0 1rem;
+    width: auto;
+    visibility: hidden;
+  }
+  
+  &.overlayActive {
+    max-height: 20rem;
     padding: 1rem;
-    position: fixed;
-    top: 132px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: warmerBackgroundColor;
-    width: 100%;
-    z-index: 2;
+    visibility: visible;
+
+    @media (max-width: smallRem) {
+      display: block;
+      background-color: warmerBackgroundColor;
+    }
   }
 }
+
 
 .sidebarSections {
   padding-bottom: 20px;
   margin-bottom: 13px;
+
+  @media (max-width: smallRem) {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
 }
 
 .sectionTitle, .sectionTitle:visited {
@@ -152,6 +196,10 @@
   display: flex;
   padding: 0 0 3rem;
 
+  @media (max-width: mediumRem) {
+    flex-direction: column;
+  }
+
   @media (min-width: smallRem) {
     padding: 0 1rem 1.5rem;
     margin-top: 1.5rem;
@@ -162,6 +210,15 @@
   @media (min-width: xLargeRem) {
     max-width: 80rem;
     padding: 0;
+  }
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: smallRem) {
+    flex-direction: column;
   }
 }
 
@@ -177,7 +234,7 @@
   display: flex;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   align-items: center;
-  background-color: elephantBlue;
+  background-color: mobileNavColor;
 
   @media (min-width: smallRem) {
     padding-bottom: 1rem;
@@ -223,7 +280,7 @@
 }
 
 .closeIconX {
-  fill: elephantBlue;
+  fill: mobileNavColor;
   @media (min-width: smallRem) {
     fill: white;
   }
@@ -275,7 +332,7 @@
   padding: 1rem 0;
   text-align: center;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1.125rem;
   display: block;
 
   &:hover {
@@ -370,9 +427,10 @@
 
 .titleSubsection {
   font-weight: 600;
+  margin: 0 0.5rem 0.5rem;
 
-  @media (min-width: smallRem) {
-    margin-right: .5rem;
+  @media (max-width: smallRem) {
+    display: none;
   }
 }
 
@@ -523,51 +581,29 @@
 }
 
 .viewItemLink {
-}
+  display: inline-block;
+  margin-bottom: 0.5rem;
 
-.closeMenuButton {
-  background-color: rgba(0, 0, 0, 0.12);
-  height: 100%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.75rem;
-}
-
-.menuHeader {
-  display: none;
-  background-color: linkColor;
-}
-
-.openMenu .menuHeader {
-  display: flex;
-  @media (min-width: smallRem) {
-    display: none;
+  @media (max-width: smallRem) {
+    padding-left: 1rem;
   }
-}
-
-.closeMenuButtonIcon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.menuHeaderText {
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: white;
 }
 
 .previousItemButton, .nextItemButton {
-  @media (min-width: smallRem) {
-    display: none;
-  }
   z-index: 1;
   position: absolute;
   top: 50%;
   padding: 1.5rem;
   transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+
+  & img {
+    opacity: 0.5;
+  }
+
+  @media (min-width: smallRem) {
+    display: none;
+  }
 }
 .nextItemButton {
   right: 0;
