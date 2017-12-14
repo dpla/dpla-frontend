@@ -12,12 +12,18 @@
 
 .facet {
   font-size: 0.875rem;
-  line-height: 1.125rem;
-  color: black;
-
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  
   &:hover .facetName {
     text-decoration: underline;
   }
+}
+
+.facetName {
+  color: black;
+  flex-basis: 75%;
 }
 
 .activeFacetName {
@@ -29,4 +35,6 @@
   font-size: 0.8125rem;
   color: dimmedTextColor;
   margin-left: .25rem;
+  flex-basis: 25%;
+  text-align: right;
 }

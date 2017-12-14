@@ -2,9 +2,9 @@ import React from "react";
 
 import Link from "next/link";
 
-import MainLayout from "components/MainLayout";
-import DonateForm from "components/DonateComponents/DonateForm";
-import Button from "components/shared/Button";
+import MainLayout from "../../components/MainLayout";
+import DonateForm from "../../components/DonateComponents/DonateForm";
+import Button from "../../components/shared/Button";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {

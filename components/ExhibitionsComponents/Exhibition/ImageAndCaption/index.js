@@ -41,7 +41,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
               }}
               as={{
                 pathname: `/exhibitions/${exhibition.slug}/${exhibition
-                  .sections[0].slug}/`
+                  .sections[0].slug}`
               }}
             >
               Explore Exhibition
