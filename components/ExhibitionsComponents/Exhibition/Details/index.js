@@ -28,7 +28,7 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
                     })
                   }}
                   as={{
-                    pathname: `/exhibitions/${exhibition.slug}/${section.slug}/`
+                    pathname: `/exhibitions/${exhibition.slug}/${section.slug}`
                   }}
                 >
                   <a className="hover-underline">

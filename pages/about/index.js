@@ -54,10 +54,10 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
     return {};
   } else if (pageItem.menu_item_parent === guidesPageItem.object_id) {
     if (res) {
-      res.redirect(`/guides/guide/?guide=${pageItem.post_name}`);
+      res.redirect(`/guides/guide?guide=${pageItem.post_name}`);
     } else {
       Router.push(
-        `/guides/guide/?guide=${pageItem.post_name}`,
+        `/guides/guide?guide=${pageItem.post_name}`,
         `/guides/${pageItem.post_name}`
       );
     }

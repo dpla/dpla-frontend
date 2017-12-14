@@ -17,7 +17,6 @@ class ResourcesTabs extends React.Component {
             <li
               id="tab-sourceset"
               role="tab"
-              aria-controls="panel-sourceset"
               aria-selected={currentTab === "sourceSet"}
               className={[
                 classNames.tab,
@@ -37,7 +36,6 @@ class ResourcesTabs extends React.Component {
             <li
               id="tab-additionalresources"
               role="tab"
-              aria-controls="panel-additionalresources"
               aria-selected={currentTab === "additionalResources"}
               className={[
                 classNames.tab,
@@ -60,7 +58,6 @@ class ResourcesTabs extends React.Component {
               <li
                 id="tab-teachingguide"
                 role="tab"
-                aria-controls="panel-teachingguide"
                 aria-selected={currentTab === "teachingGuide"}
                 className={[
                   classNames.tab,

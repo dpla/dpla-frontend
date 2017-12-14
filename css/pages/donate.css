@@ -27,6 +27,18 @@
   }
 }
 
+.donateForm {
+  & ul {
+    padding: 0;
+  }
+
+  & ul li {
+    list-style-type: none;
+    padding-left: 0.5rem;
+    margin: 0;
+  }
+}
+
 .thankYou {
   & h1 {
     margin-bottom: 1.5rem;

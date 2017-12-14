@@ -109,17 +109,15 @@ const Sidebar = ({ activeItemId, items, route }) =>
       </ul>
       <div className={classNames.divider} />
       <ul>
-        <li>
-          <SidebarLink
-            title="Contact Us"
-            section="contact-us"
-            isCurrentLink={activeItemId === "contact-us"}
-            linkObject={{
-              as: "/contact-us",
-              href: "/contact-us"
-            }}
-          />
-        </li>
+        <SidebarLink
+          title="Contact Us"
+          section="contact-us"
+          isCurrentLink={activeItemId === "contact-us"}
+          linkObject={{
+            as: "/contact",
+            href: "/contact-us"
+          }}
+        />
       </ul>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

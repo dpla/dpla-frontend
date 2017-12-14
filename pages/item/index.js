@@ -41,7 +41,7 @@ const ItemDetail = ({
         {
           title: url.query.q ? `Search for: ${url.query.q}` : "Search",
           url: {
-            pathname: "/search/",
+            pathname: "/search",
             query: removeQueryParams(url.query, ["itemId, next, previous"])
           }
         },

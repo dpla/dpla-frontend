@@ -26,6 +26,7 @@ const HomeHero = ({ headerDescription }) =>
         <div className={classNames.search}>
           <input
             className={classNames.searchInput}
+            aria-label="Search the collection"
             placeholder="Search the collection"
             name="q"
             autoComplete="off"

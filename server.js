@@ -199,7 +199,7 @@ app
 
     // contact us routes
 
-    server.get(["/contact-us", "/contact-us"], (req, res) => {
+    server.get("/contact", (req, res) => {
       app.render(req, res, "/contact-us", req.query);
     });
 

@@ -12,7 +12,7 @@ const FacetLink = ({ facet, value, facetLabel }) =>
   <span>
     <Link
       prefetch
-      href={{ pathname: "/search/", query: { [facet]: `"${value}"` } }}
+      href={{ pathname: "/search", query: { [facet]: `"${value}"` } }}
     >
       <a
         className="link"
