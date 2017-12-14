@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import Head from "../../../../components/Head";
+import DPLAHead from "../../../../components/DPLAHead";
 import SkipToContent from "../../../../components/shared/SkipToContent";
 import Content from "../../../../components/ExhibitionsComponents/ExhibitionSection";
 import {
@@ -29,7 +29,7 @@ const Subsection = ({
   previousQueryParams
 }) =>
   <div>
-    <Head pageTitle={section.title} seoType={SEO_TYPE} />
+    <DPLAHead pageTitle={section.title} seoType={SEO_TYPE} />
     <SkipToContent />
     <Content
       route={url}

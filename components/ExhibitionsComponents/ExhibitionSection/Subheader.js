@@ -6,34 +6,16 @@ const closeIcon = "/static/images/close-white.svg";
 
 const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
   <div className={`${isMenuOpen ? classNames.openMenu : ""}`}>
-    <div className={classNames.menuHeader}>
-      <button
-        aria-hidden="true"
-        onClick={onClickMenuButton}
-        className={classNames.closeMenuButton}
-      >
-        <img
-          alt=""
-          src={closeIcon}
-          className={classNames.closeMenuButtonIcon}
-        />
-      </button>
-      <div className={classNames.menuHeaderText}>Jump to a section</div>
-    </div>
     <div className={classNames.menuButtonAndBreadcrumbs}>
       <button
         onClick={onClickMenuButton}
         className={classNames.menuButton}
-        aria-hidden="true"
+        aria-expanded={isMenuOpen}
       >
-        <img
-          alt=""
-          src={menuButtonIcon}
-          className={classNames.menuButtonIcon}
-        />
+        {isMenuOpen ? "Hide" : "Show"}<br />Menu
       </button>
-      <h2 className={classNames.title}>
-        <span className={classNames.titleSubsection}>{subsection.title}</span>
+      <h2 className={classNames.breadcrumbSubsection}>
+        {subsection.title}
       </h2>
     </div>
   </div>;

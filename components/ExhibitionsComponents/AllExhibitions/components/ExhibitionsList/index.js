@@ -36,7 +36,8 @@ const Exhibition = ({ exhibition, route, featured }) =>
           aria-hidden="true"
           className={classNames.exhibitionImage}
           style={{
-            background: `black url("${exhibition.thumbnailUrl}")`
+            backgroundImage: `url("${exhibition.thumbnailUrl}")`,
+            backgroundPosition: `50% 50%`
           }}
         />
       </div>

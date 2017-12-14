@@ -26,6 +26,12 @@
   margin-bottom: 2rem;
   flex-shrink: 0;
   box-sizing: content-box;
+
+  & .faveAndCiteButtonsWrapper {
+    @media (max-width: smallRem) {
+      display: none;
+    }
+  }
 }
 
 .tableOfContentsHeader {
@@ -82,6 +88,12 @@
   @media (min-width: smallRem) {
     display: block;
   }
+
+  & .faveAndCiteButtonsWrapper {
+    @media (min-width: smallRem) {
+      display: none;
+    }
+  }
 }
 
 .bodyText p:not(:last-child) {
@@ -116,6 +128,11 @@
     color: linkColor;
     text-decoration: underline;
   }
+}
+
+.exploreButton {
+  text-align: center;
+  margin: 1rem;
 }
 
 .citeButton {

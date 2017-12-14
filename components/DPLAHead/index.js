@@ -6,7 +6,7 @@ import { stylesheet as utilStylesheet } from "css/utils.css";
 import { stylesheet as accessibility } from "css/accessibility.css";
 import { getMetaPageTitle } from "utilFunctions";
 
-export default ({ additionalLinks, pageTitle, seoType }) =>
+const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
   <div>
     <Head>
       <meta charSet="utf-8" />
@@ -73,3 +73,5 @@ export default ({ additionalLinks, pageTitle, seoType }) =>
       <style>{accessibility}</style>
     </Head>
   </div>;
+
+export default DPLAHead;

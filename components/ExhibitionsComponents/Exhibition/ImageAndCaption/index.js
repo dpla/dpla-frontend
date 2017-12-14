@@ -1,7 +1,7 @@
 import React from "react";
 
-import HeadingRule from "components/shared/HeadingRule";
-import Button from "components/shared/Button";
+import HeadingRule from "../../../shared/HeadingRule";
+import Button from "../../../shared/Button";
 import { classNames, stylesheet } from "./ImageAndCaption.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
@@ -17,7 +17,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`,
             backgroundSize: "cover",
-            backgroundPosition: "center"
+            backgroundPosition: "50% 0%"
           }}
         />
         <div className={classNames.overlay}>
