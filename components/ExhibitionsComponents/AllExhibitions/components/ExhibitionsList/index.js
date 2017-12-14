@@ -28,9 +28,9 @@ const Exhibition = ({ exhibition, route, featured }) =>
         aria-labelledby={exhibition.slug}
       >
         <div className={classNames.overlay}>
-          <p id={exhibition.slug} className={classNames.title}>
+          <span id={exhibition.slug} className={classNames.title}>
             {exhibition.title}
-          </p>
+          </span>
         </div>
         <div
           aria-hidden="true"

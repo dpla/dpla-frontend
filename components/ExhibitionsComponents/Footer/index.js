@@ -7,12 +7,12 @@ const { container } = utilClassNames;
 const OtherInfo = () =>
   <div className={classNames.wrapper}>
     <div className={`${container} ${classNames.otherInfo}`}>
-      <p className={classNames.p}>
+      <p>
         Exhibitions curated by DPLA staff, DPLA partner institutions, and
         graduate students in library
         and information science and public history.
       </p>
-      <p className={classNames.p}>
+      <p>
         <span>
           Feedback? Interested in curating an exhibition for DPLA? Contact us
           at&nbsp;
