@@ -22,7 +22,7 @@ const Exhibition = ({ url, exhibition, currentFullUrl }) =>
         {
           title: "Exhibitions",
           url: {
-            pathname: "/exhibitions/",
+            pathname: "/exhibitions",
             query: removeQueryParams(url.query, ["exhibition"])
           }
         },

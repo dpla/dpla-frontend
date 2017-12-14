@@ -30,7 +30,7 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
             query: removeQueryParams(url.query, ["source", "set"])
           },
           url: {
-            pathname: "/primary-source-sets/set/",
+            pathname: "/primary-source-sets/set",
             query: Object.assign({}, removeQueryParams(url.query, ["source"]))
           }
         },

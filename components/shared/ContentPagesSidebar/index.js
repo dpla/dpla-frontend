@@ -114,7 +114,7 @@ const Sidebar = ({ activeItemId, items, route }) =>
           section="contact-us"
           isCurrentLink={activeItemId === "contact-us"}
           linkObject={{
-            as: "/contact-us",
+            as: "/contact",
             href: "/contact-us"
           }}
         />

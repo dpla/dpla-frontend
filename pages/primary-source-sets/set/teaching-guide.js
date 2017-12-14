@@ -17,7 +17,7 @@ const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
         {
           title: "Primary Source Sets",
           url: {
-            pathname: "/primary-source-sets/",
+            pathname: "/primary-source-sets",
             query: removeQueryParams(url.query, ["set"])
           }
         },
