@@ -43,7 +43,7 @@ const SubtopicItemsList = ({
         {
           title: topic.name,
           as: `/browse-by-topic/${topic.slug}`,
-          url: `/browse-by-topic/topic/?topic=${topic.slug}`
+          url: `/browse-by-topic/topic?topic=${topic.slug}`
         },
         { title: subtopic.name, url: "" }
       ]}
@@ -69,7 +69,7 @@ const SubtopicItemsList = ({
         {
           title: topic.name,
           as: `/browse-by-topic/${topic.slug}`,
-          url: `/browse-by-topic/topic/?topic=${topic.slug}`
+          url: `/browse-by-topic/topic?topic=${topic.slug}`
         },
         { title: subtopic.name, url: "" }
       ]}
