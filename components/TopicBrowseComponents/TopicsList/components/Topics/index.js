@@ -21,7 +21,7 @@ const Topics = ({ topics }) =>
                 !topic.isFeatured &&
                 <div className={classNames.ribbon}>New</div>}
               <img
-                alt={topic.title}
+                alt=""
                 src={topic.acf.category_image}
                 className={classNames.image}
               />

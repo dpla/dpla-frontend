@@ -10,7 +10,7 @@
   }
 }
 
-.link {
+.link, .link:visited {
   display: none;
   @media (min-width: smallRem) {
     display: inline-block;
@@ -33,7 +33,7 @@
   margin-left: 0;
 }
 
-.activeLink {
+.activeLink, .activeLink:visited {
   color: black;
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.15);
@@ -61,7 +61,7 @@
   }
 }
 
-.previousButton {
+.previousButton, .previousButton:visited {
   background-color: #E3E0DA;
   color: black;
   @media (min-width: smallRem) {
