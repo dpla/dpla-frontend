@@ -14,15 +14,15 @@
   font-size: 0.875rem;
   line-height: 1rem;
   margin-bottom: 0.5rem;
-  color: black;
   display: flex;
-
+  
   &:hover .facetName {
     text-decoration: underline;
   }
 }
 
 .facetName {
+  color: black;
   flex-basis: 75%;
 }
 
