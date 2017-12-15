@@ -41,7 +41,7 @@ const getItemId = source =>
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
-    return <PDFViewer pathToFile={pathToFile} />;
+    return <PDFViewer pathToFile={pathToFile} height={"100%"} />;
   } else if (type === "ImageObject") {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
   } else if (type === "AudioObject") {

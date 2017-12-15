@@ -3,12 +3,12 @@
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
 .contentAndMetadata {
-  padding-top: 23px;
+  padding-top: 1rem;
 }
 
 .contentWrapper {
   flex: 5;
-  margin-right: 20px;
+  margin-right: 1rem;
   width: 100%;
   @media (min-width: smallRem) {
     width: auto;
@@ -27,15 +27,20 @@
 .contentHeader {
   font-size: 1.625rem;
   font-weight: 600;
-  margin-bottom: 26px;
+  margin-bottom: 1.5rem;
   @media (min-width: smallRem) {
     max-width: 70%;
   }
 }
 
 .content {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  height: 30rem;
   background-color: warmerBackgroundColor;
+
+  @media (max-width: mediumRem) {
+    height: 50vh;
+  }
 }
 
 .description {
