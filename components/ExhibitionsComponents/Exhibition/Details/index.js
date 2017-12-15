@@ -17,8 +17,8 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
         </h2>
         <div className={classNames.tableOfContentsContents}>
           <ul className={classNames.tableOfContentsSections}>
-            {exhibition.sections.map(section =>
-              <li className={classNames.tableOfContentsSection}>
+            {exhibition.sections.map((section, idx) =>
+              <li key={idx} className={classNames.tableOfContentsSection}>
                 <Link
                   prefetch
                   href={{

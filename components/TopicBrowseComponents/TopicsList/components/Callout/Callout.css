@@ -5,11 +5,18 @@
 .calloutWrapper {
   background-color: warmerBackgroundColor;
   width: 100%;
-  padding: 2rem 1rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  text-align: center;
 
-  @media (min-width: @smallRem) {
+  @media (min-width: smallRem) {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  @media (max-width: smallRem) {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -29,6 +36,7 @@
 
 .content {
   margin-bottom: 1rem;
+  text-align: left;
 
   @media (min-width: mediumRem) {
     padding-right: 1rem;
@@ -46,4 +54,9 @@
   margin-top: .5rem;;
   font-size: 1.125rem;
   color: dimmedTextColor;
+}
+
+.link {
+  margin: 0 auto;
+  display: block;
 }
