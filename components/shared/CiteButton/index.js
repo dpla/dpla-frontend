@@ -36,6 +36,7 @@ class CiteButton extends React.Component {
       <div className={classNames.wrapper}>
         <Button
           onClick={this.toggleCiteButton}
+          onTouchEnd={this.toggleCiteButton}
           controls="citation-content"
           expanded={this.state.showCitation}
           type="ghost"

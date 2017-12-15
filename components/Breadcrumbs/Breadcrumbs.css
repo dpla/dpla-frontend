@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  font-size: .8rem;
 }
 
 .activeBreadcrumb {
@@ -13,7 +14,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: .75rem;
   line-height: 1.2;
   @media (min-width: smallRem) {
     font-size: 1rem;
@@ -26,7 +26,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: .75rem;
   line-height: 1.2;
   @media (min-width: smallRem) {
     font-size: 1rem;

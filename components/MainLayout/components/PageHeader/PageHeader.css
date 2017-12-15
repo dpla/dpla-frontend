@@ -1,4 +1,4 @@
-@value userSiteColor, secondaryButtonColor from "../../../../css/colors.css";
+@value userSiteColor, secondaryButtonColor, navColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .headerSearchBar {
@@ -21,10 +21,10 @@
   align-items: center;
   display: flex;
   height: 2.5rem;
-  width: auto;
-  margin-left: auto;
+  width: 100%;
+  margin: auto;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: largeRem) {
     width: 50%;
   }
 }
@@ -70,7 +70,7 @@
   padding: 0 1rem;
 
   &:hover {
-    background-color: #123544;
+    background-color: navColor;
   }
 }
 

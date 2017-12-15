@@ -145,7 +145,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   Print this Guide
                 </a>
               </div>
-              <div className={classNames.toolLinkAndIcon}>
+              {/* <div className={classNames.toolLinkAndIcon}>
                 <img src={link} alt="" className={classNames.toolIcon} />
                 <Link
                   prefetch
@@ -169,7 +169,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                 <span className={classNames.semibold}>Student View</span> is a
                 link
                 to this Primary Source Set with the Teaching Guide hidden.
-              </p>
+              </p> */}
 
             </div>
           </div>
