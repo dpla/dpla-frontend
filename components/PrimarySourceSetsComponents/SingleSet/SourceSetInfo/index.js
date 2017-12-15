@@ -40,7 +40,8 @@ class SourceSetInfo extends React.Component {
                   className={classNames.bannerImage}
                   style={{
                     backgroundImage: `url(${set.repImageUrl ||
-                      set.thumbnailUrl})`
+                      set.thumbnailUrl})`,
+                    backgroundPosition: "50% 25%"
                   }}
                 />
                 <div className={classNames.bannerTextWrapper}>
