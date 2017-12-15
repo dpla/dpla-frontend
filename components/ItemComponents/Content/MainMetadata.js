@@ -27,81 +27,116 @@ const RightsBadge = ({ url }) => {
     : null;
 };
 
-const MainMetadata = ({ item }) =>
-  <div className={classNames.mainMetadata}>
-    <table className={classNames.contentTable}>
-      <tbody>
-        <tr className={classNames.tableRow}>
-          <td className={classNames.tableHeadingWrapper} />
-          <td className={classNames.tableItem}>
-            <ItemImage
-              title=""
-              type={item.type}
-              url={item.thumbnailUrl}
-              defaultImageClass={classNames.defaultItemImage}
-              useDefaultImage={item.useDefaultImage}
-            />
-            <a
-              href={item.sourceUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-              className={classNames.sourceLink}
-            >
-              <span className={classNames.sourceLinkText}>
-                {item.type === "image"
-                  ? "View Full Image"
-                  : item.type === "text" ? "View Full Text" : "View Full Item"}
-              </span>
-              <img
-                src={externalLinkIcon}
-                alt=""
-                className={classNames.externalLinkIcon}
-              />
-            </a>
-            {item.edmRights && <RightsBadge url={item.edmRights} />}
-            {/* 
+const showMoreDescription = className => {
+  const description = document.getElementById("dpla-description");
+  const showmore = document.getElementById("dpla-showmore");
+  description.classList.add(className);
+  showmore.remove();
+};
+
+class MainMetadata extends React.Component {
+  render() {
+    const item = this.props.item;
+    const maxDescriptionLength = 600; //characters
+    const descriptionIsLong =
+      item.description &&
+      joinIfArray(item.description).length > maxDescriptionLength;
+    return (
+      <div className={classNames.mainMetadata}>
+        <table className={classNames.contentTable}>
+          <tbody>
+            <tr className={classNames.tableRow}>
+              <td className={classNames.tableHeadingWrapper} />
+              <td className={classNames.tableItem}>
+                <ItemImage
+                  title=""
+                  type={item.type}
+                  url={item.thumbnailUrl}
+                  defaultImageClass={classNames.defaultItemImage}
+                  useDefaultImage={item.useDefaultImage}
+                />
+                <a
+                  href={item.sourceUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={classNames.sourceLink}
+                >
+                  <span className={classNames.sourceLinkText}>
+                    {item.type === "image"
+                      ? "View Full Image"
+                      : item.type === "text"
+                        ? "View Full Text"
+                        : "View Full Item"}
+                  </span>
+                  <img
+                    src={externalLinkIcon}
+                    alt=""
+                    className={classNames.externalLinkIcon}
+                  />
+                </a>
+                {item.edmRights && <RightsBadge url={item.edmRights} />}
+                {/* 
         for situations where the rights are in sourceResource
         see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
         items should not have multiple rights but showing them in case a proper uri is present
          */}
-            {item.rights && Array.isArray(item.rights)
-              ? item.rights.map(theRight => {
-                  return <RightsBadge url={theRight} />;
-                })
-              : item.rights ? <RightsBadge url={item.rights} /> : null}
-          </td>
-        </tr>
-        {item.date &&
-          <tr className={classNames.tableRow}>
-            <td className={classNames.tableHeadingWrapper}>
-              <h2 className={classNames.tableHeading}>Created Date</h2>
-            </td>
-            <td
-              className={[
-                classNames.tableItem,
-                classNames.mainMetadataText
-              ].join(" ")}
-            >
-              {item.date.displayDate}
-            </td>
-          </tr>}
-        {item.description &&
-          <tr className={classNames.tableRow}>
-            <td className={classNames.tableHeadingWrapper}>
-              <h2 className={classNames.tableHeading}>Description</h2>
-            </td>
-            <td
-              className={[
-                classNames.tableItem,
-                classNames.mainMetadataText
-              ].join(" ")}
-            >
-              {joinIfArray(item.description)}
-            </td>
-          </tr>}
-        <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
-      </tbody>
-    </table>
-  </div>;
+                {item.rights && Array.isArray(item.rights)
+                  ? item.rights.map(theRight => {
+                      return <RightsBadge url={theRight} />;
+                    })
+                  : item.rights ? <RightsBadge url={item.rights} /> : null}
+              </td>
+            </tr>
+            {item.date &&
+              <tr className={classNames.tableRow}>
+                <td className={classNames.tableHeadingWrapper}>
+                  <h2 className={classNames.tableHeading}>Created Date</h2>
+                </td>
+                <td
+                  className={[
+                    classNames.tableItem,
+                    classNames.mainMetadataText
+                  ].join(" ")}
+                >
+                  {item.date.displayDate}
+                </td>
+              </tr>}
+            {item.description &&
+              <tr className={classNames.tableRow}>
+                <td className={classNames.tableHeadingWrapper}>
+                  <h2 className={classNames.tableHeading}>Description</h2>
+                </td>
+                <td
+                  className={[
+                    classNames.tableItem,
+                    classNames.mainMetadataText
+                  ].join(" ")}
+                >
+                  <div
+                    id="dpla-description"
+                    className={
+                      descriptionIsLong ? classNames.longDescription : ""
+                    }
+                  >
+                    {joinIfArray(item.description)}
+                  </div>
+                  {descriptionIsLong &&
+                    <div id="dpla-showmore" aria-hidden="true">
+                      <span
+                        className={`${classNames.showMore} link`}
+                        onClick={() => showMoreDescription(classNames.open)}
+                      >
+                        Show full description
+                      </span>
+                    </div>}
+                </td>
+              </tr>}
+            <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
 
 export default MainMetadata;
