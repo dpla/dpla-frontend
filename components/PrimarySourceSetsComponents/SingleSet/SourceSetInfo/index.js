@@ -40,7 +40,8 @@ class SourceSetInfo extends React.Component {
                   className={classNames.bannerImage}
                   style={{
                     backgroundImage: `url(${set.repImageUrl ||
-                      set.thumbnailUrl})`
+                      set.thumbnailUrl})`,
+                    backgroundPosition: "50% 25%"
                   }}
                 />
                 <div className={classNames.bannerTextWrapper}>
@@ -75,7 +76,7 @@ class SourceSetInfo extends React.Component {
                   className={`${classNames.showMore} link`}
                   onClick={() => showMoreDescription(classNames.open)}
                 >
-                  Show full description
+                  Show full overview
                 </span>
               </div>
             </div>

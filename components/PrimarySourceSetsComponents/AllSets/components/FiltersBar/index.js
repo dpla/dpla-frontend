@@ -76,23 +76,6 @@ class FiltersBar extends React.Component {
               <Select
                 clearable={false}
                 searchable={false}
-                value={this.state.timePeriodValue}
-                className={classNames.select}
-                onChange={this.onTimePeriodChange}
-                options={[
-                  { value: "all-time-periods", label: "All Time Periods" }
-                ].concat(
-                  this.props.timePeriods.map(period => ({
-                    label: period.name,
-                    value: mapTimePeriodNameToSlug(period.name)
-                  }))
-                )}
-              />
-            </div>
-            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
-              <Select
-                clearable={false}
-                searchable={false}
                 value={this.state.subjectValue}
                 onChange={this.onSubjectChange}
                 className={classNames.select}
@@ -102,6 +85,23 @@ class FiltersBar extends React.Component {
                   this.props.subjects.map(subject => ({
                     label: subject.name,
                     value: mapSubjectNameToSlug(subject.name)
+                  }))
+                )}
+              />
+            </div>
+            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
+              <Select
+                clearable={false}
+                searchable={false}
+                value={this.state.timePeriodValue}
+                className={classNames.select}
+                onChange={this.onTimePeriodChange}
+                options={[
+                  { value: "all-time-periods", label: "All Time Periods" }
+                ].concat(
+                  this.props.timePeriods.map(period => ({
+                    label: period.name,
+                    value: mapTimePeriodNameToSlug(period.name)
                   }))
                 )}
               />

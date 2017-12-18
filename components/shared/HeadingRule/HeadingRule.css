@@ -1,7 +1,7 @@
 @value smallRem from "../../../css/breakpoints.css";
 
 .rule {
-  border: 2px solid;
+  border-top: 0.25rem solid;
   width: 2.5rem;
   margin: 1rem auto 2rem;
 

@@ -41,7 +41,7 @@ const getItemId = source =>
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
-    return <PDFViewer pathToFile={pathToFile} />;
+    return <PDFViewer pathToFile={pathToFile} height={"100%"} />;
   } else if (type === "ImageObject") {
     return <ZoomableImageViewer pathToFile={pathToFile} />;
   } else if (type === "AudioObject") {
@@ -69,6 +69,11 @@ const ContentAndMetadata = ({ source }) => {
 
   const viewerComponent = getViewerComponent(fileFormat, type, fullContentUrl);
 
+  const maxDescriptionLength = 600; //characters
+  const descriptionIsLong = source.text
+    ? source.text.length > maxDescriptionLength
+    : false;
+
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, container].join(" ")}>
@@ -85,13 +90,26 @@ const ContentAndMetadata = ({ source }) => {
             </div>
             {source.text &&
               <div
+                id="dpla-description"
+                className={`${classNames.description} ${descriptionIsLong
+                  ? classNames.longDescription
+                  : ""}`}
                 dangerouslySetInnerHTML={{
                   __html: markdownit
                     .render(source.text)
                     .replace(/&lt;br&gt;/g, "<br>")
                 }}
-                className={classNames.description}
               />}
+            {descriptionIsLong &&
+              <div id="dpla-showmore" aria-hidden="true">
+                <span
+                  className={`${classNames.showMore} link`}
+                  onClick={() => showMoreDescription(classNames.open)}
+                >
+                  Show full description
+                </span>
+              </div>}
+
           </div>
           <div className={classNames.metadata}>
             <div className={classNames.sourceInfo}>
