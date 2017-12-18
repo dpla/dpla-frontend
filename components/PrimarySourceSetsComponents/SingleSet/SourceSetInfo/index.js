@@ -57,7 +57,7 @@ class SourceSetInfo extends React.Component {
                 id="dpla-description"
                 className={`${classNames.description} sourceSetDescription`}
                 dangerouslySetInnerHTML={{
-                  __html: markdownit.renderInline(
+                  __html: markdownit.render(
                     set.hasPart
                       .find(item => item.name === "Overview")
                       .text.replace(

@@ -10,11 +10,18 @@
 
 .activeBreadcrumb {
   display: inline-block;
-  max-width: 215px;
+  max-width: 30rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 1.2;
+
+  @media (max-width: smallRem) {
+    display: inline;
+    white-space: normal;
+    max-width: none;
+  }
+
   @media (min-width: smallRem) {
     font-size: 1rem;
   }
