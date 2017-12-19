@@ -296,10 +296,7 @@ app
     // Google API endpoint proxies
     server.post("/g/contact", async (req, res) => {
       if (!req.body) return res.sendStatus(400);
-      if (
-        req.body.contact_me_by_fax_only &&
-        req.body.contact_me_by_fax_only === "1"
-      )
+      if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
         return res.sendStatus(400);
 
       console.log("received contact info");

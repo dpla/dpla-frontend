@@ -17,12 +17,12 @@ class ContactForm extends React.Component {
     let email = e.target.elements.email.value;
     let name = e.target.elements.name.value;
     let message = e.target.elements.message.value;
-    let fax = e.target.elements.contact_me_by_fax_only.value;
+    let miel = e.target.elements.i_prefer_usps_mail.value;
     let body = JSON.stringify({
       email: email,
       name: name,
       message: message,
-      fax: fax
+      miel: miel
     });
     const res = await fetch("/g/contact", {
       method: "POST",
@@ -84,9 +84,9 @@ class ContactForm extends React.Component {
               </label>
               <input
                 type="checkbox"
-                name="contact_me_by_fax_only"
+                name="i_prefer_usps_mail"
                 value="1"
-                className={classNames.fax}
+                className={classNames.miel}
                 tabIndex="-1"
                 autoComplete="off"
               />
