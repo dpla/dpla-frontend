@@ -4,13 +4,10 @@ const LRUCache = require("lru-cache");
 const proxy = require("express-http-proxy");
 const bodyParser = require("body-parser");
 const gauth = require("google-auth-library");
-const async = require("async");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
-const fs = require("fs");
 
 const replaceWithProxyEndpoint = (endpoint, req) => {
   if (endpoint) {
