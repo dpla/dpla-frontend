@@ -483,7 +483,7 @@
   margin-bottom: 0.5rem;
 
   &:focus {
-    outline: 4px solid outlineColor;
+    outline: 0.25rem solid outlineColor;
   }
 
   & :global(#openseadragon1) {

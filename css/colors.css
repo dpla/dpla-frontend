@@ -59,4 +59,6 @@
 @value outgoingLinkColor: subLinkColor;
 @value dimmedTextColor: dimmerGray;
 @value donateFormButtonColor: cascadeBlue;
-@value outlineColor: cascadeBlue;
+@value outlineColor: casablancaOrange;
+@value formLabelColor: cascadeBlue;
+@value errorColor: linkColor;

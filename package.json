@@ -5,10 +5,13 @@
   "dependencies": {
     "babel-plugin-inline-dotenv": "^1.1.1",
     "babel-plugin-transform-inline-environment-variables": "^0.2.0",
+    "body-parser": "^1.18.2",
     "cssnano": "^3.10.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-http-proxy": "^1.0.6",
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^23.0.0",
     "intl": "^1.2.5",
     "lru-cache": "^4.1.1",
     "markdown-it": "^8.4.0",

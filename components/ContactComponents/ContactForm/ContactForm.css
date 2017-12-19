@@ -1,6 +1,6 @@
-@value linkColor from "../../../css/colors.css";
+@value linkColor, formLabelColor, errorColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../css/typography.css";
+@value monoFont, serifFont, sansFont from "../../../css/typography.css";
 
 .contactForm {
   margin-top: 2rem;
@@ -8,9 +8,57 @@
   padding-bottom: 3rem;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 
+  & form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin: 0 0 1rem;
+    position: relative;
+    color: formLabelColor;
+  
+    & > span {
+      display: block;
+      margin: 0 0 0.25rem 0.5rem;
+      position: absolute;
+      top: 0.25rem;
+      left: 0;
+    }
+  }
+
+  & textarea {
+    resize: none;
+  }
+
+  & input[type=email], & input[type=text], & textarea {
+    width: 100%;
+    border: 0.075rem solid formLabelColor;
+    font-family: sansFont;
+    padding: 1.5rem 0.25rem 0.5rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
   @media (min-width: mediumRem) {
     margin-top: 0;
   }
+}
+
+.disabledButton {
+  cursor: wait !important;
+}
+
+.miel {
+  display: none !important; /* captcha */
+}
+
+.error {
+  color: errorColor;
+  display: inline-block;
+  margin-left: 0.5rem;
 }
 
 .header {

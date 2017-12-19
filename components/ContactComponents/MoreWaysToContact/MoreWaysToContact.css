@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor from "../../../css/colors.css";
+@value linkColor, colderBackgroundColor from "../../../css/colors.css";
 @value dimmedTextColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
@@ -11,9 +11,9 @@
 }
 
 .contentTable {
-  background-color: warmerBackgroundColor;
   padding: 1rem 1.5rem;
   width: 100%;
+  background-color: colderBackgroundColor;
 
   @media (min-width: mediumRem) {
     padding: 2rem 3rem;
@@ -56,6 +56,5 @@
 }
 
 .mailToLink {
-  border-bottom: 2px solid linkColor;
   padding-bottom: .25rem;
 }

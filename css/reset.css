@@ -39,7 +39,7 @@ button, input, optgroup, select, textarea {
 
 a, button, input, optgroup, select, textarea {
   &:focus {
-    outline: 4px solid outlineColor;
+    outline: 0.25rem solid outlineColor;
   }
 }
 
