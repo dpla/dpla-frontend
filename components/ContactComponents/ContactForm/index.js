@@ -108,7 +108,7 @@ class ContactForm extends React.Component {
           <div aria-live="assertive">
             <h1 className={classNames.header}>Thank you!</h1>
             <p className={classNames.instructions}>
-              We will get in touch with you shortly.
+              A DPLA staff member will contact you soon.
             </p>
           </div>}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
