@@ -98,7 +98,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-frequency">Frequency</h2>
         <ul className={`row start-xs`}>
           {frequencyMap.map((freq, i) =>
-            <li className={`col-xs-12 col-md-4`}>
+            <li key={i} className={`col-xs-12 col-md-4`}>
               <DualStateButton
                 id={"freq" + i}
                 key={"freq" + i}
@@ -114,7 +114,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-amount">Donation amount</h2>
         <ul className={`row`}>
           {amountMap.map((amt, i) =>
-            <li className={`col-xs-6 col-md-4`}>
+            <li key={i} className={`col-xs-6 col-md-4`}>
               <DualStateButton
                 id={"amt" + i}
                 labelledby={"donation-amount amt" + i}
@@ -130,7 +130,7 @@ class DonateForm extends React.Component {
             <input
               type="text"
               aria-label="Give other amount"
-              placeholder="$ Other amount"
+              placeholder="Other amount"
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
             />

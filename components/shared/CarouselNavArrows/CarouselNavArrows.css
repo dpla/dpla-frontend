@@ -32,7 +32,7 @@
   }
 
   &:focus {
-    outline: 4px solid outlineColor;
+    outline: 0.25rem solid outlineColor;
   }
 
   & img {

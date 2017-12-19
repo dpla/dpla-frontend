@@ -2,28 +2,18 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
-import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import ContactForm from "components/ContactComponents/ContactForm";
-import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
+import MainLayout from "../../components/MainLayout";
+import ContentPagesSidebar from "../../components/shared/ContentPagesSidebar";
+import ContactForm from "../../components/ContactComponents/ContactForm";
+import MoreWaysToContact from "../../components/ContactComponents/MoreWaysToContact";
 import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import { TITLE } from "constants/contact";
 import { SEO_TYPE } from "constants/content-pages";
 
 const Contact = ({ url, sidebarItems }) =>
-  <MainLayout
-    route={url}
-    pageTitle={TITLE}
-    seoType={SEO_TYPE}
-    headLinks={
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
-      />
-    }
-  >
-    <div className={classNames.backgroundTint}>
+  <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>
+    <div>
       <div
         className={`${utilClassNames.container}
         ${classNames.sidebarAndContentWrapper}`}

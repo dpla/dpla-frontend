@@ -2,10 +2,15 @@ const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
 const proxy = require("express-http-proxy");
+const bodyParser = require("body-parser");
+const gauth = require("google-auth-library");
+const async = require("async");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+const fs = require("fs");
 
 const replaceWithProxyEndpoint = (endpoint, req) => {
   if (endpoint) {
@@ -34,6 +39,8 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(bodyParser.urlencoded({ extended: true }));
+    server.use(bodyParser.json());
 
     server.get("/healthcheck", (req, res) => {
       res.send("OK");
@@ -289,6 +296,62 @@ app
       );
     });
 
+    // Google API endpoint proxies
+    server.post("/g/contact", async (req, res) => {
+      if (!req.body) return res.sendStatus(400);
+      if (
+        req.body.contact_me_by_fax_only &&
+        req.body.contact_me_by_fax_only === "1"
+      )
+        return res.sendStatus(400);
+
+      console.log("received contact info");
+
+      const email = req.body.email || "";
+      const name = req.body.name || "";
+      const message = req.body.message || "";
+      const options = {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+        timeZone: "America/New_York"
+      };
+      const date = Intl.DateTimeFormat("en-US", options).format(new Date());
+
+      let newRow = JSON.stringify({
+        majorDimension: "ROWS",
+        values: [[date, name, email, message]]
+      });
+
+      try {
+        const response_json = await get_google_access_token();
+        const access_token = response_json.access_token;
+        const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
+          "{ID}",
+          process.env.GOOGLE_CONTACT_SHEET_ID
+        );
+
+        const gRes = await fetch(url, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: "Bearer " + access_token
+          }),
+          body: newRow
+        });
+        const data = await gRes.json();
+        console.log("Spreadsheet updated");
+
+        // send the response back
+        res.sendStatus(200);
+      } catch (error) {
+        res.sendStatus(404);
+      }
+    });
+
     // API proxy routes
 
     server.get(
@@ -389,6 +452,34 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+function get_google_access_token() {
+  // via https://stackoverflow.com/questions/19766912/how-do-i-authorise-an-app-web-or-installed-without-user-intervention-canonic
+  const refresh_token = process.env.GOOGLE_TOKEN;
+  const client_id = process.env.GOOGLE_CLIENT;
+  const client_secret = process.env.GOOGLE_SECRET;
+  // from https://developers.google.com/identity/protocols/OAuth2WebServer#offline
+  const refresh_url = "https://www.googleapis.com/oauth2/v4/token";
+
+  const post_body = `grant_type=refresh_token&client_id=${encodeURIComponent(
+    client_id
+  )}&client_secret=${encodeURIComponent(
+    client_secret
+  )}&refresh_token=${encodeURIComponent(refresh_token)}`;
+
+  let refresh_request = {
+    body: post_body,
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/x-www-form-urlencoded"
+    })
+  };
+
+  // post to the refresh endpoint, parse the json response and use the access token to call files.list
+  return fetch(refresh_url, refresh_request).then(response => {
+    return response.json();
+  });
+}
 
 /*
  * NB: make sure to modify this to take into account anything that should trigger
