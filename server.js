@@ -203,7 +203,7 @@ app
 
     // contact us routes
 
-    server.get("/contact", (req, res) => {
+    server.get(["/contact", "/contact-us"], (req, res) => {
       app.render(req, res, "/contact-us", req.query);
     });
 
@@ -255,7 +255,7 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
-    server.get("/about", (req, res) => {
+    server.get(["/about", "/about-us"], (req, res) => {
       const actualPage = "/about";
       const params = { section: "about-us" }; // because WP has 'about-us'
       renderAndCache(
