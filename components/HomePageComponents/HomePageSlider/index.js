@@ -55,7 +55,7 @@ const HomePageSlider = ({
           />
         }
         draggable={false}
-        slidesToScroll={slidesToShow ? slidesToShow : 3}
+        slidesToScroll={slidesToShow ? Math.floor(slidesToShow) : 2}
         responsive={[
           {
             breakpoint: ~~breakpoints.smallPx,
