@@ -4,6 +4,7 @@ const LRUCache = require("lru-cache");
 const proxy = require("express-http-proxy");
 const bodyParser = require("body-parser");
 const gauth = require("google-auth-library");
+const aws = require("aws-sdk");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -341,6 +342,15 @@ app
         const data = await gRes.json();
         console.log("Spreadsheet updated");
 
+        // send email
+        const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
+        await send_email(
+          "info@dp.la",
+          "info@dp.la",
+          `DPLA Site Contact: ${subject}`,
+          email_message
+        );
+
         // send the response back
         res.sendStatus(200);
       } catch (error) {
@@ -448,6 +458,42 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+function send_email(from, to, subject, message) {
+  console.log("sending email to: ", to);
+  aws.config.update({ region: "us-east-1" });
+  const ses = new aws.SES();
+  var params = {
+    Destination: {
+      /* required */
+      // BccAddresses: ["STRING_VALUE"],
+      // CcAddresses: ["STRING_VALUE"],
+      ToAddresses: [to]
+    },
+    Message: {
+      /* required */
+      Body: {
+        /* required */
+        Html: {
+          Data: message.replace(/(?:\r\n|\r|\n)/g, "<br>") /* required */,
+          Charset: "UTF-8"
+        },
+        Text: { Data: message /* required */, Charset: "UTF-8" }
+      },
+      Subject: {
+        /* required */
+        Data: subject /* required */,
+        Charset: "UTF-8"
+      }
+    },
+    Source: from /* required */
+  };
+  ses.sendEmail(params, (err, data) => {
+    if (err)
+      console.log(err, err.stack); // an error occurred
+    else console.log("email sent!"); // successful response
+  });
+}
 
 function get_google_access_token() {
   // via https://stackoverflow.com/questions/19766912/how-do-i-authorise-an-app-web-or-installed-without-user-intervention-canonic

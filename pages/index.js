@@ -48,7 +48,7 @@ const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
           title="Primary Source Sets"
           browseLinkUrl="/primary-source-sets"
           browseLinkName="Sets"
-          slidesToShow={4}
+          slidesToShow={3.5}
           theme="blue"
         />}
       <DPLAUsers guides={guides} />
