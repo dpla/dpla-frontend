@@ -7,24 +7,23 @@ const smallChevron = "static/images/chevron-thick-orange.svg";
 
 const mockPosts = [
   {
-    headline: "Historypin wins Knight News Challenge award for…",
+    headline: "Title of a blog post",
     date: "June 12, 2017",
     bodyText:
-      "Historypin wins Knight News Challenge award to gather, preserve, and measure the…",
+      "This is not really a working link so don't bother clicking on it…",
     id: 0
   },
   {
-    headline: "DPLA and the International Image Interoperability Framew…",
+    headline: "This one is longer but truncated…",
     date: "June 6, 2017",
-    bodyText:
-      "DPLA, along with representatives of a number of institutions, is presenting at Access to the…",
+    bodyText: "This one doesn't work either. We will fix this shortly…",
     id: 1
   },
   {
-    headline: "Announcing the launch of RightsStatements.org",
+    headline: "Announcing the launch of a new project in two lines",
     date: "June 3, 2017",
     bodyText:
-      "The Digital Public Library of America and Europeana are proud to announce the launch of…",
+      "A slightly longer version of the fake text in the other two “blog posts” so that…",
     id: 2
   }
 ];
