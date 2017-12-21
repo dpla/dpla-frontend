@@ -343,17 +343,12 @@ app
         console.log("Spreadsheet updated");
 
         // send email
-        const email_message_plain = `New message from DPLA contact form below.\n\nName:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
-        const email_message_html = `New message from DPLA contact form below.<br><br>Name:<br><strong>${name}</strong><br><br>Email:<br>${email}<br><br>Message:<br>${message.replace(
-          /(?:\r\n|\r|\n)/g,
-          "<br>"
-        )}<br><br><br>This message has also been recorded in the spreadsheet:<br>https://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
+        const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
         await send_email(
           "info@dp.la",
           "info@dp.la",
           `DPLA Site Contact: ${subject}`,
-          email_message_plain,
-          email_message_html
+          email_message
         );
 
         // send the response back
@@ -464,7 +459,7 @@ app
     process.exit(1);
   });
 
-function send_email(from, to, subject, message_plain, message_html) {
+function send_email(from, to, subject, message) {
   console.log("sending email to: ", to);
   aws.config.update({ region: "us-east-1" });
   const ses = new aws.SES();
@@ -479,8 +474,11 @@ function send_email(from, to, subject, message_plain, message_html) {
       /* required */
       Body: {
         /* required */
-        Html: { Data: message_html /* required */, Charset: "UTF-8" },
-        Text: { Data: message_plain /* required */, Charset: "UTF-8" }
+        Html: {
+          Data: message.replace(/(?:\r\n|\r|\n)/g, "<br>") /* required */,
+          Charset: "UTF-8"
+        },
+        Text: { Data: message /* required */, Charset: "UTF-8" }
       },
       Subject: {
         /* required */
