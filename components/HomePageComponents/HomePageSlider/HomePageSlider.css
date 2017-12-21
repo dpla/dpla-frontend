@@ -24,6 +24,11 @@
   }
 }
 
+/* overrides for react-slick css*/
+:global .slick-slide {
+  width: 20rem;
+}
+
 .heading {
   display: flex;
   justify-content: space-between;

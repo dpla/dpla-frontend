@@ -42,7 +42,7 @@ const HomePageSlider = ({
         </Link>
       </div>
       <Slider
-        slidesToShow={slidesToShow ? slidesToShow : 3}
+        slidesToShow={slidesToShow ? slidesToShow : 2.5}
         infinite={false}
         nextArrow={
           <NextArrow
