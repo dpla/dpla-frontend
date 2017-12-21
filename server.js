@@ -300,8 +300,6 @@ app
       if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
         return res.sendStatus(400);
 
-      console.log("received contact info");
-
       const email = req.body.email || "";
       const name = req.body.name || "";
       const message = req.body.message || "";
@@ -340,7 +338,6 @@ app
           body: newRow
         });
         const data = await gRes.json();
-        console.log("Spreadsheet updated");
 
         // send email
         const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
