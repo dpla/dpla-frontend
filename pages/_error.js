@@ -19,13 +19,6 @@ export default class Error extends React.Component {
   }
 
   render() {
-    let message_title = "Uh oh.";
-    let message_content =
-      "Something has gone wrong and we cannot show you the page you requested. While we fix it, try searching for something in our collections.";
-    if (this.props.statusCode === 404) {
-      message_title = "Page not found";
-      message_content = "We are sorry, the page you requested cannot be found.";
-    }
     return (
       <MinimalLayout route={this.props.url}>
         <div
@@ -38,12 +31,24 @@ export default class Error extends React.Component {
               id="main"
               className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
             >
-              <h1>
-                {message_title}
-              </h1>
-              <p>
-                {message_content}
-              </p>
+              {this.props.statusCode === 500 &&
+                <div>
+                  <h1>
+                    An error occurred
+                  </h1>
+                  <p>
+                    We are sorry, we are working to fix it.
+                  </p>
+                </div>}
+              {this.props.statusCode !== 500 &&
+                <div>
+                  <h1>
+                    Page not found
+                  </h1>
+                  <p>
+                    We are sorry, the page you requested cannot be found.
+                  </p>
+                </div>}
               <div>
                 <p>Try one of these:</p>
                 <ul>
