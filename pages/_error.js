@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import MinimalLayout from "../components/MainLayout/components/MinimalLayout";
 
 import {
@@ -23,8 +24,7 @@ export default class Error extends React.Component {
       "Something has gone wrong and we cannot show you the page you requested. While we fix it, try searching for something in our collections.";
     if (this.props.statusCode === 404) {
       message_title = "Page not found";
-      message_content =
-        "We are sorry, the page you requested cannot be found. Try searching for something in our collections.";
+      message_content = "We are sorry, the page you requested cannot be found.";
     }
     return (
       <MinimalLayout route={this.props.url}>
@@ -44,6 +44,41 @@ export default class Error extends React.Component {
               <p>
                 {message_content}
               </p>
+              <div>
+                <p>Try one of these:</p>
+                <ul>
+                  <li>
+                    <Link prefetch href="/search">
+                      <a>searching</a>
+                    </Link>{" "}
+                    for an item in our collections
+                  </li>
+                  <li>
+                    finding items from one of our{" "}
+                    <Link prefetch href="/browse-by-partner">
+                      <a>partners</a>
+                    </Link>
+                  </li>
+                  <li>
+                    check out our{" "}
+                    <Link prefetch href="/primary-source-sets">
+                      <a>primary source sets</a>
+                    </Link>
+                  </li>
+                  <li>
+                    browse {" "}
+                    <Link prefetch href="/browse-by-topic">
+                      <a>items by topic</a>
+                    </Link>
+                  </li>
+                  <li>
+                    view one of our {" "}
+                    <Link prefetch href="/exhibitions">
+                      <a>exhibitions</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
