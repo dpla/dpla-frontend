@@ -2,18 +2,21 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Router from "next/router";
 
-import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import MainLayout from "../../components/MainLayout";
+import ContentPagesSidebar from "../../components/shared/ContentPagesSidebar";
 
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { stylesheet, classNames } from "css/pages/donate.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import {
+  classNames as utilClassNames,
+  stylesheet as utilStyles
+} from "css/utils.css";
 import { SEO_TITLE } from "constants/donate";
 
-const DonateThankYou = ({ url, content, items }) =>
+const DonateThankYou = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div
       className={`${utilClassNames.container}
@@ -38,8 +41,9 @@ const DonateThankYou = ({ url, content, items }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 export default DonateThankYou;

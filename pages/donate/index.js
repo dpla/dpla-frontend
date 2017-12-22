@@ -11,7 +11,10 @@ import {
   stylesheet as contentStyles,
   classNames as contentClasses
 } from "css/pages/donate.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import {
+  classNames as utilClassNames,
+  stylesheet as utilStyles
+} from "css/utils.css";
 import { SEO_TITLE } from "constants/donate";
 
 const Donate = ({ url }) =>
@@ -90,6 +93,7 @@ const Donate = ({ url }) =>
       </div>
     </div>
 
+    <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
