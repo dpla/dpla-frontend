@@ -52,7 +52,7 @@ const UserNavigation = ({ className, style, classNames }) =>
     <span className={classNames.divider} />
     <ul className={`${classNames.links} ${classNames.tertiaryLinks}`}>
       <li>
-        <Link prefetch href="//pro.dp.la">
+        <Link href="//pro.dp.la">
           <a>Pro Community</a>
         </Link>
       </li>
