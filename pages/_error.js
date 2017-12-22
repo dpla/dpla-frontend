@@ -34,41 +34,30 @@ export default class Error extends React.Component {
               {this.props.statusCode === 500 &&
                 <div>
                   <h1>
-                    An error occurred
+                    An error occurred.
                   </h1>
                   <p>
-                    We are sorry, we are working to fix it.
+                    Thanks for your patience while we work to fix this issue.
                   </p>
+                  <p>In the meantime, try one of these:</p>
                 </div>}
               {this.props.statusCode !== 500 &&
                 <div>
                   <h1>
-                    Page not found
+                    Page not found.
                   </h1>
                   <p>
-                    We are sorry, the page you requested cannot be found.
+                    We are sorry that the page you requested cannot be found.
                   </p>
+                  <p>Instead, try one of these:</p>
                 </div>}
               <div>
-                <p>Try one of these:</p>
                 <ul>
                   <li>
                     <Link prefetch href="/search">
-                      <a>searching</a>
+                      <a>search</a>
                     </Link>{" "}
-                    for an item in our collections
-                  </li>
-                  <li>
-                    finding items from one of our{" "}
-                    <Link prefetch href="/browse-by-partner">
-                      <a>partners</a>
-                    </Link>
-                  </li>
-                  <li>
-                    check out our{" "}
-                    <Link prefetch href="/primary-source-sets">
-                      <a>primary source sets</a>
-                    </Link>
+                    our collections
                   </li>
                   <li>
                     browse {" "}
@@ -77,9 +66,21 @@ export default class Error extends React.Component {
                     </Link>
                   </li>
                   <li>
-                    view one of our {" "}
+                    discover items from specific{" "}
+                    <Link prefetch href="/browse-by-partner">
+                      <a>partners</a>
+                    </Link>
+                  </li>
+                  <li>
+                    view our {" "}
                     <Link prefetch href="/exhibitions">
                       <a>exhibitions</a>
+                    </Link>
+                  </li>
+                  <li>
+                    explore our{" "}
+                    <Link prefetch href="/primary-source-sets">
+                      <a>primary source sets</a>
                     </Link>
                   </li>
                 </ul>
