@@ -7,15 +7,7 @@ import SkipToContent from "../../../shared/SkipToContent";
 import PageHeader from "../PageHeader";
 import GaWrapper from "../../../shared/GaWrapper";
 
-const MinimalLayout = ({
-  children,
-  route,
-  hideSearchBar,
-  isSearchPage,
-  headLinks,
-  pageTitle,
-  seoType
-}) =>
+const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
   <div>
     <Helmet htmlAttributes={{ lang: "en" }} />
     <DPLAHead
