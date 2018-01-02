@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import UserNavigation from "../shared/UserNavigation";
+import ProNavigation from "../shared/ProNavigation";
 
 import {
   stylesheet as desktopStylesheet,
@@ -11,6 +12,11 @@ const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
     {process.env.SITE_ENV !== "pro" &&
       <UserNavigation
+        className={`${desktopClassNames.linksContainer} site-max-width`}
+        classNames={desktopClassNames}
+      />}
+    {process.env.SITE_ENV === "pro" &&
+      <ProNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
       />}

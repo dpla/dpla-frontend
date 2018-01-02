@@ -116,6 +116,11 @@ const Footer = () =>
                 <a>Developers</a>
               </Link>
             </li>
+            <li>
+              <Link href="//pro.dp.la/ebooks">
+                <a>Ebooks</a>
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="col-xs-12 col-md-3">
