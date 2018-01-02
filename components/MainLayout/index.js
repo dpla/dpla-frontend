@@ -29,6 +29,8 @@ const MainLayout = ({
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
+    [{process.env.SITE_ENV}]
+    /{process.env.NODE_ENV}/
     {children}
     <Footer />
     <FeedbackForm route={route} />

@@ -78,16 +78,16 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "NODE_ENV=development node server.js",
-    "build": "NODE_ENV=production next build",
-    "start": "NODE_ENV=production node server.js",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start",
     "docker:build": "docker build -t dpla .",
     "docker:clean": "docker rm -f dpla || true",
-    "docker:run": "docker run -p 3000:3000 -d --name dpla dpla && npm run docker:logs",
+    "docker:run": "docker run -p 3000:3000 -d --name dpla dpla",
     "docker:stop": "docker stop dpla",
-    "docker:start": "docker start dpla && npm run docker:logs",
+    "docker:start": "docker start dpla && yarn run docker:logs",
     "docker:logs": "docker logs -f dpla",
-    "deploy": "npm run docker:build && npm run docker:clean && npm run docker:run"
+    "deploy": "yarn run docker:build && yarn run docker:clean && yarn run docker:run"
   },
   "lint-staged": {
     "*.js": [
