@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "aws-sdk": "^2.173.0",
-    "babel-plugin-inline-dotenv": "^1.1.1",
+    "babel-plugin-inline-dotenv": "^1.1.2",
     "babel-plugin-transform-inline-environment-variables": "^0.2.0",
     "body-parser": "^1.18.2",
     "cssnano": "^3.10.0",

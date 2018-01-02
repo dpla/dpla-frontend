@@ -16,6 +16,14 @@ const ContactForm = () =>
             </a>
           </td>
         </tr>
+        <tr className={`row ${classNames.firstRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+            Telephone
+          </td>
+          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
+            617-859-2116
+          </td>
+        </tr>
         <tr className="row">
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             Mailing Address
