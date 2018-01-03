@@ -1,9 +1,21 @@
 const fs = require("fs");
 const trash = require("trash");
 const dotenv = require("dotenv").config();
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { ANALYZE } = process.env;
 
 module.exports = {
   webpack: config => {
+    if (ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: "server",
+          analyzerPort: 8888,
+          openAnalyzer: true
+        })
+      );
+    }
+
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== "UglifyJsPlugin"
     );
