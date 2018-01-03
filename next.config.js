@@ -14,7 +14,7 @@ if (dotenv.error) {
     "utf8",
     err => {
       if (err) throw err;
-      console.log("site environment appended to " + envFile);
+      console.log("site environment written to " + envFile);
     }
   );
 }
