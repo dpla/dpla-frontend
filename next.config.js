@@ -1,5 +1,6 @@
 const fs = require("fs");
 const trash = require("trash");
+const webpack = require("webpack");
 const dotenv = require("dotenv").config();
 
 module.exports = {
@@ -7,6 +8,8 @@ module.exports = {
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== "UglifyJsPlugin"
     );
+
+    config.plugins.push(new webpack.EnvironmentPlugin(["SITE_ENV"]));
 
     config.module.rules.push({
       test: /\.(jpe?g|png|gif|svg)$/i,
