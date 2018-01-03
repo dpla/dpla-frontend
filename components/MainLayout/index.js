@@ -29,7 +29,6 @@ const MainLayout = ({
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
     [{process.env.SITE_ENV}]
-    /{process.env.NODE_ENV}/
     {children}
     <Footer />
   </div>;
