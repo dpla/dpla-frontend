@@ -8,14 +8,17 @@ import {
   classNames as desktopClassNames
 } from "../shared/DesktopStyles.css";
 
+import { SITE_ENV } from "../../../../constants/site.js";
+const env = SITE_ENV ? SITE_ENV : process.env.SITE_ENV;
+
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
-    {process.env.SITE_ENV !== "pro" &&
+    {env !== "pro" &&
       <UserNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
       />}
-    {process.env.SITE_ENV === "pro" &&
+    {env === "pro" &&
       <ProNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}

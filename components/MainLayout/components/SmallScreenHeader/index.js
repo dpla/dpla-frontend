@@ -5,6 +5,9 @@ import ProNavigation from "../shared/ProNavigation";
 
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
 
+import { SITE_ENV } from "../../../../constants/site.js";
+const env = process.env.SITE_ENV ? process.env.SITE_ENV : SITE_ENV;
+
 class SmallScreenHeader extends Component {
   state = {
     menuIsOpen: false,
@@ -49,7 +52,7 @@ class SmallScreenHeader extends Component {
             {menuIsOpen && <span>Hide<br />Menu</span>}
           </button>
         </div>
-        {process.env.SITE_ENV !== "pro" &&
+        {env !== "pro" &&
           <UserNavigation
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
@@ -57,7 +60,7 @@ class SmallScreenHeader extends Component {
             style={{ zIndex: 99 }}
             classNames={classNames}
           />}
-        {process.env.SITE_ENV === "pro" &&
+        {env === "pro" &&
           <ProNavigation
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen

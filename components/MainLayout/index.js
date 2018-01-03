@@ -8,6 +8,9 @@ import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 import GaWrapper from "../shared/GaWrapper";
 
+import { SITE_ENV } from "../../constants/site.js";
+const env = process.env.SITE_ENV ? process.env.SITE_ENV : SITE_ENV;
+
 const MainLayout = ({
   children,
   route,
@@ -24,12 +27,11 @@ const MainLayout = ({
       pageTitle={pageTitle}
       seoType={seoType}
     />
-    <script src="/site_env" />
     <SkipToContent />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
-    [{process.env.SITE_ENV}]
+    [{env}]
     {children}
     <Footer />
   </div>;
