@@ -8,12 +8,8 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock /usr/src/app/
 RUN yarn
 
-COPY . /usr/src/app
-
-# Inject SITE_ENV
-RUN echo "export const SITE_ENV = '${SITE_ENV}';" >> ./constants/site.js
-
 # Bundle app source
+COPY . /usr/src/app
 RUN yarn build
 
 EXPOSE 3000
