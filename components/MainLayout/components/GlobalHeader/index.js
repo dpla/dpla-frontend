@@ -3,8 +3,6 @@ import Link from "next/link";
 import UserNavigation from "../shared/UserNavigation";
 import ProNavigation from "../shared/ProNavigation";
 
-import { SITE_ENV } from "@env";
-
 import {
   stylesheet as desktopStylesheet,
   classNames as desktopClassNames
@@ -12,12 +10,12 @@ import {
 
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
-    {SITE_ENV !== "pro" &&
+    {process.env.SITE_ENV !== "pro" &&
       <UserNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
       />}
-    {SITE_ENV === "pro" &&
+    {process.env.SITE_ENV === "pro" &&
       <ProNavigation
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}

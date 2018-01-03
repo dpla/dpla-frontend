@@ -9,8 +9,6 @@ import Footer from "./components/Footer";
 import FeedbackForm from "components/FeedbackForm";
 import GaWrapper from "../shared/GaWrapper";
 
-import { SITE_ENV } from "@env";
-
 const MainLayout = ({
   children,
   route,
@@ -31,7 +29,7 @@ const MainLayout = ({
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
     {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
-    [{SITE_ENV}]
+    [{process.env.SITE_ENV}]
     /{process.env.NODE_ENV}/
     {children}
     <Footer />

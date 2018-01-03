@@ -3,8 +3,6 @@ import Link from "next/link";
 import UserNavigation from "../shared/UserNavigation";
 import ProNavigation from "../shared/ProNavigation";
 
-import { SITE_ENV } from "@env";
-
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
 
 class SmallScreenHeader extends Component {
@@ -51,7 +49,7 @@ class SmallScreenHeader extends Component {
             {menuIsOpen && <span>Hide<br />Menu</span>}
           </button>
         </div>
-        {SITE_ENV !== "pro" &&
+        {process.env.SITE_ENV !== "pro" &&
           <UserNavigation
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
@@ -59,7 +57,7 @@ class SmallScreenHeader extends Component {
             style={{ zIndex: 99 }}
             classNames={classNames}
           />}
-        {SITE_ENV === "pro" &&
+        {process.env.SITE_ENV === "pro" &&
           <ProNavigation
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
