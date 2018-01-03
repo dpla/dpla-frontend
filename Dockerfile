@@ -11,8 +11,6 @@ RUN yarn
 COPY . /usr/src/app
 
 # Inject SITE_ENV
-ARG SITE_ENV=user
-ENV SITE_ENV ${SITE_ENV}
 RUN echo "export const SITE_ENV = '${SITE_ENV}';" >> ./constants/site.js
 
 # Bundle app source
