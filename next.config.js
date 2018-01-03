@@ -2,10 +2,20 @@ const fs = require("fs");
 const trash = require("trash");
 const dotenv = require("dotenv").config();
 
+const envVars = {
+  SITE_ENV: JSON.stringify(process.env.SITE_ENV)
+};
+
 module.exports = {
   webpack: config => {
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== "UglifyJsPlugin"
+    );
+
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env": envVars
+      })
     );
 
     config.module.rules.push({
