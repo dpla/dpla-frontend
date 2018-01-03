@@ -1,5 +1,6 @@
 const fs = require("fs");
 const trash = require("trash");
+const webpack = require("webpack");
 const dotenv = require("dotenv").config();
 
 const envVars = {
