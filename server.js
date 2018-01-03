@@ -44,6 +44,12 @@ app
       res.send("OK");
     });
 
+    server.get("/site_env", (req, res) => {
+      res.send(
+        "var process = { env: { SITE_ENV: '" + process.env.SITE_ENV + "' }}"
+      );
+    });
+
     server.get("/donate", (req, res) => {
       const actualPage = "/donate";
       renderAndCache(req, res, actualPage, req.query);

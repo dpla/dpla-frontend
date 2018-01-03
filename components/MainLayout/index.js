@@ -24,6 +24,7 @@ const MainLayout = ({
       pageTitle={pageTitle}
       seoType={seoType}
     />
+    <script src="/site_env" />
     <SkipToContent />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
