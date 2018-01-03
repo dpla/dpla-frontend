@@ -78,8 +78,8 @@
   "scripts": {
     "precommit": "lint-staged",
     "dev": "node server.js",
-    "build": "next build",
-    "start": "next start",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t dpla .",
     "docker:clean": "docker rm -f dpla || true",
     "docker:run": "docker run -p 3000:3000 -d --name dpla dpla",
