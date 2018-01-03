@@ -1,18 +1,11 @@
 const fs = require("fs");
 const trash = require("trash");
-const webpack = require("webpack");
 const dotenv = require("dotenv").config();
 
 module.exports = {
   webpack: config => {
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== "UglifyJsPlugin"
-    );
-
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        "process.env.SITE_ENV": JSON.stringify("hello") //JSON.stringify(process.env.GRAPHQL_URL)
-      })
     );
 
     config.module.rules.push({
