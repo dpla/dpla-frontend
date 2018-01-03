@@ -11,7 +11,7 @@ module.exports = {
 
     config.plugins.push(
       new webpack.DefinePlugin({
-        "process.env.SITE_ENV": "hello" //JSON.stringify(process.env.GRAPHQL_URL)
+        "process.env.SITE_ENV": JSON.stringify("hello") //JSON.stringify(process.env.GRAPHQL_URL)
       })
     );
 
