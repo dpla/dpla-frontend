@@ -38,7 +38,9 @@ if (process.env.NODE_ENV === "production") {
   if (writeString !== fileString) {
     fs.writeFile(envFile, writeString, "utf8", err => {
       if (err) throw err;
-      console.log("site environment written to " + envFile);
+      console.log(
+        "site environment " + process.env.SITE_ENV + " written to " + envFile
+      );
     });
   }
 }
