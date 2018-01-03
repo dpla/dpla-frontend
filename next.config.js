@@ -9,7 +9,11 @@ module.exports = {
       plugin => plugin.constructor.name !== "UglifyJsPlugin"
     );
 
-    config.plugins.push(new webpack.EnvironmentPlugin(["SITE_ENV"]));
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env.SITE_ENV": "hello" //JSON.stringify(process.env.GRAPHQL_URL)
+      })
+    );
 
     config.module.rules.push({
       test: /\.(jpe?g|png|gif|svg)$/i,
