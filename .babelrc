@@ -33,6 +33,16 @@
           "utilFunctions": "./utilFunctions",
           "components": "./components"
         }
+      },
+      "dotenv-import", {
+        "moduleName": "@env",
+        "path": ".env",
+        "blacklist": null,
+        "whitelist": [
+          "SITE_ENV"
+        ],
+        "safe": false,
+        "allowUndefined": false
       }
     ]
   ]
