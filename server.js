@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require("express");
 const next = require("next");
 const LRUCache = require("lru-cache");
@@ -28,10 +29,19 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60 // 1hour
 });
 
-// if (process.env.NODE_ENV !== "production") {
-//   // require environment variables from .env file
-//   require("dotenv").config();
-// }
+if (process.env.NODE_ENV === "production") {
+  // append env value to site.js
+  // this file is supposedly only run once at build
+  const envFile = "./constants/env.js";
+  const writeString = `export const SITE_ENV = "${process.env.SITE_ENV}";`;
+  const fileString = fs.readFileSync(envFile);
+  if (writeString !== fileString) {
+    fs.writeFile(envFile, writeString, "utf8", err => {
+      if (err) throw err;
+      console.log("site environment written to " + envFile);
+    });
+  }
+}
 
 app
   .prepare()
