@@ -18,7 +18,8 @@
             "whitelist": [
               "SITE_ENV"
             ],
-            "safe": false
+            "safe": false,
+            "allowUndefined": true
           }
         ]
       ]
