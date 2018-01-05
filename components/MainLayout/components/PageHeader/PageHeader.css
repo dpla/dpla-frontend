@@ -1,9 +1,13 @@
-@value userSiteColor, secondaryButtonColor, navColor from "../../../../css/colors.css";
+@value userSiteColor, proSiteColor, secondaryButtonColor, navColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 
 .headerSearchBar {
   background-color: userSiteColor;
   width: 100%;
+
+  &.pro {
+    background-color: proSiteColor;
+  }
 }
 
 .flexWrapper {
@@ -12,8 +16,12 @@
   align-items: center;
   margin: auto;
 
+  &.pro {
+    padding: 0;
+  }
+
   @media (min-width: largeRem) {
-    padding: 0.5rem 0;
+    padding: 0;
   }
 }
 

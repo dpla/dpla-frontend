@@ -1,4 +1,4 @@
-@value linkColor, secondaryButtonColor, mysticGray, elephantBlue, white50 from "../../../css/colors.css";
+@value linkColor, secondaryButtonColor, mobileNavColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 
 .wrapper {
@@ -126,7 +126,7 @@
 
   &::placeholder {
     transition: opacity .15s ease-out;
-    color: elephantBlue;
+    color: mobileNavColor;
   }
 
   &:focus + .shadow {

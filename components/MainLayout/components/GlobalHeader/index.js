@@ -8,7 +8,7 @@ import {
   classNames as desktopClassNames
 } from "../shared/DesktopStyles.css";
 
-import { SITE_ENV } from "../../../../constants/env.js";
+import { SITE_ENV } from "constants/env";
 
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>

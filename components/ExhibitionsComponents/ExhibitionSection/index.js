@@ -4,7 +4,7 @@ import { classNames, stylesheet } from "./ExhibitionSection.css";
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
-import GaWrapper from "../../shared/GaWrapper";
+import GaWrapper from "components/shared/GaWrapper";
 
 const ExhibitionView = ({
   exhibition,

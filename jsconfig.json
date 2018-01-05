@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // all paths are relative to the baseUrl
+    "target": "ES6",
+    "paths": {
+      "utilFunctions/*": [
+        "./utilFunctions/*"
+      ],
+      "constants/*": [
+        "./constants/*"
+      ],
+      "components/*": [
+        "./components/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    ".tmp",
+    "build"
+  ]
+}
