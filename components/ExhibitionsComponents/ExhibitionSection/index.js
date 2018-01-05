@@ -5,6 +5,7 @@ import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
 import GaWrapper from "../../shared/GaWrapper";
+import FeedbackForm from "components/FeedbackForm";
 
 const ExhibitionView = ({
   exhibition,
@@ -31,6 +32,7 @@ const ExhibitionView = ({
       nextQueryParams={nextQueryParams}
       nextSubsectionTitle={nextSubsectionTitle}
     />
+    <FeedbackForm route={route} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
