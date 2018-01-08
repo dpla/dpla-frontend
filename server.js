@@ -253,7 +253,7 @@ app
     });
 
     server.get(["/about", "/about-us"], (req, res) => {
-      const actualPage = "/about";
+      const actualPage = process.env.SITE_ENV === "user" ? "/about" : "/pro";
       const params = { section: "about-us" }; // because WP has 'about-us'
       renderAndCache(
         req,
