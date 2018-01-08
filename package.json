@@ -20,6 +20,7 @@
     "node-sass": "^4.7.2",
     "openseadragon": "2.2.1",
     "react": "^15.6.1",
+    "react-aria-modal": "^2.11.1",
     "react-dom": "^15.6.1",
     "react-ga": "^2.3.5",
     "react-helmet": "^5.2.0",

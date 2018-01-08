@@ -3161,6 +3161,18 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+focus-trap-react@^3.0.4:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-3.1.1.tgz#d8cad66e01de2ae05686eae8942f4008fdd19e53"
+  dependencies:
+    focus-trap "^2.0.1"
+
+focus-trap@^2.0.1:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-2.4.2.tgz#44ea1c55a9c22c2b6529dcebbde6390eb2ee4c88"
+  dependencies:
+    tabbable "^1.0.3"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -5234,6 +5246,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+no-scroll@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/no-scroll/-/no-scroll-2.1.0.tgz#f8643b3ddb6a3bf94430e5ff31d26f21d082a695"
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
@@ -6607,6 +6623,14 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-aria-modal@^2.11.1:
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/react-aria-modal/-/react-aria-modal-2.11.1.tgz#b82769f369223f634989728694c9eecacb0a8529"
+  dependencies:
+    focus-trap-react "^3.0.4"
+    no-scroll "^2.0.0"
+    react-displace "^2.3.0"
+
 react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
@@ -6632,6 +6656,10 @@ react-dev-utils@^3.0.0:
     sockjs-client "1.1.4"
     strip-ansi "3.0.1"
     text-table "0.2.0"
+
+react-displace@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-displace/-/react-displace-2.3.0.tgz#6915f8f2f279a29a7b58442405c26edc3d441429"
 
 react-dom@^15.6.1:
   version "15.6.1"
@@ -7805,6 +7833,10 @@ symbol-observable@^1.0.1, symbol-observable@^1.0.3:
 symbol-tree@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
+
+tabbable@^1.0.3:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-1.1.2.tgz#b171680aea6e0a3e9281ff23532e2e5de11c0d94"
 
 table@^3.7.8:
   version "3.8.3"

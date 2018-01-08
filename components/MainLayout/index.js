@@ -6,6 +6,7 @@ import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
+import FeedbackForm from "components/FeedbackForm";
 import GaWrapper from "components/shared/GaWrapper";
 
 const MainLayout = ({
@@ -32,6 +33,7 @@ const MainLayout = ({
       <PageHeader searchQuery={route.query.q} hideSearchBar={hideSearchBar} />}
     {children}
     <Footer />
+    <FeedbackForm route={route} />
   </div>;
 
 export default GaWrapper(MainLayout);

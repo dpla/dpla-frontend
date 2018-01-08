@@ -290,7 +290,6 @@ app
       );
     });
 
-    // Google API endpoint proxies
     server.post("/g/contact", async (req, res) => {
       if (!req.body) return res.sendStatus(400);
       if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
@@ -336,13 +335,73 @@ app
         const data = await gRes.json();
 
         // send email
-        const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
+        const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/${process
+          .env.GOOGLE_CONTACT_SHEET_ID}/edit#gid=327438098`;
         await send_email(
           "info@dp.la",
           "info@dp.la",
           `DPLA Site Contact: ${subject}`,
           email_message
         );
+
+        // send the response back
+        res.sendStatus(200);
+      } catch (error) {
+        res.sendStatus(404);
+      }
+    });
+
+    server.post("/g/feedback", async (req, res) => {
+      if (!req.body) return res.sendStatus(400);
+      if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
+        return res.sendStatus(400);
+
+      const type = req.body.type || "";
+      const message = req.body.message || "";
+      const url = req.body.url || "";
+      const addressed = "no";
+      const options = {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+        timeZone: "America/New_York"
+      };
+      const date = Intl.DateTimeFormat("en-US", options).format(new Date());
+
+      let newRow = JSON.stringify({
+        majorDimension: "ROWS",
+        values: [[date, type, url, message, addressed]]
+      });
+
+      try {
+        const response_json = await get_google_access_token();
+        const access_token = response_json.access_token;
+        const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
+          "{ID}",
+          process.env.GOOGLE_FEEDBACK_SHEET_ID
+        );
+
+        const gRes = await fetch(url, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: "Bearer " + access_token
+          }),
+          body: newRow
+        });
+        const data = await gRes.json();
+
+        // send email
+        // const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
+        // await send_email(
+        //   "info@dp.la",
+        //   "info@dp.la",
+        //   `DPLA Site Contact: ${subject}`,
+        //   email_message
+        // );
 
         // send the response back
         res.sendStatus(200);
