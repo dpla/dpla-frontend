@@ -29,8 +29,8 @@ import { stylesheet } from "../components/HomePageComponents/HomePageSlider/Home
 import { stylesheet as guidesStylesheet } from "../components/shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "../components/shared/CarouselNavArrows/CarouselNavArrows.css";
 
-const Home = ({ sourceSets, exhibitions, guides, headerDescription }) =>
-  <MainLayout hideSearchBar>
+const Home = ({ url, sourceSets, exhibitions, guides, headerDescription }) =>
+  <MainLayout hideSearchBar route={url}>
     <div id="main">
       <HomeHero headerDescription={headerDescription} />
       {exhibitions &&

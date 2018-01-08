@@ -23,6 +23,7 @@
   height: 2.5rem;
   width: 100%;
   margin: auto;
+  padding-left: 1rem;
 
   @media (min-width: largeRem) {
     width: 50%;

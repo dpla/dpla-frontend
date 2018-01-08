@@ -4,6 +4,7 @@
 .wrapper {
   color: white;
   background-color: ebonyClayBlue;
+  position: relative;
 
   @media print {
     display: none;
