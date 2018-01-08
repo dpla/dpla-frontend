@@ -10,12 +10,13 @@
   background-color: linkColor;
   color: white;
   padding: 0.5rem 0.75rem;
-  border: 0.125rem solid linkColor;
+  border: 0.125rem solid white;
   border-radius: 0.25rem;
 
   &:hover {
     color: linkColor;
     background-color: white;
+    border-color: linkColor;
     text-decoration: none;
   }
 }
