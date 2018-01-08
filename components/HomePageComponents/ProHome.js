@@ -13,8 +13,8 @@ const ProHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
           Professional Community
         </h1>
         <p>
-          The DPLA Pro community connects libraries, developers, and engaged
-          DPLA users to resources for contributing to our organization.
+          DPLA Pro is where DPLA, our hub network, and our broader community
+          connect and share resources.
         </p>
       </div>
     </div>

@@ -115,8 +115,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="//pro.dp.la/community">
+                  <a>Community Reps</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="//pro.dp.la/developers">
                   <a>Developers</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="//pro.dp.la/ebooks">
+                  <a>Ebooks</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="//pro.dp.la/news">
+                  <a>News</a>
                 </Link>
               </li>
             </ul>
