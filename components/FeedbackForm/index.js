@@ -164,7 +164,6 @@ class FeedbackForm extends React.Component {
           onExit={this.closeForm}
           initialFocus="#deactivate-feedback"
           getApplicationNode={this.getApplicationNode}
-          underlayStyle={{ paddingTop: "2em" }}
         >
           <form
             className={classNames.feedbackForm}
