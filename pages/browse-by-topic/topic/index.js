@@ -2,10 +2,10 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import { extractSourceSetSlug } from "utilFunctions/";
-import BreadcrumbsAndNav from "../../../components/TopicBrowseComponents/BreadcrumbsAndNav";
-import MainContent from "../../../components/TopicBrowseComponents/Topic/MainContent";
-import Suggestions from "../../../components/TopicBrowseComponents/Topic/Suggestions";
-import MainLayout from "../../../components/MainLayout";
+import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
+import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
+import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
+import MainLayout from "components/MainLayout";
 import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
 import {
   EXHIBIT_PAGES_ENDPOINT,

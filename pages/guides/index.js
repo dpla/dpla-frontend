@@ -49,14 +49,12 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   </MainLayout>;
 
 Guides.getInitialProps = async () => {
-  console.log("guides", GUIDES_ENDPOINT);
-  console.log("menu", ABOUT_MENU_ENDPOINT);
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
   const indexPageItem = aboutMenuJson.items.find(
     item => item.url === GUIDES_ENDPOINT
   );
-  console.log(JSON.stringify(aboutMenuJson.items));
+
   const guides = await Promise.all(
     aboutMenuJson.items
       .filter(item => item.menu_item_parent === indexPageItem.object_id)

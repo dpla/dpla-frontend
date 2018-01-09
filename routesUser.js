@@ -164,7 +164,7 @@ module.exports = (app, server) => {
   });
 
   server.get(["/about", "/about-us"], (req, res) => {
-    const actualPage = process.env.SITE_ENV === "user" ? "/about" : "/pro";
+    const actualPage = "/about";
     const params = { section: "about-us" }; // because WP has 'about-us'
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });

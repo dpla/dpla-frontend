@@ -1,8 +1,8 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import TopicsList from "../../components/TopicBrowseComponents/TopicsList";
+import MainLayout from "components/MainLayout";
+import TopicsList from "components/TopicBrowseComponents/TopicsList";
 import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
 import { TITLE } from "constants/topicBrowse";
 

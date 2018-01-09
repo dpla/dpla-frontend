@@ -36,7 +36,7 @@ const Footer = () => {
                   as="/about/frequently-asked-questions"
                   href="/about?section=frequently-asked-questions"
                 >
-                  <a>FAQ</a>
+                  <a>Frequently Asked Questions</a>
                 </Link>
               </li>
               <li>
@@ -110,8 +110,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="//pro.dp.la/educators">
-                  <a>Educators</a>
+                <Link href="//pro.dp.la/education">
+                  <a>Education</a>
                 </Link>
               </li>
               <li>
