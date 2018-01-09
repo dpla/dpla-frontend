@@ -18,28 +18,13 @@ module.exports = (app, server) => {
     app.render(req, res, "/contact-us", req.query);
   });
 
-  // guides routes
-
-  server.get("/guides/:guide", (req, res) => {
-    const actualPage = "/guides/guide";
-    const params = {
-      guide: req.params.guide
-    };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
-  });
-
-  server.get("/guides", (req, res) => {
-    const actualPage = "/guides";
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  });
-
   server.get(["/about", "/about-us"], (req, res) => {
-    const actualPage = process.env.SITE_ENV === "user" ? "/about" : "/pro";
+    const actualPage = "/about";
     const params = { section: "about-us" }; // because WP has 'about-us'
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });
 
-  server.get("/about/:section", (req, res) => {
+  server.get("/wp/:section", (req, res) => {
     const actualPage = "/about";
     const params = {
       section: req.params.section
@@ -47,7 +32,7 @@ module.exports = (app, server) => {
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });
 
-  server.get("/about/:section/:subsection", (req, res) => {
+  server.get("/wp/:section/:subsection", (req, res) => {
     const actualPage = "/about";
     const params = {
       section: req.params.section,

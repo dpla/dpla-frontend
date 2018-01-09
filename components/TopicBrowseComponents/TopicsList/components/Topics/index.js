@@ -7,8 +7,11 @@ import { classNames as utilClassNames } from "css/utils.css";
 const Topics = ({ topics }) =>
   <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
     <ul className="row">
-      {topics.map(topic =>
-        <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      {topics.map((topic, index) =>
+        <li
+          key={`${topic.name}-${index}`}
+          className="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+        >
           <Link
             prefetch
             as={`/browse-by-topic/${topic.slug}`}
