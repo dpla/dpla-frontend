@@ -215,7 +215,7 @@ module.exports = (app, server) => {
     });
 
     try {
-      const response_json = await utilFunctions.get_google_access_token();
+      const response_json = await utilFunctions.getGoogleAccessToken();
       const access_token = response_json.access_token;
       const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
         "{ID}",
@@ -235,7 +235,7 @@ module.exports = (app, server) => {
       // send email
       const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/${process
         .env.GOOGLE_CONTACT_SHEET_ID}/edit#gid=327438098`;
-      await utilFunctions.send_email(
+      await utilFunctions.sendEmail(
         "info@dp.la",
         "info@dp.la",
         `DPLA Site Contact: ${subject}`,
@@ -275,7 +275,7 @@ module.exports = (app, server) => {
     });
 
     try {
-      const response_json = await utilFunctions.get_google_access_token();
+      const response_json = await utilFunctions.getGoogleAccessToken();
       const access_token = response_json.access_token;
       const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
         "{ID}",
@@ -294,7 +294,7 @@ module.exports = (app, server) => {
 
       // send email
       // const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
-      // await utilFunctions.send_email(
+      // await utilFunctions.sendEmail(
       //   "info@dp.la",
       //   "info@dp.la",
       //   `DPLA Site Contact: ${subject}`,
