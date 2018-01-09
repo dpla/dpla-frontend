@@ -68,7 +68,7 @@ exports.renderAndCache = (
 
 // google and email sending stuff
 
-exports.send_email = (from, to, subject, message) => {
+exports.sendEmail = (from, to, subject, message) => {
   const aws = require("aws-sdk");
   console.log("sending email to: ", to);
   aws.config.update({ region: "us-east-1" });
@@ -105,7 +105,7 @@ exports.send_email = (from, to, subject, message) => {
   });
 };
 
-exports.get_google_access_token = () => {
+exports.getGoogleAccessToken = () => {
   // via https://stackoverflow.com/questions/19766912/how-do-i-authorise-an-app-web-or-installed-without-user-intervention-canonic
   const refresh_token = process.env.GOOGLE_TOKEN;
   const client_id = process.env.GOOGLE_CLIENT;
