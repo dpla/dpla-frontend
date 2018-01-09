@@ -1,21 +1,14 @@
 const fs = require("fs");
 const express = require("express");
 const next = require("next");
-const LRUCache = require("lru-cache");
 const proxy = require("express-http-proxy");
 const bodyParser = require("body-parser");
-const gauth = require("google-auth-library");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const utilFunctions = require("./utilFunctions/serverFunctions");
-
-const ssrCache = new LRUCache({
-  max: 100,
-  maxAge: 1000 * 60 * 60 // 1hour
-});
 
 app
   .prepare()

@@ -1,3 +1,12 @@
+const LRUCache = require("lru-cache");
+
+const ssrCache = new LRUCache({
+  max: 100,
+  maxAge: 1000 * 60 * 60 // 1hour
+});
+
+// route and cache related stuff
+
 exports.replaceWithProxyEndpoint = (endpoint, req) => {
   if (endpoint) {
     const protocol = req.hostname.includes("localhost") ? "http" : "https";
@@ -9,6 +18,55 @@ exports.replaceWithProxyEndpoint = (endpoint, req) => {
     return null;
   }
 };
+
+/*
+* NB: make sure to modify this to take into account anything that should trigger
+* an immediate page change (e.g a locale stored in req.session)
+*/
+exports.getCacheKey = req => {
+  return `${req.url}`;
+};
+
+exports.mergeQueryAndParams = (query, params) =>
+  Object.assign({}, query, params);
+
+exports.renderAndCache = (
+  app,
+  req,
+  res,
+  pagePath,
+  queryParams,
+  extraParams
+) => {
+  const key = this.getCacheKey(req);
+
+  // If we have a page in the cache, let's serve it
+  if (ssrCache.has(key)) {
+    console.log(`CACHE HIT: ${key}`);
+    res.send(ssrCache.get(key));
+    return;
+  }
+
+  if (extraParams) {
+    queryParams = this.mergeQueryAndParams(extraParams, queryParams);
+  }
+
+  // If not let's render the page into HTML
+  app
+    .renderToHTML(req, res, pagePath, queryParams)
+    .then(html => {
+      // Let's cache this page
+      console.log(`CACHE MISS: ${key}`);
+      ssrCache.set(key, html);
+
+      res.send(html);
+    })
+    .catch(err => {
+      app.renderError(err, req, res, pagePath, queryParams);
+    });
+};
+
+// google and email sending stuff
 
 exports.send_email = (from, to, subject, message) => {
   const aws = require("aws-sdk");
@@ -73,51 +131,4 @@ exports.get_google_access_token = () => {
   return fetch(refresh_url, refresh_request).then(response => {
     return response.json();
   });
-};
-
-/*
-* NB: make sure to modify this to take into account anything that should trigger
-* an immediate page change (e.g a locale stored in req.session)
-*/
-exports.getCacheKey = req => {
-  return `${req.url}`;
-};
-
-exports.mergeQueryAndParams = (query, params) =>
-  Object.assign({}, query, params);
-
-exports.renderAndCache = (
-  app,
-  req,
-  res,
-  pagePath,
-  queryParams,
-  extraParams
-) => {
-  const key = getCacheKey(req);
-
-  // If we have a page in the cache, let's serve it
-  if (ssrCache.has(key)) {
-    console.log(`CACHE HIT: ${key}`);
-    res.send(ssrCache.get(key));
-    return;
-  }
-
-  if (extraParams) {
-    queryParams = mergeQueryAndParams(extraParams, queryParams);
-  }
-
-  // If not let's render the page into HTML
-  app
-    .renderToHTML(req, res, pagePath, queryParams)
-    .then(html => {
-      // Let's cache this page
-      console.log(`CACHE MISS: ${key}`);
-      ssrCache.set(key, html);
-
-      res.send(html);
-    })
-    .catch(err => {
-      app.renderError(err, req, res, pagePath, queryParams);
-    });
 };
