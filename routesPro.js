@@ -19,13 +19,13 @@ module.exports = (app, server) => {
   });
 
   server.get(["/about", "/about-us"], (req, res) => {
-    const actualPage = "/about";
+    const actualPage = "/wp-pro";
     const params = { section: "about-us" }; // because WP has 'about-us'
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });
 
   server.get("/wp/:section", (req, res) => {
-    const actualPage = "/about";
+    const actualPage = "/wp-pro";
     const params = {
       section: req.params.section
     };
@@ -33,7 +33,7 @@ module.exports = (app, server) => {
   });
 
   server.get("/wp/:section/:subsection", (req, res) => {
-    const actualPage = "/about";
+    const actualPage = "/wp-pro";
     const params = {
       section: req.params.section,
       subsection: req.params.subsection
