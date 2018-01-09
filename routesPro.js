@@ -2,8 +2,6 @@ const proxy = require("express-http-proxy");
 const utilFunctions = require("./utilFunctions/serverFunctions");
 
 module.exports = (app, server) => {
-  const handle = app.getRequestHandler();
-
   server.get("/donate", (req, res) => {
     const actualPage = "/donate";
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query);

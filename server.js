@@ -34,6 +34,7 @@ app
     });
 
     // handle all other requests
+    const handle = app.getRequestHandler();
 
     server.get("*", (req, res) => {
       return handle(req, res);
