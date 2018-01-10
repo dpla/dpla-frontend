@@ -2,39 +2,24 @@ import React from "react";
 import Link from "next/link";
 
 import { GUIDES_PARENT_ID } from "constants/content-pages";
-import { classNames, stylesheet } from "./Sidebar.css";
+import { SITE_ENV } from "constants/env";
 import { decodeHTMLEntities } from "utilFunctions";
-import HeadingRule from "components/shared/HeadingRule";
+
+import { classNames, stylesheet } from "./Sidebar.css";
 
 const SidebarLink = ({
   isCurrentLink,
   isGuide,
   linkObject,
   title,
-  section,
-  subsection
+  rootPath
 }) => {
   return (
-    <Link
-      as={
-        linkObject && linkObject.as
-          ? linkObject.as
-          : `/${isGuide ? `guides` : `about`}${!subsection && !isGuide
-              ? `/${section}`
-              : ``}${subsection ? `/${subsection}` : ""}`
-      }
-      href={
-        linkObject && linkObject.href
-          ? linkObject.href
-          : `/about?section=${section}${subsection
-              ? `&subsection=${subsection}`
-              : ""}`
-      }
-    >
+    <Link as={linkObject.as} href={linkObject.href}>
       <a
         className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
       >
-        {title}
+        {title} {JSON.stringify(linkObject)}
       </a>
     </Link>
   );
@@ -62,30 +47,70 @@ const NestedSidebarLinks = ({
       />
       {children.length
         ? <ul>
-            {children.map(child =>
-              <li key={child.ID}>
-                <SidebarLink
-                  title={decodeHTMLEntities(child.title)}
-                  section={section}
-                  subsection={child.post_name}
-                  isGuide={isGuide}
-                  isCurrentLink={child.url.match(
-                    new RegExp(activeItemId + "$")
-                  )}
-                />
-              </li>
-            )}
+            {children.map(child => {
+              let childLinkObject = { as: linkObject.as, href: "/" };
+              if (isGuide) {
+                childLinkObject = {
+                  as: "/guides",
+                  href: "/about?section=" + child.post_name
+                };
+              } else if (SITE_ENV === "user") {
+                childLinkObject = {
+                  as: "/about/" + child.post_name,
+                  href: "/about?section=" + child.post_name
+                };
+              } else if (SITE_ENV === "pro") {
+                childLinkObject = {
+                  as: linkObject.as + "/" + child.post_name,
+                  href: "/wp?section=" + child.post_name
+                };
+              }
+              return (
+                <li key={child.ID}>
+                  <SidebarLink
+                    title={decodeHTMLEntities(child.title)}
+                    section={section}
+                    subsection={child.post_name}
+                    isGuide={isGuide}
+                    linkObject={childLinkObject}
+                    isCurrentLink={child.url.match(
+                      new RegExp(activeItemId + "$")
+                    )}
+                  />
+                </li>
+              );
+            })}
           </ul>
         : null}
     </div>
   );
 };
 
-const Sidebar = ({ activeItemId, items, route }) =>
+const Sidebar = ({ activeItemId, items, route, rootPath = "about" }) =>
   <div className="col-xs-12 col-md-4">
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
         {items.filter(item => item.menu_item_parent === "0").map(item => {
+          const isGuide =
+            item.menu_item_parent === GUIDES_PARENT_ID ||
+            item.ID === GUIDES_PARENT_ID;
+          let linkObject = { as: "/", href: "/" };
+          if (isGuide) {
+            linkObject = {
+              as: "/guides",
+              href: "/about?section=" + item.post_name
+            };
+          } else if (SITE_ENV === "user") {
+            linkObject = {
+              as: "/about/" + item.post_name,
+              href: "/about?section=" + item.post_name
+            };
+          } else if (SITE_ENV === "pro") {
+            linkObject = {
+              as: "/" + item.post_name,
+              href: "/wp?section=" + item.post_name
+            };
+          }
           const children = items.filter(
             child => child.menu_item_parent === item.object_id
           );
@@ -95,10 +120,8 @@ const Sidebar = ({ activeItemId, items, route }) =>
                 title={decodeHTMLEntities(item.title)}
                 url={item.url}
                 section={item.post_name}
-                isGuide={
-                  item.menu_item_parent === GUIDES_PARENT_ID ||
-                  item.ID === GUIDES_PARENT_ID
-                }
+                isGuide={isGuide}
+                linkObject={linkObject}
                 isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
                 children={children}
                 activeItemId={activeItemId}

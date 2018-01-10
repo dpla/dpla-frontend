@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".", // all paths are relative to the baseUrl
     "target": "ES6",
+    "moduleResolution": "node",
     "paths": {
       "utilFunctions/*": [
         "./utilFunctions/*"
@@ -18,6 +19,7 @@
     "node_modules",
     "lib",
     ".tmp",
-    "build"
+    "build",
+    ".next"
   ]
 }

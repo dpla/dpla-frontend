@@ -22,6 +22,7 @@ const ProMenuPage = ({ url, content, items, pageTitle }) =>
           route={url}
           items={items}
           activeItemId={content.id}
+          rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">
           <div
@@ -40,7 +41,7 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const response = await fetch(PRO_MENU_ENDPOINT);
   const json = await response.json();
   const pageItem = json.items.find(item => item.post_name === pageName);
-  console.log(pageName, json);
+  console.log("ProMeuPage:", pageName, pageItem);
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
   return { content: pageJson, items: json.items, pageTitle: pageItem.title };
