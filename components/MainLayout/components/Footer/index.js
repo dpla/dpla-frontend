@@ -19,19 +19,6 @@ const Footer = () => {
             <h2 className={classNames.linkHeader}>DPLA</h2>
             <ul>
               <li>
-                <Link as="/about" href="/about?section=about-us">
-                  <a>About DPLA</a>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  as="/about/our-supporters"
-                  href="/about?section=our-supporters"
-                >
-                  <a>Our Supporters</a>
-                </Link>
-              </li>
-              <li>
                 <Link
                   as="/about/frequently-asked-questions"
                   href="/about?section=frequently-asked-questions"
@@ -53,6 +40,19 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  as="/about/our-supporters"
+                  href="/about?section=our-supporters"
+                >
+                  <a>Our Supporters</a>
+                </Link>
+              </li>
+              <li>
+                <Link as="/about" href="/about?section=about-us">
+                  <a>About DPLA</a>
+                </Link>
+              </li>
+              <li>
                 <Link as="/contact" href="/contact-us">
                   <a>Contact Us</a>
                 </Link>
@@ -63,18 +63,13 @@ const Footer = () => {
             <h2 className={classNames.linkHeader}>Tools</h2>
             <ul>
               <li>
-                <Link href="/search">
-                  <a>Search</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/exhibitions">
-                  <a>Exhibitions</a>
-                </Link>
-              </li>
-              <li>
                 <Link href="/primary-source-sets">
                   <a>Primary Source Sets</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/browse-by-partner">
+                  <a>Browse by Partner</a>
                 </Link>
               </li>
               <li>
@@ -83,8 +78,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-partner">
-                  <a>Browse by Partner</a>
+                <Link href="/exhibitions">
+                  <a>Exhibitions</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/search">
+                  <a>Search</a>
                 </Link>
               </li>
             </ul>
@@ -92,31 +92,16 @@ const Footer = () => {
           <div
             className={`${classNames.linkGroup} col-xs-12 col-sm-4 col-md-3`}
           >
-            <h2 className={classNames.linkHeader}>Pro Community</h2>
+            <h2 className={classNames.linkHeader}>DPLA Pro</h2>
             <ul>
-              <li>
-                <Link href="//pro.dp.la/about">
-                  <a>About DPLA Pro Community</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/hubs">
-                  <a>Hubs</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/projects">
-                  <a>Projects</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/education">
-                  <a>Education</a>
-                </Link>
-              </li>
               <li>
                 <Link href="//pro.dp.la/community">
                   <a>Community Reps</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="//pro.dp.la/about">
+                  <a>About DPLA Pro</a>
                 </Link>
               </li>
               <li>
@@ -125,8 +110,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="//pro.dp.la/education">
+                  <a>Education</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="//pro.dp.la/projects">
+                  <a>Projects</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="//pro.dp.la/ebooks">
                   <a>Ebooks</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="//pro.dp.la/hubs">
+                  <a>Hubs</a>
                 </Link>
               </li>
               <li>
