@@ -13,7 +13,6 @@
 .flexWrapper {
   padding: 0.5rem 1rem;
   display: flex;
-  align-items: center;
   margin: auto;
 
   &.pro {
@@ -32,11 +31,16 @@
   display: flex;
   height: 2.5rem;
   width: 100%;
-  margin: auto;
-  padding-left: 1rem;
+  margin: auto 0 auto auto;
+  
+  @media (min-width: mediumRem) {
+    padding-left: 1rem;
+  }
 
   @media (min-width: largeRem) {
+    padding-left: 0;
     width: 50%;
+    justify-self: flex-end;
   }
 }
 
