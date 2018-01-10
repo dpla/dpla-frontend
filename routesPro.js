@@ -2,6 +2,11 @@ const proxy = require("express-http-proxy");
 const utilFunctions = require("./utilFunctions/serverFunctions");
 
 module.exports = (app, server) => {
+  server.get("/", (req, res) => {
+    const actualPage = "/pro";
+    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
   server.get("/donate", (req, res) => {
     const actualPage = "/donate";
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
@@ -19,13 +24,13 @@ module.exports = (app, server) => {
   });
 
   server.get(["/about", "/about-us"], (req, res) => {
-    const actualPage = "/wp-pro";
+    const actualPage = "/pro/wp";
     const params = { section: "about-us" }; // because WP has 'about-us'
     utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });
 
   server.get("/wp/:section", (req, res) => {
-    const actualPage = "/wp-pro";
+    const actualPage = "/pro/wp";
     const params = {
       section: req.params.section
     };
@@ -33,7 +38,7 @@ module.exports = (app, server) => {
   });
 
   server.get("/wp/:section/:subsection", (req, res) => {
-    const actualPage = "/wp-pro";
+    const actualPage = "/pro/wp";
     const params = {
       section: req.params.section,
       subsection: req.params.subsection

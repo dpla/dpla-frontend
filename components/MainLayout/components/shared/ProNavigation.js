@@ -5,39 +5,39 @@ const ProNavigation = ({ className, style, classNames }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
       <li>
-        <Link prefetch href="/">
+        <Link prefetch as="/" href="/pro">
           <a>
             Home
           </a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/hubs">
+        <Link prefetch as="/hubs" href="/pro/wp?section=hubs">
           <a>Hubs</a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/projects">
+        <Link prefetch as="/projects" href="/pro/wp?section=projects">
           <a>Projects</a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/educators">
-          <a>Educators</a>
+        <Link prefetch as="/education" href="/pro/wp?section=education">
+          <a>Education</a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/events">
+        <Link prefetch as="/events" href="/pro/wp?section=events">
           <a>Events</a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/about">
+        <Link prefetch as="/about" href="/pro/wp?section=about-us">
           <a>About</a>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/news">
+        <Link prefetch as="/news" href="/pro/wp?section=news">
           <a>News</a>
         </Link>
       </li>
