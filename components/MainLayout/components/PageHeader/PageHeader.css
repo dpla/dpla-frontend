@@ -17,7 +17,9 @@
   margin: auto;
 
   &.pro {
-    padding: 0;
+    @media (max-width: mediumRem) {
+      padding: 0;
+    }
   }
 
   @media (min-width: largeRem) {

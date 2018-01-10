@@ -6,7 +6,6 @@ import { SITE_ENV } from "constants/env";
 import { stylesheet, classNames } from "./PageHeader.css";
 
 const dplaLogo = "/static/images/dpla-logo-white.svg";
-const searchIcon = "/static/images/search.svg";
 
 const PageHeader = ({ searchQuery, hideSearchBar }) =>
   <div
