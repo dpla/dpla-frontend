@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const ProNavigation = ({ className, style, classNames }) =>
+const NavigationPro = ({ className, style, classNames }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
       <li>
@@ -32,7 +32,7 @@ const ProNavigation = ({ className, style, classNames }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/about" href="/pro/wp?section=about-us">
+        <Link prefetch as="/about" href="/pro/wp?section=about-dpla-pro">
           <a>About</a>
         </Link>
       </li>
@@ -52,4 +52,4 @@ const ProNavigation = ({ className, style, classNames }) =>
     </ul>
   </div>;
 
-export default ProNavigation;
+export default NavigationPro;

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import UserNavigation from "../shared/UserNavigation";
-import ProNavigation from "../shared/ProNavigation";
+import NavigationUser from "../shared/NavigationUser";
+import NavigationPro from "../shared/NavigationPro";
 
 import {
   stylesheet as desktopStylesheet,
@@ -13,12 +13,12 @@ import { SITE_ENV } from "constants/env";
 const GlobalHeader = () =>
   <div className={desktopClassNames.header}>
     {SITE_ENV !== "pro" &&
-      <UserNavigation
+      <NavigationUser
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
       />}
     {SITE_ENV === "pro" &&
-      <ProNavigation
+      <NavigationPro
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
       />}

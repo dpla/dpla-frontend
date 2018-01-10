@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import UserNavigation from "../shared/UserNavigation";
-import ProNavigation from "../shared/ProNavigation";
+import NavigationUser from "../shared/NavigationUser";
+import NavigationPro from "../shared/NavigationPro";
 
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
 
@@ -52,7 +52,7 @@ class SmallScreenHeader extends Component {
           </button>
         </div>
         {SITE_ENV !== "pro" &&
-          <UserNavigation
+          <NavigationUser
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
               : ""} site-max-width`}
@@ -60,7 +60,7 @@ class SmallScreenHeader extends Component {
             classNames={classNames}
           />}
         {SITE_ENV === "pro" &&
-          <ProNavigation
+          <NavigationPro
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
               : ""} site-max-width`}
