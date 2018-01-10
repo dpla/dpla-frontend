@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const UserNavigation = ({ className, style, classNames }) =>
+const NavigationUser = ({ className, style, classNames }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
       <li>
@@ -59,4 +59,4 @@ const UserNavigation = ({ className, style, classNames }) =>
     </ul>
   </div>;
 
-export default UserNavigation;
+export default NavigationUser;
