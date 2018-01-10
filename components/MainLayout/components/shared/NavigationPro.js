@@ -5,39 +5,42 @@ const NavigationPro = ({ className, style, classNames }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
       <li>
-        <Link prefetch as="/" href="/pro">
+        <Link prefetch href="/">
           <a>
             Home
           </a>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/hubs" href="/pro/wp?section=hubs">
+        <Link prefetch as="/hubs" href="/wp?section=hubs">
           <a>Hubs</a>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/projects" href="/pro/wp?section=projects">
+        <Link prefetch as="/projects" href="/wp?section=projects">
           <a>Projects</a>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/education" href="/pro/wp?section=education">
+        <Link prefetch as="/education" href="/wp?section=education">
           <a>Education</a>
         </Link>
       </li>
+    </ul>
+    <span className={classNames.divider} />
+    <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
       <li>
-        <Link prefetch as="/events" href="/pro/wp?section=events">
+        <Link prefetch as="/events" href="/wp?section=events">
           <a>Events</a>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/about" href="/pro/wp?section=about-dpla-pro">
+        <Link prefetch as="/about" href="/wp?section=about-dpla-pro">
           <a>About</a>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/news" href="/pro/wp?section=news">
+        <Link prefetch as="/news" href="/wp?section=news">
           <a>News</a>
         </Link>
       </li>
