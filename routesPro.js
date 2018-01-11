@@ -1,5 +1,6 @@
 const proxy = require("express-http-proxy");
 const utilFunctions = require("./utilFunctions/serverFunctions");
+const SECTIONS = require("./constants/pro").SECTIONS;
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
@@ -16,20 +17,10 @@ module.exports = (app, server) => {
   });
 
   // for top-level sections
-  [
-    "about-dpla-pro",
-    "projects",
-    "hubs",
-    "education",
-    "events",
-    "developers",
-    "news",
-    "community-reps",
-    "ebooks"
-  ].forEach(section => {
-    server.get("/" + section, (req, res) => {
+  SECTIONS.forEach(section => {
+    server.get("/" + section.slug, (req, res) => {
       const actualPage = "/pro/wp";
-      const params = { section: section };
+      const params = { section: section.slug };
       utilFunctions.renderAndCache(
         app,
         req,
@@ -40,6 +31,7 @@ module.exports = (app, server) => {
       );
     });
 
+    // when a top level section has subsections
     server.get("/" + section + "/:subsection", (req, res) => {
       const actualPage = "/pro/wp";
       const params = {
@@ -55,36 +47,5 @@ module.exports = (app, server) => {
         params
       );
     });
-  });
-
-  server.get("/wp", (req, res) => {
-    console.log("wp-", req.params.section, "+", req.params.subsection);
-    const actualPage = "/pro/wp";
-    const params = { section: req.params.section };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
-  });
-
-  server.get("/wp/:section", (req, res) => {
-    console.log("wp:section-", req.params.section);
-    const actualPage = "/pro/wp";
-    const params = {
-      section: req.params.section
-    };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
-  });
-
-  server.get("/wp/:section/:subsection", (req, res) => {
-    console.log(
-      "wp:section:subsection-",
-      req.params.section,
-      "+",
-      req.params.subsection
-    );
-    const actualPage = "/pro/wp";
-    const params = {
-      section: req.params.section,
-      subsection: req.params.subsection
-    };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
   });
 };
