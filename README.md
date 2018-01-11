@@ -39,36 +39,6 @@ We like clean commit histories:
 - Pull requests should be squashed down to 1 commit and rebased with master, preferably before asking for a review.
 - Once merged, the feature branch should be deleted.
 
-## Commit Style
-
-### Format
-
-```
-commit_type: message in present tense
-```
-
-### Examples
-
-```
-feat: add new end point for Users
-fix: disallow users from editing events that do not belong to them
-style: remove trailing whitespace
-refactor: move all analytics into a service
-chore: improve build speed of Docker build
-test: integration test for login
-docs: commit style examples for readme
-```
-
-### Commit Types
-
-- `feat` a feature or enhancement. can be incredibly small.
-- `fix` a bug fix to something that was broken.
-- `style` change code style, like removing whitespace. no functional code changes.
-- `refactor` change code, but not functionality.
-- `chore` does not effect the production version of the app in any way.
-- `test` add, update, or fix a test.
-- `docs` add, update, or remove documentation. no code changes.
-
 ## Project Management
 
 [Desktop Design Prototype](https://invis.io/3FC6KEGQV)  
