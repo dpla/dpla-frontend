@@ -41,21 +41,22 @@
   & ul {
     display: grid;
     grid-auto-rows: minmax(18rem, auto);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
     margin: auto;
     padding: 0.5rem 1rem;
 
-    @media (min-width: largeRem) {
-      padding: 0;
+    @media (min-width: smallRem) {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    @media (max-width: largeRem) {
+    
+    @media (min-width: mediumRem) {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: mediumRem) {
-      grid-template-columns: repeat(2, 1fr);
+    @media (min-width: largeRem) {
+      padding: 0;
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
