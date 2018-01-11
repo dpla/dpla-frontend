@@ -31,14 +31,6 @@ server-side rendering of the JavaScript. Next.js in turn uses
 We're using a local copy of [flexboxgrid](https://github.com/kristoferjoseph/flexboxgrid)
 to manage a 12-column grid. Review <http://flexboxgrid.com/> for documentation.
 
-## Pull requests
-
-We like clean commit histories:
-
-- Pull requests should be on an appropriately named branch eg. `feat-add-users`, `fix-encoding`
-- Pull requests should be squashed down to 1 commit and rebased with master, preferably before asking for a review.
-- Once merged, the feature branch should be deleted.
-
 ## Project Management
 
 [Desktop Design Prototype](https://invis.io/3FC6KEGQV)  
@@ -62,7 +54,7 @@ Once you have [Docker](https://www.docker.com/) installed on your computer, you 
 
 ```zsh
 # Build and run the container
-> npm run deploy
+> yarn deploy
 ```
 
 To deploy the container to AWS Elastic Beanstalk, you'll need to get set up first.
