@@ -317,6 +317,7 @@
 
 .dplaLogo {
   display: none;
+  cursor: pointer;
 
   @media (min-width: smallRem) {
     display: inline-block;
