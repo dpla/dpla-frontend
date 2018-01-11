@@ -2,9 +2,11 @@ import React from "react";
 
 import Link from "next/link";
 
-import MainLayout from "../../components/MainLayout";
-import DonateForm from "../../components/DonateComponents/DonateForm";
-import Button from "../../components/shared/Button";
+import MainLayout from "components/MainLayout";
+import DonateForm from "components/DonateComponents/DonateForm";
+import Button from "components/shared/Button";
+
+import { SEO_TITLE } from "constants/donate";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
@@ -15,7 +17,6 @@ import {
   classNames as utilClassNames,
   stylesheet as utilStyles
 } from "css/utils.css";
-import { SEO_TITLE } from "constants/donate";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>

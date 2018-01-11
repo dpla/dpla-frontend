@@ -1,8 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./Footer.css";
 
 import Button from "components/shared/Button";
+
+import { SECTIONS as PRO_SECTIONS } from "constants/pro";
+
+import { classNames, stylesheet } from "./Footer.css";
+
 const logo = "/static/images/dpla-logo.svg";
 const fbIcon = "/static/images/facebook.svg";
 const igIcon = "/static/images/instagram.svg";
@@ -19,41 +23,32 @@ const Footer = () => {
             <h2 className={classNames.linkHeader}>DPLA</h2>
             <ul>
               <li>
-                <Link
-                  as="/about/frequently-asked-questions"
-                  href="/about?section=frequently-asked-questions"
-                >
+                <Link href="//beta.dp.la/about/frequently-asked-questions">
                   <a>Frequently Asked Questions</a>
                 </Link>
               </li>
               <li>
-                <Link href="/guides">
+                <Link href="//beta.dp.la/guides">
                   <a>How Can I Use DPLA?</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  as="/about/terms-conditions"
-                  href="/about?section=terms-conditions"
-                >
+                <Link href="//beta.dp.la/about/terms-conditions">
                   <a>Terms &amp; Conditions</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  as="/about/our-supporters"
-                  href="/about?section=our-supporters"
-                >
+                <Link href="//beta.dp.la/about/our-supporters">
                   <a>Our Supporters</a>
                 </Link>
               </li>
               <li>
-                <Link as="/about" href="/about?section=about-us">
+                <Link href="//beta.dp.la/about">
                   <a>About DPLA</a>
                 </Link>
               </li>
               <li>
-                <Link as="/contact" href="/contact-us">
+                <Link href="//beta.dp.la/contact">
                   <a>Contact Us</a>
                 </Link>
               </li>
@@ -63,27 +58,27 @@ const Footer = () => {
             <h2 className={classNames.linkHeader}>Tools</h2>
             <ul>
               <li>
-                <Link href="/primary-source-sets">
+                <Link href="//beta.dp.la/primary-source-sets">
                   <a>Primary Source Sets</a>
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-partner">
+                <Link href="//beta.dp.la/browse-by-partner">
                   <a>Browse by Partner</a>
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-topic">
+                <Link href="//beta.dp.la/browse-by-topic">
                   <a>Browse by Topic</a>
                 </Link>
               </li>
               <li>
-                <Link href="/exhibitions">
+                <Link href="//beta.dp.la/exhibitions">
                   <a>Exhibitions</a>
                 </Link>
               </li>
               <li>
-                <Link href="/search">
+                <Link href="//beta.dp.la/search">
                   <a>Search</a>
                 </Link>
               </li>
@@ -94,46 +89,15 @@ const Footer = () => {
           >
             <h2 className={classNames.linkHeader}>DPLA Pro</h2>
             <ul>
-              <li>
-                <Link href="//pro.dp.la/community">
-                  <a>Community Reps</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/about">
-                  <a>About DPLA Pro</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/developers">
-                  <a>Developers</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/education">
-                  <a>Education</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/projects">
-                  <a>Projects</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/ebooks">
-                  <a>Ebooks</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/hubs">
-                  <a>Hubs</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="//pro.dp.la/news">
-                  <a>News</a>
-                </Link>
-              </li>
+              {PRO_SECTIONS.map(section => {
+                return (
+                  <li>
+                    <Link href={`//pro.dp.la/${section.slug}`}>
+                      <a>{section.name}</a>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="col-xs-12 col-md-3">

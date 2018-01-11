@@ -19,7 +19,7 @@ const SidebarLink = ({
       <a
         className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
       >
-        {title} {JSON.stringify(linkObject)}
+        {title}
       </a>
     </Link>
   );
@@ -62,7 +62,7 @@ const NestedSidebarLinks = ({
               } else if (SITE_ENV === "pro") {
                 childLinkObject = {
                   as: linkObject.as + "/" + child.post_name,
-                  href: "/wp?section=" + child.post_name
+                  href: "/pro/wp?section=" + child.post_name
                 };
               }
               return (
@@ -108,7 +108,7 @@ const Sidebar = ({ activeItemId, items, route, rootPath = "about" }) =>
           } else if (SITE_ENV === "pro") {
             linkObject = {
               as: "/" + item.post_name,
-              href: "/wp?section=" + item.post_name
+              href: "/pro/wp?section=" + item.post_name
             };
           }
           const children = items.filter(
