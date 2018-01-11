@@ -34,7 +34,7 @@ class SmallScreenHeader extends Component {
     return (
       <div className={`${classNames.wrapper}`}>
         <div className={classNames.header}>
-          <Link prefetch href="/">
+          <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
             <a className={classNames.logo}>
               <span>Digital Public Library of America</span>
             </a>

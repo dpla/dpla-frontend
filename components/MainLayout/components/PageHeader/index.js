@@ -18,7 +18,7 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
         ? classNames.pro
         : ""} site-max-width`}
     >
-      <Link prefetch href="/">
+      <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
         <a className={classNames.logo} title="DPLA Home Page">
           <img
             alt="Logo for the Digital Public Library of America"
