@@ -49,6 +49,14 @@
     @media (min-width: largeRem) {
       padding: 0;
     }
+
+    @media (max-width: largeRem) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: mediumRem) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   & a {
