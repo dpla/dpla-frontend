@@ -89,9 +89,9 @@ const Footer = () => {
           >
             <h2 className={classNames.linkHeader}>DPLA Pro</h2>
             <ul>
-              {PRO_SECTIONS.map(section => {
+              {PRO_SECTIONS.map((section, index) => {
                 return (
-                  <li>
+                  <li key={index}>
                     <Link href={`//pro.dp.la/${section.slug}`}>
                       <a>{section.name}</a>
                     </Link>
