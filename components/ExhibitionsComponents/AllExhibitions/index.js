@@ -1,9 +1,9 @@
 import React from "react";
 
-import FeatureHeader from "../../shared/FeatureHeader";
+import FeatureHeader from "shared/FeatureHeader";
 import ExhibitionsList from "./components/ExhibitionsList";
 
-import { TITLE, DESCRIPTION } from "../../../constants/exhibitions.js";
+import { TITLE, DESCRIPTION } from "constants/exhibitions.js";
 
 const AllSets = ({ route, exhibitions }) =>
   <div>

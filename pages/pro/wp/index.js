@@ -1,14 +1,15 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+
+import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const ProMenuPage = ({ url, content, items, pageTitle }) =>
@@ -38,12 +39,17 @@ const ProMenuPage = ({ url, content, items, pageTitle }) =>
 
 ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;
-  const response = await fetch(PRO_MENU_ENDPOINT);
-  const json = await response.json();
-  const pageItem = json.items.find(item => item.post_name === pageName);
+  const menuResponse = await fetch(PRO_MENU_ENDPOINT);
+  const menuJson = await menuResponse.json();
+  const pageItem = menuJson.items.find(item => item.post_name === pageName);
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
-  return { content: pageJson, items: json.items, pageTitle: pageItem.title };
+
+  return {
+    content: pageJson,
+    items: menuJson.items,
+    pageTitle: pageItem.title
+  };
 };
 
 export default ProMenuPage;

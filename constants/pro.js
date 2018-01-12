@@ -6,8 +6,7 @@ const SECTIONS = [
   { slug: "projects", name: "Projects" },
   { slug: "ebooks", name: "Ebooks" },
   { slug: "events", name: "Events" },
-  { slug: "hubs", name: "Hubs" },
-  { slug: "news", name: "News" }
+  { slug: "hubs", name: "Hubs" }
 ];
 
 exports.SECTIONS = SECTIONS; // so it can be read/imported by server.js

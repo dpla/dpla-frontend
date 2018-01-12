@@ -40,7 +40,7 @@ const NavigationPro = ({ className, style, classNames }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/news" href="/pro/wp?section=news">
+        <Link prefetch href="/news">
           <a>News</a>
         </Link>
       </li>

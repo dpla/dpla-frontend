@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import AllExhibitions from "../../components/ExhibitionsComponents/AllExhibitions";
-import Footer from "../../components/ExhibitionsComponents/Footer";
+import MainLayout from "components/MainLayout";
+import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
+import Footer from "components/ExhibitionsComponents/Footer";
 import { getCurrentUrl } from "utilFunctions";
 import {
   TITLE,

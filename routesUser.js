@@ -1,10 +1,10 @@
 const proxy = require("express-http-proxy");
-const utilFunctions = require("./utilFunctions/serverFunctions");
+const serverFunctions = require("./utilFunctions/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
     const actualPage = "/";
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   // browse by topic routes
@@ -16,18 +16,18 @@ module.exports = (app, server) => {
       subtopic: req.params.subtopic
     };
 
-    utilFunctions.renderAndCache(app, req, res, actualPage, params);
+    serverFunctions.renderAndCache(app, req, res, actualPage, params);
   });
 
   server.get("/browse-by-topic/:topic", (req, res) => {
     const actualPage = "/browse-by-topic/topic";
     const params = { topic: req.params.topic };
-    utilFunctions.renderAndCache(app, req, res, actualPage, params);
+    serverFunctions.renderAndCache(app, req, res, actualPage, params);
   });
 
   server.get("/browse-by-topic", (req, res) => {
     const actualPage = "/browse-by-topic";
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   // partner browse routes
@@ -47,7 +47,14 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
@@ -58,7 +65,14 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/primary-source-sets/:set/additional-resources", (req, res) => {
@@ -66,7 +80,14 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/primary-source-sets/:set/sources/:source", (req, res) => {
@@ -75,14 +96,21 @@ module.exports = (app, server) => {
       set: req.params.set,
       source: req.params.source
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   // exhibitions routes
 
   server.get(["/exhibitions", "/exhibitions"], (req, res) => {
     const actualPage = "/exhibitions";
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   server.get("/exhibitions/:exhibition", (req, res) => {
@@ -90,7 +118,14 @@ module.exports = (app, server) => {
     const params = {
       exhibition: req.params.exhibition
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
@@ -100,7 +135,14 @@ module.exports = (app, server) => {
       section: req.params.section,
       subsection: req.params.subsection
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   // empty subsection signals that the Introduction subsection should be used
@@ -111,7 +153,14 @@ module.exports = (app, server) => {
       section: req.params.section,
       subsection: ""
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   // search routes
@@ -124,7 +173,7 @@ module.exports = (app, server) => {
     }
     const actualPage = "/search";
 
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   // item routes
@@ -134,7 +183,14 @@ module.exports = (app, server) => {
     const params = {
       itemId: req.params.itemId
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   // guides routes
@@ -144,18 +200,32 @@ module.exports = (app, server) => {
     const params = {
       guide: req.params.guide
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/guides", (req, res) => {
     const actualPage = "/guides";
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   server.get(["/about", "/about-us"], (req, res) => {
     const actualPage = "/about";
     const params = { section: "about-us" }; // because WP has 'about-us'
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/about/:section", (req, res) => {
@@ -163,7 +233,14 @@ module.exports = (app, server) => {
     const params = {
       section: req.params.section
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   server.get("/about/:section/:subsection", (req, res) => {
@@ -172,7 +249,14 @@ module.exports = (app, server) => {
       section: req.params.section,
       subsection: req.params.subsection
     };
-    utilFunctions.renderAndCache(app, req, res, actualPage, req.query, params);
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
   });
 
   // API proxy routes
@@ -201,7 +285,7 @@ module.exports = (app, server) => {
         const data = JSON.parse(proxyResData.toString("utf8"));
         const file_urls = data[0].file_urls;
         Object.keys(file_urls).forEach(key => {
-          file_urls[key] = utilFunctions.replaceWithProxyEndpoint(
+          file_urls[key] = serverFunctions.replaceWithProxyEndpoint(
             file_urls[key],
             userReq
           );
