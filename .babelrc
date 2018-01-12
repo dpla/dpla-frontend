@@ -10,6 +10,7 @@
           "css": "./css",
           "static": "./static",
           "utilFunctions": "./utilFunctions",
+          "constants": "./constants",
           "components": "./components"
         }
       }
