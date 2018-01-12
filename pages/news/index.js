@@ -60,12 +60,13 @@ const NewsPage = ({ url, content, menuItems, newsItems, pageTitle }) =>
   </MainLayout>;
 
 NewsPage.getInitialProps = async ({ req, query, res }) => {
-  const pageName = "news";
   const menuResponse = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
   );
   const menuJson = await menuResponse.json();
-  const pageItem = menuJson.items.find(item => item.post_name === pageName);
+  const pageItem = menuJson.items.find(
+    item => item.post_name.indexOf("news") === 0
+  );
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
   const newsRes = await fetch(NEWS_ENDPOINT);
