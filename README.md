@@ -11,12 +11,30 @@ git clone https://github.com/postlight/dpla-frontend/
 cd dpla-frontend
 
 # install dependencies
-yarn install
+yarn
 
 # start the local development server
-yarn run dev
+yarn dev
 open http://localhost:3000/
 ```
+
+## Environment Variables
+
+The system makes extensive use of environment variables to decouple the different developing environments. It also uses a environment constants file for front-end runtime access of a subset of these variables. For local development it is best to use a `.env` file to provide these variables to the server. There is a `.env.example` you can work from. A `constants/env.example.js` is also provided; rename this file to `constants/env.js` and include the applicable values. Below is a list of the environment variables in use:
+
+- `API_KEY`: your DPLA API key
+- `API_URL`: the DPLA API base URL
+- `OMEKA_URL`: the Omeka server base URL
+- `THUMB_SERVER`: the image thumbnail server URL 
+- `PSS_BASE_URL`: the primary source sets application API base URL
+- `SITE_ENV`: the environment's type, `user` or `pro` (also exposed in `constants/env.js`)
+- `NODE_ENV`: the node environment, `development` or `production`
+- `GOOGLE_CONTACT_SHEET_ID`: the Google spreadsheet ID where **contact form** responses are stored in
+- `GOOGLE_FEEDBACK_SHEET_ID`: the Google spreadsheet ID where **feedback form** responses are stored in
+- `GOOGLE_CLIENT`: Google authentication client
+- `GOOGLE_SECRET`: Google authentication secret
+- `GOOGLE_TOKEN`: Google authentication token
+- `WORDPRESS_URL`: the headless WordPress API base URL (also exposed in `constants/env.js`)
 
 ## CSS
 
