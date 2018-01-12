@@ -2,6 +2,11 @@ const proxy = require("express-http-proxy");
 const utilFunctions = require("./utilFunctions/serverFunctions");
 
 module.exports = (app, server) => {
+  server.get("/", (req, res) => {
+    const actualPage = "/";
+    utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
   // browse by topic routes
 
   server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
