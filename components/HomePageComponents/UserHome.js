@@ -18,6 +18,7 @@ const UserHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
         title="Online Exhibitions"
         browseLinkUrl="/exhibitions"
         browseLinkName="Exhibitions"
+        slidesToShow={3.5}
       />}
     {sourceSets &&
       sourceSets.length > 0 &&
@@ -26,7 +27,7 @@ const UserHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
         title="Primary Source Sets"
         browseLinkUrl="/primary-source-sets"
         browseLinkName="Sets"
-        slidesToShow={3.5}
+        slidesToShow={4.5}
         theme="blue"
       />}
     <DPLAUsers guides={guides} />
