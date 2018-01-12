@@ -44,7 +44,7 @@ const NavigationUser = ({ className, style, classNames }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch href="">
+        <Link prefetch href="/news">
           <a>News</a>
         </Link>
       </li>
