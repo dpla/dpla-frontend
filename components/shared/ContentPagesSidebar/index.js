@@ -94,7 +94,7 @@ const Sidebar = ({ activeItemId, items, route, rootPath = "about" }) =>
           const isGuide =
             item.menu_item_parent === GUIDES_PARENT_ID ||
             item.ID === GUIDES_PARENT_ID;
-          const isNews = item.post_name === "news";
+          const isNews = item.post_name.indexOf("news") === 0;
           let linkObject = { as: "/", href: "/" };
           if (isGuide) {
             linkObject = {
