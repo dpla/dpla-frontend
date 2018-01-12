@@ -145,3 +145,38 @@ Vendor Overrides
   top: 50% !important;
   transform: translateY(-50%);
 }
+
+:global(.Select.is-open) :global(.Select-arrow) {
+  border-color: transparent transparent black !important;
+  border-width: 0 7px 7px !important;
+}
+
+:global(.Select-menu-outer) {
+  box-sizing: content-box;
+}
+
+:global(.Select-value-label) {
+  line-height: 1;
+}
+
+:global .Select-value {
+  padding-right: 30px !important;
+  display: inline-block;
+  overflow: hidden;
+}
+
+:global(.Select-arrow-zone) {
+  padding-right: 0;
+}
+
+:global(.Select-arrow-zone)::after {
+  content: "";
+  height: 20px;
+  width: 1px;
+  opacity: 0.18;
+  position: absolute;
+  border-left: 1px solid black;
+  left: -8px;
+  top: 7px;
+}
+

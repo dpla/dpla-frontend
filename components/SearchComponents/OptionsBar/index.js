@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./OptionsBar.css";
 import Select from "react-select";
 import Router from "next/router";
 
@@ -12,7 +11,10 @@ import {
 } from "./options";
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
+
+import { classNames, stylesheet } from "./OptionsBar.css";
 import { classNames as utilClassNames } from "css/utils.css";
+
 const { container } = utilClassNames;
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";

@@ -59,7 +59,7 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
       />
       <link
         rel="stylesheet"
-        href="https://unpkg.com/react-select/dist/react-select.css"
+        href="https://unpkg.com/react-select@1.2.0/dist/react-select.css"
       />
       {additionalLinks}
       <title>{getMetaPageTitle(pageTitle)}</title>
