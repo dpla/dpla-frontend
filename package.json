@@ -25,7 +25,7 @@
     "react-helmet": "^5.2.0",
     "react-masonry-component": "^5.0.7",
     "react-redux": "^5.0.5",
-    "react-select": "^1.1.0",
+    "react-select": "1.2.0",
     "react-slick": "^0.14.11",
     "redux": "^3.7.2",
     "skeleton-loader": "^1.1.3",
