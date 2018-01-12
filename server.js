@@ -4,7 +4,7 @@ const next = require("next");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
 
-const utilFunctions = require("./utilFunctions/serverFunctions");
+const serverFunctions = require("./utilFunctions/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -33,14 +33,18 @@ app
     }
 
     // routes that are common to both sites
+    server.get("/news", (req, res) => {
+      app.render(req, res, "/news", req.query);
+    });
+
     server.get("/donate", (req, res) => {
       const actualPage = "/donate";
-      utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+      serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
     });
 
     server.get("/donate/thank-you", (req, res) => {
       const actualPage = "/donate/thank-you";
-      utilFunctions.renderAndCache(app, req, res, actualPage, req.query);
+      serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
     });
 
     server.get(["/contact", "/contact-us"], (req, res) => {
@@ -74,7 +78,7 @@ app
       });
 
       try {
-        const response_json = await utilFunctions.getGoogleAccessToken();
+        const response_json = await serverFunctions.getGoogleAccessToken();
         const access_token = response_json.access_token;
         const sheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
           "{ID}",
@@ -94,7 +98,7 @@ app
         // send email
         const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/${process
           .env.GOOGLE_CONTACT_SHEET_ID}/edit#gid=327438098`;
-        await utilFunctions.sendEmail(
+        await serverFunctions.sendEmail(
           "info@dp.la",
           "info@dp.la",
           `DPLA Site Contact: ${subject}`,
@@ -134,7 +138,7 @@ app
       });
 
       try {
-        const response_json = await utilFunctions.getGoogleAccessToken();
+        const response_json = await serverFunctions.getGoogleAccessToken();
         const access_token = response_json.access_token;
         const sheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
           "{ID}",
@@ -153,7 +157,7 @@ app
 
         // send email
         // const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/1_lJwAIukEXYautmhUDyU6CdMlbZZKiFdzZdvMTeSZfI/edit#gid=327438098`;
-        // await utilFunctions.sendEmail(
+        // await serverFunctions.sendEmail(
         //   "info@dp.la",
         //   "info@dp.la",
         //   `DPLA Site Contact: ${subject}`,

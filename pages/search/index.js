@@ -5,22 +5,25 @@ import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
 import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
+
 import {
   possibleFacets,
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet
 } from "constants/search";
-import {
-  classNames,
-  stylesheet
-} from "components/SearchComponents/SearchComponents.css";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+
 import {
   getCurrentUrl,
   getDefaultThumbnail,
   getSearchPageTitle
 } from "utilFunctions";
+
+import {
+  classNames,
+  stylesheet
+} from "components/SearchComponents/SearchComponents.css";
 
 class Search extends React.Component {
   state = {

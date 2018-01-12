@@ -5,10 +5,12 @@ import GridView from "components/shared/GridView";
 import ListView from "components/shared/ListView";
 import Pagination from "components/shared/Pagination";
 import Sidebar from "./Sidebar";
-import extractItemId from "utilFunctions/extractItemId";
+
+import { removeQueryParams, extractItemId } from "utilFunctions";
+
 import { classNames as utilClassNames } from "css/utils.css";
+
 const { container } = utilClassNames;
-import { removeQueryParams } from "utilFunctions";
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {

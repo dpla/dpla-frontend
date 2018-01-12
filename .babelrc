@@ -10,6 +10,7 @@
           "css": "./css",
           "static": "./static",
           "utilFunctions": "./utilFunctions",
+          "shared": "./components/shared",
           "constants": "./constants",
           "components": "./components"
         }

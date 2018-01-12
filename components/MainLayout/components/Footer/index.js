@@ -98,6 +98,11 @@ const Footer = () => {
                   </li>
                 );
               })}
+              <li>
+                <Link href="/news">
+                  <a>News</a>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="col-xs-12 col-md-3">
