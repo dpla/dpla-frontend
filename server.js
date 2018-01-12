@@ -2,9 +2,13 @@ const fs = require("fs");
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
+const fetch = require("isomorphic-fetch");
+
+const utilFunctions = require("./utilFunctions/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
+const handle = app.getRequestHandler();
 
 app
   .prepare()
@@ -72,12 +76,12 @@ app
       try {
         const response_json = await utilFunctions.getGoogleAccessToken();
         const access_token = response_json.access_token;
-        const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
+        const sheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
           "{ID}",
           process.env.GOOGLE_CONTACT_SHEET_ID
         );
 
-        const gRes = await fetch(url, {
+        const gRes = await fetch(sheetUrl, {
           method: "POST",
           headers: new Headers({
             "Content-Type": "application/json; charset=utf-8",
@@ -100,7 +104,7 @@ app
         // send the response back
         res.sendStatus(200);
       } catch (error) {
-        res.sendStatus(404);
+        res.sendStatus(500);
       }
     });
 
@@ -132,12 +136,12 @@ app
       try {
         const response_json = await utilFunctions.getGoogleAccessToken();
         const access_token = response_json.access_token;
-        const url = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
+        const sheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/A1%3AE1:append?valueInputOption=RAW".replace(
           "{ID}",
           process.env.GOOGLE_FEEDBACK_SHEET_ID
         );
 
-        const gRes = await fetch(url, {
+        const gRes = await fetch(sheetUrl, {
           method: "POST",
           headers: new Headers({
             "Content-Type": "application/json; charset=utf-8",
@@ -159,7 +163,7 @@ app
         // send the response back
         res.sendStatus(200);
       } catch (error) {
-        res.sendStatus(404);
+        res.sendStatus(500);
       }
     });
 
@@ -167,9 +171,6 @@ app
     server.get("/robots.txt", (req, res) => {
       return handle(req, res);
     });
-
-    // handle all other requests
-    const handle = app.getRequestHandler();
 
     server.get("*", (req, res) => {
       return handle(req, res);
