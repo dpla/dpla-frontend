@@ -40,7 +40,7 @@ const NewsPage = ({ url, content, menuItems, newsItems, pageTitle }) =>
             <h1>News Archive</h1>
             {newsItems.map((item, index) => {
               return (
-                <div>
+                <div key={index}>
                   <h2>
                     <Link href={`/news/${item.slug}`}>
                       <a>{item.title.rendered}</a>

@@ -3,6 +3,7 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import UserHome from "components/HomePageComponents/UserHome";
+
 import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
   getCurrentUrl,
@@ -19,12 +20,22 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import {
+  GUIDES_ENDPOINT,
+  ABOUT_MENU_ENDPOINT,
+  BLOGS_HOME_ENDPOINT
+} from "constants/content-pages";
 import { PSS_BASE_URL } from "constants/site";
-
 import { SITE_ENV } from "constants/env";
 
-const Home = ({ url, sourceSets, guides, exhibitions, headerDescription }) =>
+const Home = ({
+  url,
+  sourceSets,
+  guides,
+  exhibitions,
+  headerDescription,
+  blogs
+}) =>
   <MainLayout
     hidePageHeader={SITE_ENV === "user"}
     hideSearchBar={SITE_ENV === "pro"}
@@ -36,6 +47,7 @@ const Home = ({ url, sourceSets, guides, exhibitions, headerDescription }) =>
         exhibitions={exhibitions}
         guides={guides}
         headerDescription={headerDescription}
+        blogs={blogs}
       />
     </div>
   </MainLayout>;
@@ -160,14 +172,15 @@ Home.getInitialProps = async ({ req }) => {
   );
 
   // fetch blog posts
-  const newsRes = await fetch(NEWS_ENDPOINT);
-  const newsItems = await newsRes.json();
+  const blogRes = await fetch(BLOGS_HOME_ENDPOINT);
+  const blogItems = await blogRes.json();
 
   return {
     sourceSets,
     guides,
     exhibitions: featuredExhibitionsWithData,
-    headerDescription
+    headerDescription,
+    blogs: blogItems
   };
 };
 

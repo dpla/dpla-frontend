@@ -5,10 +5,16 @@ import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
 import FromTheBlog from "./FromTheBlog";
 import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
-import { stylesheet as guidesStylesheet } from "../shared/GuideLink/GuideLink.css";
-import { stylesheet as arrowStylesheet } from "../shared/CarouselNavArrows/CarouselNavArrows.css";
+import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
+import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
 
-const UserHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
+const UserHome = ({
+  sourceSets,
+  exhibitions,
+  guides,
+  headerDescription,
+  blogs
+}) =>
   <div>
     <HomeHero headerDescription={headerDescription} />
     {exhibitions &&
@@ -31,7 +37,7 @@ const UserHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
         theme="blue"
       />}
     <DPLAUsers guides={guides} />
-    <FromTheBlog />
+    <FromTheBlog items={blogs} />
     {/* <SocialMedia /> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
