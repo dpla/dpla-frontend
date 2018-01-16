@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import formatDate from "utilFunctions";
+import { formatDate } from "utilFunctions";
 
 import { stylesheet, classNames } from "./FromTheBlog.css";
 
