@@ -159,6 +159,10 @@ Home.getInitialProps = async ({ req }) => {
       })
   );
 
+  // fetch blog posts
+  const newsRes = await fetch(NEWS_ENDPOINT);
+  const newsItems = await newsRes.json();
+
   return {
     sourceSets,
     guides,

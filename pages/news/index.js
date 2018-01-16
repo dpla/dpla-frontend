@@ -60,6 +60,7 @@ const NewsPage = ({ url, content, menuItems, newsItems, pageTitle }) =>
   </MainLayout>;
 
 NewsPage.getInitialProps = async ({ req, query, res }) => {
+  // sidebar menu fetch
   const menuResponse = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
   );
@@ -67,8 +68,12 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
   const pageItem = menuJson.items.find(
     item => item.post_name.indexOf("news") === 0
   );
+
+  // fetch “page content” (in this case nothing but needed for page title)
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
+
+  // fetch news
   const newsRes = await fetch(NEWS_ENDPOINT);
   const newsItems = await newsRes.json();
 
