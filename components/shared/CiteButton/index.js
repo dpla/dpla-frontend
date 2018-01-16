@@ -1,9 +1,7 @@
 import React from "react";
 import Button from "components/shared/Button";
-import Intl from "intl";
-import en from "intl/locale-data/jsonp/en";
 
-import { joinIfArray, removeEndPunctuation } from "utilFunctions";
+import { joinIfArray, removeEndPunctuation, formatDate } from "utilFunctions";
 
 import { classNames, stylesheet } from "./CiteButton.css";
 
@@ -14,11 +12,6 @@ class CiteButton extends React.Component {
 
   toggleCiteButton = () => {
     this.setState({ showCitation: !this.state.showCitation });
-  };
-
-  formatCurrentDate = () => {
-    const options = { month: "long", day: "numeric", year: "numeric" };
-    return new Intl.DateTimeFormat("en-US", options).format(new Date());
   };
 
   render() {
@@ -71,7 +64,7 @@ class CiteButton extends React.Component {
                   {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
                   Retrieved from the Digital Public Library of America
                   {sourceUrl ? ", " + sourceUrl + ". " : " "}
-                  (Accessed {this.formatCurrentDate()}.)
+                  (Accessed {formatDate()}.)
                 </dd>
                 <dt>APA citation style</dt>
                 <dd>

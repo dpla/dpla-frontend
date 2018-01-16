@@ -14,6 +14,7 @@ import truncateString from "./truncateString";
 import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
 import readMyRights from "./readMyRights";
+import formatDate from "./formatDate";
 import getCurrentFullUrl from "./getCurrentFullUrl";
 
 export {
@@ -33,5 +34,6 @@ export {
   endsWith,
   removeEndPunctuation,
   readMyRights,
+  formatDate,
   getCurrentFullUrl
 };

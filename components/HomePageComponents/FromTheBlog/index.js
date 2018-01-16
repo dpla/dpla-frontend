@@ -1,16 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import Intl from "intl";
-import en from "intl/locale-data/jsonp/en";
+
+import formatDate from "utilFunctions";
 
 import { stylesheet, classNames } from "./FromTheBlog.css";
 
 const smallChevron = "static/images/chevron-thick-orange.svg";
-
-const formatDate = dateString => {
-  const options = { month: "long", day: "numeric", year: "numeric" };
-  return new Intl.DateTimeFormat("en-US", options).format(new Date(dateString));
-};
 
 const FromTheBlog = items =>
   <div className={classNames.wrapper}>
@@ -31,7 +26,6 @@ const FromTheBlog = items =>
             </Link>
           </div>
         </div>
-        {console.log(JSON.stringify(items))}
         {items.items.map((post, index) => {
           const dateText = formatDate(post.date);
           return (
