@@ -1,34 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import Intl from "intl";
+import en from "intl/locale-data/jsonp/en";
 
 import { stylesheet, classNames } from "./FromTheBlog.css";
 
 const smallChevron = "static/images/chevron-thick-orange.svg";
 
-const mockPosts = [
-  {
-    headline: "Title of a blog post",
-    date: "June 12, 2017",
-    bodyText:
-      "This is not really a working link so don't bother clicking on it…",
-    id: 0
-  },
-  {
-    headline: "This one is longer but truncated…",
-    date: "June 6, 2017",
-    bodyText: "This one doesn't work either. We will fix this shortly…",
-    id: 1
-  },
-  {
-    headline: "Announcing the launch of a new project in two lines",
-    date: "June 3, 2017",
-    bodyText:
-      "A slightly longer version of the fake text in the other two “blog posts” so that…",
-    id: 2
-  }
-];
+const formatDate = dateString => {
+  const options = { month: "long", day: "numeric", year: "numeric" };
+  return new Intl.DateTimeFormat("en-US", options).format(new Date(dateString));
+};
 
-const FromTheBlog = (/* data */) =>
+const FromTheBlog = items =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.content} site-max-width`}>
       <ul className="row">
@@ -47,25 +31,29 @@ const FromTheBlog = (/* data */) =>
             </Link>
           </div>
         </div>
-        {mockPosts.map((post, index) =>
-          <li key={post.id} className="col-xs-12 col-md-3">
-            <div className={index === 0 && classNames.firstPost}>
-              <div className={classNames.postLink}>
-                <Link prefetch href="">
-                  <a>
-                    {post.headline}
-                  </a>
-                </Link>
+        {console.log(JSON.stringify(items))}
+        {items.items.map((post, index) => {
+          const dateText = formatDate(post.date);
+          return (
+            <li key={post.id} className="col-xs-12 col-md-3">
+              <div className={index === 0 && classNames.firstPost}>
+                <div className={classNames.postLink}>
+                  <Link prefetch href="">
+                    <a>
+                      {post.title.rendered}
+                    </a>
+                  </Link>
+                </div>
+                <div className={classNames.date}>
+                  {dateText}
+                </div>
+                <p className={classNames.bodyText}>
+                  {post.acf.summary}
+                </p>
               </div>
-              <div className={classNames.date}>
-                {post.date}
-              </div>
-              <p className={classNames.bodyText}>
-                {post.bodyText}
-              </p>
-            </div>
-          </li>
-        )}
+            </li>
+          );
+        })}
       </ul>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
