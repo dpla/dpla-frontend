@@ -2,8 +2,8 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Router from "next/router";
 
-import MainLayout from "../../components/MainLayout";
-import ContentPagesSidebar from "../../components/shared/ContentPagesSidebar";
+import MainLayout from "components/MainLayout";
+import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 
 import {
   classNames as contentClasses,

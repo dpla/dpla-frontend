@@ -16,7 +16,10 @@ const FooterPro = () =>
           {PRO_SECTIONS.map((section, index) => {
             return (
               <li key={index}>
-                <Link href={`/${section.slug}`}>
+                <Link
+                  as={`/${section.slug}`}
+                  href={`/pro/wp?section=${section.slug}`}
+                >
                   <a>{section.name}</a>
                 </Link>
               </li>

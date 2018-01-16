@@ -20,6 +20,7 @@ const ProMenuPage = ({ url, content, items, pageTitle }) =>
     >
       <div className="row">
         <ContentPagesSidebar
+          className={contentClasses.sidebar}
           route={url}
           items={items}
           activeItemId={content.id}

@@ -6,6 +6,14 @@
   background-color: warmerBackgroundColor;
 }
 
+.sidebar {
+  @media (max-width: mediumRem) {
+    /* so the sidebar doesnt show up first in mobile views */
+    margin-top: 1rem;
+    order: 2;
+  }
+}
+
 .sidebarAndContentWrapper {
   padding-top: 1rem;
   padding-bottom: 4rem;
