@@ -25,6 +25,7 @@ const Guides = ({ url, sidebarItems, guide }) =>
           route={url}
           items={sidebarItems}
           activeItemId={guide.slug}
+          className={contentClasses.sidebar}
         />
         <div className="col-xs-12 col-md-7">
           <div

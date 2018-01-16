@@ -26,6 +26,7 @@ const AboutMenuPage = ({ url, content, items, pageTitle }) =>
           route={url}
           items={items}
           activeItemId={content.id}
+          className={contentClasses.sidebar}
         />
         <div className="col-xs-12 col-md-7">
           <div

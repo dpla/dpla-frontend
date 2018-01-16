@@ -33,6 +33,7 @@ const NewsPage = ({ url, content, menuItems, newsItems, pageTitle }) =>
           route={url}
           items={menuItems}
           activeItemId={content.id}
+          className={contentClasses.sidebar}
           rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">

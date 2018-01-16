@@ -29,6 +29,7 @@ const Contact = ({ url, sidebarItems }) =>
             route={url}
             activeItemId="contact-us"
             items={sidebarItems}
+            className={classNames.sidebar}
           />
           <div id="main" className="col-xs-12 col-md-8">
             <ContactForm />

@@ -86,8 +86,14 @@ const NestedSidebarLinks = ({
   );
 };
 
-const Sidebar = ({ activeItemId, items, route, rootPath = "about" }) =>
-  <div className="col-xs-12 col-md-4">
+const Sidebar = ({
+  className,
+  activeItemId,
+  items,
+  route,
+  rootPath = "about"
+}) =>
+  <div className={`${className} col-xs-12 col-md-4`}>
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
         {items.filter(item => item.menu_item_parent === "0").map(item => {
