@@ -3,6 +3,7 @@ import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import HeadingRule from "components/shared/HeadingRule";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -12,7 +13,7 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const ProMenuPage = ({ url, content, items, pageTitle }) =>
+const ProMenuPage = ({ url, page, items, pageTitle, illustration }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
     <div
       className={`${utilClassNames.container}
@@ -23,15 +24,27 @@ const ProMenuPage = ({ url, content, items, pageTitle }) =>
           className={contentClasses.sidebar}
           route={url}
           items={items}
-          activeItemId={content.id}
+          activeItemId={page.id}
           rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">
-          <div
-            id="main"
-            className={contentClasses.content}
-            dangerouslySetInnerHTML={{ __html: content.content.rendered }}
-          />
+          <div id="main" className={contentClasses.content}>
+            {illustration &&
+              <img
+                src={illustration.url}
+                alt=""
+                className={contentClasses.bannerImage}
+              />}
+            {/* fancy pages (with illustrations) get special heading */}
+            {illustration &&
+              <div>
+                <h1 className={contentClasses.title}>{page.title.rendered}</h1>
+                <HeadingRule />
+              </div>}
+            {/* for non fancy pages, a normal heading */}
+            {!illustration && <h1>{page.title.rendered}</h1>}
+            <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+          </div>
         </div>
       </div>
     </div>
@@ -47,9 +60,10 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageJson = await pageRes.json();
 
   return {
-    content: pageJson,
+    page: pageJson,
     items: menuJson.items,
-    pageTitle: pageItem.title
+    pageTitle: pageItem.title,
+    illustration: pageJson.acf.illustration
   };
 };
 

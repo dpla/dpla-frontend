@@ -1,4 +1,4 @@
-const SECTIONS = [
+export const SECTIONS = [
   { slug: "community-reps", name: "Community Reps" },
   { slug: "about-dpla-pro", name: "About DPLA Pro" },
   { slug: "developers", name: "Developers" },
