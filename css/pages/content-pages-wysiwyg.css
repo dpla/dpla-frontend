@@ -19,7 +19,7 @@
   height: 12rem;
   margin: 0 auto 1rem;
   max-width: 100%;
-  filter: grayscale(1) sepia(1) hue-rotate(140deg) brightness(1.1);
+  filter: grayscale(1) sepia(1) hue-rotate(160deg) brightness(1.0);
 
   @media (max-width: mediumRem) {
     margin-bottom: 0;
