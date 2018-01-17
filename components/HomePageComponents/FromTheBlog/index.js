@@ -13,10 +13,10 @@ const FromTheBlog = items =>
       <ul className="row">
         <div className="col-xs-12 col-md-3">
           <div className={classNames.header}>
-            <h2 className={classNames.headerText}>From the Blog</h2>
+            <h2 className={classNames.headerText}>DPLA News</h2>
             <Link prefetch href="">
               <a className={`hover-underline ${classNames.headerLink}`}>
-                <span>Browse the blog</span>
+                <span>Browse the archives</span>
                 <img
                   alt="browse the blog"
                   src={smallChevron}

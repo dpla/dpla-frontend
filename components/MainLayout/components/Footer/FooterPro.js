@@ -36,7 +36,7 @@ const FooterPro = () =>
         <h2 className={classNames.linkHeader}>DPLA</h2>
         <ul>
           <li>
-            <Link href="//dp.la">
+            <Link href="//beta.dp.la">
               <a>DPLA Main Site</a>
             </Link>
           </li>
