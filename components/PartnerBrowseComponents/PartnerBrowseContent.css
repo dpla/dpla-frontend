@@ -19,18 +19,15 @@
 .partners {
   padding: 0 0.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   grid-column-gap: 6rem;
-
-  @media (max-width: mediumRem) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .partnerLink {
   display: flex;
   padding: 0.85rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
 .name {
