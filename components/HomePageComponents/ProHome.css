@@ -67,41 +67,30 @@
 
   & ul {
     display: grid;
-    grid-auto-rows: minmax(18rem, auto);
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-auto-rows: 18rem;
     grid-gap: 1rem;
+    align-items: stretch;
     margin: auto;
     padding: 0.5rem 1rem;
-
-    @media (min-width: smallRem) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    @media (min-width: mediumRem) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (min-width: largeRem) {
-      padding: 0;
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 
   & a {
     background: colderBackgroundColor;
     border-radius: 0.25rem;
     /* color: white; */
-    display: block;
     height: 100%;
     font-size: 1.6rem;
     font-family: serifFont;
-    padding: 4rem 2rem 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   & svg {
     fill: proIconColor;
-    height: 6rem;
+    width: 100%;
     margin-bottom: 1rem;
   }
 }
