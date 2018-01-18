@@ -1,5 +1,6 @@
 @value linkColor, secondaryButtonColor, mobileNavColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont, sansFont from "../../../css/typography.css";
 
 .wrapper {
   background-color: rgb(47, 74, 87);
@@ -51,7 +52,7 @@
 }
 
 .headline {
-  font-family: 'Lora';
+  font-family: serifFont;
   font-size: 1.5625rem;
   font-weight: normal;
   line-height: 1.25;

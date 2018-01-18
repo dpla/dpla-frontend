@@ -1,7 +1,8 @@
 @value subLinkColor, linkColor, warmerBackgroundColor, dimmedTextColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont, sansFont from "../../../css/typography.css";
+
 @value tablePadding: 1.125rem;
-@value tableBorderBottom: 0.1rem solid rgba(0, 0, 0, 0.1);
 
 .content {
   padding-bottom: 1rem;
@@ -101,7 +102,7 @@
 }
 
 .mainMetadata {
-  border-bottom: tableBorderBottom;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
 
   @media (min-width: smallRem) {
     padding-bottom: tablePadding;
@@ -182,7 +183,7 @@
 }
 
 .url {
-  font-family: courier, monospace;
+  font-family: monoFont;
   padding: 9px 12px 12px;
   background-color: warmerBackgroundColor;
   border-radius: 2px;
