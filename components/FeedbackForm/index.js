@@ -15,6 +15,7 @@ class FeedbackForm extends React.Component {
     modalActive: false,
     type: "comment",
     step: 1,
+    email: "",
     message: undefined
   };
 
@@ -27,6 +28,7 @@ class FeedbackForm extends React.Component {
       modalActive: false,
       type: "comment",
       step: 1,
+      email: "",
       message: undefined
     });
   };
@@ -41,6 +43,7 @@ class FeedbackForm extends React.Component {
       modalActive: true,
       type: "comment",
       step: 1,
+      email: "",
       message: undefined
     });
   };
@@ -54,6 +57,7 @@ class FeedbackForm extends React.Component {
       modalActive: this.state.modalActive,
       type: e.target.value,
       step: this.state.step,
+      email: this.state.email,
       message: this.state.message
     });
   };
@@ -67,7 +71,22 @@ class FeedbackForm extends React.Component {
       modalActive: this.state.modalActive,
       type: this.state.type,
       step: this.state.step,
+      email: this.state.email,
       message: e.target.value
+    });
+  };
+
+  onEmailChange = e => {
+    this.setState({
+      timestamp: this.state.timestamp,
+      isSending: this.state.isSending,
+      isSent: this.state.isSent,
+      url: this.state.url,
+      modalActive: this.state.modalActive,
+      type: this.state.type,
+      step: this.state.step,
+      email: e.target.value,
+      message: this.state.message
     });
   };
 
@@ -80,6 +99,7 @@ class FeedbackForm extends React.Component {
       modalActive: this.state.modalActive,
       type: this.state.type,
       step: this.state.step,
+      email: this.state.email,
       message: this.state.message || ""
     });
   };
@@ -92,11 +112,8 @@ class FeedbackForm extends React.Component {
     return this.state.message !== undefined;
   }
 
-  handleKeyPress = e => {
-    console.log(e.keyCode);
-  };
-
   handleSubmit = async e => {
+    let close_button = e.target.elements.close_button;
     e.preventDefault();
     if (!this.formIsValid()) return;
 
@@ -108,18 +125,21 @@ class FeedbackForm extends React.Component {
       modalActive: this.state.modalActive,
       type: this.state.type,
       step: 2,
+      email: this.state.email,
       message: this.state.message
     });
 
     let url = this.state.url;
     let message = this.state.message;
     let type = this.state.type;
+    let email = this.state.email;
     let miel = e.target.elements.i_prefer_usps_mail.value;
 
     let body = JSON.stringify({
       url: url,
       type: type,
       message: message,
+      email: email,
       miel: miel
     });
     const res = await fetch("/g/feedback", {
@@ -139,8 +159,11 @@ class FeedbackForm extends React.Component {
       modalActive: this.state.modalActive,
       type: this.state.type,
       step: this.state.step,
+      email: this.state.email,
       message: this.state.message
     });
+
+    close_button.focus();
   };
 
   render() {
@@ -152,6 +175,7 @@ class FeedbackForm extends React.Component {
     const isSent = this.state.isSent;
     const type = this.state.type;
     const message = this.state.message;
+    const email = this.state.email;
     const characters = charLimit - (message ? message.length : 0);
     const messageProps = { required: this.state.message !== undefined };
     const buttonProps = {
@@ -220,7 +244,6 @@ class FeedbackForm extends React.Component {
                   <label htmlFor="feedback-3">Bug</label>
                 </li>
               </ul>}
-
             {step === 1 &&
               <textarea
                 id="feedback-text"
@@ -239,6 +262,16 @@ class FeedbackForm extends React.Component {
               >
                 {characters} characters remaining
               </div>}
+            {step === 1 &&
+              <input
+                id="feedback-email"
+                type="email"
+                name="feedback_email"
+                placeholder="Email (optional)"
+                onChange={this.onEmailChange}
+                aria-label="Enter your email (optional)"
+                value={email}
+              />}
 
             {step === 2 &&
               <p className={classNames.thankYou}>
@@ -264,6 +297,7 @@ class FeedbackForm extends React.Component {
                 type="ghost"
                 id="deactivate-feedback"
                 onClick={this.closeForm}
+                name="close_button"
               >
                 {step === 1 ? "Cancel" : "Close"}
               </Button>
@@ -272,10 +306,7 @@ class FeedbackForm extends React.Component {
         </AriaModal>
       : false;
     return (
-      <div
-        className={classNames.feedbackComponent}
-        onKeyUp={this.handleKeyPress}
-      >
+      <div className={classNames.feedbackComponent}>
         <a className={classNames.feedbackButton} onClick={this.openForm}>
           Feedback
         </a>

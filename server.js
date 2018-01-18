@@ -122,6 +122,7 @@ app
       const type = req.body.type || "";
       const message = req.body.message || "";
       const url = req.body.url || "";
+      const email = req.body.email || "";
       const addressed = "no";
       const options = {
         month: "numeric",
@@ -136,7 +137,7 @@ app
 
       let newRow = JSON.stringify({
         majorDimension: "ROWS",
-        values: [[date, type, url, message, addressed]]
+        values: [[date, type, url, message, addressed, email]]
       });
 
       try {
