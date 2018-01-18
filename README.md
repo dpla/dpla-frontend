@@ -1,7 +1,7 @@
 # DPLA Frontend
 This is the repository for the Digital Public Library of America's new frontend.
 
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=<badge_key>)](https://www.browserstack.com/automate/public-build/UzZRL0QwZzR1Mlc4V2tuMi9XMS9RUm5hZ0lCL2tDaVhJU0xnRU1KdjcrOD0tLXRmQkRDTnZLekZLM0RWdGMyMCtHNUE9PQ==--24287c43017fc50481ab631e86244f9db3ec9257)
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=UzZRL0QwZzR1Mlc4V2tuMi9XMS9RUm5hZ0lCL2tDaVhJU0xnRU1KdjcrOD0tLXRmQkRDTnZLekZLM0RWdGMyMCtHNUE9PQ==--24287c43017fc50481ab631e86244f9db3ec9257)](https://www.browserstack.com/automate/public-build/UzZRL0QwZzR1Mlc4V2tuMi9XMS9RUm5hZ0lCL2tDaVhJU0xnRU1KdjcrOD0tLXRmQkRDTnZLekZLM0RWdGMyMCtHNUE9PQ==--24287c43017fc50481ab631e86244f9db3ec9257)
 
 ## Getting Started For Development
 
