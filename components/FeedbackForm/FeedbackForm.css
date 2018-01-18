@@ -117,6 +117,15 @@
     background-color: radioButtonColor;
   }
 
+  & input[type=email], & input[type=text] {
+    width: 100%;
+    border: 0.075rem solid formLabelColor;
+    font-family: sansFont;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
   & textarea {
     resize: none;
     width: 100%;
