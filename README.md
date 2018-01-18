@@ -108,3 +108,7 @@ A few other useful commands:
 | Neil Renicker |
 | Frankie Simms |
 | Gina Trapani  |
+
+[<img src="browserstack-logo-600x315.png" height="100" alt="" />](http://browserstack.com/)
+
+We use BrowserStack to test this code in as many different devices and platforms as we can.
