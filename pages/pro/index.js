@@ -1,7 +1,7 @@
 import React from "react";
 
 import MainLayout from "components/MainLayout";
-import ProHome from "components/HomePageComponents/ProHome";
+import HomePro from "components/HomePageComponents/HomePro";
 
 import { SITE_ENV } from "constants/env";
 
@@ -12,7 +12,7 @@ const Home = ({ url }) =>
     route={url}
   >
     <div id="main">
-      <ProHome />
+      <HomePro />
     </div>
   </MainLayout>;
 
