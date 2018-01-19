@@ -3,11 +3,11 @@ import Link from "next/link";
 
 import { formatDate } from "utilFunctions";
 
-import { stylesheet, classNames } from "./FromTheBlog.css";
+import { stylesheet, classNames } from "./NewsLane.css";
 
 const smallChevron = "static/images/chevron-thick-orange.svg";
 
-const FromTheBlog = items =>
+const NewsLane = items =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.content} site-max-width`}>
       <ul className="row">
@@ -53,4 +53,4 @@ const FromTheBlog = items =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default FromTheBlog;
+export default NewsLane;

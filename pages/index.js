@@ -23,7 +23,7 @@ import {
 import {
   GUIDES_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
-  BLOGS_HOME_ENDPOINT
+  NEWS_HOME_ENDPOINT
 } from "constants/content-pages";
 import { PSS_BASE_URL } from "constants/site";
 import { SITE_ENV } from "constants/env";
@@ -34,7 +34,7 @@ const Home = ({
   guides,
   exhibitions,
   headerDescription,
-  blogs
+  news
 }) =>
   <MainLayout
     hidePageHeader={SITE_ENV === "user"}
@@ -47,7 +47,7 @@ const Home = ({
         exhibitions={exhibitions}
         guides={guides}
         headerDescription={headerDescription}
-        blogs={blogs}
+        news={news}
       />
     </div>
   </MainLayout>;
@@ -172,7 +172,7 @@ Home.getInitialProps = async ({ req }) => {
   );
 
   // fetch blog posts
-  const blogRes = await fetch(BLOGS_HOME_ENDPOINT);
+  const blogRes = await fetch(NEWS_HOME_ENDPOINT);
   const blogItems = await blogRes.json();
 
   return {
@@ -180,7 +180,7 @@ Home.getInitialProps = async ({ req }) => {
     guides,
     exhibitions: featuredExhibitionsWithData,
     headerDescription,
-    blogs: blogItems
+    news: blogItems
   };
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 import HomeHero from "./HomeHero";
 import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
-import FromTheBlog from "./FromTheBlog";
+import NewsLane from "./NewsLane";
 import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
@@ -13,7 +13,7 @@ const HomeUser = ({
   exhibitions,
   guides,
   headerDescription,
-  blogs
+  news
 }) =>
   <div>
     <HomeHero headerDescription={headerDescription} />
@@ -37,7 +37,7 @@ const HomeUser = ({
         theme="blue"
       />}
     <DPLAUsers guides={guides} />
-    <FromTheBlog items={blogs} />
+    <NewsLane items={news} />
     {/* <SocialMedia /> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
