@@ -1,26 +1,8 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "browsers": [
-          "last 2 Chrome versions",
-          "last 2 Safari versions",
-          "last 2 Firefox versions",
-          "last 2 Edge versions",
-          "ie >= 11"
-        ]
-      },
-      "useBuiltins": true,
-      "modules": false,
-      "debug": false
-    }],
     "next/babel"],
   "plugins": [
     "inline-react-svg",
-    "transform-object-rest-spread",
-    "syntax-trailing-function-commas",
-    "transform-class-properties",
-    "transform-exponentiation-operator",
     [
       "module-resolver",
       {
