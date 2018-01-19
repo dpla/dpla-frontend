@@ -2,10 +2,17 @@ import React from "react";
 import Link from "next/link";
 
 import IconComponent from "./ProComponents/IconComponent";
+import NewsLane from "./NewsLane";
 
 import { stylesheet, classNames } from "./HomePro.css";
 
-const HomePro = ({ sourceSets, exhibitions, guides, headerDescription }) =>
+const HomePro = ({
+  sourceSets,
+  exhibitions,
+  guides,
+  headerDescription,
+  news
+}) =>
   <div>
     <div className={classNames.heroWrapper}>
       <div className={`${classNames.heroText} site-max-width`}>
@@ -74,6 +81,7 @@ const HomePro = ({ sourceSets, exhibitions, guides, headerDescription }) =>
         </li>
       </ul>
     </div>
+    <NewsLane items={news} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
