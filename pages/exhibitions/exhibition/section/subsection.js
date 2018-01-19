@@ -19,6 +19,8 @@ import {
 
 import { SEO_TYPE } from "constants/exhibition";
 
+import { API_ENDPOINT } from "constants/items";
+
 const Subsection = ({
   url,
   exhibition,
@@ -133,12 +135,25 @@ Subsection.getInitialProps = async ({ query, req }) => {
         const itemJson = await itemRes.json();
         const fileType = itemJson.item_type && itemJson.item_type.name;
 
+        // Get DPLA item ID
+        const dplaItemId = itemJson.element_texts
+          .filter(element_text => element_text.element.name === "Has Version")
+          .map(element_text => element_text.text)[0];
+
+        // Call DPLA API
+        const dplaApiRes = await fetch(
+          `${currentUrl}${API_ENDPOINT}/${dplaItemId}`
+        );
+        const dplaItemJson = await dplaApiRes.json();
+
         return Object.assign({}, block, {
           fullsizeImgUrl,
           thumbnailUrl,
           originalUrl,
           fileType,
           itemJson,
+          dplaItemId,
+          dplaItemJson,
           isActive:
             block.id === parseInt(query.item, 10) || (!query.item && i === 0)
         });

@@ -12,6 +12,8 @@ import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
+import GaExhibitWrapper from "./GaExhibitWrapper";
+
 const chevron = "/static/images/chevron-thick-black.svg";
 
 const getItemIdFromOmeka = itemJson =>
@@ -196,4 +198,4 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   );
 };
 
-export default Viewer;
+export default GaExhibitWrapper(Viewer);
