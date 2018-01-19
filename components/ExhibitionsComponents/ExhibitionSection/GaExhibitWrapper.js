@@ -40,7 +40,8 @@ export default WrappedComponent =>
           const dplaItemJson = block.dplaItemJson;
 
           const partner = joinIfArray(
-            dplaItemJson.docs &&
+            dplaItemJson &&
+              dplaItemJson.docs &&
               dplaItemJson.docs[0] &&
               dplaItemJson.docs[0].provider &&
               dplaItemJson.docs[0].provider.name,
@@ -48,14 +49,16 @@ export default WrappedComponent =>
           );
 
           const contributor = joinIfArray(
-            dplaItemJson.docs &&
+            dplaItemJson &&
+              dplaItemJson.docs &&
               dplaItemJson.docs[0] &&
               dplaItemJson.docs[0].dataProvider,
             ", "
           );
 
           const title = joinIfArray(
-            dplaItemJson.docs &&
+            dplaItemJson &&
+              dplaItemJson.docs &&
               dplaItemJson.docs[0] &&
               dplaItemJson.docs[0].sourceResource &&
               dplaItemJson.docs[0].sourceResource.title,
