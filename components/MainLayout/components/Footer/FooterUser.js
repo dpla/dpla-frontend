@@ -41,7 +41,7 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
-            <Link href="/about">
+            <Link href="/about?section=about-us" as="/about">
               <a>About DPLA</a>
             </Link>
           </li>
