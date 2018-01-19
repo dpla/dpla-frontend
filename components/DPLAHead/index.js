@@ -67,7 +67,6 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
       <style>{accessibility}</style>
-      <script src="https://cdn.polyfill.io/v2/polyfill.min.js" defer async />
     </Head>
   </div>;
 
