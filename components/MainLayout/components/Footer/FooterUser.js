@@ -41,12 +41,12 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
-            <Link href="/about?section=about" as="/about/about">
+            <Link href="/about">
               <a>About DPLA</a>
             </Link>
           </li>
           <li>
-            <Link href="/about?section=contact-us" as="/about/contact">
+            <Link href="/contact-us" as="/contact">
               <a>Contact Us</a>
             </Link>
           </li>
