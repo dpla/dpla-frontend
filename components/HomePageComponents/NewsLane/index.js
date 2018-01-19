@@ -14,7 +14,7 @@ const NewsLane = items =>
         <div className="col-xs-12 col-md-3">
           <div className={classNames.header}>
             <h2 className={classNames.headerText}>DPLA News</h2>
-            <Link prefetch href="">
+            <Link prefetch href="/news">
               <a className={`hover-underline ${classNames.headerLink}`}>
                 <span>Browse the archives</span>
                 <img
