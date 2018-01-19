@@ -21,19 +21,9 @@ const NavigationPro = ({ className, style, classNames }) =>
           <a>Projects</a>
         </Link>
       </li>
-      <li>
-        <Link prefetch as="/education" href="/pro/wp?section=education">
-          <a>Education</a>
-        </Link>
-      </li>
     </ul>
     <span className={classNames.divider} />
     <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
-      <li>
-        <Link prefetch as="/events" href="/pro/wp?section=events">
-          <a>Events</a>
-        </Link>
-      </li>
       <li>
         <Link prefetch as="/about" href="/pro/wp?section=about-dpla-pro">
           <a>About</a>
@@ -42,6 +32,11 @@ const NavigationPro = ({ className, style, classNames }) =>
       <li>
         <Link prefetch href="/news">
           <a>News</a>
+        </Link>
+      </li>
+      <li>
+        <Link prefetch as="/events" href="/pro/wp?section=events">
+          <a>Events</a>
         </Link>
       </li>
     </ul>

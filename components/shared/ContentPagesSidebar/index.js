@@ -26,7 +26,8 @@ const SidebarLink = ({
 };
 
 const NestedSidebarLinks = ({
-  isCurrentLink,
+  item,
+  isOpen,
   isGuide,
   linkObject,
   title,
@@ -43,9 +44,9 @@ const NestedSidebarLinks = ({
         section={section}
         subsection={subsection}
         isGuide={isGuide}
-        isCurrentLink={isCurrentLink}
+        isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
       />
-      {children.length
+      {children.length && isOpen
         ? <ul>
             {children.map(child => {
               let childLinkObject = { as: linkObject.as, href: "/" };
@@ -123,20 +124,27 @@ const Sidebar = ({
               href: "/pro/wp?section=" + item.post_name
             };
           }
-          const children = items.filter(
-            child => child.menu_item_parent === item.object_id
-          );
+          let isOpen = false;
+          if (item.url.match(new RegExp(activeItemId + "$"))) isOpen = true;
+          const children = items.filter(child => {
+            if (child.menu_item_parent === item.object_id) {
+              if (child.url.match(new RegExp(activeItemId + "$"))) {
+                isOpen = true;
+              }
+              return child;
+            }
+          });
           return (
             <li key={item.ID}>
               <NestedSidebarLinks
                 title={decodeHTMLEntities(item.title)}
-                url={item.url}
                 section={item.post_name}
+                isOpen={isOpen}
                 isGuide={isGuide}
                 linkObject={linkObject}
-                isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
                 children={children}
                 activeItemId={activeItemId}
+                item={item}
               />
             </li>
           );
