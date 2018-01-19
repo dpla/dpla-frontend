@@ -171,16 +171,16 @@ Home.getInitialProps = async ({ req }) => {
       })
   );
 
-  // fetch blog posts
-  const blogRes = await fetch(NEWS_HOME_ENDPOINT);
-  const blogItems = await blogRes.json();
+  // fetch news posts
+  const newsRes = await fetch(NEWS_HOME_ENDPOINT);
+  const newsItems = await newsRes.json();
 
   return {
     sourceSets,
     guides,
     exhibitions: featuredExhibitionsWithData,
     headerDescription,
-    news: blogItems
+    news: newsItems
   };
 };
 
