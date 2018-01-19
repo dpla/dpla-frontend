@@ -12,7 +12,10 @@ const FooterUser = () =>
         <h2 className={classNames.linkHeader}>DPLA</h2>
         <ul>
           <li>
-            <Link href="/about/frequently-asked-questions">
+            <Link
+              href="/about?section=frequently-asked-questions"
+              as="/about/frequently-asked-questions"
+            >
               <a>Frequently Asked Questions</a>
             </Link>
           </li>
@@ -22,22 +25,28 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
-            <Link href="/about/terms-conditions">
+            <Link
+              href="/about?section=terms-conditions"
+              as="/about/terms-conditions"
+            >
               <a>Terms &amp; Conditions</a>
             </Link>
           </li>
           <li>
-            <Link href="/about/our-supporters">
+            <Link
+              href="/about?section=our-supporters"
+              as="/about/our-supporters"
+            >
               <a>Our Supporters</a>
             </Link>
           </li>
           <li>
-            <Link href="/about">
+            <Link href="/about?section=about" as="/about/about">
               <a>About DPLA</a>
             </Link>
           </li>
           <li>
-            <Link href="/contact">
+            <Link href="/about?section=contact-us" as="/about/contact">
               <a>Contact Us</a>
             </Link>
           </li>
