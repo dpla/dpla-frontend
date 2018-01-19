@@ -3,10 +3,6 @@ import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
 import { joinIfArray } from "utilFunctions";
-import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
-import { API_ENDPOINT } from "constants/items";
-import fetch from "isomorphic-fetch";
-import Link from "next/link";
 
 export default WrappedComponent =>
   class GaExhibitWrapper extends React.Component {
