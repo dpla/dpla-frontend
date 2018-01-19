@@ -39,6 +39,11 @@ const getItemId = source =>
     )[0]["@id"]
   );
 
+const getPartner = source =>
+  source.mainEntity[0]["provider"].filter(
+    ref => ref["disabmiguationDescription"] == "partner"
+  )["name"];
+
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
     return <PDFViewer pathToFile={pathToFile} height={"100%"} />;
@@ -186,7 +191,7 @@ const ContentAndMetadata = ({ source }) => {
                       className={classNames.externalIcon}
                     />
                     <span className={classNames.linkText}>
-                      View in {source.mainEntity[0].provider.name}
+                      View in {getPartner(source)}
                     </span>
                   </a>
                 </div>}
