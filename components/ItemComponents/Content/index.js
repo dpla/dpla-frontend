@@ -4,6 +4,7 @@ import { classNames, stylesheet } from "./Content.css";
 import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
+import GaItemWrapper from "./GaItemWrapper";
 
 const Content = ({ item, url }) =>
   <div className={classNames.content}>
@@ -14,4 +15,4 @@ const Content = ({ item, url }) =>
     <JsonLdMarkup item={item} url={url} />
   </div>;
 
-export default Content;
+export default GaItemWrapper(Content);
