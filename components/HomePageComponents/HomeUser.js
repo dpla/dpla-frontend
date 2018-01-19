@@ -8,7 +8,7 @@ import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
 
-const UserHome = ({
+const HomeUser = ({
   sourceSets,
   exhibitions,
   guides,
@@ -44,4 +44,4 @@ const UserHome = ({
     <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </div>;
 
-export default UserHome;
+export default HomeUser;

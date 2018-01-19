@@ -6,7 +6,8 @@
   background-color: rgb(47, 74, 87);
   background-image: url("static/images/pro/home-hero-bg.png");
   background-position: center/100%;
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: white;
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
-import UserHome from "components/HomePageComponents/UserHome";
+import HomeUser from "components/HomePageComponents/HomeUser";
 
 import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
@@ -42,7 +42,7 @@ const Home = ({
     route={url}
   >
     <div id="main">
-      <UserHome
+      <HomeUser
         sourceSets={sourceSets}
         exhibitions={exhibitions}
         guides={guides}

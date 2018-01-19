@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import IconComponent from "./ProComponents/IconComponent";
 
-import { stylesheet, classNames } from "./ProHome.css";
+import { stylesheet, classNames } from "./HomePro.css";
 
-const ProHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
+const HomePro = ({ sourceSets, exhibitions, guides, headerDescription }) =>
   <div>
     <div className={classNames.heroWrapper}>
       <div className={`${classNames.heroText} site-max-width`}>
@@ -77,4 +77,4 @@ const ProHome = ({ sourceSets, exhibitions, guides, headerDescription }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default ProHome;
+export default HomePro;
