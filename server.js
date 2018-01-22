@@ -27,6 +27,10 @@ app
       res.send("OK");
     });
 
+    server.get("/robots.txt", (req, res) => {
+      return handle(req, res);
+    });
+
     // decide which routing to use depending on the site environment
     if (process.env.SITE_ENV === "user") {
       const router = require("./routesUser")(app, server);
@@ -37,6 +41,19 @@ app
     // routes that are common to both sites
     server.get("/news", (req, res) => {
       app.render(req, res, "/news", req.query);
+    });
+
+    server.get("/news/:post", (req, res) => {
+      const actualPage = "/news/post";
+      const params = { slug: req.params.post };
+      serverFunctions.renderAndCache(
+        app,
+        req,
+        res,
+        actualPage,
+        req.query,
+        params
+      );
     });
 
     server.get("/donate", (req, res) => {
@@ -53,6 +70,7 @@ app
       app.render(req, res, "/contact-us", req.query);
     });
 
+    // contact/feedback page endpoints
     server.post("/g/contact", async (req, res) => {
       if (!req.body) return res.sendStatus(400);
       if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
@@ -171,11 +189,6 @@ app
       } catch (error) {
         res.sendStatus(500);
       }
-    });
-
-    // this is necessary to get the next parts to work
-    server.get("/robots.txt", (req, res) => {
-      return handle(req, res);
     });
 
     server.get("*", (req, res) => {

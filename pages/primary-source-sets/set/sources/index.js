@@ -1,13 +1,15 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../../components/MainLayout";
-import PSSFooter from "../../../../components/PrimarySourceSetsComponents/PSSFooter";
-import BreadcrumbsModule from "../../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
-import ContentAndMetadata from "../../../../components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
-import SourceCarousel from "../../../../components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
-import { removeQueryParams } from "utilFunctions";
+import MainLayout from "components/MainLayout";
+import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
+import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import ContentAndMetadata from "components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
+import SourceCarousel from "components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
+
 import { PSS_BASE_URL } from "constants/site";
+
+import { removeQueryParams } from "utilFunctions";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";

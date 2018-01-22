@@ -4,11 +4,8 @@ import Slider from "react-slick";
 
 import { classNames, stylesheet } from "./Suggestions.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import {
-  NextArrow,
-  PrevArrow
-} from "../../../../components/shared/CarouselNavArrows";
-import { stylesheet as navArrowStyles } from "../../../../components/shared/CarouselNavArrows/CarouselNavArrows.css";
+import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
+import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 
 const { container } = utilClassNames;

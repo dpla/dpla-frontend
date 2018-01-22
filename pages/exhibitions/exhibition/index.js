@@ -1,10 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../components/MainLayout";
-import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
-import ImageAndCaption from "../../../components/ExhibitionsComponents/Exhibition/ImageAndCaption";
-import Details from "../../../components/ExhibitionsComponents/Exhibition/Details";
+import MainLayout from "components/MainLayout";
+import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
+import Details from "components/ExhibitionsComponents/Exhibition/Details";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import {
   EXHIBITS_ENDPOINT,

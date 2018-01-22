@@ -4,11 +4,11 @@ import fetch from "isomorphic-fetch";
 import {
   classNames,
   stylesheet
-} from "../../../../components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.css";
-import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/BreadcrumbsAndNav";
-import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
-import MainLayout from "../../../../components/MainLayout";
-import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
+} from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.css";
+import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
+import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
+import MainLayout from "components/MainLayout";
+import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 import {
   decodeHTMLEntities,
   extractItemId,
