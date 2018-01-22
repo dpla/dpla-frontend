@@ -39,10 +39,21 @@ const getItemId = source =>
     )[0]["@id"]
   );
 
-const getPartner = source =>
-  source.mainEntity[0]["provider"].filter(
-    ref => ref["disabmiguationDescription"] == "partner"
-  )["name"];
+const getPartner = source => {
+  const provider = source.mainEntity[0]["provider"];
+  var providerName = "";
+
+  if (provider instanceof Array) {
+    // This works with a more recent iteration of the PSS API.
+    providerName = provider.filter(
+      ref => ref["disabmiguationDescription"] == "partner"
+    )["name"];
+  } else {
+    // This works with the original version of the PSS API.
+    providerName = provider.name;
+  }
+  return providerName;
+};
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
