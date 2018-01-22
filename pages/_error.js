@@ -37,9 +37,9 @@ export default class Error extends React.Component {
                     An error occurred.
                   </h1>
                   <p>
-                    Thanks for your patience while we work to fix this issue.
+                    Thanks for your patience while we work to fix this issue. In
+                    the meantime, try one of these:
                   </p>
-                  <p>In the meantime, try one of these:</p>
                 </div>}
               {this.props.statusCode !== 500 &&
                 <div>
@@ -48,8 +48,8 @@ export default class Error extends React.Component {
                   </h1>
                   <p>
                     We are sorry that the page you requested cannot be found.
+                    Instead, try one of these:
                   </p>
-                  <p>Instead, try one of these:</p>
                 </div>}
               <div>
                 <ul>
