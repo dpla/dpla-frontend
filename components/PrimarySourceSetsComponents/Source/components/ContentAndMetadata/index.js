@@ -46,8 +46,8 @@ const getPartner = source => {
   if (provider instanceof Array) {
     // This works with a more recent iteration of the PSS API.
     providerName = provider.filter(
-      ref => ref["disabmiguationDescription"] == "partner"
-    )["name"];
+      ref => ref["disambiguationDescription"] == "partner"
+    )[0]["name"];
   } else {
     // This works with the original version of the PSS API.
     providerName = provider.name;

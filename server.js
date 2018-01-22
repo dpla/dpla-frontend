@@ -440,9 +440,9 @@ app
         userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
           const data = JSON.parse(proxyResData.toString("utf8"));
           const file_urls = data[0].file_urls;
-          Object.keys(file_urls).forEach(key => {
-            file_urls[key] = replaceWithProxyEndpoint(file_urls[key], userReq);
-          });
+          // Object.keys(file_urls).forEach(key => {
+          //   file_urls[key] = replaceWithProxyEndpoint(file_urls[key], userReq);
+          // });
           return JSON.stringify(data);
         }
       })
