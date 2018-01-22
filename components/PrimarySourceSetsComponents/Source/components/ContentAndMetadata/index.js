@@ -14,6 +14,9 @@ import { extractItemId, joinIfArray } from "utilFunctions";
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
 import { classNames as utilClassNames } from "css/utils.css";
+
+import GaPssWrapper from "./GaPssWrapper";
+
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
@@ -229,4 +232,4 @@ const ContentAndMetadata = ({ source }) => {
   );
 };
 
-export default ContentAndMetadata;
+export default GaPssWrapper(ContentAndMetadata);
