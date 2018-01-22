@@ -4,7 +4,7 @@ const markdownit = require("markdown-it")({ html: true });
 import Breadcrumbs from "components/Breadcrumbs";
 import StudentMode from "./components/StudentMode";
 
-import { classNames as utilClassNames } from "css/utils.css";
+import { stylesheet, classNames as utilClassNames } from "css/utils.css";
 
 const { container } = utilClassNames;
 
