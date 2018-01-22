@@ -8,6 +8,7 @@ import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import getMetaPageTitle from "./getMetaPageTitle";
+import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
 import makeURLsClickable from "./makeURLsClickable";
 import truncateString from "./truncateString";
@@ -27,6 +28,7 @@ export {
   getCurrentUrl,
   getDefaultThumbnail,
   getMetaPageTitle,
+  getPartner,
   getSearchPageTitle,
   makeURLsClickable,
   truncateString,

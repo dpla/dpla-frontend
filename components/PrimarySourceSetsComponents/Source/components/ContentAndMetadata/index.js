@@ -9,7 +9,7 @@ import {
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
-import { extractItemId, joinIfArray } from "utilFunctions";
+import { extractItemId, joinIfArray, getPartner } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
@@ -41,22 +41,6 @@ const getItemId = source =>
       ref => ref["@type"] === "ore:Aggregation"
     )[0]["@id"]
   );
-
-const getPartner = source => {
-  const provider = source.mainEntity[0]["provider"];
-  var providerName = "";
-
-  if (provider instanceof Array) {
-    // This works with a more recent iteration of the PSS API.
-    providerName = provider.filter(
-      ref => ref["disambiguationDescription"] == "partner"
-    )[0]["name"];
-  } else {
-    // This works with the original version of the PSS API.
-    providerName = provider.name;
-  }
-  return providerName;
-};
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {

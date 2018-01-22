@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, extractItemId } from "utilFunctions";
+import { joinIfArray, extractItemId, getPartner } from "utilFunctions";
 
 // TODO: getItemId and getPartner duplicated in ./index.js
 const getItemId = source =>
@@ -11,22 +11,6 @@ const getItemId = source =>
       ref => ref["@type"] === "ore:Aggregation"
     )[0]["@id"]
   );
-
-const getPartner = source => {
-  const provider = source.mainEntity[0]["provider"];
-  var providerName = "";
-
-  if (provider instanceof Array) {
-    // This works with a more recent iteration of the PSS API.
-    providerName = provider.filter(
-      ref => ref["disabmiguationDescription"] == "partner"
-    )["name"];
-  } else {
-    // This works with the original version of the PSS API.
-    providerName = provider.name;
-  }
-  return providerName;
-};
 
 const getContributor = source => {
   const provider = source.mainEntity[0]["provider"];
