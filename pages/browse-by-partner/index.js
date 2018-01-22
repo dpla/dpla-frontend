@@ -1,13 +1,13 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import FeatureHeader from "../../components/shared/FeatureHeader";
-import PartnerBrowseContent from "../../components/PartnerBrowseComponents";
+import MainLayout from "components/MainLayout";
+import FeatureHeader from "components/shared/FeatureHeader";
+import PartnerBrowseContent from "components/PartnerBrowseComponents";
 import { API_ENDPOINT } from "constants/items";
 import { getCurrentUrl } from "utilFunctions";
 import { TITLE, DESCRIPTION } from "constants/browse-by-partner";
-import { classNames } from "../../components/PartnerBrowseComponents/PartnerBrowseContent.css";
+import { classNames } from "components/PartnerBrowseComponents/PartnerBrowseContent.css";
 
 const PartnerBrowse = ({ partners, url }) =>
   <div>

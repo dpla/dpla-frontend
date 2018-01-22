@@ -1,14 +1,16 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../components/MainLayout";
-import PSSFooter from "../../../components/PrimarySourceSetsComponents/PSSFooter";
-import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
-import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
-import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
-import TeachersGuide from "../../../components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
-import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
+import MainLayout from "components/MainLayout";
+import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
+import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
+import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
+import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
+
 import { PSS_BASE_URL } from "constants/site";
+
+import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
