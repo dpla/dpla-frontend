@@ -43,9 +43,9 @@ app
       app.render(req, res, "/news", req.query);
     });
 
-    server.get("/news/:post", (req, res) => {
+    server.get("/news/:slug", (req, res) => {
       const actualPage = "/news/post";
-      const params = { slug: req.params.post };
+      const params = { slug: req.params.slug };
       serverFunctions.renderAndCache(
         app,
         req,
