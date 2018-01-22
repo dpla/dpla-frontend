@@ -43,7 +43,10 @@ const NewsPage = ({ url, content, menuItems, newsItems, pageTitle }) =>
               return (
                 <div key={index}>
                   <h2>
-                    <Link href={`/news/${item.slug}`}>
+                    <Link
+                      as={`/news/${item.slug}`}
+                      href={`/news/post?slug=${item.slug}`}
+                    >
                       <a>{item.title.rendered}</a>
                     </Link>
                   </h2>
