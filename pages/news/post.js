@@ -26,7 +26,7 @@ import removeQueryParams from "/utilFunctions/removeQueryParams";
 const { container } = utilClassNames;
 
 const PostPage = ({ url, content, menuItems }) =>
-  <MainLayout route={url} pageTitle={content.title} seoType={SEO_TYPE}>
+  <MainLayout route={url} pageTitle={content.title.rendered} seoType={SEO_TYPE}>
     <div className={utilClassNames.breadcrumbsWrapper}>
       <div className={[container, utilClassNames.breadcrumbsModule].join(" ")}>
         <Breadcrumbs
