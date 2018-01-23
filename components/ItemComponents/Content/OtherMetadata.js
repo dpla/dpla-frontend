@@ -77,7 +77,11 @@ const OtherMetadata = ({ item }) =>
           </Row>}
         {item.sourceUrl &&
           <Row heading="URL">
-            <a className="link" href={item.sourceUrl} target="_blank">
+            <a
+              className="link clickThrough"
+              href={item.sourceUrl}
+              target="_blank"
+            >
               {item.sourceUrl}
             </a>
           </Row>}
