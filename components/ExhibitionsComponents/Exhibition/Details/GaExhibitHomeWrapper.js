@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray, parseDplaItemRecord } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaExhibitHomeWrapper extends React.Component {
@@ -37,32 +37,10 @@ export default WrappedComponent =>
       if (fullPath !== this.lastTrackedPath) {
         const itemId = this.props.exhibition.dplaItemId;
         const dplaItemJson = this.props.exhibition.dplaItemJson;
-
-        const partner = joinIfArray(
-          dplaItemJson &&
-            dplaItemJson.docs &&
-            dplaItemJson.docs[0] &&
-            dplaItemJson.docs[0].provider &&
-            dplaItemJson.docs[0].provider.name,
-          ", "
-        );
-
-        const contributor = joinIfArray(
-          dplaItemJson &&
-            dplaItemJson.docs &&
-            dplaItemJson.docs[0] &&
-            dplaItemJson.docs[0].dataProvider,
-          ", "
-        );
-
-        const title = joinIfArray(
-          dplaItemJson &&
-            dplaItemJson.docs &&
-            dplaItemJson.docs[0] &&
-            dplaItemJson.docs[0].sourceResource &&
-            dplaItemJson.docs[0].sourceResource.title,
-          ", "
-        );
+        const dplaItem = parseDplaItemRecord(dplaItemJson);
+        const partner = joinIfArray(dplaItem.partner, ", ");
+        const contributor = joinIfArray(dplaItem.dataProvider, ", ");
+        const title = joinIfArray(dplaItem.title, ", ");
 
         alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
 
