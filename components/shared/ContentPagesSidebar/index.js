@@ -7,13 +7,7 @@ import { decodeHTMLEntities } from "utilFunctions";
 
 import { classNames, stylesheet } from "./Sidebar.css";
 
-const SidebarLink = ({
-  isCurrentLink,
-  isGuide,
-  linkObject,
-  title,
-  rootPath
-}) => {
+const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   return (
     <Link as={linkObject.as} href={linkObject.href}>
       <a
@@ -28,6 +22,7 @@ const SidebarLink = ({
 const NestedSidebarLinks = ({
   item,
   isOpen,
+  route,
   isGuide,
   linkObject,
   title,
@@ -36,6 +31,10 @@ const NestedSidebarLinks = ({
   activeItemId,
   children
 }) => {
+  const isNews = route.pathname.indexOf("/news") === 0;
+  const isCurrentLink =
+    item.url.match(new RegExp(activeItemId + "$")) ||
+    (isNews && item.post_name === "news");
   return (
     <div>
       <SidebarLink
@@ -44,7 +43,7 @@ const NestedSidebarLinks = ({
         section={section}
         subsection={subsection}
         isGuide={isGuide}
-        isCurrentLink={item.url.match(new RegExp(activeItemId + "$"))}
+        isCurrentLink={isCurrentLink}
       />
       {children.length && isOpen
         ? <ul>
@@ -87,13 +86,7 @@ const NestedSidebarLinks = ({
   );
 };
 
-const Sidebar = ({
-  className,
-  activeItemId,
-  items,
-  route,
-  rootPath = "about"
-}) =>
+const Sidebar = ({ className, activeItemId, items, route }) =>
   <div className={`${className} col-xs-12 col-md-4`}>
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
@@ -141,6 +134,7 @@ const Sidebar = ({
                 section={item.post_name}
                 isOpen={isOpen}
                 isGuide={isGuide}
+                route={route}
                 linkObject={linkObject}
                 children={children}
                 activeItemId={activeItemId}
