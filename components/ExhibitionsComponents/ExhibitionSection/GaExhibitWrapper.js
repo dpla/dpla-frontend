@@ -8,24 +8,23 @@ export default WrappedComponent =>
   class GaExhibitWrapper extends React.Component {
     constructor(props) {
       super(props);
-      this.trackItemView = this.trackExhibitView.bind(this);
+      this.trackPageview = this.trackPageview.bind(this);
     }
 
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      alert("component mounted");
       this.initGa();
-      this.trackExhibitView();
-      Router.router.events.on("routeChangeComplete", this.trackExhibitView);
+      this.trackPageview();
+      Router.router.events.on("routeChangeComplete", this.trackPageview);
     }
 
     // Cleanup, prevents multiple pageviews being counted for a single route.
     componentWillUnmount() {
-      Router.router.events.off("routeChangeComplete", this.trackExhibitView);
+      Router.router.events.off("routeChangeComplete", this.trackPageview);
     }
 
-    trackExhibitView() {
+    trackPageview() {
       // The pathname technically should not contain any parameters, but in this
       // app, it sometimes does.
       const path = window.location.pathname;
@@ -33,6 +32,10 @@ export default WrappedComponent =>
       const fullPath = path + search;
 
       if (fullPath !== this.lastTrackedPath) {
+        // Track pageview.
+        ReactGA.pageview(fullPath);
+
+        // Track exhibit item view.
         const subsection = this.props.subsection;
         const pageBlocks = subsection.page_blocks;
         const activePageIdx = pageBlocks.findIndex(block => block.isActive);
@@ -43,8 +46,6 @@ export default WrappedComponent =>
         const partner = joinIfArray(dplaItem.partner, ", ");
         const contributor = joinIfArray(dplaItem.dataProvider, ", ");
         const title = joinIfArray(dplaItem.title, ", ");
-
-        alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
 
         ReactGA.event({
           category: `View Exhibition Item : ${partner}`,

@@ -12,7 +12,6 @@ import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail, getDplaItemIdFromExhibit } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
-import GaExhibitWrapper from "./GaExhibitWrapper";
 
 const chevron = "/static/images/chevron-thick-black.svg";
 
@@ -193,4 +192,4 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   );
 };
 
-export default GaExhibitWrapper(Viewer);
+export default Viewer;

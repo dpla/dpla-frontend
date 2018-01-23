@@ -42,8 +42,6 @@ export default WrappedComponent =>
         const contributor = joinIfArray(dplaItem.dataProvider, ", ");
         const title = joinIfArray(dplaItem.title, ", ");
 
-        alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
-
         ReactGA.event({
           category: `View Exhibition Item : ${partner}`,
           action: `${contributor}`,
