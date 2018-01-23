@@ -19,6 +19,8 @@ import { API_ENDPOINT } from "constants/items";
 
 import removeQueryParams from "/utilFunctions/removeQueryParams";
 
+import { getDplaItemIdFromExhibit } from "utilFunctions";
+
 const Exhibition = ({ url, exhibition, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
     <BreadcrumbsModule
@@ -82,9 +84,10 @@ Exhibition.getInitialProps = async ({ query, req }) => {
   const itemJson = await itemRes.json();
 
   // Get DPLA item ID
-  const dplaItemId = itemJson.element_texts
-    .filter(element_text => element_text.element.name === "Has Version")
-    .map(element_text => element_text.text)[0];
+  const dplaItemId = getDplaItemIdFromExhibit(itemJson);
+  // const dplaItemId = itemJson.element_texts
+  //   .filter(element_text => element_text.element.name === "Has Version")
+  //   .map(element_text => element_text.text)[0];
 
   // Call DPLA API
   const dplaApiRes = await fetch(`${currentUrl}${API_ENDPOINT}/${dplaItemId}`);

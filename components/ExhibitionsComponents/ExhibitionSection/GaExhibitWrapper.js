@@ -65,6 +65,8 @@ export default WrappedComponent =>
             ", "
           );
 
+          alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
+
           ReactGA.event({
             category: `View Exhibition Item : ${partner}`,
             action: `${contributor}`,

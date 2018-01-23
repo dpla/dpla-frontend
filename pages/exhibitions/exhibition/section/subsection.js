@@ -8,7 +8,7 @@ import {
   getPreviousQueryParams,
   getNextQueryParams
 } from "utilFunctions/exhibitions/getInitialProps";
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl, getDplaItemIdFromExhibit } from "utilFunctions";
 
 import {
   EXHIBITS_ENDPOINT,
@@ -136,9 +136,10 @@ Subsection.getInitialProps = async ({ query, req }) => {
         const fileType = itemJson.item_type && itemJson.item_type.name;
 
         // Get DPLA item ID
-        const dplaItemId = itemJson.element_texts
-          .filter(element_text => element_text.element.name === "Has Version")
-          .map(element_text => element_text.text)[0];
+        const dplaItemId = getDplaItemIdFromExhibit(itemJson);
+        // const dplaItemId = itemJson.element_texts
+        //   .filter(element_text => element_text.element.name === "Has Version")
+        //   .map(element_text => element_text.text)[0];
 
         // Call DPLA API
         const dplaApiRes = await fetch(

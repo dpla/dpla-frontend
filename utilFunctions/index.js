@@ -8,6 +8,7 @@ import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import getItemId from "./getItemId";
+import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
@@ -28,7 +29,11 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
+<<<<<<< HEAD
   getItemId,
+=======
+  getDplaItemIdFromExhibit,
+>>>>>>> helper method getDplaItemIdFromExhibit
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
