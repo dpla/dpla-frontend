@@ -19,63 +19,65 @@ const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   );
 };
 
-const NestedSidebarLinks = ({
-  item,
-  isOpen,
-  route,
-  isGuide,
-  linkObject,
-  title,
-  section,
-  subsection,
-  activeItemId,
-  children
-}) => {
+const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
+  // recursive function
+  const title = decodeHTMLEntities(item.title);
+  const isGuide =
+    item.menu_item_parent === GUIDES_PARENT_ID || item.ID === GUIDES_PARENT_ID;
   const isNews = route.pathname.indexOf("/news") === 0;
+  // link treatment varies per template (eg: guides/news/pro/hubs...)
+  let linkObject = { as: "/", href: "/" };
+  if (isGuide) {
+    linkObject = { as: "/guides", href: "/about?section=" + item.post_name };
+  } else if (isNews) {
+    linkObject = { as: "/news", href: "/news" };
+  } else if (SITE_ENV === "user") {
+    linkObject = {
+      as: "/about/" + item.post_name,
+      href: "/about?section=" + item.post_name
+    };
+  } else if (SITE_ENV === "pro") {
+    linkObject = {
+      as: "/" + item.post_name,
+      href: "/pro/wp?section=" + item.post_name
+    };
+  }
   const isCurrentLink =
     item.url.match(new RegExp(activeItemId + "$")) ||
     (isNews && item.post_name === "news");
+  const children = items.filter(child => {
+    if (child.menu_item_parent === item.object_id) {
+      if (child.url.match(new RegExp(activeItemId + "$"))) {
+        // isOpen = true;
+      }
+      return child;
+    }
+  });
   return (
     <div>
       <SidebarLink
         linkObject={linkObject}
         title={title}
-        section={section}
-        subsection={subsection}
         isGuide={isGuide}
         isCurrentLink={isCurrentLink}
       />
+      {JSON.stringify(children.length)}
+      {JSON.stringify(isOpen)}
       {children.length && isOpen
         ? <ul>
             {children.map(child => {
-              let childLinkObject = { as: linkObject.as, href: "/" };
-              if (isGuide) {
-                childLinkObject = {
-                  as: "/guides",
-                  href: "/about?section=" + child.post_name
-                };
-              } else if (SITE_ENV === "user") {
-                childLinkObject = {
-                  as: "/about/" + child.post_name,
-                  href: "/about?section=" + child.post_name
-                };
-              } else if (SITE_ENV === "pro") {
-                childLinkObject = {
-                  as: linkObject.as + "/" + child.post_name,
-                  href: "/pro/wp?section=" + child.post_name
-                };
-              }
+              let grandOpen = true;
+              if (item.url.match(new RegExp(activeItemId + "$")))
+                grandOpen = true;
               return (
                 <li key={child.ID}>
-                  <SidebarLink
-                    title={decodeHTMLEntities(child.title)}
-                    section={section}
-                    subsection={child.post_name}
-                    isGuide={isGuide}
-                    linkObject={childLinkObject}
-                    isCurrentLink={child.url.match(
-                      new RegExp(activeItemId + "$")
-                    )}
+                  {/* <SidebarLink title={decodeHTMLEntities(child.title)} isGuide={isGuide} linkObject={childLinkObject} isCurrentLink={child.url.match(new RegExp(activeItemId + "$"))} /> */}
+                  <NestedSidebarLinks
+                    route={route}
+                    activeItemId={activeItemId}
+                    item={child}
+                    isOpen={grandOpen}
+                    items={items}
                   />
                 </li>
               );
@@ -91,54 +93,17 @@ const Sidebar = ({ className, activeItemId, items, route }) =>
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
         {items.filter(item => item.menu_item_parent === "0").map(item => {
-          const isGuide =
-            item.menu_item_parent === GUIDES_PARENT_ID ||
-            item.ID === GUIDES_PARENT_ID;
-          const isNews = item.post_name.indexOf("news") === 0;
-          let linkObject = { as: "/", href: "/" };
-          if (isGuide) {
-            linkObject = {
-              as: "/guides",
-              href: "/about?section=" + item.post_name
-            };
-          } else if (isNews) {
-            linkObject = {
-              as: "/news",
-              href: "/news"
-            };
-          } else if (SITE_ENV === "user") {
-            linkObject = {
-              as: "/about/" + item.post_name,
-              href: "/about?section=" + item.post_name
-            };
-          } else if (SITE_ENV === "pro") {
-            linkObject = {
-              as: "/" + item.post_name,
-              href: "/pro/wp?section=" + item.post_name
-            };
-          }
-          let isOpen = false;
+          // get first set of children for this item
+          let isOpen = true;
           if (item.url.match(new RegExp(activeItemId + "$"))) isOpen = true;
-          const children = items.filter(child => {
-            if (child.menu_item_parent === item.object_id) {
-              if (child.url.match(new RegExp(activeItemId + "$"))) {
-                isOpen = true;
-              }
-              return child;
-            }
-          });
           return (
             <li key={item.ID}>
               <NestedSidebarLinks
-                title={decodeHTMLEntities(item.title)}
-                section={item.post_name}
-                isOpen={isOpen}
-                isGuide={isGuide}
                 route={route}
-                linkObject={linkObject}
-                children={children}
                 activeItemId={activeItemId}
                 item={item}
+                items={items}
+                isOpen={isOpen}
               />
             </li>
           );
