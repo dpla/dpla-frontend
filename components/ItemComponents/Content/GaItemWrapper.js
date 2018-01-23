@@ -20,9 +20,8 @@ export default WrappedComponent =>
     componentDidMount() {
       this.initGa();
       this.trackItemView();
-      const domNode = this.getDOMNode;
-      this.bindClickThroughEventListener();
       Router.router.events.on("routeChangeComplete", this.trackItemView);
+      this.bindClickThroughEventListener();
     }
 
     // Cleanup, prevents multiple pageviews being counted for a single route.
