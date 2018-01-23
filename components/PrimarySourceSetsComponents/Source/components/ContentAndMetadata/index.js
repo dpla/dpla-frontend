@@ -9,7 +9,7 @@ import {
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
-import { extractItemId, joinIfArray, getPartner } from "utilFunctions";
+import { joinIfArray, getItemId, getPartner } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
@@ -34,13 +34,6 @@ const getSourceCitation = (source, type = "citation") =>
         ref => ref["disabmiguationDescription"] === type
       )[0]["text"]
     : source.mainEntity[0]["citation"];
-
-const getItemId = source =>
-  extractItemId(
-    source.mainEntity[0]["dct:references"].filter(
-      ref => ref["@type"] === "ore:Aggregation"
-    )[0]["@id"]
-  );
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {

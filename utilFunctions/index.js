@@ -7,6 +7,7 @@ import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
+import getItemId from "./getItemId";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
@@ -27,6 +28,7 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
+  getItemId,
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
