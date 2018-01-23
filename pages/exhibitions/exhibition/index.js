@@ -85,9 +85,6 @@ Exhibition.getInitialProps = async ({ query, req }) => {
 
   // Get DPLA item ID
   const dplaItemId = getDplaItemIdFromExhibit(itemJson);
-  // const dplaItemId = itemJson.element_texts
-  //   .filter(element_text => element_text.element.name === "Has Version")
-  //   .map(element_text => element_text.text)[0];
 
   // Call DPLA API
   const dplaApiRes = await fetch(`${currentUrl}${API_ENDPOINT}/${dplaItemId}`);

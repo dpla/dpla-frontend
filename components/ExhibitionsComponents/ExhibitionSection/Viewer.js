@@ -10,16 +10,11 @@ import {
 } from "components/shared/mediaViewers";
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
-import { getDefaultThumbnail } from "utilFunctions";
+import { getDefaultThumbnail, getDplaItemIdFromExhibit } from "utilFunctions";
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 import GaExhibitWrapper from "./GaExhibitWrapper";
 
 const chevron = "/static/images/chevron-thick-black.svg";
-
-const getItemIdFromOmeka = itemJson =>
-  itemJson.element_texts
-    .filter(element_text => element_text.element.name === "Has Version")
-    .map(element_text => element_text.text)[0];
 
 const getFileType = (fileType, originalUrl) => {
   if (
@@ -103,7 +98,7 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   const nextPage = activePageIdx + 1 < pageBlocks.length
     ? pageBlocks[activePageIdx + 1]
     : null;
-  const itemId = getItemIdFromOmeka(activePage.itemJson);
+  const itemId = getDplaItemIdFromExhibit(activePage.itemJson);
 
   return (
     <div className={classNames.viewer}>
