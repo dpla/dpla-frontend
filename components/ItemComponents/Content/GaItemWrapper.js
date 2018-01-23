@@ -9,6 +9,7 @@ export default WrappedComponent =>
     constructor(props) {
       super(props);
       this.trackItemView = this.trackItemView.bind(this);
+      this.trackClickThroughEvent = this.trackClickThroughEvent.bind(this);
     }
 
     // Using componentDidMount enables access to the window, which is necessary
@@ -16,6 +17,8 @@ export default WrappedComponent =>
     componentDidMount() {
       this.initGa();
       this.trackItemView();
+      const domNode = this.getDOMNode;
+      this.bindClickThroughEventListener();
       Router.router.events.on("routeChangeComplete", this.trackItemView);
     }
 
@@ -43,6 +46,22 @@ export default WrappedComponent =>
         });
         this.lastTrackedPath = fullPath;
       }
+    }
+
+    bindClickThroughEventListener() {
+      const links = document.getElementsByClassName("clickThrough");
+
+      Array.from(links).forEach(function(link) {
+        link.addEventListener("click", function() {
+          event.preventDefault();
+          this.trackClickThroughEvent();
+          // window.open(this.href, '_blank');
+        });
+      });
+    }
+
+    trackClickThroughEvent() {
+      alert("ct");
     }
 
     // Initialization will occur on the initial pageload, and also when
