@@ -33,9 +33,11 @@ export default WrappedComponent =>
 
       if (fullPath !== this.lastTrackedPath) {
         // Track pageview.
+        // Since this does not use the MainLayout like the rest of the site,
+        // the pageview is tracked here.
         ReactGA.pageview(fullPath);
 
-        // Track exhibit item view.
+        // Also track exhibit item view event.
         const subsection = this.props.subsection;
         const pageBlocks = subsection.page_blocks;
         const activePageIdx = pageBlocks.findIndex(block => block.isActive);
