@@ -14,6 +14,7 @@ export default WrappedComponent =>
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
+      alert("component mounted");
       this.initGa();
       this.trackExhibitView();
       Router.router.events.on("routeChangeComplete", this.trackExhibitView);
@@ -34,22 +35,21 @@ export default WrappedComponent =>
       if (fullPath !== this.lastTrackedPath) {
         const subsection = this.props.subsection;
         const pageBlocks = subsection.page_blocks;
+        const activePageIdx = pageBlocks.findIndex(block => block.isActive);
+        const activePage = pageBlocks[activePageIdx];
+        const itemId = activePage.dplaItemId;
+        const dplaItemJson = activePage.dplaItemJson;
+        const dplaItem = parseDplaItemRecord(dplaItemJson);
+        const partner = joinIfArray(dplaItem.partner, ", ");
+        const contributor = joinIfArray(dplaItem.dataProvider, ", ");
+        const title = joinIfArray(dplaItem.title, ", ");
 
-        pageBlocks.forEach(function(block) {
-          const itemId = block.dplaItemId;
-          const dplaItemJson = block.dplaItemJson;
-          const dplaItem = parseDplaItemRecord(dplaItemJson);
-          const partner = joinIfArray(dplaItem.partner, ", ");
-          const contributor = joinIfArray(dplaItem.dataProvider, ", ");
-          const title = joinIfArray(dplaItem.title, ", ");
+        alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
 
-          alert(`${itemId} : ${title} : ${partner} : ${contributor}`);
-
-          ReactGA.event({
-            category: `View Exhibition Item : ${partner}`,
-            action: `${contributor}`,
-            label: `${itemId} : ${title}`
-          });
+        ReactGA.event({
+          category: `View Exhibition Item : ${partner}`,
+          action: `${contributor}`,
+          label: `${itemId} : ${title}`
         });
 
         this.lastTrackedPath = fullPath;
