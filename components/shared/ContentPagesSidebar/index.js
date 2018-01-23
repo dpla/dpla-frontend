@@ -45,14 +45,9 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
   const isCurrentLink =
     item.url.match(new RegExp(activeItemId + "$")) ||
     (isNews && item.post_name === "news");
-  const children = items.filter(child => {
-    if (child.menu_item_parent === item.object_id) {
-      if (child.url.match(new RegExp(activeItemId + "$"))) {
-        // isOpen = true;
-      }
-      return child;
-    }
-  });
+  const children = items.filter(
+    child => child.menu_item_parent === item.object_id
+  );
   return (
     <div>
       <SidebarLink
@@ -66,9 +61,6 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
       {children.length && isOpen
         ? <ul>
             {children.map(child => {
-              let grandOpen = true;
-              if (item.url.match(new RegExp(activeItemId + "$")))
-                grandOpen = true;
               return (
                 <li key={child.ID}>
                   {/* <SidebarLink title={decodeHTMLEntities(child.title)} isGuide={isGuide} linkObject={childLinkObject} isCurrentLink={child.url.match(new RegExp(activeItemId + "$"))} /> */}
@@ -76,7 +68,7 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
                     route={route}
                     activeItemId={activeItemId}
                     item={child}
-                    isOpen={grandOpen}
+                    isOpen={isOpen}
                     items={items}
                   />
                 </li>
@@ -88,16 +80,44 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
   );
 };
 
+const findTopParent = ({ items, leafId }) => {
+  let topId = "";
+  // go upwards from the activeItemId
+  items.forEach(element => {
+    if (element.object_id === leafId) {
+      if (element.menu_item_parent !== "0") {
+        topId = findTopParent({
+          items: items,
+          leafId: element.menu_item_parent
+        });
+      } else {
+        topId = element.object_id;
+      }
+    }
+  });
+  return topId;
+};
+
 const Sidebar = ({ className, activeItemId, items, route }) =>
   <div className={`${className} col-xs-12 col-md-4`}>
     <div className={classNames.sidebar}>
       <ul className={classNames.links}>
         {items.filter(item => item.menu_item_parent === "0").map(item => {
-          // get first set of children for this item
-          let isOpen = true;
-          if (item.url.match(new RegExp(activeItemId + "$"))) isOpen = true;
+          // figure out if the current branch is open
+          // but since the WP _post_ id does not match the _menu_ id
+          // we need to find that first
+          const menuItemId = items.filter(
+            i => i.url.match(new RegExp(activeItemId + "$")) !== null
+          )[0].object_id;
+          // _now_ we can find it in the menu tree
+          const topParentId = findTopParent({
+            items: items,
+            leafId: menuItemId
+          });
+          let isOpen = topParentId === item.object_id;
           return (
             <li key={item.ID}>
+              [{JSON.stringify(topParentId)},{JSON.stringify(menuItemId)}]
               <NestedSidebarLinks
                 route={route}
                 activeItemId={activeItemId}
