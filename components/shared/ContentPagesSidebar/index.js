@@ -19,7 +19,13 @@ const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   );
 };
 
-const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
+const NestedSidebarLinks = ({
+  item,
+  items,
+  route,
+  activeItemId,
+  breadcrumbs
+}) => {
   // recursive function
   const title = decodeHTMLEntities(item.title);
   const isGuide =
@@ -48,6 +54,7 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
   const children = items.filter(
     child => child.menu_item_parent === item.object_id
   );
+  const isOpen = breadcrumbs.indexOf(item.object_id) !== -1;
   return (
     <div>
       <SidebarLink
@@ -56,8 +63,6 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
         isGuide={isGuide}
         isCurrentLink={isCurrentLink}
       />
-      {JSON.stringify(children.length)}
-      {JSON.stringify(isOpen)}
       {children.length && isOpen
         ? <ul>
             {children.map(child => {
@@ -68,7 +73,7 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
                     route={route}
                     activeItemId={activeItemId}
                     item={child}
-                    isOpen={isOpen}
+                    breadcrumbs={breadcrumbs}
                     items={items}
                   />
                 </li>
@@ -80,22 +85,22 @@ const NestedSidebarLinks = ({ item, items, route, activeItemId, isOpen }) => {
   );
 };
 
-const findTopParent = ({ items, leafId }) => {
-  let topId = "";
+const getBreadCrumbs = ({ items, leafId, breadcrumbs }) => {
+  breadcrumbs = breadcrumbs ? breadcrumbs : [];
   // go upwards from the activeItemId
   items.forEach(element => {
     if (element.object_id === leafId) {
       if (element.menu_item_parent !== "0") {
-        topId = findTopParent({
+        breadcrumbs.push(element.menu_item_parent);
+        getBreadCrumbs({
           items: items,
-          leafId: element.menu_item_parent
+          leafId: element.menu_item_parent,
+          breadcrumbs: breadcrumbs
         });
-      } else {
-        topId = element.object_id;
       }
     }
   });
-  return topId;
+  return breadcrumbs;
 };
 
 const Sidebar = ({ className, activeItemId, items, route }) =>
@@ -110,20 +115,19 @@ const Sidebar = ({ className, activeItemId, items, route }) =>
             i => i.url.match(new RegExp(activeItemId + "$")) !== null
           )[0].object_id;
           // _now_ we can find it in the menu tree
-          const topParentId = findTopParent({
+          const breadcrumbs = getBreadCrumbs({
             items: items,
-            leafId: menuItemId
+            leafId: menuItemId,
+            breadcrumbs: [menuItemId]
           });
-          let isOpen = topParentId === item.object_id;
           return (
             <li key={item.ID}>
-              [{JSON.stringify(topParentId)},{JSON.stringify(menuItemId)}]
               <NestedSidebarLinks
                 route={route}
                 activeItemId={activeItemId}
                 item={item}
                 items={items}
-                isOpen={isOpen}
+                breadcrumbs={breadcrumbs}
               />
             </li>
           );
