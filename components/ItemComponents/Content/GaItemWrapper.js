@@ -9,7 +9,10 @@ export default WrappedComponent =>
     constructor(props) {
       super(props);
       this.trackItemView = this.trackItemView.bind(this);
-      this.trackClickThroughEvent = this.trackClickThroughEvent.bind(this);
+      this.itemId = this.props.url.query.itemId;
+      this.title = joinIfArray(this.props.item.title, ", ");
+      this.contributor = joinIfArray(this.props.item.contributor, ", ");
+      this.partner = joinIfArray(this.props.item.partner, ", ");
     }
 
     // Using componentDidMount enables access to the window, which is necessary
@@ -35,15 +38,16 @@ export default WrappedComponent =>
       const fullPath = path + search;
 
       if (fullPath !== this.lastTrackedPath) {
-        const itemId = this.props.url.query.itemId;
-        const title = joinIfArray(this.props.item.title, ", ");
-        const contributor = joinIfArray(this.props.item.contributor, ", ");
-        const partner = joinIfArray(this.props.item.partner, ", ");
-        ReactGA.event({
-          category: `View Item : ${partner}`,
-          action: `${contributor}`,
-          label: `${itemId} : ${title}`
-        });
+        const gaEvent = {
+          type: "View Item",
+          itemId: this.itemId,
+          title: this.title,
+          partner: this.partner,
+          contributor: this.contributor
+        };
+
+        this.trackGaEvent(gaEvent);
+
         this.lastTrackedPath = fullPath;
       }
     }
@@ -51,17 +55,34 @@ export default WrappedComponent =>
     bindClickThroughEventListener() {
       const links = document.getElementsByClassName("clickThrough");
 
+      const gaEvent = {
+        type: "Click Through",
+        itemId: this.itemId,
+        title: this.title,
+        partner: this.partner,
+        contributor: this.contributor
+      };
+
+      const trackGaEvent = this.trackGaEvent;
+
       Array.from(links).forEach(function(link) {
         link.addEventListener("click", function() {
           event.preventDefault();
-          this.trackClickThroughEvent();
-          // window.open(this.href, '_blank');
+          trackGaEvent(gaEvent);
+          window.open(this.href, "_blank");
         });
       });
     }
 
-    trackClickThroughEvent() {
-      alert("ct");
+    trackGaEvent(gaEvent) {
+      alert(
+        `${gaEvent.type} : ${gaEvent.itemId} : ${gaEvent.title} : ${gaEvent.partner} : ${gaEvent.contributor}`
+      );
+      ReactGA.event({
+        category: `${gaEvent.type} : ${gaEvent.partner}`,
+        action: `${gaEvent.contributor}`,
+        label: `${gaEvent.itemId} : ${gaEvent.title}`
+      });
     }
 
     // Initialization will occur on the initial pageload, and also when
