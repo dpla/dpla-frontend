@@ -7,6 +7,9 @@ import { decodeHTMLEntities } from "utilFunctions";
 
 import { classNames, stylesheet } from "./Sidebar.css";
 
+const getItemWithName = ({ items, name }) =>
+  items.filter(item => item.post_name === name)[0];
+
 const getItemWithId = ({ items, id }) =>
   items.filter(item => item.object_id === id)[0];
 
@@ -55,10 +58,19 @@ const NestedSidebarLinks = ({
   const title = decodeHTMLEntities(item.title);
   const isGuide =
     item.menu_item_parent === GUIDES_PARENT_ID || item.ID === GUIDES_PARENT_ID;
-  const isNews = route.pathname.indexOf("/news") === 0;
   const children = items.filter(
     child => child.menu_item_parent === item.object_id
   );
+  // get route to the top of this item
+  const crumbs = getBreadCrumbs({
+    items: items,
+    leafId: item.object_id
+  });
+  // get the item's top parent info
+  const parent = getItemWithId({
+    items: items,
+    id: Object.keys(crumbs)[0]
+  });
   // link treatment varies per template (eg: guides/news/pro/hubs...)
   let linkObject = { as: "/", href: "/" };
   if (isGuide) {
@@ -72,16 +84,6 @@ const NestedSidebarLinks = ({
     let slug = "/";
     // if this is a child item the url is /:topsection/:thisitem
     if (item.menu_item_parent !== "0") {
-      // get route to the top of this item
-      const crumbs = getBreadCrumbs({
-        items: items,
-        leafId: item.object_id
-      });
-      // get the item's top parent info
-      const parent = getItemWithId({
-        items: items,
-        id: Object.keys(crumbs)[0]
-      });
       slug = slug + parent.post_name + "/";
     }
     linkObject = {
@@ -127,41 +129,110 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
   const menuItem = items.filter(
     item => item.url.match(new RegExp(activeItemId + "$")) !== null
   )[0];
-  // _now_ we can find it in the menu tree
-  let breadcrumb = {};
-  breadcrumb[menuItem.object_id] = menuItem.post_name;
-  const breadcrumbs = getBreadCrumbs({
+
+  let breadcrumbs = {};
+
+  // if not a news item (those dont show up in sidebar)
+  if (menuItem) {
+    // find the menu tree
+    let breadcrumb = {};
+    breadcrumb[menuItem.object_id] = menuItem.post_name;
+    breadcrumbs = getBreadCrumbs({
+      items: items,
+      leafId: menuItem.object_id,
+      breadcrumbs: breadcrumb
+    });
+  }
+
+  // about item
+  const aboutItem = getItemWithName({
     items: items,
-    leafId: menuItem.object_id,
-    breadcrumbs: breadcrumb
+    name: SITE_ENV === "pro" ? "about-dpla-pro" : "about-us"
   });
+  const aboutId = aboutItem.url.substr(aboutItem.url.lastIndexOf("/"));
+
+  // events item
+  let eventsId = null;
+  let eventsItem = null;
+  if (SITE_ENV === "pro") {
+    eventsItem = getItemWithName({
+      items: items,
+      name: "events"
+    });
+    eventsId = eventsItem.url.substr(eventsItem.url.lastIndexOf("/"));
+  }
+
+  // exclude these items from main sidebar
+  // because we're adding them manually to the bottom sidebar
+  const excludeNames = [
+    "about-dpla-pro",
+    "about-us",
+    "events",
+    "news",
+    "news-2"
+  ];
 
   return (
     <div className={`${className} col-xs-12 col-md-4`}>
       <div className={classNames.sidebar}>
         <ul className={classNames.links}>
-          {items.filter(item => item.menu_item_parent === "0").map(item => {
-            return (
-              <li key={item.ID}>
-                <NestedSidebarLinks
-                  route={route}
-                  activeItemId={activeItemId}
-                  item={item}
-                  items={items}
-                  breadcrumbs={breadcrumbs}
-                />
-              </li>
-            );
-          })}
+          {items
+            .filter(
+              item =>
+                item.menu_item_parent === "0" &&
+                excludeNames.indexOf(item.post_name) === -1
+            )
+            .map(item => {
+              return (
+                <li key={item.ID}>
+                  <NestedSidebarLinks
+                    route={route}
+                    activeItemId={activeItemId}
+                    item={item}
+                    items={items}
+                    breadcrumbs={breadcrumbs}
+                  />
+                </li>
+              );
+            })}
         </ul>
         <div className={classNames.divider} />
         <ul>
-          <SidebarLink
-            title="Contact Us"
-            section="contact-us"
-            isCurrentLink={activeItemId === "contact-us"}
-            linkObject={{ as: "/contact", href: "/contact-us" }}
-          />
+          <li>
+            <NestedSidebarLinks
+              route={route}
+              activeItemId={activeItemId}
+              item={aboutItem}
+              items={items}
+              breadcrumbs={breadcrumbs}
+            />
+          </li>
+          {eventsId &&
+            <li>
+              <NestedSidebarLinks
+                route={route}
+                activeItemId={activeItemId}
+                item={eventsItem}
+                items={items}
+                breadcrumbs={breadcrumbs}
+              />
+            </li>}
+          <li>
+            <SidebarLink
+              title="News"
+              section="news"
+              isCurrentLink={route.pathname.indexOf("/news") === 0}
+              linkObject={{ as: "/news", href: "/news" }}
+            />
+          </li>
+          <li>
+            <SidebarLink
+              title="Contact Us"
+              section="contact-us"
+              isCurrentLink={activeItemId === "contact-us"}
+              linkObject={{ as: "/contact", href: "/contact-us" }}
+            />
+          </li>
         </ul>
       </div>
       <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
