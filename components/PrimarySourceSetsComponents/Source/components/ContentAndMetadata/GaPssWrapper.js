@@ -37,6 +37,7 @@ export default WrappedComponent =>
       initGa();
       this.trackSourceView();
       Router.router.events.on("routeChangeComplete", this.trackSourceView);
+      this.bindClickThroughEvent();
     }
 
     // Cleanup, prevents multiple pageviews being counted for a single route.
@@ -48,8 +49,6 @@ export default WrappedComponent =>
       const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
-        const source = this.props.source;
-
         const gaEvent = {
           type: "View Primary Source",
           itemId: this.itemId,
@@ -61,6 +60,20 @@ export default WrappedComponent =>
         trackGaEvent(gaEvent);
         this.lastTrackedPath = fullPath;
       }
+    }
+
+    bindClickThroughEvent() {
+      const links = document.getElementsByClassName("clickThrough");
+
+      const gaEvent = {
+        type: "Click Through",
+        itemId: this.itemId,
+        title: this.title,
+        partner: this.partner,
+        contributor: this.contributor
+      };
+
+      bindLinkEvent(gaEvent, links);
     }
 
     render() {
