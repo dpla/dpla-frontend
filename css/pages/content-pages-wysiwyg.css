@@ -1,4 +1,4 @@
-@value headingColor, warmerBackgroundColor, linkColor, silver from "../colors.css";
+@value headingColor, warmerBackgroundColor, linkColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value monoFont, serifFont from "../typography.css";
 
