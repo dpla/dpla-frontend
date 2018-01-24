@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, parseDplaItemRecord } from "utilFunctions";
+import { joinIfArray, parseDplaItemRecord, initGa } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaExhibitHomeWrapper extends React.Component {
@@ -14,7 +14,7 @@ export default WrappedComponent =>
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      this.initGa();
+      initGa();
       this.trackExhibitHomeView();
       Router.router.events.on("routeChangeComplete", this.trackExhibitHomeView);
     }
@@ -49,15 +49,6 @@ export default WrappedComponent =>
         });
 
         this.lastTrackedPath = fullPath;
-      }
-    }
-
-    // Initialization will occur on the initial pageload, and also when
-    // switching between pages of different types.
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(gaTrackingId);
-        window.GA_INITIALIZED = true;
       }
     }
 

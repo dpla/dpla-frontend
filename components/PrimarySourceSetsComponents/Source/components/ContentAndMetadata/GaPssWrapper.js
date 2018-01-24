@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, getItemId, getPartner } from "utilFunctions";
+import { joinIfArray, getItemId, getPartner, initGa } from "utilFunctions";
 
 const getContributor = source =>
   source.mainEntity[0]["provider"].filter(
@@ -21,7 +21,7 @@ export default WrappedComponent =>
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      this.initGa();
+      initGa();
       this.trackSourceView();
       Router.router.events.on("routeChangeComplete", this.trackSourceView);
     }
@@ -51,15 +51,6 @@ export default WrappedComponent =>
         });
 
         this.lastTrackedPath = fullPath;
-      }
-    }
-
-    // Initialization will occur on the initial pageload, and also when
-    // switching between pages of different types.
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(gaTrackingId);
-        window.GA_INITIALIZED = true;
       }
     }
 
