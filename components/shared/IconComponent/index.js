@@ -8,7 +8,7 @@ import Network from "../../../static/images/pro/network.svg";
 import Prospective from "../../../static/images/pro/prospective.svg";
 
 export default ({ className, name }) =>
-  <span aria-hidden className={className}>
+  <span aria-hidden className={className ? className : ""}>
     {name === "developers" && <Developers />}
     {name === "community" && <Community />}
     {name === "ebooks" && <Ebooks />}

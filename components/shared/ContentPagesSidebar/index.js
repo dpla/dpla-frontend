@@ -3,37 +3,14 @@ import Link from "next/link";
 
 import { GUIDES_PARENT_ID } from "constants/content-pages";
 import { SITE_ENV } from "constants/env";
-import { decodeHTMLEntities } from "utilFunctions";
+import {
+  decodeHTMLEntities,
+  getBreadcrumbs,
+  getItemWithId,
+  getItemWithName
+} from "utilFunctions";
 
 import { classNames, stylesheet } from "./Sidebar.css";
-
-const getItemWithName = ({ items, name }) =>
-  items.filter(item => item.post_name === name)[0];
-
-const getItemWithId = ({ items, id }) =>
-  items.filter(item => item.object_id === id)[0];
-
-const getBreadCrumbs = ({ items, leafId, breadcrumbs }) => {
-  breadcrumbs = breadcrumbs ? breadcrumbs : {};
-  // go upwards from the activeItemId
-  items.forEach(element => {
-    if (element.object_id === leafId) {
-      if (element.menu_item_parent !== "0") {
-        const post_name = getItemWithId({
-          items: items,
-          id: element.menu_item_parent
-        }).post_name;
-        breadcrumbs[element.menu_item_parent] = post_name;
-        getBreadCrumbs({
-          items: items,
-          leafId: element.menu_item_parent,
-          breadcrumbs: breadcrumbs
-        });
-      }
-    }
-  });
-  return breadcrumbs;
-};
 
 const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   return (
@@ -62,7 +39,7 @@ const NestedSidebarLinks = ({
     child => child.menu_item_parent === item.object_id
   );
   // get route to the top of this item
-  const crumbs = getBreadCrumbs({
+  const crumbs = getBreadcrumbs({
     items: items,
     leafId: item.object_id
   });
@@ -75,6 +52,11 @@ const NestedSidebarLinks = ({
   let linkObject = { as: "/", href: "/" };
   if (isGuide) {
     linkObject = { as: "/guides", href: "/about?section=" + item.post_name };
+  } else if (item.post_name === "hubs") {
+    linkObject = {
+      as: "/hubs",
+      href: "/pro/wp/hubs?section=" + item.post_name
+    };
   } else if (SITE_ENV === "user") {
     linkObject = {
       as: "/about/" + item.post_name,
@@ -137,7 +119,7 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
     // find the menu tree
     let breadcrumb = {};
     breadcrumb[menuItem.object_id] = menuItem.post_name;
-    breadcrumbs = getBreadCrumbs({
+    breadcrumbs = getBreadcrumbs({
       items: items,
       leafId: menuItem.object_id,
       breadcrumbs: breadcrumb

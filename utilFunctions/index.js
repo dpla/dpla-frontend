@@ -17,6 +17,9 @@ import parseDplaItemRecord from "./parseDplaItemRecord";
 import truncateString from "./truncateString";
 import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
+import getBreadcrumbs from "./getBreadcrumbs";
+import getItemWithId from "./getItemWithId";
+import getItemWithName from "./getItemWithName";
 import readMyRights from "./readMyRights";
 import formatDate from "./formatDate";
 import getCurrentFullUrl from "./getCurrentFullUrl";
@@ -41,6 +44,9 @@ export {
   truncateString,
   endsWith,
   removeEndPunctuation,
+  getBreadcrumbs,
+  getItemWithId,
+  getItemWithName,
   readMyRights,
   formatDate,
   getCurrentFullUrl

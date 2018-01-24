@@ -23,7 +23,30 @@ module.exports = (app, server) => {
     );
   });
 
-  // for top-level sections
+  // for hubs
+  server.get("/hubs", (req, res) => {
+    const actualPage = "/pro/wp/hubs";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  // hubs subsections have regular page
+  server.get("/hubs/:subsection", (req, res) => {
+    const actualPage = "/pro/wp";
+    const params = {
+      section: req.params.section,
+      subsection: req.params.subsection
+    };
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
+  });
+
+  // for non-hub top-level sections
   SECTIONS.forEach(section => {
     server.get("/" + section.slug, (req, res) => {
       const actualPage = "/pro/wp";

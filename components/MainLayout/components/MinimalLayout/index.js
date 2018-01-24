@@ -2,10 +2,10 @@
 
 import React from "react";
 import Helmet from "react-helmet";
-import DPLAHead from "../../../DPLAHead";
-import SkipToContent from "../../../shared/SkipToContent";
+import DPLAHead from "components/DPLAHead";
+import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
-import GaWrapper from "../../../shared/GaWrapper";
+import GaWrapper from "shared/GaWrapper";
 
 const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
   <div>

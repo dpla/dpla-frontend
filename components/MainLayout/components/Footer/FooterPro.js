@@ -3,8 +3,6 @@ import Link from "next/link";
 
 import Button from "components/shared/Button";
 
-import { SECTIONS as PRO_SECTIONS } from "constants/pro";
-
 import { classNames, stylesheet } from "./Footer.css";
 
 const FooterPro = () =>
@@ -59,7 +57,7 @@ const FooterPro = () =>
             </Link>
           </li>
           <li>
-            <Link as="/hub-network" href="/pro/wp?section=hub-network">
+            <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
               <a>Hub Network</a>
             </Link>
           </li>

@@ -1,13 +1,13 @@
 import React from "react";
 import Helmet from "react-helmet";
 import DPLAHead from "components/DPLAHead";
-import SkipToContent from "components/shared/SkipToContent";
+import SkipToContent from "shared/SkipToContent";
 import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 import FeedbackForm from "components/FeedbackForm";
-import GaWrapper from "components/shared/GaWrapper";
+import GaWrapper from "shared/GaWrapper";
 
 const MainLayout = ({
   children,

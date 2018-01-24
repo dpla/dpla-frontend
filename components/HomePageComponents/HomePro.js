@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import IconComponent from "./ProComponents/IconComponent";
+import IconComponent from "shared/IconComponent";
 import NewsLane from "./NewsLane";
 
 import { stylesheet, classNames } from "./HomePro.css";

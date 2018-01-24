@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Select from "react-select";
 
-import Button from "../../shared/Button";
+import Button from "shared/Button";
 
 import { classNames, stylesheet } from "./ContactForm.css";
 import { TITLE } from "constants/contact";
