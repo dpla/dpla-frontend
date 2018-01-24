@@ -9,11 +9,17 @@ import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
-  FILES_ENDPOINT
+  FILES_ENDPOINT,
+  ITEMS_ENDPOINT
 } from "constants/exhibitions";
+
 import { SEO_TYPE } from "constants/exhibition";
 
+import { API_ENDPOINT } from "constants/items";
+
 import removeQueryParams from "/utilFunctions/removeQueryParams";
+
+import { getDplaItemIdFromExhibit } from "utilFunctions";
 
 const Exhibition = ({ url, exhibition, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
@@ -67,10 +73,22 @@ Exhibition.getInitialProps = async ({ query, req }) => {
   const { text } = homePage.page_blocks[0];
   const { item, caption } = homePage.page_blocks[0].attachments[0];
 
+  // Get homepage item file
   const filesRes = await fetch(
     `${currentUrl}${FILES_ENDPOINT}?item=${item.id}`
   );
   const filesJson = await filesRes.json();
+
+  // Get homepage item (full metadata)
+  const itemRes = await fetch(`${currentUrl}${ITEMS_ENDPOINT}/${item.id}`);
+  const itemJson = await itemRes.json();
+
+  // Get DPLA item ID
+  const dplaItemId = getDplaItemIdFromExhibit(itemJson);
+
+  // Call DPLA API
+  const dplaApiRes = await fetch(`${currentUrl}${API_ENDPOINT}/${dplaItemId}`);
+  const dplaItemJson = await dplaApiRes.json();
 
   const thumbnailUrl = filesJson[0].file_urls.fullsize;
   return {
@@ -79,6 +97,8 @@ Exhibition.getInitialProps = async ({ query, req }) => {
       thumbnailUrl,
       caption,
       text,
+      dplaItemId,
+      dplaItemJson,
       sections: sortedExhibitPages.slice(1)
     })
   };

@@ -4,8 +4,8 @@ import { classNames, stylesheet } from "./ExhibitionSection.css";
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
-import GaWrapper from "../../shared/GaWrapper";
 import FeedbackForm from "components/FeedbackForm";
+import GaExhibitWrapper from "./GaExhibitWrapper";
 
 const ExhibitionView = ({
   exhibition,
@@ -36,4 +36,4 @@ const ExhibitionView = ({
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default GaWrapper(ExhibitionView);
+export default GaExhibitWrapper(ExhibitionView);
