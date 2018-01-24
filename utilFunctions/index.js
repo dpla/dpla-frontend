@@ -30,11 +30,8 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
-<<<<<<< HEAD
   getItemId,
-=======
   getDplaItemIdFromExhibit,
->>>>>>> helper method getDplaItemIdFromExhibit
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
