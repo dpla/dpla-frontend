@@ -19,6 +19,7 @@ import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
 import readMyRights from "./readMyRights";
 import getCurrentFullUrl from "./getCurrentFullUrl";
+import trackGaEvent from "./googleAnalytics/trackGaEvent";
 
 export {
   addCommasToNumber,
@@ -41,5 +42,6 @@ export {
   endsWith,
   removeEndPunctuation,
   readMyRights,
-  getCurrentFullUrl
+  getCurrentFullUrl,
+  trackGaEvent
 };

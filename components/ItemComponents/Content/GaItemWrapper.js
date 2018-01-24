@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray, trackGaEvent } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaItemWrapper extends React.Component {
@@ -45,7 +45,7 @@ export default WrappedComponent =>
           contributor: this.contributor
         };
 
-        this.trackGaEvent(gaEvent);
+        trackGaEvent(gaEvent);
 
         this.lastTrackedPath = fullPath;
       }
@@ -62,7 +62,7 @@ export default WrappedComponent =>
         contributor: this.contributor
       };
 
-      const trackGaEvent = this.trackGaEvent;
+      // const trackGaEvent = this.trackGaEvent;
 
       Array.from(links).forEach(function(link) {
         link.addEventListener("click", function() {
@@ -70,17 +70,6 @@ export default WrappedComponent =>
           trackGaEvent(gaEvent);
           window.open(this.href, "_blank");
         });
-      });
-    }
-
-    trackGaEvent(gaEvent) {
-      alert(
-        `${gaEvent.type} : ${gaEvent.itemId} : ${gaEvent.title} : ${gaEvent.partner} : ${gaEvent.contributor}`
-      );
-      ReactGA.event({
-        category: `${gaEvent.type} : ${gaEvent.partner}`,
-        action: `${gaEvent.contributor}`,
-        label: `${gaEvent.itemId} : ${gaEvent.title}`
       });
     }
 
