@@ -2,7 +2,14 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, getItemId, getPartner, initGa } from "utilFunctions";
+import {
+  joinIfArray,
+  getFullPath,
+  getItemId,
+  getPartner,
+  initGa,
+  trackGaEvent
+} from "utilFunctions";
 
 const getContributor = source =>
   source.mainEntity[0]["provider"].filter(
@@ -32,24 +39,20 @@ export default WrappedComponent =>
     }
 
     trackSourceView() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
-        const itemId = getItemId(this.props.source);
-        const partner = joinIfArray(getPartner(this.props.source));
-        const title = joinIfArray(getTitle(this.props.source));
-        const contributor = joinIfArray(getContributor(this.props.source));
+        const source = this.props.source;
 
-        ReactGA.event({
-          category: `View Primary Source : ${partner}`,
-          action: `${contributor}`,
-          label: `${itemId} : ${title}`
-        });
+        const gaEvent = {
+          type: "View Primary Source",
+          itemId: getItemId(source),
+          title: joinIfArray(getTitle(source)),
+          partner: joinIfArray(getPartner(source)),
+          contributor: joinIfArray(getContributor(source))
+        };
 
+        trackGaEvent(gaEvent);
         this.lastTrackedPath = fullPath;
       }
     }

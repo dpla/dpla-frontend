@@ -5,7 +5,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { initGa } from "utilFunctions";
+import { initGa, getFullPath } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaWrapper extends React.Component {
@@ -28,11 +28,7 @@ export default WrappedComponent =>
     }
 
     trackPageview() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
         ReactGA.pageview(fullPath);

@@ -2,7 +2,13 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, parseDplaItemRecord, initGa } from "utilFunctions";
+import {
+  joinIfArray,
+  getFullPath,
+  parseDplaItemRecord,
+  initGa,
+  trackGaEvent
+} from "utilFunctions";
 
 export default WrappedComponent =>
   class GaExhibitHomeWrapper extends React.Component {
@@ -28,26 +34,21 @@ export default WrappedComponent =>
     }
 
     trackExhibitHomeView() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
-        const itemId = this.props.exhibition.dplaItemId;
         const dplaItemJson = this.props.exhibition.dplaItemJson;
         const dplaItem = parseDplaItemRecord(dplaItemJson);
-        const partner = joinIfArray(dplaItem.partner, ", ");
-        const contributor = joinIfArray(dplaItem.dataProvider, ", ");
-        const title = joinIfArray(dplaItem.title, ", ");
 
-        ReactGA.event({
-          category: `View Exhibition Item : ${partner}`,
-          action: `${contributor}`,
-          label: `${itemId} : ${title}`
-        });
+        const gaEvent = {
+          type: "View Exhibition Item",
+          itemId: this.props.exhibition.dplaItemId,
+          title: joinIfArray(dplaItem.title, ", "),
+          partner: joinIfArray(dplaItem.partner, ", "),
+          contributor: joinIfArray(dplaItem.dataProvider, ", ")
+        };
 
+        trackGaEvent(gaEvent);
         this.lastTrackedPath = fullPath;
       }
     }
