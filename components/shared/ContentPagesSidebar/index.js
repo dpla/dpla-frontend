@@ -49,7 +49,6 @@ const NestedSidebarLinks = ({
   items,
   route,
   activeItemId,
-  baseSlug,
   breadcrumbs
 }) => {
   // recursive function
@@ -110,7 +109,6 @@ const NestedSidebarLinks = ({
                     activeItemId={activeItemId}
                     item={child}
                     breadcrumbs={breadcrumbs}
-                    baseSlug={baseSlug}
                     items={items}
                   />
                 </li>
@@ -150,7 +148,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
                   activeItemId={activeItemId}
                   item={item}
                   items={items}
-                  baseSlug={item.post_name}
                   breadcrumbs={breadcrumbs}
                 />
               </li>
