@@ -1,0 +1,14 @@
+@value warmerBackgroundColor, memberColor from "../colors.css";
+@value smallRem, mediumRem, largeRem from "../breakpoints.css";
+
+.pageWrapper {
+  background-color: warmerBackgroundColor;
+}
+
+.sectionWrapper {
+  margin: 0 auto;
+}
+
+.subsection {
+  border-top: 0.25rem solid memberColor;
+}
