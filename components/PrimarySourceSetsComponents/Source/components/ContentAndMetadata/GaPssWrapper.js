@@ -8,7 +8,8 @@ import {
   getItemId,
   getPartner,
   initGa,
-  trackGaEvent
+  trackGaEvent,
+  bindLinkEvent
 } from "utilFunctions";
 
 const getContributor = source =>
@@ -23,6 +24,11 @@ export default WrappedComponent =>
     constructor(props) {
       super(props);
       this.trackSourceView = this.trackSourceView.bind(this);
+      const source = this.props.source;
+      this.itemId = getItemId(source);
+      this.title = joinIfArray(getTitle(source));
+      this.partner = joinIfArray(getPartner(source));
+      this.contributor = joinIfArray(getContributor(source));
     }
 
     // Using componentDidMount enables access to the window, which is necessary
@@ -46,10 +52,10 @@ export default WrappedComponent =>
 
         const gaEvent = {
           type: "View Primary Source",
-          itemId: getItemId(source),
-          title: joinIfArray(getTitle(source)),
-          partner: joinIfArray(getPartner(source)),
-          contributor: joinIfArray(getContributor(source))
+          itemId: this.itemId,
+          title: this.title,
+          partner: this.partner,
+          contributor: this.contributor
         };
 
         trackGaEvent(gaEvent);
