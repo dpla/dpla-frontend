@@ -2,6 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import {
+  getFullPath,
   joinIfArray,
   bindLinkEvent,
   trackGaEvent,
@@ -34,11 +35,7 @@ export default WrappedComponent =>
     }
 
     trackItemView() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
         const gaEvent = {

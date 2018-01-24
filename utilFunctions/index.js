@@ -2,6 +2,7 @@ import addCommasToNumber from "./addCommasToNumber";
 import extractItemId from "./extractItemId";
 import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
+import getFullPath from "./getFullPath";
 import joinIfArray from "./joinIfArray";
 import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
@@ -28,6 +29,7 @@ export {
   extractItemId,
   extractSourceId,
   extractSourceSetSlug,
+  getFullPath,
   joinIfArray,
   removeQueryParams,
   decodeHTMLEntities,
