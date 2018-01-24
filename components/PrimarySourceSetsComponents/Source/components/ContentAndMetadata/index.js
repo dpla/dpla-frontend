@@ -9,11 +9,14 @@ import {
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
-import { extractItemId, joinIfArray } from "utilFunctions";
+import { joinIfArray, getItemId, getPartner } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
 import { classNames as utilClassNames } from "css/utils.css";
+
+import GaPssWrapper from "./GaPssWrapper";
+
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
@@ -31,29 +34,6 @@ const getSourceCitation = (source, type = "citation") =>
         ref => ref["disabmiguationDescription"] === type
       )[0]["text"]
     : source.mainEntity[0]["citation"];
-
-const getItemId = source =>
-  extractItemId(
-    source.mainEntity[0]["dct:references"].filter(
-      ref => ref["@type"] === "ore:Aggregation"
-    )[0]["@id"]
-  );
-
-const getPartner = source => {
-  const provider = source.mainEntity[0]["provider"];
-  var providerName = "";
-
-  if (provider instanceof Array) {
-    // This works with a more recent iteration of the PSS API.
-    providerName = provider.filter(
-      ref => ref["disambiguationDescription"] == "partner"
-    )[0]["name"];
-  } else {
-    // This works with the original version of the PSS API.
-    providerName = provider.name;
-  }
-  return providerName;
-};
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
@@ -229,4 +209,4 @@ const ContentAndMetadata = ({ source }) => {
   );
 };
 
-export default ContentAndMetadata;
+export default GaPssWrapper(ContentAndMetadata);
