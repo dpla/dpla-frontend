@@ -106,7 +106,7 @@
   & p {
     margin-bottom: 0;
 
-    & + p {
+    & + p:not(.address) {
       text-indent: 3rem;
     }
   }

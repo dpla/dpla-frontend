@@ -44,7 +44,7 @@ const Donate = ({ url }) =>
                 America.
               </p>
 
-              <p>
+              <p className={classNames.address}>
                 Digital Public Library of America<br />
                 c/o Boston Public Library<br />
                 700 Boylston Street<br />
