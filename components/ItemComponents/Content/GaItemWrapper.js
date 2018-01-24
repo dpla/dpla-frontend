@@ -1,8 +1,7 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-import { gaTrackingId } from "constants/site";
-import { joinIfArray, trackGaEvent } from "utilFunctions";
+import { joinIfArray, trackGaEvent, initGa } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaItemWrapper extends React.Component {
@@ -18,7 +17,7 @@ export default WrappedComponent =>
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      this.initGa();
+      initGa();
       this.trackItemView();
       Router.router.events.on("routeChangeComplete", this.trackItemView);
       this.bindClickThroughEventListener();
