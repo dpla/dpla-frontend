@@ -69,15 +69,6 @@ export default WrappedComponent =>
       bindLinkEvent(gaEvent, links);
     }
 
-    // Initialization will occur on the initial pageload, and also when
-    // switching between pages of different types.
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(gaTrackingId);
-        window.GA_INITIALIZED = true;
-      }
-    }
-
     render() {
       return <WrappedComponent {...this.props} />;
     }
