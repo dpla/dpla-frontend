@@ -19,6 +19,7 @@ import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
 import readMyRights from "./readMyRights";
 import getCurrentFullUrl from "./getCurrentFullUrl";
+import bindLinkEvent from "./googleAnalytics/bindLinkEvent";
 import initGa from "./googleAnalytics/initGa";
 import trackGaEvent from "./googleAnalytics/trackGaEvent";
 
@@ -44,6 +45,7 @@ export {
   removeEndPunctuation,
   readMyRights,
   getCurrentFullUrl,
+  bindLinkEvent,
   initGa,
   trackGaEvent
 };

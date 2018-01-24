@@ -1,7 +1,12 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-import { joinIfArray, trackGaEvent, initGa } from "utilFunctions";
+import {
+  joinIfArray,
+  bindLinkEvent,
+  trackGaEvent,
+  initGa
+} from "utilFunctions";
 
 export default WrappedComponent =>
   class GaItemWrapper extends React.Component {
@@ -20,7 +25,7 @@ export default WrappedComponent =>
       initGa();
       this.trackItemView();
       Router.router.events.on("routeChangeComplete", this.trackItemView);
-      this.bindClickThroughEventListener();
+      this.bindClickThroughEvent();
     }
 
     // Cleanup, prevents multiple pageviews being counted for a single route.
@@ -50,7 +55,7 @@ export default WrappedComponent =>
       }
     }
 
-    bindClickThroughEventListener() {
+    bindClickThroughEvent() {
       const links = document.getElementsByClassName("clickThrough");
 
       const gaEvent = {
@@ -61,15 +66,7 @@ export default WrappedComponent =>
         contributor: this.contributor
       };
 
-      // const trackGaEvent = this.trackGaEvent;
-
-      Array.from(links).forEach(function(link) {
-        link.addEventListener("click", function() {
-          event.preventDefault();
-          trackGaEvent(gaEvent);
-          window.open(this.href, "_blank");
-        });
-      });
+      bindLinkEvent(gaEvent, links);
     }
 
     // Initialization will occur on the initial pageload, and also when
