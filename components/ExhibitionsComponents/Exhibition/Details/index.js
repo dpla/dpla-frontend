@@ -6,6 +6,7 @@ import CiteButton from "../../../shared/CiteButton";
 
 import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import GaExhibitHomeWrapper from "./GaExhibitHomeWrapper";
 
 const { container } = utilClassNames;
 const Details = ({ exhibition, route, currentFullUrl }) =>
@@ -94,4 +95,4 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default Details;
+export default GaExhibitHomeWrapper(Details);

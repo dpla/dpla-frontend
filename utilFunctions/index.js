@@ -7,9 +7,13 @@ import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
+import getItemId from "./getItemId";
+import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
 import getMetaPageTitle from "./getMetaPageTitle";
+import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
 import makeURLsClickable from "./makeURLsClickable";
+import parseDplaItemRecord from "./parseDplaItemRecord";
 import truncateString from "./truncateString";
 import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
@@ -27,9 +31,13 @@ export {
   decodeHTMLEntities,
   getCurrentUrl,
   getDefaultThumbnail,
+  getItemId,
+  getDplaItemIdFromExhibit,
   getMetaPageTitle,
+  getPartner,
   getSearchPageTitle,
   makeURLsClickable,
+  parseDplaItemRecord,
   truncateString,
   endsWith,
   removeEndPunctuation,

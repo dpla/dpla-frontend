@@ -79,8 +79,8 @@ const MainMetadata = ({ item }) => {
         items should not have multiple rights but showing them in case a proper uri is present
          */}
               {item.rights && Array.isArray(item.rights)
-                ? item.rights.map(theRight => {
-                    return <RightsBadge url={theRight} />;
+                ? item.rights.map((theRight, index) => {
+                    return <RightsBadge url={theRight} key={index} />;
                   })
                 : item.rights ? <RightsBadge url={item.rights} /> : null}
             </td>
