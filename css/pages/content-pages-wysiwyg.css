@@ -142,7 +142,7 @@
     counter-increment: start-from;
   }
 
-  & li::before {
+  & li:not(.donate)::before {
     position: absolute;
     left: -3rem;
     width: 3rem;
@@ -152,11 +152,11 @@
     box-sizing: border-box;
   }
 
-  & ul li::before {
+  & ul li:not(.donate)::before {
     content: "\\2022";
   }
 
-  & ol li::before {
+  & ol li:not(.donate)::before {
     content: counter(start-from);
   }
 
