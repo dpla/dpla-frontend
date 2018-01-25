@@ -180,7 +180,7 @@ Home.getInitialProps = async ({ req }) => {
     guides,
     exhibitions: featuredExhibitionsWithData,
     headerDescription,
-    news: newsItems
+    news: newsItems.items
   };
 };
 

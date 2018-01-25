@@ -84,7 +84,7 @@ const HubsPage = ({ url, page, items, pageTitle, news }) =>
             </div>}
         </div>
       </section>
-      <NewsLane items={news} />
+      <NewsLane title="Member News" items={news} />
     </div>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
@@ -106,7 +106,7 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
     page: hubJson,
     items: menuItems,
     pageTitle: hubItem.title,
-    news: newsItems
+    news: newsItems.items
   };
 };
 
