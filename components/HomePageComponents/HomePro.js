@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import IconComponent from "shared/IconComponent";
-import NewsLane from "./NewsLane";
+import NewsLane from "shared/NewsLane";
 
 import { stylesheet, classNames } from "./HomePro.css";
 

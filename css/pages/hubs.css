@@ -1,14 +1,73 @@
-@value warmerBackgroundColor, memberColor from "../colors.css";
+@value dimmedTextColor, warmerBackgroundColor, memberColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
+@value serifFont from "../typography.css";
 
 .pageWrapper {
   background-color: warmerBackgroundColor;
+}
+
+.pageHero {
+  background-color: memberColor;
+  color: white;
+  text-align: center;
+  padding: 1rem 0 2rem;
+
+  & h1 {
+    font-family: serifFont;
+    font-size: 3rem;
+    font-weight: normal;
+  }
+}
+
+.icon {
+  fill: white;
 }
 
 .sectionWrapper {
   margin: 0 auto;
 }
 
-.subsection {
-  border-top: 0.25rem solid memberColor;
+.sectionList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+  margin: 2rem 0;
+
+  @media (max-width: largeRem) {
+    margin: 1rem 1rem 2rem;
+  }
+}
+
+.section {
+  background-color: white;
+  border-top: 0.4rem solid memberColor;
+  padding: 1.5rem 1rem 2rem;
+  line-height: 1.25;
+}
+
+.sectionTitle {
+  font-family: serifFont;
+  font-weight: normal;
+
+  & a {
+    color: black;
+  }
+}
+
+.sectionText {
+  margin: 0.5rem 0;
+  color: dimmedTextColor;
+  font-size: 1.125rem;
+}
+
+.sectionQuicklinks {
+  margin: 2rem 0 0;
+  font-size: 1.125rem;
+}
+
+.sectionQuicklink {
+}
+
+.callToAction {
+  background-color: white;
 }

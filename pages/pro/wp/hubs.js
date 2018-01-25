@@ -4,8 +4,10 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
+import NewsLane from "shared/NewsLane";
 
 import {
+  NEWS_HUB_ENDPOINT,
   PRO_MENU_ENDPOINT,
   PAGES_ENDPOINT,
   SEO_TYPE
@@ -19,31 +21,62 @@ import {
 import { classNames as utilClassNames } from "css/utils.css";
 import { stylesheet, classNames } from "css/pages/hubs.css";
 
-const HubsPage = ({ url, page, items, children, pageTitle }) =>
+const HubsPage = ({ url, page, items, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    <div
-      className={`${contentClasses.sidebarAndContentWrapper} ${classNames.pageWrapper}`}
-    >
-      <div className="row">
-        <div
-          id="main"
-          className={`${classNames.sectionWrapper} site-max-width`}
+    <div id="main">
+      <div className={classNames.pageHero}>
+        <IconComponent className={classNames.icon} name="network" />
+        <h1>{page.title.rendered}</h1>
+      </div>
+      <div
+        className={`${contentClasses.sidebarAndContentWrapper} ${classNames.pageWrapper}`}
+      >
+        <section className={`${classNames.sectionWrapper} site-max-width`}>
+          <ul className={classNames.sectionList}>
+            {page.acf.sections.map((section, index) => {
+              return (
+                <li key={index} className={classNames.section}>
+                  <h2 className={classNames.sectionTitle}>
+                    <a href={`${section.url}`}>{section.title}</a>
+                  </h2>
+                  <p className={classNames.sectionText}>
+                    {section.text}
+                  </p>
+                  {section.quicklinks &&
+                    <ul className={classNames.sectionQuicklinks}>
+                      {section.quicklinks.map((link, idx) => {
+                        return (
+                          <li
+                            className={classNames.sectionQuicklink}
+                            key={`link-${idx}`}
+                          >
+                            <a href={`${link.url}`}>
+                              {link.text}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+        <section
+          className={`${classNames.callToAction} ${classNames.sectionWrapper} site-max-width`}
         >
-          <section>
-            <IconComponent name="network" />
-            <h1>{page.title.rendered}</h1>
-            <ul>
-              {children.map((child, index) => {
-                return (
-                  <li key={index} className={classNames.subsection}>
-                    <h2>{child.post_title}</h2>
-                  </li>
-                );
-              })}
-            </ul>
-            <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-          </section>
-        </div>
+          <h2>{page.acf.call_to_action.title}</h2>
+          <p>{page.acf.call_to_action.text}</p>
+          <p>{page.acf.call_to_action.button_text}</p>
+          {page.acf.call_to_action.image &&
+            <div>
+              <img src={page.acf.call_to_action.image} />
+              <div>
+                <strong>Image:</strong> {page.acf.call_to_action.image_credit}
+              </div>
+            </div>}
+        </section>
+        <NewsLane items={news} />
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
@@ -58,15 +91,15 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
   const hubRes = await fetch(hubItem.url);
   const hubJson = await hubRes.json();
 
-  const children = menuItems.filter(
-    item => item.menu_item_parent === hubItem.object_id
-  );
+  // fetch news posts
+  const newsRes = await fetch(NEWS_HUB_ENDPOINT);
+  const newsItems = await newsRes.json();
 
   return {
     page: hubJson,
     items: menuItems,
-    children: children,
-    pageTitle: hubItem.title
+    pageTitle: hubItem.title,
+    news: newsItems
   };
 };
 
