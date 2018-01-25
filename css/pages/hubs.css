@@ -42,12 +42,12 @@
   background-color: white;
   border-top: 0.4rem solid memberColor;
   padding: 1.5rem 1rem 2rem;
-  line-height: 1.25;
 }
 
 .sectionTitle {
   font-family: serifFont;
   font-weight: normal;
+  font-size: 1.5rem;
 
   & a {
     color: black;
@@ -71,7 +71,6 @@
 .callToAction {
   background-color: white;
   padding: 2rem;
-  line-height: 1.25;
 
   @media (max-width: largeRem) {
     padding: 1rem;
