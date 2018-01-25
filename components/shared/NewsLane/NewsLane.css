@@ -1,4 +1,4 @@
-@value merinoWhite, elephantBlue, linkColor, black from "../../../css/colors.css";
+@value merinoWhite, linkColor, black from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -16,6 +16,13 @@
 
   @media (min-width: largeRem) {
     padding: 4rem 0;
+  }
+
+  & ul {
+    display: flex;
+    @media (max-width: mediumRem) {
+      display: block;
+    }
   }
 
   & li {

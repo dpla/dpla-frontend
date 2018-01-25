@@ -45,6 +45,7 @@
 /* semantic colors */
 
 @value linkColor: #CA4316;
+@value linkHoverColor: #CD570A;
 @value visitedLinkColor: #AD5C1D;
 @value paginationLinkColor: cascadeBlue;
 @value headingColor: cascadeBlue;
@@ -53,6 +54,7 @@
 @value proSiteColor: elephantBlue;
 @value mobileNavColor: elephantBlue;
 @value secondaryButtonColor: #0080a5;
+@value darkSecondaryButtonColor: elephantBlue;
 @value warmerBackgroundColor: romanceGray;
 @value colderBackgroundColor: #F3F7F8;
 @value lightLinkColor: casablancaOrange;
