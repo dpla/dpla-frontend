@@ -3,7 +3,7 @@ import React from "react";
 import HomeHero from "./HomeHero";
 import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
-import NewsLane from "./NewsLane";
+import NewsLane from "shared/NewsLane";
 import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
