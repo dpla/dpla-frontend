@@ -16,7 +16,7 @@ import ReactGA from "react-ga";
 
 const bindLinkEvent = (gaEvent, links) => {
   Array.from(links).forEach(function(link) {
-    link.addEventListener("click", function() {
+    link.addEventListener("click", function(event) {
       event.preventDefault();
       trackGaEvent(gaEvent);
       window.open(this.href, "_blank");
