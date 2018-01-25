@@ -30,22 +30,20 @@ const NewsLane = ({ title, items }) =>
           {items.map((post, index) => {
             const dateText = formatDate(post.date);
             return (
-              <li key={post.id}>
-                <div className={index === 0 && classNames.firstPost}>
-                  <div className={classNames.postLink}>
-                    <Link prefetch href="">
-                      <a>
-                        {post.title.rendered}
-                      </a>
-                    </Link>
-                  </div>
-                  <div className={classNames.date}>
-                    {dateText}
-                  </div>
-                  <p className={classNames.bodyText}>
-                    {post.acf.summary}
-                  </p>
+              <li key={post.id} className={`${classNames.post}`}>
+                <div className={classNames.postLink}>
+                  <Link prefetch href="">
+                    <a>
+                      {post.title.rendered}
+                    </a>
+                  </Link>
                 </div>
+                <div className={classNames.date}>
+                  {dateText}
+                </div>
+                <p className={classNames.bodyText}>
+                  {post.acf.summary}
+                </p>
               </li>
             );
           })}

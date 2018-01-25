@@ -19,7 +19,10 @@
   }
 
   & ul {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5rem;
+
     @media (max-width: mediumRem) {
       display: block;
     }
@@ -84,7 +87,7 @@
   margin-left: .5rem;
 }
 
-.firstPost {
+.post:first-child {
   position: relative;
 
   &:before {
@@ -107,8 +110,9 @@
 
 .date {
   opacity: 0.75;
-  font-weight: 600;
-  margin-top: .25rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
   text-transform: uppercase;
 
   @media (min-width: mediumRem) {
