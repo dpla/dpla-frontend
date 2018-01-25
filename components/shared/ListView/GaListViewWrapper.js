@@ -18,11 +18,11 @@ export default WrappedComponent =>
     // for Google Analytics tracking.
     componentDidMount() {
       initGa();
-      this.bindLinkEvent();
+      this.bindClickThroughEvent();
       this.bindBrowseEvent();
     }
 
-    bindLiknkEvent() {
+    bindClickThroughEvent() {
       const links = document.getElementsByClassName("clickThrough");
       const items = this.props.items;
 
@@ -78,7 +78,7 @@ export default WrappedComponent =>
               contributor: joinIfArray(item.dataProvider)
             };
 
-            bindLinkEvent(gaEvent, [link]);
+            bindLinkEvent(gaEvent, [link], "_self");
           }
         });
       }

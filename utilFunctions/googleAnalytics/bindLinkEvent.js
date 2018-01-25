@@ -14,12 +14,12 @@ import ReactGA from "react-ga";
   * @param links Array of DOM link elements
   */
 
-const bindLinkEvent = (gaEvent, links) => {
+const bindLinkEvent = (gaEvent, links, windowName = "_blank") => {
   Array.from(links).forEach(function(link) {
     link.addEventListener("click", function(event) {
       event.preventDefault();
       trackGaEvent(gaEvent);
-      window.open(this.href, "_blank");
+      window.open(this.href, windowName);
     });
   });
 };
