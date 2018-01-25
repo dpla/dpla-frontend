@@ -7,6 +7,8 @@ import { truncateString } from "utilFunctions";
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
 
+import GaListViewWrapper from "./GaListViewWrapper";
+
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
 /**
@@ -62,7 +64,7 @@ const ListView = ({ items, route }) =>
             href={item.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hover-underline ${classNames.itemSource}`}
+            className={`hover-underline clickThrough ${classNames.itemSource}`}
           >
             <span className={classNames.itemSourceText}>
               {item.type === "image"
@@ -85,4 +87,4 @@ const ListView = ({ items, route }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </ul>;
 
-export default ListView;
+export default GaListViewWrapper(ListView);

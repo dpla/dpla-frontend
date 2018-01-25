@@ -39,6 +39,7 @@ const MainMetadata = ({ item }) => {
   const descriptionIsLong = item.description
     ? joinIfArray(item.description).length > maxDescriptionLength
     : false;
+
   return (
     <div className={classNames.mainMetadata}>
       <table className={classNames.contentTable}>
@@ -57,7 +58,7 @@ const MainMetadata = ({ item }) => {
                 href={item.sourceUrl}
                 rel="noopener noreferrer"
                 target="_blank"
-                className={classNames.sourceLink}
+                className={`${classNames.sourceLink} clickThrough`}
               >
                 <span className={classNames.sourceLinkText}>
                   {item.type === "image"

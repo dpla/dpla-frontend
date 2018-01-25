@@ -2,6 +2,7 @@ import addCommasToNumber from "./addCommasToNumber";
 import extractItemId from "./extractItemId";
 import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
+import getFullPath from "./getFullPath";
 import joinIfArray from "./joinIfArray";
 import removeQueryParams from "./removeQueryParams";
 import decodeHTMLEntities from "./decodeHTMLEntities";
@@ -19,12 +20,16 @@ import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
 import readMyRights from "./readMyRights";
 import getCurrentFullUrl from "./getCurrentFullUrl";
+import bindLinkEvent from "./googleAnalytics/bindLinkEvent";
+import initGa from "./googleAnalytics/initGa";
+import trackGaEvent from "./googleAnalytics/trackGaEvent";
 
 export {
   addCommasToNumber,
   extractItemId,
   extractSourceId,
   extractSourceSetSlug,
+  getFullPath,
   joinIfArray,
   removeQueryParams,
   decodeHTMLEntities,
@@ -41,5 +46,8 @@ export {
   endsWith,
   removeEndPunctuation,
   readMyRights,
-  getCurrentFullUrl
+  getCurrentFullUrl,
+  bindLinkEvent,
+  initGa,
+  trackGaEvent
 };

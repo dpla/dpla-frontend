@@ -2,7 +2,13 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, parseDplaItemRecord } from "utilFunctions";
+import {
+  joinIfArray,
+  getFullPath,
+  parseDplaItemRecord,
+  initGa,
+  trackGaEvent
+} from "utilFunctions";
 
 export default WrappedComponent =>
   class GaExhibitWrapper extends React.Component {
@@ -14,7 +20,7 @@ export default WrappedComponent =>
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      this.initGa();
+      initGa();
       this.trackPageview();
       Router.router.events.on("routeChangeComplete", this.trackPageview);
     }
@@ -25,11 +31,7 @@ export default WrappedComponent =>
     }
 
     trackPageview() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
         // Track pageview.
@@ -42,29 +44,19 @@ export default WrappedComponent =>
         const pageBlocks = subsection.page_blocks;
         const activePageIdx = pageBlocks.findIndex(block => block.isActive);
         const activePage = pageBlocks[activePageIdx];
-        const itemId = activePage.dplaItemId;
         const dplaItemJson = activePage.dplaItemJson;
         const dplaItem = parseDplaItemRecord(dplaItemJson);
-        const partner = joinIfArray(dplaItem.partner, ", ");
-        const contributor = joinIfArray(dplaItem.dataProvider, ", ");
-        const title = joinIfArray(dplaItem.title, ", ");
 
-        ReactGA.event({
-          category: `View Exhibition Item : ${partner}`,
-          action: `${contributor}`,
-          label: `${itemId} : ${title}`
-        });
+        const gaEvent = {
+          type: "View Exhibition Item",
+          itemId: activePage.dplaItemId,
+          title: joinIfArray(dplaItem.title, ", "),
+          partner: joinIfArray(dplaItem.partner, ", "),
+          contributor: joinIfArray(dplaItem.dataProvider, ", ")
+        };
 
+        trackGaEvent(gaEvent);
         this.lastTrackedPath = fullPath;
-      }
-    }
-
-    // Initialization will occur on the initial pageload, and also when
-    // switching between pages of different types.
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(gaTrackingId);
-        window.GA_INITIALIZED = true;
       }
     }
 

@@ -2,7 +2,15 @@ import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/site";
-import { joinIfArray, getItemId, getPartner } from "utilFunctions";
+import {
+  joinIfArray,
+  getFullPath,
+  getItemId,
+  getPartner,
+  initGa,
+  trackGaEvent,
+  bindLinkEvent
+} from "utilFunctions";
 
 const getContributor = source =>
   source.mainEntity[0]["provider"].filter(
@@ -16,14 +24,20 @@ export default WrappedComponent =>
     constructor(props) {
       super(props);
       this.trackSourceView = this.trackSourceView.bind(this);
+      const source = this.props.source;
+      this.itemId = getItemId(source);
+      this.title = joinIfArray(getTitle(source));
+      this.partner = joinIfArray(getPartner(source));
+      this.contributor = joinIfArray(getContributor(source));
     }
 
     // Using componentDidMount enables access to the window, which is necessary
     // for Google Analytics tracking.
     componentDidMount() {
-      this.initGa();
+      initGa();
       this.trackSourceView();
       Router.router.events.on("routeChangeComplete", this.trackSourceView);
+      this.bindClickThroughEvent();
     }
 
     // Cleanup, prevents multiple pageviews being counted for a single route.
@@ -32,35 +46,34 @@ export default WrappedComponent =>
     }
 
     trackSourceView() {
-      // The pathname technically should not contain any parameters, but in this
-      // app, it sometimes does.
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const fullPath = path + search;
+      const fullPath = getFullPath();
 
       if (fullPath !== this.lastTrackedPath) {
-        const itemId = getItemId(this.props.source);
-        const partner = joinIfArray(getPartner(this.props.source));
-        const title = joinIfArray(getTitle(this.props.source));
-        const contributor = joinIfArray(getContributor(this.props.source));
+        const gaEvent = {
+          type: "View Primary Source",
+          itemId: this.itemId,
+          title: this.title,
+          partner: this.partner,
+          contributor: this.contributor
+        };
 
-        ReactGA.event({
-          category: `View Primary Source : ${partner}`,
-          action: `${contributor}`,
-          label: `${itemId} : ${title}`
-        });
-
+        trackGaEvent(gaEvent);
         this.lastTrackedPath = fullPath;
       }
     }
 
-    // Initialization will occur on the initial pageload, and also when
-    // switching between pages of different types.
-    initGa() {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(gaTrackingId);
-        window.GA_INITIALIZED = true;
-      }
+    bindClickThroughEvent() {
+      const links = document.getElementsByClassName("clickThrough");
+
+      const gaEvent = {
+        type: "Click Through",
+        itemId: this.itemId,
+        title: this.title,
+        partner: this.partner,
+        contributor: this.contributor
+      };
+
+      bindLinkEvent(gaEvent, links);
     }
 
     render() {

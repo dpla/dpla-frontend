@@ -172,7 +172,7 @@ const ContentAndMetadata = ({ source }) => {
                 <div className={classNames.linkWrapper}>
                   <a
                     href={getSourceLink(source)}
-                    className={classNames.sourceLink}
+                    className={`${classNames.sourceLink} clickThrough`}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
