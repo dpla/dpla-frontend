@@ -9,7 +9,7 @@ This is the repository for the Digital Public Library of America's new frontend.
 - Install [Yarn](https://yarnpkg.com/en/docs/install)
 
 ```
-git clone https://github.com/postlight/dpla-frontend/
+git clone https://github.com/dpla/dpla-frontend/
 cd dpla-frontend
 
 # install dependencies
@@ -55,7 +55,7 @@ to manage a 12-column grid. Review <http://flexboxgrid.com/> for documentation.
 
 [Desktop Design Prototype](https://invis.io/3FC6KEGQV)  
 [Mobile Design Prototype](https://invis.io/VGD6W7ZDQ)  
-[Project Task Board](https://github.com/postlight/dpla-frontend/projects/1)
+[Project Task Board](https://github.com/dpla/dpla-frontend/projects/1)
 
 ## Scripts
 
@@ -102,7 +102,16 @@ A few other useful commands:
 > eb open dpla
 ```
 
-| Team        |
+| Authors, DPLA |
+| ------------- |
+| Audrey Altman |
+| Gretchen Gueguen |
+| Mark Breedlove |
+| Mauricio Giraldo |
+| Michael Della Bitta |
+| Scott Williams |
+
+| Team Postlight |
 | ------------- |
 | Grace Pelling |
 | Neil Renicker |
