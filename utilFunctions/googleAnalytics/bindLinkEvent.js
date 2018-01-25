@@ -2,8 +2,16 @@ import trackGaEvent from "./trackGaEvent";
 import ReactGA from "react-ga";
 
 /**
-  * @param gaEvent
-  * @param links
+  * Bind a Google Analytics event to one or more DOM links.
+  *
+  * @param gaEvent with the following properties:
+  *   type:        Type of event, e.g. "View Item" or "Click Through"
+  *   itemId:      ID of the DPLA item
+  *   title:       Title of the DPLA item
+  *   partner:     Name of the partner/hub 
+  *   contributor: Name of the dataProvider
+  *
+  * @param links Array of DOM link elements
   */
 
 const bindLinkEvent = (gaEvent, links) => {

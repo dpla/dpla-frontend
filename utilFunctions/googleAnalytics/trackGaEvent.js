@@ -10,9 +10,6 @@ import ReactGA from "react-ga";
   *   contributor: Name of the dataProvider
   */
 const trackGaEvent = gaEvent => {
-  alert(
-    `${gaEvent.type} : ${gaEvent.itemId} : ${gaEvent.title} : ${gaEvent.partner} : ${gaEvent.contributor}`
-  );
   ReactGA.event({
     category: `${gaEvent.type} : ${gaEvent.partner}`,
     action: `${gaEvent.contributor}`,
