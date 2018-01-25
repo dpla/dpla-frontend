@@ -70,8 +70,6 @@ const ContentAndMetadata = ({ source }) => {
     ? source.text.length > maxDescriptionLength
     : false;
 
-  const partnerLinkClasses = `${classNames.sourceLink} clickThrough`;
-
   return (
     <div className={classNames.wrapper}>
       <div className={[classNames.contentAndMetadata, container].join(" ")}>
@@ -174,7 +172,7 @@ const ContentAndMetadata = ({ source }) => {
                 <div className={classNames.linkWrapper}>
                   <a
                     href={getSourceLink(source)}
-                    className={partnerLinkClasses}
+                    className={`${classNames.sourceLink} clickThrough`}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
