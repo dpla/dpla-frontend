@@ -106,7 +106,7 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
     page: hubJson,
     items: menuItems,
     pageTitle: hubItem.title,
-    news: newsItems.items
+    news: newsItems
   };
 };
 
