@@ -35,7 +35,7 @@ const NewsLane = ({ title, items }) =>
                   <div className={classNames.postLink}>
                     <Link prefetch href="">
                       <a>
-                        {post.title.rendered}
+                        /{post.title.rendered}/
                       </a>
                     </Link>
                   </div>
