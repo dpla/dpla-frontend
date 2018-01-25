@@ -130,7 +130,13 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         creator: itemJson.docs[0].sourceResource.creator,
         description: itemJson.docs[0].sourceResource.description,
         dataProvider: itemJson.docs[0].dataProvider,
-        useDefaultImage: !itemJson.docs[0].object
+        useDefaultImage: !itemJson.docs[0].object,
+        itemDplaId: itemDplaId,
+        provider:
+          itemJson.docs &&
+            itemJson.docs[0] &&
+            itemJson.docs[0].provider &&
+            itemJson.docs[0].provider.name
       });
     })
   );
