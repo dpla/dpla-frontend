@@ -77,6 +77,11 @@
   font-size: 1.125rem;
   display: block;
   line-height: 1.5rem;
+
+  & p + p {
+    text-indent: 3rem;
+  }
+
   @media (min-width: largeRem) {
     padding-right: 45px;
   }
@@ -94,10 +99,6 @@
       display: none;
     }
   }
-}
-
-.bodyText p:not(:last-child) {
-  margin-bottom: 1.5rem;
 }
 
 .credits {

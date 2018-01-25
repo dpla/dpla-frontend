@@ -113,6 +113,7 @@
   font-size: 1rem;
   margin-top: 0.5rem;
   font-weight: 600;
+  line-height: 1.25rem;
 
   @media (min-width: largeRem) {
     margin-top: 0.9rem;

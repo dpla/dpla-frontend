@@ -22,6 +22,7 @@
   font-weight: normal;
   font-size: 1.5rem;
   font-family: serifFont;
+  line-height: 1.25;
 
   @media (min-width: mediumRem) {
     font-size: 2.5rem;

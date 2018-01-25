@@ -86,6 +86,7 @@
 .exhibitionContent {
   position: relative;
   /* 239px / 334px ratio */
+  line-height: 1.25;
   padding-top: 71.55%;
   border-radius: 3px;
   overflow: hidden;
