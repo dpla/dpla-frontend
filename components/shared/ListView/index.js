@@ -7,7 +7,7 @@ import { truncateString } from "utilFunctions";
 import ListImage from "./ListImage";
 import { classNames, stylesheet } from "./ListView.css";
 
-import GaProviderLinkWrapper from "./GaProviderLinkWrapper";
+import GaListViewWrapper from "./GaListViewWrapper";
 
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
@@ -87,4 +87,4 @@ const ListView = ({ items, route }) =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </ul>;
 
-export default GaProviderLinkWrapper(ListView);
+export default GaListViewWrapper(ListView);

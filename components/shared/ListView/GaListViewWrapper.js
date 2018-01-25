@@ -9,13 +9,9 @@ import {
 } from "utilFunctions";
 
 export default WrappedComponent =>
-  class GaProviderLinkWrapper extends React.Component {
+  class GaListViewWrapper extends React.Component {
     constructor(props) {
       super(props);
-      // this.itemId = this.props.url.query.itemId;
-      // this.title = joinIfArray(this.props.item.title, ", ");
-      // this.contributor = joinIfArray(this.props.item.contributor, ", ");
-      // this.partner = joinIfArray(this.props.item.partner, ", ");
     }
 
     // Using componentDidMount enables access to the window, which is necessary
