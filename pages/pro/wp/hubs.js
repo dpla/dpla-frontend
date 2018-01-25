@@ -5,6 +5,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
+import Button from "components/shared/Button";
 
 import {
   NEWS_HUB_ENDPOINT,
@@ -23,14 +24,12 @@ import { stylesheet, classNames } from "css/pages/hubs.css";
 
 const HubsPage = ({ url, page, items, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    <div id="main">
+    <div id="main" role="main">
       <div className={classNames.pageHero}>
         <IconComponent className={classNames.icon} name="network" />
         <h1>{page.title.rendered}</h1>
       </div>
-      <div
-        className={`${contentClasses.sidebarAndContentWrapper} ${classNames.pageWrapper}`}
-      >
+      <div className={`${classNames.pageWrapper}`}>
         <section className={`${classNames.sectionWrapper} site-max-width`}>
           <ul className={classNames.sectionList}>
             {page.acf.sections.map((section, index) => {
@@ -62,22 +61,30 @@ const HubsPage = ({ url, page, items, pageTitle, news }) =>
             })}
           </ul>
         </section>
-        <section
-          className={`${classNames.callToAction} ${classNames.sectionWrapper} site-max-width`}
-        >
-          <h2>{page.acf.call_to_action.title}</h2>
-          <p>{page.acf.call_to_action.text}</p>
-          <p>{page.acf.call_to_action.button_text}</p>
-          {page.acf.call_to_action.image &&
-            <div>
-              <img src={page.acf.call_to_action.image} />
-              <div>
-                <strong>Image:</strong> {page.acf.call_to_action.image_credit}
-              </div>
-            </div>}
-        </section>
-        <NewsLane items={news} />
       </div>
+      <section className={`${classNames.callToAction}`}>
+        <div
+          className={`${classNames.callToActionWrapper} ${classNames.sectionWrapper} site-max-width`}
+        >
+          <div className={classNames.callToActionText}>
+            <h2>{page.acf.call_to_action.title}</h2>
+            <p>{page.acf.call_to_action.text}</p>
+            <div className={classNames.callToActionButton}>
+              <Button type="secondary" url={page.acf.call_to_action.button_url}>
+                {page.acf.call_to_action.button_text}
+              </Button>
+            </div>
+          </div>
+          {page.acf.call_to_action.image &&
+            <div className={classNames.callToActionImage}>
+              <img src={page.acf.call_to_action.image} alt="" />
+              <span>
+                <strong>Image:</strong> {page.acf.call_to_action.image_credit}
+              </span>
+            </div>}
+        </div>
+      </section>
+      <NewsLane items={news} />
     </div>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
