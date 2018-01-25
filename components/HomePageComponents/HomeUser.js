@@ -37,7 +37,7 @@ const HomeUser = ({
         theme="blue"
       />}
     <DPLAUsers guides={guides} />
-    <NewsLane items={news} />
+    <NewsLane title="DPLA News" items={news} />
     {/* <SocialMedia /> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
