@@ -7,13 +7,13 @@ import { stylesheet, classNames } from "./NewsLane.css";
 
 const smallChevron = "static/images/chevron-thick-orange.svg";
 
-const NewsLane = items =>
+const NewsLane = ({ title, items }) =>
   <div className={classNames.wrapper}>
     <div className={`${classNames.content} site-max-width`}>
       <div className="row">
         <div className="col-xs-12 col-md-3">
           <div className={classNames.header}>
-            <h2 className={classNames.headerText}>DPLA News</h2>
+            <h2 className={classNames.headerText}>{title}</h2>
             <Link prefetch href="/news">
               <a className={`hover-underline ${classNames.headerLink}`}>
                 <span>Browse the archives</span>
@@ -27,7 +27,7 @@ const NewsLane = items =>
           </div>
         </div>
         <ul className="col-xs-12 col-md-9">
-          {items.items.map((post, index) => {
+          {items.map((post, index) => {
             const dateText = formatDate(post.date);
             return (
               <li key={post.id}>
