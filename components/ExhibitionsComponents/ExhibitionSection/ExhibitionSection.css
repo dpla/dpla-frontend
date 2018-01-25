@@ -164,7 +164,7 @@
 
 .subsectionTitle {
   font-size: 1rem;
-  line-height: 1rem;
+  line-height: 1.2;
   padding-left: 16px;
   margin-bottom: 6px;
   position: relative;
@@ -228,6 +228,7 @@
 .footerWrapper {
   background-color: rgba(228, 226, 219, 0.98);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 4rem;
 }
 
 .header {
