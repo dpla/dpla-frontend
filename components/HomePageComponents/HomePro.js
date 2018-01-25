@@ -29,7 +29,7 @@ const HomePro = ({
     <div className={`${classNames.sectionList}`}>
       <ul className={`site-max-width`}>
         <li>
-          <Link as="/hubs/hub-network" href="/pro/wp?section=hub-network">
+          <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
             <a>
               <IconComponent className={classNames.icon} name="network" />
               Hub Network
