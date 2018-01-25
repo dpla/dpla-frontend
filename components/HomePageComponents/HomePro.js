@@ -81,7 +81,7 @@ const HomePro = ({
         </li>
       </ul>
     </div>
-    <NewsLane items={news} />
+    <NewsLane title="DPLA News" items={news} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
