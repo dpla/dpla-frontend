@@ -18,7 +18,7 @@ const BreadcrumbsModule = ({ route, breadcrumbs }) =>
           })
         )}
       />
-      {route.query.studentMode && <StudentMode route={route} />}
+      {/* {route.query.studentMode && <StudentMode route={route} />} */}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;

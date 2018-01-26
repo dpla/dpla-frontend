@@ -8,11 +8,11 @@ const getBreadcrumbs = ({ items, leafId, breadcrumbs }) => {
   items.forEach(element => {
     if (element.object_id === leafId) {
       if (element.menu_item_parent !== "0") {
-        const post_name = getItemWithId({
+        const post = getItemWithId({
           items: items,
           id: element.menu_item_parent
-        }).post_name;
-        breadcrumbs[element.menu_item_parent] = post_name;
+        });
+        breadcrumbs[element.menu_item_parent] = post;
         getBreadcrumbs({
           items: items,
           leafId: element.menu_item_parent,

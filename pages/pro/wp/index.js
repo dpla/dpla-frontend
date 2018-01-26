@@ -7,7 +7,7 @@ import HeadingRule from "components/shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
-import getBreadcrumbs from "/utilFunctions";
+import { getBreadcrumbs, getItemWithId, getItemWithName } from "utilFunctions";
 
 import {
   classNames as contentClasses,
@@ -24,18 +24,9 @@ const ProMenuPage = ({
   illustration
 }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    <BreadcrumbsModule
-      breadcrumbs={[
-        {
-          title: "News",
-          url: "/news",
-          as: "/news"
-        },
-        { title: pageTitle }
-      ]}
-      route={url}
-    />
-    [{JSON.stringify(page)}]
+    {breadcrumbs.length > 0 &&
+      <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+    [{JSON.stringify(breadcrumbs)}]
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}
@@ -82,10 +73,37 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageJson = await pageRes.json();
 
   // for the breadcrumbs
-  const breadcrumbs = getBreadcrumbs({
+  const breadcrumbObject = getBreadcrumbs({
     items: menuItems,
     leafId: pageItem.object_id
   });
+
+  let breadcrumbs = [];
+
+  if (JSON.stringify(breadcrumbObject) !== "{}") {
+    Object.values(breadcrumbObject).map(crumb => {
+      let slug = "/";
+      let url = "/pro/wp?section=" + crumb.post_name;
+      // if this is a child item the url is /:topsection/:thisitem
+      if (crumb.menu_item_parent !== "0") {
+        const parent = getItemWithId({
+          items: menuItems,
+          id: crumb.menu_item_parent
+        });
+        slug = slug + parent.post_name + "/";
+      }
+      // if this is a child item the url is /:topsection/:thisitem
+      if (crumb.post_name === "hubs") {
+        url = "/pro/wp/hubs";
+      }
+      breadcrumbs.push({
+        title: crumb.title,
+        url: url,
+        as: slug + crumb.post_name
+      });
+    });
+    breadcrumbs.push({ title: pageItem.title });
+  }
 
   return {
     page: pageJson,

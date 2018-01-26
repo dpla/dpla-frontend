@@ -12,7 +12,6 @@ import {
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
-import { getBreadcrumbs, getItemWithId, getItemWithName } from "utilFunctions";
 
 import {
   classNames as contentClasses,

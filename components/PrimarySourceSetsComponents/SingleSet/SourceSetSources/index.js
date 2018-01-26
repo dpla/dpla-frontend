@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import { stylesheet, classNames } from "./SourceSetSources.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import removeQueryParams from "/utilFunctions/removeQueryParams";
-import extractSourceId from "/utilFunctions/extractSourceId";
+import removeQueryParams from "utilFunctions/removeQueryParams";
+import extractSourceId from "utilFunctions/extractSourceId";
 
 const { container } = utilClassNames;
 

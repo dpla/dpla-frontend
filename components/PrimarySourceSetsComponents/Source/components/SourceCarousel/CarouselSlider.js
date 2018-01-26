@@ -6,8 +6,8 @@ import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 import { classNames } from "./SourceCarousel.css";
 import breakpoints from "css/breakpoints.css";
-import extractSourceId from "/utilFunctions/extractSourceId";
-import removeQueryParams from "/utilFunctions/removeQueryParams";
+import extractSourceId from "utilFunctions/extractSourceId";
+import removeQueryParams from "utilFunctions/removeQueryParams";
 
 const markdownit = require("markdown-it")({ html: true });
 
