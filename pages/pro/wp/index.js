@@ -4,6 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
+import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
@@ -26,7 +27,8 @@ const ProMenuPage = ({
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
     {breadcrumbs.length > 0 &&
       <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
-    [{JSON.stringify(breadcrumbs)}]
+    {breadcrumbs.length === 0 &&
+      <FeatureHeader title={pageTitle} description={""} />}
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}
@@ -41,20 +43,20 @@ const ProMenuPage = ({
         />
         <div className="col-xs-12 col-md-7">
           <div id="main" className={contentClasses.content}>
-            {illustration &&
-              <img
-                src={illustration.url}
-                alt=""
-                className={contentClasses.bannerImage}
-              />}
             {/* fancy pages (with illustrations) get special heading */}
             {illustration &&
               <div>
-                <h1 className={contentClasses.title}>{page.title.rendered}</h1>
+                <img
+                  src={illustration.url}
+                  alt=""
+                  className={contentClasses.bannerImage}
+                />
                 <HeadingRule />
               </div>}
             {/* for non fancy pages, a normal heading */}
-            {!illustration && <h1>{page.title.rendered}</h1>}
+            {!illustration &&
+              breadcrumbs.length !== 0 &&
+              <h1>{page.title.rendered}</h1>}
             <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
           </div>
         </div>
@@ -92,7 +94,7 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
         });
         slug = slug + parent.post_name + "/";
       }
-      // if this is a child item the url is /:topsection/:thisitem
+      // hubs homepage has different template
       if (crumb.post_name === "hubs") {
         url = "/pro/wp/hubs";
       }
