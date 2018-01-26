@@ -91,17 +91,14 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
 
 HubsPage.getInitialProps = async ({ req, query, res }) => {
   const hubRes = await fetch(PAGES_ENDPOINT + "?slug=hubs");
-  const hubJson = await hubRes.json()[0];
+  const hubJson = await hubRes.json();
+  const hubItem = hubJson[0];
 
   // fetch news posts
   const newsRes = await fetch(NEWS_HUB_ENDPOINT);
   const newsItems = await newsRes.json();
 
-  return {
-    page: hubJson,
-    pageTitle: hubItem.title,
-    news: newsItems
-  };
+  return { page: hubItem, pageTitle: hubItem.title.rendered, news: newsItems };
 };
 
 export default HubsPage;
