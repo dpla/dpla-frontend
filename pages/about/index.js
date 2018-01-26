@@ -38,7 +38,7 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
           className={contentClasses.sidebar}
         />
         <div className="col-xs-12 col-md-7">
-          {breadcrumbs.length !== 0 && <h1>{page.title.rendered}</h1>}
+          {breadcrumbs.length !== 0 && <h1>{content.title.rendered}</h1>}
           <div
             id="main"
             className={contentClasses.content}
