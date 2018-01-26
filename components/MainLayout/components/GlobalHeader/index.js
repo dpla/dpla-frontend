@@ -10,17 +10,19 @@ import {
 
 import { SITE_ENV } from "constants/env";
 
-const GlobalHeader = () =>
+const GlobalHeader = ({ isHome }) =>
   <div className={desktopClassNames.header}>
     {SITE_ENV !== "pro" &&
       <NavigationUser
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
+        isHome={isHome}
       />}
     {SITE_ENV === "pro" &&
       <NavigationPro
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
+        isHome={isHome}
       />}
     <style dangerouslySetInnerHTML={{ __html: desktopStylesheet }} />
   </div>;

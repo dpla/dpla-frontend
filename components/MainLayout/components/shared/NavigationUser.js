@@ -1,16 +1,17 @@
 import React from "react";
 import Link from "next/link";
 
-const NavigationUser = ({ className, style, classNames }) =>
+const NavigationUser = ({ className, style, classNames, isHome }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
-      <li>
-        <Link prefetch href="/">
-          <a>
-            Home
-          </a>
-        </Link>
-      </li>
+      {!isHome &&
+        <li>
+          <Link prefetch href="/">
+            <a>
+              Home
+            </a>
+          </Link>
+        </li>}
       <li>
         <Link prefetch href="/browse-by-topic">
           <a>Browse by Topic</a>
