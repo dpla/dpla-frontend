@@ -9,6 +9,9 @@ import Footer from "./components/Footer";
 import FeedbackForm from "components/FeedbackForm";
 import GaWrapper from "shared/GaWrapper";
 
+import { SITE_ENV } from "constants/env";
+import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
+
 const MainLayout = ({
   children,
   route,
@@ -18,22 +21,35 @@ const MainLayout = ({
   headLinks,
   pageTitle,
   seoType
-}) =>
-  <div>
-    <Helmet htmlAttributes={{ lang: "en" }} />
-    <DPLAHead
-      additionalLinks={headLinks}
-      pageTitle={pageTitle}
-      seoType={seoType}
-    />
-    <SkipToContent />
-    <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
-    <GlobalHeader />
-    {!hidePageHeader &&
-      <PageHeader searchQuery={route.query.q} hideSearchBar={hideSearchBar} />}
-    {children}
-    <Footer />
-    <FeedbackForm route={route} />
-  </div>;
+}) => {
+  const isHome =
+    (SITE_ENV === "pro" && route.pathname === "/pro") ||
+    (SITE_ENV === "user" && route.pathname === "/");
+  return (
+    <div>
+      <Helmet htmlAttributes={{ lang: "en" }} />
+      <DPLAHead
+        additionalLinks={headLinks}
+        pageTitle={pageTitle}
+        seoType={seoType}
+      />
+      <SkipToContent />
+      <SmallScreenHeader
+        isSearchPage={isSearchPage}
+        route={route}
+        isHome={isHome}
+      />
+      <GlobalHeader isHome={isHome} />
+      {!hidePageHeader &&
+        <PageHeader
+          searchQuery={route.query.q}
+          hideSearchBar={hideSearchBar}
+        />}
+      {children}
+      <Footer />
+      <FeedbackForm route={route} />
+    </div>
+  );
+};
 
 export default GaWrapper(MainLayout);

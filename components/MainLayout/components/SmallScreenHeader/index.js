@@ -29,7 +29,7 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, route } = this.props;
+    const { isSearchPage, route, isHome } = this.props;
 
     return (
       <div className={`${classNames.wrapper}`}>
@@ -58,6 +58,7 @@ class SmallScreenHeader extends Component {
               : ""} site-max-width`}
             style={{ zIndex: 99 }}
             classNames={classNames}
+            isHome={isHome}
           />}
         {SITE_ENV === "pro" &&
           <NavigationPro
@@ -66,6 +67,7 @@ class SmallScreenHeader extends Component {
               : ""} site-max-width`}
             style={{ zIndex: 99 }}
             classNames={classNames}
+            isHome={isHome}
           />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>

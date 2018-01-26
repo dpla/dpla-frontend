@@ -1,16 +1,17 @@
 import React from "react";
 import Link from "next/link";
 
-const NavigationPro = ({ className, style, classNames }) =>
+const NavigationPro = ({ className, style, classNames, isHome }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
-      <li>
-        <Link prefetch as="/" href="/pro">
-          <a>
-            Home
-          </a>
-        </Link>
-      </li>
+      {!isHome &&
+        <li>
+          <Link prefetch as="/" href="/pro">
+            <a>
+              Home
+            </a>
+          </Link>
+        </li>}
       <li>
         <Link prefetch as="/hubs" href="/pro/wp/hubs?section=hubs">
           <a>Hubs</a>
