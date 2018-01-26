@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
-import Breadcrumbs from "components/Breadcrumbs";
+import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 
 import { SITE_ENV } from "constants/env";
@@ -21,27 +21,21 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-import removeQueryParams from "/utilFunctions/removeQueryParams";
-
 const { container } = utilClassNames;
 
 const PostPage = ({ url, content, menuItems }) =>
   <MainLayout route={url} pageTitle={content.title.rendered} seoType={SEO_TYPE}>
-    <div className={utilClassNames.breadcrumbsWrapper}>
-      <div className={[container, utilClassNames.breadcrumbsModule].join(" ")}>
-        <Breadcrumbs
-          breadcrumbs={[
-            {
-              title: "News",
-              url: "/news",
-              as: "/news"
-            },
-            { title: content.title.rendered }
-          ]}
-          route={url}
-        />
-      </div>
-    </div>
+    <BreadcrumbsModule
+      breadcrumbs={[
+        {
+          title: "News",
+          url: "/news",
+          as: "/news"
+        },
+        { title: content.title.rendered }
+      ]}
+      route={url}
+    />
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}

@@ -4,8 +4,10 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
+import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+import getBreadcrumbs from "/utilFunctions";
 
 import {
   classNames as contentClasses,
@@ -13,8 +15,27 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const ProMenuPage = ({ url, page, items, pageTitle, illustration }) =>
+const ProMenuPage = ({
+  url,
+  page,
+  items,
+  breadcrumbs,
+  pageTitle,
+  illustration
+}) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+    <BreadcrumbsModule
+      breadcrumbs={[
+        {
+          title: "News",
+          url: "/news",
+          as: "/news"
+        },
+        { title: pageTitle }
+      ]}
+      route={url}
+    />
+    [{JSON.stringify(breadcrumbs)}]
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}
@@ -55,14 +76,22 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   const menuJson = await menuResponse.json();
-  const pageItem = menuJson.items.find(item => item.post_name === pageName);
+  const menuItems = menuJson.items;
+  const pageItem = menuItems.find(item => item.post_name === pageName);
   const pageRes = await fetch(pageItem.url);
   const pageJson = await pageRes.json();
 
+  // for the breadcrumbs
+  const breadcrumbs = getBreadcrumbs({
+    items: menuItems,
+    leafId: pageItem.object_id
+  });
+
   return {
     page: pageJson,
-    items: menuJson.items,
+    items: menuItems,
     pageTitle: pageItem.title,
+    breadcrumbs: breadcrumbs,
     illustration: pageJson.acf.illustration
   };
 };

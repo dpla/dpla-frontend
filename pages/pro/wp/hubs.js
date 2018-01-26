@@ -9,7 +9,6 @@ import Button from "components/shared/Button";
 
 import {
   NEWS_HUB_ENDPOINT,
-  PRO_MENU_ENDPOINT,
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
@@ -22,7 +21,7 @@ import {
 import { classNames as utilClassNames } from "css/utils.css";
 import { stylesheet, classNames } from "css/pages/hubs.css";
 
-const HubsPage = ({ url, page, items, pageTitle, news }) =>
+const HubsPage = ({ url, page, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
     <div id="main" role="main">
       <div className={classNames.pageHero}>
@@ -91,12 +90,8 @@ const HubsPage = ({ url, page, items, pageTitle, news }) =>
   </MainLayout>;
 
 HubsPage.getInitialProps = async ({ req, query, res }) => {
-  const menuResponse = await fetch(PRO_MENU_ENDPOINT);
-  const menuJson = await menuResponse.json();
-  const menuItems = menuJson.items;
-  const hubItem = menuItems.find(item => item.post_name === "hubs");
-  const hubRes = await fetch(hubItem.url);
-  const hubJson = await hubRes.json();
+  const hubRes = await fetch(PAGES_ENDPOINT + "?slug=hubs");
+  const hubJson = await hubRes.json()[0];
 
   // fetch news posts
   const newsRes = await fetch(NEWS_HUB_ENDPOINT);
@@ -104,7 +99,6 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
 
   return {
     page: hubJson,
-    items: menuItems,
     pageTitle: hubItem.title,
     news: newsItems
   };
