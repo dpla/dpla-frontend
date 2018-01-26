@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 import CarouselSlider from "./CarouselSlider";
-import extractSourceId from "/utilFunctions/extractSourceId";
-import removeQueryParams from "/utilFunctions/removeQueryParams";
+import extractSourceId from "utilFunctions/extractSourceId";
+import removeQueryParams from "utilFunctions/removeQueryParams";
 import { classNames, stylesheet } from "./SourceCarousel.css";
 import { classNames as utilClassNames } from "css/utils.css";
 

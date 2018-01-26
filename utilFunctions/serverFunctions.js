@@ -38,14 +38,14 @@ exports.renderAndCache = (
   queryParams,
   extraParams
 ) => {
-  const key = this.getCacheKey(req);
+  // const key = this.getCacheKey(req);
 
   // If we have a page in the cache, let's serve it
-  if (ssrCache.has(key)) {
-    console.log(`CACHE HIT: ${key}`);
-    res.send(ssrCache.get(key));
-    return;
-  }
+  // if (ssrCache.has(key)) {
+  //   console.log(`CACHE HIT: ${key}`);
+  //   res.send(ssrCache.get(key));
+  //   return;
+  // }
 
   if (extraParams) {
     queryParams = this.mergeQueryAndParams(extraParams, queryParams);
@@ -56,8 +56,8 @@ exports.renderAndCache = (
     .renderToHTML(req, res, pagePath, queryParams)
     .then(html => {
       // Let's cache this page
-      console.log(`CACHE MISS: ${key}`);
-      ssrCache.set(key, html);
+      // console.log(`CACHE MISS: ${key}`);
+      // ssrCache.set(key, html);
 
       res.send(html);
     })

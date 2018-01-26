@@ -17,7 +17,7 @@ import { SEO_TYPE } from "constants/exhibition";
 
 import { API_ENDPOINT } from "constants/items";
 
-import removeQueryParams from "/utilFunctions/removeQueryParams";
+import removeQueryParams from "utilFunctions/removeQueryParams";
 
 import { getDplaItemIdFromExhibit } from "utilFunctions";
 
