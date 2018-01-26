@@ -35,7 +35,7 @@ const ProMenuPage = ({
       ]}
       route={url}
     />
-    [{JSON.stringify(breadcrumbs)}]
+    [{JSON.stringify(page)}]
     <div
       className={`${utilClassNames.container}
       ${contentClasses.sidebarAndContentWrapper}`}
