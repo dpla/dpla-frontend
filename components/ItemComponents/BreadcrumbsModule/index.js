@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import Breadcrumbs from "components/Breadcrumbs";
+import Breadcrumbs from "shared/Breadcrumbs";
 
 import { stylesheet, classNames } from "./BreadcrumbsModule.css";
 import { classNames as utilClassNames } from "css/utils.css";
