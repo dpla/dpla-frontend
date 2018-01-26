@@ -52,6 +52,7 @@ const ProMenuPage = ({
                   className={contentClasses.bannerImage}
                 />
                 <HeadingRule />
+                <h1 className={contentClasses.title}>{page.title.rendered}</h1>
               </div>}
             {/* for non fancy pages, a normal heading */}
             {!illustration &&
