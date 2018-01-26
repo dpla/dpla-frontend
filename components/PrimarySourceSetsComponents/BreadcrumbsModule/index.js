@@ -1,7 +1,7 @@
 import React from "react";
 const markdownit = require("markdown-it")({ html: true });
 
-import Breadcrumbs from "components/Breadcrumbs";
+import Breadcrumbs from "shared/Breadcrumbs";
 import StudentMode from "./components/StudentMode";
 
 import { stylesheet, classNames as utilClassNames } from "css/utils.css";

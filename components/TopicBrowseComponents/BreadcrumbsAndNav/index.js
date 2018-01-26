@@ -1,6 +1,6 @@
 import React from "react";
 
-import Breadcrumbs from "components/Breadcrumbs";
+import Breadcrumbs from "shared/Breadcrumbs";
 import NavLinks from "./components/NavLinks";
 
 import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
