@@ -36,13 +36,6 @@
     margin-left: 1.3rem;
   }
 
-  & .selected::after {
-    top: .45rem;
-
-    @media (min-width: mediumRem) {
-      top: .6rem;
-    }
-  }
 }
 
 .link {
@@ -73,14 +66,14 @@
   display: block;
   content: "";
   position: absolute;
-  height: 5px;
-  width: 5px;
-  top: .45rem;
-  left: -10px;
+  height: 0.4rem;
+  width: 0.4rem;
+  top: .6rem;
+  left: -0.75rem;
   background-color: linkColor;
   border-radius: 50%;
 
   @media (min-width: mediumRem) {
-    top: .6rem;
+    top: .8rem;
   }
 }

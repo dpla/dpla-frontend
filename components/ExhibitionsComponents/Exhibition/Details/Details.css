@@ -79,7 +79,7 @@
   line-height: 1.5rem;
 
   & p + p {
-    text-indent: 3rem;
+    text-indent: 1.5rem;
   }
 
   @media (min-width: largeRem) {
