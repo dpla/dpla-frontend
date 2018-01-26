@@ -28,8 +28,6 @@
 
 .title {
   text-align: center;
-  /* Override wysiwyg styles */
-  margin: 0 !important;
 }
 
 .sidebarAndContentWrapper {
