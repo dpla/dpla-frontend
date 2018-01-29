@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
+import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
+
 import { SITE_ENV } from "constants/env";
 
 import { stylesheet, classNames } from "./PageHeader.css";
-
-const dplaLogo = "/static/images/dpla-logo-white.svg";
 
 const PageHeader = ({ searchQuery, hideSearchBar }) =>
   <div
@@ -19,12 +19,8 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
         : ""} site-max-width`}
     >
       <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-        <a className={classNames.logo} title="DPLA Home Page">
-          <img
-            alt="Logo for the Digital Public Library of America"
-            src={dplaLogo}
-            className={classNames.logoImg}
-          />
+        <a className={classNames.logo} title="Home Page">
+          <DPLALogoWide className={classNames.logoImg} />
         </a>
       </Link>
       {!hideSearchBar &&

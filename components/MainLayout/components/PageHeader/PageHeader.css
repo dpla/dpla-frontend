@@ -104,8 +104,10 @@
 
 .logoImg {
   width: 16rem;
+  height: 1.95rem;
 
   @media (min-width: largeRem) {
     width: 18rem;
+    height: 2.2rem;
   }
 }
