@@ -32,7 +32,11 @@ const NewsLane = ({ title, items }) =>
             return (
               <li key={post.id} className={`${classNames.post}`}>
                 <div className={classNames.postLink}>
-                  <Link prefetch href="">
+                  <Link
+                    prefetch
+                    as={`/news/${post.slug}`}
+                    href={`/news/post?slug=${post.slug}`}
+                  >
                     <a>
                       {post.title.rendered}
                     </a>
