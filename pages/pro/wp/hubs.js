@@ -13,11 +13,6 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { stylesheet, classNames } from "css/pages/hubs.css";
 
 const HubsPage = ({ url, page, pageTitle, news }) =>
@@ -84,7 +79,6 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
       </section>
       <NewsLane title="Member News" items={news} />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
