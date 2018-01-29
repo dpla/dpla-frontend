@@ -1,4 +1,4 @@
-@value headingColor, warmerBackgroundColor, linkColor from "../colors.css";
+@value warmerBackgroundColor, linkColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value monoFont, serifFont from "../typography.css";
 
@@ -78,7 +78,6 @@
   }
 
   & h2 {
-    color: headingColor;
     font-weight: normal;
     font-size: 1.875rem;
   }
@@ -97,7 +96,6 @@
 
   & h5, & h6 {
     font-size: 1rem;
-    color: headingColor;
     text-transform: uppercase;
   }
 
@@ -151,7 +149,7 @@
   }
 
   & ul li:not(.donate)::before {
-    content: "\\2022";
+    content: "\2022";
   }
 
   & ol li:not(.donate)::before {
