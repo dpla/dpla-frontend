@@ -1,7 +1,7 @@
 @value linkColor, visitedLinkColor, warmerBackgroundColor from "./colors.css";
 @value smallRem, mediumRem from "./breakpoints.css";
 
-/* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid*/
+/* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
 /* TODO replace breakpoints in breakpoints.css with these */
 
 :root {

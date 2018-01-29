@@ -56,7 +56,8 @@ module.exports = {
               return [
                 "module.exports = {",
                 `classNames: ${classNames},`,
-                `stylesheet: \`${content}\``,
+                `stylesheet: `,
+                JSON.stringify(content),
                 "}"
               ].join("");
             }
