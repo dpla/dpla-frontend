@@ -1,9 +1,11 @@
 @value linkColor, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value sansFont from "../../../css/typography.css";
 
 .sidebar {
   background-color: warmerBackgroundColor;
   padding: 1rem 1.5rem;
+  font-family: sansFont;
 
   & .link {
     display: inline-block;

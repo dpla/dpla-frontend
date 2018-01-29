@@ -4,6 +4,7 @@
 
 .feedbackButton {
   position: fixed;
+  font-family: sansFont;
   left: 0.5rem;
   bottom: 0.5rem;
   cursor: pointer;
