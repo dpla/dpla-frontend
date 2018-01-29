@@ -63,7 +63,7 @@ class FiltersList extends React.Component {
             <div className={classNames.labelAndFilters}>
               <span className={classNames.labelText}>Filtered by</span>
               <ul className={classNames.filters}>
-                {Object.keys(query).map(queryKey => {
+                {Object.keys(query).map((queryKey, index) => {
                   if (
                     possibleFacets.includes(
                       mapURLPrettifiedFacetsToUgly[queryKey]
@@ -77,6 +77,7 @@ class FiltersList extends React.Component {
                           <Filter
                             route={this.props.route}
                             queryKey={queryKey}
+                            key={index}
                             name={paramValue.replace(/"/g, "")}
                           />
                         )
