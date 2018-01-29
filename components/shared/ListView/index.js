@@ -38,7 +38,7 @@ const ListView = ({ items, route }) =>
         />
         <div className={classNames.itemInfo}>
           <Link href={item.linkHref} as={item.linkAs}>
-            <a className={classNames.listItemLink}>
+            <a className={`classNames.listItemLink internalItemLink`}>
               <h2 className={`hover-underline ${classNames.itemTitle}`}>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
