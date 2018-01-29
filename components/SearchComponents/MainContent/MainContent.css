@@ -1,9 +1,11 @@
 @value warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem from "../../../css/breakpoints.css";
+@value sansFont from "../../../css/typography.css";
 
 .mainContent {
   display: flex;
   flex-direction: column;
+  font-family: sansFont;
 
   @media (max-width: smallRem) {
     padding-right: 0;

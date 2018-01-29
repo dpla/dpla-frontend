@@ -1,9 +1,11 @@
 @value riceCakeWhite from "../../../../css/colors.css";
 @value smallRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .itemList {
   flex: 1;
   padding-bottom: 125px;
+  font-family: sansFont;
 }
 
 .itemListHeader {
