@@ -1,5 +1,5 @@
 @value outlineColor from "./colors.css";
-@value sansFont from "./typography.css";
+@value sansFont, serifFont from "./typography.css";
 
 html {
   font-size: 16px;
@@ -12,7 +12,11 @@ body {
   line-height: 1.5;
 }
 
-body, button, input, select {
+body {
+  font-family: serifFont;
+}
+
+button, input, select, label {
   font-family: sansFont;
 }
 

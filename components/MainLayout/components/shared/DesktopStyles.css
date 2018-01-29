@@ -1,9 +1,11 @@
 @value navColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .header {
   display: none;
   background-color: navColor;
+  font-family: sansFont;
 
   /* The SmallScreenGlobalHeader component handles the navigation on small screens */
   @media (min-width: mediumRem) {

@@ -1,8 +1,10 @@
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value navColor, mobileNavColor from "../../../../css/colors.css";
+@value sansFont from "../../../../css/typography.css";
 
 .wrapper {
   display: block;
+  font-family: sansFont;
   background-color: mobileNavColor;
 
   /* The GlobalHeader component handles the navigation on larger screens */
