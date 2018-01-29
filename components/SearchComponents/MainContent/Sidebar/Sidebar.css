@@ -1,8 +1,10 @@
 @value cascadeBlue, dimmedTextColor from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .sidebar {
   flex-shrink: 0;
+  font-family: sansFont;
 
   & h2 {
     padding: 0.5rem;
