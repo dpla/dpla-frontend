@@ -1,10 +1,12 @@
 @value smallRem, mediumRem from "../../css/breakpoints.css";
+@value sansFont from "../../css/typography.css";
 
 .faveAndCiteButtons {
   align-self: baseline;
   flex-shrink: 0;
   width: 100%;
   margin-bottom: 1rem;
+
   @media (min-width: smallRem) {
     width: 225px;
   }
@@ -14,6 +16,8 @@
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  font-family: sansFont;
+
   @media (min-width: smallRem) {
     margin-top: 2rem;
     flex-direction: row;
