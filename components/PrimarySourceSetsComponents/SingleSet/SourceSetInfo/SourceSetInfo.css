@@ -159,15 +159,8 @@
     margin-bottom: 0;
   }
 
-  & p {
-    margin-bottom: 1rem;
-    @media (min-width: smallRem) {
-      margin-bottom: 1.5rem;
-    }
-  }
-
-  & p:last-of-type {
-    margin-bottom: 0;
+  & p + p {
+    text-indent: 1.5rem;
   }
 }
 
