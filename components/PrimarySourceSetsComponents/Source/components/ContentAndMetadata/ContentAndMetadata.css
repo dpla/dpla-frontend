@@ -55,6 +55,7 @@
 .longDescription {
   max-height: 20rem;
   overflow: hidden;
+  font-family: serifFont;
 
   @media print {
     overflow: inherit;
