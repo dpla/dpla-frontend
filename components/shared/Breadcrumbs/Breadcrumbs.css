@@ -1,5 +1,5 @@
-@value linkColor from "../../css/colors.css";
-@value xSmallRem, smallRem from "../../css/breakpoints.css";
+@value linkColor from "../../../css/colors.css";
+@value xSmallRem, smallRem from "../../../css/breakpoints.css";
 
 .breadcrumbs {
   display: flex;
