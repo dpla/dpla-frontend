@@ -15,14 +15,17 @@
 .tableOfContents {
   width: 100%;
   margin-bottom: 1.5rem;
+
   @media (min-width: smallRem) {
     width: 285px;
     margin-right: 32px;
     margin-bottom: 1.5rem;
   }
+
   @media (min-width: largeRem) {
     padding-left: 45px;
   }
+
   margin-bottom: 2rem;
   flex-shrink: 0;
   box-sizing: content-box;
@@ -62,9 +65,6 @@
 
 .tableOfContentsSection:not(:last-of-type) {
   margin-bottom: 0.5rem;
-  @media (min-width: largeRem) {
-    margin-bottom: 1rem;
-  }
 }
 
 .divider {
@@ -76,7 +76,7 @@
 .bodyText {
   font-size: 1.125rem;
   display: block;
-  line-height: 1.5;
+  font-family: serifFont;
 
   & p + p {
     text-indent: 1.5rem;
