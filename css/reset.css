@@ -13,10 +13,10 @@ body {
 }
 
 body {
-  font-family: serifFont;
+  font-family: sansFont;
 }
 
-button, input, select, label {
+button, input, select, label, textarea {
   font-family: sansFont;
 }
 

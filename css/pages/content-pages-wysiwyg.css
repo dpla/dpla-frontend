@@ -50,6 +50,7 @@
 .content {
   margin-top: 2rem;
   line-height: 1.5;
+  font-family: serifFont;
 
   @media (min-width: largeRem) {
     margin-top: 0;

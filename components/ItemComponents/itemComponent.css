@@ -16,7 +16,6 @@
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  font-family: sansFont;
 
   @media (min-width: smallRem) {
     margin-top: 2rem;

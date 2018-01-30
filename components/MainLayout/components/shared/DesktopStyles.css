@@ -5,7 +5,6 @@
 .header {
   display: none;
   background-color: navColor;
-  font-family: sansFont;
 
   /* The SmallScreenGlobalHeader component handles the navigation on small screens */
   @media (min-width: mediumRem) {

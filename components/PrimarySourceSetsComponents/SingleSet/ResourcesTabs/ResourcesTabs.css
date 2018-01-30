@@ -42,7 +42,6 @@
   margin-right: 1rem;
   flex: 1;
   display: inline-block;
-  font-family: sansFont;
   
   & a {
     display: block;

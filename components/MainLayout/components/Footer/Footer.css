@@ -6,7 +6,6 @@
   color: white;
   background-color: ebonyClayBlue;
   position: relative;
-  font-family: sansFont;
 
   @media print {
     display: none;
