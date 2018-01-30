@@ -9,6 +9,7 @@
   & .link {
     display: inline-block;
     color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 0.5rem;
   }
 
   & .link.selected {
