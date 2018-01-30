@@ -461,6 +461,7 @@
   font-size: 0.875rem;
   flex-shrink: 0;
   padding: 0 1rem;
+  font-family: serifFont;
 
   @media (min-width: smallRem) {
     font-size: .95rem;
@@ -473,8 +474,8 @@
   }
 }
 
-.text p:not(:last-child) {
-  margin-bottom: 1.5rem;
+.text p + p {
+  text-indent: 1.5rem;
 }
 
 .mainMedia {
