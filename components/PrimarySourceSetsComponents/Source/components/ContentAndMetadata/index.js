@@ -8,14 +8,18 @@ import {
 } from "components/shared/mediaViewers";
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
+import GaPssWrapper from "./GaPssWrapper";
 
-import { joinIfArray, getItemId, getPartner } from "utilFunctions";
+import {
+  joinIfArray,
+  getItemId,
+  getPartner,
+  showMoreDescription
+} from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
 import { classNames as utilClassNames } from "css/utils.css";
-
-import GaPssWrapper from "./GaPssWrapper";
 
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
@@ -100,7 +104,8 @@ const ContentAndMetadata = ({ source }) => {
               <div id="dpla-showmore" aria-hidden="true">
                 <span
                   className={`${classNames.showMore} link`}
-                  onClick={() => showMoreDescription(classNames.open)}
+                  onClick={() =>
+                    showMoreDescription({ className: classNames.open })}
                 >
                   Show full description
                 </span>

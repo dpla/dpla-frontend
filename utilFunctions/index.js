@@ -1,53 +1,55 @@
 import addCommasToNumber from "./addCommasToNumber";
+import decodeHTMLEntities from "./decodeHTMLEntities";
+import endsWith from "./endsWith";
 import extractItemId from "./extractItemId";
 import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
-import joinIfArray from "./joinIfArray";
-import removeQueryParams from "./removeQueryParams";
-import decodeHTMLEntities from "./decodeHTMLEntities";
+import formatDate from "./formatDate";
+import getBreadcrumbs from "./getBreadcrumbs";
+import getCurrentFullUrl from "./getCurrentFullUrl";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
-import getItemId from "./getItemId";
 import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
+import getItemId from "./getItemId";
+import getItemWithId from "./getItemWithId";
+import getItemWithName from "./getItemWithName";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
+import joinIfArray from "./joinIfArray";
 import makeURLsClickable from "./makeURLsClickable";
 import parseDplaItemRecord from "./parseDplaItemRecord";
-import truncateString from "./truncateString";
-import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
-import getBreadcrumbs from "./getBreadcrumbs";
-import getItemWithId from "./getItemWithId";
-import getItemWithName from "./getItemWithName";
+import removeQueryParams from "./removeQueryParams";
 import readMyRights from "./readMyRights";
-import formatDate from "./formatDate";
-import getCurrentFullUrl from "./getCurrentFullUrl";
+import showMoreDescription from "./showMoreDescription";
+import truncateString from "./truncateString";
 
 export {
   addCommasToNumber,
+  decodeHTMLEntities,
+  endsWith,
   extractItemId,
   extractSourceId,
   extractSourceSetSlug,
-  joinIfArray,
-  removeQueryParams,
-  decodeHTMLEntities,
+  formatDate,
+  getBreadcrumbs,
+  getCurrentFullUrl,
   getCurrentUrl,
   getDefaultThumbnail,
-  getItemId,
   getDplaItemIdFromExhibit,
+  getItemId,
+  getItemWithId,
+  getItemWithName,
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
+  joinIfArray,
   makeURLsClickable,
   parseDplaItemRecord,
-  truncateString,
-  endsWith,
-  removeEndPunctuation,
-  getBreadcrumbs,
-  getItemWithId,
-  getItemWithName,
   readMyRights,
-  formatDate,
-  getCurrentFullUrl
+  removeEndPunctuation,
+  removeQueryParams,
+  showMoreDescription,
+  truncateString
 };
