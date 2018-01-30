@@ -101,7 +101,7 @@
   font-family: serifFont;
   font-size: 1.75rem;
   font-weight: normal;
-  line-height: 2;
+  line-height: 1.2;
   opacity: 0.90;
   padding: 0 2rem;
 }
@@ -109,7 +109,6 @@
 .subtopicDescription {
   padding: 1rem 2rem 2rem;
   font-size: 1rem;
-  line-height: 1.25;
   flex: 1;
   text-decoration: none;
 }
