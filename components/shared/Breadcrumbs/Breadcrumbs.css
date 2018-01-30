@@ -1,12 +1,10 @@
 @value linkColor from "../../css/colors.css";
 @value xSmallRem, smallRem from "../../css/breakpoints.css";
-@value sansFont from "../../css/typography.css";
 
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  font-family: sansFont;
 }
 
 .activeBreadcrumb {

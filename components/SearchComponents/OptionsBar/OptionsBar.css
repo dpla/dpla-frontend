@@ -92,7 +92,7 @@
 
 .optionHeader {
   font-size: 0.8125rem;
-  line-height: 1.0625rem;
+  line-height: 1.0625;
   color: dimmedTextColor;
   font-weight: normal;
   margin-bottom: 5px;

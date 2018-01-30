@@ -54,28 +54,27 @@ class ResourcesTabs extends React.Component {
                 </a>
               </Link>
             </li>
-            {!route.query.studentMode &&
-              <li
-                id="tab-teachingguide"
-                role="tab"
-                aria-selected={currentTab === "teachingGuide"}
-                className={[
-                  classNames.tab,
-                  currentTab === "teachingGuide" && classNames.activeTab
-                ].join(" ")}
+            <li
+              id="tab-teachingguide"
+              role="tab"
+              aria-selected={currentTab === "teachingGuide"}
+              className={[
+                classNames.tab,
+                currentTab === "teachingGuide" && classNames.activeTab
+              ].join(" ")}
+            >
+              <Link
+                prefetch
+                href={`/primary-source-sets/set/teaching-guide?set=${route.query
+                  .set}#tabs`}
+                as={`/primary-source-sets/${route.query
+                  .set}/teaching-guide#tabs`}
               >
-                <Link
-                  prefetch
-                  href={`/primary-source-sets/set/teaching-guide?set=${route
-                    .query.set}#tabs`}
-                  as={`/primary-source-sets/${route.query
-                    .set}/teaching-guide#tabs`}
-                >
-                  <a>
-                    Teaching Guide
-                  </a>
-                </Link>
-              </li>}
+                <a>
+                  Teaching Guide
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
         {this.props.children}

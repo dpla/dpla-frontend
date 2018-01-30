@@ -70,6 +70,13 @@ app
       app.render(req, res, "/contact-us", req.query);
     });
 
+    // rerouting wp-content links
+    server.get("/wp-content/*", (req, res) => {
+      var contentStart = req.url.indexOf("/wp-content");
+      var newPath = process.env.WORDPRESS_URL + req.url.substr(contentStart);
+      res.redirect(newPath);
+    });
+
     // contact/feedback page endpoints
     server.post("/g/contact", async (req, res) => {
       if (!req.body) return res.sendStatus(400);

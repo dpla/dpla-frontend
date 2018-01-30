@@ -39,7 +39,7 @@
   font-size: 0.75rem;
   font-family: serifFont;
   font-weight: bold;
-  line-height: 1.125rem;
+  line-height: 1.125;
   text-transform: uppercase;
   background-color: #F1F0ED;
   @media (min-width: mediumRem) {
@@ -52,7 +52,7 @@
   padding: 1rem;
   font-size: 1rem;
   background-color: warmerBackgroundColor;
-  line-height: 1.25rem;
+  line-height: 1.25;
 
   @media (min-width: mediumRem) {
     font-size: 1.2rem;
@@ -76,7 +76,7 @@
 .bodyText {
   font-size: 1.125rem;
   display: block;
-  line-height: 1.5rem;
+  line-height: 1.5;
 
   & p + p {
     text-indent: 1.5rem;
@@ -103,7 +103,7 @@
 
 .credits {
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.125;
   opacity: 0.50;
   margin-top: 3.125rem;
   border-top: 2px solid rgba(0, 0, 0, 0.15);
