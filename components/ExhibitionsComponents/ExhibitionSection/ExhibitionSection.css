@@ -156,7 +156,7 @@
 
 .sectionTitle, .sectionTitle:visited {
   font-size: 1rem;
-  line-height: 1.125rem;
+  line-height: 1.125;
   margin-bottom: 9px;
   display: inline-block;
   color: black;

@@ -19,7 +19,7 @@
 
 .studentModeText {
   font-size: 0.9375rem;
-  line-height: 1.1875rem;
+  line-height: 1.1875;
   display: inline;
   margin-right: 8px;
 }
@@ -35,7 +35,7 @@
   background-color: rgba(22, 63, 81, 0.95);
   color: white;
   font-size: 0.875rem;
-  line-height: 1rem;
+  line-height: 1;
   padding: 20px;
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.19);
   position: absolute;

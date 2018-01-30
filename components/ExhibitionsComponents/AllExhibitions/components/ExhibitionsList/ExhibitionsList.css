@@ -1,6 +1,6 @@
 @value linkColor, featuredBannerColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../../../css/typography.css";
+@value monoFont, serifFont, sansFont from "../../../../../css/typography.css";
 
 .wrapper {
   margin: 1rem auto 2rem;
@@ -160,6 +160,7 @@
   text-transform: uppercase;
   top: 12px;
   z-index: 1;
+  font-family: sansFont;
 }
 
 .featuredBanner {

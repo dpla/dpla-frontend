@@ -58,9 +58,6 @@ module.exports = (app, server) => {
   });
 
   server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
-    if (req.query.studentMode) {
-      res.redirect(req.url.replace(/\/teaching-guide?/, ""));
-    }
     const actualPage = "/primary-source-sets/set/teaching-guide";
     const params = {
       set: req.params.set

@@ -38,16 +38,20 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.75rem;
-  margin-right: 15px;
+  margin-right: 1rem;
   flex: 1;
   display: inline-block;
   
   & a {
     display: block;
-    padding: 0 18px 16px;
+    padding: 0;
     text-decoration: none;
     color: black;
-  
+
+    @media (min-width: smallRem) {
+      padding: 0 1rem 1rem;
+    }
+
     &:hover {
       text-decoration: none;
       border-bottom: 0.2rem solid black;
@@ -55,6 +59,7 @@
   }
 
   @media (min-width: smallRem) {
+    margin-right: 0;
     font-size: 1rem;
   }
 }

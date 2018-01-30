@@ -51,6 +51,11 @@
   padding-left: 1rem;
   flex-grow: 1;
   height: 100%;
+  width: 65%;
+
+  @media (min-width: smallRem) {
+    width: auto;
+  }
 
   /* Remove browser search input defaults */
   &::-webkit-search-decoration,
@@ -75,14 +80,15 @@
   transition: background-color .2s ease-out;
   background-color: secondaryButtonColor;
   border-radius: 0 3px 3px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   font-size: 1rem;
-  font-weight: 600;
   color: white;
   padding: 0 1rem;
+  width: 35%;
+
+  @media (min-width: smallRem) {
+    width: auto;
+  }
 
   &:hover {
     background-color: navColor;

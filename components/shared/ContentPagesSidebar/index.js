@@ -16,7 +16,9 @@ const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   return (
     <Link as={linkObject.as} href={linkObject.href}>
       <a
-        className={`${classNames.link} ${isCurrentLink && classNames.selected}`}
+        className={`${classNames.link} ${isCurrentLink
+          ? classNames.selected
+          : ""}`}
       >
         {title}
       </a>

@@ -32,7 +32,7 @@
   white-space: nowrap;
   font-weight: bold;
   font-size: 1rem;
-  line-height: 1.25rem;
+  line-height: 1.25;
   text-transform: uppercase;
   color: black;
 }
@@ -41,7 +41,7 @@
   flex: 1;
   color: dimGray;
   font-size: 1.0625rem;
-  line-height: 1.4375rem;
+  line-height: 1.4375;
   padding-right: 27px;
   margin-bottom: 25px;
 }
@@ -55,13 +55,13 @@
   color: linkColor;
   font-weight: 600;
   font-size: 0.9375rem;
-  line-height: 1.1875rem;
+  line-height: 1.1875;
   margin-bottom: 19px;
 }
 
 .visitLink {
   font-size: 1.125rem;
-  line-height: 1.4375rem;
+  line-height: 1.4375;
   font-weight: 600;
   color: linkColor;
 }

@@ -2,7 +2,6 @@ import React from "react";
 const markdownit = require("markdown-it")({ html: true });
 
 import Breadcrumbs from "shared/Breadcrumbs";
-import StudentMode from "./components/StudentMode";
 
 import { stylesheet, classNames as utilClassNames } from "css/utils.css";
 
@@ -18,7 +17,6 @@ const BreadcrumbsModule = ({ route, breadcrumbs }) =>
           })
         )}
       />
-      {/* {route.query.studentMode && <StudentMode route={route} />} */}
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
