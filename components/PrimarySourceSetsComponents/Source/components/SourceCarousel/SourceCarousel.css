@@ -4,7 +4,7 @@
 
 .wrapper {
   padding: 0.75rem 0 0 0;
-  font-family: sansFont;
+
   @media (min-width: smallRem) {
     margin-top: 4rem;
     padding: 2rem 0;

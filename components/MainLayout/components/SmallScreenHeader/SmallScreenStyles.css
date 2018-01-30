@@ -4,7 +4,6 @@
 
 .wrapper {
   display: block;
-  font-family: sansFont;
   background-color: mobileNavColor;
 
   /* The GlobalHeader component handles the navigation on larger screens */

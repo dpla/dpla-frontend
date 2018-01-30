@@ -1,6 +1,6 @@
-@value linkColor, visitedLinkColor, warmerBackgroundColor from "colors.css";
-@value smallRem, mediumRem from "breakpoints.css";
-@value sansFont from "typography.css";
+@value linkColor, visitedLinkColor, warmerBackgroundColor from "./colors.css";
+@value smallRem, mediumRem from "./breakpoints.css";
+@value sansFont from "./typography.css";
 
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
 /* TODO replace breakpoints in breakpoints.css with these */
@@ -90,7 +90,6 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: baseline;
-  font-family: sansFont;
 
   @media (min-width: smallRem) {
     align-items: center;

@@ -6,7 +6,7 @@
   width: 100%;
   background-color: #E3E1DB;
   box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
-  font-family: sansFont;
+
   @media (min-width: smallRem) {
     background-color: warmerBackgroundColor;
   }

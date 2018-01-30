@@ -5,7 +5,6 @@
 .mainContent {
   display: flex;
   flex-direction: column;
-  font-family: sansFont;
 
   @media (max-width: smallRem) {
     padding-right: 0;

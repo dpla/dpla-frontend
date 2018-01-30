@@ -4,8 +4,8 @@
 
 .filtersListWrapper {
   background-color: linkColor;
-  font-family: sansFont;
   width: 100%;
+
   @media (min-width: smallRem) {
     background-color: warmerBackgroundColor;
     box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);

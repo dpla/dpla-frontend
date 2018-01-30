@@ -4,7 +4,6 @@
 
 .sidebar {
   flex-shrink: 0;
-  font-family: sansFont;
 
   & h2 {
     padding: 0.5rem;
