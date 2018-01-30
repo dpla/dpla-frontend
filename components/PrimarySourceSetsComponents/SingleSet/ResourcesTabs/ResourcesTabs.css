@@ -47,6 +47,7 @@
     padding: 0;
     text-decoration: none;
     color: black;
+    border-bottom: 0.2rem solid transparent;
 
     @media (min-width: smallRem) {
       padding: 0 1rem 1rem;
@@ -54,7 +55,7 @@
 
     &:hover {
       text-decoration: none;
-      border-bottom: 0.2rem solid black;
+      border-bottom-color: black;
     }
   }
 
