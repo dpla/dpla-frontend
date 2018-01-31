@@ -5,6 +5,7 @@ import Link from "next/link";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import WPEdit from "shared/WPEdit";
 
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION } from "constants/news.js";
@@ -50,6 +51,7 @@ const PostPage = ({ url, content, menuItems }) =>
         />
         <div className="col-xs-12 col-md-7">
           <div id="main" className={contentClasses.content}>
+            <WPEdit page={content} url={url} />
             <h1>{content.title.rendered}</h1>
             <div
               dangerouslySetInnerHTML={{ __html: content.content.rendered }}

@@ -6,6 +6,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import Button from "components/shared/Button";
+import WPEdit from "shared/WPEdit";
 
 import {
   NEWS_HUB_ENDPOINT,
@@ -20,6 +21,7 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
     <div id="main" role="main">
       <div className={classNames.pageHero}>
         <IconComponent className={classNames.icon} name="network" />
+        <WPEdit page={page} url={url} />
         <h1>{page.title.rendered}</h1>
       </div>
       <div className={`${classNames.pageWrapper}`}>

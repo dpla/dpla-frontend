@@ -1,14 +1,14 @@
 import React from "react";
 import Button from "shared/Button";
 
+import { getCurrentFullUrl, endsWith } from "utilFunctions";
+import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
+
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
   stylesheet as contentStyles,
   classNames as contentClasses
 } from "css/pages/donate.css";
-
-import { getCurrentFullUrl } from "utilFunctions";
-import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 const frequencyMap = [
   { v: "once", k: "Give Once" },
@@ -55,7 +55,7 @@ class DonateForm extends React.Component {
       : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
     let returnUrl = getCurrentFullUrl();
-    returnUrl = returnUrl.endsWith("/")
+    returnUrl = endsWith(returnUrl, "/")
       ? returnUrl + "thank-you"
       : returnUrl + "/thank-you";
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
