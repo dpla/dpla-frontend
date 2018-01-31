@@ -6,9 +6,15 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import WPEdit from "shared/WPEdit";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
-import { getBreadcrumbs, getItemWithId, getItemWithName } from "utilFunctions";
+import {
+  endsWith,
+  getBreadcrumbs,
+  getItemWithId,
+  getItemWithName
+} from "utilFunctions";
 
 import {
   classNames as contentClasses,
@@ -43,6 +49,7 @@ const ProMenuPage = ({
         />
         <div className="col-xs-12 col-md-7">
           <div id="main" className={contentClasses.content}>
+            <WPEdit page={page} url={url} />
             {/* fancy pages (with illustrations) get special heading */}
             {illustration &&
               <div>

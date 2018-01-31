@@ -6,6 +6,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import WPEdit from "shared/WPEdit";
 
 import {
   ABOUT_MENU_ENDPOINT,
@@ -38,12 +39,13 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
           className={contentClasses.sidebar}
         />
         <div className="col-xs-12 col-md-7">
-          {breadcrumbs.length !== 0 && <h1>{content.title.rendered}</h1>}
-          <div
-            id="main"
-            className={contentClasses.content}
-            dangerouslySetInnerHTML={{ __html: content.content.rendered }}
-          />
+          <div id="main" className={contentClasses.content}>
+            <WPEdit page={content} url={url} />
+            <h1>{content.title.rendered}</h1>
+            <div
+              dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+            />
+          </div>
         </div>
       </div>
     </div>
