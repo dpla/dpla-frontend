@@ -37,9 +37,9 @@ const NewsLane = ({ title, items }) =>
                     as={`/news/${post.slug}`}
                     href={`/news/post?slug=${post.slug}`}
                   >
-                    <a>
-                      {post.title.rendered}
-                    </a>
+                    <a
+                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                    />
                   </Link>
                 </div>
                 <div className={classNames.date}>
@@ -52,6 +52,7 @@ const NewsLane = ({ title, items }) =>
                 {!post.acf.summary &&
                   post.excerpt &&
                   <div
+                    className={classNames.bodyText}
                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
                   />}
               </li>
