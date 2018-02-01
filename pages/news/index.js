@@ -6,18 +6,21 @@ import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import Pagination from "components/shared/Pagination";
+import TagList from "components/NewsComponents/TagList";
 
 import { SITE_ENV } from "constants/env";
 import {
   TITLE,
   DESCRIPTION,
   ANNOUNCEMENTS_TAG_ID,
-  CONTENT_SHOWCASE_TAG_ID
+  CONTENT_SHOWCASE_TAG_ID,
+  NEWS_TAGS
 } from "constants/news.js";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
   NEWS_ENDPOINT,
+  TAGS_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
@@ -36,6 +39,7 @@ const NewsPage = ({
   pageItem,
   newsCount,
   newsPageCount,
+  currentTag,
   currentPage
 }) =>
   <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
@@ -55,6 +59,7 @@ const NewsPage = ({
         <div className="col-xs-12 col-md-7">
           <div id="main" className={contentClasses.content}>
             <h1>News Archive</h1>
+            <TagList currentTag={currentTag} url={url} />
             {newsItems.map((item, index) => {
               return (
                 <div key={index} className={classNames.newsItem}>
@@ -103,13 +108,15 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
 
   // fetch news
   const page = query.page || 1;
+  const tags = query.tag ? [query.tag] : [];
   // if it is user, it must be constrained to only announcements and content showcase
-  const filter = SITE_ENV === "user"
-    ? `&tags=${ANNOUNCEMENTS_TAG_ID},${CONTENT_SHOWCASE_TAG_ID}`
-    : "";
-  const newsRes = await fetch(
-    `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}`
-  );
+  if (SITE_ENV === "user") {
+    tags.push(ANNOUNCEMENTS_TAG_ID, CONTENT_SHOWCASE_TAG_ID);
+  }
+  const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
+  const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}`;
+  const newsRes = await fetch(url);
+  console.log(url);
   const newsItems = await newsRes.json();
   const newsCount = newsRes.headers.get("X-WP-Total");
   const newsPageCount = newsRes.headers.get("X-WP-TotalPages");
@@ -120,6 +127,7 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     pageItem: pageItem,
     currentPage: page,
     newsCount: newsCount,
+    currentTag: query.tag,
     newsPageCount: newsPageCount
   };
 };

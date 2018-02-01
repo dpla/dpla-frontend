@@ -8,7 +8,7 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
 import { SITE_ENV } from "constants/env";
-import { TITLE, DESCRIPTION } from "constants/news.js";
+import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news.js";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
@@ -21,6 +21,7 @@ import {
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
+import { classNames, stylesheet } from "css/pages/news.css";
 
 const { container } = utilClassNames;
 
@@ -57,6 +58,25 @@ const PostPage = ({ url, content, menuItems }) =>
                 __html: content.title.rendered
               }}
             />
+            {content.tags.length > 0 &&
+              <div className={classNames.tags}>
+                In:
+                <ul>
+                  {content.tags.map(tag => {
+                    return NEWS_TAGS[tag]
+                      ? <li key={tag}>
+                          <Link
+                            prefetch
+                            as={`/news?tag=${tag}`}
+                            href={`/news?tag=${tag}`}
+                          >
+                            <a>{NEWS_TAGS[tag]}</a>
+                          </Link>
+                        </li>
+                      : null;
+                  })}
+                </ul>
+              </div>}
             <div
               dangerouslySetInnerHTML={{ __html: content.content.rendered }}
             />
@@ -65,11 +85,11 @@ const PostPage = ({ url, content, menuItems }) =>
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 PostPage.getInitialProps = async ({ req, query, res }) => {
   // sidebar menu fetch
-  // TODO: feels odd to be querying this on every page that had the sidebar... refactor opportunity
   const menuResponse = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
   );
