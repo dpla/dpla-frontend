@@ -23,7 +23,8 @@ import {
 import {
   GUIDES_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
-  NEWS_HOME_ENDPOINT
+  NEWS_HOME_ENDPOINT,
+  NEWS_HUB_ENDPOINT
 } from "constants/content-pages";
 import { PSS_BASE_URL } from "constants/site";
 import { SITE_ENV } from "constants/env";

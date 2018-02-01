@@ -1,5 +1,30 @@
 @value proSiteColor, linkColor from "../colors.css";
 
+.tags {
+  font-size: 1.125rem;
+}
+
+.tags ul, .tags ul li {
+  display: inline-block;
+}
+
+.tags ul li {
+  margin: 0 0 0 0.25em;
+}
+
+.tags ul li:not(.donate)::before {
+  /* overriding a more global setting. maybe shouldnt be that global? */
+  content: "";
+}
+
+.tags ul li::after {
+  content: ",";
+}
+
+.tags ul li:last-child::after {
+  content: ".";
+}
+
 .newsItem {
   position: relative;
   margin-bottom: 3rem;

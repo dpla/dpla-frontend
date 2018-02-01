@@ -4,6 +4,7 @@ import { ANNOUNCEMENTS_TAG_ID, CONTENT_SHOWCASE_TAG_ID } from "./news.js";
 export const ABOUT_MENU_ENDPOINT = `${WORDPRESS_URL}/wp-json/menus/v1/menus/about-us`;
 export const PRO_MENU_ENDPOINT = `${WORDPRESS_URL}/wp-json/menus/v1/menus/pro-site`;
 export const NEWS_ENDPOINT = `${WORDPRESS_URL}/wp-json/wp/v2/posts`;
+export const TAGS_ENDPOINT = `${WORDPRESS_URL}/wp-json/wp/v2/tags?per_page=100`;
 export const PAGES_ENDPOINT = `${WORDPRESS_URL}/wp-json/wp/v2/pages`;
 export const GUIDES_ENDPOINT = `${PAGES_ENDPOINT}/2394`;
 export const NEWS_HOME_ENDPOINT = `${NEWS_ENDPOINT}?per_page=3&tags=${ANNOUNCEMENTS_TAG_ID},${CONTENT_SHOWCASE_TAG_ID}`;
