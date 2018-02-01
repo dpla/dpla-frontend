@@ -69,12 +69,12 @@
   position: absolute;
   height: 0.4rem;
   width: 0.4rem;
-  top: .6rem;
+  top: 0.5rem;
   left: -0.75rem;
   background-color: linkColor;
   border-radius: 50%;
 
   @media (min-width: mediumRem) {
-    top: .8rem;
+    top: 0.6rem;
   }
 }

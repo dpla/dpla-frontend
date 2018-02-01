@@ -1,10 +1,13 @@
 @value paginationLinkColor, colderBackgroundColor, linkColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
+@value sansFont from "../../../css/typography.css";
 
 .pagination {
   display: flex;
   margin-top: 20px;
   text-align: right;
+  font-family: sansFont;
+
   @media (min-width: smallRem) {
     display: block;
   }
@@ -71,7 +74,7 @@
   }
 }
 
-.nextButton {
+.nextButton, .nextButton:visited {
   background-color: linkColor;
   color: white;
   @media (min-width: smallRem) {
