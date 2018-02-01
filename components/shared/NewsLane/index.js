@@ -45,9 +45,15 @@ const NewsLane = ({ title, items }) =>
                 <div className={classNames.date}>
                   {dateText}
                 </div>
-                <p className={classNames.bodyText}>
-                  {post.acf.summary}
-                </p>
+                {post.acf.summary &&
+                  <p className={classNames.bodyText}>
+                    {post.acf.summary}
+                  </p>}
+                {!post.acf.summary &&
+                  post.excerpt &&
+                  <div
+                    dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                  />}
               </li>
             );
           })}
