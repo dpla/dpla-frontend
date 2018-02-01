@@ -8,7 +8,12 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import Pagination from "components/shared/Pagination";
 
 import { SITE_ENV } from "constants/env";
-import { TITLE, DESCRIPTION } from "constants/news.js";
+import {
+  TITLE,
+  DESCRIPTION,
+  ANNOUNCEMENTS_TAG_ID,
+  CONTENT_SHOWCASE_TAG_ID
+} from "constants/news.js";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
@@ -98,8 +103,12 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
 
   // fetch news
   const page = query.page || 1;
+  // if it is user, it must be constrained to only announcements and content showcase
+  const filter = SITE_ENV === "user"
+    ? `&tags=${ANNOUNCEMENTS_TAG_ID},${CONTENT_SHOWCASE_TAG_ID}`
+    : "";
   const newsRes = await fetch(
-    `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}`
+    `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}`
   );
   const newsItems = await newsRes.json();
   const newsCount = newsRes.headers.get("X-WP-Total");
