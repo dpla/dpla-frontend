@@ -24,8 +24,8 @@ const TagList = ({ url, currentTag }) =>
     {Object.keys(NEWS_TAGS).map(key => {
       if (
         (SITE_ENV === "user" &&
-          (Number(ANNOUNCEMENTS_TAG_ID) === key ||
-            Number(CONTENT_SHOWCASE_TAG_ID) === key)) ||
+          (ANNOUNCEMENTS_TAG_ID === Number(key) ||
+            CONTENT_SHOWCASE_TAG_ID === Number(key))) ||
         SITE_ENV === "pro"
       ) {
         const item = Number(key) !== Number(currentTag)
