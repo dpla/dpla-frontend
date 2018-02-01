@@ -26,15 +26,14 @@ import { classNames, stylesheet } from "css/pages/news.css";
 
 const NewsPage = ({
   url,
-  content,
   menuItems,
   newsItems,
-  pageTitle,
+  pageItem,
   newsCount,
   newsPageCount,
   currentPage
 }) =>
-  <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+  <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <div
       className={`${utilClassNames.container}
@@ -44,7 +43,7 @@ const NewsPage = ({
         <ContentPagesSidebar
           route={url}
           items={menuItems}
-          activeItemId={content.id}
+          activeItemId={pageItem.id}
           className={contentClasses.sidebar}
           rootPath="wp"
         />
@@ -97,10 +96,6 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     item => item.post_name.indexOf("news") === 0
   );
 
-  // fetch “page content” (in this case nothing but needed for page title)
-  const pageRes = await fetch(pageItem.url);
-  const pageJson = await pageRes.json();
-
   // fetch news
   const page = query.page || 1;
   const newsRes = await fetch(
@@ -111,10 +106,9 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
   const newsPageCount = newsRes.headers.get("X-WP-TotalPages");
 
   return {
-    content: pageJson,
     menuItems: menuJson.items,
     newsItems: newsItems,
-    pageTitle: pageItem.title,
+    pageItem: pageItem,
     currentPage: page,
     newsCount: newsCount,
     newsPageCount: newsPageCount
