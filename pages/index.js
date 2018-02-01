@@ -172,7 +172,9 @@ Home.getInitialProps = async ({ req }) => {
   );
 
   // fetch news posts
-  const newsRes = await fetch(NEWS_HOME_ENDPOINT);
+  const newsRes = await fetch(
+    SITE_ENV === "user" ? NEWS_HOME_ENDPOINT : NEWS_HUB_ENDPOINT
+  );
   const newsItems = await newsRes.json();
 
   return {
