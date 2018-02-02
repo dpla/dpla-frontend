@@ -59,7 +59,7 @@
   & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1.15;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
   }
 
   & h1 {
@@ -74,17 +74,19 @@
 
     @media (min-width: mediumRem) {
       font-size: 3rem;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
     }
   }
 
   & h2 {
     font-weight: normal;
     font-size: 1.875rem;
+    margin-top: 1rem;
   }
 
   & h3 {
     font-size: 1.25rem;
+    margin-top: 1rem;
 
     @media (min-width: mediumRem) {
       font-size: 1.5rem;

@@ -60,7 +60,7 @@ const PostPage = ({ url, content, menuItems }) =>
             />
             {content.tags.length > 0 &&
               <div className={classNames.tags}>
-                In:
+                Published under:
                 <ul>
                   {content.tags.map(tag => {
                     return NEWS_TAGS[tag]
