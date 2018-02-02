@@ -15,7 +15,7 @@ import {
   ANNOUNCEMENTS_TAG_ID,
   CONTENT_SHOWCASE_TAG_ID,
   NEWS_TAGS
-} from "constants/news.js";
+} from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
