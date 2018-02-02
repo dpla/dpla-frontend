@@ -9,7 +9,7 @@ import Button from "components/shared/Button";
 import WPEdit from "shared/WPEdit";
 
 import {
-  NEWS_HUB_ENDPOINT,
+  NEWS_PRO_ENDPOINT,
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
@@ -90,7 +90,7 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
   const hubItem = hubJson[0];
 
   // fetch news posts
-  const newsRes = await fetch(NEWS_HUB_ENDPOINT);
+  const newsRes = await fetch(NEWS_PRO_ENDPOINT);
   const newsItems = await newsRes.json();
 
   return { page: hubItem, pageTitle: hubItem.title.rendered, news: newsItems };
