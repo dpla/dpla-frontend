@@ -23,8 +23,7 @@ import {
 import {
   GUIDES_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
-  NEWS_HOME_ENDPOINT,
-  NEWS_HUB_ENDPOINT
+  NEWS_USER_ENDPOINT
 } from "constants/content-pages";
 import { PSS_BASE_URL } from "constants/site";
 import { SITE_ENV } from "constants/env";
@@ -173,9 +172,7 @@ Home.getInitialProps = async ({ req }) => {
   );
 
   // fetch news posts
-  const newsRes = await fetch(
-    SITE_ENV === "user" ? NEWS_HOME_ENDPOINT : NEWS_HUB_ENDPOINT
-  );
+  const newsRes = await fetch(NEWS_USER_ENDPOINT);
   const newsItems = await newsRes.json();
 
   return {
