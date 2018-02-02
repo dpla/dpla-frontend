@@ -21,28 +21,28 @@ const TagList = ({ url, currentTag }) =>
         </Link>
       </li>}
     {!currentTag && <li>All News</li>}
-    {Object.keys(NEWS_TAGS).map(key => {
+    {NEWS_TAGS.map(tag => {
+      const id = tag.id;
       if (
         (SITE_ENV === "user" &&
-          (ANNOUNCEMENTS_TAG_ID === Number(key) ||
-            CONTENT_SHOWCASE_TAG_ID === Number(key))) ||
+          (ANNOUNCEMENTS_TAG_ID === id || CONTENT_SHOWCASE_TAG_ID === id)) ||
         SITE_ENV === "pro"
       ) {
-        const item = Number(key) !== Number(currentTag)
+        const markup = tag.name.toLowerCase().replace(" ", "-") !== currentTag
           ? <Link
               prefetch
               href={{
                 pathname: url.pathname,
                 query: Object.assign({}, url.query, {
-                  tag: key,
+                  tag: tag.name.toLowerCase().replace(" ", "-"),
                   page: 1
                 })
               }}
             >
-              <a>{NEWS_TAGS[key]}</a>
+              <a>{tag.name}</a>
             </Link>
-          : <span>{NEWS_TAGS[key]}</span>;
-        return <li key={key}>{item}</li>;
+          : <span>{tag.name}</span>;
+        return <li key={id}>{markup}</li>;
       } else {
         return null;
       }

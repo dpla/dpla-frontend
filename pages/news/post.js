@@ -25,68 +25,87 @@ import { classNames, stylesheet } from "css/pages/news.css";
 
 const { container } = utilClassNames;
 
-const PostPage = ({ url, content, menuItems }) =>
-  <MainLayout route={url} pageTitle={content.title.rendered} seoType={SEO_TYPE}>
-    <BreadcrumbsModule
-      breadcrumbs={[
-        {
-          title: "News",
-          url: "/news",
-          as: "/news"
-        },
-        { title: content.title.rendered }
-      ]}
+const PostPage = ({ url, content, menuItems }) => {
+  let hasTags = false;
+  NEWS_TAGS.forEach(tag => {
+    if (content.tags.indexOf(tag.id) !== -1) {
+      hasTags = true;
+      return;
+    }
+  });
+  return (
+    <MainLayout
       route={url}
-    />
-    <div
-      className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+      pageTitle={content.title.rendered}
+      seoType={SEO_TYPE}
     >
-      <div className="row">
-        <ContentPagesSidebar
-          route={url}
-          items={menuItems}
-          activeItemId={content.id}
-          className={contentClasses.sidebar}
-          rootPath="wp"
-        />
-        <div className="col-xs-12 col-md-7">
-          <div id="main" className={contentClasses.content}>
-            <WPEdit page={content} url={url} />
-            <h1
-              dangerouslySetInnerHTML={{
-                __html: content.title.rendered
-              }}
-            />
-            {content.tags.length > 0 &&
-              <div className={classNames.tags}>
-                Published under:
-                <ul>
-                  {content.tags.map(tag => {
-                    return NEWS_TAGS[tag]
-                      ? <li key={tag}>
-                          <Link
-                            prefetch
-                            as={`/news?tag=${tag}`}
-                            href={`/news?tag=${tag}`}
-                          >
-                            <a>{NEWS_TAGS[tag]}</a>
-                          </Link>
-                        </li>
-                      : null;
-                  })}
-                </ul>
-              </div>}
-            <div
-              dangerouslySetInnerHTML={{ __html: content.content.rendered }}
-            />
+      <BreadcrumbsModule
+        breadcrumbs={[
+          {
+            title: "News",
+            url: "/news",
+            as: "/news"
+          },
+          { title: content.title.rendered }
+        ]}
+        route={url}
+      />
+      <div
+        className={`${utilClassNames.container}
+      ${contentClasses.sidebarAndContentWrapper}`}
+      >
+        <div className="row">
+          <ContentPagesSidebar
+            route={url}
+            items={menuItems}
+            activeItemId={content.id}
+            className={contentClasses.sidebar}
+            rootPath="wp"
+          />
+          <div className="col-xs-12 col-md-7">
+            <div id="main" className={contentClasses.content}>
+              <WPEdit page={content} url={url} />
+              <h1
+                dangerouslySetInnerHTML={{
+                  __html: content.title.rendered
+                }}
+              />
+              {hasTags &&
+                <div className={classNames.tags}>
+                  Published under:
+                  <ul>
+                    {content.tags.map(id => {
+                      const tag = NEWS_TAGS.filter(tag => tag.id === id)[0];
+                      return tag
+                        ? <li key={tag.id}>
+                            <Link
+                              prefetch
+                              as={`/news?tag=${tag.name
+                                .toLowerCase()
+                                .replace(" ", "-")}`}
+                              href={`/news?tag=${tag.name
+                                .toLowerCase()
+                                .replace(" ", "-")}`}
+                            >
+                              <a>{tag.name}</a>
+                            </Link>
+                          </li>
+                        : null;
+                    })}
+                  </ul>
+                </div>}
+              <div
+                dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-  </MainLayout>;
+      <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
+      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    </MainLayout>
+  );
+};
 
 PostPage.getInitialProps = async ({ req, query, res }) => {
   // sidebar menu fetch
