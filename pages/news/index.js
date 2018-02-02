@@ -108,7 +108,13 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
 
   // fetch news
   const page = query.page || 1;
-  const tags = query.tag ? [query.tag] : [];
+  const tags = query.tag
+    ? [
+        NEWS_TAGS.filter(
+          tag => tag.name.toLowerCase().replace(" ", "-") === query.tag
+        )[0].id
+      ]
+    : [];
   // if it is user, it must be constrained to only announcements and content showcase
   if (SITE_ENV === "user") {
     tags.push(ANNOUNCEMENTS_TAG_ID, CONTENT_SHOWCASE_TAG_ID);
@@ -116,7 +122,7 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
   const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
   const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}`;
   const newsRes = await fetch(url);
-  console.log(url);
+
   const newsItems = await newsRes.json();
   const newsCount = newsRes.headers.get("X-WP-Total");
   const newsPageCount = newsRes.headers.get("X-WP-TotalPages");
