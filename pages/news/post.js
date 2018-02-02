@@ -8,7 +8,7 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
 import { SITE_ENV } from "constants/env";
-import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news.js";
+import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,

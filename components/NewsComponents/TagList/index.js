@@ -7,7 +7,7 @@ import {
   ANNOUNCEMENTS_TAG_ID,
   CONTENT_SHOWCASE_TAG_ID,
   NEWS_TAGS
-} from "constants/news.js";
+} from "constants/news";
 import { SITE_ENV } from "constants/env";
 
 import { classNames, stylesheet } from "./TagList.css";
