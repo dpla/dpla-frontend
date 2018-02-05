@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
 import Button from "components/shared/Button";
+
 import { stylesheet, classNames } from "./HomeHero.css";
-import Link from "next/link";
 
 const bgImage = "static/images/home-hero-bg.png";
 

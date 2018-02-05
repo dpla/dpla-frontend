@@ -4,6 +4,8 @@ import HomeHero from "./HomeHero";
 import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
 import NewsLane from "shared/NewsLane";
+import WPEdit from "shared/WPEdit";
+
 import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
@@ -21,6 +23,7 @@ const HomeUser = ({
       headerDescription={headerDescription}
       feature={content.acf.feature}
     />
+    <WPEdit page={content} url={url} />
     {content.acf.feature &&
       <WebsiteFeature
         title={content.acf.feature.title}
