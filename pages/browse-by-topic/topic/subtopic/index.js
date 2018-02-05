@@ -55,6 +55,7 @@ const SubtopicItemsList = ({
     />
     <div
       id="main"
+      role="main"
       className={[classNames.sidebarAndItemList, container].join(" ")}
     >
       <Sidebar

@@ -29,6 +29,7 @@ export default class Error extends React.Component {
             <div className={`col-md-2 col-xs-12`} />
             <div
               id="main"
+              role="main"
               className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
             >
               {this.props.statusCode === 500 &&

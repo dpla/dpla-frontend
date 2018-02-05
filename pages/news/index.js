@@ -57,7 +57,7 @@ const NewsPage = ({
           rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">
-          <div id="main" className={contentClasses.content}>
+          <div id="main" role="main" className={contentClasses.content}>
             <h1>News Archive</h1>
             <TagList currentTag={currentTag} url={url} />
             {newsItems.map((item, index) => {

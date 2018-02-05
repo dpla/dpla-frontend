@@ -9,7 +9,7 @@ import { TITLE } from "constants/topicBrowse";
 const TopicBrowse = ({ url, topics }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <div id="main">
+      <div id="main" role="main">
         <TopicsList topics={topics} />
       </div>
     </MainLayout>

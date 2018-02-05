@@ -41,7 +41,7 @@ const Home = ({
     hideSearchBar={SITE_ENV === "pro"}
     route={url}
   >
-    <div id="main">
+    <div id="main" role="main">
       <HomeUser
         sourceSets={sourceSets}
         exhibitions={exhibitions}

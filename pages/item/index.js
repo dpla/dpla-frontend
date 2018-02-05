@@ -52,6 +52,7 @@ const ItemDetail = ({
     {statusCode === 404 &&
       <div
         id="main"
+        role="main"
         className={`${utilClassNames.container} ${classNames.contentWrapper}`}
       >
         <div className={classNames.notFound}>
@@ -69,6 +70,7 @@ const ItemDetail = ({
     {statusCode === 200 &&
       <div
         id="main"
+        role="main"
         className={`${utilClassNames.container} ${classNames.contentWrapper}`}
       >
         <Content item={item} url={url} />

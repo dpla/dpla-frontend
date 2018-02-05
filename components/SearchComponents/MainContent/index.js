@@ -44,7 +44,7 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
       >
         <Sidebar route={route} facets={facets} />
       </div>
-      <div id="main" className={classNames.resultsAndPagination}>
+      <div id="main" role="main" className={classNames.resultsAndPagination}>
         {route.query.list_view === "grid"
           ? <GridView
               route={route}

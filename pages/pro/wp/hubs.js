@@ -5,7 +5,9 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
-import Button from "components/shared/Button";
+import Button from "shared/Button";
+import CallToAction from "shared/CallToAction";
+import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
 import {
@@ -19,12 +21,28 @@ import { stylesheet, classNames } from "css/pages/hubs.css";
 const HubsPage = ({ url, page, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
     <div id="main" role="main">
-      <div className={classNames.pageHero}>
+      <div
+        className={`${classNames.pageHero} ${page.acf.feature
+          ? classNames.withFeature
+          : ""}`}
+      >
         <IconComponent className={classNames.icon} name="network" />
         <WPEdit page={page} url={url} />
         <h1>{page.title.rendered}</h1>
       </div>
-      <div className={`${classNames.pageWrapper}`}>
+      {page.acf.feature &&
+        <WebsiteFeature
+          title={page.acf.feature.title}
+          text={page.acf.feature.text}
+          buttonText={page.acf.feature.button_text}
+          buttonUrl={page.acf.feature.button_url}
+          imageSrc={page.acf.feature.image}
+        />}
+      <div
+        className={`${classNames.pageWrapper} ${page.acf.feature
+          ? classNames.withFeature
+          : ""}`}
+      >
         <section className={`${classNames.sectionWrapper} site-max-width`}>
           <ul className={classNames.sectionList}>
             {page.acf.sections.map((section, index) => {
@@ -57,28 +75,15 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
           </ul>
         </section>
       </div>
-      <section className={`${classNames.callToAction}`}>
-        <div
-          className={`${classNames.callToActionWrapper} ${classNames.sectionWrapper} site-max-width`}
-        >
-          <div className={classNames.callToActionText}>
-            <h2>{page.acf.call_to_action.title}</h2>
-            <p>{page.acf.call_to_action.text}</p>
-            <div className={classNames.callToActionButton}>
-              <Button type="secondary" url={page.acf.call_to_action.button_url}>
-                {page.acf.call_to_action.button_text}
-              </Button>
-            </div>
-          </div>
-          {page.acf.call_to_action.image &&
-            <div className={classNames.callToActionImage}>
-              <img src={page.acf.call_to_action.image} alt="" />
-              <span>
-                <strong>Image:</strong> {page.acf.call_to_action.image_credit}
-              </span>
-            </div>}
-        </div>
-      </section>
+      <CallToAction
+        classNames={classNames.sectionWrapper}
+        title={page.acf.call_to_action.title}
+        text={page.acf.call_to_action.text}
+        buttonText={page.acf.call_to_action.button_text}
+        buttonUrl={page.acf.call_to_action.button_url}
+        imageSrc={page.acf.call_to_action.image}
+        imageCaption={page.acf.call_to_action.image_credit}
+      />
       <NewsLane title="Member News" items={news} />
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

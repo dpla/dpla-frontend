@@ -48,7 +48,7 @@ const ProMenuPage = ({
           rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">
-          <div id="main" className={contentClasses.content}>
+          <div id="main" role="main" className={contentClasses.content}>
             <WPEdit page={page} url={url} />
             {/* fancy pages (with illustrations) get special heading */}
             {illustration &&
