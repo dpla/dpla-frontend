@@ -51,6 +51,7 @@ const Home = ({
         headerDescription={headerDescription}
         news={news}
         content={content}
+        url={url}
       />
     </div>
   </MainLayout>;

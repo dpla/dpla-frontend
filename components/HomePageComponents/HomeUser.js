@@ -11,6 +11,7 @@ import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
 
 const HomeUser = ({
+  url,
   sourceSets,
   exhibitions,
   guides,
