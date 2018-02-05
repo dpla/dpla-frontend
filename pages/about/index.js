@@ -8,6 +8,7 @@ import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
+import { API_SETTINGS_ENDPOINT } from "constants/site";
 import {
   ABOUT_MENU_ENDPOINT,
   PAGES_ENDPOINT,
