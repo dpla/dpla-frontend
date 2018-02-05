@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import GuideLink from "components/shared/GuideLink";
 import { classNames, stylesheet } from "css/pages/guides.css";
-import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames as contentClasses,
@@ -54,11 +54,16 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   </MainLayout>;
 
 Guides.getInitialProps = async () => {
+  // fetch page info
+  // 1. fetch the settings from WP
+  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  const settingsJson = await settingsRes.json();
+  // 2. get the corresponding value
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
+
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
-  const indexPageItem = aboutMenuJson.items.find(
-    item => item.url === GUIDES_ENDPOINT
-  );
+  const indexPageItem = aboutMenuJson.items.find(item => item.url === endpoint);
 
   const guides = await Promise.all(
     aboutMenuJson.items

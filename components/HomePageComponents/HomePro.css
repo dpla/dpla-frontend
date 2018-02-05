@@ -9,6 +9,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
+
+  &.withFeature {
+    margin-bottom: -5rem;
+    padding-bottom: 7rem; /* adds 5rem to allow for overlapping feature */
+  }
 }
 
 .heroText {

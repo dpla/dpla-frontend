@@ -21,7 +21,7 @@ import {
   FILES_ENDPOINT
 } from "constants/exhibitions";
 import {
-  GUIDES_ENDPOINT,
+  PAGES_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
   NEWS_USER_ENDPOINT
 } from "constants/content-pages";
@@ -34,7 +34,8 @@ const Home = ({
   guides,
   exhibitions,
   headerDescription,
-  news
+  news,
+  content
 }) =>
   <MainLayout
     hidePageHeader={SITE_ENV === "user"}
@@ -48,6 +49,7 @@ const Home = ({
         guides={guides}
         headerDescription={headerDescription}
         news={news}
+        content={content}
       />
     </div>
   </MainLayout>;
@@ -55,8 +57,17 @@ const Home = ({
 Home.getInitialProps = async ({ req }) => {
   const currentUrl = getCurrentUrl(req);
 
-  const homepageRes = await fetch(DPLA_HOMEPAGE_ENDPOINT);
-  const homepageJson = await homepageRes.json();
+  // fetch home info
+  // 1. fetch the settings from WP
+  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  const settingsJson = await settingsRes.json();
+  // 2. get the corresponding value
+  const endpoint = settingsJson.acf.homepage_endpoint;
+  const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
+    .guides_endpoint}`;
+  // 3. fetch it
+  const homeRes = await fetch(endpoint);
+  const homepageJson = await homeRes.json();
 
   // fetch featured exhibits data
 
@@ -151,7 +162,7 @@ Home.getInitialProps = async ({ req }) => {
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
   const indexPageItem = aboutMenuJson.items.find(
-    item => item.url === GUIDES_ENDPOINT
+    item => item.url === guides_endpoint
   );
   const guides = await Promise.all(
     aboutMenuJson.items
@@ -180,7 +191,8 @@ Home.getInitialProps = async ({ req }) => {
     guides,
     exhibitions: featuredExhibitionsWithData,
     headerDescription,
-    news: newsItems
+    news: newsItems,
+    content: homepageJson
   };
 };
 

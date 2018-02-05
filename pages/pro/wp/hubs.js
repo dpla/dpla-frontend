@@ -20,7 +20,7 @@ import { stylesheet, classNames } from "css/pages/hubs.css";
 
 const HubsPage = ({ url, page, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    <div id="main" role="main">
+    <div id="main" role="main" className={classNames.pageWrapper}>
       <div
         className={`${classNames.pageHero} ${page.acf.feature
           ? classNames.withFeature
@@ -38,11 +38,7 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
           buttonUrl={page.acf.feature.button_url}
           imageSrc={page.acf.feature.image}
         />}
-      <div
-        className={`${classNames.pageWrapper} ${page.acf.feature
-          ? classNames.withFeature
-          : ""}`}
-      >
+      <div className={`${classNames.pageWrapper}`}>
         <section className={`${classNames.sectionWrapper} site-max-width`}>
           <ul className={classNames.sectionList}>
             {page.acf.sections.map((section, index) => {

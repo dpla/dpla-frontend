@@ -1,22 +1,59 @@
-@value colderBackgroundColor from "../../../css/colors.css";
+@value featureBackgroundColor, darkSecondaryButtonColor, secondaryButtonColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value serifFont from "../../../css/typography.css";
 
 .wrapper {
-  margin: -5rem auto;
-  background-color: colderBackgroundColor;
+  margin: 0 auto;
+  background-color: featureBackgroundColor;
+  display: flex;
+  align-items: center;
+  padding-right: 3rem;
 }
 
-.imageWrapper {}
+.imageWrapper {
+  min-width: 15rem;
+  align-self: stretch;
+  background-size: cover;
+  background-position-y: 50%;
+}
 
-.image {
-  max-height: 10rem;
+.textWrapper {
+  padding: 2rem 1rem 2.5rem 2rem;
+  flex-grow: 2;
+
+  &.noImage {
+    padding-left: 3rem;
+  }
 }
 
 .title {
-
+  font-family: serifFont;
+  font-weight: normal;
+  font-size: 2.25rem;
 }
 
 .text {
+  font-size: 1.125rem;
+}
 
+.button, .button:visited {
+  font-size: 1.125rem;
+  color: white;
+  background-color: secondaryButtonColor;
+  font-weight: normal;
+  border-radius: 2px;
+  padding: .75rem 2rem;
+  transition: background-color .15s ease-out;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+
+  &:hover {
+    background-color: darkSecondaryButtonColor;
+  }
 }

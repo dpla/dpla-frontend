@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const bgImage = "static/images/home-hero-bg.png";
 
-const HomeHero = ({ headerDescription }) =>
+const HomeHero = ({ headerDescription, feature }) =>
   <div
-    className={classNames.wrapper}
+    className={`${classNames.wrapper} ${feature ? classNames.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
     <div className={`${classNames.header} site-max-width`}>

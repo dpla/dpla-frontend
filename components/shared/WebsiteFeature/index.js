@@ -19,17 +19,23 @@ const WebsiteFeature = ({
       : ""} ${classNames.wrapper} site-max-width`}
   >
     {imageSrc &&
-      <div className={classNames.imageWrapper}>
-        <img src={imageSrc} className={classNames.image} />
-      </div>}
-    <h2 className={classNames.title}>{title}</h2>
-    <p className={classNames.text}>
-      Quia adipisci a cupiditate inventore. Fugit ratione quia cumque ipsum.
-      Aut porro occaecati id quasi. Et nemo dolores et et ut.
-    </p>
-    <Button type="secondary" url={buttonUrl}>
+      <div
+        className={classNames.imageWrapper}
+        style={{ backgroundImage: `url(${imageSrc})` }}
+      />}
+    <div
+      className={`${classNames.textWrapper} ${imageSrc
+        ? ""
+        : classNames.noImage}`}
+    >
+      <h2 className={classNames.title}>{title}</h2>
+      <p className={classNames.text}>
+        {text}
+      </p>
+    </div>
+    <a className={classNames.button} href={buttonUrl}>
       {buttonText}
-    </Button>
+    </a>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 

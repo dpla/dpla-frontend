@@ -29,7 +29,7 @@ const Button = ({
   live,
   url
 }) => {
-  let buttonClasses = `${className} ${classNames.buttonBase}`;
+  let buttonClasses = `${classNames.buttonBase}`;
 
   let props = {};
   if (id) props["id"] = id;
@@ -72,11 +72,7 @@ const Button = ({
   }
 
   return (
-    <div
-      className={
-        type === "donate" && size === "large" ? `` : type === "donate" ? "" : ""
-      }
-    >
+    <div className={className}>
       {url
         ? <Link prefetch={prefetch} href={url} as={as}>
             <a {...props} title={title} className={buttonClasses} style={style}>
