@@ -7,6 +7,11 @@
   background-size: cover;
   color: white;
 
+  &.withFeature {
+    margin-bottom: -5rem;
+    padding-bottom: 7rem; /* adds 5rem to allow for overlapping feature */
+  }
+
   @media (min-width: mediumRem) {
     padding-top: 2rem;
   }

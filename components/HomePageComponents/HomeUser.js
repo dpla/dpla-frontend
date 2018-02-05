@@ -13,10 +13,22 @@ const HomeUser = ({
   exhibitions,
   guides,
   headerDescription,
-  news
+  news,
+  content
 }) =>
   <div>
-    <HomeHero headerDescription={headerDescription} />
+    <HomeHero
+      headerDescription={headerDescription}
+      feature={content.acf.feature}
+    />
+    {content.acf.feature &&
+      <WebsiteFeature
+        title={content.acf.feature.title}
+        text={content.acf.feature.text}
+        buttonText={content.acf.feature.button_text}
+        buttonUrl={content.acf.feature.button_url}
+        imageSrc={content.acf.feature.image}
+      />}
     {exhibitions &&
       exhibitions.length > 0 &&
       <HomePageSlider

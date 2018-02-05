@@ -10,7 +10,7 @@ import WPEdit from "shared/WPEdit";
 
 import {
   ABOUT_MENU_ENDPOINT,
-  GUIDES_ENDPOINT,
+  PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
 import { getBreadcrumbs, getItemWithId, getItemWithName } from "utilFunctions";
@@ -53,11 +53,18 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
   </MainLayout>;
 
 AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
+  // fetch settings info
+  // 1. fetch the settings from WP
+  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  const settingsJson = await settingsRes.json();
+  // 2. get the corresponding value
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
+
   const pageName = query.subsection || query.section;
   const response = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await response.json();
   const pageItem = json.items.find(item => item.post_name === pageName);
-  const guidesPageItem = json.items.find(item => item.url === GUIDES_ENDPOINT);
+  const guidesPageItem = json.items.find(item => item.url === endpoint);
   if (pageItem === guidesPageItem) {
     if (res) {
       res.redirect("/guides");

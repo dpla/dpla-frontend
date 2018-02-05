@@ -1,4 +1,4 @@
-@value dimmedTextColor, warmerBackgroundColor, memberColor from "../../../css/colors.css";
+@value dimmedTextColor, warmerBackgroundColor, memberColor, darkSecondaryButtonColor, secondaryButtonColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value serifFont from "../../../css/typography.css";
 
@@ -56,5 +56,27 @@
 
   & strong {
     text-transform: uppercase;
+  }
+}
+
+.button, .button:visited {
+  font-size: 1.125rem;
+  color: white;
+  background-color: secondaryButtonColor;
+  font-weight: normal;
+  border-radius: 2px;
+  padding: .75rem 2rem;
+  transition: background-color .15s ease-out;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+
+  &:hover {
+    background-color: darkSecondaryButtonColor;
   }
 }

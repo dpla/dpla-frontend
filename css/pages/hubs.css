@@ -4,10 +4,6 @@
 
 .pageWrapper {
   background-color: warmerBackgroundColor;
-
-  &.withFeature {
-    padding-top: 7rem; /* adds 5rem to allow for overlapping feature */
-  }
 }
 
 .pageHero {
@@ -23,6 +19,7 @@
   }
 
   &.withFeature {
+    margin-bottom: -5rem;
     padding-bottom: 7rem; /* adds 5rem to allow for overlapping feature */
   }
 }

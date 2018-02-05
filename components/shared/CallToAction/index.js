@@ -22,9 +22,9 @@ const CallToAction = ({
         <h2>{title}</h2>
         <p>{text}</p>
         <div className={classNames.callToActionButton}>
-          <Button type="secondary" url={buttonUrl}>
+          <a className={classNames.button} href={buttonUrl}>
             {buttonText}
-          </Button>
+          </a>
         </div>
       </div>
       {imageSrc &&

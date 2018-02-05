@@ -3,18 +3,18 @@ import Link from "next/link";
 
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
+import WebsiteFeature from "shared/WebsiteFeature";
+import WPEdit from "shared/WPEdit";
 
 import { stylesheet, classNames } from "./HomePro.css";
 
-const HomePro = ({
-  sourceSets,
-  exhibitions,
-  guides,
-  headerDescription,
-  news
-}) =>
+const HomePro = ({ url, news, content }) =>
   <div>
-    <div className={classNames.heroWrapper}>
+    <div
+      className={`${classNames.heroWrapper} ${content.acf.feature
+        ? classNames.withFeature
+        : ""}`}
+    >
       <div className={`${classNames.heroText} site-max-width`}>
         <h1>
           Welcome to the DPLA
@@ -23,9 +23,18 @@ const HomePro = ({
         <p>
           DPLA Pro is where DPLA, our hub network, and our broader community
           connect and share resources.
+          <WPEdit page={content} url={url} />
         </p>
       </div>
     </div>
+    {content.acf.feature &&
+      <WebsiteFeature
+        title={content.acf.feature.title}
+        text={content.acf.feature.text}
+        buttonText={content.acf.feature.button_text}
+        buttonUrl={content.acf.feature.button_url}
+        imageSrc={content.acf.feature.image}
+      />}
     <div className={`${classNames.sectionList}`}>
       <ul className={`site-max-width`}>
         <li>
