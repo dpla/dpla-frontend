@@ -7,7 +7,8 @@ import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
-import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
+import { classNames, stylesheet } from "./HomeUser.css";
+import { sliderStylesheet } from "./HomePageSlider/HomePageSlider.css";
 import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
 import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
 
@@ -20,7 +21,7 @@ const HomeUser = ({
   news,
   content
 }) =>
-  <div>
+  <div className={classNames.wrapper}>
     <HomeHero
       headerDescription={headerDescription}
       feature={content.acf.feature}
@@ -57,6 +58,7 @@ const HomeUser = ({
     <NewsLane title="DPLA News" items={news} />
     {/* <SocialMedia /> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+    <style dangerouslySetInnerHTML={{ __html: sliderStylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </div>;

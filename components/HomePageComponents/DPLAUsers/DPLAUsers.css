@@ -1,6 +1,10 @@
-@value rockBrown, black80, bonjourRed from "../../../css/colors.css";
+@value black80 from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
+
+.wrapper {
+  background-color: white;
+}
 
 .DPLAUsers {
   margin: 0 auto;
