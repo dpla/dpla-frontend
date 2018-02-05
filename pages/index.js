@@ -25,7 +25,7 @@ import {
   ABOUT_MENU_ENDPOINT,
   NEWS_USER_ENDPOINT
 } from "constants/content-pages";
-import { PSS_BASE_URL } from "constants/site";
+import { PSS_BASE_URL, API_SETTINGS_ENDPOINT } from "constants/site";
 import { SITE_ENV } from "constants/env";
 
 const Home = ({
