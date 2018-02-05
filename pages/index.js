@@ -4,12 +4,13 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
 
-import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
   getCurrentUrl,
   extractSourceSetSlug,
   addCommasToNumber
 } from "utilFunctions";
+
+import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
   DPLA_HOMEPAGE_ENDPOINT,
   HEADER_DESCRIPTION_TOKEN
@@ -62,7 +63,7 @@ Home.getInitialProps = async ({ req }) => {
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.endpoint}`;
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
   const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
     .guides_endpoint}`;
   // 3. fetch it
