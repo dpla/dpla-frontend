@@ -30,7 +30,11 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
           activeItemId={activeItemId}
           className={contentClasses.sidebar}
         />
-        <div id="main" className={`${classNames.wrapper} col-xs-12 col-md-8`}>
+        <div
+          id="main"
+          role="main"
+          className={`${classNames.wrapper} col-xs-12 col-md-8`}
+        >
           <ul className="row">
             {guides.map((guide, i) =>
               <li

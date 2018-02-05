@@ -12,7 +12,7 @@ import { classNames } from "components/PartnerBrowseComponents/PartnerBrowseCont
 const PartnerBrowse = ({ partners, url }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <div id="main">
+      <div id="main" role="main">
         <FeatureHeader
           titleClassName={classNames.featureTitle}
           title={TITLE}

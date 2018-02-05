@@ -1,0 +1,22 @@
+@value colderBackgroundColor from "../../../css/colors.css";
+@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value serifFont from "../../../css/typography.css";
+
+.wrapper {
+  margin: -5rem auto;
+  background-color: colderBackgroundColor;
+}
+
+.imageWrapper {}
+
+.image {
+  max-height: 10rem;
+}
+
+.title {
+
+}
+
+.text {
+
+}

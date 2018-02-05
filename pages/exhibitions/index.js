@@ -14,7 +14,7 @@ import {
 
 const Exhibitions = ({ url, exhibitions }) =>
   <MainLayout route={url} pageTitle={TITLE}>
-    <div id="main">
+    <div id="main" role="main">
       <AllExhibitions route={url} exhibitions={exhibitions} />
     </div>
     <Footer />

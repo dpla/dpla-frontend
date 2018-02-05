@@ -40,7 +40,7 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
       ]}
       route={url}
     />
-    <div id="main">
+    <div id="main" role="main">
       <ContentAndMetadata source={source} />
     </div>
     <SourceCarousel

@@ -39,7 +39,7 @@ const Topic = ({ url, topic, subtopics, suggestions }) =>
         }
       ]}
     />
-    <div id="main">
+    <div id="main" role="main">
       <MainContent topic={topic} />
       {topic.acf.related_content &&
         topic.acf.related_content.length > 0 &&

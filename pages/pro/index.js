@@ -12,7 +12,7 @@ const Home = ({ url, news }) =>
     hideSearchBar={SITE_ENV === "pro"}
     route={url}
   >
-    <div id="main">
+    <div id="main" role="main">
       <HomePro news={news} />
     </div>
   </MainLayout>;

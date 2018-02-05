@@ -36,7 +36,7 @@ const Exhibition = ({ url, exhibition, currentFullUrl }) =>
       ]}
       route={url}
     />
-    <div id="main">
+    <div id="main" role="main">
       <ImageAndCaption exhibition={exhibition} route={url} />
       <Details
         exhibition={exhibition}
