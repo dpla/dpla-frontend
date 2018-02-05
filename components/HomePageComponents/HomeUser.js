@@ -4,6 +4,7 @@ import HomeHero from "./HomeHero";
 import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
 import NewsLane from "shared/NewsLane";
+import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
 import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
