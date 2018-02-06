@@ -97,11 +97,11 @@ Search.getInitialProps = async ({ query, req }) => {
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
-  const res = await fetch(
-    `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
-      ","
-    )}&${facetQueries}`
-  );
+  const url = `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+    ","
+  )}&${facetQueries}`;
+
+  const res = await fetch(url);
 
   const numberOfActiveFacets = facetQueries
     .split(/(&|\+AND\+)/)
