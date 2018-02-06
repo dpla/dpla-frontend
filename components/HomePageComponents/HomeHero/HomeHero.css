@@ -48,11 +48,11 @@
   max-width: 44rem;
 
   @media (min-width: mediumRem) {
-    padding: 4rem 0 6rem;
+    padding: 4rem 0;
   }
 
   @media (min-width: largeRem) {
-    padding: 4rem 0 8rem;
+    padding: 4rem 0;
   }
 }
 
