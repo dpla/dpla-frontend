@@ -32,7 +32,7 @@ const OtherMetadata = ({ item }) =>
         </Row>
         <Row heading="Contributing Institution">
           <FacetLink
-            facet="provider"
+            facet="dataProvider"
             value={item.contributor}
             facetLabel="contributing institution"
           />
