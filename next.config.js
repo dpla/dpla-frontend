@@ -7,7 +7,8 @@ const { ANALYZE } = process.env;
 
 module.exports = {
   useFileSystemPublicRoutes: false,
-  webpack: config => {
+  webpack: (config, options) => {
+    const { dev, isServer } = options;
     if (ANALYZE) {
       config.plugins.push(
         new BundleAnalyzerPlugin({

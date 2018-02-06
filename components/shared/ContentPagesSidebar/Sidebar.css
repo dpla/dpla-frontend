@@ -26,10 +26,6 @@
   }
 }
 
-.sidebar ul:first-child > li:last-child .link:last-child {
-  margin-bottom: 0;
-}
-
 .sidebar ul ul {
   margin-left: 1rem;
 
