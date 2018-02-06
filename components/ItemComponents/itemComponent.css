@@ -1,3 +1,4 @@
+@value colderBackgroundColor from "../../css/colors.css";
 @value smallRem, mediumRem from "../../css/breakpoints.css";
 @value sansFont from "../../css/typography.css";
 
@@ -26,6 +27,8 @@
 .citeButton {
   margin-top: 0.5rem;
   width: 100%;
+  text-align: center;
+  background-color: colderBackgroundColor;
 }
 
 .notFound {

@@ -20,7 +20,7 @@ const SourceSetSources = ({ route, sources }) =>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
-          <li className={classNames.set}>
+          <li className={classNames.set} key={i}>
             <Link
               key={name}
               prefetch

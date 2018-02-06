@@ -1,9 +1,10 @@
-@value colderBackgroundColor, elephantBlue, oysterBayBlue from "../../../css/colors.css";
+@value colderBackgroundColor from "../../../css/colors.css";
 @value monoFont from "../../../css/typography.css";
 
 .wrapper {
   border-radius: 3px;
   width: 100%;
+  text-align: left;
 }
 
 .button.activeButton {
