@@ -24,10 +24,10 @@ const MainContent = ({ topic }) =>
               href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
             >
               <a className={classNames.subtopicAnchor}>
-                <img
+                <div
                   className={classNames.image}
                   aria-hidden="true"
-                  src={subtopic.thumbnailUrl}
+                  style={{ backgroundImage: `url(${subtopic.thumbnailUrl})` }}
                 />
                 <div className={classNames.textWrapper}>
                   <h2 className={classNames.subtopicTitle}>{subtopic.name}</h2>
