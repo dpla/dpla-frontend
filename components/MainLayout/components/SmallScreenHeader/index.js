@@ -56,7 +56,6 @@ class SmallScreenHeader extends Component {
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
               : ""} site-max-width`}
-            style={{ zIndex: 99 }}
             classNames={classNames}
             isHome={isHome}
           />}
@@ -65,7 +64,6 @@ class SmallScreenHeader extends Component {
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
               : ""} site-max-width`}
-            style={{ zIndex: 99 }}
             classNames={classNames}
             isHome={isHome}
           />}
