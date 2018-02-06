@@ -35,7 +35,9 @@
   }
 
   @media (max-width: mediumRem) {
-    padding: 1rem 1rem 1.5rem;
+    &, &.noImage {
+      padding: 1rem 1rem 1.5rem;
+    }
   }
 }
 

@@ -29,6 +29,14 @@ const NewsLane = ({ title, items }) =>
         <ul className="col-xs-12 col-md-9">
           {items.map((post, index) => {
             const dateText = formatDate(post.date);
+            let summary = post.acf.summary
+              ? post.acf.summary
+              : post.excerpt.rendered.replace(/(<([^>]+)>)/gi, "") || "";
+            let words = summary.split(" ");
+            if (words.length > 30) {
+              words.splice(30);
+              summary = words.join(" ") + "…";
+            }
             return (
               <li key={post.id} className={`${classNames.post}`}>
                 <div className={classNames.postLink}>
@@ -45,16 +53,10 @@ const NewsLane = ({ title, items }) =>
                 <div className={classNames.date}>
                   {dateText}
                 </div>
-                {post.acf.summary &&
+                {summary &&
                   <p className={classNames.bodyText}>
-                    {post.acf.summary}
+                    {summary}
                   </p>}
-                {!post.acf.summary &&
-                  post.excerpt &&
-                  <div
-                    className={classNames.bodyText}
-                    dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                  />}
               </li>
             );
           })}
