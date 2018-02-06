@@ -46,14 +46,11 @@
 .description {
   font-size: 1rem;
   margin-top: 1rem;
-  @media (min-width: smallRem) {
-    padding-top: 1rem;
-    border-top: 1px solid #E7E7E7;
-  }
+  line-height: 1.5;
 }
 
 .longDescription {
-  max-height: 20rem;
+  max-height: 10rem;
   overflow: hidden;
   font-family: serifFont;
 
@@ -228,4 +225,6 @@
 
 .citeButton {
   margin-bottom: 0.5rem;
+  text-align: center;
+  background-color: colderBackgroundColor;
 }
