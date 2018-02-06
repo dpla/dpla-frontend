@@ -67,7 +67,7 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
       <style>{accessibility}</style>
-      <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6" />
+      <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Array.prototype.includes" />
     </Head>
   </div>;
 
