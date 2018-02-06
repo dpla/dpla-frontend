@@ -4,16 +4,18 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import GuideLink from "components/shared/GuideLink";
-import { classNames, stylesheet } from "css/pages/guides.css";
+
 import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { TITLE } from "constants/guides";
+
+import { classNames, stylesheet } from "css/pages/guides.css";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { stylesheet as guidesStylesheet } from "components/shared/GuideLink/GuideLink.css";
-
-import { TITLE } from "constants/guides";
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
