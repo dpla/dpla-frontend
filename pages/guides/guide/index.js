@@ -4,12 +4,14 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
+
+import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+
 import { classNames, stylesheet } from "css/pages/guide.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, sidebarItems, guide }) =>
@@ -56,7 +58,6 @@ Guides.getInitialProps = async ({ query }) => {
   const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
   const guideRes = await fetch(guide.url);
   const guideJson = await guideRes.json();
-  console.log(guideSlug);
 
   return {
     sidebarItems: menuItemsJson.items,
