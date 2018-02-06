@@ -87,7 +87,9 @@
 .image {
   transition: transform .45s ease-in-out;
   width: 100%;
+  height: 14rem;
   background-size: cover;
+  background-position: 50%/50%;
 }
 
 .textWrapper {

@@ -40,6 +40,7 @@
 
 .itemWrapper {
   margin-top: .2rem;
+  margin-bottom: 1rem;
   display: flex;
 
   @media (min-width: mediumRem) {
@@ -56,19 +57,19 @@
 }
 
 .itemContent {
-  padding: .5rem .75rem .75rem;
+  padding: 0 .75rem .75rem;
 
   @media (min-width: smallRem) {
-    padding: .75rem 1rem 1rem;
+    padding: 0 1rem 1rem;
   }
 
   @media (min-width: mediumRem) {
-    padding: 0.5rem 0 1rem;
+    padding: 0 0 1rem;
   }
 }
 
 .image {
-  max-width: 100%;
+  width: 100%;
 
   @media (min-width: mediumRem) {
     border-radius: 3px;

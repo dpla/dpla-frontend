@@ -2,6 +2,9 @@
 @value smallRem, mediumRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
+@value sidebarWidth: 11rem;
+@value sidebarMargin: 1.25rem;
+
 .exhibitionView {
   background-color: warmerBackgroundColor;
 }
@@ -108,15 +111,14 @@
 }
 
 .menuHeaderText {
-  font-weight: 600;
+  font-weight: bold;
   font-size: 0.875rem;
   color: white;
 }
 
 .sidebar {
-  width: 11rem;
-  margin-right: 1.25rem;
-  flex-shrink: 0;
+  width: sidebarWidth;
+  margin-right: sidebarMargin;
   display: block;
   max-height: 0;
   transition: all 0.2s ease-in-out;
@@ -132,7 +134,7 @@
   }
   
   &.overlayActive {
-    max-height: 20rem;
+    max-height: 40rem;
     padding: 1rem;
     visibility: visible;
 
@@ -219,6 +221,7 @@
 .mainContent {
   display: flex;
   flex-direction: row;
+  width: 100%;
 
   @media (max-width: smallRem) {
     flex-direction: column;
@@ -254,7 +257,6 @@
 .closeExhibition {
   font-weight: 600;
   font-size: 1.125rem;
-  flex-shrink: 0;
   color: black;
 }
 
@@ -292,6 +294,7 @@
 
 .footerNav {
   display: flex;
+  align-items: center;
   padding: 0;
 
   @media (min-width: smallRem) {
@@ -304,15 +307,15 @@
 }
 
 .navButtons {
-  align-items: center;
   display: flex;
-  width: 100%;
   align-items: center;
+  align-self: flex-end;
+  width: 100%;
 
   @media (min-width: smallRem) {
-    width: auto;
     margin-left: auto;
     margin-top: 1rem;
+    width: 21rem;
   }
 }
 
@@ -322,21 +325,22 @@
 
   @media (min-width: smallRem) {
     display: inline-block;
-    max-width: 200px;
+    width: 200px;
+    height: 24px;
     opacity: 0.5;
   }
 
   @media (min-width: mediumPlusRem) {
-    max-width: 275px;
+    width: 275px;
+    height: 33px;
   }
 }
 
 .nextButton, .prevButton {
-  flex-shrink: 0;
   flex: 1;
   padding: 1rem 0;
   text-align: center;
-  font-weight: 600;
+  font-weight: normal;
   font-size: 1.125rem;
   display: block;
 
@@ -345,8 +349,7 @@
   }
 
   @media (min-width: smallRem) {
-    padding: 9px 0 12px 0;
-    width: 158px;
+    padding: 0.75rem 0;
     font-size: 1.25rem;
     border-radius: 2px;
   }
@@ -366,7 +369,8 @@
     font-size: 0.875rem;
     position: absolute;
     top: -1.5rem;
-    max-width: 158px;
+    left: 0;
+    right: 0;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -439,6 +443,14 @@
   }
 }
 
+.viewer {
+  width: calc(100% - sidebarWidth - sidebarMargin);
+
+  @media (max-width: smallRem) {
+    width: 100%;
+  }
+}
+
 .viewerContent {
   display: flex;
   flex-direction: column;
@@ -459,7 +471,6 @@
 .text {
   flex: 1;
   font-size: 0.875rem;
-  flex-shrink: 0;
   padding: 0 1rem;
   font-family: serifFont;
 
@@ -559,7 +570,7 @@
 
   @media (min-width: smallRem) {
     background-color: inherit;
-    border: 4px solid secondaryButtonColor;
+    border: 0.25rem solid secondaryButtonColor;
     position: relative;
   }
 }
@@ -572,7 +583,7 @@
   height: 0;
   border-left: .8rem solid transparent;
   border-right: .8rem solid transparent;
-  border-bottom: .65rem solid #5ab4dc;
+  border-bottom: .65rem solid secondaryButtonColor;
   top: -0.8rem;
   left: 50%;
   transform: translateX(-50%);
