@@ -1,8 +1,6 @@
 import "react";
 import "next/link";
 
-import Button from "shared/Button";
-
 import { stylesheet, classNames } from "./WebsiteFeature.css";
 
 const WebsiteFeature = ({

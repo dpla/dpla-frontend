@@ -7,6 +7,7 @@ import FeatureHeader from "shared/FeatureHeader";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import Pagination from "components/shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
+import Button from "shared/Button";
 
 import { SITE_ENV } from "constants/env";
 import {
@@ -40,7 +41,8 @@ const NewsPage = ({
   newsCount,
   newsPageCount,
   currentTag,
-  currentPage
+  currentPage,
+  keywords
 }) =>
   <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
@@ -59,6 +61,12 @@ const NewsPage = ({
         <div className="col-xs-12 col-md-7">
           <div id="main" role="main" className={contentClasses.content}>
             <h1>News Archive</h1>
+            <form action="/news" method="get">
+              <input type="text" name="q" defaultValue={keywords} />
+              <Button type="secondary">
+                Search
+              </Button>
+            </form>
             <TagList currentTag={currentTag} url={url} />
             {newsItems.map((item, index) => {
               return (
@@ -107,6 +115,7 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
   );
 
   // fetch news
+  const keywords = query.q ? `&search=${query.q}` : "";
   const page = query.page || 1;
   const tags = query.tag
     ? [
@@ -120,7 +129,7 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     tags.push(ANNOUNCEMENTS_TAG_ID, CONTENT_SHOWCASE_TAG_ID);
   }
   const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
-  const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}`;
+  const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}${keywords}`;
   const newsRes = await fetch(url);
 
   const newsItems = await newsRes.json();
@@ -134,7 +143,8 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     currentPage: page,
     newsCount: newsCount,
     currentTag: query.tag,
-    newsPageCount: newsPageCount
+    newsPageCount: newsPageCount,
+    keywords: query.q
   };
 };
 
