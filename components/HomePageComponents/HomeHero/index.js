@@ -32,7 +32,6 @@ const HomeHero = ({ headerDescription, feature }) =>
             autoComplete="off"
             type="search"
           />
-          <div className={classNames.shadow} />
           <button type="submit" className={classNames.searchButton}>
             <span>Search</span>
           </button>
