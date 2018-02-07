@@ -79,12 +79,6 @@
     "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.3"
   },
-  "resolutions": {
-    "ansi-regex": "^2.0.0",
-    "pretty-format": "20.0.1",
-    "string-width": "2.0.0",
-    "table": "3.7.9"
-  },
   "scripts": {
     "precommit": "lint-staged",
     "dev": "node server.js",
