@@ -100,20 +100,10 @@
   }
 }
 
-.shadow {
-  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5);
-  height: 100%;
-  left: 0;
-  opacity: .25;
-  position: absolute;
-  top: 0;
-  transition: opacity .15s ease-out;
-  width: 100%;
-}
-
 .searchInput {
   appearance: none;
   border-radius: 3px;
+  box-sizing: border-box;
   border: none;
   height: 100%;
   line-height: 1.5;
