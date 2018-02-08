@@ -31,11 +31,6 @@ const NavigationPro = ({ className, style, classNames, isHome }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch href="/news">
-          <a>News</a>
-        </Link>
-      </li>
-      <li>
         <Link prefetch as="/events" href="/pro/wp?section=events">
           <a>Events</a>
         </Link>
@@ -46,6 +41,11 @@ const NavigationPro = ({ className, style, classNames, isHome }) =>
       <li>
         <Link href="//beta.dp.la">
           <a>DPLA Main Site</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="//beta.dp.la/news">
+          <a>News</a>
         </Link>
       </li>
     </ul>

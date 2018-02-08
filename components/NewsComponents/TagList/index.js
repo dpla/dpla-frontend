@@ -25,7 +25,7 @@ const TagList = ({ url, currentTag, keywords }) =>
               query: Object.assign({}, url.query, {
                 tag: tag.name.toLowerCase().replace(" ", "-"),
                 page: 1,
-                q: keywords
+                k: keywords
               })
             }}
           >

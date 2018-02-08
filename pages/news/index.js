@@ -91,6 +91,10 @@ class NewsPage extends React.Component {
                   url={url}
                   keywords={keywords}
                 />
+                {newsItems.length === 0 &&
+                  <div>
+                    No news found{keywords ? " for “" + keywords + "”" : ""}.
+                  </div>}
                 {newsItems.map((item, index) => {
                   return (
                     <div key={index} className={classNames.newsItem}>
