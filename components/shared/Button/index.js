@@ -63,6 +63,9 @@ const Button = ({
     case "large":
       buttonClasses = `${buttonClasses} ${classNames.buttonLarge}`;
       break;
+    case "medium":
+      buttonClasses = `${buttonClasses} ${classNames.buttonMedium}`;
+      break;
   }
 
   switch (state) {
