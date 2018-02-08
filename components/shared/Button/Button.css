@@ -10,6 +10,7 @@
   white-space: nowrap;
   display: inline-block;
   cursor: pointer;
+  width: 100%;
 
   &:hover {
     text-decoration: none;
@@ -78,4 +79,9 @@
     font-size: 1.25rem;
     padding: 1rem 2.5rem;
   }
+}
+
+.buttonMedium {
+  font-size: 1rem;
+  padding: .5rem .75rem;
 }

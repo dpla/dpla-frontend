@@ -47,7 +47,7 @@
 .searchInput {
   font-size: 1rem;
   border: none;
-  border-radius: 3px 0 0 3px;
+  border-radius: 0.25rem 0 0 0.25rem;
   padding-left: 1rem;
   flex-grow: 1;
   height: 100%;
@@ -79,7 +79,7 @@
 .searchButton {
   transition: background-color .2s ease-out;
   background-color: secondaryButtonColor;
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 0.25rem 0.25rem 0;
   height: 100%;
   font-size: 1rem;
   color: white;
