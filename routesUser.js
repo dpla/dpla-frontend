@@ -7,6 +7,25 @@ module.exports = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
+  // news routes
+
+  server.get("/news", (req, res) => {
+    app.render(req, res, "/news", req.query);
+  });
+
+  server.get("/news/:slug", (req, res) => {
+    const actualPage = "/news/post";
+    const params = { slug: req.params.slug };
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
+  });
+
   // browse by topic routes
 
   server.get("/browse-by-topic/:topic/:subtopic", (req, res) => {
