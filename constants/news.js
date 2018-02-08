@@ -7,7 +7,7 @@ export const CONTENT_SHOWCASE_TAG_ID = 268; // in WP: wp_terms.name == Content S
 export const NEWS_TAGS = [
   { id: 37, name: "Education" },
   { id: 78, name: "Ebooks" }, // there's also 221 but has no posts
-  { id: 93, name: "Events" },
+  { id: 271, name: "Events" },
   { id: 140, name: "Community Reps" },
   { id: 151, name: "Announcements" },
   { id: 152, name: "Education" },
