@@ -17,11 +17,6 @@ const FooterPro = () =>
             </Link>
           </li>
           <li>
-            <Link href="/news">
-              <a>News</a>
-            </Link>
-          </li>
-          <li>
             <Link as="/projects" href="/pro/wp?section=projects">
               <a>Projects</a>
             </Link>
