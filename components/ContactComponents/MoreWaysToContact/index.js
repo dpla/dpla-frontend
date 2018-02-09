@@ -6,7 +6,7 @@ const ContactForm = () =>
     <h2 className={classNames.header}>More Ways To Contact Us</h2>
     <table className={classNames.contentTable}>
       <tbody>
-        <tr className={`row ${classNames.firstRow}`}>
+        <tr className={`row ${classNames.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             General Email
           </td>
@@ -16,7 +16,7 @@ const ContactForm = () =>
             </a>
           </td>
         </tr>
-        <tr className={`row ${classNames.firstRow}`}>
+        <tr className={`row ${classNames.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             Telephone
           </td>
@@ -24,7 +24,7 @@ const ContactForm = () =>
             617-859-2116
           </td>
         </tr>
-        <tr className={`row ${classNames.firstRow}`}>
+        <tr className={`row ${classNames.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             Mailing Address
           </td>
@@ -35,7 +35,7 @@ const ContactForm = () =>
             Boston, MA 02116<br />
           </td>
         </tr>
-        <tr className={`row ${classNames.firstRow}`}>
+        <tr className={`row ${classNames.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             Social Media
           </td>
@@ -58,7 +58,7 @@ const ContactForm = () =>
             </ul>
           </td>
         </tr>
-        <tr className={`row ${classNames.firstRow}`}>
+        <tr className={`row ${classNames.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
             Mailing Lists
           </td>

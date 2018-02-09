@@ -46,7 +46,7 @@
   }
 }
 
-.firstRow {
+.paddedRow {
   margin-bottom: 1.5rem;
 
   @media (min-width: mediumRem) {

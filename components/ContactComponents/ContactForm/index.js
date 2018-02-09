@@ -262,18 +262,20 @@ class ContactForm extends React.Component {
                 tabIndex="-1"
                 autoComplete="off"
               />
-              {!this.state.isSending &&
-                <Button type="primary" {...buttonProps}>
-                  Send message
-                </Button>}
-              {this.state.isSending &&
-                <Button
-                  type="secondary"
-                  className={classNames.disabledButton}
-                  live="assertive"
-                >
-                  Sending message…
-                </Button>}
+              <div className={`col-xs-12 col-md-4`}>
+                {!this.state.isSending &&
+                  <Button type="primary" {...buttonProps}>
+                    Send message
+                  </Button>}
+                {this.state.isSending &&
+                  <Button
+                    type="secondary"
+                    className={classNames.disabledButton}
+                    live="assertive"
+                  >
+                    Sending message…
+                  </Button>}
+              </div>
             </form>
           </div>}
         {this.state.isSent &&
