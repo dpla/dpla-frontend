@@ -3,7 +3,6 @@ export const possibleFacets = [
   "sourceResource.subject.name",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
-  "intermediateProvider",
   "dataProvider",
   "provider.name"
 ];
@@ -13,8 +12,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.subject.name": "subject",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  intermediateProvider: "provider",
-  dataProvider: "dataProvider",
+  dataProvider: "provider",
   "provider.name": "partner"
 };
 
@@ -23,8 +21,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   subject: "sourceResource.subject.name",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
-  provider: "intermediateProvider",
-  dataProvider: "dataProvider",
+  provider: "dataProvider",
   partner: "provider.name"
 };
 
