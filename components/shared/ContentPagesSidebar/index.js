@@ -75,7 +75,9 @@ const NestedSidebarLinks = ({
       href: "/pro/wp?section=" + item.post_name
     };
   }
-  const isCurrentLink = item.url.match(new RegExp(activeItemId + "$"));
+  const isCurrentLink =
+    item.url.match(new RegExp(activeItemId + "$")) ||
+    Number(item.object_id) === activeItemId;
   const isOpen = Object.keys(breadcrumbs).indexOf(item.object_id) !== -1;
   return (
     <div>
@@ -111,7 +113,9 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
   const menuItem = items.filter(
-    item => item.url.match(new RegExp(activeItemId + "$")) !== null
+    item =>
+      item.url.match(new RegExp(activeItemId + "$")) !== null ||
+      Number(item.object_id) === activeItemId
   )[0];
 
   let breadcrumbs = {};

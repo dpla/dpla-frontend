@@ -7,7 +7,8 @@ import HomeUser from "components/HomePageComponents/HomeUser";
 import {
   getCurrentUrl,
   extractSourceSetSlug,
-  addCommasToNumber
+  addCommasToNumber,
+  getMenuItemUrl
 } from "utilFunctions";
 
 import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
@@ -171,7 +172,7 @@ Home.getInitialProps = async ({ req }) => {
       .filter(item => item.menu_item_parent === indexPageItem.object_id)
       .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
       .map(async guide => {
-        const guideRes = await fetch(guide.url);
+        const guideRes = await fetch(getMenuItemUrl(guide));
         const guideJson = await guideRes.json();
         return Object.assign({}, guide, {
           slug: guide.post_name,

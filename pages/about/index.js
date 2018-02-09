@@ -14,7 +14,12 @@ import {
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
-import { getBreadcrumbs, getItemWithId, getItemWithName } from "utilFunctions";
+import {
+  getBreadcrumbs,
+  getItemWithId,
+  getItemWithName,
+  getMenuItemUrl
+} from "utilFunctions";
 
 import {
   classNames as contentClasses,
@@ -114,7 +119,10 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
     breadcrumbs.push({ title: pageItem.title });
   }
 
-  const pageRes = await fetch(pageItem.url);
+  // to support hand-made links we check to see if it is pointed to a wp page id
+  const url = getMenuItemUrl(pageItem);
+
+  const pageRes = await fetch(url);
   const pageJson = await pageRes.json();
   return {
     content: pageJson,
