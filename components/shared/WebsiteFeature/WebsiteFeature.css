@@ -45,6 +45,8 @@
   font-family: serifFont;
   font-weight: normal;
   font-size: 2.25rem;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
 
   @media (max-width: mediumRem) {
     font-size: 2rem;
