@@ -13,6 +13,7 @@ import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
 import getItemId from "./getItemId";
 import getItemWithId from "./getItemWithId";
 import getItemWithName from "./getItemWithName";
+import getMenuItemUrl from "./getMenuItemUrl";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
@@ -41,6 +42,7 @@ export {
   getItemId,
   getItemWithId,
   getItemWithName,
+  getMenuItemUrl,
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,

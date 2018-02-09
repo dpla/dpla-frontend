@@ -5,6 +5,8 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
 
+import { getMenuItemUrl } from "utilFunctions";
+
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import { classNames, stylesheet } from "css/pages/guide.css";
@@ -56,7 +58,7 @@ Guides.getInitialProps = async ({ query }) => {
   const menuItemsJson = await menuItemsRes.json();
   const guideSlug = query.guide;
   const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
-  const guideRes = await fetch(guide.url);
+  const guideRes = await fetch(getMenuItemUrl(guide));
   const guideJson = await guideRes.json();
 
   return {

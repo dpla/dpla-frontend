@@ -13,7 +13,8 @@ import {
   endsWith,
   getBreadcrumbs,
   getItemWithId,
-  getItemWithName
+  getItemWithName,
+  getMenuItemUrl
 } from "utilFunctions";
 
 import {
@@ -79,7 +80,7 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
   const pageItem = menuItems.find(item => item.post_name === pageName);
-  const pageRes = await fetch(pageItem.url);
+  const pageRes = await fetch(getMenuItemUrl(pageItem));
   const pageJson = await pageRes.json();
 
   // for the breadcrumbs

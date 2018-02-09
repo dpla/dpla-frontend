@@ -5,6 +5,8 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import GuideLink from "components/shared/GuideLink";
 
+import { getMenuItemUrl } from "utilFunctions";
+
 import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { TITLE } from "constants/guides";
@@ -71,7 +73,7 @@ Guides.getInitialProps = async () => {
     aboutMenuJson.items
       .filter(item => item.menu_item_parent === indexPageItem.object_id)
       .map(async guide => {
-        const guideRes = await fetch(guide.url);
+        const guideRes = await fetch(getMenuItemUrl(guide));
         const guideJson = await guideRes.json();
         return Object.assign({}, guide, {
           slug: guide.post_name,
