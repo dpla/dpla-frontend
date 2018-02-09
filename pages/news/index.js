@@ -77,6 +77,7 @@ class NewsPage extends React.Component {
                     defaultValue={keywords}
                     onChange={e => this.handleKeyword(e)}
                   />
+                  <input type="hidden" name="tag" value={currentTag} />
                   <Button
                     type="secondary"
                     size="medium"
