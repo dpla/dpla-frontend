@@ -179,7 +179,7 @@
   
   & a {
     display: inline-block;
-    margin: 0 1rem;
+    margin: 0.75rem 1rem 0;
     color: white;
     text-decoration: underline;
   }
