@@ -58,6 +58,10 @@
   content: ".";
 }
 
+.resultSummary {
+  margin: 0 0 1rem 0;
+}
+
 .newsItem {
   position: relative;
   margin-bottom: 3rem;
