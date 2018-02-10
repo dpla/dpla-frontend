@@ -7,6 +7,8 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
+import { formatDate } from "utilFunctions";
+
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
 import {
@@ -15,6 +17,7 @@ import {
   NEWS_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
+import { WORDPRESS_URL } from "constants/env";
 
 import {
   classNames as contentClasses,
@@ -25,7 +28,7 @@ import { classNames, stylesheet } from "css/pages/news.css";
 
 const { container } = utilClassNames;
 
-const PostPage = ({ url, content, menuItems }) => {
+const PostPage = ({ url, content, menuItems, author }) => {
   let hasTags = false;
   NEWS_TAGS.forEach(tag => {
     if (content.tags.indexOf(tag.id) !== -1) {
@@ -70,6 +73,28 @@ const PostPage = ({ url, content, menuItems }) => {
                   __html: content.title.rendered
                 }}
               />
+              <div className={classNames.resultSummary}>
+                <p>
+                  Posted by{" "}
+                  <Link
+                    prefetch
+                    href={{
+                      pathname: "/news",
+                      query: Object.assign(
+                        {},
+                        {
+                          author: author.id
+                        }
+                      )
+                    }}
+                  >
+                    <a title={`View more posts by ${author.name}`}>
+                      {author.name}
+                    </a>
+                  </Link>{" "}
+                  in {formatDate(content.date)}.
+                </p>
+              </div>
               {hasTags &&
                 <div className={classNames.tags}>
                   Published under:
@@ -80,14 +105,13 @@ const PostPage = ({ url, content, menuItems }) => {
                         ? <li key={tag.id}>
                             <Link
                               prefetch
-                              as={`/news?tag=${tag.name
-                                .toLowerCase()
-                                .replace(" ", "-")}`}
                               href={`/news?tag=${tag.name
                                 .toLowerCase()
                                 .replace(" ", "-")}`}
                             >
-                              <a>{tag.name}</a>
+                              <a title={`View more posts under ${tag.name}`}>
+                                {tag.name}
+                              </a>
                             </Link>
                           </li>
                         : null;
@@ -119,9 +143,16 @@ PostPage.getInitialProps = async ({ req, query, res }) => {
   const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
   const postJson = await postRes.json();
 
+  // get author info
+  const authorRes = await fetch(
+    `${WORDPRESS_URL}/wp-json/wp/v2/users/${postJson[0].author}`
+  );
+  const authorJson = await authorRes.json();
+
   return {
     content: postJson[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
-    menuItems: menuJson.items
+    menuItems: menuJson.items,
+    author: authorJson
   };
 };
 

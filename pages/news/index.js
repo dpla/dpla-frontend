@@ -19,6 +19,7 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
+import { WORDPRESS_URL } from "constants/env";
 
 import {
   classNames as contentClasses,
@@ -28,14 +29,38 @@ import { classNames as utilClassNames } from "css/utils.css";
 import { classNames, stylesheet } from "css/pages/news.css";
 
 class NewsPage extends React.Component {
-  state = {
-    keywords: ""
-  };
-
-  handleKeyword(e) {
+  componentWillMount() {
     this.setState({
-      keywords: e.target.value
+      keywords: this.props.url.query.k || "",
+      author: this.props.url.query.author || "",
+      authorName: this.props.author ? this.props.author.name : "",
+      tag: this.props.url.query.tag || ""
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.url.query.k !== this.state.keywords ||
+      nextProps.url.query.author !== this.state.author ||
+      (nextProps.author && nextProps.author.name !== this.state.authorName) ||
+      nextProps.url.query.tag !== this.state.tag
+    ) {
+      this.setState({
+        keywords: nextProps.url.query.k || "",
+        author: nextProps.url.query.author || "",
+        authorName: nextProps.author ? nextProps.author.name : "",
+        tag: nextProps.url.query.tag || ""
+      });
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const keywords = e.target.elements.k.value;
+    const url = `/news?k=${keywords}&tag=${this.state.tag}${this.state.author
+      ? `&author=${this.state.author}`
+      : ""}`;
+    document.location = url;
   }
 
   render() {
@@ -48,9 +73,19 @@ class NewsPage extends React.Component {
       newsPageCount,
       currentTag,
       currentPage,
-      keywords
+      keywords,
+      author
     } = this.props;
-
+    const resultSummary = `${this.state.authorName
+      ? " by " + this.state.authorName
+      : ""}${this.state.tag
+      ? " under " +
+          NEWS_TAGS.filter(
+            tag => tag.name.toLowerCase().replace(" ", "-") === this.state.tag
+          )[0].name
+      : ""}${this.state.keywords
+      ? " with keywords “" + this.state.keywords + "”"
+      : ""}`;
     return (
       <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
@@ -69,15 +104,26 @@ class NewsPage extends React.Component {
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentClasses.content}>
                 <h1>News Archive</h1>
-                <form action="/news" method="get" className={classNames.search}>
+                <form
+                  action="/news"
+                  method="get"
+                  className={classNames.search}
+                  onSubmit={e => this.handleSubmit(e)}
+                >
                   <input
                     type="text"
                     name="k"
                     className={classNames.keywordsInput}
-                    defaultValue={keywords}
-                    onChange={e => this.handleKeyword(e)}
+                    defaultValue={this.state.keywords}
                   />
-                  <input type="hidden" name="tag" value={currentTag} />
+                  {this.state.tag !== "" &&
+                    <input type="hidden" name="tag" value={this.state.tag} />}
+                  {this.state.author &&
+                    <input
+                      type="hidden"
+                      name="author"
+                      value={this.state.author}
+                    />}
                   <Button
                     type="secondary"
                     size="medium"
@@ -88,14 +134,22 @@ class NewsPage extends React.Component {
                   </Button>
                 </form>
                 <TagList
-                  currentTag={currentTag}
+                  currentTag={this.state.tag}
                   url={url}
-                  keywords={keywords}
+                  keywords={this.state.keywords}
+                  author={this.state.author}
                 />
-                {newsItems.length === 0 &&
-                  <div>
-                    No news found{keywords ? " for “" + keywords + "”" : ""}.
-                  </div>}
+                <div className={classNames.resultSummary}>
+                  {newsCount === 0 &&
+                    <p>
+                      No posts found{resultSummary}.
+                    </p>}
+                  {newsCount > 0 &&
+                    <p>
+                      {newsCount} post{newsCount !== 1 ? "s" : ""} found{resultSummary}.
+                      Showing page {currentPage} of {newsPageCount}.
+                    </p>}
+                </div>
                 {newsItems.map((item, index) => {
                   return (
                     <div key={index} className={classNames.newsItem}>
@@ -146,9 +200,19 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     item => item.post_name.indexOf("news") === 0
   );
 
+  // get author info
+  const author = query.author ? `&author=${query.author}` : "";
+  let authorJson = null;
+  if (author !== "") {
+    const authorRes = await fetch(
+      `${WORDPRESS_URL}/wp-json/wp/v2/users/${query.author}`
+    );
+    authorJson = await authorRes.json();
+  }
+
   // fetch news
   const keywords = query.k ? `&search=${query.k}` : "";
-  const page = query.page || 1;
+  let page = query.page || 1;
   const tags = query.tag
     ? [
         NEWS_TAGS.filter(
@@ -157,23 +221,35 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
       ]
     : [];
 
-  const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
-  const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}${keywords}`;
-  const newsRes = await fetch(url);
-
-  const newsItems = await newsRes.json();
-  const newsCount = newsRes.headers.get("X-WP-Total");
-  const newsPageCount = newsRes.headers.get("X-WP-TotalPages");
+  let error = true;
+  let maxRetries = 2;
+  let retries = 0;
+  let newsItems = [];
+  let newsCount = 0;
+  let newsPageCount = 0;
+  // because people mess up with the query string and WP doesnt provide a proper fallback with page
+  while (error && retries < maxRetries) {
+    const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
+    const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}${keywords}${author}`;
+    const newsRes = await fetch(url);
+    newsItems = await newsRes.json();
+    newsCount = newsRes.headers.get("X-WP-Total");
+    newsPageCount = newsRes.headers.get("X-WP-TotalPages");
+    error = newsItems.code !== "" ? true : false;
+    if (error) page = 1;
+    retries++;
+  }
 
   return {
     menuItems: menuJson.items,
     newsItems: newsItems,
     pageItem: pageItem,
     currentPage: page,
-    newsCount: newsCount,
+    newsCount: Number(newsCount),
     currentTag: query.tag,
-    newsPageCount: newsPageCount,
-    keywords: query.k
+    newsPageCount: Number(newsPageCount),
+    keywords: query.k,
+    author: authorJson
   };
 };
 

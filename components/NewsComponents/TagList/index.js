@@ -6,15 +6,13 @@ import { SITE_ENV } from "constants/env";
 
 import { classNames, stylesheet } from "./TagList.css";
 
-const TagList = ({ url, currentTag, keywords }) =>
+const TagList = ({ url, currentTag, keywords, author }) =>
   <ul className={classNames.list}>
-    {currentTag &&
+    {(currentTag || author !== "" || keywords !== "") &&
       <li>
-        <Link prefetch as="/news" href="/news">
-          <a>All News</a>
-        </Link>
+        <a href="/news">All News</a>
       </li>}
-    {!currentTag && <li>All News</li>}
+    {!(currentTag || author !== "" || keywords !== "") && <li>All News</li>}
     {NEWS_TAGS.map(tag => {
       const id = tag.id;
       const markup = tag.name.toLowerCase().replace(" ", "-") !== currentTag
@@ -24,12 +22,13 @@ const TagList = ({ url, currentTag, keywords }) =>
               pathname: url.pathname,
               query: Object.assign({}, url.query, {
                 tag: tag.name.toLowerCase().replace(" ", "-"),
+                k: keywords,
                 page: 1,
-                k: keywords
+                author: author
               })
             }}
           >
-            <a>{tag.name}</a>
+            <a title={`View more posts under ${tag.name}`}>{tag.name}</a>
           </Link>
         : <span>{tag.name}</span>;
       return <li key={id}>{markup}</li>;
