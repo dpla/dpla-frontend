@@ -54,7 +54,7 @@ const NavigationUser = ({ className, style, classNames, isHome }) =>
     <ul className={`${classNames.links} ${classNames.tertiaryLinks}`}>
       <li>
         <Link href="//pro.dp.la">
-          <a>Pro Community</a>
+          <a>DPLA Pro</a>
         </Link>
       </li>
     </ul>

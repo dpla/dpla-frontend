@@ -92,7 +92,7 @@ const FooterUser = () =>
         <ul>
           <li>
             <Link href="//pro.dp.la">
-              <a>DPLA Pro Community Site</a>
+              <a>DPLA Pro</a>
             </Link>
           </li>
         </ul>
