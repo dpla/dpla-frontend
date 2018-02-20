@@ -28,7 +28,7 @@ const TagList = ({ url, currentTag, keywords, author }) =>
               })
             }}
           >
-            <a title={`View more posts under ${tag.name}`}>{tag.name}</a>
+            <a title={`View only posts under ${tag.name}`}>{tag.name}</a>
           </Link>
         : <span>{tag.name}</span>;
       return <li key={id}>{markup}</li>;
