@@ -7,7 +7,8 @@ import {
   decodeHTMLEntities,
   getBreadcrumbs,
   getItemWithId,
-  getItemWithName
+  getItemWithName,
+  endsWith
 } from "utilFunctions";
 
 import { classNames, stylesheet } from "./Sidebar.css";
@@ -38,7 +39,9 @@ const NestedSidebarLinks = ({
   const isGuide =
     item.menu_item_parent === GUIDES_PARENT_ID || item.ID === GUIDES_PARENT_ID;
   const children = items.filter(
-    child => child.menu_item_parent === item.object_id
+    child =>
+      child.menu_item_parent === item.object_id ||
+      endsWith(item.guid, "?p=" + child.menu_item_parent)
   );
   // get route to the top of this item
   const crumbs = getBreadcrumbs({
@@ -77,8 +80,11 @@ const NestedSidebarLinks = ({
   }
   const isCurrentLink =
     item.url.match(new RegExp(activeItemId + "$")) ||
-    Number(item.object_id) === activeItemId;
-  const isOpen = Object.keys(breadcrumbs).indexOf(item.object_id) !== -1;
+    Number(item.object_id) === activeItemId ||
+    endsWith(item.guid, "?p=" + activeItemId);
+  const isOpen =
+    Object.keys(breadcrumbs).indexOf(item.object_id) !== -1 ||
+    Object.keys(breadcrumbs).indexOf(item.guid.split("?p=")[1]) !== -1;
   return (
     <div>
       <SidebarLink
