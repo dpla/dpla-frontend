@@ -1,7 +1,7 @@
 import React from "react";
 import { classNames, stylesheet } from "./MoreWaysToContact.css";
 
-const ContactForm = () =>
+const MoreWaysToContact = () =>
   <div className={classNames.contactForm}>
     <h2 className={classNames.header}>More Ways To Contact Us</h2>
     <table className={classNames.contentTable}>
@@ -79,6 +79,11 @@ const ContactForm = () =>
                   Genealogy List
                 </a>
               </li>
+              <li>
+                <a href="http://eepurl.com/djXjZb">
+                  Ebooks List
+                </a>
+              </li>
             </ul>
           </td>
         </tr>
@@ -87,4 +92,4 @@ const ContactForm = () =>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
-export default ContactForm;
+export default MoreWaysToContact;

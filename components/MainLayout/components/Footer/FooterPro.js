@@ -26,6 +26,11 @@ const FooterPro = () =>
               <a>Events</a>
             </Link>
           </li>
+          <li>
+            <Link href="/contact-us" as="/contact">
+              <a>Contact Us</a>
+            </Link>
+          </li>
         </ul>
       </div>
       <div className={`${classNames.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
