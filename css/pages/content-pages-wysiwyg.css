@@ -81,6 +81,10 @@
   & h2 {
     font-weight: normal;
     font-size: 1.875rem;
+    margin-top: 3rem;
+  }
+
+  & h2:first-child {
     margin-top: 1rem;
   }
 
