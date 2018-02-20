@@ -84,7 +84,7 @@ const HomePro = ({ url, news, content }) =>
           <Link as="/ebooks" href="/pro/wp?section=ebooks">
             <a>
               <IconComponent className={classNames.icon} name="ebooks" />
-              DPLA and Ebooks
+              Ebooks
             </a>
           </Link>
         </li>
