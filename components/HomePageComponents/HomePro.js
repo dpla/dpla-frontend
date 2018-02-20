@@ -46,10 +46,7 @@ const HomePro = ({ url, news, content }) =>
           </Link>
         </li>
         <li>
-          <Link
-            as="/hubs/prospective-hubs"
-            href="/pro/wp?section=prospective-hubs"
-          >
+          <Link as="/prospective-hubs" href="/pro/wp?section=prospective-hubs">
             <a>
               <IconComponent className={classNames.icon} name="prospective" />
               Prospective Hubs
