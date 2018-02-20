@@ -211,14 +211,15 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
                 breadcrumbs={breadcrumbs}
               />
             </li>}
-          <li>
-            <SidebarLink
-              title="News"
-              section="news"
-              isCurrentLink={route.pathname.indexOf("/news") === 0}
-              linkObject={{ as: "/news", href: "/news" }}
-            />
-          </li>
+          {SITE_ENV === "user" &&
+            <li>
+              <SidebarLink
+                title="News"
+                section="news"
+                isCurrentLink={route.pathname.indexOf("/news") === 0}
+                linkObject={{ as: "/news", href: "/news" }}
+              />
+            </li>}
           <li>
             <SidebarLink
               title="Contact Us"
