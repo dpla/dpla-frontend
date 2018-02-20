@@ -28,6 +28,7 @@ const HomePro = ({ url, news, content }) =>
       </div>
     </div>
     {content.acf.feature &&
+      content.acf.feature.title !== "" &&
       <WebsiteFeature
         title={content.acf.feature.title}
         text={content.acf.feature.text}
