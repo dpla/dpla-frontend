@@ -60,12 +60,15 @@ const ProMenuPage = ({
                   className={contentClasses.bannerImage}
                 />
                 <HeadingRule />
-                <h1 className={contentClasses.title}>{page.title.rendered}</h1>
+                <h1
+                  className={contentClasses.title}
+                  dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+                />
               </div>}
             {/* for non fancy pages, a normal heading */}
             {!illustration &&
               breadcrumbs.length !== 0 &&
-              <h1>{page.title.rendered}</h1>}
+              <h1 dangerouslySetInnerHTML={{ __html: page.title.rendered }} />}
             <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
           </div>
         </div>

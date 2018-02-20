@@ -47,7 +47,7 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
         <div className="col-xs-12 col-md-7">
           <div id="main" role="main" className={contentClasses.content}>
             <WPEdit page={content} url={url} />
-            <h1>{content.title.rendered}</h1>
+            <h1 dangerouslySetInnerHTML={{ __html: content.title.rendered }} />
             <div
               dangerouslySetInnerHTML={{ __html: content.content.rendered }}
             />
