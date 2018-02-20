@@ -170,7 +170,9 @@ const ContentAndMetadata = ({ source }) => {
                       src={link}
                       className={classNames.linkIcon}
                     />
-                    <span className={classNames.linkText}>View in DPLA</span>
+                    <span className={classNames.linkText}>
+                      View item information
+                    </span>
                   </a>
                 </div>}
               {source.mainEntity[0]["dct:references"] &&

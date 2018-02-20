@@ -173,7 +173,7 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
               as={`/item/${itemId}`}
               href={`/item?itemId=${itemId}`}
             >
-              <a className={classNames.viewItemLink}>View item in DPLA</a>
+              <a className={classNames.viewItemLink}>View item information</a>
             </Link>}
           <div
             className={classNames.caption}
