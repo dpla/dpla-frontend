@@ -105,12 +105,16 @@ app
         });
         const data = await gRes.json();
 
+        // email
+        const to_email = subject !== "Ebooks" ? "info@dp.la" : "ebooks@dp.la";
+        const from_email = "info@dp.la";
+
         // send email
         const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n\n\nThis message has also been recorded in the spreadsheet:\nhttps://docs.google.com/spreadsheets/d/${process
           .env.GOOGLE_CONTACT_SHEET_ID}/edit#gid=327438098`;
         await serverFunctions.sendEmail(
-          "info@dp.la",
-          "info@dp.la",
+          from_email,
+          to_email,
           `DPLA Site Contact: ${subject}`,
           email_message
         );

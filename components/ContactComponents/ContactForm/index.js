@@ -209,6 +209,7 @@ class ContactForm extends React.Component {
                   Subject (required)
                 </span>
                 <Select
+                  id="contact-subject"
                   clearable={false}
                   searchable={false}
                   value={this.state.subject}
@@ -249,7 +250,7 @@ class ContactForm extends React.Component {
                       label: "Education and Primary Source Sets"
                     },
                     { value: "Community Reps", label: "Community Reps" },
-                    { value: "Open eBooks", label: "Open eBooks" },
+                    { value: "Ebooks", label: "Ebooks" },
                     { value: "Press inquiry", label: "Press inquiry" }
                   ]}
                 />
