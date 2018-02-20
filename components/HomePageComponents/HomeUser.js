@@ -31,6 +31,7 @@ const HomeUser = ({
     />
     <WPEdit page={content} url={url} />
     {content.acf.feature &&
+      content.acf.feature.title !== "" &&
       <WebsiteFeature
         title={content.acf.feature.title}
         text={content.acf.feature.text}

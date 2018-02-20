@@ -31,6 +31,7 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
         <h1>{page.title.rendered}</h1>
       </div>
       {page.acf.feature &&
+        page.acf.feature.title !== "" &&
         <WebsiteFeature
           title={page.acf.feature.title}
           text={page.acf.feature.text}
