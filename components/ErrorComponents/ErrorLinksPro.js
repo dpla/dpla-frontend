@@ -24,7 +24,7 @@ const ErrorLinksPro = () =>
     <li>
       engage with our{" "}
       <Link prefetch href="/pro/wp/hubs?section=hubs" as="/hubs">
-        <a>Hubs Network</a>
+        <a>Hub Network</a>
       </Link>
     </li>
     <li>
