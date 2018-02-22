@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
+import { USER_BASE_URL } from "constants/env";
+
 const NavigationPro = ({ className, style, classNames, isHome }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
@@ -39,12 +41,12 @@ const NavigationPro = ({ className, style, classNames, isHome }) =>
     <span className={classNames.divider} />
     <ul className={`${classNames.links} ${classNames.tertiaryLinks}`}>
       <li>
-        <Link href="//beta.dp.la">
+        <Link href={USER_BASE_URL}>
           <a>DPLA Main Site</a>
         </Link>
       </li>
       <li>
-        <Link href="//beta.dp.la/news">
+        <Link href={USER_BASE_URL + "/news"}>
           <a>News</a>
         </Link>
       </li>
