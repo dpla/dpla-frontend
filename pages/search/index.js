@@ -86,14 +86,14 @@ Search.getInitialProps = async ({ query, req }) => {
   const sort_order = query.sort_order || "";
 
   const facetQueries = possibleFacets
-    .map(
-      facet =>
-        query[mapFacetsToURLPrettified[facet]]
-          ? `${facet}=${splitAndURIEncodeFacet(
-              query[mapFacetsToURLPrettified[facet]]
-            )}`
-          : ""
-    )
+    .map(facet => {
+      if (query[mapFacetsToURLPrettified[facet]]) {
+        return `${facet}=${splitAndURIEncodeFacet(
+          query[mapFacetsToURLPrettified[facet]]
+        )}`;
+      }
+      return "";
+    })
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 

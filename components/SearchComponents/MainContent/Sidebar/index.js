@@ -3,9 +3,12 @@ import Link from "next/link";
 import { classNames, stylesheet } from "./Sidebar.css";
 
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
-import prettifiedFacetMap from "./prettifiedFacetMap";
 import Accordion from "components/shared/Accordion";
-import { possibleFacets, mapFacetsToURLPrettified } from "constants/search";
+import {
+  possibleFacets,
+  mapFacetsToURLPrettified,
+  prettifiedFacetMap
+} from "constants/search";
 import escapeForRegex from "utilFunctions/escapeForRegex";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
@@ -68,28 +71,40 @@ class Sidebar extends React.Component {
       <div className={classNames.sidebar}>
         <h2>Refine your search</h2>
         <Accordion
-          items={Object.keys(facets).map((key, i) => ({
-            name: prettifiedFacetMap[key],
-            // first two items should be expanded as well as any items
-            // with an active subitem found in the query string
-            active:
-              i < 2 ||
-                facets[key].terms.some(termObject =>
-                  isFacetValueInQuery(key, termObject.term)
-                ),
-            subitems: facets[key].terms.map(termObject => {
+          items={Object.keys(facets).map((key, i) => {
+            if (key.indexOf("sourceResource.date") === -1) {
               return {
-                content: possibleFacets.includes(key)
-                  ? <FacetLink
-                      route={route}
-                      termObject={termObject}
-                      queryKey={mapFacetsToURLPrettified[key]}
-                      disabled={isFacetValueInQuery(key, termObject.term)}
-                    />
-                  : ""
+                name: prettifiedFacetMap[key],
+                // first two items should be expanded as well as any items
+                // with an active subitem found in the query string
+                active:
+                  i < 2 ||
+                    facets[key].terms.some(termObject =>
+                      isFacetValueInQuery(key, termObject.term)
+                    ),
+                type: "term",
+                subitems: facets[key].terms.map(termObject => {
+                  return {
+                    content: possibleFacets.includes(key)
+                      ? <FacetLink
+                          route={route}
+                          termObject={termObject}
+                          queryKey={mapFacetsToURLPrettified[key]}
+                          disabled={isFacetValueInQuery(key, termObject.term)}
+                        />
+                      : ""
+                  };
+                })
               };
-            })
-          }))}
+            } else {
+              return {
+                name: prettifiedFacetMap[key],
+                active: true,
+                type: "date",
+                subitems: []
+              };
+            }
+          })}
         />
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>

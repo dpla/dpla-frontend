@@ -24,6 +24,7 @@ import removeEndPunctuation from "./removeEndPunctuation";
 import removeQueryParams from "./removeQueryParams";
 import readMyRights from "./readMyRights";
 import showMoreDescription from "./showMoreDescription";
+import titleCase from "./titleCase";
 import truncateString from "./truncateString";
 
 export {
@@ -53,5 +54,6 @@ export {
   removeEndPunctuation,
   removeQueryParams,
   showMoreDescription,
+  titleCase,
   truncateString
 };

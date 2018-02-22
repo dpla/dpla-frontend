@@ -3,6 +3,7 @@
 .subitems {
   height: auto;
   background-color: warmerBackgroundColor;
+  font-size: 0.875rem;
   padding: 0.5rem 0.7rem 0.7rem;
   max-height: 18rem;
   overflow-y: scroll;
@@ -52,4 +53,8 @@
 .subtractIcon {
   height: 3px;
   width: 15px;
+}
+
+.dateButton {
+  display: inline-block;
 }

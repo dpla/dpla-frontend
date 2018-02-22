@@ -132,6 +132,10 @@
   }
 }
 
+.exploreLink {
+  display: inline-block;
+}
+
 .exploreButton {
   text-align: center;
   margin: 1rem;
