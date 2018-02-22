@@ -77,8 +77,33 @@ const FooterPro = () =>
         <h2 className={classNames.linkHeader}>DPLA</h2>
         <ul>
           <li>
-            <Link href="//beta.dp.la">
-              <a>DPLA Main Site</a>
+            <Link href={USER_BASE_URL}>
+              <a>DPLA Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={USER_BASE_URL + "/primary-source-sets"}>
+              <a>Primary Source Sets</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={USER_BASE_URL + "/browse-by-partner"}>
+              <a>Browse by Partner</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={USER_BASE_URL + "/browse-by-topic"}>
+              <a>Browse by Topic</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={USER_BASE_URL + "/exhibitions"}>
+              <a>Exhibitions</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={USER_BASE_URL + "/search"}>
+              <a>Search</a>
             </Link>
           </li>
         </ul>

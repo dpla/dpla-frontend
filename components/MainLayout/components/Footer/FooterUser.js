@@ -94,7 +94,47 @@ const FooterUser = () =>
         <ul>
           <li>
             <Link href={PRO_BASE_URL}>
-              <a>DPLA Pro</a>
+              <a>DPLA Pro Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/community-reps"}>
+              <a>Community Reps</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/developers"}>
+              <a>Developers</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/ebooks"}>
+              <a>Ebooks</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/education"}>
+              <a>Education</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/hubs"}>
+              <a>Hub Network</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/prospective-hubs"}>
+              <a>Prospective Hubs</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/projects"}>
+              <a>Projects</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/events"}>
+              <a>Events</a>
             </Link>
           </li>
         </ul>
