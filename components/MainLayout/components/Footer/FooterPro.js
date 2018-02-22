@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import Button from "components/shared/Button";
 
+import { USER_BASE_URL } from "constants/env";
+
 import { classNames, stylesheet } from "./Footer.css";
 
 const FooterPro = () =>

@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import Button from "components/shared/Button";
 
+import { PRO_BASE_URL } from "constants/env";
+
 import { classNames, stylesheet } from "./Footer.css";
 
 const FooterUser = () =>
@@ -91,7 +93,7 @@ const FooterUser = () =>
         <h2 className={classNames.linkHeader}>DPLA Pro</h2>
         <ul>
           <li>
-            <Link href="//pro.dp.la">
+            <Link href={PRO_BASE_URL}>
               <a>DPLA Pro</a>
             </Link>
           </li>
