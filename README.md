@@ -29,6 +29,8 @@ The system makes extensive use of environment variables to decouple the differen
 - `OMEKA_URL`: the Omeka server base URL
 - `THUMB_SERVER`: the image thumbnail server URL 
 - `PSS_BASE_URL`: the primary source sets application API base URL
+- `USER_BASE_URL`: base URL for user site to allow for links from pro to user site (also exposed in `constants/env.js`)
+- `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
 - `SITE_ENV`: the environment's type, `user` or `pro` (also exposed in `constants/env.js`)
 - `NODE_ENV`: the node environment, `development` or `production`
 - `GOOGLE_CONTACT_SHEET_ID`: the Google spreadsheet ID where **contact form** responses are stored in

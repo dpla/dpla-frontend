@@ -23,6 +23,13 @@ module.exports = (app, server) => {
     );
   });
 
+  // allow relative /news links in pro site
+  server.get("/news/*", (req, res) => {
+    var contentStart = req.url.indexOf("/news");
+    var newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
+    res.redirect(newPath);
+  });
+
   // for hubs
   server.get("/hubs", (req, res) => {
     const actualPage = "/pro/wp/hubs";
