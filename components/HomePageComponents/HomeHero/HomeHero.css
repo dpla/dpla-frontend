@@ -61,7 +61,7 @@
   font-size: 1.5625rem;
   font-weight: normal;
   line-height: 1.25;
-  padding: 0 1rem;
+  padding: 0;
   text-align: center;
 
   @media (min-width: smallRem) {
