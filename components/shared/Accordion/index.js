@@ -68,7 +68,10 @@ class Accordion extends React.Component {
                     )}
                   </ul>}
                 {item.type === "date" &&
-                  <div id={`facets_${i}`} className={classNames.subitems}>
+                  <div
+                    id={`facets_${i}`}
+                    className={`${classNames.subitems} ${classNames.date}`}
+                  >
                     {item.subitems}
                   </div>}
               </li>
