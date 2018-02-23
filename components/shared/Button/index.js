@@ -74,11 +74,16 @@ const Button = ({
       break;
   }
 
+  let linkProps = {};
+  if (as) linkProps["as"] = as;
+  if (prefetch) linkProps["prefetch"] = prefetch;
+  if (title) linkProps["title"] = title;
+
   return (
     <div className={className}>
       {url
-        ? <Link prefetch={prefetch} href={url} as={as}>
-            <a {...props} title={title} className={buttonClasses} style={style}>
+        ? <Link href={url} {...linkProps}>
+            <a {...props} className={buttonClasses} style={style}>
               {children}
             </a>
           </Link>

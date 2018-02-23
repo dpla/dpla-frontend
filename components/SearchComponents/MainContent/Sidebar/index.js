@@ -1,15 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./Sidebar.css";
 
-import addCommasToNumber from "utilFunctions/addCommasToNumber";
+import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
+
 import {
   possibleFacets,
   mapFacetsToURLPrettified,
   prettifiedFacetMap
 } from "constants/search";
-import escapeForRegex from "utilFunctions/escapeForRegex";
+import {
+  addCommasToNumber,
+  escapeForRegex,
+  removeQueryParams
+} from "utilFunctions";
+
+import { classNames, stylesheet } from "./Sidebar.css";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
@@ -48,16 +54,133 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
         </a>
       </Link>;
 
+class DateFacet extends React.Component {
+  componentWillMount() {
+    this.setState({
+      after: this.props.after || "",
+      before: this.props.before || ""
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.after !== this.state.after ||
+      nextProps.before !== this.state.before
+    ) {
+      this.setState({
+        after: nextProps.after || "",
+        before: nextProps.before || ""
+      });
+    }
+  }
+
+  cleanText(target, compare) {
+    let year = target.value;
+    if (isNaN(target.value)) {
+      year = compare;
+      target.value = year;
+    }
+    return year;
+  }
+
+  handleAfterText = event => {
+    let year = this.cleanText(event.target, this.state.after);
+    this.setState({
+      before: this.state.before,
+      after: year
+    });
+  };
+
+  validateAfter = event => {
+    let year = this.cleanText(event.target, this.state.after);
+    if (year != "" && this.state.before !== "" && year > this.state.before) {
+      year = this.state.before;
+      this.setState({
+        before: this.state.before,
+        after: year
+      });
+    }
+  };
+
+  handleBeforeText = event => {
+    let year = this.cleanText(event.target, this.state.before);
+    this.setState({
+      after: this.state.after,
+      before: year
+    });
+  };
+
+  validateBefore = event => {
+    let year = this.cleanText(event.target, this.state.before);
+    if (year != "" && this.state.after !== "" && year < this.state.after) {
+      year = this.state.after;
+      this.setState({
+        after: this.state.after,
+        before: year
+      });
+    }
+  };
+
+  render() {
+    let dateProps = {};
+    if (this.state.after !== "") dateProps.after = this.state.after;
+    if (this.state.before !== "") dateProps.before = this.state.before;
+    return (
+      <div className={classNames.dateRangeFacet}>
+        <label className={classNames.dateFacet} htmlFor="after-date">
+          <span>After</span>
+          <input
+            id="after-date"
+            type="text"
+            value={this.state.after}
+            onChange={e => this.handleAfterText(e)}
+            onBlur={e => this.validateAfter(e)}
+          />
+        </label>
+        <label className={classNames.dateFacet} htmlFor="before-date">
+          <span>Before</span>
+          <input
+            id="before-date"
+            type="text"
+            value={this.state.before}
+            onChange={e => this.handleBeforeText(e)}
+            onBlur={e => this.validateBefore(e)}
+          />
+        </label>
+        <Button
+          type="secondary"
+          className={classNames.dateButton}
+          url={{
+            pathname: this.props.route.pathname,
+            query: Object.assign(
+              {},
+              removeQueryParams(this.props.route.query, ["after", "before"]),
+              dateProps,
+              {
+                page: 1
+              }
+            )
+          }}
+        >
+          Update
+        </Button>
+      </div>
+    );
+  }
+}
+
 class Sidebar extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
       possibleFacets.some(
         facet => nextProps.facets[facet] !== this.props.facets[facet]
-      )
+      ) ||
+      nextProps.query !== this.props.query
     ) {
       this.forceUpdate();
     }
   }
+
   render() {
     const { route, facets } = this.props;
     const isFacetValueInQuery = (facetKey, value) =>
@@ -67,6 +190,7 @@ class Sidebar extends React.Component {
       new RegExp('"' + escapeForRegex(value) + '"').test(
         route.query[mapFacetsToURLPrettified[facetKey]]
       );
+    let hasDates = false;
     return (
       <div className={classNames.sidebar}>
         <h2>Refine your search</h2>
@@ -97,12 +221,20 @@ class Sidebar extends React.Component {
                 })
               };
             } else {
-              return {
-                name: prettifiedFacetMap[key],
-                active: true,
-                type: "date",
-                subitems: []
-              };
+              if (!hasDates) {
+                hasDates = true; // because there's facets for after and before we dont want two date ranges
+                let dateProps = {};
+                if (route.query.after) dateProps.after = route.query.after;
+                if (route.query.before) dateProps.before = route.query.before;
+                return {
+                  name: prettifiedFacetMap[key],
+                  active: true,
+                  type: "date",
+                  subitems: <DateFacet route={route} {...dateProps} />
+                };
+              } else {
+                return "";
+              }
             }
           })}
         />

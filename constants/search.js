@@ -1,8 +1,9 @@
 export const possibleFacets = [
   "sourceResource.type",
   "sourceResource.subject.name",
-  "sourceResource.spatial.name",
   "sourceResource.date.begin",
+  "sourceResource.date.end",
+  "sourceResource.spatial.name",
   "sourceResource.language.name",
   "dataProvider",
   "provider.name"
@@ -11,8 +12,9 @@ export const possibleFacets = [
 export const mapFacetsToURLPrettified = {
   "sourceResource.type": "type",
   "sourceResource.subject.name": "subject",
+  "sourceResource.date.begin": "after",
+  "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
-  "sourceResource.date.begin": "date",
   "sourceResource.language.name": "language",
   dataProvider: "provider",
   "provider.name": "partner"
@@ -21,8 +23,9 @@ export const mapFacetsToURLPrettified = {
 export const mapURLPrettifiedFacetsToUgly = {
   type: "sourceResource.type",
   subject: "sourceResource.subject.name",
+  after: "sourceResource.date.begin",
+  before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
-  date: "sourceResource.date.begin",
   language: "sourceResource.language.name",
   provider: "dataProvider",
   partner: "provider.name"
@@ -32,8 +35,9 @@ export const prettifiedFacetMap = {
   "sourceResource.type": "Type",
   "sourceResource.subject.name": "Subject",
   "sourceResource.spatial.name": "Location",
-  "sourceResource.language.name": "Language",
   "sourceResource.date.begin": "Date",
+  "sourceResource.date.end": "Date",
+  "sourceResource.language.name": "Language",
   dataProvider: "Contributing Institution",
   "provider.name": "Partner"
 };
