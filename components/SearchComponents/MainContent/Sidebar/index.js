@@ -128,7 +128,7 @@ class DateFacet extends React.Component {
     return (
       <div className={classNames.dateRangeFacet}>
         <label className={classNames.dateFacet} htmlFor="after-date">
-          <span>After Year</span>
+          <span>Between Year</span>
           <input
             id="after-date"
             type="numeric"
@@ -138,7 +138,7 @@ class DateFacet extends React.Component {
           />
         </label>
         <label className={classNames.dateFacet} htmlFor="before-date">
-          <span>Before Year</span>
+          <span>and Year</span>
           <input
             id="before-date"
             type="numeric"
