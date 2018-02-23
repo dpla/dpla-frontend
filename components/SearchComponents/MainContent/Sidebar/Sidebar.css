@@ -38,15 +38,24 @@
   text-align: right;
 }
 
+.dateRangeFacet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .dateFacet {
-  display: block;
   margin-bottom: 0.5rem;
 
   & span {
     display: block;
   }
+
+  & input {
+    border: 0.05rem solid dimmedTextColor;
+  }
 }
 
 .dateButton {
-  display: inline-block;
+  align-self: flex-end;
 }

@@ -8,6 +8,10 @@
   max-height: 18rem;
   overflow-y: scroll;
   transition: all 0.2s ease-in-out;
+
+  &.date {
+    overflow-y: auto;
+  }
 }
 
 .inactive .subitems {

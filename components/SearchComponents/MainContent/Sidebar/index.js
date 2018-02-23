@@ -128,20 +128,20 @@ class DateFacet extends React.Component {
     return (
       <div className={classNames.dateRangeFacet}>
         <label className={classNames.dateFacet} htmlFor="after-date">
-          <span>After</span>
+          <span>On or After</span>
           <input
             id="after-date"
-            type="text"
+            type="numeric"
             value={this.state.after}
             onChange={e => this.handleAfterText(e)}
             onBlur={e => this.validateAfter(e)}
           />
         </label>
         <label className={classNames.dateFacet} htmlFor="before-date">
-          <span>Before</span>
+          <span>On or Before</span>
           <input
             id="before-date"
-            type="text"
+            type="numeric"
             value={this.state.before}
             onChange={e => this.handleBeforeText(e)}
             onBlur={e => this.validateBefore(e)}
