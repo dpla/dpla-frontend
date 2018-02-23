@@ -1,12 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./FiltersList.css";
-import { classNames as utilClassNames } from "css/utils.css";
+
 import {
   possibleFacets,
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
+import { removeQueryParams } from "utilFunctions";
+
+import { classNames, stylesheet } from "./FiltersList.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const closeIcon = "/static/images/close-white.svg";
 
@@ -36,7 +39,7 @@ const Filter = ({ name, queryKey, route }) =>
       prefetch
       href={{
         pathname: route.pathname,
-        query: Object.assign({}, clearFacet(route.query, queryKey, name))
+        query: Object.assign({}, removeQueryParams(route.query, [queryKey]))
       }}
     >
       <a
@@ -71,16 +74,22 @@ class FiltersList extends React.Component {
                   ) {
                     return (
                       query[queryKey] &&
-                      query[queryKey]
-                        .split("|")
-                        .map(paramValue =>
+                      query[queryKey].split("|").map(paramValue => {
+                        const name = queryKey !== "after" &&
+                          queryKey !== "before"
+                          ? paramValue.replace(/"/g, "")
+                          : queryKey === "after"
+                            ? "After: " + paramValue
+                            : "Before: " + paramValue;
+                        return (
                           <Filter
                             route={this.props.route}
                             queryKey={queryKey}
                             key={index}
-                            name={paramValue.replace(/"/g, "")}
+                            name={name}
                           />
-                        )
+                        );
+                      })
                     );
                   } else {
                     return null;

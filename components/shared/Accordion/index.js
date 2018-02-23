@@ -1,7 +1,5 @@
 import React from "react";
 
-import Button from "shared/Button";
-
 import { stylesheet, classNames } from "./Accordion.css";
 
 const addIcon = "/static/images/add.svg";
@@ -36,7 +34,6 @@ class Accordion extends React.Component {
     return (
       <ul>
         {this.state.items.map((item, i) => {
-          console.log(item.type);
           if (
             (item.type === "term" && item.subitems.length) ||
             item.type === "date"
@@ -72,15 +69,7 @@ class Accordion extends React.Component {
                   </ul>}
                 {item.type === "date" &&
                   <div id={`facets_${i}`} className={classNames.subitems}>
-                    <div>
-                      From: [Year]
-                    </div>
-                    <div>
-                      To: [Year]
-                    </div>
-                    <Button type="secondary" className={classNames.dateButton}>
-                      Update
-                    </Button>
+                    {item.subitems}
                   </div>}
               </li>
             );

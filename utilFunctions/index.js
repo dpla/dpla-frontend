@@ -1,6 +1,7 @@
 import addCommasToNumber from "./addCommasToNumber";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import endsWith from "./endsWith";
+import escapeForRegex from "./escapeForRegex";
 import extractItemId from "./extractItemId";
 import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
@@ -31,6 +32,7 @@ export {
   addCommasToNumber,
   decodeHTMLEntities,
   endsWith,
+  escapeForRegex,
   extractItemId,
   extractSourceId,
   extractSourceSetSlug,

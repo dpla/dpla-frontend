@@ -37,3 +37,16 @@
   flex-basis: 25%;
   text-align: right;
 }
+
+.dateFacet {
+  display: block;
+  margin-bottom: 0.5rem;
+
+  & span {
+    display: block;
+  }
+}
+
+.dateButton {
+  display: inline-block;
+}
