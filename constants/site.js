@@ -19,8 +19,6 @@ export const DPLA_CONTACT_EMAIL = "education@dp.la";
 export const PSS_SUGGESTION_URL =
   "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
 
-export const MAILCHIMP_API_BASE_URL =
-  "https://us4.api.mailchimp.com/3.0/lists/";
 export const MAILCHIMP_LISTS = {
   NEWS: "1ee988aadc",
   EDUCATION: "de870d2705",
