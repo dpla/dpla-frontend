@@ -5,7 +5,7 @@ export const possibleFacets = [
   "sourceResource.date.end",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
-  "dataProvider",
+  "admin.contributingInstitution",
   "provider.name"
 ];
 
@@ -16,7 +16,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  dataProvider: "provider",
+  "admin.contributingInstitution": "provider",
   "provider.name": "partner"
 };
 
@@ -27,7 +27,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
-  provider: "dataProvider",
+  provider: "admin.contributingInstitution",
   partner: "provider.name"
 };
 
@@ -38,7 +38,7 @@ export const prettifiedFacetMap = {
   "sourceResource.date.begin": "Date",
   "sourceResource.date.end": "Date",
   "sourceResource.language.name": "Language",
-  dataProvider: "Contributing Institution",
+  "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner"
 };
 
