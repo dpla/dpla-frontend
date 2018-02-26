@@ -39,6 +39,7 @@ The system makes extensive use of environment variables to decouple the differen
 - `GOOGLE_SECRET`: Google authentication secret
 - `GOOGLE_TOKEN`: Google authentication token
 - `WORDPRESS_URL`: the headless WordPress API base URL (also exposed in `constants/env.js`)
+- `MAILCHIMP_KEY`: the MailChimp list service API key
 
 ## CSS
 
