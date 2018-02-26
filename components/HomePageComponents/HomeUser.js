@@ -4,6 +4,7 @@ import HomeHero from "./HomeHero";
 import HomePageSlider from "./HomePageSlider";
 import DPLAUsers from "./DPLAUsers";
 import NewsLane from "shared/NewsLane";
+import StayInformed from "shared/StayInformed";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
@@ -60,6 +61,7 @@ const HomeUser = ({
       />}
     <DPLAUsers guides={guides} />
     <NewsLane title="DPLA News" items={news} />
+    <StayInformed />
     {/* <SocialMedia /> */}
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: userStylesheet }} />

@@ -60,6 +60,42 @@ app
       res.redirect(newPath);
     });
 
+    // mailchimp lists endpoint
+    server.post("/m", async (req, res) => {
+      if (!req.body) return res.sendStatus(400);
+      if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
+        return res.sendStatus(400);
+
+      const email = req.body.email || "";
+      const list_id = req.body.id || "";
+
+      if (list_id === "") return res.sendStatus(400);
+
+      try {
+        const url = `https://us4.api.mailchimp.com/3.0/lists/${list_id}/members`;
+
+        const body = JSON.stringify({
+          email_address: email,
+          status: "subscribed"
+        });
+
+        const mRes = await fetch(url, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization: "apikey " + process.env.MAILCHIMP_KEY
+          }),
+          body: body
+        });
+        const data = await mRes.json();
+
+        // send the response back
+        res.sendStatus(200);
+      } catch (error) {
+        res.sendStatus(500);
+      }
+    });
+
     // contact/feedback page endpoints
     server.post("/g/contact", async (req, res) => {
       if (!req.body) return res.sendStatus(400);
