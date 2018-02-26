@@ -4,8 +4,9 @@ import Select from "react-select";
 
 import Button from "shared/Button";
 
-import { classNames, stylesheet } from "./ContactForm.css";
 import { TITLE } from "constants/contact";
+
+import { classNames, stylesheet } from "./ContactForm.css";
 
 class ContactForm extends React.Component {
   state = {

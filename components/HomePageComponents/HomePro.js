@@ -5,6 +5,7 @@ import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
+import StayInformed from "shared/StayInformed";
 
 import { stylesheet, classNames } from "./HomePro.css";
 
@@ -89,6 +90,7 @@ const HomePro = ({ url, news, content }) =>
       </ul>
     </div>
     <NewsLane title="DPLA News" items={news} />
+    <StayInformed />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
