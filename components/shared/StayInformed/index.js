@@ -125,7 +125,8 @@ class StayInformed extends React.Component {
                 </form>}
               {this.state.isSent &&
                 <h3 className={classNames.formCallToAction}>
-                  You have been subscribed to the general mailing list!
+                  You have successfully subscribed to DPLA's general email list!
+                  We'll send you announcements about our projects and events.
                 </h3>}
             </div>
           </div>

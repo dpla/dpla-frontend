@@ -81,18 +81,24 @@ form {
 }
 
 .email, .button {
-  padding: 1rem 0.75rem;
-  font-size: 1.25rem;
+  padding: 0.75rem 0.5rem;
   border: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  @media (min-width: smallRem) {
+    font-size: 1.25rem;
+    padding: 1rem 0.75rem;
+  }
 }
 
 .email {
-  flex-basis: 70%;
+  width: 70%;
   border-radius: 0.2rem 0 0 0.2rem;
 }
 
 .button {
-  flex-basis: 30%;
+  width: 30%;
   border-radius: 0 0.2rem 0.2rem 0;
   color: white;
   background-color: secondaryButtonColor;
