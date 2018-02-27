@@ -101,16 +101,19 @@ Search.getInitialProps = async ({ query, req }) => {
         let endYear = "";
         if (query.after && !isNaN(Number(query.after))) {
           beginYear = Number(query.after);
-          dateQuery.push(`${facet}.after=${beginYear}`);
+          dateQuery.push(`${facet}.after=${beginYear}-01-01`);
         }
         if (query.before && !isNaN(Number(query.before))) {
           endYear = Number(query.before);
-          dateQuery.push(`${facet}.before=${endYear}`);
+          dateQuery.push(`${facet}.before=${endYear}-12-31`);
         }
         return dateQuery.join("&");
       }
       // everyone else
-      if (query[mapFacetsToURLPrettified[facet]]) {
+      if (
+        query[mapFacetsToURLPrettified[facet]] &&
+        facet.indexOf("sourceResource.date") === -1
+      ) {
         return `${facet}=${splitAndURIEncodeFacet(
           query[mapFacetsToURLPrettified[facet]]
         )}`;
@@ -120,7 +123,7 @@ Search.getInitialProps = async ({ query, req }) => {
     .filter(facetQuery => facetQuery !== "")
     .join("&");
 
-  const url = `${currentUrl}${API_ENDPOINT}?q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+  const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
     ","
   )}&${facetQueries}`;
 

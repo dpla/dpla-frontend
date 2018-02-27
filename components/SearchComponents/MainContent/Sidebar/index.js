@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Router from "next/router";
 
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
@@ -121,12 +122,35 @@ class DateFacet extends React.Component {
     }
   };
 
-  render() {
+  handleDateSubmit(e) {
+    const dateProps = this.getDateProps();
+    if (e.keyCode == 13) {
+      Router.push({
+        pathname: this.props.route.pathname,
+        query: Object.assign(
+          {},
+          removeQueryParams(this.props.route.query, ["after", "before"]),
+          dateProps,
+          {
+            page: 1
+          }
+        )
+      });
+      return false;
+    }
+  }
+
+  getDateProps() {
     let dateProps = {};
     if (this.state.after !== "") dateProps.after = this.state.after;
     if (this.state.before !== "") dateProps.before = this.state.before;
+    return dateProps;
+  }
+
+  render() {
+    const dateProps = this.getDateProps();
     return (
-      <div className={classNames.dateRangeFacet}>
+      <form className={classNames.dateRangeFacet}>
         <label className={classNames.dateFacet} htmlFor="after-date">
           <span>Between Year</span>
           <input
@@ -135,6 +159,7 @@ class DateFacet extends React.Component {
             value={this.state.after}
             onChange={e => this.handleAfterText(e)}
             onBlur={e => this.validateAfter(e)}
+            onKeyDown={e => this.handleDateSubmit(e)}
           />
         </label>
         <label className={classNames.dateFacet} htmlFor="before-date">
@@ -145,8 +170,24 @@ class DateFacet extends React.Component {
             value={this.state.before}
             onChange={e => this.handleBeforeText(e)}
             onBlur={e => this.validateBefore(e)}
+            onKeyDown={e => this.handleDateSubmit(e)}
           />
         </label>
+        <input
+          type="hidden"
+          name="url"
+          value={{
+            pathname: this.props.route.pathname,
+            query: Object.assign(
+              {},
+              removeQueryParams(this.props.route.query, ["after", "before"]),
+              dateProps,
+              {
+                page: 1
+              }
+            )
+          }}
+        />
         <Button
           type="secondary"
           className={classNames.dateButton}
@@ -164,7 +205,7 @@ class DateFacet extends React.Component {
         >
           Update
         </Button>
-      </div>
+      </form>
     );
   }
 }
