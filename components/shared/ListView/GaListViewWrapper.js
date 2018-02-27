@@ -72,9 +72,9 @@ export default WrappedComponent =>
           if (item) {
             const gaEvent = {
               type: "Browse Item",
-              itemId: item.dplaItemId,
+              itemId: item.id,
               title: joinIfArray(item.title),
-              partner: joinIfArray(item.partner),
+              partner: joinIfArray(item.provider),
               contributor: joinIfArray(item.dataProvider)
             };
 
