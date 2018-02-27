@@ -102,6 +102,7 @@ class OptionsBar extends React.Component {
           <p className={classNames.pageNumber}>Page {currentPage}</p>
           <button
             onClick={() => onClickToggleFilters()}
+            aria-expanded={showFilters}
             className={`${classNames.toggleFilters} ${showFilters
               ? classNames.showFilters
               : ""} ${numberOfActiveFacets !== 0

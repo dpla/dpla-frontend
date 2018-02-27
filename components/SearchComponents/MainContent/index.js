@@ -38,8 +38,8 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={classNames.wrapper}>
     <div className={[container, classNames.mainContent].join(" ")}>
       <div
-        className={`${hideSidebar
-          ? classNames.hiddenSidebar
+        className={`${!hideSidebar
+          ? classNames.isOpen
           : ""} ${classNames.sidebar}`}
       >
         <Sidebar route={route} facets={facets} />
