@@ -4,6 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
+import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { getMenuItemUrl } from "utilFunctions";
 
@@ -16,8 +17,9 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Guides = ({ url, sidebarItems, guide }) =>
+const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
   <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
+    <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
     <div
       className={`
         ${utilClassNames.container}
@@ -61,8 +63,16 @@ Guides.getInitialProps = async ({ query }) => {
   const guideRes = await fetch(getMenuItemUrl(guide));
   const guideJson = await guideRes.json();
 
+  let breadcrumbs = [];
+  breadcrumbs.push({
+    title: "Guides",
+    url: "/guides"
+  });
+  breadcrumbs.push({ title: guideJson.title.rendered });
+
   return {
     sidebarItems: menuItemsJson.items,
+    breadcrumbs: breadcrumbs,
     guide: Object.assign({}, guideJson, {
       slug: guide.url,
       summary: guideJson.acf.summary,
