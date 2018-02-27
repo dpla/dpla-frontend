@@ -105,6 +105,7 @@ class StayInformed extends React.Component {
                       {...emailProps}
                     />
                     <input
+                      aria-live="assertive"
                       type="submit"
                       value={
                         !this.state.isSending ? "Sign Up" : "Subscribing..."
@@ -124,7 +125,10 @@ class StayInformed extends React.Component {
                   </div>
                 </form>}
               {this.state.isSent &&
-                <h3 className={classNames.formCallToAction}>
+                <h3
+                  aria-live="assertive"
+                  className={classNames.formCallToAction}
+                >
                   You have successfully subscribed to DPLA's general email list!
                   We'll send you announcements about our projects and events.
                 </h3>}
