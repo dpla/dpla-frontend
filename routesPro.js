@@ -30,6 +30,13 @@ module.exports = (app, server) => {
     res.redirect(newPath);
   });
 
+  // allow relative /search links in pro site
+  server.get("/search", (req, res) => {
+    var contentStart = req.url.indexOf("/search");
+    var newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
+    res.redirect(newPath);
+  });
+
   // for hubs
   server.get("/hubs", (req, res) => {
     const actualPage = "/pro/wp/hubs";
