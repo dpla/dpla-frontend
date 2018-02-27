@@ -5,6 +5,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
 import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
+import FeatureHeader from "shared/FeatureHeader";
 
 import { SITE_ENV } from "constants/env";
 import {
@@ -19,6 +20,7 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>
+    <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
         className={`${utilClassNames.container}

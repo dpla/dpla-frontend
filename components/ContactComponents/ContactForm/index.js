@@ -4,8 +4,6 @@ import Select from "react-select";
 
 import Button from "shared/Button";
 
-import { TITLE } from "constants/contact";
-
 import { classNames, stylesheet } from "./ContactForm.css";
 
 class ContactForm extends React.Component {
@@ -160,7 +158,6 @@ class ContactForm extends React.Component {
       <div className={classNames.contactForm}>
         {!this.state.isSent &&
           <div>
-            <h1 className={classNames.header}>{TITLE}</h1>
             <p className={classNames.instructions}>
               We would love to hear from you! Please fill out this form and we
               will
