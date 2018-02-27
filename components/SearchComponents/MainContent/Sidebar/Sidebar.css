@@ -4,10 +4,21 @@
 
 .sidebar {
   flex-shrink: 0;
+  margin: 0 0.5rem;
+
+  @media (min-width: smallRem) {
+    margin: 0;
+  }
 
   & h2 {
     padding: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+
+    @media (min-width: smallRem) {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+    }
   }
 }
 

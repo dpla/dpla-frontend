@@ -51,7 +51,12 @@ class Search extends React.Component {
             onClickToggleFilters={this.toggleFilters}
             numberOfActiveFacets={numberOfActiveFacets}
           />
-          <FiltersList route={url} facets={results.facets} />
+          <FiltersList
+            showFilters={this.state.showSidebar}
+            onClickToggleFilters={this.toggleFilters}
+            route={url}
+            facets={results.facets}
+          />
           <MainContent
             hideSidebar={!this.state.showSidebar}
             paginationInfo={{

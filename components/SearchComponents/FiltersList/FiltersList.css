@@ -1,9 +1,8 @@
-@value warmerBackgroundColor, linkColor, elephantBlue, secondaryButtonColor from "../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, darkSecondaryButtonColor, secondaryButtonColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 @value sansFont from "../../../css/typography.css";
 
 .filtersListWrapper {
-  background-color: linkColor;
   width: 100%;
 
   @media (min-width: smallRem) {
@@ -14,17 +13,29 @@
 
 .filtersList {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 37px;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.15s ease-in-out, visibility 0s 0.15s;
+
+  &.isOpen {
+    visibility: visible;
+    max-height: 20rem;
+  }
+
   @media (min-width: smallRem) {
-    height: auto;
+    max-height: none;
+    visibility: visible;
+    overflow: visible;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.75rem 1rem 0.5rem;
   }
 }
 
 .labelAndFilters {
-  display: none;
   @media (min-width: smallRem) {
     display: flex;
     align-items: center;
@@ -32,13 +43,18 @@
 }
 
 .labelText {
-  color: elephantBlue;
+  color: darkSecondaryButtonColor;
   font-weight: 600;
   font-size: 1rem;
-  margin-right: 0.75rem;
   flex-shrink: 0;
   align-self: baseline;
-  margin-top: 2px;
+  display: block;
+  margin: 0.5rem 0;
+
+  @media (min-width: smallRem) {
+    margin-right: 0.75rem;
+    margin-top: 0.1rem;
+  }
 }
 
 .filters {
@@ -76,12 +92,13 @@
   height: 9px;
 }
 
-.clearAll {
-  color: white;
+.clearAll, .clearAll:visited {
+  color: linkColor;
   font-weight: 600;
   flex-shrink: 0;
   font-size: 0.875rem;
-  margin-top: 2px;
+  margin-top: 0.5rem;
+  align-self: flex-end;
 
   &:hover span {
     text-decoration: underline;
@@ -91,6 +108,7 @@
     font-size: 1rem;
     align-self: baseline;
     color: linkColor;
+    margin-top: 0.2rem;
   }
 }
 
@@ -103,8 +121,5 @@
 }
 
 .clearAllIconPath {
-  fill: white;
-  @media (min-width: smallRem) {
-    fill: linkColor;
-  }
+  fill: linkColor;
 }
