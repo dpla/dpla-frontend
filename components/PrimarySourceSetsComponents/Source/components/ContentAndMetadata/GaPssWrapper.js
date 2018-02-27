@@ -47,14 +47,15 @@ export default WrappedComponent =>
 
     trackSourceView() {
       const fullPath = getFullPath();
+      const source = this.props.source;
 
       if (fullPath !== this.lastTrackedPath) {
         const gaEvent = {
           type: "View Primary Source",
-          itemId: this.itemId,
-          title: this.title,
-          partner: this.partner,
-          contributor: this.contributor
+          itemId: getItemId(source),
+          title: joinIfArray(getTitle(source)),
+          partner: joinIfArray(getPartner(source)),
+          contributor: joinIfArray(getContributor(source))
         };
 
         trackGaEvent(gaEvent);
