@@ -1,24 +1,11 @@
-@value warmerBackgroundColor, dimmedTextColor, cascadeBlue from "../../../css/colors.css";
+@value warmerBackgroundColor, dimmedTextColor, paginationLinkColor from "../../../css/colors.css";
 @value smallRem from "../../../css/breakpoints.css";
 @value sansFont from "../../../css/typography.css";
 
 .wrapper {
   width: 100%;
-  background-color: #E3E1DB;
-  box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
-
-  @media (min-width: smallRem) {
-    background-color: warmerBackgroundColor;
-  }
-}
-
-.optionsBar {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  @media (min-width: smallRem) {
-    padding: 0.75rem 1rem;
-  }
+  background-color: warmerBackgroundColor;
+  box-shadow: inset 0 -0.075rem 0.075rem 0 rgba(0, 0, 0, 0.03);
 }
 
 .sortBy :global(.Select-control) {
@@ -78,11 +65,36 @@
   width: 204px;
 }
 
-.options {
-  margin-left: auto;
-  display: none;
+.optionsBar {
+  display: flex;
+  padding: 0.5rem 1rem;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+
   @media (min-width: smallRem) {
-    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.resultsAndFilter {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 0.075rem solid rgba(0, 0, 0, 0.05);
+
+  @media (min-width: smallRem) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.options {
+  display: flex;
+  @media (min-width: smallRem) {
   }
 }
 
@@ -120,11 +132,11 @@
 }
 
 .viewButtonInactive.gridViewButton {
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -0.075rem 0.15rem 0 rgba(0, 0, 0, 0.15);
 }
 
 .viewButtonInactive.listViewButton {
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -0.075rem 0.15rem 0 rgba(0, 0, 0, 0.15);
 }
 
 .viewButtonActive {
@@ -176,10 +188,10 @@
 }
 @media (max-width: smallRem) {
   .withActiveFacets {
-    color: cascadeBlue;
+    color: paginationLinkColor;
     & .filtersButtonChevron {
       & path {
-        fill: cascadeBlue;
+        fill: paginationLinkColor;
       }
     }
   }
