@@ -1,3 +1,4 @@
+// imports organized alphabetically
 import addCommasToNumber from "./addCommasToNumber";
 import decodeHTMLEntities from "./decodeHTMLEntities";
 import endsWith from "./endsWith";
@@ -11,6 +12,7 @@ import getCurrentFullUrl from "./getCurrentFullUrl";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
+import getFullPath from "./getFullPath";
 import getItemId from "./getItemId";
 import getItemWithId from "./getItemWithId";
 import getItemWithName from "./getItemWithName";
@@ -27,6 +29,11 @@ import readMyRights from "./readMyRights";
 import showMoreDescription from "./showMoreDescription";
 import truncateString from "./truncateString";
 
+// google analytics imports organized alphabetically
+import bindLinkEvent from "./googleAnalytics/bindLinkEvent";
+import initGa from "./googleAnalytics/initGa";
+import trackGaEvent from "./googleAnalytics/trackGaEvent";
+
 export {
   addCommasToNumber,
   decodeHTMLEntities,
@@ -41,6 +48,7 @@ export {
   getCurrentUrl,
   getDefaultThumbnail,
   getDplaItemIdFromExhibit,
+  getFullPath,
   getItemId,
   getItemWithId,
   getItemWithName,
@@ -55,5 +63,8 @@ export {
   removeEndPunctuation,
   removeQueryParams,
   showMoreDescription,
-  truncateString
+  truncateString,
+  bindLinkEvent,
+  initGa,
+  trackGaEvent
 };
