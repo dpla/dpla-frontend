@@ -1,5 +1,6 @@
 @value linkColor, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value sansFont from "../../../css/typography.css";
 
 .sidebar {
   background-color: warmerBackgroundColor;
@@ -8,7 +9,7 @@
   & .link {
     display: inline-block;
     color: rgba(0, 0, 0, 0.65);
-    margin-bottom: .55rem;
+    margin-bottom: 0.5rem;
   }
 
   & .link.selected {
@@ -25,10 +26,6 @@
   }
 }
 
-.sidebar ul:first-child > li:last-child .link:last-child {
-  margin-bottom: 0;
-}
-
 .sidebar ul ul {
   margin-left: 1rem;
 
@@ -36,13 +33,6 @@
     margin-left: 1.3rem;
   }
 
-  & .selected::after {
-    top: .45rem;
-
-    @media (min-width: mediumRem) {
-      top: .6rem;
-    }
-  }
 }
 
 .link {
@@ -73,14 +63,14 @@
   display: block;
   content: "";
   position: absolute;
-  height: 5px;
-  width: 5px;
-  top: .45rem;
-  left: -10px;
+  height: 0.4rem;
+  width: 0.4rem;
+  top: 0.5rem;
+  left: -0.75rem;
   background-color: linkColor;
   border-radius: 50%;
 
   @media (min-width: mediumRem) {
-    top: .6rem;
+    top: 0.6rem;
   }
 }

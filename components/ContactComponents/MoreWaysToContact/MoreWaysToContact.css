@@ -1,5 +1,4 @@
-@value linkColor, colderBackgroundColor from "../../../css/colors.css";
-@value dimmedTextColor from "../../../css/colors.css";
+@value linkColor, colderBackgroundColor, dimmedTextColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -47,7 +46,7 @@
   }
 }
 
-.firstRow {
+.paddedRow {
   margin-bottom: 1.5rem;
 
   @media (min-width: mediumRem) {

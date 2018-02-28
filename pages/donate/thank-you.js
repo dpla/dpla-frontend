@@ -2,8 +2,8 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Router from "next/router";
 
-import MainLayout from "../../components/MainLayout";
-import ContentPagesSidebar from "../../components/shared/ContentPagesSidebar";
+import MainLayout from "components/MainLayout";
+import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 
 import {
   classNames as contentClasses,
@@ -26,6 +26,7 @@ const DonateThankYou = ({ url }) =>
         <div className={`col-md-2 col-xs-12`} />
         <div
           id="main"
+          role="main"
           className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
         >
           <h1>

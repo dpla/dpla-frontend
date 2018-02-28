@@ -1,6 +1,6 @@
 import React from "react";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
+import Breadcrumbs from "shared/Breadcrumbs";
 import NavLinks from "./components/NavLinks";
 
 import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
@@ -14,7 +14,7 @@ const BreadcrumbsAndNav = ({
   topic,
   route
 }) =>
-  <div className={classNames.wrapper}>
+  <div className={utilClassNames.breadcrumbsWrapper}>
     <div className={[classNames.breadcrumbsAndNav, container].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
     </div>

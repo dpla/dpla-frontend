@@ -1,5 +1,6 @@
 @value navColor from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .header {
   display: none;
@@ -50,7 +51,7 @@
     padding: 0.5rem 0;
 
     @media (min-width: mediumRem) {
-      padding: 0.75rem 0;
+      padding: 0.5rem 0;
     }
   }
 }

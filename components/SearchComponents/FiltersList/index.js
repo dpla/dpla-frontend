@@ -1,12 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./FiltersList.css";
-import { classNames as utilClassNames } from "css/utils.css";
+
 import {
   possibleFacets,
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
+import { removeQueryParams } from "utilFunctions";
+
+import { classNames, stylesheet } from "./FiltersList.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const closeIcon = "/static/images/close-white.svg";
 
@@ -30,13 +33,13 @@ const clearFacet = (query, queryKey, facet) => {
   return duped;
 };
 
-const Filter = ({ name, queryKey, route }) =>
-  <li className={classNames.filter}>
+const Filter = ({ name, queryKey, route, key }) =>
+  <li className={classNames.filter} key={key}>
     <Link
       prefetch
       href={{
         pathname: route.pathname,
-        query: Object.assign({}, clearFacet(route.query, queryKey, name))
+        query: Object.assign({}, removeQueryParams(route.query, [queryKey]))
       }}
     >
       <a
@@ -53,17 +56,20 @@ const Filter = ({ name, queryKey, route }) =>
 class FiltersList extends React.Component {
   render() {
     const { query } = this.props.route;
+    const { onClickToggleFilters, showFilters } = this.props;
     return Object.keys(query).some(queryKey =>
       possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey])
     )
       ? <div className={classNames.filtersListWrapper}>
           <div
-            className={`${classNames.filtersList} ${utilClassNames.container}`}
+            className={`${showFilters
+              ? classNames.isOpen
+              : ""} ${classNames.filtersList} ${utilClassNames.container}`}
           >
             <div className={classNames.labelAndFilters}>
               <span className={classNames.labelText}>Filtered by</span>
               <ul className={classNames.filters}>
-                {Object.keys(query).map(queryKey => {
+                {Object.keys(query).map((queryKey, index) => {
                   if (
                     possibleFacets.includes(
                       mapURLPrettifiedFacetsToUgly[queryKey]
@@ -71,15 +77,22 @@ class FiltersList extends React.Component {
                   ) {
                     return (
                       query[queryKey] &&
-                      query[queryKey]
-                        .split("|")
-                        .map(paramValue =>
+                      query[queryKey].split("|").map((paramValue, idx) => {
+                        const name = queryKey !== "after" &&
+                          queryKey !== "before"
+                          ? paramValue.replace(/"/g, "")
+                          : queryKey === "after"
+                            ? "After: " + paramValue
+                            : "Before: " + paramValue;
+                        return (
                           <Filter
                             route={this.props.route}
                             queryKey={queryKey}
-                            name={paramValue.replace(/"/g, "")}
+                            key={idx}
+                            name={name}
                           />
-                        )
+                        );
+                      })
                     );
                   } else {
                     return null;

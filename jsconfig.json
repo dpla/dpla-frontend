@@ -7,6 +7,15 @@
       "utilFunctions/*": [
         "./utilFunctions/*"
       ],
+      "css/*": [
+        "./css/*"
+      ],
+      "static/*": [
+        "./static/*"
+      ],
+      "shared/*": [
+        "./components/shared/*"
+      ],
       "constants/*": [
         "./constants/*"
       ],

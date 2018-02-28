@@ -1,5 +1,6 @@
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value navColor, mobileNavColor from "../../../../css/colors.css";
+@value sansFont from "../../../../css/typography.css";
 
 .wrapper {
   display: block;
@@ -21,7 +22,7 @@
   width: 60%;
   max-width: 15rem;
   margin: .5rem 1rem;
-  background: url("/static/images/dpla-logo.svg") no-repeat 0 50%;
+  background: url("/static/images/dpla-logo-white.svg") 0/100% no-repeat;
   display: flex;
 
   & span {
@@ -96,19 +97,20 @@
   max-height: 0;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
+  z-index: 99;
 
   &.isOpen {
     padding: 1rem 2rem;
     visibility: visible;
-    max-height: 20rem;
+    max-height: 30rem;
   }
 }
 
 .links {
-  & a {
+  & a, & a:visited {
     color: white;
     display: block;
-    margin: .75rem 0;
+    margin: .5rem 0;
   }
 }
 

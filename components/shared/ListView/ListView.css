@@ -85,13 +85,12 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.75rem;
-  line-height: 0.9375rem;
+  line-height: 0.9375;
 }
 
 .itemDescription {
   display: block;
   font-size: 0.875rem;
-  line-height: 1.125rem;
   margin-top: .25rem;
   padding-bottom: 0.25rem;
 }

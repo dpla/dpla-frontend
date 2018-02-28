@@ -1,19 +1,23 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import ContentPagesSidebar from "../../components/shared/ContentPagesSidebar";
-import GuideLink from "../../components/shared/GuideLink";
+import MainLayout from "components/MainLayout";
+import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import GuideLink from "components/shared/GuideLink";
+
+import { getMenuItemUrl } from "utilFunctions";
+
+import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { TITLE } from "constants/guides";
+
 import { classNames, stylesheet } from "css/pages/guides.css";
-import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { stylesheet as guidesStylesheet } from "../../components/shared/GuideLink/GuideLink.css";
-
-import { TITLE } from "constants/guides";
+import { stylesheet as guidesStylesheet } from "components/shared/GuideLink/GuideLink.css";
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
@@ -28,8 +32,13 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
           route={url}
           items={sidebarItems}
           activeItemId={activeItemId}
+          className={contentClasses.sidebar}
         />
-        <div id="main" className={`${classNames.wrapper} col-xs-12 col-md-8`}>
+        <div
+          id="main"
+          role="main"
+          className={`${classNames.wrapper} col-xs-12 col-md-8`}
+        >
           <ul className="row">
             {guides.map((guide, i) =>
               <li
@@ -49,16 +58,22 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   </MainLayout>;
 
 Guides.getInitialProps = async () => {
+  // fetch page info
+  // 1. fetch the settings from WP
+  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  const settingsJson = await settingsRes.json();
+  // 2. get the corresponding value
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
+
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
-  const indexPageItem = aboutMenuJson.items.find(
-    item => item.url === GUIDES_ENDPOINT
-  );
+  const indexPageItem = aboutMenuJson.items.find(item => item.url === endpoint);
+
   const guides = await Promise.all(
     aboutMenuJson.items
       .filter(item => item.menu_item_parent === indexPageItem.object_id)
       .map(async guide => {
-        const guideRes = await fetch(guide.url);
+        const guideRes = await fetch(getMenuItemUrl(guide));
         const guideJson = await guideRes.json();
         return Object.assign({}, guide, {
           slug: guide.post_name,

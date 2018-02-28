@@ -1,3 +1,7 @@
+import { WORDPRESS_URL } from "./env";
+
+export const API_SETTINGS_ENDPOINT = `${WORDPRESS_URL}/wp-json/acf/v3/options/dpla-api-settings`;
+
 export const INSTAGRAM_URL = "https://www.instagram.com/digpublib/";
 export const INSTAGRAM_LINK_TITLE = "Visit DPLA on Instagram";
 export const TWITTER_URL = "https://twitter.com/dpla";
@@ -15,11 +19,11 @@ export const DPLA_CONTACT_EMAIL = "education@dp.la";
 export const PSS_SUGGESTION_URL =
   "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
 
-// Tracking ID for DPLA TEST.
-// TODO: Change tracking ID after we've verified that the tracking is working
-// as expected.
-// TODO: Make this an environmental variable.
-export const gaTrackingId = "UA-28197764-2";
+export const MAILCHIMP_LISTS = {
+  NEWS: "1ee988aadc",
+  EDUCATION: "de870d2705",
+  GENEALOGY: "f36418b975"
+};
 
 export const resourceTypes = {
   TEXT: "text",

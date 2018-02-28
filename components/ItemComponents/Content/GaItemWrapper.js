@@ -1,12 +1,13 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
+import { gaTrackingId } from "constants/env";
 import {
+  bindLinkEvent,
+  initGa,
   getFullPath,
   joinIfArray,
-  bindLinkEvent,
-  trackGaEvent,
-  initGa
+  trackGaEvent
 } from "utilFunctions";
 
 export default WrappedComponent =>

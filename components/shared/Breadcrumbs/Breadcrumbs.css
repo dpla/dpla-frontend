@@ -1,11 +1,10 @@
-@value linkColor from "../../css/colors.css";
-@value xSmallRem, smallRem from "../../css/breakpoints.css";
+@value linkColor from "../../../css/colors.css";
+@value xSmallRem, smallRem from "../../../css/breakpoints.css";
 
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  font-size: .8rem;
 }
 
 .activeBreadcrumb {
@@ -14,7 +13,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-height: 1.2;
 
   @media (max-width: smallRem) {
     display: inline;
@@ -29,11 +27,10 @@
 
 .breadcrumbLink {
   display: inline-block;
-  max-width: 210px;
+  max-width: 13.125rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-height: 1.2;
   @media (min-width: smallRem) {
     font-size: 1rem;
   }
@@ -45,23 +42,23 @@
 }
 
 .breadcrumbLink p, .activeBreadcrumb p {
-  max-width: 115px;
+  max-width: 7rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   @media (min-width: xSmallRem) {
-    max-width: 145px;
+    max-width: 9rem;
   }
   @media (min-width: smallRem) {
-    max-width: 215px;
+    max-width: 13.5rem;
   }
 }
 
 .chevron {
-  height: 8px;
+  height: 0.5rem;
   position: relative;
   top: 1px;
-  padding: 0 0.25rem;
+  padding: 0 0.5rem;
   @media (min-width: smallRem) {
     padding: 0 0.75rem;
   }

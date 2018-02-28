@@ -1,19 +1,25 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../components/MainLayout";
-import ContentPagesSidebar from "../../../components/shared/ContentPagesSidebar";
-import HeadingRule from "../../../components/shared/HeadingRule";
+import MainLayout from "components/MainLayout";
+import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import HeadingRule from "components/shared/HeadingRule";
+import BreadcrumbsModule from "shared/BreadcrumbsModule";
+
+import { getMenuItemUrl } from "utilFunctions";
+
+import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+
 import { classNames, stylesheet } from "css/pages/guide.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const Guides = ({ url, sidebarItems, guide }) =>
+const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
   <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
+    <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
     <div
       className={`
         ${utilClassNames.container}
@@ -25,10 +31,12 @@ const Guides = ({ url, sidebarItems, guide }) =>
           route={url}
           items={sidebarItems}
           activeItemId={guide.slug}
+          className={contentClasses.sidebar}
         />
         <div className="col-xs-12 col-md-7">
           <div
             id="main"
+            role="main"
             className={[classNames.content, contentClasses.content].join(" ")}
           >
             <img
@@ -52,11 +60,19 @@ Guides.getInitialProps = async ({ query }) => {
   const menuItemsJson = await menuItemsRes.json();
   const guideSlug = query.guide;
   const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
-  const guideRes = await fetch(guide.url);
+  const guideRes = await fetch(getMenuItemUrl(guide));
   const guideJson = await guideRes.json();
+
+  let breadcrumbs = [];
+  breadcrumbs.push({
+    title: "Guides",
+    url: "/guides"
+  });
+  breadcrumbs.push({ title: guideJson.title.rendered });
 
   return {
     sidebarItems: menuItemsJson.items,
+    breadcrumbs: breadcrumbs,
     guide: Object.assign({}, guideJson, {
       slug: guide.url,
       summary: guideJson.acf.summary,

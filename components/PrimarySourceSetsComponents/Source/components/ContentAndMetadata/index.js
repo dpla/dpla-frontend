@@ -8,14 +8,21 @@ import {
 } from "components/shared/mediaViewers";
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
+import GaPssWrapper from "./GaPssWrapper";
 
-import { joinIfArray, getItemId, getPartner } from "utilFunctions";
+import {
+  joinIfArray,
+  getItemId,
+  getPartner,
+  showMoreDescription,
+  getTitle,
+  getContributor,
+  trackGaEvent
+} from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
 import { classNames as utilClassNames } from "css/utils.css";
-
-import GaPssWrapper from "./GaPssWrapper";
 
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
@@ -51,6 +58,32 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 
 const getDomainFromThumbnail = thumbnailUrl =>
   /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
+
+// TODO: Make this a utilFunction and use in all Click Through events.
+const trackClickThrough = (e, source, target = "_blank") => {
+  const href = getSourceLink(source);
+
+  const gaEvent = {
+    type: "Click Through",
+    itemId: getItemId(source),
+    title: joinIfArray(getTitle(source)),
+    partner: joinIfArray(getPartner(source)),
+    contributor: joinIfArray(getContributor(source))
+  };
+
+  // e is a React synthetic event
+  e.preventDefault();
+
+  try {
+    // Try tracking a Google Analytics event.
+    trackGaEvent(gaEvent);
+  } catch (error) {
+    // TODO: What is the best way to log an error?
+  } finally {
+    // Open the link, even if the Google Analytics event tracking failed.
+    window.open(href, target);
+  }
+};
 
 const ContentAndMetadata = ({ source }) => {
   const type = source.mainEntity[0]["@type"];
@@ -100,7 +133,8 @@ const ContentAndMetadata = ({ source }) => {
               <div id="dpla-showmore" aria-hidden="true">
                 <span
                   className={`${classNames.showMore} link`}
-                  onClick={() => showMoreDescription(classNames.open)}
+                  onClick={() =>
+                    showMoreDescription({ className: classNames.open })}
                 >
                   Show full description
                 </span>
@@ -165,14 +199,17 @@ const ContentAndMetadata = ({ source }) => {
                       src={link}
                       className={classNames.linkIcon}
                     />
-                    <span className={classNames.linkText}>View in DPLA</span>
+                    <span className={classNames.linkText}>
+                      View item information
+                    </span>
                   </a>
                 </div>}
               {source.mainEntity[0]["dct:references"] &&
                 <div className={classNames.linkWrapper}>
                   <a
                     href={getSourceLink(source)}
-                    className={`${classNames.sourceLink} clickThrough`}
+                    className={`${classNames.sourceLink}`}
+                    onClick={e => trackClickThrough(e, source)}
                     rel="noopener noreferrer"
                     target="_blank"
                   >

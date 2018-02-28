@@ -35,7 +35,7 @@
 
 .sidebar {
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.125;
   margin-top: 1rem;
 
   @media (min-width: smallRem) {
@@ -45,13 +45,14 @@
 
 .sidebarHeader {
   font-size: 1rem;
-  line-height: 1.25rem;
+  line-height: 1.25;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .sidebarSection {
   margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .teacherTools {
@@ -66,7 +67,7 @@
 .toolLink {
   color: subLinkColor;
   font-size: 1rem;
-  line-height: 1.25rem;
+  line-height: 1.25;
   font-weight: 600;
   display: inline-block;
   text-decoration: underline;
@@ -99,13 +100,11 @@
 
 .ul {
   list-style: initial;
-  margin-bottom: 10px;
-  padding-left: 27px;
+  margin-bottom: 0.6rem;
 }
 
 .aboutThis {
   font-size: 0.875rem;
-  line-height: 1.125rem;
   margin-top: 50px;
   border: 2px solid rgba(0, 0, 0, 0.04);
   background-color: warmerBackgroundColor;

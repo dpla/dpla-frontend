@@ -26,7 +26,7 @@ class Body extends React.Component {
           subsection={subsection}
           isMenuOpen={this.state.isMenuOpen}
         />
-        <div id="main" className={classNames.mainContent}>
+        <div id="main" role="main" className={classNames.mainContent}>
           <Sidebar
             exhibition={exhibition}
             currentSubsection={subsection}

@@ -2,10 +2,9 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Select from "react-select";
 
-import Button from "../../shared/Button";
+import Button from "shared/Button";
 
 import { classNames, stylesheet } from "./ContactForm.css";
-import { TITLE } from "constants/contact";
 
 class ContactForm extends React.Component {
   state = {
@@ -159,7 +158,6 @@ class ContactForm extends React.Component {
       <div className={classNames.contactForm}>
         {!this.state.isSent &&
           <div>
-            <h1 className={classNames.header}>{TITLE}</h1>
             <p className={classNames.instructions}>
               We would love to hear from you! Please fill out this form and we
               will
@@ -209,6 +207,7 @@ class ContactForm extends React.Component {
                   Subject (required)
                 </span>
                 <Select
+                  id="contact-subject"
                   clearable={false}
                   searchable={false}
                   value={this.state.subject}
@@ -249,7 +248,7 @@ class ContactForm extends React.Component {
                       label: "Education and Primary Source Sets"
                     },
                     { value: "Community Reps", label: "Community Reps" },
-                    { value: "Open eBooks", label: "Open eBooks" },
+                    { value: "Ebooks", label: "Ebooks" },
                     { value: "Press inquiry", label: "Press inquiry" }
                   ]}
                 />
@@ -262,18 +261,20 @@ class ContactForm extends React.Component {
                 tabIndex="-1"
                 autoComplete="off"
               />
-              {!this.state.isSending &&
-                <Button type="primary" {...buttonProps}>
-                  Send message
-                </Button>}
-              {this.state.isSending &&
-                <Button
-                  type="secondary"
-                  className={classNames.disabledButton}
-                  live="assertive"
-                >
-                  Sending message…
-                </Button>}
+              <div className={`col-xs-12 col-md-4`}>
+                {!this.state.isSending &&
+                  <Button type="primary" {...buttonProps}>
+                    Send message
+                  </Button>}
+                {this.state.isSending &&
+                  <Button
+                    type="secondary"
+                    className={classNames.disabledButton}
+                    live="assertive"
+                  >
+                    Sending message…
+                  </Button>}
+              </div>
             </form>
           </div>}
         {this.state.isSent &&

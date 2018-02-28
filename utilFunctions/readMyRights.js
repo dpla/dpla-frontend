@@ -1,4 +1,4 @@
-import { rightsURLs } from "constants/site.js";
+import { rightsURLs } from "constants/site";
 
 const readMyRights = theString => {
   // in case it's an http url

@@ -1,10 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../components/MainLayout";
-import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
-import ImageAndCaption from "../../../components/ExhibitionsComponents/Exhibition/ImageAndCaption";
-import Details from "../../../components/ExhibitionsComponents/Exhibition/Details";
+import MainLayout from "components/MainLayout";
+import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
+import Details from "components/ExhibitionsComponents/Exhibition/Details";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 import {
   EXHIBITS_ENDPOINT,
@@ -17,7 +17,7 @@ import { SEO_TYPE } from "constants/exhibition";
 
 import { API_ENDPOINT } from "constants/items";
 
-import removeQueryParams from "/utilFunctions/removeQueryParams";
+import removeQueryParams from "utilFunctions/removeQueryParams";
 
 import { getDplaItemIdFromExhibit } from "utilFunctions";
 
@@ -36,7 +36,7 @@ const Exhibition = ({ url, exhibition, currentFullUrl }) =>
       ]}
       route={url}
     />
-    <div id="main">
+    <div id="main" role="main">
       <ImageAndCaption exhibition={exhibition} route={url} />
       <Details
         exhibition={exhibition}

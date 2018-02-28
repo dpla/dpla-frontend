@@ -1,6 +1,10 @@
-@value rockBrown, black80, bonjourRed from "../../../css/colors.css";
+@value black80 from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
+
+.wrapper {
+  background-color: white;
+}
 
 .DPLAUsers {
   margin: 0 auto;
@@ -70,13 +74,12 @@
 .caption {
   text-align: center;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
   color: black80;
 
   & p {
     max-width: 80%;
     margin: 0 auto;
-    line-height: 1.25;
 
     @media (min-width: smallRem) {
       font-size: 1.25rem;

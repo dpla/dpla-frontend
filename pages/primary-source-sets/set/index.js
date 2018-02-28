@@ -1,13 +1,13 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../../components/MainLayout";
-import PSSFooter from "../../../components/PrimarySourceSetsComponents/PSSFooter";
-import BreadcrumbsModule from "../../../components/PrimarySourceSetsComponents/BreadcrumbsModule";
-import SourceSetInfo from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
-import RelatedSets from "../../../components/PrimarySourceSetsComponents/SingleSet/RelatedSets";
-import ResourcesTabs from "../../../components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
-import SourceSetSources from "../../../components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
+import MainLayout from "components/MainLayout";
+import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
+import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
+import RelatedSets from "components/PrimarySourceSetsComponents/SingleSet/RelatedSets";
+import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
+import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
 import { PSS_BASE_URL } from "constants/site";
 

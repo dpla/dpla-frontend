@@ -45,12 +45,16 @@
 /* semantic colors */
 
 @value linkColor: #CA4316;
+@value linkHoverColor: #CD570A;
 @value visitedLinkColor: #AD5C1D;
 @value paginationLinkColor: cascadeBlue;
+@value headingColor: cascadeBlue;
 @value navColor: tiberBlue;
 @value userSiteColor: hippieBlue;
+@value proSiteColor: elephantBlue;
 @value mobileNavColor: elephantBlue;
 @value secondaryButtonColor: #0080a5;
+@value darkSecondaryButtonColor: elephantBlue;
 @value warmerBackgroundColor: romanceGray;
 @value colderBackgroundColor: #F3F7F8;
 @value lightLinkColor: casablancaOrange;
@@ -62,4 +66,7 @@
 @value outlineColor: casablancaOrange;
 @value formLabelColor: cascadeBlue;
 @value errorColor: linkColor;
+@value proIconColor: #5d7384;
 @value radioButtonColor: gainsboroGray;
+@value memberColor: #006D84;
+@value featureBackgroundColor: #CBE3E8;

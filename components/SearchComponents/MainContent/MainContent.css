@@ -1,5 +1,6 @@
 @value warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem from "../../../css/breakpoints.css";
+@value sansFont from "../../../css/typography.css";
 
 .mainContent {
   display: flex;
@@ -31,17 +32,24 @@
 
 .sidebar {
   flex-basis: 33%;
-  margin-right: 1rem;
+  overflow: hidden;
+  visibility: hidden;
+  max-height: 0;
+  transition: max-height 0.15s ease-in-out, visibility 0s 0.15s;
+
+  &.isOpen {
+    visibility: visible;
+    max-height: 200rem;
+  }
+
+  @media (min-width: smallRem) {
+    margin-right: 1rem;
+    max-height: none;
+    visibility: visible;
+    overflow: visible;
+  }
 
   @media (min-width: mediumRem) {
     flex-basis: 25%;
-  }
-}
-
-.hiddenSidebar {
-  display: none;
-
-  @media (min-width: smallRem) {
-    display: block;
   }
 }

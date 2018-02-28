@@ -28,38 +28,23 @@ export default class ZoomableImageViewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.pathToFile !== this.props.pathToFile) {
-      // this is the only way that seems to work; this.viewer.destroy and
-      // this.viewer.open break things, seemingly because of our API proxying
-      // and server-side rendering
-      const { parentNode } = this.ref;
-      parentNode.removeChild(this.ref);
-      const newDiv = document.createElement("div");
-      newDiv.setAttribute("id", viewerId);
-      newDiv.setAttribute("class", classNames.zoomableImageViewer);
-      parentNode.appendChild(newDiv);
-      this.ref = parentNode.querySelector(`#${viewerId}`);
-      this.viewer = initOpenSeaDragon(nextProps.pathToFile);
+      // this works locally. might be necessary to preload the image like in: https://jsfiddle.net/ashraffayad/074navyp/
+      this.viewer.open({ type: "image", url: nextProps.pathToFile });
     }
   }
 
   render() {
     return (
-      <div>
-        <div
-          ref={ref => (this.ref = !this.ref ? ref : this.ref)}
-          id={viewerId}
-          className={classNames.zoomableImageViewer}
-        >
-          <Noscript>
-            <div className={classNames.noscriptContainer}>
-              <img
-                className={classNames.noscriptImg}
-                alt=""
-                src={this.props.pathToFile}
-              />
-            </div>
-          </Noscript>
-        </div>
+      <div id={viewerId} className={classNames.zoomableImageViewer}>
+        <Noscript>
+          <div className={classNames.noscriptContainer}>
+            <img
+              className={classNames.noscriptImg}
+              alt=""
+              src={this.props.pathToFile}
+            />
+          </div>
+        </Noscript>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );

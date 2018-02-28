@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import AllExhibitions from "../../components/ExhibitionsComponents/AllExhibitions";
-import Footer from "../../components/ExhibitionsComponents/Footer";
+import MainLayout from "components/MainLayout";
+import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
+import Footer from "components/ExhibitionsComponents/Footer";
 import { getCurrentUrl } from "utilFunctions";
 import {
   TITLE,
@@ -14,7 +14,7 @@ import {
 
 const Exhibitions = ({ url, exhibitions }) =>
   <MainLayout route={url} pageTitle={TITLE}>
-    <div id="main">
+    <div id="main" role="main">
       <AllExhibitions route={url} exhibitions={exhibitions} />
     </div>
     <Footer />

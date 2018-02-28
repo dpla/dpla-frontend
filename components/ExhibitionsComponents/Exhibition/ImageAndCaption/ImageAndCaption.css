@@ -71,7 +71,7 @@
   display: none;
   @media (min-width: smallRem) {
     margin-bottom: -1.25rem;
-    display: inline-block;
+    display: block;
   }
 }
 
@@ -108,15 +108,17 @@
 
 .caption {
   padding: 0 1rem;
-  @media (min-width: smallRem) {
-    padding: 0;
-  }
-  @media (min-width: largeRem) {
-    padding: 0 45px;
-  }
   color: #0D0D17;
   opacity: 0.50;
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.125;
   display: flex;
+
+  @media (min-width: smallRem) {
+    padding: 0;
+  }
+
+  @media (min-width: largeRem) {
+    padding: 0 45px;
+  }
 }

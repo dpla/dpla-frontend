@@ -1,16 +1,16 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../../components/MainLayout";
-import AllSets from "../../components/PrimarySourceSetsComponents/AllSets";
-import PSSFooter from "../../components/PrimarySourceSetsComponents/PSSFooter";
+import MainLayout from "components/MainLayout";
+import AllSets from "components/PrimarySourceSetsComponents/AllSets";
+import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import { PSS_BASE_URL } from "constants/site";
 import { TITLE } from "constants/primarySourceSets";
 
 const PrimarySourceSets = ({ url, sets }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <div id="main">
+      <div id="main" role="main">
         <AllSets route={url} sets={sets} />
       </div>
       <PSSFooter />

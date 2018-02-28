@@ -1,4 +1,4 @@
-@value onionBrown, warmerBackgroundColor, colderBackgroundColor, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
+@value warmerBackgroundColor, colderBackgroundColor, proSiteColor, linkColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value monoFont, serifFont from "../typography.css";
 
@@ -90,12 +90,13 @@
 }
 
 .testimonial {
-  background-color: elephantBlue;
+  background-color: proSiteColor;
   color: white;
   padding: 1.6rem 1.5rem;
 
   & h2 {
     font-family: serifFont;
+    color: white;
     text-transform: uppercase;
     font-size: 1rem;
   }

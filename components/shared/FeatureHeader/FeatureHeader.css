@@ -22,11 +22,16 @@
   font-weight: normal;
   font-size: 1.5rem;
   font-family: serifFont;
-
+  line-height: 1.25;
+  
   @media (min-width: mediumRem) {
     font-size: 2.5rem;
     padding-right: 1rem;
     width: 30%;
+
+    &.long {
+      width: auto;
+    }
   }
 
   @media (min-width: largeRem) {

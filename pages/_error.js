@@ -1,6 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import MinimalLayout from "../components/MainLayout/components/MinimalLayout";
+
+import MinimalLayout from "components/MainLayout/components/MinimalLayout";
+import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
+import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
+
+import { SITE_ENV } from "constants/env";
 
 import {
   classNames as contentClasses,
@@ -29,6 +34,7 @@ export default class Error extends React.Component {
             <div className={`col-md-2 col-xs-12`} />
             <div
               id="main"
+              role="main"
               className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
             >
               {this.props.statusCode === 500 &&
@@ -37,9 +43,9 @@ export default class Error extends React.Component {
                     An error occurred.
                   </h1>
                   <p>
-                    Thanks for your patience while we work to fix this issue.
+                    Thanks for your patience while we work to fix this issue. In
+                    the meantime, try one of these:
                   </p>
-                  <p>In the meantime, try one of these:</p>
                 </div>}
               {this.props.statusCode !== 500 &&
                 <div>
@@ -48,42 +54,12 @@ export default class Error extends React.Component {
                   </h1>
                   <p>
                     We are sorry that the page you requested cannot be found.
+                    Instead, try one of these:
                   </p>
-                  <p>Instead, try one of these:</p>
                 </div>}
               <div>
-                <ul>
-                  <li>
-                    <Link prefetch href="/search">
-                      <a>search</a>
-                    </Link>{" "}
-                    our collections
-                  </li>
-                  <li>
-                    browse {" "}
-                    <Link prefetch href="/browse-by-topic">
-                      <a>items by topic</a>
-                    </Link>
-                  </li>
-                  <li>
-                    discover items from specific{" "}
-                    <Link prefetch href="/browse-by-partner">
-                      <a>partners</a>
-                    </Link>
-                  </li>
-                  <li>
-                    view our {" "}
-                    <Link prefetch href="/exhibitions">
-                      <a>exhibitions</a>
-                    </Link>
-                  </li>
-                  <li>
-                    explore our{" "}
-                    <Link prefetch href="/primary-source-sets">
-                      <a>primary source sets</a>
-                    </Link>
-                  </li>
-                </ul>
+                {SITE_ENV === "user" && <ErrorLinksUser />}
+                {SITE_ENV === "pro" && <ErrorLinksPro />}
               </div>
             </div>
           </div>

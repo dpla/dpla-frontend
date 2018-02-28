@@ -1,5 +1,6 @@
 @value riceCakeWhite from "../../../../css/colors.css";
 @value smallRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .itemList {
   flex: 1;
@@ -20,7 +21,7 @@
 
 .itemCount {
   font-size: 1.375rem;
-  line-height: 1.75rem;
+  line-height: 1.75;
 }
 
 .viewButtons {

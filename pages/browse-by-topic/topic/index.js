@@ -2,11 +2,14 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import { extractSourceSetSlug } from "utilFunctions/";
-import BreadcrumbsAndNav from "../../../components/TopicBrowseComponents/BreadcrumbsAndNav";
-import MainContent from "../../../components/TopicBrowseComponents/Topic/MainContent";
-import Suggestions from "../../../components/TopicBrowseComponents/Topic/Suggestions";
-import MainLayout from "../../../components/MainLayout";
-import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
+import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
+import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
+import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
+import MainLayout from "components/MainLayout";
+import {
+  API_ENDPOINT_ALL_TOPICS,
+  API_ENDPOINT_SUBTOPICS_FOR_TOPIC
+} from "constants/topicBrowse";
 import {
   EXHIBIT_PAGES_ENDPOINT,
   EXHIBITS_ENDPOINT,
@@ -36,7 +39,7 @@ const Topic = ({ url, topic, subtopics, suggestions }) =>
         }
       ]}
     />
-    <div id="main">
+    <div id="main" role="main">
       <MainContent topic={topic} />
       {topic.acf.related_content &&
         topic.acf.related_content.length > 0 &&
@@ -46,15 +49,19 @@ const Topic = ({ url, topic, subtopics, suggestions }) =>
 
 Topic.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
-  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
+  const topicsRes = await fetch(
+    API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
+  );
   const topicsJson = await topicsRes.json();
-  const currentTopic = topicsJson.find(topic => topic.slug === query.topic);
-  const subtopics = topicsJson
-    .filter(topic => topic.parent === currentTopic.id)
-    .sort((a, b) => a.acf.order - b.acf.order)
-    .map(subtopic =>
-      Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
-    );
+  const currentTopic = topicsJson[0];
+
+  const subtopicsRes = await fetch(
+    API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id
+  );
+  const subtopicsJson = await subtopicsRes.json();
+  const subtopics = subtopicsJson.map(subtopic =>
+    Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
+  );
 
   const suggestions = !currentTopic.acf.related_content
     ? []

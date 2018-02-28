@@ -1,28 +1,8 @@
 {
-  "presets": ["next/babel"],
-  "env": {
-    "development": {
-      "plugins": [
-        [
-          "inline-dotenv",
-          {
-            "include": ["SITE_ENV"]
-          }
-        ]
-      ]
-    },
-    "production": {
-      "plugins": [
-        [
-          "transform-inline-environment-variables",
-          {
-            "include": ["SITE_ENV"]
-          }
-        ]
-      ]
-    }
-  },
+  "presets": [
+    "next/babel"],
   "plugins": [
+    "inline-react-svg",
     [
       "module-resolver",
       {
@@ -31,6 +11,8 @@
           "css": "./css",
           "static": "./static",
           "utilFunctions": "./utilFunctions",
+          "shared": "./components/shared",
+          "constants": "./constants",
           "components": "./components"
         }
       }

@@ -1,15 +1,15 @@
 import React from "react";
-
-import Button from "components/shared/Button";
-import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
-const bgImage = "static/images/home-hero-bg.png";
-const searchIcon = "static/images/search.svg";
+import Button from "components/shared/Button";
 
-const HomeHero = ({ headerDescription }) =>
+import { stylesheet, classNames } from "./HomeHero.css";
+
+const bgImage = "static/images/home-hero-bg.png";
+
+const HomeHero = ({ headerDescription, feature }) =>
   <div
-    className={classNames.wrapper}
+    className={`${classNames.wrapper} ${feature ? classNames.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
     <div className={`${classNames.header} site-max-width`}>
@@ -32,7 +32,6 @@ const HomeHero = ({ headerDescription }) =>
             autoComplete="off"
             type="search"
           />
-          <div className={classNames.shadow} />
           <button type="submit" className={classNames.searchButton}>
             <span>Search</span>
           </button>

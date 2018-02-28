@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import UserNavigation from "../shared/UserNavigation";
+import NavigationUser from "../shared/NavigationUser";
+import NavigationPro from "../shared/NavigationPro";
 
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
+
+import { SITE_ENV } from "constants/env";
 
 class SmallScreenHeader extends Component {
   state = {
@@ -26,12 +29,12 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, route } = this.props;
+    const { isSearchPage, route, isHome } = this.props;
 
     return (
       <div className={`${classNames.wrapper}`}>
         <div className={classNames.header}>
-          <Link prefetch href="/">
+          <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
             <a className={classNames.logo}>
               <span>Digital Public Library of America</span>
             </a>
@@ -48,13 +51,21 @@ class SmallScreenHeader extends Component {
             {menuIsOpen && <span>Hide<br />Menu</span>}
           </button>
         </div>
-        {process.env.SITE_ENV !== "pro" &&
-          <UserNavigation
+        {SITE_ENV !== "pro" &&
+          <NavigationUser
             className={`${classNames.menuContainer} ${menuIsOpen
               ? classNames.isOpen
               : ""} site-max-width`}
-            style={{ zIndex: 99 }}
             classNames={classNames}
+            isHome={isHome}
+          />}
+        {SITE_ENV === "pro" &&
+          <NavigationPro
+            className={`${classNames.menuContainer} ${menuIsOpen
+              ? classNames.isOpen
+              : ""} site-max-width`}
+            classNames={classNames}
+            isHome={isHome}
           />}
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>

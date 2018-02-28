@@ -1,14 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./SourceSetInfo.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
+import { showMoreDescription } from "utilFunctions";
+
+import { stylesheet, classNames } from "./SourceSetInfo.css";
+import { classNames as utilClassNames } from "css/utils.css";
 
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
@@ -19,19 +21,12 @@ const extractTimePeriod = tags =>
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
-const showMoreDescription = className => {
-  const description = document.getElementById("dpla-description");
-  const showmore = document.getElementById("dpla-showmore");
-  description.classList.add(className);
-  showmore.remove();
-};
-
 class SourceSetInfo extends React.Component {
   render() {
     const { set, currentFullUrl } = this.props;
     const authorList = set.author.map(author => author.name);
     return (
-      <div id="main" className={classNames.wrapper}>
+      <div id="main" role="main" className={classNames.wrapper}>
         <div className={[classNames.sourceSetInfo, container].join(" ")}>
           <div className={`${classNames.removeScroll} row`}>
             <div className={`${classNames.removeScroll} col-xs-12 col-md-8`}>
@@ -74,7 +69,8 @@ class SourceSetInfo extends React.Component {
               <div id="dpla-showmore" aria-hidden="true">
                 <span
                   className={`${classNames.showMore} link`}
-                  onClick={() => showMoreDescription(classNames.open)}
+                  onClick={() =>
+                    showMoreDescription({ className: classNames.open })}
                 >
                   Show full overview
                 </span>

@@ -4,11 +4,11 @@ import fetch from "isomorphic-fetch";
 import {
   classNames,
   stylesheet
-} from "../../../../components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.css";
-import BreadcrumbsAndNav from "../../../../components/TopicBrowseComponents/BreadcrumbsAndNav";
-import ItemList from "../../../../components/TopicBrowseComponents/SubtopicItemsList/ItemList";
-import MainLayout from "../../../../components/MainLayout";
-import Sidebar from "../../../../components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
+} from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.css";
+import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
+import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
+import MainLayout from "components/MainLayout";
+import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 import {
   decodeHTMLEntities,
   extractItemId,
@@ -17,7 +17,8 @@ import {
 } from "utilFunctions";
 
 import {
-  API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
+  API_ENDPOINT_ALL_TOPICS,
+  API_ENDPOINT_SUBTOPICS_FOR_TOPIC,
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
 import {
@@ -54,6 +55,7 @@ const SubtopicItemsList = ({
     />
     <div
       id="main"
+      role="main"
       className={[classNames.sidebarAndItemList, container].join(" ")}
     >
       <Sidebar
@@ -83,27 +85,34 @@ const SubtopicItemsList = ({
 
 SubtopicItemsList.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
-  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
+  const topicsRes = await fetch(
+    API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
+  );
   const topicsJson = await topicsRes.json();
-  const currentSubtopic = topicsJson.find(
+  const currentTopic = topicsJson[0];
+
+  const subtopicsRes = await fetch(
+    API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id
+  );
+  const subtopicsJson = await subtopicsRes.json();
+  const subtopics = subtopicsJson.map(subtopic =>
+    Object.assign({}, subtopic, { thumbnailUrl: subtopic.acf.category_image })
+  );
+  const currentSubtopic = subtopics.find(
     topic => topic.slug === query.subtopic
   );
-  const currentSubtopicIdx = topicsJson.findIndex(
-    topic => topic.id === currentSubtopic.id
+  const currentSubtopicIdx = subtopics.findIndex(
+    topic => topic.term_id === currentSubtopic.term_id
   );
-  const subtopics = topicsJson.filter(
-    topic => topic.parent === currentSubtopic.parent
-  );
-  const currentTopic = topicsJson.find(
-    topic => topic.id === currentSubtopic.parent
-  );
+
+  // TODO: add support going to next/previous topic
   const previousSubtopicIdx =
     currentSubtopicIdx - 1 >= 0 && currentSubtopicIdx - 1;
   const nextSubtopicIdx =
     currentSubtopicIdx + 1 < subtopics.length && currentSubtopicIdx + 1;
 
   const itemsRes = await fetch(
-    `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.id}`
+    `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`
   );
   const itemsJson = await itemsRes.json();
 

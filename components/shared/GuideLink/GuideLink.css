@@ -36,7 +36,7 @@
   font-family: serifFont;
   font-weight: normal;
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin: 1rem 0 .5rem;
 }
 
@@ -50,7 +50,6 @@
 .text {
   color: black;
   font-size: 1rem;
-  line-height: 1.25;
   margin: 0 auto;
   max-width: 22rem;
   text-decoration: none;

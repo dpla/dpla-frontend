@@ -44,10 +44,6 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
       />
       <meta name="theme-color" content="#ffffff" />
       <link
-        href="https://fonts.googleapis.com/css?family=Lora:400,400i,700|Source+Sans+Pro:400,400i,600,600i"
-        rel="stylesheet"
-      />
-      <link
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
@@ -71,6 +67,7 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
       <style>{reset}</style>
       <style>{utilStylesheet}</style>
       <style>{accessibility}</style>
+      <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Array.prototype.includes" />
     </Head>
   </div>;
 

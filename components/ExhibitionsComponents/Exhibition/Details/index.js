@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import Button from "../../../shared/Button";
-import CiteButton from "../../../shared/CiteButton";
+import Button from "shared/Button";
+import CiteButton from "shared/CiteButton";
 
 import { classNames, stylesheet } from "./Details.css";
 import { classNames as utilClassNames } from "css/utils.css";

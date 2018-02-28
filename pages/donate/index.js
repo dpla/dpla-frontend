@@ -2,9 +2,11 @@ import React from "react";
 
 import Link from "next/link";
 
-import MainLayout from "../../components/MainLayout";
-import DonateForm from "../../components/DonateComponents/DonateForm";
-import Button from "../../components/shared/Button";
+import MainLayout from "components/MainLayout";
+import DonateForm from "components/DonateComponents/DonateForm";
+import Button from "components/shared/Button";
+
+import { SEO_TITLE } from "constants/donate";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
@@ -15,12 +17,11 @@ import {
   classNames as utilClassNames,
   stylesheet as utilStyles
 } from "css/utils.css";
-import { SEO_TITLE } from "constants/donate";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={contentClasses.donateBackground}>
-      <div id="main" className={`${utilClassNames.container}`}>
+      <div id="main" role="main" className={`${utilClassNames.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
@@ -43,7 +44,7 @@ const Donate = ({ url }) =>
                 America.
               </p>
 
-              <p>
+              <p className={classNames.address}>
                 Digital Public Library of America<br />
                 c/o Boston Public Library<br />
                 700 Boylston Street<br />

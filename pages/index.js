@@ -1,17 +1,17 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import MainLayout from "../components/MainLayout";
-import HomeHero from "../components/HomePageComponents/HomeHero";
-import HomePageSlider from "../components/HomePageComponents/HomePageSlider";
-import DPLAUsers from "../components/HomePageComponents/DPLAUsers";
-import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
-import FromTheBlog from "../components/HomePageComponents/FromTheBlog";
+import MainLayout from "components/MainLayout";
+import HomeUser from "components/HomePageComponents/HomeUser";
+
 import {
   getCurrentUrl,
   extractSourceSetSlug,
-  addCommasToNumber
+  addCommasToNumber,
+  getMenuItemUrl
 } from "utilFunctions";
+
+import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
   DPLA_HOMEPAGE_ENDPOINT,
   HEADER_DESCRIPTION_TOKEN
@@ -22,49 +22,55 @@ import {
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { GUIDES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
-import { PSS_BASE_URL } from "constants/site";
+import {
+  PAGES_ENDPOINT,
+  ABOUT_MENU_ENDPOINT,
+  NEWS_USER_ENDPOINT
+} from "constants/content-pages";
+import { PSS_BASE_URL, API_SETTINGS_ENDPOINT } from "constants/site";
+import { SITE_ENV } from "constants/env";
 
-import { stylesheet } from "../components/HomePageComponents/HomePageSlider/HomePageSlider.css";
-import { stylesheet as guidesStylesheet } from "../components/shared/GuideLink/GuideLink.css";
-import { stylesheet as arrowStylesheet } from "../components/shared/CarouselNavArrows/CarouselNavArrows.css";
-
-const Home = ({ url, sourceSets, exhibitions, guides, headerDescription }) =>
-  <MainLayout hideSearchBar route={url}>
-    <div id="main">
-      <HomeHero headerDescription={headerDescription} />
-      {exhibitions &&
-        exhibitions.length > 0 &&
-        <HomePageSlider
-          items={exhibitions}
-          title="Online Exhibitions"
-          browseLinkUrl="/exhibitions"
-          browseLinkName="Exhibitions"
-        />}
-      {sourceSets &&
-        sourceSets.length > 0 &&
-        <HomePageSlider
-          items={sourceSets}
-          title="Primary Source Sets"
-          browseLinkUrl="/primary-source-sets"
-          browseLinkName="Sets"
-          slidesToShow={3.5}
-          theme="blue"
-        />}
-      <DPLAUsers guides={guides} />
-      <FromTheBlog />
-      {/* <SocialMedia /> */}
+const Home = ({
+  url,
+  sourceSets,
+  guides,
+  exhibitions,
+  headerDescription,
+  news,
+  content
+}) =>
+  <MainLayout
+    hidePageHeader={SITE_ENV === "user"}
+    hideSearchBar={SITE_ENV === "pro"}
+    route={url}
+  >
+    <div id="main" role="main">
+      <HomeUser
+        sourceSets={sourceSets}
+        exhibitions={exhibitions}
+        guides={guides}
+        headerDescription={headerDescription}
+        news={news}
+        content={content}
+        url={url}
+      />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;
 
 Home.getInitialProps = async ({ req }) => {
   const currentUrl = getCurrentUrl(req);
 
-  const homepageRes = await fetch(DPLA_HOMEPAGE_ENDPOINT);
-  const homepageJson = await homepageRes.json();
+  // fetch home info
+  // 1. fetch the settings from WP
+  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  const settingsJson = await settingsRes.json();
+  // 2. get the corresponding value
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
+  const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
+    .guides_endpoint}`;
+  // 3. fetch it
+  const homeRes = await fetch(endpoint);
+  const homepageJson = await homeRes.json();
 
   // fetch featured exhibits data
 
@@ -159,14 +165,14 @@ Home.getInitialProps = async ({ req }) => {
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   const aboutMenuJson = await aboutMenuRes.json();
   const indexPageItem = aboutMenuJson.items.find(
-    item => item.url === GUIDES_ENDPOINT
+    item => item.url === guides_endpoint
   );
   const guides = await Promise.all(
     aboutMenuJson.items
       .filter(item => item.menu_item_parent === indexPageItem.object_id)
       .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
       .map(async guide => {
-        const guideRes = await fetch(guide.url);
+        const guideRes = await fetch(getMenuItemUrl(guide));
         const guideJson = await guideRes.json();
         return Object.assign({}, guide, {
           slug: guide.post_name,
@@ -179,11 +185,17 @@ Home.getInitialProps = async ({ req }) => {
       })
   );
 
+  // fetch news posts
+  const newsRes = await fetch(NEWS_USER_ENDPOINT);
+  const newsItems = await newsRes.json();
+
   return {
     sourceSets,
     guides,
     exhibitions: featuredExhibitionsWithData,
-    headerDescription
+    headerDescription,
+    news: newsItems,
+    content: homepageJson
   };
 };
 

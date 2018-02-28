@@ -1,14 +1,22 @@
-@value sansFont from "./typography.css";
-@value linkColor, outlineColor from "./colors.css";
+@value outlineColor from "./colors.css";
+@value sansFont, serifFont from "./typography.css";
+
+html {
+  font-size: 16px;
+}
 
 body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
-body, button, input, select {
+body {
+  font-family: sansFont;
+}
+
+button, input, select, label, textarea {
   font-family: sansFont;
 }
 

@@ -1,15 +1,14 @@
 import React from "react";
-import Button from "../../shared/Button";
+import Button from "shared/Button";
+
+import { getCurrentFullUrl, endsWith } from "utilFunctions";
+import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
   stylesheet as contentStyles,
   classNames as contentClasses
 } from "css/pages/donate.css";
-import { classNames as utilClassNames } from "css/utils.css";
-
-import { getCurrentFullUrl } from "utilFunctions";
-import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 const frequencyMap = [
   { v: "once", k: "Give Once" },
@@ -56,7 +55,7 @@ class DonateForm extends React.Component {
       : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
     let returnUrl = getCurrentFullUrl();
-    returnUrl = returnUrl.endsWith("/")
+    returnUrl = endsWith(returnUrl, "/")
       ? returnUrl + "thank-you"
       : returnUrl + "/thank-you";
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
@@ -98,7 +97,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-frequency">Frequency</h2>
         <ul className={`row start-xs`}>
           {frequencyMap.map((freq, i) =>
-            <li key={i} className={`col-xs-12 col-md-4`}>
+            <li key={i} className={`${classNames.donate} col-xs-12 col-md-4`}>
               <DualStateButton
                 id={"freq" + i}
                 key={"freq" + i}
@@ -114,7 +113,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-amount">Donation amount</h2>
         <ul className={`row`}>
           {amountMap.map((amt, i) =>
-            <li key={i} className={`col-xs-6 col-md-4`}>
+            <li key={i} className={`${classNames.donate} col-xs-6 col-md-4`}>
               <DualStateButton
                 id={"amt" + i}
                 labelledby={"donation-amount amt" + i}
@@ -126,7 +125,9 @@ class DonateForm extends React.Component {
               />
             </li>
           )}
-          <li className={`${contentClasses.otherAmount} col-xs-6 col-md-4`}>
+          <li
+            className={`${classNames.donate} ${contentClasses.otherAmount} col-xs-6 col-md-4`}
+          >
             <input
               type="text"
               aria-label="Give other amount"

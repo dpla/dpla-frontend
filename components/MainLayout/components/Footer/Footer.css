@@ -1,5 +1,6 @@
 @value minuitBlue, ebonyClayBlue, linkColor, gray75 from "../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
+@value sansFont from "../../../../css/typography.css";
 
 .wrapper {
   color: white;

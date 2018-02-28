@@ -29,7 +29,7 @@ const Button = ({
   live,
   url
 }) => {
-  let buttonClasses = `${className} ${classNames.buttonBase}`;
+  let buttonClasses = `${classNames.buttonBase}`;
 
   let props = {};
   if (id) props["id"] = id;
@@ -63,6 +63,9 @@ const Button = ({
     case "large":
       buttonClasses = `${buttonClasses} ${classNames.buttonLarge}`;
       break;
+    case "medium":
+      buttonClasses = `${buttonClasses} ${classNames.buttonMedium}`;
+      break;
   }
 
   switch (state) {
@@ -71,15 +74,16 @@ const Button = ({
       break;
   }
 
+  let linkProps = {};
+  if (as) linkProps["as"] = as;
+  if (prefetch) linkProps["prefetch"] = prefetch;
+  if (title) linkProps["title"] = title;
+
   return (
-    <div
-      className={
-        type === "donate" && size === "large" ? `` : type === "donate" ? "" : ""
-      }
-    >
+    <div className={className}>
       {url
-        ? <Link prefetch={prefetch} href={url} as={as}>
-            <a {...props} title={title} className={buttonClasses} style={style}>
+        ? <Link href={url} {...linkProps}>
+            <a {...props} className={buttonClasses} style={style}>
               {children}
             </a>
           </Link>

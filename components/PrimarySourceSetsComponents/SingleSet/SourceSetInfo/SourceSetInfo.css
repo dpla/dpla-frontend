@@ -130,6 +130,7 @@
   margin-bottom: 1rem;
   max-height: 5.5rem;
   overflow: hidden;
+  font-family: serifFont;
 
   @media print {
     overflow: inherit;
@@ -159,14 +160,11 @@
   }
 
   & p {
-    margin-bottom: 1rem;
-    @media (min-width: smallRem) {
-      margin-bottom: 1.5rem;
-    }
+    line-height: 1.5;
   }
 
-  & p:last-of-type {
-    margin-bottom: 0;
+  & p + p {
+    text-indent: 1.5rem;
   }
 }
 
@@ -191,13 +189,13 @@
 .metadatum {
   margin-bottom: 20px;
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.125;
 }
 
 .metadataHeader {
   font-weight: 600;
   font-size: 1rem;
-  line-height: 1.25rem;
+  line-height: 1.25;
   margin-bottom: 6px;
 }
 
@@ -207,6 +205,8 @@
 
 .citeButton {
   width: 100%;
+  text-align: center;
+  background-color: colderBackgroundColor;
 }
 
 .link p {

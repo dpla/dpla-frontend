@@ -1,10 +1,16 @@
-@value linkColor, secondaryButtonColor, mysticGray, elephantBlue, white50 from "../../../css/colors.css";
+@value linkColor, secondaryButtonColor, mobileNavColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
+@value monoFont, serifFont, sansFont from "../../../css/typography.css";
 
 .wrapper {
   background-color: rgb(47, 74, 87);
   background-size: cover;
   color: white;
+
+  &.withFeature {
+    margin-bottom: -5rem;
+    padding-bottom: 7rem; /* adds 5rem to allow for overlapping feature */
+  }
 
   @media (min-width: mediumRem) {
     padding-top: 2rem;
@@ -42,20 +48,20 @@
   max-width: 44rem;
 
   @media (min-width: mediumRem) {
-    padding: 4rem 0 6rem;
+    padding: 4rem 0;
   }
 
   @media (min-width: largeRem) {
-    padding: 4rem 0 8rem;
+    padding: 4rem 0;
   }
 }
 
 .headline {
-  font-family: 'Lora';
+  font-family: serifFont;
   font-size: 1.5625rem;
   font-weight: normal;
   line-height: 1.25;
-  padding: 0 1rem;
+  padding: 0;
   text-align: center;
 
   @media (min-width: smallRem) {
@@ -94,20 +100,10 @@
   }
 }
 
-.shadow {
-  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5);
-  height: 100%;
-  left: 0;
-  opacity: .25;
-  position: absolute;
-  top: 0;
-  transition: opacity .15s ease-out;
-  width: 100%;
-}
-
 .searchInput {
   appearance: none;
   border-radius: 3px;
+  box-sizing: border-box;
   border: none;
   height: 100%;
   line-height: 1.5;
@@ -126,7 +122,7 @@
 
   &::placeholder {
     transition: opacity .15s ease-out;
-    color: elephantBlue;
+    color: mobileNavColor;
   }
 
   &:focus + .shadow {
@@ -183,7 +179,7 @@
   
   & a {
     display: inline-block;
-    margin: 0 1rem;
+    margin: 0.75rem 1rem 0;
     color: white;
     text-decoration: underline;
   }

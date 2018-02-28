@@ -1,12 +1,12 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-import { gaTrackingId } from "constants/site";
+import { gaTrackingId } from "constants/env";
 import {
-  joinIfArray,
-  getFullPath,
-  parseDplaItemRecord,
   initGa,
+  getFullPath,
+  joinIfArray,
+  parseDplaItemRecord,
   trackGaEvent
 } from "utilFunctions";
 

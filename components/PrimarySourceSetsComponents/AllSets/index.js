@@ -1,10 +1,10 @@
 import React from "react";
 
 import FiltersBar from "./components/FiltersBar";
-import FeatureHeader from "../../shared/FeatureHeader";
+import FeatureHeader from "shared/FeatureHeader";
 import SetsList from "./components/SetsList";
 
-import { TITLE, DESCRIPTION } from "../../../constants/primarySourceSets.js";
+import { TITLE, DESCRIPTION } from "constants/primarySourceSets.js";
 
 const AllSets = ({ route, sets }) =>
   <div>

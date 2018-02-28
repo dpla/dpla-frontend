@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
+import DPLALogoWide from "../../../static/images/dpla-logo-black.svg";
+
 import { classNames } from "./ExhibitionSection.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const { container } = utilClassNames;
 
-const dplaLogo = "/static/images/dpla-logo-black.svg";
 const chevron = "/static/images/chevron-thick-white.svg";
 const blackChevron = "/static/images/chevron-thick-black.svg";
 
@@ -42,8 +43,7 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
             <img src={chevron} className={classNames.nextChevron} alt="" />}
         </a>
       </Link>
-    : <button
-        disabled
+    : <span
         className={[
           nextOrPrevious === "next"
             ? classNames.nextButton
@@ -60,7 +60,7 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
           <img src={chevron} className={classNames.nextChevron} alt="" />}
-      </button>;
+      </span>;
 
 const FooterNav = ({
   exhibition,
@@ -72,7 +72,7 @@ const FooterNav = ({
   <div className={classNames.footerWrapper}>
     <div className={[container, classNames.footerNav].join(" ")}>
       <Link prefetch href="/">
-        <img src={dplaLogo} alt="DPLA" className={classNames.dplaLogo} />
+        <DPLALogoWide className={classNames.dplaLogo} />
       </Link>
       <div className={classNames.navButtons}>
         <NavButton

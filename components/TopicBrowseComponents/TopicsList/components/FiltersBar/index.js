@@ -2,10 +2,7 @@ import React from "react";
 import Select from "react-select";
 
 import "react-select/dist/react-select.css";
-import {
-  classNames,
-  stylesheet
-} from "../../../../shared/FiltersBar/FiltersBar.css";
+import { classNames, stylesheet } from "shared/FiltersBar/FiltersBar.css";
 
 const SortValue = props =>
   <span className={classNames.sortValue}>

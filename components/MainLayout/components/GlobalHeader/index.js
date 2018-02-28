@@ -1,18 +1,28 @@
 import React from "react";
 import Link from "next/link";
-import UserNavigation from "../shared/UserNavigation";
+import NavigationUser from "../shared/NavigationUser";
+import NavigationPro from "../shared/NavigationPro";
 
 import {
   stylesheet as desktopStylesheet,
   classNames as desktopClassNames
 } from "../shared/DesktopStyles.css";
 
-const GlobalHeader = () =>
+import { SITE_ENV } from "constants/env";
+
+const GlobalHeader = ({ isHome }) =>
   <div className={desktopClassNames.header}>
-    {process.env.SITE_ENV !== "pro" &&
-      <UserNavigation
+    {SITE_ENV !== "pro" &&
+      <NavigationUser
         className={`${desktopClassNames.linksContainer} site-max-width`}
         classNames={desktopClassNames}
+        isHome={isHome}
+      />}
+    {SITE_ENV === "pro" &&
+      <NavigationPro
+        className={`${desktopClassNames.linksContainer} site-max-width`}
+        classNames={desktopClassNames}
+        isHome={isHome}
       />}
     <style dangerouslySetInnerHTML={{ __html: desktopStylesheet }} />
   </div>;

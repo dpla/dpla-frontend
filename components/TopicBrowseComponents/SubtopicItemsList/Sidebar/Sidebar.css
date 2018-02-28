@@ -30,7 +30,7 @@
 .title {
   font-family: serifFont;
   font-size: 1.5rem;
-  line-height: 1.625rem;
+  line-height: 1.25;
   margin-bottom: 10px;
   font-weight: normal;
 }
@@ -41,7 +41,7 @@
 
 .relatedHeader {
   font-size: 1.125rem;
-  line-height: 1.4375rem;
+  line-height: 1.4375;
   margin-bottom: 15px;
 }
 
@@ -58,12 +58,12 @@
   text-transform: uppercase;
   opacity: 0.65;
   font-size: 0.75rem;
-  line-height: 0.9375rem;
+  line-height: 0.9375;
 }
 
 .relatedResourceTitle {
   font-size: 0.875rem;
-  line-height: 0.9375rem;
+  line-height: 0.9375;
 }
 
 .relatedResourceImage {

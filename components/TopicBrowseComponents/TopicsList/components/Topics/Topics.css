@@ -1,5 +1,6 @@
 @value linkColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+@value serifFont from "../../../../../css/typography.css";
 
 .topicsWrapper {
   margin-top: 1rem;
@@ -32,7 +33,6 @@
 .title {
   font-size: 1rem;
   font-weight: 600;
-  margin-top: .5rem;
 }
 
 .ribbon {

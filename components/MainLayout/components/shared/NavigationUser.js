@@ -1,16 +1,19 @@
 import React from "react";
 import Link from "next/link";
 
-const UserNavigation = ({ className, style, classNames }) =>
+import { PRO_BASE_URL } from "constants/env";
+
+const NavigationUser = ({ className, style, classNames, isHome }) =>
   <div className={className} style={style}>
     <ul className={classNames.links}>
-      <li>
-        <Link prefetch href="/">
-          <a>
-            Home
-          </a>
-        </Link>
-      </li>
+      {!isHome &&
+        <li>
+          <Link prefetch href="/">
+            <a>
+              Home
+            </a>
+          </Link>
+        </li>}
       <li>
         <Link prefetch href="/browse-by-topic">
           <a>Browse by Topic</a>
@@ -44,7 +47,7 @@ const UserNavigation = ({ className, style, classNames }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch href="">
+        <Link prefetch href="/news">
           <a>News</a>
         </Link>
       </li>
@@ -52,11 +55,11 @@ const UserNavigation = ({ className, style, classNames }) =>
     <span className={classNames.divider} />
     <ul className={`${classNames.links} ${classNames.tertiaryLinks}`}>
       <li>
-        <Link href="//pro.dp.la">
-          <a>Pro Community</a>
+        <Link href={PRO_BASE_URL}>
+          <a>DPLA Pro</a>
         </Link>
       </li>
     </ul>
   </div>;
 
-export default UserNavigation;
+export default NavigationUser;
