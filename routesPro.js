@@ -39,7 +39,7 @@ module.exports = (app, server) => {
     });
 
     // when a top level section has subsections
-    server.get("/" + section + "/:subsection", (req, res) => {
+    server.get("/" + section.slug + "/:subsection", (req, res) => {
       const actualPage = "/pro/wp";
       const params = {
         section: req.params.section,
