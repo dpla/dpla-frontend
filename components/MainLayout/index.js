@@ -7,10 +7,9 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 import FeedbackForm from "components/FeedbackForm";
-import GaWrapper from "../shared/GaWrapper";
+import GaWrapper from "shared/GaWrapper";
 
-import { SITE_ENV } from "../../constants/env.js";
-
+import { SITE_ENV } from "constants/env";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 
 const MainLayout = ({
