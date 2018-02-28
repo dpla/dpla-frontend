@@ -77,10 +77,9 @@ const ContentAndMetadata = ({ source }) => {
     ? source.text.length > maxDescriptionLength
     : false;
 
-  function clickThroughFunction(e, source) {
-    e.nativeEvent.preventDefault();
-    // e.stopPropagation();
-    // e.nativeEvent.stopImmediatePropagation();
+  const clickThroughFunction = (e, source, target = "_blank") => {
+    const href = getSourceLink(source);
+
     const gaEvent = {
       type: "Click Through",
       itemId: getItemId(source),
@@ -88,14 +87,20 @@ const ContentAndMetadata = ({ source }) => {
       partner: joinIfArray(getPartner(source)),
       contributor: joinIfArray(getContributor(source))
     };
-    // const itemId = getItemId(source);
-    // const partner = joinIfArray(getPartner(source));
-    // const title = joinIfArray(getTitle(source));
-    // const contributor = joinIfArray(getContributor(source));
 
-    // alert(title);
-    trackGaEvent(gaEvent);
-  }
+    // e is a React synthetic event
+    e.preventDefault();
+
+    try {
+      // Try tracking a Google Analytics event.
+      trackGaEvent(gaEvent);
+    } catch (error) {
+      // What is the best way to log an error?
+    } finally {
+      // Open the link, even if the Google Analytics event tracking failed.
+      window.open(href, target);
+    }
+  };
 
   return (
     <div className={classNames.wrapper}>
@@ -202,8 +207,7 @@ const ContentAndMetadata = ({ source }) => {
                 <div className={classNames.linkWrapper}>
                   <a
                     href={getSourceLink(source)}
-                    className={`${classNames.sourceLink} clickThrough`}
-                    id="clickThrough"
+                    className={`${classNames.sourceLink}`}
                     onClick={e => clickThroughFunction(e, source)}
                     rel="noopener noreferrer"
                     target="_blank"
