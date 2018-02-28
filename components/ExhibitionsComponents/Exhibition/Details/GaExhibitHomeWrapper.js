@@ -1,14 +1,8 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-import { gaTrackingId } from "constants/site";
-import {
-  joinIfArray,
-  getFullPath,
-  parseDplaItemRecord,
-  initGa,
-  trackGaEvent
-} from "utilFunctions";
+import { gaTrackingId } from "constants/env";
+import { joinIfArray, parseDplaItemRecord } from "utilFunctions";
 
 export default WrappedComponent =>
   class GaExhibitHomeWrapper extends React.Component {

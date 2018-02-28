@@ -1,16 +1,8 @@
 import React from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
-import { gaTrackingId } from "constants/site";
-import {
-  joinIfArray,
-  getFullPath,
-  getItemId,
-  getPartner,
-  initGa,
-  trackGaEvent,
-  bindLinkEvent
-} from "utilFunctions";
+import { gaTrackingId } from "constants/env";
+import { joinIfArray, getItemId, getPartner } from "utilFunctions";
 
 const getContributor = source =>
   source.mainEntity[0]["provider"].filter(

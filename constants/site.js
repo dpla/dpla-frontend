@@ -15,12 +15,6 @@ export const DPLA_CONTACT_EMAIL = "education@dp.la";
 export const PSS_SUGGESTION_URL =
   "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
 
-// Tracking ID for DPLA TEST.
-// TODO: Change tracking ID after we've verified that the tracking is working
-// as expected.
-// TODO: Make this an environmental variable.
-export const gaTrackingId = "UA-28197764-2";
-
 export const resourceTypes = {
   TEXT: "text",
   IMAGE: "image",
