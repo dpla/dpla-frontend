@@ -59,6 +59,32 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 const getDomainFromThumbnail = thumbnailUrl =>
   /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
+// TODO: Make this a utilFunction and use in all Click Through events.
+const trackClickThrough = (e, source, target = "_blank") => {
+  const href = getSourceLink(source);
+
+  const gaEvent = {
+    type: "Click Through",
+    itemId: getItemId(source),
+    title: joinIfArray(getTitle(source)),
+    partner: joinIfArray(getPartner(source)),
+    contributor: joinIfArray(getContributor(source))
+  };
+
+  // e is a React synthetic event
+  e.preventDefault();
+
+  try {
+    // Try tracking a Google Analytics event.
+    trackGaEvent(gaEvent);
+  } catch (error) {
+    // TODO: What is the best way to log an error?
+  } finally {
+    // Open the link, even if the Google Analytics event tracking failed.
+    window.open(href, target);
+  }
+};
+
 const ContentAndMetadata = ({ source }) => {
   const type = source.mainEntity[0]["@type"];
   const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
@@ -76,32 +102,6 @@ const ContentAndMetadata = ({ source }) => {
   const descriptionIsLong = source.text
     ? source.text.length > maxDescriptionLength
     : false;
-
-  // TODO: Make this a utilFunction and use in all Click Through events.
-  const clickThroughFunction = (e, source, target = "_blank") => {
-    const href = getSourceLink(source);
-
-    const gaEvent = {
-      type: "Click Through",
-      itemId: getItemId(source),
-      title: joinIfArray(getTitle(source)),
-      partner: joinIfArray(getPartner(source)),
-      contributor: joinIfArray(getContributor(source))
-    };
-
-    // e is a React synthetic event
-    e.preventDefault();
-
-    try {
-      // Try tracking a Google Analytics event.
-      trackGaEvent(gaEvent);
-    } catch (error) {
-      // TODO: What is the best way to log an error?
-    } finally {
-      // Open the link, even if the Google Analytics event tracking failed.
-      window.open(href, target);
-    }
-  };
 
   return (
     <div className={classNames.wrapper}>
@@ -209,7 +209,7 @@ const ContentAndMetadata = ({ source }) => {
                   <a
                     href={getSourceLink(source)}
                     className={`${classNames.sourceLink}`}
-                    onClick={e => clickThroughFunction(e, source)}
+                    onClick={e => trackClickThrough(e, source)}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
