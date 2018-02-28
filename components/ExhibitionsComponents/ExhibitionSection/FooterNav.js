@@ -43,8 +43,7 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
             <img src={chevron} className={classNames.nextChevron} alt="" />}
         </a>
       </Link>
-    : <button
-        disabled
+    : <span
         className={[
           nextOrPrevious === "next"
             ? classNames.nextButton
@@ -61,7 +60,7 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
           <img src={chevron} className={classNames.nextChevron} alt="" />}
-      </button>;
+      </span>;
 
 const FooterNav = ({
   exhibition,
