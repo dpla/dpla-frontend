@@ -1,4 +1,4 @@
-import { gaTrackingId } from "constants/site";
+import { gaTrackingId } from "constants/env";
 import ReactGA from "react-ga";
 
 // Initialization will occur on the initial pageload, and also when
