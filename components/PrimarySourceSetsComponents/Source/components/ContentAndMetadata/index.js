@@ -77,6 +77,7 @@ const ContentAndMetadata = ({ source }) => {
     ? source.text.length > maxDescriptionLength
     : false;
 
+  // TODO: Make this a utilFunction and use in all Click Through events.
   const clickThroughFunction = (e, source, target = "_blank") => {
     const href = getSourceLink(source);
 
@@ -95,7 +96,7 @@ const ContentAndMetadata = ({ source }) => {
       // Try tracking a Google Analytics event.
       trackGaEvent(gaEvent);
     } catch (error) {
-      // What is the best way to log an error?
+      // TODO: What is the best way to log an error?
     } finally {
       // Open the link, even if the Google Analytics event tracking failed.
       window.open(href, target);
