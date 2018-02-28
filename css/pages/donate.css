@@ -1,4 +1,4 @@
-@value onionBrown, warmerBackgroundColor, colderBackgroundColor, cascadeBlue, silver, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
+@value onionBrown, warmerBackgroundColor, colderBackgroundColor, cascadeBlue, elephantBlue, minuitBlue, ebonyClayBlue, linkColor, gray75 from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value monoFont, serifFont from "../typography.css";
 
