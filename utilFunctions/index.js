@@ -19,6 +19,7 @@ import truncateString from "./truncateString";
 import endsWith from "./endsWith";
 import removeEndPunctuation from "./removeEndPunctuation";
 import readMyRights from "./readMyRights";
+import formatDate from "./formatDate";
 import getCurrentFullUrl from "./getCurrentFullUrl";
 import bindLinkEvent from "./googleAnalytics/bindLinkEvent";
 import initGa from "./googleAnalytics/initGa";
@@ -49,5 +50,6 @@ export {
   getCurrentFullUrl,
   bindLinkEvent,
   initGa,
-  trackGaEvent
+  trackGaEvent,
+  formatDate
 };
