@@ -8,12 +8,8 @@ import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
 import formatDate from "./formatDate";
 import getBreadcrumbs from "./getBreadcrumbs";
-import getCurrentFullUrl from "./getCurrentFullUrl";
-import getFullPath from "./getFullPath";
-import joinIfArray from "./joinIfArray";
-import removeQueryParams from "./removeQueryParams";
-import decodeHTMLEntities from "./decodeHTMLEntities";
 import getContributor from "./getContributor";
+import getCurrentFullUrl from "./getCurrentFullUrl";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
 import getDplaItemIdFromExhibit from "./getDplaItemIdFromExhibit";
@@ -25,8 +21,8 @@ import getMenuItemUrl from "./getMenuItemUrl";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
-import joinIfArray from "./joinIfArray";
 import getTitle from "./getTitle";
+import joinIfArray from "./joinIfArray";
 import makeURLsClickable from "./makeURLsClickable";
 import parseDplaItemRecord from "./parseDplaItemRecord";
 import removeEndPunctuation from "./removeEndPunctuation";
@@ -50,12 +46,8 @@ export {
   extractSourceSetSlug,
   formatDate,
   getBreadcrumbs,
-  getCurrentFullUrl,
-  getFullPath,
-  joinIfArray,
-  removeQueryParams,
-  decodeHTMLEntities,
   getContributor,
+  getCurrentFullUrl,
   getCurrentUrl,
   getDefaultThumbnail,
   getDplaItemIdFromExhibit,
@@ -67,8 +59,8 @@ export {
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
-  joinIfArray,
   getTitle,
+  joinIfArray,
   makeURLsClickable,
   parseDplaItemRecord,
   readMyRights,
