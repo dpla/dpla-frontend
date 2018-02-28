@@ -12,7 +12,7 @@ const NavigationPro = ({ className, style, classNames }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/hubs" href="/pro/wp?section=hubs">
+        <Link prefetch as="/hubs" href="/pro/wp/hubs?section=hubs">
           <a>Hubs</a>
         </Link>
       </li>

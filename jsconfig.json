@@ -7,6 +7,9 @@
       "utilFunctions/*": [
         "./utilFunctions/*"
       ],
+      "css/*": [
+        "./css/*"
+      ],
       "static/*": [
         "./static/*"
       ],

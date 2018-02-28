@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import HeadingRule from "../../../shared/HeadingRule";
+import HeadingRule from "shared/HeadingRule";
 import { classNames, stylesheet } from "./MainContent.css";
 import { classNames as utilClassNames } from "css/utils.css";
 

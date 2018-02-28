@@ -3,10 +3,7 @@ import Select from "react-select";
 import Router from "next/router";
 
 import "react-select/dist/react-select.css";
-import {
-  classNames,
-  stylesheet
-} from "../../../../shared/FiltersBar/FiltersBar.css";
+import { classNames, stylesheet } from "shared/FiltersBar/FiltersBar.css";
 import {
   sortOptions,
   mapTimePeriodNameToSlug,

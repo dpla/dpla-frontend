@@ -78,10 +78,10 @@ PostPage.getInitialProps = async ({ req, query, res }) => {
   // get news post
   const slug = query.slug;
   const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
-  const postData = await postRes.json();
+  const postJson = await postRes.json();
 
   return {
-    content: postData[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
+    content: postJson[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
     menuItems: menuJson.items
   };
 };
