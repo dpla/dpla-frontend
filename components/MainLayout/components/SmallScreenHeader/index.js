@@ -5,7 +5,7 @@ import ProNavigation from "../shared/ProNavigation";
 
 import { stylesheet, classNames } from "./SmallScreenStyles.css";
 
-import { SITE_ENV } from "../../../../constants/env.js";
+import { SITE_ENV } from "constants/env";
 
 class SmallScreenHeader extends Component {
   state = {

@@ -49,6 +49,7 @@
 @value paginationLinkColor: cascadeBlue;
 @value navColor: tiberBlue;
 @value userSiteColor: hippieBlue;
+@value proSiteColor: elephantBlue;
 @value mobileNavColor: elephantBlue;
 @value secondaryButtonColor: #0080a5;
 @value warmerBackgroundColor: romanceGray;
@@ -63,3 +64,4 @@
 @value formLabelColor: cascadeBlue;
 @value errorColor: linkColor;
 @value radioButtonColor: gainsboroGray;
+@value proIconColor: hippieBlue;

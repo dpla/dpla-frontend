@@ -5,7 +5,6 @@ import { stylesheet, classNames } from "./HomeHero.css";
 import Link from "next/link";
 
 const bgImage = "static/images/home-hero-bg.png";
-const searchIcon = "static/images/search.svg";
 
 const HomeHero = ({ headerDescription }) =>
   <div

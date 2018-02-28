@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
-import DPLAHead from "../DPLAHead";
-import SkipToContent from "../shared/SkipToContent";
+import DPLAHead from "components/DPLAHead";
+import SkipToContent from "components/shared/SkipToContent";
 import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
@@ -15,6 +15,7 @@ const MainLayout = ({
   children,
   route,
   hideSearchBar,
+  hidePageHeader,
   isSearchPage,
   headLinks,
   pageTitle,
@@ -30,7 +31,8 @@ const MainLayout = ({
     <SkipToContent />
     <SmallScreenHeader isSearchPage={isSearchPage} route={route} />
     <GlobalHeader />
-    {!hideSearchBar && <PageHeader searchQuery={route.query.q} />}
+    {!hidePageHeader &&
+      <PageHeader searchQuery={route.query.q} hideSearchBar={hideSearchBar} />}
     {children}
     <Footer />
     <FeedbackForm route={route} />

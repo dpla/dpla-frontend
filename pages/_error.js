@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import MinimalLayout from "../components/MainLayout/components/MinimalLayout";
+import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 
 import {
   classNames as contentClasses,

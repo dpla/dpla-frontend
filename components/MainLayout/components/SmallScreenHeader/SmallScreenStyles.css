@@ -100,7 +100,7 @@
   &.isOpen {
     padding: 1rem 2rem;
     visibility: visible;
-    max-height: 20rem;
+    max-height: 30rem;
   }
 }
 
