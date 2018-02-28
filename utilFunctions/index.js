@@ -8,6 +8,7 @@ import extractSourceId from "./extractSourceId";
 import extractSourceSetSlug from "./extractSourceSetSlug";
 import formatDate from "./formatDate";
 import getBreadcrumbs from "./getBreadcrumbs";
+import getContributor from "./getContributor";
 import getCurrentFullUrl from "./getCurrentFullUrl";
 import getCurrentUrl from "./getCurrentUrl";
 import getDefaultThumbnail from "./getDefaultThumbnail";
@@ -20,6 +21,7 @@ import getMenuItemUrl from "./getMenuItemUrl";
 import getMetaPageTitle from "./getMetaPageTitle";
 import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
+import getTitle from "./getTitle";
 import joinIfArray from "./joinIfArray";
 import makeURLsClickable from "./makeURLsClickable";
 import parseDplaItemRecord from "./parseDplaItemRecord";
@@ -44,6 +46,7 @@ export {
   extractSourceSetSlug,
   formatDate,
   getBreadcrumbs,
+  getContributor,
   getCurrentFullUrl,
   getCurrentUrl,
   getDefaultThumbnail,
@@ -56,6 +59,7 @@ export {
   getMetaPageTitle,
   getPartner,
   getSearchPageTitle,
+  getTitle,
   joinIfArray,
   makeURLsClickable,
   parseDplaItemRecord,
