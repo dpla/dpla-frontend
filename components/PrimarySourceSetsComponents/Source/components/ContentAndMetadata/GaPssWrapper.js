@@ -3,21 +3,15 @@ import ReactGA from "react-ga";
 import Router from "next/router";
 import { gaTrackingId } from "constants/env";
 import {
-  bindLinkEvent,
-  initGa,
   getFullPath,
   joinIfArray,
   getItemId,
   getPartner,
-  trackGaEvent
+  trackGaEvent,
+  getContributor,
+  getTitle,
+  initGa
 } from "utilFunctions";
-
-const getContributor = source =>
-  source.mainEntity[0]["provider"].filter(
-    ref => ref["disambiguationDescription"] == "contributing institution"
-  )[0]["name"];
-
-const getTitle = source => source.mainEntity[0]["name"];
 
 export default WrappedComponent =>
   class GaPssWrapper extends React.Component {
@@ -61,12 +55,13 @@ export default WrappedComponent =>
 
     clickEvent = function(event) {
       event.preventDefault();
-      trackGaEvent(this.gaEvent);
+      trackGaEvent(event.node.gaEvent);
       //window.open(this.href, windowName);
     };
 
     bindClickThroughEvent() {
-      var links = document.getElementsByClassName("clickThrough");
+      // var links = document.getElementsByClassName("clickThrough");
+      var link = document.getElementById("clickThrough");
       var source = this.props.source;
 
       var gaEvent = {
@@ -77,26 +72,34 @@ export default WrappedComponent =>
         contributor: joinIfArray(getContributor(source))
       };
 
-      let clickEvent = this.clickEvent;
+      // link.gaEvent = gaEvent;
+      // link.windowName = "_blank";
+      // link.addEventListener("click", this.clickEvent);
 
-      Array.from(links).forEach(function(node) {
-        console.log(node.windowName);
-        node.gaEvent = gaEvent;
-        node.windowName = "_blank";
-        node.addEventListener("click", clickEvent);
-      });
+      // let clickEvent = this.clickEvent;
+
+      // Array.from(links).forEach(function(node) {
+      //   console.log(node.windowName);
+      //   node.gaEvent = gaEvent;
+      //   node.windowName = "_blank";
+      //   node.addEventListener("click", clickEvent);
+      // });
     }
 
     unbindClickThroughEvent() {
-      var links = document.getElementsByClassName("clickThrough");
+      // var links = document.getElementsByClassName("clickThrough");
+      var link = document.getElementById("clickThrough");
+      delete link.gaEvent;
+      delete link.windowName;
+      link.removeEventListener("click", this.clickEvent);
 
-      let clickEvent = this.clickEvent;
+      // let clickEvent = this.clickEvent;
 
-      Array.from(links).forEach(function(node) {
-        delete node.gaEvent;
-        delete node.windowName;
-        node.removeEventListener("click", clickEvent);
-      });
+      // Array.from(links).forEach(function(node) {
+      //   delete node.gaEvent;
+      //   delete node.windowName;
+      //   node.removeEventListener("click", clickEvent);
+      // });
     }
 
     render() {

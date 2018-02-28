@@ -14,7 +14,10 @@ import {
   joinIfArray,
   getItemId,
   getPartner,
-  showMoreDescription
+  showMoreDescription,
+  getTitle,
+  getContributor,
+  trackGaEvent
 } from "utilFunctions";
 
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
@@ -73,6 +76,26 @@ const ContentAndMetadata = ({ source }) => {
   const descriptionIsLong = source.text
     ? source.text.length > maxDescriptionLength
     : false;
+
+  function clickThroughFunction(e, source) {
+    e.nativeEvent.preventDefault();
+    // e.stopPropagation();
+    // e.nativeEvent.stopImmediatePropagation();
+    const gaEvent = {
+      type: "Click Through",
+      itemId: getItemId(source),
+      title: joinIfArray(getTitle(source)),
+      partner: joinIfArray(getPartner(source)),
+      contributor: joinIfArray(getContributor(source))
+    };
+    // const itemId = getItemId(source);
+    // const partner = joinIfArray(getPartner(source));
+    // const title = joinIfArray(getTitle(source));
+    // const contributor = joinIfArray(getContributor(source));
+
+    // alert(title);
+    trackGaEvent(gaEvent);
+  }
 
   return (
     <div className={classNames.wrapper}>
@@ -180,6 +203,8 @@ const ContentAndMetadata = ({ source }) => {
                   <a
                     href={getSourceLink(source)}
                     className={`${classNames.sourceLink} clickThrough`}
+                    id="clickThrough"
+                    onClick={e => clickThroughFunction(e, source)}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
