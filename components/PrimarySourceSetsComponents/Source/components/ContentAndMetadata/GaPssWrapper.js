@@ -24,11 +24,6 @@ export default WrappedComponent =>
     constructor(props) {
       super(props);
       this.trackSourceView = this.trackSourceView.bind(this);
-      const source = this.props.source;
-      this.itemId = getItemId(source);
-      this.title = joinIfArray(getTitle(source));
-      this.partner = joinIfArray(getPartner(source));
-      this.contributor = joinIfArray(getContributor(source));
     }
 
     // Using componentDidMount enables access to the window, which is necessary
@@ -43,6 +38,7 @@ export default WrappedComponent =>
     // Cleanup, prevents multiple pageviews being counted for a single route.
     componentWillUnmount() {
       Router.router.events.off("routeChangeComplete", this.trackSourceView);
+      this.unbindClickThroughEvent();
     }
 
     trackSourceView() {
@@ -63,18 +59,44 @@ export default WrappedComponent =>
       }
     }
 
-    bindClickThroughEvent() {
-      const links = document.getElementsByClassName("clickThrough");
+    clickEvent = function(event) {
+      event.preventDefault();
+      trackGaEvent(this.gaEvent);
+      //window.open(this.href, windowName);
+    };
 
-      const gaEvent = {
+    bindClickThroughEvent() {
+      var links = document.getElementsByClassName("clickThrough");
+      var source = this.props.source;
+
+      var gaEvent = {
         type: "Click Through",
-        itemId: this.itemId,
-        title: this.title,
-        partner: this.partner,
-        contributor: this.contributor
+        itemId: getItemId(source),
+        title: joinIfArray(getTitle(source)),
+        partner: joinIfArray(getPartner(source)),
+        contributor: joinIfArray(getContributor(source))
       };
 
-      bindLinkEvent(gaEvent, links);
+      let clickEvent = this.clickEvent;
+
+      Array.from(links).forEach(function(node) {
+        console.log(node.windowName);
+        node.gaEvent = gaEvent;
+        node.windowName = "_blank";
+        node.addEventListener("click", clickEvent);
+      });
+    }
+
+    unbindClickThroughEvent() {
+      var links = document.getElementsByClassName("clickThrough");
+
+      let clickEvent = this.clickEvent;
+
+      Array.from(links).forEach(function(node) {
+        delete node.gaEvent;
+        delete node.windowName;
+        node.removeEventListener("click", clickEvent);
+      });
     }
 
     render() {
