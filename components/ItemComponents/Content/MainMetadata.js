@@ -2,7 +2,7 @@ import React from "react";
 import ItemImage from "./ItemImage";
 import Row from "./Row";
 
-import { joinIfArray, readMyRights } from "utilFunctions";
+import { joinIfArray, readMyRights, showMoreDescription } from "utilFunctions";
 import { rightsURLs } from "constants/site.js";
 
 import { classNames, stylesheet } from "./Content.css";
@@ -25,13 +25,6 @@ const RightsBadge = ({ url }) => {
         </a>
       </div>
     : null;
-};
-
-const showMoreDescription = className => {
-  const description = document.getElementById("dpla-description");
-  const showmore = document.getElementById("dpla-showmore");
-  description.classList.add(className);
-  showmore.remove();
 };
 
 const MainMetadata = ({ item }) => {
@@ -123,7 +116,8 @@ const MainMetadata = ({ item }) => {
                   <div id="dpla-showmore" aria-hidden="true">
                     <span
                       className={`${classNames.showMore} link`}
-                      onClick={() => showMoreDescription(classNames.open)}
+                      onClick={() =>
+                        showMoreDescription({ className: classNames.open })}
                     >
                       Show full description
                     </span>

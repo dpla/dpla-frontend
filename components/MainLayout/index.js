@@ -11,7 +11,6 @@ import GaWrapper from "../shared/GaWrapper";
 
 import { SITE_ENV } from "../../constants/env.js";
 
-import { SITE_ENV } from "constants/env";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
 
 const MainLayout = ({
