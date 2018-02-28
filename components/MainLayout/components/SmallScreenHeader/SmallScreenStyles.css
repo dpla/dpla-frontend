@@ -107,7 +107,7 @@
 }
 
 .links {
-  & a {
+  & a, & a:visited {
     color: white;
     display: block;
     margin: .5rem 0;
