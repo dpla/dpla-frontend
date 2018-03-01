@@ -7,7 +7,8 @@ import { classNames as utilClassNames } from "css/utils.css";
 const Topics = ({ topics }) =>
   <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
     <p className={classNames.topicsIntro}>
-      This is the text that explains what topic browse is.
+      This is a new feature designed to showcase content strengths in our
+      collection. Look for new topics in the future!
     </p>
     <ul className="row">
       {topics.map((topic, index) =>
