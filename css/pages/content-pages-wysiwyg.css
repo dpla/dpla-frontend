@@ -109,9 +109,13 @@
   & p {
     margin-bottom: 0;
 
-    & + p:not(.address) {
+    & + p {
       text-indent: 1.5rem;
     }
+  }
+
+  & p + p.address {
+    text-indent: 0;
   }
 
   & p, & ul, & ol {
@@ -168,7 +172,18 @@
   }
 
   & blockquote, & blockquote p {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  & blockquote p + p {
+    font-size: 1.25rem;
+    text-indent: 0;
+  }
+
+  & blockquote q {
     font-size: 1.5rem;
+    font-style: normal;
   }
 
   & table {
