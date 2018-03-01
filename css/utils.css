@@ -11,6 +11,7 @@
   --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
   --half-gutter-width: calc((var(--gutter-width) * 0.5));
   --site-max-width: 64rem;
+  --border-color: rgba(0, 0, 0, .75);
 }
 
 @custom-media --sm-viewport only screen and (min-width: 40em);
@@ -886,5 +887,25 @@ a {
 
   :global .last-lg {
     order: 1;
+  }
+}
+
+/* schedule tables */
+:global table.schedule {
+  border: none;
+  border-bottom: 0.25rem solid var(--border-color);
+  border-top: 0.15rem solid var(--border-color);
+
+  & tr, & th, & td, &td:not(:first-child) {
+    border: none;
+  }
+
+  & tr:not(:last-child) {
+    border-bottom: 0.075rem solid var(--border-color);
+  }
+
+  & th {
+    font-weight: bold;
+    font-family: sansFont;
   }
 }

@@ -1,6 +1,10 @@
-@value warmerBackgroundColor, linkColor from "../colors.css";
+@value warmerBackgroundColor, linkColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value sansFont, monoFont, serifFont from "../typography.css";
+
+:root {
+  --border-color: rgba(0, 0, 0, .1);
+}
 
 .backgroundTint {
   background-color: warmerBackgroundColor;
@@ -44,16 +48,6 @@
 
   @media (min-width: largeRem) {
     padding-top: 3rem;
-  }
-}
-
-:global .schedule {
-  & th, & td {
-  }
-
-  & th {
-    font-weight: 400;
-    font-family: sansFont;
   }
 }
 
@@ -152,6 +146,10 @@
       padding-left: 1rem;
     }
   }
+
+  & li ul {
+    margin-left: 1rem;
+  }
   
   & ol li, & ul li {
     list-style-type: none;
@@ -159,22 +157,30 @@
     counter-increment: start-from;
   }
 
-  & li:not(.donate)::before {
+  & li::before {
     position: absolute;
     left: -3rem;
     width: 3rem;
     padding-right: 0.25rem;
     text-align: right;
-    color: linkColor;
+    color: primaryBulletColor;
     box-sizing: border-box;
   }
 
-  & ul li:not(.donate)::before {
+  & li ul li::before {
+    color: secondaryBulletColor;
+  }
+
+  & ul li::before {
     content: "\2022";
   }
 
-  & ol li:not(.donate)::before {
+  & ol li::before {
     content: counter(start-from);
+  }
+
+  & li.donate::before {
+    content: "";
   }
 
   & ul {
@@ -197,18 +203,18 @@
   }
 
   & table {
-    border: 1px solid rgba(0, 0, 0, .1);
+    /* border: 0.075rem solid var(--border-color); */
     border-collapse: collapse;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     width: 100%;
   }
 
   & td:not(:first-child) {
-    border-left: 1px solid rgba(0, 0, 0, .1);
+    /* border-left: 0.075rem solid var(--border-color); */
   }
 
   & th, & td {
-    padding: 1.5rem 2rem;
+    padding: 1rem;
   }
 
   & td p:last-child {
@@ -216,11 +222,11 @@
   }
 
   & tr:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    /* border-bottom: 0.075rem solid var(--border-color); */
   }
 
   & hr {
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 0.075rem solid var(--border-color);
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
