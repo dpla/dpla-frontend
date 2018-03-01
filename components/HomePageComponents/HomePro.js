@@ -22,7 +22,7 @@ const HomePro = ({ url, news, content }) =>
           Professional Community
         </h1>
         <p>
-          DPLA Pro is where DPLA, our hub network, and our broader community
+          DPLA Pro is where DPLA, our Hub Network, and our broader community
           connect and share resources.
           <WPEdit page={content} url={url} />
         </p>
