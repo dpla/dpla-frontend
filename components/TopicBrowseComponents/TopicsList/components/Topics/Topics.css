@@ -15,6 +15,15 @@
   }
 }
 
+.topicsIntro {
+  font-weight: 400;
+  font-size: 1rem;
+
+  @media (min-width: mediumRem) {
+    font-size: 1.5rem;
+  }
+}
+
 .topic {
   position: relative;
   display: block;

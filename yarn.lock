@@ -8204,9 +8204,9 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-skeleton-loader@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/skeleton-loader/-/skeleton-loader-1.1.3.tgz#0c49a088b74b8b48442de56206059ad05e5af9f0"
+skeleton-loader@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/skeleton-loader/-/skeleton-loader-1.1.5.tgz#9470b85436c1729f10c1ea9f7e921a713f4f06a9"
   dependencies:
     loader-utils "^1.1.0"
 

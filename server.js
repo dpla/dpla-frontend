@@ -76,7 +76,7 @@ app
 
         const body = JSON.stringify({
           email_address: email,
-          status: "subscribed"
+          status: "pending"
         });
 
         const mRes = await fetch(url, {

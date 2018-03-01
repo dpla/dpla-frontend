@@ -47,16 +47,22 @@
 .header {
   font-family: serifFont;
   font-weight: normal;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .text {
   margin-top: .5rem;;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: dimmedTextColor;
 }
 
 .link {
   margin: 0 auto;
   display: block;
+  font-size: 1.5rem;
+
+  & a {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+  }
 }
