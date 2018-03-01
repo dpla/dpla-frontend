@@ -6,9 +6,9 @@ import { classNames as utilClassNames } from "css/utils.css";
 
 const Topics = ({ topics }) =>
   <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
-    <h2 className={classNames.topicsIntro}>
+    <p className={classNames.topicsIntro}>
       This is the text that explains what topic browse is.
-    </h2>
+    </p>
     <ul className="row">
       {topics.map((topic, index) =>
         <li

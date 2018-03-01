@@ -1,4 +1,4 @@
-@value linkColor, black50 from "../../../../../css/colors.css";
+@value linkColor, dimmedTextColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 @value serifFont from "../../../../../css/typography.css";
 
@@ -16,11 +16,13 @@
 }
 
 .topicsIntro {
-  font-weight: 400;
-  font-size: 1rem;
+  font-weight: normal;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: dimmedTextColor;
 
   @media (min-width: mediumRem) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
