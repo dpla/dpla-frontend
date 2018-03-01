@@ -1,4 +1,4 @@
 const endsWith = (str, needle) =>
-  str.lastIndexOf(needle) === str.length - needle.length;
+  str ? str.lastIndexOf(needle) === str.length - needle.length : str;
 
 export default endsWith;
