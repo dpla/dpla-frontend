@@ -1,6 +1,6 @@
 @value warmerBackgroundColor, linkColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
-@value monoFont, serifFont from "../typography.css";
+@value sansFont, monoFont, serifFont from "../typography.css";
 
 .backgroundTint {
   background-color: warmerBackgroundColor;
@@ -44,6 +44,16 @@
 
   @media (min-width: largeRem) {
     padding-top: 3rem;
+  }
+}
+
+:global .schedule {
+  & th, & td {
+  }
+
+  & th {
+    font-weight: 400;
+    font-family: sansFont;
   }
 }
 
@@ -196,7 +206,8 @@
   & td:not(:first-child) {
     border-left: 1px solid rgba(0, 0, 0, .1);
   }
-  & td {
+
+  & th, & td {
     padding: 1.5rem 2rem;
   }
 
