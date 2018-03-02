@@ -7,6 +7,8 @@ import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
 import GaWrapper from "shared/GaWrapper";
 
+import { SITE_ENV } from "constants/env";
+
 const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
   <div>
     <Helmet htmlAttributes={{ lang: "en" }} />
@@ -16,7 +18,10 @@ const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
       seoType={seoType}
     />
     <SkipToContent />
-    <PageHeader searchQuery={route.query.q} />
+    <PageHeader
+      searchQuery={route ? route.query.q : ""}
+      hideSearchBar={SITE_ENV === "pro"}
+    />
     {children}
   </div>;
 
