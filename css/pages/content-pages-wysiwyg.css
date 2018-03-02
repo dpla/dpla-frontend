@@ -126,6 +126,8 @@
   & p + p iframe {
     /* dont indent embeds (eg maps) */
     margin-left: -1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   & p, & ul, & ol {
@@ -336,4 +338,9 @@
   @media (max-width: mediumRem) {
     padding-left: 0;
   }
+}
+
+/* galleries */
+:global .gallery {
+  padding-top: 1rem;
 }
