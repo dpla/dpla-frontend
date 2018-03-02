@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, linkColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
+@value warmerBackgroundColor, linkColor, linkHoverColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value sansFont, monoFont, serifFont from "../typography.css";
 
@@ -344,8 +344,21 @@
   padding-top: 1rem;
 }
 
-/* generic button */
-:global .btn {
+/* generic button used in posts */
+:global .btn, :global .btn:visited {
+  display: block;
+  max-width: 18rem;
   background-color: linkColor;
   color: white;
+  font-family: sansFont;
+  padding: 0.75rem 1.5rem;
+  margin: 1rem auto;
+  text-align: center;
+  border-radius: 0.25rem;
+  text-indent: 0;
+
+  &:hover {
+    background-color: linkHoverColor;
+    text-decoration: none;
+  }
 }
