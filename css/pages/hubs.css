@@ -1,4 +1,4 @@
-@value linkColor, dimmedTextColor, warmerBackgroundColor, memberColor from "../colors.css";
+@value primaryBulletColor, dimmedTextColor, warmerBackgroundColor, memberColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value serifFont from "../typography.css";
 
@@ -84,7 +84,7 @@
   width: 3rem;
   padding-right: 0.25rem;
   text-align: right;
-  color: linkColor;
+  color: primaryBulletColor;
   box-sizing: border-box;
 }
 
