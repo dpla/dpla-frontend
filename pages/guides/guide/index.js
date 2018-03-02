@@ -5,6 +5,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import HeadingRule from "components/shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import WPEdit from "shared/WPEdit";
 
 import { getMenuItemUrl } from "utilFunctions";
 
@@ -39,6 +40,7 @@ const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
             role="main"
             className={[classNames.content, contentClasses.content].join(" ")}
           >
+            <WPEdit page={guide} url={url} />
             <img
               src={guide.bannerImage}
               alt=""
