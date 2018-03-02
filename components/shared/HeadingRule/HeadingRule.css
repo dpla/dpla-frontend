@@ -3,10 +3,9 @@
 .rule {
   border-top: 0.25rem solid;
   width: 2.5rem;
-  margin: 1rem auto 2rem;
+  margin: 1rem auto;
 
   @media (min-width: smallRem) {
-    margin: 2rem auto 3.5rem;
     width: 3rem;
   }
 }
