@@ -215,14 +215,12 @@
   }
 
   & table {
-    /* border: 0.075rem solid var(--border-color); */
     border-collapse: collapse;
     margin-bottom: 4rem;
     width: 100%;
   }
 
   & td:not(:first-child) {
-    /* border-left: 0.075rem solid var(--border-color); */
   }
 
   & th, & td {
@@ -234,7 +232,6 @@
   }
 
   & tr:not(:last-child) {
-    /* border-bottom: 0.075rem solid var(--border-color); */
   }
 
   & hr {
@@ -255,7 +252,6 @@
 
   & :global .alignright, & :global .alignleft, & :global .wp-caption {
     margin-bottom: 0.5rem;
-    border: 0.075rem solid var(--border-color);
   }
 
   & :global .alignleft {
