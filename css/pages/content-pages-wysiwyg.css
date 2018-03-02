@@ -126,6 +126,9 @@
   & p + p iframe {
     /* dont indent embeds (eg maps) */
     margin-left: -1.5rem;
+  }
+
+  & iframe {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
@@ -170,7 +173,7 @@
     top: 0;
     left: -3rem;
     width: 3rem;
-    padding-right: 0.075rem;
+    padding-right: 0.25rem;
     text-align: right;
     color: primaryBulletColor;
     box-sizing: border-box;
@@ -185,7 +188,7 @@
   }
 
   & ol li::before {
-    content: counter(start-from);
+    content: counters(start-from, ".") ".";
   }
 
   & li.donate::before {
