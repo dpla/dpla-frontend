@@ -37,7 +37,7 @@ export default class Error extends React.Component {
               role="main"
               className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
             >
-              {this.props.statusCode === 500 &&
+              {this.props.statusCode !== 404 &&
                 <div>
                   <h1>
                     An error occurred.
@@ -47,7 +47,7 @@ export default class Error extends React.Component {
                     the meantime, try one of these:
                   </p>
                 </div>}
-              {this.props.statusCode !== 500 &&
+              {this.props.statusCode === 404 &&
                 <div>
                   <h1>
                     Page not found.
