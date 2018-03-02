@@ -1,8 +1,9 @@
-@value linkColor, black from "../../../css/colors.css";
+@value linkColor, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
 .wrapper {
+  background-color: warmerBackgroundColor;
 }
 
 .content {
