@@ -344,3 +344,9 @@
 :global .gallery {
   padding-top: 1rem;
 }
+
+/* generic button */
+:global .btn {
+  background-color: linkColor;
+  color: white;
+}
