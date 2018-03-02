@@ -17,7 +17,6 @@
     "google-auth-library": "^0.12.0",
     "googleapis": "^23.0.0",
     "html-webpack-plugin": "^2.30.1",
-    "intl": "^1.2.5",
     "markdown-it": "^8.4.0",
     "next": "4.2.3",
     "node-sass": "^4.7.2",
