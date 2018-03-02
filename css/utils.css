@@ -889,23 +889,3 @@ a {
     order: 1;
   }
 }
-
-/* schedule tables */
-:global table.schedule {
-  border: none;
-  border-bottom: 0.25rem solid var(--border-color);
-  border-top: 0.15rem solid var(--border-color);
-
-  & tr, & th, & td, &td:not(:first-child) {
-    border: none;
-  }
-
-  & tr:not(:last-child) {
-    border-bottom: 0.075rem solid var(--border-color);
-  }
-
-  & th {
-    font-weight: bold;
-    font-family: sansFont;
-  }
-}
