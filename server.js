@@ -168,6 +168,7 @@ app
       if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
         return res.sendStatus(400);
 
+      const email = req.body.email || "";
       const type = req.body.type || "";
       const message = req.body.message || "";
       const url = req.body.url || "";
@@ -186,7 +187,7 @@ app
 
       let newRow = JSON.stringify({
         majorDimension: "ROWS",
-        values: [[date, type, url, message, addressed, browser]]
+        values: [[date, type, url, message, addressed, email, browser]]
       });
 
       try {
