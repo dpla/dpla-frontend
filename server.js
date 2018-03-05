@@ -117,10 +117,11 @@ app
         timeZone: "America/New_York"
       };
       const date = Intl.DateTimeFormat("en-US", options).format(new Date());
+      const browser = req.get("User-Agent");
 
       let newRow = JSON.stringify({
         majorDimension: "ROWS",
-        values: [[date, name, email, message, subject, addressed]]
+        values: [[date, name, email, message, subject, addressed, browser]]
       });
 
       try {
@@ -181,10 +182,11 @@ app
         timeZone: "America/New_York"
       };
       const date = Intl.DateTimeFormat("en-US", options).format(new Date());
+      const browser = req.get("User-Agent");
 
       let newRow = JSON.stringify({
         majorDimension: "ROWS",
-        values: [[date, type, url, message, addressed]]
+        values: [[date, type, url, message, addressed, browser]]
       });
 
       try {
