@@ -91,10 +91,6 @@
 
   & h3 {
     font-size: 1.75rem;
-
-    @media (min-width: mediumRem) {
-      font-size: 1.5rem;
-    }
   }
 
   & h4 {
@@ -112,21 +108,7 @@
   }
 
   & p {
-    margin-bottom: 0;
-
-    & + p {
-      text-indent: 1.5rem;
-    }
-  }
-
-  & p + p.address {
-    /* dont indent addresses */
-    text-indent: 0;
-  }
-
-  & p + p iframe {
-    /* dont indent embeds (eg maps) */
-    margin-left: -1.5rem;
+    margin-bottom: 1rem;
   }
 
   & iframe {
@@ -207,7 +189,6 @@
 
   & blockquote p + p {
     font-size: 1.25rem;
-    text-indent: 0;
   }
 
   & blockquote q {
@@ -325,10 +306,38 @@
   }
 }
 
+/* columnar lists */
+:global ul.column {
+  column-count: 3;
+
+  & ul {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  & > li::before {
+    content: "";
+  }
+
+  @media (max-width: mediumRem) {
+    &, & ul {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: smallRem) {
+    column-count: 1;
+  }
+}
+
 /* collapsed lists */
 :global ul.collapsed {
   & li {
     display: inline;
+  }
+
+  & li:first-child::before {
+    content: "";
   }
 
   & li:not(:last-child) {
@@ -356,7 +365,6 @@
   margin: 1rem auto;
   text-align: center;
   border-radius: 0.25rem;
-  text-indent: 0;
   transition: background-color .15s ease-out;
 
   &:hover {
