@@ -83,19 +83,20 @@ Home.getInitialProps = async ({ req }) => {
 
   const exhibitsJson = await exhibitsRes.json();
   const featuredExhibitions = [];
-  featuredExhibitIds.forEach(id => {
-    const featuredExhibit = exhibitsJson.find(
-      exhibit => exhibit.id === parseInt(id, 10)
-    );
-    if (featuredExhibit) {
-      featuredExhibitions.push(
-        Object.assign({}, featuredExhibit, {
-          href: `/exhibitions/exhibition?exhibition=${featuredExhibit.slug}`,
-          as: `/exhibitions/${featuredExhibit.slug}`
-        })
+  if (exhibitsJson.length > 0)
+    featuredExhibitIds.forEach(id => {
+      const featuredExhibit = exhibitsJson.find(
+        exhibit => exhibit.id === parseInt(id, 10)
       );
-    }
-  });
+      if (featuredExhibit) {
+        featuredExhibitions.push(
+          Object.assign({}, featuredExhibit, {
+            href: `/exhibitions/exhibition?exhibition=${featuredExhibit.slug}`,
+            as: `/exhibitions/${featuredExhibit.slug}`
+          })
+        );
+      }
+    });
   const featuredExhibitionsWithData = await Promise.all(
     featuredExhibitions.map(async exhibit => {
       const exhibitPageRes = await fetch(
