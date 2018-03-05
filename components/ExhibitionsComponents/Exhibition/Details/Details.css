@@ -79,8 +79,8 @@
   font-family: serifFont;
   line-height: 1.625;
 
-  & p + p {
-    text-indent: 1.5rem;
+  & p {
+    margin-bottom: 1rem;
   }
 
   @media (min-width: largeRem) {

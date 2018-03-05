@@ -483,10 +483,14 @@
     font-size: 1.25rem;
     margin-bottom: .5rem;
   }
-}
 
-.text p + p {
-  text-indent: 1.5rem;
+  & p {
+    margin-bottom: .875rem;
+
+    @media (min-width: smallRem) {
+      margin-bottom: .95rem;
+    }
+  }
 }
 
 .mainMedia {
