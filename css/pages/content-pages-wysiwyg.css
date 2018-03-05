@@ -63,7 +63,7 @@
   & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1.15;
     margin-bottom: 1rem;
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   & h1 {
@@ -71,6 +71,7 @@
     font-weight: normal;
     font-size: 2rem;
     margin-bottom: 1rem;
+    margin-top: 0;
 
     & bold {
       font-weight: normal;
@@ -88,13 +89,8 @@
     margin-top: 3rem;
   }
 
-  & h2:first-child {
-    margin-top: 1rem;
-  }
-
   & h3 {
-    font-size: 1.25rem;
-    margin-top: 1rem;
+    font-size: 1.75rem;
 
     @media (min-width: mediumRem) {
       font-size: 1.5rem;
@@ -102,12 +98,17 @@
   }
 
   & h4 {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
   }
 
-  & h5, & h6 {
-    font-size: 1rem;
+  & h5 {
+    font-size: 1.125rem;
     text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  & h6 {
+    font-size: 1.25rem;
   }
 
   & p {
@@ -136,7 +137,7 @@
   & p, & ul, & ol {
     font-weight: normal;
     font-size: 1rem;
-    max-width: 40rem;
+    max-width: 60ch;
 
     @media (min-width: mediumRem) {
       font-size: 1.125rem;
