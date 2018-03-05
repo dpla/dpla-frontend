@@ -35,6 +35,7 @@ const ProMenuPage = ({
     {breadcrumbs.length > 0 &&
       <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
     {breadcrumbs.length === 0 &&
+      !illustration &&
       <FeatureHeader title={pageTitle} description={""} />}
     <div
       className={`${utilClassNames.container}
