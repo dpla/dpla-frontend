@@ -132,6 +132,7 @@ class DonateForm extends React.Component {
               type="text"
               aria-label="Give other amount"
               placeholder="Other amount"
+              className={contentClasses.otherAmount}
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
             />

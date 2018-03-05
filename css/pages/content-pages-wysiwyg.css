@@ -356,6 +356,7 @@
   text-align: center;
   border-radius: 0.25rem;
   text-indent: 0;
+  transition: background-color .15s ease-out;
 
   &:hover {
     background-color: linkHoverColor;

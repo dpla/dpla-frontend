@@ -78,11 +78,17 @@
     border: 2px solid colderBackgroundColor;
     padding: .6rem 1.6rem;
     width: 100%;
+    font-size: 1rem;
+
+    @media (max-width: mediumRem) {
+      padding: .6rem 1rem;
+    }
   }
 }
 
 .donateButton {
   width: 100%;
+  padding: 0;
 }
 
 .link {
