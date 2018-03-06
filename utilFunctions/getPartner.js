@@ -2,7 +2,9 @@
 // return the partner name.
 
 const getPartner = source => {
-  const provider = source.mainEntity[0]["provider"];
+  const provider = source.mainEntity[0]["provider"]
+    ? source.mainEntity[0]["provider"]
+    : "";
   var providerName = "";
 
   if (provider instanceof Array) {
