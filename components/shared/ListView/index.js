@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-import { joinIfArray } from "utilFunctions";
-import { truncateString } from "utilFunctions";
-
 import ListImage from "./ListImage";
-import { classNames, stylesheet } from "./ListView.css";
-
 import GaListViewWrapper from "./GaListViewWrapper";
+
+import { joinIfArray, truncateString } from "utilFunctions";
+import { UNTITLED_TEXT } from "constants/site";
+
+import { classNames, stylesheet } from "./ListView.css";
 
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
@@ -42,7 +42,7 @@ const ListView = ({ items, route }) =>
               <h2 className={`hover-underline ${classNames.itemTitle}`}>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
-                  : item.title}
+                  : item.title ? item.title : UNTITLED_TEXT}
               </h2>
             </a>
           </Link>

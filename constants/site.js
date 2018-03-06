@@ -25,6 +25,8 @@ export const MAILCHIMP_LISTS = {
   GENEALOGY: "f36418b975"
 };
 
+export const UNTITLED_TEXT = "Untitled";
+
 export const resourceTypes = {
   TEXT: "text",
   IMAGE: "image",

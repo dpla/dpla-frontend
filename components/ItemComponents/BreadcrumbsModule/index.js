@@ -3,9 +3,12 @@ import Link from "next/link";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
+import { removeQueryParams } from "utilFunctions";
+import { UNTITLED_TEXT } from "constants/site";
+
 import { stylesheet, classNames } from "./BreadcrumbsModule.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import { removeQueryParams } from "utilFunctions";
+
 const markdownit = require("markdown-it")({ html: true });
 
 const { container } = utilClassNames;
@@ -102,7 +105,9 @@ const BreadcrumbsModule = ({
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: markdownit.renderInline(breadcrumb.title)
+            title: breadcrumb.title
+              ? markdownit.renderInline(breadcrumb.title)
+              : UNTITLED_TEXT
           })
         )}
       />
