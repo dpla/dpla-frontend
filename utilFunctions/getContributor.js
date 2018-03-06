@@ -2,8 +2,10 @@
 // return the contributor name.
 
 const getContributor = source =>
-  source.mainEntity[0]["provider"].filter(
-    ref => ref["disambiguationDescription"] == "contributing institution"
-  )[0]["name"];
+  source.mainEntity[0]["provider"]
+    ? source.mainEntity[0]["provider"].filter(
+        ref => ref["disambiguationDescription"] == "contributing institution"
+      )[0]["name"]
+    : null;
 
 export default getContributor;
