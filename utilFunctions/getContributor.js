@@ -2,14 +2,13 @@
 // return the contributor name.
 
 const getContributor = source => {
+  let contributor = "";
   try {
-    const contributor = source.mainEntity[0]["provider"].filter(
+    contributor = source.mainEntity[0]["provider"].filter(
       ref => ref["disambiguationDescription"] == "contributing institution"
     )[0]["name"];
-    return contributor;
-  } finally {
-    return "";
-  }
+  } catch (e) {}
+  return contributor;
 };
 
 export default getContributor;
