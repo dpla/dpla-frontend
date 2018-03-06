@@ -572,6 +572,12 @@
 .activeItemLink {
   background-color: linkColor;
 
+  @media (max-width: smallRem) {
+    & .defaultItemImage {
+      background-color: linkColor;
+    }
+  }
+
   @media (min-width: smallRem) {
     background-color: inherit;
     border: 0.25rem solid secondaryButtonColor;
@@ -598,6 +604,11 @@
   & img {
     width: 50%;
     height: 50%;
+  }
+
+  @media (max-width: mediumRem) {
+    height: 100%;
+    border-radius: 50%;
   }
 }
 
