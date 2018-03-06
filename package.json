@@ -29,7 +29,7 @@
     "react-masonry-component": "^6.0.2",
     "react-redux": "^5.0.5",
     "react-select": "1.2.0",
-    "react-slick": "^0.18.0",
+    "react-slick": "0.20.0",
     "redux": "^3.7.2",
     "skeleton-loader": "^1.1.5",
     "sw-precache-webpack-plugin": "^0.11.4",

@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, linkColor, casablancaOrange from "../../../../css/colors.css";
+@value warmerBackgroundColor, linkColor, lightLinkColor from "../../../../css/colors.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 
 .suggestionsWrapper {
@@ -65,6 +65,10 @@
   padding: 0 0.3rem;
 }
 
+.suggestedSlide {
+  width: 16rem;
+}
+
 .suggestionTitle {
   font-size: 0.9375rem;
   line-height: 1.1875;
@@ -81,11 +85,11 @@
 }
 
 .topic .imageWrapper {
-  border-top: 4px solid casablancaOrange;
+  border-top: 4px solid lightLinkColor;
 }
 
 .topic .resourceType {
-  color: casablancaOrange;
+  color: lightLinkColor;
 }
 
 .navArrow {

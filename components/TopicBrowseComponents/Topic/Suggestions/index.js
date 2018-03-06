@@ -35,14 +35,16 @@ const Suggestions = ({ suggestions }) =>
           prevArrow={<PrevArrow className={classNames.navArrow} />}
           draggable={false}
           slidesToScroll={4}
+          variableWidth={true}
           responsive={[
             {
               breakpoint: ~~breakpoints.smallPx,
               settings: {
-                slidesToShow: 2.5,
+                slidesToShow: 1.5,
                 arrows: false,
                 draggable: true,
-                slidesToScroll: 2
+                slidesToScroll: 1,
+                variableWidth: false
               }
             }
           ]}
@@ -51,6 +53,7 @@ const Suggestions = ({ suggestions }) =>
             <div
               key={suggestion.title}
               className={[
+                classNames.suggestedSlide,
                 classNames.suggestedItem,
                 mapTypeToClass(suggestion.type)
               ].join(" ")}
