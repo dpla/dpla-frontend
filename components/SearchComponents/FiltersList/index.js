@@ -39,7 +39,16 @@ const Filter = ({ name, queryKey, route, key }) =>
       prefetch
       href={{
         pathname: route.pathname,
-        query: Object.assign({}, removeQueryParams(route.query, [queryKey]))
+        query: Object.assign(
+          {},
+          clearFacet(
+            route.query,
+            queryKey,
+            queryKey === "before" || queryKey === "after"
+              ? name.replace("After: ", "").replace("Before: ", "")
+              : name
+          )
+        )
       }}
     >
       <a
