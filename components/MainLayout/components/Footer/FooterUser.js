@@ -36,8 +36,8 @@ const FooterUser = () =>
           </li>
           <li>
             <Link
-              href="/about?section=our-supporters"
-              as="/about/our-supporters"
+              href="/about?section=our-supporters-2"
+              as="/about/our-supporters-2"
             >
               <a>Our Supporters</a>
             </Link>
