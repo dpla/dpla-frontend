@@ -7,7 +7,7 @@ import { SITE_ENV } from "constants/env";
 import { classNames, stylesheet } from "./TagList.css";
 
 const TagList = ({ url, currentTag, keywords, author }) =>
-  <ul className={classNames.list}>
+  <ul className={`${classNames.list} collapsed`}>
     {(currentTag || author !== "" || keywords !== "") &&
       <li>
         <a href="/news">All News</a>

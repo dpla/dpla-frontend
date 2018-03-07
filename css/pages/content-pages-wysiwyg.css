@@ -342,7 +342,7 @@
   }
 
   & li:not(:last-child) {
-    margin-right: 0.75rem;
+    margin-right: 1rem;
   }
 
   @media (max-width: mediumRem) {

@@ -19,6 +19,7 @@
   font-weight: normal;
   font-size: 0.9rem;
   font-style: italic;
+  font-family: serifFont;
   color: dimmedTextColor;
 
   @media (min-width: mediumRem) {
