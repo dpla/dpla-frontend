@@ -17,7 +17,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`,
             backgroundSize: "cover",
-            backgroundPosition: "50% 50%"
+            backgroundPosition: "50% 25%"
           }}
         />
         <div className={classNames.overlay}>
