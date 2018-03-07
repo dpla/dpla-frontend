@@ -113,9 +113,13 @@ const MainMetadata = ({ item }) => {
                   {joinIfArray(item.description)}
                 </div>
                 {descriptionIsLong &&
-                  <div id="dpla-showmore" aria-hidden="true">
+                  <div
+                    id="dpla-showmore"
+                    aria-hidden="true"
+                    className={classNames.showMore}
+                  >
                     <span
-                      className={`${classNames.showMore} link`}
+                      className={`link`}
                       onClick={() =>
                         showMoreDescription({ className: classNames.open })}
                     >

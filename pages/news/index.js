@@ -113,6 +113,7 @@ class NewsPage extends React.Component {
                   <input
                     type="text"
                     name="k"
+                    aria-label="search news"
                     className={classNames.keywordsInput}
                     defaultValue={this.state.keywords}
                   />

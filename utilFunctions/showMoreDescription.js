@@ -6,7 +6,7 @@ const showMoreDescription = ({
   const description = document.getElementById(descriptionId);
   const showmore = document.getElementById(showMoreId);
   description.classList.add(className);
-  showmore.remove();
+  showmore.classList.add(className);
 };
 
 export default showMoreDescription;
