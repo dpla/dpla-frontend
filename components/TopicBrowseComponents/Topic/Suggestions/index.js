@@ -35,7 +35,6 @@ const Suggestions = ({ suggestions }) =>
           prevArrow={<PrevArrow className={classNames.navArrow} />}
           draggable={false}
           slidesToScroll={4}
-          variableWidth={true}
           responsive={[
             {
               breakpoint: ~~breakpoints.smallPx,
