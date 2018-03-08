@@ -38,8 +38,16 @@
   height: 28rem;
   background-color: warmerBackgroundColor;
 
+  &.compact {
+    height:auto;
+  }
+
   @media (max-width: mediumRem) {
     height: 75vh; /* this is tied to the mediaViewers.css height */
+
+    &.compact {
+      height:auto;
+    }
   }
 }
 

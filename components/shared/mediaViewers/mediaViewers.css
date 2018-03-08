@@ -38,7 +38,7 @@
 
 .audioPlayerWrapper {
   width: 100%;
-  padding: 70px;
+  padding: 2rem;
   background-color: warmerBackgroundColor;
   display: flex;
   align-items: center;
