@@ -7,7 +7,6 @@ import {
 } from "constants/primarySourceSets";
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
-import { showMoreDescription } from "utilFunctions";
 
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -22,6 +21,16 @@ const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
 class SourceSetInfo extends React.Component {
+  state = { isOpen: false };
+
+  componentWillReceiveProps() {
+    this.setState({ isOpen: this.props.openDescription || false });
+  }
+
+  showMoreDescription() {
+    this.setState({ isOpen: true });
+  }
+
   render() {
     const { set, currentFullUrl } = this.props;
     const authorList = set.author.map(author => author.name);
@@ -50,7 +59,10 @@ class SourceSetInfo extends React.Component {
               </div>
               <div
                 id="dpla-description"
-                className={`${classNames.description} sourceSetDescription`}
+                className={`${classNames.description} sourceSetDescription ${classNames.description} ${this
+                  .state.isOpen
+                  ? classNames.open
+                  : ""}`}
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
                     set.hasPart
@@ -66,11 +78,16 @@ class SourceSetInfo extends React.Component {
                   )
                 }}
               />
-              <div id="dpla-showmore" aria-hidden="true">
+              <div
+                id="dpla-showmore"
+                aria-hidden="true"
+                className={`${classNames.showMore} ${this.state.isOpen
+                  ? classNames.open
+                  : ""}`}
+              >
                 <span
-                  className={`${classNames.showMore} link`}
-                  onClick={() =>
-                    showMoreDescription({ className: classNames.open })}
+                  className={`link`}
+                  onClick={() => this.showMoreDescription()}
                 >
                   Show full overview
                 </span>

@@ -29,7 +29,11 @@ const SingleSet = ({ set, url, currentFullUrl }) =>
       ]}
       route={url}
     />
-    <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
+    <SourceSetInfo
+      set={set}
+      currentFullUrl={currentFullUrl}
+      openDescription={false}
+    />
     <ResourcesTabs route={url} currentTab="sourceSet" set={set}>
       <SourceSetSources
         sources={set.hasPart.filter(

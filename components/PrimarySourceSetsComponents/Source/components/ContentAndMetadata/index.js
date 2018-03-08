@@ -14,7 +14,6 @@ import {
   joinIfArray,
   getItemId,
   getPartner,
-  showMoreDescription,
   getTitle,
   getContributor,
   trackGaEvent
@@ -85,170 +84,194 @@ const trackClickThrough = (e, source, target = "_blank") => {
   }
 };
 
-const ContentAndMetadata = ({ source }) => {
-  const type = source.mainEntity[0]["@type"];
-  const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
-  // some file types aren't stored with full domain
-  // so we determine what the full domain is here
+class ContentAndMetadata extends React.Component {
+  state = { isOpen: false };
 
-  const fullContentUrl = source.thumbnailUrl &&
-    !/^(?:https?:)?\/\//.test(contentUrl)
-    ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
-    : contentUrl;
+  componentWillReceiveProps() {
+    this.setState({ isOpen: this.props.openDescription || false });
+  }
 
-  const viewerComponent = getViewerComponent(fileFormat, type, fullContentUrl);
+  showMoreDescription() {
+    this.setState({ isOpen: true });
+  }
 
-  const maxDescriptionLength = 600; //characters
-  const descriptionIsLong = source.text
-    ? source.text.length > maxDescriptionLength
-    : false;
+  render() {
+    const { source } = this.props;
+    const type = source.mainEntity[0]["@type"];
+    const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
+    // some file types aren't stored with full domain
+    // so we determine what the full domain is here
 
-  return (
-    <div className={classNames.wrapper}>
-      <div className={[classNames.contentAndMetadata, container].join(" ")}>
-        <h1
-          dangerouslySetInnerHTML={{
-            __html: markdownit.renderInline(source.name)
-          }}
-          className={classNames.contentHeader}
-        />
-        <div className={classNames.flexWrapper}>
-          <div className={classNames.contentWrapper}>
-            <div
-              className={`${classNames.content} ${viewerComponent.type.name ===
-                "AudioPlayer"
-                ? classNames.compact
-                : ""}`}
-            >
-              {viewerComponent}
-            </div>
-            {source.text &&
+    const fullContentUrl = source.thumbnailUrl &&
+      !/^(?:https?:)?\/\//.test(contentUrl)
+      ? `https:${getDomainFromThumbnail(source.thumbnailUrl)}${contentUrl}`
+      : contentUrl;
+
+    const viewerComponent = getViewerComponent(
+      fileFormat,
+      type,
+      fullContentUrl
+    );
+
+    const maxDescriptionLength = 600; //characters
+    const descriptionIsLong = source.text
+      ? source.text.length > maxDescriptionLength
+      : false;
+
+    return (
+      <div className={classNames.wrapper}>
+        <div className={[classNames.contentAndMetadata, container].join(" ")}>
+          <h1
+            dangerouslySetInnerHTML={{
+              __html: markdownit.renderInline(source.name)
+            }}
+            className={classNames.contentHeader}
+          />
+          <div className={classNames.flexWrapper}>
+            <div className={classNames.contentWrapper}>
               <div
-                id="dpla-description"
-                className={`${classNames.description} ${descriptionIsLong
-                  ? classNames.longDescription
+                className={`${classNames.content} ${viewerComponent.type
+                  .name === "AudioPlayer"
+                  ? classNames.compact
                   : ""}`}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit
-                    .render(source.text)
-                    .replace(/&lt;br&gt;/g, "<br>")
-                }}
-              />}
-            {descriptionIsLong &&
-              <div id="dpla-showmore" aria-hidden="true">
-                <span
-                  className={`${classNames.showMore} link`}
-                  onClick={() =>
-                    showMoreDescription({ className: classNames.open })}
-                >
-                  Show full description
-                </span>
-              </div>}
-
-          </div>
-          <div className={classNames.metadata}>
-            <div className={classNames.sourceInfo}>
-              <div className={classNames.buttons}>
-                {getSourceCitation(source) &&
-                  <div
-                    className={`${classNames.citeButton} ${classNames.faveAndCiteButtons}`}
-                  >
-                    <CiteButton
-                      toCiteText="item"
-                      freeText={getSourceCitation(source)}
-                      className={""}
-                      title={source.name}
-                    />
-                  </div>}
+              >
+                {viewerComponent}
               </div>
-              {/* <a href={fullContentUrl} download className={classNames.button}>
+              {source.text &&
+                <div
+                  id="dpla-description"
+                  className={`${classNames.description} ${descriptionIsLong
+                    ? classNames.longDescription
+                    : ""} ${this.state.isOpen ? classNames.open : ""}`}
+                  dangerouslySetInnerHTML={{
+                    __html: markdownit
+                      .render(source.text)
+                      .replace(/&lt;br&gt;/g, "<br>")
+                  }}
+                />}
+              {descriptionIsLong &&
+                <div
+                  id="dpla-showmore"
+                  aria-hidden="true"
+                  className={`${classNames.showMore} ${this.state.isOpen
+                    ? classNames.open
+                    : ""}`}
+                >
+                  <span
+                    className={`link`}
+                    onClick={() => this.showMoreDescription()}
+                  >
+                    Show full description
+                  </span>
+                </div>}
+
+            </div>
+            <div className={classNames.metadata}>
+              <div className={classNames.sourceInfo}>
+                <div className={classNames.buttons}>
+                  {getSourceCitation(source) &&
+                    <div
+                      className={`${classNames.citeButton} ${classNames.faveAndCiteButtons}`}
+                    >
+                      <CiteButton
+                        toCiteText="item"
+                        freeText={getSourceCitation(source)}
+                        className={""}
+                        title={source.name}
+                      />
+                    </div>}
+                </div>
+                {/* <a href={fullContentUrl} download className={classNames.button}>
                 Download
               </a> */}
-              {getSourceCitation(source, "credits") &&
-                <div
-                  className={classNames.courtesyOf}
-                  dangerouslySetInnerHTML={{
-                    __html: markdownit.renderInline(
-                      joinIfArray(getSourceCitation(source, "credits"))
-                    )
-                  }}
-                />}
-              {source.mainEntity[0]["dct:provenance"] &&
-                <div
-                  className={classNames.courtesyOf}
-                  dangerouslySetInnerHTML={{
-                    __html: markdownit.renderInline(
-                      source.mainEntity[0]["dct:provenance"].name
-                    )
-                  }}
-                />}
-              {source.copyright &&
-                <div className={classNames.copyrightInfo}>
-                  <img src="" alt="" className={classNames.copyrightIcon} />
-                  <p
-                    className={classNames.copyrightText}
+                {getSourceCitation(source, "credits") &&
+                  <div
+                    className={classNames.courtesyOf}
                     dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(source.copyright)
+                      __html: markdownit.renderInline(
+                        joinIfArray(getSourceCitation(source, "credits"))
+                      )
                     }}
-                  />
-                </div>}
-              <div className={classNames.divider} />
-              {source.mainEntity[0]["dct:references"] &&
-                <div className={classNames.linkWrapper}>
-                  <a
-                    className={classNames.sourceLink}
-                    href={`/item/${getItemId(source)}`}
-                  >
-                    <img
-                      alt="Link icon"
-                      src={link}
-                      className={classNames.linkIcon}
+                  />}
+                {source.mainEntity[0]["dct:provenance"] &&
+                  <div
+                    className={classNames.courtesyOf}
+                    dangerouslySetInnerHTML={{
+                      __html: markdownit.renderInline(
+                        source.mainEntity[0]["dct:provenance"].name
+                      )
+                    }}
+                  />}
+                {source.copyright &&
+                  <div className={classNames.copyrightInfo}>
+                    <img src="" alt="" className={classNames.copyrightIcon} />
+                    <p
+                      className={classNames.copyrightText}
+                      dangerouslySetInnerHTML={{
+                        __html: markdownit.renderInline(source.copyright)
+                      }}
                     />
-                    <span className={classNames.linkText}>
-                      View item information
-                    </span>
-                  </a>
-                </div>}
-              {source.mainEntity[0]["dct:references"] &&
-                <div className={classNames.linkWrapper}>
-                  <a
-                    href={getSourceLink(source)}
-                    className={`${classNames.sourceLink}`}
-                    onClick={e => trackClickThrough(e, source)}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      alt="External link icon"
-                      src={external}
-                      className={classNames.externalIcon}
-                    />
-                    <span className={classNames.linkText}>
-                      View in {getPartner(source)}
-                    </span>
-                  </a>
-                </div>}
-            </div>
-            <div className={classNames.tipsForStudents}>
-              <h2 className={classNames.tipsForStudentsHeader}>
-                Tips for Students
-              </h2>
-              <p className={classNames.tipDirections}>
-                For this source, consider:
-              </p>
-              <ul className={classNames.tips}>
-                <li className={classNames.tip}>the author's point of view</li>
-                <li className={classNames.tip}>the author's purpose</li>
-                <li className={classNames.tip}>historical context</li>
-                <li className={classNames.tip}>audience</li>
-              </ul>
+                  </div>}
+                <div className={classNames.divider} />
+                {source.mainEntity[0]["dct:references"] &&
+                  <div className={classNames.linkWrapper}>
+                    <a
+                      className={classNames.sourceLink}
+                      href={`/item/${getItemId(source)}`}
+                    >
+                      <img
+                        alt="Link icon"
+                        src={link}
+                        className={classNames.linkIcon}
+                      />
+                      <span className={classNames.linkText}>
+                        View item information
+                      </span>
+                    </a>
+                  </div>}
+                {source.mainEntity[0]["dct:references"] &&
+                  <div className={classNames.linkWrapper}>
+                    <a
+                      href={getSourceLink(source)}
+                      className={`${classNames.sourceLink}`}
+                      onClick={e => trackClickThrough(e, source)}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <img
+                        alt="External link icon"
+                        src={external}
+                        className={classNames.externalIcon}
+                      />
+                      <span className={classNames.linkText}>
+                        View in {getPartner(source)}
+                      </span>
+                    </a>
+                  </div>}
+              </div>
+              <div className={classNames.tipsForStudents}>
+                <h2 className={classNames.tipsForStudentsHeader}>
+                  Tips for Students
+                </h2>
+                <p className={classNames.tipDirections}>
+                  For this source, consider:
+                </p>
+                <ul className={classNames.tips}>
+                  <li className={classNames.tip}>
+                    the author's point of view
+                  </li>
+                  <li className={classNames.tip}>the author's purpose</li>
+                  <li className={classNames.tip}>historical context</li>
+                  <li className={classNames.tip}>audience</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default GaPssWrapper(ContentAndMetadata);
