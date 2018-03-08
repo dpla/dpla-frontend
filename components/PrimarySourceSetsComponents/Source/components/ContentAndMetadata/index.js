@@ -129,7 +129,12 @@ class ContentAndMetadata extends React.Component {
           />
           <div className={classNames.flexWrapper}>
             <div className={classNames.contentWrapper}>
-              <div className={classNames.content}>
+              <div
+                className={`${classNames.content} ${viewerComponent.type
+                  .name === "AudioPlayer"
+                  ? classNames.compact
+                  : ""}`}
+              >
                 {viewerComponent}
               </div>
               {source.text &&
