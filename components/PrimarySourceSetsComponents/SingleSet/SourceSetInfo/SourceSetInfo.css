@@ -114,6 +114,10 @@
   padding: .25rem 0;
   border-top: .075rem solid gray;
 
+  &.open {
+    display: none;
+  }
+
   @media (max-width: mediumRem) {
     padding: .25rem 1rem 1rem;
     font-size: 0.9rem;
