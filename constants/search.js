@@ -42,7 +42,12 @@ export const prettifiedFacetMap = {
   "provider.name": "Partner"
 };
 
+import { joinIfArray } from "utilFunctions";
+
 export const splitAndURIEncodeFacet = facet =>
-  facet.split("|").map(param => encodeURIComponent(param)).join("+AND+");
+  joinIfArray(facet)
+    .split("|")
+    .map(param => encodeURIComponent(param))
+    .join("+AND+");
 
 export const DEFAULT_PAGE_SIZE = "20";

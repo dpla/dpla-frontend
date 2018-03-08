@@ -6,7 +6,7 @@ import {
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
-import { removeQueryParams } from "utilFunctions";
+import { removeQueryParams, joinIfArray } from "utilFunctions";
 
 import { classNames, stylesheet } from "./FiltersList.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -23,7 +23,8 @@ const clearAllFacets = query => {
 
 const clearFacet = (query, queryKey, facet) => {
   const duped = Object.assign({}, query);
-  duped[queryKey] = duped[queryKey]
+  const value = joinIfArray(duped[queryKey]);
+  duped[queryKey] = value
     .split("|")
     .filter(facetPart => facetPart.replace(/"/g, "") !== facet)
     .join("|");
@@ -79,14 +80,15 @@ class FiltersList extends React.Component {
               <span className={classNames.labelText}>Filtered by</span>
               <ul className={classNames.filters}>
                 {Object.keys(query).map((queryKey, index) => {
+                  const value = joinIfArray(query[queryKey]);
                   if (
                     possibleFacets.includes(
                       mapURLPrettifiedFacetsToUgly[queryKey]
                     )
                   ) {
                     return (
-                      query[queryKey] &&
-                      query[queryKey].split("|").map((paramValue, idx) => {
+                      value &&
+                      value.split("|").map((paramValue, idx) => {
                         const name = queryKey !== "after" &&
                           queryKey !== "before"
                           ? paramValue.replace(/"/g, "")
