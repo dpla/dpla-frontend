@@ -13,5 +13,5 @@ export const NEWS_TAGS = [
   { id: 180, name: "Technology" },
   { id: 268, name: "Content Showcase" },
   { id: 269, name: "Grant Projects" },
-  { id: 270, name: "Hubs Network" }
+  { id: 270, name: "Hub Network" }
 ];
