@@ -314,6 +314,7 @@
 /* columnar lists */
 :global ul.column {
   column-count: 3;
+  column-gap: 2em;
 
   & ul {
     margin-top: 0;
