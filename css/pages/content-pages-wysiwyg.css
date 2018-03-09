@@ -296,6 +296,10 @@
     margin-left: 0;
   }
 
+  & li {
+    margin-bottom: 0;
+  }
+
   & > li::before {
     content: "";
   }
@@ -314,6 +318,10 @@
   & ul {
     margin-top: 0;
     margin-left: 0;
+  }
+
+  & li {
+    margin-bottom: 0;
   }
 
   & > li::before {
