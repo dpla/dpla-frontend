@@ -69,9 +69,7 @@ const ItemLink = ({
       query: Object.assign({}, route.query, { item: itemId })
     }}
     as={`/exhibitions/${route.query.exhibition}/${route.query.section}/${route
-      .query.subsection
-      ? route.query.subsection
-      : ""}?item=${itemId}`}
+      .query.subsection}?item=${itemId}`}
   >
     <a className={[classNames.itemLink, className].join(" ")}>
       <ItemImage
