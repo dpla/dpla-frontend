@@ -307,7 +307,11 @@ class FeedbackForm extends React.Component {
       : false;
     return (
       <div className={classNames.feedbackComponent}>
-        <a className={classNames.feedbackButton} onClick={this.openForm}>
+        <a
+          href="#"
+          className={classNames.feedbackButton}
+          onClick={this.openForm}
+        >
           Feedback
         </a>
         <div
