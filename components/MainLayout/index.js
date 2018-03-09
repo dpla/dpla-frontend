@@ -1,4 +1,6 @@
 import React from "react";
+import Router from "next/router";
+
 import Helmet from "react-helmet";
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
@@ -11,6 +13,10 @@ import GaWrapper from "shared/GaWrapper";
 
 import { SITE_ENV } from "constants/env";
 import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
+
+Router.onAppUpdated = function(nextRoute) {
+  location.href = nextRoute;
+};
 
 const MainLayout = ({
   children,
