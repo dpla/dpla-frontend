@@ -19,7 +19,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
       nextArrow={<NextArrow className={classNames.carouselNavArrow} />}
       prevArrow={<PrevArrow className={classNames.carouselNavArrow} />}
       draggable={false}
-      slidesToScroll={1}
+      slidesToScroll={6}
       initialSlide={
         // makes sure carousel is always showing 6 items
         currentSourceIdx > sources.length - 6
