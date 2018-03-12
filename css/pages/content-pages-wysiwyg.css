@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, linkColor, linkHoverColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
+@value warmerBackgroundColor, secondaryColor, linkColor, linkHoverColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value sansFont, monoFont, serifFont from "../typography.css";
 
@@ -284,6 +284,11 @@
   & th {
     font-weight: bold;
     font-family: sansFont;
+  }
+
+  & .location {
+    color: secondaryColor;
+    font-style: italic;
   }
 }
 
