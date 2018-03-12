@@ -54,6 +54,7 @@
 @value proSiteColor: elephantBlue;
 @value mobileNavColor: elephantBlue;
 @value secondaryButtonColor: #0080a5;
+@value secondaryColor: secondaryButtonColor;
 @value primaryBulletColor: secondaryButtonColor;
 @value secondaryBulletColor: linkColor;
 @value darkSecondaryButtonColor: elephantBlue;
