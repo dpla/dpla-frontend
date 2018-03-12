@@ -1,8 +1,13 @@
 @value outlineColor from "./colors.css";
+@value smallRem, mediumRem, largeRem from "./breakpoints.css";
 @value sansFont, serifFont from "./typography.css";
 
 html {
   font-size: 16px;
+
+  @media (max-width: smallRem) {
+    font-size: 18px;
+  }
 }
 
 body {
