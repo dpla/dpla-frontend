@@ -21,30 +21,40 @@ import removeQueryParams from "utilFunctions/removeQueryParams";
 
 import { getDplaItemIdFromExhibit } from "utilFunctions";
 
-const Exhibition = ({ url, exhibition, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
-    <BreadcrumbsModule
-      breadcrumbs={[
-        {
-          title: "Exhibitions",
-          url: {
-            pathname: "/exhibitions",
-            query: removeQueryParams(url.query, ["exhibition"])
-          }
-        },
-        { title: exhibition.title, search: "" }
-      ]}
-      route={url}
-    />
-    <div id="main" role="main">
-      <ImageAndCaption exhibition={exhibition} route={url} />
-      <Details
-        exhibition={exhibition}
-        route={url}
-        currentFullUrl={currentFullUrl}
-      />
-    </div>
-  </MainLayout>;
+class Exhibition extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  render() {
+    const { url, exhibition, currentFullUrl } = this.props;
+    return (
+      <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
+        <BreadcrumbsModule
+          breadcrumbs={[
+            {
+              title: "Exhibitions",
+              url: {
+                pathname: "/exhibitions",
+                query: removeQueryParams(url.query, ["exhibition"])
+              }
+            },
+            { title: exhibition.title, search: "" }
+          ]}
+          route={url}
+        />
+        <div id="main" role="main">
+          <ImageAndCaption exhibition={exhibition} route={url} />
+          <Details
+            exhibition={exhibition}
+            route={url}
+            currentFullUrl={currentFullUrl}
+          />
+        </div>
+      </MainLayout>
+    );
+  }
+}
 
 Exhibition.getInitialProps = async ({ query, req }) => {
   const currentFullUrl = getCurrentFullUrl(req);
