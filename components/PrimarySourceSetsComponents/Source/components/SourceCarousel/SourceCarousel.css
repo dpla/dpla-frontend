@@ -269,15 +269,18 @@
 }
 
 .defaultImageWrapper {
-  background-color: warmerBackgroundColor;
-  display: flex;
   align-items: center;
+  background-color: warmerBackgroundColor;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  display: flex;
   justify-content: center;
 
   & img {
     opacity: 0.35;
-    min-width: auto;
     min-height: auto;
+    min-width: auto;
   }
 }
 
