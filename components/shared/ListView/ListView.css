@@ -27,7 +27,7 @@
 }
 
 .itemInfo {
-  flex-basis: 66%;
+  width: 66%;
   padding-right: 1rem;
 
   @media (min-width: smallRem) {
@@ -49,7 +49,7 @@
 }
 
 .imageWrapper {
-  flex-basis: 33%;
+  width: 33%;
   height: 10rem;
   margin-right: .5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -57,10 +57,6 @@
 
   @media (max-width: smallRem) {
     margin-left: 1rem;
-  }
-
-  @media (min-width: largeRem) {
-    width: inherit;
   }
 }
 
