@@ -126,26 +126,16 @@ Home.getInitialProps = async ({ req }) => {
 
   // fetch featured primary source sets data
 
-  const pssRes = await fetch(`${PSS_BASE_URL}/sets.json`);
-  const pssJson = await pssRes.json();
-
   const featuredPrimarySourceSets =
     homepageJson.acf.featured_primary_source_sets;
-  const featuredPrimarySourceSetIds = featuredPrimarySourceSets.map(
-    set => set.primary_source_set_id
-  );
 
   const sourceSets = [];
-  featuredPrimarySourceSetIds.forEach(setId => {
-    const featuredSet = pssJson.itemListElement.find(
-      item => item["@id"] === setId
-    );
+  featuredPrimarySourceSets.forEach(featuredSet => {
     if (featuredSet) {
       const setWithLinkInfo = Object.assign({}, featuredSet, {
-        href: `/primary-source-sets/set?set=${extractSourceSetSlug(
-          featuredSet["@id"]
-        )}`,
-        as: `/primary-source-sets/${extractSourceSetSlug(featuredSet["@id"])}`
+        href: `/primary-source-sets/set?set=${featuredSet.primary_source_set_id}`,
+        as: `/primary-source-sets/${featuredSet.primary_source_set_id}`,
+        repImageUrl: featuredSet.image_url
       });
       sourceSets.push(setWithLinkInfo);
     }
