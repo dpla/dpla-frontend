@@ -72,7 +72,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                 set,{" "}
                 <Link
                   prefetch
-                  href={{ pathname: route.pathname, query: route.query }}
+                  href={`/primary-source-sets/set?set=${route.query.set}`}
                   as={{
                     pathname: `/primary-source-sets/${route.query.set}`,
                     query: removeQueryParams(route.query, ["set"])
