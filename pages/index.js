@@ -143,7 +143,9 @@ Home.getInitialProps = async ({ req }) => {
 
   // fetch item count
 
-  const itemsRes = await fetch(`${currentUrl}${ITEMS_API_ENDPOINT}`);
+  const itemsRes = await fetch(
+    `${currentUrl}${ITEMS_API_ENDPOINT}?page_size=1`
+  );
   const itemsJson = await itemsRes.json();
   const itemCount = itemsJson.count;
   const headerDescription = homepageJson.acf.header_description.replace(
