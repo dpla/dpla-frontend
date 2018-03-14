@@ -24,6 +24,7 @@ import { getDplaItemIdFromExhibit } from "utilFunctions";
 class Exhibition extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
+    document.body.focus();
   }
 
   render() {
