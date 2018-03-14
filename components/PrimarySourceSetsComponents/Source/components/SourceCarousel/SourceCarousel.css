@@ -33,9 +33,9 @@
       display: block;
     }
   }
-
-
-
+  & :global .slick-disabled {
+    display: none;
+  }
 }
 
 :global .slick-list {
@@ -177,7 +177,7 @@
 .previousItemButton {
   width: 100%;
   font-size: 1rem;
-  padding: .75rem 2rem;
+  padding: .75rem 0;
   font-weight: 600;
   @media (min-width: smallRem) {
     padding: 0;
