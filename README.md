@@ -5,20 +5,63 @@ This is the repository for the Digital Public Library of America's new frontend.
 
 ## Getting Started For Development
 
-- Install [Node v7.8.0](https://nodejs.org/en/)
-- Install [Yarn](https://yarnpkg.com/en/docs/install)
+### Install the Yarn package manager
+
+Supported version: 1.5.1
+
+[Installation instructions](https://yarnpkg.com/en/docs/install)
+
+Use whichever method is best for your environment, but this project expects the
+supported version given above; so check the documentation for your preferred
+installation method to make sure you can determine the version.
+
+The Yarn installation page referenced above recommends against installing Yarn
+from `npm`. For security, the download is supposed to have its cryptographic
+signature checked and an assumption is being made that you want `yarn` to be its
+own standalone utility, decoupled from this project.
+
+If you have other projects that require different versions of Yarn, this may
+not suit your needs. We may recommend a different way of managing Yarn in the
+future.
+
+### Check this project out from GitHub
 
 ```
-git clone https://github.com/dpla/dpla-frontend/
-cd dpla-frontend
-
-# install dependencies
-yarn
-
-# start the local development server
-yarn dev
-open http://localhost:3000/
+$ git clone https://github.com/dpla/dpla-frontend.git
 ```
+
+### Install Node
+
+We are using the current LTS (long-term-support) "Carbon" version of Node.
+
+The easiest way to manage your Node versions is with
+[NVM](https://github.com/creationix/nvm). Follow the instructions on that page
+to set it up. Then, do the following in your shell:
+```
+$ cd /path/to/dpla-frontend  # Checked out above from GitHub
+$ nvm install                # Picks up correct Node version from `.nvmrc`
+$ nvm use                    # Activates correct Node version
+```
+
+### Install dependencies and start the local development server
+
+```
+$ yarn dev
+```
+
+You may now open http://localhost:3000/ in your browser.
+
+### Run with Docker
+
+```
+$ yarn build
+$ yarn docker:build
+$ yarn docker:run
+```
+
+See [the Docker documentation](https://docs.docker.com/) and `docker help` for
+more information on using Docker containers.
+
 
 ## Environment Variables
 

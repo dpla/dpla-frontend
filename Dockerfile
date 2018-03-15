@@ -1,17 +1,10 @@
-FROM node:alpine
+# Dockerfile to build an image of the dpla-frontend application
+#
+# Expect that `yarn build` has already been run.
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
 
-# Install app dependencies
-RUN npm install --global yarn
-COPY package.json yarn.lock /usr/src/app/
-RUN yarn
-
-# Bundle app source
-COPY . /usr/src/app
-RUN yarn build
-
+FROM node:carbon-alpine
+WORKDIR /opt/dpla-frontend
+COPY . /opt/dpla-frontend
 EXPOSE 3000
-CMD [ "yarn", "start" ]
+CMD ["npm", "start"]

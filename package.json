@@ -80,16 +80,14 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "node server.js",
-    "build": "NODE_ENV=production next build",
+    "dev": "yarn && node server.js",
+    "clean": "rm -rf .next ./build ./coverage ./node_modules",
+    "build": "yarn && NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
-    "docker:build": "docker build -t dpla .",
-    "docker:clean": "docker rm -f dpla || true",
-    "docker:run": "docker run -p 3000:3000 -d --name dpla dpla",
-    "docker:stop": "docker stop dpla",
-    "docker:start": "docker start dpla && yarn run docker:logs",
-    "docker:logs": "docker logs -f dpla",
-    "deploy": "yarn run docker:build && yarn run docker:clean && yarn run docker:run",
+    "docker:build": "docker build -t dpla-frontend .",
+    "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
+    "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
+    "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "cross-env ANALYZE=1 next build"
   },
   "lint-staged": {
