@@ -101,14 +101,13 @@
 }
 
 .logo {
-  width: 100%;
-  max-width: 15rem;
-  margin: 0 auto;
   display: block;
+  margin: 0 auto;
+  width: 15rem;
 
   @media (min-width: mediumRem) {
     margin: 0;
-    max-width: 18rem;
+    width: 18rem;
   }
 }
 
