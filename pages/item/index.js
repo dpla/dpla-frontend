@@ -190,7 +190,6 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
     // }
 
     return {
-      statusCode,
       currentFullUrl,
       // paginationInfo: {
       //   next: {
