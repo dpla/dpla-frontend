@@ -21,7 +21,9 @@ const Footer = () =>
     {SITE_ENV === "pro" && <FooterPro />}
     <div className={classNames.smallFooterWrapper}>
       <div className={`${classNames.smallFooter} site-max-width`}>
-        <img className={classNames.logo} alt="DPLA" src={logo} />
+        <Link href="/">
+          <a><img className={classNames.logo} alt="DPLA Home" src={logo} /></a>
+        </Link>
         <div className={classNames.socialIcons}>
           <a
             href="https://www.facebook.com/digitalpubliclibraryofamerica"
