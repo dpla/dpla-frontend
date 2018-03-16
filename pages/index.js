@@ -144,7 +144,7 @@ Home.getInitialProps = async ({ req }) => {
   // fetch item count
 
   const itemsRes = await fetch(
-    `${currentUrl}${ITEMS_API_ENDPOINT}?page_size=1`
+    `${currentUrl}${ITEMS_API_ENDPOINT}?page_size=0`
   );
   const itemsJson = await itemsRes.json();
   const itemCount = itemsJson.count;
