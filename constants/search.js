@@ -45,7 +45,7 @@ export const prettifiedFacetMap = {
 import { joinIfArray } from "utilFunctions";
 
 export const splitAndURIEncodeFacet = facet =>
-  joinIfArray(facet)
+  joinIfArray(facet, "|")
     .split("|")
     .map(param => encodeURIComponent(param))
     .join("+AND+");

@@ -23,7 +23,7 @@ const clearAllFacets = query => {
 
 const clearFacet = (query, queryKey, facet) => {
   const duped = Object.assign({}, query);
-  const value = joinIfArray(duped[queryKey]);
+  const value = joinIfArray(duped[queryKey], "|");
   duped[queryKey] = value
     .split("|")
     .filter(facetPart => facetPart.replace(/"/g, "") !== facet)
@@ -80,7 +80,7 @@ class FiltersList extends React.Component {
               <span className={classNames.labelText}>Filtered by</span>
               <ul className={classNames.filters}>
                 {Object.keys(query).map((queryKey, index) => {
-                  const value = joinIfArray(query[queryKey]);
+                  const value = joinIfArray(query[queryKey], "|");
                   if (
                     possibleFacets.includes(
                       mapURLPrettifiedFacetsToUgly[queryKey]
