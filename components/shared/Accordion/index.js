@@ -7,6 +7,16 @@ const subtractIcon = "/static/images/subtract.svg";
 
 class Accordion extends React.Component {
   componentWillMount() {
+    // first save the original items
+    const originalItems = this.props.items.map(item => {
+      return { ...item, active: true };
+    });
+    // activate all of them
+    this.setState({ items: originalItems });
+  }
+
+  componentDidMount() {
+    // now collapse accordions for realz
     this.setState({ items: this.props.items });
   }
 

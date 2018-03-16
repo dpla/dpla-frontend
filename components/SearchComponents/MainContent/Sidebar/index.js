@@ -122,22 +122,26 @@ class DateFacet extends React.Component {
     }
   };
 
-  handleDateSubmit(e) {
-    const dateProps = this.getDateProps();
+  handleKeyDown(e) {
     if (e.keyCode == 13) {
-      Router.push({
-        pathname: this.props.route.pathname,
-        query: Object.assign(
-          {},
-          removeQueryParams(this.props.route.query, ["after", "before"]),
-          dateProps,
-          {
-            page: 1
-          }
-        )
-      });
-      return false;
+      this.handleDateSubmit(e);
     }
+  }
+
+  handleDateSubmit(e) {
+    e.preventDefault();
+    const dateProps = this.getDateProps();
+    Router.push({
+      pathname: this.props.route.pathname,
+      query: Object.assign(
+        {},
+        removeQueryParams(this.props.route.query, ["after", "before"]),
+        dateProps,
+        {
+          page: 1
+        }
+      )
+    });
   }
 
   getDateProps() {
@@ -148,18 +152,31 @@ class DateFacet extends React.Component {
   }
 
   render() {
-    const dateProps = this.getDateProps();
+    // NOTE: this form should maybe be wrapping the entire sidebar?
+    const formVals = Object.assign(
+      {},
+      removeQueryParams(this.props.route.query, ["after", "before", "page"]),
+      {
+        page: 1
+      }
+    );
     return (
-      <form className={classNames.dateRangeFacet}>
+      <form
+        action={this.props.route.pathname}
+        method="get"
+        className={classNames.dateRangeFacet}
+        onSubmit={e => this.handleDateSubmit(e)}
+      >
         <label className={classNames.dateFacet} htmlFor="after-date">
           <span>Between Year</span>
           <input
             id="after-date"
             type="numeric"
+            name="after"
             value={this.state.after}
             onChange={e => this.handleAfterText(e)}
             onBlur={e => this.validateAfter(e)}
-            onKeyDown={e => this.handleDateSubmit(e)}
+            onKeyDown={e => this.handleKeyDown(e)}
           />
         </label>
         <label className={classNames.dateFacet} htmlFor="before-date">
@@ -167,41 +184,20 @@ class DateFacet extends React.Component {
           <input
             id="before-date"
             type="numeric"
+            name="before"
             value={this.state.before}
             onChange={e => this.handleBeforeText(e)}
             onBlur={e => this.validateBefore(e)}
-            onKeyDown={e => this.handleDateSubmit(e)}
+            onKeyDown={e => this.handleKeyDown(e)}
           />
         </label>
-        <input
-          type="hidden"
-          name="url"
-          value={{
-            pathname: this.props.route.pathname,
-            query: Object.assign(
-              {},
-              removeQueryParams(this.props.route.query, ["after", "before"]),
-              dateProps,
-              {
-                page: 1
-              }
-            )
-          }}
-        />
+        {Object.entries(formVals).map(([k, v], index) => {
+          return <input type="hidden" name={k} key={index} value={v} />;
+        })}
         <Button
           type="secondary"
           className={classNames.dateButton}
-          url={{
-            pathname: this.props.route.pathname,
-            query: Object.assign(
-              {},
-              removeQueryParams(this.props.route.query, ["after", "before"]),
-              dateProps,
-              {
-                page: 1
-              }
-            )
-          }}
+          mustSubmit={true}
         >
           Update
         </Button>
