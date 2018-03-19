@@ -35,14 +35,6 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
-            <Link
-              href="/about?section=our-supporters-2"
-              as="/about/our-supporters-2"
-            >
-              <a>Our Supporters</a>
-            </Link>
-          </li>
-          <li>
             <Link href="/about?section=about-us" as="/about">
               <a>About DPLA</a>
             </Link>
@@ -98,23 +90,13 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
+            <Link href={PRO_BASE_URL + "/prospective-hubs"}>
+              <a>Prospective Hubs</a>
+            </Link>
+          </li>
+          <li>
             <Link href={PRO_BASE_URL + "/community-reps"}>
               <a>Community Reps</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={PRO_BASE_URL + "/developers"}>
-              <a>Developers</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={PRO_BASE_URL + "/ebooks"}>
-              <a>Ebooks</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={PRO_BASE_URL + "/education"}>
-              <a>Education</a>
             </Link>
           </li>
           <li>
@@ -123,13 +105,23 @@ const FooterUser = () =>
             </Link>
           </li>
           <li>
-            <Link href={PRO_BASE_URL + "/prospective-hubs"}>
-              <a>Prospective Hubs</a>
+            <Link href={PRO_BASE_URL + "/developers"}>
+              <a>Developers</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/education"}>
+              <a>Education</a>
             </Link>
           </li>
           <li>
             <Link href={PRO_BASE_URL + "/projects"}>
               <a>Projects</a>
+            </Link>
+          </li>
+          <li>
+            <Link href={PRO_BASE_URL + "/ebooks"}>
+              <a>Ebooks</a>
             </Link>
           </li>
           <li>

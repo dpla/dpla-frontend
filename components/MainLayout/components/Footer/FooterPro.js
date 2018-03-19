@@ -39,26 +39,6 @@ const FooterPro = () =>
         <h2 className={classNames.linkHeader}>Communities</h2>
         <ul>
           <li>
-            <Link as="/community-reps" href="/pro/wp?section=community-reps">
-              <a>Community Reps</a>
-            </Link>
-          </li>
-          <li>
-            <Link as="/developers" href="/pro/wp?section=developers">
-              <a>Developers</a>
-            </Link>
-          </li>
-          <li>
-            <Link as="/ebooks" href="/pro/wp?section=ebooks">
-              <a>Ebooks</a>
-            </Link>
-          </li>
-          <li>
-            <Link as="/education" href="/pro/wp?section=education">
-              <a>Education</a>
-            </Link>
-          </li>
-          <li>
             <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
               <a>Hub Network</a>
             </Link>
@@ -69,6 +49,26 @@ const FooterPro = () =>
               href="/pro/wp?section=prospective-hubs"
             >
               <a>Prospective Hubs</a>
+            </Link>
+          </li>
+          <li>
+            <Link as="/community-reps" href="/pro/wp?section=community-reps">
+              <a>Community Reps</a>
+            </Link>
+          </li>
+          <li>
+            <Link as="/developers" href="/pro/wp?section=developers">
+              <a>Developers</a>
+            </Link>
+          </li>
+          <li>
+            <Link as="/education" href="/pro/wp?section=education">
+              <a>Education</a>
+            </Link>
+          </li>
+          <li>
+            <Link as="/ebooks" href="/pro/wp?section=ebooks">
+              <a>Ebooks</a>
             </Link>
           </li>
         </ul>
