@@ -60,7 +60,8 @@ $ yarn docker:run
 ```
 
 See [the Docker documentation](https://docs.docker.com/) and `docker help` for
-more information on using Docker containers.
+more information on using Docker containers. See package.json for more
+Docker-related commands.
 
 
 ## Environment Variables
@@ -103,52 +104,18 @@ to manage a 12-column grid. Review <http://flexboxgrid.com/> for documentation.
 [Mobile Design Prototype](https://invis.io/VGD6W7ZDQ)  
 [Project Task Board](https://github.com/dpla/dpla-frontend/projects/1)
 
-## Scripts
+## Yarn / NPM Scripts
 
-The project includes a number of scripts used for development, testing, and deployment.
+The project includes a number of scripts used for development, testing, and deployment. See package.json for details if you are a developer. They include:
 
-- `yarn run dev` - begins bundling javascript with webpack and starts the server in development mode
-- `yarn run start` - begins bundling javascript with webpack and starts the server in production mode
-- `yarn run build` - builds the project for production
+- `yarn run clean` - Removes local Node modules, `.next` build targets, etc.
+- `yarn run dev` - Builds the project and starts the server in development mode
+- `yarn run build` - Builds the project for production
+- `yarn run start` - Builds the project and starts the server in production mode
 
+## Authors
 
-### Docker
-
-This project uses a Docker container, which can be run locally or deployed to AWS Elastic Beanstalk.
-
-Once you have [Docker](https://www.docker.com/) installed on your computer, you can run the container locally using this command:
-
-```zsh
-# Build and run the container
-> yarn deploy
-```
-
-To deploy the container to AWS Elastic Beanstalk, you'll need to get set up first.
-
-1. Get AWS credentials and [install the eb-cli tool](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html) (tl;dr ```brew install awsebcli```).
-2. Using the terminal, run ```eb init```.
-3. Choose us-east-1, US East (N. Virginia) as the region.
-4. Enter your aws-access-id and aws-secret-key.
-5. At select an application to use, choose dpla-frontend.
-6. Opt out of CodeCommit.
-
-When you've completed the one-time setup, the following command will deploy the Docker container to AWS.
-
-```zsh
-> eb deploy dpla
-```
-
-A few other useful commands:
-
-```zsh
-# List environments
-> eb list
-
-# Open the app in your browser
-> eb open dpla
-```
-
-| Authors, DPLA |
+| DPLA |
 | ------------- |
 | Audrey Altman |
 | Gretchen Gueguen |
