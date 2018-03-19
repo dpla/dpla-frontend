@@ -204,16 +204,14 @@
 
 .tips {
   list-style: initial;
-  padding-left: 28px;
+  padding-left: 1rem;
 }
 
 .tipDirections {
-  margin-bottom: 4px;
+  margin-bottom: 1rem;
 }
 
 .tip {
-  padding-left: 10px;
-  margin-bottom: 2px;
 }
 
 .tip:last-child {
