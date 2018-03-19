@@ -1,4 +1,4 @@
-@value cascadeBlue, dimmedTextColor from "../../../../css/colors.css";
+@value formLabelColor, dimmedTextColor from "../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../css/breakpoints.css";
 @value sansFont from "../../../../css/typography.css";
 
@@ -37,7 +37,7 @@
 }
 
 .activeFacetName {
-  color: cascadeBlue;
+  color: formLabelColor;
   font-weight: bold;
 }
 
