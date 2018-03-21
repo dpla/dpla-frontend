@@ -17,7 +17,7 @@ if (require.main === module) {
     process.exit(1);
   });
 
-  if (cluster.isMaster) {
+  if (cluster.isMaster && !dev) {
     // Fork workers, 1 for each CPU.
     cluster
       .on("exit", (worker, code, signal) => {
