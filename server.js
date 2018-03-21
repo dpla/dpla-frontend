@@ -246,7 +246,6 @@ if (require.main === module) {
       });
 
       server.get("*", (req, res) => {
-        console.log(`PID ${process.pid} request`);
         return handle(req, res);
       });
 
