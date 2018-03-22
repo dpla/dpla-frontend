@@ -9,6 +9,8 @@ const numCPUs = require("os").cpus().length;
 const serverFunctions = require("./utilFunctions/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
+const production = !dev;
+const mustFork = process.env.MUST_FORK == "true" || production;
 const PORT = process.env.PORT || 3000;
 
 if (require.main === module) {
@@ -17,7 +19,7 @@ if (require.main === module) {
     process.exit(1);
   });
 
-  if (cluster.isMaster) {
+  if (cluster.isMaster && mustFork) {
     // Fork workers, 1 for each CPU.
     cluster
       .on("exit", (worker, code, signal) => {
