@@ -10,8 +10,9 @@ class CiteButton extends React.Component {
     showCitation: false
   };
 
-  toggleCiteButton = () => {
+  toggleCiteButton = e => {
     this.setState({ showCitation: !this.state.showCitation });
+    e.preventDefault();
   };
 
   render() {
@@ -29,7 +30,6 @@ class CiteButton extends React.Component {
       <div className={classNames.wrapper}>
         <Button
           onClick={this.toggleCiteButton}
-          onTouchEnd={this.toggleCiteButton}
           controls="citation-content"
           expanded={this.state.showCitation}
           type="ghost"
