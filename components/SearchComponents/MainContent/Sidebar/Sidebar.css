@@ -33,7 +33,9 @@
 
 .facetName {
   color: black;
-  flex-basis: 75%;
+  flex-basis: 80%;
+  font-size: 0.8125rem;
+  word-break: break-all;
 }
 
 .activeFacetName {
@@ -42,10 +44,10 @@
 }
 
 .facetCount {
-  font-size: 0.8125rem;
   color: dimmedTextColor;
+  flex-basis: 20%;
+  font-size: 0.8125rem;
   margin-left: .25rem;
-  flex-basis: 25%;
   text-align: right;
 }
 

@@ -50,6 +50,5 @@
   }
 
   @media (min-width: mediumRem) {
-    flex-basis: 25%;
   }
 }
