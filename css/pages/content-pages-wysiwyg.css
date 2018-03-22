@@ -1,4 +1,4 @@
-@value warmerBackgroundColor, secondaryColor, linkColor, linkHoverColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
+@value colderBackgroundColor, warmerBackgroundColor, secondaryColor, linkColor, linkHoverColor, primaryBulletColor, secondaryBulletColor from "../colors.css";
 @value smallRem, mediumRem, largeRem from "../breakpoints.css";
 @value sansFont, monoFont, serifFont from "../typography.css";
 
@@ -109,6 +109,20 @@
 
   & p {
     margin-bottom: 1rem;
+  }
+
+  & code, & pre {
+    background-color: colderBackgroundColor;
+    font-family: monoFont;
+    font-size: 0.85rem;
+    padding: 0.125rem 0.25rem;
+  }
+
+  & pre {
+    border-left: 0.1rem solid secondaryColor;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 
   & iframe {
