@@ -10,7 +10,7 @@ const serverFunctions = require("./utilFunctions/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
-const mustFork = process.env.MUST_FORK == "true" || production;
+const mustFork = process.env.MUST_FORK === "true" || production;
 const PORT = process.env.PORT || 3000;
 
 if (require.main === module) {
