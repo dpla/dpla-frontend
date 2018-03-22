@@ -84,6 +84,10 @@ The system makes extensive use of environment variables to decouple the differen
 - `GOOGLE_TOKEN`: Google authentication token
 - `WORDPRESS_URL`: the headless WordPress API base URL (also exposed in `constants/env.js`)
 - `MAILCHIMP_KEY`: the MailChimp list service API key
+- `MUST_FORK`: if "true", forces the server to fork and use multiple CPUs in
+   development mode. This is only relevant when NODE_ENV is not equal to
+   "production", e.g. when running `yarn dev`. The server always forks when
+   `NODE_ENV=production`.
 
 ## CSS
 
