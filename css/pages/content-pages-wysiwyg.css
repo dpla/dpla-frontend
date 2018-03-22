@@ -161,7 +161,6 @@
     list-style-type: none;
     position: relative;
     counter-increment: start-from;
-    margin-bottom: 1rem;
   }
 
   & li::before {
