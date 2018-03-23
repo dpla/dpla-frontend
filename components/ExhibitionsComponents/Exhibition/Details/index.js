@@ -80,7 +80,7 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
         </div>
         <p className={classNames.credits}>
           <span className={classNames.creditsBold}>Credit: </span>
-          <span>{exhibition.credits}</span>
+          <span className={classNames.creditsText}>{exhibition.credits}</span>
         </p>
         <div className={classNames.faveAndCiteButtonsWrapper}>
           <CiteButton
