@@ -121,6 +121,10 @@
   text-transform: uppercase;
 }
 
+.creditsText {
+  max-width: 40rem;
+}
+
 .faveAndCiteButtonsWrapper {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
