@@ -34,8 +34,8 @@ const clearFacet = (query, queryKey, facet) => {
   return duped;
 };
 
-const Filter = ({ name, queryKey, route, key }) =>
-  <li className={classNames.filter} key={key}>
+const Filter = ({ name, queryKey, route }) =>
+  <li className={classNames.filter}>
     <Link
       prefetch
       href={{
