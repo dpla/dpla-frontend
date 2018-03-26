@@ -33,16 +33,9 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               <div
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
-                    teachingGuide.hasPart
-                      .find(item => item.name === "Questions")
-                      .text.replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sources\//g,
-                        "sources/"
-                      )
-                      .replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sets\//g,
-                        "/primary-source-sets/"
-                      )
+                    teachingGuide.hasPart.find(
+                      item => item.name === "Questions"
+                    ).text
                   )
                 }}
               />
@@ -50,16 +43,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               <div
                 dangerouslySetInnerHTML={{
                   __html: markdownit.render(
-                    teachingGuide.hasPart
-                      .find(item => item.name === "Activity")
-                      .text.replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sources\//g,
-                        "sources/"
-                      )
-                      .replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sets\//g,
-                        "/primary-source-sets/"
-                      )
+                    teachingGuide.hasPart.find(item => item.name === "Activity")
+                      .text
                   )
                 }}
               />
