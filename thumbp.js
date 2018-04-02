@@ -124,7 +124,7 @@ Connection.prototype.proxyImage = function() {
       method: "GET",
       uri: this.imageURL,
       headers: {
-        "User-Agent": "DPLA thumbp (https://github.com/dpla/thumbp)"
+        "User-Agent": "DPLA frontend (https://github.com/dpla/dpla-frontend)"
       },
       timeout: 10000 // ms
     })
