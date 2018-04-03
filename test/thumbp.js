@@ -68,7 +68,7 @@ describe("Connection", function() {
 
     it("proceeds if given a valid ID", function() {
       itemID = "223ea5040640813b6c8204d1e0778d30";
-      request.url = `/thumb/${itemID}`;
+      request.url = `/thumbp/${itemID}`;
       c.handleReqEnd();
       assert(lookUpImageStub.called);
       expect(c.itemID).to.equal(itemID);

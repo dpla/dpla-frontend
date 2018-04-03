@@ -49,6 +49,13 @@ $ nvm use                    # Activates correct Node version
 $ yarn dev
 ```
 
+### Running tests
+
+```
+$ npm install -g mocha
+$ mocha
+```
+
 You may now open http://localhost:3000/ in your browser.
 
 ### Run with Docker
