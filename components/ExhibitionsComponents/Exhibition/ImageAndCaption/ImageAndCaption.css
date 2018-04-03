@@ -1,4 +1,4 @@
-@value linkColor from "../../../../css/colors.css";
+@value linkColor, dimmedTextColor from "../../../../css/colors.css";
 @value smallRem, xSmallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../css/typography.css";
 
@@ -10,11 +10,13 @@
 }
 
 .imageAndCaption {
-  width: 100%;
   padding: 0;
+  width: 100%;
+
   @media (min-width: smallRem) {
     padding: 0 1rem 1rem;
   }
+
   @media (min-width: largeRem) {
     padding: 0 0 1rem;
   }
@@ -107,12 +109,11 @@
 }
 
 .caption {
-  padding: 0 1rem;
-  color: #0D0D17;
-  opacity: 0.50;
+  color: dimmedTextColor;
+  display: flex;
   font-size: 0.875rem;
   line-height: 1.125;
-  display: flex;
+  padding: 0 1rem;
 
   @media (min-width: smallRem) {
     padding: 0;

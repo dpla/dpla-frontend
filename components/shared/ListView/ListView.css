@@ -40,12 +40,13 @@
   background-color: warmerBackgroundColor;
   padding-bottom: 20%;
   padding-top: 20%;
+
   @media (min-width: largeRem) {
     padding-bottom: 0;
     padding-top: 0;
   }
+
   & img {
-    opacity: 0.35;
   }
 }
 
@@ -73,16 +74,6 @@
 .image {
   max-height: 100%;
   max-width: 100%;
-}
-
-.itemType {
-  display: inline-block;
-  color: elephantBlue;
-  opacity: 0.90;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 0.9375;
 }
 
 .itemDescription {

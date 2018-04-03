@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor, lightLinkColor from "../../../../css/colors.css";
+@value linkColor, warmerBackgroundColor, dimmedTextColor, lightLinkColor from "../../../../css/colors.css";
 @value mediumRem, smallRem, largeRem from "../../../../css/breakpoints.css";
 @value serifFont from "../../../../css/typography.css";
 
@@ -32,9 +32,9 @@
 }
 
 .topicDescription {
-  text-align: center;
+  color: dimmedTextColor;
   font-size: 1.75rem;
-  opacity: 0.50;
+  text-align: center;
 }
 
 .subtopic {
@@ -53,26 +53,6 @@
 
   &, &:hover {
     text-decoration: none;
-  }
-
-  &:after {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    transition: opacity .25s ease-in-out;
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    opacity: .6;
-  }
-
-  &:hover:after {
-    opacity: 1;
-  }
-
-  &:hover .gradientBackground {
-    opacity: 1;
   }
 
   &:hover .image {
@@ -100,11 +80,11 @@
 }
 
 .subtopicTitle {
+  color: dimmedTextColor;
   font-family: serifFont;
   font-size: 1.75rem;
   font-weight: normal;
   line-height: 1.2;
-  opacity: 0.90;
   padding: 0 2rem;
 }
 

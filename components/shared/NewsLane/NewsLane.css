@@ -1,4 +1,4 @@
-@value linkColor, warmerBackgroundColor from "../../../css/colors.css";
+@value linkColor, dimmedTextColor, warmerBackgroundColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -109,9 +109,9 @@
 }
 
 .date {
-  opacity: 0.75;
-  font-weight: bold;
+  color: dimmedTextColor;
   font-size: 0.9rem;
+  font-weight: bold;
   margin-top: 0.25rem;
   text-transform: uppercase;
 

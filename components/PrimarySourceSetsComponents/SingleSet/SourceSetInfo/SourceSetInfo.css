@@ -45,11 +45,10 @@
 }
 
 .bannerImage {
-  width: 100%;
-  padding-top: 42%;
-  opacity: 0.95;
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 42%;
+  width: 100%;
 
   @media (min-width: smallRem) {
     border-radius: 3px;

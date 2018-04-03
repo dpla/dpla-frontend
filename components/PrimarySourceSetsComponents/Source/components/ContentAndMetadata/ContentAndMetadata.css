@@ -1,4 +1,4 @@
-@value colderBackgroundColor, warmerBackgroundColor, subLinkColor from "../../../../../css/colors.css";
+@value colderBackgroundColor, lightBorderColor, warmerBackgroundColor, subLinkColor from "../../../../../css/colors.css";
 @value smallRem, mediumRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../../../css/typography.css";
 
@@ -112,7 +112,7 @@
 }
 
 .sourceInfo {
-  border: 1px solid #E7E7E7;
+  border: 1px solid lightBorderColor;
   background-color: white;
   padding: 18px 20px 24px;
   border-radius: 3px;
@@ -134,7 +134,6 @@
 }
 
 .courtesyOf p {
-  opacity: 0.65;
   font-size: 0.875rem;
   line-height: 1.125;
   margin-top: 3px;
@@ -148,9 +147,7 @@
 }
 
 .divider {
-  border-bottom: 1px solid #000000;
-  height: 2px;
-  opacity: 0.1;
+  border-bottom: 0.075rem solid lightBorderColor;
   margin: 1rem 0;
 }
 
@@ -173,24 +170,24 @@
 }
 
 .linkIcon {
-  opacity: 0.5;
-  width: 18px;
   height: 18px;
   margin-right: 13px;
+  opacity: 0.5;
+  width: 18px;
 }
 
 .externalIcon {
-  opacity: 0.5;
-  width: 16px;
   height: 16px;
   margin-right: 15px;
+  opacity: 0.5;
+  width: 16px;
 }
 
 .tipsForStudents {
-  padding: 20px;
-  border: 1px solid #E7E7E7;
+  border: 1px solid lightBorderColor;
   font-size: 0.875rem;
   line-height: 1.125;
+  padding: 20px;
 }
 
 .tipsForStudentsHeader {

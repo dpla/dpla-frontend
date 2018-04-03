@@ -1,4 +1,4 @@
-@value warmerBackgroundColor from "../../../css/colors.css";
+@value warmerBackgroundColor, dimmedTextColor from "../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
 @value monoFont, serifFont from "../../../css/typography.css";
 
@@ -40,9 +40,9 @@
 }
 
 .description {
-  opacity: 0.5;
-  margin-top: .5rem;
+  color: dimmedTextColor;
   line-height: 1.25;
+  margin-top: 0.5rem;
 
   @media (min-width: mediumRem) {
     padding-left: 1rem;

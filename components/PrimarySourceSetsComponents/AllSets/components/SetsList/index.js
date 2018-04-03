@@ -1,13 +1,15 @@
 import React from "react";
-const markdownit = require("markdown-it")({ html: true });
 import Link from "next/link";
 
-import { classNames, stylesheet } from "./SetsList.css";
 import { extractSourceSetSlug, removeQueryParams } from "utilFunctions/";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+
+import { classNames, stylesheet } from "./SetsList.css";
+
+const markdownit = require("markdown-it")({ html: true });
 
 const SetsList = ({ sets, route }) =>
   <div className={`${classNames.setsWrapper} site-max-width`}>
