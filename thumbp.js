@@ -3,7 +3,7 @@
 const libRequest = require("request");
 
 const path_pat = /^\/thumbp\/([a-f0-9]{32})$/;
-const api_base = process.env.USER_BASE_URL + "/api/dpla/items";
+const es_base = process.env.ES_BASE || "http://localhost:9200/dpla_alias/item";
 
 /***
  * thumbp:  DPLA Thumbnail Image Proxy
@@ -62,7 +62,7 @@ Connection.prototype.handleReqEnd = function() {
  * Given an item ID, look up the image URL and proxy it.
  */
 Connection.prototype.lookUpImage = function() {
-  var q_url = api_base + `?id=${this.itemID}&fields=id,object`;
+  var q_url = es_base + `/_search?q=id:${this.itemID}&fields=id,object`;
   libRequest(q_url, (error, response, body) => {
     this.checkSearchResponse(error, response, body);
   });
@@ -79,11 +79,11 @@ Connection.prototype.checkSearchResponse = function(error, response, body) {
   if (!error && response.statusCode == 200) {
     try {
       item_data = JSON.parse(body);
-      if (item_data["count"] == 0) {
+      if (item_data["hits"]["total"] == 0) {
         this.returnError(404);
         return;
       }
-      obj = item_data["docs"][0]["object"];
+      obj = item_data["hits"]["hits"][0]["fields"]["object"];
       if (Array.isArray(obj)) {
         url = obj[0]; // [0] could be undefined (== false)
       } else if (typeof obj == "string") {
