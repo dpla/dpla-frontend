@@ -30,7 +30,11 @@ class Exhibition extends React.Component {
   render() {
     const { url, exhibition, currentFullUrl } = this.props;
     return (
-      <MainLayout route={url} pageTitle={exhibition.title} seoType={SEO_TYPE}>
+      <MainLayout
+        route={url}
+        pageTitle={exhibition.title.replace(/\*/g, "")}
+        seoType={SEO_TYPE}
+      >
         <BreadcrumbsModule
           breadcrumbs={[
             {
