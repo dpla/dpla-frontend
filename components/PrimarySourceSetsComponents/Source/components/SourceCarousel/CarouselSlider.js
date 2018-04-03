@@ -3,11 +3,12 @@ import Slider from "react-slick";
 import Link from "next/link";
 
 import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
+
+import { extractSourceId, removeQueryParams } from "utilFunctions";
+
 import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 import { classNames } from "./SourceCarousel.css";
 import breakpoints from "css/breakpoints.css";
-import extractSourceId from "utilFunctions/extractSourceId";
-import removeQueryParams from "utilFunctions/removeQueryParams";
 
 const markdownit = require("markdown-it")({ html: true });
 
@@ -58,13 +59,14 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
           >
             <a className={classNames.item}>
               <div
-                style={{ backgroundImage: `url(${thumbnailUrl})` }}
                 className={[
                   classNames.itemImgWrapper,
                   useDefaultImage ? classNames.defaultImageWrapper : "",
                   i === currentSourceIdx && classNames.currentItemImgWrapper
                 ].join(" ")}
-              />
+              >
+                <img alt="" src={thumbnailUrl} className={classNames.itemImg} />
+              </div>
               <div
                 className={classNames.itemText}
                 dangerouslySetInnerHTML={{
