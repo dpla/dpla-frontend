@@ -28,19 +28,16 @@ const Exhibition = ({ exhibition, route, featured }) => {
             className={classNames.exhibitionContent}
             aria-labelledby={exhibition.slug}
           >
+            <img
+              alt=""
+              className={classNames.exhibitionImage}
+              src={exhibition.thumbnailUrl}
+            />
             <div className={classNames.overlay}>
               <span id={exhibition.slug} className={classNames.title}>
                 {exhibition.title}
               </span>
             </div>
-            <div
-              aria-hidden="true"
-              className={classNames.exhibitionImage}
-              style={{
-                backgroundImage: `url("${exhibition.thumbnailUrl}")`,
-                backgroundPosition: `50% 50%`
-              }}
-            />
           </div>
         </a>
       </Link>
@@ -61,17 +58,15 @@ const ThreeUp = ({ exhibitions, route }) =>
 const ExhibitionsList = ({ exhibitions, route }) =>
   <div className={`${classNames.wrapper} site-max-width`}>
     <div className={classNames.row}>
-      <ThreeUp route={route} exhibitions={exhibitions.slice(0, 3)} />
-      <div className={classNames.remainingExhibitions}>
-        {exhibitions
-          .slice(3)
-          .map(exhibition =>
-            <Exhibition
-              route={route}
-              exhibition={exhibition}
-              key={exhibition.slug}
-            />
-          )}
+      <div className={classNames.exhibitionList}>
+        {exhibitions.map((exhibition, index) =>
+          <Exhibition
+            route={route}
+            exhibition={exhibition}
+            key={exhibition.slug}
+            featured={index > 0 ? false : true}
+          />
+        )}
       </div>
     </div>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

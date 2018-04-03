@@ -45,7 +45,7 @@ Exhibitions.getInitialProps = async ({ req }) => {
           );
           const filesJson = await filesRes.json();
 
-          const thumbnailUrl = filesJson[0].file_urls.fullsize;
+          const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
           return Object.assign({}, exhibit, { thumbnailUrl });
         })
         .reverse()
