@@ -130,32 +130,6 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   Print this Guide
                 </a>
               </div>
-              {/* <div className={classNames.toolLinkAndIcon}>
-                <img src={link} alt="" className={classNames.toolIcon} />
-                <Link
-                  prefetch
-                  href={{
-                    pathname: `/primary-source-sets/set`,
-                    query: Object.assign({}, route.query, { studentMode: true })
-                  }}
-                  as={{
-                    pathname: `/primary-source-sets/${route.query.set}`,
-                    query: Object.assign(
-                      {},
-                      removeQueryParams(route.query, ["set"]),
-                      { studentMode: true }
-                    )
-                  }}
-                >
-                  <a className={classNames.toolLink}>Link to Student View</a>
-                </Link>
-              </div>
-              <p className={classNames.studentViewNote}>
-                <span className={classNames.semibold}>Student View</span> is a
-                link
-                to this Primary Source Set with the Teaching Guide hidden.
-              </p> */}
-
             </div>
           </div>
           <div className={classNames.sidebarSection}>

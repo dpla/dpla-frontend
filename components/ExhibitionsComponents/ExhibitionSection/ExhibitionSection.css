@@ -365,7 +365,6 @@
 
   @media (min-width: smallRem) {
     display: inline-block;
-    opacity: 0.75;
     font-size: 0.875rem;
     position: absolute;
     top: -1.5rem;
@@ -379,7 +378,7 @@
 
 .disabledButton {
   color: black;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .prevButton, .prevButton:visited {

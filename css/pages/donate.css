@@ -109,14 +109,12 @@
 
   & p {
     font-size: 1rem;
-    opacity: .85;
     margin-bottom: 0;
   }
 
   & blockquote {
     margin-left: 0;
     margin-right: 0;
-    opacity: .85;
     font-size: 1rem;
   }
 }
@@ -129,7 +127,6 @@
     font-size: .9rem;
     display: block;
     margin-top: .9rem;
-    opacity: .85;
   }
 
   & img {

@@ -114,7 +114,6 @@
 .socialIcons {
   text-align: center;
   margin-top: 2rem;
-  opacity: .75;
 
   @media (min-width: mediumRem) {
     margin-top: 0;

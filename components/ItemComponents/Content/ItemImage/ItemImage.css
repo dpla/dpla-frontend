@@ -28,10 +28,6 @@
 
 .defaultImageWrapper {
   background-color: warmerBackgroundColor;
-
-  & img {
-    opacity: 0.35;
-  }
 }
 
 .image {

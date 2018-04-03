@@ -47,15 +47,15 @@
 }
 
 .defaultImageWrapper {
+  align-items: center;
   background-color: warmerBackgroundColor;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.25rem;
   padding-bottom: 25%;
   padding-top: 25%;
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   & img {
-    opacity: 0.35;
     width: auto;
   }
 }

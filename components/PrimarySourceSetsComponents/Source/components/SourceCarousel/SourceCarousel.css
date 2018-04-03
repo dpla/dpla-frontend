@@ -217,7 +217,6 @@
   justify-content: center;
 
   & img {
-    opacity: 0.35;
     min-height: auto;
     min-width: auto;
   }
