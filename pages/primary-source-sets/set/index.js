@@ -15,7 +15,7 @@ const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
 const SingleSet = ({ set, url, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={set.name}>
+  <MainLayout route={url} pageTitle={set.name.replace(/\*/g, "")}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
