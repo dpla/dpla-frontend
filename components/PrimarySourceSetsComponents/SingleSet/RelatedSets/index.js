@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import Slider from "react-slick";
+
+import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
+
+import { extractSourceSetSlug } from "utilFunctions/";
 
 import { stylesheet, classNames } from "./RelatedSets.css";
 import { classNames as utilClassNames } from "css/utils.css";
-import { extractSourceSetSlug } from "utilFunctions/";
-import Slider from "react-slick";
-import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 import { classNames as breakpoints } from "css/breakpoints.css";
 import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 
