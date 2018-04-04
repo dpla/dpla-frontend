@@ -19,10 +19,6 @@ module.exports = {
       );
     }
 
-    config.plugins = config.plugins.filter(
-      plugin => plugin.constructor.name !== "UglifyJsPlugin"
-    );
-
     config.plugins.push(
       new webpack.DefinePlugin({
         "process.env": {
