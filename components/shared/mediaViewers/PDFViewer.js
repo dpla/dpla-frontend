@@ -6,9 +6,13 @@ class PDFViewer extends React.Component {
   render() {
     const { pathToFile, width, height, containerId } = this.props;
 
-    console.log("pathToFile", pathToFile);
-
-    return <Viewer document={{ url: pathToFile }} />;
+    return (
+      <div
+        style={{ width: width, height, display: "block", overflow: "scroll" }}
+      >
+        <Viewer document={{ url: pathToFile }} />
+      </div>
+    );
   }
 }
 
