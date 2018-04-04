@@ -64,8 +64,7 @@
 
   & .exhibitionLink {
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: end;
+    flex-direction: column;
   }
 
   & .exhibitionContent {
@@ -89,16 +88,16 @@
 
   & .title {
     @media (min-width: smallRem) {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       line-height: 1;
     }
 
     @media (min-width: mediumRem) {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 2.75rem;
+      font-size: 2rem;
     }
   }
 }
@@ -111,7 +110,16 @@
   font-family: serifFont;
   font-size: 1.5rem;
 
+  @media (min-width: smallRem) {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
   @media (min-width: mediumRem) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: largeRem) {
     font-size: 1.25rem;
   }
 }
