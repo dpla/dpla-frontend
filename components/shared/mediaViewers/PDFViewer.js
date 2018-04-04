@@ -1,18 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PDFObject from "pdfobject";
+import Viewer from "mgr-pdf-viewer-react";
 
 class PDFViewer extends React.Component {
-  componentDidMount() {
-    const { pathToFile, containerId } = this.props;
-
-    PDFObject.embed(pathToFile, `#${containerId}`);
-  }
-
   render() {
     const { pathToFile, width, height, containerId } = this.props;
 
-    return <div style={{ width, height }} id={containerId} />;
+    console.log("pathToFile", pathToFile);
+
+    return <Viewer document={{ url: pathToFile }} />;
   }
 }
 
