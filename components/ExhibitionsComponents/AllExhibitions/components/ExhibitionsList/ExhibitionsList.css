@@ -40,13 +40,13 @@
   }
 
   &:hover .exhibitionImage {
-    filter: none;
+    /* filter: none; */
   }
 }
 
 .exhibitionImage {
   border-bottom: 0.25rem solid lightLinkColor;
-  filter: sepia(1) hue-rotate(340deg) brightness(0.7);
+  /* filter: sepia(1) hue-rotate(340deg) brightness(0.7); */
   object-fit: contain;
   width: 100%;
   z-index: -1;
@@ -109,7 +109,7 @@
 
 .title {
   font-family: serifFont;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 
   @media (min-width: mediumRem) {
   }
