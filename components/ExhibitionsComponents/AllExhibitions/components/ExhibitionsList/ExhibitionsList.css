@@ -26,11 +26,6 @@
   }
 }
 
-.exhibitionList .exhibition {
-  @media (min-width: smallRem) {
-  }
-}
-
 .exhibition {
   line-height: 1.25;
   position: relative;
@@ -94,16 +89,16 @@
 
   & .title {
     @media (min-width: smallRem) {
-      font-size: 1.8rem;
+      font-size: 2.25rem;
       line-height: 1;
     }
 
     @media (min-width: mediumRem) {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 2.25rem;
+      font-size: 2.75rem;
     }
   }
 }
@@ -114,9 +109,10 @@
 
 .title {
   font-family: serifFont;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   @media (min-width: mediumRem) {
+    font-size: 1.25rem;
   }
 }
 
