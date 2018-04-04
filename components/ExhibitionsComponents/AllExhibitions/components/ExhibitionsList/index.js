@@ -13,7 +13,7 @@ const Exhibition = ({ exhibition, route, featured }) => {
         }}
         as={{ pathname: `/exhibitions/${exhibition.slug}`, query: route.query }}
       >
-        <a>
+        <a className={classNames.exhibitionLink}>
           {featured &&
             <div className={classNames.featuredBanner}>
               Featured

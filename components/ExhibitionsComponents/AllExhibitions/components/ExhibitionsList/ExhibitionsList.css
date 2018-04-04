@@ -22,7 +22,7 @@
     display: grid;
     grid-column-gap: 0.5rem;
     grid-row-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }
 }
 
@@ -40,13 +40,11 @@
   }
 
   &:hover .exhibitionImage {
-    /* filter: none; */
   }
 }
 
 .exhibitionImage {
   border-bottom: 0.25rem solid lightLinkColor;
-  /* filter: sepia(1) hue-rotate(340deg) brightness(0.7); */
   object-fit: contain;
   width: 100%;
   z-index: -1;
@@ -63,9 +61,16 @@
 }
 
 .exhibition:first-child {
+
   @media (min-width: smallRem) {
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-column-start: 1;
+  }
+
+  & .exhibitionLink {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
   }
 
   & .exhibitionContent {
@@ -89,16 +94,16 @@
 
   & .title {
     @media (min-width: smallRem) {
-      font-size: 2rem;
+      font-size: 1.8rem;
       line-height: 1;
     }
 
     @media (min-width: mediumRem) {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 2.625rem;
+      font-size: 2.25rem;
     }
   }
 }
@@ -109,7 +114,7 @@
 
 .title {
   font-family: serifFont;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 
   @media (min-width: mediumRem) {
   }
@@ -119,12 +124,8 @@
 .newBanner {
   font-size: 0.875rem;
   font-weight: bold;
-  left: 0;
   padding: 0.5rem 0.75rem;
-  position: absolute;
   text-transform: uppercase;
-  top: 12px;
-  z-index: 1;
 }
 
 .featuredBanner {
