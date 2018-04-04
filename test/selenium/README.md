@@ -9,7 +9,8 @@
 - Change directory to where this file is
 - `pyenv local 3.6.0`
 - `virtualenv .`
-- `python setup.py install`
+- `source bin/activate`
+- `pip install -r requirements.txt`
 
 
 # Running
