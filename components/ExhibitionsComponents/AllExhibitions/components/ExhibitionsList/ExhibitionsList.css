@@ -1,4 +1,4 @@
-@value linkColor, featuredBannerColor, black50 from "../../../../../css/colors.css";
+@value linkColor, featuredBannerColor, lightLinkColor, black50 from "../../../../../css/colors.css";
 @value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont, sansFont from "../../../../../css/typography.css";
 
@@ -17,10 +17,27 @@
   margin-left: -0.25rem;
 }
 
+.exhibitionList {
+  @media (min-width: smallRem) {
+    display: grid;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+}
+
+.exhibitionList .exhibition {
+  @media (min-width: smallRem) {
+  }
+}
+
 .exhibition {
-  display: block;
   line-height: 1.25;
   position: relative;
+
+  @media (max-width: smallRem) {
+    margin-bottom: 2rem;
+  }
 
   &:hover .exhibitionImage {
     filter: none;
@@ -28,8 +45,10 @@
 }
 
 .exhibitionImage {
-  filter: sepia(1) hue-rotate(340deg) brightness(0.8);
+  border-bottom: 0.25rem solid lightLinkColor;
+  filter: sepia(1) hue-rotate(340deg) brightness(0.7);
   object-fit: contain;
+  width: 100%;
   z-index: -1;
 }
 
@@ -39,37 +58,33 @@
   overflow: hidden;
 }
 
-.exhibitionList {
-  @media (min-width: smallRem) {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 0.25rem;
-  }
+.exhibition img {
+  border-radius: 0.2rem 0.2rem 0 0;
 }
 
-.exhibitionList .exhibition {
-  @media (min-width: smallRem) {
-  }
-}
-
-.exhibitionList .exhibition:first-child {
+.exhibition:first-child {
   @media (min-width: smallRem) {
     grid-column-end: 3;
     grid-column-start: 1;
   }
 
   & .exhibitionContent {
-    display: flex;
-    flex-direction: row;
+    @media (min-width: smallRem) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 0.5rem;
+    }
   }
 
-  & .overlay {
-    margin: 0.5rem;
-    width: 50%;
+  & .exhibitionText {
+    @media (min-width: smallRem) {
+    }
   }
 
-  & img {
-    width: 50%;
+  & .exhibitionImage {
+    border-bottom: none;
+    border-radius: 0.2rem 0 0 0.2rem;
+    border-right: 0.25rem solid featuredBannerColor;
   }
 
   & .title {
@@ -88,12 +103,8 @@
   }
 }
 
-.overlay {
+.exhibitionText {
   margin: 0.25rem;
-}
-
-.exhibition img {
-  border-radius: 3px;
 }
 
 .title {
