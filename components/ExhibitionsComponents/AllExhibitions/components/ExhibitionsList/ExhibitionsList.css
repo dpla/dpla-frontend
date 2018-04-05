@@ -17,50 +17,8 @@
   margin-left: -0.25rem;
 }
 
-.exhibitionList {
-  @media (min-width: smallRem) {
-    display: grid;
-    grid-column-gap: 0.5rem;
-    grid-row-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  }
-}
-
-.exhibition {
-  line-height: 1.25;
-  position: relative;
-
-  @media (max-width: smallRem) {
-    margin-bottom: 2rem;
-  }
-
-  &:hover .exhibitionImage {
-  }
-}
-
-.exhibitionImage {
-  border-bottom: 0.25rem solid lightLinkColor;
-  object-fit: contain;
-  width: 100%;
-  z-index: -1;
-}
-
-.exhibitionContent {
-  position: relative;
-  /* 239px / 334px ratio */
-  overflow: hidden;
-}
-
-.exhibition img {
-  border-radius: 0.2rem 0.2rem 0 0;
-}
-
-.exhibition:first-child {
-
-  @media (min-width: smallRem) {
-    grid-column-end: 4;
-    grid-column-start: 1;
-  }
+.featuredExhibition {
+  display:flex;
 
   & .exhibitionLink {
     display: flex;
@@ -100,6 +58,44 @@
       font-size: 2rem;
     }
   }
+}
+
+.exhibitionList {
+  @media (min-width: smallRem) {
+    display: grid;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+}
+
+.exhibition {
+  line-height: 1.25;
+  position: relative;
+
+  @media (max-width: smallRem) {
+    margin-bottom: 2rem;
+  }
+
+  &:hover .exhibitionImage {
+  }
+}
+
+.exhibitionImage {
+  border-bottom: 0.25rem solid lightLinkColor;
+  object-fit: contain;
+  width: 100%;
+  z-index: -1;
+}
+
+.exhibitionContent {
+  position: relative;
+  /* 239px / 334px ratio */
+  overflow: hidden;
+}
+
+.exhibition img {
+  border-radius: 0.2rem 0.2rem 0 0;
 }
 
 .exhibitionText {
