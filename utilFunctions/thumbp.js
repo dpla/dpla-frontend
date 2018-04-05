@@ -93,7 +93,7 @@ Connection.prototype.lookUpImage = function() {
  */
 Connection.prototype.createS3Derivative = function() {
   const aws = require("aws-sdk");
-  var sqs = new aws.SQS({ region: "eu-east-1" });
+  var sqs = new aws.SQS({ region: "us-east-1" });
   var msg = { id: this.itemID, url: this.imageURL };
   sqs.sendMessage(
     {
