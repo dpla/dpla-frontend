@@ -78,7 +78,8 @@ The system makes extensive use of environment variables to decouple the differen
 - `API_KEY`: your DPLA API key
 - `API_URL`: the DPLA API base URL
 - `OMEKA_URL`: the Omeka server base URL
-- `THUMB_SERVER`: the image thumbnail server URL 
+- `ELASTIC_URL`: the ElasticSearch server base URL
+- ~~`THUMB_SERVER`: the image thumbnail server URL~~ (removed because now app access `ELASTIC_URL` directly)
 - `PSS_BASE_URL`: the primary source sets application API base URL
 - `USER_BASE_URL`: base URL for user site to allow for links from pro to user site (also exposed in `constants/env.js`)
 - `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)

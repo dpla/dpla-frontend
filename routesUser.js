@@ -347,22 +347,7 @@ module.exports = (app, server) => {
     })
   );
 
-  /*
-  * left for legacy support
-  * */
-  server.get(
-    "/thumb/*",
-    proxy(process.env.THUMB_SERVER, {
-      proxyReqPathResolver: function(req) {
-        return req.url;
-      }
-    })
-  );
-  /*
-  * end thumb legacy endpoint
-  * */
-
-  server.get("/thumbp/:id", (req, res) => {
+  server.get("/thumb/*", (req, res) => {
     const thumbp = require("./utilFunctions/thumbp.js");
     return new thumbp.Connection(req, res);
   });

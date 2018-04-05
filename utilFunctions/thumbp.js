@@ -2,15 +2,16 @@
 
 const libRequest = require("request");
 
-const path_pat = /^\/thumbp\/([a-f0-9]{32})$/;
-const es_base = process.env.ES_BASE || "http://localhost:9200/dpla_alias/item";
+const path_pat = /^\/thumb\/([a-f0-9]{32})$/;
+const ELASTIC_URL =
+  process.env.ELASTIC_URL || "http://localhost:9200/dpla_alias";
 
 /***
  * thumbp:  DPLA Thumbnail Image Proxy
  * -----------------------------------
  *
  * Example invocation:
- * $ http://localhost:3000/thumbp/ff6662ec14a3b23193375dee55c03fdb
+ * $ http://localhost:3000/thumb/ff6662ec14a3b23193375dee55c03fdb
  *
  */
 
@@ -62,7 +63,8 @@ Connection.prototype.handleReqEnd = function() {
  * Given an item ID, look up the image URL and proxy it.
  */
 Connection.prototype.lookUpImage = function() {
-  var q_url = es_base + `/_search?q=id:${this.itemID}&fields=id,object`;
+  var q_url =
+    ELASTIC_URL + `/item/_search?q=id:${this.itemID}&fields=id,object`;
   libRequest(q_url, (error, response, body) => {
     this.checkSearchResponse(error, response, body);
   });
