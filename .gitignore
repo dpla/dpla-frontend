@@ -30,3 +30,10 @@ yarn-error.log*
 /constants/env.js
 .env
 .vscode
+
+# selenium stuff
+test/selenium/bin/
+test/selenium/lib/
+test/selenium/.Python
+test/selenium/.python-version
+test/selenium/pip-selfcheck.json
