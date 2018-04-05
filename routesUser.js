@@ -347,12 +347,8 @@ module.exports = (app, server) => {
     })
   );
 
-  server.get(
-    "/thumb/*",
-    proxy(process.env.THUMB_SERVER, {
-      proxyReqPathResolver: function(req) {
-        return req.url;
-      }
-    })
-  );
+  server.get("/thumb/*", (req, res) => {
+    const thumbp = require("./utilFunctions/thumbp.js");
+    return new thumbp.Connection(req, res);
+  });
 };
