@@ -5,56 +5,38 @@ import { classNames, stylesheet } from "./ExhibitionsList.css";
 
 const FeaturedExhibition = ({ exhibition, route }) => {
   return exhibition
-    ? <div className={classNames.featuredExhibition}>
-        <div className={classNames.featuredBanner}>
-          Featured
-        </div>
-        <Link
-          prefetch
-          href={{
-            pathname: "/exhibitions/exhibition",
-            query: Object.assign({}, route.query, {
-              exhibition: exhibition.slug
-            })
-          }}
-          as={{
-            pathname: `/exhibitions/${exhibition.slug}`,
-            query: route.query
-          }}
-        >
-          <a className={classNames.imageLink}>
-            <img
-              alt=""
-              className={classNames.exhibitionImage}
-              src={exhibition.thumbnailUrl}
-            />
-          </a>
-        </Link>
-        <div className={classNames.exhibitionText}>
-          <Link
-            prefetch
-            href={{
-              pathname: "/exhibitions/exhibition",
-              query: Object.assign({}, route.query, {
-                exhibition: exhibition.slug
-              })
-            }}
-            as={{
-              pathname: `/exhibitions/${exhibition.slug}`,
-              query: route.query
-            }}
-          >
+    ? <Link
+        prefetch
+        href={{
+          pathname: "/exhibitions/exhibition",
+          query: Object.assign({}, route.query, {
+            exhibition: exhibition.slug
+          })
+        }}
+        as={{ pathname: `/exhibitions/${exhibition.slug}`, query: route.query }}
+      >
+        <a className={classNames.featuredExhibition}>
+          <div className={classNames.featuredBanner}>
+            Featured
+          </div>
+
+          <img
+            alt=""
+            className={classNames.exhibitionImage}
+            src={exhibition.thumbnailUrl}
+          />
+          <div className={classNames.exhibitionText}>
             <a className={``}>
               <h2 className={classNames.title}>
                 {exhibition.title}
               </h2>
             </a>
-          </Link>
-          <p className={classNames.abstract}>
-            {exhibition.abstract}
-          </p>
-        </div>
-      </div>
+            <p className={classNames.abstract}>
+              {exhibition.abstract}
+            </p>
+          </div>
+        </a>
+      </Link>
     : null;
 };
 

@@ -20,6 +20,10 @@
 .featuredExhibition {
   margin: 0 0 2rem;
 
+  &:hover {
+    text-decoration: none;
+  }
+
   @media (min-width: smallRem) {
     background-color: colderBackgroundColor;
     display: flex;
@@ -33,10 +37,12 @@
   & .exhibitionImage {
     border-radius: 0.2rem 0.2rem 0 0;
     border-bottom: 0.25rem solid featuredBannerColor;
+    width: 100%;
 
     @media (min-width: smallRem) {
       border-bottom: none;
       border-radius: 0.2rem 0 0 0.2rem;
+      width: auto;
     }
   }
 
@@ -67,8 +73,14 @@
   }
 
   & .abstract {
+    color: black;
     font-family: serifFont;
     font-size: 1rem;
+
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
 
     @media (min-width: smallRem) {
       font-size: 1.125rem;
