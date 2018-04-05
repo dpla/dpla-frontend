@@ -63,6 +63,7 @@
     "husky": "^0.14.1",
     "jest": "20.0.3",
     "lint-staged": "^4.0.0",
+    "mocha": "^5.0.5",
     "object-assign": "4.1.1",
     "postcss-cssnext": "^3.0.2",
     "postcss-flexbugs-fixes": "3.0.0",
@@ -91,7 +92,8 @@
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
-    "analyze": "cross-env ANALYZE=1 next build"
+    "analyze": "cross-env ANALYZE=1 next build",
+    "test": "mocha"
   },
   "lint-staged": {
     "*.js": [

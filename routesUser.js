@@ -363,7 +363,7 @@ module.exports = (app, server) => {
   * */
 
   server.get("/thumbp/:id", (req, res) => {
-    const thumbp = require("./thumbp.js");
+    const thumbp = require("./utilFunctions/thumbp.js");
     return new thumbp.Connection(req, res);
   });
 };
