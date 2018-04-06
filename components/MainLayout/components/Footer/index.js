@@ -6,7 +6,6 @@ import FooterUser from "./FooterUser";
 
 import { SITE_ENV } from "constants/env";
 
-// import { css, stylesheet } from "./Footer.css";
 import css from "./Footer.scss";
 
 const logo = "/static/images/dpla-logo.svg";
@@ -69,6 +68,5 @@ const Footer = () =>
         </div>
       </div>
     </div>
-    {/* <style dangerouslySetInnerHTML={{ __html: stylesheet }} /> */}
   </footer>;
 export default Footer;
