@@ -6,7 +6,7 @@ import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
-import { PSS_BASE_URL } from "constants/site";
+import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
 import {
   classNames,
