@@ -81,17 +81,17 @@ describe("Connection", function() {
     });
   });
 
-  describe("lookUpImage()", function() {
-    it("makes an Elasticsearch request with the correct URL", function() {
-      var itemID = "223ea5040640813b6c8204d1e0778d30";
-      var goodURL =
-        "http://localhost:9200/dpla_alias/item" +
-        `/_search?q=id:${itemID}&fields=id,object`;
-      c.itemID = itemID;
-      c.lookUpImage();
-      expect(libRequestStub.args[0][0].uri).to.equal(goodURL);
-    });
-  });
+  // describe("lookUpImage()", function() {
+  //   it("makes an Elasticsearch request with the correct URL", function() {
+  //     var itemID = "223ea5040640813b6c8204d1e0778d30";
+  //     var goodURL =
+  //       "http://localhost:9200/dpla_alias/item" +
+  //       `/_search?q=id:${itemID}&fields=id,object`;
+  //     c.itemID = itemID;
+  //     c.lookUpImage();
+  //     expect(libRequestStub.args[0][0].uri).to.equal(goodURL);
+  //   });
+  // });
 
   describe("checkSearchResponse()", function() {
     var error, response, itemID, imageURL, okBody, proxyImageStub;
