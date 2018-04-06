@@ -8,7 +8,7 @@ import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/Sour
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-import { PSS_BASE_URL } from "constants/site";
+import { PSS_BASE_URL } from "constants/env";
 
 import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
 
