@@ -1,13 +1,13 @@
-@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
-@value navColor, mobileNavColor from "../../../../css/colors.css";
-@value sansFont from "../../../../css/typography.css";
+@import "../../../../scss/breakpoints";
+@import "../../../../scss/colors";
+@import "../../../../scss/typography";
 
 .wrapper {
   display: block;
-  background-color: mobileNavColor;
+  background-color: $mobileNavColor;
 
   /* The GlobalHeader component handles the navigation on larger screens */
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     display: none;
   }
 }
@@ -43,7 +43,7 @@
   font-size: 0.75rem;
   display: flex;
   justify-content: center;
-  background-color: navColor;
+  background-color: $navColor;
 
   &.isOpen {
     background-color: rgba(0, 0, 0, .15);
@@ -51,7 +51,7 @@
 }
 
 .searchContainer {
-  background-color: navColor;
+  background-color: $navColor;
   height: 0;
   visibility: hidden;
   transition: height 0.15s ease-in-out, visibility 0s 0.15s;
@@ -88,7 +88,7 @@
 }
 
 .menuContainer {
-  background-color: navColor;
+  background-color: $navColor;
   margin: auto;
   padding: 0 2rem;
   font-size: 1.25rem;

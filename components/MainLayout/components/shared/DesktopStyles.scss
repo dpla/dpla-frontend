@@ -1,13 +1,13 @@
-@value navColor from "../../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
-@value sansFont from "../../../../css/typography.css";
+@import "../../../../scss/colors";
+@import "../../../../scss/breakpoints";
+@import "../../../../scss/typography";
 
 .header {
   display: none;
-  background-color: navColor;
+  background-color: $navColor;
 
   /* The SmallScreenGlobalHeader component handles the navigation on small screens */
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     display: block;
   }
 
@@ -24,7 +24,7 @@
   font-size: 0.875rem;
   font-weight: 600;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding-left: 0;
     padding-right: 0;
   }
@@ -39,7 +39,7 @@
   & > li {
     margin-right: .75rem;
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       margin-right: 1rem;
     }
   }
@@ -50,7 +50,7 @@
     display: inline-block;
     padding: 0.5rem 0;
 
-    @media (min-width: mediumRem) {
+    @media (min-width: $mediumRem) {
       padding: 0.5rem 0;
     }
   }
@@ -71,7 +71,7 @@
   background-color: rgba(255, 255, 255, 0.6);
   margin-right: .75rem;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     margin-right: 1rem;
   }
 }

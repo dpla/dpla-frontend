@@ -1,10 +1,10 @@
-@value minuitBlue, ebonyClayBlue, linkColor, gray75 from "../../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
-@value sansFont from "../../../../css/typography.css";
+@import "../../../../scss/colors";
+@import "../../../../scss/breakpoints";
+@import "../../../../scss/typography";
 
 .wrapper {
   color: white;
-  background-color: ebonyClayBlue;
+  background-color: $footerLightColor;
   position: relative;
 
   @media print {
@@ -15,14 +15,14 @@
 .footer {
   padding: 2rem 1rem;
   line-height: 1.5;
-  color: gray75;
+  color: $gray75;
   margin: 0 auto;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     padding: 3rem 1rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 3rem 0;
   }
 
@@ -34,7 +34,7 @@
       text-decoration: underline;
     }
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       font-size: 1.15rem;
     }
   }
@@ -45,7 +45,7 @@
   &:nth-of-type(n + 3) {
     margin-top: 1rem;
 
-    @media (min-width: smallRem) {
+    @media (min-width: $smallRem) {
       margin-top: 0;
     }
   }
@@ -57,7 +57,7 @@
   color: white;
   margin-bottom: 1rem;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     font-size: 1.25rem;
   }
 }
@@ -71,31 +71,31 @@
     text-decoration: none;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin-top: 0;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     float: right;
     width: auto;
   }
 }
 
 .smallFooterWrapper {
-  background-color: minuitBlue;
+  background-color: $footerDarkColor;
 }
 
 .smallFooter {
   padding: 2rem 1rem;
   margin: 0 auto;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 2rem 0;
   }
 }
@@ -105,7 +105,7 @@
   margin: 0 auto;
   width: 15rem;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin: 0;
     width: 18rem;
   }
@@ -115,7 +115,7 @@
   text-align: center;
   margin-top: 2rem;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin-top: 0;
   }
 }
@@ -129,7 +129,7 @@
     padding: none;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     width: 1.5rem;
     height: 1.5rem;
   }

@@ -5,13 +5,13 @@ import Button from "components/shared/Button";
 
 import { PRO_BASE_URL } from "constants/env";
 
-import { classNames, stylesheet } from "./Footer.css";
+import css from "./Footer.scss";
 
 const FooterUser = () =>
-  <div className={`${classNames.footer} site-max-width`}>
+  <div className={`${css.footer} site-max-width`}>
     <div className="row">
-      <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
-        <h2 className={classNames.linkHeader}>DPLA</h2>
+      <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+        <h2 className={css.linkHeader}>DPLA</h2>
         <ul>
           <li>
             <Link
@@ -51,8 +51,8 @@ const FooterUser = () =>
           </li>
         </ul>
       </div>
-      <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
-        <h2 className={classNames.linkHeader}>Tools</h2>
+      <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+        <h2 className={css.linkHeader}>Tools</h2>
         <ul>
           <li>
             <Link href="/primary-source-sets">
@@ -81,8 +81,8 @@ const FooterUser = () =>
           </li>
         </ul>
       </div>
-      <div className={`${classNames.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
-        <h2 className={classNames.linkHeader}>DPLA Pro</h2>
+      <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+        <h2 className={css.linkHeader}>DPLA Pro</h2>
         <ul>
           <li>
             <Link href={PRO_BASE_URL}>
@@ -135,7 +135,7 @@ const FooterUser = () =>
         <Button
           type="primary"
           size="large"
-          className={classNames.donateButton}
+          className={css.donateButton}
           url="/donate"
         >
           Donate
