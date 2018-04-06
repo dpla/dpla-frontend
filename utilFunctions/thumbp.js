@@ -1,7 +1,7 @@
 "use strict";
 
 const libRequest = require("request");
-
+const aws = require("aws-sdk");
 const path_pat = /^\/thumb\/([a-f0-9]{32})$/;
 const ELASTIC_URL =
   process.env.ELASTIC_URL || "http://localhost:9200/dpla_alias";
@@ -64,7 +64,6 @@ Connection.prototype.handleReqEnd = function() {
  */
 Connection.prototype.lookUpImage = function() {
   // first try the S3 bucket
-  var aws = require("aws-sdk");
   var s3 = new aws.S3();
   var prefix = this.itemID.substr(0, 4).split("").join("/");
   var s3_name = prefix + "/" + this.itemID + ".jpg";
@@ -74,7 +73,7 @@ Connection.prototype.lookUpImage = function() {
   };
   var conn = this;
   s3.headObject(params, function(error, metadata) {
-    if (error && error.code === "NotFound") {
+    if (error) {
       // not found so go ahead and get info from ES
       var q_url =
         ELASTIC_URL + `/item/_search?q=id:${conn.itemID}&fields=id,object`;
@@ -91,8 +90,7 @@ Connection.prototype.lookUpImage = function() {
 /*
  * Create a message in SQS from the imageURL.
  */
-Connection.prototype.createS3Derivative = function() {
-  const aws = require("aws-sdk");
+Connection.prototype.createS3Derivative = async function() {
   var sqs = new aws.SQS({ region: "us-east-1" });
   var msg = { id: this.itemID, url: this.imageURL };
   sqs.sendMessage(
