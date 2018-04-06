@@ -4,8 +4,14 @@ const webpack = require("webpack");
 const dotenv = require("dotenv").config();
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { ANALYZE } = process.env;
+const withSass = require("@zeit/next-sass");
 
-module.exports = {
+module.exports = withSass({
+  cssModules: true,
+  cssLoaderOptions: {
+    importLoaders: 1,
+    localIdentName: "[local]___[hash:base64:5]"
+  },
   useFileSystemPublicRoutes: false,
   webpack: (config, options) => {
     const { dev, isServer } = options;
@@ -66,4 +72,4 @@ module.exports = {
 
     return config;
   }
-};
+});

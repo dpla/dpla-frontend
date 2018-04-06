@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@zeit/next-sass": "^0.1.2",
     "aws-sdk": "^2.173.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-inline-react-svg": "^0.5.2",
@@ -18,7 +19,7 @@
     "googleapis": "^23.0.0",
     "html-webpack-plugin": "^2.30.1",
     "markdown-it": "^8.4.0",
-    "next": "4.2.3",
+    "next": "^5.1.0",
     "node-sass": "^4.7.2",
     "openseadragon": "2.2.1",
     "react": "16",
