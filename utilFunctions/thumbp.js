@@ -1,7 +1,7 @@
 "use strict";
 
 const libRequest = require("request");
-
+const aws = require("aws-sdk");
 const path_pat = /^\/thumb\/([a-f0-9]{32})$/;
 const ELASTIC_URL =
   process.env.ELASTIC_URL || "http://localhost:9200/dpla_alias";
@@ -63,11 +63,47 @@ Connection.prototype.handleReqEnd = function() {
  * Given an item ID, look up the image URL and proxy it.
  */
 Connection.prototype.lookUpImage = function() {
-  var q_url =
-    ELASTIC_URL + `/item/_search?q=id:${this.itemID}&fields=id,object`;
-  libRequest(q_url, (error, response, body) => {
-    this.checkSearchResponse(error, response, body);
+  // first try the S3 bucket
+  var s3 = new aws.S3();
+  var prefix = this.itemID.substr(0, 4).split("").join("/");
+  var s3_name = prefix + "/" + this.itemID + ".jpg";
+  var params = {
+    Bucket: "dpla-thumbnails",
+    Key: s3_name
+  };
+  var conn = this;
+  s3.headObject(params, function(error, metadata) {
+    if (error) {
+      // not found so go ahead and get info from ES
+      var q_url =
+        ELASTIC_URL + `/item/_search?q=id:${conn.itemID}&fields=id,object`;
+      libRequest(q_url, (error, response, body) => {
+        conn.checkSearchResponse(error, response, body);
+      });
+    } else {
+      conn.imageURL = s3.getSignedUrl("getObject", params);
+      conn.proxyImage();
+    }
   });
+};
+
+/*
+ * Create a message in SQS from the imageURL.
+ */
+Connection.prototype.createS3Derivative = async function() {
+  var sqs = new aws.SQS({ region: "us-east-1" });
+  var msg = { id: this.itemID, url: this.imageURL };
+  sqs.sendMessage(
+    {
+      MessageBody: JSON.stringify(msg),
+      QueueUrl: `${process.env.SQS_URL}/thumbp-image`
+    },
+    function(error, data) {
+      if (error) {
+        console.log("SQS error: ", error);
+      }
+    }
+  );
 };
 
 /*
@@ -95,6 +131,7 @@ Connection.prototype.checkSearchResponse = function(error, response, body) {
       }
       if (url) {
         this.imageURL = url;
+        this.createS3Derivative();
         this.proxyImage();
       } else {
         // Empty string or empty array, or incorrect 'object' type
