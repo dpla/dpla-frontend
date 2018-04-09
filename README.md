@@ -81,7 +81,7 @@ The system makes extensive use of environment variables to decouple the differen
 - `ELASTIC_URL`: the ElasticSearch server base URL
 - ~~`THUMB_SERVER`: the image thumbnail server URL~~ (removed because now app access `ELASTIC_URL` directly)
 - `SQS_URL`: base URL to the AWS SQS service
-- `PSS_BASE_URL`: the primary source sets application API base URL
+- `PSS_BASE_URL`: the primary source sets application API base URL (also exposed in `constants/env.js`)
 - `USER_BASE_URL`: base URL for user site to allow for links from pro to user site (also exposed in `constants/env.js`)
 - `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
 - `SITE_ENV`: the environment's type, `user` or `pro` (also exposed in `constants/env.js`)
