@@ -7,7 +7,7 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import ContentAndMetadata from "components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
 
-import { PSS_BASE_URL } from "constants/site";
+import { PSS_BASE_URL } from "constants/env";
 
 import { removeQueryParams } from "utilFunctions";
 
