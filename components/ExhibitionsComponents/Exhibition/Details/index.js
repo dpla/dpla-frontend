@@ -4,14 +4,14 @@ import Link from "next/link";
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "./Details.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import GaExhibitHomeWrapper from "./GaExhibitHomeWrapper";
 
-const { container } = utilClassNames;
 const Details = ({ exhibition, route, currentFullUrl }) =>
   <div className={classNames.wrapper}>
-    <div className={[container, classNames.details].join(" ")}>
+    <div className={[utils.container, classNames.details].join(" ")}>
       <div className={classNames.tableOfContents}>
         <h2 className={classNames.tableOfContentsHeader}>
           In This Exhibition

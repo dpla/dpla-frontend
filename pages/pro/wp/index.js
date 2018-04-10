@@ -9,6 +9,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+
 import {
   endsWith,
   getBreadcrumbs,
@@ -17,11 +18,12 @@ import {
   getMenuItemUrl
 } from "utilFunctions";
 
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const ProMenuPage = ({
   url,
@@ -38,7 +40,7 @@ const ProMenuPage = ({
       !illustration &&
       <FeatureHeader title={pageTitle} description={""} />}
     <div
-      className={`${utilClassNames.container}
+      className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
     >
       <div className="row">

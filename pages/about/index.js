@@ -21,11 +21,12 @@ import {
   getMenuItemUrl
 } from "utilFunctions";
 
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
@@ -34,7 +35,7 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
     {breadcrumbs.length === 0 &&
       <FeatureHeader title={pageTitle} description={""} />}
     <div
-      className={`${utilClassNames.container}
+      className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
     >
       <div className="row">

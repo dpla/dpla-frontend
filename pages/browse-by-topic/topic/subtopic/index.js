@@ -9,6 +9,7 @@ import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNa
 import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
+
 import {
   decodeHTMLEntities,
   extractItemId,
@@ -25,9 +26,8 @@ import {
   API_ENDPOINT as DPLA_ITEM_ENDPOINT,
   THUMBNAIL_ENDPOINT
 } from "constants/items";
-import { classNames as utilClassNames } from "css/utils.css";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
 
 const SubtopicItemsList = ({
   url,
@@ -56,7 +56,7 @@ const SubtopicItemsList = ({
     <div
       id="main"
       role="main"
-      className={[classNames.sidebarAndItemList, container].join(" ")}
+      className={[classNames.sidebarAndItemList, utils.container].join(" ")}
     >
       <Sidebar
         title={subtopic.name}

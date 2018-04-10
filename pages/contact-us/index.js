@@ -15,15 +15,16 @@ import {
 } from "constants/content-pages";
 import { TITLE } from "constants/contact";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>
     <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
-        className={`${utilClassNames.container}
+        className={`${utils.container}
         ${classNames.sidebarAndContentWrapper}`}
       >
         <div className="row">

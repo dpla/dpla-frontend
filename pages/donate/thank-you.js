@@ -5,21 +5,20 @@ import Router from "next/router";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 
+import { SEO_TITLE } from "constants/donate";
+
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { stylesheet, classNames } from "css/pages/donate.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStyles
-} from "css/utils.css";
-import { SEO_TITLE } from "constants/donate";
 
 const DonateThankYou = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div
-      className={`${utilClassNames.container}
+      className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
     >
       <div className="row">
@@ -42,7 +41,6 @@ const DonateThankYou = ({ url }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;

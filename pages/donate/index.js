@@ -8,20 +8,18 @@ import Button from "components/shared/Button";
 
 import { SEO_TITLE } from "constants/donate";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
 import {
   stylesheet as contentStyles,
   classNames as contentClasses
 } from "css/pages/donate.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStyles
-} from "css/utils.css";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={contentClasses.donateBackground}>
-      <div id="main" role="main" className={`${utilClassNames.container}`}>
+      <div id="main" role="main" className={`${utils.container}`}>
         <div className={`${contentClasses.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
             <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
@@ -94,7 +92,6 @@ const Donate = ({ url }) =>
       </div>
     </div>
 
-    <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;

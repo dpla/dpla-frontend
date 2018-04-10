@@ -11,8 +11,9 @@ import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { TITLE } from "constants/guides";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "css/pages/guides.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
@@ -23,7 +24,7 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
     <div
       className={`
-        ${utilClassNames.container}
+        ${utils.container}
         ${contentClasses.sidebarAndContentWrapper}
       `}
     >

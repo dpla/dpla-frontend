@@ -7,15 +7,13 @@ import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 
 import { SITE_ENV } from "constants/env";
 
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
 import { stylesheet, classNames } from "css/pages/donate.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStyles
-} from "css/utils.css";
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -27,7 +25,7 @@ export default class Error extends React.Component {
     return (
       <MinimalLayout route={this.props.url}>
         <div
-          className={`${utilClassNames.container}
+          className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
         >
           <div className="row">
@@ -64,7 +62,6 @@ export default class Error extends React.Component {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
       </MinimalLayout>

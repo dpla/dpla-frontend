@@ -21,11 +21,12 @@ import {
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { WORDPRESS_URL } from "constants/env";
 
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { classNames, stylesheet } from "css/pages/news.css";
 
 class NewsPage extends React.Component {
@@ -90,7 +91,7 @@ class NewsPage extends React.Component {
       <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
-          className={`${utilClassNames.container}
+          className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
         >
           <div className="row">

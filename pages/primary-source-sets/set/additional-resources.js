@@ -6,8 +6,12 @@ import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
+
 import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
+
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames,
   stylesheet
@@ -16,10 +20,8 @@ import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const markdownit = require("markdown-it")({ html: true });
-const { container } = utilClassNames;
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
@@ -40,12 +42,12 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
       <div className={classNames.content}>
         <div
-          className={container}
+          className={utils.container}
           role="tabpanel"
           aria-labelledby="tab-teachingguide"
         >
           <div
-            className={`${contentClasses.content} ${container}`}
+            className={`${contentClasses.content} ${utils.container}`}
             dangerouslySetInnerHTML={{
               __html: markdownit.render(
                 set.hasPart.find(item => item.name === "Resources").text

@@ -1,9 +1,10 @@
 import React from "react";
 import Head from "next/head";
 
-import { stylesheet as reset } from "css/reset.css";
-import { stylesheet as utilStylesheet } from "css/utils.css";
-import { stylesheet as accessibility } from "css/accessibility.css";
+import reset from "stylesheets/reset.scss";
+import utils from "stylesheets/utils.scss";
+import accessibility from "stylesheets/accessibility.scss";
+
 import { getMetaPageTitle } from "utilFunctions";
 
 const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
@@ -64,9 +65,6 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
         content={pageTitle || "Digital Public Library of America"}
       />
       <meta name="og:type" content={seoType || "website"} />
-      <style>{reset}</style>
-      <style>{utilStylesheet}</style>
-      <style>{accessibility}</style>
       <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Object.entries,Array.prototype.includes,Intl.~locale.en" />
     </Head>
   </div>;

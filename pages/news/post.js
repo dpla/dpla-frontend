@@ -19,14 +19,13 @@ import {
 } from "constants/content-pages";
 import { WORDPRESS_URL } from "constants/env";
 
+import utils from "stylesheets/utils.scss";
+
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { classNames, stylesheet } from "css/pages/news.css";
-
-const { container } = utilClassNames;
 
 const PostPage = ({ url, content, menuItems, author }) => {
   let hasTags = false;
@@ -54,7 +53,7 @@ const PostPage = ({ url, content, menuItems, author }) => {
         route={url}
       />
       <div
-        className={`${utilClassNames.container}
+        className={`${utils.container}
       ${contentClasses.sidebarAndContentWrapper}`}
       >
         <div className="row">

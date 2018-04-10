@@ -11,19 +11,20 @@ import { getMenuItemUrl } from "utilFunctions";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "css/pages/guide.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
   <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
     <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
     <div
       className={`
-        ${utilClassNames.container}
+        ${utils.container}
         ${contentClasses.sidebarAndContentWrapper}
       `}
     >

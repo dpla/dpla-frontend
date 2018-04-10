@@ -6,12 +6,12 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import { removeQueryParams } from "utilFunctions";
 import { UNTITLED_TEXT } from "constants/site";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "./BreadcrumbsModule.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const markdownit = require("markdown-it")({ html: true });
 
-const { container } = utilClassNames;
 const chevron = "/static/images/chevron-thick-orange.svg";
 
 // const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
@@ -100,8 +100,8 @@ const BreadcrumbsModule = ({
   // searchItemCount,
   // paginationInfo
 }) =>
-  <div className={utilClassNames.breadcrumbsWrapper}>
-    <div className={[container, utilClassNames.breadcrumbsModule].join(" ")}>
+  <div className={utils.breadcrumbsWrapper}>
+    <div className={[utils.container, utils.breadcrumbsModule].join(" ")}>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {

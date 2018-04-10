@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames } from "./ExhibitionSection.css";
-import { classNames as utilClassNames } from "css/utils.css";
-const { container } = utilClassNames;
 
 const Header = ({ title, route }) =>
-  <div className={[classNames.header, container].join(" ")}>
+  <div className={[classNames.header, utils.container].join(" ")}>
     <div className={classNames.exhibitionsLinkAndTitle}>
       <Link prefetch href="/exhibitions">
         <a className={classNames.exhibitionsLink}>Exhibitions</a>

@@ -9,3 +9,7 @@ $smallPx: 640;
 $mediumPx: 832;
 $mediumPlusPx: 948;
 $largePx: 1152;
+
+$sm-viewport: "min-width: " + $smallRem;
+$md-viewport: "min-width: " + $mediumRem;
+$lg-viewport: "min-width: " + $largeRem;
