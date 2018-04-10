@@ -34,15 +34,6 @@ Exhibitions.getInitialProps = async ({ req }) => {
           );
           const exhibitJson = await exhibitPageRes.json();
 
-          // get TOC for featured
-          const sectionInfo = exhibitJson
-            .filter(exhibition => !exhibition.parent)
-            .sort((a, b) => a.order - b.order);
-
-          const sections = sectionInfo.slice(1).map(section => section.title);
-
-          const abstract = `In this exhibition: ${sections.join(", ")}.`;
-
           const pageBlock = exhibitJson.find(
             exhibit =>
               exhibit.slug === "home-page" ||
@@ -58,8 +49,7 @@ Exhibitions.getInitialProps = async ({ req }) => {
 
           const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
           return Object.assign({}, exhibit, {
-            thumbnailUrl,
-            abstract
+            thumbnailUrl
           });
         })
         .reverse()
