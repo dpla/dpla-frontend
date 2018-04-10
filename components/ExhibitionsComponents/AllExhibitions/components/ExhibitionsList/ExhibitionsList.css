@@ -1,5 +1,5 @@
-@value linkColor, featuredBannerColor, black50 from "../../../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
+@value linkColor, featuredBannerColor, colderBackgroundColor, darkBorderColor, black50 from "../../../../../css/colors.css";
+@value xSmallRem, smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
 @value monoFont, serifFont, sansFont from "../../../../../css/typography.css";
 
 .wrapper {
@@ -17,136 +17,142 @@
   margin-left: -0.25rem;
 }
 
-.firstExhibition {
+.featuredExhibition {
+  margin: 0 0 2rem;
+
+  &:hover {
+    text-decoration: none;
+  }
+
   @media (min-width: smallRem) {
-    width: 66%;
+    background-color: colderBackgroundColor;
+    display: flex;
+    margin: 2rem;
+  }
+
+  & .imageLink {
+    line-height: 0;
+  }
+
+  & .exhibitionImage {
+    border-radius: 0.2rem 0.2rem 0 0;
+    border-bottom: 0.25rem solid featuredBannerColor;
+    width: 100%;
+
+    @media (min-width: smallRem) {
+      border-bottom: none;
+      border-radius: 0.2rem 0 0 0.2rem;
+      width: auto;
+    }
+  }
+
+  & .exhibitionText {
+    border-left: none;
+    display: block;
+
+    @media (min-width: smallRem) {
+      border-left: 0.25rem solid featuredBannerColor;
+    }
   }
 
   & .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+
     @media (min-width: smallRem) {
-      font-size: 2rem;
-      line-height: 1;
+      font-size: 1.75rem;
     }
 
     @media (min-width: mediumRem) {
-      font-size: 2.5rem;
-      padding: 0 1.5rem 1.5rem;
+      font-size: 2rem;
     }
 
     @media (min-width: largeRem) {
-      font-size: 2.625rem;
-      padding: 0 2rem 2rem;
+      font-size: 2.25rem;
     }
   }
 
-  & .exhibitionContent {
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  & .abstract {
+    color: black;
+    font-family: serifFont;
+    font-size: 1rem;
 
-  & img {
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+
     @media (min-width: smallRem) {
-      display: none;
+      font-size: 1.125rem;
+    }
+
+    @media (min-width: mediumRem) {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: largeRem) {
+      font-size: 1.275rem;
     }
   }
+}
 
-  &:hover .exhibitionImage {
-    transform: scale(1.17) !important;
+.exhibitionList {
+  display: grid;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: smallRem) {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 .exhibition {
-  display: block;
-  padding: .25rem;
-  height: 100%;
+  background-color: colderBackgroundColor;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  line-height: 1.25;
   position: relative;
 
-  &:hover .exhibitionImage {
-    transform: scale(1.19);
+  @media (min-width: xSmallRem) {
+    grid-template-columns: 1fr 3fr;
   }
 
-  &:hover .overlay {
-    opacity: 1;
+  &:hover .exhibitionImage {
   }
 }
 
 .exhibitionImage {
-  backface-visibility: hidden;
-  background-size: cover;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scale(1.15);
-  transition: transform .45s ease-in-out;
+  border-radius: 0.2rem 0 0 0.2rem;
   width: 100%;
-  z-index: -1;
 }
 
-.exhibitionContent {
-  position: relative;
-  /* 239px / 334px ratio */
-  line-height: 1.25;
-  padding-top: 71.55%;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.threeUp {
-  @media (min-width: smallRem) {
-    display: flex;
-  }
-}
-
-.twoVertical {
-  @media (min-width: smallRem) {
-    display: flex;
-    flex-direction: column;
-    width: 33%;
-  }
-}
-
-.remainingExhibitions {
-  @media (min-width: smallRem) {
-    flex-wrap: wrap;
-    display: flex;
-  }
-}
-
-.remainingExhibitions .exhibition {
-  @media (min-width: smallRem) {
-    width: 33%;
-  }
-}
-
-.overlay {
-  border-radius: 3px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+.exhibitionText {
+  border-left: 0.25rem solid darkBorderColor;
   display: flex;
-  align-items: flex-end;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 100%);
-  opacity: 0.9;
-  transition: opacity .45s ease-in-out;
-}
+  padding: 0.25rem;
 
-.exhibition img {
-  width: 100%;
-  border-radius: 3px;
+  @media (min-width: smallRem) {
+    padding: 0.5rem;
+  }
 }
 
 .title {
-  max-width: 100%;
-  color: white;
   font-family: serifFont;
-  font-size: 1.25rem;
-  padding: 0 1rem 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: auto 0;
+
+  @media (min-width: xSmallRem) {
+    font-size: 1.1rem;
+  }
 
   @media (min-width: mediumRem) {
-    padding: 0 1.25rem 1.25rem;
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: largeRem) {
+    font-size: 1.5rem;
   }
 }
 
@@ -154,12 +160,11 @@
 .newBanner {
   font-size: 0.875rem;
   font-weight: bold;
-  left: 0;
+  margin-left: -0.25rem;
   padding: 0.5rem 0.75rem;
   position: absolute;
   text-transform: uppercase;
-  top: 12px;
-  z-index: 1;
+  margin-top: 0.5rem;
 }
 
 .featuredBanner {
