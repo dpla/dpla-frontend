@@ -34,19 +34,23 @@ Exhibitions.getInitialProps = async ({ req }) => {
           );
           const exhibitJson = await exhibitPageRes.json();
 
-          const itemId = exhibitJson.find(
+          const pageBlock = exhibitJson.find(
             exhibit =>
               exhibit.slug === "home-page" ||
               exhibit.slug === "homepage" ||
               exhibit.order === 0
-          ).page_blocks[0].attachments[0].item.id;
+          ).page_blocks[0];
+
+          const itemId = pageBlock.attachments[0].item.id;
           const filesRes = await fetch(
             `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
           );
           const filesJson = await filesRes.json();
 
-          const thumbnailUrl = filesJson[0].file_urls.fullsize;
-          return Object.assign({}, exhibit, { thumbnailUrl });
+          const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
+          return Object.assign({}, exhibit, {
+            thumbnailUrl
+          });
         })
         .reverse()
     );
