@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "./ResourcesTabs.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 class ResourcesTabs extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class ResourcesTabs extends React.Component {
         <div className={`${classNames.tabsWrapper} sourceSetTabsWrapper`}>
           <ul
             role="tablist"
-            className={`${classNames.tabs} ${utilClassNames.container}`}
+            className={`${classNames.tabs} ${utils.container}`}
           >
             <li
               id="tab-sourceset"

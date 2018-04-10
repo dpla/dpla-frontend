@@ -8,8 +8,9 @@ import {
 } from "constants/search";
 import { removeQueryParams, joinIfArray } from "utilFunctions";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "./FiltersList.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const closeIcon = "/static/images/close-white.svg";
 
@@ -74,7 +75,7 @@ class FiltersList extends React.Component {
           <div
             className={`${showFilters
               ? classNames.isOpen
-              : ""} ${classNames.filtersList} ${utilClassNames.container}`}
+              : ""} ${classNames.filtersList} ${utils.container}`}
           >
             <div className={classNames.labelAndFilters}>
               <span className={classNames.labelText}>Filtered by</span>

@@ -2,12 +2,16 @@ import React from "react";
 import Link from "next/link";
 
 import HeadingRule from "shared/HeadingRule";
+
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "./MainContent.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const MainContent = ({ topic }) =>
   <div className={classNames.wrapper}>
-    <div className={`${classNames.container} site-max-width`}>
+    <div
+      className={`${utils.container} ${classNames.container} site-max-width`}
+    >
       <h1 className={classNames.header}>{topic.name}</h1>
       {topic.description &&
         <p className={classNames.topicDescription}>{topic.description}</p>}

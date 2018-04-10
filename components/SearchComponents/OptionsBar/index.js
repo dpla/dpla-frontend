@@ -12,10 +12,9 @@ import {
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 
-import { classNames, stylesheet } from "./OptionsBar.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
 
-const { container } = utilClassNames;
+import { classNames, stylesheet } from "./OptionsBar.css";
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
@@ -88,7 +87,7 @@ class OptionsBar extends React.Component {
     } = this.props;
     return (
       <div className={classNames.wrapper}>
-        <div className={[container, classNames.optionsBar].join(" ")}>
+        <div className={[utils.container, classNames.optionsBar].join(" ")}>
           <div className={classNames.resultsAndFilter}>
             <h1 className={classNames.resultsCount}>
               <span>{addCommasToNumber(this.props.itemCount)} results </span>

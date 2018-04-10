@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "./Topics.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const Topics = ({ topics }) =>
-  <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
+  <div className={`${classNames.topicsWrapper} ${utils.container}`}>
     <p className={classNames.topicsIntro}>
       This is a new feature designed to showcase content strengths in our
       collection. Look for new topics in the future!

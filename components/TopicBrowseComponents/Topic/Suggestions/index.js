@@ -2,13 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 
-import { classNames, stylesheet } from "./Suggestions.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
+
+import utils from "stylesheets/utils.scss";
+
+import { classNames, stylesheet } from "./Suggestions.css";
 import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
-
-const { container } = utilClassNames;
 
 const mapTypeToClass = type => {
   if (type === "Exhibition") {
@@ -22,7 +22,7 @@ const mapTypeToClass = type => {
 
 const Suggestions = ({ suggestions }) =>
   <div className={classNames.suggestionsWrapper}>
-    <div className={[classNames.suggestions, container].join(" ")}>
+    <div className={[classNames.suggestions, utils.container].join(" ")}>
       <h2 className={classNames.header}>You might also enjoy</h2>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css

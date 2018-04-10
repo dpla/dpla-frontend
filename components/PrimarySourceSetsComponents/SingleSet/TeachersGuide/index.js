@@ -3,15 +3,17 @@ import Link from "next/link";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
+
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "./TeachersGuide.css";
 import {
   classNames as contentClasses,
   stylesheet as contentStyles
 } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const markdownit = require("markdown-it")({ html: true });
-const { container } = utilClassNames;
+
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 const googleClassroom = "/static/images/google-classroom.svg";
@@ -24,7 +26,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
     role="tabpanel"
     aria-labelledby="tab-teachingguide"
   >
-    <div className={`${classNames.teachingGuide} ${container}`}>
+    <div className={`${classNames.teachingGuide} ${utils.container}`}>
       <div className="row">
         <div className="col-xs-12 col-md-8">
           <div className={classNames.content}>

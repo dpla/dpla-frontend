@@ -8,11 +8,11 @@ import {
 import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "./SourceSetInfo.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
 const markdownit = require("markdown-it")({ html: true });
-const { container } = utilClassNames;
 
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
@@ -36,7 +36,7 @@ class SourceSetInfo extends React.Component {
     const authorList = set.author.map(author => author.name);
     return (
       <div id="main" role="main" className={classNames.wrapper}>
-        <div className={[classNames.sourceSetInfo, container].join(" ")}>
+        <div className={[classNames.sourceSetInfo, utils.container].join(" ")}>
           <div className={`${classNames.removeScroll} row`}>
             <div className={`${classNames.removeScroll} col-xs-12 col-md-8`}>
               <div className={classNames.banner}>

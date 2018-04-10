@@ -6,18 +6,18 @@ import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceSetSlug } from "utilFunctions/";
 
+import utils from "stylesheets/utils.scss";
+
 import { stylesheet, classNames } from "./RelatedSets.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
 
 const markdownit = require("markdown-it")({ html: true });
-const { container } = utilClassNames;
 
 const RelatedSets = ({ sets }) => {
   return (
     <div className={classNames.wrapper}>
-      <div className={[container, classNames.relatedSets].join(" ")}>
+      <div className={[utils.container, classNames.relatedSets].join(" ")}>
         <h2 className={classNames.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={4.5}

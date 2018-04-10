@@ -4,19 +4,19 @@ import Link from "next/link";
 import CarouselSlider from "./CarouselSlider";
 import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg";
 
-import extractSourceId from "utilFunctions/extractSourceId";
-import removeQueryParams from "utilFunctions/removeQueryParams";
+import { extractSourceId, removeQueryParams } from "utilFunctions";
+
+import utils from "stylesheets/utils.scss";
 
 import { classNames, stylesheet } from "./SourceCarousel.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
-const { container } = utilClassNames;
 const markdownit = require("markdown-it")({ html: true });
+
 const thickChevron = "/static/images/chevron-thick-orange.svg";
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={classNames.wrapper}>
-    <div className={[classNames.sourceCarousel, container].join(" ")}>
+    <div className={[classNames.sourceCarousel, utils.container].join(" ")}>
       <div className={classNames.headerAndNav}>
         <h2 className={classNames.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}

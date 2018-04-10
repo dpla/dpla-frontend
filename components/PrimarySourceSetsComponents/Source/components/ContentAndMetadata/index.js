@@ -19,12 +19,11 @@ import {
   trackGaEvent
 } from "utilFunctions";
 
+import utils from "stylesheets/utils.scss";
+
 import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
-import { classNames as utilClassNames } from "css/utils.css";
-
 const markdownit = require("markdown-it")({ html: true });
-const { container } = utilClassNames;
 
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";
@@ -120,7 +119,9 @@ class ContentAndMetadata extends React.Component {
 
     return (
       <div className={classNames.wrapper}>
-        <div className={[classNames.contentAndMetadata, container].join(" ")}>
+        <div
+          className={[classNames.contentAndMetadata, utils.container].join(" ")}
+        >
           <h1
             dangerouslySetInnerHTML={{
               __html: markdownit.renderInline(source.name)

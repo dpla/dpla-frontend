@@ -1,14 +1,14 @@
 import React from "react";
-const markdownit = require("markdown-it")({ html: true });
 
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./SourceSetSources.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import removeQueryParams from "utilFunctions/removeQueryParams";
-import extractSourceId from "utilFunctions/extractSourceId";
+import { removeQueryParams, extractSourceId } from "utilFunctions";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+
+import { stylesheet, classNames } from "./SourceSetSources.css";
+
+const markdownit = require("markdown-it")({ html: true });
 
 const SourceSetSources = ({ route, sources }) =>
   <div
@@ -16,7 +16,7 @@ const SourceSetSources = ({ route, sources }) =>
     aria-labelledby="tab-sourceset"
     className={classNames.wrapper}
   >
-    <ul className={[classNames.sourceSetSources, container].join(" ")}>
+    <ul className={[classNames.sourceSetSources, utils.container].join(" ")}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (

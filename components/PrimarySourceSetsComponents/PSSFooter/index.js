@@ -1,14 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames, stylesheet } from "./PSSFooter.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { DPLA_CONTACT_EMAIL, PSS_SUGGESTION_URL } from "constants/site";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+
+import { classNames, stylesheet } from "./PSSFooter.css";
+
 const OtherInfo = () =>
   <div className={classNames.wrapper}>
-    <div className={[container, classNames.otherInfo].join(" ")}>
+    <div className={[utils.container, classNames.otherInfo].join(" ")}>
       <p className={classNames.p}>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;

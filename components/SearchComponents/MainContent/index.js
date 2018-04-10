@@ -1,5 +1,4 @@
 import React from "react";
-import { classNames, stylesheet } from "./MainContent.css";
 
 import GridView from "components/shared/GridView";
 import ListView from "components/shared/ListView";
@@ -8,9 +7,9 @@ import Sidebar from "./Sidebar";
 
 import { removeQueryParams, extractItemId } from "utilFunctions";
 
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
 
-const { container } = utilClassNames;
+import { classNames, stylesheet } from "./MainContent.css";
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {
@@ -36,7 +35,7 @@ const addLinkInfoToResults = (results, query) =>
 
 const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={classNames.wrapper}>
-    <div className={[container, classNames.mainContent].join(" ")}>
+    <div className={[utils.container, classNames.mainContent].join(" ")}>
       <div
         className={`${!hideSidebar
           ? classNames.isOpen
