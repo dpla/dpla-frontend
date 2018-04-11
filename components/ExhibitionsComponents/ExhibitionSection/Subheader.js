@@ -1,20 +1,21 @@
 import React from "react";
 
-import { classNames } from "./ExhibitionSection.css";
+import css from "./ExhibitionSection.scss";
+
 const menuButtonIcon = "/static/images/menu-black.svg";
 const closeIcon = "/static/images/close-white.svg";
 
 const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
-  <div className={`${isMenuOpen ? classNames.openMenu : ""}`}>
-    <div className={classNames.menuButtonAndBreadcrumbs}>
+  <div className={`${isMenuOpen ? css.openMenu : ""}`}>
+    <div className={css.menuButtonAndBreadcrumbs}>
       <button
         onClick={onClickMenuButton}
-        className={classNames.menuButton}
+        className={css.menuButton}
         aria-expanded={isMenuOpen}
       >
         {isMenuOpen ? "Hide" : "Show"}<br />Menu
       </button>
-      <h2 className={classNames.breadcrumbSubsection}>
+      <h2 className={css.breadcrumbSubsection}>
         {subsection.title}
       </h2>
     </div>

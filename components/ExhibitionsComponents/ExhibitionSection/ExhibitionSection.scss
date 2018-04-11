@@ -1,12 +1,12 @@
-@value linkColor, dimmedTextColor, outlineColor, warmerBackgroundColor, secondaryButtonColor, mobileNavColor, lightLinkColor from "../../../css/colors.css";
-@value smallRem, mediumRem, mediumPlusRem, xLargeRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
-@value sidebarWidth: 11rem;
-@value sidebarMargin: 1.25rem;
+$sidebarWidth: 11rem;
+$sidebarMargin: 1.25rem;
 
 .exhibitionView {
-  background-color: warmerBackgroundColor;
+  background-color: $warmerBackgroundColor;
 }
 
 .exhibitionsLinkAndTitle {
@@ -14,33 +14,33 @@
 }
 
 .exhibitionsLink, .exhibitionsLink:visited {
-  color: lightLinkColor;
+  color: $lightLinkColor;
   text-decoration: underline;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 3px;
   display: inline-block;
 
-  @media (min-width: smallRem) {
-    color: linkColor;
+  @media (min-width: $smallRem) {
+    color: $linkColor;
     text-decoration: none;
     font-size: 1rem;
   }
 }
 
 .exhibitionTitle {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-weight: normal;
   margin-top: .5rem;
   font-size: 1.5rem;
   color: white;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     font-size: 1.5rem;
     color: black;
   }
 
-  @media (min-width: mediumPlusRem) {
+  @media (min-width: $mediumPlusRem) {
     font-size: 2.15rem;
   }
 }
@@ -53,14 +53,14 @@
   display: flex;
   border-bottom: 0.05rem solid black;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: none;
   }
 }
 
 .openMenu .menuHeader {
   display: flex;
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: none;
   }
 }
@@ -77,7 +77,7 @@
   margin-right: 0.75rem;
   border-radius: 0;
   
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     display: none;
   }
 }
@@ -102,7 +102,7 @@
 
 .menuHeader {
   display: none;
-  background-color: linkColor;
+  background-color: $linkColor;
 }
 
 .closeMenuButtonIcon {
@@ -117,8 +117,8 @@
 }
 
 .sidebar {
-  width: sidebarWidth;
-  margin-right: sidebarMargin;
+  width: $sidebarWidth;
+  margin-right: $sidebarMargin;
   display: block;
   max-height: 0;
   transition: all 0.2s ease-in-out;
@@ -127,7 +127,7 @@
     text-decoration: underline;
   }
   
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     padding: 0 1rem;
     width: auto;
     visibility: hidden;
@@ -138,9 +138,9 @@
     padding: 1rem;
     visibility: visible;
 
-    @media (max-width: smallRem) {
+    @media (max-width: $smallRem) {
       display: block;
-      background-color: warmerBackgroundColor;
+      background-color: $warmerBackgroundColor;
     }
   }
 }
@@ -150,7 +150,7 @@
   padding-bottom: 20px;
   margin-bottom: 13px;
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     padding-bottom: 0;
     margin-bottom: 0;
   }
@@ -172,7 +172,7 @@
   position: relative;
 
   &, & a {
-    color: dimmedTextColor;
+    color: $dimmedTextColor;
   }
 }
 
@@ -186,7 +186,7 @@
   display: block;
   height: 5px;
   width: 5px;
-  background-color: linkColor;
+  background-color: $linkColor;
   border-radius: 50%;
   position: absolute;
   top: 6px;
@@ -201,18 +201,18 @@
   display: flex;
   padding: 0 0 3rem;
 
-  @media (max-width: mediumRem) {
+  @media (max-width: $mediumRem) {
     flex-direction: column;
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 0 1rem 1.5rem;
     margin-top: 1.5rem;
     margin-left: auto;
     margin-right: auto;
   }
 
-  @media (min-width: xLargeRem) {
+  @media (min-width: $xLargeRem) {
     max-width: 80rem;
     padding: 0;
   }
@@ -223,7 +223,7 @@
   flex-direction: row;
   width: 100%;
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     flex-direction: column;
   }
 }
@@ -241,15 +241,15 @@
   display: flex;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   align-items: center;
-  background-color: mobileNavColor;
+  background-color: $mobileNavColor;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding-bottom: 1rem;
     padding-top: 1rem;
     background-color: inherit;
   }
 
-  @media (min-width: xLargeRem) {
+  @media (min-width: $xLargeRem) {
     max-width: 80rem;
   }
 }
@@ -262,7 +262,7 @@
 
 .closeExhibitionText {
   display: none;
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: inline;
   }
 }
@@ -278,7 +278,7 @@
   width: 22px;
   margin-right: 0.5rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     height: 19px;
     width: 19px;
     background-color: black;
@@ -286,8 +286,8 @@
 }
 
 .closeIconX {
-  fill: mobileNavColor;
-  @media (min-width: smallRem) {
+  fill: $mobileNavColor;
+  @media (min-width: $smallRem) {
     fill: white;
   }
 }
@@ -297,11 +297,11 @@
   align-items: center;
   padding: 0;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 1rem;
   }
 
-  @media (min-width: xLargeRem) {
+  @media (min-width: $xLargeRem) {
     max-width: 80rem;
   }
 }
@@ -312,7 +312,7 @@
   align-self: flex-end;
   width: 100%;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-left: auto;
     margin-top: 1rem;
     width: 21rem;
@@ -323,14 +323,14 @@
   display: none;
   cursor: pointer;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: inline-block;
     width: 200px;
     height: 24px;
     opacity: 0.5;
   }
 
-  @media (min-width: mediumPlusRem) {
+  @media (min-width: $mediumPlusRem) {
     width: 275px;
     height: 33px;
   }
@@ -348,7 +348,7 @@
     text-decoration: none;
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 0.75rem 0;
     font-size: 1.25rem;
     border-radius: 2px;
@@ -363,7 +363,7 @@
 .nextSubsectionTitle {
   display: none;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: inline-block;
     font-size: 0.875rem;
     position: absolute;
@@ -385,13 +385,13 @@
   background-color: rgba(0, 0, 0, 0.1);
   color: black;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-right: 18px;
   }
 }
 
 .nextButton, .nextButton:visited {
-  background-color: linkColor;
+  background-color: $linkColor;
   color: white;
 }
 
@@ -410,7 +410,7 @@
   width: 7px;
   top: 1px;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     height: 14px;
     width: 8px;
   }
@@ -425,7 +425,7 @@
   flex-direction: column;
   font-size: 0.875rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     font-size: 1.25rem;
     flex-direction: row;
     align-items: center;
@@ -437,15 +437,15 @@
   font-weight: 600;
   margin: 0 0.5rem 0.5rem;
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     display: none;
   }
 }
 
 .viewer {
-  width: calc(100% - sidebarWidth - sidebarMargin);
+  width: calc(100% - #{$sidebarWidth} - #{$sidebarMargin});
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     width: 100%;
   }
 }
@@ -454,7 +454,7 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: mediumPlusRem) {
+  @media (min-width: $mediumPlusRem) {
     flex-direction: row;
   }
 }
@@ -462,7 +462,7 @@
 .mediaAndCaption {
   flex: 2;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-right: 1.25rem;
   }
 }
@@ -471,9 +471,9 @@
   flex: 1;
   font-size: 0.875rem;
   padding: 0 1rem;
-  font-family: serifFont;
+  font-family: $serifFont;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     font-size: .95rem;
     padding: 0;
   }
@@ -486,7 +486,7 @@
   & p {
     margin-bottom: .875rem;
 
-    @media (min-width: smallRem) {
+    @media (min-width: $smallRem) {
       margin-bottom: .95rem;
     }
   }
@@ -500,14 +500,14 @@
   margin-bottom: 0.5rem;
 
   &:focus {
-    outline: 0.25rem solid outlineColor;
+    outline: 0.25rem solid $outlineColor;
   }
 
   & :global(#openseadragon1) {
     height: 15rem;
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-bottom: 1.25rem;
 
     & :global(#openseadragon1) {
@@ -524,7 +524,7 @@
   padding-left: 0.5rem;
   border-left: 1px solid #DE630B;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin: 0 0 0.75rem;
     padding-left: 0;
     border-left: 0;
@@ -536,7 +536,7 @@
   justify-content: center;
   margin-bottom: 1rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     justify-content: flex-start;
   }
 }
@@ -549,7 +549,7 @@
   display: block;
   margin-right: 0.25rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     width: 3.25rem;
     height: 3.25rem;
     border-radius: 0;
@@ -561,7 +561,7 @@
 .itemLink img {
   display: none;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: block;
     width: 100%;
     height: 100%;
@@ -569,17 +569,17 @@
 }
 
 .activeItemLink {
-  background-color: linkColor;
+  background-color: $linkColor;
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     & .defaultItemImage {
-      background-color: linkColor;
+      background-color: $linkColor;
     }
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     background-color: inherit;
-    border: 0.25rem solid secondaryButtonColor;
+    border: 0.25rem solid $secondaryButtonColor;
     position: relative;
   }
 }
@@ -592,7 +592,7 @@
   height: 0;
   border-left: .8rem solid transparent;
   border-right: .8rem solid transparent;
-  border-bottom: .65rem solid secondaryButtonColor;
+  border-bottom: .65rem solid $secondaryButtonColor;
   top: -0.8rem;
   left: 50%;
   transform: translateX(-50%);
@@ -605,7 +605,7 @@
     height: 50%;
   }
 
-  @media (max-width: mediumRem) {
+  @media (max-width: $mediumRem) {
     height: 100%;
     border-radius: 50%;
   }
@@ -615,7 +615,7 @@
   display: inline-block;
   margin-bottom: 0.5rem;
 
-  @media (max-width: smallRem) {
+  @media (max-width: $smallRem) {
     padding-left: 1rem;
   }
 }
@@ -632,7 +632,7 @@
     opacity: 0.5;
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: none;
   }
 }

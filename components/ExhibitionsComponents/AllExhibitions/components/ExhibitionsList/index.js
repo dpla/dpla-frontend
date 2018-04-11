@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames, stylesheet } from "./ExhibitionsList.css";
+import css from "./ExhibitionsList.scss";
 
 const Exhibition = ({ exhibition, route }) => {
   return exhibition
@@ -19,20 +19,20 @@ const Exhibition = ({ exhibition, route }) => {
             query: route.query
           }}
         >
-          <a className={` ${classNames.exhibition}`}>
+          <a className={` ${css.exhibition}`}>
             {exhibition.new &&
               !featured &&
-              <div className={classNames.newBanner}>
+              <div className={css.newBanner}>
                 New
               </div>}
             <img
               alt=""
-              className={classNames.exhibitionImage}
+              className={css.exhibitionImage}
               src={exhibition.thumbnailUrl}
             />
 
-            <div className={classNames.exhibitionText}>
-              <h2 id={exhibition.slug} className={classNames.title}>
+            <div className={css.exhibitionText}>
+              <h2 id={exhibition.slug} className={css.title}>
                 {exhibition.title}
               </h2>
             </div>
@@ -43,9 +43,9 @@ const Exhibition = ({ exhibition, route }) => {
 };
 
 const ExhibitionsList = ({ exhibitions, route }) =>
-  <div className={`${classNames.wrapper} site-max-width`}>
-    <div className={classNames.row}>
-      <ul className={classNames.exhibitionList}>
+  <div className={`${css.wrapper} site-max-width`}>
+    <div className={css.row}>
+      <ul className={css.exhibitionList}>
         {exhibitions.map((exhibition, index) =>
           <Exhibition
             route={route}
@@ -55,7 +55,6 @@ const ExhibitionsList = ({ exhibitions, route }) =>
         )}
       </ul>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default ExhibitionsList;

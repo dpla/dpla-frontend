@@ -3,24 +3,25 @@ import React from "react";
 import GuideLink from "components/shared/GuideLink";
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
-import { stylesheet, classNames } from "./DPLAUsers.css";
+
+import css from "./DPLAUsers.scss";
 
 const DPLAUsers = ({ guides }) =>
-  <div className={classNames.wrapper}>
-    <div className={`${classNames.DPLAUsers} site-max-width`}>
-      <h2 className={classNames.header}>How can I use DPLA?</h2>
+  <div className={css.wrapper}>
+    <div className={`${css.DPLAUsers} site-max-width`}>
+      <h2 className={css.header}>How can I use DPLA?</h2>
       <HeadingRule />
       <div className="row">
         {guides.map(guide =>
           <div
-            className={`${classNames.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
+            className={`${css.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
             key={guide.slug}
           >
             <GuideLink guide={guide} />
           </div>
         )}
       </div>
-      <div className={classNames.caption}>
+      <div className={css.caption}>
         <p>
           If you’re new to DPLA, these research guides will give you a head
           start using our site. The guides reflect a few key activities that
@@ -31,14 +32,13 @@ const DPLAUsers = ({ guides }) =>
           type="secondary"
           size="large"
           prefetch
-          className={classNames.captionButton}
+          className={css.captionButton}
           url={"/guides"}
         >
           View all user guides
         </Button>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default DPLAUsers;

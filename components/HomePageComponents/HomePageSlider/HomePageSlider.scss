@@ -1,12 +1,12 @@
-@value linkColor, outlineColor, warmerBackgroundColor, colderBackgroundColor, subLinkColor, elephantBlue, onionBrown, black, casablancaOrange from "../../../css/colors.css";
-@value mediumRem, smallRem, largeRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .wrapper {
-  background-color: warmerBackgroundColor;
+  background-color: $warmerBackgroundColor;
 
   &.theme_blue {
-    background-color: colderBackgroundColor;
+    background-color: $colderBackgroundColor;
   }
 }
 
@@ -14,12 +14,12 @@
   margin: auto;
   padding: 2rem 1rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 4rem 0;
   }
 }
@@ -35,13 +35,13 @@
   align-items: baseline;
   margin-bottom: 1rem;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     margin-bottom: 1.5rem;
   }
 }
 
 .moreLink {
-  color: linkColor;
+  color: $linkColor;
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -49,7 +49,7 @@
 .moreLinkNoun {
   display: none;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: inline;
   }
 }
@@ -63,15 +63,15 @@
 }
 
 .title {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-weight: normal;
   font-size: 1.25rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     font-size: 1.5rem;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 2.25rem;
   }
 }
@@ -115,7 +115,7 @@
   font-weight: 600;
   line-height: 1.25;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     margin-top: 0.9rem;
   }
 }
@@ -131,7 +131,7 @@
   height: 3rem;
   border-radius: 100%;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     top: 45%;
     height: 5rem;
     box-shadow: none;
@@ -144,20 +144,20 @@
     background-color: white;
     box-shadow: 0px 0 20px 0px rgba(0, 0, 0, 0.3);
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       background-color: rgba(0, 0, 0, 0.05);
       box-shadow: none;
     }
   }
 
   &:focus {
-    outline: 0.25rem solid outlineColor;
+    outline: 0.25rem solid $outlineColor;
   }
 
   & img {
     width: .9rem;
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       width: 1.5rem;
     }
   }
@@ -171,7 +171,7 @@
     margin-left: -0.25rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     left: -3.5rem !important;
   }
 }
@@ -179,7 +179,7 @@
 .nextArrow {
   right: -.5rem !important;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     right: -3.5rem !important;
   }
 
@@ -191,7 +191,7 @@
 .featuredTag {
   text-transform: uppercase;
   position: absolute;
-  background-color: casablancaOrange;
+  background-color: $featuredBannerColor;
   top: .75rem;
   left: .5rem;
   padding: .25rem .5rem;
@@ -199,7 +199,7 @@
   letter-spacing: 0.05rem;
   font-size: 0.8rem;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     left: -0.25rem;
     padding: .35rem .85rem;
   }
@@ -208,7 +208,7 @@
 /* Vendor overrides: react-slick */
 
 .content {
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     & :global .slick-list {
       /* Offset for the featuredTag */
       padding-left: .25rem;

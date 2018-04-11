@@ -1,12 +1,12 @@
-@value linkColor, featuredBannerColor, colderBackgroundColor, darkBorderColor, black50 from "../../../../../css/colors.css";
-@value xSmallRem, smallRem, mediumRem, largeRem from "../../../../../css/breakpoints.css";
-@value monoFont, serifFont, sansFont from "../../../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .wrapper {
   margin: 1rem auto 2rem;
   padding: 0 1rem;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 0;
     margin-top: 2rem;
   }
@@ -24,8 +24,8 @@
     text-decoration: none;
   }
 
-  @media (min-width: smallRem) {
-    background-color: colderBackgroundColor;
+  @media (min-width: $smallRem) {
+    background-color: $colderBackgroundColor;
     display: flex;
     margin: 2rem;
   }
@@ -36,10 +36,10 @@
 
   & .exhibitionImage {
     border-radius: 0.2rem 0.2rem 0 0;
-    border-bottom: 0.25rem solid featuredBannerColor;
+    border-bottom: 0.25rem solid $featuredBannerColor;
     width: 100%;
 
-    @media (min-width: smallRem) {
+    @media (min-width: $smallRem) {
       border-bottom: none;
       border-radius: 0.2rem 0 0 0.2rem;
       width: auto;
@@ -50,8 +50,8 @@
     border-left: none;
     display: block;
 
-    @media (min-width: smallRem) {
-      border-left: 0.25rem solid featuredBannerColor;
+    @media (min-width: $smallRem) {
+      border-left: 0.25rem solid $featuredBannerColor;
     }
   }
 
@@ -59,22 +59,22 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 
-    @media (min-width: smallRem) {
+    @media (min-width: $smallRem) {
       font-size: 1.75rem;
     }
 
-    @media (min-width: mediumRem) {
+    @media (min-width: $mediumRem) {
       font-size: 2rem;
     }
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       font-size: 2.25rem;
     }
   }
 
   & .abstract {
     color: black;
-    font-family: serifFont;
+    font-family: $serifFont;
     font-size: 1rem;
 
     &:hover {
@@ -82,15 +82,15 @@
       text-decoration: none;
     }
 
-    @media (min-width: smallRem) {
+    @media (min-width: $smallRem) {
       font-size: 1.125rem;
     }
 
-    @media (min-width: mediumRem) {
+    @media (min-width: $mediumRem) {
       font-size: 1.25rem;
     }
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       font-size: 1.275rem;
     }
   }
@@ -102,19 +102,19 @@
   grid-row-gap: 1rem;
   grid-template-columns: 1fr;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 .exhibition {
-  background-color: colderBackgroundColor;
+  background-color: $colderBackgroundColor;
   display: grid;
   grid-template-columns: 1fr 2fr;
   line-height: 1.25;
   position: relative;
 
-  @media (min-width: xSmallRem) {
+  @media (min-width: $xSmallRem) {
     grid-template-columns: 1fr 3fr;
   }
 
@@ -128,30 +128,30 @@
 }
 
 .exhibitionText {
-  border-left: 0.25rem solid darkBorderColor;
+  border-left: 0.25rem solid $darkBorderColor;
   display: flex;
   padding: 0.25rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 0.5rem;
   }
 }
 
 .title {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-size: 1rem;
   font-weight: normal;
   margin: auto 0;
 
-  @media (min-width: xSmallRem) {
+  @media (min-width: $xSmallRem) {
     font-size: 1.1rem;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 1.25rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     font-size: 1.5rem;
   }
 }
@@ -168,11 +168,11 @@
 }
 
 .featuredBanner {
-  background-color: featuredBannerColor;
+  background-color: $featuredBannerColor;
   color: black;
 }
 
 .newBanner {
-  background-color: linkColor;
+  background-color: $linkColor;
   color: white;
 }

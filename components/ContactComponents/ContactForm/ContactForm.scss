@@ -1,6 +1,6 @@
-@value linkColor, formLabelColor, errorColor from "../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont, sansFont from "../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .contactForm {
   margin-top: 2rem;
@@ -19,7 +19,7 @@
     font-weight: bold;
     margin: 0 0 1rem;
     position: relative;
-    color: formLabelColor;
+    color: $formLabelColor;
   
     & > span {
       display: block;
@@ -39,12 +39,12 @@
 
   & input[type=email], & input[type=text], & textarea {
     width: 100%;
-    border: 0.075rem solid formLabelColor;
+    border: 0.075rem solid $formLabelColor;
     padding: 1.5rem 0.25rem 0.5rem 0.5rem;
     border-radius: 0.25rem;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin-top: 0;
   }
 }
@@ -58,18 +58,18 @@
 }
 
 .error {
-  color: errorColor;
+  color: $errorColor;
   display: inline-block;
   margin-left: 0.5rem;
 }
 
 .header {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-weight: normal;
   font-size: 2rem;
   margin-bottom: 1rem;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 3rem;
     margin-bottom: 3rem;
   }
@@ -80,7 +80,7 @@
   margin-bottom: 2rem;
   line-height: 1.25;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 1.25rem;
   }
 }

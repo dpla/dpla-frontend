@@ -1,10 +1,10 @@
-@value linkColor, dimmedTextColor from "../../../../css/colors.css";
-@value smallRem, xSmallRem, mediumRem, largeRem from "../../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .wrapper {
   margin-top: 1rem;
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin-top: 2rem;
   }
 }
@@ -13,17 +13,17 @@
   padding: 0;
   width: 100%;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 0 1rem 1rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 0 0 1rem;
   }
 }
 
 .image {
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     border-radius: 3px;
   }
   width: 100%;
@@ -58,20 +58,20 @@
     padding: 0;
     display: none;
   }
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     & .exhibitionTitle {
       display: block;
     }
     width: 90%;
   }
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     padding-bottom: 3.5rem;
   }
 }
 
 .headingRule {
   display: none;
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-bottom: -1.25rem;
     display: block;
   }
@@ -80,16 +80,16 @@
 .exhibitionTitle {
   padding: 0 1rem 1rem;
   line-height: 1.1;
-  font-family: serifFont;
+  font-family: $serifFont;
   font-size: 1.75rem;
   font-weight: normal;
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     font-size: 3rem;
   }
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     display: none;
   }
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 3.75rem;
   }
 }
@@ -97,7 +97,7 @@
 .exploreLink {
   display: inline-block;
   width: 100%;
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     width: auto;
   }
 }
@@ -109,17 +109,17 @@
 }
 
 .caption {
-  color: dimmedTextColor;
+  color: $dimmedTextColor;
   display: flex;
   font-size: 0.875rem;
   line-height: 1.125;
   padding: 0 1rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 0;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 0 45px;
   }
 }

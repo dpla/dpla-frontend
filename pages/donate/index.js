@@ -1,5 +1,4 @@
 import React from "react";
-
 import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
@@ -9,20 +8,16 @@ import Button from "components/shared/Button";
 import { SEO_TITLE } from "constants/donate";
 
 import utils from "stylesheets/utils.scss";
-
-import { stylesheet, classNames } from "css/pages/content-pages-wysiwyg.css";
-import {
-  stylesheet as contentStyles,
-  classNames as contentClasses
-} from "css/pages/donate.css";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "stylesheets/donate.scss";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
-    <div className={contentClasses.donateBackground}>
+    <div className={css.donateBackground}>
       <div id="main" role="main" className={`${utils.container}`}>
-        <div className={`${contentClasses.donateContent} row`}>
+        <div className={`${css.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
-            <div className={`${contentClasses.byPaypal} ${classNames.content}`}>
+            <div className={`${css.byPaypal} ${contentCss.content}`}>
               <h1>
                 Thank you for supporting DPLA
               </h1>
@@ -35,14 +30,14 @@ const Donate = ({ url }) =>
               <hr />
               <DonateForm />
             </div>
-            <div className={`${contentClasses.byMail} ${classNames.content}`}>
+            <div className={`${css.byMail} ${contentCss.content}`}>
               <h2>Or donate by mail</h2>
               <p>
                 Please make your check payable to Digital Public Library of
                 America.
               </p>
 
-              <p className={classNames.address}>
+              <p className={contentCss.address}>
                 Digital Public Library of America<br />
                 c/o Boston Public Library<br />
                 700 Boylston Street<br />
@@ -50,11 +45,9 @@ const Donate = ({ url }) =>
               </p>
             </div>
           </div>
-          <div className={`${contentClasses.testimonial} col-xs-12 col-md-5`}>
+          <div className={`${css.testimonial} col-xs-12 col-md-5`}>
             {/* testimonial */}
-            <div
-              className={`${classNames.content} ${contentClasses.testimonialImage}`}
-            >
+            <div className={`${contentCss.content} ${css.testimonialImage}`}>
               <img
                 srcSet="/static/images/adena_lo.jpg,
                         /static/images/adena_hi.jpg 2x"
@@ -63,7 +56,7 @@ const Donate = ({ url }) =>
               />
               <span>Adena, a high school school teacher in West Virginia</span>
             </div>
-            <div className={classNames.content}>
+            <div className={contentCss.content}>
               <h2>How will DPLA use your donation?</h2>
               <p>
                 Your donation will directly support the development and
@@ -91,9 +84,6 @@ const Donate = ({ url }) =>
         </div>
       </div>
     </div>
-
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 export default Donate;

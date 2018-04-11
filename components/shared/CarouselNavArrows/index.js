@@ -1,11 +1,12 @@
 import React from "react";
-import { classNames } from "./CarouselNavArrows.css";
+
+import css from "./CarouselNavArrows.scss";
 
 const largeChevron = "/static/images/chevron-thin.svg";
 
 const NextArrow = ({ onClick, className }) =>
   <button
-    className={`${classNames.arrow} ${classNames.nextArrow} ${className}`}
+    className={`${css.arrow} ${css.nextArrow} ${className}`}
     tabIndex={-1}
     aria-hidden={true}
     onClick={onClick}
@@ -15,7 +16,7 @@ const NextArrow = ({ onClick, className }) =>
 
 const PrevArrow = ({ onClick, className }) =>
   <button
-    className={`${classNames.arrow} ${classNames.prevArrow} ${className}`}
+    className={`${css.arrow} ${css.prevArrow} ${className}`}
     tabIndex={-1}
     aria-hidden={true}
     onClick={onClick}

@@ -5,6 +5,7 @@ import Error from "pages/_error";
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "components/shared/SkipToContent";
 import Content from "components/ExhibitionsComponents/ExhibitionSection";
+
 import {
   getPreviousQueryParams,
   getNextQueryParams
@@ -14,16 +15,13 @@ import {
   getCurrentFullUrl,
   getDplaItemIdFromExhibit
 } from "utilFunctions";
-
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT,
   ITEMS_ENDPOINT
 } from "constants/exhibitions";
-
 import { SEO_TYPE } from "constants/exhibition";
-
 import { API_ENDPOINT } from "constants/items";
 
 const Subsection = ({

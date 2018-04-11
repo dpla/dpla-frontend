@@ -1,22 +1,22 @@
-@value outlineColor, radioButtonColor, linkColor, formLabelColor, errorColor, warmerBackgroundColor from "../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../css/breakpoints.css";
-@value monoFont, serifFont, sansFont from "../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .feedbackButton {
   position: fixed;
   left: 0.5rem;
   bottom: 0.5rem;
   cursor: pointer;
-  background-color: linkColor;
+  background-color: $linkColor;
   color: white;
   padding: 0.5rem 0.75rem;
   border: 0.125rem solid white;
   border-radius: 0.25rem;
 
   &:hover {
-    color: linkColor;
+    color: $linkColor;
     background-color: white;
-    border-color: linkColor;
+    border-color: $linkColor;
     text-decoration: none;
   }
 }
@@ -41,7 +41,7 @@
 }
 
 .feedbackForm {
-  background-color: warmerBackgroundColor;
+  background-color: $warmerBackgroundColor;
   padding: 1rem;
   position: fixed;
   top: 50%;
@@ -52,7 +52,7 @@
   z-index: 999;
   box-shadow: 0 0 20px rgba(0,0,0, 0.5);
 
-  @media (max-width: mediumRem) {
+  @media (max-width: $mediumRem) {
     top: 1rem;
     left: 1rem;
     bottom: 1rem;
@@ -91,7 +91,7 @@
   }
 
   & input[type=radio]:focus + label {
-    outline: .25rem solid outlineColor;
+    outline: .25rem solid $outlineColor;
   }
 
   & label:before {
@@ -105,21 +105,21 @@
     margin-top: -0.5rem;
     width: 1.0rem;
     height: 1.0rem;
-    background-color: radioButtonColor;
+    background-color: $radioButtonColor;
     border: 0.2rem solid white;
   }
 
   & input[type=radio]:checked + label:before {
-    background-color: linkColor;
+    background-color: $linkColor;
   }
 
   & input[type=radio]:checked + label {
-    background-color: radioButtonColor;
+    background-color: $radioButtonColor;
   }
 
   & input[type=email], & input[type=text] {
     width: 100%;
-    border: 0.075rem solid formLabelColor;
+    border: 0.075rem solid $formLabelColor;
     padding: 0.5rem;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
@@ -129,7 +129,7 @@
     resize: none;
     width: 100%;
     height: 5rem;
-    border: 0.075rem solid formLabelColor;
+    border: 0.075rem solid $formLabelColor;
     padding: 0.5rem;
     border-radius: 0.25rem;
   }

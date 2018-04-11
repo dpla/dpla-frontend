@@ -1,10 +1,10 @@
-@value proIconColor, linkColor, warmerBackgroundColor, colderBackgroundColor from "../../css/colors.css";
-@value serifFont from "../../css/typography.css";
-@value smallRem, mediumRem, largeRem from "../../css/breakpoints.css";
+@import "stylesheets/colors";
+@import "stylesheets/typography";
+@import "stylesheets/breakpoints";
 
 .heroWrapper {
   background-color: rgb(47, 74, 87);
-  background-image: url("static/images/pro/home-hero-bg.png");
+  background-image: url("/static/images/pro/home-hero-bg.png");
   background-position: center/100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@
   padding: 2rem 1rem;
 
   & h1 {
-    font-family: serifFont;
+    font-family: $serifFont;
     font-weight: normal;
     font-size: 1.8rem;
     max-width: 24rem;
@@ -35,7 +35,7 @@
     margin-left: 0;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     flex-direction: row;
     padding: 4rem 1rem 2rem;
 
@@ -52,7 +52,7 @@
     }
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     padding: 8.5rem 0rem 4rem;
 
     & h1 {
@@ -82,12 +82,12 @@
   }
 
   & a {
-    background: colderBackgroundColor;
+    background: $colderBackgroundColor;
     border-radius: 0.25rem;
     /* color: white; */
     height: 100%;
     font-size: 1.6rem;
-    font-family: serifFont;
+    font-family: $serifFont;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +95,7 @@
   }
 
   & svg {
-    fill: proIconColor;
+    fill: $proIconColor;
     width: 100%;
     margin-bottom: 1rem;
   }

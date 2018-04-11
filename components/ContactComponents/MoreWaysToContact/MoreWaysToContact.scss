@@ -1,9 +1,9 @@
-@value linkColor, colderBackgroundColor, dimmedTextColor from "../../../css/colors.css";
-@value smallRem, mediumRem, largeRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .header {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   font-weight: normal;
@@ -12,9 +12,9 @@
 .contentTable {
   padding: 1rem 1.5rem;
   width: 100%;
-  background-color: colderBackgroundColor;
+  background-color: $colderBackgroundColor;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     padding: 2rem 3rem;
   }
 }
@@ -22,26 +22,26 @@
 .tableHeading {
   font-size: .8rem;
   text-transform: uppercase;
-  color: dimmedTextColor;
+  color: $dimmedTextColor;
   font-weight: 600;
   vertical-align: baseline;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 1rem;
   }
 }
 
 .tableItem {
   vertical-align: baseline;
-  font-family: serifFont;
+  font-family: $serifFont;
   line-height: 1.25;
   margin-top: .5rem;
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     margin-top: 0;
   }
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 1.25rem;
   }
 }
@@ -49,7 +49,7 @@
 .paddedRow {
   margin-bottom: 1.5rem;
 
-  @media (min-width: mediumRem) {
+  @media (min-width: $mediumRem) {
     margin-bottom: 2rem;
   }
 }

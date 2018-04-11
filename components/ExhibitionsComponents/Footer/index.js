@@ -1,18 +1,17 @@
 import React from "react";
 
 import utils from "stylesheets/utils.scss";
-
-import { classNames, stylesheet } from "./Footer.css";
+import css from "./Footer.scss";
 
 const OtherInfo = () =>
-  <div className={classNames.wrapper}>
-    <div className={`${utils.container} ${classNames.otherInfo}`}>
-      <p className={classNames.footerText}>
+  <div className={css.wrapper}>
+    <div className={`${utils.container} ${css.otherInfo}`}>
+      <p className={css.footerText}>
         Exhibitions curated by DPLA staff, DPLA partner institutions, and
         graduate students in library
         and information science and public history.
       </p>
-      <p className={classNames.footerText}>
+      <p className={css.footerText}>
         <span>
           Feedback? Interested in curating an exhibition for DPLA? Contact us
           at&nbsp;
@@ -22,7 +21,6 @@ const OtherInfo = () =>
         </a>.
       </p>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default OtherInfo;

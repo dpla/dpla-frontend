@@ -1,5 +1,5 @@
-@value outlineColor from "../../../css/colors.css";
-@value smallRem, largeRem from "../../../css/breakpoints.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
 
 .arrow {
   position: absolute;
@@ -12,7 +12,7 @@
   height: 3rem;
   border-radius: 100%;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     top: 45%;
     height: 5rem;
     box-shadow: none;
@@ -25,20 +25,20 @@
     background-color: white;
     box-shadow: 0px 0 20px 0px rgba(0, 0, 0, 0.3);
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       background-color: rgba(0, 0, 0, 0.05);
       box-shadow: none;
     }
   }
 
   &:focus {
-    outline: 0.25rem solid outlineColor;
+    outline: 0.25rem solid $outlineColor;
   }
 
   & img {
     width: .9rem;
 
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       width: 1.5rem;
     }
   }
@@ -47,7 +47,7 @@
 :global(.dpla-related-resources-carousel) {
   & .arrow {
     top: 25%;
-    @media (min-width: largeRem) {
+    @media (min-width: $largeRem) {
       top: 50%;
     }
   }
@@ -61,7 +61,7 @@
     margin-left: -0.25rem;
   }
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     left: -3.5rem !important;
   }
 }
@@ -69,7 +69,7 @@
 .nextArrow {
   right: -.5rem !important;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     right: -3.5rem !important;
   }
 

@@ -8,13 +8,7 @@ import StayInformed from "shared/StayInformed";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
-import { stylesheet } from "./HomePageSlider/HomePageSlider.css";
-import {
-  stylesheet as userStylesheet,
-  classNames as userClassNames
-} from "./HomeUser.css";
-import { stylesheet as guidesStylesheet } from "shared/GuideLink/GuideLink.css";
-import { stylesheet as arrowStylesheet } from "shared/CarouselNavArrows/CarouselNavArrows.css";
+import css from "./HomeUser.scss";
 
 const HomeUser = ({
   url,
@@ -25,7 +19,7 @@ const HomeUser = ({
   news,
   content
 }) =>
-  <div className={userClassNames.wrapper}>
+  <div className={css.wrapper}>
     <HomeHero
       headerDescription={headerDescription}
       feature={content.acf.feature}
@@ -62,11 +56,6 @@ const HomeUser = ({
     <DPLAUsers guides={guides} />
     <NewsLane title="DPLA News" items={news} />
     <StayInformed />
-    {/* <SocialMedia /> */}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: userStylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: arrowStylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </div>;
 
 export default HomeUser;

@@ -4,16 +4,15 @@ import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
 import utils from "stylesheets/utils.scss";
-
-import { classNames, stylesheet } from "./ImageAndCaption.css";
+import css from "./ImageAndCaption.scss";
 
 const ImageAndCaption = ({ exhibition, route }) =>
-  <figure className={classNames.wrapper}>
-    <div className={[utils.container, classNames.imageAndCaption].join(" ")}>
-      <p className={classNames.exhibitionTitle}>{exhibition.title}</p>
-      <div className={classNames.imageWrapper}>
+  <figure className={css.wrapper}>
+    <div className={[utils.container, css.imageAndCaption].join(" ")}>
+      <p className={css.exhibitionTitle}>{exhibition.title}</p>
+      <div className={css.imageWrapper}>
         <div
-          className={classNames.image}
+          className={css.image}
           alt={exhibition.title}
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`,
@@ -21,17 +20,17 @@ const ImageAndCaption = ({ exhibition, route }) =>
             backgroundPosition: "50% 25%"
           }}
         />
-        <div className={classNames.overlay}>
-          <div className={classNames.overlayContent}>
-            <h1 className={classNames.exhibitionTitle}>{exhibition.title}</h1>
-            <div className={classNames.headingRule}>
+        <div className={css.overlay}>
+          <div className={css.overlayContent}>
+            <h1 className={css.exhibitionTitle}>{exhibition.title}</h1>
+            <div className={css.headingRule}>
               <HeadingRule color="rgba(255,255,255,0.75)" />
             </div>
             <Button
               type="primary"
               size="large"
               prefetch
-              className={classNames.exploreLink}
+              className={css.exploreLink}
               url={{
                 pathname: "/exhibitions/exhibition/section/subsection",
                 query: Object.assign({}, route.query, {
@@ -50,12 +49,11 @@ const ImageAndCaption = ({ exhibition, route }) =>
           </div>
         </div>
       </div>
-      <figcaption className={classNames.caption}>
-        <span className={classNames.captionLeadIn}>Image: </span>
+      <figcaption className={css.caption}>
+        <span className={css.captionLeadIn}>Image: </span>
         <div dangerouslySetInnerHTML={{ __html: exhibition.caption }} />
       </figcaption>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </figure>;
 
 export default ImageAndCaption;

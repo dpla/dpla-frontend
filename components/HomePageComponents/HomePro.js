@@ -7,16 +7,16 @@ import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 import StayInformed from "shared/StayInformed";
 
-import { stylesheet, classNames } from "./HomePro.css";
+import css from "./HomePro.scss";
 
 const HomePro = ({ url, news, content }) =>
   <div>
     <div
-      className={`${classNames.heroWrapper} ${content.acf.feature
-        ? classNames.withFeature
+      className={`${css.heroWrapper} ${content.acf.feature
+        ? css.withFeature
         : ""}`}
     >
-      <div className={`${classNames.heroText} site-max-width`}>
+      <div className={`${css.heroText} site-max-width`}>
         <h1>
           Welcome to the DPLA
           Professional Community
@@ -37,12 +37,12 @@ const HomePro = ({ url, news, content }) =>
         buttonUrl={content.acf.feature.button_url}
         imageSrc={content.acf.feature.image}
       />}
-    <div className={`${classNames.sectionList}`}>
+    <div className={`${css.sectionList}`}>
       <ul className={`site-max-width`}>
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
             <a>
-              <IconComponent className={classNames.icon} name="network" />
+              <IconComponent className={css.icon} name="network" />
               Hub Network
             </a>
           </Link>
@@ -50,7 +50,7 @@ const HomePro = ({ url, news, content }) =>
         <li>
           <Link as="/prospective-hubs" href="/pro/wp?section=prospective-hubs">
             <a>
-              <IconComponent className={classNames.icon} name="prospective" />
+              <IconComponent className={css.icon} name="prospective" />
               Prospective Hubs
             </a>
           </Link>
@@ -58,7 +58,7 @@ const HomePro = ({ url, news, content }) =>
         <li>
           <Link as="/developers" href="/pro/wp?section=developers">
             <a>
-              <IconComponent className={classNames.icon} name="developers" />
+              <IconComponent className={css.icon} name="developers" />
               Developers
             </a>
           </Link>
@@ -66,7 +66,7 @@ const HomePro = ({ url, news, content }) =>
         <li>
           <Link as="/education" href="/pro/wp?section=education">
             <a>
-              <IconComponent className={classNames.icon} name="education" />
+              <IconComponent className={css.icon} name="education" />
               Education
             </a>
           </Link>
@@ -74,7 +74,7 @@ const HomePro = ({ url, news, content }) =>
         <li>
           <Link as="/community-reps" href="/pro/wp?section=community-reps">
             <a>
-              <IconComponent className={classNames.icon} name="community" />
+              <IconComponent className={css.icon} name="community" />
               Community Reps
             </a>
           </Link>
@@ -82,7 +82,7 @@ const HomePro = ({ url, news, content }) =>
         <li>
           <Link as="/ebooks" href="/pro/wp?section=ebooks">
             <a>
-              <IconComponent className={classNames.icon} name="ebooks" />
+              <IconComponent className={css.icon} name="ebooks" />
               Ebooks
             </a>
           </Link>
@@ -91,7 +91,6 @@ const HomePro = ({ url, news, content }) =>
     </div>
     <NewsLane title="DPLA News" items={news} />
     <StayInformed />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default HomePro;

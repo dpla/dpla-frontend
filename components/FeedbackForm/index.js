@@ -4,7 +4,7 @@ import AriaModal from "react-aria-modal";
 
 import Button from "components/shared/Button";
 
-import { classNames, stylesheet } from "./FeedbackForm.css";
+import css from "./FeedbackForm.scss";
 
 class FeedbackForm extends React.Component {
   state = {
@@ -190,7 +190,7 @@ class FeedbackForm extends React.Component {
           getApplicationNode={this.getApplicationNode}
         >
           <form
-            className={classNames.feedbackForm}
+            className={css.feedbackForm}
             onSubmit={this.handleSubmit}
             key={this.state.timestamp}
             aria-live="assertive"
@@ -199,12 +199,12 @@ class FeedbackForm extends React.Component {
               type="checkbox"
               name="i_prefer_usps_mail"
               value="1"
-              className={classNames.miel}
+              className={css.miel}
               tabIndex="-1"
               autoComplete="off"
             />
             <input name="frompage" value={url} type="hidden" />
-            <h2 className={classNames.title}>
+            <h2 className={css.title}>
               {step === 1 && <span>Feedback</span>}
               {step === 2 && <span>Thank you!</span>}
             </h2>
@@ -258,7 +258,7 @@ class FeedbackForm extends React.Component {
               <div
                 id="feedback-counter"
                 aria-live="polite"
-                className={classNames.characterCount}
+                className={css.characterCount}
               >
                 {characters} characters remaining
               </div>}
@@ -274,11 +274,11 @@ class FeedbackForm extends React.Component {
               />}
 
             {step === 2 &&
-              <p className={classNames.thankYou}>
+              <p className={css.thankYou}>
                 Thank you for your feedback.
               </p>}
 
-            <div className={classNames.sendCancelButtons}>
+            <div className={css.sendCancelButtons}>
               {!isSending &&
                 step === 1 &&
                 <Button type="primary" {...buttonProps}>
@@ -287,7 +287,7 @@ class FeedbackForm extends React.Component {
               {isSending &&
                 <Button
                   type="secondary"
-                  className={classNames.disabledButton}
+                  className={css.disabledButton}
                   live="assertive"
                 >
                   Sending…
@@ -306,23 +306,16 @@ class FeedbackForm extends React.Component {
         </AriaModal>
       : false;
     return (
-      <div className={classNames.feedbackComponent}>
-        <a
-          href="#"
-          className={classNames.feedbackButton}
-          onClick={this.openForm}
-        >
+      <div className={css.feedbackComponent}>
+        <a href="#" className={css.feedbackButton} onClick={this.openForm}>
           Feedback
         </a>
         <div
           role="dialog"
-          className={`${classNames.feedbackModal} ${modalActive
-            ? classNames.open
-            : ""}`}
+          className={`${css.feedbackModal} ${modalActive ? css.open : ""}`}
         >
           {modal}
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

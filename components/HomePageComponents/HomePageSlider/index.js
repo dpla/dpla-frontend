@@ -4,13 +4,14 @@ import Link from "next/link";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import { stylesheet, classNames } from "./HomePageSlider.css";
-import { classNames as breakpoints } from "css/breakpoints.css";
+import css from "./HomePageSlider.scss";
+import breakpoints from "stylesheets/_breakpoints.scss";
 
 const markdownit = require("markdown-it")({ html: true });
-const moreLinkChevron = "static/images/chevron-thick-orange.svg";
-const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
-const largeChevron = "static/images/chevron-thin.svg";
+
+const moreLinkChevron = "/static/images/chevron-thick-orange.svg";
+const moreLinkChevronBlue = "/static/images/chevron-thick-blue.svg";
+const largeChevron = "/static/images/chevron-thin.svg";
 
 const HomePageSlider = ({
   browseLinkName,
@@ -20,22 +21,18 @@ const HomePageSlider = ({
   title,
   theme
 }) =>
-  <div
-    className={`${classNames.wrapper} ${theme === "blue"
-      ? classNames.theme_blue
-      : ""} `}
-  >
-    <div className={`${classNames.content} site-max-width`}>
-      <div className={classNames.heading}>
-        <h2 className={classNames.title}>{title}</h2>
+  <div className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `}>
+    <div className={`${css.content} site-max-width`}>
+      <div className={css.heading}>
+        <h2 className={css.title}>{title}</h2>
         <Link prefetch href={browseLinkUrl}>
-          <a className={`hover-underline ${classNames.moreLink}`}>
+          <a className={`hover-underline ${css.moreLink}`}>
             Browse all{" "}
-            <span className={classNames.moreLinkNoun}>{browseLinkName}</span>
+            <span className={css.moreLinkNoun}>{browseLinkName}</span>
             <img
               alt="Browse exhibitions"
               aria-hidden="true"
-              className={classNames.moreLinkChevron}
+              className={css.moreLinkChevron}
               src={moreLinkChevron}
             />
           </a>
@@ -44,16 +41,8 @@ const HomePageSlider = ({
       <Slider
         slidesToShow={slidesToShow ? slidesToShow : 2.5}
         infinite={false}
-        nextArrow={
-          <NextArrow
-            className={`${classNames.arrow} ${classNames.nextArrow}`}
-          />
-        }
-        prevArrow={
-          <PrevArrow
-            className={`${classNames.arrow} ${classNames.prevArrow}`}
-          />
-        }
+        nextArrow={<NextArrow className={`${css.arrow} ${css.nextArrow}`} />}
+        prevArrow={<PrevArrow className={`${css.arrow} ${css.prevArrow}`} />}
         draggable={false}
         slidesToScroll={slidesToShow ? Math.floor(slidesToShow) : 2}
         responsive={[
@@ -72,10 +61,10 @@ const HomePageSlider = ({
           ({ name, repImageUrl, thumbnailUrl, isFeatured, href, as }, index) =>
             <div key={`${name}—${index}`}>
               <Link prefetch href={href} as={as}>
-                <a className={classNames.item}>
-                  <div className={classNames.itemImgWrapper}>
+                <a className={css.item}>
+                  <div className={css.itemImgWrapper}>
                     <div
-                      className={classNames.itemImg}
+                      className={css.itemImg}
                       style={{
                         backgroundImage: `url(${repImageUrl || thumbnailUrl})`
                       }}
@@ -85,7 +74,7 @@ const HomePageSlider = ({
                     dangerouslySetInnerHTML={{
                       __html: markdownit.renderInline(name)
                     }}
-                    className={classNames.itemText}
+                    className={css.itemText}
                   />
                 </a>
               </Link>

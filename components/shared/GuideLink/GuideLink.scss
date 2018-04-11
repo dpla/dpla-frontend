@@ -1,6 +1,6 @@
-@value colderBackgroundColor from "../../../css/colors.css";
-@value smallRem from "../../../css/breakpoints.css";
-@value monoFont, serifFont from "../../../css/typography.css";
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
 
 .itemColumn {
   margin-bottom: 1rem;
@@ -12,7 +12,7 @@
 }
 
 .itemLink {
-  background-color: colderBackgroundColor;
+  background-color: $colderBackgroundColor;
   border-radius: 0.3rem;
   padding: 3rem 2rem 2rem;
   width: 100%;
@@ -27,13 +27,13 @@
     text-decoration: underline;
   }
 
-  @media (min-width: smallRem) {
+  @media (min-width: $smallRem) {
     padding: 2rem 1.5rem;
   }
 }
 
 .itemHeader {
-  font-family: serifFont;
+  font-family: $serifFont;
   font-weight: normal;
   font-style: italic;
   font-size: 1.5rem;
