@@ -69,7 +69,7 @@ const HomePageSlider = ({
                     />
                   </div>
                   <ReactMarkdown
-                    className={classNames.itemText}
+                    className={css.itemText}
                     source={name}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed

@@ -51,10 +51,7 @@ const SetsList = ({ sets, route }) =>
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a
-                  className={`${classNames.title} hover-underline`}
-                  title={set.name}
-                >
+                <a className={`${css.title} hover-underline`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
                     allowedTypes={["emphasis"]}

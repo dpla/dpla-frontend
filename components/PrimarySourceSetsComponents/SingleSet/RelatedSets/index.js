@@ -51,7 +51,7 @@ const RelatedSets = ({ sets }) => {
                   />
                   <ReactMarkdown
                     source={set.name}
-                    className={classNames.title}
+                    className={css.title}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />

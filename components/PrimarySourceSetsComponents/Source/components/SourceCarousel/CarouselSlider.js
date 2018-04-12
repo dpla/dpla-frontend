@@ -66,7 +66,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
                 <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
               <ReactMarkdown
-                className={classNames.itemText}
+                className={css.itemText}
                 source={name}
                 allowedTypes={["emphasis"]}
                 unwrapDisallowed

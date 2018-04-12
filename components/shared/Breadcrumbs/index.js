@@ -11,24 +11,23 @@ const Breadcrumbs = ({ breadcrumbs }) =>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
-          <span className={classNames.breadcrumbLinkWrapper} key={`${idx}`}>
+          <div className={css.breadcrumbLinkWrapper} key={`${idx}`}>
             <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
               <a>
                 <ReactMarkdown
-                  className={`${classNames.breadcrumbLink}`}
+                  className={`${css.breadcrumbLink}`}
                   source={breadcrumb.title}
                   allowedTypes={["emphasis"]}
                   unwrapDisallowed
                 />
               </a>
             </Link>
-            <img alt="" src={chevron} className={css.chevron} />
-          </span>
+          </div>
         );
       } else {
         return (
           <ReactMarkdown
-            className={classNames.activeBreadcrumb}
+            className={css.activeBreadcrumb}
             source={breadcrumb.title}
             allowedTypes={["emphasis"]}
             unwrapDisallowed

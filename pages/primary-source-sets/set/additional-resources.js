@@ -39,7 +39,7 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
           aria-labelledby="tab-teachingguide"
         >
           <ReactMarkdown
-            className={`${contentClasses.content} ${utils.container}`}
+            className={`${contentCss.content} ${utils.container}`}
             source={set.hasPart.find(item => item.name === "Resources").text}
           />
         </div>

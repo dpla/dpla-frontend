@@ -116,19 +116,17 @@ class ContentAndMetadata extends React.Component {
       : false;
 
     return (
-      <div className={classNames.wrapper}>
-        <div
-          className={[classNames.contentAndMetadata, utils.container].join(" ")}
-        >
-          <h1 className={classNames.contentHeader}>
+      <div className={css.wrapper}>
+        <div className={[css.contentAndMetadata, utils.container].join(" ")}>
+          <h1 className={css.contentHeader}>
             <ReactMarkdown
               source={source.name}
               allowedTypes={["emphasis"]}
               unwrapDisallowed
             />
           </h1>
-          <div className={classNames.flexWrapper}>
-            <div className={classNames.contentWrapper}>
+          <div className={css.flexWrapper}>
+            <div className={css.contentWrapper}>
               <div
                 className={`${css.content} ${viewerComponent.type.name ===
                   "AudioPlayer"
@@ -140,9 +138,9 @@ class ContentAndMetadata extends React.Component {
               {source.text &&
                 <ReactMarkdown
                   id="dpla-description"
-                  className={`${classNames.description} ${descriptionIsLong
-                    ? classNames.longDescription
-                    : ""} ${this.state.isOpen ? classNames.open : ""}`}
+                  className={`${css.description} ${descriptionIsLong
+                    ? css.longDescription
+                    : ""} ${this.state.isOpen ? css.open : ""}`}
                   source={source.text.replace(/<br>/g, "\n\n")}
                   renderers={{
                     linkReference: reference => {
@@ -195,22 +193,22 @@ class ContentAndMetadata extends React.Component {
               </a> */}
                 {getSourceCitation(source, "credits") &&
                   <ReactMarkdown
-                    className={classNames.courtesyOf}
+                    className={css.courtesyOf}
                     source={joinIfArray(getSourceCitation(source, "credits"))}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
                   <ReactMarkdown
-                    className={classNames.courtesyOf}
+                    className={css.courtesyOf}
                     source={source.mainEntity[0]["dct:provenance"].name}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />}
                 {source.copyright &&
-                  <div className={classNames.copyrightInfo}>
+                  <div className={css.copyrightInfo}>
                     <ReactMarkdown
-                      className={classNames.copyrightText}
+                      className={css.copyrightText}
                       source={source.copyright}
                       allowedTypes={["emphasis"]}
                       unwrapDisallowed

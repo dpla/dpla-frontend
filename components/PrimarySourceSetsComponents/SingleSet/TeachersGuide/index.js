@@ -54,7 +54,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                     query: removeQueryParams(route.query, ["set"])
                   }}
                 >
-                  <a className={`link ${classNames.aboutThisLink}`}>
+                  <a className={`link ${css.aboutThisLink}`}>
                     <ReactMarkdown
                       source={teachingGuide.isPartOf.name}
                       allowedTypes={["emphasis"]}
@@ -77,17 +77,17 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             <h3 className={css.sidebarHeader}>Created By</h3>
             {teachingGuide.author.map((author, i) =>
               <ReactMarkdown
-                className={classNames.sidebarSection}
+                className={css.sidebarSection}
                 key={i}
                 source={author.name + ", " + author.affiliation.name}
                 allowedTypes={["emphasis"]}
                 unwrapDisallowed
               />
             )}
-            <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
-            <div className={classNames.tools}>
-              <div className={classNames.toolLinkAndIcon}>
-                <img src={printer} alt="" className={classNames.toolIcon} />
+            <h3 className={css.sidebarHeader}>Teacher Tools</h3>
+            <div className={css.tools}>
+              <div className={css.toolLinkAndIcon}>
+                <img src={printer} alt="" className={css.toolIcon} />
                 <a
                   onClick={printHandler}
                   className={`${css.toolLink} ${css.print}`}

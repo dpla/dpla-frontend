@@ -22,7 +22,11 @@ const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
 class SourceSetInfo extends React.Component {
-  state = { isOpen: false };
+  state = { isOpen: false, href: "" };
+
+  componentDidMount() {
+    this.setState({ isOpen: this.isOpen, href: window.location.href });
+  }
 
   componentWillReceiveProps() {
     this.setState({ isOpen: this.props.openDescription || false });
@@ -49,8 +53,8 @@ class SourceSetInfo extends React.Component {
                     backgroundPosition: "50% 25%"
                   }}
                 />
-                <div className={classNames.bannerTextWrapper}>
-                  <h1 className={classNames.bannerTitle}>
+                <div className={css.bannerTextWrapper}>
+                  <h1 className={css.bannerTitle}>
                     <ReactMarkdown
                       source={set.name}
                       allowedTypes={["emphasis"]}
@@ -62,7 +66,7 @@ class SourceSetInfo extends React.Component {
               <ReactMarkdown
                 id="dpla-description"
                 source={set.hasPart.find(item => item.name === "Overview").text}
-                className={`${classNames.description} sourceSetDescription ${classNames.description} ${this
+                className={`${css.description} sourceSetDescription ${css.description} ${this
                   .state.isOpen
                   ? css.open
                   : ""}`}
@@ -114,7 +118,7 @@ class SourceSetInfo extends React.Component {
                               }
                             }}
                           >
-                            <a className={`link ${classNames.link}`}>
+                            <a className={`link ${css.link}`}>
                               <ReactMarkdown
                                 source={period}
                                 allowedTypes={["emphasis"]}
@@ -126,8 +130,8 @@ class SourceSetInfo extends React.Component {
                       )}
                     </ul>
                   </div>
-                  <div className={classNames.metadatum}>
-                    <h2 className={classNames.metadataHeader}>Subjects</h2>
+                  <div className={css.metadatum}>
+                    <h2 className={css.metadataHeader}>Subjects</h2>
                     <ul>
                       {extractSubjects(set.about).map((subject, i, subjects) =>
                         <li key={subject}>
@@ -140,7 +144,7 @@ class SourceSetInfo extends React.Component {
                               }
                             }}
                           >
-                            <a className={`link ${classNames.link}`}>
+                            <a className={`link ${css.link}`}>
                               <ReactMarkdown
                                 source={subject}
                                 allowedTypes={["emphasis"]}
@@ -163,25 +167,26 @@ class SourceSetInfo extends React.Component {
                     title={set.name.replace(/\*/g, "")}
                   />
                 </div>
-                <div className={classNames.tools}>
-                  <div className={classNames.toolLinkAndIcon}>
-                    <img
-                      src={googleClassroom}
-                      alt=""
-                      className={classNames.toolIcon}
-                    />
-                    <a
-                      href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${window.location.href
-                        .replace("teaching-guide", "")
-                        .replace("additional-resources", "")}`}
-                      className={classNames.toolLink}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      Share to Google Classroom
-                    </a>
-                  </div>
-                </div>
+                {this.state.href !== "" &&
+                  <div className={css.tools}>
+                    <div className={css.toolLinkAndIcon}>
+                      <img
+                        src={googleClassroom}
+                        alt=""
+                        className={css.toolIcon}
+                      />
+                      <a
+                        href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${this.state.href
+                          .replace("teaching-guide", "")
+                          .replace("additional-resources", "")}`}
+                        className={css.toolLink}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        Share to Google Classroom
+                      </a>
+                    </div>
+                  </div>}
               </div>
             </div>
           </div>

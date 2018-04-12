@@ -33,7 +33,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               )
             }}
           >
-            <a className={`link ${classNames.linkToSourceSet}`}>
+            <a className={`link ${css.linkToSourceSet}`}>
               <ReactMarkdown
                 source={set.name}
                 allowedTypes={["emphasis"]}

@@ -40,7 +40,7 @@ const SourceSetSources = ({ route, sources }) =>
                   <img alt="" src={thumbnailUrl} className={css.image} />
                 </div>
                 <ReactMarkdown
-                  className={classNames.title}
+                  className={css.title}
                   source={name}
                   allowedTypes={["emphasis"]}
                   unwrapDisallowed

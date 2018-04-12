@@ -26,19 +26,36 @@
 }
 
 .breadcrumbLink {
-  display: inline-block;
+  display: block;
   max-width: 13.125rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
   @media (min-width: $smallRem) {
     font-size: 1rem;
   }
 }
 
 .breadcrumbLinkWrapper {
-  display: flex;
   align-items: center;
+  display: flex;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    background: url("/static/images/chevron-thick-orange.svg") no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 0.7rem;
+    position: relative;
+    top: 0;
+    padding: 0 0.7rem;
+
+    @media (min-width: $smallRem) {
+    }
+  }
 }
 
 .breadcrumbLink p, .activeBreadcrumb p {
@@ -46,20 +63,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
   @media (min-width: $xSmallRem) {
     max-width: 9rem;
   }
+
   @media (min-width: $smallRem) {
     max-width: 13.5rem;
-  }
-}
-
-.chevron {
-  height: 0.5rem;
-  position: relative;
-  top: 1px;
-  padding: 0 0.5rem;
-  @media (min-width: $smallRem) {
-    padding: 0 0.75rem;
   }
 }
