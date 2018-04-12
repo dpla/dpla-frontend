@@ -42,8 +42,13 @@
 
 .moreLink {
   color: $linkColor;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+
+  @media (min-width: $smallRem) {
+    font-size: 1.125rem;
+  }
 }
 
 .moreLinkNoun {
@@ -55,11 +60,11 @@
 }
 
 .moreLinkChevron {
-  width: 7px;
-  height: 13px;
+  height: 0.75rem;
+  padding-left: 0.25rem;
   position: relative;
-  top: 1px;
-  padding-left: 10px;
+  top: 0;
+  width: 0.5rem;
 }
 
 .title {

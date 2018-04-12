@@ -36,10 +36,7 @@ const RelatedSets = ({ sets }) => {
           ]}
         >
           {sets.map((set, index) =>
-            <div
-              key={`${set.name}-${index}`}
-              className="col-12 col-xs-6 col-md-3"
-            >
+            <div key={`${set.name}-${index}`} className={`${css.item}`}>
               <Link
                 prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(

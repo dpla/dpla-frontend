@@ -125,10 +125,12 @@
 }
 
 .nextItemButton, .previousItemButton {
-  width: 100%;
   font-size: 1rem;
-  padding: .75rem 0;
   font-weight: 600;
+  padding: .75rem 0;
+  white-space: nowrap;
+  width: 100%;
+
   @media (min-width: $smallRem) {
     padding: 0;
     width: auto;
@@ -138,6 +140,7 @@
 .nextItemButton, .nextItemButton:visited {
   background-color: $linkColor;
   color: white;
+
   @media (min-width: $smallRem) {
     background-color: transparent;
   }
