@@ -127,7 +127,7 @@ Vendor Overrides
   border-color: black transparent transparent;
   border-width: 7px 7px 1.5px;
   position: relative;
-  right: .25rem;
+  right: 0.25rem;
 }
 
 :global .Select.is-open :global .Select-arrow {
@@ -137,7 +137,7 @@ Vendor Overrides
 
 :global .Select-menu-outer {
   box-sizing: content-box;
-  box-shadow: 0 3px 10px 0px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.25);
   border: none;
 }
 
@@ -192,4 +192,3 @@ Vendor Overrides
   left: -8px;
   top: 7px;
 }
-

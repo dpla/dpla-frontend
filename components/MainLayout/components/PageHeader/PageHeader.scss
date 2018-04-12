@@ -72,13 +72,13 @@
 }
 
 .searchInput::placeholder {
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
   color: $secondaryButtonColor;
   opacity: 0.5;
 }
 
 .searchButton {
-  transition: background-color .2s ease-out;
+  transition: background-color 0.2s ease-out;
   background-color: $secondaryButtonColor;
   border-radius: 0 0.25rem 0.25rem 0;
   height: 100%;

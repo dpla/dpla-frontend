@@ -21,7 +21,7 @@
 .logo {
   width: 60%;
   max-width: 15rem;
-  margin: .5rem 1rem;
+  margin: 0.5rem 1rem;
   background: url("/static/images/dpla-logo-white.svg") 0/100% no-repeat;
   display: flex;
 
@@ -46,7 +46,7 @@
   background-color: $navColor;
 
   &.isOpen {
-    background-color: rgba(0, 0, 0, .15);
+    background-color: rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -83,7 +83,7 @@
 
   &::placeholder {
     color: white;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -110,7 +110,7 @@
   & a, & a:visited {
     color: white;
     display: block;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 }
 
@@ -119,15 +119,15 @@
 }
 
 .secondaryLinks {
-  opacity: .85;
+  opacity: 0.85;
 }
 
 .tertiaryLinks {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .secondaryLinks, .tertiaryLinks {
   margin-top: 1.5rem;
-  padding-top: .75rem;
-  border-top: .075rem solid rgba(255, 255, 255, 0.5);
+  padding-top: 0.75rem;
+  border-top: 0.075rem solid rgba(255, 255, 255, 0.5);
 }

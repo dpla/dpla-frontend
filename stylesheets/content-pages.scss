@@ -3,7 +3,7 @@
 @import "typography";
 
 :root {
-  --border-color: rgba(0, 0, 0, .75);
+  --border-color: rgba(0, 0, 0, 0.75);
 }
 
 .backgroundTint {
@@ -23,7 +23,7 @@
   height: 12rem;
   margin: 0 auto 1rem;
   max-width: 100%;
-  filter: grayscale(1) sepia(1) hue-rotate(160deg) brightness(1.0);
+  filter: grayscale(1) sepia(1) hue-rotate(160deg) brightness(1);
 
   @media (max-width: $mediumRem) {
     margin-bottom: 0;
@@ -156,7 +156,7 @@
   & li ul {
     margin-left: 1rem;
   }
-  
+
   & ol li, & ul li {
     list-style-type: none;
     position: relative;
@@ -265,9 +265,9 @@
   }
 
   & :global .wp-caption-text {
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
   }
 
@@ -395,7 +395,7 @@
   margin: 1rem auto;
   text-align: center;
   border-radius: 0.25rem;
-  transition: background-color .15s ease-out;
+  transition: background-color 0.15s ease-out;
 
   &:hover {
     background-color: $linkHoverColor;

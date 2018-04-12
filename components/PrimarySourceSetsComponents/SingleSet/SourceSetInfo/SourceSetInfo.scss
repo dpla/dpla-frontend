@@ -114,15 +114,15 @@
 .showMore {
   cursor: pointer;
   display: block;
-  padding: .25rem 0;
-  border-top: .075rem solid gray;
+  padding: 0.25rem 0;
+  border-top: 0.075rem solid gray;
 
   &.open {
     display: none;
   }
 
   @media (max-width: $mediumRem) {
-    padding: .25rem 1rem 1rem;
+    padding: 0.25rem 1rem 1rem;
     font-size: 0.9rem;
   }
 
@@ -173,7 +173,7 @@
 }
 
 .sidebar {
-  border: 1px solid #E7E7E7;
+  border: 1px solid #e7e7e7;
   background-color: white;
   padding: 1rem 1rem 1.5rem;
   margin: 0 1rem;

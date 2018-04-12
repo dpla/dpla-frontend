@@ -70,7 +70,7 @@
   color: $linkColor;
   font-weight: 600;
   font-size: 1rem;
-  margin-top: .25rem;
+  margin-top: 0.25rem;
   display: block;
 
   @media (min-width: $largeRem) {
@@ -83,8 +83,8 @@
 }
 
 .chevron {
-  height: .65rem;
-  margin-left: .5rem;
+  height: 0.65rem;
+  margin-left: 0.5rem;
 }
 
 .post:first-child {
@@ -116,14 +116,14 @@
   text-transform: uppercase;
 
   @media (min-width: $mediumRem) {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }
 
 .bodyText {
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 
   @media (min-width: $mediumRem) {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }

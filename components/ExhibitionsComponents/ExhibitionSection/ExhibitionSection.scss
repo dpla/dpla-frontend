@@ -31,7 +31,7 @@ $sidebarMargin: 1.25rem;
 .exhibitionTitle {
   font-family: $serifFont;
   font-weight: normal;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   font-size: 1.5rem;
   color: white;
 
@@ -76,7 +76,7 @@ $sidebarMargin: 1.25rem;
   align-items: center;
   margin-right: 0.75rem;
   border-radius: 0;
-  
+
   @media (min-width: $mediumRem) {
     display: none;
   }
@@ -122,17 +122,17 @@ $sidebarMargin: 1.25rem;
   display: block;
   max-height: 0;
   transition: all 0.2s ease-in-out;
-  
+
   & a:hover {
     text-decoration: underline;
   }
-  
+
   @media (max-width: $smallRem) {
     padding: 0 1rem;
     width: auto;
     visibility: hidden;
   }
-  
+
   &.overlayActive {
     max-height: 40rem;
     padding: 1rem;
@@ -144,7 +144,6 @@ $sidebarMargin: 1.25rem;
     }
   }
 }
-
 
 .sidebarSections {
   padding-bottom: 20px;
@@ -474,20 +473,20 @@ $sidebarMargin: 1.25rem;
   font-family: $serifFont;
 
   @media (min-width: $smallRem) {
-    font-size: .95rem;
+    font-size: 0.95rem;
     padding: 0;
   }
 
   & h1, & h2 {
     font-size: 1.25rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   & p {
-    margin-bottom: .875rem;
+    margin-bottom: 0.875rem;
 
     @media (min-width: $smallRem) {
-      margin-bottom: .95rem;
+      margin-bottom: 0.95rem;
     }
   }
 }
@@ -522,7 +521,7 @@ $sidebarMargin: 1.25rem;
   max-width: 90%;
   margin: 0 1rem 0.75rem;
   padding-left: 0.5rem;
-  border-left: 1px solid #DE630B;
+  border-left: 1px solid #de630b;
 
   @media (min-width: $smallRem) {
     margin: 0 0 0.75rem;
@@ -590,9 +589,9 @@ $sidebarMargin: 1.25rem;
   display: block;
   width: 0;
   height: 0;
-  border-left: .8rem solid transparent;
-  border-right: .8rem solid transparent;
-  border-bottom: .65rem solid $secondaryButtonColor;
+  border-left: 0.8rem solid transparent;
+  border-right: 0.8rem solid transparent;
+  border-bottom: 0.65rem solid $secondaryButtonColor;
   top: -0.8rem;
   left: 50%;
   transform: translateX(-50%);

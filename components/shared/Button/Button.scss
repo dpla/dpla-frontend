@@ -5,8 +5,8 @@
   font-weight: normal;
   border-radius: 2px;
   font-size: 1rem;
-  padding: .5rem 1rem;
-  transition: background-color .15s ease-out;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease-out;
   white-space: nowrap;
   display: inline-block;
   cursor: pointer;
@@ -52,7 +52,7 @@
   display: block;
   width: 100%;
   margin-bottom: 1rem;
-  padding: .75rem 2rem;
+  padding: 0.75rem 2rem;
 
   &.buttonLarge {
     font-size: 1rem;
@@ -73,7 +73,7 @@
 
 .buttonLarge {
   font-size: 1rem;
-  padding: .75rem 2rem;
+  padding: 0.75rem 2rem;
 
   @media (min-width: $mediumRem) {
     font-size: 1.25rem;
@@ -83,5 +83,5 @@
 
 .buttonMedium {
   font-size: 1rem;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
 }

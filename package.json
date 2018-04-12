@@ -91,11 +91,10 @@
     "test": "mocha"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,scss}": [
       "prettier --write",
       "git add"
-    ],
-    "*.scss": "stylelint --syntax=scss"
+    ]
   },
   "babel": {
     "presets": [

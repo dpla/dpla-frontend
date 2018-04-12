@@ -16,8 +16,8 @@
   }
 
   & :global .col-xs-6, & :global .col-md-4 {
-    padding-left: .1rem;
-    padding-right: .1rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
 
     @media (min-width: $mediumRem) {
       padding-left: 0.5rem;
@@ -27,7 +27,7 @@
 
   @media (min-width: $mediumRem) {
     padding: 0 1rem;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     margin-bottom: 2rem;
   }
 
@@ -39,7 +39,7 @@
 }
 
 .itemWrapper {
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   margin-bottom: 1rem;
   display: flex;
 
@@ -57,7 +57,7 @@
 }
 
 .itemContent {
-  padding: 0 .75rem .75rem;
+  padding: 0 0.75rem 0.75rem;
 
   @media (min-width: $smallRem) {
     padding: 0 1rem 1rem;
@@ -89,8 +89,8 @@
 }
 
 .timePeriod {
-  font-size: .875rem;
-  margin-top: .25rem;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 
   & a {
     color: $subLinkColor;
@@ -102,8 +102,8 @@
 }
 
 .tags {
-  font-size: .875rem;
-  margin-top: .25rem;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 
   & a {
     color: $subLinkColor;

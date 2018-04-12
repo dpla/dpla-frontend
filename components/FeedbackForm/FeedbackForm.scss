@@ -27,7 +27,7 @@
 
 .feedbackModal {
   display: none;
-  
+
   &.open {
     display: block;
     position: fixed;
@@ -54,7 +54,7 @@
   margin-left: -10rem;
   margin-top: -10rem;
   z-index: 999;
-  box-shadow: 0 0 20px rgba(0,0,0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   @media (max-width: $mediumRem) {
     top: 1rem;
@@ -78,7 +78,7 @@
     position: relative;
   }
 
-  & input[type=radio] {
+  & input[type="radio"] {
     position: absolute;
     opacity: 0;
     z-index: -1;
@@ -94,8 +94,8 @@
     cursor: pointer;
   }
 
-  & input[type=radio]:focus + label {
-    outline: .25rem solid $outlineColor;
+  & input[type="radio"]:focus + label {
+    outline: 0.25rem solid $outlineColor;
   }
 
   & label:before {
@@ -107,21 +107,21 @@
     top: 1rem;
     margin-left: -0.75rem;
     margin-top: -0.5rem;
-    width: 1.0rem;
-    height: 1.0rem;
+    width: 1rem;
+    height: 1rem;
     background-color: $radioButtonColor;
     border: 0.2rem solid white;
   }
 
-  & input[type=radio]:checked + label:before {
+  & input[type="radio"]:checked + label:before {
     background-color: $linkColor;
   }
 
-  & input[type=radio]:checked + label {
+  & input[type="radio"]:checked + label {
     background-color: $radioButtonColor;
   }
 
-  & input[type=email], & input[type=text] {
+  & input[type="email"], & input[type="text"] {
     width: 100%;
     border: 0.075rem solid $formLabelColor;
     padding: 0.5rem;
@@ -137,7 +137,6 @@
     padding: 0.5rem;
     border-radius: 0.25rem;
   }
-
 }
 
 .sendCancelButtons {
@@ -149,7 +148,6 @@
 .characterCount {
   margin: 0.25rem 0 1rem;
 }
-
 
 .thankYou {
   margin: 1rem 0;

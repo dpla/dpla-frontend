@@ -10,14 +10,14 @@
   left: -10000px;
   line-height: 2;
   overflow: hidden;
-  padding: .25rem .5rem .25rem;
+  padding: 0.25rem 0.5rem 0.25rem;
   position: absolute;
   top: 1rem;
   width: 1px;
   z-index: 1000;
 
   &:focus {
-    border: .5rem solid $linkColor;
+    border: 0.5rem solid $linkColor;
     height: auto;
     left: 1rem;
     outline: 0;

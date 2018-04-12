@@ -20,7 +20,7 @@
 }
 
 .tableHeading {
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   color: $dimmedTextColor;
   font-weight: 600;
@@ -35,7 +35,7 @@
   vertical-align: baseline;
   font-family: $serifFont;
   line-height: 1.25;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 
   @media (min-width: $smallRem) {
     margin-top: 0;
@@ -55,5 +55,5 @@
 }
 
 .mailToLink {
-  padding-bottom: .25rem;
+  padding-bottom: 0.25rem;
 }
