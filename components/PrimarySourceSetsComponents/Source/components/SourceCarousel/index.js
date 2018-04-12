@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import CarouselSlider from "./CarouselSlider";
 import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg";
@@ -11,7 +12,6 @@ import { classNames, stylesheet } from "./SourceCarousel.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
 const { container } = utilClassNames;
-const markdownit = require("markdown-it")({ html: true });
 const thickChevron = "/static/images/chevron-thick-orange.svg";
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
@@ -35,12 +35,13 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               )
             }}
           >
-            <a
-              dangerouslySetInnerHTML={{
-                __html: markdownit.renderInline(set.name)
-              }}
-              className={`link ${classNames.linkToSourceSet}`}
-            />
+            <a className={`link ${classNames.linkToSourceSet}`}>
+              <ReactMarkdown
+                source={set.name}
+                allowedTypes={["emphasis"]}
+                unwrapDisallowed
+              />
+            </a>
           </Link>
         </h2>
         <div className={classNames.prevAndNextButtons}>

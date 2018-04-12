@@ -1,13 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import { stylesheet, classNames } from "./HomePageSlider.css";
 import { classNames as breakpoints } from "css/breakpoints.css";
 
-const markdownit = require("markdown-it")({ html: true });
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
 const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
 const largeChevron = "static/images/chevron-thin.svg";
@@ -81,11 +81,11 @@ const HomePageSlider = ({
                       }}
                     />
                   </div>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(name)
-                    }}
+                  <ReactMarkdown
                     className={classNames.itemText}
+                    source={name}
+                    allowedTypes={["emphasis"]}
+                    unwrapDisallowed
                   />
                 </a>
               </Link>

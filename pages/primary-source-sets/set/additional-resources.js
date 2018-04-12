@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -18,7 +19,6 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
@@ -44,13 +44,9 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
           role="tabpanel"
           aria-labelledby="tab-teachingguide"
         >
-          <div
+          <ReactMarkdown
             className={`${contentClasses.content} ${container}`}
-            dangerouslySetInnerHTML={{
-              __html: markdownit.render(
-                set.hasPart.find(item => item.name === "Resources").text
-              )
-            }}
+            source={set.hasPart.find(item => item.name === "Resources").text}
           />
         </div>
       </div>

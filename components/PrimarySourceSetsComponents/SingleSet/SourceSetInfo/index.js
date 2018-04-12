@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import {
   mapTimePeriodNameToSlug,
@@ -11,7 +12,6 @@ import CiteButton from "components/shared/CiteButton";
 import { stylesheet, classNames } from "./SourceSetInfo.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 // Only the time period has a sameAs field
@@ -49,34 +49,22 @@ class SourceSetInfo extends React.Component {
                   }}
                 />
                 <div className={classNames.bannerTextWrapper}>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(set.name)
-                    }}
-                    className={classNames.bannerTitle}
-                  />
+                  <h1 className={classNames.bannerTitle}>
+                    <ReactMarkdown
+                      source={set.name}
+                      allowedTypes={["emphasis"]}
+                      unwrapDisallowed
+                    />
+                  </h1>
                 </div>
               </div>
-              <div
+              <ReactMarkdown
                 id="dpla-description"
+                source={set.hasPart.find(item => item.name === "Overview").text}
                 className={`${classNames.description} sourceSetDescription ${classNames.description} ${this
                   .state.isOpen
                   ? classNames.open
                   : ""}`}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    set.hasPart
-                      .find(item => item.name === "Overview")
-                      .text.replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sources\//g,
-                        "sources/"
-                      )
-                      .replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sets\//g,
-                        "/primary-source-sets/"
-                      )
-                  )
-                }}
               />
               <div
                 id="dpla-showmore"
@@ -101,13 +89,11 @@ class SourceSetInfo extends React.Component {
                       Created By
                     </h2>
                     {set.author.map(author =>
-                      <div
+                      <ReactMarkdown
                         key={author.name}
-                        dangerouslySetInnerHTML={{
-                          __html: markdownit.renderInline(
-                            author.name + ", " + author.affiliation.name
-                          )
-                        }}
+                        source={author.name + ", " + author.affiliation.name}
+                        allowedTypes={["emphasis"]}
+                        unwrapDisallowed
                       />
                     )}
                   </div>
@@ -115,51 +101,55 @@ class SourceSetInfo extends React.Component {
                     <h2 className={classNames.metadataHeader}>
                       Time Period
                     </h2>
-                    {extractTimePeriod(set.about).map((period, i, periods) =>
-                      <span key={period}>
-                        <Link
-                          prefetch
-                          href={{
-                            pathname: "/primary-source-sets",
-                            query: {
-                              timePeriod: mapTimePeriodNameToSlug(period)
-                            }
-                          }}
-                        >
-                          <a
-                            className={`link ${classNames.link}`}
-                            dangerouslySetInnerHTML={{
-                              __html: markdownit.renderInline(period)
+                    <ul>
+                      {extractTimePeriod(set.about).map((period, i, periods) =>
+                        <li key={period}>
+                          <Link
+                            prefetch
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                timePeriod: mapTimePeriodNameToSlug(period)
+                              }
                             }}
-                          />
-                        </Link>
-                        {i < periods.length - 1 && <br />}
-                      </span>
-                    )}
+                          >
+                            <a className={`link ${classNames.link}`}>
+                              <ReactMarkdown
+                                source={period}
+                                allowedTypes={["emphasis"]}
+                                unwrapDisallowed
+                              />
+                            </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
                   </div>
                   <div className={classNames.metadatum}>
                     <h2 className={classNames.metadataHeader}>Subjects</h2>
-                    {extractSubjects(set.about).map((subject, i, subjects) =>
-                      <span key={subject}>
-                        <Link
-                          prefetch
-                          href={{
-                            pathname: "/primary-source-sets",
-                            query: {
-                              subject: mapSubjectNameToSlug(subject)
-                            }
-                          }}
-                        >
-                          <a
-                            className={`link ${classNames.link}`}
-                            dangerouslySetInnerHTML={{
-                              __html: markdownit.renderInline(subject)
+                    <ul>
+                      {extractSubjects(set.about).map((subject, i, subjects) =>
+                        <li key={subject}>
+                          <Link
+                            prefetch
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                subject: mapSubjectNameToSlug(subject)
+                              }
                             }}
-                          />
-                        </Link>
-                        {i < subjects.length - 1 && <br />}
-                      </span>
-                    )}
+                          >
+                            <a className={`link ${classNames.link}`}>
+                              <ReactMarkdown
+                                source={subject}
+                                allowedTypes={["emphasis"]}
+                                unwrapDisallowed
+                              />
+                            </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
                   </div>
                 </div>
                 <div className={classNames.citeButton}>
