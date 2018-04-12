@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import {
   ZoomableImageViewer,
@@ -23,7 +24,6 @@ import { classNames, stylesheet } from "./ContentAndMetadata.css";
 
 import { classNames as utilClassNames } from "css/utils.css";
 
-const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
 const link = "/static/images/link.svg";
@@ -121,12 +121,13 @@ class ContentAndMetadata extends React.Component {
     return (
       <div className={classNames.wrapper}>
         <div className={[classNames.contentAndMetadata, container].join(" ")}>
-          <h1
-            dangerouslySetInnerHTML={{
-              __html: markdownit.renderInline(source.name)
-            }}
-            className={classNames.contentHeader}
-          />
+          <h1 className={classNames.contentHeader}>
+            <ReactMarkdown
+              source={source.name}
+              allowedTypes={["emphasis"]}
+              unwrapDisallowed
+            />
+          </h1>
           <div className={classNames.flexWrapper}>
             <div className={classNames.contentWrapper}>
               <div
@@ -138,15 +139,24 @@ class ContentAndMetadata extends React.Component {
                 {viewerComponent}
               </div>
               {source.text &&
-                <div
+                <ReactMarkdown
                   id="dpla-description"
                   className={`${classNames.description} ${descriptionIsLong
                     ? classNames.longDescription
                     : ""} ${this.state.isOpen ? classNames.open : ""}`}
-                  dangerouslySetInnerHTML={{
-                    __html: markdownit
-                      .render(source.text)
-                      .replace(/&lt;br&gt;/g, "<br>")
+                  source={source.text.replace(/<br>/g, "\n\n")}
+                  renderers={{
+                    linkReference: reference => {
+                      if (!reference.href) {
+                        return `[${reference.children[0]}]`;
+                      }
+
+                      return (
+                        <a href={reference.$ref}>
+                          {reference.children}
+                        </a>
+                      );
+                    }
                   }}
                 />}
               {descriptionIsLong &&
@@ -185,31 +195,26 @@ class ContentAndMetadata extends React.Component {
                 Download
               </a> */}
                 {getSourceCitation(source, "credits") &&
-                  <div
+                  <ReactMarkdown
                     className={classNames.courtesyOf}
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(
-                        joinIfArray(getSourceCitation(source, "credits"))
-                      )
-                    }}
+                    source={joinIfArray(getSourceCitation(source, "credits"))}
+                    allowedTypes={["emphasis"]}
+                    unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
-                  <div
+                  <ReactMarkdown
                     className={classNames.courtesyOf}
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(
-                        source.mainEntity[0]["dct:provenance"].name
-                      )
-                    }}
+                    source={source.mainEntity[0]["dct:provenance"].name}
+                    allowedTypes={["emphasis"]}
+                    unwrapDisallowed
                   />}
                 {source.copyright &&
                   <div className={classNames.copyrightInfo}>
-                    <img src="" alt="" className={classNames.copyrightIcon} />
-                    <p
+                    <ReactMarkdown
                       className={classNames.copyrightText}
-                      dangerouslySetInnerHTML={{
-                        __html: markdownit.renderInline(source.copyright)
-                      }}
+                      source={source.copyright}
+                      allowedTypes={["emphasis"]}
+                      unwrapDisallowed
                     />
                   </div>}
                 <div className={classNames.divider} />

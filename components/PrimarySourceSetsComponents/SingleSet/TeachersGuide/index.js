@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { classNames, stylesheet } from "./TeachersGuide.css";
@@ -9,7 +10,6 @@ import {
 } from "css/pages/content-pages-wysiwyg.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
@@ -28,23 +28,18 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <div className={classNames.content}>
             <div className={contentClasses.content}>
               <h3>Discussion questions</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    teachingGuide.hasPart.find(
-                      item => item.name === "Questions"
-                    ).text
-                  )
-                }}
+              <ReactMarkdown
+                source={
+                  teachingGuide.hasPart.find(item => item.name === "Questions")
+                    .text
+                }
               />
               <h3>Classroom activities</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    teachingGuide.hasPart.find(item => item.name === "Activity")
-                      .text
-                  )
-                }}
+              <ReactMarkdown
+                source={
+                  teachingGuide.hasPart.find(item => item.name === "Activity")
+                    .text
+                }
               />
             </div>
             <div className={classNames.aboutThis}>
@@ -62,12 +57,10 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   }}
                 >
                   <a className={`link ${classNames.aboutThisLink}`}>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: markdownit.renderInline(
-                          teachingGuide.isPartOf.name
-                        )
-                      }}
+                    <ReactMarkdown
+                      source={teachingGuide.isPartOf.name}
+                      allowedTypes={["emphasis"]}
+                      unwrapDisallowed
                     />
                   </a>
                 </Link>, in the classroom. It offers discussion questions,
@@ -90,14 +83,12 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           >
             <h3 className={classNames.sidebarHeader}>Created By</h3>
             {teachingGuide.author.map((author, i) =>
-              <div
+              <ReactMarkdown
                 className={classNames.sidebarSection}
                 key={i}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.renderInline(
-                    author.name + ", " + author.affiliation.name
-                  )
-                }}
+                source={author.name + ", " + author.affiliation.name}
+                allowedTypes={["emphasis"]}
+                unwrapDisallowed
               />
             )}
             <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>

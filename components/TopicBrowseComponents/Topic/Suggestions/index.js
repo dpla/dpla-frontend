@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
+import ReactMarkdown from "react-markdown";
 
 import { classNames, stylesheet } from "./Suggestions.css";
 import { classNames as utilClassNames } from "css/utils.css";
@@ -67,9 +68,11 @@ const Suggestions = ({ suggestions }) =>
                       <p className={classNames.resourceType}>
                         {suggestion.type}
                       </p>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: suggestion.title }}
+                      <ReactMarkdown
                         className={classNames.suggestionTitle}
+                        source={suggestion.title}
+                        allowedTypes={["emphasis"]}
+                        unwrapDisallowed
                       />
                     </div>
                   </div>

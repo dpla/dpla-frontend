@@ -1,5 +1,5 @@
 import React from "react";
-const markdownit = require("markdown-it")({ html: true });
+import ReactMarkdown from "react-markdown";
 
 import Link from "next/link";
 
@@ -45,11 +45,11 @@ const SourceSetSources = ({ route, sources }) =>
                 >
                   <img alt="" src={thumbnailUrl} className={classNames.image} />
                 </div>
-                <div
+                <ReactMarkdown
                   className={classNames.title}
-                  dangerouslySetInnerHTML={{
-                    __html: markdownit.renderInline(name)
-                  }}
+                  source={name}
+                  allowedTypes={["emphasis"]}
+                  unwrapDisallowed
                 />
               </a>
             </Link>

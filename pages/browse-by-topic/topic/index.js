@@ -16,7 +16,6 @@ import {
   FILES_ENDPOINT
 } from "constants/exhibitions";
 import { getCurrentUrl } from "utilFunctions";
-const markdownit = require("markdown-it")({ html: true });
 
 const sanitizeSourceSetId = id => {
   let sanitized = id.replace(" ", "");
@@ -117,7 +116,7 @@ Topic.getInitialProps = async ({ query, req }) => {
             const sourceSetJson = await sourceSetRes.json();
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
             return {
-              title: markdownit.renderInline(sourceSetJson.name),
+              title: sourceSetJson.name,
               thumbnailUrl: sourceSetJson.thumbnailUrl,
               as: `/primary-source-sets/${slug}`,
               href: `/primary-source-sets/set?set=${slug}`,

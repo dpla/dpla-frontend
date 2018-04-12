@@ -9,8 +9,6 @@ import { UNTITLED_TEXT } from "constants/site";
 import { stylesheet, classNames } from "./BreadcrumbsModule.css";
 import { classNames as utilClassNames } from "css/utils.css";
 
-const markdownit = require("markdown-it")({ html: true });
-
 const { container } = utilClassNames;
 const chevron = "/static/images/chevron-thick-orange.svg";
 
@@ -105,9 +103,7 @@ const BreadcrumbsModule = ({
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: breadcrumb.title
-              ? markdownit.renderInline(breadcrumb.title)
-              : UNTITLED_TEXT
+            title: breadcrumb.title ? breadcrumb.title : UNTITLED_TEXT
           })
         )}
       />
