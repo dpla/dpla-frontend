@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
-import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { classNames, stylesheet } from "./TeachersGuide.css";
 import {
   classNames as contentClasses,
@@ -14,7 +13,6 @@ const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
-const googleClassroom = "/static/images/google-classroom.svg";
 
 const printHandler = () => window.print();
 
@@ -104,23 +102,6 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             )}
             <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
             <div className={classNames.tools}>
-              <div className={classNames.toolLinkAndIcon}>
-                <img
-                  src={googleClassroom}
-                  alt=""
-                  className={classNames.toolIcon}
-                />
-                <a
-                  href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
-                    ? currentPath
-                    : window.location.href.replace("teaching-guide", "")}`}
-                  className={classNames.toolLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Share to Google Classroom
-                </a>
-              </div>
               <div className={classNames.toolLinkAndIcon}>
                 <img src={printer} alt="" className={classNames.toolIcon} />
                 <a
