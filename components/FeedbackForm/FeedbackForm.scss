@@ -13,6 +13,10 @@
   border: 0.125rem solid white;
   border-radius: 0.25rem;
 
+  @media print {
+    display: none;
+  }
+
   &:hover {
     color: $linkColor;
     background-color: white;
