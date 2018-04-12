@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import Link from "next/link";
 
@@ -6,8 +7,6 @@ import { removeQueryParams, extractSourceId } from "utilFunctions";
 
 import utils from "stylesheets/utils.scss";
 import css from "./SourceSetSources.scss";
-
-const markdownit = require("markdown-it")({ html: true });
 
 const SourceSetSources = ({ route, sources }) =>
   <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>
@@ -40,11 +39,11 @@ const SourceSetSources = ({ route, sources }) =>
                 >
                   <img alt="" src={thumbnailUrl} className={css.image} />
                 </div>
-                <div
-                  className={css.title}
-                  dangerouslySetInnerHTML={{
-                    __html: markdownit.renderInline(name)
-                  }}
+                <ReactMarkdown
+                  className={classNames.title}
+                  source={name}
+                  allowedTypes={["emphasis"]}
+                  unwrapDisallowed
                 />
               </a>
             </Link>

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import { extractSourceSetSlug, removeQueryParams } from "utilFunctions/";
 import {
@@ -8,8 +9,6 @@ import {
 } from "constants/primarySourceSets";
 
 import css from "./SetsList.scss";
-
-const markdownit = require("markdown-it")({ html: true });
 
 const SetsList = ({ sets, route }) =>
   <div className={`${css.setsWrapper} site-max-width`}>
@@ -52,11 +51,14 @@ const SetsList = ({ sets, route }) =>
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a className={`${css.title} hover-underline`} title={set.name}>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(set.name)
-                    }}
+                <a
+                  className={`${classNames.title} hover-underline`}
+                  title={set.name}
+                >
+                  <ReactMarkdown
+                    source={set.name}
+                    allowedTypes={["emphasis"]}
+                    unwrapDisallowed
                   />
                 </a>
               </Link>

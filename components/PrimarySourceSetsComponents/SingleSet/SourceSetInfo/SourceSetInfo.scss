@@ -2,6 +2,35 @@
 @import "stylesheets/breakpoints";
 @import "stylesheets/typography";
 
+.tools {
+  margin: 1rem 0 0;
+  @media print {
+    display: none;
+  }
+}
+
+.toolLink {
+  color: subLinkColor;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+.toolIcon {
+  opacity: 0.4;
+  height: 22px;
+  width: 22px;
+  margin-right: 13px;
+  position: relative;
+  top: 8px;
+}
+
+.toolLinkAndIcon {
+  margin-bottom: 3px;
+}
+
 .wrapper {
   width: 100%;
   background-color: $warmerBackgroundColor;

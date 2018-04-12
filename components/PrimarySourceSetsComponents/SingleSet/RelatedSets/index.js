@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
+import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
@@ -8,8 +9,6 @@ import { extractSourceSetSlug } from "utilFunctions/";
 
 import utils from "stylesheets/utils.scss";
 import css from "./RelatedSets.scss";
-
-const markdownit = require("markdown-it")({ html: true });
 
 const RelatedSets = ({ sets }) => {
   return (
@@ -50,11 +49,11 @@ const RelatedSets = ({ sets }) => {
                     src={set.repImageUrl || set.thumbnailUrl}
                     className={css.setImage}
                   />
-                  <p
-                    className={css.title}
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(set.name)
-                    }}
+                  <ReactMarkdown
+                    source={set.name}
+                    className={classNames.title}
+                    allowedTypes={["emphasis"]}
+                    unwrapDisallowed
                   />
                 </a>
               </Link>

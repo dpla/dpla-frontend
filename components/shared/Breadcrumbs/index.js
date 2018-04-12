@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import css from "./Breadcrumbs.scss";
 
@@ -10,25 +11,28 @@ const Breadcrumbs = ({ breadcrumbs }) =>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
-          <span
-            className={css.breadcrumbLinkWrapper}
-            key={`${breadcrumb.title}-${idx}`}
-          >
+          <span className={classNames.breadcrumbLinkWrapper} key={`${idx}`}>
             <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
-              <a
-                dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
-                className={`link ${css.breadcrumbLink}`}
-              />
+              <a>
+                <ReactMarkdown
+                  className={`${classNames.breadcrumbLink}`}
+                  source={breadcrumb.title}
+                  allowedTypes={["emphasis"]}
+                  unwrapDisallowed
+                />
+              </a>
             </Link>
             <img alt="" src={chevron} className={css.chevron} />
           </span>
         );
       } else {
         return (
-          <span
-            className={css.activeBreadcrumb}
-            dangerouslySetInnerHTML={{ __html: breadcrumb.title }}
-            key={`${breadcrumb.title}-${idx}`}
+          <ReactMarkdown
+            className={classNames.activeBreadcrumb}
+            source={breadcrumb.title}
+            allowedTypes={["emphasis"]}
+            unwrapDisallowed
+            key={`${idx}`}
           />
         );
       }

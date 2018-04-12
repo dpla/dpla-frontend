@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import {
   mapTimePeriodNameToSlug,
@@ -11,7 +12,8 @@ import CiteButton from "components/shared/CiteButton";
 import utils from "stylesheets/utils.scss";
 import css from "./SourceSetInfo.scss";
 
-const markdownit = require("markdown-it")({ html: true });
+import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
+const googleClassroom = "/static/images/google-classroom.svg";
 
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
@@ -47,35 +49,23 @@ class SourceSetInfo extends React.Component {
                     backgroundPosition: "50% 25%"
                   }}
                 />
-                <div className={css.bannerTextWrapper}>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: markdownit.renderInline(set.name)
-                    }}
-                    className={css.bannerTitle}
-                  />
+                <div className={classNames.bannerTextWrapper}>
+                  <h1 className={classNames.bannerTitle}>
+                    <ReactMarkdown
+                      source={set.name}
+                      allowedTypes={["emphasis"]}
+                      unwrapDisallowed
+                    />
+                  </h1>
                 </div>
               </div>
-              <div
+              <ReactMarkdown
                 id="dpla-description"
-                className={`${css.description} sourceSetDescription ${css.description} ${this
+                source={set.hasPart.find(item => item.name === "Overview").text}
+                className={`${classNames.description} sourceSetDescription ${classNames.description} ${this
                   .state.isOpen
                   ? css.open
                   : ""}`}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    set.hasPart
-                      .find(item => item.name === "Overview")
-                      .text.replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sources\//g,
-                        "sources/"
-                      )
-                      .replace(
-                        /https?:\/\/.*?\/primary-source-sets\/sets\//g,
-                        "/primary-source-sets/"
-                      )
-                  )
-                }}
               />
               <div
                 id="dpla-showmore"
@@ -100,13 +90,11 @@ class SourceSetInfo extends React.Component {
                       Created By
                     </h2>
                     {set.author.map(author =>
-                      <div
+                      <ReactMarkdown
                         key={author.name}
-                        dangerouslySetInnerHTML={{
-                          __html: markdownit.renderInline(
-                            author.name + ", " + author.affiliation.name
-                          )
-                        }}
+                        source={author.name + ", " + author.affiliation.name}
+                        allowedTypes={["emphasis"]}
+                        unwrapDisallowed
                       />
                     )}
                   </div>
@@ -114,51 +102,55 @@ class SourceSetInfo extends React.Component {
                     <h2 className={css.metadataHeader}>
                       Time Period
                     </h2>
-                    {extractTimePeriod(set.about).map((period, i, periods) =>
-                      <span key={period}>
-                        <Link
-                          prefetch
-                          href={{
-                            pathname: "/primary-source-sets",
-                            query: {
-                              timePeriod: mapTimePeriodNameToSlug(period)
-                            }
-                          }}
-                        >
-                          <a
-                            className={`link ${css.link}`}
-                            dangerouslySetInnerHTML={{
-                              __html: markdownit.renderInline(period)
+                    <ul>
+                      {extractTimePeriod(set.about).map((period, i, periods) =>
+                        <li key={period}>
+                          <Link
+                            prefetch
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                timePeriod: mapTimePeriodNameToSlug(period)
+                              }
                             }}
-                          />
-                        </Link>
-                        {i < periods.length - 1 && <br />}
-                      </span>
-                    )}
+                          >
+                            <a className={`link ${classNames.link}`}>
+                              <ReactMarkdown
+                                source={period}
+                                allowedTypes={["emphasis"]}
+                                unwrapDisallowed
+                              />
+                            </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
                   </div>
-                  <div className={css.metadatum}>
-                    <h2 className={css.metadataHeader}>Subjects</h2>
-                    {extractSubjects(set.about).map((subject, i, subjects) =>
-                      <span key={subject}>
-                        <Link
-                          prefetch
-                          href={{
-                            pathname: "/primary-source-sets",
-                            query: {
-                              subject: mapSubjectNameToSlug(subject)
-                            }
-                          }}
-                        >
-                          <a
-                            className={`link ${css.link}`}
-                            dangerouslySetInnerHTML={{
-                              __html: markdownit.renderInline(subject)
+                  <div className={classNames.metadatum}>
+                    <h2 className={classNames.metadataHeader}>Subjects</h2>
+                    <ul>
+                      {extractSubjects(set.about).map((subject, i, subjects) =>
+                        <li key={subject}>
+                          <Link
+                            prefetch
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                subject: mapSubjectNameToSlug(subject)
+                              }
                             }}
-                          />
-                        </Link>
-                        {i < subjects.length - 1 && <br />}
-                      </span>
-                    )}
+                          >
+                            <a className={`link ${classNames.link}`}>
+                              <ReactMarkdown
+                                source={subject}
+                                allowedTypes={["emphasis"]}
+                                unwrapDisallowed
+                              />
+                            </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
                   </div>
                 </div>
                 <div className={css.citeButton}>
@@ -170,6 +162,25 @@ class SourceSetInfo extends React.Component {
                     toCiteText="set"
                     title={set.name.replace(/\*/g, "")}
                   />
+                </div>
+                <div className={classNames.tools}>
+                  <div className={classNames.toolLinkAndIcon}>
+                    <img
+                      src={googleClassroom}
+                      alt=""
+                      className={classNames.toolIcon}
+                    />
+                    <a
+                      href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${window.location.href
+                        .replace("teaching-guide", "")
+                        .replace("additional-resources", "")}`}
+                      className={classNames.toolLink}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Share to Google Classroom
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

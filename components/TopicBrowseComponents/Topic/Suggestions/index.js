@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
+import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
@@ -64,9 +65,11 @@ const Suggestions = ({ suggestions }) =>
                       <p className={css.resourceType}>
                         {suggestion.type}
                       </p>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: suggestion.title }}
-                        className={css.suggestionTitle}
+                      <ReactMarkdown
+                        className={classNames.suggestionTitle}
+                        source={suggestion.title}
+                        allowedTypes={["emphasis"]}
+                        unwrapDisallowed
                       />
                     </div>
                   </div>

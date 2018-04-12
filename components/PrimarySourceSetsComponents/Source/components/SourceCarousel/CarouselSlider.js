@@ -1,14 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceId, removeQueryParams } from "utilFunctions";
 
 import css from "./SourceCarousel.scss";
-
-const markdownit = require("markdown-it")({ html: true });
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   <div>
@@ -66,11 +65,11 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
               >
                 <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
-              <div
-                className={css.itemText}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.renderInline(name)
-                }}
+              <ReactMarkdown
+                className={classNames.itemText}
+                source={name}
+                allowedTypes={["emphasis"]}
+                unwrapDisallowed
               />
             </a>
           </Link>

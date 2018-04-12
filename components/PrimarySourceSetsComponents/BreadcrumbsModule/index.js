@@ -1,5 +1,4 @@
 import React from "react";
-const markdownit = require("markdown-it")({ html: true });
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
@@ -11,7 +10,7 @@ const BreadcrumbsModule = ({ route, breadcrumbs }) =>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: markdownit.renderInline(breadcrumb.title)
+            title: breadcrumb.title
           })
         )}
       />

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
@@ -8,11 +9,8 @@ import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 import css from "./TeachersGuide.scss";
 
-const markdownit = require("markdown-it")({ html: true });
-
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
-const googleClassroom = "/static/images/google-classroom.svg";
 
 const printHandler = () => window.print();
 
@@ -28,23 +26,18 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <div className={css.content}>
             <div className={contentCss.content}>
               <h3>Discussion questions</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    teachingGuide.hasPart.find(
-                      item => item.name === "Questions"
-                    ).text
-                  )
-                }}
+              <ReactMarkdown
+                source={
+                  teachingGuide.hasPart.find(item => item.name === "Questions")
+                    .text
+                }
               />
               <h3>Classroom activities</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.render(
-                    teachingGuide.hasPart.find(item => item.name === "Activity")
-                      .text
-                  )
-                }}
+              <ReactMarkdown
+                source={
+                  teachingGuide.hasPart.find(item => item.name === "Activity")
+                    .text
+                }
               />
             </div>
             <div className={css.aboutThis}>
@@ -61,13 +54,11 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                     query: removeQueryParams(route.query, ["set"])
                   }}
                 >
-                  <a className={`link ${css.aboutThisLink}`}>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: markdownit.renderInline(
-                          teachingGuide.isPartOf.name
-                        )
-                      }}
+                  <a className={`link ${classNames.aboutThisLink}`}>
+                    <ReactMarkdown
+                      source={teachingGuide.isPartOf.name}
+                      allowedTypes={["emphasis"]}
+                      unwrapDisallowed
                     />
                   </a>
                 </Link>, in the classroom. It offers discussion questions,
@@ -85,33 +76,18 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
           <div className={[css.teacherTools, css.sidebarSection].join(" ")}>
             <h3 className={css.sidebarHeader}>Created By</h3>
             {teachingGuide.author.map((author, i) =>
-              <div
-                className={css.sidebarSection}
+              <ReactMarkdown
+                className={classNames.sidebarSection}
                 key={i}
-                dangerouslySetInnerHTML={{
-                  __html: markdownit.renderInline(
-                    author.name + ", " + author.affiliation.name
-                  )
-                }}
+                source={author.name + ", " + author.affiliation.name}
+                allowedTypes={["emphasis"]}
+                unwrapDisallowed
               />
             )}
-            <h3 className={css.sidebarHeader}>Teacher Tools</h3>
-            <div className={css.tools}>
-              <div className={css.toolLinkAndIcon}>
-                <img src={googleClassroom} alt="" className={css.toolIcon} />
-                <a
-                  href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${currentPath
-                    ? currentPath
-                    : window.location.href.replace("teaching-guide", "")}`}
-                  className={css.toolLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Share to Google Classroom
-                </a>
-              </div>
-              <div className={css.toolLinkAndIcon}>
-                <img src={printer} alt="" className={css.toolIcon} />
+            <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
+            <div className={classNames.tools}>
+              <div className={classNames.toolLinkAndIcon}>
+                <img src={printer} alt="" className={classNames.toolIcon} />
                 <a
                   onClick={printHandler}
                   className={`${css.toolLink} ${css.print}`}

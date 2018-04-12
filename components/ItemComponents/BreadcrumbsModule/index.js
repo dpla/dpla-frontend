@@ -9,8 +9,6 @@ import { UNTITLED_TEXT } from "constants/site";
 import utils from "stylesheets/utils.scss";
 import css from "./BreadcrumbsModule.scss";
 
-const markdownit = require("markdown-it")({ html: true });
-
 const chevron = "/static/images/chevron-thick-orange.svg";
 
 // const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
@@ -104,9 +102,7 @@ const BreadcrumbsModule = ({
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
-            title: breadcrumb.title
-              ? markdownit.renderInline(breadcrumb.title)
-              : UNTITLED_TEXT
+            title: breadcrumb.title ? breadcrumb.title : UNTITLED_TEXT
           })
         )}
       />

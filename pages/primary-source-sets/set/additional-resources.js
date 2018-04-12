@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -13,8 +14,6 @@ import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
-
-const markdownit = require("markdown-it")({ html: true });
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
@@ -39,13 +38,9 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
           role="tabpanel"
           aria-labelledby="tab-teachingguide"
         >
-          <div
-            className={`${contentCss.content} ${utils.container}`}
-            dangerouslySetInnerHTML={{
-              __html: markdownit.render(
-                set.hasPart.find(item => item.name === "Resources").text
-              )
-            }}
+          <ReactMarkdown
+            className={`${contentClasses.content} ${utils.container}`}
+            source={set.hasPart.find(item => item.name === "Resources").text}
           />
         </div>
       </div>
