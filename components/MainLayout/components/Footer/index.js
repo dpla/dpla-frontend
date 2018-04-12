@@ -11,7 +11,6 @@ import { classNames, stylesheet } from "./Footer.css";
 const logo = "/static/images/dpla-logo.svg";
 const fbIcon = "/static/images/facebook.svg";
 const igIcon = "/static/images/instagram.svg";
-const rssIcon = "/static/images/rss.svg";
 const tumblrIcon = "/static/images/tumblr.svg";
 const twitterIcon = "/static/images/twitter.svg";
 
@@ -47,18 +46,6 @@ const Footer = () =>
               className={classNames.socialButton}
               alt="Instagram"
               src={igIcon}
-            />
-          </a>
-          <a
-            href="https://dp.la/info/feed/"
-            title="RSS Feed"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              className={classNames.socialButton}
-              alt="RSS Feed"
-              src={rssIcon}
             />
           </a>
           <a
