@@ -14,6 +14,9 @@ import { classNames as utilClassNames } from "css/utils.css";
 const markdownit = require("markdown-it")({ html: true });
 const { container } = utilClassNames;
 
+import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
+const googleClassroom = "/static/images/google-classroom.svg";
+
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
   tags.filter(tag => tag.sameAs).map(tag => tag.name);
@@ -171,6 +174,25 @@ class SourceSetInfo extends React.Component {
                     toCiteText="set"
                     title={set.name.replace(/\*/g, "")}
                   />
+                </div>
+                <div className={classNames.tools}>
+                  <div className={classNames.toolLinkAndIcon}>
+                    <img
+                      src={googleClassroom}
+                      alt=""
+                      className={classNames.toolIcon}
+                    />
+                    <a
+                      href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${window.location.href
+                        .replace("teaching-guide", "")
+                        .replace("additional-resources", "")}`}
+                      className={classNames.toolLink}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Share to Google Classroom
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
