@@ -84,6 +84,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "dev": "yarn && node server.js",
     "clean": "rm -rf .next ./build ./coverage ./node_modules",
     "build": "yarn && NODE_ENV=production next build",
@@ -94,6 +95,12 @@
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "cross-env ANALYZE=1 next build",
     "test": "mocha"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "babel": {
     "presets": [
