@@ -91,7 +91,7 @@
     "test": "mocha"
   },
   "lint-staged": {
-    "*.{js|scss}": [
+    "*.{js,scss}": [
       "prettier --write",
       "git add"
     ]
