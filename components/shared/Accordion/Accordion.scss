@@ -1,0 +1,64 @@
+@import "stylesheets/colors";
+
+.subitems {
+  height: auto;
+  background-color: $warmerBackgroundColor;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.7rem 0.7rem;
+  max-height: 18rem;
+  overflow-y: scroll;
+  transition: all 0.2s ease-in-out;
+
+  &.date {
+    overflow-y: auto;
+  }
+}
+
+.inactive .subitems {
+  visibility: hidden;
+  padding: 0 0.7rem;
+  max-height: 0;
+}
+
+.inactive, .active {
+  position: relative;
+}
+
+.active {
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.08);
+}
+
+.itemHeader {
+  background-color: $warmerBackgroundColor;
+  line-height: 1.1875;
+  padding: 10px 13px 10px 11px;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & h3 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+}
+
+.inactive:last-of-type .itemHeader {
+  border-bottom: none;
+}
+
+.addIcon, .subtractIcon {
+  flex-shrink: 1;
+}
+
+.addIcon {
+  height: 12px;
+  width: 12px;
+}
+
+.subtractIcon {
+  height: 3px;
+  width: 15px;
+}

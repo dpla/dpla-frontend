@@ -1,0 +1,27 @@
+@import "stylesheets/colors";
+
+.skipLink a {
+  background-color: white;
+  border: 0;
+  color: linkColor;
+  display: block;
+  font-size: 1rem;
+  height: 1px;
+  left: -10000px;
+  line-height: 2;
+  overflow: hidden;
+  padding: .25rem .5rem .25rem;
+  position: absolute;
+  top: 1rem;
+  width: 1px;
+  z-index: 1000;
+
+  &:focus {
+    border: .5rem solid $linkColor;
+    height: auto;
+    left: 1rem;
+    outline: 0;
+    overflow: visible;
+    width: auto;
+  }
+}

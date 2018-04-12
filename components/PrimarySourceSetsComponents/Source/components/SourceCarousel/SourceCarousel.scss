@@ -1,0 +1,221 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.wrapper {
+  padding: 0.75rem 0 0 0;
+
+  @media (min-width: $smallRem) {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    background-color: $warmerBackgroundColor;
+  }
+}
+
+.sourceCarousel {
+  padding-right: 0;
+  padding-left: 0;
+  /* overrides for react-slick css*/
+  & :global .slick-prev:before, & :global .slick-next:before {
+    content: none;
+  }
+  & :global .slick-disabled, & :global .slick-next, & :global .slick-prev {
+    display: none;
+  }
+  @media (min-width: $smallRem) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    & :global .slick-next, & :global .slick-prev {
+      display: block;
+    }
+  }
+  & :global .slick-disabled {
+    display: none;
+  }
+}
+
+:global .slick-list {
+  display: none;
+  @media (min-width: $smallRem) {
+    display: block;
+  }
+}
+
+.headerAndNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: column;
+  @media (min-width: $smallRem) {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: $smallRem) {
+  .headerAndNav {
+    flex-direction: row;
+  }
+}
+
+.header {
+  font-size: 0.875rem;
+  font-weight: normal;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  @media (min-width: $smallRem) {
+    font-weight: 600;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1rem;
+  }
+}
+
+.items {
+  display: flex;
+}
+
+.item:last-child {
+  margin-right: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  position: relative;
+}
+
+.itemText {
+  font-size: 0.875rem;
+  line-height: 1.0625;
+  padding: 0 0.25rem;
+  width: 100%;
+}
+
+.itemImgWrapper {
+  align-items: center;
+  background-color: white;
+  border: 0.3rem solid transparent;
+  display: flex;
+  height: 10rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+
+.itemImg {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.currentItemImgWrapper {
+  border: 0.3rem solid $secondaryButtonColor;
+}
+
+.prevAndNextButtons {
+  display: flex;
+  text-align: center;
+  margin-top: 0.75rem;
+  justify-content: flex-end;
+  width: 100%;
+  @media (min-width: $smallRem) {
+    width: auto;
+  }
+}
+
+.nextItemButton, .previousItemButton {
+  width: 100%;
+  font-size: 1rem;
+  padding: .75rem 0;
+  font-weight: 600;
+  @media (min-width: $smallRem) {
+    padding: 0;
+    width: auto;
+  }
+}
+
+.nextItemButton, .nextItemButton:visited {
+  background-color: $linkColor;
+  color: white;
+  @media (min-width: $smallRem) {
+    background-color: transparent;
+  }
+  @media (min-width: $smallRem) {
+    color: $linkColor;
+  }
+}
+
+.previousItemButton, .previousItemButton:visited {
+  color: black;
+  background-color: #E3E0DA;
+  @media (min-width: $smallRem) {
+    margin-right: 1rem;
+    color: $linkColor;
+    background-color: transparent;
+  }
+}
+
+.disabledNextOrPrevButton {
+  cursor: not-allowed;
+  @media (min-width: $smallRem) {
+    display: none;
+  }
+}
+
+.thickChevron {
+  height: 13px;
+  padding-left: 10px;
+  position: relative;
+  top: 1px;
+  width: 7px;
+
+  & path {
+    fill: white;
+  }
+
+  @media (min-width: $smallRem) {
+    & path {
+      fill: $linkColor;
+    }
+  }
+
+  &.flippedH {
+    transform: scaleX(-1);
+
+    & path {
+      fill: black;
+    }
+
+    @media (min-width: $smallRem) {
+      & path {
+        fill: $linkColor;
+      }
+    }
+  }
+}
+
+.linkToSourceSet {
+  display: inline-block;
+}
+
+/* react-slick style overrides */
+
+.sourceCarousel :global(.slick-list) {
+  padding: 0 6px;
+}
+
+.defaultImageWrapper {
+  align-items: center;
+  background-color: $warmerBackgroundColor;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  display: flex;
+  justify-content: center;
+
+  & img {
+    min-height: auto;
+    min-width: auto;
+  }
+}

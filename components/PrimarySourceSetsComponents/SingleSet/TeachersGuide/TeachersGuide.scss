@@ -1,0 +1,150 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.wrapper {
+  width: 100%;
+}
+
+.teachingGuide {
+  /*flex-direction: column-reverse;
+
+  @media (min-width: $mediumRem) {
+    flex-direction: row;
+  }*/
+}
+
+.print {
+  cursor: pointer;
+}
+
+.content {
+  @media (min-width: $mediumRem) {
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: $largeRem) {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  @media print {
+    margin-top: 0;
+  }
+}
+
+.sidebar {
+  font-size: 0.875rem;
+  line-height: 1.125;
+  margin-top: 1rem;
+
+  @media (min-width: $smallRem) {
+    margin-top: 2rem;
+  }
+}
+
+.sidebarHeader {
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sidebarSection {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.teacherTools {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.teacherTools .sidebarHeader {
+  margin-bottom: 10px;
+}
+
+.toolLink {
+  color: $subLinkColor;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+.toolIcon {
+  opacity: 0.4;
+  height: 22px;
+  width: 22px;
+  margin-right: 13px;
+  position: relative;
+  top: 8px;
+}
+
+.toolLinkAndIcon {
+  margin-bottom: 3px;
+}
+
+.toolLinkAndIcon:last-of-type {
+  margin-bottom: 17px;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.ul {
+  list-style: initial;
+  margin-bottom: 0.6rem;
+}
+
+.aboutThis {
+  font-size: 0.875rem;
+  margin-top: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: $warmerBackgroundColor;
+  padding: 18px 20px 20px;
+  margin-bottom: 1rem;
+}
+
+.tools {
+  @media print {
+    display: none;
+  }
+}
+
+.aboutThisHeader {
+  font-family: $serifFont;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+}
+
+.aboutThisLink {
+  display: inline-block;
+}
+
+.additionalToolWrapper {
+  margin-bottom: 0.5rem;
+}
+
+/* things to hide in print view only in teachers guide */
+:global .sourceSetSidebar {
+  @media print {
+    display: none;
+  }
+}
+
+:global .sourceSetDescription {
+  @media print {
+    display: none;
+  }
+}
+
+:global .sourceSetTabsWrapper {
+  @media print {
+    display: none;
+  }
+}

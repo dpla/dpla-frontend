@@ -1,0 +1,93 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.pageWrapper {
+  background-color: $warmerBackgroundColor;
+}
+
+.pageHero {
+  background-color: $memberColor;
+  color: white;
+  text-align: center;
+  padding: 1rem 0 2rem;
+
+  & h1 {
+    font-family: $serifFont;
+    font-size: 3rem;
+    font-weight: normal;
+  }
+
+  &.withFeature {
+    margin-bottom: -5rem;
+    padding-bottom: 7rem; /* adds 5rem to allow for overlapping feature */
+  }
+}
+
+.icon {
+  fill: white;
+}
+
+.sectionWrapper {
+  margin: 0 auto;
+}
+
+.sectionList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-gap: 1rem;
+  padding: 2rem 0;
+
+  @media (max-width: $largeRem) {
+    padding: 1rem 1rem 2rem;
+  }
+}
+
+.section {
+  background-color: white;
+  border-top: 0.4rem solid $memberColor;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.sectionTitle {
+  font-family: $serifFont;
+  font-weight: normal;
+  font-size: 1.5rem;
+
+  & a {
+    color: black;
+  }
+}
+
+.sectionText {
+  margin: 0.5rem 0;
+  color: $dimmedTextColor;
+  font-size: 1.125rem;
+}
+
+.sectionQuicklinks {
+  margin: 2rem 0 0 1rem;
+  font-size: 1.125rem;
+  position: relative;
+}
+
+.sectionQuicklink {
+}
+
+.sectionQuicklink {
+  position: relative;
+}
+
+.sectionQuicklink::before {
+  position: absolute;
+  left: -3rem;
+  width: 3rem;
+  padding-right: 0.25rem;
+  text-align: right;
+  color: $primaryBulletColor;
+  box-sizing: border-box;
+}
+
+.sectionQuicklink::before {
+  content: "\2022";
+}

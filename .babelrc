@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "next/babel"],
+  "plugins": [
+    "inline-react-svg",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "css": "./css",
+          "static": "./static",
+          "utilFunctions": "./utilFunctions",
+          "shared": "./components/shared",
+          "constants": "./constants",
+          "stylesheets": "./stylesheets",
+          "components": "./components"
+        }
+      }
+    ]
+  ]
+}

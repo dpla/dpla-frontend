@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "react-app",
+    "prettier",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
