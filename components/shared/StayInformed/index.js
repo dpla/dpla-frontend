@@ -55,7 +55,6 @@ class StayInformed extends React.Component {
       body: body
     });
     const data = await res.text();
-    console.log(data);
 
     this.setState({
       isSending: false,

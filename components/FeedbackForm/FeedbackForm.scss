@@ -2,7 +2,7 @@
 @import "stylesheets/breakpoints";
 @import "stylesheets/typography";
 
-.feedbackButton {
+.feedbackButton, .feedbackButton:visited {
   position: fixed;
   left: 0.5rem;
   bottom: 0.5rem;

@@ -207,12 +207,16 @@
 
 .defaultImageWrapper {
   align-items: center;
-  background-color: $warmerBackgroundColor;
+  background-color: white;
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 30%;
   display: flex;
   justify-content: center;
+
+  & .itemImg {
+    width: 50%;
+  }
 
   & img {
     min-height: auto;

@@ -2,8 +2,6 @@ import React from "react";
 import Select from "react-select";
 import Router from "next/router";
 
-import "react-select/dist/react-select.css";
-
 import {
   sortOptions,
   mapTimePeriodNameToSlug,
