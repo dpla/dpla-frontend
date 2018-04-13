@@ -2,17 +2,17 @@ import React from "react";
 import Select from "react-select";
 import Router from "next/router";
 
-import "react-select/dist/react-select.css";
-import { classNames, stylesheet } from "shared/FiltersBar/FiltersBar.css";
 import {
   sortOptions,
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 
+import css from "shared/FiltersBar/FiltersBar.scss";
+
 const SortValue = props =>
-  <span className={classNames.sortValue}>
-    <span className={classNames.sortByText}>Sort by</span>
+  <span className={css.sortValue}>
+    <span className={css.sortByText}>Sort by</span>
     <span>
       {props.value.label}
     </span>
@@ -66,16 +66,16 @@ class FiltersBar extends React.Component {
 
   render() {
     return (
-      <div className={classNames.filtersWrapper}>
-        <div className={`${classNames.filters} site-max-width`}>
+      <div className={css.filtersWrapper}>
+        <div className={`${css.filters} site-max-width`}>
           <div className="row">
-            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} col-xs-12 col-md-3`}>
               <Select
                 clearable={false}
                 searchable={false}
                 value={this.state.subjectValue}
                 onChange={this.onSubjectChange}
-                className={classNames.select}
+                className={css.select}
                 options={[
                   { value: "all-subjects", label: "All Subjects" }
                 ].concat(
@@ -86,12 +86,12 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} col-xs-12 col-md-3`}>
               <Select
                 clearable={false}
                 searchable={false}
                 value={this.state.timePeriodValue}
-                className={classNames.select}
+                className={css.select}
                 onChange={this.onTimePeriodChange}
                 options={[
                   { value: "all-time-periods", label: "All Time Periods" }
@@ -103,12 +103,12 @@ class FiltersBar extends React.Component {
                 )}
               />
             </div>
-            <div className={`${classNames.filter} col-xs-12 col-md-4`}>
+            <div className={`${css.filter} col-xs-12 col-md-4`}>
               <Select
                 clearable={false}
                 searchable={false}
                 value={this.state.sortValue}
-                className={[classNames.select, classNames.sortSelect].join(" ")}
+                className={[css.select, css.sortSelect].join(" ")}
                 onChange={this.onSortChange}
                 valueComponent={SortValue}
                 options={sortOptions}
@@ -116,7 +116,6 @@ class FiltersBar extends React.Component {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

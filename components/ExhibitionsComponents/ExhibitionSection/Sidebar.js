@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames } from "./ExhibitionSection.css";
+import css from "./ExhibitionSection.scss";
 
 const Sidebar = ({
   exhibition,
@@ -9,12 +9,8 @@ const Sidebar = ({
   currentSection,
   isShowing
 }) =>
-  <div
-    className={`${classNames.sidebar} ${isShowing
-      ? classNames.overlayActive
-      : ""}`}
-  >
-    <ul className={classNames.sidebarSections}>
+  <div className={`${css.sidebar} ${isShowing ? css.overlayActive : ""}`}>
+    <ul className={css.sidebarSections}>
       {exhibition.sections.map(section =>
         <li key={section.id}>
           <Link
@@ -27,8 +23,8 @@ const Sidebar = ({
           >
             <a
               className={[
-                classNames.sectionTitle,
-                section.id === currentSection.id && classNames.active
+                css.sectionTitle,
+                section.id === currentSection.id && css.active
               ].join(" ")}
             >
               {section.title}
@@ -40,8 +36,8 @@ const Sidebar = ({
                 <li
                   key={subsection.id}
                   className={[
-                    classNames.subsectionTitle,
-                    subsection.id === currentSubsection.id && classNames.active
+                    css.subsectionTitle,
+                    subsection.id === currentSubsection.id && css.active
                   ].join(" ")}
                 >
                   <Link

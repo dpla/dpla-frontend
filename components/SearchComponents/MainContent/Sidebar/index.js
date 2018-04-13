@@ -16,19 +16,15 @@ import {
   removeQueryParams
 } from "utilFunctions";
 
-import { classNames, stylesheet } from "./Sidebar.css";
+import css from "./Sidebar.scss";
 
 const FacetLink = ({ route, queryKey, termObject, disabled }) =>
   disabled
-    ? <span className={[classNames.facet].join(" ")}>
-        <span
-          className={[classNames.facetName, classNames.activeFacetName].join(
-            " "
-          )}
-        >
+    ? <span className={[css.facet].join(" ")}>
+        <span className={[css.facetName, css.activeFacetName].join(" ")}>
           {`${termObject.term} `}
         </span>
-        <span className={classNames.facetCount}>
+        <span className={css.facetCount}>
           {addCommasToNumber(termObject.count)}
         </span>
       </span>
@@ -45,11 +41,11 @@ const FacetLink = ({ route, queryKey, termObject, disabled }) =>
           })
         }}
       >
-        <a className={classNames.facet}>
-          <span className={classNames.facetName}>
+        <a className={css.facet}>
+          <span className={css.facetName}>
             {`${termObject.term} `}
           </span>
-          <span className={classNames.facetCount}>
+          <span className={css.facetCount}>
             {addCommasToNumber(termObject.count)}
           </span>
         </a>
@@ -164,10 +160,10 @@ class DateFacet extends React.Component {
       <form
         action={this.props.route.pathname}
         method="get"
-        className={classNames.dateRangeFacet}
+        className={css.dateRangeFacet}
         onSubmit={e => this.handleDateSubmit(e)}
       >
-        <label className={classNames.dateFacet} htmlFor="after-date">
+        <label className={css.dateFacet} htmlFor="after-date">
           <span>Between Year</span>
           <input
             id="after-date"
@@ -179,7 +175,7 @@ class DateFacet extends React.Component {
             onKeyDown={e => this.handleKeyDown(e)}
           />
         </label>
-        <label className={classNames.dateFacet} htmlFor="before-date">
+        <label className={css.dateFacet} htmlFor="before-date">
           <span>and Year</span>
           <input
             id="before-date"
@@ -194,11 +190,7 @@ class DateFacet extends React.Component {
         {Object.entries(formVals).map(([k, v], index) => {
           return <input type="hidden" name={k} key={index} value={v} />;
         })}
-        <Button
-          type="secondary"
-          className={classNames.dateButton}
-          mustSubmit={true}
-        >
+        <Button type="secondary" className={css.dateButton} mustSubmit={true}>
           Update
         </Button>
       </form>
@@ -229,7 +221,7 @@ class Sidebar extends React.Component {
       );
     let hasDates = false;
     return (
-      <div className={classNames.sidebar}>
+      <div className={css.sidebar}>
         <h2>Refine your search</h2>
         <Accordion
           items={Object.keys(facets).map((key, i) => {
@@ -275,7 +267,6 @@ class Sidebar extends React.Component {
             }
           })}
         />
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

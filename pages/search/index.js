@@ -20,11 +20,6 @@ import {
   getSearchPageTitle
 } from "utilFunctions";
 
-import {
-  classNames,
-  stylesheet
-} from "components/SearchComponents/SearchComponents.css";
-
 class Search extends React.Component {
   state = {
     showSidebar: false
@@ -42,34 +37,31 @@ class Search extends React.Component {
         route={url}
         pageTitle={getSearchPageTitle(url.query.q)}
       >
-        <div className={classNames.wrapper}>
-          <OptionsBar
-            showFilters={this.state.showSidebar}
-            currentPage={url.query.page || 1}
-            route={url}
-            itemCount={results.count}
-            onClickToggleFilters={this.toggleFilters}
-            numberOfActiveFacets={numberOfActiveFacets}
-          />
-          <FiltersList
-            showFilters={this.state.showSidebar}
-            onClickToggleFilters={this.toggleFilters}
-            route={url}
-            facets={results.facets}
-          />
-          <MainContent
-            hideSidebar={!this.state.showSidebar}
-            paginationInfo={{
-              pageCount: results.count,
-              pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
-              currentPage: url.query.page || 1
-            }}
-            route={url}
-            facets={results.facets}
-            results={results.docs}
-          />
-        </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <OptionsBar
+          showFilters={this.state.showSidebar}
+          currentPage={url.query.page || 1}
+          route={url}
+          itemCount={results.count}
+          onClickToggleFilters={this.toggleFilters}
+          numberOfActiveFacets={numberOfActiveFacets}
+        />
+        <FiltersList
+          showFilters={this.state.showSidebar}
+          onClickToggleFilters={this.toggleFilters}
+          route={url}
+          facets={results.facets}
+        />
+        <MainContent
+          hideSidebar={!this.state.showSidebar}
+          paginationInfo={{
+            pageCount: results.count,
+            pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
+            currentPage: url.query.page || 1
+          }}
+          route={url}
+          facets={results.facets}
+          results={results.docs}
+        />
       </MainLayout>
     );
   }

@@ -4,33 +4,28 @@ import Grid from "react-masonry-component";
 
 import GridImage from "./GridImage";
 
-import { classNames, stylesheet } from "./GridView.css";
+import css from "./GridView.scss";
 
 const GridView = ({ items, style }) =>
-  <div className={classNames.wrapper} style={style}>
+  <div className={css.wrapper} style={style}>
     <Grid
       elementType="ul"
-      className={classNames.grid}
+      className={css.grid}
       options={{
         gutter: 5
       }}
     >
       {items.map(item =>
-        <li key={item.id} className={classNames.gridItem}>
+        <li key={item.id} className={css.gridItem}>
           <Link prefetch href={item.linkHref} as={item.linkAs}>
-            <a className={classNames.link}>
+            <a className={css.link}>
               <GridImage
                 title={item.title}
                 type={item.type}
                 url={item.thumbnailUrl}
                 useDefaultImage={item.useDefaultImage}
               />
-              <p
-                className={[
-                  classNames.hoverText,
-                  classNames.blockWithText
-                ].join(" ")}
-              >
+              <p className={[css.hoverText, css.blockWithText].join(" ")}>
                 {item.title}
               </p>
             </a>
@@ -38,7 +33,6 @@ const GridView = ({ items, style }) =>
         </li>
       )}
     </Grid>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default GridView;

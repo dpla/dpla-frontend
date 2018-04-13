@@ -21,11 +21,8 @@ import {
   getMenuItemUrl
 } from "utilFunctions";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
 
 const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
@@ -34,18 +31,18 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
     {breadcrumbs.length === 0 &&
       <FeatureHeader title={pageTitle} description={""} />}
     <div
-      className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+      className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
     >
       <div className="row">
         <ContentPagesSidebar
           route={url}
           items={items}
           activeItemId={content.id}
-          className={contentClasses.sidebar}
+          className={contentCss.sidebar}
         />
         <div className="col-xs-12 col-md-7">
-          <div id="main" role="main" className={contentClasses.content}>
+          <div id="main" role="main" className={contentCss.content}>
             <WPEdit page={content} url={url} />
             {breadcrumbs.length > 0 &&
               <h1
@@ -58,7 +55,6 @@ const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 AboutMenuPage.getInitialProps = async ({ req, query, res }) => {

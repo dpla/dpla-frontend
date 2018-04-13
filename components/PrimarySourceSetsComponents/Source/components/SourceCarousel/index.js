@@ -5,20 +5,18 @@ import ReactMarkdown from "react-markdown";
 import CarouselSlider from "./CarouselSlider";
 import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg";
 
-import extractSourceId from "utilFunctions/extractSourceId";
-import removeQueryParams from "utilFunctions/removeQueryParams";
+import { extractSourceId, removeQueryParams } from "utilFunctions";
 
-import { classNames, stylesheet } from "./SourceCarousel.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import css from "./SourceCarousel.scss";
 
-const { container } = utilClassNames;
 const thickChevron = "/static/images/chevron-thick-orange.svg";
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
-  <div className={classNames.wrapper}>
-    <div className={[classNames.sourceCarousel, container].join(" ")}>
-      <div className={classNames.headerAndNav}>
-        <h2 className={classNames.header}>
+  <div className={css.wrapper}>
+    <div className={[css.sourceCarousel, utils.container].join(" ")}>
+      <div className={css.headerAndNav}>
+        <h2 className={css.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
           <Link
@@ -35,7 +33,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               )
             }}
           >
-            <a className={`link ${classNames.linkToSourceSet}`}>
+            <a className={`link ${css.linkToSourceSet}`}>
               <ReactMarkdown
                 source={set.name}
                 allowedTypes={["emphasis"]}
@@ -44,7 +42,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
             </a>
           </Link>
         </h2>
-        <div className={classNames.prevAndNextButtons}>
+        <div className={css.prevAndNextButtons}>
           {currentSourceIdx > 0
             ? <Link
                 prefetch
@@ -64,20 +62,18 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a
-                  className={`${classNames.previousItemButton} hover-underline`}
-                >
+                <a className={`${css.previousItemButton} hover-underline`}>
                   <ThickChevron
-                    className={`${classNames.thickChevron} ${classNames.flippedH}`}
+                    className={`${css.thickChevron} ${css.flippedH}`}
                   />
                   <span>Previous Item</span>
                 </a>
               </Link>
             : <button
-                className={`${classNames.previousItemButton} ${classNames.disabledNextOrPrevButton}`}
+                className={`${css.previousItemButton} ${css.disabledNextOrPrevButton}`}
               >
                 <ThickChevron
-                  className={`${classNames.thickChevron} ${classNames.flippedH}`}
+                  className={`${css.thickChevron} ${css.flippedH}`}
                 />
                 <span>Previous Item</span>
               </button>}
@@ -100,16 +96,16 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a className={`${classNames.nextItemButton} hover-underline`}>
+                <a className={`${css.nextItemButton} hover-underline`}>
                   <span>Next Item</span>
-                  <ThickChevron className={classNames.thickChevron} />
+                  <ThickChevron className={css.thickChevron} />
                 </a>
               </Link>
             : <button
-                className={`${classNames.nextItemButton} ${classNames.disabledNextOrPrevButton}`}
+                className={`${css.nextItemButton} ${css.disabledNextOrPrevButton}`}
               >
                 <span>Next Item</span>
-                <ThickChevron className={classNames.thickChevron} />
+                <ThickChevron className={css.thickChevron} />
               </button>}
         </div>
       </div>
@@ -119,7 +115,6 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
         route={route}
       />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default SourceCarousel;

@@ -1,7 +1,8 @@
 import React from "react";
 
-import { classNames, stylesheet } from "./ItemImage.css";
 import { getDefaultThumbnail } from "utilFunctions";
+
+import css from "./ItemImage.scss";
 
 class ItemImage extends React.Component {
   state = {
@@ -23,17 +24,16 @@ class ItemImage extends React.Component {
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
     return (
       <div
-        className={`${classNames.imageWrapper}
+        className={`${css.imageWrapper}
           ${useDefaultWrapper
-            ? classNames.defaultImageWrapper + " " + defaultImageClass
+            ? css.defaultImageWrapper + " " + defaultImageClass
             : ""}`}
       >
         <img
           src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
           alt={title}
-          className={classNames.image}
+          className={css.image}
         />
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

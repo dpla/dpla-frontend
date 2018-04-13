@@ -7,17 +7,15 @@ import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceId, removeQueryParams } from "utilFunctions";
 
-import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
-import { classNames } from "./SourceCarousel.css";
-import breakpoints from "css/breakpoints.css";
+import css from "./SourceCarousel.scss";
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   <div>
     <Slider
       slidesToShow={6}
       infinite={false}
-      nextArrow={<NextArrow className={classNames.carouselNavArrow} />}
-      prevArrow={<PrevArrow className={classNames.carouselNavArrow} />}
+      nextArrow={<NextArrow className={css.carouselNavArrow} />}
+      prevArrow={<PrevArrow className={css.carouselNavArrow} />}
       draggable={false}
       slidesToScroll={6}
       initialSlide={
@@ -28,19 +26,20 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
       }
       responsive={[
         {
-          breakpoint: ~~breakpoints.smallPx,
+          breakpoint: 640,
           settings: {
             arrows: false,
             centerMode: true,
             centerPadding: "12.5%",
             slidesToShow: 1.25,
-            draggable: true
+            draggable: true,
+            slidesToScroll: 1
           }
         }
       ]}
     >
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) =>
-        <div key={name}>
+        <div key={name} className={css.item}>
           {/* for some reason react-slick can't have <Link /> as direct child */}
           <Link
             prefetch
@@ -56,18 +55,18 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
               })
             }}
           >
-            <a className={classNames.item}>
+            <a>
               <div
                 className={[
-                  classNames.itemImgWrapper,
-                  useDefaultImage ? classNames.defaultImageWrapper : "",
-                  i === currentSourceIdx && classNames.currentItemImgWrapper
+                  css.itemImgWrapper,
+                  useDefaultImage ? css.defaultImageWrapper : "",
+                  i === currentSourceIdx && css.currentItemImgWrapper
                 ].join(" ")}
               >
-                <img alt="" src={thumbnailUrl} className={classNames.itemImg} />
+                <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
               <ReactMarkdown
-                className={classNames.itemText}
+                className={css.itemText}
                 source={name}
                 allowedTypes={["emphasis"]}
                 unwrapDisallowed
@@ -77,7 +76,6 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
         </div>
       )}
     </Slider>
-    <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
   </div>;
 
 export default CarouselSlider;

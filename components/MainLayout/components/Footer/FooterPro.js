@@ -5,13 +5,13 @@ import Button from "components/shared/Button";
 
 import { USER_BASE_URL } from "constants/env";
 
-import { classNames, stylesheet } from "./Footer.css";
+import css from "./Footer.scss";
 
 const FooterPro = () =>
-  <div className={`${classNames.footer} site-max-width`}>
+  <div className={`${css.footer} site-max-width`}>
     <div className="row">
-      <div className={`${classNames.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
-        <h2 className={classNames.linkHeader}>About Us</h2>
+      <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
+        <h2 className={css.linkHeader}>About Us</h2>
         <ul>
           <li>
             <Link as="/about" href="/pro/wp?section=about-dpla-pro">
@@ -35,8 +35,8 @@ const FooterPro = () =>
           </li>
         </ul>
       </div>
-      <div className={`${classNames.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
-        <h2 className={classNames.linkHeader}>Communities</h2>
+      <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
+        <h2 className={css.linkHeader}>Communities</h2>
         <ul>
           <li>
             <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
@@ -73,8 +73,8 @@ const FooterPro = () =>
           </li>
         </ul>
       </div>
-      <div className={`${classNames.linkGroup} col-xs-6 col-sm-6 col-md-3`}>
-        <h2 className={classNames.linkHeader}>DPLA</h2>
+      <div className={`${css.linkGroup} col-xs-6 col-sm-6 col-md-3`}>
+        <h2 className={css.linkHeader}>DPLA</h2>
         <ul>
           <li>
             <Link href={USER_BASE_URL}>
@@ -112,7 +112,7 @@ const FooterPro = () =>
         <Button
           type="primary"
           size="large"
-          className={classNames.donateButton}
+          className={css.donateButton}
           url="/donate"
         >
           Donate

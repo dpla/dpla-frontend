@@ -6,7 +6,7 @@ import FooterUser from "./FooterUser";
 
 import { SITE_ENV } from "constants/env";
 
-import { classNames, stylesheet } from "./Footer.css";
+import css from "./Footer.scss";
 
 const logo = "/static/images/dpla-logo.svg";
 const fbIcon = "/static/images/facebook.svg";
@@ -15,26 +15,22 @@ const tumblrIcon = "/static/images/tumblr.svg";
 const twitterIcon = "/static/images/twitter.svg";
 
 const Footer = () =>
-  <footer className={classNames.wrapper}>
+  <footer className={css.wrapper}>
     {SITE_ENV === "user" && <FooterUser />}
     {SITE_ENV === "pro" && <FooterPro />}
-    <div className={classNames.smallFooterWrapper}>
-      <div className={`${classNames.smallFooter} site-max-width`}>
+    <div className={css.smallFooterWrapper}>
+      <div className={`${css.smallFooter} site-max-width`}>
         <Link href="/">
-          <a><img className={classNames.logo} alt="DPLA Home" src={logo} /></a>
+          <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
         </Link>
-        <div className={classNames.socialIcons}>
+        <div className={css.socialIcons}>
           <a
             href="https://www.facebook.com/digitalpubliclibraryofamerica"
             title="Facebook"
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img
-              className={classNames.socialButton}
-              alt="Facebook"
-              src={fbIcon}
-            />
+            <img className={css.socialButton} alt="Facebook" src={fbIcon} />
           </a>
           <a
             href="https://www.instagram.com/digpublib/"
@@ -42,11 +38,7 @@ const Footer = () =>
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img
-              className={classNames.socialButton}
-              alt="Instagram"
-              src={igIcon}
-            />
+            <img className={css.socialButton} alt="Instagram" src={igIcon} />
           </a>
           <a
             href="http://digitalpubliclibraryofamerica.tumblr.com/"
@@ -54,11 +46,7 @@ const Footer = () =>
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img
-              className={classNames.socialButton}
-              alt="Tumblr"
-              src={tumblrIcon}
-            />
+            <img className={css.socialButton} alt="Tumblr" src={tumblrIcon} />
           </a>
           <a
             href="https://twitter.com/dpla"
@@ -66,15 +54,10 @@ const Footer = () =>
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img
-              className={classNames.socialButton}
-              alt="Twitter"
-              src={twitterIcon}
-            />
+            <img className={css.socialButton} alt="Twitter" src={twitterIcon} />
           </a>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </footer>;
 export default Footer;

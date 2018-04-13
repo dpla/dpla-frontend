@@ -1,15 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { classNames, stylesheet } from "./PartnerBrowseContent.css";
 
 import { addCommasToNumber } from "utilFunctions";
-import { classNames as utilClassNames } from "css/utils.css";
+
+import utils from "stylesheets/utils.scss";
+import css from "./PartnerBrowseContent.scss";
 
 const Partner = ({ name, itemCount, index }) =>
   <Link href={`/search?partner="${name}"`}>
-    <a className={classNames.partnerLink}>
-      <span className={classNames.name}>{name}</span>
-      <span className={classNames.itemCount}>
+    <a className={css.partnerLink}>
+      <span className={css.name}>{name}</span>
+      <span className={css.itemCount}>
         {addCommasToNumber(itemCount)}
       </span>
     </a>
@@ -27,15 +28,14 @@ const mapPartnersToComponents = partners =>
   );
 
 const PartnerBrowseContent = ({ route, partners }) =>
-  <div className={classNames.wrapper}>
-    <div className={`${utilClassNames.container} ${classNames.partnerBrowse}`}>
+  <div className={css.wrapper}>
+    <div className={`${utils.container} ${css.partnerBrowse}`}>
       <div className={`row`}>
-        <ul className={`${classNames.partners} col-xs-12`}>
+        <ul className={`${css.partners} col-xs-12`}>
           {mapPartnersToComponents(partners)}
         </ul>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default PartnerBrowseContent;

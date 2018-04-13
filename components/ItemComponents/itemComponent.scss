@@ -1,0 +1,36 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.faveAndCiteButtons {
+  align-self: baseline;
+  flex-shrink: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media (min-width: $smallRem) {
+    width: 225px;
+  }
+}
+
+.contentWrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $smallRem) {
+    margin-top: 2rem;
+    flex-direction: row;
+  }
+}
+
+.citeButton {
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+  background-color: $colderBackgroundColor;
+}
+
+.notFound {
+  margin: 0 0 3rem;
+}

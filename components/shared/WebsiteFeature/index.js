@@ -1,7 +1,7 @@
 import "react";
 import "next/link";
 
-import { stylesheet, classNames } from "./WebsiteFeature.css";
+import css from "./WebsiteFeature.scss";
 
 const WebsiteFeature = ({
   className,
@@ -12,29 +12,22 @@ const WebsiteFeature = ({
   buttonUrl
 }) =>
   <div
-    className={`${className
-      ? className
-      : ""} ${classNames.wrapper} site-max-width`}
+    className={`${className ? className : ""} ${css.wrapper} site-max-width`}
   >
     {imageSrc &&
       <div
-        className={classNames.imageWrapper}
+        className={css.imageWrapper}
         style={{ backgroundImage: `url(${imageSrc})` }}
       />}
-    <div
-      className={`${classNames.textWrapper} ${imageSrc
-        ? ""
-        : classNames.noImage}`}
-    >
-      <h2 className={classNames.title}>{title}</h2>
-      <p className={classNames.text}>
+    <div className={`${css.textWrapper} ${imageSrc ? "" : css.noImage}`}>
+      <h2 className={css.title}>{title}</h2>
+      <p className={css.text}>
         {text}
       </p>
     </div>
-    <a className={classNames.button} href={buttonUrl}>
+    <a className={css.button} href={buttonUrl}>
       {buttonText}
     </a>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default WebsiteFeature;

@@ -7,15 +7,9 @@ import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 
 import { SITE_ENV } from "constants/env";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { stylesheet, classNames } from "css/pages/donate.css";
-import {
-  classNames as utilClassNames,
-  stylesheet as utilStyles
-} from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import donateCss from "stylesheets/donate.scss";
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -27,15 +21,15 @@ export default class Error extends React.Component {
     return (
       <MinimalLayout route={this.props.url}>
         <div
-          className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+          className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <div className={`col-md-2 col-xs-12`} />
             <div
               id="main"
               role="main"
-              className={`${contentClasses.content} ${classNames.thankYou} col-md-8 col-xs-12`}
+              className={`${contentCss.content} ${donateCss.thankYou} col-md-8 col-xs-12`}
             >
               {this.props.statusCode !== 404 &&
                 <div>
@@ -64,9 +58,6 @@ export default class Error extends React.Component {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: utilStyles }} />
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-        <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
       </MinimalLayout>
     );
   }

@@ -3,28 +3,25 @@ import Link from "next/link";
 import Slider from "react-slick";
 import ReactMarkdown from "react-markdown";
 
-import { classNames, stylesheet } from "./Suggestions.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
-import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
-import { classNames as breakpoints } from "css/breakpoints.css";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./Suggestions.scss";
 
 const mapTypeToClass = type => {
   if (type === "Exhibition") {
-    return classNames.exhibition;
+    return css.exhibition;
   } else if (type === "Topic") {
-    return classNames.topic;
+    return css.topic;
   } else if (type === "Primary Source Set") {
-    return classNames.topic;
+    return css.topic;
   }
 };
 
 const Suggestions = ({ suggestions }) =>
-  <div className={classNames.suggestionsWrapper}>
-    <div className={[classNames.suggestions, container].join(" ")}>
-      <h2 className={classNames.header}>You might also enjoy</h2>
+  <div className={css.suggestionsWrapper}>
+    <div className={[css.suggestions, utils.container].join(" ")}>
+      <h2 className={css.header}>You might also enjoy</h2>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css
         class to target the arrows */}
@@ -32,13 +29,13 @@ const Suggestions = ({ suggestions }) =>
         <Slider
           slidesToShow={4.5}
           infinite={false}
-          nextArrow={<NextArrow className={classNames.navArrow} />}
-          prevArrow={<PrevArrow className={classNames.navArrow} />}
+          nextArrow={<NextArrow className={css.navArrow} />}
+          prevArrow={<PrevArrow className={css.navArrow} />}
           draggable={false}
           slidesToScroll={4}
           responsive={[
             {
-              breakpoint: ~~breakpoints.smallPx,
+              breakpoint: 640,
               settings: {
                 slidesToShow: 1.5,
                 arrows: false,
@@ -53,23 +50,23 @@ const Suggestions = ({ suggestions }) =>
             <div
               key={suggestion.title}
               className={[
-                classNames.suggestedSlide,
-                classNames.suggestedItem,
+                css.suggestedSlide,
+                css.suggestedItem,
                 mapTypeToClass(suggestion.type)
               ].join(" ")}
             >
               <Link prefetch href={suggestion.href} as={suggestion.as}>
                 <a
-                  className={classNames.imageWrapper}
+                  className={css.imageWrapper}
                   style={{ backgroundImage: `url(${suggestion.thumbnailUrl})` }}
                 >
-                  <div className={classNames.gradientBackground}>
-                    <div className={classNames.typeAndTitle}>
-                      <p className={classNames.resourceType}>
+                  <div className={css.gradientBackground}>
+                    <div className={css.typeAndTitle}>
+                      <p className={css.resourceType}>
                         {suggestion.type}
                       </p>
                       <ReactMarkdown
-                        className={classNames.suggestionTitle}
+                        className={css.suggestionTitle}
                         source={suggestion.title}
                         allowedTypes={["emphasis"]}
                         unwrapDisallowed
@@ -83,8 +80,6 @@ const Suggestions = ({ suggestions }) =>
         </Slider>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
   </div>;
 
 export default Suggestions;

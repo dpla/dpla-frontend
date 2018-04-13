@@ -1,69 +1,49 @@
-const fs = require("fs");
-const trash = require("trash");
 const webpack = require("webpack");
 const dotenv = require("dotenv").config();
+const withSass = require("@zeit/next-sass");
+const withSourceMaps = require("@zeit/next-source-maps");
+const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const { ANALYZE } = process.env;
 
-module.exports = {
-  useFileSystemPublicRoutes: false,
-  webpack: (config, options) => {
-    const { dev, isServer } = options;
-    if (ANALYZE) {
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          analyzerMode: "server",
-          analyzerPort: 8888,
-          openAnalyzer: true
-        })
-      );
-    }
-
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+module.exports = withBundleAnalyzer(
+  withSourceMaps(
+    withSass({
+      cssModules: true,
+      cssLoaderOptions: {
+        importLoaders: 2,
+        localIdentName: "[name]__[local]___[hash:base64:5]"
+      },
+      useFileSystemPublicRoutes: false,
+      analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
+      analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
+      bundleAnalyzerConfig: {
+        server: {
+          analyzerMode: "static",
+          reportFilename: "../../bundles/server.html"
+        },
+        browser: {
+          analyzerMode: "static",
+          reportFilename: "../bundles/client.html"
         }
-      })
-    );
+      },
+      webpack: (config, options) => {
+        const { dev, isServer } = options;
 
-    config.module.rules.push({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      loaders: ["file-loader?name=dist/static/images/[name].[ext]"]
-    });
-
-    config.module.rules.push({
-      test: /\.css$/,
-      use: [
-        {
-          loader: "emit-file-loader",
-          options: {
-            name: "dist/[path][name].[ext]"
-          }
-        },
-        {
-          loader: "skeleton-loader",
-          options: {
-            procedure: function(content) {
-              const fileName = `${this._module.userRequest}.json`;
-              const classNames = fs.readFileSync(fileName, "utf8");
-
-              trash(fileName);
-
-              return [
-                "module.exports = {",
-                `classNames: ${classNames},`,
-                `stylesheet: `,
-                JSON.stringify(content),
-                "}"
-              ].join("");
+        config.plugins.push(
+          new webpack.DefinePlugin({
+            "process.env": {
+              NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-          }
-        },
-        "postcss-loader"
-      ]
-    });
+          })
+        );
 
-    return config;
-  }
-};
+        config.module.rules.push({
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: ["file-loader?name=dist/static/images/[name].[ext]"]
+        });
+
+        return config;
+      }
+    })
+  )
+);

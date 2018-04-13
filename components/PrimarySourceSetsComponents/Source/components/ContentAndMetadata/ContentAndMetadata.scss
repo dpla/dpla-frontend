@@ -1,0 +1,237 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.contentAndMetadata {
+  padding-top: 1rem;
+}
+
+.contentWrapper {
+  flex: 5;
+  margin-right: 1rem;
+  width: 100%;
+  @media (min-width: $smallRem) {
+    width: auto;
+  }
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  @media (min-width: $smallRem) {
+    flex-direction: row;
+  }
+}
+
+.contentHeader {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  @media (min-width: $smallRem) {
+    max-width: 70%;
+  }
+}
+
+.content {
+  margin-bottom: 1rem;
+  height: 28rem;
+  background-color: $warmerBackgroundColor;
+
+  &.compact {
+    height: auto;
+  }
+
+  @media (max-width: $mediumRem) {
+    height: 75vh; /* this is tied to the mediaViewers.scss height */
+
+    &.compact {
+      height: auto;
+    }
+  }
+}
+
+.description {
+  font-size: 1rem;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.longDescription {
+  max-height: 10rem;
+  overflow: hidden;
+  font-family: $serifFont;
+
+  @media print {
+    overflow: inherit;
+    max-height: none;
+    padding-bottom: 1rem;
+  }
+
+  &.open {
+    max-height: none;
+  }
+}
+
+.showMore {
+  cursor: pointer;
+  display: block;
+  padding: 0.25rem 0;
+  border-top: 0.075rem solid gray;
+  font-size: 1rem;
+
+  &.open {
+    display: none;
+  }
+
+  @media (max-width: $mediumRem) {
+    padding: 0.25rem 1rem 1rem;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.description p {
+  margin-bottom: 20px;
+}
+
+.description p:last-child {
+  margin-bottom: 0;
+}
+
+.metadata {
+  flex: 2;
+  margin-top: 0.75rem;
+  width: 100%;
+  @media (min-width: $smallRem) {
+    margin-top: 0;
+    width: auto;
+  }
+}
+
+.sourceInfo {
+  border: 1px solid $lightBorderColor;
+  background-color: white;
+  padding: 18px 20px 24px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.button {
+  border-radius: 2px;
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4375;
+  padding: 10px 0;
+  width: 100%;
+  color: $subLinkColor;
+  background-color: $colderBackgroundColor;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.courtesyOf p {
+  font-size: 0.875rem;
+  line-height: 1.125;
+  margin-top: 3px;
+  margin-bottom: 17px;
+}
+
+.copyrightInfo {
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-bottom: 18px;
+}
+
+.divider {
+  border-bottom: 0.075rem solid $lightBorderColor;
+  margin: 1rem 0;
+}
+
+.linkWrapper {
+  margin-bottom: 15px;
+}
+
+.linkWrapper:last-child {
+  margin-bottom: 0px;
+}
+
+.sourceLink, .sourceLink:visited {
+  color: $subLinkColor;
+  font-weight: 600;
+  display: flex;
+}
+
+.linkText {
+  text-decoration: underline;
+}
+
+.linkIcon {
+  height: 18px;
+  margin-right: 13px;
+  opacity: 0.5;
+  width: 18px;
+}
+
+.externalIcon {
+  height: 16px;
+  margin-right: 15px;
+  opacity: 0.5;
+  width: 16px;
+}
+
+.tipsForStudents {
+  border: 1px solid $lightBorderColor;
+  font-size: 0.875rem;
+  line-height: 1.125;
+  padding: 20px;
+}
+
+.tipsForStudentsHeader {
+  text-transform: uppercase;
+  font-family: $serifFont;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-bottom: 9px;
+  font-weight: bold;
+}
+
+.tips {
+  list-style: initial;
+  padding-left: 1rem;
+}
+
+.tipDirections {
+  margin-bottom: 1rem;
+}
+
+.tip {
+}
+
+.tip:last-child {
+  margin-bottom: 0;
+}
+
+.buttons button {
+  width: 100%;
+}
+
+.faveAndCiteButtons {
+  align-self: baseline;
+  flex-shrink: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media (min-width: $mediumRem) {
+    max-width: 245px;
+  }
+}
+
+.citeButton {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  background-color: $colderBackgroundColor;
+}

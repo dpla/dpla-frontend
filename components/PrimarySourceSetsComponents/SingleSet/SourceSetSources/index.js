@@ -3,24 +3,18 @@ import ReactMarkdown from "react-markdown";
 
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./SourceSetSources.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import removeQueryParams from "utilFunctions/removeQueryParams";
-import extractSourceId from "utilFunctions/extractSourceId";
+import { removeQueryParams, extractSourceId } from "utilFunctions";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./SourceSetSources.scss";
 
 const SourceSetSources = ({ route, sources }) =>
-  <div
-    role="tabpanel"
-    aria-labelledby="tab-sourceset"
-    className={classNames.wrapper}
-  >
-    <ul className={[classNames.sourceSetSources, container].join(" ")}>
+  <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>
+    <ul className={[css.sourceSetSources, utils.container].join(" ")}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
-          <li className={classNames.set} key={i}>
+          <li className={css.set} key={i}>
             <Link
               key={name}
               prefetch
@@ -39,14 +33,14 @@ const SourceSetSources = ({ route, sources }) =>
             >
               <a>
                 <div
-                  className={`${classNames.imageWrapper} ${useDefaultImage
-                    ? classNames.defaultImageWrapper
+                  className={`${css.imageWrapper} ${useDefaultImage
+                    ? css.defaultImageWrapper
                     : ""}`}
                 >
-                  <img alt="" src={thumbnailUrl} className={classNames.image} />
+                  <img alt="" src={thumbnailUrl} className={css.image} />
                 </div>
                 <ReactMarkdown
-                  className={classNames.title}
+                  className={css.title}
                   source={name}
                   allowedTypes={["emphasis"]}
                   unwrapDisallowed
@@ -57,7 +51,6 @@ const SourceSetSources = ({ route, sources }) =>
         );
       })}
     </ul>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default SourceSetSources;

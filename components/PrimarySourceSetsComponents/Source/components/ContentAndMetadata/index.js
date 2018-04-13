@@ -20,11 +20,8 @@ import {
   trackGaEvent
 } from "utilFunctions";
 
-import { classNames, stylesheet } from "./ContentAndMetadata.css";
-
-import { classNames as utilClassNames } from "css/utils.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./ContentAndMetadata.scss";
 
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";
@@ -119,21 +116,21 @@ class ContentAndMetadata extends React.Component {
       : false;
 
     return (
-      <div className={classNames.wrapper}>
-        <div className={[classNames.contentAndMetadata, container].join(" ")}>
-          <h1 className={classNames.contentHeader}>
+      <div className={css.wrapper}>
+        <div className={[css.contentAndMetadata, utils.container].join(" ")}>
+          <h1 className={css.contentHeader}>
             <ReactMarkdown
               source={source.name}
               allowedTypes={["emphasis"]}
               unwrapDisallowed
             />
           </h1>
-          <div className={classNames.flexWrapper}>
-            <div className={classNames.contentWrapper}>
+          <div className={css.flexWrapper}>
+            <div className={css.contentWrapper}>
               <div
-                className={`${classNames.content} ${viewerComponent.type
-                  .name === "AudioPlayer"
-                  ? classNames.compact
+                className={`${css.content} ${viewerComponent.type.name ===
+                  "AudioPlayer"
+                  ? css.compact
                   : ""}`}
               >
                 {viewerComponent}
@@ -141,9 +138,9 @@ class ContentAndMetadata extends React.Component {
               {source.text &&
                 <ReactMarkdown
                   id="dpla-description"
-                  className={`${classNames.description} ${descriptionIsLong
-                    ? classNames.longDescription
-                    : ""} ${this.state.isOpen ? classNames.open : ""}`}
+                  className={`${css.description} ${descriptionIsLong
+                    ? css.longDescription
+                    : ""} ${this.state.isOpen ? css.open : ""}`}
                   source={source.text.replace(/<br>/g, "\n\n")}
                   renderers={{
                     linkReference: reference => {
@@ -163,8 +160,8 @@ class ContentAndMetadata extends React.Component {
                 <div
                   id="dpla-showmore"
                   aria-hidden="true"
-                  className={`${classNames.showMore} ${this.state.isOpen
-                    ? classNames.open
+                  className={`${css.showMore} ${this.state.isOpen
+                    ? css.open
                     : ""}`}
                 >
                   <span
@@ -176,12 +173,12 @@ class ContentAndMetadata extends React.Component {
                 </div>}
 
             </div>
-            <div className={classNames.metadata}>
-              <div className={classNames.sourceInfo}>
-                <div className={classNames.buttons}>
+            <div className={css.metadata}>
+              <div className={css.sourceInfo}>
+                <div className={css.buttons}>
                   {getSourceCitation(source) &&
                     <div
-                      className={`${classNames.citeButton} ${classNames.faveAndCiteButtons}`}
+                      className={`${css.citeButton} ${css.faveAndCiteButtons}`}
                     >
                       <CiteButton
                         toCiteText="item"
@@ -191,54 +188,54 @@ class ContentAndMetadata extends React.Component {
                       />
                     </div>}
                 </div>
-                {/* <a href={fullContentUrl} download className={classNames.button}>
+                {/* <a href={fullContentUrl} download className={css.button}>
                 Download
               </a> */}
                 {getSourceCitation(source, "credits") &&
                   <ReactMarkdown
-                    className={classNames.courtesyOf}
+                    className={css.courtesyOf}
                     source={joinIfArray(getSourceCitation(source, "credits"))}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
                   <ReactMarkdown
-                    className={classNames.courtesyOf}
+                    className={css.courtesyOf}
                     source={source.mainEntity[0]["dct:provenance"].name}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />}
                 {source.copyright &&
-                  <div className={classNames.copyrightInfo}>
+                  <div className={css.copyrightInfo}>
                     <ReactMarkdown
-                      className={classNames.copyrightText}
+                      className={css.copyrightText}
                       source={source.copyright}
                       allowedTypes={["emphasis"]}
                       unwrapDisallowed
                     />
                   </div>}
-                <div className={classNames.divider} />
+                <div className={css.divider} />
                 {source.mainEntity[0]["dct:references"] &&
-                  <div className={classNames.linkWrapper}>
+                  <div className={css.linkWrapper}>
                     <a
-                      className={classNames.sourceLink}
+                      className={css.sourceLink}
                       href={`/item/${getItemId(source)}`}
                     >
                       <img
                         alt="Link icon"
                         src={link}
-                        className={classNames.linkIcon}
+                        className={css.linkIcon}
                       />
-                      <span className={classNames.linkText}>
+                      <span className={css.linkText}>
                         View item information
                       </span>
                     </a>
                   </div>}
                 {source.mainEntity[0]["dct:references"] &&
-                  <div className={classNames.linkWrapper}>
+                  <div className={css.linkWrapper}>
                     <a
                       href={getSourceLink(source)}
-                      className={`${classNames.sourceLink}`}
+                      className={`${css.sourceLink}`}
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener noreferrer"
                       target="_blank"
@@ -246,34 +243,33 @@ class ContentAndMetadata extends React.Component {
                       <img
                         alt="External link icon"
                         src={external}
-                        className={classNames.externalIcon}
+                        className={css.externalIcon}
                       />
-                      <span className={classNames.linkText}>
+                      <span className={css.linkText}>
                         View in {getPartner(source)}
                       </span>
                     </a>
                   </div>}
               </div>
-              <div className={classNames.tipsForStudents}>
-                <h2 className={classNames.tipsForStudentsHeader}>
+              <div className={css.tipsForStudents}>
+                <h2 className={css.tipsForStudentsHeader}>
                   Tips for Students
                 </h2>
-                <p className={classNames.tipDirections}>
+                <p className={css.tipDirections}>
                   For this source, consider:
                 </p>
-                <ul className={classNames.tips}>
-                  <li className={classNames.tip}>
+                <ul className={css.tips}>
+                  <li className={css.tip}>
                     the author's point of view
                   </li>
-                  <li className={classNames.tip}>the author's purpose</li>
-                  <li className={classNames.tip}>historical context</li>
-                  <li className={classNames.tip}>audience</li>
+                  <li className={css.tip}>the author's purpose</li>
+                  <li className={css.tip}>historical context</li>
+                  <li className={css.tip}>audience</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

@@ -5,29 +5,27 @@ import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
 
 import { SITE_ENV } from "constants/env";
 
-import { stylesheet, classNames } from "./PageHeader.css";
+import css from "./PageHeader.scss";
 
 const PageHeader = ({ searchQuery, hideSearchBar }) =>
   <div
-    className={`${classNames.headerSearchBar} ${SITE_ENV === "pro"
-      ? classNames.pro
-      : ""}`}
+    className={`${css.headerSearchBar} ${SITE_ENV === "pro" ? css.pro : ""}`}
   >
     <div
-      className={`${classNames.flexWrapper}  ${SITE_ENV === "pro"
-        ? classNames.pro
+      className={`${css.flexWrapper}  ${SITE_ENV === "pro"
+        ? css.pro
         : ""} site-max-width`}
     >
       <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-        <a className={classNames.logo} title="Home Page">
-          <DPLALogoWide className={classNames.logoImg} />
+        <a className={css.logo} title="Home Page">
+          <DPLALogoWide className={css.logoImg} />
         </a>
       </Link>
       {!hideSearchBar &&
         SITE_ENV !== "pro" &&
-        <form action="/search" className={classNames.searchBar}>
+        <form action="/search" className={css.searchBar}>
           <input
-            className={classNames.searchInput}
+            className={css.searchInput}
             name="q"
             type="search"
             placeholder="Search the collection"
@@ -35,12 +33,11 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
             autoComplete="off"
             defaultValue={searchQuery}
           />
-          <button type="submit" className={classNames.searchButton}>
+          <button type="submit" className={css.searchButton}>
             Search
           </button>
         </form>}
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default PageHeader;

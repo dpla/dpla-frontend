@@ -3,7 +3,7 @@ import Link from "next/link";
 import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 
-import { stylesheet, classNames } from "./SmallScreenStyles.css";
+import css from "./SmallScreenStyles.scss";
 
 import { SITE_ENV } from "constants/env";
 
@@ -32,10 +32,10 @@ class SmallScreenHeader extends Component {
     const { isSearchPage, route, isHome } = this.props;
 
     return (
-      <div className={`${classNames.wrapper}`}>
-        <div className={classNames.header}>
+      <div className={`${css.wrapper}`}>
+        <div className={css.header}>
           <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-            <a className={classNames.logo}>
+            <a className={css.logo}>
               <span>Digital Public Library of America</span>
             </a>
           </Link>
@@ -43,9 +43,7 @@ class SmallScreenHeader extends Component {
             type="button"
             aria-expanded={menuIsOpen}
             onClick={this.toggleMenu}
-            className={`${classNames.menuButton} ${menuIsOpen
-              ? classNames.isOpen
-              : ""}`}
+            className={`${css.menuButton} ${menuIsOpen ? css.isOpen : ""}`}
           >
             {!menuIsOpen && <span>Show<br />Menu</span>}
             {menuIsOpen && <span>Hide<br />Menu</span>}
@@ -53,21 +51,20 @@ class SmallScreenHeader extends Component {
         </div>
         {SITE_ENV !== "pro" &&
           <NavigationUser
-            className={`${classNames.menuContainer} ${menuIsOpen
-              ? classNames.isOpen
+            className={`${css.menuContainer} ${menuIsOpen
+              ? css.isOpen
               : ""} site-max-width`}
-            classNames={classNames}
+            css={css}
             isHome={isHome}
           />}
         {SITE_ENV === "pro" &&
           <NavigationPro
-            className={`${classNames.menuContainer} ${menuIsOpen
-              ? classNames.isOpen
+            className={`${css.menuContainer} ${menuIsOpen
+              ? css.isOpen
               : ""} site-max-width`}
-            classNames={classNames}
+            css={css}
             isHome={isHome}
           />}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

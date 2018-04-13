@@ -3,7 +3,7 @@ import Button from "components/shared/Button";
 
 import { joinIfArray, removeEndPunctuation, formatDate } from "utilFunctions";
 
-import { classNames, stylesheet } from "./CiteButton.css";
+import css from "./CiteButton.scss";
 
 class CiteButton extends React.Component {
   state = {
@@ -27,15 +27,14 @@ class CiteButton extends React.Component {
       title
     } = this.props;
     return (
-      <div className={classNames.wrapper}>
+      <div className={css.wrapper}>
         <Button
           onClick={this.toggleCiteButton}
           controls="citation-content"
           expanded={this.state.showCitation}
           type="ghost"
-          className={`${classNames.button} ${className} ${this.state
-            .showCitation
-            ? classNames.activeButton
+          className={`${css.button} ${className} ${this.state.showCitation
+            ? css.activeButton
             : ""}`}
         >
           <h2>Cite this {toCiteText}</h2>
@@ -44,18 +43,18 @@ class CiteButton extends React.Component {
         <div
           id="citation-content"
           aria-hidden={!this.state.showCitation}
-          className={`${classNames.citeButton} ${this.state.showCitation
+          className={`${css.citeButton} ${this.state.showCitation
             ? ""
-            : classNames.hidden}`}
+            : css.hidden}`}
         >
-          <div className={classNames.citationsWrapper}>
+          <div className={css.citationsWrapper}>
             {freeText &&
-              <dl className={classNames.citationList}>
+              <dl className={css.citationList}>
                 <dt>Citation Information</dt>
                 <dd dangerouslySetInnerHTML={{ __html: freeText }} />
               </dl>}
             {!freeText &&
-              <dl className={classNames.citationList}>
+              <dl className={css.citationList}>
                 <dt>Chicago citation style</dt>
                 <dd>
                   {creator ? joinIfArray(creator, ", ") + ". " : ""}
@@ -84,13 +83,12 @@ class CiteButton extends React.Component {
                   {sourceUrl ? " <" + sourceUrl + ">. " : ""}
                 </dd>
               </dl>}
-            <span className={classNames.disclaimer}>
+            <span className={css.disclaimer}>
               <strong>Note:</strong> These citations are programmatically
               generated and may be incomplete.
             </span>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

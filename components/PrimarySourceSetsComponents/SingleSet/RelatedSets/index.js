@@ -7,42 +7,35 @@ import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceSetSlug } from "utilFunctions/";
 
-import { stylesheet, classNames } from "./RelatedSets.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import { classNames as breakpoints } from "css/breakpoints.css";
-import { stylesheet as navArrowStyles } from "components/shared/CarouselNavArrows/CarouselNavArrows.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./RelatedSets.scss";
 
 const RelatedSets = ({ sets }) => {
   return (
-    <div className={classNames.wrapper}>
-      <div className={[container, classNames.relatedSets].join(" ")}>
-        <h2 className={classNames.header}>Related Primary Source Sets</h2>
+    <div className={css.wrapper}>
+      <div className={[utils.container, css.relatedSets].join(" ")}>
+        <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={4.5}
           infinite={false}
-          nextArrow={<NextArrow className={classNames.navArrow} />}
-          prevArrow={<PrevArrow className={classNames.navArrow} />}
+          nextArrow={<NextArrow className={css.navArrow} />}
+          prevArrow={<PrevArrow className={css.navArrow} />}
           draggable={false}
           slidesToScroll={4}
           responsive={[
             {
-              breakpoint: ~~breakpoints.smallPx,
+              breakpoint: 640,
               settings: {
-                slidesToShow: 2.5,
+                slidesToShow: 1.5,
                 arrows: false,
                 draggable: true,
-                slidesToScroll: 2
+                slidesToScroll: 1
               }
             }
           ]}
         >
           {sets.map((set, index) =>
-            <div
-              key={`${set.name}-${index}`}
-              className="col-12 col-xs-6 col-md-3"
-            >
+            <div key={`${set.name}-${index}`} className={`${css.item}`}>
               <Link
                 prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
@@ -50,15 +43,15 @@ const RelatedSets = ({ sets }) => {
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a className={classNames.setLink}>
+                <a className={css.setLink}>
                   <img
                     alt=""
                     src={set.repImageUrl || set.thumbnailUrl}
-                    className={classNames.setImage}
+                    className={css.setImage}
                   />
                   <ReactMarkdown
                     source={set.name}
-                    className={classNames.title}
+                    className={css.title}
                     allowedTypes={["emphasis"]}
                     unwrapDisallowed
                   />
@@ -68,8 +61,6 @@ const RelatedSets = ({ sets }) => {
           )}
         </Slider>
       </div>
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-      <style dangerouslySetInnerHTML={{ __html: navArrowStyles }} />
     </div>
   );
 };

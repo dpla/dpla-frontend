@@ -1,0 +1,154 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.feedbackButton, .feedbackButton:visited {
+  position: fixed;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  cursor: pointer;
+  background-color: $linkColor;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border: 0.125rem solid white;
+  border-radius: 0.25rem;
+
+  @media print {
+    display: none;
+  }
+
+  &:hover {
+    color: $linkColor;
+    background-color: white;
+    border-color: $linkColor;
+    text-decoration: none;
+  }
+}
+
+.feedbackModal {
+  display: none;
+
+  &.open {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 99;
+  }
+}
+
+.miel {
+  display: none !important; /* captcha */
+}
+
+.feedbackForm {
+  background-color: $warmerBackgroundColor;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 20rem;
+  margin-left: -10rem;
+  margin-top: -10rem;
+  z-index: 999;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: $mediumRem) {
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+
+  & ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  & li {
+    position: relative;
+  }
+
+  & input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  & label {
+    display: block;
+    background-color: white;
+    padding: 2rem 0.5rem 0.5rem;
+    text-align: center;
+    margin: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  & input[type="radio"]:focus + label {
+    outline: 0.25rem solid $outlineColor;
+  }
+
+  & label:before {
+    content: "";
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    left: 50%;
+    top: 1rem;
+    margin-left: -0.75rem;
+    margin-top: -0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: $radioButtonColor;
+    border: 0.2rem solid white;
+  }
+
+  & input[type="radio"]:checked + label:before {
+    background-color: $linkColor;
+  }
+
+  & input[type="radio"]:checked + label {
+    background-color: $radioButtonColor;
+  }
+
+  & input[type="email"], & input[type="text"] {
+    width: 100%;
+    border: 0.075rem solid $formLabelColor;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  & textarea {
+    resize: none;
+    width: 100%;
+    height: 5rem;
+    border: 0.075rem solid $formLabelColor;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+}
+
+.sendCancelButtons {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 0.5rem;
+}
+
+.characterCount {
+  margin: 0.25rem 0 1rem;
+}
+
+.thankYou {
+  margin: 1rem 0;
+}

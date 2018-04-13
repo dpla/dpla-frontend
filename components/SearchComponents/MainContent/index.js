@@ -1,5 +1,4 @@
 import React from "react";
-import { classNames, stylesheet } from "./MainContent.css";
 
 import GridView from "components/shared/GridView";
 import ListView from "components/shared/ListView";
@@ -8,9 +7,8 @@ import Sidebar from "./Sidebar";
 
 import { removeQueryParams, extractItemId } from "utilFunctions";
 
-import { classNames as utilClassNames } from "css/utils.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./MainContent.scss";
 
 const addLinkInfoToResults = (results, query) =>
   results.map((item, idx) => {
@@ -35,16 +33,12 @@ const addLinkInfoToResults = (results, query) =>
   });
 
 const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
-  <div className={classNames.wrapper}>
-    <div className={[container, classNames.mainContent].join(" ")}>
-      <div
-        className={`${!hideSidebar
-          ? classNames.isOpen
-          : ""} ${classNames.sidebar}`}
-      >
+  <div className={css.wrapper}>
+    <div className={[utils.container, css.mainContent].join(" ")}>
+      <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
         <Sidebar route={route} facets={facets} />
       </div>
-      <div id="main" role="main" className={classNames.resultsAndPagination}>
+      <div id="main" role="main" className={css.resultsAndPagination}>
         {route.query.list_view === "grid"
           ? <GridView
               route={route}
@@ -65,7 +59,6 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
         />
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default MainContent;

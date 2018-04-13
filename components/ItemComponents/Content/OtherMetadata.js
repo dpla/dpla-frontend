@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Row from "./Row";
 
-import { classNames, stylesheet } from "./Content.css";
 import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
+
+import css from "./Content.scss";
 
 const getItemSpatial = item =>
   Array.isArray(item.spatial) ? item.spatial[0].name : item.spatial.name;
@@ -24,8 +25,8 @@ const FacetLink = ({ facet, value, facetLabel }) =>
   </span>;
 
 const OtherMetadata = ({ item }) =>
-  <div className={classNames.otherMetadata}>
-    <table className={classNames.contentTable}>
+  <div className={css.otherMetadata}>
+    <table className={css.contentTable}>
       <tbody>
         <Row heading="Partner">
           <FacetLink facet="partner" value={item.partner} />
@@ -44,7 +45,7 @@ const OtherMetadata = ({ item }) =>
         {item.publisher &&
           <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>}
         {item.subject &&
-          <Row className={classNames.subjects} heading="Subjects">
+          <Row className={css.subjects} heading="Subjects">
             {item.subject.map((subj, i, subjects) =>
               <span key={i}>
                 <FacetLink facet="subject" value={subj.name} />

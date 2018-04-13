@@ -1,0 +1,78 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 0 15px 0px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.5s ease-out, background-color 0.5s ease-out;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+
+  @media (min-width: $largeRem) {
+    top: 45%;
+    height: 5rem;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 3px;
+  }
+
+  &:hover, &:focus {
+    background-color: white;
+    box-shadow: 0px 0 20px 0px rgba(0, 0, 0, 0.3);
+
+    @media (min-width: $largeRem) {
+      background-color: rgba(0, 0, 0, 0.05);
+      box-shadow: none;
+    }
+  }
+
+  &:focus {
+    outline: 0.25rem solid $outlineColor;
+  }
+
+  & img {
+    width: 0.9rem;
+
+    @media (min-width: $largeRem) {
+      width: 1.5rem;
+    }
+  }
+}
+
+:global(.dpla-related-resources-carousel) {
+  & .arrow {
+    top: 25%;
+    @media (min-width: $largeRem) {
+      top: 50%;
+    }
+  }
+}
+
+.prevArrow {
+  left: -0.5rem !important;
+
+  & img {
+    transform: rotate(180deg);
+    margin-left: -0.25rem;
+  }
+
+  @media (min-width: $largeRem) {
+    left: -3.5rem !important;
+  }
+}
+
+.nextArrow {
+  right: -0.5rem !important;
+
+  @media (min-width: $largeRem) {
+    right: -3.5rem !important;
+  }
+
+  & img {
+    margin-left: 0.25rem;
+  }
+}

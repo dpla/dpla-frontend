@@ -3,14 +3,12 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 import removeQueryParams from "utilFunctions/removeQueryParams";
-import { classNames, stylesheet } from "./TeachersGuide.css";
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "./TeachersGuide.scss";
+
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";
 
@@ -18,15 +16,15 @@ const printHandler = () => window.print();
 
 const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
   <div
-    className={classNames.wrapper}
+    className={css.wrapper}
     role="tabpanel"
     aria-labelledby="tab-teachingguide"
   >
-    <div className={`${classNames.teachingGuide} ${container}`}>
+    <div className={`${css.teachingGuide} ${utils.container}`}>
       <div className="row">
         <div className="col-xs-12 col-md-8">
-          <div className={classNames.content}>
-            <div className={contentClasses.content}>
+          <div className={css.content}>
+            <div className={contentCss.content}>
               <h3>Discussion questions</h3>
               <ReactMarkdown
                 source={
@@ -42,8 +40,8 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                 }
               />
             </div>
-            <div className={classNames.aboutThis}>
-              <h3 className={classNames.aboutThisHeader}>About This Guide</h3>
+            <div className={css.aboutThis}>
+              <h3 className={css.aboutThisHeader}>About This Guide</h3>
               <div>
                 This teaching guide helps instructors use a specific primary
                 source
@@ -56,7 +54,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                     query: removeQueryParams(route.query, ["set"])
                   }}
                 >
-                  <a className={`link ${classNames.aboutThisLink}`}>
+                  <a className={`link ${css.aboutThisLink}`}>
                     <ReactMarkdown
                       source={teachingGuide.isPartOf.name}
                       allowedTypes={["emphasis"]}
@@ -74,49 +72,44 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
             </div>
           </div>
         </div>
-        <div className={`col-xs-12 col-md-4 ${classNames.sidebar}`}>
-          <div
-            className={[
-              classNames.teacherTools,
-              classNames.sidebarSection
-            ].join(" ")}
-          >
-            <h3 className={classNames.sidebarHeader}>Created By</h3>
+        <div className={`col-xs-12 col-md-4 ${css.sidebar}`}>
+          <div className={[css.teacherTools, css.sidebarSection].join(" ")}>
+            <h3 className={css.sidebarHeader}>Created By</h3>
             {teachingGuide.author.map((author, i) =>
               <ReactMarkdown
-                className={classNames.sidebarSection}
+                className={css.sidebarSection}
                 key={i}
                 source={author.name + ", " + author.affiliation.name}
                 allowedTypes={["emphasis"]}
                 unwrapDisallowed
               />
             )}
-            <h3 className={classNames.sidebarHeader}>Teacher Tools</h3>
-            <div className={classNames.tools}>
-              <div className={classNames.toolLinkAndIcon}>
-                <img src={printer} alt="" className={classNames.toolIcon} />
+            <h3 className={css.sidebarHeader}>Teacher Tools</h3>
+            <div className={css.tools}>
+              <div className={css.toolLinkAndIcon}>
+                <img src={printer} alt="" className={css.toolIcon} />
                 <a
                   onClick={printHandler}
-                  className={`${classNames.toolLink} ${classNames.print}`}
+                  className={`${css.toolLink} ${css.print}`}
                 >
                   Print this Guide
                 </a>
               </div>
             </div>
           </div>
-          <div className={classNames.sidebarSection}>
-            <h3 className={classNames.sidebarHeader}>
+          <div className={css.sidebarSection}>
+            <h3 className={css.sidebarHeader}>
               Primary source analysis
             </h3>
             <p>For each source, ask students to indicate:</p>
-            <ul className={classNames.ul}>
+            <ul className={css.ul}>
               <li>the author's point of view</li>
               <li>the author's purpose</li>
               <li>historical context</li>
               <li>audience</li>
             </ul>
             <p>For inquiry-based learning, ask students to:</p>
-            <ul className={classNames.ul}>
+            <ul className={css.ul}>
               <li>
                 explain how a source tells its story and/or makes its argument
               </li>
@@ -129,10 +122,10 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
               <li>identify questions for further investigation</li>
             </ul>
           </div>
-          <div className={classNames.sidebarSection}>
-            <h3 className={classNames.sidebarHeader}>Additional tools</h3>
-            <ul className={classNames.ul}>
-              <li className={classNames.additionalToolWrapper}>
+          <div className={css.sidebarSection}>
+            <h3 className={css.sidebarHeader}>Additional tools</h3>
+            <ul className={css.ul}>
+              <li className={css.additionalToolWrapper}>
                 <a
                   className="link"
                   href="https://www.archives.gov/education/lessons/worksheets"
@@ -142,7 +135,7 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
                   Document Analysis Worksheets from the National Archives
                 </a>
               </li>
-              <li className={classNames.additionalToolWrapper}>
+              <li className={css.additionalToolWrapper}>
                 <a
                   className="link"
                   href="https://www.loc.gov/teachers/usingprimarysources/"
@@ -157,8 +150,6 @@ const TeachersGuide = ({ route, teachingGuide, setName, currentPath }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </div>;
 
 export default TeachersGuide;

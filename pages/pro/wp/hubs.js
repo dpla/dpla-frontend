@@ -16,17 +16,15 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import { stylesheet, classNames } from "css/pages/hubs.css";
+import css from "stylesheets/hubs.scss";
 
 const HubsPage = ({ url, page, pageTitle, news }) =>
   <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    <div id="main" role="main" className={classNames.pageWrapper}>
+    <div id="main" role="main" className={css.pageWrapper}>
       <div
-        className={`${classNames.pageHero} ${page.acf.feature
-          ? classNames.withFeature
-          : ""}`}
+        className={`${css.pageHero} ${page.acf.feature ? css.withFeature : ""}`}
       >
-        <IconComponent className={classNames.icon} name="network" />
+        <IconComponent className={css.icon} name="network" />
         <WPEdit page={page} url={url} />
         <h1>{page.title.rendered}</h1>
       </div>
@@ -39,24 +37,24 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
           buttonUrl={page.acf.feature.button_url}
           imageSrc={page.acf.feature.image}
         />}
-      <div className={`${classNames.pageWrapper}`}>
-        <section className={`${classNames.sectionWrapper} site-max-width`}>
-          <ul className={classNames.sectionList}>
+      <div className={`${css.pageWrapper}`}>
+        <section className={`${css.sectionWrapper} site-max-width`}>
+          <ul className={css.sectionList}>
             {page.acf.sections.map((section, index) => {
               return (
-                <li key={index} className={classNames.section}>
-                  <h2 className={classNames.sectionTitle}>
+                <li key={index} className={css.section}>
+                  <h2 className={css.sectionTitle}>
                     <a href={`${section.url}`}>{section.title}</a>
                   </h2>
-                  <p className={classNames.sectionText}>
+                  <p className={css.sectionText}>
                     {section.text}
                   </p>
                   {section.quicklinks &&
-                    <ul className={classNames.sectionQuicklinks}>
+                    <ul className={css.sectionQuicklinks}>
                       {section.quicklinks.map((link, idx) => {
                         return (
                           <li
-                            className={classNames.sectionQuicklink}
+                            className={css.sectionQuicklink}
                             key={`link-${idx}`}
                           >
                             <a href={`${link.url}`}>
@@ -73,7 +71,7 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
         </section>
       </div>
       <CallToAction
-        classNames={classNames.sectionWrapper}
+        className={css.sectionWrapper}
         title={page.acf.call_to_action.title}
         text={page.acf.call_to_action.text}
         buttonText={page.acf.call_to_action.button_text}
@@ -83,7 +81,6 @@ const HubsPage = ({ url, page, pageTitle, news }) =>
       />
       <NewsLane title="Member News" items={news} />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 HubsPage.getInitialProps = async ({ req, query, res }) => {

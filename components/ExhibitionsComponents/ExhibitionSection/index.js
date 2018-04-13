@@ -1,11 +1,13 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { classNames, stylesheet } from "./ExhibitionSection.css";
+
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
 import FeedbackForm from "components/FeedbackForm";
 import GaExhibitWrapper from "./GaExhibitWrapper";
+
+import css from "./ExhibitionSection.scss";
 
 const ExhibitionView = ({
   exhibition,
@@ -16,7 +18,7 @@ const ExhibitionView = ({
   nextSubsectionTitle,
   previousQueryParams
 }) =>
-  <div className={classNames.exhibitionView}>
+  <div className={css.exhibitionView}>
     <Helmet htmlAttributes={{ lang: "en" }} />
     <Header title={exhibition.title} route={route} />
     <Body
@@ -33,7 +35,6 @@ const ExhibitionView = ({
       nextSubsectionTitle={nextSubsectionTitle}
     />
     <FeedbackForm route={route} />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default GaExhibitWrapper(ExhibitionView);

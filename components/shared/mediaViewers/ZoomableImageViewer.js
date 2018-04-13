@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/server";
 
-import { classNames, stylesheet } from "./mediaViewers.css";
+import css from "./mediaViewers.scss";
 
 const viewerId = "openseadragon1";
 
@@ -35,17 +35,16 @@ export default class ZoomableImageViewer extends React.Component {
 
   render() {
     return (
-      <div id={viewerId} className={classNames.zoomableImageViewer}>
+      <div id={viewerId} className={css.zoomableImageViewer}>
         <Noscript>
-          <div className={classNames.noscriptContainer}>
+          <div className={css.noscriptContainer}>
             <img
-              className={classNames.noscriptImg}
+              className={css.noscriptImg}
               alt=""
               src={this.props.pathToFile}
             />
           </div>
         </Noscript>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

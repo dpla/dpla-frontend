@@ -1,33 +1,33 @@
 import React from "react";
 
-import { classNames, stylesheet } from "./Sidebar.css";
+import css from "./Sidebar.scss";
 
 // const RelatedResource = ({ type, title, image }) =>
-//   <div className={classNames.relatedResource}>
-//     <img alt={title} src={image} className={classNames.relatedResourceImage} />
-//     <p className={classNames.relatedResourceTitle}>
+//   <div className={css.relatedResource}>
+//     <img alt={title} src={image} className={css.relatedResourceImage} />
+//     <p className={css.relatedResourceTitle}>
 //       {title}
 //     </p>
-//     <p className={classNames.relatedResourceType}>
+//     <p className={css.relatedResourceType}>
 //       {type}
 //     </p>
 //   </div>;
 
 const Sidebar = ({ image, title, description }) =>
-  <div className={classNames.sidebar}>
-    <div className={classNames.subtopicInfo}>
-      <img src={image} alt={title} className={classNames.image} />
-      <div className={classNames.subtopicInfoText}>
-        <h1 className={classNames.title}>
+  <div className={css.sidebar}>
+    <div className={css.subtopicInfo}>
+      <img src={image} alt={title} className={css.image} />
+      <div className={css.subtopicInfoText}>
+        <h1 className={css.title}>
           {title}
         </h1>
-        <p className={classNames.description}>
+        <p className={css.description}>
           {description}
         </p>
       </div>
     </div>
-    {/* <h3 className={classNames.relatedHeader}>You might also enjoy</h3>
-    <div className={classNames.relatedResources}>
+    {/* <h3 className={css.relatedHeader}>You might also enjoy</h3>
+    <div className={css.relatedResources}>
       <RelatedResource
         type="Exhibition"
         title="Race to the Moon"
@@ -39,7 +39,6 @@ const Sidebar = ({ image, title, description }) =>
         image="http://lorempixel.com/140/100/food"
       />
     </div> */}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Sidebar;

@@ -13,6 +13,7 @@
           "utilFunctions": "./utilFunctions",
           "shared": "./components/shared",
           "constants": "./constants",
+          "stylesheets": "./stylesheets",
           "components": "./components"
         }
       }

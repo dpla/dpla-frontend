@@ -5,7 +5,7 @@ import Chevron from "../../../static/images/chevron-thick.svg";
 
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 
-import { classNames, stylesheet } from "./Pagination.css";
+import css from "./Pagination.scss";
 
 /**
   * @param current, current page number
@@ -46,12 +46,12 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
     ? <button
         disabled
         className={`${type === "next"
-          ? classNames.nextButton
-          : classNames.previousButton} ${classNames.hideOnLargeScreens}`}
+          ? css.nextButton
+          : css.previousButton} ${css.hideOnLargeScreens}`}
       >
-        {type === "prev" && <Chevron className={classNames.prevChevron} />}
+        {type === "prev" && <Chevron className={css.prevChevron} />}
         {type === "next" ? "Next" : "Previous"}
-        {type === "next" && <Chevron className={classNames.nextChevron} />}
+        {type === "next" && <Chevron className={css.nextChevron} />}
       </button>
     : <Link
         prefetch
@@ -64,19 +64,15 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
           })
         }}
       >
-        <a
-          className={
-            type === "next" ? classNames.nextButton : classNames.previousButton
-          }
-        >
-          {type === "prev" && <Chevron className={classNames.prevChevron} />}
+        <a className={type === "next" ? css.nextButton : css.previousButton}>
+          {type === "prev" && <Chevron className={css.prevChevron} />}
           {type === "next" ? "Next" : "Previous"}
-          {type === "next" && <Chevron className={classNames.nextChevron} />}
+          {type === "next" && <Chevron className={css.nextChevron} />}
         </a>
       </Link>;
 
 const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
-  <div className={classNames.pagination}>
+  <div className={css.pagination}>
     <NextOrPrevButton
       disabled={!(currentPage > 1 && pageCount > 1)}
       type="prev"
@@ -86,23 +82,23 @@ const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
     {pageCount > 1 &&
       <PageLink
         className={[
-          classNames.link,
-          parseInt(currentPage, 10) === 1 ? classNames.activeLink : ""
+          css.link,
+          parseInt(currentPage, 10) === 1 ? css.activeLink : ""
         ].join(" ")}
         route={route}
         page={1}
       />}
     {currentPage >= 5 &&
       pageCount > 5 &&
-      <span className={classNames.ellipses}>...</span>}
+      <span className={css.ellipses}>...</span>}
     {centerWindow(currentPage, pageCount).map(
       page =>
         page > 1 && page < pageCount
           ? <PageLink
               key={page}
               className={[
-                classNames.link,
-                page === parseInt(currentPage, 10) ? classNames.activeLink : ""
+                css.link,
+                page === parseInt(currentPage, 10) ? css.activeLink : ""
               ].join(" ")}
               route={route}
               page={page}
@@ -112,12 +108,12 @@ const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
 
     {currentPage <= pageCount - 4 &&
       pageCount > 5 &&
-      <span className={classNames.ellipses}>...</span>}
+      <span className={css.ellipses}>...</span>}
     {pageCount > 1 &&
       <PageLink
         className={[
-          classNames.link,
-          pageCount === parseInt(currentPage, 10) ? classNames.activeLink : ""
+          css.link,
+          pageCount === parseInt(currentPage, 10) ? css.activeLink : ""
         ].join(" ")}
         route={route}
         page={pageCount}
@@ -128,7 +124,6 @@ const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
       currentPage={currentPage}
       type="next"
     />
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Pagination;

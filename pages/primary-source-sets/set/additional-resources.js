@@ -7,19 +7,13 @@ import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
+
 import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
-import {
-  classNames,
-  stylesheet
-} from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.css";
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>
@@ -38,21 +32,20 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
     />
     <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
     <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
-      <div className={classNames.content}>
+      <div className={css.content}>
         <div
-          className={container}
+          className={utils.container}
           role="tabpanel"
           aria-labelledby="tab-teachingguide"
         >
           <ReactMarkdown
-            className={`${contentClasses.content} ${container}`}
+            className={`${contentCss.content} ${utils.container}`}
             source={set.hasPart.find(item => item.name === "Resources").text}
           />
         </div>
       </div>
     </ResourcesTabs>
     <PSSFooter />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 SingleSet.getInitialProps = async ({ query, req }) => {

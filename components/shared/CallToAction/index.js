@@ -2,8 +2,7 @@ import "react";
 import "next/link";
 
 import Button from "shared/Button";
-
-import { stylesheet, classNames } from "./CallToAction.css";
+import css from "./CallToAction.scss";
 
 const CallToAction = ({
   className,
@@ -14,28 +13,25 @@ const CallToAction = ({
   imageSrc,
   imageCaption
 }) =>
-  <section
-    className={`${className ? className : ""} ${classNames.callToAction}`}
-  >
-    <div className={`${classNames.callToActionWrapper} site-max-width`}>
-      <div className={classNames.callToActionText}>
+  <section className={`${className ? className : ""} ${css.callToAction}`}>
+    <div className={`${css.callToActionWrapper} site-max-width`}>
+      <div className={css.callToActionText}>
         <h2>{title}</h2>
         <p>{text}</p>
-        <div className={classNames.callToActionButton}>
-          <a className={classNames.button} href={buttonUrl}>
+        <div className={css.callToActionButton}>
+          <a className={css.button} href={buttonUrl}>
             {buttonText}
           </a>
         </div>
       </div>
       {imageSrc &&
-        <div className={classNames.callToActionImage}>
+        <div className={css.callToActionImage}>
           <img src={imageSrc} alt="" />
           <span>
             <strong>Image:</strong> {imageCaption}
           </span>
         </div>}
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </section>;
 
 export default CallToAction;

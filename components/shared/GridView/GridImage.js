@@ -1,7 +1,8 @@
 import React from "react";
 
-import { classNames } from "./GridView.css";
 import { getDefaultThumbnail } from "utilFunctions";
+
+import css from "./GridView.scss";
 
 class GridImage extends React.Component {
   state = {
@@ -24,13 +25,13 @@ class GridImage extends React.Component {
 
     return (
       <div
-        className={`${classNames.imageWrapper}
-          ${useDefaultWrapper && classNames.defaultImageWrapper}`}
+        className={`${css.imageWrapper}
+          ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         <img
           src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
           alt={title}
-          className={classNames.image}
+          className={css.image}
         />
       </div>
     );

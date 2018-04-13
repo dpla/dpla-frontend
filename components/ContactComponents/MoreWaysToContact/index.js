@@ -1,45 +1,46 @@
 import React from "react";
-import { classNames, stylesheet } from "./MoreWaysToContact.css";
+
+import css from "./MoreWaysToContact.scss";
 
 const MoreWaysToContact = () =>
-  <div className={classNames.contactForm}>
-    <h2 className={classNames.header}>More Ways To Contact Us</h2>
-    <table className={classNames.contentTable}>
+  <div className={css.contactForm}>
+    <h2 className={css.header}>More Ways To Contact Us</h2>
+    <table className={css.contentTable}>
       <tbody>
-        <tr className={`row ${classNames.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             General Email
           </td>
-          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
-            <a className={classNames.mailToLink} href="mailto:info@dp.la">
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+            <a className={css.mailToLink} href="mailto:info@dp.la">
               info@dp.la
             </a>
           </td>
         </tr>
-        <tr className={`row ${classNames.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             Telephone
           </td>
-          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             617-859-2116
           </td>
         </tr>
-        <tr className={`row ${classNames.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             Mailing Address
           </td>
-          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             Digital Public Library of America<br />
             c/o Boston Public Library<br />
             700 Boylston Street<br />
             Boston, MA 02116<br />
           </td>
         </tr>
-        <tr className={`row ${classNames.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             Social Media
           </td>
-          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             <ul>
               <li><a href="//twitter.com/dpla">Twitter</a></li>
               <li>
@@ -58,11 +59,11 @@ const MoreWaysToContact = () =>
             </ul>
           </td>
         </tr>
-        <tr className={`row ${classNames.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${classNames.tableHeading}`}>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             Mailing Lists
           </td>
-          <td className={`col-xs-12 col-sm-7 ${classNames.tableItem}`}>
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             <ul>
               <li>
                 <a href="https://us4.list-manage.com/subscribe?u=e1490d1305c4b651f3ad0ace4&id=1ee988aadc">
@@ -89,7 +90,6 @@ const MoreWaysToContact = () =>
         </tr>
       </tbody>
     </table>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default MoreWaysToContact;

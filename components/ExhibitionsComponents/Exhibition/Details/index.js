@@ -3,23 +3,22 @@ import Link from "next/link";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
-
-import { classNames, stylesheet } from "./Details.css";
-import { classNames as utilClassNames } from "css/utils.css";
 import GaExhibitHomeWrapper from "./GaExhibitHomeWrapper";
 
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./Details.scss";
+
 const Details = ({ exhibition, route, currentFullUrl }) =>
-  <div className={classNames.wrapper}>
-    <div className={[container, classNames.details].join(" ")}>
-      <div className={classNames.tableOfContents}>
-        <h2 className={classNames.tableOfContentsHeader}>
+  <div className={css.wrapper}>
+    <div className={[utils.container, css.details].join(" ")}>
+      <div className={css.tableOfContents}>
+        <h2 className={css.tableOfContentsHeader}>
           In This Exhibition
         </h2>
-        <div className={classNames.tableOfContentsContents}>
-          <ul className={classNames.tableOfContentsSections}>
+        <div className={css.tableOfContentsContents}>
+          <ul className={css.tableOfContentsSections}>
             {exhibition.sections.map((section, idx) =>
-              <li key={idx} className={classNames.tableOfContentsSection}>
+              <li key={idx} className={css.tableOfContentsSection}>
                 <Link
                   prefetch
                   href={{
@@ -42,26 +41,26 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
             )}
           </ul>
         </div>
-        <div className={classNames.faveAndCiteButtonsWrapper}>
+        <div className={css.faveAndCiteButtonsWrapper}>
           <CiteButton
             toCiteText="exhibition"
-            className={classNames.citeButton}
+            className={css.citeButton}
             freeText={exhibition.description}
             title={exhibition.name}
           />
         </div>
       </div>
-      <div className={classNames.body}>
+      <div className={css.body}>
         <div
-          className={classNames.bodyText}
+          className={css.bodyText}
           dangerouslySetInnerHTML={{ __html: exhibition.text }}
         />
-        <div className={classNames.exploreButton}>
+        <div className={css.exploreButton}>
           <Button
             type="primary"
             size="large"
             prefetch
-            className={classNames.exploreLink}
+            className={css.exploreLink}
             url={{
               pathname: "/exhibitions/exhibition/section/subsection",
               query: Object.assign({}, route.query, {
@@ -78,21 +77,20 @@ const Details = ({ exhibition, route, currentFullUrl }) =>
             Explore Exhibition
           </Button>
         </div>
-        <p className={classNames.credits}>
-          <span className={classNames.creditsBold}>Credit: </span>
-          <span className={classNames.creditsText}>{exhibition.credits}</span>
+        <p className={css.credits}>
+          <span className={css.creditsBold}>Credit: </span>
+          <span className={css.creditsText}>{exhibition.credits}</span>
         </p>
-        <div className={classNames.faveAndCiteButtonsWrapper}>
+        <div className={css.faveAndCiteButtonsWrapper}>
           <CiteButton
             toCiteText="exhibition"
-            className={classNames.citeButton}
+            className={css.citeButton}
             freeText={exhibition.description}
             title={exhibition.name}
           />
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default GaExhibitHomeWrapper(Details);

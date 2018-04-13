@@ -15,23 +15,23 @@ import {
 } from "constants/content-pages";
 import { TITLE } from "constants/contact";
 
-import { classNames, stylesheet } from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>
     <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
-        className={`${utilClassNames.container}
-        ${classNames.sidebarAndContentWrapper}`}
+        className={`${utils.container}
+        ${contentCss.sidebarAndContentWrapper}`}
       >
         <div className="row">
           <ContentPagesSidebar
             route={url}
             activeItemId="contact-us"
             items={sidebarItems}
-            className={classNames.sidebar}
+            className={contentCss.sidebar}
           />
           <div id="main" role="main" className="col-xs-12 col-md-8">
             <ContactForm />
@@ -40,7 +40,6 @@ const Contact = ({ url, sidebarItems }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </MainLayout>;
 
 Contact.getInitialProps = async () => {

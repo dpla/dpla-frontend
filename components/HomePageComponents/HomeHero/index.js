@@ -3,41 +3,41 @@ import Link from "next/link";
 
 import Button from "components/shared/Button";
 
-import { stylesheet, classNames } from "./HomeHero.css";
+import css from "./HomeHero.scss";
 
-const bgImage = "static/images/home-hero-bg.png";
+const bgImage = "/static/images/home-hero-bg.png";
 
 const HomeHero = ({ headerDescription, feature }) =>
   <div
-    className={`${classNames.wrapper} ${feature ? classNames.withFeature : ""}`}
+    className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
-    <div className={`${classNames.header} site-max-width`}>
-      <div className={classNames.dplaLogo}>
+    <div className={`${css.header} site-max-width`}>
+      <div className={css.dplaLogo}>
         <h1>Digital Public Library of America</h1>
       </div>
       <Button type="primary" size="large" url="/donate">
         Donate
       </Button>
     </div>
-    <div className={classNames.content}>
-      <p className={classNames.headline}>{headerDescription}</p>
+    <div className={css.content}>
+      <p className={css.headline}>{headerDescription}</p>
       <form action="/search">
-        <div className={classNames.search}>
+        <div className={css.search}>
           <input
-            className={classNames.searchInput}
+            className={css.searchInput}
             aria-label="Search the collection"
             placeholder="Search the collection"
             name="q"
             autoComplete="off"
             type="search"
           />
-          <button type="submit" className={classNames.searchButton}>
+          <button type="submit" className={css.searchButton}>
             <span>Search</span>
           </button>
         </div>
       </form>
-      <div className={classNames.links}>
+      <div className={css.links}>
         <Link prefetch href="/browse-by-topic">
           <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>
         </Link>
@@ -46,7 +46,6 @@ const HomeHero = ({ headerDescription, feature }) =>
         </Link>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default HomeHero;

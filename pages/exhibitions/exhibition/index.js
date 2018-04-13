@@ -5,21 +5,22 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "components/ExhibitionsComponents/Exhibition/Details";
-import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
+
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
   FILES_ENDPOINT,
   ITEMS_ENDPOINT
 } from "constants/exhibitions";
-
 import { SEO_TYPE } from "constants/exhibition";
-
 import { API_ENDPOINT } from "constants/items";
 
-import removeQueryParams from "utilFunctions/removeQueryParams";
-
-import { getDplaItemIdFromExhibit } from "utilFunctions";
+import {
+  getCurrentUrl,
+  getCurrentFullUrl,
+  getDplaItemIdFromExhibit,
+  removeQueryParams
+} from "utilFunctions";
 
 class Exhibition extends React.Component {
   componentDidMount() {

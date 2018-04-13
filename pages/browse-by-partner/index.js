@@ -4,17 +4,19 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "components/shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
-import { API_ENDPOINT } from "constants/items";
+
 import { getCurrentUrl } from "utilFunctions";
+import { API_ENDPOINT } from "constants/items";
 import { TITLE, DESCRIPTION } from "constants/browse-by-partner";
-import { classNames } from "components/PartnerBrowseComponents/PartnerBrowseContent.css";
+
+import css from "components/PartnerBrowseComponents/PartnerBrowseContent.scss";
 
 const PartnerBrowse = ({ partners, url }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
       <div id="main" role="main">
         <FeatureHeader
-          titleClassName={classNames.featureTitle}
+          titleClassName={css.featureTitle}
           title={TITLE}
           description={DESCRIPTION}
         />

@@ -42,7 +42,6 @@ exports.renderAndCache = (
 
 exports.sendEmail = (from, to, subject, message) => {
   const aws = require("aws-sdk");
-  console.log("sending email to: ", to);
   aws.config.update({ region: "us-east-1" });
   const ses = new aws.SES();
   var params = {

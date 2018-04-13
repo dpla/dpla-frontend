@@ -19,14 +19,9 @@ import {
 } from "constants/content-pages";
 import { WORDPRESS_URL } from "constants/env";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import { classNames, stylesheet } from "css/pages/news.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "stylesheets/news.scss";
 
 const PostPage = ({ url, content, menuItems, author }) => {
   let hasTags = false;
@@ -54,26 +49,26 @@ const PostPage = ({ url, content, menuItems, author }) => {
         route={url}
       />
       <div
-        className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+        className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
       >
         <div className="row">
           <ContentPagesSidebar
             route={url}
             items={menuItems}
             activeItemId={content.id}
-            className={contentClasses.sidebar}
+            className={contentCss.sidebar}
             rootPath="wp"
           />
           <div className="col-xs-12 col-md-7">
-            <div id="main" role="main" className={contentClasses.content}>
+            <div id="main" role="main" className={contentCss.content}>
               <WPEdit page={content} url={url} />
               <h1
                 dangerouslySetInnerHTML={{
                   __html: content.title.rendered
                 }}
               />
-              <div className={classNames.resultSummary}>
+              <div className={css.resultSummary}>
                 <p>
                   Posted by{" "}
                   <Link
@@ -96,7 +91,7 @@ const PostPage = ({ url, content, menuItems, author }) => {
                 </p>
               </div>
               {hasTags &&
-                <div className={classNames.tags}>
+                <div className={css.tags}>
                   Published under:
                   <ul>
                     {content.tags.map(id => {
@@ -125,8 +120,6 @@ const PostPage = ({ url, content, menuItems, author }) => {
           </div>
         </div>
       </div>
-      <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </MainLayout>
   );
 };

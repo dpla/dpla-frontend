@@ -6,10 +6,9 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import { removeQueryParams } from "utilFunctions";
 import { UNTITLED_TEXT } from "constants/site";
 
-import { stylesheet, classNames } from "./BreadcrumbsModule.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import css from "./BreadcrumbsModule.scss";
 
-const { container } = utilClassNames;
 const chevron = "/static/images/chevron-thick-orange.svg";
 
 // const PreviousItemLink = ({ query, searchItemCount, paginationInfo }) => {
@@ -43,10 +42,10 @@ const chevron = "/static/images/chevron-thick-orange.svg";
 //         }
 //       }}
 //     >
-//       <a className={`${classNames.previousItemButton} hover-underline`}>
-//         <img src={chevron} alt="" className={classNames.previousChevron} />
+//       <a className={`${css.previousItemButton} hover-underline`}>
+//         <img src={chevron} alt="" className={css.previousChevron} />
 //         <span>
-//           Previous <span className={classNames.hideOnSmallScreens}>Item</span>
+//           Previous <span className={css.hideOnSmallScreens}>Item</span>
 //         </span>
 //       </a>
 //     </Link>
@@ -82,11 +81,11 @@ const chevron = "/static/images/chevron-thick-orange.svg";
 //         }
 //       }}
 //     >
-//       <a className={`${classNames.nextItemButton} hover-underline`}>
+//       <a className={`${css.nextItemButton} hover-underline`}>
 //         <span>
-//           Next <span className={classNames.hideOnSmallScreens}>Item</span>
+//           Next <span className={css.hideOnSmallScreens}>Item</span>
 //         </span>
-//         <img src={chevron} alt="" className={classNames.nextChevron} />
+//         <img src={chevron} alt="" className={css.nextChevron} />
 //       </a>
 //     </Link>
 //   );
@@ -98,8 +97,8 @@ const BreadcrumbsModule = ({
   // searchItemCount,
   // paginationInfo
 }) =>
-  <div className={utilClassNames.breadcrumbsWrapper}>
-    <div className={[container, utilClassNames.breadcrumbsModule].join(" ")}>
+  <div className={utils.breadcrumbsWrapper}>
+    <div className={[utils.container, utils.breadcrumbsModule].join(" ")}>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {
@@ -108,7 +107,7 @@ const BreadcrumbsModule = ({
         )}
       />
       {/*(route.query.previous >= 0 || route.query.next) &&
-        <div className={classNames.navButtonsWrapper}>
+        <div className={css.navButtonsWrapper}>
           {route.query.previous &&
             route.query.previous >= 0 &&
             <PreviousItemLink
@@ -125,7 +124,6 @@ const BreadcrumbsModule = ({
             />}
           </div>*/}
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default BreadcrumbsModule;

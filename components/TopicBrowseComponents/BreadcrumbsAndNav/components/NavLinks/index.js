@@ -1,21 +1,21 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames, stylesheet } from "./NavArrows.css";
+import css from "./NavArrows.scss";
 
 const chevron = "/static/images/chevron-thick-orange.svg";
 
 const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
   nextSubtopic || previousSubtopic
-    ? <div className={classNames.navLinks}>
+    ? <div className={css.navLinks}>
         {previousSubtopic &&
           <Link
             prefetch
             as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
             href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
           >
-            <a className={classNames.prevLink}>
-              <img src={chevron} alt="" className={classNames.prevArrow} />
+            <a className={css.prevLink}>
+              <img src={chevron} alt="" className={css.prevArrow} />
               <span>Previous Section</span>
             </a>
           </Link>}
@@ -27,10 +27,9 @@ const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
           >
             <a>
               <span>Next Section</span>
-              <img src={chevron} alt="" className={classNames.nextArrow} />
+              <img src={chevron} alt="" className={css.nextArrow} />
             </a>
           </Link>}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     : null;
 

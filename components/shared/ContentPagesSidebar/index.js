@@ -11,16 +11,12 @@ import {
   endsWith
 } from "utilFunctions";
 
-import { classNames, stylesheet } from "./Sidebar.css";
+import css from "./Sidebar.scss";
 
 const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   return (
     <Link as={linkObject.as} href={linkObject.href}>
-      <a
-        className={`${classNames.link} ${isCurrentLink
-          ? classNames.selected
-          : ""}`}
-      >
+      <a className={`${css.link} ${isCurrentLink ? css.selected : ""}`}>
         {title}
       </a>
     </Link>
@@ -168,8 +164,8 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
 
   return (
     <div className={`${className} col-xs-12 col-md-4`}>
-      <div className={classNames.sidebar}>
-        <ul className={classNames.links}>
+      <div className={css.sidebar}>
+        <ul className={css.links}>
           {items
             .filter(
               item =>
@@ -190,7 +186,7 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
               );
             })}
         </ul>
-        <div className={classNames.divider} />
+        <div className={css.divider} />
         <ul>
           <li>
             <NestedSidebarLinks
@@ -230,7 +226,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
           </li>
         </ul>
       </div>
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </div>
   );
 };

@@ -12,10 +12,8 @@ import {
 import addCommasToNumber from "utilFunctions/addCommasToNumber";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 
-import { classNames, stylesheet } from "./OptionsBar.css";
-import { classNames as utilClassNames } from "css/utils.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./OptionsBar.scss";
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
@@ -87,36 +85,36 @@ class OptionsBar extends React.Component {
       numberOfActiveFacets
     } = this.props;
     return (
-      <div className={classNames.wrapper}>
-        <div className={[container, classNames.optionsBar].join(" ")}>
-          <div className={classNames.resultsAndFilter}>
-            <h1 className={classNames.resultsCount}>
+      <div className={css.wrapper}>
+        <div className={[utils.container, css.optionsBar].join(" ")}>
+          <div className={css.resultsAndFilter}>
+            <h1 className={css.resultsCount}>
               <span>{addCommasToNumber(this.props.itemCount)} results </span>
               {this.props.route.query.q &&
-                <span className={classNames.resultsCountQuery}>
+                <span className={css.resultsCountQuery}>
                   <span>for </span>
-                  <span className={classNames.resultsCountQueryText}>
+                  <span className={css.resultsCountQueryText}>
                     {this.props.route.query.q}
                   </span>
                 </span>}
             </h1>
-            <p className={classNames.pageNumber}>Page {currentPage}</p>
+            <p className={css.pageNumber}>Page {currentPage}</p>
             <button
               onClick={() => onClickToggleFilters()}
               aria-expanded={showFilters}
-              className={`${classNames.toggleFilters} ${showFilters
-                ? classNames.showFilters
+              className={`${css.toggleFilters} ${showFilters
+                ? css.showFilters
                 : ""} ${numberOfActiveFacets !== 0
-                ? classNames.withActiveFacets
+                ? css.withActiveFacets
                 : ""}`}
             >
               <span>Filter</span>
               {numberOfActiveFacets !== 0 &&
-                <span className={classNames.activeFacetCount}>
+                <span className={css.activeFacetCount}>
                   ({numberOfActiveFacets})
                 </span>}
               <svg
-                className={classNames.filtersButtonChevron}
+                className={css.filtersButtonChevron}
                 width="15px"
                 height="24px"
                 viewBox="0 0 15 24"
@@ -137,12 +135,9 @@ class OptionsBar extends React.Component {
               </svg>
             </button>
           </div>
-          <div className={classNames.options}>
-            <div className={classNames.optionWrapper}>
-              <h3
-                id="options-bar-page-size-label"
-                className={classNames.optionHeader}
-              >
+          <div className={css.options}>
+            <div className={css.optionWrapper}>
+              <h3 id="options-bar-page-size-label" className={css.optionHeader}>
                 Items per page
               </h3>
               <Select
@@ -152,17 +147,12 @@ class OptionsBar extends React.Component {
                 searchable={false}
                 value={this.state.pageSizeValue}
                 onChange={this.onPageSizeChange}
-                className={[classNames.select, classNames.itemsPerPage].join(
-                  " "
-                )}
+                className={[css.select, css.itemsPerPage].join(" ")}
                 options={pageSizeOptions}
               />
             </div>
-            <div className={classNames.optionWrapper}>
-              <h3
-                id="options-bar-sort-by-label"
-                className={classNames.optionHeader}
-              >
+            <div className={css.optionWrapper}>
+              <h3 id="options-bar-sort-by-label" className={css.optionHeader}>
                 Sort by
               </h3>
               <Select
@@ -171,16 +161,16 @@ class OptionsBar extends React.Component {
                 searchable={false}
                 instanceId="options-bar-sort-by"
                 value={this.state.sortValue}
-                className={[classNames.select, classNames.sortBy].join(" ")}
+                className={[css.select, css.sortBy].join(" ")}
                 onChange={this.onSortChange}
                 options={sortOptions}
               />
             </div>
             {/* <div>
-              <h3 className={classNames.optionHeader}>
+              <h3 className={css.optionHeader}>
                 Layout
               </h3>
-              <div className={classNames.viewButtons}>
+              <div className={css.viewButtons}>
                 <Link
                   prefetch
                   href={{
@@ -192,14 +182,14 @@ class OptionsBar extends React.Component {
                 >
                   <a
                     className={[
-                      classNames.listViewButton,
+                      css.listViewButton,
                       this.props.route.query.list_view === "grid"
-                        ? classNames.viewButtonInactive
-                        : classNames.viewButtonActive
+                        ? css.viewButtonInactive
+                        : css.viewButtonActive
                     ].join(" ")}
                   >
                     <img
-                      className={classNames.viewButtonIcon}
+                      className={css.viewButtonIcon}
                       src={listViewIcon}
                       alt="List View"
                     />
@@ -216,14 +206,14 @@ class OptionsBar extends React.Component {
                 >
                   <a
                     className={[
-                      classNames.gridViewButton,
+                      css.gridViewButton,
                       this.props.route.query.list_view === "grid"
-                        ? classNames.viewButtonActive
-                        : classNames.viewButtonInactive
+                        ? css.viewButtonActive
+                        : css.viewButtonInactive
                     ].join(" ")}
                   >
                     <img
-                      className={classNames.viewButtonIcon}
+                      className={css.viewButtonIcon}
                       src={gridViewIcon}
                       alt="Grid View"
                     />
@@ -233,7 +223,6 @@ class OptionsBar extends React.Component {
             </div> */}
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

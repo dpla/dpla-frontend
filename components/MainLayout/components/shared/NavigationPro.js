@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import { USER_BASE_URL } from "constants/env";
 
-const NavigationPro = ({ className, style, classNames, isHome }) =>
-  <div className={className} style={style}>
-    <ul className={classNames.links}>
+const NavigationPro = ({ isHome, className, css }) =>
+  <div className={className}>
+    <ul className={css.links}>
       {!isHome &&
         <li>
           <Link prefetch as="/" href="/pro">
@@ -25,8 +25,8 @@ const NavigationPro = ({ className, style, classNames, isHome }) =>
         </Link>
       </li>
     </ul>
-    <span className={classNames.divider} />
-    <ul className={`${classNames.links} ${classNames.secondaryLinks}`}>
+    <span className={css.divider} />
+    <ul className={`${css.links} ${css.secondaryLinks}`}>
       <li>
         <Link prefetch as="/about" href="/pro/wp?section=about-dpla-pro">
           <a>About</a>
@@ -38,8 +38,8 @@ const NavigationPro = ({ className, style, classNames, isHome }) =>
         </Link>
       </li>
     </ul>
-    <span className={classNames.divider} />
-    <ul className={`${classNames.links} ${classNames.tertiaryLinks}`}>
+    <span className={css.divider} />
+    <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
         <Link href={USER_BASE_URL}>
           <a>DPLA Main Site</a>

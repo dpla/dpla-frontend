@@ -2,27 +2,21 @@ import React from "react";
 import Link from "next/link";
 
 import Button from "components/shared/Button";
-import { classNames, stylesheet } from "./Callout.css";
+import css from "./Callout.scss";
 
 const Callout = ({ topics }) =>
-  <div className={classNames.calloutWrapper}>
-    <div className={classNames.callout}>
-      <div className={classNames.content}>
-        <h2 className={classNames.header}>Enjoying these topics?</h2>
-        <p className={classNames.text}>
+  <div className={css.calloutWrapper}>
+    <div className={css.callout}>
+      <div className={css.content}>
+        <h2 className={css.header}>Enjoying these topics?</h2>
+        <p className={css.text}>
           You might also like our Online Exhibitions.
         </p>
       </div>
-      <Button
-        type="primary"
-        url="/exhibitions"
-        prefetch
-        className={classNames.link}
-      >
+      <Button type="primary" url="/exhibitions" prefetch className={css.link}>
         Visit Online Exhibitions
       </Button>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Callout;

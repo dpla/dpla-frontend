@@ -3,9 +3,8 @@ import React from "react";
 import Breadcrumbs from "shared/Breadcrumbs";
 import NavLinks from "./components/NavLinks";
 
-import { classNames, stylesheet } from "./BreadcrumbsAndNav.css";
-import { classNames as utilClassNames } from "css/utils.css";
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./BreadcrumbsAndNav.scss";
 
 const BreadcrumbsAndNav = ({
   breadcrumbs,
@@ -14,11 +13,10 @@ const BreadcrumbsAndNav = ({
   topic,
   route
 }) =>
-  <div className={utilClassNames.breadcrumbsWrapper}>
-    <div className={[classNames.breadcrumbsAndNav, container].join(" ")}>
+  <div className={utils.breadcrumbsWrapper}>
+    <div className={[css.breadcrumbsAndNav, utils.container].join(" ")}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default BreadcrumbsAndNav;

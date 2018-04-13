@@ -1,0 +1,83 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.wrapper {
+  margin: 0 auto;
+  background-color: $featureBackgroundColor;
+  display: flex;
+  align-items: center;
+  padding-right: 3rem;
+
+  @media (max-width: $mediumRem) {
+    display: block;
+    padding-right: 0;
+  }
+}
+
+.imageWrapper {
+  min-width: 15rem;
+  align-self: stretch;
+  background-size: cover;
+  background-position-y: 50%;
+
+  @media (max-width: $mediumRem) {
+    display: none;
+  }
+}
+
+.textWrapper {
+  padding: 2rem 1rem 2.5rem 2rem;
+  flex-grow: 2;
+
+  &.noImage {
+    padding-left: 3rem;
+  }
+
+  @media (max-width: $mediumRem) {
+    &, &.noImage {
+      padding: 1rem 1rem 1.5rem;
+    }
+  }
+}
+
+.title {
+  font-family: $serifFont;
+  font-weight: normal;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: $mediumRem) {
+    font-size: 2rem;
+  }
+}
+
+.text, .button {
+  font-size: 1.125rem;
+
+  @media (max-width: $mediumRem) {
+    font-size: 1rem;
+  }
+}
+
+.button, .button:visited {
+  color: white;
+  background-color: $secondaryButtonColor;
+  font-weight: normal;
+  border-radius: 2px;
+  padding: 0.75rem 2rem;
+  transition: background-color 0.15s ease-out;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $darkSecondaryButtonColor;
+  }
+
+  @media (max-width: $mediumRem) {
+    margin: 0 1rem 1rem;
+  }
+}

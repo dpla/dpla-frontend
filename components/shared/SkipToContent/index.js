@@ -1,11 +1,10 @@
 import React from "react";
 
-import { stylesheet, classNames } from "./SkipToContent.css";
+import css from "./SkipToContent.scss";
 
 const SkipToContent = ({ className, id, isHidden, children }) =>
-  <div className={classNames.skipLink} tabIndex="-1">
+  <div className={css.skipLink} tabIndex="-1">
     <a href="#main">Skip to Main Content</a>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default SkipToContent;

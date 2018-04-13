@@ -11,20 +11,16 @@ import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { TITLE } from "constants/guides";
 
-import { classNames, stylesheet } from "css/pages/guides.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { stylesheet as guidesStylesheet } from "components/shared/GuideLink/GuideLink.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "stylesheets/guides.scss";
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
     <div
       className={`
-        ${utilClassNames.container}
-        ${contentClasses.sidebarAndContentWrapper}
+        ${utils.container}
+        ${contentCss.sidebarAndContentWrapper}
       `}
     >
       <div className="row">
@@ -32,18 +28,18 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
           route={url}
           items={sidebarItems}
           activeItemId={activeItemId}
-          className={contentClasses.sidebar}
+          className={contentCss.sidebar}
         />
         <div
           id="main"
           role="main"
-          className={`${classNames.wrapper} col-xs-12 col-md-8`}
+          className={`${css.wrapper} col-xs-12 col-md-8`}
         >
           <ul className="row">
             {guides.map((guide, i) =>
               <li
                 key={i}
-                className={`col-xs-12 col-md-6 col-lg-4 ${classNames.itemColumn}`}
+                className={`col-xs-12 col-md-6 col-lg-4 ${css.itemColumn}`}
               >
                 <GuideLink guide={guide} />
               </li>
@@ -52,9 +48,6 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
-    <style dangerouslySetInnerHTML={{ __html: guidesStylesheet }} />
   </MainLayout>;
 
 Guides.getInitialProps = async () => {

@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames } from "./ListView.css";
 import { getDefaultThumbnail } from "utilFunctions";
+
+import css from "./ListView.scss";
 
 class ListImage extends React.Component {
   state = {
@@ -26,18 +27,18 @@ class ListImage extends React.Component {
 
     return (
       <div
-        className={`${classNames.imageWrapper}
-          ${useDefaultWrapper && classNames.defaultImageWrapper}`}
+        className={`${css.imageWrapper}
+          ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         <Link href={this.state.item.linkHref} as={this.state.item.linkAs}>
           <a
-            className={`${classNames.listItemImageLink} internalItemLink`}
+            className={`${css.listItemImageLink} internalItemLink`}
             aria-hidden
           >
             <img
               src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
               alt=""
-              className={classNames.image}
+              className={css.image}
             />
           </a>
         </Link>

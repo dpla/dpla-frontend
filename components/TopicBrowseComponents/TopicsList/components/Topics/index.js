@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./Topics.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import css from "./Topics.scss";
 
 const Topics = ({ topics }) =>
-  <div className={`${classNames.topicsWrapper} ${utilClassNames.container}`}>
-    <p className={classNames.topicsIntro}>
+  <div className={`${css.topicsWrapper} ${utils.container}`}>
+    <p className={css.topicsIntro}>
       This is a new feature designed to showcase content strengths in our
       collection. Look for new topics in the future!
     </p>
@@ -21,18 +21,17 @@ const Topics = ({ topics }) =>
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
           >
-            <a className={classNames.topic}>
-              {topic.isFeatured &&
-                <div className={classNames.ribbon}>Featured</div>}
+            <a className={css.topic}>
+              {topic.isFeatured && <div className={css.ribbon}>Featured</div>}
               {topic.isNew &&
                 !topic.isFeatured &&
-                <div className={classNames.ribbon}>New</div>}
+                <div className={css.ribbon}>New</div>}
               <img
                 alt=""
                 src={topic.acf.category_image}
-                className={classNames.image}
+                className={css.image}
               />
-              <div className={classNames.title}>
+              <div className={css.title}>
                 {topic.name}
               </div>
             </a>
@@ -40,7 +39,6 @@ const Topics = ({ topics }) =>
         </li>
       )}
     </ul>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default Topics;

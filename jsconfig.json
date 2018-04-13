@@ -19,6 +19,9 @@
       "constants/*": [
         "./constants/*"
       ],
+      "stylesheets/*": [
+        "./stylesheets/*"
+      ],
       "components/*": [
         "./components/*"
       ]

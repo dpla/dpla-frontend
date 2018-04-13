@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames, stylesheet } from "./Button.css";
+import css from "./Button.scss";
 
 const Button = ({
   id,
@@ -29,7 +29,7 @@ const Button = ({
   live,
   url
 }) => {
-  let buttonClasses = `${classNames.buttonBase}`;
+  let buttonClasses = `${css.buttonBase}`;
 
   let props = {};
   if (id) props["id"] = id;
@@ -46,31 +46,31 @@ const Button = ({
 
   switch (type) {
     case "primary":
-      buttonClasses = `${buttonClasses} ${classNames.buttonPrimary}`;
+      buttonClasses = `${buttonClasses} ${css.buttonPrimary}`;
       break;
     case "secondary":
-      buttonClasses = `${buttonClasses} ${classNames.buttonSecondary}`;
+      buttonClasses = `${buttonClasses} ${css.buttonSecondary}`;
       break;
     case "ghost":
-      buttonClasses = `${buttonClasses} ${classNames.buttonGhost}`;
+      buttonClasses = `${buttonClasses} ${css.buttonGhost}`;
       break;
     case "donate":
-      buttonClasses = `${buttonClasses} ${classNames.buttonDonate}`;
+      buttonClasses = `${buttonClasses} ${css.buttonDonate}`;
       break;
   }
 
   switch (size) {
     case "large":
-      buttonClasses = `${buttonClasses} ${classNames.buttonLarge}`;
+      buttonClasses = `${buttonClasses} ${css.buttonLarge}`;
       break;
     case "medium":
-      buttonClasses = `${buttonClasses} ${classNames.buttonMedium}`;
+      buttonClasses = `${buttonClasses} ${css.buttonMedium}`;
       break;
   }
 
   switch (state) {
     case "active":
-      buttonClasses = `${buttonClasses} ${classNames.active}`;
+      buttonClasses = `${buttonClasses} ${css.active}`;
       break;
   }
 
@@ -97,7 +97,6 @@ const Button = ({
           >
             {children}
           </button>}
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </div>
   );
 };

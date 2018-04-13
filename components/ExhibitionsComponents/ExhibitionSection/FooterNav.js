@@ -3,10 +3,8 @@ import Link from "next/link";
 
 import DPLALogoWide from "../../../static/images/dpla-logo-black.svg";
 
-import { classNames } from "./ExhibitionSection.css";
-import { classNames as utilClassNames } from "css/utils.css";
-
-const { container } = utilClassNames;
+import utils from "stylesheets/utils.scss";
+import css from "./ExhibitionSection.scss";
 
 const chevron = "/static/images/chevron-thick-white.svg";
 const blackChevron = "/static/images/chevron-thick-black.svg";
@@ -27,39 +25,27 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
       >
         <a
           className={
-            nextOrPrevious === "next"
-              ? classNames.nextButton
-              : classNames.prevButton
+            nextOrPrevious === "next" ? css.nextButton : css.prevButton
           }
         >
           {nextOrPrevious === "previous" &&
-            <img
-              src={blackChevron}
-              className={classNames.previousChevron}
-              alt=""
-            />}
+            <img src={blackChevron} className={css.previousChevron} alt="" />}
           <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
           {nextOrPrevious === "next" &&
-            <img src={chevron} className={classNames.nextChevron} alt="" />}
+            <img src={chevron} className={css.nextChevron} alt="" />}
         </a>
       </Link>
     : <span
         className={[
-          nextOrPrevious === "next"
-            ? classNames.nextButton
-            : classNames.prevButton,
-          classNames.disabledButton
+          nextOrPrevious === "next" ? css.nextButton : css.prevButton,
+          css.disabledButton
         ].join(" ")}
       >
         {nextOrPrevious === "previous" &&
-          <img
-            src={blackChevron}
-            className={classNames.previousChevron}
-            alt=""
-          />}
+          <img src={blackChevron} className={css.previousChevron} alt="" />}
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
-          <img src={chevron} className={classNames.nextChevron} alt="" />}
+          <img src={chevron} className={css.nextChevron} alt="" />}
       </span>;
 
 const FooterNav = ({
@@ -69,20 +55,20 @@ const FooterNav = ({
   previousQueryParams,
   nextSubsectionTitle
 }) =>
-  <div className={classNames.footerWrapper}>
-    <div className={[container, classNames.footerNav].join(" ")}>
+  <div className={css.footerWrapper}>
+    <div className={[utils.container, css.footerNav].join(" ")}>
       <Link prefetch href="/">
-        <DPLALogoWide className={classNames.dplaLogo} />
+        <DPLALogoWide className={css.dplaLogo} />
       </Link>
-      <div className={classNames.navButtons}>
+      <div className={css.navButtons}>
         <NavButton
           route={route}
           queryParams={previousQueryParams}
           nextOrPrevious="previous"
         />
-        <div className={classNames.nextButtonAndTitleWrapper}>
+        <div className={css.nextButtonAndTitleWrapper}>
           {nextSubsectionTitle &&
-            <div className={classNames.nextSubsectionTitle}>
+            <div className={css.nextSubsectionTitle}>
               {nextSubsectionTitle}
             </div>}
           <NavButton

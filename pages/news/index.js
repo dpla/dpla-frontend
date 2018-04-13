@@ -9,7 +9,7 @@ import Pagination from "components/shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
-import { SITE_ENV } from "constants/env";
+import { SITE_ENV, WORDPRESS_URL } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
@@ -19,14 +19,10 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
-import { WORDPRESS_URL } from "constants/env";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
-import { classNames, stylesheet } from "css/pages/news.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "stylesheets/news.scss";
 
 class NewsPage extends React.Component {
   componentWillMount() {
@@ -90,31 +86,31 @@ class NewsPage extends React.Component {
       <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
-          className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+          className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar
               route={url}
               items={menuItems}
               activeItemId={pageItem.id}
-              className={contentClasses.sidebar}
+              className={contentCss.sidebar}
               rootPath="wp"
             />
             <div className="col-xs-12 col-md-7">
-              <div id="main" role="main" className={contentClasses.content}>
+              <div id="main" role="main" className={contentCss.content}>
                 <h1>News Archive</h1>
                 <form
                   action="/news"
                   method="get"
-                  className={classNames.search}
+                  className={css.search}
                   onSubmit={e => this.handleSubmit(e)}
                 >
                   <input
                     type="text"
                     name="k"
                     aria-label="search news"
-                    className={classNames.keywordsInput}
+                    className={css.keywordsInput}
                     defaultValue={this.state.keywords}
                   />
                   {this.state.tag !== "" &&
@@ -128,7 +124,7 @@ class NewsPage extends React.Component {
                   <Button
                     type="secondary"
                     size="medium"
-                    className={classNames.searchButton}
+                    className={css.searchButton}
                     mustSubmit={true}
                   >
                     Search news
@@ -140,7 +136,7 @@ class NewsPage extends React.Component {
                   keywords={this.state.keywords}
                   author={this.state.author}
                 />
-                <div className={classNames.resultSummary}>
+                <div className={css.resultSummary}>
                   {newsCount === 0 &&
                     <p>
                       No posts found{resultSummary}.
@@ -153,7 +149,7 @@ class NewsPage extends React.Component {
                 </div>
                 {newsItems.map((item, index) => {
                   return (
-                    <div key={index} className={classNames.newsItem}>
+                    <div key={index} className={css.newsItem}>
                       <h2>
                         <Link
                           as={`/news/${item.slug}`}
@@ -185,8 +181,6 @@ class NewsPage extends React.Component {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </MainLayout>
     );
   }

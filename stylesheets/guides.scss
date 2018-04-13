@@ -1,0 +1,13 @@
+@import "breakpoints";
+
+.wrapper {
+  margin-top: 2rem;
+
+  @media (min-width: $mediumRem) {
+    margin-top: 0;
+  }
+}
+
+.itemColumn {
+  margin-bottom: 1rem;
+}

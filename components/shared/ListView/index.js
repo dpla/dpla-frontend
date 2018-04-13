@@ -7,7 +7,7 @@ import GaListViewWrapper from "./GaListViewWrapper";
 import { joinIfArray, truncateString } from "utilFunctions";
 import { UNTITLED_TEXT } from "constants/site";
 
-import { classNames, stylesheet } from "./ListView.css";
+import css from "./ListView.scss";
 
 const externalLinkIcon = "/static/images/external-link-blue.svg";
 
@@ -19,16 +19,16 @@ const ItemDescription = ({ description }) => {
   let str = joinIfArray(description);
   str = truncateString(str);
   return (
-    <div className={classNames.itemDescription}>
+    <div className={css.itemDescription}>
       <p>{str}</p>
     </div>
   );
 };
 
 const ListView = ({ items, route }) =>
-  <ul className={classNames.listView}>
+  <ul className={css.listView}>
     {items.map(item =>
-      <li key={item["@id"] || item.id} className={classNames.listItem}>
+      <li key={item["@id"] || item.id} className={css.listItem}>
         <ListImage
           item={item}
           title={item.title}
@@ -36,10 +36,10 @@ const ListView = ({ items, route }) =>
           url={item.thumbnailUrl}
           useDefaultImage={item.useDefaultImage}
         />
-        <div className={classNames.itemInfo}>
+        <div className={css.itemInfo}>
           <Link href={item.linkHref} as={item.linkAs}>
-            <a className={`classNames.listItemLink internalItemLink`}>
-              <h2 className={`hover-underline ${classNames.itemTitle}`}>
+            <a className={`${css.listItemLink} internalItemLink`}>
+              <h2 className={`hover-underline ${css.itemTitle}`}>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
                   : item.title ? item.title : UNTITLED_TEXT}
@@ -48,7 +48,7 @@ const ListView = ({ items, route }) =>
           </Link>
 
           {(item.date || item.creator) &&
-            <span className={classNames.itemAuthorAndDate}>
+            <span className={css.itemAuthorAndDate}>
               {route.pathname.indexOf("/search") === 0 &&
                 item.date &&
                 <span>{item.date.displayDate}</span>}
@@ -64,27 +64,26 @@ const ListView = ({ items, route }) =>
             href={item.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hover-underline clickThrough ${classNames.itemSource}`}
+            className={`hover-underline clickThrough ${css.itemSource}`}
           >
-            <span className={classNames.itemSourceText}>
+            <span className={css.itemSourceText}>
               {item.type === "image"
                 ? "View Full Image"
                 : item.type === "text" ? "View Full Text" : "View Full Item"}
             </span>
             <img
-              className={classNames.externalLinkIcon}
+              className={css.externalLinkIcon}
               src={externalLinkIcon}
               alt=""
             />
           </a>
           {item.dataProvider &&
-            <span className={`${classNames.itemProvider}`}>
+            <span className={`${css.itemProvider}`}>
               &nbsp; in {item.dataProvider}
             </span>}
         </div>
       </li>
     )}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </ul>;
 
 export default GaListViewWrapper(ListView);

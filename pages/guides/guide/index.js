@@ -11,20 +11,17 @@ import { getMenuItemUrl } from "utilFunctions";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import { classNames, stylesheet } from "css/pages/guide.css";
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
+import css from "stylesheets/guides.scss";
 
 const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
   <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
     <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
     <div
       className={`
-        ${utilClassNames.container}
-        ${contentClasses.sidebarAndContentWrapper}
+        ${utils.container}
+        ${contentCss.sidebarAndContentWrapper}
       `}
     >
       <div className="row">
@@ -32,29 +29,23 @@ const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
           route={url}
           items={sidebarItems}
           activeItemId={guide.slug}
-          className={contentClasses.sidebar}
+          className={contentCss.sidebar}
         />
         <div className="col-xs-12 col-md-7">
           <div
             id="main"
             role="main"
-            className={[classNames.content, contentClasses.content].join(" ")}
+            className={[css.content, contentCss.content].join(" ")}
           >
             <WPEdit page={guide} url={url} />
-            <img
-              src={guide.bannerImage}
-              alt=""
-              className={classNames.bannerImage}
-            />
-            <h1 className={classNames.guideTitle}>{guide.title}</h1>
+            <img src={guide.bannerImage} alt="" className={css.bannerImage} />
+            <h1 className={css.guideTitle}>{guide.title}</h1>
             <HeadingRule />
             <div dangerouslySetInnerHTML={{ __html: guide.content }} />
           </div>
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 Guides.getInitialProps = async ({ query }) => {

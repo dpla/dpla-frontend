@@ -1,0 +1,28 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+
+.wrapper {
+  background-color: $warmerBackgroundColor;
+  padding: 1.5rem 0;
+}
+
+.otherInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.75);
+
+  @media (max-width: $smallRem) {
+    flex-direction: column;
+
+    & p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.footerText {
+  max-width: 450px;
+  font-size: 0.875rem;
+  line-height: 1;
+}

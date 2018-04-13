@@ -7,24 +7,24 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import CiteButton from "components/shared/CiteButton";
+
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
-import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
-import { classNames as utilClassNames } from "css/utils.css";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
 import {
-  possibleFacets,
-  mapFacetsToURLPrettified,
-  splitAndURIEncodeFacet
-} from "constants/search";
-import {
-  classNames,
-  stylesheet
-} from "components/ItemComponents/itemComponent.css";
-import {
+  getCurrentUrl,
+  getCurrentFullUrl,
   removeQueryParams,
   joinIfArray,
   getDefaultThumbnail
 } from "utilFunctions";
+import {
+  DEFAULT_PAGE_SIZE,
+  possibleFacets,
+  mapFacetsToURLPrettified,
+  splitAndURIEncodeFacet
+} from "constants/search";
+
+import utils from "stylesheets/utils.scss";
+import css from "components/ItemComponents/itemComponent.scss";
 
 const ItemDetail = ({
   error,
@@ -55,23 +55,22 @@ const ItemDetail = ({
       <div
         id="main"
         role="main"
-        className={`${utilClassNames.container} ${classNames.contentWrapper}`}
+        className={`${utils.container} ${css.contentWrapper}`}
       >
         <Content item={item} url={url} />
-        <div className={classNames.faveAndCiteButtons}>
+        <div className={css.faveAndCiteButtons}>
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
             spatialName={item.spatial ? item.spatial.name : item.spatial}
             sourceUrl={item.sourceUrl}
-            className={classNames.citeButton}
+            className={css.citeButton}
             toCiteText="item"
             title={item.title}
           />
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     </MainLayout>
   );
 };

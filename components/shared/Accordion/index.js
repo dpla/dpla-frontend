@@ -1,6 +1,6 @@
 import React from "react";
 
-import { stylesheet, classNames } from "./Accordion.css";
+import css from "./Accordion.scss";
 
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
@@ -49,14 +49,9 @@ class Accordion extends React.Component {
             item.type === "date"
           ) {
             return (
-              <li
-                key={i}
-                className={
-                  item.active ? classNames.active : classNames.inactive
-                }
-              >
+              <li key={i} className={item.active ? css.active : css.inactive}>
                 <button
-                  className={classNames.itemHeader}
+                  className={css.itemHeader}
                   aria-controls={`facets_${i}`}
                   aria-expanded={item.active}
                   onClick={() => this.onClickItem(i)}
@@ -66,13 +61,13 @@ class Accordion extends React.Component {
                     <img
                       src={subtractIcon}
                       alt=""
-                      className={classNames.subtractIcon}
+                      className={css.subtractIcon}
                     />}
                   {!item.active &&
-                    <img src={addIcon} alt="" className={classNames.addIcon} />}
+                    <img src={addIcon} alt="" className={css.addIcon} />}
                 </button>
                 {item.type === "term" &&
-                  <ul id={`facets_${i}`} className={classNames.subitems}>
+                  <ul id={`facets_${i}`} className={css.subitems}>
                     {item.subitems.map((subitem, j) =>
                       <li key={j}>{subitem.content}</li>
                     )}
@@ -80,7 +75,7 @@ class Accordion extends React.Component {
                 {item.type === "date" &&
                   <div
                     id={`facets_${i}`}
-                    className={`${classNames.subitems} ${classNames.date}`}
+                    className={`${css.subitems} ${css.date}`}
                   >
                     {item.subitems}
                   </div>}
@@ -88,7 +83,6 @@ class Accordion extends React.Component {
             );
           }
         })}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </ul>
     );
   }

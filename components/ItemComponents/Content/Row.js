@@ -1,18 +1,14 @@
 import React from "react";
 
-import { classNames, stylesheet } from "./Content.css";
+import css from "./Content.scss";
 
 const Row = ({ heading, value, linkInfo, children, className }) =>
   children
-    ? <tr className={[classNames.tableRow, className].join(" ")}>
-        <td className={classNames.tableHeadingWrapper}>
-          <h2 className={classNames.tableHeading}>{heading}</h2>
+    ? <tr className={[css.tableRow, className].join(" ")}>
+        <td className={css.tableHeadingWrapper}>
+          <h2 className={css.tableHeading}>{heading}</h2>
         </td>
-        <td
-          className={[classNames.tableItem, classNames.otherMetadataItem].join(
-            " "
-          )}
-        >
+        <td className={[css.tableItem, css.otherMetadataItem].join(" ")}>
           {children}
         </td>
       </tr>

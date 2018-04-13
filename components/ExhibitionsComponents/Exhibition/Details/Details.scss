@@ -1,0 +1,152 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6rem;
+  margin-top: 2rem;
+  @media (min-width: $smallRem) {
+    flex-direction: row;
+  }
+}
+
+.tableOfContents {
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: $smallRem) {
+    width: 285px;
+    margin-right: 32px;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: $largeRem) {
+    padding-left: 45px;
+  }
+
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+  box-sizing: content-box;
+
+  & .faveAndCiteButtonsWrapper {
+    @media (max-width: $smallRem) {
+      display: none;
+    }
+  }
+}
+
+.tableOfContentsHeader {
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-family: $serifFont;
+  font-weight: bold;
+  line-height: 1.125;
+  text-transform: uppercase;
+  background-color: #f1f0ed;
+  @media (min-width: $mediumRem) {
+    font-size: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+.tableOfContentsContents {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: $warmerBackgroundColor;
+  line-height: 1.25;
+
+  @media (min-width: $mediumRem) {
+    font-size: 1.2rem;
+    padding: 1.25rem;
+  }
+}
+
+.tableOfContentsSection:not(:last-of-type) {
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  height: 2px;
+  border-bottom: 2px solid #dfdedc;
+  margin-bottom: 20px;
+}
+
+.bodyText {
+  font-size: 1.125rem;
+  display: block;
+  font-family: $serifFont;
+  line-height: 1.625;
+
+  & p {
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: $largeRem) {
+    padding-right: 45px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: $smallRem) {
+    display: block;
+  }
+
+  & .faveAndCiteButtonsWrapper {
+    @media (min-width: $smallRem) {
+      display: none;
+    }
+  }
+}
+
+.credits {
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+  color: $dimmedTextColor;
+  display: flex;
+  font-size: 0.875rem;
+  line-height: 1.125;
+  margin-top: 3.125rem;
+  padding-top: 1.125rem;
+
+  & span:first-child {
+    margin-right: 0.25rem;
+  }
+}
+
+.creditsBold {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.creditsText {
+  max-width: 40rem;
+}
+
+.faveAndCiteButtonsWrapper {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  & a {
+    color: $linkColor;
+    text-decoration: underline;
+  }
+}
+
+.exploreLink {
+  display: inline-block;
+}
+
+.exploreButton {
+  text-align: center;
+  margin: 1rem;
+}
+
+.citeButton {
+  width: 100%;
+  text-align: center;
+  background-color: $colderBackgroundColor;
+}

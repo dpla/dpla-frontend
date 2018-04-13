@@ -8,17 +8,14 @@ import {
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 
-import { classNames, stylesheet } from "./SetsList.css";
+import css from "./SetsList.scss";
 
 const SetsList = ({ sets, route }) =>
-  <div className={`${classNames.setsWrapper} site-max-width`}>
+  <div className={`${css.setsWrapper} site-max-width`}>
     <ul className="row">
       {sets.itemListElement.map(set =>
-        <li
-          className={`${classNames.itemWrapper} col-xs-6 col-md-4`}
-          key={set.name}
-        >
-          <div className={classNames.item}>
+        <li className={`${css.itemWrapper} col-xs-6 col-md-4`} key={set.name}>
+          <div className={css.item}>
             <Link
               prefetch
               href={{
@@ -42,11 +39,11 @@ const SetsList = ({ sets, route }) =>
                 <img
                   alt=""
                   src={set.repImageUrl || set.thumbnailUrl}
-                  className={classNames.image}
+                  className={css.image}
                 />
               </a>
             </Link>
-            <div className={classNames.itemContent}>
+            <div className={css.itemContent}>
               <Link
                 prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
@@ -54,10 +51,7 @@ const SetsList = ({ sets, route }) =>
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a
-                  className={`${classNames.title} hover-underline`}
-                  title={set.name}
-                >
+                <a className={`${css.title} hover-underline`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
                     allowedTypes={["emphasis"]}
@@ -65,14 +59,14 @@ const SetsList = ({ sets, route }) =>
                   />
                 </a>
               </Link>
-              <ul className={classNames.timePeriod}>
+              <ul className={css.timePeriod}>
                 {set.about
                   .filter(
                     ({ disambiguatingDescription }) =>
                       disambiguatingDescription === "Time Period"
                   )
                   .map((tag, i, tags) =>
-                    <li className={classNames.tag} key={`${tag}—${i}`}>
+                    <li className={css.tag} key={`${tag}—${i}`}>
                       <Link
                         prefetch
                         href={{
@@ -90,14 +84,14 @@ const SetsList = ({ sets, route }) =>
                     </li>
                   )}
               </ul>
-              <ul className={classNames.tags}>
+              <ul className={css.tags}>
                 {set.about
                   .filter(
                     ({ disambiguatingDescription }) =>
                       disambiguatingDescription === "Subject"
                   )
                   .map((tag, i, tags) =>
-                    <li key={tag.name} className={classNames.tag}>
+                    <li key={tag.name} className={css.tag}>
                       <Link
                         prefetch
                         href={{
@@ -120,7 +114,6 @@ const SetsList = ({ sets, route }) =>
         </li>
       )}
     </ul>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </div>;
 
 export default SetsList;

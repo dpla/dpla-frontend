@@ -1,17 +1,19 @@
 import React from "react";
 import Link from "next/link";
 
-import { classNames } from "./ExhibitionSection.css";
+import ItemImage from "components/ItemComponents/Content/ItemImage";
 import {
   ZoomableImageViewer,
   VideoPlayer,
   AudioPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
+
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 import { getDefaultThumbnail, getDplaItemIdFromExhibit } from "utilFunctions";
-import ItemImage from "components/ItemComponents/Content/ItemImage";
+
+import css from "./ExhibitionSection.scss";
 
 const chevron = "/static/images/chevron-thick-black.svg";
 
@@ -73,7 +75,7 @@ const ItemLink = ({
       ? route.query.subsection
       : ""}?item=${itemId}`}
   >
-    <a className={[classNames.itemLink, className].join(" ")}>
+    <a className={[css.itemLink, className].join(" ")}>
       <ItemImage
         type={getFileType(fileType, originalUrl)}
         title="Show item in viewer"
@@ -81,7 +83,7 @@ const ItemLink = ({
           thumbnailUrl ||
           getDefaultThumbnail(getFileType(fileType, originalUrl))
         }
-        defaultImageClass={classNames.defaultItemImage}
+        defaultImageClass={css.defaultItemImage}
         useDefaultImage={!thumbnailUrl}
       />
     </a>
@@ -102,13 +104,13 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
   const itemId = getDplaItemIdFromExhibit(activePage.itemJson);
 
   return (
-    <div className={classNames.viewer}>
-      <h2 className={classNames.titleSubsection}>
+    <div className={css.viewer}>
+      <h2 className={css.titleSubsection}>
         {subsection.title}
       </h2>
-      <div className={classNames.viewerContent}>
-        <div className={classNames.mediaAndCaption}>
-          <div className={classNames.mainMedia}>
+      <div className={css.viewerContent}>
+        <div className={css.mediaAndCaption}>
+          <div className={css.mainMedia}>
             {previousPage &&
               <Link
                 prefetch
@@ -121,11 +123,11 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 as={`/exhibitions/${route.query.exhibition}/${route.query
                   .section}/${route.query.subsection}?item=${previousPage.id}`}
               >
-                <a className={classNames.previousItemButton}>
+                <a className={css.previousItemButton}>
                   <img
                     src={chevron}
                     alt=""
-                    className={classNames.previousItemChevron}
+                    className={css.previousItemChevron}
                   />
                 </a>
               </Link>}
@@ -146,22 +148,18 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
                 as={`/exhibitions/${route.query.exhibition}/${route.query
                   .section}/${route.query.subsection}?item=${nextPage.id}`}
               >
-                <a className={classNames.nextItemButton}>
-                  <img
-                    src={chevron}
-                    alt=""
-                    className={classNames.nextItemChevron}
-                  />
+                <a className={css.nextItemButton}>
+                  <img src={chevron} alt="" className={css.nextItemChevron} />
                 </a>
               </Link>}
           </div>
-          <ul className={classNames.itemLinks}>
+          <ul className={css.itemLinks}>
             {subsection.page_blocks.map(block =>
               <li key={block.id}>
                 <ItemLink
                   fileType={block.type}
                   route={route}
-                  className={block.isActive ? classNames.activeItemLink : ""}
+                  className={block.isActive ? css.activeItemLink : ""}
                   itemId={block.id}
                   thumbnailUrl={block.thumbnailUrl}
                   originalUrl={block.originalUrl}
@@ -175,10 +173,10 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
               as={`/item/${itemId}`}
               href={`/item?itemId=${itemId}`}
             >
-              <a className={classNames.viewItemLink}>View item information</a>
+              <a className={css.viewItemLink}>View item information</a>
             </Link>}
           <div
-            className={classNames.caption}
+            className={css.caption}
             dangerouslySetInnerHTML={{
               __html: activePage.attachments[0].caption
             }}
@@ -186,7 +184,7 @@ const Viewer = ({ exhibition, section, subsection, route }) => {
         </div>
         {text &&
           <div
-            className={classNames.text}
+            className={css.text}
             dangerouslySetInnerHTML={{ __html: text }}
           />}
       </div>

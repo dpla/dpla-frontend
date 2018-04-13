@@ -1,12 +1,12 @@
 import React from "react";
 
-import { classNames, stylesheet } from "./ItemList.css";
-
 import ListView from "shared/ListView";
-import GridView from "shared/GridView";
+// import GridView from "shared/GridView";
 
-const gridViewIcon = "/static/images/grid-view-icon.svg";
-const listViewIcon = "/static/images/list-view-icon.svg";
+import css from "./ItemList.scss";
+
+// const gridViewIcon = "/static/images/grid-view-icon.svg";
+// const listViewIcon = "/static/images/list-view-icon.svg";
 
 class ItemList extends React.Component {
   componentWillMount() {
@@ -20,15 +20,15 @@ class ItemList extends React.Component {
     const { view } = this.state;
 
     return (
-      <div className={classNames.itemList}>
-        {/* <div className={classNames.itemListHeader}>
-          <div className={classNames.viewButtons}>
+      <div className={css.itemList}>
+        {/* <div className={css.itemListHeader}>
+          <div className={css.viewButtons}>
             <button
               className={[
-                classNames.listViewButton,
+                css.listViewButton,
                 view === "list"
-                  ? classNames.viewButtonActive
-                  : classNames.viewButtonInactive
+                  ? css.viewButtonActive
+                  : css.viewButtonInactive
               ].join(" ")}
               onClick={() => {
                 if (view !== "list") {
@@ -37,17 +37,17 @@ class ItemList extends React.Component {
               }}
             >
               <img
-                className={classNames.viewButtonIcon}
+                className={css.viewButtonIcon}
                 src={listViewIcon}
                 alt="List View"
               />
             </button>
             <button
               className={[
-                classNames.gridViewButton,
+                css.gridViewButton,
                 view === "grid"
-                  ? classNames.viewButtonActive
-                  : classNames.viewButtonInactive
+                  ? css.viewButtonActive
+                  : css.viewButtonInactive
               ].join(" ")}
               onClick={() => {
                 if (view !== "grid") {
@@ -56,21 +56,14 @@ class ItemList extends React.Component {
               }}
             >
               <img
-                className={classNames.viewButtonIcon}
+                className={css.viewButtonIcon}
                 src={gridViewIcon}
                 alt="Grid View"
               />
             </button>
           </div>
         </div> */}
-        {view === "grid"
-          ? <GridView
-              route={this.props.route}
-              items={items}
-              style={{ marginTop: "15px" }}
-            />
-          : <ListView route={this.props.route} items={items} />}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+        <ListView route={this.props.route} items={items} />
       </div>
     );
   }

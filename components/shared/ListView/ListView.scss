@@ -1,0 +1,120 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+
+.listItem {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.itemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  @media (min-width: $smallRem) {
+    font-weight: normal;
+    color: $linkColor;
+    font-size: 1.125rem;
+    margin-right: 8px;
+  }
+}
+
+.itemInfo {
+  width: 66%;
+  padding-right: 1rem;
+  word-break: break-word;
+
+  @media (min-width: $smallRem) {
+    padding-right: 0;
+  }
+}
+
+.defaultImageWrapper {
+  background-color: $warmerBackgroundColor;
+  padding-bottom: 20%;
+  padding-top: 20%;
+
+  @media (min-width: $largeRem) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  & img {
+  }
+}
+
+.imageWrapper {
+  width: 33%;
+  height: 10rem;
+  margin-right: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  @media (max-width: $smallRem) {
+    margin-left: 1rem;
+  }
+}
+
+.listItemImageLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.image {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.itemDescription {
+  display: block;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.itemSource, .itemSource:visited {
+  font-size: 0.875rem;
+  color: $outgoingLinkColor;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: $smallRem) {
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+}
+
+.itemProvider {
+  font-size: 0.875rem;
+}
+
+.externalLinkIcon {
+  height: 12px;
+  width: 12px;
+  position: relative;
+  top: 2px;
+}
+
+.itemSourceText {
+  margin-right: 0.3rem;
+}
+
+.itemAuthorAndDate {
+  margin-top: 0.25rem;
+  display: block;
+  color: $dimmedTextColor;
+  font-size: 0.875rem;
+}

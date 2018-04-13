@@ -4,7 +4,7 @@ import Select from "react-select";
 
 import Button from "shared/Button";
 
-import { classNames, stylesheet } from "./ContactForm.css";
+import css from "./ContactForm.scss";
 
 class ContactForm extends React.Component {
   state = {
@@ -155,10 +155,10 @@ class ContactForm extends React.Component {
       onClick: this.activateRequired
     };
     return (
-      <div className={classNames.contactForm}>
+      <div className={css.contactForm}>
         {!this.state.isSent &&
           <div>
-            <p className={classNames.instructions}>
+            <p className={css.instructions}>
               We would love to hear from you! Please fill out this form and we
               will
               get in touch with you shortly.
@@ -203,7 +203,7 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-subject">
-                <span className={classNames.notFixed}>
+                <span className={css.notFixed}>
                   Subject (required)
                 </span>
                 <Select
@@ -257,7 +257,7 @@ class ContactForm extends React.Component {
                 type="checkbox"
                 name="i_prefer_usps_mail"
                 value="1"
-                className={classNames.miel}
+                className={css.miel}
                 tabIndex="-1"
                 autoComplete="off"
               />
@@ -269,7 +269,7 @@ class ContactForm extends React.Component {
                 {this.state.isSending &&
                   <Button
                     type="secondary"
-                    className={classNames.disabledButton}
+                    className={css.disabledButton}
                     live="assertive"
                   >
                     Sending message…
@@ -279,12 +279,11 @@ class ContactForm extends React.Component {
           </div>}
         {this.state.isSent &&
           <div aria-live="assertive">
-            <h1 className={classNames.header}>Thank you!</h1>
-            <p className={classNames.instructions}>
+            <h1 className={css.header}>Thank you!</h1>
+            <p className={css.instructions}>
               A DPLA staff member will contact you soon.
             </p>
           </div>}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

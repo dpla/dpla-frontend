@@ -1,0 +1,60 @@
+@import "stylesheets/colors";
+@import "stylesheets/breakpoints";
+@import "stylesheets/typography";
+
+.wrapper {
+  background-color: $warmerBackgroundColor;
+  width: 100%;
+}
+
+.relatedSets {
+  padding: 2rem 1rem;
+
+  /* overrides for react-slick css*/
+  & :global {
+    .slick-prev:before, .slick-next:before {
+      content: none;
+    }
+
+    .slick-disabled {
+      display: none;
+    }
+  }
+
+  @media (min-width: $largeRem) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.item {
+  padding: 0 0.5rem;
+}
+
+.header {
+  font-family: $serifFont;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.setLink {
+  display: block;
+  margin-top: 1rem;
+}
+
+.setLink:hover .title {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.setImage {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}

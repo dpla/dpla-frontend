@@ -5,7 +5,7 @@ import Row from "./Row";
 import { joinIfArray, readMyRights, showMoreDescription } from "utilFunctions";
 import { rightsURLs } from "constants/site.js";
 
-import { classNames, stylesheet } from "./Content.css";
+import css from "./Content.scss";
 
 const externalLinkIcon = "/static/images/external-link-white.svg";
 
@@ -16,7 +16,7 @@ const externalLinkIcon = "/static/images/external-link-white.svg";
 const RightsBadge = ({ url }) => {
   const myRights = readMyRights(url);
   return myRights
-    ? <div className={classNames.rightsStatement}>
+    ? <div className={css.rightsStatement}>
         <a
           href={myRights.url}
           title="Learn more about the copyright status of this item"
@@ -34,26 +34,26 @@ const MainMetadata = ({ item }) => {
     : false;
 
   return (
-    <div className={classNames.mainMetadata}>
-      <table className={classNames.contentTable}>
+    <div className={css.mainMetadata}>
+      <table className={css.contentTable}>
         <tbody>
-          <tr className={classNames.tableRow}>
-            <td className={classNames.tableHeadingWrapper} />
-            <td className={classNames.tableItem}>
+          <tr className={css.tableRow}>
+            <td className={css.tableHeadingWrapper} />
+            <td className={css.tableItem}>
               <ItemImage
                 title=""
                 type={item.type}
                 url={item.thumbnailUrl}
-                defaultImageClass={classNames.defaultItemImage}
+                defaultImageClass={css.defaultItemImage}
                 useDefaultImage={item.useDefaultImage}
               />
               <a
                 href={item.sourceUrl}
                 rel="noopener noreferrer"
                 target="_blank"
-                className={`${classNames.sourceLink} clickThrough`}
+                className={`${css.sourceLink} clickThrough`}
               >
-                <span className={classNames.sourceLinkText}>
+                <span className={css.sourceLinkText}>
                   {item.type === "image"
                     ? "View Full Image"
                     : item.type === "text"
@@ -63,7 +63,7 @@ const MainMetadata = ({ item }) => {
                 <img
                   src={externalLinkIcon}
                   alt=""
-                  className={classNames.externalLinkIcon}
+                  className={css.externalLinkIcon}
                 />
               </a>
               {item.edmRights && <RightsBadge url={item.edmRights} />}
@@ -80,35 +80,23 @@ const MainMetadata = ({ item }) => {
             </td>
           </tr>
           {item.date &&
-            <tr className={classNames.tableRow}>
-              <td className={classNames.tableHeadingWrapper}>
-                <h2 className={classNames.tableHeading}>Created Date</h2>
+            <tr className={css.tableRow}>
+              <td className={css.tableHeadingWrapper}>
+                <h2 className={css.tableHeading}>Created Date</h2>
               </td>
-              <td
-                className={[
-                  classNames.tableItem,
-                  classNames.mainMetadataText
-                ].join(" ")}
-              >
+              <td className={[css.tableItem, css.mainMetadataText].join(" ")}>
                 {item.date.displayDate}
               </td>
             </tr>}
           {item.description &&
-            <tr className={classNames.tableRow}>
-              <td className={classNames.tableHeadingWrapper}>
-                <h2 className={classNames.tableHeading}>Description</h2>
+            <tr className={css.tableRow}>
+              <td className={css.tableHeadingWrapper}>
+                <h2 className={css.tableHeading}>Description</h2>
               </td>
-              <td
-                className={[
-                  classNames.tableItem,
-                  classNames.mainMetadataText
-                ].join(" ")}
-              >
+              <td className={[css.tableItem, css.mainMetadataText].join(" ")}>
                 <div
                   id="dpla-description"
-                  className={
-                    descriptionIsLong ? classNames.longDescription : ""
-                  }
+                  className={descriptionIsLong ? css.longDescription : ""}
                 >
                   {joinIfArray(item.description)}
                 </div>
@@ -116,12 +104,12 @@ const MainMetadata = ({ item }) => {
                   <div
                     id="dpla-showmore"
                     aria-hidden="true"
-                    className={classNames.showMore}
+                    className={css.showMore}
                   >
                     <span
                       className={`link`}
                       onClick={() =>
-                        showMoreDescription({ className: classNames.open })}
+                        showMoreDescription({ className: css.open })}
                     >
                       Show full description
                     </span>

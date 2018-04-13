@@ -9,6 +9,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+
 import {
   endsWith,
   getBreadcrumbs,
@@ -17,11 +18,8 @@ import {
   getMenuItemUrl
 } from "utilFunctions";
 
-import {
-  classNames as contentClasses,
-  stylesheet as contentStyles
-} from "css/pages/content-pages-wysiwyg.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import contentCss from "stylesheets/content-pages.scss";
 
 const ProMenuPage = ({
   url,
@@ -38,19 +36,19 @@ const ProMenuPage = ({
       !illustration &&
       <FeatureHeader title={pageTitle} description={""} />}
     <div
-      className={`${utilClassNames.container}
-      ${contentClasses.sidebarAndContentWrapper}`}
+      className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
     >
       <div className="row">
         <ContentPagesSidebar
-          className={contentClasses.sidebar}
+          className={contentCss.sidebar}
           route={url}
           items={items}
           activeItemId={page.id}
           rootPath="wp"
         />
         <div className="col-xs-12 col-md-7">
-          <div id="main" role="main" className={contentClasses.content}>
+          <div id="main" role="main" className={contentCss.content}>
             <WPEdit page={page} url={url} />
             {/* fancy pages (with illustrations) get special heading */}
             {illustration &&
@@ -58,11 +56,11 @@ const ProMenuPage = ({
                 <img
                   src={illustration.url}
                   alt=""
-                  className={contentClasses.bannerImage}
+                  className={contentCss.bannerImage}
                 />
                 <HeadingRule />
                 <h1
-                  className={contentClasses.title}
+                  className={contentCss.title}
                   dangerouslySetInnerHTML={{ __html: page.title.rendered }}
                 />
               </div>}
@@ -75,7 +73,6 @@ const ProMenuPage = ({
         </div>
       </div>
     </div>
-    <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
   </MainLayout>;
 
 ProMenuPage.getInitialProps = async ({ req, query, res }) => {

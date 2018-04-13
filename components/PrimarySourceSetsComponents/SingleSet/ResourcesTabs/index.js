@@ -1,26 +1,23 @@
 import React from "react";
 import Link from "next/link";
 
-import { stylesheet, classNames } from "./ResourcesTabs.css";
-import { classNames as utilClassNames } from "css/utils.css";
+import utils from "stylesheets/utils.scss";
+import css from "./ResourcesTabs.scss";
 
 class ResourcesTabs extends React.Component {
   render() {
     const { currentTab, route } = this.props;
     return (
-      <div id="tabs" className={`${classNames.wrapper}`}>
-        <div className={`${classNames.tabsWrapper} sourceSetTabsWrapper`}>
-          <ul
-            role="tablist"
-            className={`${classNames.tabs} ${utilClassNames.container}`}
-          >
+      <div id="tabs" className={`${css.wrapper}`}>
+        <div className={`${css.tabsWrapper} sourceSetTabsWrapper`}>
+          <ul role="tablist" className={`${css.tabs} ${utils.container}`}>
             <li
               id="tab-sourceset"
               role="tab"
               aria-selected={currentTab === "sourceSet"}
               className={[
-                classNames.tab,
-                currentTab === "sourceSet" && classNames.activeTab
+                css.tab,
+                currentTab === "sourceSet" && css.activeTab
               ].join(" ")}
             >
               <Link
@@ -38,8 +35,8 @@ class ResourcesTabs extends React.Component {
               role="tab"
               aria-selected={currentTab === "additionalResources"}
               className={[
-                classNames.tab,
-                currentTab === "additionalResources" && classNames.activeTab
+                css.tab,
+                currentTab === "additionalResources" && css.activeTab
               ].join(" ")}
             >
               <Link
@@ -59,8 +56,8 @@ class ResourcesTabs extends React.Component {
               role="tab"
               aria-selected={currentTab === "teachingGuide"}
               className={[
-                classNames.tab,
-                currentTab === "teachingGuide" && classNames.activeTab
+                css.tab,
+                currentTab === "teachingGuide" && css.activeTab
               ].join(" ")}
             >
               <Link
@@ -78,7 +75,6 @@ class ResourcesTabs extends React.Component {
           </ul>
         </div>
         {this.props.children}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
     );
   }

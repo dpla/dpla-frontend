@@ -4,8 +4,6 @@ import Link from "next/link";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
 import { SITE_ENV } from "constants/env";
 
-import { classNames, stylesheet } from "./TagList.css";
-
 const TagList = ({ url, currentTag, keywords, author }) =>
   <ul className="collapsed">
     {(currentTag || author !== "" || keywords !== "") &&
@@ -33,7 +31,6 @@ const TagList = ({ url, currentTag, keywords, author }) =>
         : <span>{tag.name}</span>;
       return <li key={id}>{markup}</li>;
     })}
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
   </ul>;
 
 export default TagList;
