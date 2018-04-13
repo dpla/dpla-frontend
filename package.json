@@ -1,6 +1,6 @@
 {
   "name": "dpla-end-user-site",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@zeit/next-sass": "^0.1.2",
