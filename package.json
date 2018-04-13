@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.1",
     "@zeit/next-sass": "^0.1.2",
     "@zeit/next-source-maps": "^0.0.2",
     "aws-sdk": "^2.173.0",
@@ -34,7 +35,6 @@
     "react-slick": "^0.23.1",
     "redux": "^3.7.2",
     "sw-precache-webpack-plugin": "^0.11.4",
-    "webpack-bundle-analyzer": "^2.9.1",
     "webpack-dev-server": "^2.11.1"
   },
   "devDependencies": {
@@ -86,7 +86,7 @@
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
-    "analyze": "yarn && cross-env ANALYZE=1 next build",
+    "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
     "test": "mocha"
   },
   "lint-staged": {
