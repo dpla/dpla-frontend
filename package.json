@@ -86,7 +86,7 @@
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
-    "analyze": "cross-env ANALYZE=1 next build",
+    "analyze": "yarn && cross-env ANALYZE=1 next build",
     "test": "mocha"
   },
   "lint-staged": {
