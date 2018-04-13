@@ -17,11 +17,11 @@
   padding-left: 0;
 
   /* overrides for react-slick css*/
-  :global .slick-prev:before, :global .slick-next:before {
+  & :global .slick-prev:before, & :global .slick-next:before {
     content: none;
   }
 
-  :global .slick-disabled, :global .slick-next, :global .slick-prev {
+  & :global .slick-disabled, & :global .slick-next, & :global .slick-prev {
     display: none;
   }
 
@@ -29,7 +29,7 @@
     padding-right: 1rem;
     padding-left: 1rem;
 
-    :global .slick-next, :global .slick-prev {
+    & :global .slick-next, & :global .slick-prev {
       display: block;
     }
   }

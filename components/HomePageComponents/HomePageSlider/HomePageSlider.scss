@@ -8,11 +8,6 @@
   &.theme_blue {
     background-color: $colderBackgroundColor;
   }
-
-  /* overrides for react-slick css*/
-  :global .slick-slide {
-    width: 20rem;
-  }
 }
 
 .content {
@@ -212,13 +207,13 @@
 
 .content {
   @media (min-width: $largeRem) {
-    :global .slick-list {
+    & :global .slick-list {
       /* Offset for the featuredTag */
       padding-left: 0.25rem;
     }
   }
 
-  :global .slick-prev:before, :global .slick-next:before {
+  & :global .slick-prev:before, & :global .slick-next:before {
     content: none;
   }
 
