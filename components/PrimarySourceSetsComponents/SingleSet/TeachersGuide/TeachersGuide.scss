@@ -129,22 +129,3 @@
 .additionalToolWrapper {
   margin-bottom: 0.5rem;
 }
-
-/* things to hide in print view only in teachers guide */
-:global .sourceSetSidebar {
-  @media print {
-    display: none;
-  }
-}
-
-:global .sourceSetDescription {
-  @media print {
-    display: none;
-  }
-}
-
-:global .sourceSetTabsWrapper {
-  @media print {
-    display: none;
-  }
-}

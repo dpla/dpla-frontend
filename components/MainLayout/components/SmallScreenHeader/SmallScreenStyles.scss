@@ -10,6 +10,10 @@
   @media (min-width: $mediumRem) {
     display: none;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .header {

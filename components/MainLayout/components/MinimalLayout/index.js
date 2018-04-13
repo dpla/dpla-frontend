@@ -9,7 +9,14 @@ import GaWrapper from "shared/GaWrapper";
 
 import { SITE_ENV } from "constants/env";
 
-const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
+const MinimalLayout = ({
+  children,
+  route,
+  headLinks,
+  pageTitle,
+  seoType,
+  isPrintable
+}) =>
   <div>
     <Helmet htmlAttributes={{ lang: "en" }} />
     <DPLAHead
@@ -17,11 +24,12 @@ const MinimalLayout = ({ children, route, headLinks, pageTitle, seoType }) =>
       pageTitle={pageTitle}
       seoType={seoType}
     />
-    <SkipToContent />
-    <PageHeader
-      searchQuery={route ? route.query.q : ""}
-      hideSearchBar={SITE_ENV === "pro"}
-    />
+    {!isPrintable && <SkipToContent />}
+    {!isPrintable &&
+      <PageHeader
+        searchQuery={route ? route.query.q : ""}
+        hideSearchBar={SITE_ENV === "pro"}
+      />}
     {children}
   </div>;
 
