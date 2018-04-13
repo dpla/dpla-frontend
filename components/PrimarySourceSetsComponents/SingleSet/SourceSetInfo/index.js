@@ -66,8 +66,8 @@ class SourceSetInfo extends React.Component {
               <ReactMarkdown
                 id="dpla-description"
                 source={set.hasPart.find(item => item.name === "Overview").text}
-                className={`${css.description} sourceSetDescription ${css.description} ${this
-                  .state.isOpen
+                className={`${css.description} ${css.description} ${this.state
+                  .isOpen
                   ? css.open
                   : ""}`}
               />
@@ -87,7 +87,7 @@ class SourceSetInfo extends React.Component {
               </div>
             </div>
             <div className={`${css.removeScroll} col-xs-12 col-md-4`}>
-              <div className={`${css.sidebar} sourceSetSidebar`}>
+              <div className={css.sidebar}>
                 <div className={css.metadata}>
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>
