@@ -56,6 +56,18 @@
   z-index: 999;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
+  .sendCancelButtons {
+    display: flex;
+  }
+
+  .sendButton {
+    flex-grow: 3;
+  }
+
+  .cancelButton {
+    flex-grow: 1;
+  }
+
   @media (max-width: $mediumRem) {
     top: 1rem;
     left: 1rem;
@@ -67,14 +79,15 @@
   }
 
   & ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
   }
 
   & li {
+    width: 31%;
     position: relative;
   }
 
