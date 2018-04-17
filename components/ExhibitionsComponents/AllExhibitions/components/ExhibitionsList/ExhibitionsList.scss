@@ -137,7 +137,6 @@ $imageMaxWidth: 10rem;
 
   @media (min-width: $smallRem) {
     padding: 0.5rem;
-    max-width: calc(100% - #{$imageMaxWidth});
   }
 }
 
