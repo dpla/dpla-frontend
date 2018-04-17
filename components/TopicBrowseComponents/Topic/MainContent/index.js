@@ -10,8 +10,6 @@ const MainContent = ({ topic }) =>
   <div className={css.wrapper}>
     <div className={`${utils.container} ${css.container} site-max-width`}>
       <h1 className={css.header}>{topic.name}</h1>
-      {topic.description &&
-        <p className={css.topicDescription}>{topic.description}</p>}
       <HeadingRule color="#F9BA3F" />
       <ul className="row">
         {topic.subtopics.map((subtopic, index) =>
@@ -41,6 +39,10 @@ const MainContent = ({ topic }) =>
           </li>
         )}
       </ul>
+      {topic.description &&
+        <section className={css.topicDescription}>
+          <p>{topic.description}</p>
+        </section>}
     </div>
   </div>;
 
