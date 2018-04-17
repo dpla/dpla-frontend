@@ -29,8 +29,12 @@
 }
 
 .topicDescription {
+  border-top: 0.2rem solid $lightLinkColor;
   color: $dimmedTextColor;
-  font-size: 1.75rem;
+  font-family: $serifFont;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   text-align: center;
 }
 
