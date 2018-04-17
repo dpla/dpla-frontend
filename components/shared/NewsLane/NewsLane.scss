@@ -87,18 +87,22 @@
   margin-left: 0.5rem;
 }
 
-.post:first-child {
-  position: relative;
+.post {
+  margin: 1rem 0;
 
-  &:before {
-    @media (min-width: $mediumRem) {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      border-left: 1px solid rgba(0, 0, 0, 0.1);
-      left: -1.5rem;
+  &:first-child {
+    position: relative;
+
+    &:before {
+      @media (min-width: $mediumRem) {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        left: -1.5rem;
+      }
     }
   }
 }
