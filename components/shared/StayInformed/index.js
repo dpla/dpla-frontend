@@ -88,7 +88,7 @@ class StayInformed extends React.Component {
             </div>
             <div className={`${css.formWrapper} col-xs-12 col-md-9`}>
               {!this.state.isSent &&
-                <form onSubmit={this.handleSubmit}>
+                <form className={css.form} onSubmit={this.handleSubmit}>
                   <h3 className={css.formCallToAction}>
                     Get the latest DPLA news in your inbox
                   </h3>
