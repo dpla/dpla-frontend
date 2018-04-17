@@ -24,7 +24,13 @@
     visibility: hidden; */
     overflow: hidden;
     transition: max-height 0.5s ease-out;
-    max-height: 0rem;
+    max-height: 0;
+  }
+}
+
+.button {
+  @media print {
+    display: none;
   }
 }
 

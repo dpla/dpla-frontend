@@ -15,29 +15,35 @@
 .sourceCarousel {
   padding-right: 0;
   padding-left: 0;
+
   /* overrides for react-slick css*/
   & :global .slick-prev:before, & :global .slick-next:before {
     content: none;
   }
+
   & :global .slick-disabled, & :global .slick-next, & :global .slick-prev {
     display: none;
   }
+
   @media (min-width: $smallRem) {
     padding-right: 1rem;
     padding-left: 1rem;
+
     & :global .slick-next, & :global .slick-prev {
       display: block;
     }
   }
-  & :global .slick-disabled {
+
+  :global .slick-disabled {
     display: none;
   }
-}
 
-:global .slick-list {
-  display: none;
-  @media (min-width: $smallRem) {
-    display: block;
+  :global .slick-list {
+    display: none;
+
+    @media (min-width: $smallRem) {
+      display: block;
+    }
   }
 }
 
@@ -46,6 +52,7 @@
   justify-content: space-between;
   align-items: baseline;
   flex-direction: column;
+
   @media (min-width: $smallRem) {
     margin-bottom: 1rem;
   }
@@ -62,6 +69,7 @@
   font-weight: normal;
   margin-left: 1rem;
   margin-right: 1rem;
+
   @media (min-width: $smallRem) {
     font-weight: 600;
     margin-left: 0;
@@ -119,6 +127,7 @@
   margin-top: 0.75rem;
   justify-content: flex-end;
   width: 100%;
+
   @media (min-width: $smallRem) {
     width: auto;
   }
@@ -144,6 +153,7 @@
   @media (min-width: $smallRem) {
     background-color: transparent;
   }
+
   @media (min-width: $smallRem) {
     color: $linkColor;
   }
@@ -152,6 +162,7 @@
 .previousItemButton, .previousItemButton:visited {
   color: black;
   background-color: #e3e0da;
+
   @media (min-width: $smallRem) {
     margin-right: 1rem;
     color: $linkColor;
@@ -161,6 +172,7 @@
 
 .disabledNextOrPrevButton {
   cursor: not-allowed;
+
   @media (min-width: $smallRem) {
     display: none;
   }

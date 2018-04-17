@@ -14,29 +14,38 @@
 .set {
   flex-basis: calc(50% - 0.25rem);
   margin-right: 0.25rem;
+
   &:nth-child(2n) {
     margin-right: 0;
   }
+
   margin-bottom: 28px;
+
   @media (min-width: $xSmallRem) {
     flex-basis: calc(33% - 15px);
     margin-right: 29px;
+
     &:nth-child(2n) {
       margin-right: 20px;
     }
+
     &:nth-child(3n) {
       margin-right: 0;
     }
   }
+
   @media (min-width: $smallRem) {
     flex-basis: calc(25% - 15px);
     margin-right: 20px;
+
     &:nth-child(2n) {
       margin-right: 20px;
     }
+
     &:nth-child(3n) {
       margin-right: 20px;
     }
+
     &:nth-child(4n) {
       margin-right: 0;
     }
@@ -51,6 +60,7 @@
   margin-bottom: 9px;
   position: relative;
   height: 180px;
+
   @media (min-width: $smallRem) {
   }
 }
@@ -69,6 +79,7 @@
 
 .title {
   font-size: 0.75rem;
+
   @media (min-width: $smallRem) {
     font-size: 0.875rem;
   }

@@ -25,7 +25,7 @@ const Suggestions = ({ suggestions }) =>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css
         class to target the arrows */}
-      <div className="dpla-related-resources-carousel">
+      <div className={css.related}>
         <Slider
           slidesToShow={4.5}
           infinite={false}

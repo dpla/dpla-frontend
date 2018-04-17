@@ -4,6 +4,7 @@
 
 .tools {
   margin: 1rem 0 0;
+
   @media print {
     display: none;
   }
@@ -137,6 +138,7 @@
 
   @media print {
     color: black;
+    padding-left: 1rem;
   }
 }
 
@@ -191,6 +193,7 @@
     padding: 0;
     margin-bottom: 2rem;
   }
+
   @media (min-width: $mediumRem) {
     margin-bottom: 0;
   }

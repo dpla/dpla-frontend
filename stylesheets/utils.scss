@@ -3,6 +3,7 @@
 @import "typography";
 
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
+
 /* TODO replace breakpoints in _breakpoints.scss with these */
 
 :root {
@@ -65,6 +66,10 @@
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+.printableH1 {
+  margin: 2rem 0 0 0;
 }
 
 .breadcrumbsWrapper {

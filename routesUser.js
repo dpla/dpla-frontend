@@ -91,6 +91,19 @@ module.exports = (app, server) => {
     );
   });
 
+  server.get("/primary-source-sets/:set/teaching-guide-print", (req, res) => {
+    const actualPage = "/primary-source-sets/set/teaching-guide-print";
+    const params = { set: req.params.set };
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
+  });
+
   server.get("/primary-source-sets/:set/additional-resources", (req, res) => {
     const actualPage = "/primary-source-sets/set/additional-resources";
     const params = {
