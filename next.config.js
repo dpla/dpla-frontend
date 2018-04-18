@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const dotenv = require("dotenv").config();
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
@@ -28,6 +29,15 @@ module.exports = withBundleAnalyzer(
       },
       webpack: (config, options) => {
         const { dev, isServer } = options;
+
+        config.plugins.push(
+          new CopyWebpackPlugin([
+            {
+              from: "node_modules/pdfjs-dist/cmaps/",
+              to: "cmaps/"
+            }
+          ])
+        );
 
         config.plugins.push(
           new webpack.DefinePlugin({
