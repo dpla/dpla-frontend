@@ -2,29 +2,6 @@
 @import "stylesheets/breakpoints";
 @import "stylesheets/typography";
 
-.feedbackButton, .feedbackButton:visited {
-  position: fixed;
-  left: 0.5rem;
-  bottom: 0.5rem;
-  cursor: pointer;
-  background-color: $linkColor;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border: 0.125rem solid white;
-  border-radius: 0.25rem;
-
-  @media print {
-    display: none;
-  }
-
-  &:hover {
-    color: $linkColor;
-    background-color: white;
-    border-color: $linkColor;
-    text-decoration: none;
-  }
-}
-
 .feedbackModal {
   display: none;
 
