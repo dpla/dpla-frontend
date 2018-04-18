@@ -59,6 +59,7 @@
 }
 
 .pdfViewer {
+  border: 0.1rem solid $lightBorderColor;
   position: relative;
   width: 100%;
 
@@ -68,12 +69,12 @@
     flex-direction: column;
     height: 100%;
     overflow: scroll;
-    padding: 2rem 0;
   }
 
   .pdfPagination {
     background-color: $darkerBackgroundColor;
     bottom: 0;
+    font-size: 1rem;
     left: 0;
     padding: 0.5rem;
     position: absolute;
@@ -83,8 +84,7 @@
   }
 
   .pdfPages {
-    font-weight: bold;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
   }
 
   .pdfNextChevron, .pdfPrevChevron {
