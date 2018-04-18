@@ -23,6 +23,16 @@
   margin-top: 0.5rem;
 }
 
+.clearButton {
+  padding-right: calc((1rem * 0.5));
+  padding-left: calc((1rem * 0.5));
+
+  @media (min-width: $mediumRem) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .textInput::placeholder {
   color: $black50;
 }

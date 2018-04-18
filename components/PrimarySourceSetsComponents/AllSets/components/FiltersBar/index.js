@@ -12,14 +12,6 @@ import {
 
 import css from "shared/FiltersBar/FiltersBar.scss";
 
-const SortValue = props =>
-  <span className={css.sortValue}>
-    <span className={css.sortByText}>Sort by</span>
-    <span>
-      {props.value.label}
-    </span>
-  </span>;
-
 class FiltersBar extends React.Component {
   componentWillMount() {
     this.setState({
@@ -131,7 +123,6 @@ class FiltersBar extends React.Component {
                 value={this.state.sortValue}
                 className={[css.select, css.sortSelect].join(" ")}
                 onChange={this.onSortChange}
-                valueComponent={SortValue}
                 options={sortOptions}
               />
             </div>
