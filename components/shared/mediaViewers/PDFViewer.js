@@ -35,38 +35,39 @@ class PDFViewer extends React.Component {
     const { pathToFile, height = "650px" } = this.props;
     return (
       <div className={css.pdfViewer} style={{ height }}>
-        <div className={css.pdfPagination}>
-          {pageNumber > 1 &&
-            <button
-              aria-controls="pdfViewer"
-              aria-label="Previous page"
-              onClick={() => {
-                this.setState(prevState => ({
-                  pageNumber: prevState.pageNumber - 1
-                }));
-                this.pdfWrapper.scrollTo(0, 0);
-              }}
-            >
-              <Chevron className={css.pdfPrevChevron} aria-label={true} />
-            </button>}
-          <span aria-live="assertive" className={css.pdfPages}>
-            Page {pageNumber} of {numPages}
-          </span>
-          {pageNumber < numPages &&
-            numPages > 1 &&
-            <button
-              aria-controls="pdfViewer"
-              aria-label="Next page"
-              onClick={() => {
-                this.setState(prevState => ({
-                  pageNumber: prevState.pageNumber + 1
-                }));
-                this.pdfWrapper.scrollTo(0, 0);
-              }}
-            >
-              <Chevron className={css.pdfNextChevron} aria-label={true} />
-            </button>}
-        </div>
+        {numPages &&
+          <div className={css.pdfPagination}>
+            {pageNumber > 1 &&
+              <button
+                aria-controls="pdfViewer"
+                aria-label="Previous page"
+                onClick={() => {
+                  this.setState(prevState => ({
+                    pageNumber: prevState.pageNumber - 1
+                  }));
+                  this.pdfWrapper.scrollTo(0, 0);
+                }}
+              >
+                <Chevron className={css.pdfPrevChevron} aria-label={true} />
+              </button>}
+            <span aria-live="assertive" className={css.pdfPages}>
+              Page {pageNumber} of {numPages}
+            </span>
+            {pageNumber < numPages &&
+              numPages > 1 &&
+              <button
+                aria-controls="pdfViewer"
+                aria-label="Next page"
+                onClick={() => {
+                  this.setState(prevState => ({
+                    pageNumber: prevState.pageNumber + 1
+                  }));
+                  this.pdfWrapper.scrollTo(0, 0);
+                }}
+              >
+                <Chevron className={css.pdfNextChevron} aria-label={true} />
+              </button>}
+          </div>}
         <div
           id="pdfViewer"
           ref={ref => (this.pdfWrapper = ref)}
