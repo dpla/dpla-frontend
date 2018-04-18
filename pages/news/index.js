@@ -230,7 +230,7 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
     newsItems = await newsRes.json();
     newsCount = newsRes.headers.get("X-WP-Total");
     newsPageCount = newsRes.headers.get("X-WP-TotalPages");
-    error = newsItems.code !== "" ? true : false;
+    error = newsItems.code !== undefined ? true : false;
     if (error) page = 1;
     retries++;
   }
