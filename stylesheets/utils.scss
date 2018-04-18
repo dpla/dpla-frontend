@@ -4,19 +4,15 @@
 
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
 
-/* TODO replace breakpoints in _breakpoints.scss with these */
-
-:root {
-  --gutter-width: 1rem;
-  --outer-padding: 1rem;
-  --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
-  --half-gutter-width: calc((var(--gutter-width) * 0.5));
-  --site-max-width: 64rem;
-  --border-color: rgba(0, 0, 0, 0.75);
-}
+$gutterWidth: 1rem;
+$outerPadding: 1rem;
+$gutterCompensation: calc((#{$gutterWidth} * 0.5) * -1);
+$halfGutterWidth: calc((#{$gutterWidth} * 0.5));
+$siteMaxWidth: 64rem;
+$borderColor: rgba(0, 0, 0, 0.75);
 
 :global .site-max-width {
-  max-width: var(--site-max-width);
+  max-width: $siteMaxWidth;
 }
 
 :global .border-box {
@@ -56,11 +52,11 @@
 }
 
 .container {
-  padding-left: var(--outer-padding);
-  padding-right: var(--outer-padding);
+  padding-left: $outerPadding;
+  padding-right: $outerPadding;
   margin-left: auto;
   margin-right: auto;
-  max-width: var(--site-max-width);
+  max-width: $siteMaxWidth;
 
   @media ($lg-viewport) {
     padding-left: 0;
@@ -117,8 +113,8 @@ a {
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-right: var(--gutter-compensation, -0.5rem);
-  margin-left: var(--gutter-compensation, -0.5rem);
+  margin-right: $gutterCompensation;
+  margin-left: $gutterCompensation;
 }
 
 :global .row.reverse {
@@ -157,8 +153,8 @@ a {
 :global .col-xs-offset-12 {
   box-sizing: border-box;
   flex: 0 0 auto;
-  padding-right: var(--half-gutter-width, 0.5rem);
-  padding-left: var(--half-gutter-width, 0.5rem);
+  padding-right: $halfGutterWidth;
+  padding-left: $halfGutterWidth;
 }
 
 :global .col-xs {
@@ -347,8 +343,8 @@ a {
   :global .col-sm-offset-12 {
     box-sizing: border-box;
     flex: 0 0 auto;
-    padding-right: var(--half-gutter-width, 0.5rem);
-    padding-left: var(--half-gutter-width, 0.5rem);
+    padding-right: $halfGutterWidth;
+    padding-left: $halfGutterWidth;
   }
 
   :global .col-sm {
@@ -538,8 +534,8 @@ a {
   :global .col-md-offset-12 {
     box-sizing: border-box;
     flex: 0 0 auto;
-    padding-right: var(--half-gutter-width, 0.5rem);
-    padding-left: var(--half-gutter-width, 0.5rem);
+    padding-right: $halfGutterWidth;
+    padding-left: $halfGutterWidth;
   }
 
   :global .col-md {
@@ -729,8 +725,8 @@ a {
   :global .col-lg-offset-12 {
     box-sizing: border-box;
     flex: 0 0 auto;
-    padding-right: var(--half-gutter-width, 0.5rem);
-    padding-left: var(--half-gutter-width, 0.5rem);
+    padding-right: $halfGutterWidth;
+    padding-left: $halfGutterWidth;
   }
 
   :global .col-lg {

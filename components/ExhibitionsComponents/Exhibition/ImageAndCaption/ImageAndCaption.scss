@@ -4,6 +4,7 @@
 
 .wrapper {
   margin-top: 1rem;
+
   @media (min-width: $mediumRem) {
     margin-top: 2rem;
   }
@@ -23,12 +24,14 @@
 }
 
 .image {
+  background-size: cover;
+  background-position: 50% 25%;
+  padding-top: 40%;
+  width: 100%;
+
   @media (min-width: $smallRem) {
     border-radius: 3px;
   }
-  width: 100%;
-  /* 518 / 1024 ratio */
-  padding-top: 50.59%;
 }
 
 .overlay {
@@ -41,7 +44,7 @@
   align-items: flex-end;
   justify-content: center;
   border-radius: 3px;
-  background: linear-gradient(180deg, rgba(13, 13, 23, 0.15) 0%, #000000 100%);
+  background: linear-gradient(180deg, rgba(13, 13, 23, 0.15) 0%, #000 100%);
 }
 
 .imageWrapper {
@@ -54,16 +57,20 @@
   text-align: center;
   padding-bottom: 1.75rem;
   width: 95%;
+
   & .exhibitionTitle {
     padding: 0;
     display: none;
   }
+
   @media (min-width: $smallRem) {
     & .exhibitionTitle {
       display: block;
     }
+
     width: 90%;
   }
+
   @media (min-width: $mediumRem) {
     padding-bottom: 3.5rem;
   }
@@ -71,6 +78,7 @@
 
 .headingRule {
   display: none;
+
   @media (min-width: $smallRem) {
     margin-bottom: -1.25rem;
     display: block;
@@ -83,20 +91,24 @@
   font-family: $serifFont;
   font-size: 1.75rem;
   font-weight: normal;
+
   @media (min-width: $smallRem) {
-    font-size: 3rem;
+    font-size: 2.25rem;
   }
+
   @media (min-width: $smallRem) {
     display: none;
   }
+
   @media (min-width: $mediumRem) {
-    font-size: 3.75rem;
+    font-size: 2.75rem;
   }
 }
 
 .exploreLink {
   display: inline-block;
   width: 100%;
+
   @media (min-width: $smallRem) {
     width: auto;
   }

@@ -281,19 +281,24 @@ class FeedbackForm extends React.Component {
             <div className={css.sendCancelButtons}>
               {!isSending &&
                 step === 1 &&
-                <Button type="primary" {...buttonProps}>
+                <Button
+                  type="primary"
+                  className={css.sendButton}
+                  {...buttonProps}
+                >
                   Send
                 </Button>}
               {isSending &&
                 <Button
                   type="secondary"
-                  className={css.disabledButton}
+                  className={`${css.sendButton} ${css.disabledButton}`}
                   live="assertive"
                 >
                   Sending…
                 </Button>}
 
               <Button
+                className={css.cancelButton}
                 type="ghost"
                 id="deactivate-feedback"
                 onClick={this.closeForm}

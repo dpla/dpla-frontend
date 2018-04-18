@@ -2,9 +2,7 @@
 @import "breakpoints";
 @import "typography";
 
-:root {
-  --border-color: rgba(0, 0, 0, 0.75);
-}
+$borderColor: rgba(0, 0, 0, 0.75);
 
 .backgroundTint {
   background-color: $warmerBackgroundColor;
@@ -229,7 +227,7 @@
   }
 
   & hr {
-    border: 0.075rem solid var(--border-color);
+    border: 0.075rem solid $borderColor;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
@@ -279,8 +277,8 @@
 /* schedule tables */
 :global table.schedule {
   border: none;
-  border-bottom: 0.25rem solid var(--border-color);
-  border-top: 0.15rem solid var(--border-color);
+  border-bottom: 0.25rem solid $borderColor;
+  border-top: 0.15rem solid $borderColor;
 
   & th, & td {
     vertical-align: top;
@@ -291,7 +289,7 @@
   }
 
   & tr:not(:last-child) {
-    border-bottom: 0.075rem solid var(--border-color);
+    border-bottom: 0.075rem solid $borderColor;
   }
 
   & th {
