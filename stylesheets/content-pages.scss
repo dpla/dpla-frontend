@@ -130,7 +130,6 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
   & p, & ul, & ol {
     font-weight: normal;
-    max-width: 30rem;
 
     @media (min-width: $mediumRem) {
     }
