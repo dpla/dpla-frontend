@@ -8,6 +8,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
 import { getMenuItemUrl } from "utilFunctions";
+import { wordpressLinks } from "utilFunctions/externalLinks";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -15,38 +16,60 @@ import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 import css from "stylesheets/guides.scss";
 
-const Guides = ({ url, sidebarItems, breadcrumbs, guide }) =>
-  <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
-    <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
-    <div
-      className={`
+class Guides extends React.Component {
+  refreshExternalLinks() {
+    var links = document.getElementById("main").getElementsByTagName("a");
+    wordpressLinks(links);
+  }
+  componentDidMount() {
+    this.refreshExternalLinks();
+  }
+
+  componentDidUpdate() {
+    this.refreshExternalLinks();
+  }
+
+  render() {
+    const { url, sidebarItems, breadcrumbs, guide } = this.props;
+    return (
+      <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
+        <div
+          className={`
         ${utils.container}
         ${contentCss.sidebarAndContentWrapper}
       `}
-    >
-      <div className="row">
-        <ContentPagesSidebar
-          route={url}
-          items={sidebarItems}
-          activeItemId={guide.slug}
-          className={contentCss.sidebar}
-        />
-        <div className="col-xs-12 col-md-7">
-          <div
-            id="main"
-            role="main"
-            className={[css.content, contentCss.content].join(" ")}
-          >
-            <WPEdit page={guide} url={url} />
-            <img src={guide.bannerImage} alt="" className={css.bannerImage} />
-            <h1 className={css.guideTitle}>{guide.title}</h1>
-            <HeadingRule />
-            <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+        >
+          <div className="row">
+            <ContentPagesSidebar
+              route={url}
+              items={sidebarItems}
+              activeItemId={guide.slug}
+              className={contentCss.sidebar}
+            />
+            <div className="col-xs-12 col-md-7">
+              <div
+                id="main"
+                role="main"
+                className={[css.content, contentCss.content].join(" ")}
+              >
+                <WPEdit page={guide} url={url} />
+                <img
+                  src={guide.bannerImage}
+                  alt=""
+                  className={css.bannerImage}
+                />
+                <h1 className={css.guideTitle}>{guide.title}</h1>
+                <HeadingRule />
+                <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </MainLayout>;
+      </MainLayout>
+    );
+  }
+}
 
 Guides.getInitialProps = async ({ query }) => {
   const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);

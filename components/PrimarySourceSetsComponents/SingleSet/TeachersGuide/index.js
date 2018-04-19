@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import { removeQueryParams, markdownLinks } from "utilFunctions";
+import { removeQueryParams } from "utilFunctions";
+import { markdownLinks } from "utilFunctions/externalLinks";
+
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
 import utils from "stylesheets/utils.scss";

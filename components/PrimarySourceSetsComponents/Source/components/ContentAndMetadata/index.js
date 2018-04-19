@@ -17,9 +17,9 @@ import {
   getPartner,
   getTitle,
   getContributor,
-  markdownLinks,
   trackGaEvent
 } from "utilFunctions";
+import { markdownLinks } from "utilFunctions/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ContentAndMetadata.scss";
