@@ -99,17 +99,12 @@ a {
   color: $linkColor;
   text-decoration: none;
 
-  &:global.external::after {
+  &:global.external {
     background-image: url("/static/images/external-link-blue.svg");
     background-position: center right;
     background-repeat: no-repeat;
-    background-size: 90%;
-    content: "";
-    display: inline-block;
-    height: 0.9em;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-    width: 0.9em;
+    background-size: 0.8em;
+    padding-right: 1.1em;
   }
 
   &:visited {
