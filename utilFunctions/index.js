@@ -28,7 +28,6 @@ import parseDplaItemRecord from "./parseDplaItemRecord";
 import removeEndPunctuation from "./removeEndPunctuation";
 import removeQueryParams from "./removeQueryParams";
 import readMyRights from "./readMyRights";
-import showMoreDescription from "./showMoreDescription";
 import truncateString from "./truncateString";
 
 // google analytics imports organized alphabetically
@@ -66,7 +65,6 @@ export {
   readMyRights,
   removeEndPunctuation,
   removeQueryParams,
-  showMoreDescription,
   truncateString,
   bindLinkEvent,
   initGa,

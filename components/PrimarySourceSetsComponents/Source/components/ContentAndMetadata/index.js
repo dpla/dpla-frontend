@@ -82,7 +82,12 @@ const trackClickThrough = (e, source, target = "_blank") => {
 };
 
 class ContentAndMetadata extends React.Component {
-  state = { isOpen: false };
+  state = { isOpen: true }; // show it if js is disabled
+
+  componentDidMount() {
+    // now collapse it
+    this.setState({ isOpen: false });
+  }
 
   componentWillReceiveProps() {
     this.setState({ isOpen: this.props.openDescription || false });
