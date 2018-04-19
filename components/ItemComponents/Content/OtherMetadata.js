@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Row from "./Row";
 
-import { makeURLsClickable, joinIfArray, readMyRights } from "utilFunctions";
+import { joinIfArray, readMyRights } from "utilFunctions";
 
 import css from "./Content.scss";
 

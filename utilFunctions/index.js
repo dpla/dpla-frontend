@@ -23,7 +23,7 @@ import getPartner from "./getPartner";
 import getSearchPageTitle from "./getSearchPageTitle";
 import getTitle from "./getTitle";
 import joinIfArray from "./joinIfArray";
-import makeURLsClickable from "./makeURLsClickable";
+import markdownLinks from "./markdownLinks";
 import parseDplaItemRecord from "./parseDplaItemRecord";
 import removeEndPunctuation from "./removeEndPunctuation";
 import removeQueryParams from "./removeQueryParams";
@@ -61,7 +61,7 @@ export {
   getSearchPageTitle,
   getTitle,
   joinIfArray,
-  makeURLsClickable,
+  markdownLinks,
   parseDplaItemRecord,
   readMyRights,
   removeEndPunctuation,

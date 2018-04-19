@@ -24,14 +24,14 @@ const OtherInfo = () =>
           To give feedback, contact us at {" "}
           <a className="link" href={`mailto:${DPLA_CONTACT_EMAIL}`}>
             education@dp.la
-          </a>. You can also
+          </a>. You can also{" "}
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className="link"
+            className="link external"
             href={PSS_SUGGESTION_URL}
           >
-            {" "}suggest a primary source set topic
+            suggest a primary source set topic
           </a>.
         </span>
       </p>

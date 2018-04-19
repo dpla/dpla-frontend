@@ -141,7 +141,7 @@ class ContentAndMetadata extends React.Component {
                   className={`${css.description} ${descriptionIsLong
                     ? css.longDescription
                     : ""} ${this.state.isOpen ? css.open : ""}`}
-                  source={source.text.replace(/<br>/g, "\n\n")}
+                  source={source.text.replace(/<br\/?>/g, "\n\n")}
                   renderers={{
                     linkReference: reference => {
                       if (!reference.href) {

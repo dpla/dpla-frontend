@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import removeQueryParams from "utilFunctions/removeQueryParams";
+import { removeQueryParams, markdownLinks } from "utilFunctions";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
@@ -45,6 +45,10 @@ class TeachersGuide extends React.Component {
                         item => item.name === "Questions"
                       ).text
                     }
+                    renderers={{
+                      linkReference: reference => markdownLinks(reference),
+                      link: reference => markdownLinks(reference)
+                    }}
                   />
                   <h3>Classroom activities</h3>
                   <ReactMarkdown
@@ -53,6 +57,10 @@ class TeachersGuide extends React.Component {
                         item => item.name === "Activity"
                       ).text
                     }
+                    renderers={{
+                      linkReference: reference => markdownLinks(reference),
+                      link: reference => markdownLinks(reference)
+                    }}
                   />
                 </div>
                 <div className={css.aboutThis}>
@@ -102,7 +110,9 @@ class TeachersGuide extends React.Component {
                   />
                 )}
                 {isPrintable !== true &&
-                  <h3 className={css.sidebarHeader}>Teacher Tools</h3>}
+                  <h3 className={css.sidebarHeader}>
+                    Teacher Tools
+                  </h3>}
                 {isPrintable !== true &&
                   this.state.routePath &&
                   <div className={css.tools}>
@@ -147,7 +157,9 @@ class TeachersGuide extends React.Component {
                     compare and contrast sources in terms of point of view and
                     method
                   </li>
-                  <li>support conclusions and interpretations with evidence</li>
+                  <li>
+                    support conclusions and interpretations with evidence
+                  </li>
                   <li>identify questions for further investigation</li>
                 </ul>
               </div>
@@ -156,7 +168,7 @@ class TeachersGuide extends React.Component {
                 <ul className={css.ul}>
                   <li className={css.additionalToolWrapper}>
                     <a
-                      className="link"
+                      className="link external"
                       href="https://www.archives.gov/education/lessons/worksheets"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -166,7 +178,7 @@ class TeachersGuide extends React.Component {
                   </li>
                   <li className={css.additionalToolWrapper}>
                     <a
-                      className="link"
+                      className="link external"
                       href="https://www.loc.gov/teachers/usingprimarysources/"
                       target="_blank"
                       rel="noopener noreferrer"

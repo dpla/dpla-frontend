@@ -106,9 +106,10 @@ a {
     background-size: 90%;
     content: "";
     display: inline-block;
-    height: 1em;
+    height: 0.9em;
     margin-left: 0.25em;
-    width: 1em;
+    margin-right: 0.25em;
+    width: 0.9em;
   }
 
   &:visited {
