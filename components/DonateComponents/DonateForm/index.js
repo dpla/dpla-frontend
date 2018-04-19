@@ -140,7 +140,7 @@ class DonateForm extends React.Component {
           <div className={`col-xs-12 col-md-4`}>
             <Button
               type="primary"
-              className={`${css.donateButton}`}
+              className={css.donateButton}
               onClick={() => this.buildDonationAndSend()}
             >
               Donate
