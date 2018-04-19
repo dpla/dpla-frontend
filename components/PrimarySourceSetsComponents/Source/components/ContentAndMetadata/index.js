@@ -17,6 +17,7 @@ import {
   getPartner,
   getTitle,
   getContributor,
+  markdownLinks,
   trackGaEvent
 } from "utilFunctions";
 
@@ -143,17 +144,8 @@ class ContentAndMetadata extends React.Component {
                     : ""} ${this.state.isOpen ? css.open : ""}`}
                   source={source.text.replace(/<br\/?>/g, "\n\n")}
                   renderers={{
-                    linkReference: reference => {
-                      if (!reference.href) {
-                        return `[${reference.children[0]}]`;
-                      }
-
-                      return (
-                        <a href={reference.$ref}>
-                          {reference.children}
-                        </a>
-                      );
-                    }
+                    linkReference: reference => markdownLinks(reference),
+                    link: reference => markdownLinks(reference)
                   }}
                 />}
               {descriptionIsLong &&

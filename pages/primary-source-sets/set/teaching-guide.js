@@ -13,7 +13,7 @@ import { PSS_BASE_URL } from "constants/env";
 import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={set.name}>
+  <MainLayout route={url} pageTitle={set.name.replace(/\*/g, "")}>
     <BreadcrumbsModule
       breadcrumbs={[
         {

@@ -20,7 +20,7 @@ import contentCss from "stylesheets/content-pages.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={set.name}>
+  <MainLayout route={url} pageTitle={set.name.replace(/\*/g, "")}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
