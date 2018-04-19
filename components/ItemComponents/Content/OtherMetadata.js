@@ -79,7 +79,7 @@ const OtherMetadata = ({ item }) =>
         {item.sourceUrl &&
           <Row heading="URL">
             <a
-              className="link clickThrough"
+              className="link clickThrough external"
               href={item.sourceUrl}
               target="_blank"
             >
@@ -99,10 +99,7 @@ const OtherMetadata = ({ item }) =>
           <Row heading="Rights">
             <div
               dangerouslySetInnerHTML={{
-                __html: makeURLsClickable(
-                  joinIfArray(item.rights, "<br/> "),
-                  "link"
-                )
+                __html: joinIfArray(item.rights, "<br/> ")
               }}
             />
           </Row>}
