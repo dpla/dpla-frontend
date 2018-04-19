@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
-import FeedbackForm from "components/FeedbackForm";
 import GaExhibitWrapper from "./GaExhibitWrapper";
 
 import css from "./ExhibitionSection.scss";
@@ -34,7 +33,6 @@ const ExhibitionView = ({
       nextQueryParams={nextQueryParams}
       nextSubsectionTitle={nextSubsectionTitle}
     />
-    <FeedbackForm route={route} />
   </div>;
 
 export default GaExhibitWrapper(ExhibitionView);

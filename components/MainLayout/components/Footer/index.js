@@ -14,10 +14,10 @@ const igIcon = "/static/images/instagram.svg";
 const tumblrIcon = "/static/images/tumblr.svg";
 const twitterIcon = "/static/images/twitter.svg";
 
-const Footer = () =>
+const Footer = ({ route }) =>
   <footer className={css.wrapper}>
-    {SITE_ENV === "user" && <FooterUser />}
-    {SITE_ENV === "pro" && <FooterPro />}
+    {SITE_ENV === "user" && <FooterUser route={route} />}
+    {SITE_ENV === "pro" && <FooterPro route={route} />}
     <div className={css.smallFooterWrapper}>
       <div className={`${css.smallFooter} site-max-width`}>
         <Link href="/">
