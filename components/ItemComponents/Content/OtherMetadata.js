@@ -91,7 +91,11 @@ const OtherMetadata = ({ item }) =>
           <Row heading="Standardized Rights Statement">
             {readMyRights(item.edmRights).description}
             {readMyRights(item.edmRights).description !== "" && <br />}
-            <a href={item.edmRights} className="link" rel="noopener noreferrer">
+            <a
+              href={item.edmRights}
+              className="link external"
+              rel="noopener noreferrer"
+            >
               {item.edmRights}
             </a>
           </Row>}
