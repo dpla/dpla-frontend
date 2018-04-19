@@ -2,6 +2,8 @@ import React from "react";
 import Select from "react-select";
 import Router from "next/router";
 
+import Button from "shared/Button";
+
 import {
   sortOptions,
   mapTimePeriodNameToSlug,
@@ -9,14 +11,6 @@ import {
 } from "constants/primarySourceSets";
 
 import css from "shared/FiltersBar/FiltersBar.scss";
-
-const SortValue = props =>
-  <span className={css.sortValue}>
-    <span className={css.sortByText}>Sort by</span>
-    <span>
-      {props.value.label}
-    </span>
-  </span>;
 
 class FiltersBar extends React.Component {
   componentWillMount() {
@@ -64,11 +58,30 @@ class FiltersBar extends React.Component {
     });
   };
 
+  onClearFilters = e => {
+    Router.push({
+      pathname: "/primary-source-sets",
+      query: Object.assign({}, this.props.route.query, {
+        subject: "all-subjects",
+        timePeriod: "all-time-periods"
+      })
+    });
+  };
+
   render() {
     return (
       <div className={css.filtersWrapper}>
         <div className={`${css.filters} site-max-width`}>
           <div className="row">
+            {(this.state.timePeriodValue !== "all-time-periods" ||
+              this.state.subjectValue !== "all-subjects") &&
+              <Button
+                type={"secondary"}
+                className={css.clearButton}
+                onClick={this.onClearFilters}
+              >
+                Clear filters
+              </Button>}
             <div className={`${css.filter} col-xs-12 col-md-3`}>
               <Select
                 clearable={false}
@@ -110,7 +123,6 @@ class FiltersBar extends React.Component {
                 value={this.state.sortValue}
                 className={[css.select, css.sortSelect].join(" ")}
                 onChange={this.onSortChange}
-                valueComponent={SortValue}
                 options={sortOptions}
               />
             </div>
