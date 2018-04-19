@@ -22,10 +22,10 @@ const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
 class SourceSetInfo extends React.Component {
-  state = { isOpen: false, href: "" };
+  state = { isOpen: true, href: "" }; // show it if js is disabled
 
   componentDidMount() {
-    this.setState({ isOpen: this.isOpen, href: window.location.href });
+    this.setState({ isOpen: false, href: window.location.href });
   }
 
   componentWillReceiveProps() {
