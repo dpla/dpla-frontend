@@ -103,7 +103,7 @@ const OtherMetadata = ({ item }) =>
           <Row heading="Rights">
             <div
               dangerouslySetInnerHTML={{
-                __html: joinIfArray(item.rights, "<br/> ")
+                __html: joinIfArray(item.rights, "<br />")
               }}
             />
           </Row>}
