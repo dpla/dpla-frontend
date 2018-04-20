@@ -13,14 +13,13 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
 :global select {
   appearance: none;
-  background: url(/static/images/chevron-thick-black-down.svg)
-    no-repeat
-    transparent;
-  background-position: 99% center;
+  background: url(/static/images/chevron-thick-black-down.svg) no-repeat white;
+  background-position: calc(100% - 0.5rem) center;
   background-size: 0.9em;
   border: 0.1rem solid $formLabelColor;
   border-radius: 0.25rem;
-  padding: 0.5rem 0.25rem;
+  padding: 0.35rem 1.5rem 0.35rem 0.25rem;
+  width: 100%;
 }
 
 :global .site-max-width {

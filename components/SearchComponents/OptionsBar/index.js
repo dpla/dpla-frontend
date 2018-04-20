@@ -56,7 +56,7 @@ class OptionsBar extends React.Component {
     Router.push({
       pathname: "/search",
       query: Object.assign({}, this.props.route.query, {
-        page_size: val.label,
+        page_size: val.target.label,
         page: 1
       })
     });
@@ -66,8 +66,8 @@ class OptionsBar extends React.Component {
     Router.push({
       pathname: "/search",
       query: Object.assign({}, this.props.route.query, {
-        sort_by: mapSortOptionsToParams[val.value].sort_by,
-        sort_order: mapSortOptionsToParams[val.value].sort_order,
+        sort_by: mapSortOptionsToParams[val.target.value].sort_by,
+        sort_order: mapSortOptionsToParams[val.target.value].sort_order,
         page: 1
       })
     });
@@ -89,7 +89,9 @@ class OptionsBar extends React.Component {
         <div className={[utils.container, css.optionsBar].join(" ")}>
           <div className={css.resultsAndFilter}>
             <h1 className={css.resultsCount}>
-              <span>{addCommasToNumber(this.props.itemCount)} results </span>
+              <span>
+                {addCommasToNumber(this.props.itemCount)} results{" "}
+              </span>
               {this.props.route.query.q &&
                 <span className={css.resultsCountQuery}>
                   <span>for </span>
@@ -140,31 +142,35 @@ class OptionsBar extends React.Component {
               <h3 id="options-bar-page-size-label" className={css.optionHeader}>
                 Items per page
               </h3>
-              <Select
+              <select
                 aria-labelledby="options-bar-page-size-label"
-                clearable={false}
                 instanceId="options-bar-page-size"
-                searchable={false}
                 value={this.state.pageSizeValue}
                 onChange={this.onPageSizeChange}
-                className={[css.select, css.itemsPerPage].join(" ")}
-                options={pageSizeOptions}
-              />
+              >
+                {pageSizeOptions.map((item, index) =>
+                  <option value={item.value} key={index}>
+                    {item.label}
+                  </option>
+                )}
+              </select>
             </div>
             <div className={css.optionWrapper}>
               <h3 id="options-bar-sort-by-label" className={css.optionHeader}>
                 Sort by
               </h3>
-              <Select
+              <select
                 aria-labelledby="options-bar-sort-by-label"
-                clearable={false}
-                searchable={false}
                 instanceId="options-bar-sort-by"
                 value={this.state.sortValue}
-                className={[css.select, css.sortBy].join(" ")}
                 onChange={this.onSortChange}
-                options={sortOptions}
-              />
+              >
+                {sortOptions.map((item, index) =>
+                  <option value={item.value} key={index}>
+                    {item.label}
+                  </option>
+                )}
+              </select>
             </div>
             {/* <div>
               <h3 className={css.optionHeader}>

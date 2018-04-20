@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "react-select";
 import Router from "next/router";
 
 import Button from "shared/Button";
@@ -38,14 +37,18 @@ class FiltersBar extends React.Component {
   onSortChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { order: val.value })
+      query: Object.assign({}, this.props.route.query, {
+        order: val.target.value
+      })
     });
   };
 
   onSubjectChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, { subject: val.value })
+      query: Object.assign({}, this.props.route.query, {
+        subject: val.target.value
+      })
     });
   };
 
@@ -53,7 +56,7 @@ class FiltersBar extends React.Component {
     Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.route.query, {
-        timePeriod: val.value
+        timePeriod: val.target.value
       })
     });
   };
@@ -69,6 +72,22 @@ class FiltersBar extends React.Component {
   };
 
   render() {
+    const subjectOptions = [
+      { value: "all-subjects", label: "All Subjects" }
+    ].concat(
+      this.props.subjects.map(subject => ({
+        label: subject.name,
+        value: mapSubjectNameToSlug(subject.name)
+      }))
+    );
+    const timePeriodOptions = [
+      { value: "all-time-periods", label: "All Time Periods" }
+    ].concat(
+      this.props.timePeriods.map(period => ({
+        label: period.name,
+        value: mapTimePeriodNameToSlug(period.name)
+      }))
+    );
     return (
       <div className={css.filtersWrapper}>
         <div className={`${css.filters} site-max-width`}>
@@ -83,48 +102,37 @@ class FiltersBar extends React.Component {
                 Clear filters
               </Button>}
             <div className={`${css.filter} col-xs-12 col-md-3`}>
-              <Select
-                clearable={false}
-                searchable={false}
+              <select
                 value={this.state.subjectValue}
                 onChange={this.onSubjectChange}
-                className={css.select}
-                options={[
-                  { value: "all-subjects", label: "All Subjects" }
-                ].concat(
-                  this.props.subjects.map(subject => ({
-                    label: subject.name,
-                    value: mapSubjectNameToSlug(subject.name)
-                  }))
+              >
+                {subjectOptions.map((item, index) =>
+                  <option value={item.value} key={index}>
+                    {item.label}
+                  </option>
                 )}
-              />
+              </select>
             </div>
             <div className={`${css.filter} col-xs-12 col-md-3`}>
-              <Select
-                clearable={false}
-                searchable={false}
+              <select
                 value={this.state.timePeriodValue}
-                className={css.select}
                 onChange={this.onTimePeriodChange}
-                options={[
-                  { value: "all-time-periods", label: "All Time Periods" }
-                ].concat(
-                  this.props.timePeriods.map(period => ({
-                    label: period.name,
-                    value: mapTimePeriodNameToSlug(period.name)
-                  }))
+              >
+                {timePeriodOptions.map((item, index) =>
+                  <option value={item.value} key={index}>
+                    {item.label}
+                  </option>
                 )}
-              />
+              </select>
             </div>
             <div className={`${css.filter} col-xs-12 col-md-4`}>
-              <Select
-                clearable={false}
-                searchable={false}
-                value={this.state.sortValue}
-                className={[css.select, css.sortSelect].join(" ")}
-                onChange={this.onSortChange}
-                options={sortOptions}
-              />
+              <select value={this.state.sortValue} onChange={this.onSortChange}>
+                {sortOptions.map((item, index) =>
+                  <option value={item.value} key={index}>
+                    {item.label}
+                  </option>
+                )}
+              </select>
             </div>
           </div>
         </div>

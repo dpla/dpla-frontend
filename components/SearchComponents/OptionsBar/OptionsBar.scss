@@ -20,6 +20,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: capitalize;
+
   @media (min-width: $smallRem) {
     font-size: 1.5rem;
     text-transform: none;
@@ -33,36 +34,10 @@
 
 .resultsCountQuery {
   display: none;
+
   @media (min-width: $smallRem) {
     display: inline-block;
   }
-}
-
-.select {
-  display: inline-block;
-}
-
-.select :global(.Select-control) {
-  height: 32px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  border: none;
-  margin-right: 14px;
-}
-
-.select :global(.Select-arrow) {
-  border-color: black transparent transparent;
-  border-width: 7px 7px 1.5px;
-  position: relative;
-  right: 5px;
-}
-
-.sortSelect :global(.Select-control) {
-  width: 204px;
-}
-
-.sortSelect :global(.Select-menu-outer) {
-  width: 204px;
 }
 
 .optionsBar {
@@ -94,12 +69,22 @@
 
 .options {
   display: flex;
+
   @media (min-width: $smallRem) {
   }
 }
 
 .optionWrapper {
   display: inline-block;
+  margin-left: 0.25rem;
+
+  &:first-child {
+    margin: 0;
+  }
+
+  @media (min-width: $smallRem) {
+    margin: 1rem;
+  }
 }
 
 .optionHeader {
@@ -108,6 +93,7 @@
   color: $dimmedTextColor;
   font-weight: normal;
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 
 .viewButtons {
@@ -156,6 +142,7 @@
   margin-left: 0.5rem;
   font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.5);
+
   @media (min-width: $smallRem) {
     display: none;
   }
@@ -167,6 +154,7 @@
   align-items: center;
   font-weight: 600;
   font-size: 0.875rem;
+
   @media (min-width: $smallRem) {
     display: none;
   }
@@ -186,9 +174,11 @@
 .activeFacetCount {
   display: none;
 }
+
 @media (max-width: $smallRem) {
   .withActiveFacets {
     color: $paginationLinkColor;
+
     & .filtersButtonChevron {
       & path {
         fill: $paginationLinkColor;

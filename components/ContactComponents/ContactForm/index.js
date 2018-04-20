@@ -91,7 +91,7 @@ class ContactForm extends React.Component {
     this.setState({
       isSending: this.state.isSending,
       isSent: this.state.isSent,
-      subject: selectedOption.value,
+      subject: selectedOption.target.value,
       name: this.state.name,
       message: this.state.message,
       email: this.state.email
