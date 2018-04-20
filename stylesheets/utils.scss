@@ -11,6 +11,10 @@ $halfGutterWidth: calc((#{$gutterWidth} * 0.5));
 $siteMaxWidth: 64rem;
 $borderColor: rgba(0, 0, 0, 0.75);
 
+:global select {
+  appearance: none;
+}
+
 :global .site-max-width {
   max-width: $siteMaxWidth;
 }

@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const dotenv = require("dotenv").config();
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
+const autoprefixer = require("autoprefixer");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
@@ -36,6 +37,12 @@ module.exports = withBundleAnalyzer(
             }
           })
         );
+
+        config.module.rules.push({
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: [{ loader: "postcss-loader" }]
+        });
 
         config.module.rules.push({
           test: /\.(jpe?g|png|gif|svg)$/i,

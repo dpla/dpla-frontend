@@ -1,10 +1,48 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Select from "react-select";
 
 import Button from "shared/Button";
 
 import css from "./ContactForm.scss";
+
+const selectOptions = [
+  { value: "General inquiry", label: "General inquiry" },
+  {
+    value: "Item usage and rights",
+    label: "Item usage and rights"
+  },
+  {
+    value: "Hubs and adding new content to DPLA",
+    label: "Hubs and adding new content to DPLA"
+  },
+  {
+    value: "Report a problem with the website",
+    label: "Report a problem with the website"
+  },
+  {
+    value: "Report an error with our data",
+    label: "Report an error with our data"
+  },
+  {
+    value: "Report an accessibility issue",
+    label: "Report an accessibility issue"
+  },
+  {
+    value: "API, bulk data, and developer-related questions",
+    label: "API, bulk data, and developer-related questions"
+  },
+  {
+    value: "App Library subsmission",
+    label: "App Library subsmission"
+  },
+  {
+    value: "Education and Primary Source Sets",
+    label: "Education and Primary Source Sets"
+  },
+  { value: "Community Reps", label: "Community Reps" },
+  { value: "Ebooks", label: "Ebooks" },
+  { value: "Press inquiry", label: "Press inquiry" }
+];
 
 class ContactForm extends React.Component {
   state = {
@@ -206,52 +244,16 @@ class ContactForm extends React.Component {
                 <span className={css.notFixed}>
                   Subject (required)
                 </span>
-                <Select
+                <select
                   id="contact-subject"
-                  clearable={false}
-                  searchable={false}
                   value={this.state.subject}
                   required
                   onChange={this.onSubjectChange}
-                  options={[
-                    { value: "General inquiry", label: "General inquiry" },
-                    {
-                      value: "Item usage and rights",
-                      label: "Item usage and rights"
-                    },
-                    {
-                      value: "Hubs and adding new content to DPLA",
-                      label: "Hubs and adding new content to DPLA"
-                    },
-                    {
-                      value: "Report a problem with the website",
-                      label: "Report a problem with the website"
-                    },
-                    {
-                      value: "Report an error with our data",
-                      label: "Report an error with our data"
-                    },
-                    {
-                      value: "Report an accessibility issue",
-                      label: "Report an accessibility issue"
-                    },
-                    {
-                      value: "API, bulk data, and developer-related questions",
-                      label: "API, bulk data, and developer-related questions"
-                    },
-                    {
-                      value: "App Library subsmission",
-                      label: "App Library subsmission"
-                    },
-                    {
-                      value: "Education and Primary Source Sets",
-                      label: "Education and Primary Source Sets"
-                    },
-                    { value: "Community Reps", label: "Community Reps" },
-                    { value: "Ebooks", label: "Ebooks" },
-                    { value: "Press inquiry", label: "Press inquiry" }
-                  ]}
-                />
+                >
+                  {selectOptions.map(option =>
+                    <option value={option.value}>{option.label}</option>
+                  )}
+                </select>
               </label>
               <input
                 type="checkbox"
