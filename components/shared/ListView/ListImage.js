@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { getDefaultThumbnail } from "utilFunctions";
+import { getDefaultThumbnail } from "lib";
 
 import css from "./ListView.scss";
 

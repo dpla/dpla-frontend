@@ -7,7 +7,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
-import { formatDate } from "utilFunctions";
+import { formatDate } from "lib";
 
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";

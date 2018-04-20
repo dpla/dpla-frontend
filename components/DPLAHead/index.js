@@ -5,7 +5,7 @@ import reset from "stylesheets/reset.scss";
 import utils from "stylesheets/utils.scss";
 import accessibility from "stylesheets/accessibility.scss";
 
-import { getMetaPageTitle } from "utilFunctions";
+import { getMetaPageTitle } from "lib";
 
 const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
   <div>

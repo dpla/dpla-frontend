@@ -19,7 +19,7 @@ import {
   getItemWithId,
   getItemWithName,
   getMenuItemUrl
-} from "utilFunctions";
+} from "lib";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";

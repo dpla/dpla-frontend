@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import GaWrapper from "shared/GaWrapper";
 
 import { SITE_ENV } from "constants/env";
-import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
+import { getCurrentUrl, getCurrentFullUrl } from "lib";
 
 const MainLayout = ({
   children,

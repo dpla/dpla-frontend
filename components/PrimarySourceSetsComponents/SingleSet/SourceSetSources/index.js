@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import Link from "next/link";
 
-import { removeQueryParams, extractSourceId } from "utilFunctions";
+import { removeQueryParams, extractSourceId } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./SourceSetSources.scss";

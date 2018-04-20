@@ -6,7 +6,7 @@ import {
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
-import { removeQueryParams, joinIfArray } from "utilFunctions";
+import { removeQueryParams, joinIfArray } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./FiltersList.scss";

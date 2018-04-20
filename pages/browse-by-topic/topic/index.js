@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import { extractSourceSetSlug } from "utilFunctions/";
+import { extractSourceSetSlug } from "lib/";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
@@ -15,7 +15,7 @@ import {
   EXHIBITS_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl } from "lib";
 
 const sanitizeSourceSetId = id => {
   let sanitized = id.replace(" ", "");

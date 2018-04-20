@@ -5,7 +5,7 @@ const fetch = require("isomorphic-fetch");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 
-const serverFunctions = require("./utilFunctions/serverFunctions");
+const serverFunctions = require("./lib/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;

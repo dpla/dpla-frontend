@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getDefaultThumbnail } from "utilFunctions";
+import { getDefaultThumbnail } from "lib";
 
 import css from "./ItemImage.scss";
 
