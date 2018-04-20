@@ -10,11 +10,7 @@ import {
   mapFacetsToURLPrettified,
   prettifiedFacetMap
 } from "constants/search";
-import {
-  addCommasToNumber,
-  escapeForRegex,
-  removeQueryParams
-} from "utilFunctions";
+import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
 import css from "./Sidebar.scss";
 

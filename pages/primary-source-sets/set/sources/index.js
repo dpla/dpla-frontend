@@ -9,7 +9,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { PSS_BASE_URL } from "constants/env";
 
-import { removeQueryParams } from "utilFunctions";
+import { removeQueryParams } from "lib";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";

@@ -10,7 +10,7 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import { PSS_BASE_URL } from "constants/env";
 
-import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
+import { removeQueryParams, getCurrentFullUrl } from "lib";
 
 const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
   <MainLayout route={url} pageTitle={set.name}>

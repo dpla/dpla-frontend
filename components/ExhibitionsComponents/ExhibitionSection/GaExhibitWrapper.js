@@ -9,7 +9,7 @@ import {
   joinIfArray,
   parseDplaItemRecord,
   trackGaEvent
-} from "utilFunctions";
+} from "lib";
 
 export default WrappedComponent =>
   class GaExhibitWrapper extends React.Component {

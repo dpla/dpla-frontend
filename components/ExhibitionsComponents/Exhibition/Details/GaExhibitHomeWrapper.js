@@ -8,7 +8,7 @@ import {
   joinIfArray,
   parseDplaItemRecord,
   trackGaEvent
-} from "utilFunctions";
+} from "lib";
 
 export default WrappedComponent =>
   class GaExhibitHomeWrapper extends React.Component {

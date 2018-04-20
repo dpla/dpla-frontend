@@ -5,7 +5,7 @@ import ListView from "components/shared/ListView";
 import Pagination from "components/shared/Pagination";
 import Sidebar from "./Sidebar";
 
-import { removeQueryParams, extractItemId } from "utilFunctions";
+import { removeQueryParams, extractItemId } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./MainContent.scss";

@@ -10,7 +10,7 @@
         "alias": {
           "css": "./css",
           "static": "./static",
-          "utilFunctions": "./utilFunctions",
+          "lib": "./lib",
           "shared": "./components/shared",
           "constants": "./constants",
           "stylesheets": "./stylesheets",

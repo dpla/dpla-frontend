@@ -18,7 +18,7 @@ import {
   getTitle,
   getContributor,
   trackGaEvent
-} from "utilFunctions";
+} from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ContentAndMetadata.scss";

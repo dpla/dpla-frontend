@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "shared/Button";
 
-import { getCurrentFullUrl, endsWith } from "utilFunctions";
+import { getCurrentFullUrl, endsWith } from "lib";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 import contentCss from "stylesheets/content-pages.scss";

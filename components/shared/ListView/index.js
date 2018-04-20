@@ -4,7 +4,7 @@ import Link from "next/link";
 import ListImage from "./ListImage";
 import GaListViewWrapper from "./GaListViewWrapper";
 
-import { joinIfArray, truncateString } from "utilFunctions";
+import { joinIfArray, truncateString } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";

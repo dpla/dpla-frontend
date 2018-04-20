@@ -7,7 +7,7 @@ import HeadingRule from "components/shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
-import { getMenuItemUrl } from "utilFunctions";
+import { getMenuItemUrl } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
