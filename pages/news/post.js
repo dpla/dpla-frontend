@@ -7,7 +7,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
-import { formatDate } from "utilFunctions";
+import { formatDate } from "lib";
 
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
@@ -17,112 +17,128 @@ import {
   NEWS_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
+import { wordpressLinks } from "lib/externalLinks";
 import { WORDPRESS_URL } from "constants/env";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 import css from "stylesheets/news.scss";
 
-const PostPage = ({ url, content, menuItems, author }) => {
-  let hasTags = false;
-  NEWS_TAGS.forEach(tag => {
-    if (content.tags.indexOf(tag.id) !== -1) {
-      hasTags = true;
-      return;
-    }
-  });
-  return (
-    <MainLayout
-      route={url}
-      pageTitle={content.title.rendered}
-      seoType={SEO_TYPE}
-    >
-      <BreadcrumbsModule
-        breadcrumbs={[
-          {
-            title: "News",
-            url: "/news",
-            as: "/news"
-          },
-          { title: content.title.rendered }
-        ]}
+class PostPage extends React.Component {
+  refreshExternalLinks() {
+    var links = document.getElementById("main").getElementsByTagName("a");
+    wordpressLinks(links);
+  }
+  componentDidMount() {
+    this.refreshExternalLinks();
+  }
+
+  componentDidUpdate() {
+    this.refreshExternalLinks();
+  }
+
+  render() {
+    const { url, content, menuItems, author } = this.props;
+    let hasTags = false;
+    NEWS_TAGS.forEach(tag => {
+      if (content.tags.indexOf(tag.id) !== -1) {
+        hasTags = true;
+        return;
+      }
+    });
+    return (
+      <MainLayout
         route={url}
-      />
-      <div
-        className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+        pageTitle={content.title.rendered}
+        seoType={SEO_TYPE}
       >
-        <div className="row">
-          <ContentPagesSidebar
-            route={url}
-            items={menuItems}
-            activeItemId={content.id}
-            className={contentCss.sidebar}
-            rootPath="wp"
-          />
-          <div className="col-xs-12 col-md-7">
-            <div id="main" role="main" className={contentCss.content}>
-              <WPEdit page={content} url={url} />
-              <h1
-                dangerouslySetInnerHTML={{
-                  __html: content.title.rendered
-                }}
-              />
-              <div className={css.resultSummary}>
-                <p>
-                  Posted by{" "}
-                  <Link
-                    prefetch
-                    href={{
-                      pathname: "/news",
-                      query: Object.assign(
-                        {},
-                        {
-                          author: author.id
-                        }
-                      )
-                    }}
-                  >
-                    <a title={`View more posts by ${author.name}`}>
-                      {author.name}
-                    </a>
-                  </Link>{" "}
-                  in {formatDate(content.date)}.
-                </p>
+        <BreadcrumbsModule
+          breadcrumbs={[
+            {
+              title: "News",
+              url: "/news",
+              as: "/news"
+            },
+            { title: content.title.rendered }
+          ]}
+          route={url}
+        />
+        <div
+          className={`${utils.container}
+      ${contentCss.sidebarAndContentWrapper}`}
+        >
+          <div className="row">
+            <ContentPagesSidebar
+              route={url}
+              items={menuItems}
+              activeItemId={content.id}
+              className={contentCss.sidebar}
+              rootPath="wp"
+            />
+            <div className="col-xs-12 col-md-7">
+              <div id="main" role="main" className={contentCss.content}>
+                <WPEdit page={content} url={url} />
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: content.title.rendered
+                  }}
+                />
+                <div className={css.resultSummary}>
+                  <p>
+                    Posted by{" "}
+                    <Link
+                      prefetch
+                      href={{
+                        pathname: "/news",
+                        query: Object.assign(
+                          {},
+                          {
+                            author: author.id
+                          }
+                        )
+                      }}
+                    >
+                      <a title={`View more posts by ${author.name}`}>
+                        {author.name}
+                      </a>
+                    </Link>{" "}
+                    in {formatDate(content.date)}.
+                  </p>
+                </div>
+                {hasTags &&
+                  <div className={css.tags}>
+                    Published under:
+                    <ul>
+                      {content.tags.map(id => {
+                        const tag = NEWS_TAGS.filter(tag => tag.id === id)[0];
+                        return tag
+                          ? <li key={tag.id}>
+                              <Link
+                                prefetch
+                                href={`/news?tag=${tag.name
+                                  .toLowerCase()
+                                  .replace(" ", "-")}`}
+                              >
+                                <a title={`View more posts under ${tag.name}`}>
+                                  {tag.name}
+                                </a>
+                              </Link>
+                            </li>
+                          : null;
+                      })}
+                    </ul>
+                  </div>}
+                <div
+                  dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+                />
               </div>
-              {hasTags &&
-                <div className={css.tags}>
-                  Published under:
-                  <ul>
-                    {content.tags.map(id => {
-                      const tag = NEWS_TAGS.filter(tag => tag.id === id)[0];
-                      return tag
-                        ? <li key={tag.id}>
-                            <Link
-                              prefetch
-                              href={`/news?tag=${tag.name
-                                .toLowerCase()
-                                .replace(" ", "-")}`}
-                            >
-                              <a title={`View more posts under ${tag.name}`}>
-                                {tag.name}
-                              </a>
-                            </Link>
-                          </li>
-                        : null;
-                    })}
-                  </ul>
-                </div>}
-              <div
-                dangerouslySetInnerHTML={{ __html: content.content.rendered }}
-              />
             </div>
           </div>
         </div>
-      </div>
-    </MainLayout>
-  );
-};
+      </MainLayout>
+    );
+  }
+}
 
 PostPage.getInitialProps = async ({ req, query, res }) => {
   // sidebar menu fetch

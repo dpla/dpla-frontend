@@ -2,17 +2,19 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
+import Button from "components/shared/Button";
+import CiteButton from "components/shared/CiteButton";
+
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
-import Button from "components/shared/Button";
-import CiteButton from "components/shared/CiteButton";
+import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
+import { markdownLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import css from "./SourceSetInfo.scss";
 
-import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 const googleClassroom = "/static/images/google-classroom.svg";
 
 // Only the time period has a sameAs field
@@ -70,6 +72,10 @@ class SourceSetInfo extends React.Component {
                   .isOpen
                   ? css.open
                   : ""}`}
+                renderers={{
+                  linkReference: reference => markdownLinks(reference),
+                  link: reference => markdownLinks(reference)
+                }}
               />
               <div
                 id="dpla-showmore"

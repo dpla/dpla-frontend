@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import { extractSourceSetSlug } from "utilFunctions/";
+import { extractSourceSetSlug } from "lib/";
 
 import utils from "stylesheets/utils.scss";
 import css from "./RelatedSets.scss";

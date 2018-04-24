@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { addCommasToNumber } from "utilFunctions";
+import { addCommasToNumber } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./PartnerBrowseContent.scss";

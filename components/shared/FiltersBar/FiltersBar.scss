@@ -12,15 +12,72 @@
   padding: 0.5rem 1rem 1rem;
   margin: 0 auto;
 
+  select {
+    border: none;
+  }
+
   @media (min-width: $largeRem) {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
+.filtersRow {
+  justify-content: flex-start;
+
+  @media (min-width: $mediumRem) {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
 .filter {
   font-size: 0.875rem;
   margin-top: 0.5rem;
+  order: 1;
+}
+
+.filter label {
+  color: $dimmedTextColor;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.clearAll {
+  align-items: flex-end;
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  order: 2;
+
+  button {
+    color: $linkColor;
+    margin-bottom: 0.5rem;
+  }
+
+  &:hover span {
+    text-decoration: underline;
+  }
+
+  @media (min-width: $mediumRem) {
+    color: $linkColor;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    order: 1;
+  }
+}
+
+.clearAllIcon {
+  height: 12px;
+  width: 12px;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 1px;
+}
+
+.clearAllIconPath {
+  fill: $linkColor;
 }
 
 .textInput::placeholder {
@@ -35,16 +92,4 @@
   padding: 0.5rem;
   width: 100%;
   height: 100%;
-}
-
-.sortValue {
-  position: absolute;
-  max-width: 100%;
-  padding: 0.5rem 3rem 0.5rem 0.5rem;
-}
-
-.sortByText {
-  display: inline-block;
-  color: $dimmedTextColor;
-  margin-right: 0.25rem;
 }

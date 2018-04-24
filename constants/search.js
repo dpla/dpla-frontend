@@ -42,7 +42,7 @@ export const prettifiedFacetMap = {
   "provider.name": "Partner"
 };
 
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray } from "lib";
 
 export const splitAndURIEncodeFacet = facet =>
   joinIfArray(facet, "|")

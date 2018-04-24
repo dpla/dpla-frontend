@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
-import { removeQueryParams } from "utilFunctions";
+import { removeQueryParams } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import utils from "stylesheets/utils.scss";

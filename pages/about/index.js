@@ -19,43 +19,62 @@ import {
   getItemWithId,
   getItemWithName,
   getMenuItemUrl
-} from "utilFunctions";
+} from "lib";
+import { wordpressLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
-const AboutMenuPage = ({ url, content, items, breadcrumbs, pageTitle }) =>
-  <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    {breadcrumbs.length > 0 &&
-      <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
-    {breadcrumbs.length === 0 &&
-      <FeatureHeader title={pageTitle} description={""} />}
-    <div
-      className={`${utils.container}
+class AboutMenuPage extends React.Component {
+  refreshExternalLinks() {
+    var links = document.getElementById("main").getElementsByTagName("a");
+    wordpressLinks(links);
+  }
+  componentDidMount() {
+    this.refreshExternalLinks();
+  }
+
+  componentDidUpdate() {
+    this.refreshExternalLinks();
+  }
+
+  render() {
+    const { url, content, items, breadcrumbs, pageTitle } = this.props;
+    return (
+      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+        {breadcrumbs.length > 0 &&
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+        {breadcrumbs.length === 0 &&
+          <FeatureHeader title={pageTitle} description={""} />}
+        <div
+          className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}
-    >
-      <div className="row">
-        <ContentPagesSidebar
-          route={url}
-          items={items}
-          activeItemId={content.id}
-          className={contentCss.sidebar}
-        />
-        <div className="col-xs-12 col-md-7">
-          <div id="main" role="main" className={contentCss.content}>
-            <WPEdit page={content} url={url} />
-            {breadcrumbs.length > 0 &&
-              <h1
-                dangerouslySetInnerHTML={{ __html: content.title.rendered }}
-              />}
-            <div
-              dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+        >
+          <div className="row">
+            <ContentPagesSidebar
+              route={url}
+              items={items}
+              activeItemId={content.id}
+              className={contentCss.sidebar}
             />
+            <div className="col-xs-12 col-md-7">
+              <div id="main" role="main" className={contentCss.content}>
+                <WPEdit page={content} url={url} />
+                {breadcrumbs.length > 0 &&
+                  <h1
+                    dangerouslySetInnerHTML={{ __html: content.title.rendered }}
+                  />}
+                <div
+                  dangerouslySetInnerHTML={{ __html: content.content.rendered }}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </MainLayout>;
+      </MainLayout>
+    );
+  }
+}
 
 AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   // fetch settings info

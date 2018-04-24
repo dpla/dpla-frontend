@@ -2,12 +2,13 @@ import React from "react";
 import Link from "next/link";
 
 import Button from "components/shared/Button";
+import FeedbackForm from "components/FeedbackForm";
 
 import { USER_BASE_URL } from "constants/env";
 
 import css from "./Footer.scss";
 
-const FooterPro = () =>
+const FooterPro = ({ route }) =>
   <div className={`${css.footer} site-max-width`}>
     <div className="row">
       <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
@@ -19,6 +20,14 @@ const FooterPro = () =>
             </Link>
           </li>
           <li>
+            <Link href="/contact-us" as="/contact">
+              <a>Contact Us</a>
+            </Link>
+          </li>
+          <li>
+            <FeedbackForm route={route} />
+          </li>
+          <li>
             <Link as="/projects" href="/pro/wp?section=projects">
               <a>Projects</a>
             </Link>
@@ -26,11 +35,6 @@ const FooterPro = () =>
           <li>
             <Link as="/events" href="/pro/wp?section=events">
               <a>Events</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact-us" as="/contact">
-              <a>Contact Us</a>
             </Link>
           </li>
         </ul>

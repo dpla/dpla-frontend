@@ -9,7 +9,7 @@ import {
   extractSourceSetSlug,
   addCommasToNumber,
   getMenuItemUrl
-} from "utilFunctions";
+} from "lib";
 
 import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {

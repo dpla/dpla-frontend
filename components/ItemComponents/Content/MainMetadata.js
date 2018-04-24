@@ -2,7 +2,7 @@ import React from "react";
 import ItemImage from "./ItemImage";
 import Row from "./Row";
 
-import { joinIfArray, readMyRights } from "utilFunctions";
+import { joinIfArray, readMyRights } from "lib";
 import { rightsURLs } from "constants/site.js";
 
 import css from "./Content.scss";

@@ -44,15 +44,15 @@
 
 .content {
   margin: auto;
-  padding: 2rem 1rem 3rem;
+  padding: 2rem 1rem;
   max-width: 44rem;
 
   @media (min-width: $mediumRem) {
-    padding: 4rem 0;
+    padding: 2rem 0;
   }
 
   @media (min-width: $largeRem) {
-    padding: 4rem 0;
+    padding: 2rem 0;
   }
 }
 
@@ -94,10 +94,6 @@
   @media (min-width: $mediumRem) {
     height: 4rem;
   }
-
-  @media (min-width: $largeRem) {
-    margin-top: 4rem;
-  }
 }
 
 .searchInput {
@@ -136,6 +132,7 @@
   @media (min-width: $mediumRem) {
     border-radius: 3px;
     padding-left: 1.5rem;
+
     /* Clear right for button */
     padding-right: 11rem;
     font-size: 1.2rem;

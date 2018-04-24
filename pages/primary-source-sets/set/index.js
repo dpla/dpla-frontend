@@ -9,7 +9,7 @@ import RelatedSets from "components/PrimarySourceSetsComponents/SingleSet/Relate
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
-import { removeQueryParams, getCurrentFullUrl } from "utilFunctions";
+import { removeQueryParams, getCurrentFullUrl } from "lib";
 import { PSS_BASE_URL } from "constants/env";
 
 const videoIcon = "/static/placeholderImages/Video.svg";

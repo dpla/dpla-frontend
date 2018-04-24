@@ -4,7 +4,7 @@ import Link from "next/link";
 import ListImage from "./ListImage";
 import GaListViewWrapper from "./GaListViewWrapper";
 
-import { joinIfArray, truncateString } from "utilFunctions";
+import { joinIfArray, truncateString } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
@@ -37,15 +37,15 @@ const ListView = ({ items, route }) =>
           useDefaultImage={item.useDefaultImage}
         />
         <div className={css.itemInfo}>
-          <Link href={item.linkHref} as={item.linkAs}>
-            <a className={`${css.listItemLink} internalItemLink`}>
-              <h2 className={`hover-underline ${css.itemTitle}`}>
+          <h2 className={`hover-underline ${css.itemTitle}`}>
+            <Link href={item.linkHref} as={item.linkAs}>
+              <a className={`internalItemLink`}>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
                   : item.title ? item.title : UNTITLED_TEXT}
-              </h2>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </h2>
 
           {(item.date || item.creator) &&
             <span className={css.itemAuthorAndDate}>
@@ -64,18 +64,11 @@ const ListView = ({ items, route }) =>
             href={item.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hover-underline clickThrough ${css.itemSource}`}
+            className={`hover-underline clickThrough external ${css.itemSource}`}
           >
-            <span className={css.itemSourceText}>
-              {item.type === "image"
-                ? "View Full Image"
-                : item.type === "text" ? "View Full Text" : "View Full Item"}
-            </span>
-            <img
-              className={css.externalLinkIcon}
-              src={externalLinkIcon}
-              alt=""
-            />
+            {item.type === "image"
+              ? "View Full Image"
+              : item.type === "text" ? "View Full Text" : "View Full Item"}
           </a>
           {item.dataProvider &&
             <span className={`${css.itemProvider}`}>

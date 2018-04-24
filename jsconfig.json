@@ -4,8 +4,8 @@
     "target": "ES6",
     "moduleResolution": "node",
     "paths": {
-      "utilFunctions/*": [
-        "./utilFunctions/*"
+      "lib/*": [
+        "./lib/*"
       ],
       "css/*": [
         "./css/*"

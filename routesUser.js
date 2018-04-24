@@ -1,5 +1,5 @@
 const proxy = require("express-http-proxy");
-const serverFunctions = require("./utilFunctions/serverFunctions");
+const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
@@ -361,7 +361,7 @@ module.exports = (app, server) => {
   );
 
   server.get("/thumb/*", (req, res) => {
-    const thumbp = require("./utilFunctions/thumbp.js");
+    const thumbp = require("./lib/thumbp.js");
     return new thumbp.Connection(req, res);
   });
 };

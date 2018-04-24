@@ -5,7 +5,7 @@ import reset from "stylesheets/reset.scss";
 import utils from "stylesheets/utils.scss";
 import accessibility from "stylesheets/accessibility.scss";
 
-import { getMetaPageTitle } from "utilFunctions";
+import { getMetaPageTitle } from "lib";
 
 const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
   <div>
@@ -53,10 +53,6 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/react-select@1.2.0/dist/react-select.css"
       />
       {additionalLinks}
       <title>{getMetaPageTitle(pageTitle)}</title>

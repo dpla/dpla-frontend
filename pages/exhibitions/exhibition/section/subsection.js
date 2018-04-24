@@ -9,12 +9,12 @@ import Content from "components/ExhibitionsComponents/ExhibitionSection";
 import {
   getPreviousQueryParams,
   getNextQueryParams
-} from "utilFunctions/exhibitions/getInitialProps";
+} from "lib/exhibitions/getInitialProps";
 import {
   getCurrentUrl,
   getCurrentFullUrl,
   getDplaItemIdFromExhibit
-} from "utilFunctions";
+} from "lib";
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,

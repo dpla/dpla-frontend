@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import { extractSourceSetSlug, removeQueryParams } from "utilFunctions/";
+import { extractSourceSetSlug, removeQueryParams } from "lib/";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug

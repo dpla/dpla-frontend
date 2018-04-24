@@ -20,7 +20,7 @@ import {
   getCurrentFullUrl,
   getDplaItemIdFromExhibit,
   removeQueryParams
-} from "utilFunctions";
+} from "lib";
 
 class Exhibition extends React.Component {
   componentDidMount() {

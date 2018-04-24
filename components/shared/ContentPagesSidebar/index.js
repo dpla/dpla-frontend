@@ -9,7 +9,7 @@ import {
   getItemWithId,
   getItemWithName,
   endsWith
-} from "utilFunctions";
+} from "lib";
 
 import css from "./Sidebar.scss";
 

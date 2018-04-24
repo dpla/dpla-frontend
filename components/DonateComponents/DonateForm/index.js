@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "shared/Button";
 
-import { getCurrentFullUrl, endsWith } from "utilFunctions";
+import { getCurrentFullUrl, endsWith } from "lib";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 import contentCss from "stylesheets/content-pages.scss";
@@ -140,7 +140,7 @@ class DonateForm extends React.Component {
           <div className={`col-xs-12 col-md-4`}>
             <Button
               type="primary"
-              className={`${css.donateButton}`}
+              className={css.donateButton}
               onClick={() => this.buildDonationAndSend()}
             >
               Donate

@@ -3,7 +3,7 @@ const expect = require("expect.js");
 const sinon = require("sinon");
 const http = require("http");
 const libRequest = require("request");
-const thumbp = require("../utilFunctions/thumbp.js");
+const thumbp = require("../lib/thumbp.js");
 
 describe("Connection", function() {
   var c, request, response, returnErrorStub, consoleErrorStub, libRequestStub;

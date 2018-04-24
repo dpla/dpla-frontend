@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/shared/Button";
 
-import { joinIfArray, removeEndPunctuation, formatDate } from "utilFunctions";
+import { joinIfArray, removeEndPunctuation, formatDate } from "lib";
 
 import css from "./CiteButton.scss";
 

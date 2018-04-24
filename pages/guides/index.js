@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import GuideLink from "components/shared/GuideLink";
 
-import { getMenuItemUrl } from "utilFunctions";
+import { getMenuItemUrl } from "lib";
 
 import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";

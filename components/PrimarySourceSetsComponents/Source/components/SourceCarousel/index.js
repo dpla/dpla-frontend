@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import CarouselSlider from "./CarouselSlider";
 import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg";
 
-import { extractSourceId, removeQueryParams } from "utilFunctions";
+import { extractSourceId, removeQueryParams } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./SourceCarousel.scss";

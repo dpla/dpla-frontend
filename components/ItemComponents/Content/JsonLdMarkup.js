@@ -1,6 +1,6 @@
 import React from "react";
 
-import { joinIfArray } from "utilFunctions";
+import { joinIfArray } from "lib";
 
 /**
   * @param item, DPLA Item

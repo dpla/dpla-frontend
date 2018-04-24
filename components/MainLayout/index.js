@@ -8,11 +8,10 @@ import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
-import FeedbackForm from "components/FeedbackForm";
 import GaWrapper from "shared/GaWrapper";
 
 import { SITE_ENV } from "constants/env";
-import { getCurrentUrl, getCurrentFullUrl } from "utilFunctions";
+import { getCurrentUrl, getCurrentFullUrl } from "lib";
 
 const MainLayout = ({
   children,
@@ -48,8 +47,7 @@ const MainLayout = ({
           hideSearchBar={hideSearchBar}
         />}
       {children}
-      <Footer />
-      <FeedbackForm route={route} />
+      <Footer route={route} />
     </div>
   );
 };
