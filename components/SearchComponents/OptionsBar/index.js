@@ -55,7 +55,7 @@ class OptionsBar extends React.Component {
     Router.push({
       pathname: "/search",
       query: Object.assign({}, this.props.route.query, {
-        page_size: val.target.label,
+        page_size: val.target.value,
         page: 1
       })
     });

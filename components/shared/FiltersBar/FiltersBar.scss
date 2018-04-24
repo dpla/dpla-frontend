@@ -25,15 +25,16 @@
 .filtersRow {
   justify-content: flex-start;
 
-  @media (min-width: $largeRem) {
+  @media (min-width: $mediumRem) {
     align-items: flex-end;
     justify-content: flex-end;
   }
 }
 
-.filter, .clearButton {
+.filter {
   font-size: 0.875rem;
   margin-top: 0.5rem;
+  order: 1;
 }
 
 .filter label {
@@ -47,6 +48,8 @@
   display: flex;
   font-size: 0.875rem;
   font-weight: 600;
+  margin-top: 1rem;
+  order: 2;
 
   button {
     color: $linkColor;
@@ -57,10 +60,11 @@
     text-decoration: underline;
   }
 
-  @media (min-width: $smallRem) {
+  @media (min-width: $mediumRem) {
     color: $linkColor;
     font-size: 1rem;
     margin-top: 0.2rem;
+    order: 1;
   }
 }
 
