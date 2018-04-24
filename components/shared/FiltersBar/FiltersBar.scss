@@ -12,9 +12,22 @@
   padding: 0.5rem 1rem 1rem;
   margin: 0 auto;
 
+  select {
+    border: none;
+  }
+
   @media (min-width: $largeRem) {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+.filtersRow {
+  justify-content: flex-start;
+
+  @media (min-width: $largeRem) {
+    align-items: flex-end;
+    justify-content: flex-end;
   }
 }
 
@@ -23,14 +36,44 @@
   margin-top: 0.5rem;
 }
 
-.clearButton {
-  padding-right: calc((1rem * 0.5));
-  padding-left: calc((1rem * 0.5));
+.filter label {
+  color: $dimmedTextColor;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
 
-  @media (min-width: $mediumRem) {
-    padding-right: 0;
-    padding-left: 0;
+.clearAll {
+  align-items: flex-end;
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  button {
+    color: $linkColor;
+    margin-bottom: 0.5rem;
   }
+
+  &:hover span {
+    text-decoration: underline;
+  }
+
+  @media (min-width: $smallRem) {
+    color: $linkColor;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+  }
+}
+
+.clearAllIcon {
+  height: 12px;
+  width: 12px;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 1px;
+}
+
+.clearAllIconPath {
+  fill: $linkColor;
 }
 
 .textInput::placeholder {

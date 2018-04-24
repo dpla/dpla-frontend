@@ -8,14 +8,6 @@
   box-shadow: inset 0 -0.075rem 0.075rem 0 rgba(0, 0, 0, 0.03);
 }
 
-.sortBy :global(.Select-control) {
-  width: 11rem;
-}
-
-.itemsPerPage :global(.Select-control) {
-  width: 6rem;
-}
-
 .resultsCount {
   font-size: 0.875rem;
   font-weight: 600;
@@ -76,23 +68,24 @@
 
 .optionWrapper {
   display: inline-block;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
 
   &:first-child {
-    margin: 0;
+    margin-left: 0;
   }
 
-  @media (min-width: $smallRem) {
-    margin: 1rem;
+  select {
+    border: none;
   }
 }
 
 .optionHeader {
-  font-size: 0.8125rem;
-  line-height: 1.0625;
   color: $dimmedTextColor;
+  display: inline-block;
+  font-size: 0.8125rem;
   font-weight: normal;
-  margin-bottom: 5px;
+  line-height: 1.0625;
+  margin-bottom: 0.25rem;
   white-space: nowrap;
 }
 

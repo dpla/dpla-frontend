@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Select from "react-select";
 import Router from "next/router";
 
 import {
@@ -139,16 +138,15 @@ class OptionsBar extends React.Component {
           </div>
           <div className={css.options}>
             <div className={css.optionWrapper}>
-              <h3 id="options-bar-page-size-label" className={css.optionHeader}>
-                Items per page
-              </h3>
+              <label htmlFor="options-bar-sort-by" className={css.optionHeader}>
+                Sort by
+              </label>
               <select
-                aria-labelledby="options-bar-page-size-label"
-                instanceId="options-bar-page-size"
-                value={this.state.pageSizeValue}
-                onChange={this.onPageSizeChange}
+                id="options-bar-sort-by"
+                value={this.state.sortValue}
+                onChange={this.onSortChange}
               >
-                {pageSizeOptions.map((item, index) =>
+                {sortOptions.map((item, index) =>
                   <option value={item.value} key={index}>
                     {item.label}
                   </option>
@@ -156,16 +154,18 @@ class OptionsBar extends React.Component {
               </select>
             </div>
             <div className={css.optionWrapper}>
-              <h3 id="options-bar-sort-by-label" className={css.optionHeader}>
-                Sort by
-              </h3>
-              <select
-                aria-labelledby="options-bar-sort-by-label"
-                instanceId="options-bar-sort-by"
-                value={this.state.sortValue}
-                onChange={this.onSortChange}
+              <label
+                htmlFor="options-bar-page-size"
+                className={css.optionHeader}
               >
-                {sortOptions.map((item, index) =>
+                Items per page
+              </label>
+              <select
+                id="options-bar-page-size"
+                value={this.state.pageSizeValue}
+                onChange={this.onPageSizeChange}
+              >
+                {pageSizeOptions.map((item, index) =>
                   <option value={item.value} key={index}>
                     {item.label}
                   </option>
