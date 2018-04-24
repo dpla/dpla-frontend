@@ -7,8 +7,13 @@ import css from "./CiteButton.scss";
 
 class CiteButton extends React.Component {
   state = {
-    showCitation: false
+    showCitation: true // show it if js is disabled
   };
+
+  componentDidMount() {
+    // now collapse it
+    this.setState({ showCitation: false });
+  }
 
   toggleCiteButton = e => {
     this.setState({ showCitation: !this.state.showCitation });
