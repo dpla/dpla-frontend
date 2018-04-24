@@ -18,6 +18,7 @@
 .itemTitle {
   font-size: 0.875rem;
   font-weight: 600;
+
   @media (min-width: $smallRem) {
     font-weight: normal;
     color: $linkColor;
@@ -106,10 +107,6 @@
   width: 12px;
   position: relative;
   top: 2px;
-}
-
-.itemSourceText {
-  margin-right: 0.3rem;
 }
 
 .itemAuthorAndDate {

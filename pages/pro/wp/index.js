@@ -8,8 +8,6 @@ import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
-import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
-
 import {
   endsWith,
   getBreadcrumbs,
@@ -17,63 +15,88 @@ import {
   getItemWithName,
   getMenuItemUrl
 } from "lib";
+import { wordpressLinks } from "lib/externalLinks";
+
+import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
-const ProMenuPage = ({
-  url,
-  page,
-  items,
-  breadcrumbs,
-  pageTitle,
-  illustration
-}) =>
-  <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
-    {breadcrumbs.length > 0 &&
-      <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
-    {breadcrumbs.length === 0 &&
-      !illustration &&
-      <FeatureHeader title={pageTitle} description={""} />}
-    <div
-      className={`${utils.container}
+class ProMenuPage extends React.Component {
+  refreshExternalLinks() {
+    var links = document.getElementById("main").getElementsByTagName("a");
+    wordpressLinks(links);
+  }
+  componentDidMount() {
+    this.refreshExternalLinks();
+  }
+
+  componentDidUpdate() {
+    this.refreshExternalLinks();
+  }
+
+  render() {
+    const {
+      url,
+      page,
+      items,
+      breadcrumbs,
+      pageTitle,
+      illustration
+    } = this.props;
+    return (
+      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+        {breadcrumbs.length > 0 &&
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+        {breadcrumbs.length === 0 &&
+          !illustration &&
+          <FeatureHeader title={pageTitle} description={""} />}
+        <div
+          className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}
-    >
-      <div className="row">
-        <ContentPagesSidebar
-          className={contentCss.sidebar}
-          route={url}
-          items={items}
-          activeItemId={page.id}
-          rootPath="wp"
-        />
-        <div className="col-xs-12 col-md-7">
-          <div id="main" role="main" className={contentCss.content}>
-            <WPEdit page={page} url={url} />
-            {/* fancy pages (with illustrations) get special heading */}
-            {illustration &&
-              <div>
-                <img
-                  src={illustration.url}
-                  alt=""
-                  className={contentCss.bannerImage}
+        >
+          <div className="row">
+            <ContentPagesSidebar
+              className={contentCss.sidebar}
+              route={url}
+              items={items}
+              activeItemId={page.id}
+              rootPath="wp"
+            />
+            <div className="col-xs-12 col-md-7">
+              <div id="main" role="main" className={contentCss.content}>
+                <WPEdit page={page} url={url} />
+                {/* fancy pages (with illustrations) get special heading */}
+                {illustration &&
+                  <div>
+                    <img
+                      src={illustration.url}
+                      alt=""
+                      className={contentCss.bannerImage}
+                    />
+                    <HeadingRule />
+                    <h1
+                      className={contentCss.title}
+                      dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+                    />
+                  </div>}
+                {/* for non fancy pages, a normal heading */}
+                {!illustration &&
+                  breadcrumbs.length !== 0 &&
+                  <h1
+                    dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+                  />}
+                <div
+                  dangerouslySetInnerHTML={{ __html: page.content.rendered }}
                 />
-                <HeadingRule />
-                <h1
-                  className={contentCss.title}
-                  dangerouslySetInnerHTML={{ __html: page.title.rendered }}
-                />
-              </div>}
-            {/* for non fancy pages, a normal heading */}
-            {!illustration &&
-              breadcrumbs.length !== 0 &&
-              <h1 dangerouslySetInnerHTML={{ __html: page.title.rendered }} />}
-            <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </MainLayout>;
+      </MainLayout>
+    );
+  }
+}
 
 ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;

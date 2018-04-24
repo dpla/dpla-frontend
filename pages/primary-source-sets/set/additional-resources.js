@@ -10,13 +10,14 @@ import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/Reso
 
 import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams } from "lib";
+import { markdownLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
-  <MainLayout route={url} pageTitle={set.name}>
+  <MainLayout route={url} pageTitle={set.name.replace(/\*/g, "")}>
     <BreadcrumbsModule
       breadcrumbs={[
         {
@@ -36,11 +37,15 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
         <div
           className={utils.container}
           role="tabpanel"
-          aria-labelledby="tab-teachingguide"
+          aria-labelledby="tab-additionalresources"
         >
           <ReactMarkdown
             className={`${contentCss.content} ${utils.container}`}
             source={set.hasPart.find(item => item.name === "Resources").text}
+            renderers={{
+              linkReference: reference => markdownLinks(reference),
+              link: reference => markdownLinks(reference)
+            }}
           />
         </div>
       </div>

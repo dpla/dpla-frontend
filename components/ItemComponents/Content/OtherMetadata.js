@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Row from "./Row";
 
-import { makeURLsClickable, joinIfArray, readMyRights } from "lib";
+import { joinIfArray, readMyRights } from "lib";
 
 import css from "./Content.scss";
 
@@ -79,7 +79,7 @@ const OtherMetadata = ({ item }) =>
         {item.sourceUrl &&
           <Row heading="URL">
             <a
-              className="link clickThrough"
+              className="link clickThrough external"
               href={item.sourceUrl}
               target="_blank"
             >
@@ -91,7 +91,11 @@ const OtherMetadata = ({ item }) =>
           <Row heading="Standardized Rights Statement">
             {readMyRights(item.edmRights).description}
             {readMyRights(item.edmRights).description !== "" && <br />}
-            <a href={item.edmRights} className="link" rel="noopener noreferrer">
+            <a
+              href={item.edmRights}
+              className="link external"
+              rel="noopener noreferrer"
+            >
               {item.edmRights}
             </a>
           </Row>}
@@ -99,10 +103,7 @@ const OtherMetadata = ({ item }) =>
           <Row heading="Rights">
             <div
               dangerouslySetInnerHTML={{
-                __html: makeURLsClickable(
-                  joinIfArray(item.rights, "<br/> "),
-                  "link"
-                )
+                __html: joinIfArray(item.rights, "<br />")
               }}
             />
           </Row>}
