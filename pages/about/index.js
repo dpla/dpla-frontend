@@ -19,8 +19,8 @@ import {
   getItemWithId,
   getItemWithName,
   getMenuItemUrl
-} from "utilFunctions";
-import { wordpressLinks } from "utilFunctions/externalLinks";
+} from "lib";
+import { wordpressLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";

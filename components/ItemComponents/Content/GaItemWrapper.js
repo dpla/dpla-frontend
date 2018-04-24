@@ -9,7 +9,7 @@ import {
   getFullPath,
   joinIfArray,
   trackGaEvent
-} from "utilFunctions";
+} from "lib";
 
 export default WrappedComponent =>
   class GaItemWrapper extends React.Component {

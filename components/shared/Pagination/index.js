@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Chevron from "../../../static/images/chevron-thick.svg";
 
-import addCommasToNumber from "utilFunctions/addCommasToNumber";
+import addCommasToNumber from "lib/addCommasToNumber";
 
 import css from "./Pagination.scss";
 

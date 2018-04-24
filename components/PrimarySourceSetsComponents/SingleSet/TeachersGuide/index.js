@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import { removeQueryParams } from "utilFunctions";
-import { markdownLinks } from "utilFunctions/externalLinks";
+import { removeQueryParams } from "lib";
+import { markdownLinks } from "lib/externalLinks";
 
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
@@ -125,7 +125,9 @@ class TeachersGuide extends React.Component {
                           "" +
                           this.state.routePath.substring(
                             0,
-                            this.state.routePath.indexOf("#")
+                            this.state.routePath.indexOf("#") === -1
+                              ? this.state.routePath.length
+                              : this.state.routePath.indexOf("#")
                           ) +
                           "-print"
                         }

@@ -14,11 +14,7 @@ import {
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
-import {
-  getCurrentUrl,
-  getDefaultThumbnail,
-  getSearchPageTitle
-} from "utilFunctions";
+import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
 
 class Search extends React.Component {
   state = {

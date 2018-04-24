@@ -1,6 +1,6 @@
 import React from "react";
 
-import { endsWith } from "utilFunctions";
+import { endsWith } from "lib";
 import { WORDPRESS_URL } from "constants/env";
 
 const WPEdit = ({ page, url }) => {

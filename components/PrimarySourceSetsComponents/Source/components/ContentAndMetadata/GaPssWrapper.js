@@ -12,7 +12,7 @@ import {
   getContributor,
   getTitle,
   initGa
-} from "utilFunctions";
+} from "lib";
 
 export default WrappedComponent =>
   class GaPssWrapper extends React.Component {

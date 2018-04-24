@@ -15,7 +15,7 @@ import {
   removeQueryParams,
   joinIfArray,
   getDefaultThumbnail
-} from "utilFunctions";
+} from "lib";
 import {
   DEFAULT_PAGE_SIZE,
   possibleFacets,

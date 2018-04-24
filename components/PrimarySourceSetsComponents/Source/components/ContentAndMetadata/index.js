@@ -18,8 +18,8 @@ import {
   getTitle,
   getContributor,
   trackGaEvent
-} from "utilFunctions";
-import { markdownLinks } from "utilFunctions/externalLinks";
+} from "lib";
+import { markdownLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ContentAndMetadata.scss";

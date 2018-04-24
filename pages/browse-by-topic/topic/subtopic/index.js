@@ -10,7 +10,7 @@ import {
   extractItemId,
   getCurrentUrl,
   getDefaultThumbnail
-} from "utilFunctions";
+} from "lib";
 
 import {
   API_ENDPOINT_ALL_TOPICS,

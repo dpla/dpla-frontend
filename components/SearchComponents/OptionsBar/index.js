@@ -9,7 +9,7 @@ import {
   mapSortOptionsToParams,
   getSortOptionFromParams
 } from "./options";
-import addCommasToNumber from "utilFunctions/addCommasToNumber";
+import addCommasToNumber from "lib/addCommasToNumber";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 
 import utils from "stylesheets/utils.scss";

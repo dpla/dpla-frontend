@@ -4,9 +4,9 @@ history, literature, and culture developed by educators — complete with
 teaching guides for class use.`;
 
 export const sortOptions = [
-  { value: "recently_added", label: "Recently Added" },
-  { value: "chronology_asc", label: "Chronology, oldest first" },
-  { value: "chronology_desc", label: "Chronology, most recent first" }
+  { value: "recently_added", label: "Sort by: Recently Added" },
+  { value: "chronology_asc", label: "Sort by: Chronology, oldest first" },
+  { value: "chronology_desc", label: "Sort by: Chronology, most recent first" }
 ];
 
 export const subjectOptions = [

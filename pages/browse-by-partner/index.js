@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import FeatureHeader from "components/shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
-import { getCurrentUrl } from "utilFunctions";
+import { getCurrentUrl } from "lib";
 import { API_ENDPOINT } from "constants/items";
 import { TITLE, DESCRIPTION } from "constants/browse-by-partner";
 

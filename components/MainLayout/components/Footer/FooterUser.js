@@ -2,12 +2,13 @@ import React from "react";
 import Link from "next/link";
 
 import Button from "components/shared/Button";
+import FeedbackForm from "components/FeedbackForm";
 
 import { PRO_BASE_URL } from "constants/env";
 
 import css from "./Footer.scss";
 
-const FooterUser = () =>
+const FooterUser = ({ route }) =>
   <div className={`${css.footer} site-max-width`}>
     <div className="row">
       <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
@@ -43,6 +44,9 @@ const FooterUser = () =>
             <Link href="/contact-us" as="/contact">
               <a>Contact Us</a>
             </Link>
+          </li>
+          <li>
+            <FeedbackForm route={route} />
           </li>
           <li>
             <Link href="/news">

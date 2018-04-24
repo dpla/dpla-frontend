@@ -11,7 +11,7 @@ import {
 
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
-import { getDefaultThumbnail, getDplaItemIdFromExhibit } from "utilFunctions";
+import { getDefaultThumbnail, getDplaItemIdFromExhibit } from "lib";
 
 import css from "./ExhibitionSection.scss";
 

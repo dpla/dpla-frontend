@@ -6,7 +6,7 @@ import ReactGA from "react-ga";
 import Router from "next/router";
 
 import { gaTrackingId } from "constants/env";
-import { initGa, getFullPath } from "utilFunctions";
+import { initGa, getFullPath } from "lib";
 
 export default WrappedComponent =>
   class GaWrapper extends React.Component {

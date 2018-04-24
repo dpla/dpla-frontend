@@ -9,8 +9,8 @@ import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/Sour
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 
 import { PSS_BASE_URL } from "constants/env";
-import { getCurrentFullUrl, removeQueryParams } from "utilFunctions";
-import { markdownLinks } from "utilFunctions/externalLinks";
+import { getCurrentFullUrl, removeQueryParams } from "lib";
+import { markdownLinks } from "lib/externalLinks";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
