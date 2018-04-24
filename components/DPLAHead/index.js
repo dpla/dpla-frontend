@@ -54,10 +54,6 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/react-select@1.2.0/dist/react-select.css"
-      />
       {additionalLinks}
       <title>{getMetaPageTitle(pageTitle)}</title>
       <meta
