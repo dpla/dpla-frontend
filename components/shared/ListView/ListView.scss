@@ -39,15 +39,11 @@
 
 .defaultImageWrapper {
   background-color: $warmerBackgroundColor;
-  padding-bottom: 20%;
-  padding-top: 20%;
-
-  @media (min-width: $largeRem) {
-    padding-bottom: 0;
-    padding-top: 0;
-  }
+  padding-bottom: 0;
+  padding-top: 0;
 
   & img {
+    opacity: 0.25;
   }
 }
 
