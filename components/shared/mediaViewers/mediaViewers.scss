@@ -57,3 +57,41 @@
   height: 100%;
   display: block;
 }
+
+.pdfViewer {
+  border: 0.1rem solid $lightBorderColor;
+  position: relative;
+  width: 100%;
+
+  .pdfDocument {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  .pdfPagination {
+    background-color: $darkerBackgroundColor;
+    bottom: 0;
+    font-size: 1rem;
+    left: 0;
+    padding: 0.5rem;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .pdfPages {
+    margin: 0 0.5rem;
+  }
+
+  .pdfNextChevron, .pdfPrevChevron {
+    height: 0.75rem;
+  }
+
+  .pdfPrevChevron {
+    transform: scaleX(-1);
+  }
+}

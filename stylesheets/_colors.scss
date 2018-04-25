@@ -59,6 +59,7 @@ $primaryBulletColor: $secondaryButtonColor;
 $secondaryBulletColor: $linkColor;
 $darkSecondaryButtonColor: $elephantBlue;
 $warmerBackgroundColor: $romanceGray;
+$darkerBackgroundColor: darken($warmerBackgroundColor, 20%);
 $colderBackgroundColor: #f3f7f8;
 $lightBorderColor: #e7e7e7;
 $darkBorderColor: $hippieBlue;
