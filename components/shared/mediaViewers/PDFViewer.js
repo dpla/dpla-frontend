@@ -1,10 +1,14 @@
 import React from "react";
-import { Document, Page } from "react-pdf";
+import { setOptions, Document, Page } from "react-pdf";
 import throttle from "lodash.throttle";
 
 import Chevron from "../../../static/images/chevron-thick.svg";
 
 import css from "./mediaViewers.scss";
+
+setOptions({
+  workerSrc: "/static/pdf.worker.js"
+});
 
 class PDFViewer extends React.Component {
   state = {
