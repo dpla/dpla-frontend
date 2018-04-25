@@ -20,7 +20,7 @@ const Footer = ({ route }) =>
     {SITE_ENV === "pro" && <FooterPro route={route} />}
     <div className={css.smallFooterWrapper}>
       <div className={`${css.smallFooter} site-max-width`}>
-        <Link href="/">
+        <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
           <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
         </Link>
         <div className={css.socialIcons}>
