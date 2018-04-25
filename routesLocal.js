@@ -3,7 +3,7 @@ const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
-    const actualPage = "/pro";
+    const actualPage = "/local";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 

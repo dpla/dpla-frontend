@@ -127,8 +127,6 @@ Search.getInitialProps = async ({ query, req }) => {
     ","
   )}&${facetQueries}`;
 
-  console.log(url);
-
   const res = await fetch(url);
 
   const numberOfActiveFacets = facetQueries
