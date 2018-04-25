@@ -14,6 +14,7 @@ import {
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
 
 import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
 
@@ -118,7 +119,7 @@ Search.getInitialProps = async ({ query, req }) => {
     .filter(facetQuery => facetQuery !== "");
 
   if (isLocal) {
-    queryArray.push(`provider.name=%22${LOCAL_ID}%22`);
+    queryArray.push(`provider.name=${LOCALS[LOCAL_ID].provider}`);
   }
 
   const facetQueries = queryArray.join("&");

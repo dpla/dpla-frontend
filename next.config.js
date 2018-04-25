@@ -6,6 +6,7 @@ const withSourceMaps = require("@zeit/next-source-maps");
 const autoprefixer = require("autoprefixer");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { LOCALS } = require("./constants/local");
 
 module.exports = withBundleAnalyzer(
   withSourceMaps(
@@ -14,6 +15,12 @@ module.exports = withBundleAnalyzer(
       cssLoaderOptions: {
         importLoaders: 2,
         localIdentName: "[name]__[local]___[hash:base64:5]"
+      },
+      sassLoaderOptions: {
+        includePaths: [
+          // to allow SCSS files to import a plain “theme.scss” file
+          "./stylesheets/themes/" + LOCALS[process.env.LOCAL_ID].theme
+        ]
       },
       useFileSystemPublicRoutes: false,
       analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
