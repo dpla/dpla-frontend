@@ -16,11 +16,18 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
         ? css.pro
         : ""} site-max-width`}
     >
-      <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-        <a className={css.logo} title="Home Page">
-          <DPLALogoWide className={css.logoImg} />
-        </a>
-      </Link>
+      {(SITE_ENV === "user" || SITE_ENV === "pro") &&
+        <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+          <a className={css.logo} title="Home Page">
+            <DPLALogoWide className={css.logoImg} />
+          </a>
+        </Link>}
+      {SITE_ENV === "local" &&
+        <Link prefetch as="/" href="/local">
+          <a className={css.logo} title="Home Page">
+            <DPLALogoWide className={css.logoImg} />
+          </a>
+        </Link>}
       {!hideSearchBar &&
         SITE_ENV !== "pro" &&
         <form action="/search" className={css.searchBar}>

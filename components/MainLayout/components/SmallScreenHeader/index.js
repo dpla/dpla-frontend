@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
+import NavigationLocal from "../shared/NavigationLocal";
 
 import css from "./SmallScreenStyles.scss";
 
@@ -34,7 +35,13 @@ class SmallScreenHeader extends Component {
     return (
       <div className={`${css.wrapper}`}>
         <div className={css.header}>
-          <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+          <Link
+            prefetch
+            as="/"
+            href={
+              SITE_ENV === "user" ? "/" : SITE_ENV === "pro" ? "/pro" : "/local"
+            }
+          >
             <a className={css.logo}>
               <span>Digital Public Library of America</span>
             </a>
@@ -49,7 +56,7 @@ class SmallScreenHeader extends Component {
             {menuIsOpen && <span>Hide<br />Menu</span>}
           </button>
         </div>
-        {SITE_ENV !== "pro" &&
+        {SITE_ENV === "user" &&
           <NavigationUser
             className={`${css.menuContainer} ${menuIsOpen
               ? css.isOpen
@@ -59,6 +66,14 @@ class SmallScreenHeader extends Component {
           />}
         {SITE_ENV === "pro" &&
           <NavigationPro
+            className={`${css.menuContainer} ${menuIsOpen
+              ? css.isOpen
+              : ""} site-max-width`}
+            css={css}
+            isHome={isHome}
+          />}
+        {SITE_ENV === "local" &&
+          <NavigationLocal
             className={`${css.menuContainer} ${menuIsOpen
               ? css.isOpen
               : ""} site-max-width`}

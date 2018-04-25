@@ -2,16 +2,11 @@ import React from "react";
 
 import MainLayout from "components/MainLayout";
 
-import { SITE_ENV } from "constants/env";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 
 const Home = ({ url, news, content }) =>
-  <MainLayout
-    hidePageHeader={SITE_ENV === "user"}
-    hideSearchBar={SITE_ENV === "pro"}
-    route={url}
-  >
+  <MainLayout hidePageHeader={false} hideSearchBar={false} route={url}>
     <div id="main" role="main">
       hello local
     </div>

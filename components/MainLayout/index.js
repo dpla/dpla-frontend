@@ -24,6 +24,7 @@ const MainLayout = ({
   seoType
 }) => {
   const isHome =
+    (SITE_ENV === "local" && route.pathname === "/local") ||
     (SITE_ENV === "pro" && route.pathname === "/pro") ||
     (SITE_ENV === "user" && route.pathname === "/");
   return (
