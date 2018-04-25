@@ -13,6 +13,7 @@ import {
 } from "constants/search";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
 
 import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
 
@@ -64,6 +65,7 @@ class Search extends React.Component {
 }
 
 Search.getInitialProps = async ({ query, req }) => {
+  const isLocal = SITE_ENV === "local";
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
@@ -80,7 +82,7 @@ Search.getInitialProps = async ({ query, req }) => {
 
   let hasDates = false;
 
-  const facetQueries = possibleFacets
+  const queryArray = possibleFacets
     .map(facet => {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
         hasDates = true; // do it only once for date queries
@@ -113,12 +115,19 @@ Search.getInitialProps = async ({ query, req }) => {
       }
       return "";
     })
-    .filter(facetQuery => facetQuery !== "")
-    .join("&");
+    .filter(facetQuery => facetQuery !== "");
+
+  if (isLocal) {
+    queryArray.push(`provider.name=%22${LOCAL_ID}%22`);
+  }
+
+  const facetQueries = queryArray.join("&");
 
   const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
     ","
   )}&${facetQueries}`;
+
+  console.log(url);
 
   const res = await fetch(url);
 

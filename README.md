@@ -77,26 +77,27 @@ The system makes extensive use of environment variables to decouple the differen
 
 - `API_KEY`: your DPLA API key
 - `API_URL`: the DPLA API base URL
-- `OMEKA_URL`: the Omeka server base URL
 - `ELASTIC_URL`: the ElasticSearch server base URL
-- ~~`THUMB_SERVER`: the image thumbnail server URL~~ (removed because now app access `ELASTIC_URL` directly)
-- `SQS_URL`: base URL to the AWS SQS service
-- `PSS_BASE_URL`: the primary source sets application API base URL (also exposed in `constants/env.js`)
-- `USER_BASE_URL`: base URL for user site to allow for links from pro to user site (also exposed in `constants/env.js`)
-- `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
-- `SITE_ENV`: the environment's type, `user` or `pro` (also exposed in `constants/env.js`)
-- `NODE_ENV`: the node environment, `development` or `production`
+- `GOOGLE_CLIENT`: Google authentication client
 - `GOOGLE_CONTACT_SHEET_ID`: the Google spreadsheet ID where **contact form** responses are stored in
 - `GOOGLE_FEEDBACK_SHEET_ID`: the Google spreadsheet ID where **feedback form** responses are stored in
-- `GOOGLE_CLIENT`: Google authentication client
 - `GOOGLE_SECRET`: Google authentication secret
 - `GOOGLE_TOKEN`: Google authentication token
-- `WORDPRESS_URL`: the headless WordPress API base URL (also exposed in `constants/env.js`)
+- `LOCAL_ID`: ID of the Local partner (also exposed in `constants/env.js`)
 - `MAILCHIMP_KEY`: the MailChimp list service API key
 - `MUST_FORK`: if "true", forces the server to fork and use multiple CPUs in
    development mode. This is only relevant when NODE_ENV is not equal to
    "production", e.g. when running `yarn dev`. The server always forks when
    `NODE_ENV=production`.
+- `NODE_ENV`: the node environment, `development` or `production`
+- `OMEKA_URL`: the Omeka server base URL
+- `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
+- `PSS_BASE_URL`: the primary source sets application API base URL (also exposed in `constants/env.js`)
+- `SITE_ENV`: the environment's type, `user`, `pro`, or `local` (also exposed in `constants/env.js`)
+- `WORDPRESS_URL`: the headless WordPress API base URL (also exposed in `constants/env.js`)
+- `SQS_URL`: base URL to the AWS SQS service
+- ~~`THUMB_SERVER`: the image thumbnail server URL~~ (removed because now app access `ELASTIC_URL` directly)
+- `USER_BASE_URL`: base URL for user site to allow for links from pro to user site (also exposed in `constants/env.js`)
 
 ## CSS
 
