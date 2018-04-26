@@ -7,6 +7,7 @@ $tablePadding: 1.125rem;
 .content {
   padding-bottom: 1rem;
   flex: 1;
+
   @media (min-width: $smallRem) {
     margin-right: 3rem;
     padding-bottom: 3rem;
@@ -34,6 +35,7 @@ $tablePadding: 1.125rem;
 .tableRow {
   display: flex;
   flex-direction: column;
+
   @media (min-width: $smallRem) {
     display: table-row;
   }
@@ -48,6 +50,7 @@ $tablePadding: 1.125rem;
 
 .tableRow td {
   padding-bottom: 0.5rem;
+
   @media (min-width: $smallRem) {
     padding-bottom: 1rem;
   }
@@ -55,6 +58,7 @@ $tablePadding: 1.125rem;
 
 .tableRow:last-child td {
   padding-bottom: 0.5rem;
+
   @media (min-width: $smallRem) {
     padding-bottom: 0;
   }
@@ -116,6 +120,7 @@ $tablePadding: 1.125rem;
 .mainMetadataText {
   font-size: 1rem;
   margin-bottom: 0;
+
   @media (min-width: $smallRem) {
     font-size: 1.25rem;
   }
@@ -128,18 +133,21 @@ $tablePadding: 1.125rem;
 }
 
 .sourceLink, .sourceLink:visited {
-  background-color: $subLinkColor;
-  width: 100%;
-  color: white;
-  border-radius: 2px;
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.75rem 0;
+  background-color: $subLinkColor;
+  border-radius: 2px;
+  color: white;
+  display: inline-flex;
   font-size: 1.125rem;
   font-weight: 600;
+  justify-content: center;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  transition: all 0.2s ease-out;
+  width: 100%;
 
-  &, &:hover {
+  &:hover {
+    background-color: $subLinkColorHover;
     text-decoration: none;
   }
 
@@ -147,6 +155,7 @@ $tablePadding: 1.125rem;
     width: 242px;
   }
 }
+
 .sourceLinkText {
   margin-right: 0.5rem;
 }
@@ -158,6 +167,7 @@ $tablePadding: 1.125rem;
 
 .otherMetadata {
   padding: 1rem 0 0;
+
   @media (min-width: $smallRem) {
     padding: $tablePadding 0;
   }
@@ -169,6 +179,7 @@ $tablePadding: 1.125rem;
 
 .rightsMetadata {
   padding-top: 1rem;
+
   @media (min-width: $smallRem) {
     padding-top: $tablePadding;
   }

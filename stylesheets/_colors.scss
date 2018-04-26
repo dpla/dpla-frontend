@@ -50,6 +50,7 @@ $visitedLinkColor: #ad5c1d !default;
 $paginationLinkColor: $cascadeBlue !default;
 $lightLinkColor: $casablancaOrange !default;
 $subLinkColor: #007294 !default;
+$subLinkColorHover: darken($linkColor, 10%);
 $lightBorderColor: #e7e7e7 !default;
 $darkBorderColor: $hippieBlue !default;
 $headingColor: $cascadeBlue !default;

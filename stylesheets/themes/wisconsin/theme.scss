@@ -27,6 +27,7 @@ $darkBorderColor: $theme-main-color;
 // $lightLinkColor: $casablancaOrange;
 // $featuredBannerColor: $casablancaOrange;
 $subLinkColor: $linkColor;
+$subLinkColorHover: darken($linkColor, 10%);
 // $outgoingLinkColor: $subLinkColor;
 // $dimmedTextColor: $dimmerGray;
 $donateFormButtonColor: $theme-dark-color;
