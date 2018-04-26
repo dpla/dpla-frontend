@@ -29,7 +29,7 @@ const NavigationLocal = ({ isHome, className, css }) =>
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
         <Link href={USER_BASE_URL}>
-          <a>DPLA</a>
+          <a>Visit DPLA</a>
         </Link>
       </li>
     </ul>

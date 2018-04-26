@@ -11,9 +11,9 @@
 }
 
 .flexWrapper {
-  padding: 0.5rem 1rem;
   display: flex;
   margin: auto;
+  padding: 0.5rem 1rem;
 
   &.pro {
     @media (max-width: $mediumRem) {
@@ -72,19 +72,19 @@
 }
 
 .searchInput::placeholder {
-  transition: opacity 0.2s ease-out;
   color: $secondaryButtonColor;
   opacity: 0.5;
+  transition: opacity 0.2s ease-out;
 }
 
 .searchButton {
-  transition: background-color 0.2s ease-out;
   background-color: $secondaryButtonColor;
   border-radius: 0 0.25rem 0.25rem 0;
-  height: 100%;
-  font-size: 1rem;
   color: white;
+  font-size: 1rem;
+  height: 100%;
   padding: 0 1rem;
+  transition: background-color 0.2s ease-out;
   width: 35%;
 
   @media (min-width: $smallRem) {
@@ -97,9 +97,9 @@
 }
 
 .logo {
-  padding: 0.5rem 0;
   display: none; /* hide logo in small screens */
   line-height: 0;
+  padding: 0.5rem 0;
 
   @media (min-width: $mediumRem) {
     display: block;
@@ -111,21 +111,21 @@
 }
 
 .logoImg {
-  width: 16rem;
   height: 1.95rem;
+  width: 16rem;
 
   @media (min-width: $largeRem) {
-    width: 18rem;
     height: 2.2rem;
+    width: 18rem;
   }
 }
 
 .localLogo {
-  max-width: 16rem;
   height: 2.5rem;
+  max-width: 16rem;
 
   @media (min-width: $largeRem) {
-    max-width: 18rem;
     height: 2.5rem;
+    max-width: 18rem;
   }
 }

@@ -6,7 +6,8 @@ import NavigationLocal from "../shared/NavigationLocal";
 
 import css from "./SmallScreenStyles.scss";
 
-import { SITE_ENV } from "constants/env";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
 
 class SmallScreenHeader extends Component {
   state = {
@@ -35,17 +36,22 @@ class SmallScreenHeader extends Component {
     return (
       <div className={`${css.wrapper}`}>
         <div className={css.header}>
-          <Link
-            prefetch
-            as="/"
-            href={
-              SITE_ENV === "user" ? "/" : SITE_ENV === "pro" ? "/pro" : "/local"
-            }
-          >
-            <a className={css.logo}>
-              <span>Digital Public Library of America</span>
-            </a>
-          </Link>
+          {(SITE_ENV === "user" || SITE_ENV === "pro") &&
+            <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+              <a className={css.logo}>
+                <span>Digital Public Library of America</span>
+              </a>}
+            </Link>}
+          {SITE_ENV === "local" &&
+            <Link prefetch as="/" href="/local">
+              <a>
+                <img
+                  className={css.localLogo}
+                  alt={`${LOCALS[LOCAL_ID].name} Home`}
+                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+                />
+              </a>
+            </Link>}
           <button
             type="button"
             aria-expanded={menuIsOpen}

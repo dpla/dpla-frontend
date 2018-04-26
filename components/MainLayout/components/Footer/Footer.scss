@@ -88,10 +88,12 @@
 .smallFooter {
   padding: 2rem 1rem;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: $mediumRem) {
-    display: flex;
     align-items: center;
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -109,6 +111,31 @@
   @media (min-width: $mediumRem) {
     margin: 0;
     width: 18rem;
+  }
+}
+
+.partnershipLogo {
+  display: block;
+  margin: 0 auto;
+  width: 15rem;
+  height: 2rem;
+
+  @media (min-width: $mediumRem) {
+    margin: 0;
+    width: 15rem;
+  }
+}
+
+.localLogo {
+  display: block;
+  height: 3rem;
+  margin: 0 auto 2rem;
+  max-width: 16rem;
+
+  @media (min-width: $largeRem) {
+    height: 3rem;
+    margin: 0;
+    max-width: 18rem;
   }
 }
 

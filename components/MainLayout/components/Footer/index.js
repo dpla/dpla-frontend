@@ -4,7 +4,8 @@ import Link from "next/link";
 import FooterPro from "./FooterPro";
 import FooterUser from "./FooterUser";
 
-import { SITE_ENV } from "constants/env";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
 
 import css from "./Footer.scss";
 
@@ -20,9 +21,30 @@ const Footer = ({ route }) =>
     {SITE_ENV === "pro" && <FooterPro route={route} />}
     <div className={css.smallFooterWrapper}>
       <div className={`${css.smallFooter} site-max-width`}>
-        <Link href="/">
-          <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
-        </Link>
+        {(SITE_ENV === "user" || SITE_ENV === "pro") &&
+          <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+            <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
+          </Link>}
+        {SITE_ENV === "local" &&
+          <Link prefetch as="/" href="/local">
+            <a>
+              <img
+                className={css.localLogo}
+                alt={`${LOCALS[LOCAL_ID].name} Home`}
+                src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+              />
+            </a>
+          </Link>}
+        {SITE_ENV === "local" &&
+          <Link prefetch as="/" href="//dp.la">
+            <a>
+              <img
+                className={css.partnershipLogo}
+                alt="In partnership with DPLA"
+                src={logo}
+              />
+            </a>
+          </Link>}
         <div className={css.socialIcons}>
           <a
             href="https://www.facebook.com/digitalpubliclibraryofamerica"
