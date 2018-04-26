@@ -25,12 +25,13 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
         </Link>}
       {SITE_ENV === "local" &&
         <Link prefetch as="/" href="/local">
-          <a className={css.logo} title="Home Page">
+          <a className={`${css.logo} ${css.local}`} title="Home Page">
             <img
               className={css.localLogo}
               alt={`${LOCALS[LOCAL_ID].name} Home`}
               src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
             />
+            <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
           </a>
         </Link>}
       {!hideSearchBar &&

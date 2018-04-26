@@ -96,10 +96,16 @@
   }
 }
 
-.logo {
+.logo, .logo:visited, .logo:hover {
   display: none; /* hide logo in small screens */
   line-height: 0;
   padding: 0.5rem 0;
+  text-decoration: none;
+
+  &.local {
+    display: flex;
+    flex-direction: row;
+  }
 
   @media (min-width: $mediumRem) {
     display: block;
@@ -127,5 +133,18 @@
   @media (min-width: $largeRem) {
     height: 2.5rem;
     max-width: 18rem;
+  }
+}
+
+.localText {
+  color: white;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-left: 0.5rem;
+
+  @media (min-width: $largeRem) {
+    display: block;
+    font-size: 1.75rem;
+    line-height: 1.5;
   }
 }
