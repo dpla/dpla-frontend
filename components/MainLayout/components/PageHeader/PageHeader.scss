@@ -102,13 +102,13 @@
   padding: 0.5rem 0;
   text-decoration: none;
 
-  &.local {
-    display: flex;
-    flex-direction: row;
-  }
-
   @media (min-width: $mediumRem) {
     display: block;
+
+    &.local {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   @media (min-width: $largeRem) {
