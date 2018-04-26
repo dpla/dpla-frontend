@@ -3,7 +3,8 @@ import Link from "next/link";
 
 import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
 
-import { SITE_ENV } from "constants/env";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
 
 import css from "./PageHeader.scss";
 
@@ -25,7 +26,11 @@ const PageHeader = ({ searchQuery, hideSearchBar }) =>
       {SITE_ENV === "local" &&
         <Link prefetch as="/" href="/local">
           <a className={css.logo} title="Home Page">
-            <DPLALogoWide className={css.logoImg} />
+            <img
+              className={css.localLogo}
+              alt={`${LOCALS[LOCAL_ID].name} Home`}
+              src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+            />
           </a>
         </Link>}
       {!hideSearchBar &&

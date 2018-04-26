@@ -1,7 +1,8 @@
 const LOCALS = {
   wisconsin: {
     theme: "wisconsin",
-    provider: "%22Recollection%20Wisconsin%22"
+    provider: "%22Recollection%20Wisconsin%22",
+    name: "Recollection Wisconsin"
   }
 };
 

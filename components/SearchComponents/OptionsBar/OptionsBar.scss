@@ -111,11 +111,11 @@
 }
 
 .viewButtonInactive.gridViewButton {
-  box-shadow: 0 -0.075rem 0.15rem 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -0.075rem 0.15rem 0 $lightBorderColor;
 }
 
 .viewButtonInactive.listViewButton {
-  box-shadow: 0 -0.075rem 0.15rem 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -0.075rem 0.15rem 0 $lightBorderColor;
 }
 
 .viewButtonActive {

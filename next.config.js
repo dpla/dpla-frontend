@@ -19,7 +19,10 @@ module.exports = withBundleAnalyzer(
       sassLoaderOptions: {
         includePaths: [
           // to allow SCSS files to import a plain “theme.scss” file
-          "./stylesheets/themes/" + LOCALS[process.env.LOCAL_ID].theme
+          "./stylesheets/themes" +
+            (process.env.SITE_ENV === "local"
+              ? "/" + LOCALS[process.env.LOCAL_ID].theme
+              : "")
         ]
       },
       useFileSystemPublicRoutes: false,

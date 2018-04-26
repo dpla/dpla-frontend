@@ -15,6 +15,7 @@
 
 .link, .link:visited {
   display: none;
+
   @media (min-width: $smallRem) {
     display: inline-block;
     color: $paginationLinkColor;
@@ -27,6 +28,7 @@
 
 .ellipses {
   display: none;
+
   @media (min-width: $smallRem) {
     display: inline-block;
   }
@@ -39,7 +41,7 @@
 .activeLink, .activeLink:visited {
   color: black;
   box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 0.1rem solid $lightBorderColor;
 }
 
 .link:not(.activeLink):hover {
@@ -54,6 +56,7 @@
   width: 100%;
   font-size: 1rem;
   padding: 0.75rem 2rem;
+
   @media (min-width: $smallRem) {
     font-size: 1.125rem;
     padding: 10px 19px;
@@ -67,6 +70,7 @@
 .previousButton, .previousButton:visited {
   background-color: #e3e0da;
   color: black;
+
   @media (min-width: $smallRem) {
     background-color: $colderBackgroundColor;
     color: $paginationLinkColor;
@@ -77,6 +81,7 @@
 .nextButton, .nextButton:visited {
   background-color: $linkColor;
   color: white;
+
   @media (min-width: $smallRem) {
     background-color: $colderBackgroundColor;
     color: $paginationLinkColor;
@@ -87,16 +92,20 @@
 .nextChevron {
   height: 12px;
   width: 6px;
+
   & path {
     fill: white;
+
     @media (min-width: $smallRem) {
       fill: $paginationLinkColor;
     }
   }
+
   @media (min-width: $smallRem) {
     height: 14px;
     width: 8px;
   }
+
   margin-left: 0.5rem;
 }
 
@@ -105,12 +114,15 @@
   width: 6px;
   transform: rotate(180deg);
   margin-right: 0.5rem;
+
   & path {
     fill: black;
+
     @media (min-width: $smallRem) {
       fill: $paginationLinkColor;
     }
   }
+
   @media (min-width: $smallRem) {
     height: 14px;
     width: 8px;
@@ -119,6 +131,7 @@
 
 .hideOnLargeScreens {
   cursor: not-allowed;
+
   @media (min-width: $smallRem) {
     display: none;
   }

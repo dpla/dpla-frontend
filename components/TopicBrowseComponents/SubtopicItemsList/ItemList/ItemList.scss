@@ -11,6 +11,7 @@
   padding-bottom: 10px;
   padding-right: 1rem;
   padding-left: 1rem;
+
   @media (min-width: $smallRem) {
     padding-right: 0;
     padding-left: 0;
@@ -39,11 +40,11 @@
 }
 
 .viewButtonInactive.gridViewButton {
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 2px 0 $lightBorderColor;
 }
 
 .viewButtonInactive.listViewButton {
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 2px 0 $lightBorderColor;
 }
 
 .viewButtonActive {

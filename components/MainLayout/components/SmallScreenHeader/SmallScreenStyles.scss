@@ -50,7 +50,7 @@
   background-color: $navColor;
 
   &.isOpen {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: $lightBorderColor;
   }
 }
 

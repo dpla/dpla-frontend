@@ -51,7 +51,6 @@ $paginationLinkColor: $cascadeBlue !default;
 $headingColor: $cascadeBlue !default;
 $navColor: $tiberBlue !default;
 $userSiteColor: $hippieBlue !default;
-$proSiteColor: $elephantBlue !default;
 $mobileNavColor: $elephantBlue !default;
 $secondaryButtonColor: #0080a5 !default;
 $secondaryColor: $secondaryButtonColor !default;
@@ -72,11 +71,14 @@ $donateFormButtonColor: $cascadeBlue !default;
 $outlineColor: $casablancaOrange !default;
 $formLabelColor: $cascadeBlue !default;
 $errorColor: $linkColor !default;
-$proIconColor: #5d7384 !default;
 $radioButtonColor: $gainsboroGray !default;
-$memberColor: #006d84 !default;
 $featureBackgroundColor: #cbe3e8 !default;
 $footerLightColor: $ebonyClayBlue !default;
 $footerDarkColor: $minuitBlue !default;
+
+// pro colors
+$proSiteColor: $elephantBlue !default;
+$proIconColor: #5d7384 !default;
+$memberColor: #006d84 !default;
 
 @import "theme"; // overrides the values above with ./themes/[LOCAL_ID.theme]/theme

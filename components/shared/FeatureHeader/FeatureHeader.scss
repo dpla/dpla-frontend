@@ -47,7 +47,7 @@
   @media (min-width: $mediumRem) {
     padding-left: 1rem;
     font-size: 1.25rem;
-    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: 1px solid $lightBorderColor;
     width: 70%;
   }
 

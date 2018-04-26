@@ -7,6 +7,7 @@
   flex-direction: column;
   padding-bottom: 6rem;
   margin-top: 2rem;
+
   @media (min-width: $smallRem) {
     flex-direction: row;
   }
@@ -45,6 +46,7 @@
   line-height: 1.125;
   text-transform: uppercase;
   background-color: #f1f0ed;
+
   @media (min-width: $mediumRem) {
     font-size: 1rem;
     padding: 1.25rem;
@@ -91,6 +93,7 @@
 .body {
   display: flex;
   flex-direction: column;
+
   @media (min-width: $smallRem) {
     display: block;
   }
@@ -103,7 +106,7 @@
 }
 
 .credits {
-  border-top: 2px solid rgba(0, 0, 0, 0.15);
+  border-top: 2px solid $lightBorderColor;
   color: $dimmedTextColor;
   display: flex;
   font-size: 0.875rem;

@@ -99,6 +99,7 @@
 .logo {
   padding: 0.5rem 0;
   display: none; /* hide logo in small screens */
+  line-height: 0;
 
   @media (min-width: $mediumRem) {
     display: block;
@@ -116,5 +117,15 @@
   @media (min-width: $largeRem) {
     width: 18rem;
     height: 2.2rem;
+  }
+}
+
+.localLogo {
+  max-width: 16rem;
+  height: 2.5rem;
+
+  @media (min-width: $largeRem) {
+    max-width: 18rem;
+    height: 2.5rem;
   }
 }
