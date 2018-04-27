@@ -40,7 +40,7 @@ class SmallScreenHeader extends Component {
             <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
               <a className={css.logo}>
                 <span>Digital Public Library of America</span>
-              </a>}
+              </a>
             </Link>}
           {SITE_ENV === "local" &&
             <Link prefetch as="/" href="/local">
