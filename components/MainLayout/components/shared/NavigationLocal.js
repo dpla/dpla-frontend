@@ -8,22 +8,12 @@ const NavigationLocal = ({ isHome, className, css }) =>
     <ul className={css.links}>
       {!isHome &&
         <li>
-          <Link prefetch as="/" href="/local">
+          <Link prefetch href="/search">
             <a>
               Home
             </a>
           </Link>
         </li>}
-      <li>
-        <Link prefetch as="/about" href="/about?section=about-us">
-          <a>About</a>
-        </Link>
-      </li>
-      <li>
-        <Link prefetch href="/news">
-          <a>News</a>
-        </Link>
-      </li>
     </ul>
     <span className={css.divider} />
     <ul className={`${css.links} ${css.tertiaryLinks}`}>

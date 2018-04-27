@@ -26,7 +26,7 @@ const Footer = ({ route }) =>
             <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
           </Link>}
         {SITE_ENV === "local" &&
-          <Link prefetch as="/" href="/local">
+          <Link prefetch href="/search">
             <a>
               <img
                 className={css.localLogo}

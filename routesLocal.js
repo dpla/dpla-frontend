@@ -3,15 +3,7 @@ const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
-    const actualPage = "/local";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  });
-
-  // allow relative /news links in pro site
-  server.get(["/news/*", "/news"], (req, res) => {
-    var contentStart = req.url.indexOf("/news");
-    var newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
-    res.redirect(newPath);
+    res.redirect("/search");
   });
 
   // search routes
