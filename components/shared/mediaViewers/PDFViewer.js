@@ -7,7 +7,7 @@ import Chevron from "../../../static/images/chevron-thick.svg";
 import css from "./mediaViewers.scss";
 
 setOptions({
-  workerSrc: "/static/pdf.worker.js"
+  workerSrc: "/static/pdf.worker.min.js"
 });
 
 class PDFViewer extends React.Component {
