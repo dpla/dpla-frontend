@@ -36,6 +36,8 @@
 
 .localLogo {
   height: 100%;
+  object-fit: contain;
+  object-position: left;
 }
 
 .logo img {

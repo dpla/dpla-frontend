@@ -30,7 +30,7 @@
 .itemInfo {
   width: 66%;
   padding-right: 1rem;
-  word-break: break-word;
+  word-break: break-all;
 
   @media (min-width: $smallRem) {
     padding-right: 0;

@@ -45,40 +45,45 @@ const Footer = ({ route }) =>
               />
             </a>
           </Link>}
-        <div className={css.socialIcons}>
-          <a
-            href="https://www.facebook.com/digitalpubliclibraryofamerica"
-            title="Facebook"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className={css.socialButton} alt="Facebook" src={fbIcon} />
-          </a>
-          <a
-            href="https://www.instagram.com/digpublib/"
-            title="Instagram"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className={css.socialButton} alt="Instagram" src={igIcon} />
-          </a>
-          <a
-            href="http://digitalpubliclibraryofamerica.tumblr.com/"
-            title="Tumblr"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className={css.socialButton} alt="Tumblr" src={tumblrIcon} />
-          </a>
-          <a
-            href="https://twitter.com/dpla"
-            title="Twitter"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className={css.socialButton} alt="Twitter" src={twitterIcon} />
-          </a>
-        </div>
+        {SITE_ENV !== "local" &&
+          <div className={css.socialIcons}>
+            <a
+              href="https://www.facebook.com/digitalpubliclibraryofamerica"
+              title="Facebook"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img className={css.socialButton} alt="Facebook" src={fbIcon} />
+            </a>
+            <a
+              href="https://www.instagram.com/digpublib/"
+              title="Instagram"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img className={css.socialButton} alt="Instagram" src={igIcon} />
+            </a>
+            <a
+              href="http://digitalpubliclibraryofamerica.tumblr.com/"
+              title="Tumblr"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img className={css.socialButton} alt="Tumblr" src={tumblrIcon} />
+            </a>
+            <a
+              href="https://twitter.com/dpla"
+              title="Twitter"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                className={css.socialButton}
+                alt="Twitter"
+                src={twitterIcon}
+              />
+            </a>
+          </div>}
       </div>
     </div>
   </footer>;
