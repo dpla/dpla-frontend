@@ -1,10 +1,10 @@
-@import "stylesheets/colors";
-@import "stylesheets/breakpoints";
+@import "stylesheets/variables";
 
 .previousItemButton, .nextItemButton {
   color: $linkColor;
   font-weight: 600;
   font-size: 0.75rem;
+
   @media (min-width: $smallRem) {
     font-size: 1rem;
   }
@@ -13,6 +13,7 @@
 .previousChevron, .nextChevron {
   height: 8px;
   width: 5px;
+
   @media (min-width: $smallRem) {
     height: 9px;
   }
@@ -21,6 +22,7 @@
 .previousChevron {
   transform: rotate(180deg);
   margin-right: 0.25rem;
+
   @media (min-width: $smallRem) {
     margin-right: 0.5rem;
   }
@@ -28,6 +30,7 @@
 
 .nextChevron {
   margin-left: 0.25rem;
+
   @media (min-width: $smallRem) {
     margin-left: 0.5rem;
   }
@@ -35,6 +38,7 @@
 
 .previousItemButton {
   margin-right: 0.75rem;
+
   @media (min-width: $smallRem) {
     margin-right: 2rem;
   }
@@ -49,6 +53,7 @@
 .hideOnSmallScreens {
   display: none;
   visibility: hidden;
+
   @media (min-width: $mediumRem) {
     display: inherit;
     visibility: visible;

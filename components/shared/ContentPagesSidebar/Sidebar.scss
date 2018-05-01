@@ -1,6 +1,4 @@
-@import "stylesheets/colors";
-@import "stylesheets/breakpoints";
-@import "stylesheets/typography";
+@import "stylesheets/variables";
 
 .sidebar {
   background-color: $warmerBackgroundColor;
@@ -21,6 +19,7 @@
   @media (min-width: $mediumRem) {
     background-color: transparent;
     padding: 0 1.25rem 0 0;
+
     /* inline-block to prevent the divider from spanning the full width */
     display: inline-block;
   }

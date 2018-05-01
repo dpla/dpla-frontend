@@ -1,5 +1,4 @@
-@import "stylesheets/colors";
-@import "stylesheets/breakpoints";
+@import "stylesheets/variables";
 
 .wrapper {
   background-color: $warmerBackgroundColor;
@@ -12,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+
   @media (min-width: $smallRem) {
     flex-direction: row;
   }
@@ -19,6 +19,7 @@
 
 .p {
   font-size: 0.875rem;
+
   @media (min-width: $smallRem) {
     max-width: 450px;
   }
@@ -26,6 +27,7 @@
 
 .p:first-child {
   margin-bottom: 1rem;
+
   @media (min-width: $smallRem) {
     margin-bottom: 0;
   }

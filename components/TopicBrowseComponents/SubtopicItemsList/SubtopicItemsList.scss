@@ -1,4 +1,4 @@
-@import "stylesheets/breakpoints";
+@import "stylesheets/variables";
 
 .sidebarAndItemList {
   display: flex;
@@ -6,6 +6,7 @@
   flex-direction: column;
   padding-left: 0;
   padding-right: 0;
+
   @media (min-width: $smallRem) {
     flex-direction: row;
     padding-left: 1rem;

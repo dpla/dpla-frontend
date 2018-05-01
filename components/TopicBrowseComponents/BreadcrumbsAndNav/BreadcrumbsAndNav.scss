@@ -1,4 +1,4 @@
-@import "stylesheets/breakpoints";
+@import "stylesheets/variables";
 
 .breadcrumbsAndNav {
   height: 100%;
@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
+
   @media (min-width: $smallRem) {
     justify-content: flex-start;
     align-items: center;
