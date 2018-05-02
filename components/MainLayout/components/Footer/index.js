@@ -36,7 +36,7 @@ const Footer = ({ route }) =>
             </a>
           </Link>}
         {SITE_ENV === "local" &&
-          <Link prefetch as="/" href="//dp.la">
+          <Link prefetch href="//dp.la">
             <a>
               <img
                 className={css.partnershipLogo}
