@@ -1,6 +1,4 @@
-@import "stylesheets/colors";
-@import "stylesheets/breakpoints";
-@import "stylesheets/typography";
+@import "stylesheets/variables";
 
 $sidebarWidth: 11rem;
 $sidebarMargin: 1.25rem;
@@ -60,6 +58,7 @@ $sidebarMargin: 1.25rem;
 
 .openMenu .menuHeader {
   display: flex;
+
   @media (min-width: $smallRem) {
     display: none;
   }
@@ -261,6 +260,7 @@ $sidebarMargin: 1.25rem;
 
 .closeExhibitionText {
   display: none;
+
   @media (min-width: $smallRem) {
     display: inline;
   }
@@ -286,6 +286,7 @@ $sidebarMargin: 1.25rem;
 
 .closeIconX {
   fill: $mobileNavColor;
+
   @media (min-width: $smallRem) {
     fill: white;
   }
@@ -599,6 +600,7 @@ $sidebarMargin: 1.25rem;
 
 .defaultItemImage {
   background-color: #e4e2db;
+
   & img {
     width: 50%;
     height: 50%;
@@ -635,6 +637,7 @@ $sidebarMargin: 1.25rem;
     display: none;
   }
 }
+
 .nextItemButton {
   right: 0;
 }
@@ -642,6 +645,7 @@ $sidebarMargin: 1.25rem;
 .previousItemChevron {
   transform: rotate(180deg);
 }
+
 .nextItemChevron, .previousItemChevron {
   width: 1rem;
   height: 1.75rem;

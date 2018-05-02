@@ -1,6 +1,4 @@
-@import "stylesheets/colors";
-@import "stylesheets/breakpoints";
-@import "stylesheets/typography";
+@import "stylesheets/variables";
 
 .wrapper {
   width: 100%;
@@ -27,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   @media (min-width: $xSmallRem) {
     width: auto;
     padding: 0 1rem;
@@ -78,6 +77,7 @@
 
 .hideOnSmallScreen {
   display: none;
+
   @media (min-width: $smallRem) {
     display: inline-block;
   }
