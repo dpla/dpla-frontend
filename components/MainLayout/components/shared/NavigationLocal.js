@@ -18,7 +18,7 @@ const NavigationLocal = ({ isHome, className, css }) =>
     <span className={css.divider} />
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
-        <Link href={USER_BASE_URL}>
+        <Link href="//dp.la">
           <a>Visit DPLA</a>
         </Link>
       </li>
