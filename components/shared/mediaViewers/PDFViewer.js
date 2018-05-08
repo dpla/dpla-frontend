@@ -9,9 +9,6 @@ class PDFViewer extends React.Component {
     const { pathToFile, height = "650px" } = this.props;
     return (
       <div className={css.pdfViewer} style={{ height }}>
-        {/* <div id="pdfViewer" className={css.pdfDocument}>
-          {pathToFile}
-        </div> */}
         <iframe
           title="dpla-pdf-viewer"
           src={
