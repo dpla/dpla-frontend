@@ -1,7 +1,5 @@
 import React from "react";
 
-import Chevron from "../../../static/images/chevron-thick.svg";
-
 import css from "./mediaViewers.scss";
 
 class PDFViewer extends React.Component {
