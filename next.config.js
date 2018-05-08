@@ -42,15 +42,6 @@ module.exports = withBundleAnalyzer(
         const { dev, isServer } = options;
 
         config.plugins.push(
-          new CopyWebpackPlugin([
-            {
-              from: "node_modules/pdfjs-dist/cmaps/",
-              to: "cmaps/"
-            }
-          ])
-        );
-
-        config.plugins.push(
           new webpack.DefinePlugin({
             "process.env": {
               NODE_ENV: JSON.stringify(process.env.NODE_ENV)

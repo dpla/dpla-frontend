@@ -1,4 +1,3 @@
-const proxy = require("express-http-proxy");
 const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {

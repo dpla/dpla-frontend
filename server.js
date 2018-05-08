@@ -1,5 +1,6 @@
 const express = require("express");
 const next = require("next");
+const proxy = require("express-http-proxy");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
 const cluster = require("cluster");
@@ -51,6 +52,16 @@ if (require.main === module) {
 
       server.get("/robots.txt", (req, res) => {
         return handle(req, res);
+      });
+
+      server.get("/pdf/*", (req, res) => {
+        var url = req.url.replace(/^\/pdf\//, "");
+        console.log(url);
+        return proxy("https://d2jf00asb0fe6y.cloudfront.net", {
+          proxyReqPathResolver: function(req) {
+            return "/mormon-migration_03_1d178923d61d4ec0bae5926368556953.pdf";
+          }
+        });
       });
 
       // decide which routing to use depending on the site environment
