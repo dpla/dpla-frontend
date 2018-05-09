@@ -9,9 +9,7 @@ class PDFViewer extends React.Component {
       <div className={css.pdfViewer} style={{ height }}>
         <iframe
           title="dpla-pdf-viewer"
-          src={
-            "/static/pdfjs/web/viewer.html?file=https://d2jf00asb0fe6y.cloudfront.net/mormon-migration_03_1d178923d61d4ec0bae5926368556953.pdf"
-          }
+          src={`/static/pdfjs/web/viewer.html?file=${pathToFile}`}
           style={{ width: "100%", height }}
           frameBorder="0"
         />
