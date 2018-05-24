@@ -57,7 +57,7 @@ $headingColor: $cascadeBlue !default;
 $navColor: $tiberBlue !default;
 $userSiteColor: $hippieBlue !default;
 $mobileNavColor: $elephantBlue !default;
-$mobileNavMenuButtonOpen: $lightBorderColor !default;
+$mobileNavMenuButtonOpen: darken($navColor, 10%) !default;
 $secondaryButtonColor: #0080a5 !default;
 $secondaryColor: $secondaryButtonColor !default;
 $primaryBulletColor: $secondaryButtonColor !default;
