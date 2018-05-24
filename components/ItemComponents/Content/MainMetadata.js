@@ -1,4 +1,5 @@
 import React from "react";
+
 import ItemImage from "./ItemImage";
 import Row from "./Row";
 
@@ -114,7 +115,11 @@ class MainMetadata extends React.Component {
                       ? css.longDescription
                       : ""} ${isOpen ? css.open : ""}`}
                   >
-                    {joinIfArray(item.description)}
+                    {Array.isArray(item.description)
+                      ? item.description.map((element, index) => {
+                          return <p key={index}>{element}</p>;
+                        })
+                      : item.description}
                   </div>
                   {descriptionIsLong &&
                     <div
