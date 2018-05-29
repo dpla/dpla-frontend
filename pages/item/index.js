@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import fetch from "isomorphic-fetch";
 
 import Error from "pages/_error";
