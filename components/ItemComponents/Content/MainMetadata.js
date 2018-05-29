@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import ItemImage from "./ItemImage";
 import Row from "./Row";
@@ -62,25 +63,27 @@ class MainMetadata extends React.Component {
                   defaultImageClass={css.defaultItemImage}
                   useDefaultImage={item.useDefaultImage}
                 />
-                <a
-                  href={item.sourceUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className={`${css.sourceLink} clickThrough`}
-                >
-                  <span className={css.sourceLinkText}>
-                    {item.type === "image"
-                      ? "View Full Image"
-                      : item.type === "text"
-                        ? "View Full Text"
-                        : "View Full Item"}
-                  </span>
-                  <img
-                    src={externalLinkIcon}
-                    alt=""
-                    className={css.externalLinkIcon}
-                  />
-                </a>
+                {item.sourceUrl &&
+                  <Link prefetch href={item.sourceUrl}>
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className={`${css.sourceLink} clickThrough`}
+                    >
+                      <span className={css.sourceLinkText}>
+                        {item.type === "image"
+                          ? "View Full Image"
+                          : item.type === "text"
+                            ? "View Full Text"
+                            : "View Full Item"}
+                      </span>
+                      <img
+                        src={externalLinkIcon}
+                        alt=""
+                        className={css.externalLinkIcon}
+                      />
+                    </a>
+                  </Link>}
                 {item.edmRights && <RightsBadge url={item.edmRights} />}
                 {/* 
         for situations where the rights are in sourceResource
