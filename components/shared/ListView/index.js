@@ -38,13 +38,22 @@ const ListView = ({ items, route }) =>
         />
         <div className={css.itemInfo}>
           <h2 className={`hover-underline ${css.itemTitle}`}>
-            <Link href={item.linkHref} as={item.linkAs}>
-              <a className={`internalItemLink`}>
+            {/* see issue #869 for details on this hack */}
+            {item.id !== "http://dp.la/api/items/#sourceResource" &&
+              <Link href={item.linkHref} as={item.linkAs}>
+                <a className={`internalItemLink`}>
+                  {route.pathname.indexOf("/search") === 0 && item.title
+                    ? truncateString(item.title, 150)
+                    : item.title ? item.title : UNTITLED_TEXT}
+                </a>
+              </Link>}
+            {/* see issue #869 for details on this hack */}
+            {item.id === "http://dp.la/api/items/#sourceResource" &&
+              <span>
                 {route.pathname.indexOf("/search") === 0 && item.title
                   ? truncateString(item.title, 150)
                   : item.title ? item.title : UNTITLED_TEXT}
-              </a>
-            </Link>
+              </span>}
           </h2>
 
           {(item.date || item.creator) &&
