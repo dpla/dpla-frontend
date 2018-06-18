@@ -1,8 +1,8 @@
 import React from "react";
 
-import GridView from "components/shared/GridView";
-import ListView from "components/shared/ListView";
-import Pagination from "components/shared/Pagination";
+import GridView from "shared/GridView";
+import ListView from "shared/ListView";
+import Pagination from "shared/Pagination";
 import Sidebar from "./Sidebar";
 
 import { removeQueryParams, extractItemId } from "lib";
