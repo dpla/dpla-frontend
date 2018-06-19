@@ -1,8 +1,6 @@
 import React from "react";
-import ReactGA from "react-ga";
-import Router from "next/router";
 
-import { joinIfArray, parseDplaItemRecord, bindLinkEvent, initGa } from "lib";
+import { joinIfArray, bindLinkEvent, initGa } from "lib";
 
 export default WrappedComponent =>
   class GaListViewWrapper extends React.Component {

@@ -11,6 +11,8 @@ import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
 
+const DEFAULT_NAME = "Untitled list";
+
 /**
  * @param description, item description object
  * @return HTML with truncated item description
@@ -27,16 +29,108 @@ const ItemDescription = ({ description }) => {
 
 class ListView extends React.Component {
   state = {
+    listName: "",
     checkboxShown: false,
-    creatingList: false
+    hasList: false,
+    modalActive: false
+  };
+
+  closeNameForm = e => {
+    this.setState({
+      listName: "",
+      checkboxShown: false,
+      hasList: false,
+      modalActive: false
+    });
+  };
+
+  onNameChange = e => {
+    this.setState({
+      listName: e.target.value
+    });
+  };
+
+  openNameForm = e => {
+    e.preventDefault();
+    this.setState({
+      modalActive: true
+    });
+  };
+
+  handleNameSubmit = e => {
+    e.preventDefault();
+    let tempName = this.state.listName.trim();
+    if (tempName === "") {
+      tempName = DEFAULT_NAME;
+    }
+    this.setState({
+      listName: tempName,
+      checkboxShown: true,
+      hasList: true,
+      modalActive: false
+    });
   };
 
   render() {
+    const nameCharLimit = 64;
     const { items, route } = this.props;
-    const { checkboxShown } = this.state;
+    const { checkboxShown, modalActive, listName, hasList } = this.state;
+
+    const newListModal = modalActive
+      ? <AriaModal
+          titleText="Name your list"
+          onExit={this.closeNameForm}
+          initialFocus="#cancel-name"
+          getApplicationNode={this.getApplicationNode}
+        >
+          <form
+            action=""
+            className={css.nameForm}
+            onSubmit={this.handleNameSubmit}
+            key={this.state.timestamp}
+            aria-live="assertive"
+          >
+            <input
+              id="list-name"
+              name="list-name"
+              placeholder="Untitled list"
+              maxLength={nameCharLimit}
+              onChange={this.onNameChange}
+              aria-label="Name your list"
+            />
+            <Button type="primary" mustSubmit={true} className={css.sendButton}>
+              Send
+            </Button>
+            <Button
+              className={css.cancelButton}
+              type="ghost"
+              id="cancel-name"
+              onClick={e => this.closeNameForm(e)}
+              name="close_button"
+            >
+              Cancel
+            </Button>
+          </form>
+        </AriaModal>
+      : false;
 
     return [
-      <Button type="secondary">Create list</Button>,
+      <div className={css.listTools}>
+        {hasList && <p className={css.listName}>{listName}</p>}
+        <Button
+          className={css.listCreate}
+          type="secondary"
+          onClick={e => this.openNameForm(e)}
+        >
+          Create list
+        </Button>
+        <div
+          role="dialog"
+          className={`${css.nameModal} ${modalActive ? css.open : ""}`}
+        >
+          {newListModal}
+        </div>
+      </div>,
       <ul className={css.listView}>
         {items.map(item =>
           <li key={item["@id"] || item.id} className={css.listItem}>
