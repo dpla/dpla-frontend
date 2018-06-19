@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import AriaModal from "react-aria-modal";
 
+import Button from "shared/Button";
 import ListImage from "./ListImage";
 import GaListViewWrapper from "./GaListViewWrapper";
 
@@ -25,17 +27,32 @@ const ItemDescription = ({ description }) => {
 
 class ListView extends React.Component {
   state = {
-    checkboxShown: false
+    checkboxShown: false,
+    creatingList: false
   };
 
   render() {
     const { items, route } = this.props;
-    const checkboxShown = this.state;
+    const { checkboxShown } = this.state;
 
-    return (
+    return [
+      <Button type="secondary">Create list</Button>,
       <ul className={css.listView}>
         {items.map(item =>
           <li key={item["@id"] || item.id} className={css.listItem}>
+            <label
+              className={`${css.checkbox} ${checkboxShown
+                ? ""
+                : css.collapsed}`}
+              htmlFor={`checkbox-${item.id}`}
+            >
+              <input
+                type="checkbox"
+                key={`checkbox-${item.id}`}
+                id={`checkbox-${item.id}`}
+              />{" "}
+              Add to list
+            </label>
             <ListImage
               item={item}
               title={item.title}
@@ -94,7 +111,7 @@ class ListView extends React.Component {
           </li>
         )}
       </ul>
-    );
+    ];
   }
 }
 
