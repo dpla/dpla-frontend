@@ -32,6 +32,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   .sendCancelButtons {
+    align-items: center;
     display: flex;
   }
 
@@ -41,6 +42,7 @@
 
   .cancelButton {
     flex-grow: 1;
+    margin-right: 0.5rem;
   }
 
   @media (max-width: $mediumRem) {
