@@ -300,84 +300,87 @@ class ListView extends React.Component {
             </div>
           </div>}
         <ul className={css.listView}>
-          {items.map(item =>
-            <li key={item["@id"] || item.id} className={css.listItem}>
-              <ListImage
-                item={item}
-                title={item.title}
-                type={item.type}
-                url={item.thumbnailUrl}
-                useDefaultImage={item.useDefaultImage}
-              />
-              <div className={css.itemInfo}>
-                <h2 className={`hover-underline ${css.itemTitle}`}>
-                  {/* see issue #869 for details on this hack */}
-                  {item.id !== "http://dp.la/api/items/#sourceResource" &&
-                    <Link href={item.linkHref} as={item.linkAs}>
-                      <a className={`internalItemLink`}>
+          {items.map(item => {
+            const realId = item.itemDplaId || item.id;
+            return (
+              <li key={realId} className={css.listItem}>
+                <ListImage
+                  item={item}
+                  title={item.title}
+                  type={item.type}
+                  url={item.thumbnailUrl}
+                  useDefaultImage={item.useDefaultImage}
+                />
+                <div className={css.itemInfo}>
+                  <h2 className={`hover-underline ${css.itemTitle}`}>
+                    {/* see issue #869 for details on this hack */}
+                    {realId !== "http://dp.la/api/items/#sourceResource" &&
+                      <Link href={item.linkHref} as={item.linkAs}>
+                        <a className={`internalItemLink`}>
+                          {route.pathname.indexOf("/search") === 0 && item.title
+                            ? truncateString(item.title, 150)
+                            : item.title ? item.title : UNTITLED_TEXT}
+                        </a>
+                      </Link>}
+                    {/* see issue #869 for details on this hack */}
+                    {realId === "http://dp.la/api/items/#sourceResource" &&
+                      <span>
                         {route.pathname.indexOf("/search") === 0 && item.title
                           ? truncateString(item.title, 150)
                           : item.title ? item.title : UNTITLED_TEXT}
-                      </a>
-                    </Link>}
-                  {/* see issue #869 for details on this hack */}
-                  {item.id === "http://dp.la/api/items/#sourceResource" &&
-                    <span>
-                      {route.pathname.indexOf("/search") === 0 && item.title
-                        ? truncateString(item.title, 150)
-                        : item.title ? item.title : UNTITLED_TEXT}
-                    </span>}
-                </h2>
+                      </span>}
+                  </h2>
 
-                {(item.date || item.creator) &&
-                  <span className={css.itemAuthorAndDate}>
-                    {route.pathname.indexOf("/search") === 0 &&
-                      item.date &&
-                      <span>{item.date.displayDate}</span>}
-                    {route.pathname.indexOf("/search") === 0 &&
-                      item.date &&
-                      item.date.displayDate &&
-                      item.creator &&
-                      <span> · </span>}
-                    <span>{joinIfArray(item.creator, ", ")}</span>
-                  </span>}
-                <ItemDescription description={item.description} />
-                <a
-                  href={item.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`hover-underline clickThrough external ${css.itemSource}`}
+                  {(item.date || item.creator) &&
+                    <span className={css.itemAuthorAndDate}>
+                      {route.pathname.indexOf("/search") === 0 &&
+                        item.date &&
+                        <span>{item.date.displayDate}</span>}
+                      {route.pathname.indexOf("/search") === 0 &&
+                        item.date &&
+                        item.date.displayDate &&
+                        item.creator &&
+                        <span> · </span>}
+                      <span>{joinIfArray(item.creator, ", ")}</span>
+                    </span>}
+                  <ItemDescription description={item.description} />
+                  <a
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover-underline clickThrough external ${css.itemSource}`}
+                  >
+                    {item.type === "image"
+                      ? "View Full Image"
+                      : item.type === "text"
+                        ? "View Full Text"
+                        : "View Full Item"}
+                  </a>
+                  {item.dataProvider &&
+                    <span className={`${css.itemProvider}`}>
+                      &nbsp; in {item.dataProvider}
+                    </span>}
+                </div>
+                <label
+                  className={`${css.checkboxLabel} ${checkboxShown
+                    ? ""
+                    : css.collapsed}`}
+                  htmlFor={`checkbox-${realId}`}
                 >
-                  {item.type === "image"
-                    ? "View Full Image"
-                    : item.type === "text"
-                      ? "View Full Text"
-                      : "View Full Item"}
-                </a>
-                {item.dataProvider &&
-                  <span className={`${css.itemProvider}`}>
-                    &nbsp; in {item.dataProvider}
-                  </span>}
-              </div>
-              <label
-                className={`${css.checkboxLabel} ${checkboxShown
-                  ? ""
-                  : css.collapsed}`}
-                htmlFor={`checkbox-${item.id}`}
-              >
-                <input
-                  className={css.checkboxInput}
-                  type="checkbox"
-                  data-id={item.id}
-                  onChange={this.onCheckItem}
-                  checked={this.state.selectedHash[item.id] !== undefined}
-                  key={`checkbox-${item.id}`}
-                  id={`checkbox-${item.id}`}
-                />{" "}
-                Add to list
-              </label>
-            </li>
-          )}
+                  <input
+                    className={css.checkboxInput}
+                    type="checkbox"
+                    data-id={realId}
+                    onChange={this.onCheckItem}
+                    checked={this.state.selectedHash[realId] !== undefined}
+                    key={`checkbox-${realId}`}
+                    id={`checkbox-${realId}`}
+                  />
+                  Add to list
+                </label>
+              </li>
+            );
+          })}
         </ul>
       </section>
     );
