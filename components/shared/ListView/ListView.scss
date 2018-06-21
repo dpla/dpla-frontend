@@ -9,6 +9,23 @@
   padding: 0.5rem;
 }
 
+.alert {
+  background-color: $featuredBannerColor;
+  bottom: -5rem;
+  color: black;
+  left: 50%;
+  margin-left: -5rem;
+  padding: 0.5rem;
+  position: fixed;
+  text-align: center;
+  transition: bottom 0.1s ease-out;
+  width: 10rem;
+
+  &.open {
+    bottom: 0.5rem;
+  }
+}
+
 .listAddToList {
   display: flex;
 }

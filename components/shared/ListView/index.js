@@ -12,6 +12,7 @@ import { UNTITLED_TEXT } from "constants/site";
 import css from "./ListView.scss";
 
 const DEFAULT_NAME = "Untitled list";
+const MESSAGE_DELAY = 2000;
 
 /**
  * @param description, item description object
@@ -29,13 +30,15 @@ const ItemDescription = ({ description }) => {
 
 class ListView extends React.Component {
   state = {
+    listsInitialized: false,
     listName: "",
     listUUID: "",
     selectedHash: {},
     lists: [],
     checkboxShown: false,
     hasList: false,
-    modalActive: false
+    modalActive: false,
+    showMessage: ""
   };
 
   componentDidMount() {
@@ -52,9 +55,10 @@ class ListView extends React.Component {
         count: Object.keys(value.selectedHash).length
       });
     });
-    if (lists.length > 0) {
-      this.setState({ lists: lists });
-    }
+    this.setState({
+      lists: lists,
+      listsInitialized: true
+    });
   };
 
   closeNameForm = e => {
@@ -98,17 +102,19 @@ class ListView extends React.Component {
     await localforage.setItem(uuid, savedList);
   };
 
-  loadList = uuid => {
-    localforage.getItem(uuid).then(value => {
-      const listName = value.name;
-      const selectedHash = value.selectedHash;
-      this.setState({
-        listName: listName,
-        listUUID: uuid,
-        selectedHash: selectedHash,
-        checkboxShown: true,
-        hasList: true
-      });
+  loadList = async uuid => {
+    let listName = "",
+      selectedHash = {};
+    await localforage.getItem(uuid).then(value => {
+      listName = value.name;
+      selectedHash = value.selectedHash;
+    });
+    this.setState({
+      listName: listName,
+      listUUID: uuid,
+      selectedHash: selectedHash,
+      checkboxShown: true,
+      hasList: true
     });
   };
 
@@ -127,6 +133,46 @@ class ListView extends React.Component {
     }
   };
 
+  onCheckItem = e => {
+    const element = e.target;
+    let id = element.getAttribute("data-id");
+    let selected = element.checked;
+    if (selected) {
+      this.addCell(id);
+    } else {
+      this.removeCell(id);
+    }
+  };
+
+  addCell = id => {
+    let hash = JSON.parse(JSON.stringify(this.state.selectedHash));
+    let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
+    if (hash[id]) return; // check if item already selected
+    hash[id] = id;
+    list.count++;
+    this.saveList(hash, list, "Item added");
+  };
+
+  removeCell = id => {
+    let hash = JSON.parse(JSON.stringify(this.state.selectedHash));
+    let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
+    if (list && list.count > 0) list.count--;
+    delete hash[id];
+    this.saveList(hash, list, "Item removed");
+  };
+
+  saveList = async (hash, list, message) => {
+    let savedList = { name: this.state.listName, selectedHash: hash };
+    await localforage.setItem(this.state.listUUID, savedList);
+    let lists = JSON.parse(JSON.stringify(this.state.lists));
+    lists.forEach(l => {
+      if (l.uuid === list.uuid) {
+        l.count = list.count;
+      }
+    });
+    this.setState({ selectedHash: hash, lists: lists, showMessage: message });
+  };
+
   handleNameSubmit = e => {
     e.preventDefault();
     let tempName = this.state.listName.trim();
@@ -136,10 +182,23 @@ class ListView extends React.Component {
     this.createList(tempName);
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.showMessage !== prevState.showMessage)
+      setTimeout(() => this.setState({ showMessage: "" }), MESSAGE_DELAY);
+  }
+
   render() {
     const nameCharLimit = 64;
     const { items, route } = this.props;
-    const { checkboxShown, modalActive, hasList, lists, listUUID } = this.state;
+    const {
+      listsInitialized,
+      checkboxShown,
+      modalActive,
+      hasList,
+      lists,
+      listUUID,
+      showMessage
+    } = this.state;
 
     const newListModal = modalActive
       ? <AriaModal
@@ -155,6 +214,7 @@ class ListView extends React.Component {
             key={this.state.timestamp}
             aria-live="assertive"
           >
+            <label htmlFor="list-name">Name your list</label>
             <input
               id="list-name"
               name="list-name"
@@ -170,7 +230,7 @@ class ListView extends React.Component {
               className={css.cancelButton}
               type="ghost"
               id="cancel-name"
-              onClick={e => this.closeNameForm(e)}
+              onClick={this.closeNameForm}
               name="close_button"
             >
               Cancel
@@ -181,52 +241,53 @@ class ListView extends React.Component {
 
     return (
       <section>
-        <div className={css.listTools}>
-          {lists.length === 0 &&
+        {listsInitialized &&
+          <div className={css.listTools}>
             <Button
               className={css.listCreate}
               type="ghost"
-              onClick={e => this.openNameForm(e)}
+              onClick={this.openNameForm}
             >
-              Create a list from these results
-            </Button>}
-          {lists.length !== 0 &&
-            <Button
-              className={css.listCreate}
-              type="ghost"
-              onClick={e => this.openNameForm(e)}
+              {lists.length === 0
+                ? "Create a list from these items"
+                : "Create new list"}
+            </Button>
+            {lists.length > 0 &&
+              <label htmlFor="list-select" className={css.listSelectLabel}>
+                {hasList ? "Adding" : "Add"} to:
+              </label>}
+            {lists.length > 0 &&
+              <select
+                value={listUUID}
+                aria-label={hasList ? "Adding to" : "Add to"}
+                id="list-select"
+                className={css.listSelect}
+                onChange={this.listSelectChange}
+              >
+                <option value="">No list</option>
+                {lists.map((list, index) => {
+                  return (
+                    <option key={index} value={list.uuid}>
+                      {list.name} ({list.count}{" "}
+                      {list.count !== 1 ? "items" : "item"})
+                    </option>
+                  );
+                })}
+              </select>}
+            <div
+              role="dialog"
+              className={`${css.listNameModal} ${!modalActive ? "" : css.open}`}
             >
-              Create new list
-            </Button>}
-          {lists.length > 0 &&
-            <label htmlFor="list-select" className={css.listSelectLabel}>
-              {hasList ? "Adding" : "Add"} to:
-            </label>}
-          {lists.length > 0 &&
-            <select
-              value={listUUID}
-              aria-label={hasList ? "Adding to" : "Add to"}
-              id="list-select"
-              className={css.listSelect}
-              onChange={e => this.listSelectChange(e)}
+              {newListModal}
+            </div>
+            <div
+              role="alert"
+              // aria-live="assertive"
+              className={`${css.alert} ${showMessage === "" ? "" : css.open}`}
             >
-              <option value="">No list</option>
-              {lists.map((list, index) => {
-                return (
-                  <option key={index} value={list.uuid}>
-                    {list.name} ({list.count}{" "}
-                    {list.count !== 1 ? "items" : "item"})
-                  </option>
-                );
-              })}
-            </select>}
-          <div
-            role="dialog"
-            className={`${css.listNameModal} ${modalActive ? css.open : ""}`}
-          >
-            {newListModal}
-          </div>
-        </div>
+              {showMessage}
+            </div>
+          </div>}
         <ul className={css.listView}>
           {items.map(item =>
             <li key={item["@id"] || item.id} className={css.listItem}>
@@ -296,6 +357,9 @@ class ListView extends React.Component {
                 <input
                   className={css.checkboxInput}
                   type="checkbox"
+                  data-id={item.id}
+                  onChange={this.onCheckItem}
+                  checked={this.state.selectedHash[item.id] !== undefined}
                   key={`checkbox-${item.id}`}
                   id={`checkbox-${item.id}`}
                 />{" "}
