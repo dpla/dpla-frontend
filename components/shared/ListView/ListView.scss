@@ -12,6 +12,7 @@
 .alert {
   background-color: $featuredBannerColor;
   bottom: -5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   color: black;
   left: 50%;
   margin-left: -5rem;
@@ -58,7 +59,7 @@
   border-radius: 0.25rem;
   font-size: 1.25rem;
   margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
 }
 
@@ -72,11 +73,11 @@
 
 .createButton {
   flex-grow: 3;
-  margin-right: 0.5rem;
 }
 
 .cancelButton {
   flex-grow: 1;
+  margin-right: 0.5rem;
 }
 
 .listItem {

@@ -214,9 +214,11 @@ class ListView extends React.Component {
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <label className={css.listNameLabel} htmlFor="list-name">
-              Name your list
-            </label>
+            <h2 className={css.listNameLabel}>
+              <label htmlFor="list-name">
+                Name your list
+              </label>
+            </h2>
             <input
               className={css.listName}
               id="list-name"
@@ -228,13 +230,6 @@ class ListView extends React.Component {
             />
             <div className={css.listSaveCancelButtons}>
               <Button
-                type="primary"
-                mustSubmit={true}
-                className={css.createButton}
-              >
-                Create
-              </Button>
-              <Button
                 className={css.cancelButton}
                 type="ghost"
                 id="cancel-name"
@@ -242,6 +237,13 @@ class ListView extends React.Component {
                 name="close_button"
               >
                 Cancel
+              </Button>
+              <Button
+                type="primary"
+                mustSubmit={true}
+                className={css.createButton}
+              >
+                Create
               </Button>
             </div>
           </form>
