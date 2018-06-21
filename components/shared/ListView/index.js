@@ -214,8 +214,11 @@ class ListView extends React.Component {
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <label htmlFor="list-name">Name your list</label>
+            <label className={css.listNameLabel} htmlFor="list-name">
+              Name your list
+            </label>
             <input
+              className={css.listName}
               id="list-name"
               name="list-name"
               placeholder="Untitled list"
@@ -223,18 +226,24 @@ class ListView extends React.Component {
               onChange={this.onNameChange}
               aria-label="Name your list"
             />
-            <Button type="primary" mustSubmit={true} className={css.sendButton}>
-              Create
-            </Button>
-            <Button
-              className={css.cancelButton}
-              type="ghost"
-              id="cancel-name"
-              onClick={this.closeNameForm}
-              name="close_button"
-            >
-              Cancel
-            </Button>
+            <div className={css.listSaveCancelButtons}>
+              <Button
+                type="primary"
+                mustSubmit={true}
+                className={css.createButton}
+              >
+                Create
+              </Button>
+              <Button
+                className={css.cancelButton}
+                type="ghost"
+                id="cancel-name"
+                onClick={this.closeNameForm}
+                name="close_button"
+              >
+                Cancel
+              </Button>
+            </div>
           </form>
         </AriaModal>
       : false;
