@@ -5,14 +5,14 @@ $borderRadius: ($borderWidth * 2);
 $padding: 1rem;
 
 .buttonBase {
-  font-weight: normal;
   border-radius: $borderRadius;
+  cursor: pointer;
+  display: inline-block;
   font-size: 1rem;
-  padding: ($padding * .5) $padding;
+  font-weight: normal;
+  padding: ($padding * 0.5) $padding;
   transition: background-color 0.15s ease-out;
   white-space: nowrap;
-  display: inline-block;
-  cursor: pointer;
   width: 100%;
 
   &:hover {
@@ -44,10 +44,7 @@ $padding: 1rem;
   color: $donateFormButtonColor;
   background-color: $colderBackgroundColor;
   border: $borderWidth solid white;
-  padding: (($padding - ($borderWidth * 2)) * .5)
-    (
-      $padding - ($borderWidth * 2)
-    );
+  padding: ($padding * 0.5) $padding;
 
   &:hover {
     background-color: white;
