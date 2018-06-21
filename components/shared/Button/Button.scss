@@ -1,10 +1,14 @@
 @import "stylesheets/variables";
 
+$borderWidth: 0.15rem;
+$borderRadius: ($borderWidth * 2);
+$padding: 1rem;
+
 .buttonBase {
   font-weight: normal;
-  border-radius: 2px;
+  border-radius: $borderRadius;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  padding: ($padding * .5) $padding;
   transition: background-color 0.15s ease-out;
   white-space: nowrap;
   display: inline-block;
@@ -39,9 +43,14 @@
 .buttonGhost {
   color: $donateFormButtonColor;
   background-color: $colderBackgroundColor;
+  border: $borderWidth solid white;
+  padding: (($padding - ($borderWidth * 2)) * .5)
+    (
+      $padding - ($borderWidth * 2)
+    );
 
   &:hover {
-    background-color: $colderBackgroundColor;
+    background-color: white;
   }
 }
 

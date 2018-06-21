@@ -1,29 +1,35 @@
 @import "stylesheets/variables";
 
-.listItem {
-  padding: 15px 0;
-  border-bottom: 0.075rem solid rgba(0, 0, 0, 0.1);
-  display: flex;
-
-  &:first-of-type {
-    padding-top: 0;
-  }
-
-  &:last-of-type {
-    border-bottom: 0;
-  }
-}
-
 .listTools {
   align-items: baseline;
-  border-bottom: 0.075rem solid rgba(0, 0, 0, 0.1);
+  background-color: $colderBackgroundColor;
   display: flex;
   flex-direction: row;
   margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
-.listCreate {
+.listAddToList {
+  display: flex;
+}
+
+.listSelectLabel {
+  display: none;
+
+  @media (min-width: $mediumRem) {
+    margin-left: auto;
+    display: block;
+  }
+}
+
+.listSelect {
+  border: none;
+  margin-left: auto;
+  max-width: 15rem;
+
+  @media (min-width: $mediumRem) {
+    margin-left: 0.5rem;
+  }
 }
 
 .listName {
@@ -32,20 +38,58 @@
   margin-right: 0.5rem;
 }
 
-.checkbox {
+.listNameModal {
+}
+
+.listItem {
+  border-bottom: 0.075rem solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 0;
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  @media (min-width: $mediumRem) {
+    flex-wrap: nowrap;
+  }
+}
+
+.checkboxLabel {
+  align-items: center;
+  color: $dimmedTextColor;
   display: flex;
   flex-direction: column;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   justify-content: center;
-  margin: 0.5rem;
-  max-width: 10rem;
-  text-align: center;
+  padding: 0.5rem;
+  max-width: 5rem;
   transition: all 0.2s ease-out;
   white-space: nowrap;
 
   &.collapsed {
+    visibility: hidden;
     max-width: 0;
     overflow: hidden;
+  }
+
+  @media (max-width: $mediumRem) {
+    flex-basis: 100%;
+    flex-direction: row;
+    max-width: 100%;
+  }
+}
+
+.checkboxInput {
+  margin-bottom: 0.5rem;
+
+  @media (max-width: $mediumRem) {
+    margin: 0 0.5rem;
   }
 }
 
@@ -57,17 +101,13 @@
     font-weight: normal;
     color: $linkColor;
     font-size: 1.125rem;
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 }
 
 .itemInfo {
   width: 66%;
   padding-right: 1rem;
-
-  @media (min-width: $smallRem) {
-    padding-right: 0;
-  }
 }
 
 .defaultImageWrapper {
@@ -81,14 +121,14 @@
 }
 
 .imageWrapper {
-  width: 33%;
-  height: 10rem;
-  margin-right: 0.5rem;
   border: 0.075rem solid rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  height: 10rem;
+  margin: 0 0.5rem;
+  width: calc(34% - 1rem);
 
   @media (max-width: $smallRem) {
-    margin-left: 1rem;
+    margin: 0 1rem;
+    width: calc(34% - 2rem);
   }
 }
 
