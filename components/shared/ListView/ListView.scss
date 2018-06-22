@@ -42,12 +42,8 @@
 
 .listSelect {
   border: none;
-  margin-left: auto;
+  margin-left: 0.5rem;
   max-width: 15rem;
-
-  @media (min-width: $mediumRem) {
-    margin-left: 0.5rem;
-  }
 }
 
 .listNameLabel {
