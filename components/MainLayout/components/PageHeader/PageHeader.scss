@@ -52,6 +52,7 @@
   height: 100%;
   padding-left: 1rem;
   width: 65%;
+  -webkit-appearance: none;
 
   @media (min-width: $smallRem) {
     width: auto;
