@@ -20,6 +20,7 @@ const MainLayout = ({
   isSearchPage,
   headLinks,
   pageTitle,
+  pageDescription,
   seoType
 }) => {
   const isHome =
@@ -33,6 +34,7 @@ const MainLayout = ({
         additionalLinks={headLinks}
         pageTitle={pageTitle}
         seoType={seoType}
+        pageDescription={pageDescription}
       />
       <SkipToContent />
       <SmallScreenHeader
