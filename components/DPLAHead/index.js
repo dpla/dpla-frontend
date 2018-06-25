@@ -61,7 +61,7 @@ const DPLAHead = ({ additionalLinks, pageTitle, seoType }) =>
         content={pageTitle || "Digital Public Library of America"}
       />
       <meta name="og:type" content={seoType || "website"} />
-      <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Object.values,Object.entries,Array.prototype.includes,Intl.~locale.en" />
+      <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Object.values,Object.entries,Array.prototype.includes,Intl.~locale.en,Date.now" />
       <script src="/static/js/localforage.min.js" type="text/javascript" />
     </Head>
   </div>;

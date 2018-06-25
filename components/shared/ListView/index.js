@@ -38,6 +38,7 @@ class ListView extends React.Component {
     checkboxShown: false,
     hasList: false,
     modalActive: false,
+    listCreatedAt: 0,
     showMessage: ""
   };
 
@@ -52,9 +53,12 @@ class ListView extends React.Component {
       lists.push({
         uuid: key,
         name: value.name,
-        count: Object.keys(value.selectedHash).length
+        count: Object.keys(value.selectedHash).length,
+        createdAt: value.createdAt,
+        updatedAt: value.updatedAt
       });
     });
+    lists.sort((a, b) => a.createdAt > b.createdAt);
     this.setState({
       lists: lists,
       listsInitialized: true
@@ -87,11 +91,24 @@ class ListView extends React.Component {
   createList = async listName => {
     // add the new list to local storage
     const uuid = createUUID();
+    const createdAt = Date.now();
     let newLists = JSON.parse(JSON.stringify(this.state.lists));
-    newLists.push({ uuid: uuid, name: listName, count: 0 });
-    let savedList = { name: listName, selectedHash: {} };
+    newLists.push({
+      uuid: uuid,
+      name: listName,
+      count: 0,
+      createdAt: createdAt
+    });
+    newLists.sort((a, b) => a.createdAt > b.createdAt);
+    let savedList = {
+      name: listName,
+      selectedHash: {},
+      createdAt: createdAt,
+      updatedAt: createdAt
+    };
     this.setState({
       listName: listName,
+      listCreatedAt: createdAt,
       listUUID: uuid,
       selectedHash: {},
       lists: newLists,
@@ -104,13 +121,16 @@ class ListView extends React.Component {
 
   loadList = async uuid => {
     let listName = "",
-      selectedHash = {};
+      selectedHash = {},
+      listCreatedAt = 0;
     await localforage.getItem(uuid).then(value => {
       listName = value.name;
       selectedHash = value.selectedHash;
+      listCreatedAt = value.createdAt;
     });
     this.setState({
       listName: listName,
+      listCreatedAt: listCreatedAt,
       listUUID: uuid,
       selectedHash: selectedHash,
       checkboxShown: true,
@@ -124,6 +144,7 @@ class ListView extends React.Component {
       this.setState({
         listName: "",
         listUUID: "",
+        listCreatedAt: 0,
         selectedHash: {},
         checkboxShown: false,
         hasList: false
@@ -150,7 +171,7 @@ class ListView extends React.Component {
     if (hash[id]) return; // check if item already selected
     hash[id] = id;
     list.count++;
-    this.saveList(hash, list, "Item added");
+    this.updateList(hash, list, "Item added");
   };
 
   removeCell = id => {
@@ -158,13 +179,20 @@ class ListView extends React.Component {
     let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
     if (list && list.count > 0) list.count--;
     delete hash[id];
-    this.saveList(hash, list, "Item removed");
+    this.updateList(hash, list, "Item removed");
   };
 
-  saveList = async (hash, list, message) => {
-    let savedList = { name: this.state.listName, selectedHash: hash };
+  updateList = async (hash, list, message) => {
+    const updatedAt = Date.now();
+    let savedList = {
+      name: this.state.listName,
+      selectedHash: hash,
+      createdAt: this.state.listCreatedAt,
+      updatedAt: updatedAt
+    };
     await localforage.setItem(this.state.listUUID, savedList);
     let lists = JSON.parse(JSON.stringify(this.state.lists));
+    lists.sort((a, b) => a.createdAt > b.createdAt);
     lists.forEach(l => {
       if (l.uuid === list.uuid) {
         l.count = list.count;
