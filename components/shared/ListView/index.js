@@ -7,6 +7,7 @@ import ListImage from "./ListImage";
 import GaListViewWrapper from "./GaListViewWrapper";
 
 import { createUUID, joinIfArray, truncateString } from "lib";
+import { getLocalForageLists } from "lib/localForage";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
@@ -47,17 +48,7 @@ class ListView extends React.Component {
   }
 
   getLists = async () => {
-    let lists = [];
-    await localforage.iterate((value, key) => {
-      if (!value.name) return;
-      lists.push({
-        uuid: key,
-        name: value.name,
-        count: Object.keys(value.selectedHash).length,
-        createdAt: value.createdAt,
-        updatedAt: value.updatedAt
-      });
-    });
+    let lists = await getLocalForageLists();
     lists.sort((a, b) => a.createdAt > b.createdAt);
     this.setState({
       lists: lists,
