@@ -20,7 +20,7 @@ class Lists extends React.Component {
 
   getLists = async () => {
     let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt > b.createdAt);
+    lists.sort((a, b) => a.createdAt < b.createdAt);
     this.setState({
       lists: lists
     });
@@ -38,9 +38,7 @@ class Lists extends React.Component {
               <ul className="">
                 {lists.map((l, index) =>
                   <li key={index}>
-                    <h2>
-                      {l.name}
-                    </h2>
+                    {l.name}
                     <span className="date">
                       {moment(l.createdAt, "x").fromNow()}
                     </span>

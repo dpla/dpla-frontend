@@ -49,7 +49,7 @@ class ListView extends React.Component {
 
   getLists = async () => {
     let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt > b.createdAt);
+    lists.sort((a, b) => a.createdAt < b.createdAt);
     this.setState({
       lists: lists,
       listsInitialized: true
@@ -90,7 +90,7 @@ class ListView extends React.Component {
       count: 0,
       createdAt: createdAt
     });
-    newLists.sort((a, b) => a.createdAt > b.createdAt);
+    newLists.sort((a, b) => a.createdAt < b.createdAt);
     let savedList = {
       name: listName,
       selectedHash: {},
@@ -183,7 +183,7 @@ class ListView extends React.Component {
     };
     await localforage.setItem(this.state.listUUID, savedList);
     let lists = JSON.parse(JSON.stringify(this.state.lists));
-    lists.sort((a, b) => a.createdAt > b.createdAt);
+    lists.sort((a, b) => a.createdAt < b.createdAt);
     lists.forEach(l => {
       if (l.uuid === list.uuid) {
         l.count = list.count;
