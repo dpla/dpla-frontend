@@ -40,10 +40,11 @@ class Lists extends React.Component {
                 {lists.map((l, index) =>
                   <li key={index}>
                     <h2>
-                      <Link href={`/lists/${l.uuid}`}>{l.name}</Link>
+                      <Link href={`/lists/${l.uuid}`}><a>{l.name}</a></Link>
                     </h2>
+                    <span>{l.count} {l.count !== 1 ? "items " : "item "}</span>
                     <span className="date">
-                      {moment(l.createdAt, "x").fromNow()}
+                      Created {moment(l.createdAt, "x").fromNow()}
                     </span>
                   </li>
                 )}

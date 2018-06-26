@@ -35,6 +35,7 @@ const ItemDescription = ({ description }) => {
 
 class ListView extends React.Component {
   state = {
+    readOnly: false,
     listsInitialized: false,
     listName: "",
     listUUID: "",
@@ -49,6 +50,10 @@ class ListView extends React.Component {
 
   componentDidMount() {
     this.getLists();
+    if (this.props.defaultUUID) {
+      this.setState({ readOnly: true });
+      this.loadList(this.props.defaultUUID);
+    }
   }
 
   getLists = async () => {
@@ -211,6 +216,7 @@ class ListView extends React.Component {
     const nameCharLimit = 64;
     const { items, route } = this.props;
     const {
+      readOnly,
       listsInitialized,
       checkboxShown,
       modalActive,
@@ -271,12 +277,13 @@ class ListView extends React.Component {
       : false;
 
     return (
-      <section>
+      <div>
         {listsInitialized &&
+          !readOnly &&
           <div className={css.listTools}>
             <Button
               className={css.listCreate}
-              type="ghost"
+              type="primary"
               onClick={this.openNameForm}
             >
               {lists.length === 0
@@ -311,19 +318,19 @@ class ListView extends React.Component {
             >
               {newListModal}
             </div>
-            <div
-              role="alert"
-              // aria-live="assertive"
-              className={`${css.alert} ${showMessage === "" ? "" : css.open}`}
-            >
-              {showMessage}
-            </div>
           </div>}
+        <div
+          role="alert"
+          // aria-live="assertive"
+          className={`${css.alert} ${showMessage === "" ? "" : css.open}`}
+        >
+          {showMessage}
+        </div>
         <ul className={css.listView}>
-          {items.map(item => {
+          {items.map((item, index) => {
             const realId = item.itemDplaId || item.id;
             return (
-              <li key={realId} className={css.listItem}>
+              <li key={index} className={css.listItem}>
                 <ListImage
                   item={item}
                   title={item.title}
@@ -350,7 +357,6 @@ class ListView extends React.Component {
                           : item.title ? item.title : UNTITLED_TEXT}
                       </span>}
                   </h2>
-
                   {(item.date || item.creator) &&
                     <span className={css.itemAuthorAndDate}>
                       {route.pathname.indexOf("/search") === 0 &&
@@ -402,7 +408,7 @@ class ListView extends React.Component {
             );
           })}
         </ul>
-      </section>
+      </div>
     );
   }
 }

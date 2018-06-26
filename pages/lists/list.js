@@ -64,8 +64,8 @@ class List extends React.Component {
   };
 
   render() {
-    const { url } = this.props;
-    const { list, items } = this.state;
+    const { url, req } = this.props;
+    const { uuid, list, items } = this.state;
     return (
       <MainLayout route={url} pageTitle={TITLE}>
         <BreadcrumbsModule
@@ -86,9 +86,11 @@ class List extends React.Component {
               Created {moment(list.createdAt, "x").fromNow()}
             </p>
             {items &&
+              uuid &&
               <ListView
                 route={url}
                 items={addLinkInfoToResults(items, url.query)}
+                defaultUUID={uuid}
               />}
           </div>}
       </MainLayout>
