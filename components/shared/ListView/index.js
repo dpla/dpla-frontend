@@ -7,7 +7,11 @@ import ListImage from "./ListImage";
 import GaListViewWrapper from "./GaListViewWrapper";
 
 import { createUUID, joinIfArray, truncateString } from "lib";
-import { getLocalForageLists } from "lib/localForage";
+import {
+  getLocalForageLists,
+  setLocalForageItem,
+  getLocalForageItem
+} from "lib/localForage";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
@@ -107,18 +111,15 @@ class ListView extends React.Component {
       hasList: true,
       modalActive: false
     });
-    await localforage.setItem(uuid, savedList);
+    await setLocalForageItem(uuid, savedList);
   };
 
   loadList = async uuid => {
-    let listName = "",
-      selectedHash = {},
-      listCreatedAt = 0;
-    await localforage.getItem(uuid).then(value => {
-      listName = value.name;
-      selectedHash = value.selectedHash;
-      listCreatedAt = value.createdAt;
-    });
+    const value = await getLocalForageItem(uuid);
+    const listName = value.name;
+    const selectedHash = value.selectedHash;
+    const listCreatedAt = value.createdAt;
+
     this.setState({
       listName: listName,
       listCreatedAt: listCreatedAt,
@@ -181,7 +182,7 @@ class ListView extends React.Component {
       createdAt: this.state.listCreatedAt,
       updatedAt: updatedAt
     };
-    await localforage.setItem(this.state.listUUID, savedList);
+    await setLocalForageItem(this.state.listUUID, savedList);
     let lists = JSON.parse(JSON.stringify(this.state.lists));
     lists.sort((a, b) => a.createdAt < b.createdAt);
     lists.forEach(l => {

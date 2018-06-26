@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import moment from "moment";
 
 import MainLayout from "components/MainLayout";
@@ -20,7 +21,7 @@ class Lists extends React.Component {
 
   getLists = async () => {
     let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    lists.sort((a, b) => a.createdAt > b.createdAt);
     this.setState({
       lists: lists
     });
@@ -38,7 +39,9 @@ class Lists extends React.Component {
               <ul className="">
                 {lists.map((l, index) =>
                   <li key={index}>
-                    {l.name}
+                    <h2>
+                      <Link href={`/lists/${l.uuid}`}>{l.name}</Link>
+                    </h2>
                     <span className="date">
                       {moment(l.createdAt, "x").fromNow()}
                     </span>
