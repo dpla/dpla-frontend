@@ -279,6 +279,15 @@ class FeedbackForm extends React.Component {
               </p>}
 
             <div className={css.sendCancelButtons}>
+              <Button
+                className={css.cancelButton}
+                type="ghost"
+                id="deactivate-feedback"
+                onClick={this.closeForm}
+                name="close_button"
+              >
+                {step === 1 ? "Cancel" : "Close"}
+              </Button>
               {!isSending &&
                 step === 1 &&
                 <Button
@@ -296,16 +305,6 @@ class FeedbackForm extends React.Component {
                 >
                   Sending…
                 </Button>}
-
-              <Button
-                className={css.cancelButton}
-                type="ghost"
-                id="deactivate-feedback"
-                onClick={this.closeForm}
-                name="close_button"
-              >
-                {step === 1 ? "Cancel" : "Close"}
-              </Button>
             </div>
           </form>
         </AriaModal>
