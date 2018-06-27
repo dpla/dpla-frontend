@@ -1,6 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import Router from "next/router";
+import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
@@ -18,7 +19,8 @@ import {
   getBreadcrumbs,
   getItemWithId,
   getItemWithName,
-  getMenuItemUrl
+  getMenuItemUrl,
+  decodeHTMLEntities
 } from "lib";
 import { wordpressLinks } from "lib/externalLinks";
 
@@ -39,9 +41,21 @@ class AboutMenuPage extends React.Component {
   }
 
   render() {
-    const { url, content, items, breadcrumbs, pageTitle } = this.props;
+    const {
+      url,
+      content,
+      items,
+      breadcrumbs,
+      pageTitle,
+      pageDescription
+    } = this.props;
     return (
-      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout
+        route={url}
+        pageTitle={pageTitle}
+        seoType={SEO_TYPE}
+        pageDescription={pageDescription}
+      >
         {breadcrumbs.length > 0 &&
           <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
         {breadcrumbs.length === 0 &&
@@ -142,11 +156,19 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
 
   const pageRes = await fetch(url);
   const pageJson = await pageRes.json();
+  let pageDescription = "";
+  if (pageJson.excerpt && pageJson.excerpt.rendered) {
+    pageDescription = decodeHTMLEntities(
+      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…"))
+    );
+  }
+
   return {
     content: pageJson,
     items: json.items,
     breadcrumbs: breadcrumbs,
-    pageTitle: pageItem.title
+    pageTitle: pageItem.title,
+    pageDescription: pageDescription
   };
 };
 

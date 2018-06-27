@@ -1,13 +1,14 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
+import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
-import { formatDate } from "lib";
+import { formatDate, decodeHTMLEntities } from "lib";
 
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
@@ -38,7 +39,7 @@ class PostPage extends React.Component {
   }
 
   render() {
-    const { url, content, menuItems, author } = this.props;
+    const { url, content, menuItems, author, pageDescription } = this.props;
     let hasTags = false;
     NEWS_TAGS.forEach(tag => {
       if (content.tags.indexOf(tag.id) !== -1) {
@@ -51,6 +52,7 @@ class PostPage extends React.Component {
         route={url}
         pageTitle={content.title.rendered}
         seoType={SEO_TYPE}
+        pageDescription={pageDescription}
       >
         <BreadcrumbsModule
           breadcrumbs={[
@@ -158,8 +160,16 @@ PostPage.getInitialProps = async ({ req, query, res }) => {
   );
   const authorJson = await authorRes.json();
 
+  let pageDescription = "";
+  if (postJson[0].excerpt && postJson[0].excerpt.rendered) {
+    pageDescription = decodeHTMLEntities(
+      striptags(postJson[0].excerpt.rendered.replace("[&hellip;]", "…"))
+    );
+  }
+
   return {
     content: postJson[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
+    pageDescription: pageDescription,
     menuItems: menuJson.items,
     author: authorJson
   };

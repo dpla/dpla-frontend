@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
@@ -13,7 +14,8 @@ import {
   getBreadcrumbs,
   getItemWithId,
   getItemWithName,
-  getMenuItemUrl
+  getMenuItemUrl,
+  decodeHTMLEntities
 } from "lib";
 import { wordpressLinks } from "lib/externalLinks";
 
@@ -42,10 +44,16 @@ class ProMenuPage extends React.Component {
       items,
       breadcrumbs,
       pageTitle,
+      pageDescription,
       illustration
     } = this.props;
     return (
-      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout
+        route={url}
+        pageTitle={pageTitle}
+        seoType={SEO_TYPE}
+        pageDescription={pageDescription}
+      >
         {breadcrumbs.length > 0 &&
           <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
         {breadcrumbs.length === 0 &&
@@ -140,10 +148,18 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
     breadcrumbs.push({ title: pageItem.title });
   }
 
+  let pageDescription = "";
+  if (pageJson.excerpt && pageJson.excerpt.rendered) {
+    pageDescription = decodeHTMLEntities(
+      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…"))
+    );
+  }
+
   return {
     page: pageJson,
     items: menuItems,
     pageTitle: pageItem.title,
+    pageDescription: pageDescription,
     breadcrumbs: breadcrumbs,
     illustration: pageJson.acf.illustration
   };

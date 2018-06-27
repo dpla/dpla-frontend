@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import GaWrapper from "shared/GaWrapper";
 
 import { SITE_ENV } from "constants/env";
-import { getCurrentUrl, getCurrentFullUrl } from "lib";
 
 const MainLayout = ({
   children,
@@ -21,6 +20,7 @@ const MainLayout = ({
   isSearchPage,
   headLinks,
   pageTitle,
+  pageDescription,
   seoType
 }) => {
   const isHome =
@@ -34,6 +34,7 @@ const MainLayout = ({
         additionalLinks={headLinks}
         pageTitle={pageTitle}
         seoType={seoType}
+        pageDescription={pageDescription}
       />
       <SkipToContent />
       <SmallScreenHeader
