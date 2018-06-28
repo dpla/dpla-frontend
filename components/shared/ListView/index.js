@@ -63,9 +63,7 @@ class ListView extends React.Component {
   };
 
   onNameChange = value => {
-    this.setState({
-      listName: value
-    });
+    this.createList(value);
   };
 
   createList = async listName => {
