@@ -11,11 +11,12 @@ const NAME_CHAR_LIMIT = 64;
 class ListNameModal extends React.Component {
   state = {
     active: false,
-    value: ""
+    value: "",
+    onChange: null
   };
 
   componentDidMount() {
-    this.setState({ value: this.props.value });
+    this.setState({ value: this.props.value, onChange: this.props.onChange });
   }
 
   openForm = e => {
@@ -27,7 +28,7 @@ class ListNameModal extends React.Component {
 
   closeForm = e => {
     this.setState({
-      value: "",
+      value: this.props.value,
       active: false
     });
   };
@@ -40,16 +41,21 @@ class ListNameModal extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let tempName = this.state.listName.trim();
+    if (this.state.value === this.props.value) {
+      this.setState({ active: false });
+      return;
+    }
+    console.log("changed");
+    let tempName = this.state.value.trim();
     if (tempName === "") {
       tempName = DEFAULT_NAME;
     }
-    this.setState({ value: tempName });
+    this.setState({ value: tempName, active: false });
+    this.state.onChange(tempName);
   };
 
   render() {
-    const { value } = this.props;
-    const { active } = this.state;
+    const { active, value } = this.state;
     const modal = active
       ? <AriaModal
           titleText="Name your list"
@@ -75,6 +81,7 @@ class ListNameModal extends React.Component {
               name="list-name"
               placeholder="Untitled list"
               maxLength={NAME_CHAR_LIMIT}
+              defaultValue={value}
               onChange={this.onValueChange}
               aria-label="Name your list"
             />

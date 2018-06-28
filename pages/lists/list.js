@@ -8,7 +8,7 @@ import ListView from "shared/ListView";
 import ListNameModal from "shared/ListNameModal";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
-import { getLocalForageItem } from "lib/localForage";
+import { getLocalForageItem, setLocalForageItem } from "lib/localForage";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -70,6 +70,14 @@ class List extends React.Component {
     }
   };
 
+  onNameChange = value => {
+    let uuid = this.state.uuid;
+    let list = JSON.parse(JSON.stringify(this.state.list));
+    list.name = value;
+    this.setState({ list: list });
+    setLocalForageItem(uuid, list);
+  };
+
   render() {
     const { url, req } = this.props;
     const { uuid, list, items, initialized } = this.state;
@@ -94,7 +102,7 @@ class List extends React.Component {
             {list.name &&
               <h1>
                 {list.name}
-                <ListNameModal value={list.name} />
+                <ListNameModal value={list.name} onChange={this.onNameChange} />
               </h1>}
             {list.createdAt &&
               <p className="date">
