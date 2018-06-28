@@ -6,6 +6,7 @@ import Button from "shared/Button";
 import css from "./ListNameModal.scss";
 
 const DEFAULT_NAME = "Untitled list";
+const DEFAULT_TYPE = "create";
 const NAME_CHAR_LIMIT = 64;
 
 class ListNameModal extends React.Component {
@@ -16,7 +17,10 @@ class ListNameModal extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ value: this.props.value, onChange: this.props.onChange });
+    this.setState({
+      value: this.props.value,
+      onChange: this.props.onChange
+    });
   }
 
   openForm = e => {
@@ -55,6 +59,8 @@ class ListNameModal extends React.Component {
   };
 
   render() {
+    let { name, type } = this.props;
+    type = type ? type : DEFAULT_TYPE;
     const { active, value } = this.state;
     const modal = active
       ? <AriaModal
@@ -100,7 +106,7 @@ class ListNameModal extends React.Component {
                 mustSubmit={true}
                 className={css.createButton}
               >
-                Create
+                {type === DEFAULT_TYPE ? "Create" : "Rename"}
               </Button>
             </div>
           </form>
@@ -109,12 +115,12 @@ class ListNameModal extends React.Component {
     return (
       <div>
         <Button
-          type="ghost"
+          type={type === DEFAULT_TYPE ? "primary" : "ghost"}
           id="edit"
           onClick={this.openForm}
           name="edit_button"
         >
-          Edit
+          {name}
         </Button>
         <div role="dialog">
           {modal}

@@ -102,7 +102,12 @@ class List extends React.Component {
             {list.name &&
               <h1>
                 {list.name}
-                <ListNameModal value={list.name} onChange={this.onNameChange} />
+                <ListNameModal
+                  name="Edit"
+                  type="rename"
+                  value={list.name}
+                  onChange={this.onNameChange}
+                />
               </h1>}
             {list.createdAt &&
               <p className="date">

@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import AriaModal from "react-aria-modal";
 
-import Button from "shared/Button";
 import ListImage from "./ListImage";
+import ListNameModal from "shared/ListNameModal";
 import GaListViewWrapper from "./GaListViewWrapper";
 
 import { createUUID, joinIfArray, truncateString } from "lib";
@@ -16,9 +15,7 @@ import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
 
-const DEFAULT_NAME = "Untitled list";
 const MESSAGE_DELAY = 2000;
-const NAME_CHAR_LIMIT = 64;
 
 /**
  * @param description, item description object
@@ -44,7 +41,6 @@ class ListView extends React.Component {
     lists: [],
     checkboxShown: false,
     hasList: false,
-    modalActive: false,
     listCreatedAt: 0,
     showMessage: ""
   };
@@ -66,26 +62,9 @@ class ListView extends React.Component {
     });
   };
 
-  closeNameForm = e => {
+  onNameChange = value => {
     this.setState({
-      listName: "",
-      lists: this.state.lists,
-      checkboxShown: this.state.checkboxShown,
-      hasList: this.state.hasList,
-      modalActive: false
-    });
-  };
-
-  onNameChange = e => {
-    this.setState({
-      listName: e.target.value
-    });
-  };
-
-  openNameForm = e => {
-    e.preventDefault();
-    this.setState({
-      modalActive: true
+      listName: value
     });
   };
 
@@ -114,8 +93,7 @@ class ListView extends React.Component {
       selectedHash: {},
       lists: newLists,
       checkboxShown: true,
-      hasList: true,
-      modalActive: false
+      hasList: true
     });
     await setLocalForageItem(uuid, savedList);
   };
@@ -199,15 +177,6 @@ class ListView extends React.Component {
     this.setState({ selectedHash: hash, lists: lists, showMessage: message });
   };
 
-  handleNameSubmit = e => {
-    e.preventDefault();
-    let tempName = this.state.listName.trim();
-    if (tempName === "") {
-      tempName = DEFAULT_NAME;
-    }
-    this.createList(tempName);
-  };
-
   componentDidUpdate(prevProps, prevState) {
     if (this.state.showMessage !== prevState.showMessage)
       setTimeout(() => this.setState({ showMessage: "" }), MESSAGE_DELAY);
@@ -219,77 +188,27 @@ class ListView extends React.Component {
       readOnly,
       listsInitialized,
       checkboxShown,
-      modalActive,
       hasList,
       lists,
       listUUID,
       showMessage
     } = this.state;
 
-    const newListModal = modalActive
-      ? <AriaModal
-          titleText="Name your list"
-          onExit={this.closeNameForm}
-          initialFocus="#cancel-name"
-          getApplicationNode={this.getApplicationNode}
-        >
-          <form
-            action=""
-            className={css.nameForm}
-            onSubmit={this.handleNameSubmit}
-            key={this.state.timestamp}
-            aria-live="assertive"
-          >
-            <h2 className={css.listNameLabel}>
-              <label htmlFor="list-name">
-                Name your list
-              </label>
-            </h2>
-            <input
-              className={css.listName}
-              id="list-name"
-              name="list-name"
-              placeholder="Untitled list"
-              maxLength={NAME_CHAR_LIMIT}
-              onChange={this.onNameChange}
-              aria-label="Name your list"
-            />
-            <div className={css.listSaveCancelButtons}>
-              <Button
-                className={css.cancelButton}
-                type="ghost"
-                id="cancel-name"
-                onClick={this.closeNameForm}
-                name="close_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="primary"
-                mustSubmit={true}
-                className={css.createButton}
-              >
-                Create
-              </Button>
-            </div>
-          </form>
-        </AriaModal>
-      : false;
-
     return (
       <div>
         {listsInitialized &&
           !readOnly &&
           <div className={css.listTools}>
-            <Button
-              className={css.listCreate}
-              type="primary"
-              onClick={this.openNameForm}
-            >
-              {lists.length === 0
-                ? "Create a list from these items"
-                : "Create new list"}
-            </Button>
+            <ListNameModal
+              type="create"
+              value=""
+              onChange={this.onNameChange}
+              name={
+                lists.length === 0
+                  ? "Create a list from these items"
+                  : "Create new list"
+              }
+            />
             {lists.length > 0 &&
               <label htmlFor="list-select" className={css.listSelectLabel}>
                 {hasList ? "Adding" : "Add"} to:
@@ -306,15 +225,12 @@ class ListView extends React.Component {
                 {lists.map((list, index) => {
                   return (
                     <option key={index} value={list.uuid}>
-                      {list.name} ({list.count}{" "}
-                      {list.count !== 1 ? "items" : "item"})
+                      {list.name} ({list.count}
+                      {list.count !== 1 ? " items" : " item"})
                     </option>
                   );
                 })}
               </select>}
-            <div role="dialog">
-              {newListModal}
-            </div>
           </div>}
         <div
           role="alert"
