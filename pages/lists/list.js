@@ -94,8 +94,8 @@ class List extends React.Component {
             {list.name &&
               <h1>
                 {list.name}
+                <ListNameModal value={list.name} />
               </h1>}
-            <ListNameModal />
             {list.createdAt &&
               <p className="date">
                 Created {moment(list.createdAt, "x").fromNow()}

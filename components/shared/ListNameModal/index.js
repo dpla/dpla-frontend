@@ -5,6 +5,7 @@ import Button from "shared/Button";
 
 import css from "./ListNameModal.scss";
 
+const DEFAULT_NAME = "Untitled list";
 const NAME_CHAR_LIMIT = 64;
 
 class ListNameModal extends React.Component {
@@ -12,6 +13,10 @@ class ListNameModal extends React.Component {
     active: false,
     value: ""
   };
+
+  componentDidMount() {
+    this.setState({ value: this.props.value });
+  }
 
   openForm = e => {
     e.preventDefault();
@@ -33,7 +38,17 @@ class ListNameModal extends React.Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    let tempName = this.state.listName.trim();
+    if (tempName === "") {
+      tempName = DEFAULT_NAME;
+    }
+    this.setState({ value: tempName });
+  };
+
   render() {
+    const { value } = this.props;
     const { active } = this.state;
     const modal = active
       ? <AriaModal
@@ -45,7 +60,7 @@ class ListNameModal extends React.Component {
           <form
             action=""
             className={css.nameForm}
-            onSubmit={this.handleNameSubmit}
+            onSubmit={this.handleSubmit}
             key={this.state.timestamp}
             aria-live="assertive"
           >
