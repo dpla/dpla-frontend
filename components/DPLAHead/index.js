@@ -53,11 +53,12 @@ class DPLAHead extends React.Component {
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
+          <meta name="twitter:image" content={pageImage || defaultImageUrl} />
+          <meta name="og:image" content={pageImage || defaultImageUrl} />
           <meta
             name="og:title"
             content={pageTitle || "Digital Public Library of America"}
           />
-          <meta name="og:image" content={pageImage || defaultImageUrl} />
           <meta name="og:type" content={seoType || "website"} />
           <meta name="theme-color" content="#ffffff" />
           <link
