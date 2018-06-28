@@ -81,7 +81,7 @@ const MoreWaysToContact = () =>
                 </a>
               </li>
               <li>
-                <a href="http://eepurl.com/djXjZb">
+                <a href="https://dp.us4.list-manage.com/subscribe?u=e1490d1305c4b651f3ad0ace4&id=f8292db847">
                   Ebooks List
                 </a>
               </li>
