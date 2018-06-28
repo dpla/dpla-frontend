@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
@@ -14,6 +13,10 @@ import donateCss from "stylesheets/donate.scss";
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
+    res.setHeader(
+      "Cache-Control",
+      "max-age=0, private, no-cache, no-store, must-revalidate"
+    );
     return { statusCode };
   }
 

@@ -8,13 +8,14 @@ import Content from "components/ItemComponents/Content";
 import CiteButton from "components/shared/CiteButton";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+
 import {
   getCurrentUrl,
   getCurrentFullUrl,
-  removeQueryParams,
   joinIfArray,
   getDefaultThumbnail
 } from "lib";
+
 import {
   DEFAULT_PAGE_SIZE,
   possibleFacets,
