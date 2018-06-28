@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 
+import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
@@ -15,7 +16,7 @@ import utils from "stylesheets/utils.scss";
 const TITLE = "List";
 
 class List extends React.Component {
-  state = { uuid: "", list: null, items: [] };
+  state = { uuid: "", list: null, items: [], initialized: false };
 
   componentDidMount() {
     const { url } = this.props;
@@ -26,17 +27,12 @@ class List extends React.Component {
 
   getList = async uuid => {
     const list = await getLocalForageItem(uuid);
-    this.setState({
-      uuid: uuid,
-      list: list,
-      items: Object.keys(list.selectedHash)
-    });
-    this.getItems();
+    if (list) this.getItems(uuid, list);
   };
 
-  getItems = async () => {
+  getItems = async (uuid, list) => {
     const currentUrl = getCurrentUrl(this.props.url.query.req);
-    const ids = this.state.items.join(",");
+    const ids = Object.keys(list.selectedHash).join(",");
     const url = `${currentUrl}${API_ENDPOINT}/${ids}`;
     try {
       const res = await fetch(url);
@@ -54,7 +50,12 @@ class List extends React.Component {
           useDefaultImage: !result.object
         });
       });
-      this.setState({ items: items });
+      this.setState({
+        initialized: true,
+        list: list,
+        uuid: uuid,
+        items: items
+      });
     } catch (error) {
       if (res) {
         res.statusCode = 404;
@@ -65,9 +66,12 @@ class List extends React.Component {
 
   render() {
     const { url, req } = this.props;
-    const { uuid, list, items } = this.state;
+    const { uuid, list, items, initialized } = this.state;
+    if (initialized && !list) {
+      return <Error statusCode={404} />;
+    }
     return (
-      <MainLayout route={url} pageTitle={TITLE}>
+      <MainLayout route={url} pageTitle={list ? list.name : TITLE}>
         <BreadcrumbsModule
           breadcrumbs={[
             {
@@ -75,16 +79,17 @@ class List extends React.Component {
               url: "/lists",
               as: "/lists"
             },
-            { title: "A list." }
+            { title: list ? list.name : TITLE }
           ]}
           route={url}
         />
         {list &&
           <div id="main" role="main" className={`${utils.container}`}>
             {list.name && <h1>{list.name}</h1>}
-            <p className="date">
-              Created {moment(list.createdAt, "x").fromNow()}
-            </p>
+            {list.createdAt &&
+              <p className="date">
+                Created {moment(list.createdAt, "x").fromNow()}
+              </p>}
             {items &&
               uuid &&
               <ListView

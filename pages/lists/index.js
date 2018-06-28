@@ -43,9 +43,10 @@ class Lists extends React.Component {
                       <Link href={`/lists/${l.uuid}`}><a>{l.name}</a></Link>
                     </h2>
                     <span>{l.count} {l.count !== 1 ? "items " : "item "}</span>
-                    <span className="date">
-                      Created {moment(l.createdAt, "x").fromNow()}
-                    </span>
+                    {l.createdAt &&
+                      <span className="date">
+                        Created {moment(l.createdAt, "x").fromNow()}
+                      </span>}
                   </li>
                 )}
               </ul>
