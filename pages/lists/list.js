@@ -5,6 +5,7 @@ import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
+import ListNameModal from "shared/ListNameModal";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
 import { getLocalForageItem } from "lib/localForage";
@@ -16,7 +17,12 @@ import utils from "stylesheets/utils.scss";
 const TITLE = "List";
 
 class List extends React.Component {
-  state = { uuid: "", list: null, items: [], initialized: false };
+  state = {
+    uuid: "",
+    list: null,
+    items: [],
+    initialized: false
+  };
 
   componentDidMount() {
     const { url } = this.props;
@@ -85,7 +91,11 @@ class List extends React.Component {
         />
         {list &&
           <div id="main" role="main" className={`${utils.container}`}>
-            {list.name && <h1>{list.name}</h1>}
+            {list.name &&
+              <h1>
+                {list.name}
+              </h1>}
+            <ListNameModal />
             {list.createdAt &&
               <p className="date">
                 Created {moment(list.createdAt, "x").fromNow()}

@@ -18,6 +18,7 @@ import css from "./ListView.scss";
 
 const DEFAULT_NAME = "Untitled list";
 const MESSAGE_DELAY = 2000;
+const NAME_CHAR_LIMIT = 64;
 
 /**
  * @param description, item description object
@@ -213,7 +214,6 @@ class ListView extends React.Component {
   }
 
   render() {
-    const nameCharLimit = 64;
     const { items, route } = this.props;
     const {
       readOnly,
@@ -250,7 +250,7 @@ class ListView extends React.Component {
               id="list-name"
               name="list-name"
               placeholder="Untitled list"
-              maxLength={nameCharLimit}
+              maxLength={NAME_CHAR_LIMIT}
               onChange={this.onNameChange}
               aria-label="Name your list"
             />
@@ -312,10 +312,7 @@ class ListView extends React.Component {
                   );
                 })}
               </select>}
-            <div
-              role="dialog"
-              className={`${css.listNameModal} ${!modalActive ? "" : css.open}`}
-            >
+            <div role="dialog">
               {newListModal}
             </div>
           </div>}
