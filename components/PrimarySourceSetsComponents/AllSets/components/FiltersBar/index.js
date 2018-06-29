@@ -1,8 +1,6 @@
 import React from "react";
 import Router from "next/router";
 
-import Button from "shared/Button";
-
 import {
   sortOptions,
   mapTimePeriodNameToSlug,

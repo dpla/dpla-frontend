@@ -275,6 +275,7 @@ class ListView extends React.Component {
           {showMessage}
         </div>
         {exportable &&
+          items.length > 0 &&
           <div className={css.displayMode}>
             {displayMode === "HTML" &&
               <a onClick={this.toggleCSV}>Display as CSV</a>}

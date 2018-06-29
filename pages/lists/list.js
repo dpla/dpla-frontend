@@ -1,14 +1,21 @@
 import React from "react";
 import moment from "moment";
+import AriaModal from "react-aria-modal";
+import Router from "next/router";
 
 import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "shared/ListNameModal";
+import Button from "shared/Button";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
-import { getLocalForageItem, setLocalForageItem } from "lib/localForage";
+import {
+  getLocalForageItem,
+  setLocalForageItem,
+  removeLocalForageItem
+} from "lib/localForage";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -21,7 +28,8 @@ class List extends React.Component {
     uuid: "",
     list: null,
     items: [],
-    initialized: false
+    initialized: false,
+    deleteModalActive: false
   };
 
   componentDidMount() {
@@ -40,9 +48,19 @@ class List extends React.Component {
 
   getItems = async (uuid, list) => {
     const currentUrl = getCurrentUrl(this.props.url.query.req);
-    const ids = Object.keys(list.selectedHash).join(",");
-    const url = `${currentUrl}${API_ENDPOINT}/${ids}`;
+    const itemIds = Object.keys(list.selectedHash);
+    const ids = itemIds.join(",");
+    if (ids.length === 0) {
+      this.setState({
+        initialized: true,
+        list: list,
+        uuid: uuid,
+        items: []
+      });
+      return;
+    }
     try {
+      const url = `${currentUrl}${API_ENDPOINT}/${ids}`;
       const res = await fetch(url);
       const json = await res.json();
       const items = json.docs.map(result => {
@@ -80,12 +98,77 @@ class List extends React.Component {
     setLocalForageItem(uuid, list);
   };
 
+  onDeleteConfirm = e => {
+    e.preventDefault();
+    this.setState({
+      deleteModalActive: true
+    });
+  };
+
+  closeConfirm = e => {
+    this.setState({
+      deleteModalActive: false
+    });
+  };
+
+  handleConfirm = e => {
+    e.preventDefault();
+    this.removeList();
+  };
+
+  removeList = async () => {
+    const { uuid } = this.state;
+    await removeLocalForageItem(uuid);
+    Router.push({
+      pathname: "/lists",
+      query: ""
+    });
+  };
+
   render() {
     const { url, req } = this.props;
-    const { uuid, list, items, initialized } = this.state;
+    const { uuid, list, items, initialized, deleteModalActive } = this.state;
     if (initialized && !list) {
       return <Error statusCode={404} />;
     }
+    const modal = deleteModalActive
+      ? <AriaModal
+          titleText="Delete this list?"
+          onExit={this.closeConfirm}
+          initialFocus="#confirm-cancel_button"
+          getApplicationNode={this.getApplicationNode}
+        >
+          <form
+            action=""
+            className={utils.modalForm}
+            onSubmit={this.handleConfirm}
+            key={this.state.timestamp}
+            aria-live="assertive"
+          >
+            <h2 className={utils.modalTitle}>
+              Delete this list?
+            </h2>
+            <div className={utils.modalContinueCancelButtons}>
+              <Button
+                className={utils.modalCancelButton}
+                type="ghost"
+                id="confirm-cancel_button"
+                onClick={this.closeConfirm}
+                name="confirm-cancel_button"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="primary"
+                mustSubmit={true}
+                className={utils.modalCopntinueButton}
+              >
+                Delete
+              </Button>
+            </div>
+          </form>
+        </AriaModal>
+      : null;
     return (
       <MainLayout route={url} pageTitle={list ? list.name : TITLE}>
         <BreadcrumbsModule
@@ -123,6 +206,18 @@ class List extends React.Component {
                 items={addLinkInfoToResults(items, url.query)}
                 defaultUUID={uuid}
               />}
+            {list.name &&
+              <Button
+                type="primary"
+                id="list-delete_button"
+                onClick={this.onDeleteConfirm}
+                name="list-delete_button"
+              >
+                Delete List
+              </Button>}
+            <div role="dialog">
+              {modal}
+            </div>
           </div>}
       </MainLayout>
     );

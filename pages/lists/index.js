@@ -61,11 +61,11 @@ class Lists extends React.Component {
                   <Link prefetch href="/search">
                     <a>search results</a>
                   </Link>.
-                  <p>
-                    <strong>Note:</strong> You won't see lists created in
-                    another browser here. To view those lists, open the browser
-                    you used when creating them.
-                  </p>
+                </p>
+                <p>
+                  <strong>Note:</strong> You won't see lists created in
+                  another browser here. To view those lists, open the browser
+                  you used when creating them.
                 </p>
               </div>}
           </div>

@@ -61,7 +61,7 @@ class ListNameModal extends React.Component {
       ? <AriaModal
           titleText="Name your list"
           onExit={this.closeForm}
-          initialFocus="#cancel-name"
+          initialFocus="#list-cancel_button"
           getApplicationNode={this.getApplicationNode}
         >
           <form
@@ -82,7 +82,7 @@ class ListNameModal extends React.Component {
               name="list-name"
               placeholder="Untitled list"
               maxLength={NAME_CHAR_LIMIT}
-              defaultValue={value}
+              defaultValue={type === DEFAULT_TYPE ? "" : value}
               onChange={this.onValueChange}
               aria-label="Name your list"
             />
@@ -90,9 +90,9 @@ class ListNameModal extends React.Component {
               <Button
                 className={css.cancelButton}
                 type="ghost"
-                id="cancel-name"
+                id="list-cancel_button"
                 onClick={this.closeForm}
-                name="close_button"
+                name="list-cancel_button"
               >
                 Cancel
               </Button>
@@ -111,9 +111,9 @@ class ListNameModal extends React.Component {
       <div>
         <Button
           type={type === DEFAULT_TYPE ? "primary" : "ghost"}
-          id="edit"
+          id="list-edit"
           onClick={this.openForm}
-          name="edit_button"
+          name="list-edit_button"
         >
           {name}
         </Button>
