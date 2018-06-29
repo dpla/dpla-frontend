@@ -85,6 +85,15 @@ $borderColor: rgba(0, 0, 0, 0.75);
   margin: 0 0 0.5rem 0.5rem;
 }
 
+.modalTextInput {
+  border: 0.075rem solid $formLabelColor;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
 .modalContinueCancelButtons {
   display: flex;
   align-items: center;
