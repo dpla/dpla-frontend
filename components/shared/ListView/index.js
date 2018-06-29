@@ -17,13 +17,14 @@ import css from "./ListView.scss";
 
 const MESSAGE_DELAY = 2000;
 
+const joinTruncate = str => truncateString(joinIfArray(str));
+
 /**
  * @param description, item description object
  * @return HTML with truncated item description
  */
 const ItemDescription = ({ description }) => {
-  let str = joinIfArray(description);
-  str = truncateString(str);
+  let str = joinTruncate(description);
   return (
     <div className={css.itemDescription}>
       <p>{str}</p>
@@ -42,11 +43,18 @@ class ListView extends React.Component {
     checkboxShown: false,
     hasList: false,
     listCreatedAt: 0,
-    showMessage: ""
+    showMessage: "",
+    displayMode: "HTML"
   };
 
   componentDidMount() {
     this.getLists();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.displayMode !== this.props.displayMode) {
+      this.setState({ displayMode: this.props.displayMode });
+    }
   }
 
   getLists = async () => {
@@ -185,8 +193,31 @@ class ListView extends React.Component {
       setTimeout(() => this.setState({ showMessage: "" }), MESSAGE_DELAY);
   }
 
+  toggleCSV = () => {
+    this.setState({ displayMode: "CSV" });
+  };
+
+  toggleHTML = () => {
+    this.setState({ displayMode: "HTML" });
+  };
+
+  selectCSV = e => {
+    const element = e.target;
+    if (document.selection) {
+      // IE
+      let range = document.body.createTextRange();
+      range.moveToElementText(element);
+      range.select();
+    } else if (window.getSelection) {
+      let range = document.createRange();
+      range.selectNode(element);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  };
+
   render() {
-    const { items, route } = this.props;
+    const { items, route, exportable } = this.props;
     const {
       readOnly,
       listsInitialized,
@@ -194,7 +225,8 @@ class ListView extends React.Component {
       hasList,
       lists,
       listUUID,
-      showMessage
+      showMessage,
+      displayMode
     } = this.state;
 
     return (
@@ -242,88 +274,134 @@ class ListView extends React.Component {
         >
           {showMessage}
         </div>
-        <ul className={css.listView}>
-          {items.map((item, index) => {
-            const realId = item.itemDplaId || item.id;
-            return (
-              <li key={index} className={css.listItem}>
-                <ListImage
-                  item={item}
-                  title={item.title}
-                  type={item.type}
-                  url={item.thumbnailUrl}
-                  useDefaultImage={item.useDefaultImage}
-                />
-                <div className={css.itemInfo}>
-                  <h2 className={`hover-underline ${css.itemTitle}`}>
-                    {/* see issue #869 for details on this hack */}
-                    {realId !== "http://dp.la/api/items/#sourceResource" &&
-                      <Link href={item.linkHref} as={item.linkAs}>
-                        <a className={`internalItemLink`}>
+        {exportable &&
+          <div className={css.displayMode}>
+            {displayMode === "HTML" &&
+              <a onClick={this.toggleCSV}>Display as CSV</a>}
+            {displayMode === "CSV" &&
+              <a onClick={this.toggleHTML}>Display as HTML</a>}
+            {displayMode === "CSV" &&
+              <span>
+                Click on the text to select it then Copy/Paste to your favorite
+                CSV text editor.
+              </span>}
+          </div>}
+        {displayMode === "HTML" &&
+          <ul className={css.listView}>
+            {items.map((item, index) => {
+              const realId = item.itemDplaId || item.id;
+              return (
+                <li key={index} className={css.listItem}>
+                  <ListImage
+                    item={item}
+                    title={item.title}
+                    type={item.type}
+                    url={item.thumbnailUrl}
+                    useDefaultImage={item.useDefaultImage}
+                  />
+                  <div className={css.itemInfo}>
+                    <h2 className={`hover-underline ${css.itemTitle}`}>
+                      {/* see issue #869 for details on this hack */}
+                      {realId !== "http://dp.la/api/items/#sourceResource" &&
+                        <Link href={item.linkHref} as={item.linkAs}>
+                          <a className={`internalItemLink`}>
+                            {route.pathname.indexOf("/search") === 0 &&
+                              item.title
+                              ? truncateString(item.title, 150)
+                              : item.title ? item.title : UNTITLED_TEXT}
+                          </a>
+                        </Link>}
+                      {/* see issue #869 for details on this hack */}
+                      {realId === "http://dp.la/api/items/#sourceResource" &&
+                        <span>
                           {route.pathname.indexOf("/search") === 0 && item.title
                             ? truncateString(item.title, 150)
                             : item.title ? item.title : UNTITLED_TEXT}
-                        </a>
-                      </Link>}
-                    {/* see issue #869 for details on this hack */}
-                    {realId === "http://dp.la/api/items/#sourceResource" &&
-                      <span>
-                        {route.pathname.indexOf("/search") === 0 && item.title
-                          ? truncateString(item.title, 150)
-                          : item.title ? item.title : UNTITLED_TEXT}
+                        </span>}
+                    </h2>
+                    {(item.date || item.creator) &&
+                      <span className={css.itemAuthorAndDate}>
+                        {route.pathname.indexOf("/search") === 0 &&
+                          item.date &&
+                          <span>{item.date.displayDate}</span>}
+                        {route.pathname.indexOf("/search") === 0 &&
+                          item.date &&
+                          item.date.displayDate &&
+                          item.creator &&
+                          <span> · </span>}
+                        <span>{joinIfArray(item.creator, ", ")}</span>
                       </span>}
-                  </h2>
-                  {(item.date || item.creator) &&
-                    <span className={css.itemAuthorAndDate}>
-                      {route.pathname.indexOf("/search") === 0 &&
-                        item.date &&
-                        <span>{item.date.displayDate}</span>}
-                      {route.pathname.indexOf("/search") === 0 &&
-                        item.date &&
-                        item.date.displayDate &&
-                        item.creator &&
-                        <span> · </span>}
-                      <span>{joinIfArray(item.creator, ", ")}</span>
-                    </span>}
-                  <ItemDescription description={item.description} />
-                  <a
-                    href={item.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`hover-underline clickThrough external ${css.itemSource}`}
+                    <ItemDescription description={item.description} />
+                    <a
+                      href={item.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`hover-underline clickThrough external ${css.itemSource}`}
+                    >
+                      {item.type === "image"
+                        ? "View Full Image"
+                        : item.type === "text"
+                          ? "View Full Text"
+                          : "View Full Item"}
+                    </a>
+                    {item.dataProvider &&
+                      <span className={`${css.itemProvider}`}>
+                        &nbsp; in {item.dataProvider}
+                      </span>}
+                  </div>
+                  <label
+                    className={`${css.checkboxLabel} ${checkboxShown
+                      ? ""
+                      : css.collapsed}`}
+                    htmlFor={`checkbox-${realId}`}
                   >
-                    {item.type === "image"
-                      ? "View Full Image"
-                      : item.type === "text"
-                        ? "View Full Text"
-                        : "View Full Item"}
-                  </a>
-                  {item.dataProvider &&
-                    <span className={`${css.itemProvider}`}>
-                      &nbsp; in {item.dataProvider}
-                    </span>}
-                </div>
-                <label
-                  className={`${css.checkboxLabel} ${checkboxShown
-                    ? ""
-                    : css.collapsed}`}
-                  htmlFor={`checkbox-${realId}`}
-                >
-                  <input
-                    className={css.checkboxInput}
-                    type="checkbox"
-                    data-id={realId}
-                    onChange={this.onCheckItem}
-                    checked={this.state.selectedHash[realId] !== undefined}
-                    key={`checkbox-${realId}`}
-                    id={`checkbox-${realId}`}
-                  />
-                  Add to list
-                </label>
-              </li>
-            );
-          })}
-        </ul>
+                    <input
+                      className={css.checkboxInput}
+                      type="checkbox"
+                      data-id={realId}
+                      onChange={this.onCheckItem}
+                      checked={this.state.selectedHash[realId] !== undefined}
+                      key={`checkbox-${realId}`}
+                      id={`checkbox-${realId}`}
+                    />
+                    Add to list
+                  </label>
+                </li>
+              );
+            })}
+          </ul>}
+        {displayMode === "CSV" &&
+          <pre onClick={this.selectCSV} className={css.preformatted}>
+            {`ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\n`}
+            {items.map((item, index) => {
+              const realId = item.itemDplaId || item.id;
+              const thumbnailUrl = item.thumbnailUrl.indexOf(
+                "placeholderImages"
+              ) === -1
+                ? item.thumbnailUrl
+                : "";
+              const title = item.title
+                ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
+                : item.title
+                  ? `"${item.title.replace(/"/g, "”")}"`
+                  : UNTITLED_TEXT;
+              const date = item.date && item.date.displayDate
+                ? `"${item.date.displayDate.replace(/"/g, "”")}"`
+                : "";
+              const creator = item.creator
+                ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
+                : "";
+              const description = item.description
+                ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
+                : "";
+              const provider = item.dataProvider
+                ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
+                : "";
+              const url = item.sourceUrl;
+              return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}\n`;
+            })}
+
+          </pre>}
       </div>
     );
   }
