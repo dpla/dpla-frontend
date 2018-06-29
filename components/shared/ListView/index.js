@@ -47,18 +47,23 @@ class ListView extends React.Component {
 
   componentDidMount() {
     this.getLists();
-    if (this.props.defaultUUID) {
-      this.setState({ readOnly: true });
-      this.loadList(this.props.defaultUUID);
-    }
   }
 
   getLists = async () => {
-    let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    let readOnly = false;
     this.setState({
-      lists: lists,
       listsInitialized: true
+    });
+    let lists = await getLocalForageLists();
+    // TODO: sometimes this doesnt arrive here because promises
+    lists.sort((a, b) => a.createdAt < b.createdAt);
+    if (this.props.defaultUUID) {
+      readOnly = true;
+      this.loadList(this.props.defaultUUID);
+    }
+    this.setState({
+      readOnly: readOnly,
+      lists: lists
     });
   };
 

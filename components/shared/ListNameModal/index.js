@@ -45,10 +45,6 @@ class ListNameModal extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.value === this.props.value) {
-      this.setState({ active: false });
-      return;
-    }
     let tempName = this.state.value.trim();
     if (tempName === "") {
       tempName = DEFAULT_NAME;

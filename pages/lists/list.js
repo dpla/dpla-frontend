@@ -27,7 +27,9 @@ class List extends React.Component {
   componentDidMount() {
     const { url } = this.props;
     const uuid = url.query.list;
-    this.setState({ uuid: uuid });
+    this.setState({
+      uuid: uuid
+    });
     this.getList(uuid);
   }
 

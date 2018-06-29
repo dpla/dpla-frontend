@@ -35,7 +35,7 @@ class Lists extends React.Component {
         <div id="main" role="main">
           <FeatureHeader title={TITLE} description={DESCRIPTION} />
           <div className={`${utils.container}`}>
-            <div className="">
+            {lists.length > 0 &&
               <ul className="">
                 {lists.map((l, index) =>
                   <li key={index}>
@@ -49,8 +49,25 @@ class Lists extends React.Component {
                       </span>}
                   </li>
                 )}
-              </ul>
-            </div>
+              </ul>}
+            {lists.length === 0 &&
+              <div>
+                <h2>You have no lists</h2>
+                <p>
+                  Create some lists from our{" "}
+                  <Link prefetch href="/browse-by-topic">
+                    <a>topics</a>
+                  </Link>{" "}or{" "}
+                  <Link prefetch href="/search">
+                    <a>search results</a>
+                  </Link>.
+                  <p>
+                    <strong>Note:</strong> You won't see lists created in
+                    another browser here. To view those lists, open the browser
+                    you used when creating them.
+                  </p>
+                </p>
+              </div>}
           </div>
         </div>
       </MainLayout>
