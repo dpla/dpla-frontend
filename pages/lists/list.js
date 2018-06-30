@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import AriaModal from "react-aria-modal";
 import Router from "next/router";
 
 import Error from "pages/_error";
@@ -8,6 +7,7 @@ import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "shared/ListNameModal";
+import ConfirmModal from "shared/ConfirmModal";
 import Button from "shared/Button";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
@@ -28,8 +28,7 @@ class List extends React.Component {
     uuid: "",
     list: null,
     items: [],
-    initialized: false,
-    deleteModalActive: false
+    initialized: false
   };
 
   componentDidMount() {
@@ -98,19 +97,6 @@ class List extends React.Component {
     setLocalForageItem(uuid, list);
   };
 
-  onDeleteConfirm = e => {
-    e.preventDefault();
-    this.setState({
-      deleteModalActive: true
-    });
-  };
-
-  closeConfirm = e => {
-    this.setState({
-      deleteModalActive: false
-    });
-  };
-
   handleConfirm = e => {
     e.preventDefault();
     this.removeList();
@@ -127,48 +113,10 @@ class List extends React.Component {
 
   render() {
     const { url, req } = this.props;
-    const { uuid, list, items, initialized, deleteModalActive } = this.state;
+    const { uuid, list, items, initialized } = this.state;
     if (initialized && !list) {
       return <Error statusCode={404} />;
     }
-    const modal = deleteModalActive
-      ? <AriaModal
-          titleText="Delete this list?"
-          onExit={this.closeConfirm}
-          initialFocus="#confirm-cancel_button"
-          getApplicationNode={this.getApplicationNode}
-        >
-          <form
-            action=""
-            className={utils.modalForm}
-            onSubmit={this.handleConfirm}
-            key={this.state.timestamp}
-            aria-live="assertive"
-          >
-            <h2 className={utils.modalTitle}>
-              Delete this list?
-            </h2>
-            <div className={utils.modalContinueCancelButtons}>
-              <Button
-                className={utils.modalCancelButton}
-                type="ghost"
-                id="confirm-cancel_button"
-                onClick={this.closeConfirm}
-                name="confirm-cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="primary"
-                mustSubmit={true}
-                className={utils.modalCopntinueButton}
-              >
-                Delete
-              </Button>
-            </div>
-          </form>
-        </AriaModal>
-      : null;
     return (
       <MainLayout route={url} pageTitle={list ? list.name : TITLE}>
         <BreadcrumbsModule
@@ -207,17 +155,12 @@ class List extends React.Component {
                 defaultUUID={uuid}
               />}
             {list.name &&
-              <Button
-                type="primary"
-                id="list-delete_button"
-                onClick={this.onDeleteConfirm}
-                name="list-delete_button"
-              >
-                Delete List
-              </Button>}
-            <div role="dialog">
-              {modal}
-            </div>
+              <ConfirmModal
+                buttonText="Delete list"
+                confirmText="Delete list?"
+                confirmButtonText="Delete"
+                onConfirm={this.handleConfirm}
+              />}
           </div>}
       </MainLayout>
     );
