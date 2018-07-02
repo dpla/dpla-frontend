@@ -20,7 +20,7 @@ class ListsPage extends React.Component {
 
   getLists = async () => {
     let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt > b.createdAt);
+    lists.sort((a, b) => a.createdAt < b.createdAt);
     this.setState({
       lists: lists
     });

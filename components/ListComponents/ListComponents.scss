@@ -11,7 +11,8 @@
   align-items: baseline;
   border-bottom: 0.075rem solid $grayBorderColor;
   display: grid;
-  grid-template: "name count" auto "date date" auto / 3fr 1fr;
+  grid-template: "name count" auto "date date" 1.5rem / 3fr 1fr;
+  height: 100%;
   padding-bottom: 0.5rem;
 
   &:hover {
@@ -29,6 +30,7 @@
 .listCount {
   color: $dimmedTextColor;
   grid-area: count;
+  margin-left: auto;
 }
 
 .listDate {
