@@ -21,10 +21,13 @@
 }
 
 .listName {
+  font-family: $serifFont;
+  font-weight: normal;
   grid-area: name;
 }
 
 .listCount {
+  color: $dimmedTextColor;
   grid-area: count;
 }
 

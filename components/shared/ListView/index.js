@@ -16,6 +16,7 @@ import { UNTITLED_TEXT } from "constants/site";
 import css from "./ListView.scss";
 
 const MESSAGE_DELAY = 2000;
+const MAX_ITEMS = 50;
 
 const joinTruncate = str => truncateString(joinIfArray(str));
 
@@ -226,8 +227,10 @@ class ListView extends React.Component {
       lists,
       listUUID,
       showMessage,
-      displayMode
+      displayMode,
+      selectedHash
     } = this.state;
+    const listCount = Object.keys(selectedHash).length;
 
     return (
       <div>
@@ -291,6 +294,9 @@ class ListView extends React.Component {
           <ul className={css.listView}>
             {items.map((item, index) => {
               const realId = item.itemDplaId || item.id;
+              const checked = selectedHash[realId] !== undefined;
+              const shouldDisable = !checked && listCount >= MAX_ITEMS;
+              const disabledMessage = `Maximum ${MAX_ITEMS} items per list.`;
               return (
                 <li key={index} className={css.listItem}>
                   <ListImage
@@ -353,15 +359,21 @@ class ListView extends React.Component {
                   <label
                     className={`${css.checkboxLabel} ${checkboxShown
                       ? ""
-                      : css.collapsed}`}
+                      : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
                     htmlFor={`checkbox-${realId}`}
+                    title={shouldDisable ? disabledMessage : ""}
                   >
                     <input
-                      className={css.checkboxInput}
+                      className={`${css.checkboxInput} ${!checked &&
+                        listCount >= MAX_ITEMS
+                        ? css.disabled
+                        : ""}`}
                       type="checkbox"
+                      title={shouldDisable ? disabledMessage : ""}
                       data-id={realId}
                       onChange={this.onCheckItem}
-                      checked={this.state.selectedHash[realId] !== undefined}
+                      checked={selectedHash[realId] !== undefined}
+                      disabled={shouldDisable ? true : false}
                       key={`checkbox-${realId}`}
                       id={`checkbox-${realId}`}
                     />

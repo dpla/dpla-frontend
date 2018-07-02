@@ -87,6 +87,10 @@
   transition: all 0.2s ease-out;
   white-space: nowrap;
 
+  &.disabled {
+    cursor: not-allowed;
+  }
+
   &.collapsed {
     visibility: hidden;
     max-width: 0;
@@ -102,6 +106,10 @@
 
 .checkboxInput {
   margin-bottom: 0.5rem;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
 
   @media (max-width: $mediumRem) {
     margin: 0 0.5rem;

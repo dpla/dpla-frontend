@@ -62,19 +62,21 @@ class List extends React.Component {
       const url = `${currentUrl}${API_ENDPOINT}/${ids}`;
       const res = await fetch(url);
       const json = await res.json();
-      const items = json.docs.map(result => {
-        const thumbnailUrl = result.object
-          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-          : getDefaultThumbnail(result.sourceResource.type);
-        return Object.assign({}, result.sourceResource, {
-          thumbnailUrl,
-          id: result.id ? result.id : result.sourceResource["@id"],
-          sourceUrl: result.isShownAt,
-          provider: result.provider && result.provider.name,
-          dataProvider: result.dataProvider,
-          useDefaultImage: !result.object
+      const items = json.docs
+        .filter(result => result.error === undefined)
+        .map(result => {
+          const thumbnailUrl = result.object
+            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+            : getDefaultThumbnail(result.sourceResource.type);
+          return Object.assign({}, result.sourceResource, {
+            thumbnailUrl,
+            id: result.id ? result.id : result.sourceResource["@id"],
+            sourceUrl: result.isShownAt,
+            provider: result.provider && result.provider.name,
+            dataProvider: result.dataProvider,
+            useDefaultImage: !result.object
+          });
         });
-      });
       this.setState({
         initialized: true,
         list: list,
@@ -82,10 +84,7 @@ class List extends React.Component {
         items: items
       });
     } catch (error) {
-      if (res) {
-        res.statusCode = 404;
-      }
-      return { error: { statusCode: 404 } };
+      this.setState({ initialized: true, list: list, uuid: uuid, items: [] });
     }
   };
 
