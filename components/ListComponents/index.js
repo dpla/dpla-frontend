@@ -4,6 +4,7 @@ import moment from "moment";
 
 import { addCommasToNumber } from "lib";
 
+import utils from "stylesheets/utils.scss";
 import css from "./ListComponents.scss";
 
 export const List = ({ uuid, name, itemCount, createdAt }) =>
@@ -21,7 +22,7 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
   </Link>;
 
 export const Lists = ({ lists }) =>
-  <ul className={css.lists}>
+  <ul className={`${css.lists} col-xs-12`}>
     {lists.map((l, index) =>
       <li key={`l_${index}`}>
         <List
@@ -51,4 +52,18 @@ export const ListsEmpty = () =>
       another browser here. To view those lists, open the browser
       you used when creating them.
     </p>
+  </div>;
+
+export const ListLoading = () =>
+  <div className={`${css.loading} col-xs-12`}>
+    <h2>Loading</h2><p>Please wait…</p>
+  </div>;
+
+export const ListsContent = ({ initialized, lists }) =>
+  <div className={`${utils.container}`}>
+    <div className={`row`}>
+      {!initialized && <ListLoading />}
+      {lists.length > 0 && <Lists lists={lists} />}
+      {initialized && lists.length === 0 && <ListsEmpty />}
+    </div>
   </div>;

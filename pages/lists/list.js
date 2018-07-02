@@ -8,7 +8,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "shared/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
-import Button from "shared/Button";
+import { ListLoading } from "components/ListComponents";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
 import {
@@ -41,8 +41,11 @@ class List extends React.Component {
   }
 
   getList = async uuid => {
+    // TODO: because localforage dies silently if 404, need to have a recovery
     const list = await getLocalForageItem(uuid);
-    if (list) this.getItems(uuid, list);
+    if (list) {
+      this.getItems(uuid, list);
+    }
   };
 
   getItems = async (uuid, list) => {
@@ -113,7 +116,7 @@ class List extends React.Component {
   render() {
     const { url, req } = this.props;
     const { uuid, list, items, initialized } = this.state;
-    if (initialized && !list) {
+    if (initialized && (!list || list.length === 0)) {
       return <Error statusCode={404} />;
     }
     return (
@@ -129,38 +132,42 @@ class List extends React.Component {
           ]}
           route={url}
         />
-        {list &&
-          <div id="main" role="main" className={`${utils.container}`}>
-            {list.name &&
-              <h1>
-                {list.name}
-                <ListNameModal
-                  name="Rename"
-                  type="rename"
-                  value={list.name}
-                  onChange={this.onNameChange}
-                />
-              </h1>}
-            {list.createdAt &&
-              <p className="date">
-                Created {moment(list.createdAt, "x").fromNow()}
-              </p>}
-            {items &&
-              uuid &&
-              <ListView
-                exportable={true}
-                route={url}
-                items={addLinkInfoToResults(items, url.query)}
-                defaultUUID={uuid}
-              />}
-            {list.name &&
-              <ConfirmModal
-                buttonText="Delete list"
-                confirmText="Delete list?"
-                confirmButtonText="Delete"
-                onConfirm={this.handleConfirm}
-              />}
-          </div>}
+        <div id="main" role="main" className={`${utils.container}`}>
+          {!initialized && <ListLoading />}
+          {list &&
+            <div>
+              {list.name &&
+                <h1>
+                  {list.name}
+                  <ListNameModal
+                    name="Rename"
+                    type="rename"
+                    value={list.name}
+                    onChange={this.onNameChange}
+                  />
+                </h1>}
+              {list.createdAt &&
+                <p className="date">
+                  Created {moment(list.createdAt, "x").fromNow()}
+                </p>}
+              {items &&
+                uuid &&
+                <ListView
+                  exportable={true}
+                  route={url}
+                  items={addLinkInfoToResults(items, url.query)}
+                  defaultUUID={uuid}
+                />}
+              {list.name &&
+                <ConfirmModal
+                  buttonText="Delete list"
+                  confirmText="Delete list?"
+                  confirmButtonText="Delete"
+                  onConfirm={this.handleConfirm}
+                />}
+
+            </div>}
+        </div>
       </MainLayout>
     );
   }

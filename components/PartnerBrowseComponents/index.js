@@ -28,13 +28,11 @@ const mapPartnersToComponents = partners =>
   );
 
 const PartnerBrowseContent = ({ route, partners }) =>
-  <div className={css.wrapper}>
-    <div className={`${utils.container} ${css.partnerBrowse}`}>
-      <div className={`row`}>
-        <ul className={`${css.partners} col-xs-12`}>
-          {mapPartnersToComponents(partners)}
-        </ul>
-      </div>
+  <div className={`${utils.container} ${css.partnerBrowse}`}>
+    <div className={`row`}>
+      <ul className={`${css.partners} col-xs-12`}>
+        {mapPartnersToComponents(partners)}
+      </ul>
     </div>
   </div>;
 
