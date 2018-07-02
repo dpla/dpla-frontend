@@ -46,6 +46,7 @@ class ConfirmModal extends React.Component {
 
   render() {
     const { active, confirmButtonText, buttonText, confirmText } = this.state;
+    const { className } = this.props;
     const modal = active
       ? <AriaModal
           titleText={confirmText}
@@ -85,7 +86,7 @@ class ConfirmModal extends React.Component {
         </AriaModal>
       : null;
     return (
-      <div>
+      <div className={className}>
         <Button
           type="primary"
           id="confirm-open_button"

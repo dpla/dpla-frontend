@@ -1,14 +1,47 @@
 @import "stylesheets/variables";
 
+.wrapper {
+  margin: 1rem 0 2rem;
+}
+
 .loading {
   margin: 5rem 0;
+}
+
+.empty p {
+  margin-bottom: 1rem;
+}
+
+.contentTitle {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.listDetailWrapper {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.listDetailName {
+  display: flex;
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.listRenameButton {
+  margin-left: 1rem;
+}
+
+.listDeleteConfirm {
+  display: flex;
 }
 
 .lists {
   display: grid;
   grid-gap: 1rem 6rem;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  padding: 1rem 0.5rem 2rem;
 }
 
 .listItem {

@@ -20,6 +20,7 @@ import {
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
 import utils from "stylesheets/utils.scss";
+import css from "components/ListComponents/ListComponents.scss";
 
 const TITLE = "List";
 
@@ -132,22 +133,27 @@ class List extends React.Component {
           ]}
           route={url}
         />
-        <div id="main" role="main" className={`${utils.container}`}>
+        <div
+          id="main"
+          role="main"
+          className={`${utils.container} ${css.listDetailWrapper}`}
+        >
           {!initialized && <ListLoading />}
           {list &&
             <div>
               {list.name &&
-                <h1>
+                <h1 className={css.listDetailName}>
                   {list.name}
                   <ListNameModal
                     name="Rename"
                     type="rename"
+                    className={css.listRenameButton}
                     value={list.name}
                     onChange={this.onNameChange}
                   />
                 </h1>}
               {list.createdAt &&
-                <p className="date">
+                <p className={css.listDate}>
                   Created {moment(list.createdAt, "x").fromNow()}
                 </p>}
               {items &&
@@ -160,6 +166,7 @@ class List extends React.Component {
                 />}
               {list.name &&
                 <ConfirmModal
+                  className={css.listDeleteConfirm}
                   buttonText="Delete list"
                   confirmText="Delete list?"
                   confirmButtonText="Delete"

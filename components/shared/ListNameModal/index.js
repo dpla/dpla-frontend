@@ -54,7 +54,7 @@ class ListNameModal extends React.Component {
   };
 
   render() {
-    let { name, type } = this.props;
+    let { name, type, className } = this.props;
     type = type ? type : DEFAULT_TYPE;
     const { active, value } = this.state;
     const modal = active
@@ -108,7 +108,7 @@ class ListNameModal extends React.Component {
         </AriaModal>
       : null;
     return (
-      <div>
+      <div className={className}>
         <Button
           type={type === DEFAULT_TYPE ? "primary" : "ghost"}
           id="list-edit"

@@ -9,8 +9,20 @@
   padding: 0.5rem;
 }
 
-.displayMode a {
-  cursor: pointer;
+.displayMode {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0;
+
+  & a {
+    cursor: pointer;
+  }
+}
+
+.csvExplainer {
+  color: $dimmedTextColor;
+  font-size: 0.8rem;
+  font-style: italic;
 }
 
 .preformatted {

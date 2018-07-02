@@ -284,12 +284,14 @@ class ListView extends React.Component {
               <a onClick={this.toggleCSV}>Display as CSV</a>}
             {displayMode === "CSV" &&
               <a onClick={this.toggleHTML}>Display as HTML</a>}
-            {displayMode === "CSV" &&
-              <span>
-                Click on the text to select it then Copy/Paste to your favorite
-                CSV text editor.
-              </span>}
+
           </div>}
+        {exportable &&
+          displayMode === "CSV" &&
+          <p className={css.csvExplainer}>
+            Click on the text to select it then Copy/Paste to your favorite
+            CSV text editor.
+          </p>}
         {displayMode === "HTML" &&
           <ul className={css.listView}>
             {items.map((item, index) => {

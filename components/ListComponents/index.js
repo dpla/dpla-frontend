@@ -36,8 +36,8 @@ export const Lists = ({ lists }) =>
   </ul>;
 
 export const ListsEmpty = () =>
-  <div>
-    <h2>You have no lists</h2>
+  <div className={`${css.empty} `}>
+    <h2 className={css.contentTitle}>You have no lists</h2>
     <p>
       Create some lists from our{" "}
       <Link prefetch href="/browse-by-topic">
@@ -55,13 +55,13 @@ export const ListsEmpty = () =>
   </div>;
 
 export const ListLoading = () =>
-  <div className={`${css.loading} col-xs-12`}>
-    <h2>Loading</h2><p>Please wait…</p>
+  <div className={`${css.loading} `}>
+    <h2 className={css.contentTitle}>Loading</h2><p>Please wait…</p>
   </div>;
 
 export const ListsContent = ({ initialized, lists }) =>
   <div className={`${utils.container}`}>
-    <div className={`row`}>
+    <div className={`row ${css.wrapper}`}>
       {!initialized && <ListLoading />}
       {lists.length > 0 && <Lists lists={lists} />}
       {initialized && lists.length === 0 && <ListsEmpty />}
