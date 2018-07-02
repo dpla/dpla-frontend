@@ -1,0 +1,36 @@
+@import "stylesheets/variables";
+
+.lists {
+  display: grid;
+  grid-gap: 1rem 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  padding: 1rem 0.5rem 2rem;
+}
+
+.listItem {
+  align-items: baseline;
+  border-bottom: 0.075rem solid $grayBorderColor;
+  display: grid;
+  grid-template: "name count" auto "date date" auto / 3fr 1fr;
+  padding-bottom: 0.5rem;
+
+  &:hover {
+    border-bottom-color: $linkColor;
+    text-decoration: none;
+  }
+}
+
+.listName {
+  grid-area: name;
+}
+
+.listCount {
+  grid-area: count;
+}
+
+.listDate {
+  color: $dimmedTextColor;
+  font-size: 0.8rem;
+  font-style: italic;
+  grid-area: date;
+}

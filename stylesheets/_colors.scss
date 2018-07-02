@@ -53,6 +53,7 @@ $subLinkColor: #007294 !default;
 $subLinkColorHover: darken($linkColor, 10%);
 $lightBorderColor: #e7e7e7 !default;
 $darkBorderColor: $hippieBlue !default;
+$grayBorderColor: lighten($dimmerGray, 45%) !default;
 $headingColor: $cascadeBlue !default;
 $navColor: $tiberBlue !default;
 $userSiteColor: $hippieBlue !default;

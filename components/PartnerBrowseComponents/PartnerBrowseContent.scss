@@ -5,9 +5,9 @@
 }
 
 .partnerBrowse {
-  padding-bottom: 5.5rem;
   line-height: 1.25;
   margin-top: 2rem;
+  padding-bottom: 5.5rem;
 
   @media (min-width: $largeRem) {
     margin-top: 4rem;
@@ -15,24 +15,24 @@
 }
 
 .partners {
-  padding: 0 0.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   grid-column-gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  padding: 0 0.5rem;
 }
 
 .partnerLink {
+  border-bottom: 0.075rem solid $grayBorderColor;
   display: flex;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   height: 100%;
+  padding: 0.85rem 0;
 }
 
 .name {
   font-family: $serifFont;
   font-size: 1.3125rem;
-  max-width: 75%;
   margin-right: 0.75rem;
+  max-width: 75%;
 }
 
 .itemCount {

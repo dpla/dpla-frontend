@@ -136,7 +136,7 @@ class List extends React.Component {
               <h1>
                 {list.name}
                 <ListNameModal
-                  name="Edit"
+                  name="Rename"
                   type="rename"
                   value={list.name}
                   onChange={this.onNameChange}
