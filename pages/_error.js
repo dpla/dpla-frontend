@@ -13,10 +13,12 @@ import donateCss from "stylesheets/donate.scss";
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    res.setHeader(
-      "Cache-Control",
-      "max-age=0, private, no-cache, no-store, must-revalidate"
-    );
+    if (res) {
+      res.setHeader(
+        "Cache-Control",
+        "max-age=0, private, no-cache, no-store, must-revalidate"
+      );
+    }
     return { statusCode };
   }
 
