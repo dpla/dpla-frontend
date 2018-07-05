@@ -71,7 +71,7 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
         </a>
       </Link>;
 
-const Pagination = ({ route, pageCount, currentPage, totalItems }) =>
+const Pagination = ({ route, pageCount, currentPage }) =>
   <div className={css.pagination}>
     <NextOrPrevButton
       disabled={!(currentPage > 1 && pageCount > 1)}
