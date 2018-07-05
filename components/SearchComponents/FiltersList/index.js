@@ -15,6 +15,7 @@ const closeIcon = "/static/images/close-white.svg";
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
+  delete duped["page"];
   possibleFacets.forEach(
     facet => delete duped[mapFacetsToURLPrettified[facet]]
   );
@@ -23,6 +24,7 @@ const clearAllFacets = query => {
 
 const clearFacet = (query, queryKey, facet) => {
   const duped = Object.assign({}, query);
+  delete duped["page"];
   const value = joinIfArray(duped[queryKey], "|");
   duped[queryKey] = value
     .split("|")
