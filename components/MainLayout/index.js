@@ -45,6 +45,7 @@ const MainLayout = ({
       <GlobalHeader isHome={isHome} />
       {!hidePageHeader &&
         <PageHeader
+          query={route.query}
           searchQuery={route.query.q}
           hideSearchBar={hideSearchBar}
         />}
