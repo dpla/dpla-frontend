@@ -9,8 +9,6 @@ import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.scss";
 
-const externalLinkIcon = "/static/images/external-link-blue.svg";
-
 /**
  * @param description, item description object
  * @return HTML with truncated item description

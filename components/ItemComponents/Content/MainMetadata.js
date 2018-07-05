@@ -3,13 +3,12 @@ import Link from "next/link";
 
 import ItemImage from "./ItemImage";
 import Row from "./Row";
+import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
 import { rightsURLs } from "constants/site.js";
 
 import css from "./Content.scss";
-
-const externalLinkIcon = "/static/images/external-link-white.svg";
 
 /**
   * @param url, url to check for rights info
@@ -51,97 +50,90 @@ class MainMetadata extends React.Component {
 
     return (
       <div className={css.mainMetadata}>
-        <table className={css.contentTable}>
-          <tbody>
-            <tr className={css.tableRow}>
-              <td className={css.tableHeadingWrapper} />
-              <td className={css.tableItem}>
-                <ItemImage
-                  title=""
-                  type={item.type}
-                  url={item.thumbnailUrl}
-                  defaultImageClass={css.defaultItemImage}
-                  useDefaultImage={item.useDefaultImage}
-                />
-                {item.sourceUrl &&
-                  <Link prefetch href={item.sourceUrl}>
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      className={`${css.sourceLink} clickThrough`}
-                    >
-                      <span className={css.sourceLinkText}>
-                        {item.type === "image"
-                          ? "View Full Image"
-                          : item.type === "text"
-                            ? "View Full Text"
-                            : "View Full Item"}
-                      </span>
-                      <img
-                        src={externalLinkIcon}
-                        alt=""
-                        className={css.externalLinkIcon}
-                      />
-                    </a>
-                  </Link>}
-                {item.edmRights && <RightsBadge url={item.edmRights} />}
-                {/* 
+        <dl className={css.contentDL}>
+          <div className={css.termValuePair}>
+            <dt className={`${css.term} ${css.imageLabel}`}>Image</dt>
+            <dd className={css.value}>
+              <ItemImage
+                title=""
+                type={item.type}
+                url={item.thumbnailUrl}
+                defaultImageClass={css.defaultItemImage}
+                useDefaultImage={item.useDefaultImage}
+              />
+              {item.sourceUrl &&
+                <Link prefetch href={item.sourceUrl}>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className={`${css.sourceLink} clickThrough external white`}
+                  >
+                    <span className={css.sourceLinkText}>
+                      {item.type === "image"
+                        ? "View Full Image"
+                        : item.type === "text"
+                          ? "View Full Text"
+                          : "View Full Item"}
+                    </span>
+                  </a>
+                </Link>}
+              {item.edmRights && <RightsBadge url={item.edmRights} />}
+              {/* 
         for situations where the rights are in sourceResource
         see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
         items should not have multiple rights but showing them in case a proper uri is present
          */}
-                {item.rights && Array.isArray(item.rights)
-                  ? item.rights.map((theRight, index) => {
-                      return <RightsBadge url={theRight} key={index} />;
-                    })
-                  : item.rights ? <RightsBadge url={item.rights} /> : null}
-              </td>
-            </tr>
-            {item.date &&
-              <tr className={css.tableRow}>
-                <td className={css.tableHeadingWrapper}>
-                  <h2 className={css.tableHeading}>Created Date</h2>
-                </td>
-                <td className={[css.tableItem, css.mainMetadataText].join(" ")}>
-                  {item.date.displayDate}
-                </td>
-              </tr>}
-            {item.description &&
-              <tr className={css.tableRow}>
-                <td className={css.tableHeadingWrapper}>
-                  <h2 className={css.tableHeading}>Description</h2>
-                </td>
-                <td className={[css.tableItem, css.mainMetadataText].join(" ")}>
+              {item.rights && Array.isArray(item.rights)
+                ? item.rights.map((theRight, index) => {
+                    return <RightsBadge url={theRight} key={index} />;
+                  })
+                : item.rights ? <RightsBadge url={item.rights} /> : null}
+            </dd>
+          </div>
+          {item.date &&
+            <div className={css.termValuePair}>
+              <dt className={css.term}>
+                Created Date
+              </dt>
+              <dd className={[css.value, css.mainMetadataText].join(" ")}>
+                {item.date.displayDate}
+              </dd>
+            </div>}
+          {item.description &&
+            <div className={css.termValuePair}>
+              <dt className={css.term}>
+                Description
+              </dt>
+              <dd className={[css.value, css.mainMetadataText].join(" ")}>
+                <div
+                  id="dpla-description"
+                  className={`${descriptionIsLong
+                    ? css.longDescription
+                    : ""} ${isOpen ? css.open : ""}`}
+                >
+                  {Array.isArray(item.description)
+                    ? item.description.map((element, index) => {
+                        return <p key={index}>{element}</p>;
+                      })
+                    : item.description}
+                </div>
+                {descriptionIsLong &&
                   <div
-                    id="dpla-description"
-                    className={`${descriptionIsLong
-                      ? css.longDescription
-                      : ""} ${isOpen ? css.open : ""}`}
+                    id="dpla-showmore"
+                    aria-hidden="true"
+                    className={`${css.showMore} ${isOpen ? css.open : ""}`}
                   >
-                    {Array.isArray(item.description)
-                      ? item.description.map((element, index) => {
-                          return <p key={index}>{element}</p>;
-                        })
-                      : item.description}
-                  </div>
-                  {descriptionIsLong &&
-                    <div
-                      id="dpla-showmore"
-                      aria-hidden="true"
-                      className={`${css.showMore} ${isOpen ? css.open : ""}`}
+                    <span
+                      className={`link`}
+                      onClick={() => this.showMoreDescription()}
                     >
-                      <span
-                        className={`link`}
-                        onClick={() => this.showMoreDescription()}
-                      >
-                        Show full description
-                      </span>
-                    </div>}
-                </td>
-              </tr>}
-            <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
-          </tbody>
-        </table>
+                      Show full description
+                    </span>
+                  </div>}
+              </dd>
+            </div>}
+          <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
+        </dl>
       </div>
     );
   }

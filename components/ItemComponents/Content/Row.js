@@ -2,16 +2,16 @@ import React from "react";
 
 import css from "./Content.scss";
 
-const Row = ({ heading, value, linkInfo, children, className }) =>
+const Row = ({ heading, children, className }) =>
   children
-    ? <tr className={[css.tableRow, className].join(" ")}>
-        <td className={css.tableHeadingWrapper}>
-          <h2 className={css.tableHeading}>{heading}</h2>
-        </td>
-        <td className={[css.tableItem, css.otherMetadataItem].join(" ")}>
+    ? <div className={[css.termValuePair, className].join(" ")}>
+        <dt className={css.term}>
+          {heading}
+        </dt>
+        <dd className={[css.value, css.otherMetadataItem].join(" ")}>
           {children}
-        </td>
-      </tr>
+        </dd>
+      </div>
     : null;
 
 export default Row;
