@@ -82,8 +82,9 @@ Search.getInitialProps = async ({ query, req }) => {
     : "";
   let page_size = query.page_size || DEFAULT_PAGE_SIZE;
   const acceptedPageSizes = pageSizeOptions.map(item => item.value);
-  if (acceptedPageSizes.indexOf(page_size) === -1)
+  if (acceptedPageSizes.indexOf(page_size) === -1) {
     page_size = DEFAULT_PAGE_SIZE;
+  }
   let page = query.page || 1;
   if (page > MAX_PAGE_SIZE) {
     page = MAX_PAGE_SIZE;
