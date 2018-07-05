@@ -11,7 +11,7 @@ import {
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet
 } from "constants/search";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
+import { DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -28,7 +28,13 @@ class Search extends React.Component {
   };
 
   render() {
-    const { url, results, numberOfActiveFacets } = this.props;
+    const {
+      url,
+      results,
+      numberOfActiveFacets,
+      pageCount,
+      currentPage
+    } = this.props;
     return (
       <MainLayout
         isSearchPage={true}
@@ -37,7 +43,7 @@ class Search extends React.Component {
       >
         <OptionsBar
           showFilters={this.state.showSidebar}
-          currentPage={url.query.page || 1}
+          currentPage={currentPage}
           route={url}
           itemCount={results.count}
           onClickToggleFilters={this.toggleFilters}
@@ -52,9 +58,9 @@ class Search extends React.Component {
         <MainContent
           hideSidebar={!this.state.showSidebar}
           paginationInfo={{
-            pageCount: results.count,
+            pageCount: pageCount,
             pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
-            currentPage: url.query.page || 1
+            currentPage: currentPage
           }}
           route={url}
           facets={results.facets}
@@ -72,7 +78,10 @@ Search.getInitialProps = async ({ query, req }) => {
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
   const page_size = query.page_size || DEFAULT_PAGE_SIZE;
-  const page = query.page || 1;
+  let page = query.page || 1;
+  if (page > MAX_PAGE_SIZE) {
+    page = MAX_PAGE_SIZE;
+  }
   let sort_by = "";
   if (query.sort_by === "title") {
     sort_by = "sourceResource.title";
@@ -149,6 +158,14 @@ Search.getInitialProps = async ({ query, req }) => {
     });
   });
 
-  return { results: Object.assign({}, json, { docs }), numberOfActiveFacets };
+  const maxResults = MAX_PAGE_SIZE * page_size;
+  const pageCount = json.count > maxResults ? maxResults : json.count;
+
+  return {
+    results: Object.assign({}, json, { docs }),
+    numberOfActiveFacets,
+    currentPage: page,
+    pageCount
+  };
 };
 export default Search;
