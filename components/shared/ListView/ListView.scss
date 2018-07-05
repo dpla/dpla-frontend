@@ -42,6 +42,7 @@
   text-align: center;
   transition: bottom 0.1s ease-out;
   width: 10rem;
+  z-index: 11;
 
   &.open {
     bottom: 0.5rem;

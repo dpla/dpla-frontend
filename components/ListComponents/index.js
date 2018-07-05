@@ -39,13 +39,14 @@ export const ListsEmpty = () =>
   <div className={`${css.empty} `}>
     <h2 className={css.contentTitle}>You have no lists</h2>
     <p>
-      Create some lists from our{" "}
+      Create lists from our{" "}
       <Link prefetch href="/browse-by-topic">
         <a>topics</a>
       </Link>{" "}or{" "}
       <Link prefetch href="/search">
         <a>search results</a>
-      </Link>.
+      </Link>{" "}
+      (up to 50 items in each list).
     </p>
     <p>
       <strong>Note:</strong> You won't see lists created in

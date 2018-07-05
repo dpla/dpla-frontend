@@ -390,6 +390,7 @@ class ListView extends React.Component {
             {`ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\n`}
             {items.map((item, index) => {
               const realId = item.itemDplaId || item.id;
+              if (selectedHash[realId] === undefined) return;
               const thumbnailUrl = item.thumbnailUrl.indexOf(
                 "placeholderImages"
               ) === -1
