@@ -9,9 +9,11 @@ import MainContent from "components/SearchComponents/MainContent";
 import {
   possibleFacets,
   mapFacetsToURLPrettified,
-  splitAndURIEncodeFacet
+  splitAndURIEncodeFacet,
+  pageSizeOptions,
+  DEFAULT_PAGE_SIZE,
+  MAX_PAGE_SIZE
 } from "constants/search";
-import { DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -33,7 +35,8 @@ class Search extends React.Component {
       results,
       numberOfActiveFacets,
       pageCount,
-      currentPage
+      currentPage,
+      pageSize
     } = this.props;
     return (
       <MainLayout
@@ -59,7 +62,7 @@ class Search extends React.Component {
           hideSidebar={!this.state.showSidebar}
           paginationInfo={{
             pageCount: pageCount,
-            pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
+            pageSize: pageSize || DEFAULT_PAGE_SIZE,
             currentPage: currentPage
           }}
           route={url}
@@ -77,7 +80,10 @@ Search.getInitialProps = async ({ query, req }) => {
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
-  const page_size = query.page_size || DEFAULT_PAGE_SIZE;
+  let page_size = query.page_size || DEFAULT_PAGE_SIZE;
+  const acceptedPageSizes = pageSizeOptions.map(item => item.value);
+  if (acceptedPageSizes.indexOf(page_size) === -1)
+    page_size = DEFAULT_PAGE_SIZE;
   let page = query.page || 1;
   if (page > MAX_PAGE_SIZE) {
     page = MAX_PAGE_SIZE;
@@ -165,7 +171,8 @@ Search.getInitialProps = async ({ query, req }) => {
     results: Object.assign({}, json, { docs }),
     numberOfActiveFacets,
     currentPage: page,
-    pageCount
+    pageCount,
+    pageSize: page_size
   };
 };
 export default Search;
