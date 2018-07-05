@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import ItemImage from "./ItemImage";
-import Row from "./Row";
+import ItemTermValuePair from "./ItemTermValuePair";
 import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
@@ -132,7 +132,9 @@ class MainMetadata extends React.Component {
                   </div>}
               </dd>
             </div>}
-          <Row heading="Creator">{joinIfArray(item.creator, ", ")}</Row>
+          <ItemTermValuePair heading="Creator">
+            {joinIfArray(item.creator, ", ")}
+          </ItemTermValuePair>
         </dl>
       </div>
     );

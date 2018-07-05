@@ -1,6 +1,6 @@
 import React from "react";
 
-import Row from "./Row";
+import ItemTermValuePair from "./ItemTermValuePair";
 import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
@@ -10,33 +10,35 @@ import css from "./Content.scss";
 const OtherMetadata = ({ item }) =>
   <div className={css.otherMetadata}>
     <dl className={css.contentDL}>
-      <Row heading="Partner">
+      <ItemTermValuePair heading="Partner">
         <FacetLink facet="partner" value={item.partner} />
-      </Row>
-      <Row heading="Contributing Institution">
+      </ItemTermValuePair>
+      <ItemTermValuePair heading="Contributing Institution">
         <FacetLink
           facet="provider"
           value={item.contributor}
           facetLabel="contributing institution"
         />
-      </Row>
+      </ItemTermValuePair>
       {item.intermediateProvider &&
-        <Row heading="Supporting Institution">
+        <ItemTermValuePair heading="Supporting Institution">
           <FacetLink facet="provider" value={item.intermediateProvider} />
-        </Row>}
+        </ItemTermValuePair>}
       {item.publisher &&
-        <Row heading="Publisher">{joinIfArray(item.publisher)}</Row>}
+        <ItemTermValuePair heading="Publisher">
+          {joinIfArray(item.publisher)}
+        </ItemTermValuePair>}
       {item.subject &&
-        <Row className={css.subjects} heading="Subjects">
+        <ItemTermValuePair className={css.subjects} heading="Subjects">
           {item.subject.map((subj, i, subjects) =>
             <span key={i}>
               <FacetLink facet="subject" value={subj.name} />
               <br />
             </span>
           )}
-        </Row>}
+        </ItemTermValuePair>}
       {item.spatial &&
-        <Row heading="Location">
+        <ItemTermValuePair heading="Location">
           {Array.isArray(item.spatial)
             ? item.spatial.map((spatial, i, spatials) =>
                 <span key={i}>
@@ -44,28 +46,28 @@ const OtherMetadata = ({ item }) =>
                 </span>
               )
             : <FacetLink facet="location" value={item.spatial.name} />}
-        </Row>}
+        </ItemTermValuePair>}
       {item.type &&
-        <Row heading="Type">
+        <ItemTermValuePair heading="Type">
           <FacetLink facet="type" value={item.type} />
-        </Row>}
+        </ItemTermValuePair>}
       {item.format &&
-        <Row heading="Format">
+        <ItemTermValuePair heading="Format">
           {!Array.isArray(item.format)
             ? <div>{item.format}</div>
             : item.format.map((format, i, formats) =>
                 <div key={i}>{format}</div>
               )}
-        </Row>}
+        </ItemTermValuePair>}
       {item.language &&
-        <Row heading="Language">
+        <ItemTermValuePair heading="Language">
           <FacetLink
             facet="language"
             value={joinIfArray(item.language, ", ")}
           />
-        </Row>}
+        </ItemTermValuePair>}
       {item.sourceUrl &&
-        <Row heading="URL">
+        <ItemTermValuePair heading="URL">
           <a
             className="link clickThrough external"
             href={item.sourceUrl}
@@ -73,10 +75,10 @@ const OtherMetadata = ({ item }) =>
           >
             {item.sourceUrl}
           </a>
-        </Row>}
+        </ItemTermValuePair>}
       {item.edmRights &&
         readMyRights(item.edmRights) &&
-        <Row heading="Standardized Rights Statement">
+        <ItemTermValuePair heading="Standardized Rights Statement">
           {readMyRights(item.edmRights).description}
           {readMyRights(item.edmRights).description !== "" && <br />}
           <a
@@ -86,15 +88,15 @@ const OtherMetadata = ({ item }) =>
           >
             {item.edmRights}
           </a>
-        </Row>}
+        </ItemTermValuePair>}
       {item.rights &&
-        <Row heading="Rights">
+        <ItemTermValuePair heading="Rights">
           <div
             dangerouslySetInnerHTML={{
               __html: joinIfArray(item.rights, "<br />")
             }}
           />
-        </Row>}
+        </ItemTermValuePair>}
     </dl>
   </div>;
 

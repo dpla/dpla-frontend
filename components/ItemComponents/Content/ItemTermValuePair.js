@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./Content.scss";
 
-const Row = ({ heading, children, className }) =>
+const ItemTermValuePair = ({ heading, children, className }) =>
   children
     ? <div className={[css.termValuePair, className].join(" ")}>
         <dt className={css.term}>
@@ -14,4 +14,4 @@ const Row = ({ heading, children, className }) =>
       </div>
     : null;
 
-export default Row;
+export default ItemTermValuePair;
