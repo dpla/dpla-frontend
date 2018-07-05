@@ -1,0 +1,17 @@
+import React from "react";
+
+import css from "./Content.scss";
+
+const ItemTermValuePair = ({ heading, children, className }) =>
+  children
+    ? <div className={[css.termValuePair, className].join(" ")}>
+        <dt className={css.term}>
+          {heading}
+        </dt>
+        <dd className={[css.value, css.otherMetadataItem].join(" ")}>
+          {children}
+        </dd>
+      </div>
+    : null;
+
+export default ItemTermValuePair;
