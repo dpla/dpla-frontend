@@ -2,14 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Router from "next/router";
 
+import addCommasToNumber from "lib/addCommasToNumber";
 import {
   sortOptions,
   pageSizeOptions,
   mapSortOptionsToParams,
-  getSortOptionFromParams
-} from "./options";
-import addCommasToNumber from "lib/addCommasToNumber";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
+  getSortOptionFromParams,
+  DEFAULT_PAGE_SIZE
+} from "constants/search";
 
 import utils from "stylesheets/utils.scss";
 import css from "./OptionsBar.scss";
