@@ -43,7 +43,11 @@ $listPadding: 1.125rem;
   font-size: 0.875rem;
   font-weight: 600;
   padding-top: 0.25rem;
-  width: 9rem;
+  width: auto;
+
+  @media (min-width: $smallRem) {
+    width: 9rem;
+  }
 }
 
 .value {
