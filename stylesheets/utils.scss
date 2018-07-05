@@ -162,6 +162,12 @@ a {
     background-repeat: no-repeat;
     background-size: 0.8em;
     padding-right: 1.1em;
+
+    &.white {
+      background-image: url("/static/images/external-link-white.svg");
+      background-position: 90% center;
+      padding-right: 0;
+    }
   }
 
   &:visited {
