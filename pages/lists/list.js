@@ -11,11 +11,7 @@ import ConfirmModal from "shared/ConfirmModal";
 import { ListLoading } from "components/ListComponents";
 
 import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
-import {
-  getLocalForageItem,
-  setLocalForageItem,
-  removeLocalForageItem
-} from "lib/localForage";
+import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -42,11 +38,18 @@ class List extends React.Component {
   }
 
   getList = async uuid => {
-    // TODO: because localforage dies silently if 404, need to have a recovery
-    const list = await getLocalForageItem(uuid);
-    if (list) {
-      this.getItems(uuid, list);
-    }
+    localforage
+      .getItem(uuid)
+      .then(list => {
+        if (list) {
+          this.getItems(uuid, list);
+        } else {
+          this.setState({ initialized: true });
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   };
 
   getItems = async (uuid, list) => {
