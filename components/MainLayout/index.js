@@ -1,5 +1,4 @@
 import React from "react";
-import Router from "next/router";
 
 import Helmet from "react-helmet";
 import DPLAHead from "components/DPLAHead";

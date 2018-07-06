@@ -9,7 +9,7 @@ class Accordion extends React.Component {
   componentWillMount() {
     // first save the original items
     const originalItems = this.props.items.map(item => {
-      return { ...item, active: true };
+      return Object.assign({}, item, { active: true });
     });
     // activate all of them
     this.setState({ items: originalItems });
