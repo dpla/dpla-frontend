@@ -44,18 +44,11 @@ class ListView extends React.Component {
     checkboxShown: false,
     hasList: false,
     listCreatedAt: 0,
-    showMessage: "",
-    displayMode: "HTML"
+    showMessage: ""
   };
 
   componentDidMount() {
     this.getLists();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.displayMode !== this.props.displayMode) {
-      this.setState({ displayMode: this.props.displayMode });
-    }
   }
 
   getLists = async () => {
@@ -192,28 +185,58 @@ class ListView extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.showMessage !== prevState.showMessage)
       setTimeout(() => this.setState({ showMessage: "" }), MESSAGE_DELAY);
+    if (this.props.name !== prevProps.name)
+      this.setState({ listName: this.props.name });
   }
 
-  toggleCSV = () => {
-    this.setState({ displayMode: "CSV" });
-  };
+  downloadCSV = () => {
+    const rows = this.props.items.map((item, index) => {
+      const realId = item.itemDplaId || item.id;
+      if (this.state.selectedHash[realId] === undefined) return;
+      const thumbnailUrl = item.thumbnailUrl.indexOf("placeholderImages") === -1
+        ? item.thumbnailUrl
+        : "";
+      const title = item.title
+        ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
+        : item.title ? `"${item.title.replace(/"/g, "”")}"` : UNTITLED_TEXT;
+      const date = item.date && item.date.displayDate
+        ? `"${item.date.displayDate.replace(/"/g, "”")}"`
+        : "";
+      const creator = item.creator
+        ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
+        : "";
+      const description = item.description
+        ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
+        : "";
+      const provider = item.dataProvider
+        ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
+        : "";
+      const url = item.sourceUrl;
+      return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}\n`;
+    });
+    const csvData = `ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\n${rows.join(
+      ""
+    )}`;
 
-  toggleHTML = () => {
-    this.setState({ displayMode: "HTML" });
-  };
+    const filename = `${this.state.listName}.csv`;
 
-  selectCSV = e => {
-    const element = e.target;
-    if (document.selection) {
-      // IE
-      let range = document.body.createTextRange();
-      range.moveToElementText(element);
-      range.select();
-    } else if (window.getSelection) {
-      let range = document.createRange();
-      range.selectNode(element);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+    let blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+    if (navigator.msSaveBlob) {
+      // IE 10+
+      navigator.msSaveBlob(blob, filename);
+    } else {
+      var link = document.createElement("a");
+      if (link.download !== undefined) {
+        // feature detection
+        // Browsers that support HTML5 download attribute
+        var url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }
   };
 
@@ -227,7 +250,6 @@ class ListView extends React.Component {
       lists,
       listUUID,
       showMessage,
-      displayMode,
       selectedHash
     } = this.state;
     const listCount = Object.keys(selectedHash).length;
@@ -280,144 +302,101 @@ class ListView extends React.Component {
         {exportable &&
           items.length > 0 &&
           <div className={css.displayMode}>
-            {displayMode === "HTML" &&
-              <a onClick={this.toggleCSV}>Display as CSV</a>}
-            {displayMode === "CSV" &&
-              <a onClick={this.toggleHTML}>Display as HTML</a>}
-
+            <a onClick={this.downloadCSV}>Download CSV</a>
           </div>}
-        {exportable &&
-          displayMode === "CSV" &&
-          <p className={css.csvExplainer}>
-            Click on the text to select it then Copy/Paste to your favorite
-            CSV text editor.
-          </p>}
-        {displayMode === "HTML" &&
-          <ul className={css.listView}>
-            {items.map((item, index) => {
-              const realId = item.itemDplaId || item.id;
-              const checked = selectedHash[realId] !== undefined;
-              const shouldDisable = !checked && listCount >= MAX_ITEMS;
-              const disabledMessage = `Maximum ${MAX_ITEMS} items per list.`;
-              return (
-                <li key={index} className={css.listItem}>
-                  <ListImage
-                    item={item}
-                    title={item.title}
-                    type={item.type}
-                    url={item.thumbnailUrl}
-                    useDefaultImage={item.useDefaultImage}
-                  />
-                  <div className={css.itemInfo}>
-                    <h2 className={`hover-underline ${css.itemTitle}`}>
-                      {/* see issue #869 for details on this hack */}
-                      {realId !== "http://dp.la/api/items/#sourceResource" &&
-                        <Link href={item.linkHref} as={item.linkAs}>
-                          <a className={`internalItemLink`}>
-                            {route.pathname.indexOf("/search") === 0 &&
-                              item.title
-                              ? truncateString(item.title, 150)
-                              : item.title ? item.title : UNTITLED_TEXT}
-                          </a>
-                        </Link>}
-                      {/* see issue #869 for details on this hack */}
-                      {realId === "http://dp.la/api/items/#sourceResource" &&
-                        <span>
+        <ul className={css.listView}>
+          {items.map((item, index) => {
+            const realId = item.itemDplaId || item.id;
+            const checked = selectedHash[realId] !== undefined;
+            const shouldDisable =
+              (!checked && listCount >= MAX_ITEMS) ||
+              realId === "http://dp.la/api/items/#sourceResource";
+            const disabledMessage = `Maximum ${MAX_ITEMS} items per list.`;
+            return (
+              <li key={index} className={css.listItem}>
+                <ListImage
+                  item={item}
+                  title={item.title}
+                  type={item.type}
+                  url={item.thumbnailUrl}
+                  useDefaultImage={item.useDefaultImage}
+                />
+                <div className={css.itemInfo}>
+                  <h2 className={`hover-underline ${css.itemTitle}`}>
+                    {/* see issue #869 for details on this hack */}
+                    {realId !== "http://dp.la/api/items/#sourceResource" &&
+                      <Link href={item.linkHref} as={item.linkAs}>
+                        <a className={`internalItemLink`}>
                           {route.pathname.indexOf("/search") === 0 && item.title
                             ? truncateString(item.title, 150)
                             : item.title ? item.title : UNTITLED_TEXT}
-                        </span>}
-                    </h2>
-                    {(item.date || item.creator) &&
-                      <span className={css.itemAuthorAndDate}>
-                        {route.pathname.indexOf("/search") === 0 &&
-                          item.date &&
-                          <span>{item.date.displayDate}</span>}
-                        {route.pathname.indexOf("/search") === 0 &&
-                          item.date &&
-                          item.date.displayDate &&
-                          item.creator &&
-                          <span> · </span>}
-                        <span>{joinIfArray(item.creator, ", ")}</span>
+                        </a>
+                      </Link>}
+                    {/* see issue #869 for details on this hack */}
+                    {realId === "http://dp.la/api/items/#sourceResource" &&
+                      <span>
+                        {route.pathname.indexOf("/search") === 0 && item.title
+                          ? truncateString(item.title, 150)
+                          : item.title ? item.title : UNTITLED_TEXT}
                       </span>}
-                    <ItemDescription description={item.description} />
-                    <a
-                      href={item.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`hover-underline clickThrough external ${css.itemSource}`}
-                    >
-                      {item.type === "image"
-                        ? "View Full Image"
-                        : item.type === "text"
-                          ? "View Full Text"
-                          : "View Full Item"}
-                    </a>
-                    {item.dataProvider &&
-                      <span className={`${css.itemProvider}`}>
-                        &nbsp; in {item.dataProvider}
-                      </span>}
-                  </div>
-                  <label
-                    className={`${css.checkboxLabel} ${checkboxShown
-                      ? ""
-                      : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
-                    htmlFor={`checkbox-${realId}`}
-                    title={shouldDisable ? disabledMessage : ""}
+                  </h2>
+                  {(item.date || item.creator) &&
+                    <span className={css.itemAuthorAndDate}>
+                      {route.pathname.indexOf("/search") === 0 &&
+                        item.date &&
+                        <span>{item.date.displayDate}</span>}
+                      {route.pathname.indexOf("/search") === 0 &&
+                        item.date &&
+                        item.date.displayDate &&
+                        item.creator &&
+                        <span> · </span>}
+                      <span>{joinIfArray(item.creator, ", ")}</span>
+                    </span>}
+                  <ItemDescription description={item.description} />
+                  <a
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover-underline clickThrough external ${css.itemSource}`}
                   >
-                    <input
-                      className={`${css.checkboxInput} ${!checked &&
-                        listCount >= MAX_ITEMS
-                        ? css.disabled
-                        : ""}`}
-                      type="checkbox"
-                      title={shouldDisable ? disabledMessage : ""}
-                      data-id={realId}
-                      onChange={this.onCheckItem}
-                      checked={selectedHash[realId] !== undefined}
-                      disabled={shouldDisable ? true : false}
-                      key={`checkbox-${realId}`}
-                      id={`checkbox-${realId}`}
-                    />
-                    Add to list
-                  </label>
-                </li>
-              );
-            })}
-          </ul>}
-        {displayMode === "CSV" &&
-          <pre onClick={this.selectCSV} className={css.preformatted}>
-            {`ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\n`}
-            {items.map((item, index) => {
-              const realId = item.itemDplaId || item.id;
-              if (selectedHash[realId] === undefined) return;
-              const thumbnailUrl = item.thumbnailUrl.indexOf(
-                "placeholderImages"
-              ) === -1
-                ? item.thumbnailUrl
-                : "";
-              const title = item.title
-                ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
-                : item.title
-                  ? `"${item.title.replace(/"/g, "”")}"`
-                  : UNTITLED_TEXT;
-              const date = item.date && item.date.displayDate
-                ? `"${item.date.displayDate.replace(/"/g, "”")}"`
-                : "";
-              const creator = item.creator
-                ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
-                : "";
-              const description = item.description
-                ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
-                : "";
-              const provider = item.dataProvider
-                ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
-                : "";
-              const url = item.sourceUrl;
-              return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}\n`;
-            })}
-
-          </pre>}
+                    {item.type === "image"
+                      ? "View Full Image"
+                      : item.type === "text"
+                        ? "View Full Text"
+                        : "View Full Item"}
+                  </a>
+                  {item.dataProvider &&
+                    <span className={`${css.itemProvider}`}>
+                      &nbsp; in {item.dataProvider}
+                    </span>}
+                </div>
+                <label
+                  className={`${css.checkboxLabel} ${checkboxShown
+                    ? ""
+                    : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
+                  htmlFor={`checkbox-${realId}`}
+                  title={shouldDisable ? disabledMessage : ""}
+                >
+                  <input
+                    className={`${css.checkboxInput} ${!checked &&
+                      listCount >= MAX_ITEMS
+                      ? css.disabled
+                      : ""}`}
+                    type="checkbox"
+                    title={shouldDisable ? disabledMessage : ""}
+                    data-id={realId}
+                    onChange={this.onCheckItem}
+                    checked={selectedHash[realId] !== undefined}
+                    disabled={shouldDisable ? true : false}
+                    key={`checkbox-${realId}`}
+                    id={`checkbox-${realId}`}
+                  />
+                  Add to list
+                </label>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }

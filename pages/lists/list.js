@@ -162,6 +162,7 @@ class List extends React.Component {
               {items &&
                 uuid &&
                 <ListView
+                  name={list.name}
                   exportable={true}
                   route={url}
                   items={addLinkInfoToResults(items, url.query)}
