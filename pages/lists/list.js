@@ -10,7 +10,12 @@ import ListNameModal from "shared/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
 import { ListLoading } from "components/ListComponents";
 
-import { getCurrentUrl, getDefaultThumbnail, addLinkInfoToResults } from "lib";
+import {
+  addLinkInfoToResults,
+  deepCopyObject,
+  getCurrentUrl,
+  getDefaultThumbnail
+} from "lib";
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";

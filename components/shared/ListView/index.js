@@ -190,30 +190,35 @@ class ListView extends React.Component {
   }
 
   downloadCSV = () => {
-    const rows = this.props.items.map((item, index) => {
-      const realId = item.itemDplaId || item.id;
-      if (this.state.selectedHash[realId] === undefined) return;
-      const thumbnailUrl = item.thumbnailUrl.indexOf("placeholderImages") === -1
-        ? item.thumbnailUrl
-        : "";
-      const title = item.title
-        ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
-        : item.title ? `"${item.title.replace(/"/g, "”")}"` : UNTITLED_TEXT;
-      const date = item.date && item.date.displayDate
-        ? `"${item.date.displayDate.replace(/"/g, "”")}"`
-        : "";
-      const creator = item.creator
-        ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
-        : "";
-      const description = item.description
-        ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
-        : "";
-      const provider = item.dataProvider
-        ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
-        : "";
-      const url = item.sourceUrl;
-      return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
-    });
+    const rows = this.props.items
+      .filter(item => {
+        const realId = item.itemDplaId || item.id;
+        return this.state.selectedHash[realId] !== undefined;
+      })
+      .map((item, index) => {
+        const realId = item.itemDplaId || item.id;
+        const thumbnailUrl = item.thumbnailUrl.indexOf("placeholderImages") ===
+          -1
+          ? item.thumbnailUrl
+          : "";
+        const title = item.title
+          ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
+          : item.title ? `"${item.title.replace(/"/g, "”")}"` : UNTITLED_TEXT;
+        const date = item.date && item.date.displayDate
+          ? `"${item.date.displayDate.replace(/"/g, "”")}"`
+          : "";
+        const creator = item.creator
+          ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
+          : "";
+        const description = item.description
+          ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
+          : "";
+        const provider = item.dataProvider
+          ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
+          : "";
+        const url = item.sourceUrl;
+        return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
+      });
     const csvData = `ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join(
       "\r\n"
     )}`;
