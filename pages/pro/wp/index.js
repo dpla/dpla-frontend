@@ -1,7 +1,7 @@
-import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 import striptags from "striptags";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";

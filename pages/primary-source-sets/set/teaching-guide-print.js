@@ -1,7 +1,7 @@
-import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 import ReactMarkdown from "react-markdown";
+import { withRouter } from "next/router";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";

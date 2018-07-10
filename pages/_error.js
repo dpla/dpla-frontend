@@ -1,5 +1,5 @@
-import { withRouter } from "next/router";
 import React from "react";
+import { withRouter } from "next/router";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
