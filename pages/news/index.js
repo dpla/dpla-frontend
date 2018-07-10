@@ -1,6 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
@@ -27,10 +28,10 @@ import css from "stylesheets/news.scss";
 class NewsPage extends React.Component {
   componentWillMount() {
     this.setState({
-      keywords: this.props.url.query.k || "",
-      author: this.props.url.query.author || "",
+      keywords: this.props.router.query.k || "",
+      author: this.props.router.query.author || "",
       authorName: this.props.author ? this.props.author.name : "",
-      tag: this.props.url.query.tag || ""
+      tag: this.props.router.query.tag || ""
     });
   }
 
@@ -61,7 +62,7 @@ class NewsPage extends React.Component {
 
   render() {
     const {
-      url,
+      router,
       menuItems,
       newsItems,
       pageItem,
@@ -83,7 +84,7 @@ class NewsPage extends React.Component {
       ? " with keywords “" + this.state.keywords + "”"
       : ""}`;
     return (
-      <MainLayout route={url} pageTitle={pageItem.title} seoType={SEO_TYPE}>
+      <MainLayout route={router} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
           className={`${utils.container}
@@ -91,7 +92,7 @@ class NewsPage extends React.Component {
         >
           <div className="row">
             <ContentPagesSidebar
-              route={url}
+              route={router}
               items={menuItems}
               activeItemId={pageItem.id}
               className={contentCss.sidebar}
@@ -132,7 +133,7 @@ class NewsPage extends React.Component {
                 </form>
                 <TagList
                   currentTag={this.state.tag}
-                  url={url}
+                  url={router}
                   keywords={this.state.keywords}
                   author={this.state.author}
                 />
@@ -171,7 +172,7 @@ class NewsPage extends React.Component {
                   );
                 })}
                 <Pagination
-                  route={url}
+                  route={router}
                   itemsPerPage={DEFAULT_PAGE_SIZE}
                   currentPage={parseInt(currentPage, 10)}
                   totalItems={newsCount}
@@ -248,4 +249,4 @@ NewsPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default NewsPage;
+export default withRouter(NewsPage);
