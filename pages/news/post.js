@@ -2,6 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
 import striptags from "striptags";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
@@ -39,7 +40,7 @@ class PostPage extends React.Component {
   }
 
   render() {
-    const { url, content, menuItems, author, pageDescription } = this.props;
+    const { router, content, menuItems, author, pageDescription } = this.props;
     let hasTags = false;
     NEWS_TAGS.forEach(tag => {
       if (content.tags.indexOf(tag.id) !== -1) {
@@ -49,7 +50,7 @@ class PostPage extends React.Component {
     });
     return (
       <MainLayout
-        route={url}
+        route={router}
         pageTitle={content.title.rendered}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
@@ -58,12 +59,12 @@ class PostPage extends React.Component {
           breadcrumbs={[
             {
               title: "News",
-              url: "/news",
+              router: "/news",
               as: "/news"
             },
             { title: content.title.rendered }
           ]}
-          route={url}
+          route={router}
         />
         <div
           className={`${utils.container}
@@ -71,7 +72,7 @@ class PostPage extends React.Component {
         >
           <div className="row">
             <ContentPagesSidebar
-              route={url}
+              route={router}
               items={menuItems}
               activeItemId={content.id}
               className={contentCss.sidebar}
@@ -79,7 +80,7 @@ class PostPage extends React.Component {
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={url} />
+                <WPEdit page={content} url={router} />
                 <h1
                   dangerouslySetInnerHTML={{
                     __html: content.title.rendered
@@ -175,4 +176,4 @@ PostPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default PostPage;
+export default withRouter(PostPage);

@@ -4,8 +4,6 @@ import ReactMarkdown from "react-markdown";
 
 import css from "./Breadcrumbs.scss";
 
-const chevron = "/static/images/chevron-thick-orange.svg";
-
 const Breadcrumbs = ({ breadcrumbs }) =>
   <div className={css.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {

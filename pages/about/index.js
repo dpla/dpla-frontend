@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
 import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
@@ -42,7 +42,7 @@ class AboutMenuPage extends React.Component {
 
   render() {
     const {
-      url,
+      router,
       content,
       items,
       breadcrumbs,
@@ -51,13 +51,13 @@ class AboutMenuPage extends React.Component {
     } = this.props;
     return (
       <MainLayout
-        route={url}
+        route={router}
         pageTitle={pageTitle}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
         {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />}
         {breadcrumbs.length === 0 &&
           <FeatureHeader title={pageTitle} description={""} />}
         <div
@@ -66,14 +66,14 @@ class AboutMenuPage extends React.Component {
         >
           <div className="row">
             <ContentPagesSidebar
-              route={url}
+              route={router}
               items={items}
               activeItemId={content.id}
               className={contentCss.sidebar}
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={url} />
+                <WPEdit page={content} url={router} />
                 {breadcrumbs.length > 0 &&
                   <h1
                     dangerouslySetInnerHTML={{ __html: content.title.rendered }}
@@ -172,4 +172,4 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default AboutMenuPage;
+export default withRouter(AboutMenuPage);
