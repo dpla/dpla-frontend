@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 
@@ -31,7 +32,7 @@ class Search extends React.Component {
 
   render() {
     const {
-      url,
+      router,
       results,
       numberOfActiveFacets,
       pageCount,
@@ -41,13 +42,13 @@ class Search extends React.Component {
     return (
       <MainLayout
         isSearchPage={true}
-        route={url}
-        pageTitle={getSearchPageTitle(url.query.q)}
+        route={router}
+        pageTitle={getSearchPageTitle(router.query.q)}
       >
         <OptionsBar
           showFilters={this.state.showSidebar}
           currentPage={currentPage}
-          route={url}
+          route={router}
           itemCount={results.count}
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}
@@ -55,7 +56,7 @@ class Search extends React.Component {
         <FiltersList
           showFilters={this.state.showSidebar}
           onClickToggleFilters={this.toggleFilters}
-          route={url}
+          route={router}
           facets={results.facets}
         />
         <MainContent
@@ -65,7 +66,7 @@ class Search extends React.Component {
             pageSize: pageSize || DEFAULT_PAGE_SIZE,
             currentPage: currentPage
           }}
-          route={url}
+          route={router}
           facets={results.facets}
           results={results.docs}
         />
@@ -176,4 +177,4 @@ Search.getInitialProps = async ({ query, req }) => {
     pageSize: page_size
   };
 };
-export default Search;
+export default withRouter(Search);

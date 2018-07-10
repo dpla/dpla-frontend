@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 import striptags from "striptags";
@@ -39,7 +40,7 @@ class ProMenuPage extends React.Component {
 
   render() {
     const {
-      url,
+      router,
       page,
       items,
       breadcrumbs,
@@ -49,13 +50,13 @@ class ProMenuPage extends React.Component {
     } = this.props;
     return (
       <MainLayout
-        route={url}
+        route={router}
         pageTitle={pageTitle}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
         {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />}
         {breadcrumbs.length === 0 &&
           !illustration &&
           <FeatureHeader title={pageTitle} description={""} />}
@@ -66,19 +67,19 @@ class ProMenuPage extends React.Component {
           <div className="row">
             <ContentPagesSidebar
               className={contentCss.sidebar}
-              route={url}
+              route={router}
               items={items}
               activeItemId={page.id}
               rootPath="wp"
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={page} url={url} />
+                <WPEdit page={page} url={router} />
                 {/* fancy pages (with illustrations) get special heading */}
                 {illustration &&
                   <div>
                     <img
-                      src={illustration.url}
+                      src={illustration.router}
                       alt=""
                       className={contentCss.bannerImage}
                     />
@@ -165,4 +166,4 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default ProMenuPage;
+export default withRouter(ProMenuPage);

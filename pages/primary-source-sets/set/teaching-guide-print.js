@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 import ReactMarkdown from "react-markdown";
@@ -19,9 +20,15 @@ class Printable extends React.Component {
   }
 
   render() {
-    const { url, set, teachingGuide, currentPath, currentFullUrl } = this.props;
+    const {
+      router,
+      set,
+      teachingGuide,
+      currentPath,
+      currentFullUrl
+    } = this.props;
     return (
-      <MinimalLayout route={this.props.url} isPrintable={true}>
+      <MinimalLayout route={this.props.router} isPrintable={true}>
         <div className={utils.container}>
           <h1 className={utils.printableH1}>
             <ReactMarkdown
@@ -34,7 +41,7 @@ class Printable extends React.Component {
         <TeachersGuide
           teachingGuide={teachingGuide}
           setName={set.name}
-          route={url}
+          route={router}
           currentPath={currentPath}
           isPrintable={true}
         />
@@ -64,4 +71,4 @@ Printable.getInitialProps = async ({ query, req }) => {
   return { set, teachingGuide, currentPath, currentFullUrl };
 };
 
-export default Printable;
+export default withRouter(Printable);

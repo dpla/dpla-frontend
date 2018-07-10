@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 
@@ -34,9 +35,9 @@ class HubsPage extends React.Component {
   }
 
   render() {
-    const { url, page, pageTitle, news } = this.props;
+    const { router, page, pageTitle, news } = this.props;
     return (
-      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main" className={css.pageWrapper}>
           <div
             className={`${css.pageHero} ${page.acf.feature
@@ -44,7 +45,7 @@ class HubsPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="network" />
-            <WPEdit page={page} url={url} />
+            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
           {page.acf.feature &&
@@ -63,7 +64,7 @@ class HubsPage extends React.Component {
                   return (
                     <li key={index} className={css.section}>
                       <h2 className={css.sectionTitle}>
-                        <a href={`${section.url}`}>{section.title}</a>
+                        <a href={`${section.router}`}>{section.title}</a>
                       </h2>
                       <p className={css.sectionText}>
                         {section.text}
@@ -76,7 +77,7 @@ class HubsPage extends React.Component {
                                 className={css.sectionQuicklink}
                                 key={`link-${idx}`}
                               >
-                                <a href={`${link.url}`}>
+                                <a href={`${link.router}`}>
                                   {link.text}
                                 </a>
                               </li>
@@ -117,4 +118,4 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
   return { page: hubItem, pageTitle: hubItem.title.rendered, news: newsItems };
 };
 
-export default HubsPage;
+export default withRouter(HubsPage);

@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
 
@@ -29,10 +30,10 @@ class Exhibition extends React.Component {
   }
 
   render() {
-    const { url, exhibition, currentFullUrl } = this.props;
+    const { router, exhibition, currentFullUrl } = this.props;
     return (
       <MainLayout
-        route={url}
+        route={router}
         pageTitle={exhibition.title.replace(/\*/g, "")}
         seoType={SEO_TYPE}
       >
@@ -40,20 +41,18 @@ class Exhibition extends React.Component {
           breadcrumbs={[
             {
               title: "Exhibitions",
-              url: {
-                pathname: "/exhibitions",
-                query: removeQueryParams(url.query, ["exhibition"])
-              }
+              url: "/exhibitions",
+              as: "/exhibitions"
             },
             { title: exhibition.title, search: "" }
           ]}
-          route={url}
+          route={router}
         />
         <div id="main" role="main">
-          <ImageAndCaption exhibition={exhibition} route={url} />
+          <ImageAndCaption exhibition={exhibition} route={router} />
           <Details
             exhibition={exhibition}
-            route={url}
+            route={router}
             currentFullUrl={currentFullUrl}
           />
         </div>
@@ -120,4 +119,4 @@ Exhibition.getInitialProps = async ({ query, req }) => {
   };
 };
 
-export default Exhibition;
+export default withRouter(Exhibition);
