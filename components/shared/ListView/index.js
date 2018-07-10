@@ -5,7 +5,7 @@ import ListImage from "./ListImage";
 import ListNameModal from "shared/ListNameModal";
 import GaListViewWrapper from "./GaListViewWrapper";
 
-import { createUUID, joinIfArray, truncateString } from "lib";
+import { createUUID, deepCopyObject, joinIfArray, truncateString } from "lib";
 import {
   getLocalForageLists,
   setLocalForageItem,
@@ -77,7 +77,7 @@ class ListView extends React.Component {
     // add the new list to local storage
     const uuid = createUUID();
     const createdAt = Date.now();
-    let newLists = JSON.parse(JSON.stringify(this.state.lists));
+    let newLists = deepCopyObject(this.state.lists);
     newLists.push({
       uuid: uuid,
       name: listName,
@@ -147,7 +147,7 @@ class ListView extends React.Component {
   };
 
   addCell = id => {
-    let hash = JSON.parse(JSON.stringify(this.state.selectedHash));
+    let hash = deepCopyObject(this.state.selectedHash);
     let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
     if (hash[id]) return; // check if item already selected
     hash[id] = id;
@@ -156,7 +156,7 @@ class ListView extends React.Component {
   };
 
   removeCell = id => {
-    let hash = JSON.parse(JSON.stringify(this.state.selectedHash));
+    let hash = deepCopyObject(this.state.selectedHash);
     let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
     if (list && list.count > 0) list.count--;
     delete hash[id];
@@ -172,7 +172,7 @@ class ListView extends React.Component {
       updatedAt: updatedAt
     };
     await setLocalForageItem(this.state.listUUID, savedList);
-    let lists = JSON.parse(JSON.stringify(this.state.lists));
+    let lists = deepCopyObject(this.state.lists);
     lists.sort((a, b) => a.createdAt < b.createdAt);
     lists.forEach(l => {
       if (l.uuid === list.uuid) {
@@ -212,10 +212,10 @@ class ListView extends React.Component {
         ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
         : "";
       const url = item.sourceUrl;
-      return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}\n`;
+      return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
     });
-    const csvData = `ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\n${rows.join(
-      ""
+    const csvData = `ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join(
+      "\r\n"
     )}`;
 
     const filename = `${this.state.listName}.csv`;

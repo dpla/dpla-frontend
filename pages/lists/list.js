@@ -97,7 +97,7 @@ class List extends React.Component {
 
   onNameChange = value => {
     let uuid = this.state.uuid;
-    let list = JSON.parse(JSON.stringify(this.state.list));
+    let list = deepCopyObject(this.state.list);
     list.name = value;
     this.setState({ list: list });
     setLocalForageItem(uuid, list);
