@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
 
@@ -10,7 +11,7 @@ import css from "./PageHeader.scss";
 
 class PageHeader extends React.Component {
   render() {
-    const { searchQuery, hideSearchBar } = this.props;
+    const { searchQuery, hideSearchBar, router } = this.props;
     return (
       <div
         className={`${css.headerSearchBar} ${SITE_ENV === "pro"
@@ -51,15 +52,17 @@ class PageHeader extends React.Component {
                 autoComplete="off"
                 defaultValue={searchQuery}
               />
-              {this.props.query &&
-                Object.keys(this.props.query).map((key, index) => {
+              {router &&
+                router.pathname === "/search" &&
+                router.query &&
+                Object.keys(router.query).map((key, index) => {
                   if (key !== "q" && key !== "page") {
                     return (
                       <input
                         type="hidden"
                         key={`k_${index}`}
                         name={key}
-                        value={this.props.query[key]}
+                        value={router.query[key]}
                       />
                     );
                   }
@@ -73,4 +76,4 @@ class PageHeader extends React.Component {
     );
   }
 }
-export default PageHeader;
+export default withRouter(PageHeader);
