@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
 
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 import {
