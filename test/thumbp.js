@@ -1,9 +1,9 @@
 const assert = require("chai").assert;
-const expect = require("expect.js");
+const expect = require("expect");
 const sinon = require("sinon");
 const http = require("http");
 const libRequest = require("request");
-const thumbp = require("../lib/thumbp.js");
+const thumbp = require("lib/thumbp");
 
 describe("Connection", function() {
   var c, request, response, returnErrorStub, consoleErrorStub, libRequestStub;

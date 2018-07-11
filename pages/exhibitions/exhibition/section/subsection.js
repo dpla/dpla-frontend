@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import Error from "pages/_error";
+import Error from "_error";
 import DPLAHead from "components/DPLAHead";
-import SkipToContent from "components/shared/SkipToContent";
+import SkipToContent from "shared/SkipToContent";
 import Content from "components/ExhibitionsComponents/ExhibitionSection";
 
 import {

@@ -5,8 +5,8 @@ import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import Pagination from "components/shared/Pagination";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
+import Pagination from "shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 

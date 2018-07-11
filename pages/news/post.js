@@ -6,7 +6,7 @@ import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
 import { formatDate, decodeHTMLEntities } from "lib";

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
 import DonateForm from "components/DonateComponents/DonateForm";
-import Button from "components/shared/Button";
+import Button from "shared/Button";
 
 import { SEO_TITLE } from "constants/donate";
 

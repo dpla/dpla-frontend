@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
-import FeatureHeader from "components/shared/FeatureHeader";
+import FeatureHeader from "shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
 import { getCurrentUrl } from "lib";

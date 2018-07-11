@@ -16,11 +16,7 @@ class Content extends React.Component {
   componentDidMount() {
     this.trackItemView();
     this.bindClickThroughEvent();
-    Router.router.events.on("routeChangeComplete", this.trackItemView);
-  }
-
-  componentWillUnmount() {
-    Router.router.events.off("routeChangeComplete", this.trackItemView);
+    Router.onRouteChangeComplete = url => this.trackItemView();
   }
 
   trackItemView() {

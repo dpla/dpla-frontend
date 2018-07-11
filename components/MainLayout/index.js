@@ -18,12 +18,7 @@ class MainLayout extends React.Component {
   // Google Analytics tracking for MainLayout-using pages
   componentDidMount() {
     this.trackPageview();
-    Router.router.events.on("routeChangeComplete", this.trackPageview);
-  }
-
-  // Cleanup, prevents multiple pageviews being counted for a single route.
-  componentWillUnmount() {
-    Router.router.events.off("routeChangeComplete", this.trackPageview);
+    Router.onRouteChangeComplete = url => this.trackPageview();
   }
 
   trackPageview() {

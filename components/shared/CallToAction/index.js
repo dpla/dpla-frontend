@@ -1,7 +1,5 @@
-import "react";
-import "next/link";
+import React from "react";
 
-import Button from "shared/Button";
 import css from "./CallToAction.scss";
 
 const CallToAction = ({
