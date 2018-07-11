@@ -4,6 +4,7 @@ import Link from "next/link";
 import ListImage from "./ListImage";
 import ListNameModal from "shared/ListNameModal";
 import GaListViewWrapper from "./GaListViewWrapper";
+import Alert from "shared/Alert";
 
 import { createUUID, deepCopyObject, joinIfArray, truncateString } from "lib";
 import {
@@ -303,13 +304,7 @@ class ListView extends React.Component {
                 })}
               </select>}
           </div>}
-        <div
-          role="alert"
-          // aria-live="assertive"
-          className={`${css.alert} ${showMessage === "" ? "" : css.open}`}
-        >
-          {showMessage}
-        </div>
+        <Alert showMessage={showMessage} />
         {exportable &&
           items.length > 0 &&
           <div className={css.displayMode}>

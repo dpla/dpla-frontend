@@ -30,25 +30,6 @@
   white-space: pre-wrap;
 }
 
-.alert {
-  background-color: $featuredBannerColor;
-  bottom: -5rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  color: black;
-  left: 50%;
-  margin-left: -5rem;
-  padding: 0.5rem;
-  position: fixed;
-  text-align: center;
-  transition: bottom 0.1s ease-out;
-  width: 10rem;
-  z-index: 11;
-
-  &.open {
-    bottom: 0.5rem;
-  }
-}
-
 .listAddToList {
   display: flex;
 }
@@ -100,10 +81,6 @@
   transition: all 0.2s ease-out;
   white-space: nowrap;
 
-  &.disabled {
-    cursor: not-allowed;
-  }
-
   &.collapsed {
     visibility: hidden;
     max-width: 0;
@@ -117,12 +94,12 @@
   }
 }
 
+.disabled {
+  cursor: not-allowed;
+}
+
 .checkboxInput {
   margin-bottom: 0.5rem;
-
-  &.disabled {
-    cursor: not-allowed;
-  }
 
   @media (max-width: $mediumRem) {
     margin: 0 0.5rem;
