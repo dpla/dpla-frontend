@@ -17,7 +17,7 @@ import {
   getDplaItemIdFromExhibit,
   getFullPath
 } from "lib";
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 
 import {
   EXHIBITS_ENDPOINT,
@@ -39,7 +39,7 @@ class Subsection extends React.Component {
     const fullPath = getFullPath();
 
     if (fullPath !== this.lastTrackedPath) {
-      gTag.pageview(fullPath);
+      gtag.pageview(fullPath);
       this.lastTrackedPath = fullPath;
     }
   }

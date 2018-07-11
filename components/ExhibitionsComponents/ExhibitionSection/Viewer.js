@@ -16,7 +16,7 @@ import {
   joinIfArray,
   parseDplaItemRecord
 } from "lib";
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
@@ -126,7 +126,7 @@ class Viewer extends React.Component {
         contributor: joinIfArray(dplaItem.dataProvider, ", ")
       };
 
-      gTag.event(gaEvent);
+      gtag.event(gaEvent);
       this.lastTrackedPath = fullPath;
     }
   }

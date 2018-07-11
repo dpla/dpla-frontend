@@ -9,7 +9,7 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 import { getFullPath } from "lib";
 
 import { SITE_ENV } from "constants/env";
@@ -25,7 +25,7 @@ class MainLayout extends React.Component {
     const fullPath = getFullPath();
 
     if (fullPath !== this.lastTrackedPath) {
-      gTag.pageview(fullPath);
+      gtag.pageview(fullPath);
       this.lastTrackedPath = fullPath;
     }
   }

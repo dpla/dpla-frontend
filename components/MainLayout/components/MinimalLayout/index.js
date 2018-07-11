@@ -7,7 +7,7 @@ import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
 
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 import { getFullPath } from "lib";
 
 import { SITE_ENV } from "constants/env";
@@ -23,7 +23,7 @@ class MinimalLayout extends React.Component {
     const fullPath = getFullPath();
 
     if (fullPath !== this.lastTrackedPath) {
-      gTag.pageview(fullPath);
+      gtag.pageview(fullPath);
       this.lastTrackedPath = fullPath;
     }
   }

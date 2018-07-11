@@ -5,7 +5,7 @@ import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
 
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 import { bindLinkEvent, getFullPath, joinIfArray } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
@@ -35,7 +35,7 @@ class Content extends React.Component {
         contributor: contributor
       };
 
-      gTag.event(gaEvent);
+      gtag.event(gaEvent);
 
       this.lastTrackedPath = fullPath;
     }

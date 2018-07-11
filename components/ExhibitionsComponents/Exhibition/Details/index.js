@@ -6,7 +6,7 @@ import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
 
 import { getFullPath, joinIfArray, parseDplaItemRecord } from "lib";
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.scss";
 import css from "./Details.scss";
@@ -33,7 +33,7 @@ class Details extends React.Component {
         contributor: joinIfArray(dplaItem.dataProvider, ", ")
       };
 
-      gTag.event(gaEvent);
+      gtag.event(gaEvent);
       this.lastTrackedPath = fullPath;
     }
   }

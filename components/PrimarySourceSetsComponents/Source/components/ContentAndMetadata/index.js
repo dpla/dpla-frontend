@@ -20,7 +20,7 @@ import {
   trackGaEvent
 } from "lib";
 import { markdownLinks } from "lib/externalLinks";
-import * as gTag from "lib/gTag";
+import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ContentAndMetadata.scss";
@@ -114,7 +114,7 @@ class ContentAndMetadata extends React.Component {
         contributor: joinIfArray(getContributor(source))
       };
 
-      gTag.event(gaEvent);
+      gtag.event(gaEvent);
       this.lastTrackedPath = fullPath;
     }
   }
