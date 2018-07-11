@@ -16,12 +16,7 @@ class MinimalLayout extends React.Component {
   // Google Analytics tracking for MinimalLayout-using pages (404/500)
   componentDidMount() {
     this.trackPageview();
-    Router.router.events.on("routeChangeComplete", this.trackPageview);
-  }
-
-  // Cleanup, prevents multiple pageviews being counted for a single route.
-  componentWillUnmount() {
-    Router.router.events.off("routeChangeComplete", this.trackPageview);
+    Router.onRouteChangeComplete = url => this.trackPageview();
   }
 
   trackPageview() {
