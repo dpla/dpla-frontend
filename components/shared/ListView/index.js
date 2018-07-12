@@ -391,7 +391,7 @@ class ListView extends React.Component {
                     id={`checkbox-${realId}`}
                   />
                   {!checked && listCount >= MAX_LIST_ITEMS
-                    ? "Can’t add more items to list"
+                    ? "Can’t add more"
                     : "Add to list"}
                 </label>
               </li>
