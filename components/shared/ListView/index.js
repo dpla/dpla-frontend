@@ -213,7 +213,7 @@ class ListView extends React.Component {
         const url = item.sourceUrl;
         return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
       });
-    const csvData = `ID,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join(
+    const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join(
       "\r\n"
     )}`;
 
