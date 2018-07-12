@@ -60,7 +60,6 @@ const ItemDetail = ({
       >
         <Content item={item} url={url} />
         <div className={css.faveAndCiteButtons}>
-          <CheckableLists itemId={item.id} />
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
@@ -70,6 +69,7 @@ const ItemDetail = ({
             toCiteText="item"
             title={item.title}
           />
+          <CheckableLists itemId={item.id} />
         </div>
       </div>
 

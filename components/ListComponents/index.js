@@ -3,9 +3,12 @@ import Link from "next/link";
 import moment from "moment";
 
 import Alert from "shared/Alert";
+import ListNameModal from "shared/ListNameModal";
 
-import { addCommasToNumber } from "lib";
-import { getLocalForageLists } from "lib/localForage";
+import { addCommasToNumber, createUUID, deepCopyObject } from "lib";
+import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
+
+import { MESSAGE_DELAY, MAX_LIST_ITEMS } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ListComponents.scss";
@@ -79,6 +82,11 @@ export class CheckableLists extends React.Component {
     this.getLists();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.showMessage !== prevState.showMessage)
+      setTimeout(() => this.setState({ showMessage: "" }), MESSAGE_DELAY);
+  }
+
   getLists = async () => {
     const { itemId } = this.props;
     let lists = await getLocalForageLists();
@@ -98,26 +106,93 @@ export class CheckableLists extends React.Component {
     const element = e.target;
     let id = element.value;
     let selected = element.checked;
-    console.log(id);
     if (selected) {
-      this.addItemToList();
+      this.addItemToList(id);
     } else {
-      this.removeItemFromList();
+      this.removeItemFromList(id);
     }
   };
 
-  addItemToList() {}
+  addItemToList(id) {
+    const { itemId } = this.props;
+    let theList = deepCopyObject(
+      this.state.lists.filter(l => l.uuid === id)[0]
+    );
+    let checkedLists = deepCopyObject(this.state.checkedLists);
+    if (checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return; // check if item already selected
+    checkedLists.push(id);
+    theList.selectedHash[itemId] = itemId;
+    this.updateList(id, theList, checkedLists, "Item added");
+  }
 
-  removeItemFromList() {}
+  removeItemFromList(id) {
+    const { itemId } = this.props;
+    let theList = deepCopyObject(
+      this.state.lists.filter(l => l.uuid === id)[0]
+    );
+    let checkedLists = deepCopyObject(this.state.checkedLists);
+    if (checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId])
+      return; // check if item not selected
+    checkedLists.splice(checkedLists.indexOf(id), 1);
+    delete theList.selectedHash[itemId];
+    this.updateList(id, theList, checkedLists, "Item removed");
+  }
+
+  updateList = async (uuid, list, checkedLists, message) => {
+    const updatedAt = Date.now();
+    list.updatedAt = updatedAt;
+    list.count = Object.keys(list.selectedHash).length;
+    await setLocalForageItem(uuid, list);
+    let lists = deepCopyObject(this.state.lists.filter(l => l.uuid !== uuid));
+    lists.push(list);
+    lists.sort((a, b) => a.createdAt < b.createdAt);
+    this.setState({
+      checkedLists: checkedLists,
+      lists: lists,
+      showMessage: message
+    });
+  };
+
+  onNameChange = value => {
+    this.createList(value);
+  };
+
+  createList = async listName => {
+    // add the new list to local storage
+    const { itemId } = this.props;
+    const uuid = createUUID();
+    const createdAt = Date.now();
+    let checkedLists = deepCopyObject(this.state.checkedLists);
+    checkedLists.push(uuid);
+    let newLists = deepCopyObject(this.state.lists);
+    let savedList = {
+      name: listName,
+      selectedHash: { [itemId]: itemId },
+      createdAt: createdAt,
+      updatedAt: createdAt
+    };
+    newLists.push(
+      Object.assign({}, savedList, {
+        uuid: uuid,
+        count: 1
+      })
+    );
+    newLists.sort((a, b) => a.createdAt < b.createdAt);
+    await setLocalForageItem(uuid, savedList);
+    this.setState({
+      showMessage: "List created and item added",
+      checkedLists: checkedLists,
+      lists: newLists
+    });
+  };
 
   render() {
-    const { itemId } = this.props;
     const { lists, showMessage, checkedLists } = this.state;
     const listOfLists = lists.length > 0
-      ? <ul className="">
+      ? <ul className={css.listOfLists}>
           {lists.map((l, index) => {
-            const shouldDisable = l.count >= 50;
             const isChecked = checkedLists.indexOf(l.uuid) !== -1;
+            const shouldDisable = l.count >= 50 && !isChecked;
             return (
               <li key={`l_${index}`}>
                 <label
@@ -137,8 +212,11 @@ export class CheckableLists extends React.Component {
                       ? css.disabled
                       : ""}`}
                   />
-                  {l.name} ({l.count}{" "}
-                  item{l.count !== 1 ? "s" : ""})
+                  {l.name}
+                  <span className={css.listCount}>
+                    {l.count < MAX_LIST_ITEMS ? l.count : "Max"}
+                    {l.count !== 1 ? " items" : " item"}
+                  </span>
                 </label>
               </li>
             );
@@ -147,9 +225,15 @@ export class CheckableLists extends React.Component {
       : null;
     return (
       <div className="itemLists">
-        {listOfLists}
         <Alert showMessage={showMessage} />
-        <button>Add item to a new list</button>
+        <ListNameModal
+          className={css.newListModal}
+          type="create"
+          value=""
+          onChange={this.onNameChange}
+          name="Add to a new list"
+        />
+        {listOfLists}
       </div>
     );
   }

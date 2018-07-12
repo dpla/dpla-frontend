@@ -77,9 +77,35 @@
   grid-area: date;
 }
 
+.listOfLists {
+}
+
 .checkboxLabel {
+  align-items: baseline;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9rem;
+  margin: 0 0.5rem 0.5rem;
+
+  &.disabled {
+    color: $dimmedTextColor;
+  }
+}
+
+.checkbox {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.listCount {
+  color: $dimmedTextColor;
+  white-space: nowrap;
 }
 
 .disabled {
   cursor: not-allowed;
+}
+
+.newListModal {
+  margin: 0.5rem 0;
 }

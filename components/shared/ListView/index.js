@@ -12,12 +12,9 @@ import {
   setLocalForageItem,
   getLocalForageItem
 } from "lib/localForage";
-import { UNTITLED_TEXT } from "constants/site";
+import { UNTITLED_TEXT, MESSAGE_DELAY, MAX_LIST_ITEMS } from "constants/site";
 
 import css from "./ListView.scss";
-
-const MESSAGE_DELAY = 2000;
-const MAX_ITEMS = 50;
 
 const joinTruncate = str => truncateString(joinIfArray(str));
 
@@ -149,22 +146,18 @@ class ListView extends React.Component {
 
   addCell = id => {
     let hash = deepCopyObject(this.state.selectedHash);
-    let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
     if (hash[id]) return; // check if item already selected
     hash[id] = id;
-    list.count++;
-    this.updateList(hash, list, "Item added");
+    this.updateList(hash, "Item added");
   };
 
   removeCell = id => {
     let hash = deepCopyObject(this.state.selectedHash);
-    let list = this.state.lists.filter(l => l.uuid === this.state.listUUID)[0];
-    if (list && list.count > 0) list.count--;
     delete hash[id];
-    this.updateList(hash, list, "Item removed");
+    this.updateList(hash, "Item removed");
   };
 
-  updateList = async (hash, list, message) => {
+  updateList = async (hash, message) => {
     const updatedAt = Date.now();
     let savedList = {
       name: this.state.listName,
@@ -176,8 +169,8 @@ class ListView extends React.Component {
     let lists = deepCopyObject(this.state.lists);
     lists.sort((a, b) => a.createdAt < b.createdAt);
     lists.forEach(l => {
-      if (l.uuid === list.uuid) {
-        l.count = list.count;
+      if (l.uuid === this.state.listUUID) {
+        l.count = Object.keys(hash).length;
       }
     });
     this.setState({ selectedHash: hash, lists: lists, showMessage: message });
@@ -315,9 +308,9 @@ class ListView extends React.Component {
             const realId = item.itemDplaId || item.id;
             const checked = selectedHash[realId] !== undefined;
             const shouldDisable =
-              (!checked && listCount >= MAX_ITEMS) ||
+              (!checked && listCount >= MAX_LIST_ITEMS) ||
               realId === "http://dp.la/api/items/#sourceResource";
-            const disabledMessage = `Maximum ${MAX_ITEMS} items per list.`;
+            const disabledMessage = `Maximum ${MAX_LIST_ITEMS} items per list.`;
             return (
               <li key={index} className={css.listItem}>
                 <ListImage
@@ -385,7 +378,7 @@ class ListView extends React.Component {
                 >
                   <input
                     className={`${css.checkboxInput} ${!checked &&
-                      listCount >= MAX_ITEMS
+                      listCount >= MAX_LIST_ITEMS
                       ? css.disabled
                       : ""}`}
                     type="checkbox"
@@ -397,7 +390,9 @@ class ListView extends React.Component {
                     key={`checkbox-${realId}`}
                     id={`checkbox-${realId}`}
                   />
-                  Add to list
+                  {!checked && listCount >= MAX_LIST_ITEMS
+                    ? "Can’t add more items to list"
+                    : "Add to list"}
                 </label>
               </li>
             );

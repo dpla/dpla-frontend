@@ -2,19 +2,19 @@
 
 .alert {
   background-color: $featuredBannerColor;
-  bottom: -5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   color: black;
+  display: inline-block;
   left: 50%;
   margin-left: -5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   position: fixed;
   text-align: center;
-  transition: bottom 0.1s ease-out;
-  width: 10rem;
+  top: -5rem;
+  transition: top 0.1s ease-out;
   z-index: 11;
 
   &.open {
-    bottom: 0.5rem;
+    top: 0.5rem;
   }
 }
