@@ -82,7 +82,7 @@ export const ListCheckbox = ({
   isChecked,
   onCheckList
 }) =>
-  <li key={`l_${index}`}>
+  <li>
     <label
       htmlFor={`ch_${list.uuid}`}
       className={`${css.checkboxLabel} ${shouldDisable ? css.disabled : ""}`}
@@ -224,7 +224,7 @@ export class CheckableLists extends React.Component {
             const shouldDisable = l.count >= 50 && !isChecked;
             return (
               <ListCheckbox
-                index={index}
+                key={`l_${index}`}
                 list={l}
                 shouldDisable={shouldDisable}
                 isChecked={isChecked}

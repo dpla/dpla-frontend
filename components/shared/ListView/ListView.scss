@@ -136,12 +136,17 @@
   }
 
   &:checked:after {
-    background-color: $subLinkColor;
+    border: 0.2rem solid white;
+    border-top: none;
+    border-right: none;
     color: white;
-    content: "\2714";
+    content: "";
+    height: 0.3rem;
     left: 0.1rem;
     position: absolute;
-    top: -0.1rem;
+    top: 0.1rem;
+    transform: rotate(-45deg);
+    width: 0.6rem;
   }
 }
 
