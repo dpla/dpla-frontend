@@ -11,7 +11,6 @@
 
 .displayMode {
   display: flex;
-  justify-content: flex-end;
   margin: 0.5rem 0;
 
   & a {
@@ -47,6 +46,10 @@
   border: none;
   margin-left: 0.5rem;
   max-width: 15rem;
+
+  @media (max-width: $mediumRem) {
+    margin-left: auto;
+  }
 }
 
 .listItem {
@@ -78,7 +81,7 @@
   justify-content: center;
   max-height: auto;
   max-width: 5rem;
-  order: 0;
+  order: -1;
   padding: 0.5rem;
   text-align: center;
   transition: all 0.2s ease-out;
@@ -100,7 +103,6 @@
     flex-direction: row;
     justify-content: left;
     max-width: 100%;
-    order: -1;
   }
 }
 
