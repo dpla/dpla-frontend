@@ -75,6 +75,35 @@ export const ListsContent = ({ initialized, lists }) =>
     </div>
   </div>;
 
+export const ListCheckbox = ({
+  index,
+  list,
+  shouldDisable,
+  isChecked,
+  onCheckList
+}) =>
+  <li key={`l_${index}`}>
+    <label
+      htmlFor={`ch_${list.uuid}`}
+      className={`${css.checkboxLabel} ${shouldDisable ? css.disabled : ""}`}
+    >
+      <input
+        type="checkbox"
+        id={`ch_${list.uuid}`}
+        value={list.uuid}
+        checked={isChecked}
+        onChange={onCheckList}
+        disabled={shouldDisable ? true : false}
+        className={`${css.checkbox} ${shouldDisable ? css.disabled : ""}`}
+      />
+      <span>{list.name}</span>
+      <span className={css.listCount}>
+        {list.count < MAX_LIST_ITEMS ? list.count : "Max"}
+        {list.count !== 1 ? " items" : " item"}
+      </span>
+    </label>
+  </li>;
+
 export class CheckableLists extends React.Component {
   state = { showMessage: "", checkedLists: [], lists: [], initialized: false };
 
@@ -194,31 +223,13 @@ export class CheckableLists extends React.Component {
             const isChecked = checkedLists.indexOf(l.uuid) !== -1;
             const shouldDisable = l.count >= 50 && !isChecked;
             return (
-              <li key={`l_${index}`}>
-                <label
-                  htmlFor={`ch_${l.uuid}`}
-                  className={`${css.checkboxLabel} ${shouldDisable
-                    ? css.disabled
-                    : ""}`}
-                >
-                  <input
-                    type="checkbox"
-                    id={`ch_${l.uuid}`}
-                    value={l.uuid}
-                    checked={isChecked}
-                    onChange={this.onCheckList}
-                    disabled={shouldDisable ? true : false}
-                    className={`${css.checkbox} ${shouldDisable
-                      ? css.disabled
-                      : ""}`}
-                  />
-                  {l.name}
-                  <span className={css.listCount}>
-                    {l.count < MAX_LIST_ITEMS ? l.count : "Max"}
-                    {l.count !== 1 ? " items" : " item"}
-                  </span>
-                </label>
-              </li>
+              <ListCheckbox
+                index={index}
+                list={l}
+                shouldDisable={shouldDisable}
+                isChecked={isChecked}
+                onCheckList={this.onCheckList}
+              />
             );
           })}
         </ul>
