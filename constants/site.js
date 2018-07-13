@@ -26,7 +26,7 @@ export const MAILCHIMP_LISTS = {
 
 export const UNTITLED_TEXT = "Untitled";
 
-export const MESSAGE_DELAY = 2000;
+export const MESSAGE_DELAY = 5000;
 
 export const MAX_LIST_ITEMS = 50;
 
