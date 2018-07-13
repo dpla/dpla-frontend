@@ -90,7 +90,7 @@ export class CheckableLists extends React.Component {
   getLists = async () => {
     const { itemId } = this.props;
     let lists = await getLocalForageLists();
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    lists.sort((a, b) => b.createdAt - a.createdAt);
     let checkedLists = [];
     lists.forEach(l => {
       if (l.selectedHash[itemId]) checkedLists.push(l.uuid);
@@ -142,15 +142,15 @@ export class CheckableLists extends React.Component {
     const updatedAt = Date.now();
     list.updatedAt = updatedAt;
     list.count = Object.keys(list.selectedHash).length;
-    await setLocalForageItem(uuid, list);
     let lists = deepCopyObject(this.state.lists.filter(l => l.uuid !== uuid));
     lists.push(list);
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    lists.sort((a, b) => b.createdAt - a.createdAt);
     this.setState({
       checkedLists: checkedLists,
       lists: lists,
       showMessage: message
     });
+    await setLocalForageItem(uuid, list);
   };
 
   onNameChange = value => {
@@ -177,7 +177,7 @@ export class CheckableLists extends React.Component {
         count: 1
       })
     );
-    newLists.sort((a, b) => a.createdAt < b.createdAt);
+    newLists.sort((a, b) => b.createdAt - a.createdAt);
     await setLocalForageItem(uuid, savedList);
     this.setState({
       showMessage: "List created and item added",

@@ -78,6 +78,10 @@
 }
 
 .listOfLists {
+  margin-top: 1rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .checkboxLabel {

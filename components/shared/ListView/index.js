@@ -56,7 +56,7 @@ class ListView extends React.Component {
     });
     let lists = await getLocalForageLists();
     // TODO: sometimes this doesnt arrive here because promises
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    lists.sort((a, b) => b.createdAt - a.createdAt);
     if (this.props.defaultUUID) {
       readOnly = true;
       this.loadList(this.props.defaultUUID);
@@ -82,7 +82,7 @@ class ListView extends React.Component {
       count: 0,
       createdAt: createdAt
     });
-    newLists.sort((a, b) => a.createdAt < b.createdAt);
+    newLists.sort((a, b) => b.createdAt - a.createdAt);
     let savedList = {
       name: listName,
       selectedHash: {},
@@ -167,7 +167,7 @@ class ListView extends React.Component {
     };
     await setLocalForageItem(this.state.listUUID, savedList);
     let lists = deepCopyObject(this.state.lists);
-    lists.sort((a, b) => a.createdAt < b.createdAt);
+    lists.sort((a, b) => b.createdAt - a.createdAt);
     lists.forEach(l => {
       if (l.uuid === this.state.listUUID) {
         l.count = Object.keys(hash).length;
