@@ -24,6 +24,7 @@ class DPLAHead extends React.Component {
       seoType,
       pageTitle,
       pageImage,
+      pageImageCaption,
       pageDescription
     } = this.props;
     const defaultDescription =
@@ -54,6 +55,10 @@ class DPLAHead extends React.Component {
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
           <meta name="twitter:image" content={pageImage || defaultImageUrl} />
+          <meta
+            name="twitter:image:alt"
+            content={pageImageCaption || defaultDescription}
+          />
           <meta name="og:image" content={pageImage || defaultImageUrl} />
           <meta
             name="og:title"
