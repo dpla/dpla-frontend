@@ -8,7 +8,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "shared/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
-import { ListLoading } from "components/ListComponents";
+import { ListLoading, ListEmpty } from "components/ListComponents";
 
 import {
   addLinkInfoToResults,
@@ -173,6 +173,7 @@ class List extends React.Component {
                   items={addLinkInfoToResults(items, url.query)}
                   defaultUUID={uuid}
                 />}
+              {items.length === 0 && <ListEmpty />}
               {list.name &&
                 <ConfirmModal
                   className={css.listDeleteConfirm}

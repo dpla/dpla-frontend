@@ -41,6 +41,20 @@ export const Lists = ({ lists }) =>
     )}
   </ul>;
 
+export const ListEmpty = () =>
+  <div className={`${css.empty} `}>
+    <p>This list is empty.</p>
+    <p>
+      Add up to 50 items from our{" "}
+      <Link prefetch href="/browse-by-topic">
+        <a>topics</a>
+      </Link>{" "}or{" "}
+      <Link prefetch href="/search">
+        <a>search results</a>
+      </Link>.
+    </p>
+  </div>;
+
 export const ListsEmpty = () =>
   <div className={`${css.empty} `}>
     <h2 className={css.contentTitle}>You have no lists</h2>
