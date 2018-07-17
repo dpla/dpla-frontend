@@ -144,6 +144,17 @@ class ListView extends React.Component {
     }
   };
 
+  onRemoveItem = e => {
+    const element = e.target;
+    let id = element.getAttribute("data-id");
+    let selected = element.checked;
+    if (!selected) {
+      this.addCell(id);
+    } else {
+      this.removeCell(id);
+    }
+  };
+
   addCell = id => {
     let hash = deepCopyObject(this.state.selectedHash);
     if (hash[id]) return; // check if item already selected
@@ -369,31 +380,51 @@ class ListView extends React.Component {
                       &nbsp; in {item.dataProvider}
                     </span>}
                 </div>
-                <label
-                  className={`${css.checkboxLabel} ${checkboxShown
-                    ? ""
-                    : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
-                  htmlFor={`checkbox-${realId}`}
-                  title={shouldDisable ? disabledMessage : ""}
-                >
-                  <input
-                    className={`${css.checkboxInput} ${!checked &&
-                      listCount >= MAX_LIST_ITEMS
-                      ? css.disabled
-                      : ""}`}
-                    type="checkbox"
+                {!readOnly &&
+                  <label
+                    className={`${css.checkboxLabel} ${checkboxShown
+                      ? ""
+                      : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
+                    htmlFor={`checkbox-${realId}`}
                     title={shouldDisable ? disabledMessage : ""}
-                    data-id={realId}
-                    onChange={this.onCheckItem}
-                    checked={selectedHash[realId] !== undefined}
-                    disabled={shouldDisable ? true : false}
-                    key={`checkbox-${realId}`}
-                    id={`checkbox-${realId}`}
-                  />
-                  {!checked && listCount >= MAX_LIST_ITEMS
-                    ? "Can’t add more"
-                    : "Add to list"}
-                </label>
+                  >
+                    <input
+                      className={`${css.checkboxInput} ${!checked &&
+                        listCount >= MAX_LIST_ITEMS
+                        ? css.disabled
+                        : ""}`}
+                      type="checkbox"
+                      title={shouldDisable ? disabledMessage : ""}
+                      data-id={realId}
+                      onChange={this.onCheckItem}
+                      checked={selectedHash[realId] !== undefined}
+                      disabled={shouldDisable ? true : false}
+                      key={`checkbox-${realId}`}
+                      id={`checkbox-${realId}`}
+                    />
+                    {!checked && listCount >= MAX_LIST_ITEMS
+                      ? "Can’t add more"
+                      : "Add to list"}
+                  </label>}
+                {readOnly &&
+                  <label
+                    className={`${css.checkboxLabel} ${css.remove} ${checkboxShown
+                      ? ""
+                      : css.collapsed} ${shouldDisable ? css.disabled : ""}`}
+                    htmlFor={`checkbox-remove-${realId}`}
+                    title={shouldDisable ? disabledMessage : ""}
+                  >
+                    <input
+                      className={`${css.checkboxInput} ${css.remove}`}
+                      type="checkbox"
+                      data-id={realId}
+                      onChange={this.onRemoveItem}
+                      checked={selectedHash[realId] === undefined}
+                      key={`checkbox-remove-${realId}`}
+                      id={`checkbox-remove-${realId}`}
+                    />
+                    Remove from list
+                  </label>}
               </li>
             );
           })}
