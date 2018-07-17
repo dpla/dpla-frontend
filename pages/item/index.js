@@ -38,7 +38,12 @@ const ItemDetail = ({
     return <Error statusCode={error.statusCode} />;
   }
   return (
-    <MainLayout route={url} pageTitle={item.title}>
+    <MainLayout
+      route={url}
+      pageTitle={item.title}
+      pageImage={item.thumbnailUrl}
+      pageDescription={item.title}
+    >
       <BreadcrumbsModule /* searchItemCount={searchItemCount} */
         /* paginationInfo={paginationInfo} */
         breadcrumbs={[
