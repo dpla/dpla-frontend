@@ -42,7 +42,6 @@ const ItemDetail = ({
       route={url}
       pageTitle={item.title}
       pageImage={item.thumbnailUrl}
-      pageDescription={item.title}
     >
       <BreadcrumbsModule /* searchItemCount={searchItemCount} */
         /* paginationInfo={paginationInfo} */
