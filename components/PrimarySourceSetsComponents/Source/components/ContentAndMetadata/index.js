@@ -16,8 +16,7 @@ import {
   getItemId,
   getPartner,
   getTitle,
-  getContributor,
-  trackGaEvent
+  getContributor
 } from "lib";
 import { markdownLinks } from "lib/externalLinks";
 import * as gtag from "lib/gtag";
@@ -74,7 +73,7 @@ const trackClickThrough = (e, source, target = "_blank") => {
 
   try {
     // Try tracking a Google Analytics event.
-    trackGaEvent(gaEvent);
+    gtag.event(gaEvent);
   } catch (error) {
     // TODO: What is the best way to log an error?
   } finally {
