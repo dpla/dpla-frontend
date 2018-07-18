@@ -34,6 +34,7 @@ class Exhibition extends React.Component {
     return (
       <MainLayout
         route={router}
+        pageImage={exhibition.thumbnailUrl}
         pageTitle={exhibition.title.replace(/\*/g, "")}
         seoType={SEO_TYPE}
       >

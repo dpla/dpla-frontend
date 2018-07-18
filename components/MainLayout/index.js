@@ -18,6 +18,8 @@ const MainLayout = ({
   hidePageHeader,
   isSearchPage,
   headLinks,
+  pageImage,
+  pageImageCaption,
   pageTitle,
   pageDescription,
   seoType
@@ -34,6 +36,8 @@ const MainLayout = ({
         pageTitle={pageTitle}
         seoType={seoType}
         pageDescription={pageDescription}
+        pageImage={pageImage}
+        pageImageCaption={pageImageCaption}
       />
       <SkipToContent />
       <SmallScreenHeader

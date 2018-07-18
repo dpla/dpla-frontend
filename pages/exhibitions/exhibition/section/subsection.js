@@ -39,7 +39,11 @@ const Subsection = ({
   }
   return (
     <div>
-      <DPLAHead pageTitle={section.title} seoType={SEO_TYPE} />
+      <DPLAHead
+        pageTitle={section.title}
+        seoType={SEO_TYPE}
+        pageImage={exhibition.thumbnailUrl}
+      />
       <SkipToContent />
       <Content
         route={url}
@@ -172,8 +176,28 @@ Subsection.getInitialProps = async ({ query, req, res }) => {
           });
         })
     );
+    // Get homepage item file
+    const sortedExhibitPages = exhibitPageJson
+      .filter(exhibition => !exhibition.parent)
+      .sort((a, b) => a.order - b.order);
+
+    // just in case order isn't consistent, try checking the slug first
+    const homePage =
+      sortedExhibitPages.find(
+        exhibit => exhibit.slug === "home-page" || exhibit.slug === "homepage"
+      ) || sortedExhibitPages[0];
+
+    const { item } = homePage.page_blocks[0].attachments[0];
+    const filesRes = await fetch(
+      `${currentUrl}${FILES_ENDPOINT}?item=${item.id}`
+    );
+    const filesJson = await filesRes.json();
+    const thumbnailUrl = filesJson[0].file_urls.fullsize;
     return {
-      exhibition: Object.assign({}, exhibition, { sections }),
+      exhibition: Object.assign({}, exhibition, {
+        sections,
+        thumbnailUrl
+      }),
       section,
       nextQueryParams: nextQueryParamsAndTitle.queryParams,
       nextSubsectionTitle: nextQueryParamsAndTitle.title,
