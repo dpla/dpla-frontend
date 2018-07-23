@@ -37,9 +37,14 @@ class Subsection extends React.Component {
 
   trackPageview() {
     const fullPath = getFullPath();
+    const fullUrl = getCurrentFullUrl();
 
     if (fullPath !== this.lastTrackedPath) {
-      gtag.pageview(fullPath);
+      gtag.pageview({
+        path: fullPath,
+        url: fullUrl,
+        title: this.props.section.title
+      });
       this.lastTrackedPath = fullPath;
     }
   }
