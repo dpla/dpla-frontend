@@ -89,7 +89,10 @@ class ContentAndMetadata extends React.Component {
     // now collapse it
     this.setState({ isOpen: false });
     this.trackSourceView();
-    Router.onRouteChangeComplete = url => this.trackSourceView();
+  }
+
+  componentDidUpdate() {
+    this.trackSourceView();
   }
 
   componentWillReceiveProps() {

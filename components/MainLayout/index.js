@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "next/router";
-
 import Helmet from "react-helmet";
+
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
 import SmallScreenHeader from "./components/SmallScreenHeader";
@@ -10,22 +10,26 @@ import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
 import * as gtag from "lib/gtag";
-import { getFullPath } from "lib";
+import { getFullPath, getCurrentFullUrl } from "lib";
 
 import { SITE_ENV } from "constants/env";
 
 class MainLayout extends React.Component {
   // Google Analytics tracking for MainLayout-using pages
   componentDidMount() {
-    this.trackPageview();
     Router.onRouteChangeComplete = url => this.trackPageview();
   }
 
   trackPageview() {
     const fullPath = getFullPath();
+    const fullUrl = getCurrentFullUrl();
 
     if (fullPath !== this.lastTrackedPath) {
-      gtag.pageview(fullPath);
+      gtag.pageview({
+        path: fullPath,
+        url: fullUrl,
+        title: this.props.pageTitle
+      });
       this.lastTrackedPath = fullPath;
     }
   }

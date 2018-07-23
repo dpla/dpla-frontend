@@ -8,7 +8,7 @@ import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
 
 import * as gtag from "lib/gtag";
-import { getFullPath } from "lib";
+import { getFullPath, getCurrentFullUrl } from "lib";
 
 import { SITE_ENV } from "constants/env";
 
@@ -21,9 +21,14 @@ class MinimalLayout extends React.Component {
 
   trackPageview() {
     const fullPath = getFullPath();
+    const fullUrl = getCurrentFullUrl();
 
     if (fullPath !== this.lastTrackedPath) {
-      gtag.pageview(fullPath);
+      gtag.pageview({
+        path: fullPath,
+        url: fullUrl,
+        title: this.props.pageTitle
+      });
       this.lastTrackedPath = fullPath;
     }
   }

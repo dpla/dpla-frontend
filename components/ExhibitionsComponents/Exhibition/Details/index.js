@@ -15,7 +15,6 @@ class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event
   componentDidMount() {
     this.trackEvent();
-    Router.onRouteChangeComplete = url => this.trackEvent();
   }
 
   trackEvent() {
