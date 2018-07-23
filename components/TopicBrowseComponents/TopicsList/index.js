@@ -4,7 +4,7 @@ import FeatureHeader from "shared/FeatureHeader";
 import Topics from "./components/Topics";
 import Callout from "./components/Callout";
 
-import { TITLE, DESCRIPTION } from "constants/topicBrowse.js";
+import { TITLE, DESCRIPTION } from "constants/topicBrowse";
 
 // NB: a FiltersBar component already exists in this directory,
 // but we don't need it yet—there aren't enough topics to warrant filtering

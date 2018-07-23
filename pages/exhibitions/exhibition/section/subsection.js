@@ -1,9 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import Router from "next/router";
 
 import Error from "pages/_error";
 import DPLAHead from "components/DPLAHead";
-import SkipToContent from "components/shared/SkipToContent";
+import SkipToContent from "shared/SkipToContent";
 import Content from "components/ExhibitionsComponents/ExhibitionSection";
 
 import {
@@ -13,8 +14,11 @@ import {
 import {
   getCurrentUrl,
   getCurrentFullUrl,
-  getDplaItemIdFromExhibit
+  getDplaItemIdFromExhibit,
+  getFullPath
 } from "lib";
+import * as gtag from "lib/gtag";
+
 import {
   EXHIBITS_ENDPOINT,
   EXHIBIT_PAGES_ENDPOINT,
@@ -24,39 +28,53 @@ import {
 import { SEO_TYPE } from "constants/exhibition";
 import { API_ENDPOINT } from "constants/items";
 
-const Subsection = ({
-  error,
-  url,
-  exhibition,
-  section,
-  subsection,
-  nextQueryParams,
-  nextSubsectionTitle,
-  previousQueryParams
-}) => {
-  if (error) {
-    return <Error statusCode={error.statusCode} />;
+class Subsection extends React.Component {
+  // Google Analytics tracking because this doesnt use MainLayout
+  componentDidMount() {
+    this.trackPageview();
+    Router.onRouteChangeComplete = url => this.trackPageview();
   }
-  return (
-    <div>
-      <DPLAHead
-        pageTitle={section.title}
-        seoType={SEO_TYPE}
-        pageImage={exhibition.thumbnailUrl}
-      />
-      <SkipToContent />
-      <Content
-        route={url}
-        previousQueryParams={previousQueryParams}
-        nextQueryParams={nextQueryParams}
-        nextSubsectionTitle={nextSubsectionTitle}
-        exhibition={exhibition}
-        section={section}
-        subsection={subsection}
-      />
-    </div>
-  );
-};
+
+  trackPageview() {
+    const fullPath = getFullPath();
+
+    if (fullPath !== this.lastTrackedPath) {
+      gtag.pageview(fullPath);
+      this.lastTrackedPath = fullPath;
+    }
+  }
+
+  render() {
+    const {
+      error,
+      url,
+      exhibition,
+      section,
+      subsection,
+      nextQueryParams,
+      nextSubsectionTitle,
+      previousQueryParams
+    } = this.props;
+    if (error) {
+      return <Error statusCode={error.statusCode} />;
+    }
+    return (
+      <div>
+        <DPLAHead pageTitle={section.title} seoType={SEO_TYPE} />
+        <SkipToContent />
+        <Content
+          route={url}
+          previousQueryParams={previousQueryParams}
+          nextQueryParams={nextQueryParams}
+          nextSubsectionTitle={nextSubsectionTitle}
+          exhibition={exhibition}
+          section={section}
+          subsection={subsection}
+        />
+      </div>
+    );
+  }
+}
 
 // TODO: refactor this so it isn't so long
 Subsection.getInitialProps = async ({ query, req, res }) => {
