@@ -63,8 +63,6 @@ class ListView extends React.Component {
       const links = document.getElementsByClassName("internalItemLink");
       const items = this.props.items;
 
-      // alert(`${JSON.stringify(items[0].linkAs)} : ${JSON.stringify(links[0].href)}`);
-
       // Iterate through links.
       Array.from(links).forEach(function(link) {
         // Find item with linkAs property that matches end of link href.
