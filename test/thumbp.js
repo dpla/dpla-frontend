@@ -336,4 +336,18 @@ describe("Connection", function() {
       assert(returnErrorStub.calledWith(502));
     });
   });
+
+  describe("isProbablyURL()", function() {
+    it("passes a good URL (1)", function() {
+      assert(c.isProbablyURL("https://example.edu/x.jpg") == true);
+    });
+
+    it("flunks a bad string (1)", function() {
+      assert(c.isProbablyURL("AAA-AAA_chasj_3157") == false);
+    });
+
+    it("flunks a value that is not truthy", function() {
+      assert(c.isProbablyURL(false) == false);
+    });
+  });
 });
