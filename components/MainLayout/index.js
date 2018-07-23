@@ -17,7 +17,6 @@ import { SITE_ENV } from "constants/env";
 class MainLayout extends React.Component {
   // Google Analytics tracking for MainLayout-using pages
   componentDidMount() {
-    this.trackPageview();
     Router.onRouteChangeComplete = url => this.trackPageview();
   }
 

@@ -91,6 +91,10 @@ class ContentAndMetadata extends React.Component {
     this.trackSourceView();
   }
 
+  componentDidUpdate() {
+    this.trackSourceView();
+  }
+
   componentWillReceiveProps() {
     this.setState({ isOpen: this.props.openDescription || false });
   }
