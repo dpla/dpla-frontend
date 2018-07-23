@@ -31,8 +31,10 @@ describe("Connection", function() {
     };
     c = new thumbp.Connection(request, response);
     returnErrorStub = sinon.stub(c, "returnError");
+    createS3DerivativeStub = sinon.stub(c, "createS3Derivative");
     consoleErrorStub.reset();
     libRequestStub.reset();
+    createS3DerivativeStub.reset();
   });
 
   describe("Connection()", function() {
@@ -86,7 +88,7 @@ describe("Connection", function() {
   //     var itemID = "223ea5040640813b6c8204d1e0778d30";
   //     var goodURL =
   //       "http://localhost:9200/dpla_alias/item" +
-  //       `/_search?q=id:${itemID}&fields=id,object`;
+  //       `/_search?q=id:${itemID}&_source=id,object`;
   //     c.itemID = itemID;
   //     c.lookUpImage();
   //     expect(libRequestStub.args[0][0].uri).to.equal(goodURL);
@@ -108,7 +110,7 @@ describe("Connection", function() {
           total: 1,
           hits: [
             {
-              fields: {
+              _source: {
                 id: itemID,
                 object: imageURL
               }
@@ -157,7 +159,7 @@ describe("Connection", function() {
           total: 1,
           hits: [
             {
-              fields: {
+              _source: {
                 id: itemID,
                 object: [imageURL, "x"]
               }
@@ -179,7 +181,7 @@ describe("Connection", function() {
             total: 1,
             hits: [
               {
-                fields: {
+                _source: {
                   id: itemID
                 }
               }
@@ -201,7 +203,7 @@ describe("Connection", function() {
         empties = [[], "", { x: "is wrong type" }];
         for (var i = 0; i < empties.length; i++) {
           var obj = empties[i];
-          noObjectData["hits"]["hits"][0]["fields"]["object"] = obj;
+          noObjectData["hits"]["hits"][0]["_source"]["object"] = obj;
           var noObjectBody = JSON.stringify(noObjectData);
           c.checkSearchResponse(error, response, noObjectBody);
           assert(returnErrorStub.calledWith(404));
