@@ -163,6 +163,13 @@ class List extends React.Component {
                 <p className={css.listDate}>
                   Created {moment(list.createdAt, "x").fromNow()}
                 </p>}
+              <p>
+                <strong>
+                  Note:
+                  The link to this list won't work
+                  for someone else or in another browser.
+                </strong>
+              </p>
               {items &&
                 uuid &&
                 <ListView
