@@ -5,8 +5,7 @@ import { ListsContent } from "components/ListComponents";
 import FeatureHeader from "shared/FeatureHeader";
 
 import { getLocalForageLists } from "lib/localForage";
-
-const TITLE = "Lists";
+import { LISTS_TITLE } from "constants/lists";
 
 class ListsPage extends React.Component {
   state = { lists: [], initialized: false };
@@ -28,9 +27,9 @@ class ListsPage extends React.Component {
     const { url } = this.props;
     const { lists, initialized } = this.state;
     return (
-      <MainLayout route={url} pageTitle={TITLE}>
+      <MainLayout route={url} pageTitle={LISTS_TITLE}>
         <div id="main" role="main">
-          <FeatureHeader title={TITLE} />
+          <FeatureHeader title={LISTS_TITLE} />
           <ListsContent lists={lists} initialized={initialized} />
         </div>
       </MainLayout>

@@ -390,7 +390,13 @@ class ListView extends React.Component {
               realId === "http://dp.la/api/items/#sourceResource";
             const disabledMessage = `Maximum ${MAX_LIST_ITEMS} items per list.`;
             return (
-              <li key={index} className={css.listItem}>
+              <li
+                key={index}
+                className={`${css.listItem} ${readOnly &&
+                  selectedHash[realId] === undefined
+                  ? css.deleted
+                  : ""}`}
+              >
                 <ListImage
                   item={item}
                   title={item.title}

@@ -61,7 +61,7 @@ class NavigationUser extends React.Component {
             <li>
               <Link prefetch href="/lists">
                 <a>
-                  Lists
+                  My Lists
                 </a>
               </Link>
             </li>}

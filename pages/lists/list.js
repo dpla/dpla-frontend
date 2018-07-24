@@ -19,11 +19,10 @@ import {
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import { LISTS_TITLE } from "constants/lists";
 
 import utils from "stylesheets/utils.scss";
 import css from "components/ListComponents/ListComponents.scss";
-
-const TITLE = "List";
 
 class List extends React.Component {
   state = {
@@ -129,15 +128,15 @@ class List extends React.Component {
       return <Error statusCode={404} />;
     }
     return (
-      <MainLayout route={url} pageTitle={list ? list.name : TITLE}>
+      <MainLayout route={url} pageTitle={list ? list.name : LISTS_TITLE}>
         <BreadcrumbsModule
           breadcrumbs={[
             {
-              title: "Lists",
+              title: "My Lists",
               url: "/lists",
               as: "/lists"
             },
-            { title: list ? list.name : TITLE }
+            { title: list ? list.name : LISTS_TITLE }
           ]}
           route={url}
         />

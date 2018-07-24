@@ -105,7 +105,7 @@ class FooterUser extends React.Component {
                 <li>
                   <Link href="/lists">
                     <a>
-                      Lists
+                      My Lists
                     </a>
                   </Link>
                 </li>}
