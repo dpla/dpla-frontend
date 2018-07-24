@@ -55,6 +55,15 @@ export const ListEmpty = () =>
     </p>
   </div>;
 
+export const ListNote = () =>
+  <div className={css.note}>
+    <p>
+      <strong>Note:</strong> You won't see lists created in
+      another browser here. To view those lists, open the browser
+      you used when creating them.
+    </p>
+  </div>;
+
 export const ListsEmpty = () =>
   <div className={`${css.empty} `}>
     <h2 className={css.contentTitle}>You have no lists</h2>
@@ -67,11 +76,6 @@ export const ListsEmpty = () =>
         <a>search results</a>
       </Link>{" "}
       (up to 50 items in each list).
-    </p>
-    <p>
-      <strong>Note:</strong> You won't see lists created in
-      another browser here. To view those lists, open the browser
-      you used when creating them.
     </p>
   </div>;
 
@@ -86,6 +90,7 @@ export const ListsContent = ({ initialized, lists }) =>
       {!initialized && <ListLoading />}
       {lists.length > 0 && <Lists lists={lists} />}
       {initialized && lists.length === 0 && <ListsEmpty />}
+      <ListNote />
     </div>
   </div>;
 
