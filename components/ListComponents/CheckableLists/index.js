@@ -2,6 +2,7 @@ import React from "react";
 
 import Alert from "shared/Alert";
 import ListNameModal from "components/ListComponents/ListNameModal";
+import { ListCheckbox } from "components/ListComponents";
 
 import { createUUID, deepCopyObject } from "lib";
 import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
