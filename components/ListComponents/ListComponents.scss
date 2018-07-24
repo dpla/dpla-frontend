@@ -5,7 +5,7 @@
 }
 
 .note {
-  margin: 1rem 0.5rem;
+  margin: 1rem 0;
 }
 
 .loading {
@@ -20,6 +20,10 @@
 .contentTitle {
   font-size: 1.625rem;
   font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.createList {
   margin-bottom: 1rem;
 }
 
@@ -61,6 +65,10 @@
     border-bottom-color: $linkColor;
     text-decoration: none;
   }
+
+  @media (max-width: $mediumRem) {
+    display: block;
+  }
 }
 
 .listName {
@@ -77,6 +85,7 @@
 
 .listDate {
   color: $dimmedTextColor;
+  display: block;
   font-size: 0.8rem;
   font-style: italic;
   grid-area: date;

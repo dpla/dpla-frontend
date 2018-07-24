@@ -6,7 +6,7 @@ import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
-import { CheckableLists } from "components/ListComponents";
+import { CheckableLists } from "components/ListComponents/CheckableLists";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 

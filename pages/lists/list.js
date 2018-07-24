@@ -6,7 +6,7 @@ import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
-import ListNameModal from "shared/ListNameModal";
+import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
 import { ListLoading, ListEmpty } from "components/ListComponents";
 
@@ -166,9 +166,10 @@ class List extends React.Component {
               <p>
                 <strong>
                   Note:
-                  The link to this list won't work
-                  for someone else or in another browser.
                 </strong>
+                {" "}
+                The link to this list won't work for someone else or in another
+                browser.
               </p>
               {items &&
                 uuid &&

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import ListImage from "./ListImage";
-import ListNameModal from "shared/ListNameModal";
+import ListNameModal from "components/ListComponents/ListNameModal";
 import Alert from "shared/Alert";
 
 import {
@@ -232,7 +232,10 @@ class ListView extends React.Component {
   removeCell = id => {
     let hash = deepCopyObject(this.state.selectedHash);
     delete hash[id];
-    this.updateList(hash, "Item removed");
+    const message = this.state.readOnly
+      ? "Item removed. Uncheck to undo."
+      : "Item removed";
+    this.updateList(hash, message);
   };
 
   updateList = async (hash, message) => {
@@ -379,7 +382,7 @@ class ListView extends React.Component {
         {exportable &&
           items.length > 0 &&
           <div className={css.displayMode}>
-            <a onClick={this.downloadCSV}>Download CSV</a>
+            <a onClick={this.downloadCSV}>Download list</a>
           </div>}
         <ul className={css.listView}>
           {items.map((item, index) => {

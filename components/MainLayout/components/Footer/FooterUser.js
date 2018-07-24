@@ -96,11 +96,6 @@ class FooterUser extends React.Component {
                   <a>Exhibitions</a>
                 </Link>
               </li>
-              <li>
-                <Link href="/search">
-                  <a>Search</a>
-                </Link>
-              </li>
               {lists.length > 0 &&
                 <li>
                   <Link href="/lists">
@@ -109,6 +104,11 @@ class FooterUser extends React.Component {
                     </a>
                   </Link>
                 </li>}
+              <li>
+                <Link href="/search">
+                  <a>Search</a>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
