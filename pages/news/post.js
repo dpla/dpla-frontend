@@ -59,7 +59,7 @@ class PostPage extends React.Component {
           breadcrumbs={[
             {
               title: "News",
-              router: "/news",
+              url: "/news",
               as: "/news"
             },
             { title: content.title.rendered }
