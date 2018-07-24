@@ -1,10 +1,10 @@
-import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import HeadingRule from "components/shared/HeadingRule";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
+import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 

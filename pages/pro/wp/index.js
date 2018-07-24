@@ -4,8 +4,8 @@ import striptags from "striptags";
 import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import HeadingRule from "components/shared/HeadingRule";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
+import HeadingRule from "shared/HeadingRule";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";

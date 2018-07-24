@@ -6,6 +6,7 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+import { removeQueryParams } from "lib";
 
 import css from "shared/FiltersBar/FiltersBar.scss";
 
@@ -62,10 +63,14 @@ class FiltersBar extends React.Component {
   onClearFilters = e => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
-        subject: "all-subjects",
-        timePeriod: "all-time-periods"
-      })
+      query: Object.assign(
+        {},
+        removeQueryParams(this.props.route.query, ["subject", "timePeriod"])
+      )
+    });
+    this.setState({
+      timePeriodValue: "all-time-periods",
+      subjectValue: "all-subjects"
     });
   };
 

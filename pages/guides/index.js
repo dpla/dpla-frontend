@@ -2,8 +2,8 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import GuideLink from "components/shared/GuideLink";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
+import GuideLink from "shared/GuideLink";
 
 import { getMenuItemUrl } from "lib";
 

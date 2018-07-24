@@ -1,36 +1,65 @@
 // for use in status/error pages
-
 import React from "react";
 import Helmet from "react-helmet";
+import Router from "next/router";
+
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
-import GaWrapper from "shared/GaWrapper";
+
+import * as gtag from "lib/gtag";
+import { getFullPath, getCurrentFullUrl } from "lib";
 
 import { SITE_ENV } from "constants/env";
 
-const MinimalLayout = ({
-  children,
-  route,
-  headLinks,
-  pageTitle,
-  seoType,
-  isPrintable
-}) =>
-  <div>
-    <Helmet htmlAttributes={{ lang: "en" }} />
-    <DPLAHead
-      additionalLinks={headLinks}
-      pageTitle={pageTitle}
-      seoType={seoType}
-    />
-    {!isPrintable && <SkipToContent />}
-    {!isPrintable &&
-      <PageHeader
-        searchQuery={route ? route.query.q : ""}
-        hideSearchBar={SITE_ENV === "pro"}
-      />}
-    {children}
-  </div>;
+class MinimalLayout extends React.Component {
+  // Google Analytics tracking for MinimalLayout-using pages (404/500)
+  componentDidMount() {
+    this.trackPageview();
+    Router.onRouteChangeComplete = url => this.trackPageview();
+  }
 
-export default GaWrapper(MinimalLayout);
+  trackPageview() {
+    const fullPath = getFullPath();
+    const fullUrl = getCurrentFullUrl();
+
+    if (fullPath !== this.lastTrackedPath) {
+      gtag.pageview({
+        path: fullPath,
+        url: fullUrl,
+        title: this.props.pageTitle
+      });
+      this.lastTrackedPath = fullPath;
+    }
+  }
+
+  render() {
+    const {
+      children,
+      route,
+      headLinks,
+      pageTitle,
+      seoType,
+      isPrintable
+    } = this.props;
+    return (
+      <div>
+        <Helmet htmlAttributes={{ lang: "en" }} />
+        <DPLAHead
+          additionalLinks={headLinks}
+          pageTitle={pageTitle}
+          seoType={seoType}
+        />
+        {!isPrintable && <SkipToContent />}
+        {!isPrintable &&
+          <PageHeader
+            searchQuery={route ? route.query.q : ""}
+            hideSearchBar={SITE_ENV === "pro"}
+          />}
+        {children}
+      </div>
+    );
+  }
+}
+
+export default MinimalLayout;

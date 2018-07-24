@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
-import GaExhibitWrapper from "./GaExhibitWrapper";
 
 import css from "./ExhibitionSection.scss";
 
@@ -35,4 +34,4 @@ const ExhibitionView = ({
     />
   </div>;
 
-export default GaExhibitWrapper(ExhibitionView);
+export default ExhibitionView;

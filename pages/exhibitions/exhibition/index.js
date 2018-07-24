@@ -1,6 +1,6 @@
-import { withRouter } from "next/router";
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
@@ -34,6 +34,7 @@ class Exhibition extends React.Component {
     return (
       <MainLayout
         route={router}
+        pageImage={exhibition.thumbnailUrl}
         pageTitle={exhibition.title.replace(/\*/g, "")}
         seoType={SEO_TYPE}
       >
