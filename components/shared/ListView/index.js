@@ -350,9 +350,9 @@ class ListView extends React.Component {
               value=""
               onChange={this.onNameChange}
               name={
-                lists.length === 0
-                  ? "Create a list from these items"
-                  : "Create new list"
+                lists.length > 0
+                  ? "Create new list"
+                  : "Create a list from these items"
               }
             />
             {lists.length > 0 &&

@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
 import { ListsContent } from "components/ListComponents";
@@ -50,6 +51,7 @@ class ListsPage extends React.Component {
       lists: newLists
     });
     await setLocalForageItem(uuid, savedList);
+    Router.push({ pathname: `/lists/${uuid}` });
   };
 
   render() {
