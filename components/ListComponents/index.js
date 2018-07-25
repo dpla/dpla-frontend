@@ -49,8 +49,21 @@ export const ListEmpty = () =>
       </Link>{" "}or{" "}
       <Link prefetch href="/search">
         <a>search results</a>
-      </Link>.
+      </Link>:
     </p>
+    <video
+      title="video with no audio showing how to add items to a list"
+      controls
+    >
+      <source
+        src="/static/video/list-add.mp4"
+        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+      />
+      <source
+        src="/static/video/list-add.ogv"
+        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+      />
+    </video>
   </div>;
 
 export const ListNote = () =>
@@ -73,7 +86,47 @@ export const ListsEmpty = () =>
       <Link prefetch href="/search">
         <a>search results</a>
       </Link>{" "}
-      (up to 50 items in each list).
+      (up to 50 items in each list):
+    </p>
+    <video
+      title="video with no audio showing how to create a list and add items"
+      controls
+    >
+      <source
+        src="/static/video/list-new.mp4"
+        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+      />
+      <source
+        src="/static/video/list-new.ogv"
+        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+      />
+    </video>
+    <p>
+      Once you have created a list, you can visit{" "}
+      <code>
+        <Link prefetch href="/lists">
+          <a>dp.la/lists</a>
+        </Link>
+      </code>{" "}
+      to
+      manage them. You can also download lists to use in your preferred
+      spreadsheet program:
+    </p>
+    <video title="video with no audio showing how to download a list" controls>
+      <source
+        src="/static/video/list-download.mp4"
+        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+      />
+      <source
+        src="/static/video/list-download.mp4"
+        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+      />
+    </video>
+    <h3>Lists are private!</h3>
+    <p>
+      Lists you create <strong>exist only in the browser</strong> you use to
+      create them. If you
+      want to share a list, you can download it and share the file.
     </p>
   </div>;
 
@@ -86,7 +139,7 @@ export const ListsContent = ({ initialized, lists, onCreateList }) =>
   <div className={`${utils.container}`}>
     <div className={`row ${css.wrapper}`}>
       {!initialized && <ListLoading />}
-      <ListNote />
+      {initialized && lists.length > 0 && <ListNote />}
       {initialized && lists.length === 0 && <ListsEmpty />}
       {initialized &&
         <ListNameModal

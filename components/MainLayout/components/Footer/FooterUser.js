@@ -4,28 +4,13 @@ import Link from "next/link";
 import Button from "components/shared/Button";
 import FeedbackForm from "components/FeedbackForm";
 
-import { getLocalForageLists } from "lib/localForage";
-
 import { PRO_BASE_URL } from "constants/env";
 
 import css from "./Footer.scss";
 
 class FooterUser extends React.Component {
-  state = { lists: [] };
-
-  componentDidMount() {
-    this.getLists();
-  }
-
-  getLists = async () => {
-    let lists = await getLocalForageLists();
-    this.setState({
-      lists: lists
-    });
-  };
   render() {
     const { route } = this.props;
-    const { lists } = this.state;
     return (
       <div className={`${css.footer} site-max-width`}>
         <div className="row">
@@ -96,14 +81,13 @@ class FooterUser extends React.Component {
                   <a>Exhibitions</a>
                 </Link>
               </li>
-              {lists.length > 0 &&
-                <li>
-                  <Link href="/lists">
-                    <a>
-                      My Lists
-                    </a>
-                  </Link>
-                </li>}
+              <li>
+                <Link href="/lists">
+                  <a>
+                    My Lists
+                  </a>
+                </Link>
+              </li>
               <li>
                 <Link href="/search">
                   <a>Search</a>

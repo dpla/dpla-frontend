@@ -15,6 +15,7 @@
 .empty p {
   margin-bottom: 1rem;
   margin-top: 1rem;
+  max-width: 60ch;
 }
 
 .contentTitle {
@@ -159,4 +160,12 @@
 
 .newListModal {
   margin: 0.5rem 0;
+}
+
+video {
+  border-radius: 0.5rem;
+  display: inline-block;
+  margin: 2rem 0;
+  max-width: 600px;
+  width: 100%;
 }

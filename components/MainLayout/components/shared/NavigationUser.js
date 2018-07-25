@@ -1,27 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-import { getLocalForageLists } from "lib/localForage";
-
 import { PRO_BASE_URL } from "constants/env";
 
 class NavigationUser extends React.Component {
-  state = { lists: [] };
-
-  componentDidMount() {
-    this.getLists();
-  }
-
-  getLists = async () => {
-    let lists = await getLocalForageLists();
-    this.setState({
-      lists: lists
-    });
-  };
-
   render() {
     const { isHome, className, css } = this.props;
-    const { lists } = this.state;
     return (
       <div className={className}>
         <ul className={css.links}>
@@ -57,14 +41,13 @@ class NavigationUser extends React.Component {
               </a>
             </Link>
           </li>
-          {lists.length > 0 &&
-            <li>
-              <Link prefetch href="/lists">
-                <a>
-                  My Lists
-                </a>
-              </Link>
-            </li>}
+          <li>
+            <Link prefetch href="/lists">
+              <a>
+                My Lists
+              </a>
+            </Link>
+          </li>
         </ul>
         <span className={css.divider} />
         <ul className={`${css.links} ${css.secondaryLinks}`}>
