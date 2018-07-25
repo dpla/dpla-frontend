@@ -39,6 +39,7 @@ class MinimalLayout extends React.Component {
       route,
       headLinks,
       pageTitle,
+      pageImage,
       seoType,
       isPrintable
     } = this.props;
@@ -48,6 +49,7 @@ class MinimalLayout extends React.Component {
         <DPLAHead
           additionalLinks={headLinks}
           pageTitle={pageTitle}
+          pageImage={pageImage}
           seoType={seoType}
         />
         {!isPrintable && <SkipToContent />}
