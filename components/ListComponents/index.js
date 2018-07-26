@@ -58,7 +58,10 @@ export const ListEmpty = () =>
     >
       <source src="/static/video/list-add.mp4" type="video/mp4" />
       <source src="/static/video/list-add.ogv" type="video/ogg" />
-      Your browser doesn't support HTML5 video tag.
+      <p>
+        Your browser doesn't support HTML5 video. Here is
+        a <a href="/static/video/list-add.mp4">link to the video</a> instead.
+      </p>
     </video>
   </div>;
 
@@ -91,7 +94,10 @@ export const ListsEmpty = () =>
     >
       <source src="/static/video/list-new.mp4" type="video/mp4" />
       <source src="/static/video/list-new.ogv" type="video/ogg" />
-      Your browser doesn't support HTML5 video tag.
+      <p>
+        Your browser doesn't support HTML5 video. Here is
+        a <a href="/static/video/list-new.mp4">link to the video</a> instead.
+      </p>
     </video>
     <p>
       Once you have created a list, you can visit{" "}
@@ -111,7 +117,11 @@ export const ListsEmpty = () =>
     >
       <source src="/static/video/list-download.mp4" type="video/mp4" />
       <source src="/static/video/list-download.mp4" type="video/ogg" />
-      Your browser doesn't support HTML5 video tag.
+      <p>
+        Your browser doesn't support HTML5 video. Here is
+        a <a href="/static/video/list-download.mp4">link to the video</a>
+        instead.
+      </p>
     </video>
     <h3>Lists are private!</h3>
     <p>
