@@ -43,6 +43,7 @@ class MainLayout extends React.Component {
       isSearchPage,
       headLinks,
       pageTitle,
+      pageImage,
       pageDescription,
       seoType
     } = this.props;
@@ -56,6 +57,7 @@ class MainLayout extends React.Component {
         <DPLAHead
           additionalLinks={headLinks}
           pageTitle={pageTitle}
+          pageImage={pageImage}
           seoType={seoType}
           pageDescription={pageDescription}
         />
