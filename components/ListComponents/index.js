@@ -119,7 +119,7 @@ export const ListsEmpty = () =>
       <source src="/static/video/list-download.mp4" type="video/ogg" />
       <p>
         Your browser doesn't support HTML5 video. Here is
-        a <a href="/static/video/list-download.mp4">link to the video</a>
+        a <a href="/static/video/list-download.mp4">link to the video</a>{" "}
         instead.
       </p>
     </video>
