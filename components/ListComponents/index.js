@@ -52,11 +52,13 @@ export const ListEmpty = () =>
       </Link>:
     </p>
     <video
+      poster="/static/video/list-add_poster.png"
       title="video with no audio showing how to add items to a list"
       controls
     >
       <source src="/static/video/list-add.mp4" type="video/mp4" />
       <source src="/static/video/list-add.ogv" type="video/ogg" />
+      Your browser doesn't support HTML5 video tag.
     </video>
   </div>;
 
@@ -83,11 +85,13 @@ export const ListsEmpty = () =>
       (up to 50 items in each list):
     </p>
     <video
+      poster="/static/video/list-new_poster.png"
       title="video with no audio showing how to create a list and add items"
       controls
     >
       <source src="/static/video/list-new.mp4" type="video/mp4" />
       <source src="/static/video/list-new.ogv" type="video/ogg" />
+      Your browser doesn't support HTML5 video tag.
     </video>
     <p>
       Once you have created a list, you can visit{" "}
@@ -100,9 +104,14 @@ export const ListsEmpty = () =>
       manage them. You can also download lists to use in your preferred
       spreadsheet program:
     </p>
-    <video title="video with no audio showing how to download a list" controls>
+    <video
+      poster="/static/video/list-download_poster.png"
+      title="video with no audio showing how to download a list"
+      controls
+    >
       <source src="/static/video/list-download.mp4" type="video/mp4" />
       <source src="/static/video/list-download.mp4" type="video/ogg" />
+      Your browser doesn't support HTML5 video tag.
     </video>
     <h3>Lists are private!</h3>
     <p>
