@@ -3,10 +3,8 @@ import fetch from "isomorphic-fetch";
 import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
-import Button from "shared/Button";
 import CallToAction from "shared/CallToAction";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
@@ -64,7 +62,7 @@ class HubsPage extends React.Component {
                   return (
                     <li key={index} className={css.section}>
                       <h2 className={css.sectionTitle}>
-                        <a href={`${section.router}`}>{section.title}</a>
+                        <a href={`${section.url}`}>{section.title}</a>
                       </h2>
                       <p className={css.sectionText}>
                         {section.text}
@@ -77,7 +75,7 @@ class HubsPage extends React.Component {
                                 className={css.sectionQuicklink}
                                 key={`link-${idx}`}
                               >
-                                <a href={`${link.router}`}>
+                                <a href={`${link.url}`}>
                                   {link.text}
                                 </a>
                               </li>
