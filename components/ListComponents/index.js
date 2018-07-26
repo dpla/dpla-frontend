@@ -55,14 +55,8 @@ export const ListEmpty = () =>
       title="video with no audio showing how to add items to a list"
       controls
     >
-      <source
-        src="/static/video/list-add.mp4"
-        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
-      />
-      <source
-        src="/static/video/list-add.ogv"
-        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
-      />
+      <source src="/static/video/list-add.mp4" type="video/mp4" />
+      <source src="/static/video/list-add.ogv" type="video/ogg" />
     </video>
   </div>;
 
@@ -92,14 +86,8 @@ export const ListsEmpty = () =>
       title="video with no audio showing how to create a list and add items"
       controls
     >
-      <source
-        src="/static/video/list-new.mp4"
-        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
-      />
-      <source
-        src="/static/video/list-new.ogv"
-        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
-      />
+      <source src="/static/video/list-new.mp4" type="video/mp4" />
+      <source src="/static/video/list-new.ogv" type="video/ogg" />
     </video>
     <p>
       Once you have created a list, you can visit{" "}
@@ -113,14 +101,8 @@ export const ListsEmpty = () =>
       spreadsheet program:
     </p>
     <video title="video with no audio showing how to download a list" controls>
-      <source
-        src="/static/video/list-download.mp4"
-        type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
-      />
-      <source
-        src="/static/video/list-download.mp4"
-        type="video/ogg; codecs=&quot;theora, vorbis&quot;"
-      />
+      <source src="/static/video/list-download.mp4" type="video/mp4" />
+      <source src="/static/video/list-download.mp4" type="video/ogg" />
     </video>
     <h3>Lists are private!</h3>
     <p>
