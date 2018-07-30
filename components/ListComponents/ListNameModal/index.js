@@ -49,7 +49,7 @@ class ListNameModal extends React.Component {
     if (tempName === "") {
       tempName = DEFAULT_NAME;
     }
-    this.setState({ value: tempName, active: false });
+    this.setState({ value: "", active: false });
     this.state.onChange(tempName);
   };
 
