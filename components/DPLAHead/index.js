@@ -55,7 +55,8 @@ class DPLAHead extends React.Component {
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
           <meta name="twitter:image" content={pageImage || defaultImageUrl} />
-          <meta name="twitter:image:alt" content={pageImageCaption} />
+          {pageImageCaption &&
+            <meta name="twitter:image:alt" content={pageImageCaption} />}
           <meta name="og:image" content={pageImage || defaultImageUrl} />
           <meta
             name="og:title"
