@@ -23,11 +23,6 @@ button, input, select, label, textarea {
   font-family: $sansFont;
 }
 
-input {
-  /* fixes an issue with Safari in particular */
-  -webkit-appearance: none;
-}
-
 button {
   background: none;
   border: none;
@@ -97,10 +92,4 @@ input[type="tel"],
 input[type="text"],
 input[type="url"] {
   box-sizing: border-box;
-}
-
-select {
-  appearance: none;
-  background-color: transparent;
-  border: none;
 }

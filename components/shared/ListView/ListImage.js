@@ -12,6 +12,17 @@ class ListImage extends React.Component {
   };
 
   componentDidMount() {
+    this.updateImage();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      this.setState({ updateToDefaultImage: false });
+      this.updateImage();
+    }
+  }
+
+  updateImage() {
     // Check for images that error so we can replace them with a default image
     const _img = document.createElement("img");
     _img.src = this.props.url;
@@ -21,7 +32,7 @@ class ListImage extends React.Component {
   }
 
   render() {
-    const { title, type, url, useDefaultImage } = this.props;
+    const { type, url, useDefaultImage, item } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
 
@@ -31,8 +42,8 @@ class ListImage extends React.Component {
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}
-        {this.state.item.id !== "http://dp.la/api/items/#sourceResource" &&
-          <Link href={this.state.item.linkHref} as={this.state.item.linkAs}>
+        {item.id !== "http://dp.la/api/items/#sourceResource" &&
+          <Link href={item.linkHref} as={item.linkAs}>
             <a
               className={`${css.listItemImageLink} internalItemLink`}
               aria-hidden
@@ -45,21 +56,7 @@ class ListImage extends React.Component {
             </a>
           </Link>}
         {/* see issue #869 for details on this hack */}
-        {this.state.item.id !== "http://dp.la/api/items/#sourceResource" &&
-          <Link href={this.state.item.linkHref} as={this.state.item.linkAs}>
-            <a
-              className={`${css.listItemImageLink} internalItemLink`}
-              aria-hidden
-            >
-              <img
-                src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
-                alt=""
-                className={css.image}
-              />
-            </a>
-          </Link>}
-        {/* see issue #869 for details on this hack */}
-        {this.state.item.id === "http://dp.la/api/items/#sourceResource" &&
+        {item.id === "http://dp.la/api/items/#sourceResource" &&
           <span className={css.listItemImageLink} aria-hidden>
             <img
               src={updateToDefaultImage ? getDefaultThumbnail(type) : url}

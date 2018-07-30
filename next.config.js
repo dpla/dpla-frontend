@@ -1,11 +1,8 @@
 const webpack = require("webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const dotenv = require("dotenv").config();
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
-const autoprefixer = require("autoprefixer");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { LOCALS } = require("./constants/local");
 
 module.exports = withBundleAnalyzer(

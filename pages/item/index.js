@@ -3,9 +3,10 @@ import fetch from "isomorphic-fetch";
 
 import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
+import CiteButton from "components/shared/CiteButton";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
-import CiteButton from "components/shared/CiteButton";
+import { CheckableLists } from "components/ListComponents/CheckableLists";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -72,6 +73,7 @@ const ItemDetail = ({
             toCiteText="item"
             title={item.title}
           />
+          <CheckableLists itemId={item.id} />
         </div>
       </div>
 
@@ -205,6 +207,7 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
       // },
       // searchItemCount,
       item: Object.assign({}, doc.sourceResource, {
+        id: doc.id,
         thumbnailUrl,
         contributor: doc.dataProvider,
         intermediateProvider: doc.intermediateProvider,

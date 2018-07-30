@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import fetch from "isomorphic-fetch";
 import AriaModal from "react-aria-modal";
 
