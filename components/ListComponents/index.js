@@ -76,7 +76,7 @@ export const ListNote = () =>
 
 export const ListsEmpty = () =>
   <div className={`${css.empty}  col-xs-12`}>
-    <h2 className={css.contentTitle}>Create private lists</h2>
+    <h2 className={css.contentTitle}>Create your lists</h2>
     <p>
       Create lists from our{" "}
       <Link prefetch href="/browse-by-topic">
