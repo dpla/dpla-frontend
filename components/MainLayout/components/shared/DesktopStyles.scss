@@ -36,10 +36,6 @@
 
   & > li {
     margin-right: 0.75rem;
-
-    @media (min-width: $largeRem) {
-      margin-right: 1rem;
-    }
   }
 
   & > li > button, & > li > a {
@@ -47,10 +43,6 @@
     text-decoration: none;
     display: inline-block;
     padding: 0.5rem 0;
-
-    @media (min-width: $mediumRem) {
-      padding: 0.5rem 0;
-    }
   }
 }
 
