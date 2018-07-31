@@ -76,7 +76,7 @@ export const ListNote = () =>
 
 export const ListsEmpty = () =>
   <div className={`${css.empty}  col-xs-12`}>
-    <h2 className={css.contentTitle}>You have no lists</h2>
+    <h2 className={css.contentTitle}>Create your lists</h2>
     <p>
       Create lists from our{" "}
       <Link prefetch href="/browse-by-topic">
@@ -99,6 +99,7 @@ export const ListsEmpty = () =>
         a <a href="/static/video/list-new.mp4">link to the video</a> instead.
       </p>
     </video>
+    <h2>Download your lists</h2>
     <p>
       Once you have created a list, you can visit{" "}
       <code>
@@ -123,7 +124,7 @@ export const ListsEmpty = () =>
         instead.
       </p>
     </video>
-    <h3>Lists are private!</h3>
+    <h2>Lists are private!</h2>
     <p>
       Lists you create <strong>exist only in the browser</strong> you use to
       create them. If you
