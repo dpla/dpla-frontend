@@ -13,6 +13,13 @@ const NavigationLocal = ({ isHome, className, css }) =>
           </Link>
         </li>}
       <li>
+        <Link prefetch href="/lists">
+          <a>
+            My Lists
+          </a>
+        </Link>
+      </li>
+      <li>
         <Link prefetch href="/local/about" as="/about">
           <a>
             About
