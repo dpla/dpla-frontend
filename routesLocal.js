@@ -12,6 +12,28 @@ module.exports = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
+  // lists routes
+
+  server.get("/lists/:list", (req, res) => {
+    const actualPage = "/lists/list";
+    const params = {
+      list: req.params.list
+    };
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
+  });
+
+  server.get("/lists", (req, res) => {
+    const actualPage = "/lists";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
   // search routes
 
   server.get(["/search", "/search"], (req, res) => {

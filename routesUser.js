@@ -242,6 +242,7 @@ module.exports = (app, server) => {
     const actualPage = "/lists";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
+
   // guides routes
 
   server.get("/guides/:guide", (req, res) => {
