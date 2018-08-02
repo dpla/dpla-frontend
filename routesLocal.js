@@ -3,7 +3,13 @@ const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
-    res.redirect("/search");
+    const actualPage = "/local";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  server.get(["/about"], (req, res) => {
+    const actualPage = "/local/about";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   // search routes

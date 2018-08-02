@@ -1,19 +1,24 @@
 import React from "react";
 import Link from "next/link";
 
-import { USER_BASE_URL } from "constants/env";
-
 const NavigationLocal = ({ isHome, className, css }) =>
   <div className={className}>
     <ul className={css.links}>
       {!isHome &&
         <li>
-          <Link prefetch href="/search">
+          <Link prefetch href="/local" as="/">
             <a>
               Home
             </a>
           </Link>
         </li>}
+      <li>
+        <Link prefetch href="/local/about" as="/about">
+          <a>
+            About
+          </a>
+        </Link>
+      </li>
     </ul>
     <span className={css.divider} />
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
