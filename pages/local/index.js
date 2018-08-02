@@ -1,35 +1,35 @@
 import React from "react";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
+import HomeHero from "components/HomePageComponents/HomeHero";
+import LocalIntro from "components/HomePageComponents/LocalIntro";
+import StayInformed from "shared/StayInformed";
 
-import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
-import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { getCurrentUrl } from "lib";
 
-const Home = ({ url, news, content }) =>
-  <MainLayout hidePageHeader={false} hideSearchBar={false} route={url}>
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
+
+const Home = ({ router, content }) =>
+  <MainLayout hidePageHeader={true} hideSearchBar={true} route={router}>
     <div id="main" role="main">
-      hello local
+      <HomeHero />
+      <LocalIntro content={content} />
+      <StayInformed />
     </div>
   </MainLayout>;
 
 Home.getInitialProps = async ({ req }) => {
-  // // fetch home info
-  // // 1. fetch the settings from WP
-  // const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
-  // const settingsJson = await settingsRes.json();
-  // // 2. get the corresponding value
-  // const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
-  //   .pro_homepage_endpoint}`;
-  // // 3. fetch it
-  // const homeRes = await fetch(endpoint);
-  // const homeJson = await homeRes.json();
+  const fullUrl = getCurrentUrl(req);
+  const markdownUrl = `${fullUrl}/static/local/${LOCALS[LOCAL_ID]
+    .theme}/homepage.md`;
+  const markdownResponse = await fetch(markdownUrl);
+  const pageMarkdown = await markdownResponse.text();
 
-  // // fetch news posts
-  // const newsRes = await fetch(NEWS_PRO_ENDPOINT);
-  // const newsItems = await newsRes.json();
-
-  // return { news: newsItems, content: homeJson };
-  return {};
+  return {
+    content: pageMarkdown
+  };
 };
 
-export default Home;
+export default withRouter(Home);

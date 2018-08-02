@@ -30,7 +30,7 @@ class PageHeader extends React.Component {
               </a>
             </Link>}
           {SITE_ENV === "local" &&
-            <Link prefetch href="/search">
+            <Link prefetch href="/local" as="/">
               <a className={`${css.logo} ${css.local}`} title="Home Page">
                 <img
                   className={css.localLogo}
