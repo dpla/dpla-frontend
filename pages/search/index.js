@@ -151,7 +151,7 @@ Search.getInitialProps = async ({ query, req }) => {
     .split(/(&|\+AND\+)/)
     .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
-  const json = await res.json();
+  let json = await res.json();
   const docs = json.docs.map(result => {
     const thumbnailUrl = result.object
       ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
@@ -165,6 +165,15 @@ Search.getInitialProps = async ({ query, req }) => {
       useDefaultImage: !result.object
     });
   });
+
+  // fix facets because ES no longer returns them in the requested order
+  // TODO: remove this hack once fixed in ES
+  let newFacets = {};
+  possibleFacets.forEach(facet => {
+    if (json.facets[facet]) newFacets[facet] = json.facets[facet];
+  });
+  json.facets = newFacets;
+  // end of hack
 
   const maxResults = MAX_PAGE_SIZE * page_size;
   const pageCount = json.count > maxResults ? maxResults : json.count;
