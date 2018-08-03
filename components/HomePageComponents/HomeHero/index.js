@@ -8,7 +8,7 @@ import { LOCALS } from "constants/local";
 
 import css from "./HomeHero.scss";
 
-const bgImage = SITE_ENV != "local"
+const bgImage = SITE_ENV !== "local"
   ? "/static/images/home-hero-bg.png"
   : `/static/local/${LOCALS[LOCAL_ID].theme}/home-hero-bg.jpg`;
 
@@ -18,7 +18,7 @@ const HomeHero = ({ headerDescription, feature }) =>
     style={{ backgroundImage: `url(${bgImage})` }}
   >
     <div className={`${css.header} site-max-width`}>
-      {SITE_ENV != "local" &&
+      {SITE_ENV !== "local" &&
         <div className={`${css.homeLogo} ${css.dplaLogo}`}>
           <h1>Digital Public Library of America</h1>
         </div>}
@@ -30,7 +30,7 @@ const HomeHero = ({ headerDescription, feature }) =>
           />
           <h1 className={css.localText}>{LOCALS[LOCAL_ID].name}</h1>
         </div>}
-      {SITE_ENV != "local" &&
+      {SITE_ENV !== "local" &&
         <Button type="primary" size="large" url="/donate">
           Donate
         </Button>}
@@ -52,7 +52,7 @@ const HomeHero = ({ headerDescription, feature }) =>
           </button>
         </div>
       </form>
-      {SITE_ENV != "local" &&
+      {SITE_ENV !== "local" &&
         <div className={css.links}>
           <Link prefetch href="/browse-by-topic">
             <a title="Browse DPLA by a curated set of topics">
