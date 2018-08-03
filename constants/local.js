@@ -3,7 +3,9 @@ const LOCALS = {
     theme: "wisconsin",
     provider: "%22Recollection%20Wisconsin%22",
     name: "Recollection Wisconsin",
-    description: ""
+    description: "",
+    locationFacet: "Wisconsin",
+    subjectFacet: "Wisconsin"
   }
 };
 

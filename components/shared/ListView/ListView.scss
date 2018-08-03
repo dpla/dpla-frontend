@@ -53,7 +53,7 @@
 }
 
 .listItem {
-  border-bottom: 0.075rem solid rgba(0, 0, 0, 0.1);
+  border-bottom: 0.075rem solid $lightBorderColor;
   display: flex;
   flex-wrap: wrap;
   padding: 15px 0;

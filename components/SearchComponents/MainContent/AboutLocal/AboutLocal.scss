@@ -1,0 +1,92 @@
+@import "stylesheets/variables";
+
+.wrapper {
+  background-color: $colderBackgroundColor;
+  margin: 2rem 0 0;
+  padding: 1rem 0 3rem;
+
+  @media (min-width: $smallRem) {
+    margin-bottom: -10rem;
+  }
+}
+
+.header {
+  font-family: $serifFont;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $smallRem) {
+    flex-direction: row;
+  }
+}
+
+.item {
+  border-bottom: 0.075rem solid $lightBorderColor;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: $smallRem) {
+    border-bottom: none;
+    flex-basis: calc(25% - 1rem);
+    flex-direction: column;
+    margin: 0 0.5rem;
+    padding: 0;
+
+    &:first-child {
+      flex-basis: calc(25% - 0.5rem);
+      margin-left: 0;
+    }
+
+    &:last-child {
+      flex-basis: calc(25% - 0.5rem);
+      margin-right: 0;
+    }
+  }
+}
+
+.itemImage {
+  margin: 0 0.5rem;
+  width: calc(34% - 1rem);
+
+  @media (min-width: $smallRem) {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.itemInfo {
+  margin-top: 0;
+  width: 66%;
+
+  @media (min-width: $smallRem) {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
+
+.itemTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  @media (min-width: $smallRem) {
+    font-size: 1.125rem;
+    font-weight: normal;
+    margin-right: 0.5rem;
+  }
+}
+
+.itemAuthorAndDate {
+  margin-top: 0.25rem;
+  color: $dimmedTextColor;
+  font-size: 0.875rem;
+}

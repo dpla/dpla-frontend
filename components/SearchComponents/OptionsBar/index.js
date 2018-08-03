@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Router from "next/router";
 
-import addCommasToNumber from "lib/addCommasToNumber";
+import { addCommasToNumber } from "lib";
 import {
   sortOptions,
   pageSizeOptions,

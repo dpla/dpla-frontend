@@ -37,7 +37,8 @@ class Search extends React.Component {
       numberOfActiveFacets,
       pageCount,
       currentPage,
-      pageSize
+      pageSize,
+      aboutness
     } = this.props;
     return (
       <MainLayout
@@ -69,6 +70,7 @@ class Search extends React.Component {
           route={router}
           facets={results.facets}
           results={results.docs}
+          aboutness={aboutness}
         />
       </MainLayout>
     );
@@ -135,6 +137,8 @@ Search.getInitialProps = async ({ query, req }) => {
     })
     .filter(facetQuery => facetQuery !== "");
 
+  const originalFacetQueries = queryArray.join("&");
+
   if (isLocal) {
     queryArray.push(`provider.name=${LOCALS[LOCAL_ID].provider}`);
   }
@@ -178,12 +182,47 @@ Search.getInitialProps = async ({ query, req }) => {
   const maxResults = MAX_PAGE_SIZE * page_size;
   const pageCount = json.count > maxResults ? maxResults : json.count;
 
+  // get the aboutness links
+  let aboutness = {};
+  if (isLocal) {
+    const aboutness_page_size = 20;
+    const aboutness_max = 4;
+    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&sourceResource.subject.name=${LOCALS[
+      LOCAL_ID
+    ].subjectFacet}&sourceResource.spatial.name=${LOCALS[LOCAL_ID]
+      .locationFacet}&${originalFacetQueries}`;
+    const aboutnessRes = await fetch(aboutnessUrl);
+    const aboutnessJson = await aboutnessRes.json();
+    // NOTE: since the api does not allow for negated search,
+    // this returns results also contained in the local query
+    // so they have to be manually filtered out
+    const aboutnessDocs = aboutnessJson.docs
+      .filter(result => result.provider.name !== LOCALS[LOCAL_ID].provider)
+      .map(result => {
+        const thumbnailUrl = result.object
+          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+          : getDefaultThumbnail(result.sourceResource.type);
+        return Object.assign({}, result.sourceResource, {
+          thumbnailUrl,
+          id: result.id ? result.id : result.sourceResource["@id"],
+          sourceUrl: result.isShownAt,
+          provider: result.provider && result.provider.name,
+          dataProvider: result.dataProvider,
+          useDefaultImage: !result.object
+        });
+      })
+      .splice(0, aboutness_max);
+    const aboutnessCount = aboutnessJson.count;
+    aboutness = { docs: aboutnessDocs, count: aboutnessCount };
+  }
+
   return {
     results: Object.assign({}, json, { docs }),
     numberOfActiveFacets,
     currentPage: page,
     pageCount,
-    pageSize: page_size
+    pageSize: page_size,
+    aboutness: aboutness
   };
 };
 export default withRouter(Search);
