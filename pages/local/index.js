@@ -16,7 +16,6 @@ const Home = ({ router, content }) =>
     <div id="main" role="main">
       <HomeHero />
       <LocalIntro content={content} />
-      <StayInformed />
     </div>
   </MainLayout>;
 
