@@ -3,9 +3,20 @@ import Head from "next/head";
 
 import { getMetaPageTitle, getCurrentFullUrl } from "lib";
 
+import { LOCALS } from "constants/local";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+
 import reset from "stylesheets/reset.scss";
 import utils from "stylesheets/utils.scss";
 import accessibility from "stylesheets/accessibility.scss";
+
+const defaultDescription = SITE_ENV !== "local"
+  ? "The Digital Public Library of America brings together the riches of America’s libraries, archives, and museums, and makes them freely available to the world."
+  : LOCALS[LOCAL_ID].description;
+
+const defaultPageTitle = SITE_ENV !== "local"
+  ? "Digital Public Library of America"
+  : LOCALS[LOCAL_ID].name;
 
 class DPLAHead extends React.Component {
   state = { defaultImageUrl: "" };
@@ -13,7 +24,11 @@ class DPLAHead extends React.Component {
   componentDidMount() {
     const fullUrl = getCurrentFullUrl();
     let url = fullUrl.substr(0, fullUrl.indexOf("/", 8));
-    url += "/static/images/dpla-logo-square_250.png";
+    if (SITE_ENV !== "local") {
+      url += "/static/images/dpla-logo-square_250.png";
+    } else {
+      url += `/static/images/${LOCALS[LOCAL_ID].logo}`;
+    }
     this.setState({ defaultImageUrl: url });
   }
 
@@ -27,8 +42,6 @@ class DPLAHead extends React.Component {
       pageImageCaption,
       pageDescription
     } = this.props;
-    const defaultDescription =
-      "The Digital Public Library of America brings together the riches of America’s libraries, archives, and museums, and makes them freely available to the world.";
 
     return (
       <div>
@@ -47,10 +60,7 @@ class DPLAHead extends React.Component {
             name="og:description"
             content={pageDescription || defaultDescription}
           />
-          <meta
-            name="og:site_name"
-            content="Digital Public Library of America"
-          />
+          <meta name="og:site_name" content={defaultPageTitle} />
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
@@ -58,35 +68,67 @@ class DPLAHead extends React.Component {
           {pageImageCaption &&
             <meta name="twitter:image:alt" content={pageImageCaption} />}
           <meta name="og:image" content={pageImage || defaultImageUrl} />
-          <meta
-            name="og:title"
-            content={pageTitle || "Digital Public Library of America"}
-          />
+          <meta name="og:title" content={pageTitle || defaultPageTitle} />
           <meta name="og:type" content={seoType || "website"} />
           <meta name="theme-color" content="#ffffff" />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/static/favicons/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/static/favicons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/static/favicons/favicon-16x16.png"
-          />
-          <link rel="manifest" href="/manifest.json" />
-          <link
-            rel="mask-icon"
-            href="/static/favicons/safari-pinned-tab.svg"
-            color="#5bbad5"
-          />
+          {SITE_ENV !== "local" && [
+            <link
+              key="180"
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="/static/favicons/apple-touch-icon.png"
+            />,
+            <link
+              key="32"
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="/static/favicons/favicon-32x32.png"
+            />,
+            <link
+              key="16"
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="/static/favicons/favicon-16x16.png"
+            />,
+            <link
+              key="mask"
+              rel="mask-icon"
+              href="/static/favicons/safari-pinned-tab.svg"
+              color="#5bbad5"
+            />,
+            <link key="manifest" rel="manifest" href="/manifest.json" />
+          ]}
+          {SITE_ENV === "local" && [
+            <link
+              key="180"
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+            />,
+            <link
+              key="32"
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+            />,
+            <link
+              key="16"
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+            />,
+            <link
+              key="mask"
+              rel="mask-icon"
+              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+              color="#ffffff"
+            />,
+            <link key="manifest" rel="manifest" href="/manifest.json" />
+          ]}
           <link
             rel="stylesheet"
             type="text/css"
