@@ -11,8 +11,7 @@ import {
 } from "lib";
 
 import { LOCALS } from "constants/local";
-import { localFacets, mapFacetsToURLPrettified } from "constants/search";
-import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCAL_ID } from "constants/env";
 
 import utils from "stylesheets/utils.scss";
 import css from "./AboutLocal.scss";
