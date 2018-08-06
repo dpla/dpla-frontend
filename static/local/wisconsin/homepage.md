@@ -2,7 +2,7 @@
 
 Discover photos, maps, books, artifacts, oral histories and more from dozens of Wisconsin communities.
 
-Some of our special materials:
+These are some of our special materials available for you to search:
 
 - ### [Movie-struck Wisconsin](/search?subject="Theaters%20--%20Wisconsin%20--%20Milwaukee")
 
