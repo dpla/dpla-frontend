@@ -27,7 +27,6 @@ const NavigationLocal = ({ isHome, className, css }) =>
         </Link>
       </li>
     </ul>
-    <span className={css.divider} />
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
         <Link href="//dp.la">
