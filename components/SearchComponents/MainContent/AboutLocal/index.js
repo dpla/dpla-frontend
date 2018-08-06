@@ -36,7 +36,9 @@ const AboutLocal = ({ items, count, query }) =>
     <div className={`${utils.container}`}>
       <h1 className={css.header}>
         <Link href={dplaLink(query)}>
-          <a>Explore {addCommasToNumber(count)} related items in DPLA</a>
+          <a className="external">
+            Explore {addCommasToNumber(count)} related items in DPLA
+          </a>
         </Link>{" "}
         including:
       </h1>
