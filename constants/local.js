@@ -6,8 +6,8 @@ const LOCALS = {
     favicon: "favicon.png",
     logo: "logo.jpg",
     description: "Sharing our Stories. Exploring our Past.",
-    locationFacet: "Wisconsin",
-    subjectFacet: "Wisconsin"
+    locationFacet: "%22Wisconsin%22",
+    subjectFacet: "%22Wisconsin%22"
   }
 };
 
