@@ -8,6 +8,13 @@ import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
 import {
+  getCurrentUrl,
+  getDefaultThumbnail,
+  getSearchPageTitle,
+  joinIfArray
+} from "lib";
+
+import {
   possibleFacets,
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet,
@@ -18,8 +25,6 @@ import {
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
-
-import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
 
 class Search extends React.Component {
   state = {
@@ -102,6 +107,11 @@ Search.getInitialProps = async ({ query, req }) => {
 
   let hasDates = false;
 
+  let originalSubject = `sourceResource.subject.name=${LOCALS[LOCAL_ID]
+    .subjectFacet}`;
+  let originalLocation = `sourceResource.spatial.name=${LOCALS[LOCAL_ID]
+    .locationFacet}`;
+
   const queryArray = possibleFacets
     .map(facet => {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
@@ -129,6 +139,23 @@ Search.getInitialProps = async ({ query, req }) => {
         query[mapFacetsToURLPrettified[facet]] &&
         facet.indexOf("sourceResource.date") === -1
       ) {
+        // need to put the location and subject for aboutness search
+        if (facet === "sourceResource.subject.name") {
+          originalSubject = `${facet}=${splitAndURIEncodeFacet(
+            `${joinIfArray(
+              query[mapFacetsToURLPrettified[facet]],
+              "|"
+            )}|${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`
+          )}`;
+        }
+        if (facet === "sourceResource.spatial.name") {
+          originalLocation = `${facet}=${splitAndURIEncodeFacet(
+            `${joinIfArray(
+              query[mapFacetsToURLPrettified[facet]],
+              "|"
+            )}|${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
+          )}`;
+        }
         return `${facet}=${splitAndURIEncodeFacet(
           query[mapFacetsToURLPrettified[facet]]
         )}`;
@@ -137,7 +164,15 @@ Search.getInitialProps = async ({ query, req }) => {
     })
     .filter(facetQuery => facetQuery !== "");
 
-  const originalFacetQueries = queryArray.join("&");
+  // get the original facets EXCEPT location and subject
+  // because those were modified above
+  const originalFacetQueries = queryArray
+    .filter(
+      facetQuery =>
+        facetQuery.indexOf("sourceResource.subject.name") === -1 &&
+        facetQuery.indexOf("sourceResource.spatial.name") === -1
+    )
+    .join("&");
 
   if (isLocal) {
     queryArray.push(`provider.name=${LOCALS[LOCAL_ID].provider}`);
@@ -187,17 +222,18 @@ Search.getInitialProps = async ({ query, req }) => {
   if (isLocal) {
     const aboutness_page_size = 20;
     const aboutness_max = 4;
-    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&sourceResource.subject.name=${LOCALS[
-      LOCAL_ID
-    ].subjectFacet}&sourceResource.spatial.name=${LOCALS[LOCAL_ID]
-      .locationFacet}&${originalFacetQueries}`;
+    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&${originalLocation}&${originalSubject}&${originalFacetQueries}`;
     const aboutnessRes = await fetch(aboutnessUrl);
     const aboutnessJson = await aboutnessRes.json();
     // NOTE: since the api does not allow for negated search,
     // this returns results also contained in the local query
     // so they have to be manually filtered out
     const aboutnessDocs = aboutnessJson.docs
-      .filter(result => result.provider.name !== LOCALS[LOCAL_ID].provider)
+      .filter(
+        result =>
+          result.provider.name !==
+          decodeURIComponent(LOCALS[LOCAL_ID].provider).replace(/"/g, "")
+      )
       .map(result => {
         const thumbnailUrl = result.object
           ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`

@@ -17,14 +17,24 @@ import utils from "stylesheets/utils.scss";
 import css from "./AboutLocal.scss";
 
 const dplaLink = query => {
-  const newQuery = Object.assign(
+  let newQuery = Object.assign(
     {},
     {
-      subject: LOCALS[LOCAL_ID].subjectFacet,
-      location: LOCALS[LOCAL_ID].locationFacet
-    },
-    removeQueryParams(query, ["page"])
+      subject: query.subject
+        ? [
+            `${query.subject}`,
+            `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`
+          ].join("|")
+        : `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`,
+      location: query.location
+        ? [
+            `${query.location}`,
+            `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
+          ].join("|")
+        : `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
+    }
   );
+  newQuery = removeQueryParams(newQuery, ["page"]);
   const url = `//dp.la/search?${Object.keys(newQuery)
     .map(key => `${key}=${newQuery[key]}`)
     .join("&")}`;
@@ -37,7 +47,7 @@ const AboutLocal = ({ items, count, query }) =>
       <h1 className={css.header}>
         <Link href={dplaLink(query)}>
           <a className="external">
-            Explore {addCommasToNumber(count)} related items in DPLA
+            Explore related items in DPLA
           </a>
         </Link>{" "}
         including:
