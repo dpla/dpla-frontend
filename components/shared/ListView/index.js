@@ -436,7 +436,9 @@ class ListView extends React.Component {
                         item.date.displayDate &&
                         item.creator &&
                         <span> · </span>}
-                      <span>{joinIfArray(item.creator, ", ")}</span>
+                      <span>
+                        {truncateString(joinIfArray(item.creator, ", "))}
+                      </span>
                     </span>}
                   <ItemDescription description={item.description} />
                   <a
