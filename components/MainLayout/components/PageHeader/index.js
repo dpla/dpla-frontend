@@ -10,6 +10,10 @@ import { LOCALS } from "constants/local";
 import css from "./PageHeader.scss";
 
 class PageHeader extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.searchQuery !== prevProps.searchQuery) forceUpdate();
+  }
+
   render() {
     const { searchQuery, hideSearchBar, router } = this.props;
     return (
