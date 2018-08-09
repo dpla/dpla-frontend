@@ -172,10 +172,10 @@ class OptionsBar extends React.Component {
                 )}
               </select>
             </div>
-            {/* <div>
-              <h3 className={css.optionHeader}>
+            <div className={css.optionWrapper}>
+              <span className={css.optionHeader}>
                 Layout
-              </h3>
+              </span>
               <div className={css.viewButtons}>
                 <Link
                   prefetch
@@ -226,7 +226,7 @@ class OptionsBar extends React.Component {
                   </a>
                 </Link>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

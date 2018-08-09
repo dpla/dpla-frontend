@@ -72,6 +72,12 @@
     margin-left: 0;
   }
 
+  &:last-child {
+    @media (max-width: $smallRem) {
+      margin-left: auto;
+    }
+  }
+
   select {
     border: none;
   }
@@ -88,24 +94,23 @@
 }
 
 .viewButtons {
-  align-self: flex-end;
-  margin-bottom: 3px;
+  display: flex;
 }
 
-.gridViewButton {
-  border-radius: 2px 0 0 2px;
-  padding: 7px 7px 5px;
-  transform: rotate(180deg);
+.gridViewButton, .listViewButton {
+  align-items: center;
   background-color: white;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem;
 }
 
 .listViewButton {
-  border-radius: 0 2px 2px 0;
-  padding: 7px 7px 5px;
-  transform: rotate(180deg);
-  background-color: white;
-  display: inline-block;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.gridViewButton {
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .viewButtonInactive.gridViewButton {
