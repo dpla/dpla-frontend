@@ -72,12 +72,6 @@
     margin-left: 0;
   }
 
-  &:last-child {
-    @media (max-width: $smallRem) {
-      margin-left: auto;
-    }
-  }
-
   select {
     border: none;
   }
@@ -102,7 +96,11 @@
   background-color: white;
   display: flex;
   justify-content: center;
-  padding: 0.6rem;
+  padding: 0.6rem 0.3rem;
+
+  @media (min-width: $smallRem) {
+    padding: 0.6rem;
+  }
 }
 
 .listViewButton {
