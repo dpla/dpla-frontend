@@ -354,6 +354,7 @@ class ListView extends React.Component {
                   ? "Create new list"
                   : "Create a list from these items"
               }
+              className={css.createList}
             />
             {lists.length > 0 &&
               <label htmlFor="list-select" className={css.listSelectLabel}>
