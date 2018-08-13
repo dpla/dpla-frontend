@@ -92,14 +92,11 @@
 }
 
 .gridViewButton, .listViewButton {
-  align-items: center;
   background-color: white;
-  display: flex;
-  justify-content: center;
-  padding: 0.6rem 0.3rem;
+  padding: 0.6rem 0.6rem 0.4rem;
 
   @media (min-width: $smallRem) {
-    padding: 0.6rem;
+    padding: 0.6rem 0.6rem 0.4rem;
   }
 }
 
