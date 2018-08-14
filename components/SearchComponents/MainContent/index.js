@@ -1,6 +1,5 @@
 import React from "react";
 
-import GridView from "shared/GridView";
 import ListView from "shared/ListView";
 import Pagination from "shared/Pagination";
 import Sidebar from "./Sidebar";
@@ -17,15 +16,11 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
         <Sidebar route={route} facets={facets} />
       </div>
       <div id="main" role="main" className={css.resultsAndPagination}>
-        {route.query.list_view === "grid"
-          ? <GridView
-              route={route}
-              items={addLinkInfoToResults(results, route.query)}
-            />
-          : <ListView
-              route={route}
-              items={addLinkInfoToResults(results, route.query)}
-            />}
+        <ListView
+          route={route}
+          items={addLinkInfoToResults(results, route.query)}
+          viewMode={route.query.list_view}
+        />
         <Pagination
           route={route}
           itemsPerPage={paginationInfo.pageSize}

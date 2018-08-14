@@ -88,24 +88,24 @@
 }
 
 .viewButtons {
-  align-self: flex-end;
-  margin-bottom: 3px;
+  display: flex;
 }
 
-.gridViewButton {
-  border-radius: 2px 0 0 2px;
-  padding: 7px 7px 5px;
-  transform: rotate(180deg);
+.gridViewButton, .listViewButton {
   background-color: white;
-  display: inline-block;
+  padding: 0.6rem 0.6rem 0.4rem;
+
+  @media (min-width: $smallRem) {
+    padding: 0.6rem 0.6rem 0.4rem;
+  }
 }
 
 .listViewButton {
-  border-radius: 0 2px 2px 0;
-  padding: 7px 7px 5px;
-  transform: rotate(180deg);
-  background-color: white;
-  display: inline-block;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.gridViewButton {
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .viewButtonInactive.gridViewButton {
