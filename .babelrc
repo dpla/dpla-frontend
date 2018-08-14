@@ -1,12 +1,15 @@
 {
   "presets": [
-    "next/babel"],
+    "next/babel"
+  ],
   "plugins": [
     "inline-react-svg",
     [
       "module-resolver",
       {
-        "root": ["./"],
+        "root": [
+          "./"
+        ],
         "alias": {
           "css": "./css",
           "static": "./static",

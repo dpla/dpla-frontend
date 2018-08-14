@@ -1,6 +1,6 @@
 @import "stylesheets/variables";
 
-$tablePadding: 1.125rem;
+$listPadding: 1.125rem;
 
 .content {
   padding-bottom: 1rem;
@@ -12,54 +12,53 @@ $tablePadding: 1.125rem;
   }
 }
 
-.contentTable {
+.contentDL {
   @media (max-width: $smallRem) {
     width: 100%;
   }
 }
 
-.tableHeadingWrapper {
-  display: block;
-  padding-top: 0.25rem;
-  width: 140px;
+.termValuePair {
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+
+  @media (min-width: $smallRem) {
+    flex-direction: row;
+    padding-bottom: 1rem;
+  }
+
+  &:last-child {
+    padding-bottom: 0.5rem;
+
+    @media (min-width: $smallRem) {
+      padding-bottom: 0;
+    }
+  }
 }
 
-.tableHeading {
+.term {
   color: $dimmedTextColor;
   font-size: 0.875rem;
   font-weight: 600;
-}
-
-.tableRow {
-  display: flex;
-  flex-direction: column;
+  padding-top: 0.25rem;
+  width: auto;
 
   @media (min-width: $smallRem) {
-    display: table-row;
+    width: 9rem;
   }
 }
 
-.tableItem {
+.value {
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  vertical-align: top;
+  margin-left: 0;
   width: 100%;
   word-break: break-word;
-}
-
-.tableRow td {
-  padding-bottom: 0.5rem;
 
   @media (min-width: $smallRem) {
-    padding-bottom: 1rem;
-  }
-}
-
-.tableRow:last-child td {
-  padding-bottom: 0.5rem;
-
-  @media (min-width: $smallRem) {
-    padding-bottom: 0;
+    margin-left: $listPadding;
   }
 }
 
@@ -98,6 +97,10 @@ $tablePadding: 1.125rem;
   }
 }
 
+.imageLabel {
+  visibility: hidden;
+}
+
 .defaultItemImage {
   padding: 5rem 0;
 }
@@ -112,7 +115,7 @@ $tablePadding: 1.125rem;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
 
   @media (min-width: $smallRem) {
-    padding-bottom: $tablePadding;
+    padding-bottom: $listPadding;
   }
 }
 
@@ -168,7 +171,7 @@ $tablePadding: 1.125rem;
   padding: 1rem 0 0;
 
   @media (min-width: $smallRem) {
-    padding: $tablePadding 0;
+    padding: $listPadding 0;
   }
 }
 
@@ -180,7 +183,7 @@ $tablePadding: 1.125rem;
   padding-top: 1rem;
 
   @media (min-width: $smallRem) {
-    padding-top: $tablePadding;
+    padding-top: $listPadding;
   }
 }
 

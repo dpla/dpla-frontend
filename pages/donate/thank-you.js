@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
 
 import { SEO_TITLE } from "constants/donate";
 

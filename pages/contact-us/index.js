@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import ContactForm from "components/ContactComponents/ContactForm";
 import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import FeatureHeader from "shared/FeatureHeader";

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import Router from "next/router";
 
 import {
   ZoomableImageViewer,
@@ -7,19 +8,18 @@ import {
   VideoPlayer,
   PDFViewer
 } from "components/shared/mediaViewers";
-import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
-import GaPssWrapper from "./GaPssWrapper";
 
 import {
+  getFullPath,
   joinIfArray,
   getItemId,
   getPartner,
   getTitle,
-  getContributor,
-  trackGaEvent
+  getContributor
 } from "lib";
 import { markdownLinks } from "lib/externalLinks";
+import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.scss";
 import css from "./ContentAndMetadata.scss";
@@ -73,7 +73,7 @@ const trackClickThrough = (e, source, target = "_blank") => {
 
   try {
     // Try tracking a Google Analytics event.
-    trackGaEvent(gaEvent);
+    gtag.event(gaEvent);
   } catch (error) {
     // TODO: What is the best way to log an error?
   } finally {
@@ -88,6 +88,11 @@ class ContentAndMetadata extends React.Component {
   componentDidMount() {
     // now collapse it
     this.setState({ isOpen: false });
+    this.trackSourceView();
+  }
+
+  componentDidUpdate() {
+    this.trackSourceView();
   }
 
   componentWillReceiveProps() {
@@ -96,6 +101,24 @@ class ContentAndMetadata extends React.Component {
 
   showMoreDescription() {
     this.setState({ isOpen: true });
+  }
+
+  trackSourceView() {
+    const fullPath = getFullPath();
+    const source = this.props.source;
+
+    if (fullPath !== this.lastTrackedPath) {
+      const gaEvent = {
+        type: "View Primary Source",
+        itemId: getItemId(source),
+        title: joinIfArray(getTitle(source)),
+        partner: joinIfArray(getPartner(source)),
+        contributor: joinIfArray(getContributor(source))
+      };
+
+      gtag.event(gaEvent);
+      this.lastTrackedPath = fullPath;
+    }
   }
 
   render() {
@@ -272,4 +295,4 @@ class ContentAndMetadata extends React.Component {
   }
 }
 
-export default GaPssWrapper(ContentAndMetadata);
+export default ContentAndMetadata;

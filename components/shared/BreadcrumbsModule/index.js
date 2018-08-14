@@ -1,11 +1,10 @@
 import React from "react";
-import Link from "next/link";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
 import utils from "stylesheets/utils.scss";
 
-const BreadcrumbsModule = ({ route, breadcrumbs }) =>
+const BreadcrumbsModule = ({ breadcrumbs }) =>
   <div className={utils.breadcrumbsWrapper}>
     <div className={[utils.container, utils.breadcrumbsModule].join(" ")}>
       <Breadcrumbs

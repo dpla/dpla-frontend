@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
@@ -9,9 +10,11 @@ import MainContent from "components/SearchComponents/MainContent";
 import {
   possibleFacets,
   mapFacetsToURLPrettified,
-  splitAndURIEncodeFacet
+  splitAndURIEncodeFacet,
+  pageSizeOptions,
+  DEFAULT_PAGE_SIZE,
+  MAX_PAGE_SIZE
 } from "constants/search";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -28,17 +31,24 @@ class Search extends React.Component {
   };
 
   render() {
-    const { url, results, numberOfActiveFacets } = this.props;
+    const {
+      router,
+      results,
+      numberOfActiveFacets,
+      pageCount,
+      currentPage,
+      pageSize
+    } = this.props;
     return (
       <MainLayout
         isSearchPage={true}
-        route={url}
-        pageTitle={getSearchPageTitle(url.query.q)}
+        route={router}
+        pageTitle={getSearchPageTitle(router.query.q)}
       >
         <OptionsBar
           showFilters={this.state.showSidebar}
-          currentPage={url.query.page || 1}
-          route={url}
+          currentPage={currentPage}
+          route={router}
           itemCount={results.count}
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}
@@ -46,17 +56,17 @@ class Search extends React.Component {
         <FiltersList
           showFilters={this.state.showSidebar}
           onClickToggleFilters={this.toggleFilters}
-          route={url}
+          route={router}
           facets={results.facets}
         />
         <MainContent
           hideSidebar={!this.state.showSidebar}
           paginationInfo={{
-            pageCount: results.count,
-            pageSize: url.query.page_size || DEFAULT_PAGE_SIZE,
-            currentPage: url.query.page || 1
+            pageCount: pageCount,
+            pageSize: pageSize || DEFAULT_PAGE_SIZE,
+            currentPage: currentPage
           }}
-          route={url}
+          route={router}
           facets={results.facets}
           results={results.docs}
         />
@@ -71,8 +81,15 @@ Search.getInitialProps = async ({ query, req }) => {
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
-  const page_size = query.page_size || DEFAULT_PAGE_SIZE;
-  const page = query.page || 1;
+  let page_size = query.page_size || DEFAULT_PAGE_SIZE;
+  const acceptedPageSizes = pageSizeOptions.map(item => item.value);
+  if (acceptedPageSizes.indexOf(page_size) === -1) {
+    page_size = DEFAULT_PAGE_SIZE;
+  }
+  let page = query.page || 1;
+  if (page > MAX_PAGE_SIZE) {
+    page = MAX_PAGE_SIZE;
+  }
   let sort_by = "";
   if (query.sort_by === "title") {
     sort_by = "sourceResource.title";
@@ -134,7 +151,7 @@ Search.getInitialProps = async ({ query, req }) => {
     .split(/(&|\+AND\+)/)
     .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
-  const json = await res.json();
+  let json = await res.json();
   const docs = json.docs.map(result => {
     const thumbnailUrl = result.object
       ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
@@ -149,6 +166,24 @@ Search.getInitialProps = async ({ query, req }) => {
     });
   });
 
-  return { results: Object.assign({}, json, { docs }), numberOfActiveFacets };
+  // fix facets because ES no longer returns them in the requested order
+  // TODO: remove this hack once fixed in ES
+  let newFacets = {};
+  possibleFacets.forEach(facet => {
+    if (json.facets[facet]) newFacets[facet] = json.facets[facet];
+  });
+  json.facets = newFacets;
+  // end of hack
+
+  const maxResults = MAX_PAGE_SIZE * page_size;
+  const pageCount = json.count > maxResults ? maxResults : json.count;
+
+  return {
+    results: Object.assign({}, json, { docs }),
+    numberOfActiveFacets,
+    currentPage: page,
+    pageCount,
+    pageSize: page_size
+  };
 };
-export default Search;
+export default withRouter(Search);

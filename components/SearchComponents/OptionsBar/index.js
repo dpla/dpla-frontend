@@ -2,14 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Router from "next/router";
 
+import addCommasToNumber from "lib/addCommasToNumber";
 import {
   sortOptions,
   pageSizeOptions,
   mapSortOptionsToParams,
-  getSortOptionFromParams
-} from "./options";
-import addCommasToNumber from "lib/addCommasToNumber";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
+  getSortOptionFromParams,
+  DEFAULT_PAGE_SIZE
+} from "constants/search";
 
 import utils from "stylesheets/utils.scss";
 import css from "./OptionsBar.scss";
@@ -172,10 +172,10 @@ class OptionsBar extends React.Component {
                 )}
               </select>
             </div>
-            {/* <div>
-              <h3 className={css.optionHeader}>
+            <div className={css.optionWrapper}>
+              <span className={css.optionHeader}>
                 Layout
-              </h3>
+              </span>
               <div className={css.viewButtons}>
                 <Link
                   prefetch
@@ -226,7 +226,7 @@ class OptionsBar extends React.Component {
                   </a>
                 </Link>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

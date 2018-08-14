@@ -1,11 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
-import Button from "shared/Button";
 import CallToAction from "shared/CallToAction";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
@@ -34,9 +33,9 @@ class HubsPage extends React.Component {
   }
 
   render() {
-    const { url, page, pageTitle, news } = this.props;
+    const { router, page, pageTitle, news } = this.props;
     return (
-      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main" className={css.pageWrapper}>
           <div
             className={`${css.pageHero} ${page.acf.feature
@@ -44,7 +43,7 @@ class HubsPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="network" />
-            <WPEdit page={page} url={url} />
+            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
           {page.acf.feature &&
@@ -117,4 +116,4 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
   return { page: hubItem, pageTitle: hubItem.title.rendered, news: newsItems };
 };
 
-export default HubsPage;
+export default withRouter(HubsPage);

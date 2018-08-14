@@ -1,0 +1,21 @@
+@import "stylesheets/variables";
+
+.alert {
+  background-color: $featuredBannerColor;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  color: black;
+  display: inline-block;
+  left: 50%;
+  margin-left: -10rem;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  text-align: center;
+  top: -5rem;
+  transition: top 0.1s ease-out;
+  width: 20rem;
+  z-index: 11;
+
+  &.open {
+    top: 1rem;
+  }
+}

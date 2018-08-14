@@ -1,9 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
-import HeadingRule from "components/shared/HeadingRule";
+import ContentPagesSidebar from "shared/ContentPagesSidebar";
+import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
@@ -30,10 +31,10 @@ class Guides extends React.Component {
   }
 
   render() {
-    const { url, sidebarItems, breadcrumbs, guide } = this.props;
+    const { router, sidebarItems, breadcrumbs, guide } = this.props;
     return (
-      <MainLayout route={url} pageTitle={guide.title} seoType={SEO_TYPE}>
-        <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />
+      <MainLayout route={router} pageTitle={guide.title} seoType={SEO_TYPE}>
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />
         <div
           className={`
         ${utils.container}
@@ -42,7 +43,7 @@ class Guides extends React.Component {
         >
           <div className="row">
             <ContentPagesSidebar
-              route={url}
+              route={router}
               items={sidebarItems}
               activeItemId={guide.slug}
               className={contentCss.sidebar}
@@ -53,7 +54,7 @@ class Guides extends React.Component {
                 role="main"
                 className={[css.content, contentCss.content].join(" ")}
               >
-                <WPEdit page={guide} url={url} />
+                <WPEdit page={guide} url={router} />
                 <img
                   src={guide.bannerImage}
                   alt=""
@@ -100,4 +101,4 @@ Guides.getInitialProps = async ({ query }) => {
   };
 };
 
-export default Guides;
+export default withRouter(Guides);

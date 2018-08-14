@@ -1,6 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
+import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
@@ -18,7 +19,8 @@ import {
   getBreadcrumbs,
   getItemWithId,
   getItemWithName,
-  getMenuItemUrl
+  getMenuItemUrl,
+  decodeHTMLEntities
 } from "lib";
 import { wordpressLinks } from "lib/externalLinks";
 
@@ -39,11 +41,23 @@ class AboutMenuPage extends React.Component {
   }
 
   render() {
-    const { url, content, items, breadcrumbs, pageTitle } = this.props;
+    const {
+      router,
+      content,
+      items,
+      breadcrumbs,
+      pageTitle,
+      pageDescription
+    } = this.props;
     return (
-      <MainLayout route={url} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout
+        route={router}
+        pageTitle={pageTitle}
+        seoType={SEO_TYPE}
+        pageDescription={pageDescription}
+      >
         {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={url} />}
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />}
         {breadcrumbs.length === 0 &&
           <FeatureHeader title={pageTitle} description={""} />}
         <div
@@ -52,14 +66,14 @@ class AboutMenuPage extends React.Component {
         >
           <div className="row">
             <ContentPagesSidebar
-              route={url}
+              route={router}
               items={items}
               activeItemId={content.id}
               className={contentCss.sidebar}
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={url} />
+                <WPEdit page={content} url={router} />
                 {breadcrumbs.length > 0 &&
                   <h1
                     dangerouslySetInnerHTML={{ __html: content.title.rendered }}
@@ -142,12 +156,20 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
 
   const pageRes = await fetch(url);
   const pageJson = await pageRes.json();
+  let pageDescription = "";
+  if (pageJson.excerpt && pageJson.excerpt.rendered) {
+    pageDescription = decodeHTMLEntities(
+      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…"))
+    );
+  }
+
   return {
     content: pageJson,
     items: json.items,
     breadcrumbs: breadcrumbs,
-    pageTitle: pageItem.title
+    pageTitle: pageItem.title,
+    pageDescription: pageDescription
   };
 };
 
-export default AboutMenuPage;
+export default withRouter(AboutMenuPage);

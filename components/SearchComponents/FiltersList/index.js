@@ -15,6 +15,8 @@ const closeIcon = "/static/images/close-white.svg";
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
+  delete duped["q"];
+  delete duped["page"];
   possibleFacets.forEach(
     facet => delete duped[mapFacetsToURLPrettified[facet]]
   );
@@ -23,6 +25,7 @@ const clearAllFacets = query => {
 
 const clearFacet = (query, queryKey, facet) => {
   const duped = Object.assign({}, query);
+  delete duped["page"];
   const value = joinIfArray(duped[queryKey], "|");
   duped[queryKey] = value
     .split("|")
@@ -34,34 +37,29 @@ const clearFacet = (query, queryKey, facet) => {
   return duped;
 };
 
-const Filter = ({ name, queryKey, route }) =>
-  <li className={css.filter}>
-    <Link
-      prefetch
-      href={{
-        pathname: route.pathname,
-        query: Object.assign(
-          {},
-          clearFacet(
-            route.query,
-            queryKey,
-            queryKey === "before" || queryKey === "after"
-              ? name.replace("After: ", "").replace("Before: ", "")
-              : name
-          )
-        )
-      }}
-    >
-      <a
-        className={css.filterLink}
-        title={`Remove ${name} filter`}
-        aria-label={`Remove ${name} filter`}
+const Filter = ({ name, queryKey, route }) => {
+  const label = queryKey !== "q" ? queryKey : "keywords";
+  return (
+    <li className={css.filter}>
+      <Link
+        prefetch
+        href={{
+          pathname: route.pathname,
+          query: Object.assign({}, clearFacet(route.query, queryKey, name))
+        }}
       >
-        <span className={css.filterText}>{name}</span>
-        <img src={closeIcon} className={css.closeIcon} alt="" />
-      </a>
-    </Link>
-  </li>;
+        <a
+          className={css.filterLink}
+          title={`Remove ${label} ${name} filter`}
+          aria-label={`Remove ${label} ${name} filter`}
+        >
+          {label}: <span className={css.filterText}>{name}</span>
+          <img src={closeIcon} className={css.closeIcon} alt="" />
+        </a>
+      </Link>
+    </li>
+  );
+};
 
 class FiltersList extends React.Component {
   render() {
@@ -84,7 +82,8 @@ class FiltersList extends React.Component {
                   if (
                     possibleFacets.includes(
                       mapURLPrettifiedFacetsToUgly[queryKey]
-                    )
+                    ) ||
+                    queryKey === "q"
                   ) {
                     return (
                       value &&
@@ -92,9 +91,7 @@ class FiltersList extends React.Component {
                         const name = queryKey !== "after" &&
                           queryKey !== "before"
                           ? paramValue.replace(/"/g, "")
-                          : queryKey === "after"
-                            ? "After: " + paramValue
-                            : "Before: " + paramValue;
+                          : paramValue;
                         return (
                           <Filter
                             route={this.props.route}
