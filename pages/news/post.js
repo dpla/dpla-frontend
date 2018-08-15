@@ -87,26 +87,24 @@ class PostPage extends React.Component {
                   }}
                 />
                 <div className={css.resultSummary}>
-                  <p>
-                    Posted by{" "}
-                    <Link
-                      prefetch
-                      href={{
-                        pathname: "/news",
-                        query: Object.assign(
-                          {},
-                          {
-                            author: author.id
-                          }
-                        )
-                      }}
-                    >
-                      <a title={`View more posts by ${author.name}`}>
-                        {author.name}
-                      </a>
-                    </Link>{" "}
-                    in {formatDate(content.date)}.
-                  </p>
+                  By{" "}
+                  <Link
+                    prefetch
+                    href={{
+                      pathname: "/news",
+                      query: Object.assign(
+                        {},
+                        {
+                          author: author.id
+                        }
+                      )
+                    }}
+                  >
+                    <a title={`View more posts by ${author.name}`}>
+                      {author.name}
+                    </a>
+                  </Link>,{" "}
+                  {formatDate(content.date)}.
                 </div>
                 {hasTags &&
                   <div className={css.tags}>
