@@ -80,13 +80,15 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & h2 {
+    font-family: $sansFont;
+    font-size: 1.75rem;
     font-weight: normal;
-    font-size: 1.875rem;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   & h3 {
     font-size: 1.75rem;
+    font-weight: normal;
   }
 
   & h4 {
