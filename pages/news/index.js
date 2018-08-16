@@ -10,6 +10,8 @@ import Pagination from "shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
+import { formatDate } from "lib";
+
 import { SITE_ENV, WORDPRESS_URL } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
 import {
@@ -150,8 +152,8 @@ class NewsPage extends React.Component {
                 </div>
                 {newsItems.map((item, index) => {
                   return (
-                    <div key={index} className={css.newsItem}>
-                      <h2>
+                    <article key={index} className={css.newsItem}>
+                      <h2 className={css.title}>
                         <Link
                           as={`/news/${item.slug}`}
                           href={`/news/post?slug=${item.slug}`}
@@ -168,7 +170,8 @@ class NewsPage extends React.Component {
                           __html: item.excerpt.rendered
                         }}
                       />
-                    </div>
+                      <div className={css.date}>{formatDate(item.date)}</div>
+                    </article>
                   );
                 })}
                 <Pagination
