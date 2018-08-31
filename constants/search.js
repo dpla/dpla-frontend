@@ -101,6 +101,3 @@ export const splitAndURIEncodeFacet = facet =>
 export const DEFAULT_PAGE_SIZE = "20";
 
 export const MAX_PAGE_SIZE = 100;
-
-export const MAX_PAGE_MESSAGE =
-  "Sorry, DPLA does not serve more than 100 pages of results for any query.";
