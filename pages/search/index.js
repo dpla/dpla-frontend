@@ -46,39 +46,34 @@ class Search extends React.Component {
         route={router}
         pageTitle={getSearchPageTitle(router.query.q)}
       >
-        <div>
-          <OptionsBar
-            showFilters={this.state.showSidebar}
-            currentPage={currentPage}
-            route={router}
-            itemCount={results.count || 0}
-            onClickToggleFilters={this.toggleFilters}
-            numberOfActiveFacets={numberOfActiveFacets}
-          />
-          <FiltersList
-            showFilters={this.state.showSidebar}
-            onClickToggleFilters={this.toggleFilters}
+        <OptionsBar
+          showFilters={this.state.showSidebar}
+          currentPage={currentPage}
+          route={router}
+          itemCount={results.count || 0}
+          onClickToggleFilters={this.toggleFilters}
+          numberOfActiveFacets={numberOfActiveFacets}
+        />
+        <FiltersList
+          showFilters={this.state.showSidebar}
+          onClickToggleFilters={this.toggleFilters}
+          route={router}
+          facets={results.facets}
+        />
+        {currentPage <= MAX_PAGE_SIZE &&
+          <MainContent
+            hideSidebar={!this.state.showSidebar}
+            paginationInfo={{
+              pageCount: pageCount,
+              pageSize: pageSize || DEFAULT_PAGE_SIZE,
+              currentPage: currentPage
+            }}
             route={router}
             facets={results.facets}
-          />
-          {currentPage <= MAX_PAGE_SIZE &&
-            <MainContent
-              hideSidebar={!this.state.showSidebar}
-              paginationInfo={{
-                pageCount: pageCount,
-                pageSize: pageSize || DEFAULT_PAGE_SIZE,
-                currentPage: currentPage
-              }}
-              route={router}
-              facets={results.facets}
-              results={results.docs}
-            />}
-          {currentPage > MAX_PAGE_SIZE &&
-            <MaxPageError
-              maxPage={MAX_PAGE_SIZE}
-              requestedPage={currentPage}
-            />}
-        </div>
+            results={results.docs}
+          />}
+        {currentPage > MAX_PAGE_SIZE &&
+          <MaxPageError maxPage={MAX_PAGE_SIZE} requestedPage={currentPage} />}
       </MainLayout>
     );
   }
