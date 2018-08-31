@@ -20,6 +20,7 @@ import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
+import MaxPageError from "components/SearchComponents/MaxPageError";
 
 class Search extends React.Component {
   state = {
@@ -45,31 +46,39 @@ class Search extends React.Component {
         route={router}
         pageTitle={getSearchPageTitle(router.query.q)}
       >
-        <OptionsBar
-          showFilters={this.state.showSidebar}
-          currentPage={currentPage}
-          route={router}
-          itemCount={results.count}
-          onClickToggleFilters={this.toggleFilters}
-          numberOfActiveFacets={numberOfActiveFacets}
-        />
-        <FiltersList
-          showFilters={this.state.showSidebar}
-          onClickToggleFilters={this.toggleFilters}
-          route={router}
-          facets={results.facets}
-        />
-        <MainContent
-          hideSidebar={!this.state.showSidebar}
-          paginationInfo={{
-            pageCount: pageCount,
-            pageSize: pageSize || DEFAULT_PAGE_SIZE,
-            currentPage: currentPage
-          }}
-          route={router}
-          facets={results.facets}
-          results={results.docs}
-        />
+        <div>
+          <OptionsBar
+            showFilters={this.state.showSidebar}
+            currentPage={currentPage}
+            route={router}
+            itemCount={results.count || 0}
+            onClickToggleFilters={this.toggleFilters}
+            numberOfActiveFacets={numberOfActiveFacets}
+          />
+          <FiltersList
+            showFilters={this.state.showSidebar}
+            onClickToggleFilters={this.toggleFilters}
+            route={router}
+            facets={results.facets}
+          />
+          {currentPage <= MAX_PAGE_SIZE &&
+            <MainContent
+              hideSidebar={!this.state.showSidebar}
+              paginationInfo={{
+                pageCount: pageCount,
+                pageSize: pageSize || DEFAULT_PAGE_SIZE,
+                currentPage: currentPage
+              }}
+              route={router}
+              facets={results.facets}
+              results={results.docs}
+            />}
+          {currentPage > MAX_PAGE_SIZE &&
+            <MaxPageError
+              maxPage={MAX_PAGE_SIZE}
+              requestedPage={currentPage}
+            />}
+        </div>
       </MainLayout>
     );
   }
@@ -81,22 +90,6 @@ Search.getInitialProps = async ({ query, req }) => {
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
-  let page_size = query.page_size || DEFAULT_PAGE_SIZE;
-  const acceptedPageSizes = pageSizeOptions.map(item => item.value);
-  if (acceptedPageSizes.indexOf(page_size) === -1) {
-    page_size = DEFAULT_PAGE_SIZE;
-  }
-  let page = query.page || 1;
-  if (page > MAX_PAGE_SIZE) {
-    page = MAX_PAGE_SIZE;
-  }
-  let sort_by = "";
-  if (query.sort_by === "title") {
-    sort_by = "sourceResource.title";
-  } else if (query.sort_by === "created") {
-    sort_by = "sourceResource.date.begin";
-  }
-  const sort_order = query.sort_order || "";
 
   let hasDates = false;
 
@@ -141,49 +134,76 @@ Search.getInitialProps = async ({ query, req }) => {
 
   const facetQueries = queryArray.join("&");
 
-  const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
-    ","
-  )}&${facetQueries}`;
+  let sort_by = "";
+  if (query.sort_by === "title") {
+    sort_by = "sourceResource.title";
+  } else if (query.sort_by === "created") {
+    sort_by = "sourceResource.date.begin";
+  }
+  const sort_order = query.sort_order || "";
 
-  const res = await fetch(url);
+  let page_size = query.page_size || DEFAULT_PAGE_SIZE;
+  const acceptedPageSizes = pageSizeOptions.map(item => item.value);
+  if (acceptedPageSizes.indexOf(page_size) === -1) {
+    page_size = DEFAULT_PAGE_SIZE;
+  }
 
-  const numberOfActiveFacets = facetQueries
-    .split(/(&|\+AND\+)/)
-    .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
+  let page = query.page || 1;
 
-  let json = await res.json();
-  const docs = json.docs.map(result => {
-    const thumbnailUrl = result.object
-      ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-      : getDefaultThumbnail(result.sourceResource.type);
-    return Object.assign({}, result.sourceResource, {
-      thumbnailUrl,
-      id: result.id ? result.id : result.sourceResource["@id"],
-      sourceUrl: result.isShownAt,
-      provider: result.provider && result.provider.name,
-      dataProvider: result.dataProvider,
-      useDefaultImage: !result.object
+  if (page <= MAX_PAGE_SIZE) {
+    const numberOfActiveFacets = facetQueries
+      .split(/(&|\+AND\+)/)
+      .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
+
+    const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+      ","
+    )}&${facetQueries}`;
+
+    const res = await fetch(url);
+
+    let json = await res.json();
+    const docs = json.docs.map(result => {
+      const thumbnailUrl = result.object
+        ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+        : getDefaultThumbnail(result.sourceResource.type);
+      return Object.assign({}, result.sourceResource, {
+        thumbnailUrl,
+        id: result.id ? result.id : result.sourceResource["@id"],
+        sourceUrl: result.isShownAt,
+        provider: result.provider && result.provider.name,
+        dataProvider: result.dataProvider,
+        useDefaultImage: !result.object
+      });
     });
-  });
 
-  // fix facets because ES no longer returns them in the requested order
-  // TODO: remove this hack once fixed in ES
-  let newFacets = {};
-  possibleFacets.forEach(facet => {
-    if (json.facets[facet]) newFacets[facet] = json.facets[facet];
-  });
-  json.facets = newFacets;
-  // end of hack
+    // fix facets because ES no longer returns them in the requested order
+    // TODO: remove this hack once fixed in ES
+    let newFacets = {};
+    possibleFacets.forEach(facet => {
+      if (json.facets[facet]) newFacets[facet] = json.facets[facet];
+    });
+    json.facets = newFacets;
+    // end of hack
 
-  const maxResults = MAX_PAGE_SIZE * page_size;
-  const pageCount = json.count > maxResults ? maxResults : json.count;
+    const maxResults = MAX_PAGE_SIZE * page_size;
+    const pageCount = json.count > maxResults ? maxResults : json.count;
 
-  return {
-    results: Object.assign({}, json, { docs }),
-    numberOfActiveFacets,
-    currentPage: page,
-    pageCount,
-    pageSize: page_size
-  };
+    return {
+      results: Object.assign({}, json, { docs }),
+      numberOfActiveFacets,
+      currentPage: page,
+      pageCount,
+      pageSize: page_size
+    };
+  } else {
+    // we skip the whole thing and present the error message
+    return {
+      results: {},
+      numberOfActiveFacets: 0,
+      currentPage: page,
+      pageCount: 0,
+      pageSize: page_size
+    };
+  }
 };
 export default withRouter(Search);
