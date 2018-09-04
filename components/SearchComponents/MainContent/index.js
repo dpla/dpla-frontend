@@ -8,6 +8,7 @@ import { addLinkInfoToResults } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./MainContent.scss";
+import contentCss from "stylesheets/content-pages.scss";
 
 const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
   <div className={[utils.container, css.mainContent].join(" ")}>
@@ -23,9 +24,19 @@ const MainContent = ({ results, route, facets, paginationInfo, hideSidebar }) =>
           viewMode={route.query.list_view}
         />}
       {results.length === 0 &&
-        <div className={css.noResults}>
-          Your search did not match any items. Try different or more general
-          keywords or removing filters.
+        <div className={`${css.noResults} ${contentCss.content}`}>
+          <p>
+            Your search did not match any items.
+          </p>
+          <p>
+            Some suggestions:
+          </p>
+          <ul>
+            <li>make sure spelling is correct</li>
+            <li>try different keywords</li>
+            <li>try more general keywords</li>
+            <li>try removing filters</li>
+          </ul>
         </div>}
       <Pagination
         route={route}
