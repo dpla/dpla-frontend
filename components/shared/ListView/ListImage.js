@@ -32,7 +32,7 @@ class ListImage extends React.Component {
   }
 
   render() {
-    const { type, url, useDefaultImage, item, className } = this.props;
+    const { type, url, useDefaultImage, item, title, className } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
 
@@ -46,6 +46,7 @@ class ListImage extends React.Component {
           <Link href={item.linkHref} as={item.linkAs}>
             <a
               className={`${css.listItemImageLink} internalItemLink`}
+              title={title}
               aria-hidden
             >
               <img

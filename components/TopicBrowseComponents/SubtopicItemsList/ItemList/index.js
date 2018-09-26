@@ -1,7 +1,6 @@
 import React from "react";
 
 import ListView from "shared/ListView";
-// import GridView from "shared/GridView";
 
 import css from "./ItemList.scss";
 

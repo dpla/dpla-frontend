@@ -327,7 +327,7 @@ class ListView extends React.Component {
   };
 
   render() {
-    const { items, route, exportable } = this.props;
+    const { items, route, exportable, viewMode } = this.props;
     const {
       readOnly,
       listsInitialized,
@@ -354,6 +354,7 @@ class ListView extends React.Component {
                   ? "Create new list"
                   : "Create a list from these items"
               }
+              className={css.createList}
             />
             {lists.length > 0 &&
               <label htmlFor="list-select" className={css.listSelectLabel}>
@@ -381,10 +382,12 @@ class ListView extends React.Component {
         <Alert showMessage={showMessage} />
         {exportable &&
           items.length > 0 &&
-          <div className={css.displayMode}>
+          <div className={css.downloadLink}>
             <a onClick={this.downloadCSV}>Download list</a>
           </div>}
-        <ul className={css.listView}>
+        <ul
+          className={`${css.listView} ${viewMode === "grid" ? css.grid : ""}`}
+        >
           {items.map((item, index) => {
             const realId = item.itemDplaId || item.id;
             const checked = selectedHash[realId] !== undefined;

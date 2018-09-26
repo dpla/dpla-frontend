@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-import { DPLA_CONTACT_EMAIL, PSS_SUGGESTION_URL } from "constants/site";
+import {
+  DPLA_CONTACT_EMAIL,
+  PSS_SUGGESTION_URL,
+  PSS_NHD_URL
+} from "constants/site";
 
 import utils from "stylesheets/utils.scss";
 import css from "./PSSFooter.scss";
@@ -32,6 +36,10 @@ const OtherInfo = () =>
             href={PSS_SUGGESTION_URL}
           >
             suggest a primary source set topic
+          </a>{" "}
+          or view resources for{" "}
+          <a className="link external" target="_blank" href={PSS_NHD_URL}>
+            National History Day
           </a>.
         </span>
       </p>
