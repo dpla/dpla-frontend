@@ -1,9 +1,9 @@
-$theme-main-color: #545454;
-$theme-dark-color: #1e1e1e;
-$theme-link-color: darken(#c06528, 5%);
+$theme-main-color: #515151;
+$theme-dark-color: #1f1f1f;
+$theme-link-color: #be5709;
 $theme-background-color: #fff;
-$theme-colder-tint: rgb(231, 231, 231);
-$theme-warmer-tint: lighten($theme-link-color, 55%);
+$theme-colder-tint: rgb(245, 245, 245);
+$theme-warmer-tint: lighten($theme-main-color, 70%);
 
 $linkColor: $theme-link-color;
 $linkHoverColor: brighten($linkColor, 10%);

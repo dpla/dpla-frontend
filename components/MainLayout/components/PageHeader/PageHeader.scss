@@ -137,14 +137,9 @@
 }
 
 .localText {
-  color: white;
+  display: block;
   font-size: 1.25rem;
-  line-height: 1;
-  margin-left: 0.5rem;
-
-  @media (min-width: $largeRem) {
-    display: block;
-    font-size: 1.75rem;
-    line-height: 1.5;
-  }
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
 }

@@ -35,7 +35,9 @@ class PageHeader extends React.Component {
                 <img
                   className={css.localLogo}
                   alt={`${LOCALS[LOCAL_ID].name} Home`}
-                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[
+                    LOCAL_ID
+                  ].logo}`}
                 />
                 <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
               </a>
