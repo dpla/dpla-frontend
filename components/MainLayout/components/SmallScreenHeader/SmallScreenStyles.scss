@@ -44,14 +44,14 @@
 }
 
 .menuButton {
-  height: 3.5rem;
-  width: 4rem;
-  color: white;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  display: flex;
-  justify-content: center;
+  align-items: center;
   background-color: $navColor;
+  color: white;
+  display: flex;
+  font-size: 0.75rem;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 4rem;
 
   &.isOpen {
     background-color: $mobileNavMenuButtonOpen;
