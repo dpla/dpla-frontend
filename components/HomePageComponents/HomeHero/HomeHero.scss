@@ -45,26 +45,19 @@
 }
 
 .localLogo {
-  height: 2.5rem;
+  height: 3.5rem;
   max-width: 16rem;
 
-  @media (min-width: $largeRem) {
-    height: 2.5rem;
+  @media (min-width: $mediumRem) {
+    height: 4.5rem;
     max-width: 18rem;
   }
 }
 
 .localText {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: normal;
-  line-height: 1;
-  margin-left: 0.5rem;
-
-  @media (min-width: $largeRem) {
-    font-size: 1.75rem;
-    line-height: 1.5;
-  }
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
 }
 
 .content {

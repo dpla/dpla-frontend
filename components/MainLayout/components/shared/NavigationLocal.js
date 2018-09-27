@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
+import { LOCALS } from "constants/local";
+import { LOCAL_ID } from "constants/env";
+
 const NavigationLocal = ({ isHome, className, css }) =>
   <div className={className}>
     <ul className={css.links}>
@@ -19,11 +22,20 @@ const NavigationLocal = ({ isHome, className, css }) =>
           </a>
         </Link>
       </li>
+      {LOCALS[LOCAL_ID].hasAbout &&
+        <li>
+          <Link prefetch href="/local/about" as="/about">
+            <a>
+              About
+            </a>
+          </Link>
+        </li>}
+    </ul>
+    <span className={css.divider} />
+    <ul className={`${css.links} ${css.secondaryLinks}`}>
       <li>
-        <Link prefetch href="/local/about" as="/about">
-          <a>
-            About
-          </a>
+        <Link href={LOCALS[LOCAL_ID].externalLink}>
+          <a>{LOCALS[LOCAL_ID].name}</a>
         </Link>
       </li>
     </ul>

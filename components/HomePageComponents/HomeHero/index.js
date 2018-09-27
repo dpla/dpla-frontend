@@ -26,7 +26,8 @@ const HomeHero = ({ headerDescription, feature }) =>
         <div className={`${css.homeLogo} `}>
           <img
             className={css.localLogo}
-            src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
+              .logo}`}
           />
           <h1 className={css.localText}>{LOCALS[LOCAL_ID].name}</h1>
         </div>}

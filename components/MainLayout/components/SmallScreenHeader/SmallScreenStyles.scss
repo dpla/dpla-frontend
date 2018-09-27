@@ -34,13 +34,15 @@
 
 .localLogo {
   height: 100%;
+  max-width: calc(100% - 4rem);
   object-fit: contain;
   object-position: left;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
 }
 
 .logo img {
-  width: 100%;
   display: block;
+  width: 100%;
 }
 
 .menuButton {
