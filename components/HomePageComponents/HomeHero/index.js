@@ -65,6 +65,7 @@ const HomeHero = ({ headerDescription, feature }) =>
           </Link>
         </div>}
       {SITE_ENV === "local" &&
+        LOCALS[LOCAL_ID].hasAbout &&
         <div className={css.links}>
           <Link prefetch href="/local/about" as="/about">
             <a>Learn more about {LOCALS[LOCAL_ID].name}</a>
