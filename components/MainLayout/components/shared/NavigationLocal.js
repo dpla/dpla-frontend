@@ -35,7 +35,7 @@ const NavigationLocal = ({ isHome, className, css }) =>
     <ul className={`${css.links} ${css.secondaryLinks}`}>
       <li>
         <Link href={LOCALS[LOCAL_ID].externalLink}>
-          <a>{LOCALS[LOCAL_ID].name}</a>
+          <a>Visit {LOCALS[LOCAL_ID].name}</a>
         </Link>
       </li>
     </ul>
