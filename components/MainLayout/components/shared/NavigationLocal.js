@@ -22,6 +22,13 @@ const NavigationLocal = ({ isHome, className, css }) =>
           </a>
         </Link>
       </li>
+      <li>
+        <Link prefetch href="/terms">
+          <a>
+            Terms and Conditions
+          </a>
+        </Link>
+      </li>
       {LOCALS[LOCAL_ID].hasAbout &&
         <li>
           <Link prefetch href="/local/about" as="/about">
