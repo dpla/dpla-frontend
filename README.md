@@ -1,4 +1,7 @@
+> **Note for DPLA Local:** For DPLA Local instance configuration, refer to [LOCAL.md](LOCAL.md).
+
 # DPLA Frontend
+
 This is the repository for the Digital Public Library of America's new frontend.
 
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=UzZRL0QwZzR1Mlc4V2tuMi9XMS9RUm5hZ0lCL2tDaVhJU0xnRU1KdjcrOD0tLXRmQkRDTnZLekZLM0RWdGMyMCtHNUE9PQ==--24287c43017fc50481ab631e86244f9db3ec9257)](https://www.browserstack.com/automate/public-build/UzZRL0QwZzR1Mlc4V2tuMi9XMS9RUm5hZ0lCL2tDaVhJU0xnRU1KdjcrOD0tLXRmQkRDTnZLekZLM0RWdGMyMCtHNUE9PQ==--24287c43017fc50481ab631e86244f9db3ec9257)
@@ -37,6 +40,7 @@ We are using the current LTS (long-term-support) "Carbon" version of Node.
 The easiest way to manage your Node versions is with
 [NVM](https://github.com/creationix/nvm). Follow the instructions on that page
 to set it up. Then, do the following in your shell:
+
 ```
 $ cd /path/to/dpla-frontend  # Checked out above from GitHub
 $ nvm install                # Picks up correct Node version from `.nvmrc`
@@ -70,7 +74,6 @@ See [the Docker documentation](https://docs.docker.com/) and `docker help` for
 more information on using Docker containers. See package.json for more
 Docker-related commands.
 
-
 ## Environment Variables
 
 The system makes extensive use of environment variables to decouple the different developing environments. It also uses a environment constants file for front-end runtime access of a subset of these variables. For local development it is best to use a `.env` file to provide these variables to the server. There is a `.env.example` you can work from. A `constants/env.example.js` is also provided; rename this file to `constants/env.js` and include the applicable values. Below is a list of the environment variables in use:
@@ -86,9 +89,9 @@ The system makes extensive use of environment variables to decouple the differen
 - `LOCAL_ID`: ID of the Local partner (also exposed in `constants/env.js`)
 - `MAILCHIMP_KEY`: the MailChimp list service API key
 - `MUST_FORK`: if "true", forces the server to fork and use multiple CPUs in
-   development mode. This is only relevant when NODE_ENV is not equal to
-   "production", e.g. when running `yarn dev`. The server always forks when
-   `NODE_ENV=production`.
+  development mode. This is only relevant when NODE_ENV is not equal to
+  "production", e.g. when running `yarn dev`. The server always forks when
+  `NODE_ENV=production`.
 - `NODE_ENV`: the node environment, `development` or `production`
 - `OMEKA_URL`: the Omeka server base URL
 - `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
@@ -129,21 +132,21 @@ The project includes a number of scripts used for development, testing, and depl
 
 ## Authors
 
-| DPLA |
-| ------------- |
-| Audrey Altman |
-| Gretchen Gueguen |
-| Mark Breedlove |
-| Mauricio Giraldo |
+| DPLA                |
+| ------------------- |
+| Audrey Altman       |
+| Gretchen Gueguen    |
+| Mark Breedlove      |
+| Mauricio Giraldo    |
 | Michael Della Bitta |
-| Scott Williams |
+| Scott Williams      |
 
 | Team Postlight |
-| ------------- |
-| Grace Pelling |
-| Neil Renicker |
-| Frankie Simms |
-| Gina Trapani  |
+| -------------- |
+| Grace Pelling  |
+| Neil Renicker  |
+| Frankie Simms  |
+| Gina Trapani   |
 
 [<img src="browserstack-logo-600x315.png" height="100" alt="" />](http://browserstack.com/)
 
