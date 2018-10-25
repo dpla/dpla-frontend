@@ -15,10 +15,10 @@ import { LOCALS } from "constants/local";
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
-const PAGE_TITLE = `About`;
+const PAGE_TITLE = `Terms and Conditions`;
 const PAGE_DESCRIPTION = `${LOCALS[LOCAL_ID].description}`;
 
-class AboutPage extends React.Component {
+class TermsPage extends React.Component {
   refreshExternalLinks() {
     var links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
@@ -58,10 +58,10 @@ class AboutPage extends React.Component {
   }
 }
 
-AboutPage.getInitialProps = async ({ req, query, res }) => {
+TermsPage.getInitialProps = async ({ req, query, res }) => {
   const fullUrl = getCurrentUrl(req);
   const markdownUrl = `${fullUrl}/static/local/${LOCALS[LOCAL_ID]
-    .theme}/about.md`;
+    .theme}/terms.md`;
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
 
@@ -70,4 +70,4 @@ AboutPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default withRouter(AboutPage);
+export default withRouter(TermsPage);

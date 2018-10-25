@@ -4,11 +4,10 @@ import { withRouter } from "next/router";
 import MainLayout from "components/MainLayout";
 import HomeHero from "components/HomePageComponents/HomeHero";
 import LocalIntro from "components/HomePageComponents/LocalIntro";
-import StayInformed from "shared/StayInformed";
 
 import { getCurrentUrl } from "lib";
 
-import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 const Home = ({ router, content }) =>
