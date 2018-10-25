@@ -12,6 +12,11 @@ module.exports = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
+  server.get(["/terms"], (req, res) => {
+    const actualPage = "/local/terms";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
   // lists routes
 
   server.get("/lists/:list", (req, res) => {
