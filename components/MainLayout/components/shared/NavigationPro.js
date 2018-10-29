@@ -20,6 +20,11 @@ const NavigationPro = ({ isHome, className, css }) =>
         </Link>
       </li>
       <li>
+        <Link prefetch as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
+          <a>Ebooks</a>
+        </Link>
+      </li>
+      <li>
         <Link prefetch as="/projects" href="/pro/wp?section=projects">
           <a>Projects</a>
         </Link>

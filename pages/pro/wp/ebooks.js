@@ -43,7 +43,7 @@ class EbooksPage extends React.Component {
               ? css.withFeature
               : ""}`}
           >
-            <IconComponent className={css.icon} name="network" />
+            <IconComponent className={css.icon} name="ebooks" />
             <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
