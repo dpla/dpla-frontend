@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { formatDate } from "lib";
+import { USER_BASE_URL } from "constants/env";
 
 import css from "./NewsLane.scss";
 
@@ -14,7 +15,7 @@ const NewsLane = ({ title, items }) =>
         <div className="col-xs-12 col-md-3">
           <div className={css.header}>
             <h2 className={css.headerText}>{title}</h2>
-            <Link prefetch href="/news">
+            <Link prefetch href={`${USER_BASE_URL}/news`}>
               <a className={`hover-underline ${css.headerLink}`}>
                 <span>Browse the archives</span>
                 <img
