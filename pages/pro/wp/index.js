@@ -79,7 +79,7 @@ class ProMenuPage extends React.Component {
                 {illustration &&
                   <div>
                     <img
-                      src={illustration.router}
+                      src={illustration.url}
                       alt=""
                       className={contentCss.bannerImage}
                     />
