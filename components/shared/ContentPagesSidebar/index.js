@@ -58,6 +58,11 @@ const NestedSidebarLinks = ({
       as: "/hubs",
       href: "/pro/wp/hubs?section=" + item.post_name
     };
+  } else if (item.post_name === "ebooks") {
+    linkObject = {
+      as: "/ebooks",
+      href: "/pro/wp/ebooks?section=" + item.post_name
+    };
   } else if (SITE_ENV === "user") {
     linkObject = {
       as: "/about/" + item.post_name,
