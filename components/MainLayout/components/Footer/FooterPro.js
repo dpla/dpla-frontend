@@ -71,7 +71,7 @@ const FooterPro = ({ route }) =>
             </Link>
           </li>
           <li>
-            <Link as="/ebooks" href="/pro/wp?section=ebooks">
+            <Link as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
               <a>Ebooks</a>
             </Link>
           </li>
