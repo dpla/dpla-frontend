@@ -80,7 +80,7 @@ const HomePro = ({ url, news, content }) =>
           </Link>
         </li>
         <li>
-          <Link as="/ebooks" href="/pro/ebooks?section=ebooks">
+          <Link as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
             <a>
               <IconComponent className={css.icon} name="ebooks" />
               Ebooks
