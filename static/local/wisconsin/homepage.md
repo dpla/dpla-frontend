@@ -1,29 +1,29 @@
 ## Sharing our Stories. Exploring our Past.
 
-Discover photos, maps, books, artifacts, oral histories and more from dozens of Wisconsin communities.
+Discover photos, maps, books, artifacts, oral histories and more from dozens of Wisconsin libraries, archives, historical societies and museums. Find state and local history resources as well as materials from across the country and around the world.
 
-These are some of our special materials available for you to search:
+Recollection Wisconsin content highlights include:
 
-- ### [Movie-struck Wisconsin](/search?subject="Theaters%20--%20Wisconsin%20--%20Milwaukee")
+- ### [Maps](/search?q=map")
 
-  Despite its distance from Hollywood, Wisconsin has had a love affair with film since the turn of the century.
+  Maps of every county and most communities in the state, as well as a wide range of national and international maps.
 
-- ### [Carson Gulley, Madison’s first celebrity chef](/search?subject="Gulley%2C%20Carson")
+- ### [Protest movements](/search?q=protest*)
 
-  A chef with a stellar career known for his civil rights struggles.
+  Civil rights marches for fair housing in Milwaukee, student-led protests against the Vietnam War and other grassroots activism. 
 
-- ### [Wisconsin’s Civil War monuments](/search?subject="Wisconsin--History--Civil%20War,%201861-1865")
+- ### [Dairy industry](/search?q=dairy*+OR+cheese*)
 
-  Per capita, Wisconsin sent more young men to the Civil War than any other state in the Union.
+  Dairy farms, cheese factories and creameries -- plus historic recipes for using all that cheese.
 
-- ### [Ice cream parlors](/search?subject="Ice%20cream%20industry%20--%20Wisconsin%20--%20Milwaukee")
+- ### [Breweries](/search?q=beer+OR+brewing+OR+brewery)
 
-  From elegant parlors to sundae fights to a snack for study breaks, Wisconsin has many flavors of ice cream history.
+  From Miller and Pabst to dozens of smaller brewers, the history of beer and brewing in Wisconsin reflects the state’s German heritage.
 
-- ### [Octagon houses](/search?q=octagon%20house)
+- ### [Logging](/search?q=lumber+OR+logging)
 
-  It was once a craze among the stylish to structure their homes in the shape we now associate with stop signs.
+  Logging and the lumber industry shaped Wisconsin’s landscape for over a century. The lumberjack remains a vivid character in Wisconsin folklore.
 
-- ### [Exploring effigy mounds](/search?subject="Mounds")
+- ### [Main Street](/search?q=%22main+street%22)
 
-  More than a thousand years ago, indigenous people in southern Wisconsin sculpted the landscape into the shapes of the creatures they saw around them.
+  Images of Main Streets reveal changes in everyday life across the decades, including transformations in architecture, advertising, transportation and clothing.
