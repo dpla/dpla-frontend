@@ -4,7 +4,7 @@ Discover photos, maps, books, artifacts, oral histories and more from dozens of 
 
 Recollection Wisconsin content highlights include:
 
-- ### [Maps](/search?q=map")
+- ### [Maps](/search?q=map)
 
   Maps of every county and most communities in the state, as well as a wide range of national and international maps.
 
