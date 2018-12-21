@@ -10,6 +10,18 @@ const LOCALS = {
     subjectFacet: "%22Wisconsin%22",
     externalLink: "https://recollectionwisconsin.org/about",
     hasAbout: false
+  },
+  tennessee: {
+    theme: "tennessee",
+    provider: "%22Digital%20Library%20of%20Tennessee%22",
+    name: "Digital Library of Tennessee",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    description: "Sharing Stories From the Volunteer State",
+    locationFacet: "%22Tennessee%22",
+    subjectFacet: "%22Tennessee%22",
+    externalLink: "https://example.com/about",
+    hasAbout: true
   }
 };
 
