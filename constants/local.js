@@ -20,7 +20,7 @@ const LOCALS = {
     description: "Sharing Stories From the Volunteer State",
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
-    externalLink: "https://example.com/about",
+    externalLink: "",
     hasAbout: true
   }
 };
