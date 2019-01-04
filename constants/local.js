@@ -8,7 +8,7 @@ const LOCALS = {
     description: "Sharing our Stories. Exploring our Past.",
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
-    externalLink: "https://recollectionwisconsin.org/about",
+    externalLink: "https://recollectionwisconsin.org",
     hasAbout: false
   },
   tennessee: {
