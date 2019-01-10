@@ -190,7 +190,7 @@ Search.getInitialProps = async ({ query, req }) => {
   if (isLocal) {
     const aboutness_page_size = 20;
     const aboutness_max = 4;
-    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&${originalLocation}&${originalSubject}&${originalFacetQueries}`;
+    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?op=OR&exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&${originalLocation}&${originalSubject}&${originalFacetQueries}`;
     const aboutnessRes = await fetch(aboutnessUrl);
     const aboutnessJson = await aboutnessRes.json();
     // NOTE: since the api does not allow for negated search,

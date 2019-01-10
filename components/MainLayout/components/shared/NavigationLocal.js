@@ -38,14 +38,17 @@ const NavigationLocal = ({ isHome, className, css }) =>
           </Link>
         </li>}
     </ul>
+    {LOCALS[LOCAL_ID].externalLink &&
     <span className={css.divider} />
+    }
+    {LOCALS[LOCAL_ID].externalLink &&
     <ul className={`${css.links} ${css.secondaryLinks}`}>
       <li>
         <Link href={LOCALS[LOCAL_ID].externalLink}>
           <a>Visit {LOCALS[LOCAL_ID].name}</a>
         </Link>
       </li>
-    </ul>
+    </ul>}
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
         <Link href="//dp.la">
