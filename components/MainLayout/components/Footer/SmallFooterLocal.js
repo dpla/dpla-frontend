@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import Button from "components/shared/Button";
-import FeedbackForm from "components/FeedbackForm";
 
-import { LOCAL_ID, PRO_BASE_URL, SITE_ENV } from "constants/env";
+import { LOCAL_ID } from "constants/env";
 
 import css from "./Footer.scss";
 import { LOCALS } from "../../../../constants/local";
@@ -15,7 +13,7 @@ class SmallFooterLocal extends React.Component {
   render() {
     const { route } = this.props;
     var logoHtml;
-    if (LOCALS[LOCAL_ID] === "wisconsin") {
+    if (LOCAL_ID === "wisconsin") {
       logoHtml = (
         <a href={`${LOCALS[LOCAL_ID].externalLink}`}>
           <img

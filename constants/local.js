@@ -9,7 +9,10 @@ const LOCALS = {
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
     externalLink: "https://recollectionwisconsin.org",
-    hasAbout: false
+    contactLink: "https://recollectionwisconsin.org/contact",
+    hasAbout: false,
+    hasTerms: false,
+    hasContact: true
   },
   tennessee: {
     theme: "tennessee",
