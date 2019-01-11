@@ -26,7 +26,7 @@ class SmallFooterLocal extends React.Component {
       );
     } else {
       logoHtml = (
-        <Link prefetch href="/search">
+        <Link prefetch href="/local" as="/">
           <a>
             <img
               className={css.localLogo}
