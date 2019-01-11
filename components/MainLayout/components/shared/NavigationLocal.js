@@ -31,7 +31,7 @@ class NavigationLocal extends Component {
           </a>
         </li>
       );
-    } else {
+    } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
@@ -41,7 +41,10 @@ class NavigationLocal extends Component {
           </li>
         </ul>
       );
-      contactHtml = " ";
+      contactHtml = null;
+    } else {
+      visitHtml = null;
+      contactHtml = null;
     }
 
     return (
@@ -70,7 +73,7 @@ class NavigationLocal extends Component {
                 </a>
               </Link>
             </li>}
-          {contactHtml}
+          {contactHtml && contactHtml}
           {LOCALS[LOCAL_ID].hasAbout &&
             <li>
               <Link prefetch href="/local/about" as="/about">
@@ -80,8 +83,8 @@ class NavigationLocal extends Component {
               </Link>
             </li>}
         </ul>
-        <span className={css.divider} />
-        {visitHtml}
+        {visitHtml && <span className={css.divider} />}
+        {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           <li>
             <Link href="//dp.la">
