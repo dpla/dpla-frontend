@@ -23,8 +23,9 @@ const LOCALS = {
     description: "Sharing Stories From the Volunteer State",
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
-    externalLink: "",
-    hasAbout: true
+    hasAbout: true,
+    hasTerms: false,
+    hasContact: false
   }
 };
 
