@@ -4,7 +4,7 @@ import Link from "next/link";
 import { USER_BASE_URL } from "constants/env";
 
 const NavigationPro = ({ isHome, className, css }) =>
-  <div className={className}>
+  <div className={className} id={"NavigationPro"}>
     <ul className={css.links}>
       {!isHome &&
         <li>

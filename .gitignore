@@ -37,3 +37,5 @@ test/selenium/lib/
 test/selenium/.Python
 test/selenium/.python-version
 test/selenium/pip-selfcheck.json
+
+.idea/

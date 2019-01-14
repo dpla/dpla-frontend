@@ -8,8 +8,11 @@ const LOCALS = {
     description: "Sharing our Stories. Exploring our Past.",
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
-    externalLink: "https://recollectionwisconsin.org/about",
-    hasAbout: false
+    externalLink: "https://recollectionwisconsin.org",
+    contactLink: "https://recollectionwisconsin.org/contact",
+    hasAbout: false,
+    hasTerms: false,
+    hasContact: true
   },
   tennessee: {
     theme: "tennessee",
@@ -20,8 +23,9 @@ const LOCALS = {
     description: "Sharing Stories From the Volunteer State",
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
-    externalLink: "",
-    hasAbout: true
+    hasAbout: true,
+    hasTerms: false,
+    hasContact: false
   }
 };
 
