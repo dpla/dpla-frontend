@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const next = require("next");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
@@ -38,12 +39,23 @@ if (require.main === module) {
 
     app.prepare().then(() => {
       const server = express();
+      server.use(cookieParser());
       server.use(
         bodyParser.urlencoded({
           extended: true
         })
       );
       server.use(bodyParser.json());
+
+      server.get("/qa", (req, res) => {
+        const cookies = req.cookies;
+        console.log(cookies);
+        if ("qa" in cookies) {
+          res.clearCookie("qa").send("QA mode disabled");
+        } else {
+          res.cookie("qa", "qa").send("QA mode enabled");
+        }
+      });
 
       server.get("/healthcheck", (req, res) => {
         res.send("OK");
