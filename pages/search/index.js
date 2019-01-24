@@ -16,6 +16,7 @@ import {
 
 import {
   possibleFacets,
+  qaFacets,
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet,
   pageSizeOptions,
@@ -93,14 +94,16 @@ class Search extends React.Component {
 
 Search.getInitialProps = async ({ query, req }) => {
   const isLocal = SITE_ENV === "local";
+  const isQA = "qa" in req.cookies;
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
 
   let hasDates = false;
+  const theseFacets = isQA ? qaFacets : possibleFacets;
 
-  const queryArray = possibleFacets
+  const queryArray = theseFacets
     .map(facet => {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
         hasDates = true; // do it only once for date queries
@@ -192,7 +195,7 @@ Search.getInitialProps = async ({ query, req }) => {
       .split(/(&|\+AND\+)/)
       .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
-    const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
+    const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${theseFacets.join(
       ","
     )}&${facetQueries}`;
 
@@ -215,7 +218,7 @@ Search.getInitialProps = async ({ query, req }) => {
 
     // fix facets because ES no longer returns them in the requested order
     let newFacets = {};
-    possibleFacets.forEach(facet => {
+    theseFacets.forEach(facet => {
       if (json.facets[facet]) newFacets[facet] = json.facets[facet];
     });
     json.facets = newFacets;
