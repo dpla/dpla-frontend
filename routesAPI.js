@@ -82,7 +82,7 @@ module.exports = (app, server) => {
         console.log("aboutttt");
         if (process.env.SITE_ENV !== "local") {
           console.log("Got local about request, but site not a local.");
-          return "";
+          return "{}";
         }
         const localId = process.env.LOCAL_ID;
         const local = locals["LOCALS"][localId];
@@ -92,14 +92,13 @@ module.exports = (app, server) => {
         const apiKey = process.env.API_KEY;
         const apiUrl = process.env.API_URL;
         const query =
-          `${req.query.q}%20AND%20` +
+          `${encodeURIComponent(req.query.q)}%20AND%20` +
           `(sourceResource.spatial.name:${location}` +
           `%20OR%20sourceResource.subject.name:${subject})` +
-          `%20AND%20NOT%20provider.name:${provider}`;
-        console.log(query);
+          `%20AND%20NOT%20provider.name:${provider}&`;
         return (
           `${apiUrl}/items?api_key=${apiKey}` +
-          `&exact_field_match=true?q=${query}`
+          `&exact_field_match=true&q=${query}`
         );
       }
     })
