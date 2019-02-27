@@ -22,8 +22,11 @@ import {
   DEFAULT_PAGE_SIZE,
   MAX_PAGE_SIZE
 } from "constants/search";
-
-import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import {
+  API_ENDPOINT,
+  THUMBNAIL_ENDPOINT,
+  LOCAL_ABOUT_ENDPOINT
+} from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
@@ -97,11 +100,6 @@ Search.getInitialProps = async ({ query, req }) => {
 
   let hasDates = false;
 
-  let originalSubject = `sourceResource.subject.name=${LOCALS[LOCAL_ID]
-    .subjectFacet}`;
-  let originalLocation = `sourceResource.spatial.name=${LOCALS[LOCAL_ID]
-    .locationFacet}`;
-
   const queryArray = possibleFacets
     .map(facet => {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
@@ -129,23 +127,6 @@ Search.getInitialProps = async ({ query, req }) => {
         query[mapFacetsToURLPrettified[facet]] &&
         facet.indexOf("sourceResource.date") === -1
       ) {
-        // need to put the location and subject for aboutness search
-        if (facet === "sourceResource.subject.name") {
-          originalSubject = `${facet}=${splitAndURIEncodeFacet(
-            `${joinIfArray(
-              query[mapFacetsToURLPrettified[facet]],
-              "|"
-            )}|${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`
-          )}`;
-        }
-        if (facet === "sourceResource.spatial.name") {
-          originalLocation = `${facet}=${splitAndURIEncodeFacet(
-            `${joinIfArray(
-              query[mapFacetsToURLPrettified[facet]],
-              "|"
-            )}|${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
-          )}`;
-        }
         return `${facet}=${splitAndURIEncodeFacet(
           query[mapFacetsToURLPrettified[facet]]
         )}`;
@@ -153,16 +134,6 @@ Search.getInitialProps = async ({ query, req }) => {
       return "";
     })
     .filter(facetQuery => facetQuery !== "");
-
-  // get the original facets EXCEPT location and subject
-  // because those were modified above
-  const originalFacetQueries = queryArray
-    .filter(
-      facetQuery =>
-        facetQuery.indexOf("sourceResource.subject.name") === -1 &&
-        facetQuery.indexOf("sourceResource.spatial.name") === -1
-    )
-    .join("&");
 
   if (isLocal) {
     queryArray.push(`provider.name=${LOCALS[LOCAL_ID].provider}`);
@@ -189,20 +160,11 @@ Search.getInitialProps = async ({ query, req }) => {
   // get the aboutness links
   let aboutness = {};
   if (isLocal) {
-    const aboutness_page_size = 20;
     const aboutness_max = 4;
-    const aboutnessUrl = `${currentUrl}${API_ENDPOINT}?op=OR&exact_field_match=true&q=${q}&page=1&page_size=${aboutness_page_size}&${originalLocation}&${originalSubject}&${originalFacetQueries}`;
+    const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
     const aboutnessRes = await fetch(aboutnessUrl);
     const aboutnessJson = await aboutnessRes.json();
-    // NOTE: since the api does not allow for negated search,
-    // this returns results also contained in the local query
-    // so they have to be manually filtered out
     const aboutnessDocs = aboutnessJson.docs
-      .filter(
-        result =>
-          result.provider.name !==
-          decodeURIComponent(LOCALS[LOCAL_ID].provider).replace(/"/g, "")
-      )
       .map(result => {
         const thumbnailUrl = result.object
           ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
@@ -248,13 +210,11 @@ Search.getInitialProps = async ({ query, req }) => {
     });
 
     // fix facets because ES no longer returns them in the requested order
-    // TODO: remove this hack once fixed in ES
     let newFacets = {};
     possibleFacets.forEach(facet => {
       if (json.facets[facet]) newFacets[facet] = json.facets[facet];
     });
     json.facets = newFacets;
-    // end of hack
 
     const maxResults = MAX_PAGE_SIZE * page_size;
     const pageCount = json.count > maxResults ? maxResults : json.count;
