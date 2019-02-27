@@ -79,7 +79,6 @@ module.exports = (app, server) => {
     "/api/dpla/local_about",
     proxy(process.env.API_URL, {
       proxyReqPathResolver: function(req) {
-        console.log("aboutttt");
         if (process.env.SITE_ENV !== "local") {
           console.log("Got local about request, but site not a local.");
           return "{}";
