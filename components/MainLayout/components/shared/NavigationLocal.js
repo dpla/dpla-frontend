@@ -16,7 +16,7 @@ class NavigationLocal extends Component {
           <li>
             <a
               href={
-                LOCALS[LOCAL_ID].externalLink + "/explore/search/searchtips"
+                LOCALS[LOCAL_ID].externalLink + "/explore/search"
               }
             >
               About
