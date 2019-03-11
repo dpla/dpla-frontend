@@ -160,24 +160,28 @@ Search.getInitialProps = async ({ query, req }) => {
     const aboutness_max = 4;
     const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
     const aboutnessRes = await fetch(aboutnessUrl);
-    const aboutnessJson = await aboutnessRes.json();
-    const aboutnessDocs = aboutnessJson.docs
-      .map(result => {
-        const thumbnailUrl = result.object
-          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-          : getDefaultThumbnail(result.sourceResource.type);
-        return Object.assign({}, result.sourceResource, {
-          thumbnailUrl,
-          id: result.id ? result.id : result.sourceResource["@id"],
-          sourceUrl: result.isShownAt,
-          provider: result.provider && result.provider.name,
-          dataProvider: result.dataProvider,
-          useDefaultImage: !result.object
-        });
-      })
-      .splice(0, aboutness_max);
-    const aboutnessCount = aboutnessJson.count;
-    aboutness = { docs: aboutnessDocs, count: aboutnessCount };
+    if (aboutnessRes.status != 200) {
+      aboutness = { docs: [], count: 0 };
+    } else {
+      const aboutnessJson = await aboutnessRes.json();
+      const aboutnessDocs = aboutnessJson.docs
+        .map(result => {
+          const thumbnailUrl = result.object
+            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+            : getDefaultThumbnail(result.sourceResource.type);
+          return Object.assign({}, result.sourceResource, {
+            thumbnailUrl,
+            id: result.id ? result.id : result.sourceResource["@id"],
+            sourceUrl: result.isShownAt,
+            provider: result.provider && result.provider.name,
+            dataProvider: result.dataProvider,
+            useDefaultImage: !result.object
+          });
+        })
+        .splice(0, aboutness_max);
+      const aboutnessCount = aboutnessJson.count;
+      aboutness = { docs: aboutnessDocs, count: aboutnessCount };
+    }
   }
 
   if (page <= MAX_PAGE_SIZE) {
