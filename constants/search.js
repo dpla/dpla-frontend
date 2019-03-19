@@ -5,8 +5,11 @@ export const possibleFacets = [
   "sourceResource.date.end",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
+  "sourceResource.collection.title",
   "admin.contributingInstitution",
-  "provider.name"
+  "provider.name",
+  "intermediateProvider",
+  "rights"
 ];
 
 export const mapFacetsToURLPrettified = {
@@ -16,8 +19,11 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
+  "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
-  "provider.name": "partner"
+  "provider.name": "partner",
+  intermediateProvider: "intermediateProvider",
+  rights: "standardizedRightsStatement"
 };
 
 export const mapURLPrettifiedFacetsToUgly = {
@@ -27,8 +33,11 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
+  collection: "sourceResource.collection.title",
   provider: "admin.contributingInstitution",
-  partner: "provider.name"
+  partner: "provider.name",
+  intermediateProvider: "intermediateProvider",
+  standardizedRightsStatement: "rights"
 };
 
 export const prettifiedFacetMap = {
@@ -38,8 +47,11 @@ export const prettifiedFacetMap = {
   "sourceResource.date.begin": "Date",
   "sourceResource.date.end": "Date",
   "sourceResource.language.name": "Language",
+  "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
-  "provider.name": "Partner"
+  "provider.name": "Partner",
+  intermediateProvider: "Intermediate Provider",
+  rights: "Standardized Rights Statement"
 };
 
 export const pageSizeOptions = [
