@@ -57,15 +57,16 @@ const MainContent = ({
           )}
         />
       </div>
-      {SITE_ENV === "local" &&
-        aboutness.docs &&
-        aboutness.docs.length > 0 &&
-        <AboutLocal
-          items={aboutness.docs}
-          count={aboutness.count}
-          query={route.query}
-        />}
     </div>
+    {SITE_ENV === "local" &&
+      aboutness.docs &&
+      aboutness.docs.length > 0 &&
+      <AboutLocal
+        items={aboutness.docs}
+        count={aboutness.count}
+        query={route.query}
+      />}
+
   </div>;
 
 export default MainContent;
