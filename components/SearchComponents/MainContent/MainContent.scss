@@ -1,5 +1,11 @@
 @import "stylesheets/variables";
 
+.wrapper {
+  @media (min-width: $smallRem) {
+    padding-bottom: 10rem;
+  }
+}
+
 .mainContent {
   display: flex;
   flex-direction: column;
@@ -10,7 +16,6 @@
   }
 
   @media (min-width: $smallRem) {
-    padding-bottom: 150px;
     margin-top: 2rem;
     flex-direction: row;
   }

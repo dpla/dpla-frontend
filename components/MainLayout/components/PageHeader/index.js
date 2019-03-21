@@ -30,12 +30,14 @@ class PageHeader extends React.Component {
               </a>
             </Link>}
           {SITE_ENV === "local" &&
-            <Link prefetch href="/search">
+            <Link prefetch href="/local" as="/">
               <a className={`${css.logo} ${css.local}`} title="Home Page">
                 <img
                   className={css.localLogo}
                   alt={`${LOCALS[LOCAL_ID].name} Home`}
-                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[
+                    LOCAL_ID
+                  ].logo}`}
                 />
                 <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
               </a>

@@ -48,7 +48,9 @@ class SmallScreenHeader extends Component {
                 <img
                   className={css.localLogo}
                   alt={`${LOCALS[LOCAL_ID].name} Home`}
-                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/logo.jpg`}
+                  src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[
+                    LOCAL_ID
+                  ].logo}`}
                 />
               </a>
             </Link>}

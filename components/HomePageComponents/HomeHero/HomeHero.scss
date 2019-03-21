@@ -31,13 +31,33 @@
   }
 }
 
-.dplaLogo {
+.homeLogo {
+  display: flex;
   width: 24rem;
-  background: url("/static/images/dpla-logo.svg") no-repeat 0 50%;
 
   & h1 {
     margin-left: -1000rem;
   }
+}
+
+.dplaLogo {
+  background: url("/static/images/dpla-logo.svg") no-repeat 0 50%;
+}
+
+.localLogo {
+  height: 3.5rem;
+  max-width: 16rem;
+
+  @media (min-width: $mediumRem) {
+    height: 4.5rem;
+    max-width: 18rem;
+  }
+}
+
+.localText {
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
 }
 
 .content {
@@ -151,7 +171,7 @@
   z-index: 2;
 
   &:hover {
-    background-color: #53a9d2;
+    background-color: $darkSecondaryButtonColor;
   }
 
   @media (min-width: $mediumRem) {

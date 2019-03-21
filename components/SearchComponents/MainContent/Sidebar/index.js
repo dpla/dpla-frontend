@@ -10,6 +10,7 @@ import {
   mapFacetsToURLPrettified,
   prettifiedFacetMap
 } from "constants/search";
+import { SITE_ENV } from "constants/env";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
 import css from "./Sidebar.scss";
@@ -221,6 +222,8 @@ class Sidebar extends React.Component {
         <h2>Refine your search</h2>
         <Accordion
           items={Object.keys(facets).map((key, i) => {
+            if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1)
+              return "";
             if (key.indexOf("sourceResource.date") === -1) {
               return {
                 name: prettifiedFacetMap[key],

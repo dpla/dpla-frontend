@@ -3,7 +3,40 @@ const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
   server.get("/", (req, res) => {
-    res.redirect("/search");
+    const actualPage = "/local";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  server.get(["/about"], (req, res) => {
+    const actualPage = "/local/about";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  server.get(["/terms"], (req, res) => {
+    const actualPage = "/local/terms";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  // lists routes
+
+  server.get("/lists/:list", (req, res) => {
+    const actualPage = "/lists/list";
+    const params = {
+      list: req.params.list
+    };
+    serverFunctions.renderAndCache(
+      app,
+      req,
+      res,
+      actualPage,
+      req.query,
+      params
+    );
+  });
+
+  server.get("/lists", (req, res) => {
+    const actualPage = "/lists";
+    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
   // search routes

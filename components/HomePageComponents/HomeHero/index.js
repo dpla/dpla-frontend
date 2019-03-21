@@ -3,9 +3,14 @@ import Link from "next/link";
 
 import Button from "components/shared/Button";
 
+import { SITE_ENV, LOCAL_ID } from "constants/env";
+import { LOCALS } from "constants/local";
+
 import css from "./HomeHero.scss";
 
-const bgImage = "/static/images/home-hero-bg.png";
+const bgImage = SITE_ENV !== "local"
+  ? "/static/images/home-hero-bg.png"
+  : `/static/local/${LOCALS[LOCAL_ID].theme}/home-hero-bg.jpg`;
 
 const HomeHero = ({ headerDescription, feature }) =>
   <div
@@ -13,15 +18,26 @@ const HomeHero = ({ headerDescription, feature }) =>
     style={{ backgroundImage: `url(${bgImage})` }}
   >
     <div className={`${css.header} site-max-width`}>
-      <div className={css.dplaLogo}>
-        <h1>Digital Public Library of America</h1>
-      </div>
-      <Button type="primary" size="large" url="/donate">
-        Donate
-      </Button>
+      {SITE_ENV !== "local" &&
+        <div className={`${css.homeLogo} ${css.dplaLogo}`}>
+          <h1>Digital Public Library of America</h1>
+        </div>}
+      {SITE_ENV === "local" &&
+        <div className={`${css.homeLogo} `}>
+          <img
+            className={css.localLogo}
+            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
+              .logo}`}
+          />
+          <h1 className={css.localText}>{LOCALS[LOCAL_ID].name}</h1>
+        </div>}
+      {SITE_ENV !== "local" &&
+        <Button type="primary" size="large" url="/donate">
+          Donate
+        </Button>}
     </div>
     <div className={css.content}>
-      <p className={css.headline}>{headerDescription}</p>
+      {headerDescription && <p className={css.headline}>{headerDescription}</p>}
       <form action="/search">
         <div className={css.search}>
           <input
@@ -37,14 +53,24 @@ const HomeHero = ({ headerDescription, feature }) =>
           </button>
         </div>
       </form>
-      <div className={css.links}>
-        <Link prefetch href="/browse-by-topic">
-          <a title="Browse DPLA by a curated set of topics">Browse by Topic</a>
-        </Link>
-        <Link prefetch href="/guides">
-          <a title="View our Getting Started Guides">New? Start Here</a>
-        </Link>
-      </div>
+      {SITE_ENV !== "local" &&
+        <div className={css.links}>
+          <Link prefetch href="/browse-by-topic">
+            <a title="Browse DPLA by a curated set of topics">
+              Browse by Topic
+            </a>
+          </Link>
+          <Link prefetch href="/guides">
+            <a title="View our Getting Started Guides">New? Start Here</a>
+          </Link>
+        </div>}
+      {SITE_ENV === "local" &&
+        LOCALS[LOCAL_ID].hasAbout &&
+        <div className={css.links}>
+          <Link prefetch href="/local/about" as="/about">
+            <a>Learn more about {LOCALS[LOCAL_ID].name}</a>
+          </Link>
+        </div>}
     </div>
   </div>;
 

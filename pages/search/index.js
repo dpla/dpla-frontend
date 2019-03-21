@@ -8,6 +8,13 @@ import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
 import {
+  getCurrentUrl,
+  getDefaultThumbnail,
+  getSearchPageTitle,
+  joinIfArray
+} from "lib";
+
+import {
   possibleFacets,
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet,
@@ -15,11 +22,14 @@ import {
   DEFAULT_PAGE_SIZE,
   MAX_PAGE_SIZE
 } from "constants/search";
-import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import {
+  API_ENDPOINT,
+  THUMBNAIL_ENDPOINT,
+  LOCAL_ABOUT_ENDPOINT
+} from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-import { getCurrentUrl, getDefaultThumbnail, getSearchPageTitle } from "lib";
 import MaxPageError from "components/SearchComponents/MaxPageError";
 
 class Search extends React.Component {
@@ -38,7 +48,8 @@ class Search extends React.Component {
       numberOfActiveFacets,
       pageCount,
       currentPage,
-      pageSize
+      pageSize,
+      aboutness
     } = this.props;
     return (
       <MainLayout
@@ -71,6 +82,7 @@ class Search extends React.Component {
             route={router}
             facets={results.facets}
             results={results.docs}
+            aboutness={aboutness}
           />}
         {currentPage > MAX_PAGE_SIZE &&
           <MaxPageError maxPage={MAX_PAGE_SIZE} requestedPage={currentPage} />}
@@ -145,6 +157,36 @@ Search.getInitialProps = async ({ query, req }) => {
 
   let page = query.page || 1;
 
+  // get the aboutness links
+  let aboutness = {};
+  if (isLocal) {
+    const aboutness_max = 4;
+    const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
+    const aboutnessRes = await fetch(aboutnessUrl);
+    if (aboutnessRes.status != 200) {
+      aboutness = { docs: [], count: 0 };
+    } else {
+      const aboutnessJson = await aboutnessRes.json();
+      const aboutnessDocs = aboutnessJson.docs
+        .map(result => {
+          const thumbnailUrl = result.object
+            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+            : getDefaultThumbnail(result.sourceResource.type);
+          return Object.assign({}, result.sourceResource, {
+            thumbnailUrl,
+            id: result.id ? result.id : result.sourceResource["@id"],
+            sourceUrl: result.isShownAt,
+            provider: result.provider && result.provider.name,
+            dataProvider: result.dataProvider,
+            useDefaultImage: !result.object
+          });
+        })
+        .splice(0, aboutness_max);
+      const aboutnessCount = aboutnessJson.count;
+      aboutness = { docs: aboutnessDocs, count: aboutnessCount };
+    }
+  }
+
   if (page <= MAX_PAGE_SIZE) {
     const numberOfActiveFacets = facetQueries
       .split(/(&|\+AND\+)/)
@@ -172,33 +214,58 @@ Search.getInitialProps = async ({ query, req }) => {
     });
 
     // fix facets because ES no longer returns them in the requested order
-    // TODO: remove this hack once fixed in ES
     let newFacets = {};
     possibleFacets.forEach(facet => {
       if (json.facets[facet]) newFacets[facet] = json.facets[facet];
     });
     json.facets = newFacets;
-    // end of hack
 
     const maxResults = MAX_PAGE_SIZE * page_size;
     const pageCount = json.count > maxResults ? maxResults : json.count;
+
+    // get the aboutness links
+    let aboutness = {};
+    if (isLocal) {
+      const aboutness_max = 4;
+      const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
+      const aboutnessRes = await fetch(aboutnessUrl);
+      const aboutnessJson = await aboutnessRes.json();
+      // NOTE: since the api does not allow for negated search,
+      // this returns results also contained in the local query
+      // so they have to be manually filtered out
+      const aboutnessDocs = aboutnessJson.docs
+        .filter(
+          result =>
+            result.provider.name !==
+            decodeURIComponent(LOCALS[LOCAL_ID].provider).replace(/"/g, "")
+        )
+        .map(result => {
+          const thumbnailUrl = result.object
+            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+            : getDefaultThumbnail(result.sourceResource.type);
+          return Object.assign({}, result.sourceResource, {
+            thumbnailUrl,
+            id: result.id ? result.id : result.sourceResource["@id"],
+            sourceUrl: result.isShownAt,
+            provider: result.provider && result.provider.name,
+            dataProvider: result.dataProvider,
+            useDefaultImage: !result.object
+          });
+        })
+        .splice(0, aboutness_max);
+      const aboutnessCount = aboutnessJson.count;
+      aboutness = { docs: aboutnessDocs, count: aboutnessCount };
+    }
 
     return {
       results: Object.assign({}, json, { docs }),
       numberOfActiveFacets,
       currentPage: page,
       pageCount,
-      pageSize: page_size
-    };
-  } else {
-    // we skip the whole thing and present the error message
-    return {
-      results: {},
-      numberOfActiveFacets: 0,
-      currentPage: page,
-      pageCount: 0,
-      pageSize: page_size
+      pageSize: page_size,
+      aboutness: aboutness
     };
   }
 };
+
 export default withRouter(Search);

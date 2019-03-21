@@ -32,13 +32,13 @@ class ListImage extends React.Component {
   }
 
   render() {
-    const { type, url, useDefaultImage, item, title } = this.props;
+    const { type, url, useDefaultImage, item, title, className } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
 
     return (
       <div
-        className={`${css.imageWrapper}
+        className={`${className} ${css.imageWrapper}
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}

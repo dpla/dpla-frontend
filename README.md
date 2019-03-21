@@ -1,3 +1,5 @@
+> **Note for DPLA Local:** For DPLA Local instance configuration, refer to [LOCAL.md](LOCAL.md).
+
 # DPLA Frontend
 
 This is the repository for the Digital Public Library of America's new frontend.

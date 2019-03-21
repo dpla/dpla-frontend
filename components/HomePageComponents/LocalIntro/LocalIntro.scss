@@ -1,0 +1,40 @@
+@import "stylesheets/variables";
+
+.wrapper {
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+.intro {
+  h3 {
+    font-family: $serifFont;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    margin: 0 0 0.25rem;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  ul {
+    display: grid;
+    grid-gap: 2rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+
+  li {
+    align-items: baseline;
+    border-bottom: 0.075rem solid $grayBorderColor;
+    padding-bottom: 2rem;
+
+    &:hover {
+      border-bottom-color: $linkColor;
+      text-decoration: none;
+    }
+  }
+}
