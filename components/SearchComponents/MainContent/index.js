@@ -22,9 +22,10 @@ const MainContent = ({
 }) =>
   <div className={css.wrapper}>
     <div className={[utils.container, css.mainContent].join(" ")}>
-      <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
-        <Sidebar route={route} facets={facets} />
-      </div>
+      {results.length > 0 &&
+        <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
+          <Sidebar route={route} facets={facets} />
+        </div>}
       <div id="main" role="main" className={css.resultsAndPagination}>
         {results.length > 0 &&
           <ListView
