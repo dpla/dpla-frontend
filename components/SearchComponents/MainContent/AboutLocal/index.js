@@ -20,18 +20,19 @@ const dplaLink = query => {
   let newQuery = Object.assign(
     {},
     {
+      q: query.q,
       subject: query.subject
         ? [
             `${query.subject}`,
             `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`
           ].join("|")
-        : `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`,
-      location: query.location
-        ? [
-            `${query.location}`,
-            `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
-          ].join("|")
-        : `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
+        : `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}` //,
+      // location: query.location
+      //   ? [
+      //       `${query.location}`,
+      //       `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
+      //     ].join("|")
+      //   : `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
     }
   );
   newQuery = removeQueryParams(newQuery, ["page"]);
