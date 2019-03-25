@@ -111,7 +111,6 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
     const strippedDoc = Object.assign({}, doc, { originalRecord: "" });
     delete strippedDoc.originalRecord;
     return {
-    return {
       currentFullUrl,
       item: Object.assign({}, doc.sourceResource, {
         id: doc.id,
