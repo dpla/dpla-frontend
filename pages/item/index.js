@@ -110,7 +110,7 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
       : doc.sourceResource.language;
     const strippedDoc = Object.assign({}, doc, { originalRecord: "" });
     delete strippedDoc.originalRecord;
-    console.log("RETURN");
+    return {
     return {
       currentFullUrl,
       item: Object.assign({}, doc.sourceResource, {
