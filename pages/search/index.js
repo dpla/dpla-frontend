@@ -223,40 +223,6 @@ Search.getInitialProps = async ({ query, req }) => {
     const maxResults = MAX_PAGE_SIZE * page_size;
     const pageCount = json.count > maxResults ? maxResults : json.count;
 
-    // get the aboutness links
-    let aboutness = {};
-    if (isLocal) {
-      const aboutness_max = 4;
-      const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
-      const aboutnessRes = await fetch(aboutnessUrl);
-      const aboutnessJson = await aboutnessRes.json();
-      // NOTE: since the api does not allow for negated search,
-      // this returns results also contained in the local query
-      // so they have to be manually filtered out
-      const aboutnessDocs = aboutnessJson.docs
-        .filter(
-          result =>
-            result.provider.name !==
-            decodeURIComponent(LOCALS[LOCAL_ID].provider).replace(/"/g, "")
-        )
-        .map(result => {
-          const thumbnailUrl = result.object
-            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-            : getDefaultThumbnail(result.sourceResource.type);
-          return Object.assign({}, result.sourceResource, {
-            thumbnailUrl,
-            id: result.id ? result.id : result.sourceResource["@id"],
-            sourceUrl: result.isShownAt,
-            provider: result.provider && result.provider.name,
-            dataProvider: result.dataProvider,
-            useDefaultImage: !result.object
-          });
-        })
-        .splice(0, aboutness_max);
-      const aboutnessCount = aboutnessJson.count;
-      aboutness = { docs: aboutnessDocs, count: aboutnessCount };
-    }
-
     return {
       results: Object.assign({}, json, { docs }),
       numberOfActiveFacets,
