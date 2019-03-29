@@ -1,24 +1,10 @@
 const LOCALS = {
-  plains2peaks: {
-    theme: "plains2peaks",
-    provider: "%22Plains%20to%20Peaks%20Collective%22",
-    name: "Plains to Peaks Collective",
-    favicon: "favicon.png",
-    logo: "logo.png",
-    description: "",
-    locationFacet: "%22Colorado%20OR%20Wyoming%22",
-    subjectFacet: "%22Colorado%20OR%20Wyoming%22",
-    hasAbout: true,
-    hasTerms: false,
-    hasContact: true
-  },
   wisconsin: {
     theme: "wisconsin",
     provider: "%22Recollection%20Wisconsin%22",
     name: "Recollection Wisconsin",
     favicon: "favicon.png",
     logo: "logo.png",
-    background: "home-hero-bg.jpg",
     description: "Sharing our Stories. Exploring our Past.",
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
@@ -26,8 +12,7 @@ const LOCALS = {
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
     hasTerms: false,
-    hasContact: true,
-    hasSidebar: false
+    hasContact: true
   },
   illinois: {
     theme: "illinois",
@@ -35,7 +20,6 @@ const LOCALS = {
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
-    background: "home-hero-bg.jpg",
     description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
     subjectFacet: "*Illinois*",
@@ -44,7 +28,6 @@ const LOCALS = {
     hasTerms: false,
     hasContact: false,
     hasBrowseByPartner: true,
-    hasSidebar: true,
     routes: {
       "/about/governance": {
         parentDir: "/about",
@@ -158,54 +141,26 @@ const LOCALS = {
     name: "Digital Library of Tennessee",
     favicon: "favicon.png",
     logo: "logo.png",
-    background: "home-hero-bg.jpg",
     description: "Sharing Stories From the Volunteer State",
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
     hasTerms: false,
-    hasContact: false,
-    hasSidebar: false
+    hasContact: false
   },
-  bigsky: {
-    theme: "bigsky",
-    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
-    name: "Big Sky Country Digital Network",
+  florida: {
+    theme: "florida",
+    provider: "%22Sunshine%20State%20Digital%20Network%22",
+    name: "Sunshine State Digital Network",
     favicon: "favicon.png",
     logo: "logo.png",
-    background: "home-hero-bg.png",
-    description: "",
-    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
-    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
-    hasAbout: true,
+    description: "Sharing Stories From the Sunshine State",
+    externalLink: "https://sunshinestatedigitalnetwork.wordpress.com/",
+    locationFacet: "%22Florida%22",
+    subjectFacet: "%22Florida%22",
+    hasAbout: false,
     hasTerms: false,
-    hasContact: true,
-    hasBrowseByPartner: true,
-    hasSidebar: false,
-    routes: {
-
-      "/north-dakota": {
-        path: "northdakota.md",
-        title: "North Dakota",
-        isTopLevel: true,
-        description: "",
-        category: "North Dakota"
-      },
-      "/montana": {
-        path: "montana.md",
-        title: "Montana",
-        isTopLevel: true,
-        description: "",
-        category: "Montana"
-      },
-      "/contact": {
-        path: "contact.md",
-        title: "Contact",
-        isTopLevel: true,
-        description: "",
-        category: "Contact"
-      }
-    }
+    hasContact: false
   }
 };
 
