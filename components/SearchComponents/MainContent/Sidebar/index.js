@@ -7,6 +7,7 @@ import Accordion from "components/shared/Accordion";
 
 import {
   possibleFacets,
+  qaFacets,
   mapFacetsToURLPrettified,
   prettifiedFacetMap
 } from "constants/search";
@@ -222,6 +223,7 @@ class Sidebar extends React.Component {
         <h2>Refine your search</h2>
         <Accordion
           items={Object.keys(facets).map((key, i) => {
+            console.log("KEY: " + key);
             if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1)
               return "";
             if (key.indexOf("sourceResource.date") === -1) {

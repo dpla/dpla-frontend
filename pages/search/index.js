@@ -16,6 +16,7 @@ import {
 
 import {
   possibleFacets,
+  qaFacets,
   mapFacetsToURLPrettified,
   splitAndURIEncodeFacet,
   pageSizeOptions,
@@ -92,15 +93,20 @@ class Search extends React.Component {
 }
 
 Search.getInitialProps = async ({ query, req }) => {
+
   const isLocal = SITE_ENV === "local";
+  const isQA = "qa" in req.cookies;
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
     : "";
 
   let hasDates = false;
+  const theseFacets = isQA ? qaFacets : possibleFacets;
+  console.log("QA: " + isQA);
+  console.log(theseFacets);
 
-  const queryArray = possibleFacets
+  const queryArray = theseFacets
     .map(facet => {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
         hasDates = true; // do it only once for date queries
@@ -192,6 +198,8 @@ Search.getInitialProps = async ({ query, req }) => {
       .split(/(&|\+AND\+)/)
       .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
+
+    //todo: possibleFacets here!!
     const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${possibleFacets.join(
       ","
     )}&${facetQueries}`;

@@ -5,6 +5,17 @@ export const possibleFacets = [
   "sourceResource.date.end",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
+  "admin.contributingInstitution",
+  "provider.name"
+];
+
+export const qaFacets = [
+  "sourceResource.type",
+  "sourceResource.subject.name",
+  "sourceResource.date.begin",
+  "sourceResource.date.end",
+  "sourceResource.spatial.name",
+  "sourceResource.language.name",
   "sourceResource.collection.title",
   "admin.contributingInstitution",
   "provider.name",
