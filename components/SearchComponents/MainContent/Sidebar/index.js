@@ -239,7 +239,7 @@ class Sidebar extends React.Component {
                 type: "term",
                 subitems: facets[key].terms.map(termObject => {
                   return {
-                    content: possibleFacets.includes(key)
+                    content: qaFacets.includes(key)
                       ? <FacetLink
                           route={route}
                           termObject={termObject}

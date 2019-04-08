@@ -27,7 +27,12 @@ class QA extends React.Component {
       width: "48%",
       "padding-left": "20px"
     };
-    const originalRecord = JSON.stringify(item.originalRecord, null, 2);
+    let originalRecord = "";
+    if ("stringValue" in item.originalRecord) {
+      originalRecord = item.originalRecord.stringValue;
+    } else {
+      originalRecord = JSON.stringify(item.originalRecord, null, 2);
+    }
     const enrichedRecord = JSON.stringify(item.doc, null, 2);
     return (
       <div style={{ "padding-top": "8px" }}>
