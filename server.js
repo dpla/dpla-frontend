@@ -49,7 +49,6 @@ if (require.main === module) {
 
       server.get("/qa", (req, res) => {
         const cookies = req.cookies;
-        console.log(cookies);
         if ("qa" in cookies) {
           res.clearCookie("qa").send("QA mode disabled");
         } else {

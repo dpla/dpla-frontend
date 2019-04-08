@@ -1,3 +1,5 @@
+import { joinIfArray } from "lib";
+
 export const possibleFacets = [
   "sourceResource.type",
   "sourceResource.subject.name",
@@ -9,6 +11,8 @@ export const possibleFacets = [
   "provider.name"
 ];
 
+// assumed to be a superset of possibleFacets,
+// only active in QA mode
 export const qaFacets = [
   "sourceResource.type",
   "sourceResource.subject.name",
@@ -112,8 +116,6 @@ export const getSortOptionFromParams = ({ sortBy, sortOrder }) => {
     return "relevance";
   }
 };
-
-import { joinIfArray } from "lib";
 
 export const splitAndURIEncodeFacet = facet =>
   joinIfArray(facet, "|")
