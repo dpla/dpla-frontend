@@ -15,7 +15,8 @@ import {
   getCurrentUrl,
   getCurrentFullUrl,
   joinIfArray,
-  getDefaultThumbnail
+  getDefaultThumbnail,
+  getRandomItemIdAsync
 } from "lib";
 
 import {
@@ -32,7 +33,8 @@ const ItemDetail = ({
   error,
   url,
   item,
-  currentFullUrl
+  currentFullUrl,
+  randomItemId
   // paginationInfo,
   // searchItemCount
 }) => {
@@ -58,7 +60,7 @@ const ItemDetail = ({
         ]}
         route={url}
       />
-      {item.isQA && <QA item={item} />}
+      {item.isQA && <QA item={item} randomItemId={randomItemId} />}
       <div
         id="main"
         role="main"
@@ -88,6 +90,10 @@ const ItemDetail = ({
 ItemDetail.getInitialProps = async ({ query, req, res }) => {
   const currentFullUrl = getCurrentFullUrl(req);
   const currentUrl = getCurrentUrl(req);
+
+  const randomItemId = query.isQA
+    ? await getRandomItemIdAsync(currentUrl)
+    : null;
 
   // check if item is found
   try {
@@ -126,7 +132,8 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
         doc: strippedDoc,
         originalRecord: doc.originalRecord,
         isQA: query.isQA
-      })
+      }),
+      randomItemId
     };
   } catch (error) {
     if (res) {

@@ -4,6 +4,7 @@ import Router, { withRouter } from "next/router";
 import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
+import Link from "next/link";
 
 import { UNTITLED_TEXT } from "constants/site";
 
@@ -11,7 +12,7 @@ import css from "./Content.scss";
 
 class QA extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item, randomItemId } = this.props;
     const preStyle = {
       "font-size": "13px",
       "word-break": "break-all",
@@ -36,6 +37,16 @@ class QA extends React.Component {
     const enrichedRecord = JSON.stringify(item.doc, null, 2);
     return (
       <div style={{ "padding-top": "8px" }}>
+
+        {randomItemId &&
+          <div style={{ padding: "8px 20px 20px" }}>
+            <Link prefetch href={`/item/${randomItemId}`}>
+              <a className={`internalItemLink`}>
+                Fetch Random Item
+              </a>
+            </Link>
+          </div>}
+
         <div style={divStyle}>
           <h3>Enriched Record</h3>
           <pre style={preStyle}>{enrichedRecord}</pre>
