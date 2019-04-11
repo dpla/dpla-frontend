@@ -39,3 +39,26 @@ $errorColor: $linkColor;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
+
+.homeLogo {
+  width: auto !important;
+  & h1 {
+    margin-left: 0 !important;
+  }
+}
+
+.localLogo {
+  visibility: hidden;
+}
+
+.localText {
+  width: auto !important;
+  height: auto !important;
+  font-size: 55px;
+  //padding-left: 8px;
+}
+
+
+ div.links {
+   visibility: hidden !important;
+ }
