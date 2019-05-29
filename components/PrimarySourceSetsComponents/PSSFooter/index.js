@@ -23,9 +23,9 @@ const OtherInfo = () =>
           </a>
         </Link>{" "}
         <span>
-          Explore resources and ideas for
+          Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
-            <a> Using DPLA's Primary Source Sets</a>
+            <a>Using DPLA's Primary Source Sets</a>
           </Link>{" "}
           in your classroom.
         </span>
