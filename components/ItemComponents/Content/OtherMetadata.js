@@ -49,7 +49,13 @@ const OtherMetadata = ({ item }) =>
         </ItemTermValuePair>}
       {item.type &&
         <ItemTermValuePair heading="Type">
-          <FacetLink facet="type" value={item.type} />
+          {Array.isArray(item.type)
+            ? item.type.map((type, i, types) =>
+                <span key={i}>
+                  <FacetLink facet="type" value={type} /><br />
+                </span>
+              )
+            : <FacetLink facet="type" value={item.type} />}
         </ItemTermValuePair>}
       {item.format &&
         <ItemTermValuePair heading="Format">
