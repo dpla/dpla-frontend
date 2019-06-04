@@ -41,24 +41,34 @@ $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
 
 .homeLogo {
-  width: auto !important;
+  width: 100% !important;
   & h1 {
-    margin-left: 0 !important;
+    margin: auto !important;
+    text-align: center;
   }
 }
 
 .localLogo {
-  visibility: hidden;
+  display: none;
 }
 
-.localText {
+h1.localText {
   width: auto !important;
   height: auto !important;
   font-size: 55px;
-  //padding-left: 8px;
+  margin: auto;
+  text-align: center;
 }
 
+span.localText {
+  color: white !important;
+  width: auto !important;
+  height: auto !important;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: bold;
+}
 
- div.links {
-   visibility: hidden !important;
- }
+div.links {
+  visibility: hidden !important;
+}
