@@ -20,7 +20,7 @@ class QA extends React.Component {
       "white-space": "pre-wrap",
       border: "1px solid rgba(0, 0, 0, 0.15)",
       "background-color": "#f5f5f5",
-      "border-radius": "4px",
+      borderRadius: "4px",
       padding: "9.5px"
     };
     const divStyle = {
