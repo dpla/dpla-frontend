@@ -86,8 +86,7 @@ module.exports = (app, server) => {
       proxyReqPathResolver: function(req) {
         const apiUrl = process.env.API_URL;
         const apiKey = process.env.API_KEY;
-        const apiVersion = process.env.API_VERSION || "v2";
-        return `${apiUrl}/${apiVersion}/random?api_key=${apiKey}`;
+        return `${apiUrl}/random?api_key=${apiKey}`;
       }
     })
   );
