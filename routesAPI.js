@@ -81,6 +81,17 @@ module.exports = (app, server) => {
   );
 
   server.get(
+    "/api/dpla/random",
+    proxy(process.env.API_URL, {
+      proxyReqPathResolver: function(req) {
+        const apiUrl = process.env.API_URL;
+        const apiKey = process.env.API_KEY;
+        return `${apiUrl}/random?api_key=${apiKey}`;
+      }
+    })
+  );
+
+  server.get(
     "/api/dpla/local_about",
     proxy(process.env.API_URL, {
       proxyReqPathResolver: function(req) {

@@ -208,8 +208,10 @@ module.exports = (app, server) => {
 
   server.get("/item/:itemId", (req, res) => {
     const actualPage = "/item";
+    const isQA = "qa" in req.cookies;
     const params = {
-      itemId: req.params.itemId
+      itemId: req.params.itemId,
+      isQA: isQA
     };
     serverFunctions.renderAndCache(
       app,

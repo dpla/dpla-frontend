@@ -7,6 +7,7 @@ import Accordion from "components/shared/Accordion";
 
 import {
   possibleFacets,
+  qaFacets,
   mapFacetsToURLPrettified,
   prettifiedFacetMap
 } from "constants/search";
@@ -237,7 +238,7 @@ class Sidebar extends React.Component {
                 type: "term",
                 subitems: facets[key].terms.map(termObject => {
                   return {
-                    content: possibleFacets.includes(key)
+                    content: qaFacets.includes(key)
                       ? <FacetLink
                           route={route}
                           termObject={termObject}
