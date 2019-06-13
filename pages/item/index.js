@@ -1,6 +1,8 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
+import { parseCookies } from "nookies";
+
 import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
@@ -19,13 +21,6 @@ import {
   getRandomItemIdAsync
 } from "lib";
 
-import {
-  DEFAULT_PAGE_SIZE,
-  possibleFacets,
-  mapFacetsToURLPrettified,
-  splitAndURIEncodeFacet
-} from "constants/search";
-
 import utils from "stylesheets/utils.scss";
 import css from "components/ItemComponents/itemComponent.scss";
 
@@ -34,9 +29,8 @@ const ItemDetail = ({
   url,
   item,
   currentFullUrl,
-  randomItemId
-  // paginationInfo,
-  // searchItemCount
+  randomItemId,
+  isQA
 }) => {
   if (error) {
     return <Error statusCode={error.statusCode} />;
@@ -60,46 +54,45 @@ const ItemDetail = ({
         ]}
         route={url}
       />
-      {item.isQA && <QA item={item} randomItemId={randomItemId} />}
+      {isQA && <QA item={item} randomItemId={randomItemId} />}
       <div
         id="main"
         role="main"
         className={`${utils.container} ${css.contentWrapper}`}
       >
 
-        {!item.isQA && <Content item={item} url={url} />}
-        {!item.isQA &&
-          <div className={css.faveAndCiteButtons}>
-            <CiteButton
-              creator={item.creator}
-              displayDate={item.date ? item.date.displayDate : item.date}
-              spatialName={item.spatial ? item.spatial.name : item.spatial}
-              sourceUrl={item.sourceUrl}
-              className={css.citeButton}
-              toCiteText="item"
-              title={item.title}
-            />
-            <CheckableLists itemId={item.id} />
-          </div>}
+        <Content item={item} url={url} />
+
+        <div className={css.faveAndCiteButtons}>
+          <CiteButton
+            creator={item.creator}
+            displayDate={item.date ? item.date.displayDate : item.date}
+            spatialName={item.spatial ? item.spatial.name : item.spatial}
+            sourceUrl={item.sourceUrl}
+            className={css.citeButton}
+            toCiteText="item"
+            title={item.title}
+          />
+          <CheckableLists itemId={item.id} />
+        </div>
       </div>
 
     </MainLayout>
   );
 };
 
-ItemDetail.getInitialProps = async ({ query, req, res }) => {
+ItemDetail.getInitialProps = async context => {
+  const query = context.query;
+  const req = context.req;
+  const res = context.res;
+  const isQA = parseCookies(context).hasOwnProperty("qa");
   const currentFullUrl = getCurrentFullUrl(req);
   const currentUrl = getCurrentUrl(req);
-
-  const randomItemId = query.isQA
-    ? await getRandomItemIdAsync(currentUrl)
-    : null;
-
+  const randomItemId = isQA ? await getRandomItemIdAsync(currentUrl) : null;
   // check if item is found
   try {
     const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
     const json = await res.json();
-
     const doc = json.docs[0];
     const thumbnailUrl = doc.object
       ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${doc.id}`
@@ -130,12 +123,13 @@ ItemDetail.getInitialProps = async ({ query, req, res }) => {
         useDefaultImage: !doc.object,
         edmRights: doc.rights,
         doc: strippedDoc,
-        originalRecord: doc.originalRecord,
-        isQA: query.isQA
+        originalRecord: doc.originalRecord
       }),
-      randomItemId
+      randomItemId,
+      isQA
     };
   } catch (error) {
+    console.log(error);
     if (res) {
       res.statusCode = 404;
     }

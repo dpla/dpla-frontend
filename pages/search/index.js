@@ -2,6 +2,8 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import { withRouter } from "next/router";
 
+import { parseCookies } from "nookies";
+
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
 import FiltersList from "components/SearchComponents/FiltersList";
@@ -92,9 +94,11 @@ class Search extends React.Component {
   }
 }
 
-Search.getInitialProps = async ({ query, req }) => {
+Search.getInitialProps = async context => {
+  const query = context.query;
+  const req = context.req;
   const isLocal = SITE_ENV === "local";
-  const isQA = "qa" in req.cookies;
+  const isQA = parseCookies(context).hasOwnProperty("qa");
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
