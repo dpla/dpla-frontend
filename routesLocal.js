@@ -1,7 +1,22 @@
 const proxy = require("express-http-proxy");
 const serverFunctions = require("./lib/serverFunctions");
+const locals = require("./constants/local");
 
-module.exports = (app, server) => {
+const localId = process.env.LOCAL_ID;
+const local = locals["LOCALS"][localId];
+
+const dynamicRoutes = local.routes ? local.routes : null;
+
+module.exports.dynamic = (app, server) => {
+  if (local.routes) {
+    server.get(Object.keys(dynamicRoutes), (req, res) => {
+      const actualPage = "/local/markdown";
+      serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+    });
+  }
+};
+
+module.exports.static = (app, server) => {
   server.get("/", (req, res) => {
     const actualPage = "/local";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
@@ -50,6 +65,10 @@ module.exports = (app, server) => {
     const actualPage = "/search";
 
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
+  });
+
+  server.get("/browse-by-partner", (req, res) => {
+    app.render(req, res, "/browse-by-partner", req.query);
   });
 
   // item routes
