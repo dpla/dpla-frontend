@@ -14,19 +14,19 @@ class QA extends React.Component {
   render() {
     const { item, randomItemId } = this.props;
     const preStyle = {
-      "font-size": "13px",
-      "word-break": "break-all",
-      "word-wrap": "break-word",
-      "white-space": "pre-wrap",
+      fontSize: "13px",
+      wordBreak: "break-all",
+      wordWrap: "break-word",
+      whiteSpace: "pre-wrap",
       border: "1px solid rgba(0, 0, 0, 0.15)",
-      "background-color": "#f5f5f5",
+      backgroundColor: "#f5f5f5",
       borderRadius: "4px",
       padding: "9.5px"
     };
     const divStyle = {
       float: "left",
       width: "48%",
-      "padding-left": "20px"
+      paddingLeft: "20px"
     };
     let originalRecord = "";
     if ("stringValue" in item.originalRecord) {
@@ -36,7 +36,7 @@ class QA extends React.Component {
     }
     const enrichedRecord = JSON.stringify(item.doc, null, 2);
     return (
-      <div style={{ "padding-top": "8px" }}>
+      <div style={{ paddingTop: "8px" }}>
 
         {randomItemId &&
           <div style={{ padding: "8px 20px 20px" }}>

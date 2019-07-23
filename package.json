@@ -28,6 +28,7 @@
     "moment": "^2.22.2",
     "next": "^6.1.1",
     "node-sass": "^4.7.2",
+    "nookies": "^2.0.6",
     "openseadragon": "2.2.1",
     "postcss-loader": "^2.1.4",
     "react": "^16.4.1",
