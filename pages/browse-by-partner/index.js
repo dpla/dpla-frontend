@@ -31,24 +31,25 @@ PartnerBrowse.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
   let apiQuery = "";
   let facetName = "";
+  let linkParam = "";
 
   if (SITE_ENV === "local") {
     apiQuery = `${currentUrl}${API_ENDPOINT}?facets=dataProvider&provider.name=${LOCALS[
       LOCAL_ID
     ].provider}`;
     facetName = "dataProvider";
+    linkParam = "provider";
   } else {
     apiQuery = `${currentUrl}${API_ENDPOINT}?facets=provider.name`;
     facetName = "provider.name";
+    linkParam = "partner";
   }
-
-  console.log(apiQuery);
 
   const res = await fetch(apiQuery);
   const json = await res.json();
   const partners = json.facets[facetName].terms.map(partner => ({
     name: partner.term,
-    facet: facetName,
+    facet: linkParam,
     itemCount: partner.count
   }));
   return { partners };
