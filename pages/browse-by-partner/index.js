@@ -48,6 +48,7 @@ PartnerBrowse.getInitialProps = async ({ query, req }) => {
   const json = await res.json();
   const partners = json.facets[facetName].terms.map(partner => ({
     name: partner.term,
+    facet: facetName,
     itemCount: partner.count
   }));
   return { partners };
