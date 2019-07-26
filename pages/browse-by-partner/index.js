@@ -8,6 +8,8 @@ import PartnerBrowseContent from "components/PartnerBrowseComponents";
 import { getCurrentUrl } from "lib";
 import { API_ENDPOINT } from "constants/items";
 import { TITLE, DESCRIPTION } from "constants/browse-by-partner";
+import { LOCALS } from "constants/local";
+import { SITE_ENV, LOCAL_ID } from "constants/env";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.scss";
 
@@ -27,10 +29,27 @@ const PartnerBrowse = ({ partners, url }) =>
 
 PartnerBrowse.getInitialProps = async ({ query, req }) => {
   const currentUrl = getCurrentUrl(req);
-  const res = await fetch(`${currentUrl}${API_ENDPOINT}?facets=provider.name`);
+  let apiQuery = "";
+  let facetName = "";
+  let linkParam = "";
+
+  if (SITE_ENV === "local") {
+    apiQuery = `${currentUrl}${API_ENDPOINT}?facets=dataProvider&provider.name=${LOCALS[
+      LOCAL_ID
+    ].provider}`;
+    facetName = "dataProvider";
+    linkParam = "provider";
+  } else {
+    apiQuery = `${currentUrl}${API_ENDPOINT}?facets=provider.name`;
+    facetName = "provider.name";
+    linkParam = "partner";
+  }
+
+  const res = await fetch(apiQuery);
   const json = await res.json();
-  const partners = json.facets["provider.name"].terms.map(partner => ({
+  const partners = json.facets[facetName].terms.map(partner => ({
     name: partner.term,
+    facet: linkParam,
     itemCount: partner.count
   }));
   return { partners };

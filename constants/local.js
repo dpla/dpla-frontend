@@ -20,8 +20,7 @@ const LOCALS = {
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
-    description:
-      "A Gateway to Illinois State History",
+    description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
     subjectFacet: "%22Illinois%22",
     hasAbout: true,

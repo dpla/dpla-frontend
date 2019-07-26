@@ -71,7 +71,8 @@ if (require.main === module) {
       } else if (process.env.SITE_ENV === "pro") {
         require("./routesPro")(app, server);
       } else if (process.env.SITE_ENV === "local") {
-        require("./routesLocal")(app, server);
+        require("./routesLocal").static(app, server);
+        require("./routesLocal").dynamic(app, server);
         require("./routesAPI")(app, server);
       }
 

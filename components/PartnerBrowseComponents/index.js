@@ -6,8 +6,8 @@ import { addCommasToNumber } from "lib";
 import utils from "stylesheets/utils.scss";
 import css from "./PartnerBrowseContent.scss";
 
-const Partner = ({ name, itemCount, index }) =>
-  <Link href={`/search?partner="${name}"`}>
+const Partner = ({ name, itemCount, facetName, index }) =>
+  <Link href={`/search?${facetName}="${name}"`}>
     <a className={css.partnerLink}>
       <span className={css.name}>{name}</span>
       <span className={css.itemCount}>
@@ -22,6 +22,7 @@ const mapPartnersToComponents = partners =>
       <Partner
         name={partner.name}
         itemCount={partner.itemCount}
+        facetName={partner.facet}
         index={index}
       />
     </li>
