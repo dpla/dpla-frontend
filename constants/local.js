@@ -24,6 +24,7 @@ const LOCALS = {
     locationFacet: "%22Illinois%22",
     subjectFacet: "%22Illinois%22",
     hasAbout: true,
+    hasBrowseByPartner: true,
     hasTerms: false,
     hasContact: false
   },
