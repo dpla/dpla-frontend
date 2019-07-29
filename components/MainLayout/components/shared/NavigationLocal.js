@@ -10,15 +10,31 @@ class NavigationLocal extends Component {
     let { isHome, className, css } = this.props;
     var visitHtml;
     var contactHtml;
+    var arbitraryHtml;
+
+    if (LOCALS[LOCAL_ID].routes) {
+      const dynamicRoutes = Object.keys(LOCALS[LOCAL_ID].routes);
+
+      arbitraryHtml = dynamicRoutes.map(function(route, index) {
+        return (
+          <li key={index}>
+            <Link prefetch href={"/local/" + route} as={route}>
+              <a>
+                {LOCALS[LOCAL_ID].routes[dynamicRoutes[index]].title}
+              </a>
+            </Link>
+          </li>
+        );
+      });
+    } else {
+      arbitraryHtml = null;
+    }
+
     if (LOCAL_ID === "wisconsin") {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
-            <a
-              href={
-                LOCALS[LOCAL_ID].externalLink + "/explore/search"
-              }
-            >
+            <a href={LOCALS[LOCAL_ID].externalLink + "/explore/search"}>
               About
             </a>
           </li>
@@ -65,6 +81,15 @@ class NavigationLocal extends Component {
               </a>
             </Link>
           </li>
+          {LOCALS[LOCAL_ID].hasBrowseByPartner &&
+            <li>
+              <Link prefetch href="/browse-by-partner">
+                <a>
+                  Browse by Partner
+                </a>
+              </Link>
+            </li>}
+          {arbitraryHtml}
           {LOCALS[LOCAL_ID].hasTerms &&
             <li>
               <Link prefetch href="/terms">
