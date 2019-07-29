@@ -24,9 +24,21 @@ const LOCALS = {
     locationFacet: "%22Illinois%22",
     subjectFacet: "%22Illinois%22",
     hasAbout: true,
+    hasTerms: true,
+    hasContact: true,
     hasBrowseByPartner: true,
-    hasTerms: false,
-    hasContact: false
+    routes: {
+      "/for-contributors": {
+        path: "for-contributors.md",
+        title: "For Contributors",
+        description: ""
+      },
+      "/for-educators": {
+        path: "for-educators.md",
+        title: "For Educators",
+        description: ""
+      }
+    }
   },
   tennessee: {
     theme: "tennessee",
