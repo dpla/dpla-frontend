@@ -37,6 +37,11 @@ const LOCALS = {
         path: "for-educators.md",
         title: "For Educators",
         description: ""
+      },
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        description: ""
       }
     }
   },
