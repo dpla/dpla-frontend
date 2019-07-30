@@ -74,13 +74,14 @@ class NavigationLocal extends Component {
                 </a>
               </Link>
             </li>}
-          <li>
-            <Link prefetch href="/lists">
-              <a>
-                My Lists
-              </a>
-            </Link>
-          </li>
+          {LOCALS[LOCAL_ID].hasAbout &&
+            <li>
+              <Link prefetch href="/local/about" as="/about">
+                <a>
+                  About
+                </a>
+              </Link>
+            </li>}
           {LOCALS[LOCAL_ID].hasBrowseByPartner &&
             <li>
               <Link prefetch href="/browse-by-partner">
@@ -99,14 +100,13 @@ class NavigationLocal extends Component {
               </Link>
             </li>}
           {contactHtml && contactHtml}
-          {LOCALS[LOCAL_ID].hasAbout &&
-            <li>
-              <Link prefetch href="/local/about" as="/about">
-                <a>
-                  About
-                </a>
-              </Link>
-            </li>}
+          <li>
+            <Link prefetch href="/lists">
+              <a>
+                My Lists
+              </a>
+            </Link>
+          </li>
         </ul>
         {visitHtml && <span className={css.divider} />}
         {visitHtml && visitHtml}
