@@ -9,7 +9,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import WPEdit from "shared/WPEdit";
 
-import { formatDate, decodeHTMLEntities } from "lib";
+import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
 
 import { SITE_ENV } from "constants/env";
 import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
@@ -19,7 +19,7 @@ import {
   NEWS_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
-import { wordpressLinks } from "lib/externalLinks";
+
 import { WORDPRESS_URL } from "constants/env";
 
 import utils from "stylesheets/utils.scss";

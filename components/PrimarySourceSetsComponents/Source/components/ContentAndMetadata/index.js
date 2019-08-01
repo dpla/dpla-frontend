@@ -16,9 +16,9 @@ import {
   getItemId,
   getPartner,
   getTitle,
-  getContributor
+  getContributor,
+  markdownLinks
 } from "lib";
-import { markdownLinks } from "lib/externalLinks";
 import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.scss";
@@ -150,7 +150,7 @@ class ContentAndMetadata extends React.Component {
           <h1 className={css.contentHeader}>
             <ReactMarkdown
               source={source.name}
-              allowedTypes={["emphasis"]}
+              allowedTypes={["emphasis", "text"]}
               unwrapDisallowed
             />
           </h1>
@@ -215,14 +215,14 @@ class ContentAndMetadata extends React.Component {
                   <ReactMarkdown
                     className={css.courtesyOf}
                     source={joinIfArray(getSourceCitation(source, "credits"))}
-                    allowedTypes={["emphasis"]}
+                    allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
                   <ReactMarkdown
                     className={css.courtesyOf}
                     source={source.mainEntity[0]["dct:provenance"].name}
-                    allowedTypes={["emphasis"]}
+                    allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />}
                 {source.copyright &&
@@ -230,7 +230,7 @@ class ContentAndMetadata extends React.Component {
                     <ReactMarkdown
                       className={css.copyrightText}
                       source={source.copyright}
-                      allowedTypes={["emphasis"]}
+                      allowedTypes={["emphasis", "text"]}
                       unwrapDisallowed
                     />
                   </div>}

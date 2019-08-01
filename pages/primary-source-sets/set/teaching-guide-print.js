@@ -33,7 +33,7 @@ class Printable extends React.Component {
           <h1 className={utils.printableH1}>
             <ReactMarkdown
               source={set.name}
-              allowedTypes={["emphasis"]}
+              allowedTypes={["emphasis", "text"]}
               unwrapDisallowed
             />
           </h1>

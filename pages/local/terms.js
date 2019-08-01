@@ -6,8 +6,7 @@ import ReactMarkdown from "react-markdown";
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
 
-import { getCurrentUrl } from "lib";
-import { wordpressLinks } from "lib/externalLinks";
+import { getCurrentUrl, wordpressLinks } from "lib";
 
 import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
