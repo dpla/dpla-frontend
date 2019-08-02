@@ -14,8 +14,6 @@ import { LOCALS } from "constants/local";
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
-const PAGE_TITLE = `About`;
-const PAGE_DESCRIPTION = `${LOCALS[LOCAL_ID].description}`;
 
 class AboutPage extends React.Component {
   refreshExternalLinks() {
@@ -31,14 +29,14 @@ class AboutPage extends React.Component {
   }
 
   render() {
-    const { router, content } = this.props;
+    const { router, content, description } = this.props;
     return (
       <MainLayout
         route={router}
-        pageTitle={PAGE_TITLE}
-        pageDescription={PAGE_DESCRIPTION}
+        pageTitle={"About"}
+        pageDescription={description}
       >
-        <FeatureHeader title={PAGE_TITLE} description={""} />
+        <FeatureHeader title={"About"} description={""} />
         <div
           className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}
@@ -63,9 +61,11 @@ AboutPage.getInitialProps = async ({ req, query, res }) => {
     .theme}/about.md`;
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
+  const pageDescription = LOCALS[LOCAL_ID].description;
 
   return {
-    content: pageMarkdown
+    content: pageMarkdown,
+    description: pageDescription
   };
 };
 
