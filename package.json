@@ -13,14 +13,14 @@
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
     "test": "mocha",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-source-maps": "^0.0.3",
     "autoprefixer": "^9.6.1",
     "aws-sdk": "^2.502.0",
     "babel": "^6.23.0",
