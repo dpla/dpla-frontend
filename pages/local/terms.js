@@ -15,7 +15,6 @@ import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
 const PAGE_TITLE = `Terms and Conditions`;
-const PAGE_DESCRIPTION = `${LOCALS[LOCAL_ID].description}`;
 
 class TermsPage extends React.Component {
   refreshExternalLinks() {
@@ -31,12 +30,12 @@ class TermsPage extends React.Component {
   }
 
   render() {
-    const { router, content } = this.props;
+    const { router, content, description } = this.props;
     return (
       <MainLayout
         route={router}
         pageTitle={PAGE_TITLE}
-        pageDescription={PAGE_DESCRIPTION}
+        pageDescription={description}
       >
         <FeatureHeader title={PAGE_TITLE} description={""} />
         <div
@@ -63,9 +62,11 @@ TermsPage.getInitialProps = async ({ req, query, res }) => {
     .theme}/terms.md`;
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
+  const description = LOCALS[LOCAL_ID].description;
 
   return {
-    content: pageMarkdown
+    content: pageMarkdown,
+    description: description
   };
 };
 
