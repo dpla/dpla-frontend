@@ -52,4 +52,4 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 ## [IDHH Highlights Blog](https://ildplacollections.wordpress.com/)
 
-Check out the collections highlights blog for new posts about every two weeks. The IDHH highlights newly-provided contributors and collections as well as items relevant to certain holidays and current or historical events. If you are from an IDHH provider institution and have an idea for a post on your contributed collections, contact the [IDHH metadata manager](mailto:jlynch21@illinois.edu).
+Check out the collections highlights blog for new posts about every two weeks. The IDHH highlights newly-provided contributors and collections as well as items relevant to certain holidays and current or historical events. If you are from an IDHH provider institution and have an idea for a post on your contributed collections, contact the [IDHH metadata manager](/contact).
