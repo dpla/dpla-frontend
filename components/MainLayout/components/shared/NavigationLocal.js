@@ -19,9 +19,7 @@ class NavigationLocal extends Component {
         return (
           <li key={index}>
             <Link prefetch href={"/local/" + route} as={route}>
-              <a>
-                {LOCALS[LOCAL_ID].routes[dynamicRoutes[index]].title}
-              </a>
+              <a>{LOCALS[LOCAL_ID].routes[dynamicRoutes[index]].title}</a>
             </Link>
           </li>
         );
@@ -42,9 +40,7 @@ class NavigationLocal extends Component {
       );
       contactHtml = (
         <li>
-          <a href={LOCALS[LOCAL_ID].externalLink + "/contact"}>
-            Contact
-          </a>
+          <a href={LOCALS[LOCAL_ID].externalLink + "/contact"}>Contact</a>
         </li>
       );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
@@ -66,45 +62,39 @@ class NavigationLocal extends Component {
     return (
       <div className={className} id={"NavigationLocal"}>
         <ul className={css.links}>
-          {!isHome &&
+          {!isHome && (
             <li>
               <Link prefetch href="/local" as="/">
-                <a>
-                  Home
-                </a>
+                <a>Home</a>
               </Link>
-            </li>}
-          {LOCALS[LOCAL_ID].hasAbout &&
+            </li>
+          )}
+          {LOCALS[LOCAL_ID].hasAbout && (
             <li>
               <Link prefetch href="/local/about" as="/about">
-                <a>
-                  About
-                </a>
+                <a>About</a>
               </Link>
-            </li>}
-          {LOCALS[LOCAL_ID].hasBrowseByPartner &&
+            </li>
+          )}
+          {LOCALS[LOCAL_ID].hasBrowseByPartner && (
             <li>
               <Link prefetch href="/browse-by-partner">
-                <a>
-                  Browse by Partner
-                </a>
+                <a>Browse by Partner</a>
               </Link>
-            </li>}
+            </li>
+          )}
           {arbitraryHtml}
-          {LOCALS[LOCAL_ID].hasTerms &&
+          {contactHtml && contactHtml}
+          {LOCALS[LOCAL_ID].hasTerms && (
             <li>
               <Link prefetch href="/terms">
-                <a>
-                  Terms and Conditions
-                </a>
+                <a>Terms and Conditions</a>
               </Link>
-            </li>}
-          {contactHtml && contactHtml}
+            </li>
+          )}
           <li>
             <Link prefetch href="/lists">
-              <a>
-                My Lists
-              </a>
+              <a>My Lists</a>
             </Link>
           </li>
         </ul>

@@ -42,7 +42,7 @@ const SourceSetSources = ({ route, sources }) =>
                 <ReactMarkdown
                   className={css.title}
                   source={name}
-                  allowedTypes={["emphasis"]}
+                  allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
                 />
               </a>

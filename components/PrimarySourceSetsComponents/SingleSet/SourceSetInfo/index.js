@@ -10,7 +10,7 @@ import {
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
-import { markdownLinks } from "lib/externalLinks";
+import { markdownLinks } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import css from "./SourceSetInfo.scss";
@@ -59,7 +59,7 @@ class SourceSetInfo extends React.Component {
                   <h1 className={css.bannerTitle}>
                     <ReactMarkdown
                       source={set.name}
-                      allowedTypes={["emphasis"]}
+                      allowedTypes={["emphasis", "text"]}
                       unwrapDisallowed
                     />
                   </h1>
@@ -103,7 +103,7 @@ class SourceSetInfo extends React.Component {
                       <ReactMarkdown
                         key={author.name}
                         source={author.name + ", " + author.affiliation.name}
-                        allowedTypes={["emphasis"]}
+                        allowedTypes={["emphasis", "text"]}
                         unwrapDisallowed
                       />
                     )}
@@ -127,7 +127,7 @@ class SourceSetInfo extends React.Component {
                             <a className={`link ${css.link}`}>
                               <ReactMarkdown
                                 source={period}
-                                allowedTypes={["emphasis"]}
+                                allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
                             </a>
@@ -153,7 +153,7 @@ class SourceSetInfo extends React.Component {
                             <a className={`link ${css.link}`}>
                               <ReactMarkdown
                                 source={subject}
-                                allowedTypes={["emphasis"]}
+                                allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
                             </a>
