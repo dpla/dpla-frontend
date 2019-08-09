@@ -24,8 +24,8 @@ const LOCALS = {
     favicon: "favicon.png",
     logo: "logo.png",
     description: "",
-    locationFacet: "%22Colorado OR Wyoming%22",
-    subjectFacet: "%22Colorado OR Wyoming%22",
+    locationFacet: "%22Colorado%20OR%20Wyoming%22",
+    subjectFacet: "%22Colorado%20OR%20Wyoming%22",
     hasAbout: false,
     hasTerms: false,
     hasContact: true
