@@ -54,6 +54,16 @@ class Search extends React.Component {
       pageSize,
       aboutness
     } = this.props;
+
+    var itemCount = 0 // default handles unexpected error
+    if ("count" in results) {
+      if (results.count.value != undefined) {
+        itemCount = results.count.value // ElasticSearch 7
+      } else {
+        itemCount = results.count // ElasticSearch 6
+      }
+    }
+
     return (
       <MainLayout
         isSearchPage={true}
@@ -64,7 +74,7 @@ class Search extends React.Component {
           showFilters={this.state.showSidebar}
           currentPage={currentPage}
           route={router}
-          itemCount={results.count || 0}
+          itemCount={itemCount}
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}
         />

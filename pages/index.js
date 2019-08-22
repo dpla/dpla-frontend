@@ -147,7 +147,14 @@ Home.getInitialProps = async ({ req }) => {
     `${currentUrl}${ITEMS_API_ENDPOINT}?page_size=0`
   );
   const itemsJson = await itemsRes.json();
-  const itemCount = itemsJson.count;
+  var itemCount = 0 // default handles unexpected error
+  if ("count" in itemsJson) {
+    if (itemsJson.count.value != undefined) {
+      itemCount = itemsJson.count.value // ElasticSearch 7
+    } else {
+      itemCount = itemsJson.count // ElasticSearch 6
+    }
+  }
   const headerDescription = homepageJson.acf.header_description.replace(
     HEADER_DESCRIPTION_TOKEN,
     addCommasToNumber(itemCount)
