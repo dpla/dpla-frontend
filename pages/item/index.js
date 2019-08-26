@@ -116,13 +116,26 @@ ItemDetail.getInitialProps = async context => {
       : doc.sourceResource.language;
     const strippedDoc = Object.assign({}, doc, { originalRecord: "" });
     delete strippedDoc.originalRecord;
-    let ldaItems;
+
+    let ldaDocs;
     try {
-      ldaItems = await getLdaItemsAsync(currentUrl, doc.id);
+      ldaDocs = await getLdaItemsAsync(currentUrl, doc.id);
     } catch(error) {
       console.log (error)
-      ldaItems = [];
+      ldaDocs = [];
     }
+    const ldaItems = ldaDocs.map(result => {
+      const thumbnailUrl = result.object
+        ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+        : getDefaultThumbnail(result.sourceResource.type);
+      return Object.assign({}, result.sourceResource, {
+        thumbnailUrl,
+        id: result.id ? result.id : result.sourceResource["@id"],
+        title: result.sourceResource.title,
+        useDefaultImage: !result.object
+      });
+    });
+
     return {
       currentFullUrl,
       item: Object.assign({}, doc.sourceResource, {
