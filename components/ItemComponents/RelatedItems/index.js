@@ -36,13 +36,32 @@ const RelatedItems = ({ items }) => {
           ]}
         >
         {items.map((item, index) =>
-          <ItemImage
-                title=""
-                type={item.type}
-                url={item.thumbnailUrl}
-                defaultImageClass={css.defaultItemImage}
-                useDefaultImage={item.useDefaultImage}
-              />
+          <div key={`${item.id}-${index}`} className={`${css.item}`}>
+            <Link
+              prefetch
+              href={`/item/${item.id}`}
+              as={`/item/${item.id}`}
+            >
+              <a className={css.setLink}>
+                <ItemImage
+                  title=""
+                  type={item.type}
+                  url={item.thumbnailUrl}
+                  defaultImageClass={css.defaultItemImage}
+                  useDefaultImage={item.useDefaultImage}
+                />
+                <div className={css.title}>
+                  {item.title}
+                </div>
+                 <ReactMarkdown
+                    source={item.title}
+                    className={css.title}
+                    allowedTypes={["emphasis", "text"]}
+                    unwrapDisallowed
+                  />
+              </a>
+            </Link>
+          </div>
         )}
         </Slider>
       </div>
