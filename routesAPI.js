@@ -92,6 +92,19 @@ module.exports = (app, server) => {
   );
 
   server.get(
+    "/api/dpla/lda/*",
+    proxy(process.env.API_URL, {
+      proxyReqPathResolver: function(req) {
+        const itemId = req.url.split("/").pop();
+        const apiUrl = process.env.API_URL;
+        const apiKey = process.env.API_KEY;
+        const version = (process.env.API_VERSION || "v2");
+        return `${apiUrl}/${version}/items/${itemId}/lda?api_key=${apiKey}`;
+      }
+    })
+  );
+
+  server.get(
     "/api/dpla/local_about",
     proxy(process.env.API_URL, {
       proxyReqPathResolver: function(req) {

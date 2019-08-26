@@ -10,6 +10,7 @@ import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import { CheckableLists } from "components/ListComponents/CheckableLists";
+import RelatedItems from "components/ItemComponents/RelatedItems";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -18,7 +19,8 @@ import {
   getCurrentFullUrl,
   joinIfArray,
   getDefaultThumbnail,
-  getRandomItemIdAsync
+  getRandomItemIdAsync,
+  getLdaItemsAsync
 } from "lib";
 
 import utils from "stylesheets/utils.scss";
@@ -29,6 +31,7 @@ const ItemDetail = ({
   url,
   item,
   currentFullUrl,
+  ldaItems,
   randomItemId,
   isQA
 }) => {
@@ -73,9 +76,13 @@ const ItemDetail = ({
             toCiteText="item"
             title={item.title}
           />
+
           <CheckableLists itemId={item.id} />
+
         </div>
       </div>
+
+      <RelatedItems items={ldaItems} />
 
     </MainLayout>
   );
@@ -109,6 +116,13 @@ ItemDetail.getInitialProps = async context => {
       : doc.sourceResource.language;
     const strippedDoc = Object.assign({}, doc, { originalRecord: "" });
     delete strippedDoc.originalRecord;
+    let ldaItems;
+    try {
+      ldaItems = await getLdaItemsAsync(currentUrl, doc.id);
+    } catch(error) {
+      console.log (error)
+      ldaItems = [];
+    }
     return {
       currentFullUrl,
       item: Object.assign({}, doc.sourceResource, {
@@ -125,6 +139,7 @@ ItemDetail.getInitialProps = async context => {
         doc: strippedDoc,
         originalRecord: doc.originalRecord
       }),
+      ldaItems,
       randomItemId,
       isQA
     };
