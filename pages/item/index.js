@@ -10,7 +10,7 @@ import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import { CheckableLists } from "components/ListComponents/CheckableLists";
-import RelatedItems from "components/ItemComponents/RelatedItems";
+import RelatedItemsModule from "components/ItemComponents/RelatedItemsModule";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -82,7 +82,7 @@ const ItemDetail = ({
         </div>
       </div>
 
-      <RelatedItems items={ldaItems} />
+      <RelatedItemsModule items={ldaItems} />
 
     </MainLayout>
   );
@@ -129,7 +129,7 @@ ItemDetail.getInitialProps = async context => {
         ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
         : getDefaultThumbnail(result.sourceResource.type);
       return Object.assign({}, result.sourceResource, {
-        thumbnailUrl,
+        thumbnailUrl: thumbnailUrl,
         id: result.id ? result.id : result.sourceResource["@id"],
         title: result.sourceResource.title,
         type: result.sourceResource.type,
