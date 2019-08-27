@@ -8,9 +8,7 @@ import css from "./RelatedItemsModule.scss";
 
 class RelatedItem extends React.Component {
   state = {
-    updateToDefaultImage: false,
-    item: this.props.item,
-    index: this.props.index
+    updateToDefaultImage: false
   };
 
   componentDidMount() {
@@ -34,8 +32,8 @@ class RelatedItem extends React.Component {
   }
 
   render() {
-    const item = this.state.item;
-    const index = this.state.index;
+    const item = this.props.item;
+    const index = this.props.index;
     const updateToDefaultImage = this.state.updateToDefaultImage;
 
     return (
