@@ -4,9 +4,6 @@ import Slider from "react-slick";
 import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
-import ItemImage from "components/ItemComponents/Content/ItemImage";
-
-import { extractSourceSetSlug } from "lib/";
 
 import utils from "stylesheets/utils.scss";
 import css from "./RelatedItems.scss";
@@ -42,14 +39,14 @@ const RelatedItems = ({ items }) => {
               href={`/item/${item.id}`}
               as={`/item/${item.id}`}
             >
-              <a className={css.setLink}>
-                <ItemImage
-                  title=""
-                  type={item.type}
-                  url={item.thumbnailUrl}
-                  defaultImageClass={css.defaultItemImage}
-                  useDefaultImage={item.useDefaultImage}
-                />
+              <a className={css.itemLink}>
+                <div className={css.imageWrapper}>
+                  <img
+                    alt={item.title}
+                    src={item.thumbnailUrl}
+                    className={css.itemImage}
+                  />
+                </div>
                 <div className={css.title}>
                   {item.title}
                 </div>
