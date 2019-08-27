@@ -132,6 +132,7 @@ ItemDetail.getInitialProps = async context => {
         thumbnailUrl,
         id: result.id ? result.id : result.sourceResource["@id"],
         title: result.sourceResource.title,
+        type: result.sourceResource.type,
         useDefaultImage: !result.object
       });
     });
