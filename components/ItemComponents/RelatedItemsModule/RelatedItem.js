@@ -51,13 +51,9 @@ class RelatedItem extends React.Component {
                 className={css.itemImage}
               />
             </div>
-
-             <ReactMarkdown
-                source={item.title}
-                className={css.title}
-                allowedTypes={["emphasis", "text"]}
-                unwrapDisallowed
-              />
+            <div className={css.title}>
+              {item.title}        
+            </div>
           </a>
         </Link>
       </div>
