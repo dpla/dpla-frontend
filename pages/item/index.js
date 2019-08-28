@@ -82,7 +82,7 @@ const ItemDetail = ({
         </div>
       </div>
 
-      <RelatedItemsModule items={ldaItems} />
+      {ldaItems.length > 0 && <RelatedItemsModule items={ldaItems} />}
 
     </MainLayout>
   );
@@ -119,9 +119,10 @@ ItemDetail.getInitialProps = async context => {
 
     let ldaDocs;
     try {
-      ldaDocs = await getLdaItemsAsync(currentUrl, doc.id);
+      const ldaRes = await getLdaItemsAsync(currentUrl, doc.id);
+      ldaDocs = ldaRes.docs == undefined ? [] : ldaRes.docs;
     } catch(error) {
-      console.log (error)
+      console.log (error);
       ldaDocs = [];
     }
     const ldaItems = ldaDocs.map(result => {
