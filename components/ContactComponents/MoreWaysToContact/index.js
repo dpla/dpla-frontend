@@ -2,7 +2,17 @@ import React from "react";
 
 import css from "./MoreWaysToContact.scss";
 
-const MoreWaysToContact = () =>
+// const Telephone = () =>
+//   <tr className={`row ${css.paddedRow}`}>
+//     <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+//       Telephone
+//     </td>
+//     <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+//       617-859-2116
+//     </td>
+//   </tr>;
+
+const MoreWaysToContact = () => (
   <div className={css.contactForm}>
     <h2 className={css.header}>More Ways To Contact Us</h2>
     <table className={css.contentTable}>
@@ -19,21 +29,17 @@ const MoreWaysToContact = () =>
         </tr>
         <tr className={`row ${css.paddedRow}`}>
           <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
-            Telephone
-          </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
-            617-859-2116
-          </td>
-        </tr>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
             Mailing Address
           </td>
           <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
-            Digital Public Library of America<br />
-            c/o Boston Public Library<br />
-            700 Boylston Street<br />
-            Boston, MA 02116<br />
+            Digital Public Library of America
+            <br />
+            c/o Boston Public Library
+            <br />
+            700 Boylston Street
+            <br />
+            Boston, MA 02116
+            <br />
           </td>
         </tr>
         <tr className={`row ${css.paddedRow}`}>
@@ -42,17 +48,23 @@ const MoreWaysToContact = () =>
           </td>
           <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             <ul>
-              <li><a href="//twitter.com/dpla">Twitter</a></li>
+              <li>
+                <a href="//twitter.com/dpla">Twitter</a>
+              </li>
               <li>
                 <a href="//www.facebook.com/digitalpubliclibraryofamerica">
                   Facebook
                 </a>
               </li>
-              <li><a href="//www.instagram.com/digpublib/">Instagram</a></li>
+              <li>
+                <a href="//www.instagram.com/digpublib/">Instagram</a>
+              </li>
               <li>
                 <a href="//digitalpubliclibraryofamerica.tumblr.com/">Tumblr</a>
               </li>
-              <li><a href="//www.flickr.com/photos/dpla/albums">Flickr</a></li>
+              <li>
+                <a href="//www.flickr.com/photos/dpla/albums">Flickr</a>
+              </li>
               <li>
                 <a href="//www.youtube.com/user/digpublib/videos">YouTube</a>
               </li>
@@ -90,6 +102,7 @@ const MoreWaysToContact = () =>
         </tr>
       </tbody>
     </table>
-  </div>;
+  </div>
+);
 
 export default MoreWaysToContact;
