@@ -147,6 +147,19 @@ const LOCALS = {
     hasAbout: true,
     hasTerms: false,
     hasContact: false
+  },
+  bigsky: {
+    theme: "bigsky",
+    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
+    name: "Big Sky Country Digital Network",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    description: "",
+    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
+    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
+    hasAbout: true,
+    hasTerms: false,
+    hasContact: true
   }
 };
 
