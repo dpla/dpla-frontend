@@ -125,27 +125,31 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         return null;
       }
       const itemJson = await itemRes.json();
-      return Object.assign({}, item, {
-        title: decodeHTMLEntities(item.title.rendered),
-        linkHref: `/item?itemId=${itemDplaId}`,
-        linkAs: `/item/${itemDplaId}`,
-        type: itemJson.docs[0].sourceResource.type,
-        thumbnailUrl: itemJson.docs[0].object
-          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${itemDplaId}`
-          : getDefaultThumbnail(itemJson.docs[0].sourceResource.type),
-        sourceUrl: itemJson.docs[0].isShownAt,
-        date: itemJson.docs[0].sourceResource.date,
-        creator: itemJson.docs[0].sourceResource.creator,
-        description: itemJson.docs[0].sourceResource.description,
-        dataProvider: itemJson.docs[0].dataProvider,
-        useDefaultImage: !itemJson.docs[0].object,
-        itemDplaId: itemDplaId,
-        provider:
-          itemJson.docs &&
-            itemJson.docs[0] &&
-            itemJson.docs[0].provider &&
-            itemJson.docs[0].provider.name
-      });
+      // itemJson.docs[0] will be undefined if the item no longer exists in the
+      // DPLA index
+      if (typeof itemJson.docs[0] !== "undefined") {
+        return Object.assign({}, item, {
+          title: decodeHTMLEntities(item.title.rendered),
+          linkHref: `/item?itemId=${itemDplaId}`,
+          linkAs: `/item/${itemDplaId}`,
+          type: itemJson.docs[0].sourceResource.type,
+          thumbnailUrl: itemJson.docs[0].object
+            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${itemDplaId}`
+            : getDefaultThumbnail(itemJson.docs[0].sourceResource.type),
+          sourceUrl: itemJson.docs[0].isShownAt,
+          date: itemJson.docs[0].sourceResource.date,
+          creator: itemJson.docs[0].sourceResource.creator,
+          description: itemJson.docs[0].sourceResource.description,
+          dataProvider: itemJson.docs[0].dataProvider,
+          useDefaultImage: !itemJson.docs[0].object,
+          itemDplaId: itemDplaId,
+          provider:
+            itemJson.docs &&
+              itemJson.docs[0] &&
+              itemJson.docs[0].provider &&
+              itemJson.docs[0].provider.name
+        });
+      }
     })
   );
 
