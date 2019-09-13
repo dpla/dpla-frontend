@@ -1,9 +1,11 @@
-$theme-main-color: #515151;
-$theme-dark-color: #1f1f1f;
+$theme-dark-color: #111; //#1f1f1f;
 $theme-link-color: #be5709;
-$theme-background-color: #fff;
+$theme-main-color: darken($theme-link-color, 30%);
+$theme-background-color: #f9f6f0;
 $theme-colder-tint: rgb(245, 245, 245);
-$theme-warmer-tint: lighten($theme-main-color, 70%);
+$theme-warmer-tint: lighten($theme-main-color, 89%);
+
+$heroBackgroundColor: darken($theme-link-color, 33%);
 
 $linkColor: $theme-link-color;
 $linkHoverColor: brighten($linkColor, 10%);
@@ -39,3 +41,7 @@ $errorColor: $linkColor;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
+$outgoingLinkColor: $subLinkColor;
+.homeLogo > img {
+  height: 60%;
+}

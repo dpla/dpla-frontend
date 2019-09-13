@@ -5,6 +5,7 @@ const LOCALS = {
     name: "Recollection Wisconsin",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.jpg",
     description: "Sharing our Stories. Exploring our Past.",
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
@@ -20,6 +21,7 @@ const LOCALS = {
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.jpg",
     description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
     subjectFacet: "*Illinois*",
@@ -141,6 +143,7 @@ const LOCALS = {
     name: "Digital Library of Tennessee",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.jpg",
     description: "Sharing Stories From the Volunteer State",
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
@@ -154,12 +157,20 @@ const LOCALS = {
     name: "Big Sky Country Digital Network",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.png",
     description: "",
     locationFacet: "%22Montana%20OR%20North%20Dakota%22",
     subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
     hasAbout: true,
     hasTerms: false,
-    hasContact: true
+    hasContact: true,
+    routes: {
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        description: ""
+      }
+    }
   }
 };
 
