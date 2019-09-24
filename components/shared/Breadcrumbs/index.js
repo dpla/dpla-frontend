@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 import css from "./Breadcrumbs.scss";
 
-const Breadcrumbs = ({ breadcrumbs }) =>
+const Breadcrumbs = ({ breadcrumbs }) => (
   <div className={css.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
@@ -15,7 +15,7 @@ const Breadcrumbs = ({ breadcrumbs }) =>
                 <ReactMarkdown
                   className={`${css.breadcrumbLink}`}
                   source={breadcrumb.title}
-                  allowedTypes={["emphasis"]}
+                  allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
                 />
               </a>
@@ -27,13 +27,14 @@ const Breadcrumbs = ({ breadcrumbs }) =>
           <ReactMarkdown
             className={css.activeBreadcrumb}
             source={breadcrumb.title}
-            allowedTypes={["emphasis"]}
+            allowedTypes={["emphasis", "text"]}
             unwrapDisallowed
             key={`${idx}`}
           />
         );
       }
     })}
-  </div>;
+  </div>
+);
 
 export default Breadcrumbs;

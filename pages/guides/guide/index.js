@@ -8,8 +8,7 @@ import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import WPEdit from "shared/WPEdit";
 
-import { getMenuItemUrl } from "lib";
-import { wordpressLinks } from "lib/externalLinks";
+import { getMenuItemUrl, wordpressLinks } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 

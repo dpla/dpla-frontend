@@ -9,7 +9,7 @@ import CallToAction from "shared/CallToAction";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
-import { wordpressLinks } from "lib/externalLinks";
+import { wordpressLinks } from "lib";
 
 import {
   NEWS_PRO_ENDPOINT,

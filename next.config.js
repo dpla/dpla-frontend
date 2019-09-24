@@ -4,6 +4,7 @@ const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const { LOCALS } = require("./constants/local");
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = withBundleAnalyzer(
   withSourceMaps(
@@ -43,6 +44,12 @@ module.exports = withBundleAnalyzer(
             "process.env": {
               NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
+          })
+        );
+
+        config.plugins.push(
+          new FilterWarningsPlugin({
+            exclude: /mini-css-extract-plugin[^]*Conflicting order between:/
           })
         );
 

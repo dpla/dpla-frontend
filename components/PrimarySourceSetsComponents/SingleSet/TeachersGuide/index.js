@@ -2,8 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import { removeQueryParams } from "lib";
-import { markdownLinks } from "lib/externalLinks";
+import { removeQueryParams, markdownLinks } from "lib";
 
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
@@ -107,7 +106,7 @@ class TeachersGuide extends React.Component {
                     className={css.sidebarSection}
                     key={i}
                     source={author.name + ", " + author.affiliation.name}
-                    allowedTypes={["emphasis"]}
+                    allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />
                 )}

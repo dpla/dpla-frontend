@@ -16,9 +16,9 @@ import {
   getItemWithId,
   getItemWithName,
   getMenuItemUrl,
-  decodeHTMLEntities
+  decodeHTMLEntities,
+  wordpressLinks
 } from "lib";
-import { wordpressLinks } from "lib/externalLinks";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 

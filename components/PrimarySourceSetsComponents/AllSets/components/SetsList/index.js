@@ -54,7 +54,7 @@ const SetsList = ({ sets, route }) =>
                 <a className={`${css.title} hover-underline`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
-                    allowedTypes={["emphasis"]}
+                    allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />
                 </a>
