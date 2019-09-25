@@ -10,23 +10,38 @@ class NavigationLocal extends Component {
     let { isHome, className, css } = this.props;
     var visitHtml;
     var contactHtml;
-    var arbitraryHtml;
+    var arbitraryHtml = null;
+    var blogHtml = null;
 
     if (LOCALS[LOCAL_ID].routes) {
-      const dynamicRoutes = Object.keys(LOCALS[LOCAL_ID].routes);
 
-      arbitraryHtml = dynamicRoutes.map(function(route, index) {
-        return (
-          <li key={index}>
-            <Link prefetch href={"/local/" + route} as={route}>
-              <a>{LOCALS[LOCAL_ID].routes[dynamicRoutes[index]].title}</a>
+      const routesObj = LOCALS[LOCAL_ID].routes;
+
+      const dynamicRoutes = Object.keys(routesObj);
+
+      const categories = dynamicRoutes.map(function(category, i) {
+        const keys = Object.assign({}, i);
+        keys.id = i;
+        keys.route = dynamicRoutes[i];
+        keys.isTopLevel = routesObj[dynamicRoutes[i]].isTopLevel;
+        keys.category = routesObj[dynamicRoutes[i]].category;
+        return keys;
+      }).filter(category =>
+        category.isTopLevel
+      );
+
+      arbitraryHtml = categories.map(navItem => {
+        return(
+          <li key={navItem.id}>
+            <Link
+              prefetch href={"/local/" + navItem.route}
+              as={navItem.route}>
+              <a>{navItem.category}</a>
             </Link>
           </li>
         );
       });
-    } else {
-      arbitraryHtml = null;
-    }
+    };
 
     if (LOCAL_ID === "wisconsin") {
       visitHtml = (
@@ -42,6 +57,14 @@ class NavigationLocal extends Component {
         <li>
           <a href={LOCALS[LOCAL_ID].externalLink + "/contact"}>Contact</a>
         </li>
+      );
+    } else if (LOCAL_ID === "illinois") {
+      blogHtml = (
+          <li>
+            <Link href={LOCALS[LOCAL_ID].externalLink}>
+              <a>Collections Blog</a>
+            </Link>
+          </li>
       );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
@@ -101,6 +124,7 @@ class NavigationLocal extends Component {
         {visitHtml && <span className={css.divider} />}
         {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
+          {blogHtml}
           <li>
             <Link href="//dp.la">
               <a>Visit DPLA</a>
