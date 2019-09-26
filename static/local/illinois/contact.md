@@ -1,4 +1,5 @@
 # Contact Us
+If you are a contributor or if you would like to learn more about the Illinois Digital Heritage Hub, get in touch with one of our staff members. Please do not contact the IDHH for permissions to use images or other material in the IDHH collections, but rather reach out to the institution that has contributed the item or items you wish to use. See also the [Usage Guide](/about/usage-terms).
 
 ## Current IDHH Staff                                           
 
@@ -21,6 +22,9 @@ Consortium for Academic and Research Libraries in Illinois
 
 ### Hannah Stitzlein
 **IDHH Metadata Manager, 2016-2018**
+
+### Tath Haver
+**Graduate Student Assistant, 2019-**
 
 ### Brinna Michael
 **Graduate Student Assistant, 2017-2019**

@@ -1,10 +1,13 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
+import Router, { withRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
+
+import Sidebar from "components/MainLayout/components/shared/LocalSidebar.js"
 import FeatureHeader from "shared/FeatureHeader";
+import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { getCurrentUrl } from "lib";
 
@@ -14,25 +17,67 @@ import { LOCALS } from "constants/local";
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
 
+import Link from "next/link";
+
 class MarkdownPage extends React.Component {
   render() {
     const { router, pageData, content } = this.props;
+
+    const routesObj = LOCALS[LOCAL_ID].routes;
+
+    const allRoutes = Object.keys(routesObj);
+
+    const pages = allRoutes.map(function(page, i) {
+      const objects = Object.assign({}, i);
+      objects.route = allRoutes[i];
+      objects.title = routesObj[allRoutes[i]].title;
+      objects.category = routesObj[allRoutes[i]].category;
+      objects.isTopLevel = routesObj[allRoutes[i]].isTopLevel;
+      objects.isActive = false;
+      return objects;
+    }).filter(page =>
+      page.category == pageData.category
+    );
+
+    var breadcrumbs = [];
+
+    if (!pageData.isTopLevel){
+      breadcrumbs.push({
+        title: pageData.category,
+        url: "/local" + pageData.parentDir,
+        as: pageData.parentDir
+      },
+      {
+        title: pageData.title
+      });
+    };
+
     return (
       <MainLayout
         route={router}
         pageTitle={`${pageData.title}`}
         pageDescription={`${pageData.description}`}
       >
+      {breadcrumbs.length > 0 &&
+        <BreadcrumbsModule
+          breadcrumbs={breadcrumbs}
+          route={pageData.parentDir}
+        />}
+      {breadcrumbs.length === 0 &&
         <FeatureHeader
-          title={`${pageData.title}`}
-          description={`${pageData.description}`}
-        />
+          title={pageData.category}
+          description={pageData.description}
+        />}
         <div
           className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
-            <div className={` col-xs-12 col-md-4`} />
+            <Sidebar
+              className={contentCss.sidebar}
+              items={pages}
+              activePage={router.asPath}
+            />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
                 <ReactMarkdown escapeHtml={false} source={content} />
