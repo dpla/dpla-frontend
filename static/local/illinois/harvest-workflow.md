@@ -3,8 +3,8 @@
 ![IDHH harvest workflow illustration, described below](/static/local/illinois/idhh-harvest-workflow.PNG  "IDHH Harvest Workflow Overview")
 
 1. **On-boarding**
-   - Institution consents to providing metadata for specific collections, by completing the [contributor agreement form](https://drive.google.com/file/d/0By5ezltuoaTHM016a215dXJHbk0/view) and returning it to the [IDHH Coordinator](/about/contact).
-   - Institution provides technical information on their digital library system necessary for testing, metadata assessment, and harvest by completing the [technical information form](https://docs.google.com/document/d/1moX_IVbjwd0twLPUD7Pan5SMlW3f695K-r4udlgNd1c/edit?usp=sharing) and providing it to the [harvesting manager](/about/contact) and [metadata manager](/about/contact).
+   - Institution consents to providing metadata for specific collections, by completing the [contributor agreement form](https://drive.google.com/file/d/0By5ezltuoaTHM016a215dXJHbk0) and returning it to the [IDHH Coordinator](/about/contact).
+   - Institution provides technical information on their digital library system necessary for testing, metadata assessment, and harvest by completing the [technical information form](https://docs.google.com/document/d/1moX_IVbjwd0twLPUD7Pan5SMlW3f695K-r4udlgNd1c) and providing it to the [harvesting manager](/about/contact) and [metadata manager](/about/contact).
 
 2. **Test harvesting and metadata assessment**
    - IDHH determines if metadata is harvestable with OAI-PMH and determines the metadata schema
