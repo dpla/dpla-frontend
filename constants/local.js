@@ -1,4 +1,17 @@
 const LOCALS = {
+  plains2peaks: {
+    theme: "plains2peaks",
+    provider: "%22Plains%20to%20Peaks%20Collective%22",
+    name: "Plains to Peaks Collective",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    description: "",
+    locationFacet: "%22Colorado%20OR%20Wyoming%22",
+    subjectFacet: "%22Colorado%20OR%20Wyoming%22",
+    hasAbout: true,
+    hasTerms: false,
+    hasContact: true
+  },
   wisconsin: {
     theme: "wisconsin",
     provider: "%22Recollection%20Wisconsin%22",
