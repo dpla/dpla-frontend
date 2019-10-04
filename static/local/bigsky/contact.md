@@ -35,9 +35,9 @@ E-mail: barry.brown@umontana.edu
 
  
  ---
-![North Dakota State Library Logo](/static/local/bigsky/ndsl_logo.jpg "North Dakota State Library")
+![North Dakota State Library Logo](/static/local/bigsky/ndsl_logo.png "North Dakota State Library")
  
-**Angela Hauser**  
+**Angela Houser**  
 *Digital Initiatives Co-Coordinator*   
 Phone: 701-328-3495  
 Email: ndsl-digital@nd.gov
