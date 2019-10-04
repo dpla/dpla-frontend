@@ -164,6 +164,7 @@ const LOCALS = {
     hasAbout: true,
     hasTerms: false,
     hasContact: true,
+    hasBrowseByPartner: true,
     routes: {
       "/contact": {
         path: "contact.md",
