@@ -62,7 +62,7 @@ class NavigationLocal extends Component {
       blogHtml = (
           <li>
             <Link href={LOCALS[LOCAL_ID].externalLink}>
-              <a>Collections Blog</a>
+              <a>Highlights Blog</a>
             </Link>
           </li>
       );

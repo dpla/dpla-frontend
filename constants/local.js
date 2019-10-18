@@ -40,7 +40,7 @@ const LOCALS = {
       "/about/usage-terms": {
         parentDir: "/about",
         path: "usage-terms.md",
-        title: "Copyright and Reuse",
+        title: "Copyright and Usage",
         description: "",
         isTopLevel: false,
         category: "About"
@@ -49,6 +49,14 @@ const LOCALS = {
         parentDir: "/about",
         path: "privacy.md",
         title: "Privacy",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/image-credits": {
+        parentDir: "/about",
+        path: "image-credits.md",
+        title: "Image Credits",
         description: "",
         isTopLevel: false,
         category: "About"
