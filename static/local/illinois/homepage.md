@@ -1,6 +1,6 @@
 # A Gateway to Illinois State History
 
-The Illinois Digital Heritage Hub brings together unique digital cultural heritage resources from across Illinois. Explore collections immense in volume and rich in historical detail, including photographs, manuscripts, books, audio recordings, and videos. Established in 2015 by four institutions, the [Chicago Public Library](https://www.chipublib.org/), the [Consortium of Academic and Research Libraries in Illinois](https://www.carli.illinois.edu/), the [Illinois State Library](https://www.cyberdriveillinois.com/departments/library/), and the [University of Illinois at Urbana-Champaign Library](https://www.library.illinois.edu/), the content of the IDHH is made possible by a network of more than one hundred contributors from across the state.
+The Illinois Digital Heritage Hub brings together unique digital cultural heritage resources from across Illinois. Explore collections immense in volume and rich in historical detail, including photographs, manuscripts, books, audio recordings, and videos. Established in 2015 by four institutions, the [Chicago Public Library](https://www.chipublib.org/), the [Consortium of Academic and Research Libraries in Illinois](https://www.carli.illinois.edu/), the [Illinois State Library](https://www.cyberdriveillinois.com/departments/library/), and the [University of Illinois at Urbana-Champaign Library](https://www.library.illinois.edu/), the content of the IDHH is made possible by a network of more than 150 partners from across the state, including dozens of institutions providing content through the [Illinois Digital Archives](http://www.idaillinois.org/) and [CARLI Digital Collections](http://collections.carli.illinois.edu/cdm/).
 
 ## Illinois History
 
@@ -56,7 +56,7 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 - ### [Gwendolyn Brooks](/search?q=Gwendolyn%20Brooks)
 
-  The poet laureate of Illinois, one of the best known US writers, and the first African American poet to win the Pulitzer Prize 
+  The poet laureate of Illinois, one of the best known US writers, and the first African American poet to win the Pulitzer Prize
 
 - ### [Stephen A. Douglas](/search?q=%22STEPHEN+A.+DOUGLAS%22+OR+%22Stephen+Douglas%22+OR+%22Douglas%2C+Stephen%22+OR+%22Lincoln-Douglas+Debates%22)
 
