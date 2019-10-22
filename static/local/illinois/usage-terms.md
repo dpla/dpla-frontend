@@ -1,4 +1,4 @@
-# Using IDHH Items
+# Copyright and Item Usage
 
 ## Copyright & the IDHH
 
@@ -8,7 +8,7 @@ The copyright status of IDHH materials varies. Some items may be in the public d
 
 Look for a [Rights Statement](https://rightsstatements.org/en/) icon for an item’s copyright status at a glance. These icons are a helpful aid but Rights Statements create no warranty as to an item’s copyright status. As always, you are responsible for your own use, obtaining proper permissions or making determinations of fair use, and ensuring the accuracy of the information.
 
-## Using the Collection
+## Using Items
 
 The ways you can reuse items from IDHH will depend both upon the copyright status of the item and any licensing restrictions placed on the item by the holding institution or copyright owner. Please do not contact the IDHH for permissions, but rather reach out to the institution that has contributed the item or items you wish to use.
 

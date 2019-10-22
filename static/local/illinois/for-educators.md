@@ -2,7 +2,7 @@
 
 ## IDHH
 
-Search the IDHH for educational resources by [historical topics, notable Illinoisans, locations, or by format](/). Visit the [collections blog](https://ildplacollections.wordpress.com/) for inspiration for your own research and writing. [Try creating your own item sets](/lists). For information on using and citing IDHH materials, see the [Usage Guide](/about/usage-terms). More subjects, community histories, notable people, primary source sets, and exhibits created from Illinois Digital Heritage Hub collections are planned for future release.
+Search the IDHH for educational resources by [historical topics, notable Illinoisans, locations, or by format](/). Visit the [collection highlights blog](https://ildplacollections.wordpress.com/) for inspiration for your own research and writing. [Try creating your own item sets](/lists). For information on using and citing IDHH materials, see the [Copyright and Usage Guide](/about/usage-terms). More subjects, community histories, notable people, primary source sets, and exhibits created from Illinois Digital Heritage Hub collections are planned for future release.
 
 ## DPLA
 
