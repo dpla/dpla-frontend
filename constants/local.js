@@ -22,7 +22,7 @@ const LOCALS = {
     logo: "logo.png",
     description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
-    subjectFacet: "%22Illinois%22",
+    subjectFacet: "*Illinois*",
     externalLink: "https://ildplacollections.wordpress.com/",
     hasAbout: true,
     hasTerms: false,

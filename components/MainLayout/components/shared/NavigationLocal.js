@@ -12,6 +12,7 @@ class NavigationLocal extends Component {
     var contactHtml;
     var arbitraryHtml = null;
     var blogHtml = null;
+    var surveyHtml = null;
 
     if (LOCALS[LOCAL_ID].routes) {
 
@@ -65,6 +66,13 @@ class NavigationLocal extends Component {
               <a>Highlights Blog</a>
             </Link>
           </li>
+      );
+      surveyHtml = (
+        <li>
+          <Link href="https://jyt67373.optimalworkshop.com/questions/idhh">
+            <a>Website Feedback</a>
+          </Link>
+        </li>
       );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
@@ -125,6 +133,7 @@ class NavigationLocal extends Component {
         {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
+          {surveyHtml}
           <li>
             <Link href="//dp.la">
               <a>Visit DPLA</a>
