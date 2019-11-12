@@ -1,51 +1,9 @@
-$theme-main-color: #eeeeee; //footer
+$theme-main-color: #ddd; //footer
 $theme-dark-color: #1f1f1f; //header
-$theme-link-color: #F0B323; //button //0055d4 //47596d //002d66 #21759b;
+$theme-link-color: #382F2D;
 $theme-background-color: #f9f6f0;
 $theme-colder-tint: rgb(245, 245, 245);
-$theme-warmer-tint: lighten($theme-main-color, 70%);
-
-.menuButton {
-  color: #fff !important;
-}
-
-.foo {
-  //bar
-}
-
-HomeHero {
-  .wrapper {
-    background-color: #eee !important;
-  }
-}
-
-.header {
-  background-color: darken($theme-main-color, 5%);
-}
-
-button {
-  color: rgb(56, 47, 45) !important;
-  //background-color: #f0b323 !important;
-}
-
-.sourceLink {
-  color: rgb(56, 47, 45) !important;
-}
-
-#NavigationLocal {
-  & a {
-    color: #F0B323;
-  }
-}
-
-a {
-  color: rgb(0, 114, 148) !important;
-}
-
-div.links {
-  visibility: hidden !important;
-}
-
+$theme-warmer-tint: lighten($theme-main-color, 36%); //bottom bar
 
 $linkColor: $theme-link-color;
 $linkHoverColor: lighten($linkColor, 10%);
@@ -81,3 +39,4 @@ $errorColor: $linkColor;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
+$outgoingLinkColor: $subLinkColor;
