@@ -1,4 +1,4 @@
-iscover unique cultural heritage resources from the collections of libraries, museums, archives, and historical societies across the state of North Dakota. These items include photographs, documents, books, audio recordings, and videos, and they provide a fascinating snapshot of the history and culture of North Dakota and beyond. 
+Discover unique cultural heritage resources from the collections of libraries, museums, archives, and historical societies across the state of North Dakota. These items include photographs, documents, books, audio recordings, and videos, and they provide a fascinating snapshot of the history and culture of North Dakota and beyond. 
 
 --- 
 ### [North Dakota](/search?q=north+dakota)
