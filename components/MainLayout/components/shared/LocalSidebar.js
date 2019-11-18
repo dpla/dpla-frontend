@@ -45,7 +45,7 @@ const NestedSidebarLinks = ({ activePage, topLevelItem, items }) => {
   component for the sidebar which also instantiates the NestedSidebarLinks class
   for building lists of links
 */
-const Sidebar = ({ className, items, activePage }) => {
+const Sidebar = ({ className, items, activePage, render }) => {
 
   /*
     adds in an object for the About page. Needed because 'About' is
@@ -84,7 +84,7 @@ const Sidebar = ({ className, items, activePage }) => {
     return (
       <div className={`${className} col-xs-12 col-md-4`}>
         <div className={css.sidebar}>
-          <ul className={css.links}>
+          {render && <ul className={css.links}>
             <li>
               <NestedSidebarLinks
                 activePage={activePage}
@@ -92,7 +92,7 @@ const Sidebar = ({ className, items, activePage }) => {
                 items={items}
               />
             </li>
-          </ul>
+          </ul>}
         </div>
       </div>
     );

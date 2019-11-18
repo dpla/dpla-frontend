@@ -16,6 +16,7 @@ import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.scss";
+import localMarkdown from "stylesheets/local_markdown.scss"
 
 import Link from "next/link";
 
@@ -24,6 +25,7 @@ class MarkdownPage extends React.Component {
     const { router, pageData, content } = this.props;
 
     const routesObj = LOCALS[LOCAL_ID].routes;
+    const hasSidebar = LOCALS[LOCAL_ID].hasSidebar;
 
     const allRoutes = Object.keys(routesObj);
 
@@ -41,7 +43,7 @@ class MarkdownPage extends React.Component {
 
     var breadcrumbs = [];
 
-    if (!pageData.isTopLevel){
+    if (hasSidebar && !pageData.isTopLevel){
       breadcrumbs.push({
         title: pageData.category,
         url: "/local" + pageData.parentDir,
@@ -73,14 +75,15 @@ class MarkdownPage extends React.Component {
       ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
-            <Sidebar
+              <Sidebar
               className={contentCss.sidebar}
               items={pages}
               activePage={router.asPath}
+              render={hasSidebar}
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <ReactMarkdown escapeHtml={false} source={content} />
+                <ReactMarkdown escapeHtml={false} skipHtml={false} source={content} />
               </div>
             </div>
           </div>

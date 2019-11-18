@@ -13,7 +13,8 @@ const LOCALS = {
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
     hasTerms: false,
-    hasContact: true
+    hasContact: true,
+    hasSidebar: false
   },
   illinois: {
     theme: "illinois",
@@ -30,6 +31,7 @@ const LOCALS = {
     hasTerms: false,
     hasContact: false,
     hasBrowseByPartner: true,
+    hasSidebar: true,
     routes: {
       "/about/governance": {
         parentDir: "/about",
@@ -149,7 +151,8 @@ const LOCALS = {
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
     hasTerms: false,
-    hasContact: false
+    hasContact: false,
+    hasSidebar: false
   },
   bigsky: {
     theme: "bigsky",
@@ -165,11 +168,22 @@ const LOCALS = {
     hasTerms: false,
     hasContact: true,
     hasBrowseByPartner: true,
+    hasSidebar: false,
     routes: {
-      "/contact": {
-        path: "contact.md",
-        title: "Contact",
-        description: ""
+
+      "/north-dakota": {
+        path: "northdakota.md",
+        title: "North Dakota",
+        isTopLevel: true,
+        description: "",
+        category: "North Dakota"
+      },
+      "/montana": {
+        path: "montana.md",
+        title: "Montana",
+        isTopLevel: true,
+        description: "",
+        category: "Montana"
       }
     }
   }

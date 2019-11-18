@@ -8,7 +8,7 @@ $theme-warmer-tint: lighten($theme-main-color, 89%);
 $heroBackgroundColor: darken($theme-link-color, 33%);
 
 $linkColor: $theme-link-color;
-$linkHoverColor: brighten($linkColor, 10%);
+$linkHoverColor: lighten($linkColor, 10%);
 $visitedLinkColor: darken($linkColor, 10%);
 $paginationLinkColor: $linkColor;
 $headingColor: $theme-dark-color;
@@ -42,6 +42,4 @@ $errorColor: $linkColor;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
 $outgoingLinkColor: $subLinkColor;
-.homeLogo > img {
-  height: 60%;
-}
+
