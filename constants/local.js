@@ -184,6 +184,13 @@ const LOCALS = {
         isTopLevel: true,
         description: "",
         category: "Montana"
+      },
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        isTopLevel: true,
+        description: "",
+        category: "Contact"
       }
     }
   }
