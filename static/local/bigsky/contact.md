@@ -6,7 +6,7 @@ Phone: 406-438-2041
 Email: Jbirnel@mt.gov
 
 
- ---
+---
 ![Montana Historical Society Logo](/static/local/bigsky/mhs_logo.jpg "Montana Historical Society")
 
 **Molly Kruckenberg**  
