@@ -1,11 +1,11 @@
-$theme-main-color: #333; //darken(desaturate(#dfe32a, 25%), 15%); //color of footer
-$theme-dark-color: #1f1f1f; //color of navbar
 $theme-link-color: #ba4a17;
-$theme-background-color: lighten($theme-main-color, 80%); // #color behind facets/search header;
+$theme-main-color: darken(desaturate($theme-link-color, 35%), 30%); //color of footer
+$theme-dark-color: darken(desaturate($theme-link-color, 35%), 40%); //#1f1f1f; //color of navbar
+$theme-background-color: #efefef; // #color behind facets/search header;
 $theme-colder-tint: rgb(245, 245, 245);
-$theme-warmer-tint: lighten($theme-main-color, 70%);
+$theme-warmer-tint: lighten($theme-main-color, 90%);
 
-$heroBackgroundColor: darken(desaturate(#dfe32a, 69%), 23%);
+$heroBackgroundColor: darken(desaturate(#dfe32a, 65%), 10%);
 
 $linkColor: $theme-link-color;
 $linkHoverColor: lighten($linkColor, 10%);
