@@ -5,6 +5,7 @@ const LOCALS = {
     name: "Recollection Wisconsin",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.jpg",
     description: "Sharing our Stories. Exploring our Past.",
     locationFacet: "%22Wisconsin%22",
     subjectFacet: "%22Wisconsin%22",
@@ -12,7 +13,15 @@ const LOCALS = {
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
     hasTerms: false,
-    hasContact: true
+    routes: {
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        isTopLevel: true,
+        description: "",
+        category: "Contact"
+      }
+    }
   },
   illinois: {
     theme: "illinois",
@@ -20,15 +29,23 @@ const LOCALS = {
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
+    background: "home-hero-bg.jpg",
     description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
     subjectFacet: "*Illinois*",
     externalLink: "https://ildplacollections.wordpress.com/",
     hasAbout: true,
     hasTerms: false,
-    hasContact: false,
     hasBrowseByPartner: true,
     routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "governance.md",
+        title: "Governance",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
       "/about/governance": {
         parentDir: "/about",
         path: "governance.md",
@@ -139,6 +156,7 @@ const LOCALS = {
     theme: "tennessee",
     provider: "%22Digital%20Library%20of%20Tennessee%22",
     name: "Digital Library of Tennessee",
+    background: "home-hero-bg.jpg",
     favicon: "favicon.png",
     logo: "logo.png",
     description: "Sharing Stories From the Volunteer State",
@@ -146,12 +164,22 @@ const LOCALS = {
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
     hasTerms: false,
-    hasContact: false
+    routes: {
+      "/about": {
+        parentDir: "/about",
+        path: "governance.md",
+        title: "Governance",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
   },
   florida: {
     theme: "florida",
     provider: "%22Sunshine%20State%20Digital%20Network%22",
     name: "Sunshine State Digital Network",
+    background: "home-hero-bg.png",
     favicon: "favicon.png",
     logo: "logo.png",
     description: "Sharing Stories From the Sunshine State",
@@ -160,7 +188,53 @@ const LOCALS = {
     subjectFacet: "%22Florida%22",
     hasAbout: false,
     hasTerms: false,
-    hasContact: false
+    hasBrowseByPartner: true,
+  },
+  bigsky: {
+    theme: "bigsky",
+    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
+    name: "Big Sky Country Digital Network",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    background: "home-hero-bg.png",
+    description: "",
+    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
+    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
+    hasAbout: true,
+    hasTerms: false,
+    hasBrowseByPartner: true,
+    hasSidebar: false,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "governance.md",
+        title: "Governance",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/north-dakota": {
+        path: "northdakota.md",
+        title: "North Dakota",
+        isTopLevel: true,
+        description: "",
+        category: "North Dakota"
+      },
+      "/montana": {
+        path: "montana.md",
+        title: "Montana",
+        isTopLevel: true,
+        description: "",
+        category: "Montana"
+      },
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        isTopLevel: true,
+        description: "",
+        category: "Contact"
+      }
+    }
   }
 };
 
