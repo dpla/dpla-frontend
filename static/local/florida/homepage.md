@@ -1,13 +1,16 @@
-## Sharing our Stories. Exploring our Past.
+##  Sharing Florida’s rich history and culture. Exploring stories from the Sunshine State.
+Uncover photos, maps, books, artifacts, oral histories and more from libraries, archives, museums, and historical societies across the state. Find free local, state, national, and international resources related to Florida and beyond.
 
-The Sunshine State Digital Network (SSDN) is the Digital Public Library of America (DPLA) Service Hub for the state of Florida. The service hub represents a community of institutions in the state which will provide their partner institutions’ aggregated metadata for the DPLA and offer tiered services to connect institutions of all sizes to the DPLA. We are a proud member of the DPLA Hub Network and our membership is supported through generous funding provided by the Library Services and Technology Act administered by the Florida Department of State, Division of Library and Information Services.
+Sunshine State Digital Network highlights include:
 
-SSDN content highlights include:
+- ### [Maps](/search?q=Florida—Maps)
+Maps of the state and local communities.
 
-- ### [Maps](/search?q=map)
+- ### [The Caribbean](/search?q=Caribbean+Area)
+Caribbean culture has helped shaped Florida’s history, culture, and cuisine. Find cultural and historical materials pertaining to the Caribbean region.
 
-  Maps of every county and most communities in the state, as well as a wide range of national and international maps.
-
-- ### [Main Street](/search?q=%22main+street%22)
-
-  Images of Main Streets reveal changes in everyday life across the decades, including transformations in architecture, advertising, transportation and clothing.
+- ### [Civil and Human Rights](/search?q=Human+Rights)
+ Being on the cusp of the American South as well as a vibrant cultural melting pot, Florida’s civil and human rights movements have connected Floridians from all walks of life. 
+ 
+- ### [The Environment](/search?q=Landscape+protection)
+Florida has always been known for its unique flora and fauna. Various environmental movements have occurred to help protect Florida’s unique ecosystem.
