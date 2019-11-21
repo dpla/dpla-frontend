@@ -6,7 +6,7 @@ Dakota Territory was officially organized in 1861. North Dakota later became a s
 
 ---
 ### [Theodore Roosevelt](/search?q=%22Theodore+Roosevelt%22+OR+%22Roosevelt,+Theodore,+1858-1919%22)
-In 1883, Theodore Roosevelt arrived in the Badlands of North Dakota. He fell in love with the area and spent the next formative years of his life there as a hunter and rancher. Roosevelt would later write: I have always said I would not have been President had it not been for my experience in North Dakota.
+In 1883, Theodore Roosevelt arrived in the Badlands of North Dakota. He fell in love with the area and spent the next formative years of his life there as a hunter and rancher. Roosevelt would later write: "I have always said I would not have been President had it not been for my experience in North Dakota."
 
 ---
 ### [Communities](/search?q=%22City+%26+Town+Life%22+OR+%22North+Dakota+County+and+Town+Histories+Collection%22+OR+%22North+Dakota+Atlases+and+Plat+Books%22)
