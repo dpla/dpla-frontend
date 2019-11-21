@@ -213,6 +213,13 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
+      "/contact": {
+        path: "contact.md",
+        title: "Contact",
+        isTopLevel: true,
+        description: "",
+        category: "Contact"
+      },
       "/north-dakota": {
         path: "northdakota.md",
         title: "North Dakota",
@@ -226,13 +233,6 @@ const LOCALS = {
         isTopLevel: true,
         description: "",
         category: "Montana"
-      },
-      "/contact": {
-        path: "contact.md",
-        title: "Contact",
-        isTopLevel: true,
-        description: "",
-        category: "Contact"
       }
     }
   }
