@@ -167,8 +167,8 @@ const LOCALS = {
     routes: {
       "/about": {
         parentDir: "/about",
-        path: "governance.md",
-        title: "Governance",
+        path: "about.md",
+        title: "About",
         description: "",
         isTopLevel: true,
         category: "About"
@@ -207,8 +207,8 @@ const LOCALS = {
     routes: {
       "/about" : {
         parentDir: "/about",
-        path: "governance.md",
-        title: "Governance",
+        path: "about.md",
+        title: "About",
         description: "",
         isTopLevel: true,
         category: "About"
