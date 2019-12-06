@@ -12,7 +12,8 @@ const LOCALS = {
     externalLink: "https://recollectionwisconsin.org",
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
-    hasTerms: false
+    hasTerms: false,
+    hasBrowseByPartner: true
   },
   illinois: {
     theme: "illinois",
