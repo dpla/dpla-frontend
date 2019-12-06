@@ -12,16 +12,7 @@ const LOCALS = {
     externalLink: "https://recollectionwisconsin.org",
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
-    hasTerms: false,
-    routes: {
-      "/contact": {
-        path: "contact.md",
-        title: "Contact",
-        isTopLevel: true,
-        description: "",
-        category: "Contact"
-      }
-    }
+    hasTerms: false
   },
   illinois: {
     theme: "illinois",
@@ -235,6 +226,21 @@ const LOCALS = {
         category: "Montana"
       }
     }
+  },
+  aviation: {
+    theme: "bigsky",
+    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
+    name: "Aviation",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    background: "home-hero-bg.png",
+    description: "",
+    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
+    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
+    hasAbout: false,
+    hasTerms: false,
+    hasBrowseByPartner: false,
+    hasSidebar: false,
   }
 };
 
