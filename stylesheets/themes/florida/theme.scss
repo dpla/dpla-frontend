@@ -5,7 +5,7 @@ $theme-background-color: #efefef; // #color behind facets/search header;
 $theme-colder-tint: rgb(245, 245, 245);
 $theme-warmer-tint: lighten($theme-main-color, 90%);
 
-$heroBackgroundColor: darken(desaturate(#dfe32a, 65%), 10%);
+$heroBackgroundColor: darken(desaturate(#dfe32a, 70%), 35%);
 
 $linkColor: $theme-link-color;
 $linkHoverColor: lighten($linkColor, 10%);
