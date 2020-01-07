@@ -10,6 +10,7 @@ import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import { CheckableLists } from "components/ListComponents/CheckableLists";
+import RelatedItemsModule from "components/ItemComponents/RelatedItemsModule";
 
 import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 
@@ -18,7 +19,8 @@ import {
   getCurrentFullUrl,
   joinIfArray,
   getDefaultThumbnail,
-  getRandomItemIdAsync
+  getRandomItemIdAsync,
+  getLdaItemsAsync
 } from "lib";
 
 import utils from "stylesheets/utils.scss";
@@ -29,6 +31,7 @@ const ItemDetail = ({
   url,
   item,
   currentFullUrl,
+  ldaItems,
   randomItemId,
   isQA
 }) => {
@@ -73,9 +76,13 @@ const ItemDetail = ({
             toCiteText="item"
             title={item.title}
           />
+
           <CheckableLists itemId={item.id} />
+
         </div>
       </div>
+
+      {ldaItems.length > 0 && <RelatedItemsModule items={ldaItems} />}
 
     </MainLayout>
   );
@@ -109,6 +116,27 @@ ItemDetail.getInitialProps = async context => {
       : doc.sourceResource.language;
     const strippedDoc = Object.assign({}, doc, { originalRecord: "" });
     delete strippedDoc.originalRecord;
+
+    let ldaDocs;
+    try {
+      const ldaRes = await getLdaItemsAsync(currentUrl, doc.id);
+      ldaDocs = ldaRes.docs == undefined ? [] : ldaRes.docs;
+    } catch(error) {
+      console.log (error);
+      ldaDocs = [];
+    }
+    const ldaItems = ldaDocs.map(result => {
+      const thumbnailUrl = result.object
+        ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
+        : getDefaultThumbnail(result.sourceResource.type);
+      return Object.assign({}, result.sourceResource, {
+        thumbnailUrl: thumbnailUrl,
+        id: result.id ? result.id : result.sourceResource["@id"],
+        title: result.sourceResource.title,
+        type: result.sourceResource.type
+      });
+    });
+
     return {
       currentFullUrl,
       item: Object.assign({}, doc.sourceResource, {
@@ -125,6 +153,7 @@ ItemDetail.getInitialProps = async context => {
         doc: strippedDoc,
         originalRecord: doc.originalRecord
       }),
+      ldaItems,
       randomItemId,
       isQA
     };
