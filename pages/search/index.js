@@ -108,10 +108,13 @@ Search.getInitialProps = async context => {
   const query = context.query;
   const req = context.req;
   const isLocal = SITE_ENV === "local";
+  let local = isLocal ? LOCALS[LOCAL_ID] : {};
   const isQA = parseCookies(context).hasOwnProperty("qa");
   const currentUrl = getCurrentUrl(req);
   const q = query.q
-    ? encodeURIComponent(query.q).replace(/'/g, "%27").replace(/"/g, "%22")
+    ? encodeURIComponent(query.q)
+          .replace(/'/g, "%27")
+          .replace(/"/g, "%22")
     : "";
 
   let hasDates = false;
@@ -152,9 +155,7 @@ Search.getInitialProps = async context => {
     })
     .filter(facetQuery => facetQuery !== "");
 
-  if (isLocal) {
-    queryArray.push(`provider.name=${LOCALS[LOCAL_ID].provider}`);
-  }
+  let filters = isLocal && local.filters ? local.filters : [];
 
   const facetQueries = queryArray.join("&");
 
@@ -180,7 +181,7 @@ Search.getInitialProps = async context => {
     const aboutness_max = 4;
     const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
     const aboutnessRes = await fetch(aboutnessUrl);
-    if (aboutnessRes.status != 200) {
+    if (aboutnessRes.status !== 200) {
       aboutness = { docs: [], count: 0 };
     } else {
       const aboutnessJson = await aboutnessRes.json();
@@ -209,9 +210,9 @@ Search.getInitialProps = async context => {
       .split(/(&|\+AND\+)/)
       .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
-    const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}&facets=${theseFacets.join(
-      ","
-    )}&${facetQueries}`;
+    const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
+    const filtersParam = filters.map(x => `&filter=${x}`).join();
+    const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}${facetsParam}${filtersParam}`;
 
     const res = await fetch(url);
 

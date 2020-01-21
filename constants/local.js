@@ -229,19 +229,29 @@ const LOCALS = {
     }
   },
   aviation: {
-    theme: "bigsky",
-    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
-    name: "Aviation",
+    theme: "aviation",
+    name: "Aviation Portal",
     favicon: "favicon.png",
     logo: "logo.png",
     background: "home-hero-bg.png",
     description: "",
-    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
-    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
-    hasAbout: false,
+    hasAbout: true,
     hasTerms: false,
     hasBrowseByPartner: false,
     hasSidebar: false,
+    filters: [
+      "tags:PanAm"
+    ],
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
   }
 };
 
