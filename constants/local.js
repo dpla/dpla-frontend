@@ -1,7 +1,9 @@
 const LOCALS = {
   wisconsin: {
     theme: "wisconsin",
-    provider: "%22Recollection%20Wisconsin%22",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/wisconsin"
+    ],
     name: "Recollection Wisconsin",
     favicon: "favicon.png",
     logo: "logo.png",
@@ -17,7 +19,9 @@ const LOCALS = {
   },
   illinois: {
     theme: "illinois",
-    provider: "%22Illinois%20Digital%20Heritage%20Hub%22",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/il"
+    ],
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
@@ -146,7 +150,9 @@ const LOCALS = {
   },
   tennessee: {
     theme: "tennessee",
-    provider: "%22Digital%20Library%20of%20Tennessee%22",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/tennessee"
+    ],
     name: "Digital Library of Tennessee",
     background: "home-hero-bg.jpg",
     favicon: "favicon.png",
@@ -169,7 +175,9 @@ const LOCALS = {
   },
   florida: {
     theme: "florida",
-    provider: "%22Sunshine%20State%20Digital%20Network%22",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/florida"
+    ],
     name: "Sunshine State Digital Network",
     background: "home-hero-bg.png",
     favicon: "favicon.png",
@@ -184,7 +192,9 @@ const LOCALS = {
   },
   bigsky: {
     theme: "bigsky",
-    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/mt"
+    ],
     name: "Big Sky Country Digital Network",
     favicon: "favicon.png",
     logo: "logo.png",
@@ -229,19 +239,29 @@ const LOCALS = {
     }
   },
   aviation: {
-    theme: "bigsky",
-    provider: "%22Big%20Sky%20Country%20Digital%20Network%22",
-    name: "Aviation",
+    theme: "aviation",
+    name: "Aviation Portal",
     favicon: "favicon.png",
     logo: "logo.png",
     background: "home-hero-bg.png",
     description: "",
-    locationFacet: "%22Montana%20OR%20North%20Dakota%22",
-    subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
-    hasAbout: false,
+    hasAbout: true,
     hasTerms: false,
     hasBrowseByPartner: false,
     hasSidebar: false,
+    filters: [
+      "tags:PanAm"
+    ],
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
   }
 };
 
