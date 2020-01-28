@@ -55,9 +55,9 @@ class Search extends React.Component {
       aboutness
     } = this.props;
 
-    var itemCount = 0 // default handles unexpected error
+    var itemCount = 0;// default handles unexpected error
     if ("count" in results) {
-      if (results.count.value != undefined) {
+      if (results.count.value !== undefined) {
         itemCount = results.count.value // ElasticSearch 7
       } else {
         itemCount = results.count // ElasticSearch 6
@@ -117,6 +117,13 @@ Search.getInitialProps = async context => {
           .replace(/"/g, "%22")
     : "";
 
+  let filters = isLocal && local.filters ? local.filters : [];
+  let tags = [];
+  if (query.tags) {
+    tags = Array.isArray(query.tags) ? query.tags : new Array(query.tags);
+    filters = filters.concat(tags.map(tag => `tags:${tag}`));
+  }
+
   let hasDates = false;
   const theseFacets = isQA ? qaFacets : possibleFacets;
 
@@ -154,8 +161,6 @@ Search.getInitialProps = async context => {
       return "";
     })
     .filter(facetQuery => facetQuery !== "");
-
-  let filters = isLocal && local.filters ? local.filters : [];
 
   const facetQueries = queryArray.join("&");
 
@@ -211,7 +216,7 @@ Search.getInitialProps = async context => {
       .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
 
     const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
-    const filtersParam = filters.map(x => `&filter=${x}`).join();
+    const filtersParam = filters.map(x => `&filter=${x}`).join("");
     const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}${facetsParam}${filtersParam}`;
 
     const res = await fetch(url);
@@ -236,6 +241,14 @@ Search.getInitialProps = async context => {
     theseFacets.forEach(facet => {
       if (json.facets[facet]) newFacets[facet] = json.facets[facet];
     });
+
+    if (tags) {
+      newFacets["tags"] = {
+        "_type" : "terms",
+        "terms" : tags
+      };
+    }
+
     json.facets = newFacets;
 
     const maxResults = MAX_PAGE_SIZE * page_size;
