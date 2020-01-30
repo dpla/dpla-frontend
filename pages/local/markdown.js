@@ -24,8 +24,10 @@ class MarkdownPage extends React.Component {
   render() {
     const { router, pageData, content } = this.props;
 
-    const routesObj = LOCALS[LOCAL_ID].routes;
-    const hasSidebar = LOCALS[LOCAL_ID].hasSidebar;
+    const local = LOCALS[LOCAL_ID];
+    const routesObj = local.routes;
+    const hasSidebar = local.hasSidebar;
+    const bodyColumnsStyle = local.expandBody ? "col-xs-12 col-md-12" : "col-xs-12 col-md-7";
 
     const allRoutes = Object.keys(routesObj);
 
@@ -81,7 +83,7 @@ class MarkdownPage extends React.Component {
               activePage={router.asPath}
               render={hasSidebar}
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={bodyColumnsStyle}>
               <div id="main" role="main" className={contentCss.content}>
                 <ReactMarkdown escapeHtml={false} skipHtml={false} source={content} />
               </div>
@@ -96,7 +98,8 @@ class MarkdownPage extends React.Component {
 MarkdownPage.getInitialProps = async context => {
   const fullUrl = getCurrentUrl(context.req);
   const asPath = context.asPath;
-  const routes = LOCALS[LOCAL_ID]["routes"];
+  const local = LOCALS[LOCAL_ID];
+  const routes = local["routes"];
   const pageData = routes[asPath];
   const markdownUrl = `${fullUrl}/static/local/${LOCAL_ID}/${pageData.path}`;
   const markdownResponse = await fetch(markdownUrl);
