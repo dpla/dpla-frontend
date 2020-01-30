@@ -14,6 +14,6 @@ BSCDN provides assistance by sharing tools and techniques for quality assurance,
 BSCDN provides guidelines and support for digitization, long-term storage, and preservation activities. We communicate with partners and community through professional development and community outreach opportunities, and we share our knowledge and learn from other hubs in the DPLA network. 
 
 #### Getting Involved 
-Organizations with existing digital repositories may [Contact Us](Link to contact us page) for information about becoming a member and sharing metadata. 
+Organizations with existing digital repositories may [Contact Us](/contact) for information about becoming a member and sharing metadata. 
 
 Organizations interested in sharing a single digital collection may share metadata through a BSCDN partner who host collections in a similar area of interest. 
