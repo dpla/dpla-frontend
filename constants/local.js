@@ -206,20 +206,21 @@ const LOCALS = {
     hasTerms: false,
     hasBrowseByPartner: true,
     hasSidebar: false,
+    expandBody: true,
     routes: {
       "/about" : {
         parentDir: "/about",
         path: "about.md",
-        title: "About",
+        title: "About BSCDN",
         description: "",
         isTopLevel: true,
         category: "About"
       },
       "/contact": {
+        parentDir: "/contact",
         path: "contact.md",
         title: "Contact",
         isTopLevel: true,
-        description: "",
         category: "Contact"
       },
       "/north-dakota": {
