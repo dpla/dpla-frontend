@@ -32,12 +32,13 @@ const LOCALS = {
     externalLink: "https://ildplacollections.wordpress.com/",
     hasAbout: true,
     hasTerms: false,
+    hasSidebar: true,
     hasBrowseByPartner: true,
     routes: {
       "/about" : {
         parentDir: "/about",
-        path: "governance.md",
-        title: "Governance",
+        path: "about.md",
+        title: "About",
         description: "",
         isTopLevel: true,
         category: "About"
