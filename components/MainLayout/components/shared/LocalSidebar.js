@@ -18,11 +18,12 @@ const NestedSidebarLinks = ({ activePage, topLevelItem, items }) => {
 
   return(
     <div>
+    {(topLevelItem !== undefined) &&
       <SidebarLink
         route={topLevelItem.route}
         isActive={topLevelItem.isActive}
         title={topLevelItem.title}
-      />
+      />}
       <ul>
         {items.
           map(item => {
