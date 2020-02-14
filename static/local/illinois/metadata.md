@@ -19,7 +19,7 @@ The documentation below will help guide new contributors through the process of 
 
 ## DPLA Metadata Resources
 
-All of the IDHH’s protocols are in keeping with the DPLA’s requirements and recommendations for their metadata standards, currently the DPLA Metadata Application Profile (DPLA MAP) version 5.0. Here are some key documents outlining the DPLA’s requirements and recommendations.
+All of the IDHH's protocols are in keeping with the DPLA's requirements and recommendations for their metadata standards, currently the DPLA Metadata Application Profile (DPLA MAP) version 5.0. Here are some key documents outlining the DPLA's requirements and recommendations.
 
 - [DPLA MAP 5.0 Introduction and Description](https://drive.google.com/file/d/1fJEWhnYy5Ch7_ef_-V48-FAViA72OieG/view)
 - [DPLA Metadata Quality Guidelines](https://docs.google.com/document/d/1dITqEYEWsMX1a2pLPmkL78k1LN2b4im03spn8_QFscY)
