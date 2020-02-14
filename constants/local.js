@@ -251,7 +251,32 @@ const LOCALS = {
     hasBrowseByPartner: false,
     hasSidebar: false,
     filters: [
-      "tags:PanAm"
+      "tags:aviation"
+    ],
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
+  },
+  blackwomensuffrage: {
+    theme: "blackwomensuffrage",
+    name: "Black Women Suffrage Portal",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    background: "home-hero-bg.png",
+    description: "",
+    hasAbout: true,
+    hasTerms: false,
+    hasBrowseByPartner: false,
+    hasSidebar: false,
+    filters: [
+      "tags:blackwomensuffrage"
     ],
     routes: {
       "/about" : {
