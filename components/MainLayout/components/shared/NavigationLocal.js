@@ -67,13 +67,6 @@ class NavigationLocal extends Component {
             </Link>
           </li>
       );
-      surveyHtml = (
-        <li>
-          <Link href="https://jyt67373.optimalworkshop.com/questions/idhh">
-            <a>Website Feedback</a>
-          </Link>
-        </li>
-      );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
@@ -126,7 +119,6 @@ class NavigationLocal extends Component {
         {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
-          {surveyHtml}
           <li>
             <Link href="//dp.la">
               <a>Visit DPLA</a>
