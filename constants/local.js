@@ -262,6 +262,38 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
+      },
+      "/browse-by-partner" : {
+        parentDir: "/browse-by-partner",
+        path: "browse-by-partner.md",
+        title: "Browse by Partner",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/browse-all" : {
+        parentDir: "/browse-all",
+        path: "browse-all.md",
+        title: "Browse All",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/primary-source-set" : {
+        parentDir: "/primary-source-set",
+        path: "primary-source-set.md",
+        title: "Primary Source Set",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/exhibition" : {
+        parentDir: "/exhibition",
+        path: "exhibition.md",
+        title: "Commercial Aviation Exhibition",
+        description: "",
+        isTopLevel: true,
+        category: "About"
       }
     }
   },
