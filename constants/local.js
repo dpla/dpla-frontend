@@ -249,7 +249,7 @@ const LOCALS = {
     description: "",
     hasAbout: true,
     hasTerms: false,
-    hasBrowseByPartner: false,
+    hasBrowseByPartner: true,
     hasSidebar: false,
     filters: [
       "tags:aviation"
@@ -263,37 +263,21 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
-      "/browse-by-partner" : {
-        parentDir: "/browse-by-partner",
-        path: "browse-by-partner.md",
-        title: "Browse by Partner",
-        description: "",
-        isTopLevel: true,
-        category: "About"
-      },
-      "/browse-all" : {
-        parentDir: "/browse-all",
-        path: "browse-all.md",
-        title: "Browse All",
-        description: "",
-        isTopLevel: true,
-        category: "About"
-      },
       "/primary-source-set" : {
         parentDir: "/primary-source-set",
-        path: "primary-source-set.md",
+        path: "",
         title: "Primary Source Set",
         description: "",
         isTopLevel: true,
-        category: "About"
+        category: "Primary Source Set"
       },
       "/exhibition" : {
         parentDir: "/exhibition",
-        path: "exhibition.md",
+        path: "",
         title: "Commercial Aviation Exhibition",
         description: "",
         isTopLevel: true,
-        category: "About"
+        category: "Commercial Aviation Exhibition"
       }
     }
   },

@@ -1,4 +1,4 @@
-#The Pan Am Commercial Aviation Portal
+# The Pan Am Commercial Aviation Portal
 
 Discover documents, photographs, advertisements, objects, reports, timetables, magazines, brochures, and more about the history of commercial aviation. 
 
@@ -6,9 +6,9 @@ The Commercial Aviation Portal features Pan American World Airways materials fro
 
 Below are some suggested topics to browse. 
 
-* Aircraft
-* Airlines
-* Airports
-* Pan American World Airways
-* Pilots and Flight Attendants
-* Air Travel
+* [Aircraft](about:blank)
+* [Airlines](about:blank)
+* [Airports](about:blank)
+* [Pan American World Airways](about:blank)
+* [Pilots and Flight Attendants](about:blank)
+* [Air Travel](about:blank)
