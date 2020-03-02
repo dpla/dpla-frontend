@@ -34,6 +34,7 @@ const LOCALS = {
     hasTerms: false,
     hasSidebar: true,
     hasBrowseByPartner: true,
+    hasBrowseAll: false,
     routes: {
       "/about" : {
         parentDir: "/about",
@@ -163,6 +164,7 @@ const LOCALS = {
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
     hasTerms: false,
+    hasBrowseAll: false,
     routes: {
       "/about": {
         parentDir: "/about",
@@ -190,6 +192,7 @@ const LOCALS = {
     hasAbout: false,
     hasTerms: false,
     hasBrowseByPartner: true,
+    hasBrowseAll: false
   },
   bigsky: {
     theme: "bigsky",
@@ -206,6 +209,7 @@ const LOCALS = {
     hasAbout: true,
     hasTerms: false,
     hasBrowseByPartner: true,
+    hasBrowseAll: false,
     hasSidebar: false,
     expandBody: true,
     routes: {
@@ -249,7 +253,8 @@ const LOCALS = {
     description: "",
     hasAbout: true,
     hasTerms: false,
-    hasBrowseByPartner: false,
+    hasBrowseByPartner: true,
+    hasBrowseAll: true,
     hasSidebar: false,
     filters: [
       "tags:aviation"
@@ -262,6 +267,22 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
+      },
+      "/primary-source-set" : {
+        parentDir: "/primary-source-set",
+        path: "",
+        title: "Primary Source Set",
+        description: "",
+        isTopLevel: true,
+        category: "Primary Source Set"
+      },
+      "/exhibition" : {
+        parentDir: "/exhibition",
+        path: "",
+        title: "Commercial Aviation Exhibition",
+        description: "",
+        isTopLevel: true,
+        category: "Commercial Aviation Exhibition"
       }
     }
   },
@@ -275,6 +296,7 @@ const LOCALS = {
     hasAbout: true,
     hasTerms: false,
     hasBrowseByPartner: false,
+    hasBrowseAll: false,
     hasSidebar: false,
     filters: [
       "tags:blackwomensuffrage"

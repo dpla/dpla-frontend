@@ -109,6 +109,13 @@ class NavigationLocal extends Component {
               </Link>
             </li>
           )}
+          {LOCALS[LOCAL_ID].hasBrowseAll && (
+            <li>
+              <Link prefetch href="/search">
+                <a>Browse All</a>
+              </Link>
+            </li>
+          )}
           <li>
             <Link prefetch href="/lists">
               <a>My Lists</a>
