@@ -311,3 +311,18 @@ Rev. Martin Luther King, Jr. leads the March on Washington for Jobs and Freedom 
 Voting Rights Act is passed, prohibiting state and local efforts to prevent Black men and women from exercising their right to vote as laid out in the 15th and 19th amendments. The bill represents a victory for Black women, who had been working for more than a century to win and then ensure the vote for Black women and men. 
 
 **2013**: US Supreme Court strikes down key component of Voting Rights Act, allowing nine states with a history of racial discrimination to change election laws without federal approval.
+
+#### Sources
+* https://www.aclu.org/blog/womens-rights/celebrate-womens-suffrage-dont-whitewash-movements-racism
+* https://www.nytimes.com/2018/07/28/opinion/sunday/suffrage-movement-racism-black-women.html
+* https://www.nps.gov/articles/african-american-women-and-the-nineteenth-amendment.htm
+* https://www.americanbar.org/groups/public_education/Programs/19th-amendment-centennial/toolkit/women-s-suffrage-timeline/
+* https://www.womenshistory.org/resources/general/african-american-reformers
+* https://www.senate.gov/artandhistory/history/People/Women/Nineteenth_Amendment_Vertical_Timeline.htm
+* http://digitalexhibits.auctr.edu/exhibits/show/womenwhochangedatlanta/neighborhoodunion/founding
+* https://www.womenshistory.org/resources/general/african-american-reformers
+* https://www.nps.gov/articles/national-womans-party-protests-world-war-i.htm
+* African American Women and the Vote 1837-1965, Edited by Ann D. Gordon with Bettye Collier Thomas, John H. Bracy, Arlene Voski Avakian and Joyce Avrech Berkman.
+* African American Women in the Struggle for the Vote, 1850-1920, Rosalyn Terborg-Penn. 
+* Black Women in White America: A Documentary History. Ed. Gerda Lerner.
+
