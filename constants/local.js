@@ -309,6 +309,22 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
+      },
+      "/timeline" : {
+          parentDir: "/timeline",
+          path: "timeline.md",
+          title: "Timeline",
+          description: "Black Women and the Vote",
+          isTopLevel: true,
+          category: "Timeline"
+      },
+      "/key-figures" : {
+        parentDir: "/key-figures",
+        path: "key-figures.md",
+        title: "Key Figures",
+        description: "",
+        isTopLevel: true,
+        category: "Key Figures"
       }
     }
   }
