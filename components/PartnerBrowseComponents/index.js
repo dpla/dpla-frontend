@@ -7,7 +7,7 @@ import utils from "stylesheets/utils.scss";
 import css from "./PartnerBrowseContent.scss";
 
 const Partner = ({ name, itemCount, facetName, index }) =>
-  <Link href={`/search?${facetName}="${name}"`}>
+  <Link href={`/search?${facetName}="${encodeURIComponent(name)}"`}>
     <a className={css.partnerLink}>
       <span className={css.name}>{name}</span>
       <span className={css.itemCount}>
