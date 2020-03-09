@@ -12,6 +12,7 @@ import MainContent from "components/SearchComponents/MainContent";
 import {
   getCurrentUrl,
   getDefaultThumbnail,
+  getItemThumbnail,
   getSearchPageTitle,
   joinIfArray
 } from "lib";
@@ -186,9 +187,7 @@ Search.getInitialProps = async context => {
       const aboutnessJson = await aboutnessRes.json();
       const aboutnessDocs = aboutnessJson.docs
         .map(result => {
-          const thumbnailUrl = result.object
-            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-            : getDefaultThumbnail(result.sourceResource.type);
+          const thumbnailUrl = getItemThumbnail(result);
           return Object.assign({}, result.sourceResource, {
             thumbnailUrl,
             id: result.id ? result.id : result.sourceResource["@id"],
@@ -217,9 +216,7 @@ Search.getInitialProps = async context => {
 
     let json = await res.json();
     const docs = json.docs.map(result => {
-      const thumbnailUrl = result.object
-        ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-        : getDefaultThumbnail(result.sourceResource.type);
+      const thumbnailUrl = getItemThumbnail(result);
       return Object.assign({}, result.sourceResource, {
         thumbnailUrl,
         id: result.id ? result.id : result.sourceResource["@id"],
