@@ -1,3 +1,4 @@
+
 $fuschia: #bd1187;
 
 $theme-dark-color: #000; //#1f1f1f;
@@ -44,4 +45,26 @@ $errorColor: $linkColor;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;  //here
 $outgoingLinkColor: $subLinkColor;
+
+Footer {
+  & .localLogo {
+    background: url("/static/local/blackwomensuffrage/logo_white.svg") no-repeat 0 0;
+    background-size: 300px auto;
+    background-position: left center;
+  }
+}
+
+HomeHero {
+  & .localLogo {
+    background-position: center center;
+  }
+}
+
+.localLogo {
+  background: url("/static/local/blackwomensuffrage/logo.svg") no-repeat 0 0;
+  max-width: 490px !important;
+  width: 490px !important;
+  height: 85px !important;
+  background-size: 400px auto;
+}
 
