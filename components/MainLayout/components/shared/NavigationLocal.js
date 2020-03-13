@@ -93,10 +93,12 @@ class NavigationLocal extends Component {
               </Link>
             </li>
           )}
-          {LOCALS[LOCAL_ID].hasAbout && (
+          {arbitraryHtml}
+          {contactHtml && contactHtml}
+          {LOCALS[LOCAL_ID].hasTerms && (
             <li>
-              <Link prefetch href="/local/about" as="/about">
-                <a>About</a>
+              <Link prefetch href="/terms">
+                <a>Terms and Conditions</a>
               </Link>
             </li>
           )}
@@ -107,12 +109,10 @@ class NavigationLocal extends Component {
               </Link>
             </li>
           )}
-          {arbitraryHtml}
-          {contactHtml && contactHtml}
-          {LOCALS[LOCAL_ID].hasTerms && (
+          {LOCALS[LOCAL_ID].hasBrowseAll && (
             <li>
-              <Link prefetch href="/terms">
-                <a>Terms and Conditions</a>
+              <Link prefetch href="/search">
+                <a>Browse All</a>
               </Link>
             </li>
           )}
@@ -126,7 +126,6 @@ class NavigationLocal extends Component {
         {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
-          {surveyHtml}
           <li>
             <Link href="//dp.la">
               <a>Visit DPLA</a>

@@ -9,6 +9,7 @@ export const possibleFacets = [
   "sourceResource.language.name",
   "admin.contributingInstitution",
   "provider.name"
+
 ];
 
 // assumed to be a superset of possibleFacets,
@@ -38,7 +39,8 @@ export const mapFacetsToURLPrettified = {
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
   intermediateProvider: "intermediateProvider",
-  rights: "standardizedRightsStatement"
+  rights: "standardizedRightsStatement",
+  tags: "tags"
 };
 
 export const mapURLPrettifiedFacetsToUgly = {
@@ -52,7 +54,8 @@ export const mapURLPrettifiedFacetsToUgly = {
   provider: "admin.contributingInstitution",
   partner: "provider.name",
   intermediateProvider: "intermediateProvider",
-  standardizedRightsStatement: "rights"
+  standardizedRightsStatement: "rights",
+  tags: "tags"
 };
 
 export const prettifiedFacetMap = {

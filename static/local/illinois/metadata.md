@@ -2,7 +2,7 @@
 
 ## Metadata Assessment and Remediation
 
-On their way to the DPLA catalog, your institution’s collections will first be assessed by the IDHH. We will work with you to make any changes required or recommended by the DPLA.
+On their way to the DPLA catalog, your institution's collections will first be assessed by the IDHH. We will work with you to make any changes required or recommended by the DPLA.
 
 If you have already contributed collections and want to improve your metadata, you might start by checking with any collection assessments provided by the [metadata manager](/about/contact) or contacting them directly.
 

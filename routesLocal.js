@@ -22,11 +22,6 @@ module.exports.static = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
-  server.get(["/about"], (req, res) => {
-    const actualPage = "/local/about";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  });
-
   server.get(["/terms"], (req, res) => {
     const actualPage = "/local/terms";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);

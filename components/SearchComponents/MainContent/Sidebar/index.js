@@ -225,7 +225,7 @@ class Sidebar extends React.Component {
           items={Object.keys(facets).map((key, i) => {
             if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1)
               return "";
-            if (key.indexOf("sourceResource.date") === -1) {
+            if (key.indexOf("sourceResource.date") === -1 && key.indexOf("tags") === -1) {
               return {
                 name: prettifiedFacetMap[key],
                 // first two items should be expanded as well as any items

@@ -1,0 +1,45 @@
+$theme-dark-color: #111; //#1f1f1f;
+$theme-link-color: #be5709;
+$theme-main-color: darken($theme-link-color, 30%);
+$theme-background-color: #f9f6f0;
+$theme-colder-tint: rgb(245, 245, 245);
+$theme-warmer-tint: lighten($theme-main-color, 89%);
+
+$heroBackgroundColor: darken($theme-link-color, 33%);
+
+$linkColor: $theme-link-color;
+$linkHoverColor: lighten($linkColor, 10%);
+$visitedLinkColor: darken($linkColor, 10%);
+$paginationLinkColor: $linkColor;
+$headingColor: $theme-dark-color;
+$navColor: $theme-dark-color;
+$userSiteColor: $theme-main-color;
+$mobileNavColor: mix($theme-dark-color, $theme-main-color);
+$mobileNavMenuButtonOpen: lighten($theme-dark-color, 5%);
+$secondaryButtonColor: $linkColor;
+$secondaryColor: $secondaryButtonColor;
+$primaryBulletColor: $secondaryButtonColor;
+$secondaryBulletColor: $linkColor;
+$darkSecondaryButtonColor: mix($theme-dark-color, $theme-main-color);
+$warmerBackgroundColor: mix($theme-warmer-tint, $theme-background-color);
+// $darkerBackgroundColor: darken($warmerBackgroundColor, 20%);
+$colderBackgroundColor: mix($theme-colder-tint, $theme-background-color, 25%);
+// $lightBorderColor: #e7e7e7;
+$darkBorderColor: $theme-main-color;
+// $lightLinkColor: $casablancaOrange;
+// $featuredBannerColor: $casablancaOrange;
+$subLinkColor: $linkColor;
+$subLinkColorHover: darken($linkColor, 10%);
+// $outgoingLinkColor: $subLinkColor;
+// $dimmedTextColor: $dimmerGray;
+$donateFormButtonColor: $theme-dark-color;
+// $outlineColor: $casablancaOrange;
+$formLabelColor: $theme-dark-color;
+$errorColor: $linkColor;
+// $radioButtonColor: $gainsboroGray;
+// $memberColor: #006d84;
+// $featureBackgroundColor: #cbe3e8;
+$footerLightColor: $theme-main-color;
+$footerDarkColor: $mobileNavColor;
+$outgoingLinkColor: $subLinkColor;
+
