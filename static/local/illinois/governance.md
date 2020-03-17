@@ -12,7 +12,7 @@
 
 **Governance**  
 Focus: Maintaining and representing partners  
-Convener: **Sandra Fritz**, Illinois State Library
+Convener: **Anne Craig**, Consortium of Academic and Research Libraries in Illinois
 
 **Funding and Sustainability**  
 Convener: **Sandra Fritz**, Illinois State Library
