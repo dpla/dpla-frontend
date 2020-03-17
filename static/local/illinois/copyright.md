@@ -8,7 +8,7 @@ For most items in a digital collection, the standardized statements from RightsS
 
 ![Rights Statement Selection Tool](/static/local/illinois/rights-statement-selection-tool.jpg  "Rights Statement Selection Tool")
 
-[CC-BY-2.0](https://creativecommons.org/licenses/by/2.0/). Gabriel Galson, “Rights Statement Selection Tool,” 2018. [http://bit.ly/RightsTool](http://bit.ly/RightsTool)
+_[CC-BY-2.0](https://creativecommons.org/licenses/by/2.0/). Gabriel Galson, “Rights Statement Selection Tool,” 2018. [http://bit.ly/RightsTool](http://bit.ly/RightsTool)_
 
 URIs to Rights Statements or CC Licenses will allow the DPLA to easily populate the catalog display with data from the linked data endpoint. For detailed instructions about implementing rights statements for your contribution to the IDHH, see the [DPLA Standardized Rights Statements Implementation Guidelines](https://docs.google.com/document/d/1aInokOIIsgf-B4iMTXU33qYN5B2jA3s91KgWoh7DZ7Q/edit).
 
@@ -21,5 +21,6 @@ Please note that the IDHH can neither provide legal advice nor can we assist in 
 - [Copyright Term and the Public Domain in the United States](http://copyright.cornell.edu/resources/publicdomain.cfm)
 - [IDHH Copyright and Standardized Rights Statements for Digital Collections (Video)](https://www.railslibraries.info/events/151660)
 - [Rights Statements Webinar (DPLA)](https://pro.dp.la/events/workshops#rights)
+- [IDHH Rights Statement Implementation Guide](/for-contributors/rights-statements-guide)
 
 The Rights Statement guide was created by Kaylen Dwyer, graduate assistant at Scholarly Communications and Publishing of the University of Illinois, Urbana-Champaign Library on June 13, 2019.

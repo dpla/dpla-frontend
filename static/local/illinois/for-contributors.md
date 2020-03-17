@@ -14,6 +14,6 @@ New providers or current contributors whose OAI endpoints have changed should co
 
 ## How it works
 
-Institutions provide their metadata to the IDHH, usually via [OAI-PMH 2.0](http://www.openarchives.org/pmh/). If your institution's system is capable of providing an OAI feed but you're not sure how to set it up, we can help. If your system is unable to provide an OAI feed or if you’re unsure, we can also accept XML files. All metadata should be mapped to [Qualified Dublin Core](http://www.dublincore.org/specifications/dublin-core/dcmi-terms/). If your metadata is not currently mapped to Qualified Dublin Core, the IDHH can work with you to begin the mapping process.
+Institutions provide their metadata to the IDHH, usually via [OAI-PMH 2.0](http://www.openarchives.org/pmh/). If your institution’s system is capable of providing an OAI feed but you’re not sure how to set it up, we can help. If your system is unable to provide an OAI feed or if you’re unsure, we can also accept XML files. All metadata should be mapped to [Qualified Dublin Core](http://www.dublincore.org/specifications/dublin-core/dcmi-terms/). If your metadata is not currently mapped to Qualified Dublin Core, the IDHH can work with you to begin the mapping process.
 
 The IDHH uses the open-source application [REPOX](http://repox.sysresearch.org) to harvest and aggregate collection metadata from all contributing institutions. DPLA then harvests a single stream of all aggregated metadata from the IDHH REPOX server for inclusion in the DPLA catalog.
