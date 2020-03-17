@@ -9,7 +9,7 @@ _Image courtesy of the [Chicago History Museum](/search?provider=%22Chicago%20Hi
 _Images courtesy of the [Illinois Prairie District Public Library](/search?provider=%22Illinois%20Prairie%20District%20Public%20Library%22) and [Quincy Public Library](/search?provider=%22Quincy%20Public%20Library%22)_
 
 [**Flyer for grades 8-12, college students**](https://uofi.box.com/s/6vdp8p8c7m823xc9czkyyjiwaw0ee6sb)  
-_Images courtesy of the [University of Illinois at Chicago](search?provider=%22University%20of%20Illinois%20at%20Chicago%22)_
+_Images courtesy of the [University of Illinois at Chicago](/search?provider=%22University%20of%20Illinois%20at%20Chicago%22)_
 
 [**Handout for students grades K-12**](https://uofi.box.com/s/csulciel1k00trytboyduf0470ojejwm)  
 _Image courtesy of [Illinois State University Milner Library](/search?provider=%22Illinois%20State%20University%22)_
