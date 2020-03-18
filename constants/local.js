@@ -132,6 +132,14 @@ const LOCALS = {
         isTopLevel: false,
         category: "For Contributors"
       },
+      "/for-contributors/subject-metadata-guide": {
+        parentDir: "/for-contributors",
+        path: "subject-metadata-guide.md",
+        title: "Subject Metadata Guide",
+        description: "",
+        isTopLevel: false,
+        category: "For Contributors"
+      },
       "/for-contributors/type-metadata-guide": {
         parentDir: "/for-contributors",
         path: "type-metadata-guide.md",
