@@ -321,7 +321,7 @@ A Rhode Island state organizer says of Calvin Coolidge's 1924 presidential win, 
 * [Timeline: The Senate and the 19th Amendment](https://www.senate.gov/artandhistory/history/People/Women/Nineteenth_Amendment_Vertical_Timeline.htm)
 * [The Founding of the Neighborhood Union](http://digitalexhibits.auctr.edu/exhibits/show/womenwhochangedatlanta/neighborhoodunion/founding)
 * [National Woman's Party Protests During World War I](https://www.nps.gov/articles/national-womans-party-protests-world-war-i.htm)
-* [African American Women and the Vote 1837-1965](), Edited by Ann D. Gordon with Bettye Collier Thomas, John H. Bracy, Arlene Voski Avakian and Joyce Avrech Berkman.
-* [African American Women in the Struggle for the Vote](), 1850-1920, Rosalyn Terborg-Penn. 
-* [Black Women in White America: A Documentary History](). Ed. Gerda Lerner.
+* [African American Women and the Vote 1837-1965](https://www.goodreads.com/book/show/556034.African_American_Women_and_the_Vote_1837_1965), Edited by Ann D. Gordon with Bettye Collier Thomas, John H. Bracy, Arlene Voski Avakian and Joyce Avrech Berkman.
+* [African American Women in the Struggle for the Vote](https://www.goodreads.com/book/show/1231250.African_American_Women_in_the_Struggle_for_the_Vote_1850_1920), 1850-1920, Rosalyn Terborg-Penn. 
+* [Black Women in White America: A Documentary History](https://www.goodreads.com/book/show/544215.Black_Women_in_White_America). Ed. Gerda Lerner.
 
