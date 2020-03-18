@@ -318,8 +318,8 @@ const LOCALS = {
       }
     }
   },
-  blackwomensuffrage: {
-    theme: "blackwomensuffrage",
+  blackwomenssuffrage: {
+    theme: "blackwomenssuffrage",
     name: "Black Women Suffrage Portal",
     favicon: "favicon.png",
     logo: "logo.png",
