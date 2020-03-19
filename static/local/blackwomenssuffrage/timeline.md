@@ -154,7 +154,7 @@ Kentucky reverses allowing female voting in school elections to prevent Black wo
 
 Mary Church Terrell challenges the idea of "educated suffrage" that was used to bar not only Blacks but immigrants from voting. (Terborg-Penn, p. 68)
 
-[Alpha Kappa Alpha](/search?q=Alpha Kappa Alpha) sorority is founded at [Howard University](/search?q=Howard+University).
+[Alpha Kappa Alpha](/search?q=Alpha+Kappa+Alpha) sorority is founded at [Howard University](/search?q=Howard+University).
 
 The [Equal Suffrage League](/search?q=Equal+Suffrage+League), led by [Sarah Garnet](/search?q=Sarah+Garnet), collects petition signatures in favor of women's suffrage legislation.
 
@@ -218,7 +218,7 @@ Mississippi Senator John Sharpe Williams proposes an amendment to the Anthony su
 
 James Calloway writes an article for the Macon Telegraph in which he attempts to discredit Susan B. Anthony by pointing out her friendships with Black women. His article is reprinted and circulated by suffrage opponents.
 
-Black women in New York City found four chapters of [Negro Women Voters](/search?q=Negro+Women+Voters) across Queens County and, in Harlem, Black women found the [Women's Non-Partisan League](/search?q=Women's+Non-Partisan+League]).
+Black women in New York City found four chapters of [Negro Women Voters](/search?q=Negro+Women+Voters) across Queens County and, in Harlem, Black women found the [Women's Non-Partisan League](/search?q=Women's+Non-Partisan+League).
 
 [Gertrude E. Curtis](/search?q=Gertrude+E.+Curtis) and [Laura B. Fisher](/search?q=Laura+B.+Fisher) are chosen as delegates to the New York State Republican convention.
 
