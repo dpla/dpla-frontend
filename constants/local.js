@@ -320,7 +320,7 @@ const LOCALS = {
   },
   blackwomenssuffrage: {
     theme: "blackwomenssuffrage",
-    name: "Black Women Suffrage Portal",
+    name: "Black Womens' Suffrage Portal",
     favicon: "favicon.png",
     logo: "logo.png",
     background: "home-hero-bg.png",
