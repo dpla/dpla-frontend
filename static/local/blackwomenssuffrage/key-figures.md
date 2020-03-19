@@ -2,34 +2,34 @@
 ### 1785-1884
 Charlotte Vandine Forten was the matriarch of a financially well-off and prominent Black family in Philadelphia, Pennsylvania. Forten's husband James was a sailmaker. Her daughters Margaretta Forten, Sarah Louise Forten Purvis and Harriet D. Forten Purvis, often referred to as the "Forten Sisters," were, along with their parents, active in the abolitionist movement. James Forten was a member of the American Anti-Slavery Society, but as the group did not permit women to join, Charlotte and her daughters joined with a like-minded group of women to form the Phiadelphia Female Anti-Slavery Society in 1833. This was the first biracial organization of female abolitionists in the United States, and one of six abolitionist groups the Forten family helped to found and finance. 
 
-* http://www.womenhistoryblog.com/2017/01/the-forten-sisters.html
-* https://www.pbs.org/wgbh/aia/part3/3p477.html
+* [History of American Women: The Forten Sisters](http://www.womenhistoryblog.com/2017/01/the-forten-sisters.html)
+* [PBS: The Forten Women](https://www.pbs.org/wgbh/aia/part3/3p477.html)
 
 ## Harriet Forten Purvis
 ### 1810-1875
 One of the well-known "Forten Sisters," Harriet Forten Purvis was the daughter of Charlotte Vandine Forten and James Forten, prominent Black abolitionists from Philadelphia, Pennsylvania. Like her sisters, she was an active abolitionist and suffragist. She helped establish the Philadelphia Female Anti-Slavery Society along with her mother and sisters; it was the first biracial women's abolitionist group in the United States. Forten served as a co-chair of the society's fairs, which raised money for the group's anti-slavery work. She also served on the society's sewing committee, which established a sewing school in a poor area of Philadelphia. She was active in the group's boycott of goods, including cotton and fruits and vegetables, that were produced with slave labor. In 1832, Forten married Robert Purvis, with whom she had five children. Purvis, who was of mixed race, was the scion of another prominent abolitionist family from Philadelphia, and the two were at the center of Philadelphia's abolitionist community. They welcomed fugitive slaves into their Byberry, Pennsylvania, home, which became a major station on the Underground Railroad. Abolition, however, was not Forten Purvis's only cause--she was also a firm believer in equality for all and women's rights. Along with her sister Margaretta, she helped organize the fifth National Woman's Rights Convention in Philadelphia in 1854 and was active with the American Equal Rights Association (AERA),  a biracial group that advocated for universal suffrage. Forten Purvis also lectured on civil rights topics, speaking out against segregation in the years after the Civil War.
 
-* https://suffragistmemorial.org/harriet-forten-purvis-1810-1875/
-* https://hsp.org/sites/default/files/legacy_files/migrated/pfasminutesgeneralactivities.pdf
-* https://www.pbs.org/wgbh/aia/part3/3p477.html
-* https://www.scholastic.com/teachers/articles/teaching-content/chronology-woman-suffrage-movement-events/
-* Black Women in America: An Historical Encyclopedia
+* [Turning Point Suffragist Memorial: Harriet Forten Purvis (1810 – 1875)](https://suffragistmemorial.org/harriet-forten-purvis-1810-1875/)
+* [Minute Books of the Philadelphia Female Anti-Slavery Society,  1833-38](https://hsp.org/sites/default/files/legacy_files/migrated/pfasminutesgeneralactivities.pdf)
+* [PBS: The Forten Women](https://www.pbs.org/wgbh/aia/part3/3p477.html)
+* [Chronology of Woman Suffrage Movement Events](https://www.scholastic.com/teachers/articles/teaching-content/chronology-woman-suffrage-movement-events/)
+* [Black Women in America: An Historical Encyclopedia](https://www.goodreads.com/book/show/1449467.Black_Women_in_America)
 
 ## Margaretta Forten
 ### c.1815-1875 
 A member of the prominent Forten family of Philadelphia, Pennsylvania, Margaretta joined her sisters and mother in becoming a charter member of the Philadelphia Female Anti-Slavery Society in 1833 and was selected along with 13 others to draft the group's constitution. Like her sister Harriet Forten Purivs, Forten remained active in the group for its nearly four decades of existence, serving at different points as its recording secretary and treasurer and representing the group at statewide abolitionist meetings. She worked on the society's membership, education, petition campaign and annual antislavery fair committees, and was particularly active in the donation of books to Black schools. She also raised money for charitable causes related to abolition. Forten was an ardent suffragist, and was a member of the biracial American Equal Rights Association (AERA). She helped collect petitions for the Women's National League and helped organize the 1854 National Women's Rights Convention in Philadelphia. In addition to her work as an abolitionist and suffragist, Forten worked as an educator for nearly four decades, teaching and then founding her own grammar school in 1850. Forten never married, and cared for her parents in their later years. 
 
-* http://www.womenhistoryblog.com/2017/01/the-forten-sisters.html
-* https://suffragistmemorial.org/suffragists-in-pennsylvania/
-* Black Women in America: An Historical Encyclopedia
+* [History of American Women: The Forten Sisters](http://www.womenhistoryblog.com/2017/01/the-forten-sisters.html)
+* [Turning Point Suffragist Memorial: Suffragists in Pennsylvania](https://suffragistmemorial.org/suffragists-in-pennsylvania/)
+* [Black Women in America: An Historical Encyclopedia](https://www.goodreads.com/book/show/1449467.Black_Women_in_America)
 
 ## Harriet Purvis, Jr. 
 ### 1839-1904
 The daughter of prominent abolitionists and equal rights activists Harriet Forten Purvis and Robert Purvis, Harriet Purvis, Jr., known as Hattie, grew up in a household that was at the center of the abolitionist movement in Pennsylvania, as well as a stop on the Underground Railroad. Her parents associated with a variety of well-known social reformers including Susan B. Anthony and Lucretia Mott. She attended the highly progressive Friends Eagleswood School, a coeducational and biracial institution in Perth Amboy, New Jersey, founded by abolitionist Theodore Weld. From a young age, Purvis was active in abolitionist and women's rights work. Considered part of the second generation of American suffragists, she became a member of the Philadelphia Female Anti-Slavery Society, founded in part by her grandmother, mother and aunts,  in 1866. From 1866 to 1869, she worked with her mother on the group's annual anti-slavery fair to raise funds for the group's abolitionist activities. A committed suffragist, she attended the 1866 National Woman's Rights Convention and became a member of the American Equal Rights Association (AERA), a group she served as corresponding and recording secretary until the group ceased operations in 1869. She joined the Pennsylvania Woman's Suffrage Association, serving on its executive committee, and was a delegate to the National American Woman's Suffrage Association from 1883 to 1900, as well as the group's  first African-American vice president. She worked closely for much of her life with Susan B. Anthony to advocate for women's rights. Purvis was also active in the temperance movement, joining the Women's Christian Temperance Union (WCTU) and encouraging Black women to embrace the movement. 
 
-* https://www.smith.edu/libraries/libs/ssc/atg/socialawareness.html
-* https://search.alexanderstreet.com/view/work/bibliographic_entity%7Cbibliographic_details%7C3975725/biographical-sketch-harriet-purvis#page/1/mode/1/chapter/bibliographic_entity|bibliographic_details|3975725
-* Black Women in America: An Historical Encyclopedia
+* [Across the Generations: Exploring US History Through Family Papers](https://www.smith.edu/libraries/libs/ssc/atg/socialawareness.html)
+* [Biography of HARRIET HATTIE PURVIS, 1839-1904](https://search.alexanderstreet.com/view/work/bibliographic_entity%7Cbibliographic_details%7C3975725/biographical-sketch-harriet-purvis#page/1/mode/1/chapter/bibliographic_entity|bibliographic_details|3975725)
+* [Black Women in America: An Historical Encyclopedia](https://www.goodreads.com/book/show/1449467.Black_Women_in_America)
 
 
 ## Angelina Weld Grimk&eacute;
