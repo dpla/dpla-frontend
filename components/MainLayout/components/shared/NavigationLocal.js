@@ -72,7 +72,7 @@ class NavigationLocal extends Component {
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
             <Link href={LOCALS[LOCAL_ID].externalLink}>
-              <a>Visit {LOCALS[LOCAL_ID].name}</a>
+              <a href={LOCALS[LOCAL_ID].externalLink}>Visit {LOCALS[LOCAL_ID].name}</a>
             </Link>
           </li>
         </ul>
@@ -127,9 +127,7 @@ class NavigationLocal extends Component {
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
           <li>
-            <Link href="//dp.la">
-              <a>Visit DPLA</a>
-            </Link>
+              <a  href="//dp.la">Visit DPLA</a>
           </li>
         </ul>
       </div>
