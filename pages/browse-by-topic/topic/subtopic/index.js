@@ -9,7 +9,7 @@ import {
   decodeHTMLEntities,
   extractItemId,
   getCurrentUrl,
-  getDefaultThumbnail
+  getItemThumbnail
 } from "lib";
 
 import {
@@ -130,9 +130,7 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
         linkHref: `/item?itemId=${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
-        thumbnailUrl: itemJson.docs[0].object
-          ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${itemDplaId}`
-          : getDefaultThumbnail(itemJson.docs[0].sourceResource.type),
+        thumbnailUrl: getItemThumbnail(itemJson.docs[0]),
         sourceUrl: itemJson.docs[0].isShownAt,
         date: itemJson.docs[0].sourceResource.date,
         creator: itemJson.docs[0].sourceResource.creator,

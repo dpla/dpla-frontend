@@ -17,7 +17,7 @@ import {
   getCurrentUrl,
   getCurrentFullUrl,
   joinIfArray,
-  getDefaultThumbnail,
+  getItemThumbnail,
   getRandomItemIdAsync
 } from "lib";
 
@@ -94,9 +94,7 @@ ItemDetail.getInitialProps = async context => {
     const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
     const json = await res.json();
     const doc = json.docs[0];
-    const thumbnailUrl = doc.object
-      ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${doc.id}`
-      : getDefaultThumbnail(doc.sourceResource.type);
+    const thumbnailUrl = getItemThumbnail(doc);
     const date = doc.sourceResource.date &&
       Array.isArray(doc.sourceResource.date)
       ? doc.sourceResource.date[0]

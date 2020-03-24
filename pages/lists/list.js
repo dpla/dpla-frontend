@@ -14,7 +14,7 @@ import {
   addLinkInfoToResults,
   deepCopyObject,
   getCurrentUrl,
-  getDefaultThumbnail
+  getItemThumbnail
 } from "lib";
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
@@ -76,9 +76,7 @@ class List extends React.Component {
       const items = json.docs
         .filter(result => result.error === undefined)
         .map(result => {
-          const thumbnailUrl = result.object
-            ? `${currentUrl}${THUMBNAIL_ENDPOINT}/${result.id}`
-            : getDefaultThumbnail(result.sourceResource.type);
+          const thumbnailUrl = getItemThumbnail(result);
           return Object.assign({}, result.sourceResource, {
             thumbnailUrl,
             id: result.id ? result.id : result.sourceResource["@id"],
