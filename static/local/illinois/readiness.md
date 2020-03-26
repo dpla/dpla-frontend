@@ -23,4 +23,4 @@
 
 1. Does your institution have a specific staff member who can work with the IDHH on any issues related to contributing your collections’ metadata? This is not a requirement but please let us know if the contact person for metadata and harvest issues is different from your institution’s main contact.
 
-This document was adapted from PA Digital’s [Readiness Checklist](https://padigital.org/pa-digital-readiness/). Thanks to PA Digital for developing this document and fostering re-use.
+This document was adapted from PA Digital's [Readiness Checklist](https://padigital.org/pa-digital-readiness/). Thanks to PA Digital for developing this document and fostering re-use.

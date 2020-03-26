@@ -26,7 +26,8 @@ class QA extends React.Component {
     const divStyle = {
       float: "left",
       width: "48%",
-      paddingLeft: "20px"
+      paddingLeft: "20px",
+      display: "none"
     };
     let originalRecord = "";
     if ("stringValue" in item.originalRecord) {

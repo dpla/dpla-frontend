@@ -67,19 +67,12 @@ class NavigationLocal extends Component {
             </Link>
           </li>
       );
-      surveyHtml = (
-        <li>
-          <Link href="https://jyt67373.optimalworkshop.com/questions/idhh">
-            <a>Website Feedback</a>
-          </Link>
-        </li>
-      );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
             <Link href={LOCALS[LOCAL_ID].externalLink}>
-              <a>Visit {LOCALS[LOCAL_ID].name}</a>
+              <a href={LOCALS[LOCAL_ID].externalLink}>Visit {LOCALS[LOCAL_ID].name}</a>
             </Link>
           </li>
         </ul>
@@ -100,10 +93,12 @@ class NavigationLocal extends Component {
               </Link>
             </li>
           )}
-          {LOCALS[LOCAL_ID].hasAbout && (
+          {arbitraryHtml}
+          {contactHtml && contactHtml}
+          {LOCALS[LOCAL_ID].hasTerms && (
             <li>
-              <Link prefetch href="/local/about" as="/about">
-                <a>About</a>
+              <Link prefetch href="/terms">
+                <a>Terms and Conditions</a>
               </Link>
             </li>
           )}
@@ -114,12 +109,10 @@ class NavigationLocal extends Component {
               </Link>
             </li>
           )}
-          {arbitraryHtml}
-          {contactHtml && contactHtml}
-          {LOCALS[LOCAL_ID].hasTerms && (
+          {LOCALS[LOCAL_ID].hasBrowseAll && (
             <li>
-              <Link prefetch href="/terms">
-                <a>Terms and Conditions</a>
+              <Link prefetch href="/search">
+                <a>Browse All</a>
               </Link>
             </li>
           )}
@@ -133,11 +126,8 @@ class NavigationLocal extends Component {
         {visitHtml && visitHtml}
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
-          {surveyHtml}
           <li>
-            <Link href="//dp.la">
-              <a>Visit DPLA</a>
-            </Link>
+              <a  href="//dp.la">Visit DPLA</a>
           </li>
         </ul>
       </div>

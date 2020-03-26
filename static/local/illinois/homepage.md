@@ -146,6 +146,6 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
   Videos include interviews with Illinois veterans, theatrical performances, lectures, historical footage, and more
 
-## [IDHH Highlights Blog](https://ildplacollections.wordpress.com/)
+## [IDHH Highlights Blog](http://finditillinois.org/idhh/)
 
 Check out the collections highlights blog for new posts about every two weeks. The IDHH highlights newly-provided contributors and collections as well as items relevant to certain holidays and current or historical events. If you are from an IDHH provider institution and have an idea for a post on your contributed collections, contact the [IDHH metadata manager](/about/contact).

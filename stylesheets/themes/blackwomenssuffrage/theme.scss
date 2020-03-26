@@ -1,0 +1,70 @@
+
+$fuschia: #bd1187;
+
+$theme-dark-color: #000; //#1f1f1f;
+$theme-link-color: $fuschia;
+$theme-main-color: desaturate(lighten($fuschia, 55%), 75%);
+$theme-background-color: lighten($theme-main-color, 5%);
+$theme-colder-tint: rgb(245, 245, 245);
+$theme-warmer-tint: lighten($theme-main-color, 30%); //good
+
+$heroBackgroundColor: darken($theme-main-color, 30%);
+
+$linkColor: $theme-link-color;
+$linkHoverColor: lighten($linkColor, 10%);
+$visitedLinkColor: darken($linkColor, 10%);
+$paginationLinkColor: $linkColor;
+$headingColor: $theme-dark-color;
+$navColor: $theme-dark-color;
+$userSiteColor: $theme-main-color;
+$mobileNavColor: lighten(desaturate($theme-dark-color, 40%), 10%);
+$mobileNavMenuButtonOpen: lighten($theme-dark-color, 5%);
+$secondaryButtonColor: $linkColor;
+$secondaryColor: $secondaryButtonColor;
+$primaryBulletColor: $secondaryButtonColor;
+$secondaryBulletColor: $linkColor;
+$darkSecondaryButtonColor: mix($theme-dark-color, $theme-main-color);
+$warmerBackgroundColor: mix($theme-warmer-tint, $theme-background-color);
+// $darkerBackgroundColor: darken($warmerBackgroundColor, 20%);
+$colderBackgroundColor: mix($theme-colder-tint, $theme-background-color, 25%);
+// $lightBorderColor: #e7e7e7;
+$darkBorderColor: $theme-main-color;
+// $lightLinkColor: $casablancaOrange;
+// $featuredBannerColor: $casablancaOrange;
+$subLinkColor: $linkColor;
+$subLinkColorHover: darken($linkColor, 10%);
+// $outgoingLinkColor: $subLinkColor;
+// $dimmedTextColor: $dimmerGray;
+$donateFormButtonColor: $theme-dark-color;
+// $outlineColor: $casablancaOrange;
+$formLabelColor: $theme-dark-color;
+$errorColor: $linkColor;
+// $radioButtonColor: $gainsboroGray;
+// $memberColor: #006d84;
+// $featureBackgroundColor: #cbe3e8;
+$footerLightColor: $theme-main-color;
+$footerDarkColor: $mobileNavColor;  //here
+$outgoingLinkColor: $subLinkColor;
+
+Footer {
+  & .localLogo {
+    background: url("/static/local/blackwomenssuffrage/logo_white.svg") no-repeat 0 0;
+    background-size: 300px auto;
+    background-position: left center;
+  }
+}
+
+HomeHero {
+  & .localLogo {
+    background-position: center center;
+  }
+}
+
+.localLogo {
+  background: url("/static/local/blackwomenssuffrage/logo.svg") no-repeat 0 0;
+  max-width: 490px !important;
+  width: 490px !important;
+  height: 85px !important;
+  background-size: 400px auto;
+}
+

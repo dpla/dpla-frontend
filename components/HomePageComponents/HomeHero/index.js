@@ -10,7 +10,7 @@ import css from "./HomeHero.scss";
 
 const bgImage = SITE_ENV !== "local"
   ? "/static/images/home-hero-bg.png"
-  : `/static/local/${LOCALS[LOCAL_ID].theme}/home-hero-bg.jpg`;
+  : `/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID].background}`;
 
 const HomeHero = ({ headerDescription, feature }) =>
   <div
