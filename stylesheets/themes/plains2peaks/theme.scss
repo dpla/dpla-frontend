@@ -53,6 +53,11 @@ a {
   color: rgb(0, 114, 148) !important;
 }
 
+div.links {
+  visibility: hidden !important;
+}
+
+
 $linkColor: $theme-link-color;
 <<<<<<< HEAD
 $linkHoverColor: brighten($linkColor, 10%);

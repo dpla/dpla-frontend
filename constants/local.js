@@ -26,7 +26,7 @@ const LOCALS = {
     description: "",
     locationFacet: "%22Colorado%20OR%20Wyoming%22",
     subjectFacet: "%22Colorado%20OR%20Wyoming%22",
-    hasAbout: false,
+    hasAbout: true,
     hasTerms: false,
     hasContact: true
   },
