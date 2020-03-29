@@ -2,6 +2,7 @@ const LOCALS = {
   plains2peaks: {
     theme: "plains2peaks",
     provider: "%22Plains%20to%20Peaks%20Collective%22",
+    background: "home-hero-bg.jpg",
     name: "Plains to Peaks Collective",
     favicon: "favicon.png",
     logo: "logo.png",
