@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $theme-main-color: #ddd; //footer
 $theme-dark-color: #1f1f1f; //header
 $theme-link-color: #382F2D;
@@ -7,6 +8,17 @@ $theme-warmer-tint: lighten($theme-main-color, 36%); //bottom bar
 
 $linkColor: $theme-link-color;
 $linkHoverColor: lighten($linkColor, 10%);
+=======
+$theme-main-color: #eeeeee; //footer
+$theme-dark-color: #1f1f1f; //header
+$theme-link-color: #F0B323; //button //0055d4 //47596d //002d66
+$theme-background-color: #f9f6f0;
+$theme-colder-tint: rgb(245, 245, 245);
+$theme-warmer-tint: lighten($theme-main-color, 70%);
+
+$linkColor: $theme-link-color;
+$linkHoverColor: brighten($linkColor, 10%);
+>>>>>>> bba9c5c... initial implementation
 $visitedLinkColor: darken($linkColor, 10%);
 $paginationLinkColor: $linkColor;
 $headingColor: $theme-dark-color;
@@ -39,4 +51,7 @@ $errorColor: $linkColor;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
+<<<<<<< HEAD
 $outgoingLinkColor: $subLinkColor;
+=======
+>>>>>>> bba9c5c... initial implementation

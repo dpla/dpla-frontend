@@ -17,6 +17,19 @@ const LOCALS = {
     hasTerms: false,
     hasBrowseByPartner: true
   },
+  plains2peaks: {
+    theme: "plains2peaks",
+    provider: "%22Plains%20to%20Peaks%20Collective%22",
+    name: "Plains to Peaks Collective",
+    favicon: "favicon.png",
+    logo: "logo.png",
+    description: "",
+    locationFacet: "%22Colorado OR Wyoming%22",
+    subjectFacet: "%22Colorado OR Wyoming%22",
+    hasAbout: false,
+    hasTerms: false,
+    hasContact: true
+  },
   illinois: {
     theme: "illinois",
     filters: [
