@@ -39,7 +39,7 @@
     "html-entities": "^1.2.1",
     "html-webpack-plugin": "^3.2.0",
     "moment": "^2.24.0",
-    "next": "9.0.2",
+    "next": "9.3.2",
     "node-sass": "^4.12.0",
     "nookies": "^2.0.8",
     "openseadragon": "^2.4.1",
