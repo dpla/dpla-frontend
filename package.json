@@ -12,8 +12,6 @@
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
-    "test": "jest --watch",
-    "test:ci": "jest --ci",
     "snyk-protect": "snyk protect"
   },
   "dependencies": {
