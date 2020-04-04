@@ -11,7 +11,8 @@
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
-    "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
+      "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
+      "test": "mocha",
     "snyk-protect": "snyk protect"
   },
   "dependencies": {
