@@ -303,7 +303,7 @@ const LOCALS = {
     name: "Aviation Portal",
     favicon: "favicon.png",
     logo: "aviation-logo.png",
-    background: "aviation-banner.png",
+    background: "aviation-banner.jpg",
     description: "",
     hasAbout: true,
     hasTerms: false,
