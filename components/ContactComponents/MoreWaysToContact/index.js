@@ -2,16 +2,6 @@ import React from "react";
 
 import css from "./MoreWaysToContact.scss";
 
-// const Telephone = () =>
-//   <tr className={`row ${css.paddedRow}`}>
-//     <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
-//       Telephone
-//     </td>
-//     <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
-//       617-859-2116
-//     </td>
-//   </tr>;
-
 const MoreWaysToContact = () => (
   <div className={css.contactForm}>
     <h2 className={css.header}>More Ways To Contact Us</h2>
@@ -25,6 +15,14 @@ const MoreWaysToContact = () => (
             <a className={css.mailToLink} href="mailto:info@dp.la">
               info@dp.la
             </a>
+          </td>
+        </tr>
+        <tr className={`row ${css.paddedRow}`}>
+          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+            Telephone
+          </td>
+          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+            888-444-0612
           </td>
         </tr>
         <tr className={`row ${css.paddedRow}`}>
