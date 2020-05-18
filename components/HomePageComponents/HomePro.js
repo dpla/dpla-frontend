@@ -72,10 +72,10 @@ const HomePro = ({ url, news, content }) =>
           </Link>
         </li>
         <li>
-          <Link as="/community-reps" href="/pro/wp?section=community-reps">
+          <Link as="/events" href="/pro/wp?section=events">
             <a>
               <IconComponent className={css.icon} name="community" />
-              Community Reps
+              Events
             </a>
           </Link>
         </li>
