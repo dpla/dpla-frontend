@@ -18,7 +18,7 @@ At the Colored National Convention, one woman makes a speech making a case for w
 
 **1854**: [Harriet Forten Purvis](/search?q=Harriet+Forten+Purvis) and [Margaretta Forten](/search?q=Margaretta+Forten) play key roles in organizing the Fifth National Woman's Rights Convention in Philadelphia.
 
-**1854**: [Frances Ellen Watkins Harper](/search?q=Frances+Ellen+Watkins+Harper) becomes a lecturer for the Maine Anti-Slavery Society. Over the course of the next six years, she travels extensively in the East and Midwest, lecturing about abolition. She earns a national reputation for her oratory and writing. (Gordon, 45)
+**1854**: [Frances Ellen Watkins Harper](/search?q=Frances+Harper) becomes a lecturer for the Maine Anti-Slavery Society. Over the course of the next six years, she travels extensively in the East and Midwest, lecturing about abolition. She earns a national reputation for her oratory and writing. (Gordon, 45)
 
 **1854&#8211;1856**: [Mary Ann Shadd Cary](/search?q=Mary+Ann+Shadd+Cary) edits The Provincial Freeman. She is the first Black woman newspaper editor in North America. In 1854 and 1855, she gives a series of lectures across the U.S. and Canada advocating for abolition and women's rights.
 
