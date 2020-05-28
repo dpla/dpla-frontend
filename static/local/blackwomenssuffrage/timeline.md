@@ -30,7 +30,7 @@ At the Colored National Convention, one woman makes a speech making a case for w
 
 In a letter to the editor of the New York Standard, Elizabeth Cady Stanton writes, in reference to Black men winning the vote, "In fact, it is better to be the slave of an educated white man, than of a degraded, ignorant Black one." (Davis, 44)
 
-**1866**: [Frances E.W. Harper](/search?q=Frances+E+W+Harper) calls for women's suffrage at the 11th National Woman's Rights Convention in May, saying, "justice is not fulfilled so long as woman is unequal before the law."
+**1866**: [Frances E.W. Harper](/search?q=Frances+Harper) calls for women's suffrage at the 11th National Woman's Rights Convention in May, saying, "justice is not fulfilled so long as woman is unequal before the law."
 
 The American Equal Rights Association (AERA) is founded. AERA advocates for and petitions Congress for universal suffrage. Sojourner Truth, Frances E.W. Harper, Margaretta Forten, Sarah Remond and Hattie Purvis among other Black women are active in the organization. Hattie Purvis serves on AERA's executive committee, serving at various times as the group's recording secretary and corresponding secretary. 
 
