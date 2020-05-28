@@ -36,7 +36,7 @@ The American Equal Rights Association (AERA) is founded. AERA advocates for and 
 
 Both Black men and women participate in the founding of the interracial Philadelphia Suffrage Association. Harriet Purvis serves on the group's executive committee. 
 
-[Charlotte Rollin](/search?q=Charlotte+Rollin) calls for universal suffrage in a speech in front of the South Carolina House of Representatives.
+Charlotte Rollin calls for universal suffrage in a speech in front of the South Carolina House of Representatives.
 
 **1866&#8211;67**: Sarah and Charles Remond advocate for women's suffrage while lecturing throughout New York state, prior to the state's 1867 constitutional convention. Lawmakers do not include voting rights for women in the constitution. 
 
@@ -56,7 +56,7 @@ Wyoming becomes the first American territory to grant women suffrage.
 
 At the 1869 AERA meeting in New York City, Frances E.W. Harper weighs in on the Black suffrage vs. women's suffrage debate; she supports suffrage for Black men, saying "When it was a question of race, \[I\] let the lesser question of sex go. But the white women all go for sex, letting race occupy a minor positio (Terborg-Penn, 32)." (Harper, however, was not content with Black men's suffrage; she continued to fight for women's suffrage as well.) As white women at the meeting spoke out against suffrage for Black men, including Elizabeth Cady Stanton's remarks against the idea of "ignorant Negroes and foreigners to make laws for her to obey," Harper responded: "If the nation could handle only one question, \[I\] would not have Black women put a single straw in the way, if only the men of the race could obtain what they wanted." White feminists Lucy Stone and Abby Kelly Foster joined her in this position. (Terborg-Penn, 32)
 
-[Louisa Rollin](/search?q=Louisa+Rollin) speaks on the floor of the South Carolina House of Representatives in support of universal suffrage. 
+Louisa Rollin speaks on the floor of the South Carolina House of Representatives in support of universal suffrage. 
 
 **1870**: The Fifteenth Amendment is passed, giving African-American men the right to vote. 
 
@@ -102,7 +102,7 @@ Mary Ann Shadd Cary announces that Black women, determined to win suffrage, "wou
 
 Wyoming becomes the first state to allow women to vote. 
 
-**1892**: Journalist [Carrie Langston](/search?q=Carrie+Langston) (mother of Langston Hughes) writes in Kansas' Atchison Blade, highlighting the importance of Black women's participation in politics and criticizing men who attempted to maintain women's inferior position in society (Terborg-Penn, 58).
+**1892**: Journalist Carrie Langston (mother of Langston Hughes) writes in Kansas' Atchison Blade, highlighting the importance of Black women's participation in politics and criticizing men who attempted to maintain women's inferior position in society (Terborg-Penn, 58).
 
 Thomas Moss, a friend of both Ida B. Wells Barnett and Mary Church Terrell, is lynched along with three other Black men by whites who were angry that their grocery store was competing with a white business. Both Wells Barnett and Terrell are galvanized by his murder into anti-lynching and civil rights activism, including a lifelong dedication to voting rights for African Americans. That same year, Wells Barnett is forced out of her Memphis home and to leave her paper Free Speech, amid white criticism of her printing her objection to lynching and racial discrimination (Terborg-Penn, 59). 
 
@@ -118,7 +118,7 @@ The first national conference of colored women meets in Boston. At this meeting,
 
 Mary Church Terrell is appointed the first black woman on the Washington, D.C  Board of Education. 
 
-**1896**: The National League of Colored Women, the National Federation of Afro-American Women, and more than 100 local Black women's clubs merge to form the National Association of Colored Women's Clubs (NACW), with Mary Church Terrell as the group's first president. Other NACW leadership includes Ida B. Wells Barnett, Frances E.W. Harper, Josephine St. Pierre Ruffin, [Anna Julia Cooper](/search?q=Anna+Julia+Cooper), [Fannie Jackson Coppin](/search?q=Fannie+Jackson+Coppin) and others. The NACW motto is "lifting as we climb." 
+**1896**: The National League of Colored Women, the National Federation of Afro-American Women, and more than 100 local Black women's clubs merge to form the National Association of Colored Women's Clubs (NACW), with Mary Church Terrell as the group's first president. Other NACW leadership includes Ida B. Wells Barnett, Frances E.W. Harper, Josephine St. Pierre Ruffin, [Anna Julia Cooper](/search?q=Anna+Julia+Cooper), [Fanny Jackson Coppin](/search?q=Fanny+Jackson+Coppin) and others. The NACW motto is "lifting as we climb." 
 
 In Plessy v. Ferguson, the Supreme Court rules that facilities for black can be "separate but equal." 
 
@@ -158,7 +158,7 @@ The Equal Suffrage League, led by Sarah Garnet, collects petition signatures in 
 
 **1910**: In a speech at Howard University, Mary Church Terrell discussed her view that woman's suffrage was needed to help fight societal ills, such as intemperance, that affected Black communities as well as white communities (Terborg-Penn, 86). 
 
-**1911**: At the NAWSA convention in Kentucky, white suffragist Anna Shaw aborts a resolution submitted by a Black suffragist "condemning disenfranchisement on the grounds of both sex and race." Her reasoning was twofold: She did not want to offend white southerners, and she said, "I am in favor of colored people voting, but white women have no enemy in the world who does more to defeat our amendments...than colored men, and until women are...permitted to vote, I am opposed to introducing...a resolution on behalf of men, who if our resolutions were carried, would go straight to the polls and defeat us every time(Terborg-Penn, 117)." 
+**1911**: At the NAWSA convention in Kentucky, white suffragist Anna Shaw aborts a resolution submitted by a Black suffragist "condemning disenfranchisement on the grounds of both sex and race." Her reasoning was twofold: She did not want to offend white southerners, and she said, "I am in favor of colored people voting, but white women have no enemy in the world who does more to defeat our amendments...than colored men, and until women are...permitted to vote, I am opposed to introducing...a resolution on behalf of men, who if our resolutions were carried, would go straight to the polls and defeat us every time (Terborg-Penn, 117)." 
 
 **1912**: Women's suffrage is endorsed by Theodore Roosevelt's Progressive or "Bull Moose" Party, the first national party to support the cause. However, Roosevelt excludes Black southern delegates from the convention to appease white southerners. African Americans and some whites, including Jane Addams, protest. Mary Church Terrell declines to support Roosevelt or the Progressive Party in this context.  However, the Baptist Women's Convention Committee on the State of the Country, chaired by Mrs. L.D. Pruitt, do endorse Theodore Roosevelt for president. 
 
@@ -180,7 +180,7 @@ Black women found the Women's Cooperative Civic League to address problems of ho
 
 **1915**: 40,000 women, including Black women and immigrant factory workers, march in a suffrage parade in New York City. 
 
-NAACP leader [Mary Talbert](/search?q=Mary+Talbert) writes an article for the August 1915 issue of the NAACP publication, The Crisis entitled "Women and Colored Women" saying, "...this struggle becomes two-fold, first, because we are women and second, because we are colored women&#8230;" In an essay in that same issue, [Nannie Helen Burroughs](/search?q=Nannie+Helen+Burroughs) responded to a white woman asking what Black women would do with the ballot: "What can she do without it?" 
+NAACP leader [Mary Talbert](/search?q=Mary+Talbert) writes an article for the August 1915 issue of the NAACP publication, The Crisis entitled "Women and Colored Women" saying, "...this struggle becomes two-fold, first, because we are women and second, because we are colored women&#8230;" In an essay in that same issue, [Nannie Helen Burroughs](/search?q=Nannie+Burroughs) responded to a white woman asking what Black women would do with the ballot: "What can she do without it?" 
 
 [Josephine Bruce](/search?q=Josephine+Bruce), wife of Mississippi's first Black senator Blanche K. Bruce, writes editorials for NACW in which she advocates for women's suffrage.
 
@@ -226,11 +226,11 @@ The 19th Amendment is passed by both houses of Congress and the ratification pro
 
 **August 26, 1920**: The 19th Amendment becomes law, giving women the right to vote. NAWSA disbands and many white women join the new nonpartisan League of Women Voters. However, many Black women in the South continued to face significant obstacles, already put in place by racist white officials to limit black men's voting rights, to actually casting their ballots. 
 
-Presidential candidate Warren Harding solicits the support of Black women through northern Black women's groups and national Black women's organizations. Black women, including [Lethia C. Fleming](/search?q=Lethia+C+Fleming), Mary Church Terrell and [Bertha Higgins](/search?q=Bertha+Higgins), are employed by the Republican National Committee to join his campaign on the national, state and local levels. Fleming wrote an open letter to Black women urging them to vote for Harding. He was not, however, endorsed by the NACW, the largest Black women's organization in the United States. Although an endorsement elicited fierce debate, many NACW members chose to withhold support due to the Republican party's failure to take a strong position against lynching. 
+Presidential candidate Warren Harding solicits the support of Black women through northern Black women's groups and national Black women's organizations. Black women, including [Lethia C. Fleming](/search?q=Lethia+Fleming), Mary Church Terrell and [Bertha Higgins](/search?q=Bertha+Higgins), are employed by the Republican National Committee to join his campaign on the national, state and local levels. Fleming wrote an open letter to Black women urging them to vote for Harding. He was not, however, endorsed by the NACW, the largest Black women's organization in the United States. Although an endorsement elicited fierce debate, many NACW members chose to withhold support due to the Republican party's failure to take a strong position against lynching. 
 
-[Mrs. Edward Washington](/search?q=Mrs+Edward+Washington) runs for a seat on the Haddonfield, New Jersey, school board (Terborg-Penn, 148). 
+Mrs. Edward Washington runs for a seat on the Haddonfield, New Jersey, school board (Terborg-Penn, 148). 
 
-[Annie Simms Banks](/search?q=Annie+Simms+Banks) is appointed to Kentucky's Republican convention; she is the first southern Black woman to be selected for a political party convention (Terborg-Penn, 150).
+Annie Simms Banks is appointed to Kentucky's Republican convention; she is the first southern Black woman to be selected for a political party convention (Terborg-Penn, 150).
 
 [Mrs. W.L. Preston](/search?q=Mrs+WL+Preston), of Seattle, Washington, unsuccessfully runs for the Washington state senate; she is believed to be the first Black woman to run for a state legislature seat. She runs on an anti-discrimination platform that included equal pay for equal work; child labor reform; increased widow's pensions; and free tuition to state universities for the children of taxpayers (Terborg-Penn, 149). 
 
@@ -248,7 +248,7 @@ W.E.B. DuBois warns that the South will try to disenfranchise Black women, and u
 
 The NAACP presents evidence to Congress of discrimination against Black women voters, as part of an unsuccessful effort to pass a bill limiting representation of states who discriminate against women voters (Terborg-Penn, 154).
 
-[Lethia C. Fleming](/search?q=Lethia+C+Fleming) serves as head of the Republican National Committee's Black Woman's Advisory Committee for the 1920 presidential election. 
+[Lethia C. Fleming](/search?q=Lethia+Fleming) serves as head of the Republican National Committee's Black Woman's Advisory Committee for the 1920 presidential election. 
 
 **Early 1920s**: A large majority of Black women are disenfranchised in South Carolina (Terborg-Penn, 153).
 
@@ -256,7 +256,7 @@ The NAACP presents evidence to Congress of discrimination against Black women vo
 
 **1922**: The NACW recommends that all its chapters work toward enforcement of the 19th Amendment (Terborg-Penn, 156).
 
-**1924**: Republican National Committee hires former NACW president [Hallie Q. Brown](/search?q=Hallie+Q+Brown) as director of its Colored Women's Department to lead a voter drive among northern Black women.
+**1924**: Republican National Committee hires former NACW president [Hallie Q. Brown](/search?q=Hallie+Brown) as director of its Colored Women's Department to lead a voter drive among northern Black women.
 
 A Rhode Island state organizer says of Calvin Coolidge's 1924 presidential win, "I am sure the work our colored women did during the last campaign helped materially to give the National ticket the large plurality it had in the Nation (Tilly, 207)." 
 
