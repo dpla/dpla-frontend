@@ -32,11 +32,11 @@ const MoreWaysToContact = () => (
           <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
             Digital Public Library of America
             <br />
-            c/o Boston Public Library
+            (at Government Center)
             <br />
-            700 Boylston Street
+            1 Washington Mall #1019
             <br />
-            Boston, MA 02116
+            Boston, MA 02108
             <br />
           </td>
         </tr>
