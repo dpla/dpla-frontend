@@ -2,4 +2,4 @@ The Black Women’s Suffrage Digital Collection is a collaborative project to pr
 
 The collection explores both the roots of women’s activism in Black communities; the ongoing struggle to secure, protect, and use the right to vote, beyond the Suffrage Movement; and the intersections between voting rights and other civil rights. By combining archival materials from DPLA’s network of over 4,000 institutions, newly digitized content and partnerships, the collection seeks to engage students, educators and researchers in exploration and dialogue around this important, yet overlooked chapter in our nation’s history.
 
-The grant for this collection is made possible through funding from Pivotal Ventures, A Melinda Gates Company. 
+The grant for this collection is made possible through funding from [Pivotal Ventures, A Melinda Gates Company](https://www.pivotalventures.org/). 
