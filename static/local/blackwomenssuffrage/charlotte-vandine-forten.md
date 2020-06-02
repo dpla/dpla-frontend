@@ -1,0 +1,6 @@
+## Charlotte Vandine Forten
+### 1785&#8211;1884
+[Charlotte Vandine Forten](/search?q=Charlotte+Vandine+Forten) was the matriarch of a financially well-off and prominent Black family in Philadelphia, Pennsylvania. Forten's husband James was a sailmaker. Her daughters [Margaretta Forten](/search?q=Margaretta+Forten), [Sarah Louise Forten Purvis](/search?q=Sarah+Forten+Purvis) and [Harriet D. Forten Purvis](/search?q=Harriet+Forten+Purvis), often referred to as the "Forten Sisters," were, along with their parents, active in the abolitionist movement. James Forten was a member of the [American Anti-Slavery Society](/search?q=American+Anti-Slavery+Society), but as the group did not permit women to join, Charlotte and her daughters joined with a like-minded group of women to form the [Philadelphia Female Anti-Slavery Society](/search?q=Philadelphia+Female+Anti-Slavery+Society) in 1833. This was the first biracial organization of female abolitionists in the United States, and one of six abolitionist groups the Forten family helped to found and finance.
+
+* [Womenhistoryblog: The Forten Sisters](http://www.womenhistoryblog.com/2017/01/the-forten-sisters.html)
+* [PBS: The Forten Women](https://www.pbs.org/wgbh/aia/part3/3p477.html)

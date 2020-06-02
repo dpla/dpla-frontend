@@ -351,7 +351,7 @@ const LOCALS = {
     hasTerms: false,
     hasBrowseByPartner: false,
     hasBrowseAll: false,
-    hasSidebar: false,
+    hasSidebar: true,
     filters: [
       "tags:blackwomensuffrage"
     ],
@@ -378,6 +378,150 @@ const LOCALS = {
         title: "Key Figures",
         description: "",
         isTopLevel: true,
+        category: "Key Figures"
+      },
+      "/key-figures/charlotte-vandine-forten": {
+        parentDir: "/key-figures",
+        path: "charlotte-vandine-forten.md",
+        title: "Charlotte Vandine Forten",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/sojourner-truth": {
+        parentDir: "/key-figures",
+        path: "sojourner-truth.md",
+        title: "Sojourner Truth",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/harriet-forten-purvis": {
+        parentDir: "/key-figures",
+        path: "harriet-forten-purvis.md",
+        title: "Harriet Forten Purvis",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/margaretta-forten": {
+        parentDir: "/key-figures",
+        path: "margaretta-forten.md",
+        title: "Margaretta Forten",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/mary-ann-shadd-cary": {
+        parentDir: "/key-figures",
+        path: "mary-ann-shadd-cary.md",
+        title: "Mary Ann Shadd Cary",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/frances-ellen-watkins-harper": {
+        parentDir: "/key-figures",
+        path: "frances-ellen-watkins-harper.md",
+        title: "Frances Ellen Watkins Harper",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/sarah-remond": {
+        parentDir: "/key-figures",
+        path: "sarah-remond.md",
+        title: "Sarah Remond",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/charlotte-forten-grimke": {
+        parentDir: "/key-figures",
+        path: "charlotte-forten-grimke.md",
+        title: "Charlotte Forten Grimké",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/harriet-purvis-jr": {
+        parentDir: "/key-figures",
+        path: "harriet-purvis-jr.md",
+        title: "Harriet Purvis, Jr.",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/josephine-st-pierre-ruffin": {
+        parentDir: "/key-figures",
+        path: "josephine-st-pierre-ruffin.md",
+        title: "Josephine St. Pierre Ruffin",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/charlotte-lottie-rollin": {
+        parentDir: "/key-figures",
+        path: "charlotte-lottie-rollin.md",
+        title: "Charlotte \"Lottie\" Rollin",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/fannie-barrier-williams": {
+        parentDir: "/key-figures",
+        path: "fannie-barrier-williams.md",
+        title: "Fannie Barrier Williams",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/mary-church-terrell": {
+        parentDir: "/key-figures",
+        path: "mary-church-terrell.md",
+        title: "Mary Church Terrell",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/mary-talbert": {
+        parentDir: "/key-figures",
+        path: "mary-talbert.md",
+        title: "Mary Talbert",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/lugenia-burns-hope": {
+        parentDir: "/key-figures",
+        path: "lugenia-burns-hope.md",
+        title: "Lugenia Burns Hope",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/nannie-helen-burroughs": {
+        parentDir: "/key-figures",
+        path: "nannie-helen-burroughs.md",
+        title: "Nannie Helen Burroughs",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/angelina-weld-grimke": {
+        parentDir: "/key-figures",
+        path: "angelina-weld-grimke.md",
+        title: "Angelina Weld Grimké",
+        description: "",
+        isTopLevel: false,
+        category: "Key Figures"
+      },
+      "/key-figures/fannie-lou-hamer": {
+        parentDir: "/key-figures",
+        path: "fannie-lou-hamer.md",
+        title: "Fannie Lou Hamer",
+        description: "",
+        isTopLevel: false,
         category: "Key Figures"
       }
     }
