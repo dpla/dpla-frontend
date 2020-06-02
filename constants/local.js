@@ -351,7 +351,7 @@ const LOCALS = {
     hasTerms: false,
     hasBrowseByPartner: false,
     hasBrowseAll: false,
-    hasSidebar: false,
+    hasSidebar: true,
     filters: [
       "tags:blackwomensuffrage"
     ],
@@ -372,6 +372,87 @@ const LOCALS = {
           isTopLevel: true,
           category: "Timeline"
       },
+      "/timeline/1820-1859": {
+        parentDir: "/timeline",
+        path: "1820-1859.md",
+        title: "1820-1859",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1860-1869": {
+        parentDir: "/timeline",
+        path: "1860-1869.md",
+        title: "1860-1869",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1870-1889": {
+        parentDir: "/timeline",
+        path: "1870-1889.md",
+        title: "1870-1889",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1890-1899": {
+        parentDir: "/timeline",
+        path: "1890-1899.md",
+        title: "1890-1899",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1900-1909": {
+        parentDir: "/timeline",
+        path: "1900-1909.md",
+        title: "1900-1909",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1910-1919": {
+        parentDir: "/timeline",
+        path: "1910-1919.md",
+        title: "1910-1919",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1920-1929": {
+        parentDir: "/timeline",
+        path: "1920-1929.md",
+        title: "1920-1929",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1930-1959": {
+        parentDir: "/timeline",
+        path: "1930-1959.md",
+        title: "1930-1959",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/1960-present": {
+        parentDir: "/timeline",
+        path: "1960-present.md",
+        title: "1960-Present",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+      "/timeline/sources": {
+        parentDir: "/timeline",
+        path: "timeline-sources.md",
+        title: "Sources",
+        description: "",
+        isTopLevel: false,
+        category: "Timeline"
+      },
+
       "/key-figures" : {
         parentDir: "/key-figures",
         path: "key-figures.md",
