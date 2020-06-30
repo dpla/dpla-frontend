@@ -19,6 +19,7 @@ import {
 } from "constants/content-pages";
 
 import css from "stylesheets/hubs.scss";
+import MidPageBlock from "shared/MidPageBlock";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -89,7 +90,8 @@ class EbooksPage extends React.Component {
               </ul>
             </section>
           </div>
-          <CallToAction
+
+          <MidPageBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
@@ -97,7 +99,7 @@ class EbooksPage extends React.Component {
             buttonUrl={page.acf.call_to_action.button_url}
             imageSrc={page.acf.call_to_action.image}
             imageCaption={page.acf.call_to_action.image_credit}
-          />
+          />          
           <NewsLane title="Ebook News" items={news} />
         </div>
       </MainLayout>
