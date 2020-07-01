@@ -1,13 +1,14 @@
+export const beginningPageBlockContent =   {
+  "title": "The only econtent marketplace built by and for libraries",
+  "text": "DPLA Exchange gives you a public option for econtent acquisitions that works seamlessly with the SimplyE national library-driven platform. DPLA can help you customize collections for your community beyond the bestsellers, including a large selection of diverse and non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
+  "listLinks": [
+    "Browse & buy content from DPLA Exchange",
+    "Browse simultaneous multi-use collections", 
+    "Learn more: DPLA Exchange & patron privacy"
+  ]
+};
+
 export const midPageBlockContent = [
-  {
-    "title": "The only econtent marketplace built by and for libraries",
-    "text": "DPLA Exchange gives you a public option for econtent acquisitions that works seamlessly with the SimplyE national library-driven platform. DPLA can help you customize collections for your community beyond the bestsellers, including a large selection of diverse and non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
-    "listLinks": [
-      "Browse & buy content from DPLA Exchange",
-      "Browse simultaneous multi-use collections", 
-      "Learn more: DPLA Exchange & patron privacy"
-    ]
-  },
   {
     "title": "Build an instant collection of free ebooks",
     "text": "DPLA jumpstarts your eshelves with the free Open Bookshelf collection. Select from thousands of freely available titles including classics, contemporary fiction and nonfiction, children’s books, and textbooks, all reviewed by our Curation Corps of librarians.",

@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
-import MidPageBlock from "shared/MidPageBlock";
+import FullWidthPageBlock from "shared/FullWidthPageBlock";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
@@ -18,7 +18,7 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import { midPageBlockContent } from "constants/ebooks-landing-page";
+import { beginningPageBlockContent, midPageBlockContent } from "constants/ebooks-landing-page";
 
 import css from "stylesheets/hubs.scss";
 
@@ -58,6 +58,17 @@ class EbooksPage extends React.Component {
               buttonUrl={page.acf.feature.button_url}
               imageSrc={page.acf.feature.image}
             />}
+
+          <FullWidthPageBlock
+            className={css.sectionWrapper}
+            title={beginningPageBlockContent.title}
+            text={beginningPageBlockContent.text}
+            buttonText={beginningPageBlockContent.button_text}
+            buttonUrl={beginningPageBlockContent.button_url}
+            imageSrc={beginningPageBlockContent.image}
+            imageCaption={beginningPageBlockContent.image_credit}
+          /> 
+
           <div className={`${css.pageWrapper}`}>
             <section className={`${css.sectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
@@ -92,7 +103,7 @@ class EbooksPage extends React.Component {
             </section>
           </div>
 
-          <MidPageBlock
+          <FullWidthPageBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
@@ -104,7 +115,9 @@ class EbooksPage extends React.Component {
           
           {midPageBlockContent.map((content, index) => {
             return (
-              <MidPageBlock
+              <FullWidthPageBlock
+                key={`mid-page-block-${index + 1}`}
+                id={`mid-page-block-${index + 1}`}
                 className={css.sectionWrapper}
                 title={content.title}
                 text={content.text}
@@ -115,7 +128,6 @@ class EbooksPage extends React.Component {
             /> 
             ) 
           })}
-
           
           <NewsLane title="Ebook News" items={news} />
         </div>
@@ -133,7 +145,6 @@ EbooksPage.getInitialProps = async ({ req, query, res }) => {
   const newsRes = await fetch(NEWS_EBOOKS_ENDPOINT);
   const newsItems = await newsRes.json();
 
-  console.log(midPageBlockContent)
   return {
     page: ebooksItem,
     pageTitle: ebooksItem.title.rendered,

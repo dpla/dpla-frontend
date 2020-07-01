@@ -1,6 +1,6 @@
 @import "stylesheets/variables";
 
-.callToAction {
+.fullWidthPageBlock {
   background-color: white;
   padding: 2rem;
 
@@ -9,7 +9,11 @@
   }
 }
 
-.callToActionWrapper {
+// `#mid-page-block-${index + 1}` {
+
+// }
+
+.fullWidthPageBlockWrapper {
   display: grid;
   grid-row-gap: 1em;
   font-size: 0.75rem;
@@ -25,7 +29,7 @@
   }
 }
 
-.callToActionText {
+.fullWidthPageBlockText {
   & h2 {
     font-family: $serifFont;
     font-size: 2.125em;
@@ -38,11 +42,11 @@
   }
 }
 
-.callToActionButton {
+.fullWidthPageBlockButton {
   text-align: center;
 }
 
-.callToActionImage {
+.fullWidthPageBlockImage {
   & img {
     width: 100%;
   }

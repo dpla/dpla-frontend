@@ -1,8 +1,8 @@
 import React from "react";
 
-import css from "./MidPageBlock.scss";
+import css from "./FullWidthPageBlock.scss";
 
-const MidPageBlock = ({
+const FullWidthPageBlock = ({
   className,
   title,
   text,
@@ -12,9 +12,9 @@ const MidPageBlock = ({
   imageCaption,
   linkList,
 }) => (
-  <section className={`${className ? className : ""} ${css.midPageBlock}`}>
-    <div className={`${css.midPageBlockWrapper} site-max-width`}>
-      <div className={css.midPageBlockText}>
+  <section className={`${className ? className : ""} ${css.fullWidthPageBlock}`}>
+    <div className={`${css.fullWidthPageBlockWrapper} site-max-width`}>
+      <div className={css.fullWidthPageBlockText}>
         <h2>{title}</h2>
         <p>{text}</p>
 
@@ -29,7 +29,7 @@ const MidPageBlock = ({
         )}
 
         {buttonText && (
-          <div className={css.midPageBlockButton}>
+          <div className={css.fullWidthPageBlockButton}>
             <a className={css.button} href={buttonUrl}>
               {buttonText}
             </a>
@@ -37,7 +37,7 @@ const MidPageBlock = ({
         )}
       </div>
       {imageSrc && (
-        <div className={css.midPageBlockImage}>
+        <div className={css.fullWidthPageBlockImage}>
           <img src={imageSrc} alt="" />
           <span>
             <strong>Image:</strong> {imageCaption}
@@ -48,4 +48,4 @@ const MidPageBlock = ({
   </section>
 );
 
-export default MidPageBlock;
+export default FullWidthPageBlock;
