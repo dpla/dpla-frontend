@@ -32,7 +32,8 @@ export const midPageBlockContent = [
       },   
     ],
     "image": "https://via.placeholder.com/100",
-    "imageCredit": ""
+    "imageCredit": "",
+    "imageAlt": ""
   },
   {
     "title": "Simultaneous multi-user content",
@@ -48,11 +49,13 @@ export const midPageBlockContent = [
       }     
     ],
     "image": "https://via.placeholder.com/100",
-    "imageCredit": ""
+    "imageCredit": "",
+    "imageAlt": ""
   },
   {
     "text": "DPLA is a publisher too! We’ve introduced instant, original, easy-to-read ebook versions of important government documents for the Open Bookshelf collection, including the award-winning ebook version of the Mueller Report and the Impeachment Papers. DPLA’s ebooks work is supported by the Alfred P. Sloan Foundation.",
     "image": "https://via.placeholder.com/100",
-    "imageCredit": ""
+    "imageCredit": "",
+    "imageAlt": ""
   }
 ]
