@@ -64,10 +64,11 @@ class EbooksPage extends React.Component {
             className={css.sectionWrapper}
             title={beginningPageBlockContent.title}
             text={beginningPageBlockContent.text}
-            buttonText={beginningPageBlockContent.button_text}
-            buttonUrl={beginningPageBlockContent.button_url}
+            buttonText={beginningPageBlockContent.buttonText}
+            buttonUrl={beginningPageBlockContent.buttonUrl}
             imageSrc={beginningPageBlockContent.image}
-            imageCaption={beginningPageBlockContent.image_credit}
+            imageCaption={beginningPageBlockContent.imageCredit}
+            links={beginningPageBlockContent.links}
           /> 
 
           <div className={`${css.pageWrapper}`}>
@@ -123,10 +124,10 @@ class EbooksPage extends React.Component {
                   className={css.sectionWrapper}
                   title={content.title}
                   text={content.text}
-                  buttonText={content.button_text}
-                  buttonUrl={content.button_url}
+                  buttonText={content.buttonText}
+                  buttonUrl={content.buttonUrl}
                   imageSrc={content.image}
-                  imageCaption={content.image_credit}
+                  imageCaption={content.imageCredit}
                   imageAlt={content.imageAlt}
                   links={content.links}
               /> 
