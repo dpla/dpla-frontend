@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
-import FullWidthPageBlock from "shared/FullWidthPageBlock";
+import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
@@ -21,6 +21,7 @@ import {
 import { beginningPageBlockContent, midPageBlockContent } from "constants/ebooks-landing-page";
 
 import css from "stylesheets/hubs.scss";
+import ebooks from "stylesheets/ebooks.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -36,7 +37,7 @@ class EbooksPage extends React.Component {
   }
 
   render() {
-    const { router, page, pageTitle, news, midPageBlockContent } = this.props;
+    const { router, page, pageTitle, news } = this.props;
     return (
       <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main" className={css.pageWrapper}>
@@ -59,7 +60,7 @@ class EbooksPage extends React.Component {
               imageSrc={page.acf.feature.image}
             />}
 
-          <FullWidthPageBlock
+          <FullPageWidthBlock
             className={css.sectionWrapper}
             title={beginningPageBlockContent.title}
             text={beginningPageBlockContent.text}
@@ -103,7 +104,7 @@ class EbooksPage extends React.Component {
             </section>
           </div>
 
-          <FullWidthPageBlock
+          <FullPageWidthBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
@@ -111,13 +112,13 @@ class EbooksPage extends React.Component {
             buttonUrl={page.acf.call_to_action.button_url}
             imageSrc={page.acf.call_to_action.image}
             imageCaption={page.acf.call_to_action.image_credit}
+            imageAlt={page.acf.call_to_action.image_credit}
           />    
           
           {midPageBlockContent.map((content, index) => {
             return (
-              <FullWidthPageBlock
+              <FullPageWidthBlock
                 key={`mid-page-block-${index + 1}`}
-                id={`mid-page-block-${index + 1}`}
                 className={css.sectionWrapper}
                 title={content.title}
                 text={content.text}
@@ -125,6 +126,8 @@ class EbooksPage extends React.Component {
                 buttonUrl={content.button_url}
                 imageSrc={content.image}
                 imageCaption={content.image_credit}
+                imageAlt={content.imageAlt}
+                links={content.links}
             /> 
             ) 
           })}
@@ -148,8 +151,7 @@ EbooksPage.getInitialProps = async ({ req, query, res }) => {
   return {
     page: ebooksItem,
     pageTitle: ebooksItem.title.rendered,
-    news: newsItems,
-    midPageBlockContent: midPageBlockContent
+    news: newsItems
   };
 };
 

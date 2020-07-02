@@ -5,7 +5,7 @@ import { withRouter } from "next/router";
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
-import FullWidthPageBlock from "shared/FullWidthPageBlock";
+import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
@@ -88,7 +88,7 @@ class HubsPage extends React.Component {
               </ul>
             </section>
           </div>
-          <FullWidthPageBlock
+          <FullPageWidthBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
