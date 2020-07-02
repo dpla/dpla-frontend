@@ -4,15 +4,15 @@ export const beginningPageBlockContent =   {
   "links": [
     {
       "text": "Browse & buy content from DPLA Exchange",
-      "href": ""
+      "href": "https://exchange.dp.la"
     },
     {
       "text": "Browse simultaneous multi-use collections",
-      "href": ""
+      "href": "https://pro.dp.la/ebooks/ebook-bibliolabs"
     },
     {
       "text": "Learn more: DPLA Exchange & patron privacy",
-      "href": ""
+      "href": "https://Exchange.dp.la"
     },     
   ]
 };
@@ -24,11 +24,11 @@ export const midPageBlockContent = [
     "links": [
       {
         "text": "Browse the Open Bookshelf collection",
-        "href": ""
+        "href": "https://freebooks.dp.la/collection/groups"
       },
       {
         "text": "Learn about the Curation Corps",
-        "href": ""
+        "href": "https://pro.dp.la/ebooks/curation-corps"
       },   
     ],
     "image": "https://via.placeholder.com/100",
@@ -40,11 +40,11 @@ export const midPageBlockContent = [
     "links": [
       {
         "text": "Browse the BiblioLabs collection",
-        "href": ""
+        "href": "http://dpla.wpengine.com/wp-content/uploads/2020/05/Combined-BiblioLabs-PDF_May2020.pdf"
       },
       {
         "text": "Learn about the Indie Author Project",
-        "href": ""
+        "href": "https://dp.la//news/biblioboards-indie-author-project-now-available-through-dpla-exchange"
       }     
     ],
     "image": "https://via.placeholder.com/100",

@@ -25,7 +25,7 @@ const FullPageWidthBlock = ({
           {links.map((listItem, index) => {
             return (
             <li key={`listItem-${index}`} className={hub.sectionQuicklink}>
-              <a href={listItem.href}>{listItem.text}</a>
+              <a href={listItem.href} target="_blank">{listItem.text}</a>
             </li>
             )
           })}
