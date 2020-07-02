@@ -1,5 +1,9 @@
 @import "stylesheets/variables";
 
+.sectionWrapper {
+  margin: 0 auto;
+}
+
 .fullPageWidthBlock {
   background-color: white;
   padding: 2rem;
@@ -75,5 +79,15 @@
 
   &:hover {
     background-color: $darkSecondaryButtonColor;
+  }
+}
+
+#ebooksLandingContentContainer {
+  .fullPageWidthBlock:nth-child(odd) {
+    background-color: $oysterBayBlue;
+  }
+
+  .fullPageWidthBlock:nth-child(even) {
+    background-color: $warmerBackgroundColor;
   }
 }

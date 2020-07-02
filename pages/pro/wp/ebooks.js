@@ -21,7 +21,7 @@ import {
 import { beginningPageBlockContent, midPageBlockContent } from "constants/ebooks-landing-page";
 
 import css from "stylesheets/hubs.scss";
-import ebooks from "stylesheets/ebooks.scss";
+import fullPageWidthBlockStyles from "shared/FullPageWidthBlock/FullPageWidthBlock.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -115,22 +115,25 @@ class EbooksPage extends React.Component {
             imageAlt={page.acf.call_to_action.image_credit}
           />    
           
-          {midPageBlockContent.map((content, index) => {
-            return (
-              <FullPageWidthBlock
-                key={`mid-page-block-${index + 1}`}
-                className={css.sectionWrapper}
-                title={content.title}
-                text={content.text}
-                buttonText={content.button_text}
-                buttonUrl={content.button_url}
-                imageSrc={content.image}
-                imageCaption={content.image_credit}
-                imageAlt={content.imageAlt}
-                links={content.links}
-            /> 
-            ) 
-          })}
+          <div id={fullPageWidthBlockStyles.ebooksLandingContentContainer}>
+            {midPageBlockContent.map((content, index) => {
+              return (
+                <FullPageWidthBlock
+                  key={`mid-page-block-${index + 1}`}
+                  className={css.sectionWrapper}
+                  title={content.title}
+                  text={content.text}
+                  buttonText={content.button_text}
+                  buttonUrl={content.button_url}
+                  imageSrc={content.image}
+                  imageCaption={content.image_credit}
+                  imageAlt={content.imageAlt}
+                  links={content.links}
+              /> 
+              ) 
+            })}
+          </div>
+          
           
           <NewsLane title="Ebook News" items={news} />
         </div>
