@@ -31,9 +31,9 @@ export const midPageBlockContent = [
         "href": "https://pro.dp.la/ebooks/curation-corps"
       },   
     ],
-    "image": "https://via.placeholder.com/100",
-    "imageCredit": "",
-    "imageAlt": ""
+    "image": "/static/images/ebooks/OpenBookShelfset2.png",
+    "imageCredit": "sample of Open Book Shelf books",
+    "imageAlt": "sample of Open Book Shelf books"
   },
   {
     "title": "Simultaneous multi-user content",
@@ -48,14 +48,14 @@ export const midPageBlockContent = [
         "href": "https://dp.la//news/biblioboards-indie-author-project-now-available-through-dpla-exchange"
       }     
     ],
-    "image": "https://via.placeholder.com/100",
-    "imageCredit": "",
-    "imageAlt": ""
+    "image": "/static/images/ebooks/BiblioLabsset2.png",
+    "imageCredit": "sample of BiblioLabs books",
+    "imageAlt": "sample of BiblioLabs books"
   },
   {
     "text": "DPLA is a publisher too! We’ve introduced instant, original, easy-to-read ebook versions of important government documents for the Open Bookshelf collection, including the award-winning ebook version of the Mueller Report and the Impeachment Papers. DPLA’s ebooks work is supported by the Alfred P. Sloan Foundation.",
-    "image": "https://via.placeholder.com/100",
-    "imageCredit": "",
-    "imageAlt": ""
+    "image": "/static/images/ebooks/DPLAPubs.png",
+    "imageCredit": "sample of DPLA published ebooks",
+    "imageAlt": "sample of DPLA published ebooks"
   }
 ]
