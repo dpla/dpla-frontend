@@ -10,7 +10,7 @@ import StayInformed from "shared/StayInformed";
 import css from "./HomePro.scss";
 
 const HomePro = ({ url, news, content }) =>
-  <div>
+  <div data-cy="homePro">
     <div
       className={`${css.heroWrapper} ${content.acf.feature
         ? css.withFeature
@@ -41,7 +41,7 @@ const HomePro = ({ url, news, content }) =>
       <ul className={`site-max-width`}>
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
-            <a>
+            <a data-cy="hubsLink">
               <IconComponent className={css.icon} name="network" />
               Hub Network
             </a>
