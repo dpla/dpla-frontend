@@ -41,3 +41,6 @@ test/selenium/.python-version
 test/selenium/pip-selfcheck.json
 
 .idea/
+
+# cypress
+cypress.json
