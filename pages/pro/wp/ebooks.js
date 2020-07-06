@@ -4,8 +4,8 @@ import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
+import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import NewsLane from "shared/NewsLane";
-import CallToAction from "shared/CallToAction";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
@@ -18,7 +18,10 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
+import { beginningPageBlockContent, midPageBlockContent } from "constants/ebooks-landing-page";
+
 import css from "stylesheets/hubs.scss";
+import fullPageWidthBlockStyles from "shared/FullPageWidthBlock/FullPageWidthBlock.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -56,6 +59,18 @@ class EbooksPage extends React.Component {
               buttonUrl={page.acf.feature.button_url}
               imageSrc={page.acf.feature.image}
             />}
+
+          <FullPageWidthBlock
+            className={css.sectionWrapper}
+            title={beginningPageBlockContent.title}
+            text={beginningPageBlockContent.text}
+            buttonText={beginningPageBlockContent.buttonText}
+            buttonUrl={beginningPageBlockContent.buttonUrl}
+            imageSrc={beginningPageBlockContent.image}
+            imageCaption={beginningPageBlockContent.imageCredit}
+            links={beginningPageBlockContent.links}
+          /> 
+
           <div className={`${css.pageWrapper}`}>
             <section className={`${css.sectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
@@ -89,7 +104,8 @@ class EbooksPage extends React.Component {
               </ul>
             </section>
           </div>
-          <CallToAction
+
+          <FullPageWidthBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
@@ -97,7 +113,29 @@ class EbooksPage extends React.Component {
             buttonUrl={page.acf.call_to_action.button_url}
             imageSrc={page.acf.call_to_action.image}
             imageCaption={page.acf.call_to_action.image_credit}
-          />
+            imageAlt={page.acf.call_to_action.image_credit}
+          />    
+          
+          <div id={fullPageWidthBlockStyles.ebooksLandingContentContainer}>
+            {midPageBlockContent.map((content, index) => {
+              return (
+                <FullPageWidthBlock
+                  key={`mid-page-block-${index + 1}`}
+                  className={css.sectionWrapper}
+                  title={content.title}
+                  text={content.text}
+                  buttonText={content.buttonText}
+                  buttonUrl={content.buttonUrl}
+                  imageSrc={content.image}
+                  imageCaption={content.imageCredit}
+                  imageAlt={content.imageAlt}
+                  links={content.links}
+              /> 
+              ) 
+            })}
+          </div>
+          
+          
           <NewsLane title="Ebook News" items={news} />
         </div>
       </MainLayout>

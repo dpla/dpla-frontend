@@ -1,6 +1,10 @@
 @import "stylesheets/variables";
 
-.callToAction {
+.sectionWrapper {
+  margin: 0 auto;
+}
+
+.fullPageWidthBlock {
   background-color: white;
   padding: 2rem;
 
@@ -9,7 +13,7 @@
   }
 }
 
-.callToActionWrapper {
+.fullPageWidthBlockWrapper {
   display: grid;
   grid-row-gap: 1em;
   font-size: 0.75rem;
@@ -25,7 +29,7 @@
   }
 }
 
-.callToActionText {
+.fullPageWidthBlockText {
   & h2 {
     font-family: $serifFont;
     font-size: 2.125em;
@@ -38,11 +42,11 @@
   }
 }
 
-.callToActionButton {
-  text-align: center;
+.fullPageWidthBlockButton {
+  margin-top: 1em;
 }
 
-.callToActionImage {
+.fullPageWidthBlockImage {
   & img {
     width: 100%;
   }
@@ -75,5 +79,15 @@
 
   &:hover {
     background-color: $darkSecondaryButtonColor;
+  }
+}
+
+#ebooksLandingContentContainer {
+  .fullPageWidthBlock:nth-child(odd) {
+    background-color: $oysterBayBlue;
+  }
+
+  .fullPageWidthBlock:nth-child(even) {
+    background-color: $warmerBackgroundColor;
   }
 }
