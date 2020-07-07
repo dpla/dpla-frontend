@@ -11,6 +11,6 @@ Rev. Martin Luther King, Jr. leads the March on Washington for Jobs and Freedom 
 
 The Voting Rights Act of 1965 is passed, prohibiting state and local efforts to prevent Black men and women from exercising their right to vote as laid out in the 15th and 19th amendments. The bill represents a victory for Black women, who had been working for more than a century to win and then ensure the vote for Black women and men. 
 
-**1972**: [Shirley Chisholm](/search?q=Shirley+Chisholm) becomes the first black major-party candidate to run for U.S. president. She is also the first woman to run for the Democratic nomination.
+**1972**: [Shirley Chisholm](/search?q=Shirley+Chisholm) becomes the first Black major-party candidate to run for U.S. president. She is also the first woman to run for the Democratic nomination.
 
 **2013**: The U.S. Supreme Court strikes down a key component of Voting Rights Act, allowing nine states with a history of racial discrimination to change election laws without federal approval.
