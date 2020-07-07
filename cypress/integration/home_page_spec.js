@@ -9,7 +9,7 @@ describe('The Home Page', () => {
       .contains('Welcome to the DPLA Professional Community')
     
       cy.get('[data-cy=hubsLink]').click()
-      cy.location('href').should('eq', `${Cypress.config("baseUrl")}/hubs`);
+      cy.location('href').should('eq', `${Cypress.config('baseUrl')}/hubs`);
     })
   }
   

@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:XXXX",
-  "SITE_ENV": ""
+  "SITE_ENV": "local",
+  "projectId": "xxxxxx"
 }

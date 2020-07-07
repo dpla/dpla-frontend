@@ -13,7 +13,9 @@
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
     "test": "mocha",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
