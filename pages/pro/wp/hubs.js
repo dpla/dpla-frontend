@@ -36,7 +36,7 @@ class HubsPage extends React.Component {
     const { router, page, pageTitle, news } = this.props;
     return (
       <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
-        <div id="main" role="main" className={css.pageWrapper}>
+        <div id="main" role="main">
           <div
             className={`${css.pageHero} ${page.acf.feature
               ? css.withFeature
@@ -55,7 +55,7 @@ class HubsPage extends React.Component {
               buttonUrl={page.acf.feature.button_url}
               imageSrc={page.acf.feature.image}
             />}
-          <div className={`${css.pageWrapper}`}>
+          <div>
             <section className={`${css.sectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
                 {page.acf.sections.map((section, index) => {

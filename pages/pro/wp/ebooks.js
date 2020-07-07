@@ -18,10 +18,9 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import { beginningPageBlockContent, midPageBlockContent } from "constants/ebooks-landing-page";
+import { midPageBlockContent } from "constants/ebooks-landing-page";
 
 import css from "stylesheets/hubs.scss";
-import fullPageWidthBlockStyles from "shared/FullPageWidthBlock/FullPageWidthBlock.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -37,10 +36,10 @@ class EbooksPage extends React.Component {
   }
 
   render() {
-    const { router, page, pageTitle, news } = this.props;
+    const { router, page, pageTitle, news, showWPFeature } = this.props;
     return (
       <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
-        <div id="main" role="main" className={css.pageWrapper}>
+        <div id="main" role="main">
           <div
             className={`${css.pageHero} ${page.acf.feature
               ? css.withFeature
@@ -50,28 +49,16 @@ class EbooksPage extends React.Component {
             <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
-          {page.acf.feature &&
-            page.acf.feature.title !== "" &&
-            <WebsiteFeature
-              title={page.acf.feature.title}
-              text={page.acf.feature.text}
-              buttonText={page.acf.feature.button_text}
-              buttonUrl={page.acf.feature.button_url}
-              imageSrc={page.acf.feature.image}
-            />}
+       
+          <WebsiteFeature
+            title="Take Control of your Digital Collections &amp; Serve Your Community"
+            text="Join the only ebook platform built by libraries for libraries"
+            buttonText={page.acf.feature.button_text}
+            buttonUrl={page.acf.feature.button_url}
+            imageSrc={page.acf.feature.image}
+          />
 
-          <FullPageWidthBlock
-            className={css.sectionWrapper}
-            title={beginningPageBlockContent.title}
-            text={beginningPageBlockContent.text}
-            buttonText={beginningPageBlockContent.buttonText}
-            buttonUrl={beginningPageBlockContent.buttonUrl}
-            imageSrc={beginningPageBlockContent.image}
-            imageCaption={beginningPageBlockContent.imageCredit}
-            links={beginningPageBlockContent.links}
-          /> 
-
-          <div className={`${css.pageWrapper}`}>
+          <div>
             <section className={`${css.sectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
                 {page.acf.sections.map((section, index) => {
@@ -105,18 +92,20 @@ class EbooksPage extends React.Component {
             </section>
           </div>
 
-          <FullPageWidthBlock
-            className={css.sectionWrapper}
-            title={page.acf.call_to_action.title}
-            text={page.acf.call_to_action.text}
-            buttonText={page.acf.call_to_action.button_text}
-            buttonUrl={page.acf.call_to_action.button_url}
-            imageSrc={page.acf.call_to_action.image}
-            imageCaption={page.acf.call_to_action.image_credit}
-            imageAlt={page.acf.call_to_action.image_credit}
-          />    
-          
-          <div id={fullPageWidthBlockStyles.ebooksLandingContentContainer}>
+          {showWPFeature && 
+            <FullPageWidthBlock
+              className={css.sectionWrapper}
+              title={page.acf.call_to_action.title}
+              text={page.acf.call_to_action.text}
+              buttonText={page.acf.call_to_action.button_text}
+              buttonUrl={page.acf.call_to_action.button_url}
+              imageSrc={page.acf.call_to_action.image}
+              imageCaption={page.acf.call_to_action.image_credit}
+              imageAlt={page.acf.call_to_action.image_credit}
+            />    
+          }
+
+          <div>
             {midPageBlockContent.map((content, index) => {
               return (
                 <FullPageWidthBlock
@@ -155,7 +144,8 @@ EbooksPage.getInitialProps = async ({ req, query, res }) => {
   return {
     page: ebooksItem,
     pageTitle: ebooksItem.title.rendered,
-    news: newsItems
+    news: newsItems,
+    showWPFeature: false
   };
 };
 

@@ -14,7 +14,7 @@ const FullPageWidthBlock = ({
   imageAlt,
   links,
 }) => (
-  <section className={`${className ? className : ""} ${css.fullPageWidthBlock}`}>
+  <section className={`${className ? className : ""} ${css.fullPageWidthBlock} site-max-width`}>
     <div className={`${css.fullPageWidthBlockWrapper} site-max-width`}>
       <div className={css.fullPageWidthBlockText}>
         <h2>{title}</h2>

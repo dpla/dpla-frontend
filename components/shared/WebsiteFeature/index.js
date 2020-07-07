@@ -25,9 +25,12 @@ const WebsiteFeature = ({
         {text}
       </p>
     </div>
-    <a className={css.button} href={buttonUrl}>
-      {buttonText}
-    </a>
+
+    {buttonText && 
+      <a className={css.button} href={buttonUrl}>
+        {buttonText}
+      </a>
+    }
   </div>;
 
 export default WebsiteFeature;
