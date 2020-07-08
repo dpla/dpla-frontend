@@ -56,7 +56,7 @@ class HubsPage extends React.Component {
               imageSrc={page.acf.feature.image}
             />}
           <div>
-            <section className={`${css.sectionWrapper} site-max-width`}>
+            <section className={`${css.tileSectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
                 {page.acf.sections.map((section, index) => {
                   return (

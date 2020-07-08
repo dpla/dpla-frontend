@@ -30,6 +30,17 @@
   margin: 1rem auto;
 }
 
+.tileSectionWrapper {
+  margin: 0 auto;
+}
+
+.sectionWrapper:first-of-type {
+  margin-top: 0;
+}
+.sectionWrapper:last-of-type {
+  margin-bottom: 2rem;
+}
+
 .sectionList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));

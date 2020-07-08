@@ -58,39 +58,37 @@ class EbooksPage extends React.Component {
             imageSrc={page.acf.feature.image}
           />
 
-          <div>
-            <section className={`${css.sectionWrapper} site-max-width`}>
-              <ul className={css.sectionList}>
-                {page.acf.sections.map((section, index) => {
-                  return (
-                    <li key={index} className={css.section}>
-                      <h2 className={css.sectionTitle}>
-                        <a href={`${section.url}`}>{section.title}</a>
-                      </h2>
-                      <p className={css.sectionText}>
-                        {section.text}
-                      </p>
-                      {section.quicklinks &&
-                        <ul className={css.sectionQuicklinks}>
-                          {section.quicklinks.map((link, idx) => {
-                            return (
-                              <li
-                                className={css.sectionQuicklink}
-                                key={`link-${idx}`}
-                              >
-                                <a href={`${link.url}`}>
-                                  {link.text}
-                                </a>
-                              </li>
-                            );
-                          })}
-                        </ul>}
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          </div>
+          <section className={`${css.tileSectionWrapper} site-max-width`}>
+            <ul className={css.sectionList}>
+              {page.acf.sections.map((section, index) => {
+                return (
+                  <li key={index} className={css.section}>
+                    <h2 className={css.sectionTitle}>
+                      <a href={`${section.url}`}>{section.title}</a>
+                    </h2>
+                    <p className={css.sectionText}>
+                      {section.text}
+                    </p>
+                    {section.quicklinks &&
+                      <ul className={css.sectionQuicklinks}>
+                        {section.quicklinks.map((link, idx) => {
+                          return (
+                            <li
+                              className={css.sectionQuicklink}
+                              key={`link-${idx}`}
+                            >
+                              <a href={`${link.url}`}>
+                                {link.text}
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
 
           {showWPFeature && 
             <FullPageWidthBlock
