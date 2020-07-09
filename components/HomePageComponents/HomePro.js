@@ -38,7 +38,7 @@ const HomePro = ({ url, news, content }) =>
         imageSrc={content.acf.feature.image}
       />}
     <div className={`${css.sectionList}`}>
-      <ul className={`site-max-width`}>
+      <ul className={`site-max-width`} data-cy="tileList">
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
             <a data-cy="hubsLink">
@@ -49,7 +49,7 @@ const HomePro = ({ url, news, content }) =>
         </li>
         <li>
           <Link as="/prospective-hubs" href="/pro/wp?section=prospective-hubs">
-            <a>
+            <a data-cy="prospectiveHubsLink">
               <IconComponent className={css.icon} name="prospective" />
               Prospective Hubs
             </a>
@@ -57,7 +57,7 @@ const HomePro = ({ url, news, content }) =>
         </li>
         <li>
           <Link as="/developers" href="/pro/wp?section=developers">
-            <a>
+            <a data-cy="devsLink">
               <IconComponent className={css.icon} name="developers" />
               Developers
             </a>
@@ -65,7 +65,7 @@ const HomePro = ({ url, news, content }) =>
         </li>
         <li>
           <Link as="/education" href="/pro/wp?section=education">
-            <a>
+            <a data-cy="edLink">
               <IconComponent className={css.icon} name="education" />
               Education
             </a>
@@ -73,7 +73,7 @@ const HomePro = ({ url, news, content }) =>
         </li>
         <li>
           <Link as="/events" href="/pro/wp?section=events">
-            <a>
+            <a data-cy="eventsLink">
               <IconComponent className={css.icon} name="community" />
               Events
             </a>
@@ -81,7 +81,7 @@ const HomePro = ({ url, news, content }) =>
         </li>
         <li>
           <Link as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
-            <a>
+            <a data-cy="ebooksLink">
               <IconComponent className={css.icon} name="ebooks" />
               Ebooks
             </a>

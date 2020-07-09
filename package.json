@@ -67,7 +67,7 @@
     "babel-preset-react-app": "^9.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "chai": "^4.2.0",
-    "cypress": "^4.9.0",
+    "cypress": "^4.10.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-loader": "^2.2.1",
