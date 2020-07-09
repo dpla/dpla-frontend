@@ -55,6 +55,7 @@ export const midPageBlockContent = [
     "imageAlt": "sample of BiblioLabs books"
   },
   {
+    "title": "Original DPLA Publications",
     "text": "DPLA is a publisher too! We’ve introduced instant, original, easy-to-read ebook versions of important government documents for the Open Bookshelf collection, including the award-winning ebook version of the Mueller Report and the Impeachment Papers. DPLA’s ebooks work is supported by the Alfred P. Sloan Foundation.",
     "image": "/static/images/ebooks/DPLAPubs.png",
     "imageCredit": "sample of DPLA published ebooks",
