@@ -45,3 +45,5 @@ test/selenium/pip-selfcheck.json
 # cypress
 cypress.json
 browserstack.json
+/cypress/videos
+/cypress/screenshots
