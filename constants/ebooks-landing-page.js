@@ -1,23 +1,25 @@
-export const beginningPageBlockContent =   {
-  "title": "The only econtent marketplace built by and for libraries",
-  "text": "DPLA Exchange gives you a public option for econtent acquisitions that works seamlessly with the SimplyE national library-driven platform. DPLA can help you customize collections for your community beyond the bestsellers, including a large selection of diverse and non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
-  "links": [
-    {
-      "text": "Browse & buy content from DPLA Exchange",
-      "href": "https://exchange.dp.la"
-    },
-    {
-      "text": "Browse simultaneous multi-use collections",
-      "href": "https://pro.dp.la/ebooks/ebook-bibliolabs"
-    },
-    {
-      "text": "Learn more: DPLA Exchange & patron privacy",
-      "href": "https://Exchange.dp.la"
-    },     
-  ],
-};
-
 export const midPageBlockContent = [
+  {
+    "title": "The only econtent marketplace built by and for libraries",
+    "text": "DPLA Exchange gives you a public option for econtent acquisitions that works seamlessly with the SimplyE national library-driven platform. DPLA can help you customize collections for your community beyond the bestsellers, including a large selection of diverse and non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
+    "links": [
+      {
+        "text": "Browse & buy content from DPLA Exchange",
+        "href": "https://exchange.dp.la"
+      },
+      {
+        "text": "Browse simultaneous multi-use collections",
+        "href": "https://pro.dp.la/ebooks/ebook-bibliolabs"
+      },
+      {
+        "text": "Learn more: DPLA Exchange & patron privacy",
+        "href": "https://Exchange.dp.la"
+      },     
+    ],
+    "image": "/static/images/DplaExchangeHomepage.png",
+    "imageCredit": "exchange.dpla homepage",
+    "imageAlt": "exchange.dpla homepage"
+  },
   {
     "title": "Build an instant collection of free ebooks",
     "text": "DPLA jumpstarts your eshelves with the free Open Bookshelf collection. Select from thousands of freely available titles including classics, contemporary fiction and nonfiction, children’s books, and textbooks, all reviewed by our Curation Corps of librarians.",
@@ -53,6 +55,7 @@ export const midPageBlockContent = [
     "imageAlt": "sample of BiblioLabs books"
   },
   {
+    "title": "Original DPLA Publications",
     "text": "DPLA is a publisher too! We’ve introduced instant, original, easy-to-read ebook versions of important government documents for the Open Bookshelf collection, including the award-winning ebook version of the Mueller Report and the Impeachment Papers. DPLA’s ebooks work is supported by the Alfred P. Sloan Foundation.",
     "image": "/static/images/ebooks/DPLAPubs.png",
     "imageCredit": "sample of DPLA published ebooks",
