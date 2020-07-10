@@ -12,6 +12,7 @@ import css from "./HomePro.scss";
 const HomePro = ({ url, news, content }) =>
   <div data-cy="homePro">
     <div
+      data-cy="heroImage"
       className={`${css.heroWrapper} ${content.acf.feature
         ? css.withFeature
         : ""}`}
@@ -89,8 +90,8 @@ const HomePro = ({ url, news, content }) =>
         </li>
       </ul>
     </div>
-    <NewsLane title="DPLA News" items={news} />
-    <StayInformed />
+    <NewsLane title="DPLA News" items={news}/>
+    <StayInformed/>
   </div>;
 
 export default HomePro;

@@ -1,13 +1,25 @@
 if (Cypress.config('SITE_ENV') == 'pro') {
 
   describe('The Home Page', () => {
-    it('successfully loads', () => {
+    it('successfully loads homepage', () => {
       cy.visit('/')
       cy.title().should('eq', 'Digital Public Library of America')
-      cy.get('[data-cy=homePro]')
-        .contains('Welcome to the DPLA Professional Community')
-    })
+      })
+  })
 
+
+  describe('Home Page Banner', () => {
+    it('checks that hero banner has background image and is visible', () => {
+      cy.visit('/')
+      
+      cy.get('[data-cy=homePro]')
+      .contains('Welcome to the DPLA Professional Community')
+
+      cy.get('[data-cy=heroImage]')
+      .should('be.visible')
+      .should('have.css', 'background-image')
+      .and('eq', `url("${Cypress.config('baseUrl')}/static/images/pro/home-hero-bg.png")`)
+    })
   })
 
   describe('Test tile links', () => {
@@ -52,6 +64,24 @@ if (Cypress.config('SITE_ENV') == 'pro') {
 
       //   })
       // })
+    })
+  })
+
+  describe('Newslane', () => {
+    it('checks that NewsLane component is visible', () => {
+      cy.visit('/')
+      
+      cy.get('[data-cy=NewsLane]')
+      .should('be.visible')
+    })
+  })
+
+  describe('StayInformed', () => {
+    it('checks that StayInformed component is visible', () => {
+      cy.visit('/')
+      
+      cy.get('[data-cy=StayInformed]')
+      .should('be.visible')
     })
   })
 
