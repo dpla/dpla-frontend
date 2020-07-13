@@ -1,0 +1,18 @@
+{
+  "name": "Vermont Green Mountain State Digital Archive",
+  "icons": [
+    {
+      "src": "/static/local/vermont/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/ico"
+    },
+    {
+      "src": "/static/local/vermont/favicon.ico",
+      "sizes": "256x256",
+      "type": "image/ico"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

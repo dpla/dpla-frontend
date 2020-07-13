@@ -606,7 +606,26 @@ const LOCALS = {
         category: "Key Figures"
       }
     }
-  }
+  },
+  vermont: {
+    theme: "vermont",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/vermont"
+    ],
+    name: "Vermont Green Mountain Digital Archive",
+    background: "home-hero-bg.jpg",
+    favicon: "favicon.ico",
+    logo: "logo.svg",
+    description: "Vermont Green Mountain Digital Archive",
+    externalLink: "https://libraries.vermont.gov/GMDA",
+    locationFacet: "%22Vermont%22",
+    subjectFacet: "%22Vermont%22",
+    hasAbout: false,
+    hasTerms: false,
+    hasSidebar: false,
+    hasBrowseByPartner: false,
+    hasBrowseAll: false,
+  },
 };
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
