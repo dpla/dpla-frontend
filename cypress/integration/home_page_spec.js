@@ -1,16 +1,20 @@
 if (Cypress.config('SITE_ENV') == 'pro') {
 
-  describe('The Home Page', () => {
-    it('successfully loads homepage', () => {
-      cy.visit('/')
-      cy.title().should('eq', 'Digital Public Library of America')
-      })
+  beforeEach(() => {
+    cy.visit('/')
   })
 
+  // describe('The Home Page', () => {
+    it('successfully loads homepage', () => {
+      // cy.visit('/')
+      cy.title().should('eq', 'Digital Public Library of America')
+      })
+  // })
 
-  describe('Home Page Banner', () => {
+
+  // describe('Home Page Banner', () => {
     it('checks that hero banner has background image and is visible', () => {
-      cy.visit('/')
+      // cy.visit('/')
       
       cy.get('[data-cy=homePro]')
       .contains('Welcome to the DPLA Professional Community')
@@ -20,11 +24,11 @@ if (Cypress.config('SITE_ENV') == 'pro') {
       .should('have.css', 'background-image')
       .and('eq', `url("${Cypress.config('baseUrl')}/static/images/pro/home-hero-bg.png")`)
     })
-  })
+  // })
 
-  describe('Test tile links', () => {
+  // describe('Test tile links', () => {
     it('gets and checks tile links', () => {
-      cy.visit('/')
+      // cy.visit('/')
       cy.get('[data-cy=hubsLink]').click()
       cy.location('href').should('eq', `${Cypress.config('baseUrl')}/hubs`);
 
@@ -49,6 +53,15 @@ if (Cypress.config('SITE_ENV') == 'pro') {
       cy.location('href').should('eq', `${Cypress.config('baseUrl')}/ebooks`);
 
 
+      // look at traversal example file
+      // it('.each() - iterate over an array of elements', () => {
+      //   // https://on.cypress.io/each
+      //   cy.get('.connectors-each-ul>li')
+      //     .each(($el, index, $list) => {
+      //       console.log($el, index, $list)
+      //     })
+      // })
+
       // Rewrite test with iteration through links
       // cy.get('[data-cy=tileList]')
       // .should(a => {
@@ -65,24 +78,24 @@ if (Cypress.config('SITE_ENV') == 'pro') {
       //   })
       // })
     })
-  })
+  // })
 
-  describe('Newslane', () => {
+  // describe('Newslane', () => {
     it('checks that NewsLane component is visible', () => {
-      cy.visit('/')
+      // cy.visit('/')
       
       cy.get('[data-cy=NewsLane]')
       .should('be.visible')
     })
-  })
+  // })
 
-  describe('StayInformed', () => {
+  // describe('StayInformed', () => {
     it('checks that StayInformed component is visible', () => {
-      cy.visit('/')
+      // cy.visit('/')
       
       cy.get('[data-cy=StayInformed]')
       .should('be.visible')
     })
-  })
+  // })
 
 }
