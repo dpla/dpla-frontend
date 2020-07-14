@@ -610,7 +610,7 @@ const LOCALS = {
   vermont: {
     theme: "vermont",
     filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/vermont"
+      "provider.@id:http%3A//dp.la/api/contributor/vt"
     ],
     name: "Vermont Green Mountain Digital Archive",
     background: "home-hero-bg.jpg",
