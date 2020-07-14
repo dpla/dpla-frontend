@@ -47,3 +47,4 @@ cypress.json
 browserstack.json
 /cypress/videos
 /cypress/screenshots
+/cypress/integration/examples

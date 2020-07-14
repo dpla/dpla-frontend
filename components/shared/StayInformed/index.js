@@ -124,7 +124,7 @@ class StayInformed extends React.Component {
                   </div>
                 </form>}
               {this.state.isSent &&
-                <h3 aria-live="assertive" className={css.formCallToAction}>
+                <h3 aria-live="assertive" className={css.formCallToAction} data-cy="subscriptionConfirmation">
                   You have successfully subscribed to DPLA's general email list!
                   We'll send you announcements about our projects and events.
                 </h3>}

@@ -5,7 +5,7 @@ import { withRouter } from "next/router";
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
-import CallToAction from "shared/CallToAction";
+import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
@@ -36,7 +36,7 @@ class HubsPage extends React.Component {
     const { router, page, pageTitle, news } = this.props;
     return (
       <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
-        <div id="main" role="main" className={css.pageWrapper}>
+        <div id="main" role="main">
           <div
             className={`${css.pageHero} ${page.acf.feature
               ? css.withFeature
@@ -55,8 +55,8 @@ class HubsPage extends React.Component {
               buttonUrl={page.acf.feature.button_url}
               imageSrc={page.acf.feature.image}
             />}
-          <div className={`${css.pageWrapper}`}>
-            <section className={`${css.sectionWrapper} site-max-width`}>
+          <div>
+            <section className={`${css.tileSectionWrapper} site-max-width`}>
               <ul className={css.sectionList}>
                 {page.acf.sections.map((section, index) => {
                   return (
@@ -88,7 +88,7 @@ class HubsPage extends React.Component {
               </ul>
             </section>
           </div>
-          <CallToAction
+          <FullPageWidthBlock
             className={css.sectionWrapper}
             title={page.acf.call_to_action.title}
             text={page.acf.call_to_action.text}
