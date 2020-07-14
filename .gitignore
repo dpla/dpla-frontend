@@ -48,3 +48,6 @@ browserstack.json
 /cypress/videos
 /cypress/screenshots
 /cypress/integration/examples
+/cypress/fixtures
+/cypress/plugins
+/cypress/support
