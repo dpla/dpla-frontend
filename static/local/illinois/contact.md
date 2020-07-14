@@ -8,7 +8,7 @@ If you are a contributor or if you would like to learn more about the Illinois D
 Senior Director  
 Consortium of Academic and Research Libraries in Illinois
 
-### [Joshua Lynch](mailto:jlynch21@illinois.edu)
+### [Megan Nicole Pearson](mailto:jmegannp4@illinois.edu)
 **IDHH Metadata Manager and Webmaster**  
 Metadata Services Specialist  
 University of Illinois, Urbana-Champaign
@@ -19,6 +19,9 @@ Senior Application Support Coordinator
 Consortium for Academic and Research Libraries in Illinois
 
 ## Former Staff and Students
+
+### Joshua Lynch
+**IDHH Metadata Manager, 2018-2020**
 
 ### Hannah Stitzlein
 **IDHH Metadata Manager, 2016-2018**
