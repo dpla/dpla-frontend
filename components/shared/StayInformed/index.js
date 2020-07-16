@@ -8,7 +8,11 @@ class StayInformed extends React.Component {
   state = {
     isSending: false,
     isSent: false,
-    email: undefined
+    email: undefined,
+    generalNews: true,
+    ebooks: false,
+    education: false,
+    genealogy: false,
   };
 
   onEmailChange = e => {
@@ -17,6 +21,11 @@ class StayInformed extends React.Component {
       isSent: this.state.isSent,
       email: e.target.value
     });
+  };
+
+  onCheckboxChange = e => {
+    const { name, checked } = event.target
+    this.setState({ [name]: checked });
   };
 
   onButtonClick(e) {
@@ -103,16 +112,7 @@ class StayInformed extends React.Component {
                       onBlur={this.onEmailChange}
                       {...emailProps}
                     />
-                    <input
-                      aria-live="assertive"
-                      type="submit"
-                      value={
-                        !this.state.isSending ? "Sign Up" : "Subscribing..."
-                      }
-                      name="signup"
-                      className={css.button}
-                      onClick={e => this.onButtonClick(e)}
-                    />
+
                     <input
                       type="checkbox"
                       name="i_prefer_usps_mail"
@@ -122,6 +122,72 @@ class StayInformed extends React.Component {
                       autoComplete="off"
                     />
                   </div>
+
+                  <div className={`${css.interestsContainer} ${css.email}`}>
+                    <div>
+                      <input
+                          type="checkbox"
+                          name="generalNews"
+                          checked={this.state.generalNews}
+                          tabIndex="-1"
+                          onChange={this.onCheckboxChange}
+                        />
+                      <label>
+                        General News
+                      </label>
+                    </div>
+                      
+                    <div>
+                      <input
+                          type="checkbox"
+                          name="ebooks"
+                          checked={this.state.ebooks}
+                          tabIndex="-1"
+                          onChange={this.onCheckboxChange}
+                        />
+                      <label> 
+                        Ebooks
+                      </label>
+                    </div>
+                    
+                    <div>
+                      <input
+                          type="checkbox"
+                          name="education"
+                          checked={this.state.education}
+                          tabIndex="-1"
+                          onChange={this.onCheckboxChange}
+                        />
+                      <label>
+                          Education
+                      </label>
+                    </div>   
+
+                    <div>
+                      <input
+                          type="checkbox"
+                          name="genealogy"
+                          checked={this.state.genealogy}
+                          tabIndex="-1"
+                          onChange={this.onCheckboxChange}
+                        />
+                      <label>
+                          Genealogy
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <input
+                    aria-live="assertive"
+                    type="submit"
+                    value={
+                      !this.state.isSending ? "Sign Up" : "Subscribing..."
+                    }
+                    name="signup"
+                    className={css.button}
+                    onClick={e => this.onButtonClick(e)}
+                  />
+
                 </form>}
               {this.state.isSent &&
                 <h3 aria-live="assertive" className={css.formCallToAction}>
