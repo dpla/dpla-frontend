@@ -109,9 +109,9 @@ if (require.main === module) {
           )
             return res.sendStatus(400);
 
-          const email = req.body.email || "";
+          // const email = req.body.email || "";
           const list_id = req.body.id || "";
-          const interests = req.body.interests || [];
+          // const interests = req.body.interests || [];
 
           if (list_id === "") return res.sendStatus(400);
 
@@ -129,24 +129,21 @@ if (require.main === module) {
               }
             });
 
-            const res = await fetch(url, {
+            const mRes = await fetch(url, {
               method: "POST",
               headers: new Headers({
                 "Content-Type": "application/json",
                 Authorization: "apikey " + process.env.MAILCHIMP_KEY
               }),
               body: body
-            }).then(data => res.json(data))
-            .catch(err => console.log(err));
+            });
+            const data = await mRes.json();
 
-
-            console.log('res', res)
-          //
-             // send the response back
-          //   res.sendStatus(200);
+            // send the response back
+            res.sendStatus(200);
           } catch (error) {
-            res.sendStatus(500);
-            throw new Error('something bad happened')
+            // res.sendStatus(500);
+            throw new Error('An error occured', error)
           }
         });
 

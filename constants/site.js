@@ -19,7 +19,7 @@ export const PSS_SUGGESTION_URL =
   "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
 export const PSS_NHD_URL = "https://pro.dp.la/education/national-history-day";
 
-export const MAILCHIMP_LIST = "4c517f4bd0";
+export const MAILCHIMP_LIST_ID = "4c517f4bd0";
 export const MAILCHIMP_GROUP_IDS = {
   NEWS: "65934fd87a",
   EBOOKS: "0a0565e000",

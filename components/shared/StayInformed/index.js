@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MAILCHIMP_LIST, MAILCHIMP_GROUP_IDS } from "constants/site";
+import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
 import css from "./StayInformed.scss";
 
@@ -71,32 +71,25 @@ class StayInformed extends React.Component {
     });
 
     let interests = this.state.interests;
-    
-    const body = JSON.stringify({
-      id: MAILCHIMP_LIST,
-      email_address: this.state.email,
-      status: "subscribed",
-      miel: "1",
-      interests: {
-        [interests.news.group_id] : interests.news.value,
-        [interests.ebooks.group_id] : interests.ebooks.value,
-        [interests.education.group_id] : interests.education.value,
-        [interests.genealogy.group_id] : interests.genealogy.value
-      }
+    let email = this.state.email;
+    let miel = e.target.elements.i_prefer_usps_mail.value;
+
+    let body = JSON.stringify({
+      email: email,
+      id: MAILCHIMP_LIST_ID,
+      miel: miel,
+      interests: interests
     });
 
-    const url = `https://us4.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST}/members`;
-
-    fetch(url, {
+    const res = await fetch("/mailchimp", {
       method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Authorization": {"Basic " : "user" + process.env.MAILCHIMP_KEY}
-      }),
-      body: JSON.stringify(body)
-    }).then(res => res.json())
-    .catch(err => console.log(err));
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: body
+    });
+    const data = await res.text();
+
 
     this.setState({
       isSending: false,
