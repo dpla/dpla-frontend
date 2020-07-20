@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MAILCHIMP_LISTS } from "constants/site";
+import { MAILCHIMP_LIST, MAILCHIMP_GROUP_IDS } from "constants/site";
 
 import css from "./StayInformed.scss";
 
@@ -9,10 +9,24 @@ class StayInformed extends React.Component {
     isSending: false,
     isSent: false,
     email: undefined,
-    generalNews: true,
-    ebooks: false,
-    education: false,
-    genealogy: false,
+    interests: {
+      news: { 
+        group_id: MAILCHIMP_GROUP_IDS.NEWS,
+        value: true
+      },
+      ebooks: {
+        group_id: MAILCHIMP_GROUP_IDS.EBOOKS,
+        value: false
+      },
+      education: {
+        group_id: MAILCHIMP_GROUP_IDS.EDUCATION,
+        value: false
+      },
+      genealogy: {
+        group_id: MAILCHIMP_GROUP_IDS.GENEALOGY,
+        value: false
+      },
+    }
   };
 
   onEmailChange = e => {
@@ -24,8 +38,16 @@ class StayInformed extends React.Component {
   };
 
   onCheckboxChange = e => {
-    const { name, checked } = event.target
-    this.setState({ [name]: checked });
+    const { name, checked } = e.target
+
+    this.setState(prevState => ({ 
+      interests: {
+        ...prevState.interests,
+        [name] : {
+          ...prevState.interests[name],
+          value: checked
+        }} 
+    }));
   };
 
   onButtonClick(e) {
@@ -48,22 +70,33 @@ class StayInformed extends React.Component {
       email: this.state.email
     });
 
-    let email = this.state.email;
-    let miel = e.target.elements.i_prefer_usps_mail.value;
+    let interests = this.state.interests;
+    
+    const body = JSON.stringify({
+      id: MAILCHIMP_LIST,
+      email_address: this.state.email,
+      status: "subscribed",
+      miel: "1",
+      interests: {
+        [interests.news.group_id] : interests.news.value,
+        [interests.ebooks.group_id] : interests.ebooks.value,
+        [interests.education.group_id] : interests.education.value,
+        [interests.genealogy.group_id] : interests.genealogy.value
+      }
+    });
 
-    let body = JSON.stringify({
-      email: email,
-      id: MAILCHIMP_LISTS.NEWS,
-      miel: miel
-    });
-    const res = await fetch(`/m`, {
+    const url = `https://us4.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST}/members`;
+
+    fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: body
-    });
-    const data = await res.text();
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Authorization": {"Basic " : "user" + process.env.MAILCHIMP_KEY}
+      }),
+      body: JSON.stringify(body)
+    }).then(res => res.json())
+    .catch(err => console.log(err));
 
     this.setState({
       isSending: false,
@@ -127,8 +160,8 @@ class StayInformed extends React.Component {
                     <div>
                       <input
                           type="checkbox"
-                          name="generalNews"
-                          checked={this.state.generalNews}
+                          name="news"
+                          checked={this.state.interests.news.value}
                           tabIndex="-1"
                           onChange={this.onCheckboxChange}
                         />
@@ -141,7 +174,7 @@ class StayInformed extends React.Component {
                       <input
                           type="checkbox"
                           name="ebooks"
-                          checked={this.state.ebooks}
+                          checked={this.state.interests.ebooks.value}
                           tabIndex="-1"
                           onChange={this.onCheckboxChange}
                         />
@@ -154,7 +187,7 @@ class StayInformed extends React.Component {
                       <input
                           type="checkbox"
                           name="education"
-                          checked={this.state.education}
+                          checked={this.state.interests.education.value}
                           tabIndex="-1"
                           onChange={this.onCheckboxChange}
                         />
@@ -167,7 +200,7 @@ class StayInformed extends React.Component {
                       <input
                           type="checkbox"
                           name="genealogy"
-                          checked={this.state.genealogy}
+                          checked={this.state.interests.genealogy.value}
                           tabIndex="-1"
                           onChange={this.onCheckboxChange}
                         />
@@ -189,11 +222,7 @@ class StayInformed extends React.Component {
                   />
 
                 </form>}
-              {this.state.isSent &&
-                <h3 aria-live="assertive" className={css.formCallToAction}>
-                  You have successfully subscribed to DPLA's general email list!
-                  We'll send you announcements about our projects and events.
-                </h3>}
+              
             </div>
           </div>
         </div>
@@ -203,3 +232,9 @@ class StayInformed extends React.Component {
 }
 
 export default StayInformed;
+
+// {this.state.isSent &&
+//   <h3 aria-live="assertive" className={css.formCallToAction}>
+//     You have successfully subscribed to DPLA's general email list!
+//     We'll send you announcements about our projects and events.
+//   </h3>}
