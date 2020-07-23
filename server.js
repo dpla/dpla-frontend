@@ -109,9 +109,9 @@ if (require.main === module) {
           )
             return res.sendStatus(400);
 
-          // const email = req.body.email || "";
+          const email = req.body.email || "";
           const list_id = req.body.id || "";
-          // const interests = req.body.interests || [];
+          const interests = req.body.interests || [];
 
           if (list_id === "") return res.sendStatus(400);
 

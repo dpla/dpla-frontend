@@ -25,7 +25,7 @@ class StayInformed extends React.Component {
       genealogy: {
         group_id: MAILCHIMP_GROUP_IDS.GENEALOGY,
         value: false
-      },
+      }
     }
   };
 
@@ -87,9 +87,9 @@ class StayInformed extends React.Component {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: body
-    });
-    const data = await res.text();
-
+    })
+    
+    const data = await res.json()
 
     this.setState({
       isSending: false,
