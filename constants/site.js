@@ -27,7 +27,6 @@ export const MAILCHIMP_GROUP_IDS = {
   GENEALOGY: "f1bce877cd"
 };
 
-
 export const UNTITLED_TEXT = "Untitled";
 
 export const MESSAGE_DELAY = 5000;

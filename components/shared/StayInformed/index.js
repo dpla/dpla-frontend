@@ -10,7 +10,7 @@ class StayInformed extends React.Component {
     isSent: false,
     email: undefined,
     interests: {
-      news: { 
+      news: {
         group_id: MAILCHIMP_GROUP_IDS.NEWS,
         value: true
       },
@@ -40,13 +40,14 @@ class StayInformed extends React.Component {
   onCheckboxChange = e => {
     const { name, checked } = e.target
 
-    this.setState(prevState => ({ 
+    this.setState(prevState => ({
       interests: {
         ...prevState.interests,
-        [name] : {
+        [name]: {
           ...prevState.interests[name],
           value: checked
-        }} 
+        }
+      }
     }));
   };
 
@@ -88,7 +89,7 @@ class StayInformed extends React.Component {
       },
       body: body
     })
-    
+
     const data = await res.json()
 
     this.setState({
@@ -152,57 +153,57 @@ class StayInformed extends React.Component {
                   <div className={`${css.interestsContainer} ${css.email}`}>
                     <div>
                       <input
-                          type="checkbox"
-                          name="news"
-                          checked={this.state.interests.news.value}
-                          tabIndex="-1"
-                          onChange={this.onCheckboxChange}
-                        />
+                        type="checkbox"
+                        name="news"
+                        checked={this.state.interests.news.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
                       <label>
                         General News
                       </label>
                     </div>
-                      
-                    <div>
-                      <input
-                          type="checkbox"
-                          name="ebooks"
-                          checked={this.state.interests.ebooks.value}
-                          tabIndex="-1"
-                          onChange={this.onCheckboxChange}
-                        />
-                      <label> 
-                        Ebooks
-                      </label>
-                    </div>
-                    
-                    <div>
-                      <input
-                          type="checkbox"
-                          name="education"
-                          checked={this.state.interests.education.value}
-                          tabIndex="-1"
-                          onChange={this.onCheckboxChange}
-                        />
-                      <label>
-                          Education
-                      </label>
-                    </div>   
 
                     <div>
                       <input
-                          type="checkbox"
-                          name="genealogy"
-                          checked={this.state.interests.genealogy.value}
-                          tabIndex="-1"
-                          onChange={this.onCheckboxChange}
-                        />
+                        type="checkbox"
+                        name="ebooks"
+                        checked={this.state.interests.ebooks.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
                       <label>
-                          Genealogy
+                        Ebooks
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="education"
+                        checked={this.state.interests.education.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        Education
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="genealogy"
+                        checked={this.state.interests.genealogy.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        Genealogy
                       </label>
                     </div>
                   </div>
-                  
+
                   <input
                     aria-live="assertive"
                     type="submit"
@@ -215,7 +216,12 @@ class StayInformed extends React.Component {
                   />
 
                 </form>}
-              
+              {this.state.isSent &&
+                <h3 aria-live="assertive" className={css.formCallToAction}>
+                  You have successfully subscribed to DPLA's general email list!
+                  We'll send you announcements about our projects and events.
+                  </h3>}
+
             </div>
           </div>
         </div>
@@ -225,9 +231,3 @@ class StayInformed extends React.Component {
 }
 
 export default StayInformed;
-
-// {this.state.isSent &&
-//   <h3 aria-live="assertive" className={css.formCallToAction}>
-//     You have successfully subscribed to DPLA's general email list!
-//     We'll send you announcements about our projects and events.
-//   </h3>}
