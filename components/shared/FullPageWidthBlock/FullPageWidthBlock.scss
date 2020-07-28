@@ -19,7 +19,7 @@
   margin: 0 auto;
 
   @media (min-width: $smallRem) {
-    grid-template-columns: auto 34%;
+    grid-template-columns: auto 40%;
     grid-template-rows: auto;
     grid-column-gap: 4rem;
   }
@@ -43,6 +43,8 @@
 }
 
 .fullPageWidthBlockImage {
+  margin: auto;
+
   & img {
     width: 100%;
   }
@@ -75,5 +77,12 @@
 
   &:hover {
     background-color: $darkSecondaryButtonColor;
+  }
+}
+
+// removes external icon from this page
+a {
+  &:global.external {
+    background-image: none;
   }
 }

@@ -12,7 +12,6 @@ import WPEdit from "shared/WPEdit";
 import { wordpressLinks } from "lib";
 
 import {
-  NEWS_PRO_ENDPOINT,
   PAGES_ENDPOINT,
   NEWS_EBOOKS_ENDPOINT,
   SEO_TYPE
@@ -51,11 +50,11 @@ class EbooksPage extends React.Component {
           </div>
        
           <WebsiteFeature
-            title="Take Control of your Digital Collections &amp; Serve Your Community"
-            text="Join the only ebook platform built by libraries for libraries"
-            buttonText={page.acf.feature.button_text}
-            buttonUrl={page.acf.feature.button_url}
-            imageSrc={page.acf.feature.image}
+            title="Take Control of your Digital Collections"
+            text="Driven by our mission to maximize access to knowledge, DPLA gives libraries greater control over the acquisition and delivery of ebooks and audiobooks and makes more diverse ebooks easily available to libraries and their patrons while advocating for the needs of libraries in the marketplace. DPLA’s ebook work is supported by the Alfred P. Sloan Foundation."
+            buttonText=""
+            buttonUrl=""
+            imageSrc="static/images/ebooks/ebooks-feature.png"
           />
 
           <section className={`${css.tileSectionWrapper} site-max-width`}>
@@ -100,6 +99,7 @@ class EbooksPage extends React.Component {
               imageSrc={page.acf.call_to_action.image}
               imageCaption={page.acf.call_to_action.image_credit}
               imageAlt={page.acf.call_to_action.image_credit}
+              imageAlt={page.acf.call_to_action.image_href}
             />    
           }
 
@@ -116,12 +116,12 @@ class EbooksPage extends React.Component {
                   imageSrc={content.image}
                   imageCaption={content.imageCredit}
                   imageAlt={content.imageAlt}
+                  imageHref={content.imageHref}
                   links={content.links}
               /> 
               ) 
             })}
           </div>
-          
           
           <NewsLane title="Ebook News" items={news} />
         </div>
