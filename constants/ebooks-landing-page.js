@@ -1,14 +1,14 @@
 export const midPageBlockContent = [
   {
     "title": "An ebooks marketplace built by and for libraries",
-    "text": "The DPLA Exchange provides libraries a public option for e-content acquisitions that works seamlessly with the SimplyE national library-driven platform. DPLA can help you customize diverse collections beyond the bestsellers, including non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
+    "text": "The DPLA Exchange is an e-content acquisitions platform that works seamlessly with SimplyE. DPLA can help libraries customize diverse collections beyond the bestsellers, including non-English titles. Member libraries also benefit from DPLA’s ongoing publisher negotiations for new, more favorable licensing terms.",
     "links": [
       {
         "text": "Browse & buy content from DPLA Exchange",
         "href": "https://exchange.dp.la"
       },
       {
-        "text": "Explore simultaneous multi-use collections",
+        "text": "Explore collections of simultaneous, multi-user econtent",
         "href": "https://pro.dp.la/ebooks/ebook-bibliolabs"
       },
       {
@@ -23,7 +23,7 @@ export const midPageBlockContent = [
   },
   {
     "title": "Build an instant collection of free ebooks",
-    "text": "Jumpstart your e-shelves with our free Open Bookshelf collection. Select from thousands of freely available titles including classics, contemporary fiction, nonfiction, children’s books, and textbooks, all reviewed by our Curation Corps of librarians.",
+    "text": "Jumpstart your digital collection with our free Open Bookshelf titles. Select from thousands of freely available items including classics, contemporary fiction, nonfiction, children’s books, and textbooks, all reviewed by our Curation Corps of librarians.",
     "links": [
       {
         "text": "Browse the Open Bookshelf collection",
@@ -40,15 +40,15 @@ export const midPageBlockContent = [
     "imageHref": "https://freebooks.dp.la/collection/groups"
   },
   {
-    "title": "Simultaneous multi-user collections",
-    "text": "DPLA has partnered with BiblioLabs to provide libraries access to a growing collection of thousands of titles, including independent author collections and content from major publishers. Our simultaneous multi-user model allows an unlimited number of patrons to borrow books at the same time.",
+    "title": "Simultaneous multi-user ebooks and audiobooks",
+    "text": "DPLA has partnered with BiblioLabs to give libraries access to a growing collection of thousands of titles, including independent author collections and content from major publishers. Our simultaneous multi-user model allows an unlimited number of patrons to borrow books at the same time.",
     "links": [
       {
-        "text": "About simultaneous multi-user collections",
+        "text": "About our simultaneous multi-user model",
         "href": "https://pro.dp.la/ebooks/ebook-bibliolabs"
       },
       {
-        "text": "About the Biblolabs collections",
+        "text": "About the Bibliolabs collections",
         "href": "http://dpla.wpengine.com/wp-content/uploads/2020/05/Combined-BiblioLabs-PDF_May2020.pdf"
       },
       {
@@ -63,7 +63,7 @@ export const midPageBlockContent = [
   },
   {
     "title": "Original DPLA Publications",
-    "text": "DPLA is a publisher too! We’ve introduced original, easy-to-read ebook versions of important government documents, including our award-winning ebook version of the Mueller Report, and The Impeachment Papers.",
+    "text": "DPLA is also a publisher. We’ve introduced original, easy-to-read ebook versions of important government documents, including our award-winning ebook versions of the Mueller Report and The Impeachment Papers.",
     "links": [
       {
         "text": "About DPLA Ebooks",

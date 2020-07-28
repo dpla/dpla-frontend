@@ -51,7 +51,7 @@ class EbooksPage extends React.Component {
        
           <WebsiteFeature
             title="Take Control of your Digital Collections"
-            text="Driven by our mission to maximize access to knowledge, DPLA provides libraries greater control over the acquisition and delivery of ebooks and audiobooks and makes more diverse ebooks easily available to libraries and their patrons, while advocating for the needs of libraries in the marketplace. DPLA’s ebook work is supported by Alfred P. Sloan Foundation."
+            text="Driven by our mission to maximize access to knowledge, DPLA gives libraries greater control over the acquisition and delivery of ebooks and audiobooks and makes more diverse ebooks easily available to libraries and their patrons while advocating for the needs of libraries in the marketplace. DPLA’s ebook work is supported by the Alfred P. Sloan Foundation."
             buttonText=""
             buttonUrl=""
             imageSrc="static/images/ebooks/ebooks-feature.png"
