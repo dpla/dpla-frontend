@@ -100,8 +100,8 @@ if (require.main === module) {
           res.redirect(newPath);
         });
 
-        // mailchimp lists endpoint
-        server.post("/m", async (req, res) => {
+        // mailchimp endpoint
+        server.post("/mailchimp", async (req, res) => {
           if (!req.body) return res.sendStatus(400);
           if (
             req.body.i_prefer_usps_mail &&
@@ -111,6 +111,7 @@ if (require.main === module) {
 
           const email = req.body.email || "";
           const list_id = req.body.id || "";
+          const interests = req.body.interests || [];
 
           if (list_id === "") return res.sendStatus(400);
 
@@ -119,7 +120,13 @@ if (require.main === module) {
 
             const body = JSON.stringify({
               email_address: email,
-              status: "pending"
+              status: "subscribed",
+              interests: {
+                [interests.news.group_id] : interests.news.value,
+                [interests.ebooks.group_id] : interests.ebooks.value,
+                [interests.education.group_id] : interests.education.value,
+                [interests.genealogy.group_id] : interests.genealogy.value
+              }
             });
 
             const mRes = await fetch(url, {
@@ -135,7 +142,8 @@ if (require.main === module) {
             // send the response back
             res.sendStatus(200);
           } catch (error) {
-            res.sendStatus(500);
+            // res.sendStatus(500);
+            throw new Error('An error occured', error)
           }
         });
 

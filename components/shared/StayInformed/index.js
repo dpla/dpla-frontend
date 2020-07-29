@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MAILCHIMP_LISTS } from "constants/site";
+import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
 import css from "./StayInformed.scss";
 
@@ -8,7 +8,25 @@ class StayInformed extends React.Component {
   state = {
     isSending: false,
     isSent: false,
-    email: undefined
+    email: undefined,
+    interests: {
+      news: {
+        group_id: MAILCHIMP_GROUP_IDS.NEWS,
+        value: true
+      },
+      ebooks: {
+        group_id: MAILCHIMP_GROUP_IDS.EBOOKS,
+        value: false
+      },
+      education: {
+        group_id: MAILCHIMP_GROUP_IDS.EDUCATION,
+        value: false
+      },
+      genealogy: {
+        group_id: MAILCHIMP_GROUP_IDS.GENEALOGY,
+        value: false
+      }
+    }
   };
 
   onEmailChange = e => {
@@ -17,6 +35,20 @@ class StayInformed extends React.Component {
       isSent: this.state.isSent,
       email: e.target.value
     });
+  };
+
+  onCheckboxChange = e => {
+    const { name, checked } = e.target
+
+    this.setState(prevState => ({
+      interests: {
+        ...prevState.interests,
+        [name]: {
+          ...prevState.interests[name],
+          value: checked
+        }
+      }
+    }));
   };
 
   onButtonClick(e) {
@@ -39,22 +71,26 @@ class StayInformed extends React.Component {
       email: this.state.email
     });
 
+    let interests = this.state.interests;
     let email = this.state.email;
     let miel = e.target.elements.i_prefer_usps_mail.value;
 
     let body = JSON.stringify({
       email: email,
-      id: MAILCHIMP_LISTS.NEWS,
-      miel: miel
+      id: MAILCHIMP_LIST_ID,
+      miel: miel,
+      interests: interests
     });
-    const res = await fetch(`/m`, {
+
+    const res = await fetch("/mailchimp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: body
-    });
-    const data = await res.text();
+    })
+
+    const data = await res.json()
 
     this.setState({
       isSending: false,
@@ -103,16 +139,7 @@ class StayInformed extends React.Component {
                       onBlur={this.onEmailChange}
                       {...emailProps}
                     />
-                    <input
-                      aria-live="assertive"
-                      type="submit"
-                      value={
-                        !this.state.isSending ? "Sign Up" : "Subscribing..."
-                      }
-                      name="signup"
-                      className={css.button}
-                      onClick={e => this.onButtonClick(e)}
-                    />
+
                     <input
                       type="checkbox"
                       name="i_prefer_usps_mail"
@@ -122,12 +149,79 @@ class StayInformed extends React.Component {
                       autoComplete="off"
                     />
                   </div>
+
+                  <div className={`${css.interestsContainer} ${css.email}`}>
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="news"
+                        checked={this.state.interests.news.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        General News
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="ebooks"
+                        checked={this.state.interests.ebooks.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        Ebooks
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="education"
+                        checked={this.state.interests.education.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        Education
+                      </label>
+                    </div>
+
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="genealogy"
+                        checked={this.state.interests.genealogy.value}
+                        tabIndex="-1"
+                        onChange={this.onCheckboxChange}
+                      />
+                      <label>
+                        Genealogy
+                      </label>
+                    </div>
+                  </div>
+
+                  <input
+                    aria-live="assertive"
+                    type="submit"
+                    value={
+                      !this.state.isSending ? "Sign Up" : "Subscribing..."
+                    }
+                    name="signup"
+                    className={css.button}
+                    onClick={e => this.onButtonClick(e)}
+                  />
+
                 </form>}
               {this.state.isSent &&
                 <h3 aria-live="assertive" className={css.formCallToAction}>
                   You have successfully subscribed to DPLA's general email list!
                   We'll send you announcements about our projects and events.
-                </h3>}
+                  </h3>}
+
             </div>
           </div>
         </div>
