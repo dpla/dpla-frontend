@@ -90,7 +90,7 @@ class StayInformed extends React.Component {
       body: body
     })
 
-    const data = await res.json()
+    const data = await res.text()
 
     this.setState({
       isSending: false,
