@@ -1,3 +1,5 @@
+
+
 $theme-main-color: #515151; //footer
 $theme-dark-color: #1f1f1f; //header
 $theme-link-color: #002d66; //button //0055d4 //47596d //002d66
@@ -41,32 +43,19 @@ $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
 
 .homeLogo {
-  width: 100% !important;
-  & h1 {
-    margin: auto !important;
-    text-align: center;
+  max-width: 64rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 50% !important;
+
+  .localLogo {
+    //height: 437px !important;
+    //width: 690px !important;
+    margin-left: 2rem;
+    max-width: 64rem !important;
+    height: 15rem;
   }
-}
 
-.localLogo {
-  display: none;
-}
-
-h1.localText {
-  width: auto !important;
-  height: auto !important;
-  font-size: 55px;
-  margin: auto;
-  text-align: center;
-}
-
-span.localText {
-  color: white !important;
-  width: auto !important;
-  height: auto !important;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  font-weight: bold;
 }
 
 div.links {

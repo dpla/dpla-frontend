@@ -13,16 +13,29 @@ class SmallFooterLocal extends React.Component {
     const { route } = this.props;
     var logoHtml;
     if (LOCAL_ID === "wisconsin") {
-      logoHtml = (
-        <a href={`${LOCALS[LOCAL_ID].externalLink}`}>
-          <img
-            className={css.localLogo}
-            alt={`${LOCALS[LOCAL_ID].name} Home`}
-            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
-              .logo}`}
-          />
-        </a>
-      );
+        logoHtml = (
+            <a href={`${LOCALS[LOCAL_ID].externalLink}`}>
+                <img
+                    className={css.localLogo}
+                    alt={`${LOCALS[LOCAL_ID].name} Home`}
+                    src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
+                        .logo}`}
+                />
+            </a>
+        );
+    } else if (LOCAL_ID === "tennessee") {
+        logoHtml = (
+            <Link prefetch href="/local" as="/">
+                <a>
+                    <img
+                        className={css.localLogo}
+                        alt={`${LOCALS[LOCAL_ID].name} Home`}
+                        src={`/static/local/tennessee/logo2.png`}
+                    />
+                </a>
+            </Link>
+        );
+
     } else {
       logoHtml = (
         <Link prefetch href="/local" as="/">
