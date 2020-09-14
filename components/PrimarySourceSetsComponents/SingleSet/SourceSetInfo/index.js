@@ -186,7 +186,7 @@ class SourceSetInfo extends React.Component {
                           .replace("teaching-guide", "")
                           .replace("additional-resources", "")}`}
                         className={css.toolLink}
-                        rel="noopener noreferrer"
+                        rel="noopener"
                         target="_blank"
                       >
                         Share to Google Classroom

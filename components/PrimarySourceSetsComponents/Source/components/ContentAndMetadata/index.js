@@ -257,7 +257,7 @@ class ContentAndMetadata extends React.Component {
                       href={getSourceLink(source)}
                       className={`${css.sourceLink}`}
                       onClick={e => trackClickThrough(e, source)}
-                      rel="noopener noreferrer"
+                      rel="noopener"
                       target="_blank"
                     >
                       <img
