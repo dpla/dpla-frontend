@@ -447,7 +447,7 @@ class ListView extends React.Component {
                   <a
                     href={item.sourceUrl}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className={`hover-underline clickThrough external ${css.itemSource}`}
                   >
                     {item.type === "image"

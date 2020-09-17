@@ -64,7 +64,7 @@ class MainMetadata extends React.Component {
               {item.sourceUrl &&
                 <Link prefetch href={item.sourceUrl}>
                   <a
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     target="_blank"
                     className={`${css.sourceLink} clickThrough external white`}
                   >
