@@ -1,6 +1,4 @@
-# About the Pan Am Commercial Aviation Portal
-
-The Commercial Aviation Portal features Pan American World Airways, Inc., materials digitized from collections at the University of Miami, HistoryMiami Museum, and Duke University alongside commercial aviation resources from DPLA’s partner network. The portal aims to enable students, teachers, scholars, and other researchers to easily discover and build connections across aviation collections nationwide.
+Cleared for Takeoff: Explore Commercial Aviation features Pan American World Airways, Inc., materials digitized from collections at the University of Miami, HistoryMiami Museum, and Duke University alongside commercial aviation resources from DPLA’s partner network. The portal aims to enable students, teachers, scholars, and other researchers to easily discover and build connections across aviation collections nationwide.
 
 Pan Am was an iconic and groundbreaking airline beloved by travelers worldwide.  In operation from 1927 until 1991, Pan Am was a leader in globalizing commercial aviation and shaping public perceptions of air travel, and its impact on global affairs, corporate culture, and social history are still relevant today. The airline pioneered the first transatlantic and transpacific commercial air routes and influenced the development of aviation technology and commercial passenger service all while capturing the imagination of travelers on a global scale.
 

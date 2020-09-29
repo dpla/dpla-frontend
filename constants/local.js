@@ -300,7 +300,7 @@ const LOCALS = {
   },
   aviation: {
     theme: "aviation",
-    name: "Aviation Portal",
+    name: "Cleared for Takeoff: Explore Commercial Aviation",
     favicon: "favicon.png",
     logo: "logo.png",
     background: "home-hero-bg.png",
