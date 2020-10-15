@@ -82,7 +82,7 @@
 
 // removes external icon from this page
 a {
-  &:global.external {
+  &.external {
     background-image: none;
   }
 }
