@@ -24,7 +24,11 @@ export const midPageBlockContent = [
   {
     "title": "Build an instant collection of free ebooks",
     "text": "Jumpstart your digital collection with our free Open Bookshelf titles. Select from thousands of freely available items including classics, contemporary fiction, nonfiction, children’s books, and textbooks, all reviewed by our Curation Corps of librarians.",
-    "links": [
+      "links": [
+      {
+          "text": "About the Open Bookshelf",
+          "href": "https://pro.dp.la/ebooks/open-bookshelf"
+      },
       {
         "text": "Browse the Open Bookshelf collection",
         "href": "https://freebooks.dp.la/collection/groups"
