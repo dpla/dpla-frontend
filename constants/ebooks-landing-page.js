@@ -57,7 +57,7 @@ export const midPageBlockContent = [
       },
       {
         "text": "Browse the Indie Author Project",
-        "href": "https://dp.la//news/biblioboards-indie-author-project-now-available-through-dpla-exchange"
+        "href": "https://bibliolabs.dp.la/"
       }     
     ],
     "image": "/static/images/ebooks/BiblioLabsset2.png",
@@ -70,7 +70,7 @@ export const midPageBlockContent = [
     "text": "DPLA is also a publisher. We’ve introduced original, easy-to-read ebook versions of important government documents, including our award-winning ebook versions of the Mueller Report and The Impeachment Papers.",
     "links": [
       {
-        "text": "About DPLA Ebooks",
+        "text": "About DPLA Publications",
         "href": "https://pro.dp.la/ebooks/dpla-publications"
       },
       {
