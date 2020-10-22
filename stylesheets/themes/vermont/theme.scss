@@ -42,3 +42,15 @@ $errorColor: $linkColor;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
 $footerDarkColor: $mobileNavColor;
+
+.homeLogo {
+  .localLogo {
+    height: 10rem !important;
+  }
+}
+
+.intro {
+  p {
+    margin-bottom: 1.5em !important;
+  }
+}
