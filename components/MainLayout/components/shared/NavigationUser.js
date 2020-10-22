@@ -17,6 +17,20 @@ class NavigationUser extends React.Component {
                 </a>
               </Link>
             </li>}
+          {/* <div class="dropdown">
+              <span>Mouse over me</span>
+              <div class="dropdown-content">
+                <p>Hello World!</p>
+              </div>
+            </div> */}
+          <li class="dropdown">
+            <span>Mouse over me</span>
+            <div class="dropdown-content">
+              <Link prefetch href="/browse-by-topic">
+                <a>Browse by Topic</a>
+              </Link>
+            </div>
+          </li>
           <li>
             <Link prefetch href="/browse-by-topic">
               <a>Browse by Topic</a>
