@@ -105,13 +105,13 @@ export const rightsURLs = {
   "rightsstatements.org/vocab/cne/{version}/": {
     url: "http://rightsstatements.org/vocab/CNE/{version}/",
     description:
-      "This Rights Statement should be used for Items for which the copyright status is unknown and for which the data provider has not undertaken an effort to determine the copyright status of the work.",
+      "The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
     image: "/static/images/rightsstatements/CNE.dark-white-interior.svg"
   },
   "rightsstatements.org/vocab/und/{version}/": {
     url: "http://rightsstatements.org/vocab/UND/{version}/",
     description:
-      "This Rights Statement should be used for Items for which the copyright status is unknown and for which the organization that has made the Item available has undertaken an effort to determine the copyright status of the Work. Typically, this Rights Statement is used when the organization is missing key facts essential to making an accurate copyright status determination.",
+      "The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
     image: "/static/images/rightsstatements/UND.dark-white-interior.svg"
   },
   "creativecommons.org/licenses/by/{version}/": {
