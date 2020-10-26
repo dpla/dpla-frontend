@@ -45,7 +45,8 @@ export const rightsURLs = {
     url: "http://rightsstatements.org/vocab/NoC-US/{version}/",
     description:
       "The organization that has made the Item available believes that the Item is in the Public Domain under the laws of the United States, but a determination was not made as to its copyright status under the copyright laws of other countries. The Item may not be in the Public Domain under the laws of other countries. Please refer to the organization that has made the Item available for more information.",
-    image: "/static/images/rightsstatements/NoC-US.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/NoC-US.dark-white-interior.svg",
+    label: "In the United States"
   },
   "rightsstatements.org/vocab/noc-cr/{version}/": {
     url: "http://rightsstatements.org/vocab/NoC-CR/{version}/",
@@ -76,7 +77,8 @@ export const rightsURLs = {
     url: "http://rightsstatements.org/vocab/InC/{version}/",
     description:
       "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. For other uses you need to obtain permission from the rights-holder(s).a",
-    image: "/static/images/rightsstatements/InC.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/InC.dark-white-interior.svg",
+    label: "In Copyright"
   },
   "rightsstatements.org/vocab/inc-ow-eu/{version}/": {
     url: "http://rightsstatements.org/vocab/InC-OW-EU/{version}/",
@@ -112,7 +114,8 @@ export const rightsURLs = {
     url: "http://rightsstatements.org/vocab/UND/{version}/",
     description:
       "The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
-    image: "/static/images/rightsstatements/UND.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/UND.dark-white-interior.svg",
+    label: "Copyright Undetermined"
   },
   "creativecommons.org/licenses/by/{version}/": {
     url: "https://creativecommons.org/licenses/by/{version}/",

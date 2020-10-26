@@ -41,20 +41,20 @@ const OtherMetadata = ({ item }) =>
         <ItemTermValuePair heading="Location">
           {Array.isArray(item.spatial)
             ? item.spatial.map((spatial, i, spatials) =>
-                <span key={i}>
-                  <FacetLink facet="location" value={spatial.name} /><br />
-                </span>
-              )
+              <span key={i}>
+                <FacetLink facet="location" value={spatial.name} /><br />
+              </span>
+            )
             : <FacetLink facet="location" value={item.spatial.name} />}
         </ItemTermValuePair>}
       {item.type &&
         <ItemTermValuePair heading="Type">
           {Array.isArray(item.type)
             ? item.type.map((type, i, types) =>
-                <span key={i}>
-                  <FacetLink facet="type" value={type} /><br />
-                </span>
-              )
+              <span key={i}>
+                <FacetLink facet="type" value={type} /><br />
+              </span>
+            )
             : <FacetLink facet="type" value={item.type} />}
         </ItemTermValuePair>}
       {item.format &&
@@ -62,8 +62,8 @@ const OtherMetadata = ({ item }) =>
           {!Array.isArray(item.format)
             ? <div>{item.format}</div>
             : item.format.map((format, i, formats) =>
-                <div key={i}>{format}</div>
-              )}
+              <div key={i}>{format}</div>
+            )}
         </ItemTermValuePair>}
       {item.language &&
         <ItemTermValuePair heading="Language">
@@ -85,15 +85,18 @@ const OtherMetadata = ({ item }) =>
       {item.edmRights &&
         readMyRights(item.edmRights) &&
         <ItemTermValuePair heading="Standardized Rights Statement">
+          {readMyRights(item.edmRights).label &&
+            <a
+              href={item.edmRights}
+              rel="noopener noreferrer"
+              className={`${css.label} link external`}
+              target="_blank"
+            >
+              {readMyRights(item.edmRights).label}:
+            </a>
+          }
           {readMyRights(item.edmRights).description}
           {readMyRights(item.edmRights).description !== "" && <br />}
-          <a
-            href={item.edmRights}
-            className="link external"
-            rel="noopener noreferrer"
-          >
-            {item.edmRights}
-          </a>
         </ItemTermValuePair>}
       {item.rights &&
         <ItemTermValuePair heading="Rights">
