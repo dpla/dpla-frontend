@@ -46,13 +46,14 @@ export const rightsURLs = {
     description:
       "The organization that has made the Item available believes that the Item is in the Public Domain under the laws of the United States, but a determination was not made as to its copyright status under the copyright laws of other countries. The Item may not be in the Public Domain under the laws of other countries. Please refer to the organization that has made the Item available for more information.",
     image: "/static/images/rightsstatements/NoC-US.dark-white-interior.svg",
-    label: "In the United States"
+    label: "No Copyright - In the United States"
   },
   "rightsstatements.org/vocab/noc-cr/{version}/": {
     url: "http://rightsstatements.org/vocab/NoC-CR/{version}/",
     description:
-      "Use of this Item is not restricted by copyright and/or related rights. As part of the acquisition or digitization of this Item, the organization that has made the Item available is contractually required to limit the use of this Item. Limitations may include, but are not limited to, privacy issues, cultural protections, digitization agreements or donor agreements. Please refer to the organization that has made the Item available for more information.",
-    image: "/static/images/rightsstatements/NoC-CR.dark-white-interior.svg"
+      "Use of this Item is not restricted by copyright and/or related rights. As part of the acquisition or digitization of this Work, the organization that has made the Item available is contractually required to limit the use of this Item. Limitations may include, but are not limited to, privacy issues, cultural protections, digitization agreements or donor agreements. Please refer to the organization that has made the Item available for more information.",
+    image: "/static/images/rightsstatements/NoC-CR.dark-white-interior.svg",
+    label: "No Copyright - Contractual Restrictions"
   },
   "rightsstatements.org/vocab/noc-nc/{version}/": {
     url: "http://rightsstatements.org/vocab/NoC-NC/{version}/",
@@ -64,14 +65,16 @@ export const rightsURLs = {
     url: "http://rightsstatements.org/vocab/NoC-OKLR/{version}/",
     description:
       "Use of this Item is not restricted by copyright and/or related rights. In one or more jurisdictions, laws other than copyright are known to impose restrictions on the use of this Item. Please refer to the organization that has made the Item available for more information.",
-    image: "/static/images/rightsstatements/NoC-OKLR.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/NoC-OKLR.dark-white-interior.svg",
+    label: "No Copyright - Other Known Legal Restrictions"
   },
 
   "rightsstatements.org/vocab/nkc/{version}/": {
     url: "http://rightsstatements.org/vocab/NKC/{version}/",
     description:
       "The organization that has made the Item available reasonably believes that the Item is not restricted by copyright or related rights, but a conclusive determination could not be made. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
-    image: "/static/images/rightsstatements/NKC.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/NKC.dark-white-interior.svg",
+    label: "No Known Copyright"
   },
   "rightsstatements.org/vocab/inc/{version}/": {
     url: "http://rightsstatements.org/vocab/InC/{version}/",
@@ -84,31 +87,36 @@ export const rightsURLs = {
     url: "http://rightsstatements.org/vocab/InC-OW-EU/{version}/",
     description:
       "This Item has been identified as an orphan work in the country of first publication and in line with Directive 2012/28/EU of the European Parliament and of the Council of 25 October 2012 on certain permitted uses of orphan works. For this Item, either (a) no rights-holder(s) have been identified or (b) one or more rights-holder(s) have been identified but none have been located even though a diligent search for the rights-holder(s) has been conducted. The results of the diligent search are available in the EU Orphan Works Database. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
-    image: "/static/images/rightsstatements/InC-OW-EU.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/InC-OW-EU.dark-white-interior.svg",
+    label: "In Copyright - EU Orphan Work"
   },
   "rightsstatements.org/vocab/inc-edu/{version}/": {
     url: "http://rightsstatements.org/vocab/InC-EDU/{version}/",
     description:
       "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for educational uses. For other uses, you need to obtain permission from the rights-holder(s).",
-    image: "/static/images/rightsstatements/InC-EDU.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/InC-EDU.dark-white-interior.svg",
+    label: "In Copyright - Educational Use Permitted"
   },
   "rightsstatements.org/vocab/inc-nc/{version}/": {
     url: "http://rightsstatements.org/vocab/InC-NC/{version}/",
     description:
       "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for non-commercial uses. For other uses you need to obtain permission from the rights-holder(s).",
-    image: "/static/images/rightsstatements/InC-NC.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/InC-NC.dark-white-interior.svg",
+    label: "In Copyright - Non-Commercial Use Permitted"
   },
   "rightsstatements.org/vocab/inc-ruu/{version}/": {
     url: "http://rightsstatements.org/vocab/InC-RUU/{version}/",
     description:
       "This Item is protected by copyright and/or related rights. However, for this Item, either (a) no rights-holder(s) have been identified or (b) one or more rights-holder(s) have been identified but none have been located. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
-    image: "/static/images/rightsstatements/InC-RUU.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/InC-RUU.dark-white-interior.svg",
+    label: "In Copyright - Rights-Holder(s) Unlocatable or Unidentifiable"
   },
   "rightsstatements.org/vocab/cne/{version}/": {
     url: "http://rightsstatements.org/vocab/CNE/{version}/",
     description:
       "The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.",
-    image: "/static/images/rightsstatements/CNE.dark-white-interior.svg"
+    image: "/static/images/rightsstatements/CNE.dark-white-interior.svg",
+    label: "Copyright Not Evaluated"
   },
   "rightsstatements.org/vocab/und/{version}/": {
     url: "http://rightsstatements.org/vocab/UND/{version}/",
