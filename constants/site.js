@@ -57,9 +57,9 @@ export const rightsURLs = {
   },
   "rightsstatements.org/vocab/noc-nc/{version}/": {
     url: "http://rightsstatements.org/vocab/NoC-NC/{version}/",
-    description:
-      "This object has been digitized in a public-private partnership. As part of this partnership, the partners have agreed to limit commercial uses of this digital representation of the object by third parties. You can, without permission, copy, modify, distribute, display, or perform the digital object, for non-commercial uses. For any other permissible uses, please review the terms and conditions of the organization that has made the item available.",
-    image: "/static/images/rightsstatements/NoC-NC.dark-white-interior.svg"
+    description: "This Work has been digitized in a public-private partnership. As part of this partnership, the partners have agreed to limit commercial uses of this digital representation of the Work by third parties. You can, without permission, copy, modify, distribute, display, or perform the Item, for non-commercial uses. For any other permissible uses, please review the terms and conditions of the organization that has made the Item available.",
+    image: "/static/images/rightsstatements/NoC-NC.dark-white-interior.svg",
+    label: "No Copyright - Non-Commercial Use Only"
   },
   "rightsstatements.org/vocab/noc-oklr/{version}/": {
     url: "http://rightsstatements.org/vocab/NoC-OKLR/{version}/",
