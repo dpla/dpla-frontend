@@ -113,7 +113,7 @@ Search.getInitialProps = async context => {
   const isQA = parseCookies(context).hasOwnProperty("qa");
   const currentUrl = getCurrentUrl(req);
   const q = query.q
-    ? encodeURIComponent(query.q)
+    ? encodeURIComponent(query.q.trim())
           .replace(/'/g, "%27")
           .replace(/"/g, "%22")
     : "";
@@ -183,7 +183,7 @@ Search.getInitialProps = async context => {
 
   // get the aboutness links
   let aboutness = {};
-  if (isLocal) {
+  if (isLocal && q.length > 0) {
     const aboutness_max = 4;
     const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
     const aboutnessRes = await fetch(aboutnessUrl);
