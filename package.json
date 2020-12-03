@@ -13,8 +13,7 @@
     "docker:logs": "docker logs -f dpla-frontend",
       "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
       "test": "mocha",
-    "snyk-protect": "snyk protect",
-    "licenses": "node ./lib/ccLicensesConverter.js"
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
