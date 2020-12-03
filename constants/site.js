@@ -10033,7 +10033,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/devnations/{version}/',
     description: '',
     label: 'Developing Nations License',
-    image: 'http://i.creativecommons.org/l/devnations/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/devnations/{version}/',
     deprecated: 'true',
     permits: [
@@ -10047,7 +10047,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/GPL/{version}/',
     description: '',
     label: 'GNU General Public License',
-    image: 'http://i.creativecommons.org/l/GPL/{version}/88x62.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/GPL/{version}/',
     deprecated: 'false',
     permits: [
@@ -10065,7 +10065,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/LGPL/2.1/',
     description: '',
     label: 'GNU Lesser General Public License',
-    image: 'http://i.creativecommons.org/l/LGPL/2.1/88x62.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/LGPL/2.1/',
     deprecated: 'false',
     permits: [
@@ -10097,7 +10097,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc-sa/{version}/',
     description: '',
     label: 'NonCommercial-ShareAlike {version} Generic',
-    image: 'http://i.creativecommons.org/l/nc-sa/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/',
     deprecated: 'true',
     permits: [
@@ -10114,7 +10114,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc-sa/{version}/fi/',
     description: '',
     label: 'NonCommercial-ShareAlike {version} Finland',
-    image: 'http://i.creativecommons.org/l/nc-sa/{version}/fi/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/fi/',
     deprecated: 'true',
     permits: [
@@ -10131,7 +10131,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc-sa/{version}/nl/',
     description: '',
     label: 'NonCommercial-ShareAlike {version} Netherlands',
-    image: 'http://i.creativecommons.org/l/nc-sa/{version}/nl/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/nl/',
     deprecated: 'true',
     permits: [
@@ -10148,7 +10148,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc-sa/{version}/jp/',
     description: '',
     label: 'NonCommercial-ShareAlike {version} Japan',
-    image: 'http://i.creativecommons.org/l/nc-sa/{version}/jp/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/jp/',
     deprecated: 'false',
     permits: [
@@ -10185,7 +10185,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc/{version}/',
     description: '',
     label: 'NonCommercial {version} Generic',
-    image: 'http://i.creativecommons.org/l/nc/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/',
     deprecated: 'true',
     permits: [
@@ -10199,7 +10199,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc/{version}/fi/',
     description: '',
     label: 'NonCommercial {version} Finland',
-    image: 'http://i.creativecommons.org/l/nc/{version}/fi/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/fi/',
     deprecated: 'true',
     permits: [
@@ -10213,7 +10213,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc/{version}/nl/',
     description: '',
     label: 'NonCommercial {version} Netherlands',
-    image: 'http://i.creativecommons.org/l/nc/{version}/nl/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/nl/',
     deprecated: 'true',
     permits: [
@@ -10227,7 +10227,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nc/{version}/jp/',
     description: '',
     label: 'NonCommercial {version} Japan',
-    image: 'http://i.creativecommons.org/l/nc/{version}/jp/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/jp/',
     deprecated: 'false',
     permits: [
@@ -10241,7 +10241,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd-nc/{version}/',
     description: '',
     label: 'NoDerivs-NonCommercial {version} Generic',
-    image: 'http://i.creativecommons.org/l/nd-nc/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/',
     deprecated: 'true',
     permits: [
@@ -10254,7 +10254,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd-nc/{version}/fi/',
     description: '',
     label: 'NoDerivs-NonCommercial {version} Finland',
-    image: 'http://i.creativecommons.org/l/nd-nc/{version}/fi/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/fi/',
     deprecated: 'true',
     permits: [
@@ -10267,7 +10267,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd-nc/{version}/nl/',
     description: '',
     label: 'NoDerivs-NonCommercial {version} Netherlands',
-    image: 'http://i.creativecommons.org/l/nd-nc/{version}/nl/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/nl/',
     deprecated: 'true',
     permits: [
@@ -10280,7 +10280,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd-nc/{version}/jp/',
     description: '',
     label: 'NoDerivs-NonCommercial {version} Japan',
-    image: 'http://i.creativecommons.org/l/nd-nc/{version}/jp/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/jp/',
     deprecated: 'false',
     permits: [
@@ -10293,7 +10293,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd/{version}/',
     description: '',
     label: 'NoDerivs {version} Generic',
-    image: 'http://i.creativecommons.org/l/nd/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/',
     deprecated: 'true',
     permits: [
@@ -10306,7 +10306,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd/{version}/fi/',
     description: '',
     label: 'NoDerivs {version} Finland',
-    image: 'http://i.creativecommons.org/l/nd/{version}/fi/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/fi/',
     deprecated: 'true',
     permits: [
@@ -10319,7 +10319,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd/{version}/nl/',
     description: '',
     label: 'NoDerivs {version} Netherlands',
-    image: 'http://i.creativecommons.org/l/nd/{version}/nl/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/nl/',
     deprecated: 'true',
     permits: [
@@ -10332,7 +10332,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/nd/{version}/jp/',
     description: '',
     label: 'NoDerivs {version} Japan',
-    image: 'http://i.creativecommons.org/l/nd/{version}/jp/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/jp/',
     deprecated: 'false',
     permits: [
@@ -10345,7 +10345,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/publicdomain/',
     description: '',
     label: 'Public Domain',
-    image: 'http://i.creativecommons.org/l/publicdomain/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/publicdomain/',
     deprecated: 'true',
     permits: [
@@ -10359,7 +10359,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sa/{version}/',
     description: '',
     label: 'ShareAlike {version} Generic',
-    image: 'http://i.creativecommons.org/l/sa/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/',
     deprecated: 'true',
     permits: [
@@ -10376,7 +10376,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sa/{version}/fi/',
     description: '',
     label: 'ShareAlike {version} Finland',
-    image: 'http://i.creativecommons.org/l/sa/{version}/fi/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/fi/',
     deprecated: 'true',
     permits: [
@@ -10393,7 +10393,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sa/{version}/nl/',
     description: '',
     label: 'ShareAlike {version} Netherlands',
-    image: 'http://i.creativecommons.org/l/sa/{version}/nl/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/nl/',
     deprecated: 'true',
     permits: [
@@ -10410,7 +10410,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sa/{version}/jp/',
     description: '',
     label: 'ShareAlike {version} Japan',
-    image: 'http://i.creativecommons.org/l/sa/{version}/jp/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/jp/',
     deprecated: 'false',
     permits: [
@@ -10427,7 +10427,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sampling/{version}/',
     description: '',
     label: 'Sampling {version}',
-    image: 'http://i.creativecommons.org/l/sampling/{version}/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/',
     deprecated: 'true',
     permits: [
@@ -10443,7 +10443,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sampling/{version}/br/',
     description: '',
     label: 'Sampling {version}',
-    image: 'http://i.creativecommons.org/l/sampling/{version}/br/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/br/',
     deprecated: 'true',
     permits: [
@@ -10459,7 +10459,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/licenses/sampling/{version}/tw/',
     description: '',
     label: 'Sampling {version}',
-    image: 'http://i.creativecommons.org/l/sampling/{version}/tw/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/tw/',
     deprecated: 'true',
     permits: [
@@ -10549,7 +10549,7 @@ export const rightsURLs = {
     url: 'creativecommons.org/publicdomain/zero/{version}/',
     description: '',
     label: 'CC0 {version} Universal',
-    image: 'http://i.creativecommons.org/p/zero/1.0/88x31.png',
+    image: '',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/zero/{version}/',
     deprecated: 'false',
     permits: [
