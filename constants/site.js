@@ -68,7 +68,6 @@ export const rightsURLs = {
     image: "/static/images/rightsstatements/NoC-OKLR.dark-white-interior.svg",
     label: "No Copyright - Other Known Legal Restrictions"
   },
-
   "rightsstatements.org/vocab/nkc/{version}/": {
     url: "http://rightsstatements.org/vocab/NKC/{version}/",
     description:
@@ -79,7 +78,7 @@ export const rightsURLs = {
   "rightsstatements.org/vocab/inc/{version}/": {
     url: "http://rightsstatements.org/vocab/InC/{version}/",
     description:
-      "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. For other uses you need to obtain permission from the rights-holder(s).a",
+      "This Item is protected by copyright and/or related rights. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use. For other uses you need to obtain permission from the rights-holder(s).",
     image: "/static/images/rightsstatements/InC.dark-white-interior.svg",
     label: "In Copyright"
   },
@@ -126,7 +125,7 @@ export const rightsURLs = {
     label: "Copyright Undetermined"
   },
   'creativecommons.org/licenses/BSD/': {
-    url: 'creativecommons.org/licenses/BSD/',
+    url: 'http://creativecommons.org/licenses/BSD/',
     description: '',
     label: 'BSD',
     image: '',
@@ -137,14 +136,24 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/',
+  'creativecommons.org/licenses/by-nc-nd/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/1.0/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Generic',
+    label: '',
+    image: '',
+    source: 'observed',
+    deprecated: '',
+    permits: [],
+    requires: []
+  },
+  'creativecommons.org/licenses/by-nc-nd/2.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/',
+    description: '',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -155,12 +164,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/at/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/at/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/at/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Austria',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -171,12 +180,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/au/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/au/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/au/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Australia',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -187,12 +196,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/be/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/be/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/be/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Belgium',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -203,12 +212,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/br/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/br/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/br/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Brazil',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -219,12 +228,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/ca/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/ca/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Canada',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -235,12 +244,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/cl/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/cl/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Chile',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -251,12 +260,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/de/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/de/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/de/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Germany',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -267,12 +276,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/es/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/es/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/es/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Spain',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -283,12 +292,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/fr/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/fr/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} France',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 France',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -299,12 +308,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/hr/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/hr/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Croatia',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -315,12 +324,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/it/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/it/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/it/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Italy',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -331,12 +340,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/jp/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/jp/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Generic',
+    label: 'Attribution-NoDerivs-NonCommercial 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -347,12 +356,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/kr/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/kr/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Korea',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -363,12 +372,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/nl/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/nl/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Netherlands',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -379,12 +388,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/pl/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/pl/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Poland',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -395,12 +404,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/tw/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/tw/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} Taiwan',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/tw/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -411,12 +420,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/uk/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/uk/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} UK: England & Wales',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 UK: England & Wales',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/uk/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -427,12 +436,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-nd/{version}/za/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/{version}/za/',
+  'creativecommons.org/licenses/by-nc-nd/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.0/za/',
     description: '',
-    label: 'Attribution-NonCommercial-NoDerivs {version} South Africa',
+    label: 'Attribution-NonCommercial-NoDerivs 2.0 South Africa',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -444,7 +453,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.1/au/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.1/au/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -460,7 +469,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -470,7 +479,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/2.1/es/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.1/es/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -486,7 +495,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.1/jp/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -502,7 +511,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -518,7 +527,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/ar/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -534,7 +543,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/au/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/au/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -550,7 +559,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/bg/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -566,7 +575,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/br/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/br/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -582,7 +591,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/ca/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -598,7 +607,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/ch/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -614,7 +623,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/cn/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -630,7 +639,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/co/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/co/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -646,7 +655,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/dk/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -662,7 +671,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/es/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/es/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -678,7 +687,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/hr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -694,7 +703,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/hu/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -710,7 +719,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/il/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/il/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -726,7 +735,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/in/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/in/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 India',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -742,7 +751,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/it/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/it/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -758,7 +767,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/mk/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -774,7 +783,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/mt/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -790,7 +799,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/mx/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -806,7 +815,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/my/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/my/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -822,7 +831,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/nl/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -838,7 +847,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/pe/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -854,7 +863,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/pl/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -870,7 +879,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/pt/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -886,7 +895,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/scotland/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -902,7 +911,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/se/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/se/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -918,7 +927,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/si/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/si/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -934,7 +943,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/tw/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -950,7 +959,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/2.5/za/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/2.5/za/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -966,7 +975,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -982,7 +991,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/am/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -992,7 +1001,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/at/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/at/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1008,7 +1017,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/au/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/au/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1024,7 +1033,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/az/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -1034,7 +1043,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/br/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/br/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1050,7 +1059,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -1060,7 +1069,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ch/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1076,7 +1085,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/cl/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1092,7 +1101,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/cn/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1108,7 +1117,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/cr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1124,7 +1133,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/cz/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1140,7 +1149,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/de/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/de/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1156,7 +1165,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ec/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1172,7 +1181,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ee/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1188,7 +1197,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/eg/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1204,7 +1213,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/es/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/es/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1220,7 +1229,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/fr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 France',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1236,7 +1245,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -1246,7 +1255,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/gr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1262,7 +1271,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/gt/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1278,7 +1287,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/hk/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1294,7 +1303,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/hr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1310,7 +1319,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ie/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1326,7 +1335,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/igo/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1342,7 +1351,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/it/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/it/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1358,7 +1367,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/lu/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1374,7 +1383,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/nl/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1390,7 +1399,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/no/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/no/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1406,7 +1415,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/nz/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1422,7 +1431,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ph/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1438,7 +1447,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/pl/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1454,7 +1463,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/pr/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1470,7 +1479,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/pt/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1486,7 +1495,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ro/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1502,7 +1511,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/rs/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1518,7 +1527,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/sg/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1534,7 +1543,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/th/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/th/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1550,7 +1559,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/tw/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1566,7 +1575,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ug/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1582,7 +1591,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/us/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/us/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 United States',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1598,7 +1607,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/ve/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1614,7 +1623,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/vn/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivs 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1630,7 +1639,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-nd/3.0/za/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -1640,7 +1649,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-nd/4.0/': {
-    url: 'creativecommons.org/licenses/by-nc-nd/4.0/',
+    url: 'http://creativecommons.org/licenses/by-nc-nd/4.0/',
     description: '',
     label: 'Attribution-NonCommercial-NoDerivatives 4.0 International',
     image: '/static/images/rightsstatements/cc-by-nc-nd.svg',
@@ -1655,12 +1664,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/',
+  'creativecommons.org/licenses/by-nc-sa/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/1.0/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Generic',
+    label: 'Attribution-NonCommercial-ShareAlike 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1673,12 +1682,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/fi/',
+  'creativecommons.org/licenses/by-nc-sa/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/1.0/fi/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Finland',
+    label: 'Attribution-NonCommercial-ShareAlike 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1691,12 +1700,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/il/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/il/',
+  'creativecommons.org/licenses/by-nc-sa/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/1.0/il/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Israel',
+    label: 'Attribution-NonCommercial-ShareAlike 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1709,12 +1718,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/nl/',
+  'creativecommons.org/licenses/by-nc-sa/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/1.0/nl/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Netherlands',
+    label: 'Attribution-NonCommercial-ShareAlike 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1727,12 +1736,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/at/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/at/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Austria',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1745,12 +1754,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/au/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/au/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/at/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Australia',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1763,12 +1772,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/be/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/be/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/au/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Belgium',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1781,12 +1790,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/br/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/br/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/be/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Brazil',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1799,12 +1808,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/ca/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/br/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Canada',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1817,12 +1826,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/cl/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/ca/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Chile',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1835,12 +1844,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/de/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/de/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/cl/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Germany',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1853,12 +1862,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/es/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/es/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/de/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Spain',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1871,12 +1880,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/fr/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/es/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} France',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1889,12 +1898,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/hr/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/fr/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Croatia',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 France',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1907,12 +1916,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/it/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/it/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/hr/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Italy',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1925,12 +1934,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/jp/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/it/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Japan',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1943,12 +1952,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/kr/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/jp/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Korea',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1961,12 +1970,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/pl/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/kr/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Poland',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1979,12 +1988,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/tw/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/nl/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} Taiwan',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -1997,12 +2006,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/uk/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/pl/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} UK: England & Wales',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -2015,12 +2024,48 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc-sa/{version}/za/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/{version}/za/',
+  'creativecommons.org/licenses/by-nc-sa/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/tw/',
     description: '',
-    label: 'Attribution-NonCommercial-ShareAlike {version} South Africa',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/tw/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice',
+      'http://creativecommons.org/ns#ShareAlike'
+    ]
+  },
+  'creativecommons.org/licenses/by-nc-sa/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/uk/',
+    description: '',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 UK: England & Wales',
+    image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/uk/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice',
+      'http://creativecommons.org/ns#ShareAlike'
+    ]
+  },
+  'creativecommons.org/licenses/by-nc-sa/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.0/za/',
+    description: '',
+    label: 'Attribution-NonCommercial-ShareAlike 2.0 South Africa',
+    image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -2034,7 +2079,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.1/au/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.1/au/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2052,7 +2097,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -2062,7 +2107,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/2.1/es/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.1/es/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2080,7 +2125,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.1/jp/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2098,7 +2143,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2116,7 +2161,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/ar/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2134,7 +2179,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/au/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/au/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2152,7 +2197,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/bg/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2170,7 +2215,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/br/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/br/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2188,7 +2233,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/ca/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2206,7 +2251,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/ch/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2224,7 +2269,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/cn/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2242,7 +2287,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/co/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/co/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2260,7 +2305,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/dk/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2278,7 +2323,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/es/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/es/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2296,7 +2341,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/hr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2314,7 +2359,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/hu/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2332,7 +2377,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/il/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/il/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2350,7 +2395,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/in/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/in/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 India',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2368,7 +2413,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/it/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/it/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2386,7 +2431,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/mk/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2404,7 +2449,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/mt/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2422,7 +2467,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/mx/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2440,7 +2485,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/my/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/my/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2458,7 +2503,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/nl/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2476,7 +2521,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/pe/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2494,7 +2539,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/pl/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2512,7 +2557,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/pt/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2530,7 +2575,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/scotland/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2547,7 +2592,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/se/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/se/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2565,7 +2610,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/si/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/si/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2583,7 +2628,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/tw/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2601,7 +2646,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/2.5/za/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/2.5/za/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2619,7 +2664,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2637,7 +2682,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/am/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -2647,7 +2692,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/at/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/at/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2665,7 +2710,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/au/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/au/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2683,7 +2728,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/az/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -2693,7 +2738,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/br/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/br/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2711,7 +2756,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -2721,7 +2766,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ch/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2739,7 +2784,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/cl/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2757,7 +2802,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/cn/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2775,7 +2820,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/cr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2793,7 +2838,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/cz/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2811,7 +2856,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/de/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/de/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2829,7 +2874,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ec/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2847,7 +2892,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ee/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2865,7 +2910,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/eg/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2883,7 +2928,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/es/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/es/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2901,7 +2946,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/fr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 France',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2919,7 +2964,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -2929,7 +2974,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/gr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2947,7 +2992,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/gt/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2965,7 +3010,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/hk/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -2983,7 +3028,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/hr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3001,7 +3046,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ie/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3019,7 +3064,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/igo/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3037,7 +3082,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/it/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/it/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3055,7 +3100,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/lu/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3073,7 +3118,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/nl/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3091,7 +3136,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/no/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/no/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3109,7 +3154,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/nz/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3127,7 +3172,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ph/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3145,7 +3190,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/pl/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3163,7 +3208,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/pr/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3181,7 +3226,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/pt/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3199,7 +3244,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ro/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3217,7 +3262,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/rs/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3235,7 +3280,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/sg/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3253,7 +3298,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/th/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/th/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3271,7 +3316,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/tw/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3289,7 +3334,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ug/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3307,7 +3352,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/us/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/us/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 United States',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3325,7 +3370,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/ve/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3343,7 +3388,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/vn/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3361,7 +3406,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc-sa/3.0/za/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -3371,7 +3416,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc-sa/4.0/': {
-    url: 'creativecommons.org/licenses/by-nc-sa/4.0/',
+    url: 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
     description: '',
     label: 'Attribution-NonCommercial-ShareAlike 4.0 International',
     image: '/static/images/rightsstatements/cc-by-nc-sa.svg',
@@ -3388,12 +3433,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/',
+  'creativecommons.org/licenses/by-nc/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc/1.0/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Generic',
+    label: 'Attribution-NonCommercial 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3405,12 +3450,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/fi/',
+  'creativecommons.org/licenses/by-nc/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by-nc/1.0/fi/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Finland',
+    label: 'Attribution-NonCommercial 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3422,12 +3467,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/il/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/il/',
+  'creativecommons.org/licenses/by-nc/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by-nc/1.0/il/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Israel',
+    label: 'Attribution-NonCommercial 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3439,12 +3484,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/nl/',
+  'creativecommons.org/licenses/by-nc/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nc/1.0/nl/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Netherlands',
+    label: 'Attribution-NonCommercial 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3456,12 +3501,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/at/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/at/',
+  'creativecommons.org/licenses/by-nc/2.0/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Austria',
+    label: 'Attribution-NonCommercial 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3473,12 +3518,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/au/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/au/',
+  'creativecommons.org/licenses/by-nc/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/at/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Australia',
+    label: 'Attribution-NonCommercial 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3490,12 +3535,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/be/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/be/',
+  'creativecommons.org/licenses/by-nc/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/au/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Belgium',
+    label: 'Attribution-NonCommercial 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3507,12 +3552,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/br/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/br/',
+  'creativecommons.org/licenses/by-nc/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/be/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Brazil',
+    label: 'Attribution-NonCommercial 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3524,12 +3569,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/ca/',
+  'creativecommons.org/licenses/by-nc/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/br/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Canada',
+    label: 'Attribution-NonCommercial 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3541,12 +3586,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/cl/',
+  'creativecommons.org/licenses/by-nc/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/ca/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Chile',
+    label: 'Attribution-NonCommercial 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3558,12 +3603,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/de/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/de/',
+  'creativecommons.org/licenses/by-nc/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/cl/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Germany',
+    label: 'Attribution-NonCommercial 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3575,12 +3620,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/es/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/es/',
+  'creativecommons.org/licenses/by-nc/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/de/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Spain',
+    label: 'Attribution-NonCommercial 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3592,12 +3637,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/fr/',
+  'creativecommons.org/licenses/by-nc/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/es/',
     description: '',
-    label: 'Attribution-NonCommercial {version} France',
+    label: 'Attribution-NonCommercial 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3609,12 +3654,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/hr/',
+  'creativecommons.org/licenses/by-nc/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/fr/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Croatia',
+    label: 'Attribution-NonCommercial 2.0 France',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3626,12 +3671,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/it/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/it/',
+  'creativecommons.org/licenses/by-nc/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/hr/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Italy',
+    label: 'Attribution-NonCommercial 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3643,12 +3688,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/jp/',
+  'creativecommons.org/licenses/by-nc/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/it/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Japan',
+    label: 'Attribution-NonCommercial 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3660,12 +3705,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/kr/',
+  'creativecommons.org/licenses/by-nc/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/jp/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Korea',
+    label: 'Attribution-NonCommercial 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3677,12 +3722,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/pl/',
+  'creativecommons.org/licenses/by-nc/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/kr/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Poland',
+    label: 'Attribution-NonCommercial 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3694,12 +3739,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/tw/',
+  'creativecommons.org/licenses/by-nc/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/nl/',
     description: '',
-    label: 'Attribution-NonCommercial {version} Taiwan',
+    label: 'Attribution-NonCommercial 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3711,12 +3756,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/uk/',
+  'creativecommons.org/licenses/by-nc/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/pl/',
     description: '',
-    label: 'Attribution-NonCommercial {version} UK: England & Wales',
+    label: 'Attribution-NonCommercial 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3728,12 +3773,46 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nc/{version}/za/': {
-    url: 'creativecommons.org/licenses/by-nc/{version}/za/',
+  'creativecommons.org/licenses/by-nc/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/tw/',
     description: '',
-    label: 'Attribution-NonCommercial {version} South Africa',
+    label: 'Attribution-NonCommercial 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/tw/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by-nc/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/uk/',
+    description: '',
+    label: 'Attribution-NonCommercial 2.0 UK: England & Wales',
+    image: '/static/images/rightsstatements/cc-by-nc.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/uk/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by-nc/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by-nc/2.0/za/',
+    description: '',
+    label: 'Attribution-NonCommercial 2.0 South Africa',
+    image: '/static/images/rightsstatements/cc-by-nc.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -3746,7 +3825,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.1/au/': {
-    url: 'creativecommons.org/licenses/by-nc/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.1/au/',
     description: '',
     label: 'Attribution-NonCommercial 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3763,7 +3842,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by-nc/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -3773,7 +3852,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/2.1/es/': {
-    url: 'creativecommons.org/licenses/by-nc/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.1/es/',
     description: '',
     label: 'Attribution-NonCommercial 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3790,7 +3869,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by-nc/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.1/jp/',
     description: '',
     label: 'Attribution-NonCommercial 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3807,7 +3886,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3824,7 +3903,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/ar/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3841,7 +3920,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/au/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/au/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3858,7 +3937,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/bg/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3875,7 +3954,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/br/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/br/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3892,7 +3971,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/ca/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3909,7 +3988,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/ch/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3926,7 +4005,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/cn/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3943,7 +4022,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/co/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/co/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3960,7 +4039,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/dk/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3977,7 +4056,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/es/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/es/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -3994,7 +4073,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/hr/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4011,7 +4090,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/hu/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4028,7 +4107,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/il/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/il/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4045,7 +4124,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/in/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/in/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 India',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4062,7 +4141,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/it/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/it/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4079,7 +4158,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/mk/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4096,7 +4175,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/mt/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4113,7 +4192,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/mx/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4130,7 +4209,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/my/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/my/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4147,7 +4226,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/nl/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4164,7 +4243,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/pe/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4181,7 +4260,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/pl/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4198,7 +4277,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/pt/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4215,7 +4294,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/scotland/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4231,7 +4310,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/se/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/se/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4248,7 +4327,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/si/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/si/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4265,7 +4344,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/tw/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4282,7 +4361,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/2.5/za/': {
-    url: 'creativecommons.org/licenses/by-nc/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by-nc/2.5/za/',
     description: '',
     label: 'Attribution-NonCommercial 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4299,7 +4378,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4316,7 +4395,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/am/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -4326,7 +4405,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/3.0/at/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/at/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4343,7 +4422,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/au/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/au/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4360,7 +4439,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/az/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -4370,7 +4449,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/3.0/br/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/br/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4387,7 +4466,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -4397,7 +4476,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ch/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4414,7 +4493,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/cl/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4431,7 +4510,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/cn/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4448,7 +4527,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/cr/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4465,7 +4544,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/cz/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4482,7 +4561,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/de/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/de/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4499,7 +4578,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ec/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4516,7 +4595,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ee/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4533,7 +4612,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/eg/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4550,7 +4629,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/es/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/es/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4567,7 +4646,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/fr/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 France',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4584,7 +4663,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -4594,7 +4673,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/gr/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4611,7 +4690,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/gt/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4628,7 +4707,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/hk/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4645,7 +4724,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/hr/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4662,7 +4741,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ie/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4679,7 +4758,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/igo/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4696,7 +4775,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/it/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/it/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4713,7 +4792,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/lu/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4730,7 +4809,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/nl/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4747,7 +4826,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/no/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/no/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4764,7 +4843,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/nz/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4781,7 +4860,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ph/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4798,7 +4877,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/pl/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4815,7 +4894,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/pr/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4832,7 +4911,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/pt/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4849,7 +4928,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ro/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4866,7 +4945,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/rs/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4883,7 +4962,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/sg/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4900,7 +4979,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/th/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/th/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4917,7 +4996,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/tw/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4934,7 +5013,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ug/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4951,7 +5030,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/us/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/us/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 United States',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4968,7 +5047,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/ve/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -4985,7 +5064,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/vn/',
     description: '',
     label: 'Attribution-NonCommercial 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -5002,7 +5081,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nc/3.0/za/': {
-    url: 'creativecommons.org/licenses/by-nc/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by-nc/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -5012,7 +5091,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nc/4.0/': {
-    url: 'creativecommons.org/licenses/by-nc/4.0/',
+    url: 'http://creativecommons.org/licenses/by-nc/4.0/',
     description: '',
     label: 'Attribution-NonCommercial 4.0 International',
     image: '/static/images/rightsstatements/cc-by-nc.svg',
@@ -5028,12 +5107,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd-nc/{version}/': {
-    url: 'creativecommons.org/licenses/by-nd-nc/{version}/',
+  'creativecommons.org/licenses/by-nd-nc/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-nd-nc/1.0/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Generic',
+    label: 'Attribution-NoDerivs-NonCommercial 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5044,12 +5123,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd-nc/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by-nd-nc/{version}/fi/',
+  'creativecommons.org/licenses/by-nd-nc/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by-nd-nc/1.0/fi/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Finland',
+    label: 'Attribution-NoDerivs-NonCommercial 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5060,12 +5139,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd-nc/{version}/il/': {
-    url: 'creativecommons.org/licenses/by-nd-nc/{version}/il/',
+  'creativecommons.org/licenses/by-nd-nc/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by-nd-nc/1.0/il/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Israel',
+    label: 'Attribution-NoDerivs-NonCommercial 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5076,12 +5155,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd-nc/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-nd-nc/{version}/nl/',
+  'creativecommons.org/licenses/by-nd-nc/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nd-nc/1.0/nl/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Netherlands',
+    label: 'Attribution-NoDerivs-NonCommercial 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5092,12 +5171,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd-nc/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-nd-nc/{version}/jp/',
+  'creativecommons.org/licenses/by-nd-nc/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-nd-nc/2.0/jp/',
     description: '',
-    label: 'Attribution-NoDerivs-NonCommercial {version} Japan',
+    label: 'Attribution-NoDerivs-NonCommercial 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5108,12 +5187,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/',
+  'creativecommons.org/licenses/by-nd/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-nd/1.0/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Generic',
+    label: 'Attribution-NoDerivs 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5124,12 +5203,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/fi/',
+  'creativecommons.org/licenses/by-nd/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by-nd/1.0/fi/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Finland',
+    label: 'Attribution-NoDerivs 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5140,12 +5219,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/il/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/il/',
+  'creativecommons.org/licenses/by-nd/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by-nd/1.0/il/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Israel',
+    label: 'Attribution-NoDerivs 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5156,12 +5235,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/nl/',
+  'creativecommons.org/licenses/by-nd/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nd/1.0/nl/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Netherlands',
+    label: 'Attribution-NoDerivs 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5172,12 +5251,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/at/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/at/',
+  'creativecommons.org/licenses/by-nd/2.0/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Austria',
+    label: 'Attribution-NoDerivs 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5188,12 +5267,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/au/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/au/',
+  'creativecommons.org/licenses/by-nd/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/at/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Australia',
+    label: 'Attribution-NoDerivs 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5204,12 +5283,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/be/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/be/',
+  'creativecommons.org/licenses/by-nd/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/au/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Belgium',
+    label: 'Attribution-NoDerivs 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5220,12 +5299,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/br/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/br/',
+  'creativecommons.org/licenses/by-nd/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/be/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Brazil',
+    label: 'Attribution-NoDerivs 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5236,12 +5315,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/ca/',
+  'creativecommons.org/licenses/by-nd/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/br/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Canada',
+    label: 'Attribution-NoDerivs 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5252,12 +5331,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/cl/',
+  'creativecommons.org/licenses/by-nd/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/ca/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Chile',
+    label: 'Attribution-NoDerivs 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5268,12 +5347,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/de/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/de/',
+  'creativecommons.org/licenses/by-nd/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/cl/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Germany',
+    label: 'Attribution-NoDerivs 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5284,12 +5363,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/es/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/es/',
+  'creativecommons.org/licenses/by-nd/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/de/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Spain',
+    label: 'Attribution-NoDerivs 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5300,12 +5379,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/fr/',
+  'creativecommons.org/licenses/by-nd/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/es/',
     description: '',
-    label: 'Attribution-NoDerivs {version} France',
+    label: 'Attribution-NoDerivs 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5316,12 +5395,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/hr/',
+  'creativecommons.org/licenses/by-nd/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/fr/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Croatia',
+    label: 'Attribution-NoDerivs 2.0 France',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5332,12 +5411,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/it/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/it/',
+  'creativecommons.org/licenses/by-nd/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/hr/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Italy',
+    label: 'Attribution-NoDerivs 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5348,12 +5427,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/jp/',
+  'creativecommons.org/licenses/by-nd/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/it/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Japan',
+    label: 'Attribution-NoDerivs 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5364,12 +5443,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/kr/',
+  'creativecommons.org/licenses/by-nd/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/jp/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Korea',
+    label: 'Attribution-NoDerivs 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5380,12 +5459,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/pl/',
+  'creativecommons.org/licenses/by-nd/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/kr/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Poland',
+    label: 'Attribution-NoDerivs 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5396,12 +5475,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/tw/',
+  'creativecommons.org/licenses/by-nd/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/nl/',
     description: '',
-    label: 'Attribution-NoDerivs {version} Taiwan',
+    label: 'Attribution-NoDerivs 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5412,12 +5491,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/uk/',
+  'creativecommons.org/licenses/by-nd/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/pl/',
     description: '',
-    label: 'Attribution-NoDerivs {version} UK: England & Wales',
+    label: 'Attribution-NoDerivs 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5428,12 +5507,44 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-nd/{version}/za/': {
-    url: 'creativecommons.org/licenses/by-nd/{version}/za/',
+  'creativecommons.org/licenses/by-nd/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/tw/',
     description: '',
-    label: 'Attribution-NoDerivs {version} South Africa',
+    label: 'Attribution-NoDerivs 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/tw/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by-nd/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/uk/',
+    description: '',
+    label: 'Attribution-NoDerivs 2.0 UK: England & Wales',
+    image: '/static/images/rightsstatements/cc-by-nd.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/uk/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by-nd/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by-nd/2.0/za/',
+    description: '',
+    label: 'Attribution-NoDerivs 2.0 South Africa',
+    image: '/static/images/rightsstatements/cc-by-nd.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
@@ -5445,7 +5556,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.1/au/': {
-    url: 'creativecommons.org/licenses/by-nd/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.1/au/',
     description: '',
     label: 'Attribution-NoDerivs 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5461,7 +5572,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by-nd/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -5471,7 +5582,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/2.1/es/': {
-    url: 'creativecommons.org/licenses/by-nd/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.1/es/',
     description: '',
     label: 'Attribution-NoDerivs 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5487,7 +5598,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by-nd/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.1/jp/',
     description: '',
     label: 'Attribution-NoDerivs 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5503,7 +5614,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5519,7 +5630,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/ar/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5535,7 +5646,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/au/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/au/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5551,7 +5662,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/bg/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5567,7 +5678,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/br/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/br/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5583,7 +5694,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/ca/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5599,7 +5710,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/ch/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5615,7 +5726,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/cn/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5631,7 +5742,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/co/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/co/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5647,7 +5758,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/dk/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5663,7 +5774,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/es/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/es/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5679,7 +5790,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/hr/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5695,7 +5806,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/hu/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5711,7 +5822,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/il/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/il/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5727,7 +5838,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/in/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/in/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 India',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5743,7 +5854,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/it/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/it/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5759,7 +5870,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/mk/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5775,7 +5886,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/mt/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5791,7 +5902,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/mx/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5807,7 +5918,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/my/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/my/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5823,7 +5934,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/nl/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5839,7 +5950,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/pe/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5855,7 +5966,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/pl/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5871,7 +5982,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/pt/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5887,7 +5998,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/scotland/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5903,7 +6014,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/se/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/se/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5919,7 +6030,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/si/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/si/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5935,7 +6046,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/tw/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5951,7 +6062,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/2.5/za/': {
-    url: 'creativecommons.org/licenses/by-nd/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by-nd/2.5/za/',
     description: '',
     label: 'Attribution-NoDerivs 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5967,7 +6078,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -5983,7 +6094,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/am/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -5993,7 +6104,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/3.0/at/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/at/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6009,7 +6120,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/au/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/au/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6025,7 +6136,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/az/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -6035,7 +6146,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/3.0/br/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/br/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6051,7 +6162,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -6061,7 +6172,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ch/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6077,7 +6188,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/cl/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6093,7 +6204,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/cn/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6109,7 +6220,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/cr/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6125,7 +6236,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/cz/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6141,7 +6252,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/de/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/de/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6157,7 +6268,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ec/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6173,7 +6284,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ee/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6189,7 +6300,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/eg/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6205,7 +6316,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/es/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/es/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6221,7 +6332,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/fr/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 France',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6237,7 +6348,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -6247,7 +6358,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/gr/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6263,7 +6374,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/gt/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6279,7 +6390,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/hk/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6295,7 +6406,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/hr/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6311,7 +6422,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ie/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6327,7 +6438,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/igo/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6343,7 +6454,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/it/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/it/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6359,7 +6470,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/lu/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6375,7 +6486,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/nl/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6391,7 +6502,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/no/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/no/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6407,7 +6518,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/nz/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6423,7 +6534,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ph/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6439,7 +6550,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/pl/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6455,7 +6566,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/pr/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6471,7 +6582,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/pt/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6487,7 +6598,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ro/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6503,7 +6614,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/rs/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6519,7 +6630,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/sg/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6535,7 +6646,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/th/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/th/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6551,7 +6662,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/tw/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6567,7 +6678,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ug/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6583,7 +6694,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/us/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/us/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 United States',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6599,7 +6710,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/ve/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6615,7 +6726,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/vn/',
     description: '',
     label: 'Attribution-NoDerivs 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6631,7 +6742,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-nd/3.0/za/': {
-    url: 'creativecommons.org/licenses/by-nd/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by-nd/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -6641,7 +6752,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-nd/4.0/': {
-    url: 'creativecommons.org/licenses/by-nd/4.0/',
+    url: 'http://creativecommons.org/licenses/by-nd/4.0/',
     description: '',
     label: 'Attribution-NoDerivatives 4.0 International',
     image: '/static/images/rightsstatements/cc-by-nd.svg',
@@ -6656,12 +6767,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/',
+  'creativecommons.org/licenses/by-sa/1.0/': {
+    url: 'http://creativecommons.org/licenses/by-sa/1.0/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Generic',
+    label: 'Attribution-ShareAlike 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6674,12 +6785,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/fi/',
+  'creativecommons.org/licenses/by-sa/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by-sa/1.0/fi/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Finland',
+    label: 'Attribution-ShareAlike 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6692,12 +6803,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/il/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/il/',
+  'creativecommons.org/licenses/by-sa/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by-sa/1.0/il/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Israel',
+    label: 'Attribution-ShareAlike 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6710,12 +6821,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/nl/',
+  'creativecommons.org/licenses/by-sa/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-sa/1.0/nl/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Netherlands',
+    label: 'Attribution-ShareAlike 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6728,12 +6839,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/at/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/at/',
+  'creativecommons.org/licenses/by-sa/2.0/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Austria',
+    label: 'Attribution-ShareAlike 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6746,12 +6857,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/au/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/au/',
+  'creativecommons.org/licenses/by-sa/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/at/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Australia',
+    label: 'Attribution-ShareAlike 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6764,12 +6875,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/be/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/be/',
+  'creativecommons.org/licenses/by-sa/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/au/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Belgium',
+    label: 'Attribution-ShareAlike 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6782,12 +6893,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/br/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/br/',
+  'creativecommons.org/licenses/by-sa/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/be/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Brazil',
+    label: 'Attribution-ShareAlike 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6800,12 +6911,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/ca/',
+  'creativecommons.org/licenses/by-sa/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/br/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Canada',
+    label: 'Attribution-ShareAlike 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6818,12 +6929,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/cl/',
+  'creativecommons.org/licenses/by-sa/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/ca/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Chile',
+    label: 'Attribution-ShareAlike 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6836,12 +6947,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/de/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/de/',
+  'creativecommons.org/licenses/by-sa/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/cl/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Germany',
+    label: 'Attribution-ShareAlike 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6854,12 +6965,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/es/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/es/',
+  'creativecommons.org/licenses/by-sa/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/de/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Spain',
+    label: 'Attribution-ShareAlike 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6872,12 +6983,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/fr/',
+  'creativecommons.org/licenses/by-sa/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/es/',
     description: '',
-    label: 'Attribution-ShareAlike {version} France',
+    label: 'Attribution-ShareAlike 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6890,12 +7001,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/hr/',
+  'creativecommons.org/licenses/by-sa/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/fr/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Croatia',
+    label: 'Attribution-ShareAlike 2.0 France',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6908,12 +7019,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/it/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/it/',
+  'creativecommons.org/licenses/by-sa/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/hr/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Italy',
+    label: 'Attribution-ShareAlike 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6926,12 +7037,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/jp/',
+  'creativecommons.org/licenses/by-sa/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/it/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Japan',
+    label: 'Attribution-ShareAlike 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6944,12 +7055,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/kr/',
+  'creativecommons.org/licenses/by-sa/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/jp/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Korea',
+    label: 'Attribution-ShareAlike 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6962,12 +7073,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/pl/',
+  'creativecommons.org/licenses/by-sa/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/kr/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Poland',
+    label: 'Attribution-ShareAlike 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6980,12 +7091,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/tw/',
+  'creativecommons.org/licenses/by-sa/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/nl/',
     description: '',
-    label: 'Attribution-ShareAlike {version} Taiwan',
+    label: 'Attribution-ShareAlike 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -6998,12 +7109,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/uk/',
+  'creativecommons.org/licenses/by-sa/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/pl/',
     description: '',
-    label: 'Attribution-ShareAlike {version} UK: England & Wales',
+    label: 'Attribution-ShareAlike 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -7016,12 +7127,48 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by-sa/{version}/za/': {
-    url: 'creativecommons.org/licenses/by-sa/{version}/za/',
+  'creativecommons.org/licenses/by-sa/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/tw/',
     description: '',
-    label: 'Attribution-ShareAlike {version} South Africa',
+    label: 'Attribution-ShareAlike 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/tw/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice',
+      'http://creativecommons.org/ns#ShareAlike'
+    ]
+  },
+  'creativecommons.org/licenses/by-sa/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/uk/',
+    description: '',
+    label: 'Attribution-ShareAlike 2.0 UK: England & Wales',
+    image: '/static/images/rightsstatements/cc-by-sa.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/uk/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice',
+      'http://creativecommons.org/ns#ShareAlike'
+    ]
+  },
+  'creativecommons.org/licenses/by-sa/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by-sa/2.0/za/',
+    description: '',
+    label: 'Attribution-ShareAlike 2.0 South Africa',
+    image: '/static/images/rightsstatements/cc-by-sa.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -7035,7 +7182,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.1/au/': {
-    url: 'creativecommons.org/licenses/by-sa/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.1/au/',
     description: '',
     label: 'Attribution-ShareAlike 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7053,7 +7200,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by-sa/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -7063,7 +7210,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/2.1/es/': {
-    url: 'creativecommons.org/licenses/by-sa/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.1/es/',
     description: '',
     label: 'Attribution-ShareAlike 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7081,7 +7228,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by-sa/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.1/jp/',
     description: '',
     label: 'Attribution-ShareAlike 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7099,7 +7246,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7117,7 +7264,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/ar/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7135,7 +7282,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/au/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/au/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7153,7 +7300,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/bg/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7171,7 +7318,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/br/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/br/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7189,7 +7336,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/ca/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7207,7 +7354,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/ch/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7225,7 +7372,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/cn/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7243,7 +7390,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/co/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/co/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7261,7 +7408,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/dk/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7279,7 +7426,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/es/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/es/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7297,7 +7444,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/hr/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7315,7 +7462,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/hu/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7333,7 +7480,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/il/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/il/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7351,7 +7498,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/in/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/in/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 India',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7369,7 +7516,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/it/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/it/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7387,7 +7534,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/mk/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7405,7 +7552,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/mt/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7423,7 +7570,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/mx/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7441,7 +7588,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/my/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/my/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7459,7 +7606,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/nl/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7477,7 +7624,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/pe/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7495,7 +7642,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/pl/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7513,7 +7660,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/pt/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7531,7 +7678,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/scotland/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7548,7 +7695,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/se/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/se/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7566,7 +7713,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/si/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/si/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7584,7 +7731,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/tw/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7602,7 +7749,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/2.5/za/': {
-    url: 'creativecommons.org/licenses/by-sa/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by-sa/2.5/za/',
     description: '',
     label: 'Attribution-ShareAlike 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7620,7 +7767,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7638,7 +7785,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/am/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -7648,7 +7795,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/3.0/at/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/at/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7666,7 +7813,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/au/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/au/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7684,7 +7831,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/az/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -7694,7 +7841,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/3.0/br/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/br/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7712,7 +7859,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -7722,7 +7869,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ch/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7740,7 +7887,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/cl/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7758,7 +7905,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/cn/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7776,7 +7923,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/cr/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7794,7 +7941,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/cz/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7812,7 +7959,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/de/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/de/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7830,7 +7977,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ec/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7848,7 +7995,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ee/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7866,7 +8013,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/eg/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7884,7 +8031,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/es/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/es/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7902,7 +8049,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/fr/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 France',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7920,7 +8067,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -7930,7 +8077,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/gr/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7948,7 +8095,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/gt/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7966,7 +8113,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/hk/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -7984,7 +8131,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/hr/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8002,7 +8149,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ie/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8020,7 +8167,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/igo/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8038,7 +8185,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/it/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/it/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8056,7 +8203,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/lu/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8074,7 +8221,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/nl/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8092,7 +8239,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/no/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/no/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8110,7 +8257,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/nz/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8128,7 +8275,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ph/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8146,7 +8293,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/pl/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8164,7 +8311,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/pr/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8182,7 +8329,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/pt/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8200,7 +8347,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ro/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8218,7 +8365,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/rs/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8236,7 +8383,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/sg/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8254,7 +8401,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/th/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/th/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8272,7 +8419,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/tw/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8290,7 +8437,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ug/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8308,7 +8455,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/us/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/us/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 United States',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8326,7 +8473,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/ve/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8344,7 +8491,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/vn/',
     description: '',
     label: 'Attribution-ShareAlike 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8362,7 +8509,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by-sa/3.0/za/': {
-    url: 'creativecommons.org/licenses/by-sa/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by-sa/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -8372,7 +8519,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by-sa/4.0/': {
-    url: 'creativecommons.org/licenses/by-sa/4.0/',
+    url: 'http://creativecommons.org/licenses/by-sa/4.0/',
     description: '',
     label: 'Attribution-ShareAlike 4.0 International',
     image: '/static/images/rightsstatements/cc-by-sa.svg',
@@ -8389,12 +8536,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/': {
-    url: 'creativecommons.org/licenses/by/{version}/',
+  'creativecommons.org/licenses/by/1.0/': {
+    url: 'http://creativecommons.org/licenses/by/1.0/',
     description: '',
-    label: 'Attribution {version} Generic',
+    label: 'Attribution 1.0 Generic',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8406,12 +8553,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/fi/': {
-    url: 'creativecommons.org/licenses/by/{version}/fi/',
+  'creativecommons.org/licenses/by/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/by/1.0/fi/',
     description: '',
-    label: 'Attribution {version} Finland',
+    label: 'Attribution 1.0 Finland',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/fi/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/1.0/fi/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8423,12 +8570,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/il/': {
-    url: 'creativecommons.org/licenses/by/{version}/il/',
+  'creativecommons.org/licenses/by/1.0/il/': {
+    url: 'http://creativecommons.org/licenses/by/1.0/il/',
     description: '',
-    label: 'Attribution {version} Israel',
+    label: 'Attribution 1.0 Israel',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/il/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/1.0/il/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8440,12 +8587,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/nl/': {
-    url: 'creativecommons.org/licenses/by/{version}/nl/',
+  'creativecommons.org/licenses/by/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by/1.0/nl/',
     description: '',
-    label: 'Attribution {version} Netherlands',
+    label: 'Attribution 1.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/nl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/1.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8457,12 +8604,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/at/': {
-    url: 'creativecommons.org/licenses/by/{version}/at/',
+  'creativecommons.org/licenses/by/2.0/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/',
     description: '',
-    label: 'Attribution {version} Austria',
+    label: 'Attribution 2.0 Generic',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/at/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8474,12 +8621,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/au/': {
-    url: 'creativecommons.org/licenses/by/{version}/au/',
+  'creativecommons.org/licenses/by/2.0/at/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/at/',
     description: '',
-    label: 'Attribution {version} Australia',
+    label: 'Attribution 2.0 Austria',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/au/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/at/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8491,12 +8638,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/be/': {
-    url: 'creativecommons.org/licenses/by/{version}/be/',
+  'creativecommons.org/licenses/by/2.0/au/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/au/',
     description: '',
-    label: 'Attribution {version} Belgium',
+    label: 'Attribution 2.0 Australia',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/be/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/au/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8508,12 +8655,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/br/': {
-    url: 'creativecommons.org/licenses/by/{version}/br/',
+  'creativecommons.org/licenses/by/2.0/be/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/be/',
     description: '',
-    label: 'Attribution {version} Brazil',
+    label: 'Attribution 2.0 Belgium',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/br/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/be/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8525,12 +8672,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/ca/': {
-    url: 'creativecommons.org/licenses/by/{version}/ca/',
+  'creativecommons.org/licenses/by/2.0/br/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/br/',
     description: '',
-    label: 'Attribution {version} Canada',
+    label: 'Attribution 2.0 Brazil',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/ca/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/br/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8542,12 +8689,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/cl/': {
-    url: 'creativecommons.org/licenses/by/{version}/cl/',
+  'creativecommons.org/licenses/by/2.0/ca/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/ca/',
     description: '',
-    label: 'Attribution {version} Chile',
+    label: 'Attribution 2.0 Canada',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/cl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/ca/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8559,12 +8706,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/de/': {
-    url: 'creativecommons.org/licenses/by/{version}/de/',
+  'creativecommons.org/licenses/by/2.0/cl/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/cl/',
     description: '',
-    label: 'Attribution {version} Germany',
+    label: 'Attribution 2.0 Chile',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/de/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/cl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8576,12 +8723,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/es/': {
-    url: 'creativecommons.org/licenses/by/{version}/es/',
+  'creativecommons.org/licenses/by/2.0/de/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/de/',
     description: '',
-    label: 'Attribution {version} Spain',
+    label: 'Attribution 2.0 Germany',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/es/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/de/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8593,12 +8740,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/fr/': {
-    url: 'creativecommons.org/licenses/by/{version}/fr/',
+  'creativecommons.org/licenses/by/2.0/es/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/es/',
     description: '',
-    label: 'Attribution {version} France',
+    label: 'Attribution 2.0 Spain',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/fr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/es/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8610,12 +8757,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/hr/': {
-    url: 'creativecommons.org/licenses/by/{version}/hr/',
+  'creativecommons.org/licenses/by/2.0/fr/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/fr/',
     description: '',
-    label: 'Attribution {version} Croatia',
+    label: 'Attribution 2.0 France',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/hr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/fr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8627,12 +8774,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/it/': {
-    url: 'creativecommons.org/licenses/by/{version}/it/',
+  'creativecommons.org/licenses/by/2.0/hr/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/hr/',
     description: '',
-    label: 'Attribution {version} Italy',
+    label: 'Attribution 2.0 Croatia',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/it/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/hr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8644,12 +8791,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/jp/': {
-    url: 'creativecommons.org/licenses/by/{version}/jp/',
+  'creativecommons.org/licenses/by/2.0/it/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/it/',
     description: '',
-    label: 'Attribution {version} Japan',
+    label: 'Attribution 2.0 Italy',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/jp/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/it/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8661,12 +8808,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/kr/': {
-    url: 'creativecommons.org/licenses/by/{version}/kr/',
+  'creativecommons.org/licenses/by/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/jp/',
     description: '',
-    label: 'Attribution {version} Korea',
+    label: 'Attribution 2.0 Japan',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/kr/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8678,12 +8825,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/pl/': {
-    url: 'creativecommons.org/licenses/by/{version}/pl/',
+  'creativecommons.org/licenses/by/2.0/kr/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/kr/',
     description: '',
-    label: 'Attribution {version} Poland',
+    label: 'Attribution 2.0 Korea',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/pl/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/kr/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8695,12 +8842,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/tw/': {
-    url: 'creativecommons.org/licenses/by/{version}/tw/',
+  'creativecommons.org/licenses/by/2.0/nl/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/nl/',
     description: '',
-    label: 'Attribution {version} Taiwan',
+    label: 'Attribution 2.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/tw/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/nl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8712,12 +8859,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/uk/': {
-    url: 'creativecommons.org/licenses/by/{version}/uk/',
+  'creativecommons.org/licenses/by/2.0/pl/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/pl/',
     description: '',
-    label: 'Attribution {version} UK: England & Wales',
+    label: 'Attribution 2.0 Poland',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/uk/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/pl/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8729,12 +8876,46 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/by/{version}/za/': {
-    url: 'creativecommons.org/licenses/by/{version}/za/',
+  'creativecommons.org/licenses/by/2.0/tw/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/tw/',
     description: '',
-    label: 'Attribution {version} South Africa',
+    label: 'Attribution 2.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/{version}/za/',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/tw/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by/2.0/uk/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/uk/',
+    description: '',
+    label: 'Attribution 2.0 UK: England & Wales',
+    image: '/static/images/rightsstatements/cc-by.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/uk/',
+    deprecated: 'false',
+    permits: [
+      'http://creativecommons.org/ns#DerivativeWorks',
+      'http://creativecommons.org/ns#Distribution',
+      'http://creativecommons.org/ns#Reproduction'
+    ],
+    requires: [
+      'http://creativecommons.org/ns#Attribution',
+      'http://creativecommons.org/ns#Notice'
+    ]
+  },
+  'creativecommons.org/licenses/by/2.0/za/': {
+    url: 'http://creativecommons.org/licenses/by/2.0/za/',
+    description: '',
+    label: 'Attribution 2.0 South Africa',
+    image: '/static/images/rightsstatements/cc-by.svg',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/za/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -8747,7 +8928,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.1/au/': {
-    url: 'creativecommons.org/licenses/by/2.1/au/',
+    url: 'http://creativecommons.org/licenses/by/2.1/au/',
     description: '',
     label: 'Attribution 2.1 Australia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8764,7 +8945,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.1/ca/': {
-    url: 'creativecommons.org/licenses/by/2.1/ca/',
+    url: 'http://creativecommons.org/licenses/by/2.1/ca/',
     description: '',
     label: '',
     image: '',
@@ -8774,7 +8955,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/2.1/es/': {
-    url: 'creativecommons.org/licenses/by/2.1/es/',
+    url: 'http://creativecommons.org/licenses/by/2.1/es/',
     description: '',
     label: 'Attribution 2.1 Spain',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8791,7 +8972,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.1/jp/': {
-    url: 'creativecommons.org/licenses/by/2.1/jp/',
+    url: 'http://creativecommons.org/licenses/by/2.1/jp/',
     description: '',
     label: 'Attribution 2.1 Japan',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8808,7 +8989,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/': {
-    url: 'creativecommons.org/licenses/by/2.5/',
+    url: 'http://creativecommons.org/licenses/by/2.5/',
     description: '',
     label: 'Attribution 2.5 Generic',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8825,7 +9006,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/ar/': {
-    url: 'creativecommons.org/licenses/by/2.5/ar/',
+    url: 'http://creativecommons.org/licenses/by/2.5/ar/',
     description: '',
     label: 'Attribution 2.5 Argentina',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8842,7 +9023,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/au/': {
-    url: 'creativecommons.org/licenses/by/2.5/au/',
+    url: 'http://creativecommons.org/licenses/by/2.5/au/',
     description: '',
     label: 'Attribution 2.5 Australia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8859,7 +9040,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/bg/': {
-    url: 'creativecommons.org/licenses/by/2.5/bg/',
+    url: 'http://creativecommons.org/licenses/by/2.5/bg/',
     description: '',
     label: 'Attribution 2.5 Bulgaria',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8876,7 +9057,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/br/': {
-    url: 'creativecommons.org/licenses/by/2.5/br/',
+    url: 'http://creativecommons.org/licenses/by/2.5/br/',
     description: '',
     label: 'Attribution 2.5 Brazil',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8893,7 +9074,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/ca/': {
-    url: 'creativecommons.org/licenses/by/2.5/ca/',
+    url: 'http://creativecommons.org/licenses/by/2.5/ca/',
     description: '',
     label: 'Attribution 2.5 Canada',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8910,7 +9091,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/ch/': {
-    url: 'creativecommons.org/licenses/by/2.5/ch/',
+    url: 'http://creativecommons.org/licenses/by/2.5/ch/',
     description: '',
     label: 'Attribution 2.5 Switzerland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8927,7 +9108,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/cn/': {
-    url: 'creativecommons.org/licenses/by/2.5/cn/',
+    url: 'http://creativecommons.org/licenses/by/2.5/cn/',
     description: '',
     label: 'Attribution 2.5 China Mainland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8944,7 +9125,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/co/': {
-    url: 'creativecommons.org/licenses/by/2.5/co/',
+    url: 'http://creativecommons.org/licenses/by/2.5/co/',
     description: '',
     label: 'Attribution 2.5 Colombia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8961,7 +9142,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/dk/': {
-    url: 'creativecommons.org/licenses/by/2.5/dk/',
+    url: 'http://creativecommons.org/licenses/by/2.5/dk/',
     description: '',
     label: 'Attribution 2.5 Denmark',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8978,7 +9159,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/es/': {
-    url: 'creativecommons.org/licenses/by/2.5/es/',
+    url: 'http://creativecommons.org/licenses/by/2.5/es/',
     description: '',
     label: 'Attribution 2.5 Spain',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -8995,7 +9176,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/hr/': {
-    url: 'creativecommons.org/licenses/by/2.5/hr/',
+    url: 'http://creativecommons.org/licenses/by/2.5/hr/',
     description: '',
     label: 'Attribution 2.5 Croatia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9012,7 +9193,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/hu/': {
-    url: 'creativecommons.org/licenses/by/2.5/hu/',
+    url: 'http://creativecommons.org/licenses/by/2.5/hu/',
     description: '',
     label: 'Attribution 2.5 Hungary',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9029,7 +9210,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/il/': {
-    url: 'creativecommons.org/licenses/by/2.5/il/',
+    url: 'http://creativecommons.org/licenses/by/2.5/il/',
     description: '',
     label: 'Attribution 2.5 Israel',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9046,7 +9227,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/in/': {
-    url: 'creativecommons.org/licenses/by/2.5/in/',
+    url: 'http://creativecommons.org/licenses/by/2.5/in/',
     description: '',
     label: 'Attribution 2.5 India',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9063,7 +9244,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/it/': {
-    url: 'creativecommons.org/licenses/by/2.5/it/',
+    url: 'http://creativecommons.org/licenses/by/2.5/it/',
     description: '',
     label: 'Attribution 2.5 Italy',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9080,7 +9261,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/mk/': {
-    url: 'creativecommons.org/licenses/by/2.5/mk/',
+    url: 'http://creativecommons.org/licenses/by/2.5/mk/',
     description: '',
     label: 'Attribution 2.5 Macedonia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9097,7 +9278,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/mt/': {
-    url: 'creativecommons.org/licenses/by/2.5/mt/',
+    url: 'http://creativecommons.org/licenses/by/2.5/mt/',
     description: '',
     label: 'Attribution 2.5 Malta',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9114,7 +9295,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/mx/': {
-    url: 'creativecommons.org/licenses/by/2.5/mx/',
+    url: 'http://creativecommons.org/licenses/by/2.5/mx/',
     description: '',
     label: 'Attribution 2.5 Mexico',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9131,7 +9312,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/my/': {
-    url: 'creativecommons.org/licenses/by/2.5/my/',
+    url: 'http://creativecommons.org/licenses/by/2.5/my/',
     description: '',
     label: 'Attribution 2.5 Malaysia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9148,7 +9329,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/nl/': {
-    url: 'creativecommons.org/licenses/by/2.5/nl/',
+    url: 'http://creativecommons.org/licenses/by/2.5/nl/',
     description: '',
     label: 'Attribution 2.5 Netherlands',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9165,7 +9346,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/pe/': {
-    url: 'creativecommons.org/licenses/by/2.5/pe/',
+    url: 'http://creativecommons.org/licenses/by/2.5/pe/',
     description: '',
     label: 'Attribution 2.5 Peru',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9182,7 +9363,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/pl/': {
-    url: 'creativecommons.org/licenses/by/2.5/pl/',
+    url: 'http://creativecommons.org/licenses/by/2.5/pl/',
     description: '',
     label: 'Attribution 2.5 Poland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9199,7 +9380,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/pt/': {
-    url: 'creativecommons.org/licenses/by/2.5/pt/',
+    url: 'http://creativecommons.org/licenses/by/2.5/pt/',
     description: '',
     label: 'Attribution 2.5 Portugal',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9216,7 +9397,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/scotland/': {
-    url: 'creativecommons.org/licenses/by/2.5/scotland/',
+    url: 'http://creativecommons.org/licenses/by/2.5/scotland/',
     description: '',
     label: 'Attribution 2.5 UK: Scotland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9232,7 +9413,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/se/': {
-    url: 'creativecommons.org/licenses/by/2.5/se/',
+    url: 'http://creativecommons.org/licenses/by/2.5/se/',
     description: '',
     label: 'Attribution 2.5 Sweden',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9249,7 +9430,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/si/': {
-    url: 'creativecommons.org/licenses/by/2.5/si/',
+    url: 'http://creativecommons.org/licenses/by/2.5/si/',
     description: '',
     label: 'Attribution 2.5 Slovenia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9266,7 +9447,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/tw/': {
-    url: 'creativecommons.org/licenses/by/2.5/tw/',
+    url: 'http://creativecommons.org/licenses/by/2.5/tw/',
     description: '',
     label: 'Attribution 2.5 Taiwan',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9283,7 +9464,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/2.5/za/': {
-    url: 'creativecommons.org/licenses/by/2.5/za/',
+    url: 'http://creativecommons.org/licenses/by/2.5/za/',
     description: '',
     label: 'Attribution 2.5 South Africa',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9300,7 +9481,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/': {
-    url: 'creativecommons.org/licenses/by/3.0/',
+    url: 'http://creativecommons.org/licenses/by/3.0/',
     description: '',
     label: 'Attribution 3.0 Unported',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9317,7 +9498,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/am/': {
-    url: 'creativecommons.org/licenses/by/3.0/am/',
+    url: 'http://creativecommons.org/licenses/by/3.0/am/',
     description: '',
     label: '',
     image: '',
@@ -9327,7 +9508,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/3.0/at/': {
-    url: 'creativecommons.org/licenses/by/3.0/at/',
+    url: 'http://creativecommons.org/licenses/by/3.0/at/',
     description: '',
     label: 'Attribution 3.0 Austria',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9344,7 +9525,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/au/': {
-    url: 'creativecommons.org/licenses/by/3.0/au/',
+    url: 'http://creativecommons.org/licenses/by/3.0/au/',
     description: '',
     label: 'Attribution 3.0 Australia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9361,7 +9542,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/az/': {
-    url: 'creativecommons.org/licenses/by/3.0/az/',
+    url: 'http://creativecommons.org/licenses/by/3.0/az/',
     description: '',
     label: '',
     image: '',
@@ -9371,7 +9552,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/3.0/br/': {
-    url: 'creativecommons.org/licenses/by/3.0/br/',
+    url: 'http://creativecommons.org/licenses/by/3.0/br/',
     description: '',
     label: 'Attribution 3.0 Brazil',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9388,7 +9569,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ca/': {
-    url: 'creativecommons.org/licenses/by/3.0/ca/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ca/',
     description: '',
     label: '',
     image: '',
@@ -9398,7 +9579,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/3.0/ch/': {
-    url: 'creativecommons.org/licenses/by/3.0/ch/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ch/',
     description: '',
     label: 'Attribution 3.0 Switzerland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9415,7 +9596,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/cl/': {
-    url: 'creativecommons.org/licenses/by/3.0/cl/',
+    url: 'http://creativecommons.org/licenses/by/3.0/cl/',
     description: '',
     label: 'Attribution 3.0 Chile',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9432,7 +9613,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/cn/': {
-    url: 'creativecommons.org/licenses/by/3.0/cn/',
+    url: 'http://creativecommons.org/licenses/by/3.0/cn/',
     description: '',
     label: 'Attribution 3.0 China Mainland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9449,7 +9630,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/cr/': {
-    url: 'creativecommons.org/licenses/by/3.0/cr/',
+    url: 'http://creativecommons.org/licenses/by/3.0/cr/',
     description: '',
     label: 'Attribution 3.0 Costa Rica',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9466,7 +9647,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/cz/': {
-    url: 'creativecommons.org/licenses/by/3.0/cz/',
+    url: 'http://creativecommons.org/licenses/by/3.0/cz/',
     description: '',
     label: 'Attribution 3.0 Czech Republic',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9483,7 +9664,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/de/': {
-    url: 'creativecommons.org/licenses/by/3.0/de/',
+    url: 'http://creativecommons.org/licenses/by/3.0/de/',
     description: '',
     label: 'Attribution 3.0 Germany',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9500,7 +9681,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ec/': {
-    url: 'creativecommons.org/licenses/by/3.0/ec/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ec/',
     description: '',
     label: 'Attribution 3.0 Ecuador',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9517,7 +9698,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ee/': {
-    url: 'creativecommons.org/licenses/by/3.0/ee/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ee/',
     description: '',
     label: 'Attribution 3.0 Estonia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9534,7 +9715,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/eg/': {
-    url: 'creativecommons.org/licenses/by/3.0/eg/',
+    url: 'http://creativecommons.org/licenses/by/3.0/eg/',
     description: '',
     label: 'Attribution 3.0 Egypt',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9551,7 +9732,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/es/': {
-    url: 'creativecommons.org/licenses/by/3.0/es/',
+    url: 'http://creativecommons.org/licenses/by/3.0/es/',
     description: '',
     label: 'Attribution 3.0 Spain',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9568,7 +9749,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/fr/': {
-    url: 'creativecommons.org/licenses/by/3.0/fr/',
+    url: 'http://creativecommons.org/licenses/by/3.0/fr/',
     description: '',
     label: 'Attribution 3.0 France',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9585,7 +9766,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ge/': {
-    url: 'creativecommons.org/licenses/by/3.0/ge/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ge/',
     description: '',
     label: '',
     image: '',
@@ -9595,7 +9776,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/3.0/gr/': {
-    url: 'creativecommons.org/licenses/by/3.0/gr/',
+    url: 'http://creativecommons.org/licenses/by/3.0/gr/',
     description: '',
     label: 'Attribution 3.0 Greece',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9612,7 +9793,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/gt/': {
-    url: 'creativecommons.org/licenses/by/3.0/gt/',
+    url: 'http://creativecommons.org/licenses/by/3.0/gt/',
     description: '',
     label: 'Attribution 3.0 Guatemala',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9629,7 +9810,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/hk/': {
-    url: 'creativecommons.org/licenses/by/3.0/hk/',
+    url: 'http://creativecommons.org/licenses/by/3.0/hk/',
     description: '',
     label: 'Attribution 3.0 Hong Kong',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9646,7 +9827,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/hr/': {
-    url: 'creativecommons.org/licenses/by/3.0/hr/',
+    url: 'http://creativecommons.org/licenses/by/3.0/hr/',
     description: '',
     label: 'Attribution 3.0 Croatia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9663,7 +9844,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ie/': {
-    url: 'creativecommons.org/licenses/by/3.0/ie/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ie/',
     description: '',
     label: 'Attribution 3.0 Ireland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9680,7 +9861,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/igo/': {
-    url: 'creativecommons.org/licenses/by/3.0/igo/',
+    url: 'http://creativecommons.org/licenses/by/3.0/igo/',
     description: '',
     label: 'Attribution 3.0 IGO',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9697,7 +9878,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/it/': {
-    url: 'creativecommons.org/licenses/by/3.0/it/',
+    url: 'http://creativecommons.org/licenses/by/3.0/it/',
     description: '',
     label: 'Attribution 3.0 Italy',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9714,7 +9895,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/lu/': {
-    url: 'creativecommons.org/licenses/by/3.0/lu/',
+    url: 'http://creativecommons.org/licenses/by/3.0/lu/',
     description: '',
     label: 'Attribution 3.0 Luxembourg',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9731,7 +9912,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/nl/': {
-    url: 'creativecommons.org/licenses/by/3.0/nl/',
+    url: 'http://creativecommons.org/licenses/by/3.0/nl/',
     description: '',
     label: 'Attribution 3.0 Netherlands',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9748,7 +9929,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/no/': {
-    url: 'creativecommons.org/licenses/by/3.0/no/',
+    url: 'http://creativecommons.org/licenses/by/3.0/no/',
     description: '',
     label: 'Attribution 3.0 Norway',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9765,7 +9946,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/nz/': {
-    url: 'creativecommons.org/licenses/by/3.0/nz/',
+    url: 'http://creativecommons.org/licenses/by/3.0/nz/',
     description: '',
     label: 'Attribution 3.0 New Zealand',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9782,7 +9963,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ph/': {
-    url: 'creativecommons.org/licenses/by/3.0/ph/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ph/',
     description: '',
     label: 'Attribution 3.0 Philippines',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9799,7 +9980,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/pl/': {
-    url: 'creativecommons.org/licenses/by/3.0/pl/',
+    url: 'http://creativecommons.org/licenses/by/3.0/pl/',
     description: '',
     label: 'Attribution 3.0 Poland',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9816,7 +9997,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/pr/': {
-    url: 'creativecommons.org/licenses/by/3.0/pr/',
+    url: 'http://creativecommons.org/licenses/by/3.0/pr/',
     description: '',
     label: 'Attribution 3.0 Puerto Rico',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9833,7 +10014,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/pt/': {
-    url: 'creativecommons.org/licenses/by/3.0/pt/',
+    url: 'http://creativecommons.org/licenses/by/3.0/pt/',
     description: '',
     label: 'Attribution 3.0 Portugal',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9850,7 +10031,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ro/': {
-    url: 'creativecommons.org/licenses/by/3.0/ro/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ro/',
     description: '',
     label: 'Attribution 3.0 Romania',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9867,7 +10048,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/rs/': {
-    url: 'creativecommons.org/licenses/by/3.0/rs/',
+    url: 'http://creativecommons.org/licenses/by/3.0/rs/',
     description: '',
     label: 'Attribution 3.0 Serbia',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9884,7 +10065,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/sg/': {
-    url: 'creativecommons.org/licenses/by/3.0/sg/',
+    url: 'http://creativecommons.org/licenses/by/3.0/sg/',
     description: '',
     label: 'Attribution 3.0 Singapore',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9901,7 +10082,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/th/': {
-    url: 'creativecommons.org/licenses/by/3.0/th/',
+    url: 'http://creativecommons.org/licenses/by/3.0/th/',
     description: '',
     label: 'Attribution 3.0 Thailand',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9918,7 +10099,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/tw/': {
-    url: 'creativecommons.org/licenses/by/3.0/tw/',
+    url: 'http://creativecommons.org/licenses/by/3.0/tw/',
     description: '',
     label: 'Attribution 3.0 Taiwan',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9935,7 +10116,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ug/': {
-    url: 'creativecommons.org/licenses/by/3.0/ug/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ug/',
     description: '',
     label: 'Attribution 3.0 Uganda',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9952,7 +10133,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/us/': {
-    url: 'creativecommons.org/licenses/by/3.0/us/',
+    url: 'http://creativecommons.org/licenses/by/3.0/us/',
     description: '',
     label: 'Attribution 3.0 United States',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9969,7 +10150,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/ve/': {
-    url: 'creativecommons.org/licenses/by/3.0/ve/',
+    url: 'http://creativecommons.org/licenses/by/3.0/ve/',
     description: '',
     label: 'Attribution 3.0 Venezuela',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -9986,7 +10167,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/vn/': {
-    url: 'creativecommons.org/licenses/by/3.0/vn/',
+    url: 'http://creativecommons.org/licenses/by/3.0/vn/',
     description: '',
     label: 'Attribution 3.0 Vietnam',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -10003,7 +10184,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/by/3.0/za/': {
-    url: 'creativecommons.org/licenses/by/3.0/za/',
+    url: 'http://creativecommons.org/licenses/by/3.0/za/',
     description: '',
     label: '',
     image: '',
@@ -10013,7 +10194,7 @@ export const rightsURLs = {
     requires: []
   },
   'creativecommons.org/licenses/by/4.0/': {
-    url: 'creativecommons.org/licenses/by/4.0/',
+    url: 'http://creativecommons.org/licenses/by/4.0/',
     description: '',
     label: 'Attribution 4.0 International',
     image: '/static/images/rightsstatements/cc-by.svg',
@@ -10029,26 +10210,26 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/devnations/{version}/': {
-    url: 'creativecommons.org/licenses/devnations/{version}/',
+  'creativecommons.org/licenses/devnations/2.0/': {
+    url: 'http://creativecommons.org/licenses/devnations/2.0/',
     description: '',
     label: 'Developing Nations License',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/devnations/{version}/',
+    image: 'http://i.creativecommons.org/l/devnations/2.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/devnations/2.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/GPL/{version}/': {
-    url: 'creativecommons.org/licenses/GPL/{version}/',
+  'creativecommons.org/licenses/GPL/2.0/': {
+    url: 'http://creativecommons.org/licenses/GPL/2.0/',
     description: '',
     label: 'GNU General Public License',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/GPL/{version}/',
+    image: 'http://i.creativecommons.org/l/GPL/2.0/88x62.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/GPL/2.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10062,10 +10243,10 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/LGPL/2.1/': {
-    url: 'creativecommons.org/licenses/LGPL/2.1/',
+    url: 'http://creativecommons.org/licenses/LGPL/2.1/',
     description: '',
     label: 'GNU Lesser General Public License',
-    image: '',
+    image: 'http://i.creativecommons.org/l/LGPL/2.1/88x62.png',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/LGPL/2.1/',
     deprecated: 'false',
     permits: [
@@ -10080,7 +10261,7 @@ export const rightsURLs = {
     ]
   },
   'creativecommons.org/licenses/MIT/': {
-    url: 'creativecommons.org/licenses/MIT/',
+    url: 'http://creativecommons.org/licenses/MIT/',
     description: '',
     label: 'MIT',
     image: '',
@@ -10091,14 +10272,14 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nc-sa/{version}/': {
-    url: 'creativecommons.org/licenses/nc-sa/{version}/',
+  'creativecommons.org/licenses/nc-sa/1.0/': {
+    url: 'http://creativecommons.org/licenses/nc-sa/1.0/',
     description: '',
-    label: 'NonCommercial-ShareAlike {version} Generic',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/',
+    label: 'NonCommercial-ShareAlike 1.0 Generic',
+    image: 'http://i.creativecommons.org/l/nc-sa/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10110,12 +10291,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/nc-sa/{version}/fi/': {
-    url: 'creativecommons.org/licenses/nc-sa/{version}/fi/',
+  'creativecommons.org/licenses/nc-sa/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/nc-sa/1.0/fi/',
     description: '',
-    label: 'NonCommercial-ShareAlike {version} Finland',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/fi/',
+    label: 'NonCommercial-ShareAlike 1.0 Finland',
+    image: 'http://i.creativecommons.org/l/nc-sa/1.0/fi/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/1.0/fi/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10127,12 +10308,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/nc-sa/{version}/nl/': {
-    url: 'creativecommons.org/licenses/nc-sa/{version}/nl/',
+  'creativecommons.org/licenses/nc-sa/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/nc-sa/1.0/nl/',
     description: '',
-    label: 'NonCommercial-ShareAlike {version} Netherlands',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/nl/',
+    label: 'NonCommercial-ShareAlike 1.0 Netherlands',
+    image: 'http://i.creativecommons.org/l/nc-sa/1.0/nl/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/1.0/nl/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10144,12 +10325,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/nc-sa/{version}/jp/': {
-    url: 'creativecommons.org/licenses/nc-sa/{version}/jp/',
+  'creativecommons.org/licenses/nc-sa/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/nc-sa/2.0/jp/',
     description: '',
-    label: 'NonCommercial-ShareAlike {version} Japan',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/{version}/jp/',
+    label: 'NonCommercial-ShareAlike 2.0 Japan',
+    image: 'http://i.creativecommons.org/l/nc-sa/2.0/jp/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc-sa/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10161,8 +10342,8 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/nc-samplingplus/{version}/': {
-    url: 'creativecommons.org/licenses/nc-samplingplus/{version}/',
+  'creativecommons.org/licenses/nc-samplingplus/1.0/': {
+    url: 'http://creativecommons.org/licenses/nc-samplingplus/1.0/',
     description: '',
     label: '',
     image: '',
@@ -10171,8 +10352,8 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/licenses/nc-samplingplus/{version}/tw/': {
-    url: 'creativecommons.org/licenses/nc-samplingplus/{version}/tw/',
+  'creativecommons.org/licenses/nc-samplingplus/1.0/tw/': {
+    url: 'http://creativecommons.org/licenses/nc-samplingplus/1.0/tw/',
     description: '',
     label: '',
     image: '',
@@ -10181,171 +10362,171 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/licenses/nc/{version}/': {
-    url: 'creativecommons.org/licenses/nc/{version}/',
+  'creativecommons.org/licenses/nc/1.0/': {
+    url: 'http://creativecommons.org/licenses/nc/1.0/',
     description: '',
-    label: 'NonCommercial {version} Generic',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/',
+    label: 'NonCommercial 1.0 Generic',
+    image: 'http://i.creativecommons.org/l/nc/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nc/{version}/fi/': {
-    url: 'creativecommons.org/licenses/nc/{version}/fi/',
+  'creativecommons.org/licenses/nc/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/nc/1.0/fi/',
     description: '',
-    label: 'NonCommercial {version} Finland',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/fi/',
+    label: 'NonCommercial 1.0 Finland',
+    image: 'http://i.creativecommons.org/l/nc/1.0/fi/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/1.0/fi/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nc/{version}/nl/': {
-    url: 'creativecommons.org/licenses/nc/{version}/nl/',
+  'creativecommons.org/licenses/nc/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/nc/1.0/nl/',
     description: '',
-    label: 'NonCommercial {version} Netherlands',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/nl/',
+    label: 'NonCommercial 1.0 Netherlands',
+    image: 'http://i.creativecommons.org/l/nc/1.0/nl/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/1.0/nl/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nc/{version}/jp/': {
-    url: 'creativecommons.org/licenses/nc/{version}/jp/',
+  'creativecommons.org/licenses/nc/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/nc/2.0/jp/',
     description: '',
-    label: 'NonCommercial {version} Japan',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/{version}/jp/',
+    label: 'NonCommercial 2.0 Japan',
+    image: 'http://i.creativecommons.org/l/nc/2.0/jp/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd-nc/{version}/': {
-    url: 'creativecommons.org/licenses/nd-nc/{version}/',
+  'creativecommons.org/licenses/nd-nc/1.0/': {
+    url: 'http://creativecommons.org/licenses/nd-nc/1.0/',
     description: '',
-    label: 'NoDerivs-NonCommercial {version} Generic',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/',
+    label: 'NoDerivs-NonCommercial 1.0 Generic',
+    image: 'http://i.creativecommons.org/l/nd-nc/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd-nc/{version}/fi/': {
-    url: 'creativecommons.org/licenses/nd-nc/{version}/fi/',
+  'creativecommons.org/licenses/nd-nc/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/nd-nc/1.0/fi/',
     description: '',
-    label: 'NoDerivs-NonCommercial {version} Finland',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/fi/',
+    label: 'NoDerivs-NonCommercial 1.0 Finland',
+    image: 'http://i.creativecommons.org/l/nd-nc/1.0/fi/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/1.0/fi/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd-nc/{version}/nl/': {
-    url: 'creativecommons.org/licenses/nd-nc/{version}/nl/',
+  'creativecommons.org/licenses/nd-nc/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/nd-nc/1.0/nl/',
     description: '',
-    label: 'NoDerivs-NonCommercial {version} Netherlands',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/nl/',
+    label: 'NoDerivs-NonCommercial 1.0 Netherlands',
+    image: 'http://i.creativecommons.org/l/nd-nc/1.0/nl/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/1.0/nl/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd-nc/{version}/jp/': {
-    url: 'creativecommons.org/licenses/nd-nc/{version}/jp/',
+  'creativecommons.org/licenses/nd-nc/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/nd-nc/2.0/jp/',
     description: '',
-    label: 'NoDerivs-NonCommercial {version} Japan',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/{version}/jp/',
+    label: 'NoDerivs-NonCommercial 2.0 Japan',
+    image: 'http://i.creativecommons.org/l/nd-nc/2.0/jp/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd-nc/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd/{version}/': {
-    url: 'creativecommons.org/licenses/nd/{version}/',
+  'creativecommons.org/licenses/nd/1.0/': {
+    url: 'http://creativecommons.org/licenses/nd/1.0/',
     description: '',
-    label: 'NoDerivs {version} Generic',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/',
+    label: 'NoDerivs 1.0 Generic',
+    image: 'http://i.creativecommons.org/l/nd/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd/{version}/fi/': {
-    url: 'creativecommons.org/licenses/nd/{version}/fi/',
+  'creativecommons.org/licenses/nd/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/nd/1.0/fi/',
     description: '',
-    label: 'NoDerivs {version} Finland',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/fi/',
+    label: 'NoDerivs 1.0 Finland',
+    image: 'http://i.creativecommons.org/l/nd/1.0/fi/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/1.0/fi/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd/{version}/nl/': {
-    url: 'creativecommons.org/licenses/nd/{version}/nl/',
+  'creativecommons.org/licenses/nd/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/nd/1.0/nl/',
     description: '',
-    label: 'NoDerivs {version} Netherlands',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/nl/',
+    label: 'NoDerivs 1.0 Netherlands',
+    image: 'http://i.creativecommons.org/l/nd/1.0/nl/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/1.0/nl/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
-  'creativecommons.org/licenses/nd/{version}/jp/': {
-    url: 'creativecommons.org/licenses/nd/{version}/jp/',
+  'creativecommons.org/licenses/nd/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/nd/2.0/jp/',
     description: '',
-    label: 'NoDerivs {version} Japan',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/{version}/jp/',
+    label: 'NoDerivs 2.0 Japan',
+    image: 'http://i.creativecommons.org/l/nd/2.0/jp/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nd/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#Distribution',
       'http://creativecommons.org/ns#Reproduction'
     ],
-    requires: [ 'http://creativecommons.org/ns#Notice' ]
+    requires: ['http://creativecommons.org/ns#Notice']
   },
   'creativecommons.org/licenses/publicdomain/': {
-    url: 'creativecommons.org/licenses/publicdomain/',
+    url: 'http://creativecommons.org/licenses/publicdomain/',
     description: '',
     label: 'Public Domain',
-    image: '',
+    image: 'http://i.creativecommons.org/l/publicdomain/88x31.png',
     source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/publicdomain/',
     deprecated: 'true',
     permits: [
@@ -10355,12 +10536,12 @@ export const rightsURLs = {
     ],
     requires: []
   },
-  'creativecommons.org/licenses/sa/{version}/': {
-    url: 'creativecommons.org/licenses/sa/{version}/',
+  'creativecommons.org/licenses/sa/1.0/': {
+    url: 'http://creativecommons.org/licenses/sa/1.0/',
     description: '',
-    label: 'ShareAlike {version} Generic',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/',
+    label: 'ShareAlike 1.0 Generic',
+    image: 'http://i.creativecommons.org/l/sa/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10372,12 +10553,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/sa/{version}/fi/': {
-    url: 'creativecommons.org/licenses/sa/{version}/fi/',
+  'creativecommons.org/licenses/sa/1.0/fi/': {
+    url: 'http://creativecommons.org/licenses/sa/1.0/fi/',
     description: '',
-    label: 'ShareAlike {version} Finland',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/fi/',
+    label: 'ShareAlike 1.0 Finland',
+    image: 'http://i.creativecommons.org/l/sa/1.0/fi/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/1.0/fi/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10389,12 +10570,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/sa/{version}/nl/': {
-    url: 'creativecommons.org/licenses/sa/{version}/nl/',
+  'creativecommons.org/licenses/sa/1.0/nl/': {
+    url: 'http://creativecommons.org/licenses/sa/1.0/nl/',
     description: '',
-    label: 'ShareAlike {version} Netherlands',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/nl/',
+    label: 'ShareAlike 1.0 Netherlands',
+    image: 'http://i.creativecommons.org/l/sa/1.0/nl/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/1.0/nl/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10406,12 +10587,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/sa/{version}/jp/': {
-    url: 'creativecommons.org/licenses/sa/{version}/jp/',
+  'creativecommons.org/licenses/sa/2.0/jp/': {
+    url: 'http://creativecommons.org/licenses/sa/2.0/jp/',
     description: '',
-    label: 'ShareAlike {version} Japan',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/{version}/jp/',
+    label: 'ShareAlike 2.0 Japan',
+    image: 'http://i.creativecommons.org/l/sa/2.0/jp/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sa/2.0/jp/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10423,12 +10604,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#ShareAlike'
     ]
   },
-  'creativecommons.org/licenses/sampling/{version}/': {
-    url: 'creativecommons.org/licenses/sampling/{version}/',
+  'creativecommons.org/licenses/sampling/1.0/': {
+    url: 'http://creativecommons.org/licenses/sampling/1.0/',
     description: '',
-    label: 'Sampling {version}',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/',
+    label: 'Sampling 1.0',
+    image: 'http://i.creativecommons.org/l/sampling/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/1.0/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10439,12 +10620,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/sampling/{version}/br/': {
-    url: 'creativecommons.org/licenses/sampling/{version}/br/',
+  'creativecommons.org/licenses/sampling/1.0/br/': {
+    url: 'http://creativecommons.org/licenses/sampling/1.0/br/',
     description: '',
-    label: 'Sampling {version}',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/br/',
+    label: 'Sampling 1.0',
+    image: 'http://i.creativecommons.org/l/sampling/1.0/br/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/1.0/br/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10455,12 +10636,12 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/sampling/{version}/tw/': {
-    url: 'creativecommons.org/licenses/sampling/{version}/tw/',
+  'creativecommons.org/licenses/sampling/1.0/tw/': {
+    url: 'http://creativecommons.org/licenses/sampling/1.0/tw/',
     description: '',
-    label: 'Sampling {version}',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/{version}/tw/',
+    label: 'Sampling 1.0',
+    image: 'http://i.creativecommons.org/l/sampling/1.0/tw/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/sampling/1.0/tw/',
     deprecated: 'true',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10471,8 +10652,8 @@ export const rightsURLs = {
       'http://creativecommons.org/ns#Notice'
     ]
   },
-  'creativecommons.org/licenses/sampling+/{version}/': {
-    url: 'creativecommons.org/licenses/sampling+/{version}/',
+  'creativecommons.org/licenses/sampling+/1.0/': {
+    url: 'http://creativecommons.org/licenses/sampling+/1.0/',
     description: '',
     label: '',
     image: '',
@@ -10481,8 +10662,8 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/licenses/sampling+/{version}/br/': {
-    url: 'creativecommons.org/licenses/sampling+/{version}/br/',
+  'creativecommons.org/licenses/sampling+/1.0/br/': {
+    url: 'http://creativecommons.org/licenses/sampling+/1.0/br/',
     description: '',
     label: '',
     image: '',
@@ -10491,8 +10672,8 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/licenses/sampling+/{version}/de/': {
-    url: 'creativecommons.org/licenses/sampling+/{version}/de/',
+  'creativecommons.org/licenses/sampling+/1.0/de/': {
+    url: 'http://creativecommons.org/licenses/sampling+/1.0/de/',
     description: '',
     label: '',
     image: '',
@@ -10501,8 +10682,8 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/licenses/sampling+/{version}/tw/': {
-    url: 'creativecommons.org/licenses/sampling+/{version}/tw/',
+  'creativecommons.org/licenses/sampling+/1.0/tw/': {
+    url: 'http://creativecommons.org/licenses/sampling+/1.0/tw/',
     description: '',
     label: '',
     image: '',
@@ -10511,12 +10692,12 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/publicdomain/mark/{version}/': {
-    url: 'creativecommons.org/publicdomain/mark/{version}/',
+  'creativecommons.org/publicdomain/mark/1.0/': {
+    url: 'http://creativecommons.org/publicdomain/mark/1.0/',
     description: '',
-    label: 'Public Domain Mark {version}',
-    image: '/static/images/rightsstatements/publicdomain.svg',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/mark/{version}/',
+    label: 'Public Domain Mark 1.0',
+    image: 'http://i.creativecommons.org/p/mark/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/mark/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
@@ -10525,8 +10706,8 @@ export const rightsURLs = {
     ],
     requires: []
   },
-  'creativecommons.org/publicdomain/zero-assert/{version}/': {
-    url: 'creativecommons.org/publicdomain/zero-assert/{version}/',
+  'creativecommons.org/publicdomain/zero-assert/1.0/': {
+    url: 'http://creativecommons.org/publicdomain/zero-assert/1.0/',
     description: '',
     label: '',
     image: '',
@@ -10535,8 +10716,8 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/publicdomain/zero-waive/{version}/': {
-    url: 'creativecommons.org/publicdomain/zero-waive/{version}/',
+  'creativecommons.org/publicdomain/zero-waive/1.0/': {
+    url: 'http://creativecommons.org/publicdomain/zero-waive/1.0/',
     description: '',
     label: '',
     image: '',
@@ -10545,12 +10726,12 @@ export const rightsURLs = {
     permits: [],
     requires: []
   },
-  'creativecommons.org/publicdomain/zero/{version}/': {
-    url: 'creativecommons.org/publicdomain/zero/{version}/',
+  'creativecommons.org/publicdomain/zero/1.0/': {
+    url: 'http://creativecommons.org/publicdomain/zero/1.0/',
     description: '',
-    label: 'CC0 {version} Universal',
-    image: '',
-    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/zero/{version}/',
+    label: 'CC0 1.0 Universal',
+    image: 'http://i.creativecommons.org/p/zero/1.0/88x31.png',
+    source: 'http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/zero/1.0/',
     deprecated: 'false',
     permits: [
       'http://creativecommons.org/ns#DerivativeWorks',
