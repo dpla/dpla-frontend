@@ -26,6 +26,6 @@ Below are some suggested topics to browse.  The search box above can also be use
 
   Vermont was once a place bustling with railroad activity. View Vermont’s early trains, bridges, and other transportation infrastructure – and accidents.
 
-- ### [Military](/search?q=military+history)
+- ### [Military History](/search?q=military)
 
   Images showing military education in the state and campaigns around the world, as well as historical state regimental flags and letters from Vermont soldiers.
