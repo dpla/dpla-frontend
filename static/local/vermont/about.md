@@ -23,4 +23,4 @@ The Vermont Green Mountain Digital Archive (GMDA) is a collaborative effort of s
 
 ***Get Involved!*** For information on how to become a contributing member, contact Patrick Wallace, <pwallace@middlebury.edu> 802-443-3017.
 
-***Questions about the content on the GMDA?***  Contact Rachel Onuf, <rachel.onuf@vermont.gov> 802-622-4092
+***Questions about the content on the GMDA?***  Contact Rachel Onuf, <rachel.onuf@vermont.gov> 802-622-4092.

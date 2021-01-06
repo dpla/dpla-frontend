@@ -87,8 +87,9 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & h3 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: normal;
+    font-family: $sansFont;
   }
 
   & h4 {
@@ -139,7 +140,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & ul, & ol {
-    padding-left: 0;
+    padding-left: 1em;
     margin-top: 1rem;
     margin-bottom: 1rem;
     position: relative;
@@ -161,10 +162,6 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & li::before {
-    position: absolute;
-    top: 0;
-    left: -3rem;
-    width: 3rem;
     padding-right: 0.25rem;
     text-align: right;
     color: $primaryBulletColor;
