@@ -7,9 +7,9 @@ export const possibleFacets = [
   "sourceResource.date.end",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
+  // "sourceResource.rightsFacet",
   "admin.contributingInstitution",
   "provider.name"
-
 ];
 
 // assumed to be a superset of possibleFacets,
@@ -35,6 +35,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
+  // "sourceResource.rightsFacet": "rights",
   "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
@@ -50,6 +51,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
+  // rights: "sourceResource.rightsFacet",
   collection: "sourceResource.collection.title",
   provider: "admin.contributingInstitution",
   partner: "provider.name",
@@ -65,6 +67,7 @@ export const prettifiedFacetMap = {
   "sourceResource.date.begin": "Date",
   "sourceResource.date.end": "Date",
   "sourceResource.language.name": "Language",
+  // "sourceResource.rightsFacet": "Rights",
   "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",

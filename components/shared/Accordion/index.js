@@ -1,7 +1,7 @@
 import React from "react";
 
 import css from "./Accordion.scss";
-
+import RightsFacets from "components/shared/RightsFacets"
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
 
@@ -79,6 +79,17 @@ class Accordion extends React.Component {
                   >
                     {item.subitems}
                   </div>}
+                  <RightsFacets />
+                {/* {item.type === "rights" &&  */}
+                    {/* <button
+                      className={css.itemHeader}
+                      aria-controls={`facets_${i}`}
+                      aria-expanded={item.active}
+                      onClick={() => this.onClickItem(i)}
+                      > */}
+                      
+                    {/* </button> */}
+                  {/* } */}
               </li>
             );
           }
