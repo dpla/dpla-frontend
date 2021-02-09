@@ -222,7 +222,11 @@ Search.getInitialProps = async context => {
 
     const res = await fetch(url);
 
+    // api response for facets
     let json = await res.json();
+    console.log('api response ', json)
+
+    // write rights facets hardcoded here
     const docs = json.docs.map(result => {
       const thumbnailUrl = getItemThumbnail(result);
       return Object.assign({}, result.sourceResource, {
