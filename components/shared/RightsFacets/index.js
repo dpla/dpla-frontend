@@ -14,7 +14,6 @@ const RightsFacets = () => {
 
   const { publicDomainMark, cc0, ccBy, ccBySa, noCopyrightUs, noKnownCopyright } = state;
   const error = [publicDomainMark, cc0, ccBy, ccBySa, noCopyrightUs, noKnownCopyright].filter((v) => v).length !== 2;
-  const classes = useStyles();
 
   return (
     <>

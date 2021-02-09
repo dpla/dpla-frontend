@@ -224,9 +224,19 @@ Search.getInitialProps = async context => {
 
     // api response for facets
     let json = await res.json();
-    console.log('api response ', json)
 
-    // write rights facets hardcoded here
+    // rights facets hardcoded here
+    json.facets['rightsFacet'] = {
+      _type: 'terms',
+      terms: [
+        { term: 'unlimited re-use', count: 22353 },
+        { term: 're-use with conditions', count: 3915 },
+        { term: 're-use, no-modification', count: 1226 },
+        { term: 'permission or fair use', count: 239 },
+        { term: 'unspecified rights status', count: 162 },
+      ]
+    }
+
     const docs = json.docs.map(result => {
       const thumbnailUrl = getItemThumbnail(result);
       return Object.assign({}, result.sourceResource, {
