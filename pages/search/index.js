@@ -116,8 +116,8 @@ Search.getInitialProps = async context => {
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q.trim())
-          .replace(/'/g, "%27")
-          .replace(/"/g, "%22")
+      .replace(/'/g, "%27")
+      .replace(/"/g, "%22")
     : "";
 
   let filters = isLocal && local.filters ? local.filters : [];
@@ -224,19 +224,6 @@ Search.getInitialProps = async context => {
 
     // api response for facets
     let json = await res.json();
-
-    // rights facets hardcoded here
-    json.facets['rightsFacet'] = {
-      _type: 'terms',
-      terms: [
-        { term: 'unlimited re-use', count: 22353 },
-        { term: 're-use with conditions', count: 3915 },
-        { term: 're-use, no-modification', count: 1226 },
-        { term: 'permission or fair use', count: 239 },
-        { term: 'unspecified rights status', count: 162 },
-      ]
-    }
-
     const docs = json.docs.map(result => {
       const thumbnailUrl = getItemThumbnail(result);
       return Object.assign({}, result.sourceResource, {
@@ -257,12 +244,23 @@ Search.getInitialProps = async context => {
 
     if (tags) {
       newFacets["tags"] = {
-        "_type" : "terms",
-        "terms" : tags
+        "_type": "terms",
+        "terms": tags
       };
     }
 
     json.facets = newFacets;
+    // rights facets hardcoded here
+    json.facets["rightsFacet"] = {
+      _type: 'terms',
+      terms: [
+        { term: 'Unlimited Re-Use', count: 22353 },
+        { term: 'Re-Use with Conditions', count: 3915 },
+        { term: 'Re-Use, No Modification', count: 1226 },
+        { term: 'Permission or Fair Use', count: 239 },
+        { term: 'Unspecified Rights Status', count: 162 },
+      ]
+    }
 
     const maxResults = MAX_PAGE_SIZE * page_size;
     const pageCount = json.count > maxResults ? maxResults : json.count;

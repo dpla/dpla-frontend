@@ -25,7 +25,7 @@ export const qaFacets = [
   "admin.contributingInstitution",
   "provider.name",
   "intermediateProvider",
-  // "rightsFacet",
+  "rightsFacet",
   "rights"
 ];
 
@@ -36,7 +36,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  // "rightsFacet": "rights+facets",
+  "rightsFacet": "rights+facets",
   "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
@@ -52,7 +52,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
-  // rightsFacet: "sourceResource.rightsFacet",
+  rightsFacet: "rightsFacet",
   collection: "sourceResource.collection.title",
   provider: "admin.contributingInstitution",
   partner: "provider.name",
@@ -71,7 +71,7 @@ export const prettifiedFacetMap = {
   "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
-  // "rightsFacet": "Rights Facet",
+  "rightsFacet": "How Can I Use It?",
   intermediateProvider: "Intermediate Provider",
   rights: "Standardized Rights Statement"
 };

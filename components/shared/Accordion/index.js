@@ -79,31 +79,10 @@ class Accordion extends React.Component {
                   >
                     {item.subitems}
                   </div>}
-                {/* {item.type === "rights" &&  */}
-                {/* <button
-                      className={css.itemHeader}
-                      aria-controls={`facets_${i}`}
-                      aria-expanded={item.active}
-                      onClick={() => this.onClickItem(i)}
-                      > */}
-
-                {/* </button> */}
-                {/* } */}
               </li>
             );
           }
         })}
-
-        <li>
-          <button
-            className={css.itemHeader}
-          >
-            <h3>How can I use it?</h3>
-          </button>
-          <ul className={css.subitems}>
-            <RightsFacets />
-          </ul>
-        </li>
       </ul>
 
     );
