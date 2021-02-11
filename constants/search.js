@@ -9,7 +9,7 @@ export const possibleFacets = [
   "sourceResource.language.name",
   "admin.contributingInstitution",
   "provider.name",
-  // "rightsFacet"
+  "rightsCategory"
 ];
 
 // assumed to be a superset of possibleFacets,
@@ -25,7 +25,7 @@ export const qaFacets = [
   "admin.contributingInstitution",
   "provider.name",
   "intermediateProvider",
-  "rightsFacet",
+  "rightsCategory",
   "rights"
 ];
 
@@ -36,7 +36,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  "rightsFacet": "rights+facets",
+  "rightsCategory": "rightsCategory",
   "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
@@ -52,7 +52,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
-  rightsFacet: "rightsFacet",
+  rightsCategory: "rightsCategory",
   collection: "sourceResource.collection.title",
   provider: "admin.contributingInstitution",
   partner: "provider.name",
@@ -71,7 +71,7 @@ export const prettifiedFacetMap = {
   "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
-  "rightsFacet": "How Can I Use It?",
+  "rightsCategory": "How Can I Use It?",
   intermediateProvider: "Intermediate Provider",
   rights: "Standardized Rights Statement"
 };

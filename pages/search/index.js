@@ -250,17 +250,6 @@ Search.getInitialProps = async context => {
     }
 
     json.facets = newFacets;
-    // rights facets hardcoded here
-    json.facets["rightsFacet"] = {
-      _type: 'terms',
-      terms: [
-        { term: 'Unlimited Re-Use', count: 22353 },
-        { term: 'Re-Use with Conditions', count: 3915 },
-        { term: 'Re-Use, No Modification', count: 1226 },
-        { term: 'Permission or Fair Use', count: 239 },
-        { term: 'Unspecified Rights Status', count: 162 },
-      ]
-    }
 
     const maxResults = MAX_PAGE_SIZE * page_size;
     const pageCount = json.count > maxResults ? maxResults : json.count;

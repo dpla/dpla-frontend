@@ -1,7 +1,6 @@
 import React from "react";
 
 import css from "./Accordion.scss";
-import RightsFacets from "components/shared/RightsFacets"
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
 
@@ -29,6 +28,7 @@ class Accordion extends React.Component {
   }
 
   onClickItem = index => {
+    console.log('onclickitem ', index)
     const { items } = this.state;
     const newItemsArray = items.map((item, i) => {
       if (i === index) {
