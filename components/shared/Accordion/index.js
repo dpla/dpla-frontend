@@ -3,6 +3,7 @@ import React from "react";
 import css from "./Accordion.scss";
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
+const questionIcon = "/static/images/question.svg";
 
 class Accordion extends React.Component {
   componentWillMount() {
@@ -28,7 +29,6 @@ class Accordion extends React.Component {
   }
 
   onClickItem = index => {
-    console.log('onclickitem ', index)
     const { items } = this.state;
     const newItemsArray = items.map((item, i) => {
       if (i === index) {
@@ -57,6 +57,13 @@ class Accordion extends React.Component {
                   onClick={() => this.onClickItem(i)}
                 >
                   <h3>{item.name}</h3>
+                  {item.name === 'How Can I Use It?' && 
+                    <img
+                    src={questionIcon}
+                    alt=""
+                    className={css.questionIcon}
+                    />
+                  }
                   {item.active &&
                     <img
                       src={subtractIcon}

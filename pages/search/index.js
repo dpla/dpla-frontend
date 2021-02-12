@@ -219,7 +219,6 @@ Search.getInitialProps = async context => {
     const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
     const filtersParam = filters.map(x => `&filter=${x}`).join("");
     const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}${facetsParam}${filtersParam}`;
-
     const res = await fetch(url);
 
     // api response for facets

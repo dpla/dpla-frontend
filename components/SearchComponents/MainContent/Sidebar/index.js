@@ -231,7 +231,6 @@ class Sidebar extends React.Component {
                 // first two items should be expanded as well as any items
                 // with an active subitem found in the query string
                 active:
-                  i < 2 ||
                     facets[key].terms.some(termObject =>
                       isFacetValueInQuery(key, termObject.term)
                     ),
@@ -257,7 +256,7 @@ class Sidebar extends React.Component {
                 if (route.query.before) dateProps.before = route.query.before;
                 return {
                   name: prettifiedFacetMap[key],
-                  active: true,
+                  active: false,
                   type: "date",
                   subitems: <DateFacet route={route} {...dateProps} />
                 };

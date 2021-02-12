@@ -36,10 +36,10 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  "rightsCategory": "rightsCategory",
   "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
+  rightsCategory: "rightsCategory",
   intermediateProvider: "intermediateProvider",
   rights: "standardizedRightsStatement",
   tags: "tags"
@@ -71,7 +71,7 @@ export const prettifiedFacetMap = {
   "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
-  "rightsCategory": "How Can I Use It?",
+  rightsCategory: "How Can I Use It?",
   intermediateProvider: "Intermediate Provider",
   rights: "Standardized Rights Statement"
 };
