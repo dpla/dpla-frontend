@@ -243,8 +243,8 @@ Search.getInitialProps = async context => {
 
     if (tags) {
       newFacets["tags"] = {
-        "_type": "terms",
-        "terms": tags
+        "_type" : "terms",
+        "terms" : tags
       };
     }
 

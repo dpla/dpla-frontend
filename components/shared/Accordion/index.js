@@ -77,8 +77,7 @@ class Accordion extends React.Component {
                       src={subtractIcon}
                       alt=""
                       className={css.subtractIcon}
-                    />
-                  }
+                    />}
                   {!item.active &&
                     <img src={addIcon} alt="" className={css.addIcon} />}
                 </button>
@@ -100,7 +99,6 @@ class Accordion extends React.Component {
           }
         })}
       </ul>
-
     );
   }
 }
