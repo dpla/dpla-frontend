@@ -28,8 +28,11 @@ Consortium for Academic and Research Libraries in Illinois
 ### Hannah Stitzlein
 **IDHH Metadata Manager, 2016-2018**
 
+### Anna Wondrasek
+**Graduate Student Assistant, 2021-**
+
 ### Tath Haver
-**Graduate Student Assistant, 2019-**
+**Graduate Student Assistant, 2019-2021**
 
 ### Brinna Michael
 **Graduate Student Assistant, 2017-2019**
