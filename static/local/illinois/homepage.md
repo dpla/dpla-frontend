@@ -4,6 +4,22 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 ## Illinois History
 
+- ### [Sports](https://idhh.dp.la/search?q=sports)
+
+  Illinoisans participating in all kinds of sports throughout the years
+
+- ### [Postcards](https://idhh.dp.la/search?q=postcard*)
+
+  Postcards throughout the ages featuring scenes and people from around Illinois
+
+- ### [Art](https://idhh.dp.la/search?q=art)
+
+  Illinois art collections and the people who enjoy them
+
+- ### [Architecture](https://idhh.dp.la/search?q=architecture)
+
+    Structures in Illinois that range from historic to modern, commercial to residential, rural to urban
+
 - ### [Century of Progress](/search?q=*century+of+progress*)
 
   Chicago's second world's fair celebrated the city and the nation's future, 1933-1934
@@ -50,9 +66,21 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 ## Notable Illinoisans
 
+- ### [Richard J. Daley](https://idhh.dp.la/search?q=%22richard+j+daley%22)
+
+  Six-term Mayor of the City of Chicago from 1955 until his death in 1976 and his family
+
+- ### [George Pullman](https://idhh.dp.la/search?q=george+pullman)
+
+  Industrialist who developed the “Pullman Sleeper” railroad sleeping car and founded the company town of Pullman
+
 - ### [Jane Addams](/search?q=%22jane+addams%22+OR+%22Hull+House%22)
 
-  Social reformer, activist, Nobel Peace Prize winner. "The Mother of Social Work" founded Hull House in 1889
+    Social reformer, activist, Nobel Peace Prize winner. "The Mother of Social Work" founded Hull House in 1889
+
+- ### [Frank Lloyd Wright](https://idhh.dp.la/search?q=%22frank+lloyd+wright%22+OR+%22Wright%2C+Frank+Lloyd%22)
+
+  Architect and designer whose well-known works include Prairie School houses, the Guggenheim Museum, and his personal estate and studio Taliesin
 
 - ### [Gwendolyn Brooks](/search?q=Gwendolyn%20Brooks)
 
