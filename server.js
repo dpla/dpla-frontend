@@ -60,9 +60,18 @@ if (require.main === module) {
         res.send("OK");
       });
 
+      const robotsTxt = "User-agent: *\n" +
+          "\n" +
+          "\n" +
+          "Disallow: /search\n" +
+          "Disallow: /timeline\n" +
+          "Disallow: /map\n" +
+          "Disallow: /bookshelf\n";
+
       server.get("/robots.txt", (req, res) => {
-        return handle(req, res);
-      });
+        res.send(robotsTxt);
+      })
+
 
       // decide which routing to use depending on the site environment
       if (process.env.SITE_ENV === "user") {
