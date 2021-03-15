@@ -37,28 +37,6 @@ module.exports = (app, server) => {
     res.redirect(newPath);
   });
 
-  // for ebooks
-  server.get("/ebooks", (req, res) => {
-    const actualPage = "/pro/wp/ebooks";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  });
-
-  // ebooks subsections have regular page
-  server.get("/ebooks/:subsection", (req, res) => {
-    const actualPage = "/pro/wp";
-    const params = {
-      section: req.params.section,
-      subsection: req.params.subsection
-    };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
-  });
 
   // for hubs
   server.get("/hubs", (req, res) => {
