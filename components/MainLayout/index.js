@@ -63,11 +63,14 @@ class MainLayout extends React.Component {
         />
         <SkipToContent />
         <SmallScreenHeader
+          data-cy="small-screen-header"
           isSearchPage={isSearchPage}
           route={route}
           isHome={isHome}
         />
-        <GlobalHeader isHome={isHome} />
+        <GlobalHeader            
+          isHome={isHome} 
+        />
         {!hidePageHeader &&
           <PageHeader
             query={route.query}
