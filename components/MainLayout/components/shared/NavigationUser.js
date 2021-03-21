@@ -7,43 +7,43 @@ class NavigationUser extends React.Component {
   render() {
     const { isHome, className, css } = this.props;
     return (
-      <div className={className} id={"NavigationUser"}>
+      <div className={className}>
         <ul className={css.links}>
           {!isHome &&
             <li>
               <Link prefetch href="/">
-                <a>
+                <a data-cy="link-home">
                   Home
                 </a>
               </Link>
             </li>}
           <li>
             <Link prefetch href="/browse-by-topic">
-              <a>Browse by Topic</a>
+              <a data-cy="browse-topics">Browse by Topic</a>
             </Link>
           </li>
           <li>
             <Link prefetch href="/browse-by-partner">
-              <a>Browse by Partner</a>
+              <a data-cy="browse-partners">Browse by Partner</a>
             </Link>
           </li>
           <li>
             <Link prefetch href="/exhibitions">
-              <a>
+              <a data-cy="exhibitions">
                 Exhibitions
               </a>
             </Link>
           </li>
           <li>
             <Link prefetch href="/primary-source-sets">
-              <a>
+              <a data-cy="primary-source-sets">
                 Primary Source Sets
               </a>
             </Link>
           </li>
           <li>
             <Link prefetch href="/lists">
-              <a>
+              <a data-cy="my-lists">
                 My Lists
               </a>
             </Link>
@@ -53,12 +53,12 @@ class NavigationUser extends React.Component {
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
             <Link prefetch as="/about" href="/about?section=about-us">
-              <a>About DPLA</a>
+              <a data-cy="about-dpla">About DPLA</a>
             </Link>
           </li>
           <li>
             <Link prefetch href="/news">
-              <a>News</a>
+              <a data-cy="news">News</a>
             </Link>
           </li>
         </ul>
@@ -66,7 +66,7 @@ class NavigationUser extends React.Component {
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           <li>
             <Link href={PRO_BASE_URL}>
-              <a>DPLA Pro</a>
+              <a data-cy="dpla-pro">DPLA Pro</a>
             </Link>
           </li>
         </ul>
