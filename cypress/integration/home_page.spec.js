@@ -22,4 +22,5 @@ describe('The Home Page', () => {
     it('doesn\'t have a link to home', () => {
         cy.get('[data-cy=link-home]').should('not.exist')
     }); 
+
   });
