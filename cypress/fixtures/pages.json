@@ -1,42 +1,30 @@
 [
-    {
-        "path": "/",
-        "selector": "link-home",
-        "title": "Digital Public Library of America"
-    },
-    {
-        "path": "/browse-by-topic",
-        "selector": "browse-topics",
-        "title": "Browse by Topic | DPLA"
-    },
-    {
-        "path": "/browse-by-partner",
-        "selector": "browse-partners",
-        "title": "Browse by Partner | DPLA"
-    },
-    {
-        "path": "/exhibitions",
-        "selector": "exhibitions",
-        "title": "Exhibitions | DPLA"
-    },
-    {
-        "path": "/primary-source-sets",
-        "selector": "primary-source-sets",
-        "title": "Primary Source Sets | DPLA"
-    },
-    {
-        "path": "/lists",
-        "selector": "my-lists",
-        "title": "My Lists | DPLA"
-    },
-    {
-        "path": "/about",
-        "selector": "about-dpla",
-        "title": "About Us | DPLA"
-    },
-    {
-        "path": "/news",
-        "selector": "news",
-        "title": "News | DPLA"
-    }
+    "/",
+    "/browse-by-topic",
+    "/browse-by-partner",
+    "/exhibitions",
+    "/primary-source-sets",
+    "/lists",
+    "/about",
+    "/news",
+    "/donate",
+    "/donate/thank-you",
+    "/about/frequently-asked-questions",
+    "/about/search-tips",
+    "/guides",
+    "/guides/the-education-guide-to-dpla",
+    "/about/using-dplas-primary-source-sets",
+    "/guides/the-family-research-guide-to-dpla",
+    "/guides/the-guide-to-lifelong-learning-with-dpla",
+    "/guides/the-scholarly-research-guide-to-dpla",
+    "/guides/for-developers",
+    "/about/terms-conditions",
+    "/about/privacy-policy",
+    "/about/about-us",
+    "/about/board",
+    "/about/dpla-staff",
+    "/about/funders",
+    "/about/credits",
+    "/news",
+    "/contact"
 ]
