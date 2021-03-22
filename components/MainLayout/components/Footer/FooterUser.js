@@ -39,6 +39,14 @@ class FooterUser extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link
+                    href="/about?section=harmful-language-statement"
+                    as="/about/harmful-language-statement"
+                >
+                  <a>Harmful Content</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/about?section=about-us" as="/about">
                   <a>About DPLA</a>
                 </Link>
