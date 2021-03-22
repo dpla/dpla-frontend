@@ -1,6 +1,7 @@
 import { joinIfArray } from "lib";
 
 export const possibleFacets = [
+  "rightsCategory",
   "sourceResource.type",
   "sourceResource.subject.name",
   "sourceResource.date.begin",
@@ -8,8 +9,7 @@ export const possibleFacets = [
   "sourceResource.spatial.name",
   "sourceResource.language.name",
   "admin.contributingInstitution",
-  "provider.name",
-  "rightsCategory"
+  "provider.name"
 ];
 
 // assumed to be a superset of possibleFacets,
@@ -71,7 +71,6 @@ export const prettifiedFacetMap = {
   "sourceResource.collection.title": "Collection",
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
-  rightsCategory: "How Can I Use It?",
   intermediateProvider: "Intermediate Provider",
   rights: "Standardized Rights Statement"
 };
