@@ -1,0 +1,72 @@
+{
+    "DPLA" : [
+        {
+            "path": "/about/frequently-asked-questions",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/guides",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/about/terms-conditions",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/about",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/contact",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/news",
+            "selector": "",
+            "title": ""
+        },
+
+    ],
+
+    "Tools" : [
+        {
+            "path": "/primary-source-sets",
+            "selector": "",
+            "title": ""
+        },
+        {
+            "path": "/browse-by-partner",
+            "selector": "",
+            "title": "Browse by Partner | DPLA"
+        },
+        {
+            "path": "/browse-by-topic",
+            "selector": "",
+            "title": "Browse by Topic | DPLA"
+        },
+        {
+            "path": "/exhibitions",
+            "selector": "",
+            "title": "Exhibitions | DPLA"
+        },
+        {
+            "path": "/lists",
+            "selector": "",
+            "title": "My Lists | DPLA"
+        },
+        {
+            "path": "/search",
+            "selector": "",
+            "title": ""
+        }
+    ],
+
+    "DPLA Pro" : [
+
+    ]
+}
