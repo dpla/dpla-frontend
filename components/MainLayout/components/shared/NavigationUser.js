@@ -7,7 +7,7 @@ class NavigationUser extends React.Component {
   render() {
     const { isHome, className, css } = this.props;
     return (
-      <div className={className}>
+      <div className={className} data-cy="navigation-user">
         <ul className={css.links}>
           {!isHome &&
             <li>
