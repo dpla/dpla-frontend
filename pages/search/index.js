@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
+import HarmfulContent from "components/shared/HarmfulContent";
 import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
@@ -79,6 +80,7 @@ class Search extends React.Component {
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}
         />
+        <HarmfulContent/>
         <FiltersList
           showFilters={this.state.showSidebar}
           onClickToggleFilters={this.toggleFilters}
