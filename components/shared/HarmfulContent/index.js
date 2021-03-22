@@ -25,7 +25,7 @@ class HarmfulContent extends React.Component {
             Please read <Link
               href="/about?section=harmful-language-statement"
               as="/about/harmful-language-statement"
-          ><a>DPLA’s Statement on Potentially Harmful Content</a></Link>
+          ><a>DPLA’s Statement on Potentially Harmful Content</a>.</Link>
           </p>
         </div>
       </div>
