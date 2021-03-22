@@ -15,6 +15,7 @@ export const possibleFacets = [
 // assumed to be a superset of possibleFacets,
 // only active in QA mode
 export const qaFacets = [
+  "rightsCategory",
   "sourceResource.type",
   "sourceResource.subject.name",
   "sourceResource.date.begin",
@@ -72,7 +73,8 @@ export const prettifiedFacetMap = {
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
   intermediateProvider: "Intermediate Provider",
-  rights: "Standardized Rights Statement"
+  rights: "Standardized Rights Statement",
+  rightsCategory: "How Can I Use It?"
 };
 
 export const pageSizeOptions = [
