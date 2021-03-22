@@ -63,7 +63,6 @@ class MainLayout extends React.Component {
         />
         <SkipToContent />
         <SmallScreenHeader
-          data-cy="small-screen-header"
           isSearchPage={isSearchPage}
           route={route}
           isHome={isHome}
