@@ -2,71 +2,105 @@
     "DPLA" : [
         {
             "path": "/about/frequently-asked-questions",
-            "selector": "",
+            "selector": "footer-link-frequently-asked-questions",
             "title": ""
         },
         {
             "path": "/guides",
-            "selector": "",
+            "selector": "footer-link-guides",
             "title": ""
         },
         {
             "path": "/about/terms-conditions",
-            "selector": "",
+            "selector": "footer-link-terms-conditions",
             "title": ""
         },
         {
             "path": "/about",
-            "selector": "",
+            "selector": "footer-link-about",
             "title": ""
         },
         {
             "path": "/contact",
-            "selector": "",
+            "selector": "footer-link-contact",
             "title": ""
         },
         {
             "path": "/news",
-            "selector": "",
+            "selector": "footer-link-news",
             "title": ""
         },
 
     ],
-
     "Tools" : [
         {
             "path": "/primary-source-sets",
-            "selector": "",
-            "title": ""
+            "selector": "footer-link-primary-source-sets",
+            "title": "Primary Source Sets | DPLA"
         },
         {
             "path": "/browse-by-partner",
-            "selector": "",
+            "selector": "footer-link-browse-by-partner",
             "title": "Browse by Partner | DPLA"
         },
         {
             "path": "/browse-by-topic",
-            "selector": "",
+            "selector": "footer-link-browse-by-topic",
             "title": "Browse by Topic | DPLA"
         },
         {
             "path": "/exhibitions",
-            "selector": "",
+            "selector": "footer-link-exhibitions",
             "title": "Exhibitions | DPLA"
         },
         {
             "path": "/lists",
-            "selector": "",
+            "selector": "footer-link-lists",
             "title": "My Lists | DPLA"
         },
         {
             "path": "/search",
-            "selector": "",
-            "title": ""
+            "selector": "footer-link-search",
+            "title": "Search Results | DPLA"
         }
     ],
 
     "DPLA Pro" : [
-
+        {
+            "selector": "footer-link-pro",
+            "url": "https://pro.dp.la"
+        },
+        {
+            "selector": "footer-link-prospective-hubs",
+            "url": "https://pro.dp.la/prospective-hubs"
+        },
+        {
+            "selector": "footer-link-community-reps",
+            "url": "https://pro.dp.la/community-reps"
+        },
+        {
+            "selector": "footer-link-hub-network",
+            "url": "https://pro.dp.la/hubs"
+        },
+        {
+            "selector": "footer-link-developers",
+            "url": "https://pro.dp.la/developers"
+        },
+        {
+            "selector": "footer-link-education",
+            "url": "https://pro.dp.la/education"
+        },
+        {
+            "selector": "footer-link-projects",
+            "url": "https://pro.dp.la/projects"
+        },
+        {
+            "selector": "footer-link-ebooks",
+            "url": "https://pro.dp.la/ebooks"
+        },
+        {
+            "selector": "footer-link-events",
+            "url": "https://pro.dp.la/events"
+        }
     ]
 }
