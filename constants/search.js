@@ -1,5 +1,28 @@
 import { joinIfArray } from "lib";
 
+export const tooltips = {
+  "Unlimited Re-Use": {
+    link: "/about/rights-categories#unlimited",
+    text: "Items in this category have no known restrictions and may be freely used and modified without permission. Some attribution may be required depending on the specific rights statement applied to the item. Click for more info."
+  },
+  "Re-use With Conditions": {
+    link: "/about/rights-categories#conditions",
+    text: "Items in this category may be used and modified without permission as long as the user complies with stated conditions attached to the item. Click for more info."
+  },
+  "Re-use, No Modification": {
+    link: "/about/rights-categories#no-modifications",
+    text: "Items in this category may be used in their current form without permission, as long as the user complies with stated conditions attached to the item. Click for more info."
+  },
+  "Permission or Fair Use": {
+    link: "/about/rights-categories#permission-fair-use",
+    text: "Items in this category are in copyright with no restrictions waived (\"all rights reserved\"). Items may be used by seeking permission from the contributing institution or under fair use. Click for more info."
+  },
+  "Unspecified Rights Status": {
+    link: "/about/rights-categories#unspecified",
+    text: "Items in this category have not been evaluated for copyright status or their status of items in this category is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info."
+  }
+};
+
 export const possibleFacets = [
   "rightsCategory",
   "sourceResource.type",
