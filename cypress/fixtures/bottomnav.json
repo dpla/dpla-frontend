@@ -3,34 +3,33 @@
         {
             "path": "/about/frequently-asked-questions",
             "selector": "footer-link-frequently-asked-questions",
-            "title": ""
+            "title": "Frequently Asked Questions | DPLA"
         },
         {
             "path": "/guides",
             "selector": "footer-link-guides",
-            "title": ""
+            "title": "Guides | DPLA"
         },
         {
             "path": "/about/terms-conditions",
             "selector": "footer-link-terms-conditions",
-            "title": ""
+            "title": "Terms & Conditions | DPLA"
         },
         {
             "path": "/about",
             "selector": "footer-link-about",
-            "title": ""
+            "title": "About Us | DPLA"
         },
         {
             "path": "/contact",
             "selector": "footer-link-contact",
-            "title": ""
+            "title": "Contact Us | DPLA"
         },
         {
             "path": "/news",
             "selector": "footer-link-news",
-            "title": ""
-        },
-
+            "title": "News | DPLA"
+        }
     ],
     "Tools" : [
         {
@@ -64,7 +63,6 @@
             "title": "Search Results | DPLA"
         }
     ],
-
     "DPLA Pro" : [
         {
             "selector": "footer-link-pro",
