@@ -12,7 +12,7 @@ class FooterUser extends React.Component {
   render() {
     const { route } = this.props;
     return (
-      <div className={`${css.footer} site-max-width`}>
+      <div className={`${css.footer} site-max-width`} data-cy="footer">
         <div className="row">
           <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
             <h2 className={css.linkHeader}>DPLA</h2>
