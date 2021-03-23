@@ -1,6 +1,10 @@
 import pages from "../fixtures/pages.json";
 import bottomnav from "../fixtures/bottomnav.json";
 
+
+// NOTE: This currently skips the /search link in the footer because it's too expensive
+// to run search over everything the way it's currently implemented.
+
 describe('The bottom nav', () => {
 
     pages.forEach((origPage) => {

@@ -56,11 +56,6 @@
             "path": "/lists",
             "selector": "footer-link-lists",
             "title": "My Lists | DPLA"
-        },
-        {
-            "path": "/search",
-            "selector": "footer-link-search",
-            "title": "Search Results | DPLA"
         }
     ],
     "DPLA Pro" : [
