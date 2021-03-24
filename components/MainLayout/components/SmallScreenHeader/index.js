@@ -56,6 +56,7 @@ class SmallScreenHeader extends Component {
             </Link>}
           <button
             type="button"
+            data-cy="menu-button"
             aria-expanded={menuIsOpen}
             onClick={this.toggleMenu}
             className={`${css.menuButton} ${menuIsOpen ? css.isOpen : ""}`}
