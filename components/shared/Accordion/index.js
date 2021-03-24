@@ -3,7 +3,7 @@ import React from "react";
 import css from "./Accordion.scss";
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
-const questionIcon = "/static/images/question.svg";
+const informationIcon = "/static/images/information.svg";
 import Tooltip from "@material-ui/core/Tooltip";
 
 class Accordion extends React.Component {
@@ -65,9 +65,9 @@ class Accordion extends React.Component {
                       placement="top"
                     >
                     <img
-                      src={questionIcon}
+                      src={informationIcon}
                       alt=""
-                      className={css.questionIcon}
+                      className={css.informationIcon}
                     />
                   </Tooltip>
                   </>

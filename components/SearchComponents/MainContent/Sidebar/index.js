@@ -4,7 +4,8 @@ import Router from "next/router";
 
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
-const questionIcon = "/static/images/question.svg";
+const informationIcon = "/static/images/information.svg";
+
 import {
   possibleFacets,
   qaFacets,
@@ -51,9 +52,9 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) =>
                                     placement="top"
                                 >
                                     <img
-                                        src={questionIcon}
+                                        src={informationIcon}
                                         alt=""
-                                        className={css.questionIcon}
+                                        className={css.informationIcon}
                                     />
                                 </Tooltip>
                             </a>

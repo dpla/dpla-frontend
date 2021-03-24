@@ -1,8 +1,9 @@
 @import "stylesheets/variables";
 
-.questionIcon {
+.informationIcon {
   width: 15px;
   margin: 0 .4em;
+  filter: invert(61%) sepia(24%) saturate(666%) hue-rotate(153deg) brightness(90%) contrast(84%);
 }
 
 .sidebar {
