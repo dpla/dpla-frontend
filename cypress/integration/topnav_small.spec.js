@@ -3,7 +3,7 @@ import topnav from "../fixtures/topnav.json";
 
 describe('The small screen top nav', () => {
 
-    before(() => {
+    beforeEach(() => {
         cy.viewport(800, 600);
     });
 
@@ -26,7 +26,7 @@ describe('The small screen top nav', () => {
                     cy.visit(origPage);
                     cy.getDataCy('menu-button').click(); //open menu
                     cy.getDataCy('small-screen-header').within(() => {
-                        cy.get(destPage.selector).click();
+                        cy.getDataCy(destPage.selector).click();
                         cy.checkTitle(destPage.title);
                     });
                 });
