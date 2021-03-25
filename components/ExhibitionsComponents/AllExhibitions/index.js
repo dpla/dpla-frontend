@@ -6,7 +6,7 @@ import ExhibitionsList from "./components/ExhibitionsList";
 import { TITLE, DESCRIPTION } from "constants/exhibitions.js";
 
 const AllSets = ({ route, exhibitions }) =>
-  <div>
+  <div data-cy="exhibitions-home">
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <ExhibitionsList exhibitions={exhibitions} route={route} />
   </div>;
