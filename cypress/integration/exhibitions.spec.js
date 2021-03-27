@@ -1,18 +1,30 @@
-describe('Exhibitions', () => {
+const exhibits = require('../fixtures/exhibitions.json')
+describe('Exhibitions', async () => {
+
     it(`home hasn't changed`, () => {
-        cy.visit('/exhibitions').getDataCy('exhibitions-home').snapshot();
+        cy
+            .visit('/exhibitions')
+            .getDataCy('exhibitions-home')
+            .snapshot();
     });
-    it(`exhibits pages haven't changed`, () => {
-        ///api/exhibition_pages?exhibit=11
-        cy.request('/api/exhibitions').then( (response) => response.body.forEach( (exhibit) => {
-            cy.visit(`/exhibitions/${exhibit.slug}`).getDataCy('exhibition-home').snapshot();
-            cy.request(`/api/exhibition_pages?exhibit=${exhibit.id}`).then(
-                    (response) => response.body.forEach( (exhibitPage) => {
-                        cy.visit(`/exhibitions/${exhibit.slug}/${exhibitPage.slug}`);
-                        cy.getDataCy('exhibit-page').snapshot();
-                    })
-                );
-            })
-        );
-    });
+
+    for (const exhibit of exhibits) {
+
+        it(`${exhibit.slug}'s home hasn't changed`, async () => {
+            cy
+                .visit(`/exhibitions/${exhibit.slug}`)
+                .getDataCy('exhibition-home')
+                .snapshot();
+        });
+
+        for (const exhibitPage of exhibit.page_data) {
+            it(`${exhibit.slug}'s page ${exhibitPage.slug} hasn't changed`, () => {
+                cy
+                    .visit(`/exhibitions/${exhibit.slug}/${exhibitPage.slug}`)
+                    .getDataCy('exhibit-page')
+                    .snapshot();
+            });
+        }
+    }
 });
+
