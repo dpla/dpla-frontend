@@ -47,3 +47,5 @@ cypress/results/*
 cypress/reports/*
 cypress/screenshots/*
 cypress/videos/*
+/cypress/fixtures/exhibitions.json
+/cypress/fixtures/sets.json
