@@ -17,10 +17,10 @@ describe('Exhibitions', async () => {
                 .snapshot();
         });
 
-        for (const exhibitPage of exhibit.page_data) {
-            it(`${exhibit.slug}'s page ${exhibitPage.slug} hasn't changed`, () => {
+        for (const exhibitPage of exhibit.pages) {
+            it(`${exhibit.slug}'s page ${exhibitPage} hasn't changed`, () => {
                 cy
-                    .visit(`/exhibitions/${exhibit.slug}/${exhibitPage.slug}`)
+                    .visit(`/exhibitions/${exhibit.slug}/${exhibitPage}`)
                     .getDataCy('exhibit-page')
                     .snapshot();
             });
