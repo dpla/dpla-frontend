@@ -2,8 +2,7 @@ describe('The Home Page', () => {
 
     beforeEach(() => {
         cy.visit('/');
-      }
-    );
+    });
 
     it('successfully loads', () => {
         cy.checkTitle('Digital Public Library of America');
@@ -17,38 +16,18 @@ describe('The Home Page', () => {
         cy.contains('Scholarly Research');
         cy.contains('View all user guides');
         cy.contains('Get the latest DPLA news in your inbox');
+
+        cy.getDataCy('home-hero').within(() => {
+            cy.getDataCy('dpla-logo').snapshot();
+            cy.get('form').snapshot();
+        });
+
+        cy.getDataCy('stay-informed').snapshot();
+        cy.getDataCy('guides').snapshot();
+
+        cy.getDataCy('Exhibitions').should('exist');
+        cy.getDataCy("Sets").should('exist');
+        cy.getDataCy('news').should('exist');
+        cy.getDataCy('link-home').should('not.exist');
     });
-
-    it('doesn\'t have a link to home', () => {
-        cy.getDataCy('link-home').should('not.exist')
-    }); 
-
-    it('has the correct hero banner', () => {
-      cy.getDataCy('home-hero').within(() => {
-        cy.getDataCy('dpla-logo').snapshot();
-        cy.get('form').snapshot();
-      });
-    });
-
-    it('has guides', () => {
-      cy.getDataCy('guides').snapshot();
-    });
-
-    it('has the exhibitions slider', () => {
-      cy.getDataCy('Exhibitions').should('exist');
-    });
-
-    it('has the pss slider', () => {
-      cy.getDataCy("Sets").should('exist');
-    });
-
-    it('has news', () => {
-      const news = cy.getDataCy('news').should('exist')
-      news.get('.row').snapshot();
-    });
-
-    it('has stay informed', () => {
-      cy.getDataCy('stay-informed').snapshot();
-    });
-
   });
