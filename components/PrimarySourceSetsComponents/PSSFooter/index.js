@@ -11,7 +11,7 @@ import utils from "stylesheets/utils.scss";
 import css from "./PSSFooter.scss";
 
 const OtherInfo = () =>
-  <div className={css.wrapper}>
+  <div className={css.wrapper} data-cy={'pss-footer'}>
     <div className={[utils.container, css.otherInfo].join(" ")}>
       <p className={css.p}>
         <span>

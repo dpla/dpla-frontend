@@ -12,7 +12,7 @@ import css from "./RelatedSets.scss";
 
 const RelatedSets = ({ sets }) => {
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper} data-cy={'pss-relateds'}>
       <div className={[utils.container, css.relatedSets].join(" ")}>
         <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider

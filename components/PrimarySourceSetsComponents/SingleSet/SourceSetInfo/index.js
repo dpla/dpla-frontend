@@ -42,7 +42,7 @@ class SourceSetInfo extends React.Component {
     const { set, currentFullUrl } = this.props;
     const authorList = set.author.map(author => author.name);
     return (
-      <div id="main" role="main" className={css.wrapper}>
+      <div id="main" role="main" className={css.wrapper} data-cy={'pss-main'}>
         <div className={[css.sourceSetInfo, utils.container].join(" ")}>
           <div className={`${css.removeScroll} row`}>
             <div className={`${css.removeScroll} col-xs-12 col-md-8`}>

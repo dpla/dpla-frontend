@@ -8,7 +8,7 @@ class ResourcesTabs extends React.Component {
   render() {
     const { currentTab, route } = this.props;
     return (
-      <div id="tabs" className={`${css.wrapper}`}>
+      <div id="tabs" className={`${css.wrapper}`} data-cy={"pss-tabs"}>
         <div className={css.tabsWrapper}>
           <ul role="tablist" className={`${css.tabs} ${utils.container}`}>
             <li
