@@ -9,7 +9,7 @@ describe('Topics', async () => {
     });
 
     for (const topic of topics) {
-        it(`${topic.slug}'s home hasn't changed`, async () => {
+        it(`${topic.slug}'s home hasn't changed`, () => {
             cy
                 .visit(`/browse-by-topic/${topic.slug}`)
                 .getDataCy('exhibition-home')

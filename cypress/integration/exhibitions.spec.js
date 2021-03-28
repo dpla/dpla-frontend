@@ -10,7 +10,7 @@ describe('Exhibitions', async () => {
 
     for (const exhibit of exhibits) {
 
-        it(`${exhibit.slug}'s home hasn't changed`, async () => {
+        it(`${exhibit.slug}'s home hasn't changed`, () => {
             cy
                 .visit(`/exhibitions/${exhibit.slug}`)
                 .getDataCy('exhibition-home')
