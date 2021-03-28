@@ -12,7 +12,7 @@ describe('Topics', async () => {
         it(`${topic.slug}'s home hasn't changed`, () => {
             cy
                 .visit(`/browse-by-topic/${topic.slug}`)
-                .getDataCy('exhibition-home')
+                .getDataCy('topic-home')
                 .snapshot();
         });
 
