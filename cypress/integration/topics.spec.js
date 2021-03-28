@@ -21,7 +21,6 @@ describe('Topics', async () => {
                 cy.visit(`/browse-by-topic/${topic.slug}/${subtopic}`);
                 cy.getDataCy('subtopic-sidebar').snapshot();
                 cy.getDataCy('subtopic-item-list').find('li').its('length').should('be.gt', 10);
-
             });
         }
     }
