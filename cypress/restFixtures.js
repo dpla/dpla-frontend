@@ -16,7 +16,7 @@ const loadJson = async (url) => {
 }
 
 const loadTopics = async () => {
-    let result = []
+    let result = [];
     const topicsJson = await loadJson(API_ENDPOINT_ALL_TOPICS);
     for (const topic of topicsJson) {
         const slug = topic['slug'];
