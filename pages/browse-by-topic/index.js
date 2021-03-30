@@ -9,7 +9,7 @@ import { TITLE } from "constants/topicBrowse";
 const TopicBrowse = ({ url, topics }) =>
   <div>
     <MainLayout route={url} pageTitle={TITLE}>
-      <div id="main" role="main">
+      <div id="main" role="main" data-cy={'topics-home'}>
         <TopicsList topics={topics} />
       </div>
     </MainLayout>

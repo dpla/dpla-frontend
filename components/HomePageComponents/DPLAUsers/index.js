@@ -7,7 +7,7 @@ import Button from "components/shared/Button";
 import css from "./DPLAUsers.scss";
 
 const DPLAUsers = ({ guides }) =>
-  <div className={css.wrapper}>
+  <div className={css.wrapper} data-cy="guides">
     <div className={`${css.DPLAUsers} site-max-width`}>
       <h2 className={css.header}>How can I use DPLA?</h2>
       <HeadingRule />

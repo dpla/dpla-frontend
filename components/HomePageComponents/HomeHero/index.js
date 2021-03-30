@@ -14,10 +14,11 @@ const bgImage = SITE_ENV !== "local"
 
 const HomeHero = ({ headerDescription, feature }) =>
   <div
+    data-cy="home-hero"
     className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
-    <div className={`${css.header} site-max-width`}>
+    <div data-cy="dpla-logo" className={`${css.header} site-max-width`}>
       {SITE_ENV !== "local" &&
         <div className={`${css.homeLogo} ${css.dplaLogo}`}>
           <h1>Digital Public Library of America</h1>

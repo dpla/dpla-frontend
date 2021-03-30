@@ -16,7 +16,7 @@ const ExhibitionView = ({
   nextSubsectionTitle,
   previousQueryParams
 }) =>
-  <div className={css.exhibitionView}>
+  <div className={css.exhibitionView} data-cy="exhibit-page">
     <Helmet htmlAttributes={{ lang: "en" }} />
     <Header title={exhibition.title} route={route} />
     <Body

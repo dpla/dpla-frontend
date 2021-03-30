@@ -34,7 +34,7 @@ class SmallScreenHeader extends Component {
     const { isSearchPage, route, isHome } = this.props;
 
     return (
-      <div className={`${css.wrapper}`}>
+      <div className={`${css.wrapper}`} data-cy="small-screen-header">
         <div className={css.header}>
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
             <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
@@ -56,6 +56,7 @@ class SmallScreenHeader extends Component {
             </Link>}
           <button
             type="button"
+            data-cy="menu-button"
             aria-expanded={menuIsOpen}
             onClick={this.toggleMenu}
             className={`${css.menuButton} ${menuIsOpen ? css.isOpen : ""}`}
