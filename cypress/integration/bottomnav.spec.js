@@ -7,6 +7,10 @@ import bottomnav from "../fixtures/bottomnav.json";
 
 describe('The bottom nav', () => {
 
+    beforeEach(() => {
+        cy.viewport(1024, 768);
+    });
+
     pages.forEach((origPage) => {
         it(`hasn't changed on ${origPage}`, () => {
             cy.visit(origPage);
