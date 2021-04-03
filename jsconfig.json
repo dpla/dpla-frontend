@@ -28,6 +28,7 @@
     }
   },
   "exclude": [
+    "snapshots.js",
     "node_modules",
     "lib",
     ".tmp",
