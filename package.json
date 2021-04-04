@@ -11,9 +11,12 @@
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
-      "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
-      "test": "mocha",
-    "snyk-protect": "snyk protect"
+    "analyze": "yarn && BUNDLE_ANALYZE=both yarn build",
+    "test": "mocha",
+    "cy:fixtures": "node cypress/restFixtures.js",
+    "cy:open": "./node_modules/.bin/cypress open",
+    "cy:run": "./node_modules/.bin/cypress run",
+    "cy:record": "./node_modules/.bin/cypress run --record"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
@@ -56,6 +59,10 @@
     "webpack-dev-server": "^3.7.2"
   },
   "devDependencies": {
+    "@cypress/snapshot": "^2.1.7",
+    "@types/cypress": "^1.1.3",
+    "cypress": "^6.8.0",
+    "node-fetch": "^2.6.1",
     "@babel/runtime": "^7.5.5",
     "@testing-library/jest-dom": "^5.1.0",
     "@testing-library/react": "^9.4.0",
