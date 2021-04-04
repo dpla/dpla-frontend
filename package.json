@@ -16,7 +16,8 @@
     "snyk-protect": "snyk protect",
     "cy:fixtures": "node cypress/restFixtures.js",
     "cy:open": "./node_modules/.bin/cypress open",
-    "cy:run": "./node_modules/.bin/cypress run"
+      "cy:run": "./node_modules/.bin/cypress run",
+      "cy:record": "./node_modules/.bin/cypress run --record"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
