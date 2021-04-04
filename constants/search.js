@@ -19,7 +19,7 @@ export const tooltips = {
   },
   "Unspecified Rights Status": {
     link: "/about/rights-categories#unspecified",
-    text: "Items in this category have not been evaluated for copyright status or their status of items in this category is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info."
+    text: "Items in this category have not been evaluated for copyright status or their status is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info."
   }
 };
 
