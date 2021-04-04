@@ -1,9 +1,10 @@
 import React from "react";
 
 import css from "./Accordion.scss";
-
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
+const informationIcon = "/static/images/information.svg";
+import Tooltip from "@material-ui/core/Tooltip";
 
 class Accordion extends React.Component {
   componentWillMount() {
@@ -57,6 +58,20 @@ class Accordion extends React.Component {
                   onClick={() => this.onClickItem(i)}
                 >
                   <h3>{item.name}</h3>
+                  {item.name === 'How Can I Use It?' &&
+                  <>
+                    <Tooltip
+                      title="This facet is used to filter by copyright status."
+                      placement="top"
+                    >
+                    <img
+                      src={informationIcon}
+                      alt=""
+                      className={css.informationIcon}
+                    />
+                  </Tooltip>
+                  </>
+                  }
                   {item.active &&
                     <img
                       src={subtractIcon}

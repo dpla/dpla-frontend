@@ -1,6 +1,30 @@
 import { joinIfArray } from "lib";
 
+export const tooltips = {
+  "Unlimited Re-Use": {
+    link: "/about/rights-categories#unlimited",
+    text: "Items in this category have no known restrictions and may be freely used and modified without permission. Some attribution may be required depending on the specific rights statement applied to the item. Click for more info."
+  },
+  "Re-use With Conditions": {
+    link: "/about/rights-categories#conditions",
+    text: "Items in this category may be used and modified without permission as long as the user complies with stated conditions attached to the item. Click for more info."
+  },
+  "Re-use, No Modification": {
+    link: "/about/rights-categories#no-modifications",
+    text: "Items in this category may be used in their current form without permission, as long as the user complies with stated conditions attached to the item. Click for more info."
+  },
+  "Permission or Fair Use": {
+    link: "/about/rights-categories#permission-fair-use",
+    text: "Items in this category are in copyright with no restrictions waived (\"all rights reserved\"). Items may be used by seeking permission from the contributing institution or under fair use. Click for more info."
+  },
+  "Unspecified Rights Status": {
+    link: "/about/rights-categories#unspecified",
+    text: "Items in this category have not been evaluated for copyright status or their status of items in this category is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info."
+  }
+};
+
 export const possibleFacets = [
+  "rightsCategory",
   "sourceResource.type",
   "sourceResource.subject.name",
   "sourceResource.date.begin",
@@ -9,12 +33,12 @@ export const possibleFacets = [
   "sourceResource.language.name",
   "admin.contributingInstitution",
   "provider.name"
-
 ];
 
 // assumed to be a superset of possibleFacets,
 // only active in QA mode
 export const qaFacets = [
+  "rightsCategory",
   "sourceResource.type",
   "sourceResource.subject.name",
   "sourceResource.date.begin",
@@ -25,6 +49,7 @@ export const qaFacets = [
   "admin.contributingInstitution",
   "provider.name",
   "intermediateProvider",
+  "rightsCategory",
   "rights"
 ];
 
@@ -38,6 +63,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.collection.name": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
+  rightsCategory: "rightsCategory",
   intermediateProvider: "intermediateProvider",
   rights: "standardizedRightsStatement",
   tags: "tags"
@@ -50,6 +76,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   before: "sourceResource.date.end",
   location: "sourceResource.spatial.name",
   language: "sourceResource.language.name",
+  rightsCategory: "rightsCategory",
   collection: "sourceResource.collection.title",
   provider: "admin.contributingInstitution",
   partner: "provider.name",
@@ -69,7 +96,8 @@ export const prettifiedFacetMap = {
   "admin.contributingInstitution": "Contributing Institution",
   "provider.name": "Partner",
   intermediateProvider: "Intermediate Provider",
-  rights: "Standardized Rights Statement"
+  rights: "Standardized Rights Statement",
+  rightsCategory: "How Can I Use It?"
 };
 
 export const pageSizeOptions = [
