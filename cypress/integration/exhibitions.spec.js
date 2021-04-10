@@ -33,8 +33,9 @@ describe('Exhibitions', async () => {
                     if (seadragon) {
                         seadragon.remove()
                     }
-                    cy.getDataCy('exhibit-page').snapshot()
+
                 })
+                cy.getDataCy('exhibit-page').snapshot()
             })
         }
     }
