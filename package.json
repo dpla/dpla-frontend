@@ -16,7 +16,8 @@
     "cy:fixtures": "node cypress/restFixtures.js",
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run": "./node_modules/.bin/cypress run",
-    "cy:record": "./node_modules/.bin/cypress run --record"
+    "cy:record": "./node_modules/.bin/cypress run --record",
+    "zip": "ln -s ebextensions.user .ebextensions && zip -r dpla-frontend.zip *; rm .ebextensions"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
