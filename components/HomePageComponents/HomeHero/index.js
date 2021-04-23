@@ -8,6 +8,20 @@ import { LOCALS } from "constants/local";
 
 import css from "./HomeHero.scss";
 
+const getHeroLogo = () => {
+  if (SITE_ENV !== "local") {
+    return ""
+  }
+  const local = LOCALS[LOCAL_ID]
+  if ('heroLogo' in local) {
+    return local.heroLogo
+  } else {
+    return local.logo
+  }
+}
+
+const heroLogo = getHeroLogo()
+
 const bgImage = SITE_ENV !== "local"
   ? "/static/images/home-hero-bg.png"
   : `/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID].background}`;
@@ -27,8 +41,7 @@ const HomeHero = ({ headerDescription, feature }) =>
         <div className={`${css.homeLogo} `}>
           <img
             className={css.localLogo}
-            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
-              .logo}`}
+            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${heroLogo}`}
           />
           <h1 className={css.localText}>{LOCALS[LOCAL_ID].name}</h1>
         </div>}
