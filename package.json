@@ -17,7 +17,7 @@
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run": "./node_modules/.bin/cypress run",
     "cy:record": "./node_modules/.bin/cypress run --record",
-    "zip": "ln -s ebextensions.user .ebextensions && zip -r dpla-frontend.zip *; rm .ebextensions"
+    "zip": "ln -s ebextensions.user .ebextensions && zip -r dpla-frontend.zip.tmp .ebextensions .next components constants lib node_modules pages static stylesheets .babelrc .eslintrc .nvmrc .stylelintrc browserconfig.xml favicon.ico jsconfig.json LICENSE manifest.json next.config.js package.json package-lock.json postcss.config.js routes* server.js && mv dpla-frontend.zip.tmp dpla-frontend.zip; rm .ebextensions; "
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
