@@ -24,6 +24,15 @@ const OtherMetadata = ({ item }) =>
         <ItemTermValuePair heading="Supporting Institution">
           <FacetLink facet="provider" value={item.intermediateProvider} />
         </ItemTermValuePair>}
+      {item.collection &&
+        <ItemTermValuePair heading="Collection">
+          {!Array.isArray(item.collection)
+            ? <div>{item.collection.title}</div>
+            : item.collection.map((collection, i, collections) =>
+              <div key={i}>{collection.title}</div>
+            )}
+
+        </ItemTermValuePair>}
       {item.publisher &&
         <ItemTermValuePair heading="Publisher">
           {joinIfArray(item.publisher)}
