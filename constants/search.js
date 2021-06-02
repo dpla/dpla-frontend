@@ -31,6 +31,7 @@ export const possibleFacets = [
   "sourceResource.date.end",
   "sourceResource.spatial.name",
   "sourceResource.language.name",
+  "sourceResource.collection.title",
   "admin.contributingInstitution",
   "provider.name"
 ];
@@ -60,7 +61,7 @@ export const mapFacetsToURLPrettified = {
   "sourceResource.date.end": "before",
   "sourceResource.spatial.name": "location",
   "sourceResource.language.name": "language",
-  "sourceResource.collection.name": "collection",
+  "sourceResource.collection.title": "collection",
   "admin.contributingInstitution": "provider",
   "provider.name": "partner",
   rightsCategory: "rightsCategory",
