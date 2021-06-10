@@ -1,14 +1,18 @@
+const https = require("https");
+
 const express = require("express");
+const AWSXRay = require("aws-xray-sdk");
+
 const cookieParser = require("cookie-parser");
 const next = require("next");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
-
 const serverFunctions = require("./lib/serverFunctions");
 
 const dev = process.env.NODE_ENV !== "production";
+const xray = process.env.XRAY === "true";
 const production = !dev;
 const mustFork = process.env.MUST_FORK === "true" || production;
 const PORT = process.env.PORT || 3000;
@@ -39,6 +43,16 @@ if (require.main === module) {
 
     app.prepare().then(() => {
       const server = express();
+
+      if (xray) {
+        console.log("Enabling AWS X-Ray");
+        const XRayExpress = AWSXRay.express;
+        server.use(XRayExpress.openSegment('dpla-frontend'));
+        AWSXRay.config([AWSXRay.plugins.EC2Plugin, AWSXRay.plugins.ElasticBeanstalkPlugin]);
+        AWSXRay.capturePromise();
+        AWSXRay.captureHTTPsGlobal(https, true);
+      }
+
       server.use(cookieParser());
       server.use(
         bodyParser.urlencoded({
@@ -287,6 +301,11 @@ if (require.main === module) {
       server.get("*", (req, res) => {
         return handle(req, res);
       });
+
+      if (xray) {
+        const XRayExpress = AWSXRay.express;
+        app.use(XRayExpress.closeSegment());
+      }
 
       server.listen(PORT, err => {
         if (err) throw err;
