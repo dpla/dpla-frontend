@@ -12,33 +12,14 @@ Below are some suggested topics to browse.
 ![airports](/static/local/aviation/airport_asm0299_678.jpg "Airports")
 - ### [Pan American World Airways](/search?q=+%22pan+american+world%22+OR+%22pan+american+airways%22+OR+%22pan+am%22)
 ![panam](/static/local/aviation/Pan_Am1_hmm0001_301.jpg "Pan American World Airways")
-
 - ### [Pilots and Flight Attendants](/search?q=pilot+OR+pilots+OR+stewardess+OR+stewardesses+OR+steward+OR+%22flight+attendant%22+OR+%22flight+attendants%22)
 ![![Pilots and Flight Attendants][4]][3]
-
 - ### [Advertising](/search?q=advertising+OR+advertisement*+OR+poster*+OR+brochure*+OR+promotional)
 ![ads](/static/local/aviation/Ads4_DukeD.jpg "Advertising")
 - ### [Early Commercial Aviation](/search?before=1945) 
 ![early](/static/local/aviation/early_aviation1_asm0341_126581.jpg "Early Commercial Aviation")
 
-<!-- Pilots and Flight Attendents Link -->
+# <!-- Pilots and Flight Attendents Link -->
 [3]: /search?q=pilot+OR+pilots+OR+stewardess+OR+stewardesses+OR+steward+OR+%22flight+attendant%22+OR+%22flight+attendants%22
-<!-- Pilots and Flight Attendents Image -->
+#<!-- Pilots and Flight Attendents Image -->
 [4]: static/local/aviation/flight_attendant1_asm0341_67067.jpg
-
-
-
-
-
-<!-- The link we want our bower bird to point to -->
-[1]: https://www.bower.io
-<!-- The image url we want to use for our img tag source -->
-[2]: https://bower.io/img/bower-logo.png
-
-<!--
-This will compile to two html nodes:
-  Anchor:   [linked item][1]: <a href="1">linked item</a>
-  image: /i  ![alt text][2]: <img src="2" alt="alt text" />
-The image node will be nested inside of the anchor node.
--->
-[![Bower.io: A Frontend Package Manager. logo][2]][1]
