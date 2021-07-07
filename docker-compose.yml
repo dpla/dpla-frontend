@@ -1,0 +1,29 @@
+version: '2'
+services:
+
+    frontend:
+        container_name: frontend
+        build: .
+        ports:
+            - "3000:3000/tcp"
+        restart: unless-stopped
+        environment:
+            - API_KEY
+            - API_URL
+            - NODE_ENV
+            - SITE_ENV
+            - LOCAL_ID
+            - OMEKA_URL
+            - ELASTIC_URL
+            - SQS_URL
+            - XRAY
+
+    nginx:
+        image: nginx
+        restart: unless-stopped
+        ports:
+            - "80:80"
+        volumes:
+            - ./proxy/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - frontend
