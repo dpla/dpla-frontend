@@ -65,14 +65,16 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set
     };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
+    app.render(req, res)
+
+    // serverFunctions.renderAndCache(
+    //   app,
+    //   req,
+    //   res,
+    //   actualPage,
+    //   req.query,
+    //   params
+    // );
   });
 
   server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
