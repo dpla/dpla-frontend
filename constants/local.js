@@ -637,6 +637,36 @@ const LOCALS = {
       }
     }
   },
+  oklahoma: {
+    theme: "oklahoma",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/oklahoma"
+    ],
+    name: "OK Hub",
+    background: "home-hero-bg.jpg",
+    favicon: "favicon.ico",
+    logo: "logo.jpg",
+    heroLogo: "logo-big.jpg",
+    description: "Vermont Green Mountain Digital Archive",
+    externalLink: "https://dpla-okhub.library.okstate.edu/",
+    locationFacet: "%22Oklahoma%22",
+    subjectFacet: "%22Oklahoma%22",
+    hasAbout: true,
+    hasTerms: false,
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    hasBrowseAll: false,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
+  },
 };
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
