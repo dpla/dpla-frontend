@@ -654,10 +654,19 @@ const LOCALS = {
     favicon: "favicon.ico",
     logo: "logo.jpg",
     heroLogo: "logo-big.jpg",
+<<<<<<< HEAD
     description: "",
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
+=======
+    description: "Oklahoma's partic",
+    externalLink: "https://dpla-okhub.library.okstate.edu/",
+    locationFacet: "%22Oklahoma%22",
+    subjectFacet: "%22Oklahoma%22",
+    hasAbout: true,
+    hasTerms: false,
+>>>>>>> 149098c (wip)
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -670,6 +679,7 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
+<<<<<<< HEAD
       "/about/contributing-organizations" : {
         parentDir: "/about",
         path: "contributing-organizations.md",
@@ -693,12 +703,25 @@ const LOCALS = {
         description: "",
         isTopLevel: false,
         category: "About"
+=======
+      "/contact": {
+        parentDir: "/contact",
+        title: "Contact",
+        path: "contact.md",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+>>>>>>> 149098c (wip)
       },
       "/participate": {
         title: "Participate",
         parentDir: "/participate",
         path: "participate.md",
+<<<<<<< HEAD
         description: "",
+=======
+        description: "A Step-by-Step Guide to Contributing to DPLA via OKHub",
+>>>>>>> 149098c (wip)
         isTopLevel: true,
         category: "Participate"
       },
@@ -717,14 +740,22 @@ const LOCALS = {
         description: "",
         isTopLevel: false,
         category: "Participate"
+<<<<<<< HEAD
       },
       "/resources": {
         parentDir: "/resources",
         title: "Resources",
+=======
+
+      },
+      "/resources": {
+        parentDir: "/resources",
+>>>>>>> 149098c (wip)
         path: "resources.md",
         description: "",
         isTopLevel: true,
         category: "Resources"
+<<<<<<< HEAD
       },
       "/contact": {
         parentDir: "/contact",
@@ -737,5 +768,10 @@ const LOCALS = {
     }
   }
 };
+=======
+    }
+  }
+}};
+>>>>>>> 149098c (wip)
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
