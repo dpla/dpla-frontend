@@ -647,13 +647,13 @@ const LOCALS = {
     favicon: "favicon.ico",
     logo: "logo.jpg",
     heroLogo: "logo-big.jpg",
-    description: "Vermont Green Mountain Digital Archive",
+    description: "Oklahoma's partic",
     externalLink: "https://dpla-okhub.library.okstate.edu/",
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
     hasTerms: false,
-    hasSidebar: false,
+    hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     routes: {
@@ -664,9 +664,48 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
-      }
+      },
+      "/contact": {
+        parentDir: "/contact",
+        title: "Contact",
+        path: "contact.md",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      },
+      "/participate": {
+        title: "Participate",
+        parentDir: "/participate",
+        path: "participate.md",
+        description: "A Step-by-Step Guide to Contributing to DPLA via OKHub",
+        isTopLevel: true,
+        category: "Participate"
+      },
+      "/participate/metadata": {
+        title: "Metadata",
+        parentDir: "participate",
+        path: "metadata.md",
+        description: "OKHub Metadata Guidelines and Best Practices",
+        isTopLevel: false,
+        category: "Participate"
+      },
+      "/participate/rights-statements": {
+        title: "Rights Statements",
+        parentDir: "participate",
+        path: "rights-statements.md",
+        description: "",
+        isTopLevel: false,
+        category: "Participate"
+
+      },
+      "/resources": {
+        parentDir: "/resources",
+        path: "resources.md",
+        description: "",
+        isTopLevel: true,
+        category: "Resources"
     }
-  },
-};
+  }
+}};
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
