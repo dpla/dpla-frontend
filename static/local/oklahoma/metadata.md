@@ -140,8 +140,6 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples | Oklahoma State University Library |
 
-
-
 ### DATE
 | Field | Date |
 |---|---|
@@ -512,7 +510,6 @@ OKHUB Metadata Coordinator:
 OKHUB Repox and DPLA Ingest Coordinator:
 
 [Fred Reiss](https://libraries.ou.edu/legacy/employees/empDetail.aspx?ID=6769), University of Oklahoma
-
 
 
 The OKHUB Metadata Guidelines and Best Practices were referred to and developed from the following resources:

@@ -452,7 +452,6 @@ const LOCALS = {
         isTopLevel: false,
         category: "Timeline"
       },
-
       "/key-figures" : {
         parentDir: "/key-figures",
         path: "key-figures.md",
@@ -642,13 +641,12 @@ const LOCALS = {
     filters: [
       "provider.@id:http%3A//dp.la/api/contributor/oklahoma"
     ],
-    name: "OK Hub",
-    background: "home-hero-bg.jpg",
+    name: "OKHUB",
+    background: "ok.jpg",
     favicon: "favicon.ico",
     logo: "logo.jpg",
     heroLogo: "logo-big.jpg",
-    description: "Oklahoma's partic",
-    externalLink: "https://dpla-okhub.library.okstate.edu/",
+    description: "",
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
@@ -665,19 +663,36 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
-      "/contact": {
-        parentDir: "/contact",
-        title: "Contact",
-        path: "contact.md",
-        description: "",
-        isTopLevel: true,
-        category: "Contact"
+      "/about/contributing-organizations" : {
+        parentDir: "/about",
+        path: "contributing-organizations.md",
+        title: "Contributing Organizations",
+        description: "Currently Contributing Organizations to the DPLA through the OKHUB",
+        isTopLevel: false,
+        category: "About"
       },
+      "/about/managing-partners" : {
+        parentDir: "/about",
+        path: "managing-partners.md",
+        title: "Managing Partners",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/ingest-and-workflow" : {
+        parentDir: "/about",
+        path: "ingest-and-workflow.md",
+        title: "Ingest and Workflow",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+
       "/participate": {
         title: "Participate",
         parentDir: "/participate",
         path: "participate.md",
-        description: "A Step-by-Step Guide to Contributing to DPLA via OKHub",
+        description: "A Step-by-Step Guide to Contributing to DPLA via OKHUB",
         isTopLevel: true,
         category: "Participate"
       },
@@ -696,7 +711,6 @@ const LOCALS = {
         description: "",
         isTopLevel: false,
         category: "Participate"
-
       },
       "/resources": {
         parentDir: "/resources",
@@ -704,8 +718,17 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "Resources"
+      },
+      "/contact": {
+        parentDir: "/contact",
+        title: "Contact",
+        path: "contact.md",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      }
     }
   }
-}};
+};
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
