@@ -1,4 +1,6 @@
-# For Metadata:
+# Resources
+
+## For Metadata:
 
 [An Introduction to the DPLA Metadata Application Profile](https://pro.dp.la/hubs/metadata-application-profile)
 
@@ -21,7 +23,7 @@ The document includes best practices for creating shareable metadata for the DPL
 A description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.
 
 
-# For Educators:
+## For Educators:
 
 [The Education Guide to DPLA](https://dp.la/guides/the-education-guide-to-dpla)
 

@@ -1,3 +1,5 @@
+# Participate
+
 **Step 1:** Can you answer yes to the following questions?
 
 - Do you have an online collection?

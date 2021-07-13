@@ -1,2 +1,3 @@
+# Ingest and Workflow
 
-![Ingest and Workflow](/static/local/oklahoma/metadata-elements-chart.jpg)
+![Ingest and Workflow](/static/local/oklahoma/metadata-guide.jpg)

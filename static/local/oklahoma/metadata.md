@@ -1,18 +1,35 @@
+# Metadata
+
+### OKHUB Metadata Guidelines and Best Practices
+
 The OKHUB Metadata Guidelines and Best Practices serves as a resource for OKHUB partners in creating and remediating digital collections for aggregation into Digital Public Library of America (DPLA) with the benefit of increased accessibility and discoverability.
 
 The guidelines are intended to support partners for developing and evaluating the metadata for their collections to:
 
-- Meet DPLA’s required fields as a participant
+- Meet [DPLA’s required fields](#requirements) as a participant
 - Provide quality metadata that follows known standards
 - Promote consistent mapping across collections for a successful DPLA aggregation
-- Provide information on controlled vocabulary and other Resources
-- Provide an easy way to contact us
+- Provide information on [controlled vocabulary](#controlled) and other [Resources](#resources)
+- Provide an easy way to [contact us](#contact)
 
 ## OKHUB Metadata
 
 Simple and qualified Dublin Core schemas are utilized in the following guidelines along with the mapping of the DC elements to those fields in (in this example) a CONTENTdm repository. Each field is formatted as shown in the table:
 
-![Metadata Elements Chart](/static/local/oklahoma/metadata-elements-chart.jpg)
+| Field | 
+| --- |
+| DPLA Requirement | 
+| OKHUB Requirement | 
+| Definition | 
+| Simple DC Element |
+| Qualified DC Element | 
+| CONTENTdm Mapping | 
+| Repeatable | 
+| Displayed in DPLA Portal | 
+| Notes and Best Practices | 
+| Controlled Vocabulary/Syntax |
+| Example | 
+ 
 
 Noted is the obligation of that field: Optional, Recommended, Strongly Recommended, Required, and Required (DPLA Derived). The guidelines, like DPLA, encourages the use of controlled vocabulary along with standards from listed resources for improved metadata quality. Additionally, partners are strongly encouraged to familiarize themselves with other DPLA resources noted in the guidelines for additional details and explanations regarding metadata.
 
@@ -26,16 +43,16 @@ DPLA has basic metadata fields that are required and recommended:
 
 | Value | Obligation |
 | ---- | ---- | 
-| Contributing Institution’s name | Required when available |
-| Collection title | Required when available |
-| Date of creation | Strongly recommended |
+| [Contributing Institution’s name](#contributing) | Required when available |
+| [Collection title](#collection) | Required when available |
+| [Date of creation](#date) | Strongly recommended |
 | Hub’s name (OKHub) | Required |
 | Link to original record (URL) | Required |
 | Link to thumbnail | Required when available |
-| “Place” of resource | Strongly recommended |
-| Rights of resource | Required |
-| Subject of resource | Strongly recommended |
-| Title of resource | Required |
+| [“Place” of resource](#place) | Strongly recommended |
+| [Rights of resource](#rights) | Required |
+| [Subject of resource](#subject) | Strongly recommended |
+| [Title of resource](#title) | Required |
 | Type of resource (from Dublin Core Type Vocabulary) | Required when available |
 
 ## DPLA Resources
@@ -60,9 +77,7 @@ The document includes best practices for creating shareable metadata for the DPL
 
 A description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.
 
-## Field Definitions
-
-### Alternative Title
+## Alternative Title
 
 | Field | Alternative Title |
 | --- | --- |
@@ -76,7 +91,7 @@ A description of DPLA’s implementation of standardized rights statements and r
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | DPLA notes that the alternative title is for the resource, not the title of the series or the collection name. |
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
-| Examples | Title begins with a number:<br>1st United Methodist Church Council minutes<br>**Alternative Title**: First United Methodist Church Council minutes |
+| Examples | Title begins with a number:<br><br>1st United Methodist Church Council minutes<br><br>**Alternative Title**: First United Methodist Church Council minutes |
 
 ### COLLECTION NAME
 
@@ -92,9 +107,9 @@ A description of DPLA’s implementation of standardized rights statements and r
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | DPLA recommends using collection names that are understandable outside of the institutional context. Avoid using acronyms, broad topics, and the use of institutional names, only if necessary.  Collection names must be consistent across all the records. |
 Controlled Vocabulary/Syntax ||	
-| Examples | **Collection Name:** Nichols Collection<br>**Collection Name:** Confederate Pensions Records Collection<br>**Collection Name:** From Warrior to Saint: David Pendleton Oakerhater |
+| Examples | **Collection Name:** Nichols Collection<br><br>**Collection Name:** Confederate Pensions Records Collection<br><br>**Collection Name:** From Warrior to Saint: David Pendleton Oakerhater |
 
-### CONTRIBUTOR
+## CONTRIBUTOR
 
 | Field | Contributor |
 |---|---|
@@ -108,9 +123,9 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | DPLA recommends using controlled terms from a national authority list for personal and corporate names. A locally controlled list may also be utilized.  If the authorized form is not used, personal names should follow the format: Last Name, First Name, Initial, (birth year-death year). Corporate names are entered directly or indirectly depending on the type of corporate name per RDA guidelines. Do not use “unknown” as a placeholder value. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., LCNAF, VIAF, ULAN, Local list |
-|Examples | Personal: James, Henry, 1843-1916<br>Corporate (Direct entry): Oklahoma Cattlemen’s Association Corporate (Indirect entry): Oklahoma. Department of Libraries |
+|Examples | **Personal:** James, Henry, 1843-1916<br><br>**Corporate (Direct entry):** Oklahoma Cattlemen’s Association<br><br>**Corporate (Indirect entry):** Oklahoma. Department of Libraries |
 
-### CREATOR
+## CREATOR
 | Field | Creator |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -123,13 +138,13 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | DPLA recommends using controlled terms from a national authority list for personal and corporate names. A locally controlled list may also be utilized.  If the authorized form is not used, personal names should follow the format: Last Name, First Name, Initial (birth year-death year). Corporate names are entered directly or indirectly depending on the type of corporate name per RDA guidelines. Do not use “unknown” as a placeholder value. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., LCNAF, VIAF, ULAN, Local list |
-| Examples | Personal:  Lange, Dorothea |
+| Examples | **Personal:**  Lange, Dorothea |
 
-### DATA PROVIDER
+## DATA PROVIDER
 | Field | Data Provider |
 |---|---|
-| DPLA Requirement | Required (Derived) |
-| OKHUB Requirement | Required (Derived) |
+| DPLA Requirement | **Required (Derived)** |
+| OKHUB Requirement | **Required (Derived)**|
 | Definition | Contributing Institution’s name |
 | Simple DC Element || 	
 | Qualified DC Element | dcterms:provenance  |
@@ -140,7 +155,7 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples | Oklahoma State University Library |
 
-### DATE
+## DATE
 | Field | Date |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -151,13 +166,13 @@ Controlled Vocabulary/Syntax ||
 | CONTENTdm Mapping | Date-Created |
 | Repeatable  | No |
 | Displayed in DPLA Portal | Yes |
-| Notes and Best Practices | DPLA can parse many types and formats of dates as noted in their DPLA Geographic and Temporal Guidelines. Do not use the place holder value of “Unknown” or “n.d.” DPLA utilizes the date in search results, a faceted date search, and in their website Timeline view. When more than one date field is used (e.g., original date and date of digitization), the two dates must be made distinguishable from one another.  |
+| Notes and Best Practices | DPLA can parse many types and formats of dates as noted in their *DPLA Geographic and Temporal Guidelines*. Do not use the place holder value of “Unknown” or “n.d.” DPLA utilizes the date in search results, a faceted date search, and in their website Timeline view. When more than one date field is used (e.g., original date and date of digitization), the two dates must be made distinguishable from one another.  |
 | Controlled Vocabulary/Syntax | Recommend a Standardize Format, e.g., Extended Date Time Format (EDTF); YYYY-MM-DD  |
-| Examples | Year Month Date: 1918-05-03<br>Year Month: 1918-05 |
+| Examples | **Year Month Date:** 1918-05-03<br><br>**Year Month:** 1918-05 |
 
 
 
-### DESCRIPTION
+## DESCRIPTION
 | Field | Description |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -170,11 +185,12 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | Yes
 | Notes and Best Practices | Description should provide adequate contextual information to help identify and explain the resource. DPLA notes that the description is of the resource being described and not a collection to which it belongs or any other parent or child entity. The Collection class within the DPLA MAP exists to record collection descriptions. The use of this field is not for raw OCR output and transcriptions. |
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
-| Examples | Description: Studio portrait of Paul Turner Miller as an infant with his mother, Clara Ranne Miller, in Joplin, Missouri.<br>Description: Front view of the Fire Service Training Station and tower with four fire trucks. The station is located on the southeast corner of the Oklahoma A & M College campus. Dedicated November 4, 1938, the station housed the nation’s first collegiate fire training school.<br>Description: Cultivated fields showing early signs of water erosion.<br>Description: Popcorn the Circus Comic was born somewhere in the east and he talked about his early interest in magic and how that led to his career as a circus clown. Popcorn described the life of a circus clown, how he developed a few of his routines, and why he decided it was time to retire from the road after thirty-some years in the business. |
+| Examples | **Description:** Studio portrait of Paul Turner Miller as an infant with his mother, Clara Ranne Miller, in Joplin, Missouri.<br><br>**Description:** Front view of the Fire Service Training Station and tower with four fire trucks. The station is located on the southeast corner of the Oklahoma A & M College campus. Dedicated November 4, 1938, the station housed the nation’s first collegiate fire training school.<br><br>**Description:** Cultivated fields showing early signs of water erosion.<br><br>**Description:** Popcorn the Circus Comic was born somewhere in the east and he talked about his early interest in magic and how that led to his career as a circus clown. Popcorn described the life of a circus clown, how he developed a few of his routines, and why he decided it was time to retire from the road after thirty-some years in the business. |
 
-### EXTENT
+## EXTENT
 
 | Field | Extent |
+|---|---|
 | DPLA Requirement | Optional |
 | OKHUB Requirement | Optional |
 | Definition | The size or duration of the original resource |
@@ -185,9 +201,10 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | Extent provides the physical characteristics of the resource such as the number of pages, dimensions (e.g., height x width x depth), period of time in hours, minutes, seconds (HH:MM:SS format) for recordings. Recommend following a content standard such as RDA to ensure consistency and terminology. |
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
-| Examples | Book: 73 pages<br>Map: 1 map on 4 sheets<br>Size (two dimensional object described in inches): 3 x 5 inches<br>Sound recording: 01:26:35 |
+| Examples | **Book:** 73 pages<br><br>**Map:** 1 map on 4 sheets<br><br>**Size** (two dimensional object described in inches): 3 x 5 inches<br><br>**Sound recording:** 01:26:35 |
 
-### FORMAT
+## FORMAT
+
 | Field | Format |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -200,13 +217,13 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | Format provides the digital characteristics of the resource such as file format, physical medium or dimensions. Use controlled vocabulary from the list of IANA Media Types. The format is media type and subtype, separated with a slash. |
 | Controlled Vocabulary/Syntax | IANA Media Types |
-| Examples | application/pdf<br>audio/mpeg<br>image/jp2<br>image/tiff<br>video/mp4 |
+| Examples | application/pdf<br><br>audio/mpeg<br><br>image/jp2<br><br>image/tiff<br><br>video/mp4 |
 
-### IDENTIFIER
+## IDENTIFIER
 | Field | Identifier |
 |---|---|
 | DPLA Requirement | Optional |
-| OKHUB Requirement | Required |
+| OKHUB Requirement | **Required** |
 | Definition | An unambiguous reference to the digital resource within a given context |
 | Simple DC Element | dc:identifier |
 | Qualified DC Element | dcterms:identifier |
@@ -215,15 +232,15 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | A unique URI that identifies the resource. Automatically generated by the content management system. Other uses for the field, for example, is an accession number. |
 | Controlled Vocabulary/Syntax | Prefer Alphanumeric string only |
-| Examples | String: http://digitalprairie.ok.gov/cdm/ref/collection/pensions/id/170;<br>Number: 03-03-0005 |
+| Examples | String: http://digitalprairie.ok.gov/cdm/ref/collection/pensions/id/170  <br>Number: 03-03-0005 |
 
 
 
-### IS SHOWN AT
+## IS SHOWN AT
 | Field | Is Shown At (URL) |
 |---|---|
-| DPLA Requirement | Required (Derived) |
-| OKHUB Requirement | Required (Derived) |
+| DPLA Requirement | **Required (Derived)** |
+| OKHUB Requirement | **Required (Derived)** |
 | Definition || 	
 | Simple DC Element || 	
 | Qualified DC Element  ||	
@@ -234,9 +251,7 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples ||
 
-
-
-### LANGUAGE
+## LANGUAGE
 | Field | Language |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -249,9 +264,9 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | DPLA notes to use for resources that contain text or speech only. The use of the field supports a language faceted search in DPLA. Strongly recommended by DPLA for text materials. | 
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary ISO 639-2 (three letter code). In DPLA these codes are displayed in the full language name (e.g., “eng” becomes “English” |
-| Examples | eng<br>fre<br>spa<br>ger |
+| Examples | eng<br><br>fre<br><br>spa<br><br>ger |
 
-### MEDIUM
+## MEDIUM
 | Field | Medium |
 |---|---|
 | DPLA Requirement | Optional |
@@ -264,9 +279,9 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | Medium apply to the physical characteristics of the resource and not the digital file characteristics |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g.,  RDA, Art and Architecture Thesaurus (ATT), Thesaurus of Graphic Materials (TGM) |
-| Examples | RDA: Postcard<br>ATT: Color photographs<br>TGM: Lantern slides |
+| Examples | **RDA:** Postcard<br><br>**ATT:* Color photographs<br><br>**TGM:** Lantern slides |
 
-### PLACE
+## PLACE
 | Field | Place |
 |---|---|
 | DPLA Requirement | Strongly Recommended |
@@ -277,16 +292,16 @@ Controlled Vocabulary/Syntax ||
 | CONTENTdm Mapping | Coverage-Spatial |
 | Repeatable | Yes |
 | Displayed in DPLA Portal || 	
-| Notes and Best Practices | DPLA recommends arranging geographical locations hierarchically in a single instance of the term (e.g., Erie, Pennsylvania). DPLA enriches geographic data by matching values with known geographic vocabularies, i.e., Geonames. See DPLA Geographic and Temporal Guidelines for further information and examples. |
+| Notes and Best Practices | DPLA recommends arranging geographical locations hierarchically in a single instance of the term (e.g., Erie, Pennsylvania). DPLA enriches geographic data by matching values with known geographic vocabularies, i.e., Geonames. See *DPLA Geographic and Temporal Guidelines* for further information and examples. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., FAST Terms, GeoNames, Library of Congress Subject Headings; Getty Thesaurus of Geographic Names |
-| Examples | FAST (Indirect order): Oklahoma—Tulsa County<br>LCSH (Direct order): Tulsa County (Okla.)<br>DPLA’s preferred hierarchical order in a single string: Tulsa, Tulsa County, Oklahoma | 
+| Examples | **FAST (Indirect order):** Oklahoma—Tulsa County<br><br>**LCSH (Direct order):** Tulsa County (Okla.)<br><br>**DPLA’s preferred hierarchical order in a single string:** Tulsa, Tulsa County, Oklahoma | 
 
-### PUBLISHER
+## PUBLISHER
 | Field | Publisher |
 |---|---|
 | DPLA Requirement | Optional |
 | OKHUB Requirement | Optional |
-| Definition | Entity responsible for making the original resource available |
+| Definition | Entity responsible for making the **original** resource available |
 | Simple DC Element | dc:publisher |
 | Qualified DC Element | dcterms:publisher |
 | CONTENTdm Mapping | Publisher |
@@ -296,23 +311,22 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples ||
 
-### RELATION
-
+## RELATION
 | Field | Relation |
 |---|---|
 | DPLA Requirement | Optional |
-| OKHUB Requirement 	Optional
-| Definition 	A related resource
-| Simple DC Element 	dc:relation
-| Qualified DC Element 	dcterms:relation
-| CONTENTdm Mapping 	Relation
-| Repeatable 	Yes
-| Displayed in DPLA Portal 	No
-| Notes and Best Practices 	Relation is intended for use with other items that have some relationship with the content. Can be used to indicate item belongs to a series, collection, or theme. DPLA notes if the relationship is specifically that of collection membership or replacing another item, those more specific fields (i.e., Dublin Core Qualified) should be used. A resource may relate to another resource in a variety of ways that can be described by using more than one Relation element. For example, an item in one named collection is also part of a larger/smaller named collection (physical or digital), to which the Relation field can be repeated to show a relationship between both named collections.
-| Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary<br>URL |
-| Examples | When the item is part of a series:<br>**Relation:** OHS popular culture series |
+| OKHUB Requirement | Optional |
+| Definition | A related resource |
+| Simple DC Element | dc:relation |
+| Qualified DC Element | dcterms:relation |
+| CONTENTdm Mapping | Relation |
+| Repeatable | Yes |
+| Displayed in DPLA Portal | No |
+| Notes and Best Practices | Relation is intended for use with other items that have some relationship with the content. Can be used to indicate item belongs to a series, collection, or theme. DPLA notes if the relationship is specifically that of collection membership or replacing another item, those more specific fields (i.e., Dublin Core Qualified) should be used. A resource may relate to another resource in a variety of ways that can be described by using more than one Relation element. For example, an item in one named collection is also part of a larger/smaller named collection (physical or digital), to which the Relation field can be repeated to show a relationship between both named collections.
+| Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary<br><br>URL |
+| Examples | When the item is part of a series:<br><br>**Relation:** OHS popular culture series |
 
-### RELATION.ISPARTOF
+## RELATION.ISPARTOF
 | Field | Relation.IsPartOf |
 | --- | --- |
 | DPLA Requirement | Recommended |
@@ -323,11 +337,11 @@ Controlled Vocabulary/Syntax ||
 | CONTENTdm Mapping || 	
 | Repeatable || 
 | Displayed in DPLA Portal || 	
-| Notes and Best Practices | See Collection Field |
+| Notes and Best Practices | **See Collection Field** |
 | Controlled Vocabulary/Syntax || 	
 | Examples ||
 
-### RELATION.ISREPLACEDBY
+## RELATION.ISREPLACEDBY
 | Field | Relation.IsReplacedBy |
 | --- | --- |
 | DPLA Requirement | Optional |
@@ -340,9 +354,9 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | References the succeeding item. DPLA notes this field is intended for series and title changes, for example government documents, serial publications and periodicals. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary
-| Examples | Succeeding periodical title: Oklahoma today |
+| Examples | **Succeeding periodical title:** Oklahoma today |
 
-### RELATION.REPLACES
+## RELATION.REPLACES
 | Field | Relation.Replaces |
 | --- | --- |
 | DPLA Requirement | Optional |
@@ -355,28 +369,27 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | References the preceding item. DPLA notes this field is intended for series and title changes, for example government documents, serial publications and periodicals. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary |
-| Examples | Previous periodical title: Resourceful Oklahoma |
+| Examples | **Previous periodical title:** Resourceful Oklahoma |
 
-### RIGHTS
+## RIGHTS
 | Field | Rights | 
 | --- | --- |
-| DPLA Requirement | Required | 
-| OKHUB Requirement | Required | 
+| DPLA Requirement | **Required** | 
+| OKHUB Requirement | **Required** | 
 | Definition | Information about rights held in and over the described resource | 
 | Simple DC Element | dc:rights | 
 | Qualified DC Element | dcterms:rights | 
 | CONTENTdm Mapping | Rights |
 | Repeatable | Yes |
 | Displayed in DPLA Portal | Yes |
-| Notes and Best Practices | See DPLA Standardized Rights Statement Implementation Guidelines, http://bit.ly/dpla-rights-guidelines. The document contains a description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.  In the future, DPLA will require standardized rights statement for all records. May have a separate standardized statement and a local rights statement. The two statements must not contradict each other. | 
+| Notes and Best Practices | See [*DPLA Standardized Rights Statement Implementation Guidelines*](http://bit.ly/dpla-rights-guidelines). The document contains a description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.  In the future, DPLA will require standardized rights statement for all records. May have a separate standardized statement and a local rights statement. The two statements must not contradict each other. | 
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., Rightsstatements.org; Creative Commons Licenses; URI |
-| Examples | URI from RightsStatements.org for “No copyright – United States“                                                     http://rightsstatements.org/vocab/NoC-US/1.0/ |
+| Examples | *URI from RightsStatements.org for "No copyright – United States"*<br>http://rightsstatements.org/vocab/NoC-US/1.0/ |
 
-### RIGHTS HOLDER
+## RIGHTS HOLDER
 | Field | Rights Holder |
 | --- | --- |
-| DPLA Requirement | Optional 
-Not currently output to DPLA |
+| DPLA Requirement | Optional<br>Not currently output to DPLA |
 | OKHUB Requirement | Optional |
 | Definition | A person or organization owning or managing rights over the resource
 | Simple DC Element | dc:rights
@@ -386,9 +399,9 @@ Not currently output to DPLA |
 | Displayed in DPLA Portal | No
 | Notes and Best Practices | DPLA notes make sure this is not an institution contact, but the actual rights holder. Currently this element is not a DPLA output.
 | Controlled Vocabulary/Syntax || 	
-| Examples | Paul Miller Family<br>Adair County Historical Society | 
+| Examples | Paul Miller Family<br><br>Adair County Historical Society | 
 
-### SOURCE
+## SOURCE
 | Field | Source |
 | --- | --- |
 | DPLA Requirement | Optional
@@ -405,7 +418,7 @@ Not currently output to DPLA |
 Formal identification system (e.g., ISBN for a book) |
 | Examples ||
 
-### SUBJECT
+## SUBJECT
 | Field | Subject |
 | --- | --- |
 | DPLA Requirement | Strongly Recommended |
@@ -420,7 +433,7 @@ Formal identification system (e.g., ISBN for a book) |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., FAST Terms, Library of Congress Subject Headings, ATT, TGM, LCNAF, VIAF, Locally Controlled List |
 | Examples ||
 
-### TEMPORAL COVERAGE
+## TEMPORAL COVERAGE
 | Field | Temporal Coverage |
 | --- | --- |
 | DPLA Requirement | Optional | 
@@ -433,9 +446,9 @@ Formal identification system (e.g., ISBN for a book) |
 | Displayed in DPLA Portal | No | 
 | Notes and Best Practices | Temporal is intended to capture the aboutness of a resource, not the specific date of creation. Temporal coverage can include a specific date range of the resource, a name period, a date range (e.g., a decade) that relates to the resource. DPLA notes Temporal values are best captured when they are separated (i.e., not combined with spatial information in a generic “coverage” element. | 
 | Controlled Vocabulary/Syntax | Natural language  or Controlled Vocabulary | 
-| Examples | Decade that relates to the resource: 1910-1920<br>FAST for general 20th century: 1900-1999<br>Specific date range: 1961-1963<br>LCSH named time period: World War, 1914-1918 |
+| Examples | **Decade that relates to the resource:** 1910-1920<br><br>**FAST for general 20th century:** 1900-1999<br><br>**Specific date range:** 1961-1963<br><br>**LCSH named time period:* World War, 1914-1918 |
 
-### TITLE
+## TITLE
 | Field | Title |
 | --- | --- |
 | DPLA Requirement | Required |
