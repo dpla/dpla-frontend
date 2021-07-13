@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # Managing Partners
 
+=======
+>>>>>>> 55a2e08 (wip)
 [Oklahoma Department of Libraries](https://libraries.ok.gov/) – Outreach
 
 [Oklahoma Historical Society](http://www.okhistory.org/) – Outreach

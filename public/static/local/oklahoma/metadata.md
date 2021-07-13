@@ -235,6 +235,7 @@ Controlled Vocabulary/Syntax ||
 | Examples | Oklahoma State University Library |
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <a name="date"></a>
 
 **DATE**
@@ -242,6 +243,8 @@ Controlled Vocabulary/Syntax ||
 =======
 
 
+=======
+>>>>>>> 55a2e08 (wip)
 ### DATE
 >>>>>>> 149098c (wip)
 | Field | Date |
@@ -835,8 +838,11 @@ OKHUB Repox and DPLA Ingest Coordinator:
 [Fred Reiss](https://libraries.ou.edu/legacy/employees/empDetail.aspx?ID=6769), University of Oklahoma
 
 
+<<<<<<< HEAD
 >>>>>>> 149098c (wip)
 
+=======
+>>>>>>> 55a2e08 (wip)
 The OKHUB Metadata Guidelines and Best Practices were referred to and developed from the following resources:
 
 [DPLA Geographic and Temporal Guidelines for MAP 3.1](http://bit.ly/dpla-geo-styleguide-3_1)
