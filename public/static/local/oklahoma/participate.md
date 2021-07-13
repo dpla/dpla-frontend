@@ -1,8 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # A Step-by-Step Guide to Contributing to DPLA via OKHUB<br><br>
 
 =======
 >>>>>>> 149098c (wip)
+=======
+# Participate
+
+>>>>>>> 9980478 (wip)
 **Step 1:** Can you answer yes to the following questions?
 
 - Do you have an online collection?
