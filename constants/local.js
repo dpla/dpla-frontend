@@ -652,25 +652,13 @@ const LOCALS = {
     name: "OKHUB",
     background: "ok.jpg",
     favicon: "favicon.ico",
-    logo: "logo.jpg",
-    heroLogo: "logo-big.jpg",
-<<<<<<< HEAD
-<<<<<<< HEAD
+    logo: "logo.png",
+    heroLogo: "logo.png",
     description: "",
-    locationFacet: "%22Oklahoma%22",
-    subjectFacet: "%22Oklahoma%22",
-    hasAbout: true,
-=======
-    description: "Oklahoma's partic",
-    externalLink: "https://dpla-okhub.library.okstate.edu/",
-=======
-    description: "",
->>>>>>> 55a2e08 (wip)
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
     hasTerms: false,
->>>>>>> 149098c (wip)
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -683,10 +671,6 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 55a2e08 (wip)
       "/about/contributing-organizations" : {
         parentDir: "/about",
         path: "contributing-organizations.md",
@@ -699,7 +683,6 @@ const LOCALS = {
         parentDir: "/about",
         path: "managing-partners.md",
         title: "Managing Partners",
-<<<<<<< HEAD
         description: "",
         isTopLevel: false,
         category: "About"
@@ -711,43 +694,12 @@ const LOCALS = {
         description: "",
         isTopLevel: false,
         category: "About"
-=======
-      "/contact": {
-        parentDir: "/contact",
-        title: "Contact",
-        path: "contact.md",
-        description: "",
-        isTopLevel: true,
-        category: "Contact"
->>>>>>> 149098c (wip)
-=======
-        description: "",
-        isTopLevel: false,
-        category: "About"
->>>>>>> 55a2e08 (wip)
       },
-      "/about/ingest-and-workflow" : {
-        parentDir: "/about",
-        path: "ingest-and-workflow.md",
-        title: "Ingest and Workflow",
-        description: "",
-        isTopLevel: false,
-        category: "About"
-      },
-
       "/participate": {
         title: "Participate",
         parentDir: "/participate",
         path: "participate.md",
-<<<<<<< HEAD
-<<<<<<< HEAD
         description: "",
-=======
-        description: "A Step-by-Step Guide to Contributing to DPLA via OKHub",
->>>>>>> 149098c (wip)
-=======
-        description: "A Step-by-Step Guide to Contributing to DPLA via OKHUB",
->>>>>>> 55a2e08 (wip)
         isTopLevel: true,
         category: "Participate"
       },
@@ -766,28 +718,14 @@ const LOCALS = {
         description: "",
         isTopLevel: false,
         category: "Participate"
-<<<<<<< HEAD
-<<<<<<< HEAD
       },
       "/resources": {
         parentDir: "/resources",
         title: "Resources",
-=======
-
-=======
->>>>>>> 55a2e08 (wip)
-      },
-      "/resources": {
-        parentDir: "/resources",
->>>>>>> 149098c (wip)
         path: "resources.md",
         description: "",
         isTopLevel: true,
         category: "Resources"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 55a2e08 (wip)
       },
       "/contact": {
         parentDir: "/contact",
@@ -797,19 +735,8 @@ const LOCALS = {
         isTopLevel: true,
         category: "Contact"
       }
-<<<<<<< HEAD
     }
   }
-};
-=======
-    }
-  }
-}};
->>>>>>> 149098c (wip)
-=======
-    }
-  }
-};
->>>>>>> 55a2e08 (wip)
+}
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js

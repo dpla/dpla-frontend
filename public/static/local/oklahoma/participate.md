@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # A Step-by-Step Guide to Contributing to DPLA via OKHUB<br><br>
 
-=======
->>>>>>> 149098c (wip)
-=======
-# Participate
-
->>>>>>> 9980478 (wip)
 **Step 1:** Can you answer yes to the following questions?
 
 - Do you have an online collection?
@@ -27,7 +19,3 @@ If you answered yes to all of the above:
 Once your metadata is ready, OKHub will harvest your collection. Then, DPLA will harvest your collection from OKHub. At that point, your collection has joined the more than twenty million items already in DPLA!
 
 Still have questions? Contact [Sarah Milligan](mailto:sarah.milligan@okstate.edu).
-
-
-
-
