@@ -446,13 +446,13 @@ Formal identification system (e.g., ISBN for a book) |
 | Displayed in DPLA Portal | No | 
 | Notes and Best Practices | Temporal is intended to capture the aboutness of a resource, not the specific date of creation. Temporal coverage can include a specific date range of the resource, a name period, a date range (e.g., a decade) that relates to the resource. DPLA notes Temporal values are best captured when they are separated (i.e., not combined with spatial information in a generic “coverage” element. | 
 | Controlled Vocabulary/Syntax | Natural language  or Controlled Vocabulary | 
-| Examples | **Decade that relates to the resource:** 1910-1920<br><br>**FAST for general 20th century:** 1900-1999<br><br>**Specific date range:** 1961-1963<br><br>**LCSH named time period:* World War, 1914-1918 |
+| Examples | **Decade that relates to the resource:** 1910-1920<br><br>**FAST for general 20th century:** 1900-1999<br><br>**Specific date range:** 1961-1963<br><br>**LCSH named time period:** World War, 1914-1918 |
 
 ## TITLE
 | Field | Title |
 | --- | --- |
-| DPLA Requirement | Required |
-| OKHUB Requirement | Required |
+| DPLA Requirement | **Required** |
+| OKHUB Requirement | **Required** |
 | Definition | Primary name given to the described resource. Typically, a Title will be a name by which the resource is formally known. |
 | Simple DC Element | dc:title |
 | Qualified DC Element | dcterms:title |
@@ -461,7 +461,7 @@ Formal identification system (e.g., ISBN for a book) |
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | Titles that are assigned should be descriptive, informative and brief. Avoid using “unknown” or an id number. DPLA notes minimal punctuation, but appropriate use of punctuation (i.e., not unnecessary quotation marks, brackets or periods). Avoid using explanatory or qualifying symbols (e.g., brackets). Not all materials can or should be titled uniquely. Avoid generic titles such as “Papers” or Annual report.”  Consult content standards, e.g., RDA, DACS, and CCO for further guidance. |
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
-| Examples | For consistency construct titles for resources without titles with an order such as Who, What, Where, When:<br>Indian prisoners at Fort Marion in St. Augustine, Florida, 1877<br>Title indicating the nature of the resource:<br>Letter from W.C. Markham to Cyrus S. Avery, dated July 31, 1925<br>Oral history interview with Carolina Hall<br>Actual title as found on the document:  Joint Board for Designating Interstate Highways : proposed agenda for first full meeting, dated April 20, 1925 |
+| Examples | **For consistency construct titles for resources without titles with an order such as Who, What, Where, When:**<br>Indian prisoners at Fort Marion in St. Augustine, Florida, 1877<br><br>**Title indicating the nature of the resource:**<br>Letter from W.C. Markham to Cyrus S. Avery, dated July 31, 1925<br>Oral history interview with Carolina Hall<br><br>**Actual title as found on the document:**  Joint Board for Designating Interstate Highways : proposed agenda for first full meeting, dated April 20, 1925 |
 
 ### TYPE
 | Field | Type |
@@ -476,7 +476,7 @@ Formal identification system (e.g., ISBN for a book) |
 | Displayed in DPLA Portal | Yes |
 | Notes and Best Practices | Type is a broad categorization describing the resource. The use of the field supports a language faceted search in DPLA. |
 | Controlled Vocabulary/Syntax | Prefer Controlled Vocabulary from DCMI Type Vocabulary |
-| Examples | Image<br>Text<br>Sound<br>Moving Image |
+| Examples | Image<br><br>Text<br><br>Sound<br><br>Moving Image |
 
 
 
@@ -506,24 +506,20 @@ Formal identification system (e.g., ISBN for a book) |
 
 For additional help or further information contact the OKHUB coordinators for assistance.
 
-OKHUB Lead Coordinators:
-
-[Tara Carlise](https://libraries.ou.edu/users/tara-carlisle), University of Oklahoma
-
-[Mary Larson](https://library.okstate.edu/library-directory/larson-mary), Oklahoma State University
-
+OKHUB Lead Coordinators:<br>
+[Tara Carlise](https://libraries.ou.edu/users/tara-carlisle), University of Oklahoma<br>
+[Mary Larson](https://library.okstate.edu/library-directory/larson-mary), Oklahoma State University<br>
 [Sarah Milligan](https://library.okstate.edu/library-directory/milligan-sarah), Oklahoma State University
 
 
-OKHUB Metadata Coordinator:
-
+OKHUB Metadata Coordinator:<br>
 [Juliana Nykolaiszyn](https://library.okstate.edu/library-directory/nykolaiszyn-juliana), Oklahoma State University
 
 
-OKHUB Repox and DPLA Ingest Coordinator:
-
+OKHUB Repox and DPLA Ingest Coordinator:<br>
 [Fred Reiss](https://libraries.ou.edu/legacy/employees/empDetail.aspx?ID=6769), University of Oklahoma
 
+<br><br>
 
 The OKHUB Metadata Guidelines and Best Practices were referred to and developed from the following resources:
 
