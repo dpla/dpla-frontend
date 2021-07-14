@@ -22,7 +22,7 @@ import Link from "next/link";
 
 class MarkdownPage extends React.Component {
   render() {
-    const { router, pageData, content } = this.props;
+    const { router, path, pageData, content } = this.props;
 
     const local = LOCALS[LOCAL_ID];
     const routesObj = local.routes;
@@ -80,7 +80,7 @@ class MarkdownPage extends React.Component {
               <Sidebar
               className={contentCss.sidebar}
               items={pages}
-              activePage={router.asPath}
+              activePage={path}
               render={hasSidebar}
             />
             <div className={bodyColumnsStyle}>
@@ -105,6 +105,7 @@ MarkdownPage.getInitialProps = async context => {
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
   return {
+    path: asPath,
     pageData: pageData,
     content: pageMarkdown
   };

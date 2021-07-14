@@ -52,6 +52,25 @@ $borderColor: rgba(0, 0, 0, 0.75);
   line-height: 1.5;
   font-family: $serifFont;
 
+  table {
+    background: #f7f7f7;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.9rem;
+
+    th {
+      background: #ccc;
+      border: solid 1px #ccc;
+      text-align: left;
+    }
+
+    td {
+      padding: 8px;
+      border: solid 1px #eee;
+    }
+  }
+
   @media (min-width: $largeRem) {
     margin-top: 0;
   }

@@ -37,6 +37,7 @@ Metadata from different schemas other than Dublin Core and other repositories (e
 
 **Note:** Metadata description is meant to describe in DPLA the **original source**, and not the digital representation, unless the item is born digital.
 
+<a name="requirements"></a>
 ## DPLA Requirements
 
 DPLA has basic metadata fields that are required and recommended:
@@ -54,6 +55,9 @@ DPLA has basic metadata fields that are required and recommended:
 | [Subject of resource](#subject) | Strongly recommended |
 | [Title of resource](#title) | Required |
 | Type of resource (from Dublin Core Type Vocabulary) | Required when available |
+
+
+<a name="resources"></a>
 
 ## DPLA Resources
 
@@ -75,9 +79,9 @@ The document includes best practices for creating shareable metadata for the DPL
 
 [DPLA Standardized Rights Statements Implementation Guidelines](http://bit.ly/dpla-rights-guidelines)
 
-A description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.
+A description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.<br><br><br>
 
-## Alternative Title
+**ALTERNATIVE TITLE**
 
 | Field | Alternative Title |
 | --- | --- |
@@ -93,7 +97,8 @@ A description of DPLA’s implementation of standardized rights statements and r
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples | Title begins with a number:<br><br>1st United Methodist Church Council minutes<br><br>**Alternative Title**: First United Methodist Church Council minutes |
 
-### COLLECTION NAME
+<a name="collection"></a>
+**COLLECTION NAME**
 
 | Field | Collection |
 | --- | --- |
@@ -109,7 +114,7 @@ A description of DPLA’s implementation of standardized rights statements and r
 Controlled Vocabulary/Syntax ||	
 | Examples | **Collection Name:** Nichols Collection<br><br>**Collection Name:** Confederate Pensions Records Collection<br><br>**Collection Name:** From Warrior to Saint: David Pendleton Oakerhater |
 
-## CONTRIBUTOR
+**CONTRIBUTOR**
 
 | Field | Contributor |
 |---|---|
@@ -125,7 +130,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., LCNAF, VIAF, ULAN, Local list |
 |Examples | **Personal:** James, Henry, 1843-1916<br><br>**Corporate (Direct entry):** Oklahoma Cattlemen’s Association<br><br>**Corporate (Indirect entry):** Oklahoma. Department of Libraries |
 
-## CREATOR
+**CREATOR**
+
 | Field | Creator |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -140,7 +146,11 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., LCNAF, VIAF, ULAN, Local list |
 | Examples | **Personal:**  Lange, Dorothea |
 
-## DATA PROVIDER
+
+<a name="contributing"></a>
+
+**DATA PROVIDER**
+
 | Field | Data Provider |
 |---|---|
 | DPLA Requirement | **Required (Derived)** |
@@ -155,7 +165,10 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples | Oklahoma State University Library |
 
-## DATE
+<a name="date"></a>
+
+**DATE**
+
 | Field | Date |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -172,7 +185,8 @@ Controlled Vocabulary/Syntax ||
 
 
 
-## DESCRIPTION
+**DESCRIPTION**
+
 | Field | Description |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -187,7 +201,7 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples | **Description:** Studio portrait of Paul Turner Miller as an infant with his mother, Clara Ranne Miller, in Joplin, Missouri.<br><br>**Description:** Front view of the Fire Service Training Station and tower with four fire trucks. The station is located on the southeast corner of the Oklahoma A & M College campus. Dedicated November 4, 1938, the station housed the nation’s first collegiate fire training school.<br><br>**Description:** Cultivated fields showing early signs of water erosion.<br><br>**Description:** Popcorn the Circus Comic was born somewhere in the east and he talked about his early interest in magic and how that led to his career as a circus clown. Popcorn described the life of a circus clown, how he developed a few of his routines, and why he decided it was time to retire from the road after thirty-some years in the business. |
 
-## EXTENT
+**EXTENT**
 
 | Field | Extent |
 |---|---|
@@ -203,7 +217,7 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples | **Book:** 73 pages<br><br>**Map:** 1 map on 4 sheets<br><br>**Size** (two dimensional object described in inches): 3 x 5 inches<br><br>**Sound recording:** 01:26:35 |
 
-## FORMAT
+**FORMAT**
 
 | Field | Format |
 |---|---|
@@ -219,7 +233,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | IANA Media Types |
 | Examples | application/pdf<br><br>audio/mpeg<br><br>image/jp2<br><br>image/tiff<br><br>video/mp4 |
 
-## IDENTIFIER
+**IDENTIFIER**
+
 | Field | Identifier |
 |---|---|
 | DPLA Requirement | Optional |
@@ -236,7 +251,8 @@ Controlled Vocabulary/Syntax ||
 
 
 
-## IS SHOWN AT
+**IS SHOWN AT**
+
 | Field | Is Shown At (URL) |
 |---|---|
 | DPLA Requirement | **Required (Derived)** |
@@ -251,7 +267,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples ||
 
-## LANGUAGE
+**LANGUAGE**
+
 | Field | Language |
 |---|---|
 | DPLA Requirement | Recommended |
@@ -266,7 +283,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary ISO 639-2 (three letter code). In DPLA these codes are displayed in the full language name (e.g., “eng” becomes “English” |
 | Examples | eng<br><br>fre<br><br>spa<br><br>ger |
 
-## MEDIUM
+**MEDIUM**
+
 | Field | Medium |
 |---|---|
 | DPLA Requirement | Optional |
@@ -281,7 +299,10 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g.,  RDA, Art and Architecture Thesaurus (ATT), Thesaurus of Graphic Materials (TGM) |
 | Examples | **RDA:** Postcard<br><br>**ATT:* Color photographs<br><br>**TGM:** Lantern slides |
 
-## PLACE
+<a name="place"></a>
+
+**PLACE**
+
 | Field | Place |
 |---|---|
 | DPLA Requirement | Strongly Recommended |
@@ -294,9 +315,10 @@ Controlled Vocabulary/Syntax ||
 | Displayed in DPLA Portal || 	
 | Notes and Best Practices | DPLA recommends arranging geographical locations hierarchically in a single instance of the term (e.g., Erie, Pennsylvania). DPLA enriches geographic data by matching values with known geographic vocabularies, i.e., Geonames. See *DPLA Geographic and Temporal Guidelines* for further information and examples. |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., FAST Terms, GeoNames, Library of Congress Subject Headings; Getty Thesaurus of Geographic Names |
-| Examples | **FAST (Indirect order):** Oklahoma—Tulsa County<br><br>**LCSH (Direct order):** Tulsa County (Okla.)<br><br>**DPLA’s preferred hierarchical order in a single string:** Tulsa, Tulsa County, Oklahoma | 
+| Examples | **FAST (Indirect order):** Oklahoma—Tulsa County<br><br>**LCSH (Direct order):** Tulsa County (Okla.)<br><br>**DPLA’s preferred hierarchical order in a single string:** Tulsa, Tulsa County, Oklahoma |
 
-## PUBLISHER
+**PUBLISHER**
+
 | Field | Publisher |
 |---|---|
 | DPLA Requirement | Optional |
@@ -311,7 +333,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples ||
 
-## RELATION
+**RELATION**
+
 | Field | Relation |
 |---|---|
 | DPLA Requirement | Optional |
@@ -326,7 +349,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary<br><br>URL |
 | Examples | When the item is part of a series:<br><br>**Relation:** OHS popular culture series |
 
-## RELATION.ISPARTOF
+**RELATION.ISPARTOF**
+
 | Field | Relation.IsPartOf |
 | --- | --- |
 | DPLA Requirement | Recommended |
@@ -341,7 +365,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples ||
 
-## RELATION.ISREPLACEDBY
+**RELATION.ISREPLACEDBY**
+
 | Field | Relation.IsReplacedBy |
 | --- | --- |
 | DPLA Requirement | Optional |
@@ -356,7 +381,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary
 | Examples | **Succeeding periodical title:** Oklahoma today |
 
-## RELATION.REPLACES
+**RELATION.REPLACES**
+
 | Field | Relation.Replaces |
 | --- | --- |
 | DPLA Requirement | Optional |
@@ -371,7 +397,10 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary |
 | Examples | **Previous periodical title:** Resourceful Oklahoma |
 
-## RIGHTS
+<a name="rights"></a>
+
+**RIGHTS**
+
 | Field | Rights | 
 | --- | --- |
 | DPLA Requirement | **Required** | 
@@ -386,7 +415,8 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., Rightsstatements.org; Creative Commons Licenses; URI |
 | Examples | *URI from RightsStatements.org for "No copyright – United States"*<br>http://rightsstatements.org/vocab/NoC-US/1.0/ |
 
-## RIGHTS HOLDER
+**RIGHTS HOLDER**
+
 | Field | Rights Holder |
 | --- | --- |
 | DPLA Requirement | Optional<br>Not currently output to DPLA |
@@ -401,11 +431,11 @@ Controlled Vocabulary/Syntax ||
 | Controlled Vocabulary/Syntax || 	
 | Examples | Paul Miller Family<br><br>Adair County Historical Society | 
 
-## SOURCE
+**SOURCE**
+
 | Field | Source |
 | --- | --- |
-| DPLA Requirement | Optional
-Not currently output to DPLA |
+| DPLA Requirement | Optional<br>Not currently output to DPLA |
 | OKHUB Requirement | Optional |
 | Definition | A related resource from which the described resource is derived |
 | Simple DC Element | dc:source |
@@ -414,11 +444,13 @@ Not currently output to DPLA |
 | Repeatable | No |
 | Displayed in DPLA Portal | No |
 | Notes and Best Practices | The described resource may be derived from the related resource in whole or in part. May include information the user would need to locate the original item in a physical archives. |
-| Controlled Vocabulary/Syntax | Natural Language (Free Text) 
-Formal identification system (e.g., ISBN for a book) |
+| Controlled Vocabulary/Syntax | Natural Language (Free Text)<br>Formal identification system (e.g., ISBN for a book) |
 | Examples ||
 
-## SUBJECT
+<a name="subject"></a>
+
+**SUBJECT**
+
 | Field | Subject |
 | --- | --- |
 | DPLA Requirement | Strongly Recommended |
@@ -433,7 +465,8 @@ Formal identification system (e.g., ISBN for a book) |
 | Controlled Vocabulary/Syntax | Recommend Controlled Vocabulary, e.g., FAST Terms, Library of Congress Subject Headings, ATT, TGM, LCNAF, VIAF, Locally Controlled List |
 | Examples ||
 
-## TEMPORAL COVERAGE
+**TEMPORAL COVERAGE**
+
 | Field | Temporal Coverage |
 | --- | --- |
 | DPLA Requirement | Optional | 
@@ -448,7 +481,11 @@ Formal identification system (e.g., ISBN for a book) |
 | Controlled Vocabulary/Syntax | Natural language  or Controlled Vocabulary | 
 | Examples | **Decade that relates to the resource:** 1910-1920<br><br>**FAST for general 20th century:** 1900-1999<br><br>**Specific date range:** 1961-1963<br><br>**LCSH named time period:** World War, 1914-1918 |
 
-## TITLE
+<a name="title"></a>
+
+
+**TITLE**
+
 | Field | Title |
 | --- | --- |
 | DPLA Requirement | **Required** |
@@ -463,7 +500,8 @@ Formal identification system (e.g., ISBN for a book) |
 | Controlled Vocabulary/Syntax | Natural Language (Free Text) |
 | Examples | **For consistency construct titles for resources without titles with an order such as Who, What, Where, When:**<br>Indian prisoners at Fort Marion in St. Augustine, Florida, 1877<br><br>**Title indicating the nature of the resource:**<br>Letter from W.C. Markham to Cyrus S. Avery, dated July 31, 1925<br>Oral history interview with Carolina Hall<br><br>**Actual title as found on the document:**  Joint Board for Designating Interstate Highways : proposed agenda for first full meeting, dated April 20, 1925 |
 
-### TYPE
+**TYPE**
+
 | Field | Type |
 | --- | --- |
 | DPLA Requirement | Required when available |
@@ -479,7 +517,7 @@ Formal identification system (e.g., ISBN for a book) |
 | Examples | Image<br><br>Text<br><br>Sound<br><br>Moving Image |
 
 
-
+<a name="controlled"></a>
 ## Resources for Controlled Vocabulary and Standards
 | Abbreviation | Name | Application | Registry URL |
 | --- | --- | --- | --- |
@@ -502,21 +540,23 @@ Formal identification system (e.g., ISBN for a book) |
 | ULAN | Getty Union List of Artists Names | Creator<br>Contributor<br>Subject | [http://www.getty.edu/research/tools/vocabularies/ulan/]()
 | VIAF | Virtual International Authority File | Creator<br>Contributor<br>Subject | [https://viaf.org/]() | 
 
+<a name="contacts"></a>
+
 ## Contacts
 
 For additional help or further information contact the OKHUB coordinators for assistance.
 
-OKHUB Lead Coordinators:<br>
+**OKHUB Lead Coordinators:**<br>
 [Tara Carlise](https://libraries.ou.edu/users/tara-carlisle), University of Oklahoma<br>
 [Mary Larson](https://library.okstate.edu/library-directory/larson-mary), Oklahoma State University<br>
 [Sarah Milligan](https://library.okstate.edu/library-directory/milligan-sarah), Oklahoma State University
 
 
-OKHUB Metadata Coordinator:<br>
+**OKHUB Metadata Coordinator:**<br>
 [Juliana Nykolaiszyn](https://library.okstate.edu/library-directory/nykolaiszyn-juliana), Oklahoma State University
 
 
-OKHUB Repox and DPLA Ingest Coordinator:<br>
+**OKHUB Repox and DPLA Ingest Coordinator:**<br>
 [Fred Reiss](https://libraries.ou.edu/legacy/employees/empDetail.aspx?ID=6769), University of Oklahoma
 
 <br><br>
