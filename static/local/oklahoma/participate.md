@@ -1,4 +1,4 @@
-# Participate
+# A Step-by-Step Guide to Contributing to DPLA via OKHUB<br><br>
 
 **Step 1:** Can you answer yes to the following questions?
 

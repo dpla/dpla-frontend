@@ -687,12 +687,11 @@ const LOCALS = {
         isTopLevel: false,
         category: "About"
       },
-
       "/participate": {
         title: "Participate",
         parentDir: "/participate",
         path: "participate.md",
-        description: "A Step-by-Step Guide to Contributing to DPLA via OKHUB",
+        description: "",
         isTopLevel: true,
         category: "Participate"
       },
@@ -714,6 +713,7 @@ const LOCALS = {
       },
       "/resources": {
         parentDir: "/resources",
+        title: "Resources",
         path: "resources.md",
         description: "",
         isTopLevel: true,
