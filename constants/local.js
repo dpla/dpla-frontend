@@ -452,7 +452,6 @@ const LOCALS = {
         isTopLevel: false,
         category: "Timeline"
       },
-
       "/key-figures" : {
         parentDir: "/key-figures",
         path: "key-figures.md",
@@ -637,6 +636,99 @@ const LOCALS = {
       }
     }
   },
+  oklahoma: {
+    theme: "oklahoma",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/oklahoma"
+    ],
+    name: "OKHUB",
+    background: "ok.jpg",
+    favicon: "favicon.ico",
+    logo: "logo.jpg",
+    heroLogo: "logo-big.jpg",
+    description: "",
+    locationFacet: "%22Oklahoma%22",
+    subjectFacet: "%22Oklahoma%22",
+    hasAbout: true,
+    hasTerms: false,
+    hasSidebar: true,
+    hasBrowseByPartner: true,
+    hasBrowseAll: false,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/about/contributing-organizations" : {
+        parentDir: "/about",
+        path: "contributing-organizations.md",
+        title: "Contributing Organizations",
+        description: "Currently Contributing Organizations to the DPLA through the OKHUB",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/managing-partners" : {
+        parentDir: "/about",
+        path: "managing-partners.md",
+        title: "Managing Partners",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/ingest-and-workflow" : {
+        parentDir: "/about",
+        path: "ingest-and-workflow.md",
+        title: "Ingest and Workflow",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/participate": {
+        title: "Participate",
+        parentDir: "/participate",
+        path: "participate.md",
+        description: "",
+        isTopLevel: true,
+        category: "Participate"
+      },
+      "/participate/metadata": {
+        title: "Metadata",
+        parentDir: "participate",
+        path: "metadata.md",
+        description: "OKHub Metadata Guidelines and Best Practices",
+        isTopLevel: false,
+        category: "Participate"
+      },
+      "/participate/rights-statements": {
+        title: "Rights Statements",
+        parentDir: "participate",
+        path: "rights-statements.md",
+        description: "",
+        isTopLevel: false,
+        category: "Participate"
+      },
+      "/resources": {
+        parentDir: "/resources",
+        title: "Resources",
+        path: "resources.md",
+        description: "",
+        isTopLevel: true,
+        category: "Resources"
+      },
+      "/contact": {
+        parentDir: "/contact",
+        title: "Contact",
+        path: "contact.md",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      }
+    }
+  }
 };
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
