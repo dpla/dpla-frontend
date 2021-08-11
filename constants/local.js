@@ -322,14 +322,6 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
-      },
-      "/primary-source-set" : {
-        parentDir: "/primary-source-set",
-        path: "",
-        title: "Primary Source Set",
-        description: "",
-        isTopLevel: true,
-        category: "Primary Source Set"
       }
     }
   },
