@@ -330,13 +330,13 @@ const LOCALS = {
         isTopLevel: true,
         category: "Primary Source Set"
       },
-      "/exhibition" : {
-        parentDir: "/exhibition",
-        path: "",
-        title: "Commercial Aviation Exhibition",
+      "/timeline" : {
+        parentDir: "/timeline",
+        path: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
+        title: "Pan Am Timeline",
         description: "",
         isTopLevel: true,
-        category: "Commercial Aviation Exhibition"
+        category: "Pan Am Timeline"
       }
     }
   },
