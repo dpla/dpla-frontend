@@ -310,6 +310,7 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
+    externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
     filters: [
       "tags:aviation"
     ],
@@ -329,13 +330,6 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "Primary Source Set"
-      },
-      "/timeline" : {
-        externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
-        title: "Pan Am Timeline",
-        description: "Pan Am Timeline",
-        isTopLevel: true,
-        category: "Pan Am Timeline"
       }
     }
   },
