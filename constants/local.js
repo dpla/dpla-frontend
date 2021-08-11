@@ -331,10 +331,9 @@ const LOCALS = {
         category: "Primary Source Set"
       },
       "/timeline" : {
-        parentDir: "/timeline",
-        path: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
+        externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
         title: "Pan Am Timeline",
-        description: "",
+        description: "Pan Am Timeline",
         isTopLevel: true,
         category: "Pan Am Timeline"
       }
