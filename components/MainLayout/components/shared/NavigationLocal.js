@@ -46,18 +46,10 @@ class NavigationLocal extends Component {
 
     if (LOCAL_ID === "aviation") {
       visitHtml = (
-        <ul className={`${css.links} ${css.secondaryLinks}`}>
-          <li>
-            <a href={LOCALS[LOCAL_ID].externalLink}>PAN AM TIMELINE</a>
-          </li>
-        </ul>
+        <a href={LOCALS[LOCAL_ID].externalLink} className={`${css.links} ${css.secondaryLinks}`}>PAN AM TIMELINE</a>
       );
       contactHtml = (
-        <ul className={`${css.links} ${css.secondaryLinks}`}>
-          <li>
-            <a href="about:blank">PRIMARY SOURCE SET</a>
-          </li>
-        </ul>
+        <a href="" className={`${css.links} ${css.secondaryLinks}`}>PRIMARY SOURCE SET</a>
       );
     } else if (LOCAL_ID === "wisconsin") {
       visitHtml = (

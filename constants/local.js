@@ -310,7 +310,7 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
-    externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=1",
+    externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=2",
     filters: [
       "tags:aviation"
     ],
