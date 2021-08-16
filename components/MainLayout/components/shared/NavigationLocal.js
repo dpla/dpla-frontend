@@ -45,6 +45,7 @@ class NavigationLocal extends Component {
     };
 
     if (LOCAL_ID === "aviation") {
+      visitHtml = null;
       contactHtml = (
         <li>
           <a href="about:blank">PRIMARY SOURCE SET</a>
