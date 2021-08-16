@@ -45,13 +45,16 @@ class NavigationLocal extends Component {
     };
 
     if (LOCAL_ID === "aviation") {
-      visitHtml = null;
+      visitHtml = (
+        <ul className={`${css.links} ${css.secondaryLinks}`}>
+          <li>
+            <a href={LOCALS[LOCAL_ID].externalLink}>PAN AM TIMELINE</a>
+          </li>
+        </ul>
+      );
       contactHtml = (
         <li>
           <a href="about:blank">PRIMARY SOURCE SET</a>
-        </li>
-        <li>
-          <a href={LOCALS[LOCAL_ID].externalLink}>PAN AM TIMELINE</a>
         </li>
       );
     } else if (LOCAL_ID === "wisconsin") {
