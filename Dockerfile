@@ -2,7 +2,6 @@
 #
 # Expect that `yarn build` has already been run.
 
-
 FROM node:carbon-alpine
 WORKDIR /opt/dpla-frontend
 COPY . /opt/dpla-frontend
