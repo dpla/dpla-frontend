@@ -18,8 +18,6 @@ The Vermont Green Mountain Digital Archive (GMDA) is a collaborative effort of s
 ### Contributing Libraries & Archives
 - [Bixby Memorial Free Library](https://bixbylibrary.org/)
 - [Brooks Memorial Library](brookslibraryvt.org/)
-- [The Stewart-Swift Research Center at the Henry Sheldon Museum of Vermont History](https://www.henrysheldonmuseum.org/archives-home)
-- [Vermont Folklife Center](https://www.vermontfolklifecenter.org/)
 
 ***Get Involved!*** For information on how to become a contributing member, contact Patrick Wallace, <pwallace@middlebury.edu> 802-443-3017.
 
