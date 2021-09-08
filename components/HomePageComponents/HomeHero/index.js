@@ -64,7 +64,11 @@ const HomeHero = ({ headerDescription, feature }) =>
           />
           <button type="submit" className={css.searchButton}>
             <span>Search</span>
-          </button>
+          </button><br/>
+          <input type="radio" id="books" name="search-type" value="books"/>
+          <label for="books">Books</label>
+          <input type="radio" id="artifacts" name="search-type" value="Artifacts"/>
+          <label for="artifacts">Artifacts</label>
         </div>
       </form>
       {SITE_ENV !== "local" &&
