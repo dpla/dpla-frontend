@@ -1,17 +1,48 @@
 const LOCALS = {
   plains2peaks: {
     theme: "plains2peaks",
-    provider: "%22Plains%20to%20Peaks%20Collective%22",
-    background: "home-hero-bg.jpg",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/p2p"
+    ],
     name: "Plains to Peaks Collective",
     favicon: "favicon.png",
+    provider: "%22Plains%20to%20Peaks%20Collective%22",
+    background: "p2p-hero.png",
     logo: "logo.png",
+    heroLogo: "logo-big.png",
     description: "",
     locationFacet: "%22Colorado%20OR%20Wyoming%22",
     subjectFacet: "%22Colorado%20OR%20Wyoming%22",
     hasAbout: true,
-    hasTerms: false,
-    hasContact: true
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    hasContact: true,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/contact" : {
+        parentDir: "/contact",
+        path: "contact.md",
+        title: "Contact",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      },
+      "/terms" : {
+        parentDir: "/terms",
+        path: "terms.md",
+        title: "Terms of Use",
+        description: "",
+        isTopLevel: true,
+        category: "Terms of Use"
+      }
+    }
   },
   wisconsin: {
     theme: "wisconsin",
@@ -28,7 +59,6 @@ const LOCALS = {
     externalLink: "https://recollectionwisconsin.org",
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
-    hasTerms: false,
     hasBrowseByPartner: true
   },
   illinois: {
@@ -45,7 +75,6 @@ const LOCALS = {
     subjectFacet: "*Illinois*",
     externalLink: "http://finditillinois.org/idhh/",
     hasAbout: true,
-    hasTerms: false,
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -217,7 +246,6 @@ const LOCALS = {
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseAll: false,
     routes: {
       "/about": {
@@ -244,7 +272,6 @@ const LOCALS = {
     locationFacet: "%22Florida%22",
     subjectFacet: "%22Florida%22",
     hasAbout: false,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false
   },
@@ -261,7 +288,6 @@ const LOCALS = {
     locationFacet: "%22Montana%20OR%20North%20Dakota%22",
     subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     hasSidebar: false,
@@ -306,7 +332,6 @@ const LOCALS = {
     background: "aviation-banner.jpg",
     description: "",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
@@ -333,7 +358,6 @@ const LOCALS = {
     background: "home-hero-bg.png",
     description: "",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: false,
     hasBrowseAll: false,
     hasSidebar: true,
@@ -606,7 +630,6 @@ const LOCALS = {
     locationFacet: "%22Vermont%22",
     subjectFacet: "%22Vermont%22",
     hasAbout: true,
-    hasTerms: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -635,7 +658,6 @@ const LOCALS = {
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
-    hasTerms: false,
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
