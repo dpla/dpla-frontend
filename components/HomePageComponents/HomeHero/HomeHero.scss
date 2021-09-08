@@ -184,17 +184,20 @@
 }
 
 .links {
-  font-size: 1rem;
-  margin: 2rem auto 0;
-  text-align: center;
+  padding-left: 372px;
+//  font-size: 1rem;
+ // margin: 2rem auto 0;
+ // text-align: right;
+ // width: 100%;
 
-  @media (min-width: $mediumRem) {
-    font-size: 1.25rem;
-  }
+
+  // @media (min-width: $mediumRem) {
+  //   font-size: 1.25rem;
+  // }
 
   & a, & a:visited {
-    display: inline-block;
-    margin: 0.75rem 1rem 0;
+//    display: inline-block;
+//    margin: 0.75rem 1rem 0;
     color: white;
     text-decoration: underline;
 

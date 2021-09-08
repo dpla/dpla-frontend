@@ -65,23 +65,23 @@ const HomeHero = ({ headerDescription, feature }) =>
           <button type="submit" className={css.searchButton}>
             <span>Search</span>
           </button><br/>
-          <input type="radio" id="books" name="search-type" value="books"/>
-          <label for="books">Books</label>
-          <input type="radio" id="artifacts" name="search-type" value="Artifacts"/>
-          <label for="artifacts">Artifacts</label>
+          <ul style={{ paddingTop: "8px",  fontSize: "1.25rem", display: "inline-flex", width: "100%", }}>
+            <li>
+              <input type="radio" id="books" name="search-type" value="books"/>
+              <label for="books" style={{paddingLeft: "5px"}}>Books</label>
+            </li>
+            <li style={{ paddingLeft: "18px" }}>
+              <input type="radio" id="artifacts" name="search-type" value="Artifacts"/>
+              <label for="artifacts" checked="checked" style={{paddingLeft: "5px"}}>Artifacts</label>
+            </li>
+            <li className={css.links}>        
+              <Link prefetch href="/guides">
+                <a title="View our Getting Started Guides">New? Start Here</a>
+              </Link>
+            </li>
+          </ul>
         </div>
       </form>
-      {SITE_ENV !== "local" &&
-        <div className={css.links}>
-          <Link prefetch href="/browse-by-topic">
-            <a title="Browse DPLA by a curated set of topics">
-              Browse by Topic
-            </a>
-          </Link>
-          <Link prefetch href="/guides">
-            <a title="View our Getting Started Guides">New? Start Here</a>
-          </Link>
-        </div>}
       {SITE_ENV === "local" &&
         LOCALS[LOCAL_ID].hasAbout &&
         <div className={css.links}>
