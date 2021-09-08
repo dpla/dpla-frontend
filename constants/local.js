@@ -597,10 +597,10 @@ const LOCALS = {
       "provider.@id:http%3A//dp.la/api/contributor/vt"
     ],
     name: "Vermont Green Mountain Digital Archive",
-    background: "home-hero-bg.jpg",
+    background: "vt-hero.png",
     favicon: "favicon.ico",
-    logo: "logo.jpg",
-    heroLogo: "logo-big.jpg",
+    logo: "logo.svg",
+    heroLogo: "logo-vert.svg",
     description: "Vermont Green Mountain Digital Archive",
     externalLink: "https://libraries.vermont.gov/GMDA",
     locationFacet: "%22Vermont%22",
