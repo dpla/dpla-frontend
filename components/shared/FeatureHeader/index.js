@@ -1,12 +1,10 @@
 import React from "react";
 
-import utils from "stylesheets/utils.scss";
-
 import css from "./FeatureHeader.module.scss";
 
 const FeatureHeader = ({ title, description, titleClassName }) =>
   <div className={css.wrapper}>
-    <div className={`${utils.container} ${css.content}`}>
+    <div className={`utils.container ${css.content}`}>
       <h1
         className={`${titleClassName ? titleClassName : ""} ${description === ""
           ? css.long

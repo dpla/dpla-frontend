@@ -1,8 +1,12 @@
-import React, { Component } from "react";
+import  React, { Component } from "react";
+import { withRouter } from 'next/router'
+
+
 import Link from "next/link";
 import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 import NavigationLocal from "../shared/NavigationLocal";
+
 
 import css from "./SmallScreenStyles.module.scss";
 
@@ -31,7 +35,7 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, route, isHome } = this.props;
+    const { isSearchPage, router, isHome } = this.props;
 
     return (
       <div className={`${css.wrapper}`} data-cy="small-screen-header">
@@ -94,4 +98,4 @@ class SmallScreenHeader extends Component {
   }
 }
 
-export default SmallScreenHeader;
+export default withRouter(SmallScreenHeader);

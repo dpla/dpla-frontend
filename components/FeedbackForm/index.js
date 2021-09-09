@@ -2,6 +2,8 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import AriaModal from "react-aria-modal";
 
+import { withRouter } from 'next/router'
+
 import Button from "components/shared/Button";
 
 import css from "./FeedbackForm.module.scss";
@@ -11,7 +13,7 @@ class FeedbackForm extends React.Component {
     timestamp: Date.now(),
     isSending: false,
     isSent: false,
-    url: JSON.stringify(this.props.route),
+    url: JSON.stringify(this.props.router),
     modalActive: false,
     type: "comment",
     step: 1,
@@ -325,4 +327,4 @@ class FeedbackForm extends React.Component {
   }
 }
 
-export default FeedbackForm;
+export default withRouter(FeedbackForm);

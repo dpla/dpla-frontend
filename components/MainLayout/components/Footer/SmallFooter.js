@@ -13,7 +13,6 @@ const twitterIcon = "/static/images/twitter.svg";
 
 class SmallFooter extends React.Component {
   render() {
-    const { route } = this.props;
     return (
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} site-max-width`}>

@@ -10,7 +10,6 @@ import css from "./Footer.module.scss";
 
 class FooterUser extends React.Component {
   render() {
-    const { route } = this.props;
     return (
       <div className={`${css.footer} site-max-width`} data-cy="footer">
         <div className="row">
@@ -57,7 +56,7 @@ class FooterUser extends React.Component {
                 </Link>
               </li>
               <li>
-                <FeedbackForm route={route} />
+                <FeedbackForm />
               </li>
               <li>
                 <Link href="/news">

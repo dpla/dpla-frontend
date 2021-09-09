@@ -10,7 +10,6 @@ const logo = "/static/images/dpla-logo.svg";
 
 class SmallFooterLocal extends React.Component {
   render() {
-    const { route } = this.props;
     var logoHtml;
     if (LOCAL_ID === "wisconsin") {
         logoHtml = (

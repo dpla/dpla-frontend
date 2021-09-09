@@ -8,7 +8,7 @@ import { USER_BASE_URL } from "constants/env";
 
 import css from "./Footer.module.scss";
 
-const FooterPro = ({ route }) =>
+const FooterPro = () =>
   <div className={`${css.footer} site-max-width`}>
     <div className="row">
       <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
@@ -25,7 +25,7 @@ const FooterPro = ({ route }) =>
             </Link>
           </li>
           <li>
-            <FeedbackForm route={route} />
+            <FeedbackForm/>
           </li>
           <li>
             <Link as="/projects" href="/pro/wp?section=projects">
