@@ -629,7 +629,7 @@ const LOCALS = {
     externalLink: "https://libraries.vermont.gov/GMDA",
     locationFacet: "%22Vermont%22",
     subjectFacet: "%22Vermont%22",
-    hasAbout: true,
+    hasAbout: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
