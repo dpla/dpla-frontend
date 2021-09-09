@@ -6,7 +6,7 @@ import FeedbackForm from "components/FeedbackForm";
 
 import { USER_BASE_URL } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
 
 const FooterPro = ({ route }) =>
   <div className={`${css.footer} site-max-width`}>

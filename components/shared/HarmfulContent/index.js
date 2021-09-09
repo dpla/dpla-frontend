@@ -12,7 +12,7 @@ import {
 } from "constants/search";
 
 import utils from "stylesheets/utils.scss";
-import css from "./HarmfulContent.scss";
+import css from "./HarmfulContent.module.scss";
 
 
 class HarmfulContent extends React.Component {

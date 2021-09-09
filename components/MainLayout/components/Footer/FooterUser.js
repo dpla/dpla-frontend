@@ -6,7 +6,7 @@ import FeedbackForm from "components/FeedbackForm";
 
 import { PRO_BASE_URL } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
 
 class FooterUser extends React.Component {
   render() {

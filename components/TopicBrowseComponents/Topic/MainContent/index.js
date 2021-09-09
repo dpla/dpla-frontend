@@ -4,7 +4,7 @@ import Link from "next/link";
 import HeadingRule from "shared/HeadingRule";
 
 import utils from "stylesheets/utils.scss";
-import css from "./MainContent.scss";
+import css from "./MainContent.module.scss";
 
 const MainContent = ({ topic }) =>
   <div className={css.wrapper}>

@@ -12,7 +12,7 @@ import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams, markdownLinks } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>

@@ -1,0 +1,145 @@
+@import "stylesheets/variables.module";
+
+.headerSearchBar {
+  background-color: $userSiteColor;
+  width: 100%;
+
+  &.pro {
+    background-color: $proSiteColor;
+  }
+}
+
+.flexWrapper {
+  display: flex;
+  margin: auto;
+  padding: 0.5rem 1rem;
+
+  &.pro {
+    @media (max-width: $mediumRem) {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: $largeRem) {
+    padding: 0;
+  }
+}
+
+.searchBar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 2.5rem;
+  margin: auto 0 auto auto;
+  width: 100%;
+
+  @media (min-width: $mediumRem) {
+    padding-left: 1rem;
+  }
+
+  @media (min-width: $largeRem) {
+    justify-self: flex-end;
+    padding-left: 0;
+    width: 50%;
+  }
+}
+
+.searchInput {
+  border: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+  flex-grow: 1;
+  font-size: 1rem;
+  height: 100%;
+  padding-left: 1rem;
+  width: 65%;
+  -webkit-appearance: none;
+
+  @media (min-width: $smallRem) {
+    width: auto;
+  }
+
+  /* Remove browser search input defaults */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.25;
+  }
+}
+
+.searchInput::placeholder {
+  color: $secondaryButtonColor;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-out;
+}
+
+.searchButton {
+  background-color: $secondaryButtonColor;
+  border-radius: 0 0.25rem 0.25rem 0;
+  color: white;
+  font-size: 1rem;
+  height: 100%;
+  padding: 0 1rem;
+  transition: background-color 0.2s ease-out;
+  width: 35%;
+
+  @media (min-width: $smallRem) {
+    width: auto;
+  }
+
+  &:hover {
+    background-color: $navColor;
+  }
+}
+
+.logo, .logo:visited, .logo:hover {
+  display: none; /* hide logo in small screens */
+  line-height: 0;
+  padding: 0.5rem 0;
+  text-decoration: none;
+
+  @media (min-width: $mediumRem) {
+    display: block;
+
+    &.local {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: $largeRem) {
+    padding: 1rem 0;
+  }
+}
+
+.logoImg {
+  height: 1.95rem;
+  width: 16rem;
+
+  @media (min-width: $largeRem) {
+    height: 2.2rem;
+    width: 18rem;
+  }
+}
+
+.localLogo {
+  height: 2.5rem;
+  max-width: 16rem;
+
+  @media (min-width: $largeRem) {
+    height: 2.5rem;
+    max-width: 18rem;
+  }
+}
+
+.localText {
+  display: block;
+  font-size: 1.25rem;
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
+}

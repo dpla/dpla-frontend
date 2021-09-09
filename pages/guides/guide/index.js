@@ -13,8 +13,8 @@ import { getMenuItemUrl, wordpressLinks } from "lib";
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/guides.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/guides.module.scss";
 
 class Guides extends React.Component {
   refreshExternalLinks() {

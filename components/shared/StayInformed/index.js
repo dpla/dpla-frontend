@@ -2,7 +2,7 @@ import React from "react";
 
 import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
-import css from "./StayInformed.scss";
+import css from "./StayInformed.module.scss";
 
 class StayInformed extends React.Component {
   state = {

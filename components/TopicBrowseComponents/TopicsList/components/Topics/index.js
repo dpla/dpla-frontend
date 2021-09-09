@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import utils from "stylesheets/utils.scss";
-import css from "./Topics.scss";
+import css from "./Topics.module.scss";
 
 const Topics = ({ topics }) =>
   <div className={`${css.topicsWrapper} ${utils.container}`}>

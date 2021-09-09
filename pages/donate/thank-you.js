@@ -8,8 +8,8 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import { SEO_TITLE } from "constants/donate";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/donate.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/donate.module.scss";
 
 const DonateThankYou = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>

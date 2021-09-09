@@ -7,7 +7,7 @@ import { removeQueryParams, markdownLinks } from "lib";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.scss";
 
 const printer = "/static/images/printer.svg";

@@ -8,7 +8,7 @@ import {
 } from "constants/primarySourceSets";
 import { removeQueryParams } from "lib";
 
-import css from "shared/FiltersBar/FiltersBar.scss";
+import css from "shared/FiltersBar/FiltersBar.module.scss";
 
 class FiltersBar extends React.Component {
   componentWillMount() {

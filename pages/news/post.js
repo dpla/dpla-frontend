@@ -23,8 +23,8 @@ import {
 import { WORDPRESS_URL } from "constants/env";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/news.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/news.module.scss";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {

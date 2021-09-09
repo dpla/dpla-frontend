@@ -11,7 +11,7 @@ import {
   endsWith
 } from "lib";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 
 const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   return (

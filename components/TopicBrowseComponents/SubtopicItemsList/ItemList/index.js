@@ -2,7 +2,7 @@ import React from "react";
 
 import ListView from "shared/ListView";
 
-import css from "./ItemList.scss";
+import css from "./ItemList.module.scss";
 
 // const gridViewIcon = "/static/images/grid-view-icon.svg";
 // const listViewIcon = "/static/images/list-view-icon.svg";

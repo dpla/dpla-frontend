@@ -4,7 +4,7 @@ import AriaModal from "react-aria-modal";
 
 import Button from "components/shared/Button";
 
-import css from "./FeedbackForm.scss";
+import css from "./FeedbackForm.module.scss";
 
 class FeedbackForm extends React.Component {
   state = {

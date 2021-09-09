@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./mediaViewers.scss";
+import css from "./mediaViewers.module.scss";
 
 const VideoPlayer = ({ pathToFile, fileFormat }) =>
   <div className={css.videoPlayerWrapper}>

@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./FullPageWidthBlock.scss";
-import hub from "stylesheets/hubs.scss";
+import css from "./FullPageWidthBlock.module.scss";
+import hub from "stylesheets/hubs.module.scss";
 
 const FullPageWidthBlock = ({
   className,

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { formatDate } from "lib";
 import { USER_BASE_URL } from "constants/env";
 
-import css from "./NewsLane.scss";
+import css from "./NewsLane.module.scss";
 
 const smallChevron = "/static/images/chevron-thick-orange.svg";
 

@@ -19,7 +19,7 @@ import {
 
 import { midPageBlockContent } from "constants/ebooks-landing-page";
 
-import css from "stylesheets/hubs.scss";
+import css from "stylesheets/hubs.module.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {

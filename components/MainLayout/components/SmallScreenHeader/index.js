@@ -4,7 +4,7 @@ import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 import NavigationLocal from "../shared/NavigationLocal";
 
-import css from "./SmallScreenStyles.scss";
+import css from "./SmallScreenStyles.module.scss";
 
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";

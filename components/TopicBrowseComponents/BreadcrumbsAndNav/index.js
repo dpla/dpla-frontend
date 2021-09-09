@@ -4,7 +4,7 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import NavLinks from "./components/NavLinks";
 
 import utils from "stylesheets/utils.scss";
-import css from "./BreadcrumbsAndNav.scss";
+import css from "./BreadcrumbsAndNav.module.scss";
 
 const BreadcrumbsAndNav = ({
   breadcrumbs,

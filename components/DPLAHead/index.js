@@ -6,10 +6,6 @@ import { getMetaPageTitle, getCurrentFullUrl } from "lib";
 import { LOCALS } from "constants/local";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 
-import reset from "stylesheets/reset.scss";
-import utils from "stylesheets/utils.scss";
-import accessibility from "stylesheets/accessibility.scss";
-
 const defaultDescription = SITE_ENV !== "local"
   ? "The Digital Public Library of America brings together the riches of America’s libraries, archives, and museums, and makes them freely available to the world."
   : LOCALS[LOCAL_ID].description;

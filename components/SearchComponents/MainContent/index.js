@@ -10,7 +10,7 @@ import { SITE_ENV } from "constants/env";
 
 import utils from "stylesheets/utils.scss";
 import css from "./MainContent.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 
 const MainContent = ({
   results,

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Button.scss";
+import css from "./Button.module.scss";
 
 const Button = ({
   id,

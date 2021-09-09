@@ -4,7 +4,7 @@ import GuideLink from "components/shared/GuideLink";
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
 
-import css from "./DPLAUsers.scss";
+import css from "./DPLAUsers.module.scss";
 
 const DPLAUsers = ({ guides }) =>
   <div className={css.wrapper} data-cy="guides">

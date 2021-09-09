@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import css from "./HomePageSlider.scss";
+import css from "./HomePageSlider.module.scss";
 
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
 const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";

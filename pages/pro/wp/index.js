@@ -23,7 +23,7 @@ import {
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {

@@ -1,7 +1,7 @@
 import "react";
 import "next/link";
 
-import css from "./WebsiteFeature.scss";
+import css from "./WebsiteFeature.module.scss";
 
 const WebsiteFeature = ({
   className,

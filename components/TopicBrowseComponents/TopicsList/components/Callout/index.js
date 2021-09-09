@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import Button from "components/shared/Button";
-import css from "./Callout.scss";
+import css from "./Callout.module.scss";
 
 const Callout = ({ topics }) =>
   <div className={css.calloutWrapper}>

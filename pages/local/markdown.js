@@ -15,8 +15,8 @@ import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import localMarkdown from "stylesheets/local_markdown.scss"
+import contentCss from "stylesheets/content-pages.module.scss";
+import localMarkdown from "stylesheets/local_markdown.module.scss"
 
 import Link from "next/link";
 

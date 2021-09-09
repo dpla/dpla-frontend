@@ -24,7 +24,7 @@ import {
 } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link"
 
-import css from "./Accordion.scss";
+import css from "./Accordion.module.scss";
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
 const informationIcon = "/static/images/information.svg";

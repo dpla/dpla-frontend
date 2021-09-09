@@ -17,7 +17,7 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import css from "stylesheets/hubs.scss";
+import css from "stylesheets/hubs.module.scss";
 
 class HubsPage extends React.Component {
   refreshExternalLinks() {

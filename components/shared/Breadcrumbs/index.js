@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import css from "./Breadcrumbs.scss";
+import css from "./Breadcrumbs.module.scss";
 
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div className={css.breadcrumbs}>

@@ -16,7 +16,7 @@ import {
 import { TITLE } from "constants/contact";
 
 import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 
 const Contact = ({ url, sidebarItems }) =>
   <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>

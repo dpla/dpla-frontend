@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
 
 import { SITE_ENV } from "constants/env";
 

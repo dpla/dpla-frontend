@@ -7,7 +7,7 @@ import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-import css from "./PageHeader.scss";
+import css from "./PageHeader.module.scss";
 
 class PageHeader extends React.Component {
   render() {

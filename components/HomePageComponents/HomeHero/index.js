@@ -6,7 +6,7 @@ import Button from "components/shared/Button";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-import css from "./HomeHero.scss";
+import css from "./HomeHero.module.scss";
 
 const getHeroLogo = () => {
   if (SITE_ENV !== "local") {

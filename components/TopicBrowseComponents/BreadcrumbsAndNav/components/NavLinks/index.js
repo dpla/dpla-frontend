@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./NavArrows.scss";
+import css from "./NavArrows.module.scss";
 
 const chevron = "/static/images/chevron-thick-orange.svg";
 

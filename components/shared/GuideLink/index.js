@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./GuideLink.scss";
+import css from "./GuideLink.module.scss";
 
 const GuideLink = ({ guide }) =>
   <div className={css.item}>

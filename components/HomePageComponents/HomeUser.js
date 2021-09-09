@@ -8,7 +8,7 @@ import StayInformed from "shared/StayInformed";
 import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 
-import css from "./HomeUser.scss";
+import css from "./HomeUser.module.scss";
 
 const HomeUser = ({
   url,

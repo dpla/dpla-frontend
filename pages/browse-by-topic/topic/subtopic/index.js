@@ -23,7 +23,7 @@ import {
 } from "constants/items";
 
 import utils from "stylesheets/utils.scss";
-import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.scss";
+import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 
 const SubtopicItemsList = ({
   url,

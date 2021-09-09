@@ -5,7 +5,7 @@ import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 import NavigationLocal from "../shared/NavigationLocal";
 
-import css from "../shared/DesktopStyles.scss";
+import css from "../shared/DesktopStyles.module.scss";
 
 import { SITE_ENV } from "constants/env";
 

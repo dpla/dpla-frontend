@@ -7,7 +7,7 @@ import WebsiteFeature from "shared/WebsiteFeature";
 import WPEdit from "shared/WPEdit";
 import StayInformed from "shared/StayInformed";
 
-import css from "./HomePro.scss";
+import css from "./HomePro.module.scss";
 
 const HomePro = ({ url, news, content }) =>
   <div>

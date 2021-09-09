@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./CarouselNavArrows.scss";
+import css from "./CarouselNavArrows.module.scss";
 
 const largeChevron = "/static/images/chevron-thin.svg";
 

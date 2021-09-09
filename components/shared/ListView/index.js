@@ -19,7 +19,7 @@ import {
 } from "lib/localForage";
 import { UNTITLED_TEXT, MESSAGE_DELAY, MAX_LIST_ITEMS } from "constants/site";
 
-import css from "./ListView.scss";
+import css from "./ListView.module.scss";
 
 const joinTruncate = str => truncateString(joinIfArray(str));
 
