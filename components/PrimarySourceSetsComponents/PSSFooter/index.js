@@ -8,7 +8,7 @@ import {
 } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
-import css from "./PSSFooter.scss";
+import css from "./PSSFooter.module.scss";
 
 const OtherInfo = () =>
   <div className={css.wrapper} data-cy={'pss-footer'}>

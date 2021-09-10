@@ -9,7 +9,7 @@ import { addCommasToNumber } from "lib";
 import { MAX_LIST_ITEMS } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
-import css from "./ListComponents.scss";
+import css from "./ListComponents.module.scss";
 
 export const List = ({ uuid, name, itemCount, createdAt }) =>
   <Link href={`/lists/${uuid}`}>

@@ -16,7 +16,7 @@ import {
 import { SITE_ENV } from "constants/env";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {

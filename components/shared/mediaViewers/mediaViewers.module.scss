@@ -6,7 +6,7 @@
   cursor: pointer;
 
   @media (max-width: $mediumRem) {
-    height: 75vh; /* this is tied to the ContentAndMetadata.scss height */
+    height: 75vh; /* this is tied to the ContentAndMetadata.module.scss height */
   }
 
   & img {

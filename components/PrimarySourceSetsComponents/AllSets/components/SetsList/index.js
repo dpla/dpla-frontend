@@ -8,7 +8,7 @@ import {
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 
-import css from "./SetsList.scss";
+import css from "./SetsList.module.scss";
 
 const SetsList = ({ sets, route }) =>
   <div className={`${css.setsWrapper} site-max-width`}>

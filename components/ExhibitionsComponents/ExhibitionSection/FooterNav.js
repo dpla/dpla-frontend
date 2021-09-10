@@ -1,15 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
 import DPLALogoWide from "../../../static/images/dpla-logo-black.svg";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const chevron = "/static/images/chevron-thick-white.svg";
 const blackChevron = "/static/images/chevron-thick-black.svg";
 
-const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
+const NavButton = withRouter(({ queryParams, router, nextOrPrevious = "next" }) =>
   queryParams
     ? <Link
         prefetch
@@ -46,11 +46,11 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
           <img src={chevron} className={css.nextChevron} alt="" />}
-      </span>;
+      </span>);
 
-const FooterNav = ({
+const FooterNav = withRouter(({
   exhibition,
-  route,
+  router,
   nextQueryParams,
   previousQueryParams,
   nextSubsectionTitle
@@ -80,6 +80,6 @@ const FooterNav = ({
         </div>
       </div>
     </div>
-  </div>;
+  </div>);
 
 export default FooterNav;

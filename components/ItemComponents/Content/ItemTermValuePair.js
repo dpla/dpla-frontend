@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Content.scss";
+import css from "./Content.module.scss";
 
 const ItemTermValuePair = ({ heading, children, className }) =>
   children

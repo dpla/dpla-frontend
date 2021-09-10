@@ -5,7 +5,7 @@ import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
 
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const ExhibitionView = ({
   exhibition,

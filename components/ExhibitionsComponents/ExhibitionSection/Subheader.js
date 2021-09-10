@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const menuButtonIcon = "/static/images/menu-black.svg";
 const closeIcon = "/static/images/close-white.svg";

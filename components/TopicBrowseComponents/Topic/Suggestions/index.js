@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import utils from "stylesheets/utils.scss";
 import css from "./Suggestions.module.scss";
 
 const mapTypeToClass = type => {
@@ -20,7 +19,7 @@ const mapTypeToClass = type => {
 
 const Suggestions = ({ suggestions }) =>
   <div className={css.suggestionsWrapper}>
-    <div className={[css.suggestions, utils.container].join(" ")}>
+    <div className={[css.suggestions, '.container'].join(" ")}>
       <h2 className={css.header}>You might also enjoy</h2>
       {/* this is a little hacky but <Slider /> seems to throw away
         any class names you pass it as props, so we use this global css

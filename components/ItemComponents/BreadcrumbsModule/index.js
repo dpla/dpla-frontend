@@ -7,7 +7,7 @@ import { removeQueryParams } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
-import css from "./BreadcrumbsModule.scss";
+import css from "./BreadcrumbsModule.module.scss";
 
 const chevron = "/static/images/chevron-thick-orange.svg";
 

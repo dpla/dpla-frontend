@@ -6,7 +6,7 @@ import Link from "next/link";
 import { removeQueryParams, extractSourceId } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import css from "./SourceSetSources.scss";
+import css from "./SourceSetSources.module.scss";
 
 const SourceSetSources = ({ route, sources }) =>
   <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>

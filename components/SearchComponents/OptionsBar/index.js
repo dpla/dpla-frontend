@@ -12,7 +12,7 @@ import {
 } from "constants/search";
 
 import utils from "stylesheets/utils.scss";
-import css from "./OptionsBar.scss";
+import css from "./OptionsBar.module.scss";
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";

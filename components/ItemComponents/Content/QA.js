@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import { UNTITLED_TEXT } from "constants/site";
 
-import css from "./Content.scss";
+import css from "./Content.module.scss";
 
 class QA extends React.Component {
   render() {

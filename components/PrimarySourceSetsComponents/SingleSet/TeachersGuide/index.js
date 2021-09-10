@@ -8,7 +8,7 @@ import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
-import css from "./TeachersGuide.scss";
+import css from "./TeachersGuide.module.scss";
 
 const printer = "/static/images/printer.svg";
 const link = "/static/images/link.svg";

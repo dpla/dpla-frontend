@@ -2,11 +2,9 @@ import React from "react";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
-import utils from "stylesheets/utils.scss";
-
 const BreadcrumbsModule = ({ route, breadcrumbs }) =>
-  <div className={utils.breadcrumbsWrapper} data-cy={"pss-breadcrumbs"}>
-    <div className={[utils.container, utils.breadcrumbsModule].join(" ")}>
+  <div className={'.breadcrumbsWrapper'} data-cy={"pss-breadcrumbs"}>
+    <div className={['.container', '.breadcrumbsModule'].join(" ")}>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {

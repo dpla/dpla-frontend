@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from 'next/router'
 
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 import {
@@ -21,7 +22,7 @@ import * as gtag from "lib/gtag";
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const chevron = "/static/images/chevron-thick-black.svg";
 
@@ -64,23 +65,23 @@ const getViewerComponent = (fileType, originalUrl, pathToFile) => {
   }
 };
 
-const ItemLink = ({
+const ItemLink = withRouter(({
   thumbnailUrl,
   itemId,
   className,
-  route,
+  router,
   fileType,
   originalUrl
 }) =>
   <Link
     prefetch
     href={{
-      pathname: route.pathname,
-      query: Object.assign({}, route.query, { item: itemId })
+      pathname: router.pathname,
+      query: Object.assign({}, router.query, { item: itemId })
     }}
-    as={`/exhibitions/${route.query.exhibition}/${route.query.section}/${route
+    as={`/exhibitions/${router.query.exhibition}/${router.query.section}/${router
       .query.subsection
-      ? route.query.subsection
+      ? router.query.subsection
       : ""}?item=${itemId}`}
   >
     <a className={[css.itemLink, className].join(" ")}>
@@ -95,7 +96,7 @@ const ItemLink = ({
         useDefaultImage={!thumbnailUrl}
       />
     </a>
-  </Link>;
+  </Link>);
 
 class Viewer extends React.Component {
   componentDidMount() {
@@ -132,7 +133,7 @@ class Viewer extends React.Component {
   }
 
   render() {
-    const { exhibition, section, subsection, route } = this.props;
+    const { exhibition, section, subsection, router } = this.props;
     const pageBlocks = subsection.page_blocks;
     const pageWithText = pageBlocks.find(block => block.text);
     const text = pageWithText ? pageWithText.text : "";
@@ -186,11 +187,11 @@ class Viewer extends React.Component {
                 <Link
                   prefetch
                   href={{
-                    pathname: route.pathname,
-                    query: Object.assign({}, route.query, { item: nextPage.id })
+                    pathname: router.pathname,
+                    query: Object.assign({}, router.query, { item: nextPage.id })
                   }}
-                  as={`/exhibitions/${route.query.exhibition}/${route.query
-                    .section}/${route.query.subsection}?item=${nextPage.id}`}
+                  as={`/exhibitions/${router.query.exhibition}/${router.query
+                    .section}/${router.query.subsection}?item=${nextPage.id}`}
                 >
                   <a className={css.nextItemButton}>
                     <img src={chevron} alt="" className={css.nextItemChevron} />
@@ -202,7 +203,6 @@ class Viewer extends React.Component {
                 <li key={block.id}>
                   <ItemLink
                     fileType={block.type}
-                    route={route}
                     className={block.isActive ? css.activeItemLink : ""}
                     itemId={block.id}
                     thumbnailUrl={block.thumbnailUrl}
@@ -237,4 +237,4 @@ class Viewer extends React.Component {
   }
 }
 
-export default Viewer;
+export default withRouter(Viewer);

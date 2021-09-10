@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import css from "./LocalIntro.scss";
+import css from "./LocalIntro.module.scss";
 
 const LocalIntro = ({ content }) =>
   <div className={`${css.wrapper} site-max-width`}>

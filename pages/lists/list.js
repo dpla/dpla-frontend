@@ -22,7 +22,7 @@ import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
 import { LISTS_TITLE } from "constants/lists";
 
 import utils from "stylesheets/utils.scss";
-import css from "components/ListComponents/ListComponents.scss";
+import css from "components/ListComponents/ListComponents.module.scss";
 
 class List extends React.Component {
   state = {

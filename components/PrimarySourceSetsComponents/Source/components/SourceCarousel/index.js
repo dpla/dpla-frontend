@@ -8,7 +8,7 @@ import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg"
 import { extractSourceId, removeQueryParams } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import css from "./SourceCarousel.scss";
+import css from "./SourceCarousel.module.scss";
 
 const thickChevron = "/static/images/chevron-thick-orange.svg";
 

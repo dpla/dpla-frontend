@@ -9,7 +9,7 @@ import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
 
 import { MESSAGE_DELAY } from "constants/site";
 
-import css from "../ListComponents.scss";
+import css from "../ListComponents.module.scss";
 
 export class CheckableLists extends React.Component {
   state = { showMessage: "", checkedLists: [], lists: [], initialized: false };

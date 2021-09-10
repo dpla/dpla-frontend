@@ -23,7 +23,7 @@ import {
 } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import css from "components/ItemComponents/itemComponent.scss";
+import css from "components/ItemComponents/itemComponent.module.scss";
 
 const ItemDetail = ({
   error,

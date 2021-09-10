@@ -9,7 +9,7 @@ import {
 import { removeQueryParams, joinIfArray } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import css from "./FiltersList.scss";
+import css from "./FiltersList.module.scss";
 
 const closeIcon = "/static/images/close-white.svg";
 

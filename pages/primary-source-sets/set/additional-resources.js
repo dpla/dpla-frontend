@@ -13,7 +13,7 @@ import { getCurrentFullUrl, removeQueryParams, markdownLinks } from "lib";
 
 import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
-import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
+import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout

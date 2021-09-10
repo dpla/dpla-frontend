@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./MoreWaysToContact.scss";
+import css from "./MoreWaysToContact.module.scss";
 
 const MoreWaysToContact = () => (
   <div className={css.contactForm}>

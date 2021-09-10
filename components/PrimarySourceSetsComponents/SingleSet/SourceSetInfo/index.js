@@ -13,7 +13,7 @@ import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
 import utils from "stylesheets/utils.scss";
-import css from "./SourceSetInfo.scss";
+import css from "./SourceSetInfo.module.scss";
 
 const googleClassroom = "/static/images/google-classroom.svg";
 

@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 
 import Button from "shared/Button";
 
-import css from "./ContactForm.scss";
+import css from "./ContactForm.module.scss";
 
 const selectOptions = [
   { value: "General inquiry", label: "General inquiry" },

@@ -9,7 +9,7 @@ import * as gtag from "lib/gtag";
 import { bindLinkEvent, getFullPath, joinIfArray } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
-import css from "./Content.scss";
+import css from "./Content.module.scss";
 
 class Content extends React.Component {
   // items track the clickthroughs and the view for the partner

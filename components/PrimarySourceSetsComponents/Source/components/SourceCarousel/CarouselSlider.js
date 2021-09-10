@@ -7,7 +7,7 @@ import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceId, removeQueryParams } from "lib";
 
-import css from "./SourceCarousel.scss";
+import css from "./SourceCarousel.module.scss";
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   <div>

@@ -1,22 +1,23 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from 'next/router'
 
-import css from "./ExhibitionsList.scss";
+import css from "./ExhibitionsList.module.scss";
 
-const Exhibition = ({ exhibition, route }) => {
+const Exhibition = withRouter(({ exhibition, router }) => {
   return exhibition
     ? <li>
         <Link
           prefetch
           href={{
             pathname: "/exhibitions/exhibition",
-            query: Object.assign({}, route.query, {
+            query: Object.assign({}, router.query, {
               exhibition: exhibition.slug
             })
           }}
           as={{
             pathname: `/exhibitions/${exhibition.slug}`,
-            query: route.query
+            query: router.query
           }}
         >
           <a className={` ${css.exhibition}`}>
@@ -40,15 +41,15 @@ const Exhibition = ({ exhibition, route }) => {
         </Link>
       </li>
     : null;
-};
+});
 
-const ExhibitionsList = ({ exhibitions, route }) =>
+const ExhibitionsList = ({ exhibitions, router }) =>
   <div className={`${css.wrapper} site-max-width`}>
     <div className={css.row}>
       <ul className={css.exhibitionList}>
         {exhibitions.map((exhibition, index) =>
           <Exhibition
-            route={route}
+
             exhibition={exhibition}
             key={exhibition.slug}
           />
@@ -57,4 +58,4 @@ const ExhibitionsList = ({ exhibitions, route }) =>
     </div>
   </div>;
 
-export default ExhibitionsList;
+export default withRouter(ExhibitionsList);

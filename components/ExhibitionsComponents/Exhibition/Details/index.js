@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
@@ -8,8 +7,7 @@ import CiteButton from "shared/CiteButton";
 import { getFullPath, joinIfArray, parseDplaItemRecord } from "lib";
 import * as gtag from "lib/gtag";
 
-import utils from "stylesheets/utils.scss";
-import css from "./Details.scss";
+import css from "./Details.module.scss";
 
 class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event
@@ -41,7 +39,7 @@ class Details extends React.Component {
     const { exhibition, route } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={[utils.container, css.details].join(" ")}>
+        <div className={['.container', css.details].join(" ")}>
           <div className={css.tableOfContents}>
             <h2 className={css.tableOfContentsHeader}>
               In This Exhibition

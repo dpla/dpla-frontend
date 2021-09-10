@@ -14,7 +14,7 @@ import { LOCALS } from "constants/local";
 import { LOCAL_ID } from "constants/env";
 
 import utils from "stylesheets/utils.scss";
-import css from "./AboutLocal.scss";
+import css from "./AboutLocal.module.scss";
 
 const dplaLink = query => {
   let newQuery = Object.assign(

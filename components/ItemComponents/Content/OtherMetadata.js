@@ -5,7 +5,7 @@ import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
 
-import css from "./Content.scss";
+import css from "./Content.module.scss";
 
 const OtherMetadata = ({ item }) =>
   <div className={css.otherMetadata}>

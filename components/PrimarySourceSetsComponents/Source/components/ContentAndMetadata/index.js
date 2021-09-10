@@ -22,7 +22,7 @@ import {
 import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.scss";
-import css from "./ContentAndMetadata.scss";
+import css from "./ContentAndMetadata.module.scss";
 
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";

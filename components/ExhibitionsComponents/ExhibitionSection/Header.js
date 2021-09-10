@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
-import utils from "stylesheets/utils.scss";
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
-const Header = ({ title, route }) =>
-  <div className={[css.header, utils.container].join(" ")}>
+const Header = ({ title, router }) =>
+  <div className={[css.header, '.container'].join(" ")}>
     <div className={css.exhibitionsLinkAndTitle}>
       <Link prefetch href="/exhibitions">
         <a className={css.exhibitionsLink}>Exhibitions</a>
@@ -16,8 +16,8 @@ const Header = ({ title, route }) =>
     </div>
     <Link
       prefetch
-      href={`/exhibitions/exhibition?exhibition=${route.query.exhibition}`}
-      as={`/exhibitions/${route.query.exhibition}`}
+      href={`/exhibitions/exhibition?exhibition=${router.query.exhibition}`}
+      as={`/exhibitions/${router.query.exhibition}`}
     >
       <a className={`hover-underline ${css.closeExhibition}`}>
         <svg
@@ -40,4 +40,4 @@ const Header = ({ title, route }) =>
     </Link>
   </div>;
 
-export default Header;
+export default withRouter(Header);

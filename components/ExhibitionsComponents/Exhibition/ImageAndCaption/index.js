@@ -3,12 +3,11 @@ import React from "react";
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ImageAndCaption.scss";
+import css from "./ImageAndCaption.module.scss";
 
 const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={css.wrapper}>
-    <div className={[utils.container, css.imageAndCaption].join(" ")}>
+    <div className={['.container', css.imageAndCaption].join(" ")}>
       <p className={css.exhibitionTitle}>{exhibition.title}</p>
       <div className={css.imageWrapper}>
         <div

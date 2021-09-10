@@ -4,8 +4,7 @@ import Sidebar from "./Sidebar";
 import Viewer from "./Viewer";
 import Subheader from "./Subheader";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 class Body extends React.Component {
   state = { isMenuOpen: false };
@@ -19,7 +18,7 @@ class Body extends React.Component {
   render() {
     const { exhibition, section, subsection, route } = this.props;
     return (
-      <div className={[utils.container, css.body].join(" ")}>
+      <div className={['.container', css.body].join(" ")}>
         <Subheader
           onClickMenuButton={() => this.toggleMenu()}
           section={section}

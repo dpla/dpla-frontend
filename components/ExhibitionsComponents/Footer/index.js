@@ -1,11 +1,10 @@
 import React from "react";
 
-import utils from "stylesheets/utils.scss";
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
 
 const OtherInfo = () =>
   <div className={css.wrapper}>
-    <div className={`${utils.container} ${css.otherInfo}`}>
+    <div className={`.container ${css.otherInfo}`}>
       <p className={css.footerText}>
         Exhibitions curated by DPLA staff, DPLA partner institutions, and
         graduate students in library

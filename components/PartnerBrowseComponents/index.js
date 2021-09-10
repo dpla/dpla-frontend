@@ -3,8 +3,7 @@ import Link from "next/link";
 
 import { addCommasToNumber } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import css from "./PartnerBrowseContent.scss";
+import css from "./PartnerBrowseContent.module.scss";
 
 const Partner = ({ name, itemCount, facetName, index }) =>
   <Link href={`/search?${facetName}="${encodeURIComponent(name)}"`}>
@@ -29,7 +28,7 @@ const mapPartnersToComponents = partners =>
   );
 
 const PartnerBrowseContent = ({ route, partners }) =>
-  <div className={`${utils.container} ${css.partnerBrowse}`}>
+  <div className={`.container ${css.partnerBrowse}`}>
     <div className={`row`}>
       <ul className={`${css.partners} col-xs-12`}>
         {mapPartnersToComponents(partners)}
