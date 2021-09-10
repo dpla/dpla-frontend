@@ -1,7 +1,7 @@
 $theme-link-color: #00703E;
 $theme-dark-color: darken($theme-link-color, 15%); //header color
 $theme-main-color: mix($theme-link-color, #aaa); // mobile header color
-$heroBackgroundColor: lighten($theme-link-color, 76%);
+$heroBackgroundColor: lighten($casablancaOrange, 36%); //lighten($theme-link-color, 76%);
 $theme-background-color: #fff;
 $theme-colder-tint: darken(rgb(245, 245, 245), 10%);
 $theme-warmer-tint: lighten($theme-main-color, 50%);
