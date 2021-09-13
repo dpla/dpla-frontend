@@ -1,6 +1,5 @@
 // for use in status/error pages
 import React from "react";
-import Helmet from "react-helmet";
 import Router from "next/router";
 
 import DPLAHead from "components/DPLAHead";
@@ -45,7 +44,6 @@ class MinimalLayout extends React.Component {
     } = this.props;
     return (
       <div>
-        <Helmet htmlAttributes={{ lang: "en" }} />
         <DPLAHead
           additionalLinks={headLinks}
           pageTitle={pageTitle}

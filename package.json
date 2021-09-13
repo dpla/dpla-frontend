@@ -41,6 +41,7 @@
     "googleapis": "^41.0.1",
     "html-entities": "^1.2.1",
     "html-webpack-plugin": "^3.2.0",
+    "isomorphic-fetch": "^3.0.0",
     "moment": "^2.24.0",
     "next": "10",
     "nookies": "^2.0.8",
@@ -49,14 +50,12 @@
     "react": "^17.0.2",
     "react-aria-modal": "^4.0.0",
     "react-dom": "^17.0.2",
-    "react-helmet": "^5.2.1",
     "react-markdown": "^4.0.1",
     "react-slick": "^0.28.1",
     "sass": "^1.39.0",
     "snyk": "^1.203.0",
     "striptags": "^3.1.1",
-    "sw-precache-webpack-plugin": "^0.11.5",
-    "webpack-dev-server": "^3.7.2"
+    "sw-precache-webpack-plugin": "^0.11.5"
   },
   "devDependencies": {
     "@babel/runtime": "^7.5.5",

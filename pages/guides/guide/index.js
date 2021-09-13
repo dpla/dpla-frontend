@@ -11,7 +11,6 @@ import { getMenuItemUrl, wordpressLinks } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 
@@ -34,10 +33,7 @@ class Guides extends React.Component {
       <MainLayout route={router} pageTitle={guide.title} seoType={SEO_TYPE}>
         <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />
         <div
-          className={`
-        ${utils.container}
-        ${contentCss.sidebarAndContentWrapper}
-      `}
+          className={`.container ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar

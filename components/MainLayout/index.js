@@ -1,5 +1,4 @@
 import React from "react";
-import Helmet from "react-helmet";
 
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
@@ -54,7 +53,6 @@ class MainLayout extends React.Component {
       (SITE_ENV === "user" && router.pathname === "/");
     return (
       <div>
-        <Helmet htmlAttributes={{ lang: "en" }} />
         <DPLAHead
           additionalLinks={headLinks}
           pageTitle={pageTitle}

@@ -11,7 +11,6 @@ import { PAGES_ENDPOINT, ABOUT_MENU_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { TITLE } from "constants/guides";
 
-import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 
@@ -19,7 +18,7 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
     <div
       className={`
-        ${utils.container}
+        .container
         ${contentCss.sidebarAndContentWrapper}
       `}
     >

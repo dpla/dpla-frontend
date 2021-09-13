@@ -6,14 +6,12 @@ import HomeUser from "components/HomePageComponents/HomeUser";
 
 import {
   getCurrentUrl,
-  extractSourceSetSlug,
   addCommasToNumber,
   getMenuItemUrl
 } from "lib";
 
 import { NUMBER_OF_USER_GUIDES_TO_SHOW } from "constants/home";
 import {
-  DPLA_HOMEPAGE_ENDPOINT,
   HEADER_DESCRIPTION_TOKEN
 } from "constants/home";
 import { API_ENDPOINT as ITEMS_API_ENDPOINT } from "constants/items";
@@ -149,7 +147,7 @@ Home.getInitialProps = async ({ req }) => {
   const itemsJson = await itemsRes.json();
   var itemCount = 0 // default handles unexpected error
   if ("count" in itemsJson) {
-    if (itemsJson.count.value != undefined) {
+    if (itemsJson.count.value !== undefined) {
       itemCount = itemsJson.count.value // ElasticSearch 7
     } else {
       itemCount = itemsJson.count // ElasticSearch 6

@@ -51,6 +51,7 @@ export const ListEmpty = () =>
       </Link>:
     </p>
     <video
+        className={css.listVideo}
       poster="/static/video/list-add_poster.png"
       title="video with no audio showing how to add items to a list"
       controls
@@ -87,7 +88,8 @@ export const ListsEmpty = () =>
       (up to 50 items in each list):
     </p>
     <video
-      poster="/static/video/list-new_poster.png"
+        className={css.listVideo}
+        poster="/static/video/list-new_poster.png"
       title="video with no audio showing how to create a list and add items"
       controls
     >
@@ -111,7 +113,8 @@ export const ListsEmpty = () =>
       spreadsheet program:
     </p>
     <video
-      poster="/static/video/list-download_poster.png"
+        className={css.listVideo}
+        poster="/static/video/list-download_poster.png"
       title="video with no audio showing how to download a list"
       controls
     >

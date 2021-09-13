@@ -3,8 +3,6 @@ import AriaModal from "react-aria-modal";
 
 import Button from "shared/Button";
 
-import utils from "stylesheets/utils.scss";
-
 const DEFAULT_NAME = "Untitled list";
 const DEFAULT_TYPE = "create";
 const NAME_CHAR_LIMIT = 64;
@@ -66,18 +64,18 @@ class ListNameModal extends React.Component {
         >
           <form
             action=""
-            className={utils.modalForm}
+            className={'.modalForm'}
             onSubmit={this.handleSubmit}
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <h2 className={utils.modalTitle}>
+            <h2 className={'.modalTitle'}>
               <label htmlFor="list-name">
                 Name your list
               </label>
             </h2>
             <input
-              className={utils.modalTextInput}
+              className={'.modalTextInput'}
               id="list-name"
               name="list-name"
               placeholder="Untitled list"
@@ -86,9 +84,9 @@ class ListNameModal extends React.Component {
               onChange={this.onValueChange}
               aria-label="Name your list"
             />
-            <div className={utils.modalContinueCancelButtons}>
+            <div className={'.modalContinueCancelButtons'}>
               <Button
-                className={utils.modalCancelButton}
+                className={'.modalCancelButton'}
                 type="ghost"
                 id="list-cancel_button"
                 onClick={this.closeForm}
@@ -99,7 +97,7 @@ class ListNameModal extends React.Component {
               <Button
                 type="primary"
                 mustSubmit={true}
-                className={utils.modalContinueButton}
+                className={'.modalContinueButton'}
               >
                 {type === DEFAULT_TYPE ? "Create" : "Rename"}
               </Button>

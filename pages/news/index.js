@@ -23,7 +23,6 @@ import {
 } from "constants/content-pages";
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 
-import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 
@@ -89,8 +88,7 @@ class NewsPage extends React.Component {
       <MainLayout route={router} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+          className={`.container ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar

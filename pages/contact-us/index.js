@@ -15,7 +15,6 @@ import {
 } from "constants/content-pages";
 import { TITLE } from "constants/contact";
 
-import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 
 const Contact = ({ url, sidebarItems }) =>
@@ -23,7 +22,7 @@ const Contact = ({ url, sidebarItems }) =>
     <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
-        className={`${utils.container}
+        className={`.container
         ${contentCss.sidebarAndContentWrapper}`}
       >
         <div className="row">

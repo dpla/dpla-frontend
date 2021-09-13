@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
 import { GUIDES_PARENT_ID } from "constants/content-pages";
 import { SITE_ENV } from "constants/env";
@@ -23,10 +24,10 @@ const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   );
 };
 
-const NestedSidebarLinks = ({
+const NestedSidebarLinks = withRouter(({
   item,
   items,
-  route,
+  router,
   activeItemId,
   breadcrumbs
 }) => {
@@ -100,7 +101,6 @@ const NestedSidebarLinks = ({
               return (
                 <li key={child.ID}>
                   <NestedSidebarLinks
-                    route={route}
                     activeItemId={activeItemId}
                     item={child}
                     breadcrumbs={breadcrumbs}
@@ -113,9 +113,9 @@ const NestedSidebarLinks = ({
         : null}
     </div>
   );
-};
+});
 
-const Sidebar = ({ className, activeItemId, items, route }) => {
+const Sidebar = ({ className, activeItemId, items, router }) => {
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
@@ -181,7 +181,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
               return (
                 <li key={item.ID}>
                   <NestedSidebarLinks
-                    route={route}
                     activeItemId={activeItemId}
                     item={item}
                     items={items}
@@ -195,7 +194,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
         <ul>
           <li>
             <NestedSidebarLinks
-              route={route}
               activeItemId={activeItemId}
               item={aboutItem}
               items={items}
@@ -217,7 +215,7 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
               <SidebarLink
                 title="News"
                 section="news"
-                isCurrentLink={route.pathname.indexOf("/news") === 0}
+                isCurrentLink={router.pathname.indexOf("/news") === 0}
                 linkObject={{ as: "/news", href: "/news" }}
               />
             </li>}
@@ -235,4 +233,4 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
   );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

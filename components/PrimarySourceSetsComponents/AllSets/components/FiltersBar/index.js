@@ -1,5 +1,7 @@
 import React from "react";
 import Router from "next/router";
+import { withRouter } from "next/router"
+
 
 import {
   sortOptions,
@@ -13,22 +15,22 @@ import css from "shared/FiltersBar/FiltersBar.module.scss";
 class FiltersBar extends React.Component {
   componentWillMount() {
     this.setState({
-      sortValue: this.props.route.query.order || "recently_added",
-      timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
-      subjectValue: this.props.route.query.subject || "all-subjects"
+      sortValue: this.props.router.query.order || "recently_added",
+      timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
+      subjectValue: this.props.router.query.subject || "all-subjects"
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.route.query.order !== this.state.order ||
-      nextProps.route.query.timePeriod !== this.state.timePeriod ||
-      nextProps.route.query.subject !== this.state.subject
+      nextProps.router.query.order !== this.state.order ||
+      nextProps.router.query.timePeriod !== this.state.timePeriod ||
+      nextProps.router.query.subject !== this.state.subject
     ) {
       this.setState({
-        sortValue: nextProps.route.query.order || "recently_added",
-        timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
-        subjectValue: nextProps.route.query.subject || "all-subjects"
+        sortValue: nextProps.router.query.order || "recently_added",
+        timePeriodValue: nextProps.router.query.timePeriod || "all-time-periods",
+        subjectValue: nextProps.router.query.subject || "all-subjects"
       });
     }
   }
@@ -45,7 +47,7 @@ class FiltersBar extends React.Component {
   onSubjectChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         subject: val.target.value
       })
     });
@@ -65,7 +67,7 @@ class FiltersBar extends React.Component {
       pathname: "/primary-source-sets",
       query: Object.assign(
         {},
-        removeQueryParams(this.props.route.query, ["subject", "timePeriod"])
+        removeQueryParams(this.props.router.query, ["subject", "timePeriod"])
       )
     });
     this.setState({
@@ -167,4 +169,4 @@ class FiltersBar extends React.Component {
   }
 }
 
-export default FiltersBar;
+export default withRouter(FiltersBar);
