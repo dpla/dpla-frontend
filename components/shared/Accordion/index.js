@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"
 
 import css from "./Accordion.scss";
 const addIcon = "/static/images/add.svg";
@@ -57,21 +58,20 @@ class Accordion extends React.Component {
                   aria-expanded={item.active}
                   onClick={() => this.onClickItem(i)}
                 >
-                  <h3>{item.name}</h3>
-                  {item.name === 'How Can I Use It?' &&
-                  <>
+                  <h3 className={css.accordionTitle}>{item.name}{item.name === 'How Can I Use It?' &&
+                  <Link href={"https://dp.la/about/rights-categories"}><a>
                     <Tooltip
-                      title="This facet is used to filter by copyright status."
-                      placement="top"
+                        title="This facet is used to filter by copyright status."
+                        placement="top"
                     >
-                    <img
-                      src={informationIcon}
-                      alt=""
-                      className={css.informationIcon}
-                    />
-                  </Tooltip>
-                  </>
-                  }
+                      <img
+                          src={informationIcon}
+                          alt=""
+                          className={css.informationIcon}
+                      />
+                    </Tooltip></a></Link>
+                  }</h3>
+
                   {item.active &&
                     <img
                       src={subtractIcon}

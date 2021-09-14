@@ -19,55 +19,54 @@ import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 import css from "./Sidebar.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
-const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) =>
-    disabled
-        ? <span className={[css.facet].join(" ")}>
+const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
+    if (disabled) {
+        return (<span className={[css.facet].join(" ")}>
             <span className={[css.facetName, css.activeFacetName].join(" ")}>
                  {`${termObject.term} `}
             </span>
             <span className={css.facetCount}>
                 {addCommasToNumber(termObject.count)}
             </span>
-        </span>
-        : <>
+        </span>);
+    }
+
+    const href = {
+        pathname: route.pathname,
+        query: Object.assign({}, route.query, {
+            // some facet names have spaces, and we need to wrap them in " "
+            [queryKey]: route.query[queryKey]
+                ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
+                : `"${termObject.term}"`,
+            page: 1
+        })
+    };
+
+    return (<div className={css.facet}>
+            <span className={css.facetName}>
             <Link
                 prefetch
-                href={{
-                    pathname: route.pathname,
-                    query: Object.assign({}, route.query, {
-                        // some facet names have spaces, and we need to wrap them in " "
-                        [queryKey]: route.query[queryKey]
-                            ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
-                            : `"${termObject.term}"`,
-                        page: 1
-                    })
-                }}
-            >
-                <a className={css.facet}>
-                    <span className={css.facetName}>{`${termObject.term}`}{(isTooltip && tooltips[termObject.term] != null) &&
-                        <Link href={tooltips[termObject.term].link}>
-                            <a>
-                                <Tooltip
-                                    title={tooltips[termObject.term].text}
-                                    placement="top"
-                                >
-                                    <img
-                                        src={informationIcon}
-                                        alt=""
-                                        className={css.informationIcon}
-                                    />
-                                </Tooltip>
-                            </a>
-                        </Link>
-
-                    }{" "}</span>
-                    <span className={css.facetCount}>{addCommasToNumber(termObject.count)}</span>
-
-                </a>
+                href={href}
+            ><a>{`${termObject.term}`}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
+            (<Link href={tooltips[termObject.term].link}>
+                    <a className={css.toolTip}>
+                        <Tooltip
+                            title={tooltips[termObject.term].text}
+                            placement="top"
+                        >
+                            <img
+                                src={informationIcon}
+                                alt=""
+                                className={css.informationIcon}
+                            />
+                        </Tooltip>
+                    </a>
+                </Link>)
+            }</span>{" "}<Link href={href}>
+                <a className={css.facetCount}>{addCommasToNumber(termObject.count)}</a>
             </Link>
-
-        </>;
-
+        </div>);
+}
 class DateFacet extends React.Component {
     componentWillMount() {
         this.setState({
