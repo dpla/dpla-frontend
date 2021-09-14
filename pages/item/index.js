@@ -22,7 +22,6 @@ import {
   getRandomItemIdAsync
 } from "lib";
 
-import utils from "stylesheets/utils.scss";
 import css from "components/ItemComponents/itemComponent.module.scss";
 
 const ItemDetail = ({
@@ -60,7 +59,7 @@ const ItemDetail = ({
       <div
         id="main"
         role="main"
-        className={`${utils.container} ${css.contentWrapper}`}
+        className={`.container ${css.contentWrapper}`}
       >
 
         <Content item={item} url={url} />

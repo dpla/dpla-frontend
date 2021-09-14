@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
 import ListImage from "./ListImage";
 import ListNameModal from "components/ListComponents/ListNameModal";
@@ -327,7 +328,7 @@ class ListView extends React.Component {
   };
 
   render() {
-    const { items, route, exportable, viewMode } = this.props;
+    const { items, router, exportable, viewMode } = this.props;
     const {
       readOnly,
       listsInitialized,
@@ -416,7 +417,7 @@ class ListView extends React.Component {
                     {realId !== "http://dp.la/api/items/#sourceResource" &&
                       <Link href={item.linkHref} as={item.linkAs}>
                         <a className={`internalItemLink`}>
-                          {route.pathname.indexOf("/search") === 0 && item.title
+                          {router.pathname.indexOf("/search") === 0 && item.title
                             ? truncateString(item.title, 150)
                             : item.title ? item.title : UNTITLED_TEXT}
                         </a>
@@ -424,17 +425,17 @@ class ListView extends React.Component {
                     {/* see issue #869 for details on this hack */}
                     {realId === "http://dp.la/api/items/#sourceResource" &&
                       <span>
-                        {route.pathname.indexOf("/search") === 0 && item.title
+                        {router.pathname.indexOf("/search") === 0 && item.title
                           ? truncateString(item.title, 150)
                           : item.title ? item.title : UNTITLED_TEXT}
                       </span>}
                   </h2>
                   {(item.date || item.creator) &&
                     <span className={css.itemAuthorAndDate}>
-                      {route.pathname.indexOf("/search") === 0 &&
+                      {router.pathname.indexOf("/search") === 0 &&
                         item.date &&
                         <span>{item.date.displayDate}</span>}
-                      {route.pathname.indexOf("/search") === 0 &&
+                      {router.pathname.indexOf("/search") === 0 &&
                         item.date &&
                         item.date.displayDate &&
                         item.creator &&
@@ -515,4 +516,4 @@ class ListView extends React.Component {
   }
 }
 
-export default ListView;
+export default withRouter(ListView);

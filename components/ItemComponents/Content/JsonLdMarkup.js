@@ -1,6 +1,6 @@
 import React from "react";
 
-import { joinIfArray } from "lib";
+import {joinIfArray} from "lib";
 
 /**
   * @param item, DPLA Item
@@ -14,7 +14,7 @@ const JsonLdMarkup = ({ item, url }) => {
     */
   function definedAndFlattened(array) {
     const defined = array.filter(function(x) {
-      return x != undefined;
+      return x !== undefined;
     });
     return [].concat.apply([], defined);
   }
@@ -83,8 +83,7 @@ const JsonLdMarkup = ({ item, url }) => {
    * @see https://digitalpubliclibraryofamerica.atlassian.net/wiki/spaces/TECH/pages/123830279/schema.org+crosswalks
    */
   const license = () => {
-    const all = definedAndFlattened([item.rights, item.edmRights]);
-    return all;
+    return definedAndFlattened([item.rights, item.edmRights]);
   };
 
   /**
@@ -102,7 +101,7 @@ const JsonLdMarkup = ({ item, url }) => {
         case "sound":
           return "ListenAction";
         default:
-          return "CosumeAction";
+          return "ConsumeAction";
       }
     };
     return { "@type": action(), target: item.sourceUrl };
@@ -127,20 +126,16 @@ const JsonLdMarkup = ({ item, url }) => {
     * @return Array[Object]
     */
   const contributor = () => {
-    const all = definedAndFlattened([item.contributor]);
-    return all.map(x => {
-      return { "@type": "Thing", name: x };
-    });
+    return definedAndFlattened([item.contributor])
+        .map(x => {return { "@type": "Thing", name: x }});
   };
 
   /**
     * @return Array[Object]
     */
   const creator = () => {
-    const all = definedAndFlattened([item.creator]);
-    return all.map(x => {
-      return { "@type": "Thing", name: x };
-    });
+    return definedAndFlattened([item.creator])
+        .map(x => {return { "@type": "Thing", name: x }});
   };
 
   /**
@@ -150,7 +145,6 @@ const JsonLdMarkup = ({ item, url }) => {
     return definedAndFlattened([
       item.description,
       item.format,
-      item.extent,
       item.type
     ]);
   };
@@ -170,8 +164,7 @@ const JsonLdMarkup = ({ item, url }) => {
     * the ISO label.
     */
   const language = () => {
-    const all = definedAndFlattened([item.language]);
-    return all.map(x => {
+    return definedAndFlattened([item.language]).map(x => {
       return {
         "@type": "Language",
         name: x

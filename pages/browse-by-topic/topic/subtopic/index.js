@@ -22,7 +22,6 @@ import {
   THUMBNAIL_ENDPOINT
 } from "constants/items";
 
-import utils from "stylesheets/utils.scss";
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 
 const SubtopicItemsList = ({
@@ -56,7 +55,7 @@ const SubtopicItemsList = ({
     <div
       id="main"
       role="main"
-      className={[css.sidebarAndItemList, utils.container].join(" ")}
+      className={`${css.sidebarAndItemList} .container`}
     >
       <Sidebar
         title={subtopic.name}
