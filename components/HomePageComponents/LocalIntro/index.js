@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import css from "./LocalIntro.module.scss";
 
 const LocalIntro = ({ content }) =>
-  <div className={`${css.wrapper} site-max-width`}>
+  <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
     <ReactMarkdown className={css.intro} source={content} />
   </div>;
 

@@ -6,10 +6,11 @@ import Link from "next/link";
 import { removeQueryParams, extractSourceId } from "lib";
 
 import css from "./SourceSetSources.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SourceSetSources = ({ route, sources }) =>
   <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>
-    <ul className={[css.sourceSetSources, '.container'].join(" ")}>
+    <ul className={[css.sourceSetSources, utils.container].join(" ")}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (

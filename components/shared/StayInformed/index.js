@@ -3,6 +3,7 @@ import React from "react";
 import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
 import css from "./StayInformed.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class StayInformed extends React.Component {
   state = {
@@ -115,7 +116,7 @@ class StayInformed extends React.Component {
     const emailProps = { required: this.state.email !== undefined };
     return (
       <div className={css.wrapper} data-cy="stay-informed">
-        <div className={`${css.content} site-max-width`}>
+        <div className={`${css.content} ${utils.siteMaxWidth}`}>
           <div className="row">
             <div className="col-xs-12 col-md-3">
               <div className={css.header}>

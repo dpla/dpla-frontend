@@ -10,6 +10,7 @@ import { SITE_ENV } from "constants/env";
 
 import css from "./MainContent.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const MainContent = ({
   results,
@@ -20,7 +21,7 @@ const MainContent = ({
   aboutness
 }) =>
   <div className={css.wrapper}>
-    <div className={['.container', css.mainContent].join(" ")}>
+    <div className={[utils.container, css.mainContent].join(" ")}>
       {results.length > 0 &&
         <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
           <Sidebar route={route} facets={facets} />

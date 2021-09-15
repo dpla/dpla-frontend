@@ -5,10 +5,11 @@ import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
 
 import css from "./DPLAUsers.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const DPLAUsers = ({ guides }) =>
   <div className={css.wrapper} data-cy="guides">
-    <div className={`${css.DPLAUsers} site-max-width`}>
+    <div className={`${css.DPLAUsers} ${utils.siteMaxWidth}`}>
       <h2 className={css.header}>How can I use DPLA?</h2>
       <HeadingRule />
       <div className="row">

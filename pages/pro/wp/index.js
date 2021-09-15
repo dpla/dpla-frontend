@@ -10,10 +10,8 @@ import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import {
-  endsWith,
   getBreadcrumbs,
   getItemWithId,
-  getItemWithName,
   getMenuItemUrl,
   decodeHTMLEntities,
   wordpressLinks
@@ -21,7 +19,7 @@ import {
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 
 class ProMenuPage extends React.Component {

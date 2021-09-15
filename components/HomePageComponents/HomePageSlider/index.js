@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import css from "./HomePageSlider.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
 const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
@@ -20,7 +21,7 @@ const HomePageSlider = ({
   theme
 }) =>
   <div className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `} data-cy={browseLinkName}>
-    <div className={`${css.content} site-max-width`}>
+    <div className={`${css.content} ${utils.siteMaxWidth}`}>
       <div className={css.heading}>
         <h2 className={css.title}>{title}</h2>
         <Link href={browseLinkUrl}>

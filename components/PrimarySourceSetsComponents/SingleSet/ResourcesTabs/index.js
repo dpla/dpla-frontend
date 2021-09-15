@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import css from "./ResourcesTabs.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class ResourcesTabs extends React.Component {
   render() {

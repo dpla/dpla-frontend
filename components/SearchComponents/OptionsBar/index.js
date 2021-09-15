@@ -12,6 +12,7 @@ import {
 } from "constants/search";
 
 import css from "./OptionsBar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
@@ -84,7 +85,7 @@ class OptionsBar extends React.Component {
     } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={['.container', css.optionsBar].join(" ")}>
+        <div className={[utils.container, css.optionsBar].join(" ")}>
           <div className={css.resultsAndFilter}>
             <h1 className={css.resultsCount}>
               <span>

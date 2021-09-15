@@ -11,7 +11,7 @@ import {
 import css from "./SetsList.module.scss";
 
 const SetsList = ({ sets, route }) =>
-  <div className={`${css.setsWrapper} site-max-width`}>
+  <div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
     <ul className="row">
       {sets.itemListElement.map(set =>
         <li className={`${css.itemWrapper} col-xs-6 col-md-4`} key={set.name}>

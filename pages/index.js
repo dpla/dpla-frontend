@@ -26,7 +26,7 @@ import {
   NEWS_USER_ENDPOINT
 } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
-import { SITE_ENV, PSS_BASE_URL } from "constants/env";
+import { SITE_ENV } from "constants/env";
 
 const Home = ({
   url,

@@ -8,10 +8,11 @@ import {
 } from "constants/site";
 
 import css from "./PSSFooter.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const OtherInfo = () =>
   <div className={css.wrapper} data-cy={'pss-footer'}>
-    <div className={['.container', css.otherInfo].join(" ")}>
+    <div className={[utils.container, css.otherInfo].join(" ")}>
       <p className={css.p}>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;

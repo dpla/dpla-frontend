@@ -14,11 +14,9 @@ import { getCurrentUrl } from "lib";
 import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import localMarkdown from "stylesheets/local_markdown.module.scss"
-
-import Link from "next/link";
 
 class MarkdownPage extends React.Component {
   render() {
@@ -40,7 +38,7 @@ class MarkdownPage extends React.Component {
       objects.isActive = false;
       return objects;
     }).filter(page =>
-      page.category == pageData.category
+      page.category === pageData.category
     );
 
     var breadcrumbs = [];
@@ -54,7 +52,7 @@ class MarkdownPage extends React.Component {
       {
         title: pageData.title
       });
-    };
+    }
 
     return (
       <MainLayout

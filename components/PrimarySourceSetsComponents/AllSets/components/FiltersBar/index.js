@@ -95,7 +95,7 @@ class FiltersBar extends React.Component {
     );
     return (
       <div className={css.filtersWrapper}>
-        <div className={`${css.filters} site-max-width`}>
+        <div className={`${css.filters} ${utils.siteMaxWidth}`}>
           <div className={`row ${css.filtersRow}`}>
             {(this.state.timePeriodValue !== "all-time-periods" ||
               this.state.subjectValue !== "all-subjects") &&

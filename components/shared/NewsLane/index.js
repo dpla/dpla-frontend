@@ -5,12 +5,13 @@ import { formatDate } from "lib";
 import { USER_BASE_URL } from "constants/env";
 
 import css from "./NewsLane.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const smallChevron = "/static/images/chevron-thick-orange.svg";
 
 const NewsLane = ({ title, items }) =>
   <div className={css.wrapper} data-cy="news">
-    <div className={`${css.content} site-max-width`}>
+    <div className={`${css.content} ${utils.siteMaxWidth}`}>
       <div className="row">
         <div className="col-xs-12 col-md-3">
           <div className={css.header}>

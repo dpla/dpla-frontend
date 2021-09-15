@@ -23,6 +23,7 @@ import {
 } from "lib";
 
 import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -33,7 +34,7 @@ class AboutMenuPage extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     this.refreshExternalLinks();
   }
 
@@ -58,7 +59,7 @@ class AboutMenuPage extends React.Component {
         {breadcrumbs.length === 0 &&
           <FeatureHeader title={pageTitle} description={""} />}
         <div
-          className={`.container ${contentCss.sidebarAndContentWrapper}`}
+          className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar

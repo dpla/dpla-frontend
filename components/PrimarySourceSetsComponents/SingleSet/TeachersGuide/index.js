@@ -4,13 +4,13 @@ import ReactMarkdown from "react-markdown";
 
 import { removeQueryParams, markdownLinks } from "lib";
 
-import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const printer = "/static/images/printer.svg";
-const link = "/static/images/link.svg";
+
 
 class TeachersGuide extends React.Component {
   state = { routePath: null };
@@ -33,7 +33,7 @@ class TeachersGuide extends React.Component {
         role="tabpanel"
         aria-labelledby="tab-teachingguide"
       >
-        <div className={`${css.teachingGuide} '.container'}`}>
+        <div className={`${css.teachingGuide} ${utils.container}`}>
           <div className="row">
             <div className="col-xs-12 col-md-8">
               <div className={css.content}>

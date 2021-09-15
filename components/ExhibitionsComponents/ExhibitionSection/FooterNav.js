@@ -5,6 +5,7 @@ import { withRouter } from "next/router"
 import DPLALogoWide from "../../../public/static/images/dpla-logo-black.svg";
 
 import css from "./ExhibitionSection.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const chevron = "/static/images/chevron-thick-white.svg";
 const blackChevron = "/static/images/chevron-thick-black.svg";
@@ -55,7 +56,7 @@ const FooterNav = withRouter(({
   nextSubsectionTitle
 }) =>
   <div className={css.footerWrapper}>
-    <div className={['.container', css.footerNav].join(" ")}>
+    <div className={[utils.container, css.footerNav].join(" ")}>
       <Link href="/">
         <DPLALogoWide className={css.dplaLogo} />
       </Link>

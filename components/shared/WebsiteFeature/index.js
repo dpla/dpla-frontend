@@ -2,6 +2,7 @@ import "react";
 import "next/link";
 
 import css from "./WebsiteFeature.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const WebsiteFeature = ({
   className,
@@ -12,7 +13,7 @@ const WebsiteFeature = ({
   buttonUrl
 }) =>
   <div
-    className={`${className ? className : ""} ${css.wrapper} site-max-width`}
+    className={`${className ? className : ""} ${css.wrapper} ${utils.siteMaxWidth}`}
   >
     {imageSrc &&
       <div

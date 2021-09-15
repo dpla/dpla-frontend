@@ -1,8 +1,4 @@
 import 'stylesheets/reset.scss'
-import 'stylesheets/utils.scss'
+import 'stylesheets/global.scss'
 
-function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
-}
-
-export default MyApp
+export { default } from 'next/app';

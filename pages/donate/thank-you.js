@@ -1,13 +1,10 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
-import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ContentPagesSidebar from "shared/ContentPagesSidebar";
 
 import { SEO_TITLE } from "constants/donate";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/donate.module.scss";
 

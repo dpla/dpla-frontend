@@ -9,9 +9,9 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import { PSS_BASE_URL } from "constants/env";
 
-import { removeQueryParams, getCurrentFullUrl } from "lib";
+import { getCurrentFullUrl } from "lib";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class Printable extends React.Component {
   componentDidMount() {
@@ -24,8 +24,7 @@ class Printable extends React.Component {
       router,
       set,
       teachingGuide,
-      currentPath,
-      currentFullUrl
+      currentPath
     } = this.props;
     return (
       <MinimalLayout route={this.props.router} isPrintable={true}>

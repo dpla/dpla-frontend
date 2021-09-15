@@ -13,12 +13,13 @@ import { TITLE } from "constants/guides";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
   <MainLayout route={url} pageTitle={TITLE}>
     <div
       className={`
-        .container
+        ${utils.container}
         ${contentCss.sidebarAndContentWrapper}
       `}
     >

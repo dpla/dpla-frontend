@@ -8,6 +8,7 @@ import { getFullPath, joinIfArray, parseDplaItemRecord } from "lib";
 import * as gtag from "lib/gtag";
 
 import css from "./Details.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event
@@ -39,7 +40,7 @@ class Details extends React.Component {
     const { exhibition, route } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={['.container', css.details].join(" ")}>
+        <div className={[utils.container, css.details].join(" ")}>
           <div className={css.tableOfContents}>
             <h2 className={css.tableOfContentsHeader}>
               In This Exhibition

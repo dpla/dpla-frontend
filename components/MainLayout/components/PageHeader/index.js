@@ -8,6 +8,7 @@ import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import css from "./PageHeader.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class PageHeader extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class PageHeader extends React.Component {
         <div
           className={`${css.flexWrapper}  ${SITE_ENV === "pro"
             ? css.pro
-            : ""} site-max-width`}
+            : ""} ${utils.siteMaxWidth}`}
         >
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
             <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>

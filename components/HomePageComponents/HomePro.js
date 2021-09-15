@@ -15,7 +15,7 @@ const HomePro = ({ url, news, content }) =>
         ? css.withFeature
         : ""}`}
     >
-      <div className={`${css.heroText} site-max-width`}>
+      <div className={`${css.heroText} ${utils.siteMaxWidth}`}>
         <h1>
           Welcome to the DPLA
           Professional Community
@@ -36,7 +36,7 @@ const HomePro = ({ url, news, content }) =>
         imageSrc={content.acf.feature.image}
       />}
     <div className={`${css.sectionList}`}>
-      <ul className={`site-max-width`}>
+      <ul className={`${utils.siteMaxWidth}`}>
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
             <a>

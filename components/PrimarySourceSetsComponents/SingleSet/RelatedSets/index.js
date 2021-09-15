@@ -5,14 +5,15 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import { extractSourceSetSlug } from "lib/";
+import { extractSourceSetSlug } from "lib";
 
 import css from "./RelatedSets.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const RelatedSets = ({ sets }) => {
   return (
     <div className={css.wrapper} data-cy={'pss-relateds'}>
-      <div className={['.container', css.relatedSets].join(" ")}>
+      <div className={[utils.container, css.relatedSets].join(" ")}>
         <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={4.5}

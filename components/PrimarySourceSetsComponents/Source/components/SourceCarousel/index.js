@@ -8,12 +8,13 @@ import ThickChevron from "../../../../../public/static/images/chevron-thick-oran
 import { extractSourceId, removeQueryParams } from "lib";
 
 import css from "./SourceCarousel.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const thickChevron = "/static/images/chevron-thick-orange.svg";
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={css.wrapper}>
-    <div className={[css.sourceCarousel, '.container'].join(" ")}>
+    <div className={[css.sourceCarousel, utils.container].join(" ")}>
       <div className={css.headerAndNav}>
         <h2 className={css.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}

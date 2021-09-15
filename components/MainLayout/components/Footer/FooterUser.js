@@ -7,11 +7,12 @@ import FeedbackForm from "components/FeedbackForm";
 import { PRO_BASE_URL } from "constants/env";
 
 import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class FooterUser extends React.Component {
   render() {
     return (
-      <div className={`${css.footer} site-max-width`} data-cy="footer">
+      <div className={`${css.footer} ${utils.siteMaxWidth}`} data-cy="footer">
         <div className="row">
           <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
             <h2 className={css.linkHeader}>DPLA</h2>

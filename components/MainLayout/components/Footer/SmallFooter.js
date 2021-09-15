@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 import { SITE_ENV } from "constants/env";
 
@@ -15,7 +16,7 @@ class SmallFooter extends React.Component {
   render() {
     return (
       <div className={css.smallFooterWrapper}>
-        <div className={`${css.smallFooter} site-max-width`}>
+        <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
             <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
           </Link>

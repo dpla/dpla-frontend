@@ -51,7 +51,7 @@ class SmallFooterLocal extends React.Component {
     }
     return (
       <div className={css.smallFooterWrapper}>
-        <div className={`${css.smallFooter} site-max-width`}>
+        <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           {logoHtml}
           <Link href="//dp.la">
             <a>

@@ -11,7 +11,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
 
 import { SITE_ENV } from "constants/env";
-import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
+import { NEWS_TAGS } from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
@@ -21,7 +21,7 @@ import {
 
 import { WORDPRESS_URL } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 

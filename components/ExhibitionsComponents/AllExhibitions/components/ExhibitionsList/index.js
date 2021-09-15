@@ -43,7 +43,7 @@ const Exhibition = withRouter(({ exhibition, router }) => {
 });
 
 const ExhibitionsList = ({ exhibitions, router }) =>
-  <div className={`${css.wrapper} site-max-width`}>
+  <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
     <div className={css.row}>
       <ul className={css.exhibitionList}>
         {exhibitions.map((exhibition, index) =>

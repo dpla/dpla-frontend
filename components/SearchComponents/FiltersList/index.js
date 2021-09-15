@@ -12,6 +12,8 @@ import css from "./FiltersList.module.scss";
 
 const closeIcon = "/static/images/close-white.svg";
 
+import utils from "stylesheets/utils.module.scss"
+
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
   delete duped["q"];
@@ -70,7 +72,7 @@ class FiltersList extends React.Component {
           <div
             className={`${showFilters
               ? css.isOpen
-              : ""} ${css.filtersList} .container`}
+              : ""} ${css.filtersList} ${utils.container}`}
           >
             <div className={css.labelAndFilters}>
               <span className={css.labelText}>Filtered by</span>

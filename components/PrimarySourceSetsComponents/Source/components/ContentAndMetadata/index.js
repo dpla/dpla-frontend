@@ -1,6 +1,5 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import Router from "next/router";
 
 import {
   ZoomableImageViewer,
@@ -21,7 +20,7 @@ import {
 } from "lib";
 import * as gtag from "lib/gtag";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import css from "./ContentAndMetadata.module.scss";
 
 const link = "/static/images/link.svg";

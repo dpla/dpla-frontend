@@ -4,10 +4,11 @@ import Link from "next/link";
 import HeadingRule from "shared/HeadingRule";
 
 import css from "./MainContent.module.scss";
+import utils from "stylesheets/utils.module.scss";
 
 const MainContent = ({ topic }) =>
   <div className={css.wrapper}>
-    <div className={`.container ${css.container} site-max-width`}>
+    <div className={`${utils.container} ${css.container}`}>
       <h1 className={css.header}>{topic.name}</h1>
       <HeadingRule color="#F9BA3F" />
       <ul className="row">

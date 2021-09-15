@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import Button from "components/shared/Button";
 import CiteButton from "components/shared/CiteButton";
 
 import {
@@ -13,8 +12,10 @@ import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
 import css from "./SourceSetInfo.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const googleClassroom = "/static/images/google-classroom.svg";
+
 
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
@@ -42,7 +43,7 @@ class SourceSetInfo extends React.Component {
     const authorList = set.author.map(author => author.name);
     return (
       <div id="main" role="main" className={css.wrapper} data-cy={'pss-main'}>
-        <div className={[css.sourceSetInfo, '.container'].join(" ")}>
+        <div className={[css.sourceSetInfo, utils.container].join(" ")}>
           <div className={`${css.removeScroll} row`}>
             <div className={`${css.removeScroll} col-xs-12 col-md-8`}>
               <div className={css.banner}>

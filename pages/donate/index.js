@@ -1,20 +1,18 @@
 import React from "react";
-import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
 import DonateForm from "components/DonateComponents/DonateForm";
-import Button from "shared/Button";
 
 import { SEO_TITLE } from "constants/donate";
 
-import utils from "stylesheets/utils.scss";
+import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/donate.module.scss";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={css.donateBackground}>
-      <div id="main" role="main" className={`${utils.container}`}>
+      <div id="main" role="main" className={utils.container}>
         <div className={`${css.donateContent} row`}>
           <div className={`col-xs-12 col-md-7`}>
             <div className={`${css.byPaypal} ${contentCss.content}`}>

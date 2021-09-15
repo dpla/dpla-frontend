@@ -16,23 +16,23 @@ import { SITE_ENV } from "constants/env";
 
 class MainLayout extends React.Component {
   // Google Analytics tracking for MainLayout-using pages
-  // componentDidMount() {
-  //   Router.onRouteChangeComplete = url => this.trackPageview();
-  // }
-  //
-  // trackPageview() {
-  //   const fullPath = getFullPath();
-  //   const fullUrl = getCurrentFullUrl();
-  //
-  //   if (fullPath !== this.lastTrackedPath) {
-  //     gtag.pageview({
-  //       path: fullPath,
-  //       url: fullUrl,
-  //       title: this.props.pageTitle
-  //     });
-  //     this.lastTrackedPath = fullPath;
-  //   }
-  // }
+  componentDidMount() {
+    this.props.router.onRouteChangeComplete = url => this.trackPageview();
+  }
+
+  trackPageview() {
+    const fullPath = getFullPath();
+    const fullUrl = getCurrentFullUrl();
+
+    if (fullPath !== this.lastTrackedPath) {
+      gtag.pageview({
+        path: fullPath,
+        url: fullUrl,
+        title: this.props.pageTitle
+      });
+      this.lastTrackedPath = fullPath;
+    }
+  }
 
   render() {
     const {

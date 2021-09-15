@@ -7,6 +7,7 @@ import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import css from "./HomeHero.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const getHeroLogo = () => {
   if (SITE_ENV !== "local") {
@@ -32,7 +33,7 @@ const HomeHero = ({ headerDescription, feature }) =>
     className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
-    <div data-cy="dpla-logo" className={`${css.header} site-max-width`}>
+    <div data-cy="dpla-logo" className={`${css.header} ${utils.siteMaxWidth}`}>
       {SITE_ENV !== "local" &&
         <div className={`${css.homeLogo} ${css.dplaLogo}`}>
           <h1>Digital Public Library of America</h1>
