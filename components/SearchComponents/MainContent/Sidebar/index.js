@@ -44,10 +44,10 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
 
     return (<div className={css.facet}>
 
-            <Link
+            <span className={css.facetName}><Link
                 prefetch
                 href={href}
-            ><a><span className={css.facetName}>{`${termObject.term}`}</span></a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
+            ><a className={css.facetLink}>{`${termObject.term}`}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
             (<Link href={tooltips[termObject.term].link}>
                     <a className={css.toolTip}>
                         <Tooltip
@@ -62,7 +62,7 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
                         </Tooltip>
                     </a>
                 </Link>)
-            }{" "}<Link href={href}>
+            }</span>{" "}<Link href={href}>
                 <a className={css.facetCount}>{addCommasToNumber(termObject.count)}</a>
             </Link>
         </div>);
