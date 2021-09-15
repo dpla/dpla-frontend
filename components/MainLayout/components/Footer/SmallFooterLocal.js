@@ -24,7 +24,7 @@ class SmallFooterLocal extends React.Component {
         );
     } else if (LOCAL_ID === "tennessee") {
         logoHtml = (
-            <Link prefetch href="/local" as="/">
+            <Link href="/local" as="/">
                 <a>
                     <img
                         className={css.localLogo}
@@ -37,7 +37,7 @@ class SmallFooterLocal extends React.Component {
 
     } else {
       logoHtml = (
-        <Link prefetch href="/local" as="/">
+        <Link href="/local" as="/">
           <a>
             <img
               className={css.localLogo}
@@ -53,7 +53,7 @@ class SmallFooterLocal extends React.Component {
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} site-max-width`}>
           {logoHtml}
-          <Link prefetch href="//dp.la">
+          <Link href="//dp.la">
             <a>
               <img
                 className={css.partnershipLogo}

@@ -6,7 +6,6 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import { getMenuItemUrl, wordpressLinks } from "lib";
 
@@ -53,7 +52,6 @@ class Guides extends React.Component {
                 role="main"
                 className={[css.content, contentCss.content].join(" ")}
               >
-                <WPEdit page={guide} url={router} />
                 <img
                   src={guide.bannerImage}
                   alt=""

@@ -17,7 +17,6 @@ const Button = ({
   expanded,
   icon,
   onClick,
-  prefetch,
   size,
   style,
   title,
@@ -76,7 +75,6 @@ const Button = ({
 
   let linkProps = {};
   if (as) linkProps["as"] = as;
-  if (prefetch) linkProps["prefetch"] = prefetch;
   if (title) linkProps["title"] = title;
 
   return (

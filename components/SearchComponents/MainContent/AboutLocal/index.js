@@ -13,7 +13,6 @@ import {
 import { LOCALS } from "constants/local";
 import { LOCAL_ID } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
 import css from "./AboutLocal.module.scss";
 
 const dplaLink = query => {
@@ -44,7 +43,7 @@ const dplaLink = query => {
 
 const AboutLocal = ({ items, count, query }) =>
   <section className={`${css.wrapper}`}>
-    <div className={`${utils.container}`}>
+    <div className={`.container`}>
       <h1 className={css.header}>
         <Link href={dplaLink(query)}>
           <a className="external">

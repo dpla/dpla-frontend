@@ -4,7 +4,6 @@ import Link from "next/link";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 import StayInformed from "shared/StayInformed";
 
 import css from "./HomePro.module.scss";
@@ -24,7 +23,6 @@ const HomePro = ({ url, news, content }) =>
         <p>
           DPLA Pro is where DPLA, our Hub Network, and our broader community
           connect and share resources.
-          <WPEdit page={content} url={url} />
         </p>
       </div>
     </div>

@@ -6,7 +6,6 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import { removeQueryParams } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
-import utils from "stylesheets/utils.scss";
 import css from "./BreadcrumbsModule.module.scss";
 
 const chevron = "/static/images/chevron-thick-orange.svg";
@@ -97,8 +96,8 @@ const BreadcrumbsModule = ({
   // searchItemCount,
   // paginationInfo
 }) =>
-  <div className={utils.breadcrumbsWrapper}>
-    <div className={[utils.container, utils.breadcrumbsModule].join(" ")}>
+  <div className={".breadcrumbsWrapper"}>
+    <div className={[utils.container, ".breadcrumbsModule"].join(" ")}>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
           Object.assign({}, breadcrumb, {

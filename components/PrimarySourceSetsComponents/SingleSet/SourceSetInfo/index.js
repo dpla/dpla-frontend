@@ -12,7 +12,6 @@ import {
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
-import utils from "stylesheets/utils.scss";
 import css from "./SourceSetInfo.module.scss";
 
 const googleClassroom = "/static/images/google-classroom.svg";
@@ -43,7 +42,7 @@ class SourceSetInfo extends React.Component {
     const authorList = set.author.map(author => author.name);
     return (
       <div id="main" role="main" className={css.wrapper} data-cy={'pss-main'}>
-        <div className={[css.sourceSetInfo, utils.container].join(" ")}>
+        <div className={[css.sourceSetInfo, '.container'].join(" ")}>
           <div className={`${css.removeScroll} row`}>
             <div className={`${css.removeScroll} col-xs-12 col-md-8`}>
               <div className={css.banner}>
@@ -116,7 +115,6 @@ class SourceSetInfo extends React.Component {
                       {extractTimePeriod(set.about).map((period, i, periods) =>
                         <li key={period}>
                           <Link
-                            prefetch
                             href={{
                               pathname: "/primary-source-sets",
                               query: {
@@ -142,7 +140,6 @@ class SourceSetInfo extends React.Component {
                       {extractSubjects(set.about).map((subject, i, subjects) =>
                         <li key={subject}>
                           <Link
-                            prefetch
                             href={{
                               pathname: "/primary-source-sets",
                               query: {

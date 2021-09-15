@@ -13,7 +13,7 @@ const Callout = ({ topics }) =>
           You might also like our Online Exhibitions.
         </p>
       </div>
-      <Button type="primary" url="/exhibitions" prefetch className={css.link}>
+      <Button type="primary" url="/exhibitions" className={css.link}>
         Visit Online Exhibitions
       </Button>
     </div>

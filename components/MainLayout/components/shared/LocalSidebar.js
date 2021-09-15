@@ -5,7 +5,7 @@ import css from "shared/ContentPagesSidebar/Sidebar.module.scss";
 
 const SidebarLink = ({ route, isActive, title }) => {
   return (
-    <Link prefetch href={"/local" + route} as={route}>
+    <Link href={"/local" + route} as={route}>
       <a className={`${css.link} ${isActive ? css.selected : ""}`}>
         {title}
       </a>

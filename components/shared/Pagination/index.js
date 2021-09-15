@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import Chevron from "../../../static/images/chevron-thick.svg";
+import Chevron from "../../../public/static/images/chevron-thick.svg";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
@@ -30,7 +30,6 @@ const centerWindow = (current, pageCount) => {
 
 const PageLink = ({ route, page, className }) =>
   <Link
-    prefetch
     href={{
       pathname: route.pathname,
       query: Object.assign({}, route.query, {
@@ -54,7 +53,6 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
         {type === "next" && <Chevron className={css.nextChevron} />}
       </button>
     : <Link
-        prefetch
         href={{
           pathname: route.pathname,
           query: Object.assign({}, route.query, {

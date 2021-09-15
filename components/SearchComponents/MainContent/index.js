@@ -8,7 +8,6 @@ import AboutLocal from "./AboutLocal";
 import { addLinkInfoToResults } from "lib";
 import { SITE_ENV } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
 import css from "./MainContent.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 
@@ -21,7 +20,7 @@ const MainContent = ({
   aboutness
 }) =>
   <div className={css.wrapper}>
-    <div className={[utils.container, css.mainContent].join(" ")}>
+    <div className={['.container', css.mainContent].join(" ")}>
       {results.length > 0 &&
         <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
           <Sidebar route={route} facets={facets} />

@@ -11,7 +11,6 @@ import {
   DEFAULT_PAGE_SIZE
 } from "constants/search";
 
-import utils from "stylesheets/utils.scss";
 import css from "./HarmfulContent.module.scss";
 
 
@@ -20,7 +19,7 @@ class HarmfulContent extends React.Component {
   render() {
     return (
       <div className={css.wrapper}>
-        <div className={utils.container}>
+        <div className={'.container'}>
           <p className={css.harmfulContent}>
             Please read <a href="https://dp.la/about/harmful-language-statement">DPLA’s Statement on Potentially Harmful Content</a>.
           </p>

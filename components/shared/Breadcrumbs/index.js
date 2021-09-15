@@ -10,7 +10,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
       if (idx < breadcrumbs.length - 1) {
         return (
           <div className={css.breadcrumbLinkWrapper} key={`${idx}`}>
-            <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
+            <Link href={breadcrumb.url} as={breadcrumb.as}>
               <a>
                 <ReactMarkdown
                   className={`${css.breadcrumbLink}`}

@@ -7,12 +7,11 @@ import {
   PSS_NHD_URL
 } from "constants/site";
 
-import utils from "stylesheets/utils.scss";
 import css from "./PSSFooter.module.scss";
 
 const OtherInfo = () =>
   <div className={css.wrapper} data-cy={'pss-footer'}>
-    <div className={[utils.container, css.otherInfo].join(" ")}>
+    <div className={['.container', css.otherInfo].join(" ")}>
       <p className={css.p}>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;

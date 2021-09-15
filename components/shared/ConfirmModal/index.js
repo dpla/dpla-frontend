@@ -3,8 +3,6 @@ import AriaModal from "react-aria-modal";
 
 import Button from "shared/Button";
 
-import utils from "stylesheets/utils.scss";
-
 const DEFAULT_CONFIRM_TEXT = "Are you sure?";
 const DEFAULT_BUTTON_TEXT = "Delete";
 const DEFAULT_CONFIRM_BUTTON_TEXT = "Delete";
@@ -56,17 +54,17 @@ class ConfirmModal extends React.Component {
         >
           <form
             action=""
-            className={utils.modalForm}
+            className={'.modalForm'}
             onSubmit={this.handleConfirm}
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <h2 className={utils.modalTitle}>
+            <h2 className={'.modalTitle'}>
               {confirmText}
             </h2>
-            <div className={utils.modalContinueCancelButtons}>
+            <div className={'.modalContinueCancelButtons'}>
               <Button
-                className={utils.modalCancelButton}
+                className={'.modalCancelButton'}
                 type="ghost"
                 id="confirm-cancel_button"
                 onClick={this.closeConfirm}
@@ -77,7 +75,7 @@ class ConfirmModal extends React.Component {
               <Button
                 type="primary"
                 mustSubmit={true}
-                className={utils.modalContinueButton}
+                className={'.modalContinueButton'}
               >
                 {confirmButtonText}
               </Button>

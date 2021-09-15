@@ -7,7 +7,6 @@ import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 
 import { wordpressLinks } from "lib";
 
@@ -43,7 +42,6 @@ class HubsPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="network" />
-            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
           {page.acf.feature &&

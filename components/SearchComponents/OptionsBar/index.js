@@ -11,7 +11,6 @@ import {
   DEFAULT_PAGE_SIZE
 } from "constants/search";
 
-import utils from "stylesheets/utils.scss";
 import css from "./OptionsBar.module.scss";
 
 const gridViewIcon = "/static/images/grid-view-icon.svg";
@@ -85,7 +84,7 @@ class OptionsBar extends React.Component {
     } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={[utils.container, css.optionsBar].join(" ")}>
+        <div className={['.container', css.optionsBar].join(" ")}>
           <div className={css.resultsAndFilter}>
             <h1 className={css.resultsCount}>
               <span>
@@ -178,7 +177,6 @@ class OptionsBar extends React.Component {
               </span>
               <div className={css.viewButtons}>
                 <Link
-                  prefetch
                   href={{
                     pathname: this.props.route.pathname,
                     query: Object.assign({}, this.props.route.query, {
@@ -202,7 +200,6 @@ class OptionsBar extends React.Component {
                   </a>
                 </Link>
                 <Link
-                  prefetch
                   href={{
                     pathname: this.props.route.pathname,
                     query: Object.assign({}, this.props.route.query, {

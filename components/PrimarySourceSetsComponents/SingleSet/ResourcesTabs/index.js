@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-import utils from "stylesheets/utils.scss";
 import css from "./ResourcesTabs.module.scss";
 
 class ResourcesTabs extends React.Component {
@@ -21,7 +20,6 @@ class ResourcesTabs extends React.Component {
               ].join(" ")}
             >
               <Link
-                prefetch
                 href={`/primary-source-sets/set?set=${route.query.set}#tabs`}
                 as={`/primary-source-sets/${route.query.set}#tabs`}
               >
@@ -40,7 +38,6 @@ class ResourcesTabs extends React.Component {
               ].join(" ")}
             >
               <Link
-                prefetch
                 href={`/primary-source-sets/set/additional-resources?set=${route
                   .query.set}#tabs`}
                 as={`/primary-source-sets/${route.query
@@ -61,7 +58,6 @@ class ResourcesTabs extends React.Component {
               ].join(" ")}
             >
               <Link
-                prefetch
                 href={`/primary-source-sets/set/teaching-guide?set=${route.query
                   .set}#tabs`}
                 as={`/primary-source-sets/${route.query

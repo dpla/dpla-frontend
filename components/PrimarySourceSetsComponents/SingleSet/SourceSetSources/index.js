@@ -5,19 +5,17 @@ import Link from "next/link";
 
 import { removeQueryParams, extractSourceId } from "lib";
 
-import utils from "stylesheets/utils.scss";
 import css from "./SourceSetSources.module.scss";
 
 const SourceSetSources = ({ route, sources }) =>
   <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>
-    <ul className={[css.sourceSetSources, utils.container].join(" ")}>
+    <ul className={[css.sourceSetSources, '.container'].join(" ")}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (
           <li className={css.set} key={i}>
             <Link
               key={name}
-              prefetch
               as={{
                 pathname: `/primary-source-sets/${route.query
                   .set}/sources/${sourceId}`,

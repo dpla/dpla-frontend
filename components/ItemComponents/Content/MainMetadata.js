@@ -78,7 +78,7 @@ class MainMetadata extends React.Component {
                 useDefaultImage={item.useDefaultImage}
               />
               {item.sourceUrl &&
-                <Link prefetch href={item.sourceUrl}>
+                <Link href={item.sourceUrl}>
                   <a
                     rel="noopener"
                     target="_blank"

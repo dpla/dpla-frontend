@@ -42,7 +42,6 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
         <div key={name} className={css.item}>
           {/* for some reason react-slick can't have <Link /> as direct child */}
           <Link
-            prefetch
             as={{
               pathname: `/primary-source-sets/${route.query
                 .set}/sources/${extractSourceId(sources[i]["@id"])}`,

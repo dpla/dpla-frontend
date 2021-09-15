@@ -7,7 +7,7 @@ import css from "./ExhibitionSection.module.scss";
 const Header = ({ title, router }) =>
   <div className={[css.header, '.container'].join(" ")}>
     <div className={css.exhibitionsLinkAndTitle}>
-      <Link prefetch href="/exhibitions">
+      <Link href="/exhibitions">
         <a className={css.exhibitionsLink}>Exhibitions</a>
       </Link>
       <h1 className={css.exhibitionTitle}>
@@ -15,7 +15,6 @@ const Header = ({ title, router }) =>
       </h1>
     </div>
     <Link
-      prefetch
       href={`/exhibitions/exhibition?exhibition=${router.query.exhibition}`}
       as={`/exhibitions/${router.query.exhibition}`}
     >

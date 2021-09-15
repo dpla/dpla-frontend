@@ -8,7 +8,6 @@ const Exhibition = withRouter(({ exhibition, router }) => {
   return exhibition
     ? <li>
         <Link
-          prefetch
           href={{
             pathname: "/exhibitions/exhibition",
             query: Object.assign({}, router.query, {

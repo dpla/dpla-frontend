@@ -31,7 +31,6 @@ const DPLAUsers = ({ guides }) =>
         <Button
           type="secondary"
           size="large"
-          prefetch
           className={css.captionButton}
           url={"/guides"}
         >

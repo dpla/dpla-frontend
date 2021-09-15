@@ -15,7 +15,7 @@ const NewsLane = ({ title, items }) =>
         <div className="col-xs-12 col-md-3">
           <div className={css.header}>
             <h2 className={css.headerText}>{title}</h2>
-            <Link prefetch href={`${USER_BASE_URL}/news`}>
+            <Link href={`${USER_BASE_URL}/news`}>
               <a className={`hover-underline ${css.headerLink}`}>
                 <span>Browse the archives</span>
                 <img
@@ -42,7 +42,6 @@ const NewsLane = ({ title, items }) =>
               <li key={post.id} className={`${css.post}`}>
                 <div className={css.postLink}>
                   <Link
-                    prefetch
                     as={`/news/${post.slug}`}
                     href={`/news/post?slug=${post.slug}`}
                   >

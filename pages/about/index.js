@@ -7,7 +7,6 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import {
@@ -23,7 +22,6 @@ import {
   decodeHTMLEntities
 } from "lib";
 
-import utils from "stylesheets/utils.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 
 class AboutMenuPage extends React.Component {
@@ -60,8 +58,7 @@ class AboutMenuPage extends React.Component {
         {breadcrumbs.length === 0 &&
           <FeatureHeader title={pageTitle} description={""} />}
         <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+          className={`.container ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar
@@ -72,7 +69,6 @@ class AboutMenuPage extends React.Component {
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={router} />
                 {breadcrumbs.length > 0 &&
                   <h1
                     dangerouslySetInnerHTML={{ __html: content.title.rendered }}

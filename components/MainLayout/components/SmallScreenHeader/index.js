@@ -41,13 +41,13 @@ class SmallScreenHeader extends Component {
       <div className={`${css.wrapper}`} data-cy="small-screen-header">
         <div className={css.header}>
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
-            <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
               <a className={css.logo}>
                 <span>Digital Public Library of America</span>
               </a>
             </Link>}
           {SITE_ENV === "local" &&
-            <Link prefetch as="/" href="/local">
+            <Link as="/" href="/local">
               <a>
                 <img
                   className={css.localLogo}

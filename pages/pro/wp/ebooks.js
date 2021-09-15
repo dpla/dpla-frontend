@@ -7,7 +7,6 @@ import IconComponent from "shared/IconComponent";
 import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 
 import { wordpressLinks } from "lib";
 
@@ -45,7 +44,6 @@ class EbooksPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="ebooks" />
-            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
        

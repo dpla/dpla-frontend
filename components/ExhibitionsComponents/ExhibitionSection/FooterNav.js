@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router"
 
-import DPLALogoWide from "../../../static/images/dpla-logo-black.svg";
+import DPLALogoWide from "../../../public/static/images/dpla-logo-black.svg";
 
 import css from "./ExhibitionSection.module.scss";
 
@@ -12,9 +12,8 @@ const blackChevron = "/static/images/chevron-thick-black.svg";
 const NavButton = withRouter(({ queryParams, router, nextOrPrevious = "next" }) =>
   queryParams
     ? <Link
-        prefetch
         href={{
-          pathname: route.pathname,
+          pathname: router.pathname,
           query: {
             exhibition: queryParams.exhibition,
             section: queryParams.section,
@@ -56,13 +55,12 @@ const FooterNav = withRouter(({
   nextSubsectionTitle
 }) =>
   <div className={css.footerWrapper}>
-    <div className={[utils.container, css.footerNav].join(" ")}>
-      <Link prefetch href="/">
+    <div className={['.container', css.footerNav].join(" ")}>
+      <Link href="/">
         <DPLALogoWide className={css.dplaLogo} />
       </Link>
       <div className={css.navButtons}>
         <NavButton
-          route={route}
           queryParams={previousQueryParams}
           nextOrPrevious="previous"
         />
@@ -72,7 +70,6 @@ const FooterNav = withRouter(({
               {nextSubsectionTitle}
             </div>}
           <NavButton
-            route={route}
             queryParams={nextQueryParams}
             nextSubsectionTitle={nextQueryParams && nextSubsectionTitle}
             nextOrPrevious="next"

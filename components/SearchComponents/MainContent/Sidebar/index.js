@@ -31,6 +31,7 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
         </span>);
     }
 
+
     const href = {
         pathname: route.pathname,
         query: Object.assign({}, route.query, {

@@ -15,7 +15,6 @@ const TagList = ({ url, currentTag, keywords, author }) =>
       const id = tag.id;
       const markup = tag.name.toLowerCase().replace(" ", "-") !== currentTag
         ? <Link
-            prefetch
             href={{
               pathname: url.pathname,
               query: Object.assign({}, url.query, {

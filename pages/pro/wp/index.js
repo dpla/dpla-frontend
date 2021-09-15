@@ -8,7 +8,6 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import {
   endsWith,
@@ -74,7 +73,6 @@ class ProMenuPage extends React.Component {
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={page} url={router} />
                 {/* fancy pages (with illustrations) get special heading */}
                 {illustration &&
                   <div>

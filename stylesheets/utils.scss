@@ -11,7 +11,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
 select {
   appearance: none;
-  background: url(/static/images/chevron-thick-black-down.svg) no-repeat white;
+  background: url(/public/static/images/chevron-thick-black-down.svg) no-repeat white;
   background-position: calc(100% - 0.5rem) center;
   background-size: 0.9em;
   border: 0.075rem solid $formLabelColor;
@@ -163,14 +163,14 @@ a {
   text-decoration: none;
 
   &:global.external {
-    background-image: url("/static/images/external-link-blue.svg");
+    background-image: url("/public/static/images/external-link-blue.svg");
     background-position: center right;
     background-repeat: no-repeat;
     background-size: 0.7em;
     padding-right: 1em;
 
     &.white {
-      background-image: url("/static/images/external-link-white.svg");
+      background-image: url("/public/static/images/external-link-white.svg");
       background-position: 90% center;
       padding-right: 0;
     }

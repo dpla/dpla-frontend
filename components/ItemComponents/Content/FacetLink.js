@@ -5,7 +5,6 @@ import css from "./Content.module.scss";
 
 const FacetLink = ({ facet, value, facetLabel }) =>
   <Link
-    prefetch
     href={{ pathname: "/search", query: { [facet]: `"${value}"` } }}
   >
     <a

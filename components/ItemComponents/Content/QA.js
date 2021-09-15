@@ -40,7 +40,7 @@ class QA extends React.Component {
 
         {randomItemId &&
           <div style={{ padding: "8px 20px 20px" }}>
-            <Link prefetch href={`/item/${randomItemId}`}>
+            <Link href={`/item/${randomItemId}`}>
               <a className={`internalItemLink`}>
                 Fetch Random Item
               </a>

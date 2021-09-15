@@ -74,7 +74,6 @@ const ItemLink = withRouter(({
   originalUrl
 }) =>
   <Link
-    prefetch
     href={{
       pathname: router.pathname,
       query: Object.assign({}, router.query, { item: itemId })
@@ -157,15 +156,14 @@ class Viewer extends React.Component {
             <div className={css.mainMedia}>
               {previousPage &&
                 <Link
-                  prefetch
                   href={{
-                    pathname: route.pathname,
-                    query: Object.assign({}, route.query, {
+                    pathname: router.pathname,
+                    query: Object.assign({}, router.query, {
                       item: previousPage.id
                     })
                   }}
-                  as={`/exhibitions/${route.query.exhibition}/${route.query
-                    .section}/${route.query
+                  as={`/exhibitions/${router.query.exhibition}/${router.query
+                    .section}/${router.query
                     .subsection}?item=${previousPage.id}`}
                 >
                   <a className={css.previousItemButton}>
@@ -185,7 +183,6 @@ class Viewer extends React.Component {
               )}
               {nextPage &&
                 <Link
-                  prefetch
                   href={{
                     pathname: router.pathname,
                     query: Object.assign({}, router.query, { item: nextPage.id })
@@ -213,7 +210,6 @@ class Viewer extends React.Component {
             </ul>
             {itemId &&
               <Link
-                prefetch
                 as={`/item/${itemId}`}
                 href={`/item?itemId=${itemId}`}
               >

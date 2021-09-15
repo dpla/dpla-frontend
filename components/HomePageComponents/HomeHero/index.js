@@ -69,19 +69,19 @@ const HomeHero = ({ headerDescription, feature }) =>
       </form>
       {SITE_ENV !== "local" &&
         <div className={css.links}>
-          <Link prefetch href="/browse-by-topic">
+          <Link href="/browse-by-topic">
             <a title="Browse DPLA by a curated set of topics">
               Browse by Topic
             </a>
           </Link>
-          <Link prefetch href="/guides">
+          <Link href="/guides">
             <a title="View our Getting Started Guides">New? Start Here</a>
           </Link>
         </div>}
       {SITE_ENV === "local" &&
         LOCALS[LOCAL_ID].hasAbout &&
         <div className={css.links}>
-          <Link prefetch href="/local/about" as="/about">
+          <Link href="/local/about" as="/about">
             <a>Learn more about {LOCALS[LOCAL_ID].name}</a>
           </Link>
         </div>}

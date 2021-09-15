@@ -8,7 +8,6 @@ import {
 } from "constants/search";
 import { removeQueryParams, joinIfArray } from "lib";
 
-import utils from "stylesheets/utils.scss";
 import css from "./FiltersList.module.scss";
 
 const closeIcon = "/static/images/close-white.svg";
@@ -42,7 +41,6 @@ const Filter = ({ name, queryKey, route }) => {
   return (
     <li className={css.filter}>
       <Link
-        prefetch
         href={{
           pathname: route.pathname,
           query: Object.assign({}, clearFacet(route.query, queryKey, name))
@@ -72,7 +70,7 @@ class FiltersList extends React.Component {
           <div
             className={`${showFilters
               ? css.isOpen
-              : ""} ${css.filtersList} ${utils.container}`}
+              : ""} ${css.filtersList} .container`}
           >
             <div className={css.labelAndFilters}>
               <span className={css.labelText}>Filtered by</span>
@@ -110,7 +108,6 @@ class FiltersList extends React.Component {
               </ul>
             </div>
             <Link
-              prefetch
               href={{
                 pathname: this.props.route.pathname,
                 query: Object.assign({}, clearAllFacets(query))

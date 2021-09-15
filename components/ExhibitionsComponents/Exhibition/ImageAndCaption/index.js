@@ -26,7 +26,6 @@ const ImageAndCaption = ({ exhibition, route }) =>
             <Button
               type="primary"
               size="large"
-              prefetch
               className={css.exploreLink}
               url={{
                 pathname: "/exhibitions/exhibition/section/subsection",

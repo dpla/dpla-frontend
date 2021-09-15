@@ -49,7 +49,6 @@ class Details extends React.Component {
                 {exhibition.sections.map((section, idx) =>
                   <li key={idx} className={css.tableOfContentsSection}>
                     <Link
-                      prefetch
                       href={{
                         pathname: "/exhibitions/exhibition/section/subsection",
                         query: Object.assign({}, route.query, {
@@ -88,7 +87,6 @@ class Details extends React.Component {
               <Button
                 type="primary"
                 size="large"
-                prefetch
                 className={css.exploreLink}
                 url={{
                   pathname: "/exhibitions/exhibition/section/subsection",
