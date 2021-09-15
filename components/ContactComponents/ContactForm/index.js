@@ -4,6 +4,7 @@ import fetch from "isomorphic-fetch";
 import Button from "shared/Button";
 
 import css from "./ContactForm.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const selectOptions = [
   { value: "General inquiry", label: "General inquiry" },
@@ -241,7 +242,7 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-subject">
-                <span className={css.notFixed}>
+                <span>
                   Subject (required)
                 </span>
                 <select
@@ -265,7 +266,7 @@ class ContactForm extends React.Component {
                 tabIndex="-1"
                 autoComplete="off"
               />
-              <div className={`col-xs-12 col-md-4`}>
+              <div className={`${utils.col-xs-12} ${utils.col-md-4}`}>
                 {!this.state.isSending &&
                   <Button type="primary" {...buttonProps}>
                     Send message

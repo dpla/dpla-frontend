@@ -14,7 +14,7 @@ import {
 
 import css from "./Sidebar.module.scss";
 
-const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
+const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
   return (
     <Link as={linkObject.as} href={linkObject.href}>
       <a className={`${css.link} ${isCurrentLink ? css.selected : ""}`}>
@@ -203,7 +203,6 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
           {eventsId &&
             <li>
               <NestedSidebarLinks
-                route={route}
                 activeItemId={activeItemId}
                 item={eventsItem}
                 items={items}

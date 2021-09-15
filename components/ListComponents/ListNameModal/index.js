@@ -7,6 +7,8 @@ const DEFAULT_NAME = "Untitled list";
 const DEFAULT_TYPE = "create";
 const NAME_CHAR_LIMIT = 64;
 
+import utils from "stylesheets/utils.module.scss"
+
 class ListNameModal extends React.Component {
   state = {
     active: false,
@@ -69,7 +71,7 @@ class ListNameModal extends React.Component {
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <h2 className={'.modalTitle'}>
+            <h2 className={utils.modalTitle}>
               <label htmlFor="list-name">
                 Name your list
               </label>

@@ -7,6 +7,8 @@ const DEFAULT_CONFIRM_TEXT = "Are you sure?";
 const DEFAULT_BUTTON_TEXT = "Delete";
 const DEFAULT_CONFIRM_BUTTON_TEXT = "Delete";
 
+import utils from "stylesheets/utils.module.scss"
+
 class ConfirmModal extends React.Component {
   state = {
     confirmText: DEFAULT_CONFIRM_TEXT,
@@ -54,17 +56,17 @@ class ConfirmModal extends React.Component {
         >
           <form
             action=""
-            className={'.modalForm'}
+            className={utils.modalForm}
             onSubmit={this.handleConfirm}
             key={this.state.timestamp}
             aria-live="assertive"
           >
-            <h2 className={'.modalTitle'}>
+            <h2 className={utils.modalTitle}>
               {confirmText}
             </h2>
             <div className={'.modalContinueCancelButtons'}>
               <Button
-                className={'.modalCancelButton'}
+                className={utils.modalCancelButton}
                 type="ghost"
                 id="confirm-cancel_button"
                 onClick={this.closeConfirm}
@@ -75,7 +77,7 @@ class ConfirmModal extends React.Component {
               <Button
                 type="primary"
                 mustSubmit={true}
-                className={'.modalContinueButton'}
+                className={utils.modalContinueButton}
               >
                 {confirmButtonText}
               </Button>

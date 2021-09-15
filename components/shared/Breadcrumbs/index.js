@@ -9,11 +9,11 @@ const Breadcrumbs = ({ breadcrumbs }) => (
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
-          <div className={css.breadcrumbLinkWrapper} key={`${idx}`}>
+          <div className={css.breadcrumbLinkWrapper} key={idx}>
             <Link href={breadcrumb.url} as={breadcrumb.as}>
               <a>
                 <ReactMarkdown
-                  className={`${css.breadcrumbLink}`}
+                  className={css.breadcrumbLink}
                   source={breadcrumb.title}
                   allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
@@ -29,7 +29,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
             source={breadcrumb.title}
             allowedTypes={["emphasis", "text"]}
             unwrapDisallowed
-            key={`${idx}`}
+            key={idx}
           />
         );
       }
