@@ -35,7 +35,7 @@ class TeachersGuide extends React.Component {
       >
         <div className={`${css.teachingGuide} ${utils.container}`}>
           <div className="row">
-            <div className="col-xs-12 col-md-8">
+            <div className={`${utils.colXs12} ${utils.colMd8}`}>
               <div className={css.content}>
                 <div className={contentCss.content}>
                   <h3>Discussion questions</h3>
@@ -76,7 +76,7 @@ class TeachersGuide extends React.Component {
                         query: removeQueryParams(route.query, ["set"])
                       }}
                     >
-                      <a className={`link ${css.aboutThisLink}`}>
+                      <a className={`${utils.link} ${css.aboutThisLink}`}>
                         <ReactMarkdown
                           source={teachingGuide.isPartOf.name}
                           allowedTypes={["emphasis"]}
@@ -96,8 +96,8 @@ class TeachersGuide extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={`col-xs-12 col-md-4 ${css.sidebar}`}>
-              <div className={[css.teacherTools, css.sidebarSection].join(" ")}>
+            <div className={`${utils.colXs12} ${utils.colMd4} ${css.sidebar}`}>
+              <div className={`${css.teacherTools} ${css.sidebarSection}`}>
                 <h3 className={css.sidebarHeader}>Created By</h3>
                 {teachingGuide.author.map((author, i) =>
                   <ReactMarkdown

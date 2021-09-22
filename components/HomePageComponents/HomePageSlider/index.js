@@ -9,8 +9,6 @@ import css from "./HomePageSlider.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
-const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
-const largeChevron = "static/images/chevron-thin.svg";
 
 const HomePageSlider = ({
   browseLinkName,
@@ -25,7 +23,7 @@ const HomePageSlider = ({
       <div className={css.heading}>
         <h2 className={css.title}>{title}</h2>
         <Link href={browseLinkUrl}>
-          <a className={`hover-underline ${css.moreLink}`}>
+          <a className={`${utils.hoverUnderline} ${css.moreLink}`}>
             Browse all{" "}
             <span className={css.moreLinkNoun}>{browseLinkName}</span>
             <img

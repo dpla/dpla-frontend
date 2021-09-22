@@ -13,7 +13,6 @@ const ImageAndCaption = ({ exhibition, route }) =>
       <div className={css.imageWrapper}>
         <div
           className={css.image}
-          alt={exhibition.title}
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`
           }}

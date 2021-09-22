@@ -30,8 +30,8 @@ const mapPartnersToComponents = partners =>
 
 const PartnerBrowseContent = ({ partners }) =>
   <div className={`${utils.container} ${css.partnerBrowse}`}>
-    <div className={`row`}>
-      <ul className={`${css.partners} col-xs-12`}>
+    <div className={utils.row}>
+      <ul className={`${css.partners} ${utils.colXs12}`}>
         {mapPartnersToComponents(partners)}
       </ul>
     </div>

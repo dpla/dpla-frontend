@@ -93,7 +93,7 @@
 .navArrow {
   top: 50%;
 
-  @media (min-width: largeRem) {
+  @media (min-width: $largeRem) {
     top: 40%;
   }
 }

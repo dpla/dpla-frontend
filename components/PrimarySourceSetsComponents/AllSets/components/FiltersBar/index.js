@@ -8,9 +8,11 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+
 import { removeQueryParams } from "lib";
 
 import css from "shared/FiltersBar/FiltersBar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class FiltersBar extends React.Component {
   componentWillMount() {
@@ -96,7 +98,7 @@ class FiltersBar extends React.Component {
     return (
       <div className={css.filtersWrapper}>
         <div className={`${css.filters} ${utils.siteMaxWidth}`}>
-          <div className={`row ${css.filtersRow}`}>
+          <div className={`${utils.row} ${css.filtersRow}`}>
             {(this.state.timePeriodValue !== "all-time-periods" ||
               this.state.subjectValue !== "all-subjects") &&
               <div className={css.clearAll}>
@@ -120,7 +122,7 @@ class FiltersBar extends React.Component {
                   <span>Clear filters</span>
                 </button>
               </div>}
-            <div className={`${css.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd3}`}>
               <label htmlFor="filter-subject">Subject</label>
               <select
                 id="filter-subject"
@@ -134,7 +136,7 @@ class FiltersBar extends React.Component {
                 )}
               </select>
             </div>
-            <div className={`${css.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd3}`}>
               <label htmlFor="filter-period">Time Period</label>
               <select
                 id="filter-period"
@@ -148,7 +150,7 @@ class FiltersBar extends React.Component {
                 )}
               </select>
             </div>
-            <div className={`${css.filter} col-xs-12 col-md-4`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd4}`}>
               <label htmlFor="filter-sort">Sort by</label>
               <select
                 id="filter-sort"

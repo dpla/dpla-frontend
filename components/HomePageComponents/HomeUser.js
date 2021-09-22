@@ -10,7 +10,6 @@ import WebsiteFeature from "shared/WebsiteFeature";
 import css from "./HomeUser.module.scss";
 
 const HomeUser = ({
-  url,
   sourceSets,
   exhibitions,
   guides,

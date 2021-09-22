@@ -1,10 +1,9 @@
 import React from "react";
-import Link from "next/link";
 
 import Button from "components/shared/Button";
 import css from "./Callout.module.scss";
 
-const Callout = ({ topics }) =>
+const Callout = () =>
   <div className={css.calloutWrapper}>
     <div className={css.callout}>
       <div className={css.content}>

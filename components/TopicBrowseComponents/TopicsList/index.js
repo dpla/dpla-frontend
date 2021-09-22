@@ -5,12 +5,11 @@ import Topics from "./components/Topics";
 import Callout from "./components/Callout";
 
 import { TITLE, DESCRIPTION } from "constants/topicBrowse";
-import css from "components/HomePageComponents/HomeUser.module.scss";
 
 // NB: a FiltersBar component already exists in this directory,
 // but we don't need it yet—there aren't enough topics to warrant filtering
 const TopicsList = ({ topics }) =>
-  <div className={css.wrapper}>
+  <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <Topics topics={topics} />
     <Callout />

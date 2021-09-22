@@ -3,8 +3,9 @@ import Link from "next/link";
 import { withRouter } from 'next/router'
 
 import css from "./ExhibitionsList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
-const Exhibition = withRouter(({ exhibition, router }) => {
+const Exhibition = withRouter(({exhibition: exhibition, router }) => {
   return exhibition
     ? <li>
         <Link
@@ -39,16 +40,15 @@ const Exhibition = withRouter(({ exhibition, router }) => {
           </a>
         </Link>
       </li>
-    : null;
+    : <></>;
 });
 
-const ExhibitionsList = ({ exhibitions, router }) =>
+const ExhibitionsList = ({ exhibitions }) =>
   <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
     <div className={css.row}>
       <ul className={css.exhibitionList}>
         {exhibitions.map((exhibition, index) =>
           <Exhibition
-
             exhibition={exhibition}
             key={exhibition.slug}
           />

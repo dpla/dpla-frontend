@@ -9,12 +9,13 @@ import {
 } from "constants/primarySourceSets";
 
 import css from "./SetsList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SetsList = ({ sets, route }) =>
   <div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
-    <ul className="row">
+    <ul className={utils.row}>
       {sets.itemListElement.map(set =>
-        <li className={`${css.itemWrapper} col-xs-6 col-md-4`} key={set.name}>
+        <li className={`${css.itemWrapper} ${utils.colXs6} ${utils.colMd4}`} key={set.name}>
           <div className={css.item}>
             <Link
               href={{
@@ -49,7 +50,7 @@ const SetsList = ({ sets, route }) =>
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a className={`${css.title} hover-underline`} title={set.name}>
+                <a className={`${css.title} ${utils.hoverUnderline}`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
                     allowedTypes={["emphasis", "text"]}

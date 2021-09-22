@@ -56,3 +56,11 @@
   height: auto;
   border-radius: 3px;
 }
+
+.navArrow {
+  top: 50%;
+
+  @media (min-width: $largeRem) {
+    top: 40%;
+  }
+}

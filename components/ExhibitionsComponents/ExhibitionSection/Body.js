@@ -19,7 +19,7 @@ class Body extends React.Component {
   render() {
     const { exhibition, section, subsection, route } = this.props;
     return (
-      <div className={[utils.container, css.body].join(" ")}>
+      <div className={`${utils.container} ${css.body}`}>
         <Subheader
           onClickMenuButton={() => this.toggleMenu()}
           section={section}

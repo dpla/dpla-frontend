@@ -6,13 +6,12 @@ import {
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
-import { removeQueryParams, joinIfArray } from "lib";
+import { joinIfArray } from "lib";
 
 import css from "./FiltersList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const closeIcon = "/static/images/close-white.svg";
-
-import utils from "stylesheets/utils.module.scss"
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
@@ -104,7 +103,7 @@ class FiltersList extends React.Component {
                       })
                     );
                   } else {
-                    return null;
+                    return <></>;
                   }
                 })}
               </ul>

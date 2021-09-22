@@ -10,6 +10,7 @@ const NAME_CHAR_LIMIT = 64;
 import utils from "stylesheets/utils.module.scss"
 
 class ListNameModal extends React.Component {
+
   state = {
     active: false,
     value: "",
@@ -66,7 +67,7 @@ class ListNameModal extends React.Component {
         >
           <form
             action=""
-            className={'.modalForm'}
+            className={utils.modalForm}
             onSubmit={this.handleSubmit}
             key={this.state.timestamp}
             aria-live="assertive"
@@ -77,7 +78,7 @@ class ListNameModal extends React.Component {
               </label>
             </h2>
             <input
-              className={'.modalTextInput'}
+              className={utils.modalTextInput}
               id="list-name"
               name="list-name"
               placeholder="Untitled list"
@@ -86,9 +87,9 @@ class ListNameModal extends React.Component {
               onChange={this.onValueChange}
               aria-label="Name your list"
             />
-            <div className={'.modalContinueCancelButtons'}>
+            <div className={utils.modalContinueCancelButtons}>
               <Button
-                className={'.modalCancelButton'}
+                className={utils.modalCancelButton}
                 type="ghost"
                 id="list-cancel_button"
                 onClick={this.closeForm}
@@ -99,7 +100,7 @@ class ListNameModal extends React.Component {
               <Button
                 type="primary"
                 mustSubmit={true}
-                className={'.modalContinueButton'}
+                className={utils.modalContinueButton}
               >
                 {type === DEFAULT_TYPE ? "Create" : "Rename"}
               </Button>

@@ -1,9 +1,16 @@
 @import "stylesheets/variables.module";
 
+h2 {
+  margin: 1rem 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 select {
   appearance: none;
-  background: url("/static/images/chevron-thick-black-down.svg") no-repeat white;
-  background-position: calc(100% - 0.5rem) center;
+  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat calc(100% - 0.5rem) center;
   background-size: 0.9em;
   border: 0.075rem solid $formLabelColor;
   border-radius: 0.25rem;

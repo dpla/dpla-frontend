@@ -85,7 +85,7 @@ class OptionsBar extends React.Component {
     } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={[utils.container, css.optionsBar].join(" ")}>
+        <div className={`${utils.container} ${css.optionsBar}`}>
           <div className={css.resultsAndFilter}>
             <h1 className={css.resultsCount}>
               <span>

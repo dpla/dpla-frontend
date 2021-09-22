@@ -14,6 +14,7 @@ import {
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
+
 import {
   getBreadcrumbs,
   getItemWithId,
@@ -27,7 +28,7 @@ import utils from "stylesheets/utils.module.scss"
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    var links = document.getElementById("main").getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
@@ -47,6 +48,7 @@ class AboutMenuPage extends React.Component {
       pageTitle,
       pageDescription
     } = this.props;
+
     return (
       <MainLayout
         route={router}
@@ -61,14 +63,14 @@ class AboutMenuPage extends React.Component {
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               route={router}
               items={items}
               activeItemId={content.id}
               className={contentCss.sidebar}
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
                 {breadcrumbs.length > 0 &&
                   <h1

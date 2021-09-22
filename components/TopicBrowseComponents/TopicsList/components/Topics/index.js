@@ -10,11 +10,11 @@ const Topics = ({ topics }) =>
       This is a new feature designed to showcase content strengths in our
       collection. Look for new topics in the future!
     </p>
-    <ul className="row">
+    <ul className={utils.row}>
       {topics.map((topic, index) =>
         <li
           key={`${topic.name}-${index}`}
-          className="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+          className={`${utils.colXs12} ${utils.colSm6} ${utils.colMd4} ${utils.colLg3}`}
         >
           <Link
             as={`/browse-by-topic/${topic.slug}`}

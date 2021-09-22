@@ -11,10 +11,10 @@ const MainContent = ({ topic }) =>
     <div className={`${utils.container} ${css.container}`}>
       <h1 className={css.header}>{topic.name}</h1>
       <HeadingRule color="#F9BA3F" />
-      <ul className="row">
+      <ul className={utils.row}>
         {topic.subtopics.map((subtopic, index) =>
           <li
-            className={`${css.subtopic} col-xs-12 col-sm-6 col-md-4`}
+            className={`${css.subtopic} ${utils.colXs12} ${utils.colSm6} ${utils.colMd4}`}
             key={`${subtopic.name}-${index}`}
           >
             <Link

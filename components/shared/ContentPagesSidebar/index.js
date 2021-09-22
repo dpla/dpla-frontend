@@ -13,6 +13,7 @@ import {
 } from "lib";
 
 import css from "./Sidebar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
   return (
@@ -168,7 +169,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
   ];
 
   return (
-    <div className={`${className} col-xs-12 col-md-4`}>
+    <div className={`${className} ${utils.colXs12} ${utils.colMd4}`}>
       <div className={css.sidebar}>
         <ul className={css.links}>
           {items

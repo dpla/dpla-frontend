@@ -1,5 +1,7 @@
 @import "stylesheets/variables.module";
 
+.wrapper {}
+
 .details {
   display: flex;
   flex-direction: column;
@@ -50,6 +52,8 @@
     padding: 1.25rem;
   }
 }
+
+.tableOfContentsSections {}
 
 .tableOfContentsContents {
   padding: 1rem;

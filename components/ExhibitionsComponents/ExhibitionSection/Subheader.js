@@ -2,9 +2,6 @@ import React from "react";
 
 import css from "./ExhibitionSection.module.scss";
 
-const menuButtonIcon = "/static/images/menu-black.svg";
-const closeIcon = "/static/images/close-white.svg";
-
 const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
   <div className={`${isMenuOpen ? css.openMenu : ""}`}>
     <div className={css.menuButtonAndBreadcrumbs}>

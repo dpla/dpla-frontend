@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Content.module.scss";
-
 const FacetLink = ({ facet, value, facetLabel }) =>
   <Link
     href={{ pathname: "/search", query: { [facet]: `"${value}"` } }}

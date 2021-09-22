@@ -8,6 +8,7 @@ import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
@@ -20,6 +21,7 @@ const googleClassroom = "/static/images/google-classroom.svg";
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
   tags.filter(tag => tag.sameAs).map(tag => tag.name);
+
 const extractSubjects = tags =>
   tags.filter(tag => !tag.sameAs).map(tag => tag.name);
 
@@ -43,9 +45,9 @@ class SourceSetInfo extends React.Component {
     const authorList = set.author.map(author => author.name);
     return (
       <div id="main" role="main" className={css.wrapper} data-cy={'pss-main'}>
-        <div className={[css.sourceSetInfo, utils.container].join(" ")}>
-          <div className={`${css.removeScroll} row`}>
-            <div className={`${css.removeScroll} col-xs-12 col-md-8`}>
+        <div className={`${css.sourceSetInfo} ${utils.container}`}>
+          <div className={`${css.removeScroll} ${utils.row}`}>
+            <div className={`${css.removeScroll} ${utils.colXs12} ${utils.colMd8}`}>
               <div className={css.banner}>
                 <div
                   className={css.bannerImage}
@@ -92,7 +94,7 @@ class SourceSetInfo extends React.Component {
                 </span>
               </div>
             </div>
-            <div className={`${css.removeScroll} col-xs-12 col-md-4`}>
+            <div className={`${css.removeScroll} ${utils.colXs12} ${utils.colMd4}`}>
               <div className={css.sidebar}>
                 <div className={css.metadata}>
                   <div className={css.metadatum}>
@@ -123,7 +125,7 @@ class SourceSetInfo extends React.Component {
                               }
                             }}
                           >
-                            <a className={`link ${css.link}`}>
+                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={period}
                                 allowedTypes={["emphasis", "text"]}
@@ -148,7 +150,7 @@ class SourceSetInfo extends React.Component {
                               }
                             }}
                           >
-                            <a className={`link ${css.link}`}>
+                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={subject}
                                 allowedTypes={["emphasis", "text"]}

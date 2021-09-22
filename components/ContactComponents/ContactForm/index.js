@@ -266,7 +266,7 @@ class ContactForm extends React.Component {
                 tabIndex="-1"
                 autoComplete="off"
               />
-              <div className={`${utils.col-xs-12} ${utils.col-md-4}`}>
+              <div className={`${utils.colXs12} ${utils.colMd4}`}>
                 {!this.state.isSending &&
                   <Button type="primary" {...buttonProps}>
                     Send message

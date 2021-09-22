@@ -60,10 +60,6 @@ const JsonLdMarkup = ({ item, url }) => {
       item.contributor
     ]);
 
-    var mapped = all.map(x => {
-      return { "@type": "Organization", name: x };
-    });
-
     const dpla = {
       "@type": "Organization",
       name: "Digital Public Library of America",
@@ -71,8 +67,9 @@ const JsonLdMarkup = ({ item, url }) => {
       url: "https://dp.la/"
     };
 
-    mapped.push(dpla);
-    return mapped;
+    return all.map(x => {
+      return { "@type": "Organization", name: x };
+    }).push(dpla);
   };
 
   /**
@@ -209,7 +206,7 @@ const JsonLdMarkup = ({ item, url }) => {
   };
 
   /**
-    * @retrun Array[Object]
+    * @return Array[Object]
     */
   const subject = () => {
     const all = definedAndFlattened([item.subject]);

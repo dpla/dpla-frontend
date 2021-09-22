@@ -4,6 +4,8 @@ import Link from "next/link";
 import { LOCAL_ID } from "constants/env";
 
 import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
+
 import { LOCALS } from "constants/local";
 
 const logo = "/static/images/dpla-logo.svg";
@@ -53,7 +55,7 @@ class SmallFooterLocal extends React.Component {
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           {logoHtml}
-          <Link href="//dp.la">
+          <Link href="https://dp.la">
             <a>
               <img
                 className={css.partnershipLogo}

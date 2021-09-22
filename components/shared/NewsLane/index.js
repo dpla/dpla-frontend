@@ -12,8 +12,8 @@ const smallChevron = "/static/images/chevron-thick-orange.svg";
 const NewsLane = ({ title, items }) =>
   <div className={css.wrapper} data-cy="news">
     <div className={`${css.content} ${utils.siteMaxWidth}`}>
-      <div className="row">
-        <div className="col-xs-12 col-md-3">
+      <div className={utils.row}>
+        <div className={`${utils.colXs12} ${utils.colMd3}`}>
           <div className={css.header}>
             <h2 className={css.headerText}>{title}</h2>
             <Link href={`${USER_BASE_URL}/news`}>
@@ -28,7 +28,7 @@ const NewsLane = ({ title, items }) =>
             </Link>
           </div>
         </div>
-        <ul className="col-xs-12 col-md-9">
+        <ul className={`${utils.colXs12} ${utils.colMd9}`}>
           {items.map((post, index) => {
             const dateText = formatDate(post.date);
             let summary = post.acf.summary

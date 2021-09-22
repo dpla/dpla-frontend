@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router"
 
-import DPLALogoWide from "../../../public/static/images/dpla-logo-black.svg";
+import DPLALogoWide from "public/static/images/dpla-logo-black.svg";
 
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"

@@ -152,7 +152,7 @@
   height: 1.25rem;
 
   &:last-child {
-    padding: none;
+    padding: 0;
   }
 
   @media (min-width: $mediumRem) {

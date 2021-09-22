@@ -56,12 +56,11 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
           >
             <a>
               <div
-                className={[
-                  css.itemImgWrapper,
-                  useDefaultImage ? css.defaultImageWrapper : "",
-                  i === currentSourceIdx && css.currentItemImgWrapper
-                ].join(" ")}
-              >
+                className={`
+                    ${css.itemImgWrapper} 
+                    ${useDefaultImage ? css.defaultImageWrapper : ""}
+                    ${i === currentSourceIdx && css.currentItemImgWrapper}`
+                }>
                 <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
               <ReactMarkdown

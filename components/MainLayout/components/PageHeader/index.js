@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 
-import DPLALogoWide from "../../../../public/static/images/dpla-logo-white.svg";
+import DPLALogoWide from "public/static/images/dpla-logo-white.svg";
 
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";

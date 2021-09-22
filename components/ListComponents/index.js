@@ -26,7 +26,7 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
   </Link>;
 
 export const Lists = ({ lists }) =>
-  <ul className={`${css.lists} col-xs-12`}>
+  <ul className={`${css.lists} ${utils.colXs12}`}>
     {lists.map((l, index) =>
       <li key={`l_${index}`}>
         <List
@@ -67,7 +67,7 @@ export const ListEmpty = () =>
   </div>;
 
 export const ListNote = () =>
-  <div className={`${css.note} col-xs-12`}>
+  <div className={`${css.note} ${utils.colXs12}`}>
     <p>
       <strong>Note:</strong> You won't see lists created in
       another browser here. To view those lists, open the browser
@@ -76,7 +76,7 @@ export const ListNote = () =>
   </div>;
 
 export const ListsEmpty = () =>
-  <div className={`${css.empty}  col-xs-12`}>
+  <div className={`${css.empty} ${utils.colXs12}`}>
     <h2 className={css.contentTitle}>Create your lists</h2>
     <p>
       Create lists from our{" "}
@@ -136,13 +136,13 @@ export const ListsEmpty = () =>
   </div>;
 
 export const ListLoading = () =>
-  <div className={`${css.loading}`}>
+  <div className={css.loading}>
     <h2 className={css.contentTitle}>Loading</h2><p>Please wait…</p>
   </div>;
 
 export const ListsContent = ({ initialized, lists, onCreateList }) =>
   <div className={utils.container}>
-    <div className={`row ${css.wrapper}`}>
+    <div className={`${utils.row} ${css.wrapper}`}>
       {!initialized && <ListLoading />}
       {initialized && lists.length > 0 && <ListNote />}
       {initialized && lists.length === 0 && <ListsEmpty />}
@@ -176,7 +176,7 @@ export const ListCheckbox = ({
         value={list.uuid}
         checked={isChecked}
         onChange={onCheckList}
-        disabled={shouldDisable ? true : false}
+        disabled={!!shouldDisable}
         className={`${css.checkbox} ${shouldDisable ? css.disabled : ""}`}
       />
       <span>{list.name}</span>

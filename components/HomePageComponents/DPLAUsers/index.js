@@ -12,10 +12,10 @@ const DPLAUsers = ({ guides }) =>
     <div className={`${css.DPLAUsers} ${utils.siteMaxWidth}`}>
       <h2 className={css.header}>How can I use DPLA?</h2>
       <HeadingRule />
-      <div className="row">
+      <div className={utils.row}>
         {guides.map(guide =>
           <div
-            className={`${css.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
+            className={`${css.itemColumn} ${utils.colXs12} ${utils.colSm6} ${utils.colLg3}`}
             key={guide.slug}
           >
             <GuideLink guide={guide} />

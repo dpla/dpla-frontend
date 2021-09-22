@@ -13,8 +13,8 @@ class FooterUser extends React.Component {
   render() {
     return (
       <div className={`${css.footer} ${utils.siteMaxWidth}`} data-cy="footer">
-        <div className="row">
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+        <div className={utils.row}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>DPLA</h2>
             <ul>
               <li>
@@ -66,7 +66,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>Tools</h2>
             <ul>
               <li>
@@ -103,7 +103,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>DPLA Pro</h2>
             <ul>
               <li>
@@ -153,7 +153,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="col-xs-12 col-md-3">
+          <div className={`${utils.colXs12} ${utils.colMd3}`}>
             <Button
               data-cy="footer-donate"
               type="primary"

@@ -145,7 +145,7 @@ class ContentAndMetadata extends React.Component {
 
     return (
       <div className={css.wrapper}>
-        <div className={[css.contentAndMetadata, utils.container].join(" ")}>
+        <div className={`${css.contentAndMetadata} ${utils.container}`}>
           <h1 className={css.contentHeader}>
             <ReactMarkdown
               source={source.name}
@@ -254,7 +254,7 @@ class ContentAndMetadata extends React.Component {
                   <div className={css.linkWrapper}>
                     <a
                       href={getSourceLink(source)}
-                      className={`${css.sourceLink}`}
+                      className={css.sourceLink}
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener"
                       target="_blank"
