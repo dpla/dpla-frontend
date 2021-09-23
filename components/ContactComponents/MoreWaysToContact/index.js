@@ -4,7 +4,7 @@ import css from "./MoreWaysToContact.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 const MoreWaysToContact = () => (
-  <div className={css.contactForm}>
+  <div>
     <h2 className={css.header}>More Ways To Contact Us</h2>
     <table className={css.contentTable}>
       <tbody>

@@ -67,7 +67,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
     td {
       padding: 8px;
-      border: solid 1px #eee;
+      background: #fff;
+      //border: solid 1px #eee;
     }
   }
 
@@ -159,7 +160,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & ul, & ol {
-    padding-left: 1em;
+    padding-left: 1.5em;
     margin-top: 1rem;
     margin-bottom: 1rem;
     position: relative;
@@ -178,13 +179,19 @@ $borderColor: rgba(0, 0, 0, 0.75);
     list-style-type: none;
     position: relative;
     counter-increment: start-from;
+    //padding-top: .5rem;
+  }
+
+  & li {
+    margin-bottom: .5rem;
   }
 
   & li::before {
-    padding-right: 0.25rem;
+    padding-right: 0.5rem;
     text-align: right;
     color: $primaryBulletColor;
     box-sizing: border-box;
+    margin-left: -1em;
   }
 
   & li ul li::before {
@@ -288,3 +295,5 @@ $borderColor: rgba(0, 0, 0, 0.75);
     max-width: 100%;
   }
 }
+
+

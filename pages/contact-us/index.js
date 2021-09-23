@@ -8,11 +8,13 @@ import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import FeatureHeader from "shared/FeatureHeader";
 
 import { SITE_ENV } from "constants/env";
+
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
+
 import { TITLE } from "constants/contact";
 
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -23,17 +25,16 @@ const Contact = ({ url, sidebarItems }) =>
     <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
-        className={`${utils.container}
-        ${contentCss.sidebarAndContentWrapper}`}
+        className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
       >
-        <div className="row">
+        <div className={utils.row}>
           <ContentPagesSidebar
             route={url}
             activeItemId="contact-us"
             items={sidebarItems}
             className={contentCss.sidebar}
           />
-          <div id="main" role="main" className="col-xs-12 col-md-8">
+          <div id="main" role="main" className={`${utils.colXs12} ${utils.colMd8}`}>
             <ContactForm />
             <MoreWaysToContact />
           </div>

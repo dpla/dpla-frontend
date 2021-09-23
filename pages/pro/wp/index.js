@@ -57,11 +57,10 @@ class ProMenuPage extends React.Component {
         {breadcrumbs.length === 0 &&
           !illustration &&
           <FeatureHeader title={pageTitle} description={""} />}
-        <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+        <div className={`${utils.container}
+            ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               className={contentCss.sidebar}
               route={router}
@@ -69,7 +68,7 @@ class ProMenuPage extends React.Component {
               activeItemId={page.id}
               rootPath="wp"
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
                 {/* fancy pages (with illustrations) get special heading */}
                 {illustration &&

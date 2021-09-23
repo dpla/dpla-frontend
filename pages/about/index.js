@@ -28,7 +28,9 @@ import utils from "stylesheets/utils.module.scss"
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const links = document
+        .getElementById("main")
+        .getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {

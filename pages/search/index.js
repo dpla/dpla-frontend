@@ -12,10 +12,8 @@ import MainContent from "components/SearchComponents/MainContent";
 
 import {
   getCurrentUrl,
-  getDefaultThumbnail,
   getItemThumbnail,
   getSearchPageTitle,
-  joinIfArray
 } from "lib";
 
 import {
@@ -29,7 +27,6 @@ import {
 } from "constants/search";
 import {
   API_ENDPOINT,
-  THUMBNAIL_ENDPOINT,
   LOCAL_ABOUT_ENDPOINT
 } from "constants/items";
 import { SITE_ENV, LOCAL_ID } from "constants/env";

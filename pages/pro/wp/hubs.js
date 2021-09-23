@@ -17,6 +17,7 @@ import {
 } from "constants/content-pages";
 
 import css from "stylesheets/hubs.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class HubsPage extends React.Component {
   refreshExternalLinks() {

@@ -7,7 +7,7 @@ import Education from "public/static/images/pro/education.svg";
 import Network from "public/static/images/pro/network.svg";
 import Prospective from "public/static/images/pro/prospective.svg";
 
-export default ({ className, name }) =>
+const IconComponent =  ({ className, name }) =>
   <span aria-hidden className={className ? className : ""}>
     {name === "developers" && <Developers />}
     {name === "community" && <Community />}
@@ -16,3 +16,5 @@ export default ({ className, name }) =>
     {name === "network" && <Network />}
     {name === "prospective" && <Prospective />}
   </span>;
+
+export default IconComponent;

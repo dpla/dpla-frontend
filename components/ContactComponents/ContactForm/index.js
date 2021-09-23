@@ -242,7 +242,7 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-subject">
-                <span>
+                <span className={css.notFixed}>
                   Subject (required)
                 </span>
                 <select

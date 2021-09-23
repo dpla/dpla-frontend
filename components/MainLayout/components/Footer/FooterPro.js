@@ -11,7 +11,7 @@ import utils from "stylesheets/utils.module.scss"
 
 const FooterPro = () =>
   <div className={`${css.footer} ${utils.siteMaxWidth}`}>
-    <div className="row">
+    <div className={utils.row}>
       <div className={`${css.linkGroup} ${utils.colXs12} ${utils.colSm6} ${utils.colMd3}`}>
         <h2 className={css.linkHeader}>About Us</h2>
         <ul>
