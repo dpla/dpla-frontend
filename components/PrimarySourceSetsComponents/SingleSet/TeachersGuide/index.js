@@ -23,8 +23,6 @@ class TeachersGuide extends React.Component {
     const {
       route,
       teachingGuide,
-      setName,
-      currentPath,
       isPrintable
     } = this.props;
     return (
@@ -34,7 +32,7 @@ class TeachersGuide extends React.Component {
         aria-labelledby="tab-teachingguide"
       >
         <div className={`${css.teachingGuide} ${utils.container}`}>
-          <div className="row">
+          <div className={utils.row}>
             <div className={`${utils.colXs12} ${utils.colMd8}`}>
               <div className={css.content}>
                 <div className={contentCss.content}>

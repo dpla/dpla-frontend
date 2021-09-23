@@ -87,7 +87,7 @@ class SourceSetInfo extends React.Component {
                   : ""}`}
               >
                 <span
-                  className={`link`}
+                  className={utils.link}
                   onClick={() => this.showMoreDescription()}
                 >
                   Show full overview

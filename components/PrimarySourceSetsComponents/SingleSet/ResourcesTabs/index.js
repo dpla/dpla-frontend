@@ -59,7 +59,7 @@ class ResourcesTabs extends React.Component {
               <Link
                 href={`/primary-source-sets/set/teaching-guide?set=${router.query
                   .set}#tabs`}
-                as={`/primary-source-sets/${route.query
+                as={`/primary-source-sets/${router.query
                   .set}/teaching-guide#tabs`}
               >
                 <a>

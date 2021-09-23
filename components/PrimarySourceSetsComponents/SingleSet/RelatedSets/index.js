@@ -13,7 +13,7 @@ import utils from "stylesheets/utils.module.scss"
 const RelatedSets = ({ sets }) => {
   return (
     <div className={css.wrapper} data-cy={'pss-relateds'}>
-      <div className={`${utils.containe} ${css.relatedSets}`}>
+      <div className={`${utils.container} ${css.relatedSets}`}>
         <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={4.5}
