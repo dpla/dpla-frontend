@@ -109,7 +109,7 @@ class DonateForm extends React.Component {
           )}
         </ul>
         <h2 id="donation-amount">Donation amount</h2>
-        <ul className={`row`}>
+        <ul className={utils.row}>
           {amountMap.map((amt, i) =>
             <li key={i} className={`${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}>
               <DualStateButton
@@ -124,13 +124,12 @@ class DonateForm extends React.Component {
             </li>
           )}
           <li
-            className={`${contentCss.donate} ${css.otherAmount} ${utils.colXs6} ${utils.colMd4}`}
+            className={`${css.otherAmount} ${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}
           >
             <input
               type="text"
               aria-label="Give other amount"
               placeholder="Other amount"
-              className={css.otherAmount}
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
             />
