@@ -2,7 +2,7 @@
 
 .donateBackground {
   background-color: $warmerBackgroundColor;
-  background-image: url("/public/static/images/collage_light.jpg");
+  background-image: url("/static/images/collage_light.jpg");
   background-size: cover;
   background-blend-mode: multiply;
   padding-top: 1rem;
@@ -72,6 +72,7 @@
 }
 
 .otherAmount {
+  padding-left: 0.25rem;
   & input {
     border: 2px solid $colderBackgroundColor;
     padding: 0.6rem 1.6rem;
