@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router, { withRouter } from "next/router";
+import { withRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -25,7 +25,9 @@ class MarkdownPage extends React.Component {
     const local = LOCALS[LOCAL_ID];
     const routesObj = local.routes;
     const hasSidebar = local.hasSidebar;
-    const bodyColumnsStyle = local.expandBody ? "col-xs-12 col-md-12" : "col-xs-12 col-md-7";
+    const bodyColumnsStyle = local.expandBody
+        ? `${utils.colXs12} ${utils.colMd12}`
+        : `${utils.colXs12} ${utils.colMd7}`;
 
     const allRoutes = Object.keys(routesObj);
 
@@ -41,7 +43,7 @@ class MarkdownPage extends React.Component {
       page.category === pageData.category
     );
 
-    var breadcrumbs = [];
+    const breadcrumbs = [];
 
     if (hasSidebar && !pageData.isTopLevel){
       breadcrumbs.push({
@@ -71,10 +73,9 @@ class MarkdownPage extends React.Component {
           description={pageData.description}
         />}
         <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+          className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
               <Sidebar
               className={contentCss.sidebar}
               items={pages}
