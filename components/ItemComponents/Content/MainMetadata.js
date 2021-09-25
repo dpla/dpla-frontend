@@ -3,10 +3,8 @@ import Link from "next/link";
 
 import ItemImage from "./ItemImage";
 import ItemTermValuePair from "./ItemTermValuePair";
-import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
-import { rightsURLs } from "constants/site.js";
 
 import css from "./Content.scss";
 
