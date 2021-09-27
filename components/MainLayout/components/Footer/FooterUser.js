@@ -12,7 +12,7 @@ class FooterUser extends React.Component {
   render() {
     const { route } = this.props;
     return (
-      <div className={`${css.footer} site-max-width`}>
+      <div className={`${css.footer} site-max-width`} data-cy="footer">
         <div className="row">
           <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
             <h2 className={css.linkHeader}>DPLA</h2>
@@ -22,12 +22,12 @@ class FooterUser extends React.Component {
                   href="/about?section=frequently-asked-questions"
                   as="/about/frequently-asked-questions"
                 >
-                  <a>Frequently Asked Questions</a>
+                  <a data-cy="footer-link-frequently-asked-questions">Frequently Asked Questions</a>
                 </Link>
               </li>
               <li>
                 <Link href="/guides">
-                  <a>How Can I Use DPLA?</a>
+                  <a data-cy="footer-link-guides">How Can I Use DPLA?</a>
                 </Link>
               </li>
               <li>
@@ -35,17 +35,25 @@ class FooterUser extends React.Component {
                   href="/about?section=terms-conditions"
                   as="/about/terms-conditions"
                 >
-                  <a>Terms &amp; Conditions</a>
+                  <a data-cy="footer-link-terms-conditions">Terms &amp; Conditions</a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                    href="/about?section=harmful-language-statement"
+                    as="/about/harmful-language-statement"
+                >
+                  <a>Harmful Content</a>
                 </Link>
               </li>
               <li>
                 <Link href="/about?section=about-us" as="/about">
-                  <a>About DPLA</a>
+                  <a data-cy="footer-link-about">About DPLA</a>
                 </Link>
               </li>
               <li>
                 <Link href="/contact-us" as="/contact">
-                  <a>Contact Us</a>
+                  <a data-cy="footer-link-contact">Contact Us</a>
                 </Link>
               </li>
               <li>
@@ -53,7 +61,7 @@ class FooterUser extends React.Component {
               </li>
               <li>
                 <Link href="/news">
-                  <a>News</a>
+                  <a data-cy="footer-link-news">News</a>
                 </Link>
               </li>
             </ul>
@@ -63,34 +71,34 @@ class FooterUser extends React.Component {
             <ul>
               <li>
                 <Link href="/primary-source-sets">
-                  <a>Primary Source Sets</a>
+                  <a data-cy="footer-link-primary-source-sets">Primary Source Sets</a>
                 </Link>
               </li>
               <li>
                 <Link href="/browse-by-partner">
-                  <a>Browse by Partner</a>
+                  <a data-cy="footer-link-browse-by-partner">Browse by Partner</a>
                 </Link>
               </li>
               <li>
                 <Link href="/browse-by-topic">
-                  <a>Browse by Topic</a>
+                  <a data-cy="footer-link-browse-by-topic">Browse by Topic</a>
                 </Link>
               </li>
               <li>
                 <Link href="/exhibitions">
-                  <a>Exhibitions</a>
+                  <a data-cy="footer-link-exhibitions">Exhibitions</a>
                 </Link>
               </li>
               <li>
                 <Link href="/lists">
-                  <a>
+                  <a data-cy="footer-link-lists">
                     My Lists
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="/search">
-                  <a>Search</a>
+                  <a data-cy="footer-link-search">Search</a>
                 </Link>
               </li>
             </ul>
@@ -100,53 +108,54 @@ class FooterUser extends React.Component {
             <ul>
               <li>
                 <Link href={PRO_BASE_URL}>
-                  <a>DPLA Pro Home</a>
+                  <a data-cy="footer-link-pro">DPLA Pro Home</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/prospective-hubs"}>
-                  <a>Prospective Hubs</a>
+                  <a data-cy="footer-link-prospective-hubs">Prospective Hubs</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/community-reps"}>
-                  <a>Community Reps</a>
+                  <a data-cy="footer-link-community-reps">Community Reps</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/hubs"}>
-                  <a>Hub Network</a>
+                  <a data-cy="footer-link-hub-network">Hub Network</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/developers"}>
-                  <a>Developers</a>
+                  <a data-cy="footer-link-developers">Developers</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/education"}>
-                  <a>Education</a>
+                  <a data-cy="footer-link-education">Education</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/projects"}>
-                  <a>Projects</a>
+                  <a data-cy="footer-link-projects">Projects</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/ebooks"}>
-                  <a>Ebooks</a>
+                  <a data-cy="footer-link-ebooks">Ebooks</a>
                 </Link>
               </li>
               <li>
                 <Link href={PRO_BASE_URL + "/events"}>
-                  <a>Events</a>
+                  <a data-cy="footer-link-events">Events</a>
                 </Link>
               </li>
             </ul>
           </div>
           <div className="col-xs-12 col-md-3">
             <Button
+              data-cy="footer-donate"
               type="primary"
               size="large"
               className={css.donateButton}

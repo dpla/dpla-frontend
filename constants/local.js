@@ -1,17 +1,48 @@
 const LOCALS = {
   plains2peaks: {
     theme: "plains2peaks",
-    provider: "%22Plains%20to%20Peaks%20Collective%22",
-    background: "home-hero-bg.jpg",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/p2p"
+    ],
     name: "Plains to Peaks Collective",
     favicon: "favicon.png",
+    provider: "%22Plains%20to%20Peaks%20Collective%22",
+    background: "p2p-hero.png",
     logo: "logo.png",
+    heroLogo: "logo-big.png",
     description: "",
     locationFacet: "%22Colorado%20OR%20Wyoming%22",
     subjectFacet: "%22Colorado%20OR%20Wyoming%22",
     hasAbout: true,
-    hasTerms: false,
-    hasContact: true
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    hasContact: true,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/contact" : {
+        parentDir: "/contact",
+        path: "contact.md",
+        title: "Contact",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      },
+      "/terms" : {
+        parentDir: "/terms",
+        path: "terms.md",
+        title: "Terms of Use",
+        description: "",
+        isTopLevel: true,
+        category: "Terms of Use"
+      }
+    }
   },
   wisconsin: {
     theme: "wisconsin",
@@ -28,7 +59,6 @@ const LOCALS = {
     externalLink: "https://recollectionwisconsin.org",
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
-    hasTerms: false,
     hasBrowseByPartner: true
   },
   illinois: {
@@ -45,7 +75,6 @@ const LOCALS = {
     subjectFacet: "*Illinois*",
     externalLink: "http://finditillinois.org/idhh/",
     hasAbout: true,
-    hasTerms: false,
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -217,7 +246,6 @@ const LOCALS = {
     locationFacet: "%22Tennessee%22",
     subjectFacet: "%22Tennessee%22",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseAll: false,
     routes: {
       "/about": {
@@ -244,7 +272,6 @@ const LOCALS = {
     locationFacet: "%22Florida%22",
     subjectFacet: "%22Florida%22",
     hasAbout: false,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false
   },
@@ -261,7 +288,6 @@ const LOCALS = {
     locationFacet: "%22Montana%20OR%20North%20Dakota%22",
     subjectFacet: "%22Montana%20OR%20North%20Dakota%22",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     hasSidebar: false,
@@ -306,10 +332,10 @@ const LOCALS = {
     background: "aviation-banner.jpg",
     description: "",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
+    externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=2",
     filters: [
       "tags:aviation"
     ],
@@ -321,22 +347,6 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "About"
-      },
-      "/primary-source-set" : {
-        parentDir: "/primary-source-set",
-        path: "",
-        title: "Primary Source Set",
-        description: "",
-        isTopLevel: true,
-        category: "Primary Source Set"
-      },
-      "/exhibition" : {
-        parentDir: "/exhibition",
-        path: "",
-        title: "Commercial Aviation Exhibition",
-        description: "",
-        isTopLevel: true,
-        category: "Commercial Aviation Exhibition"
       }
     }
   },
@@ -348,7 +358,6 @@ const LOCALS = {
     background: "home-hero-bg.png",
     description: "",
     hasAbout: true,
-    hasTerms: false,
     hasBrowseByPartner: false,
     hasBrowseAll: false,
     hasSidebar: true,
@@ -452,7 +461,6 @@ const LOCALS = {
         isTopLevel: false,
         category: "Timeline"
       },
-
       "/key-figures" : {
         parentDir: "/key-figures",
         path: "key-figures.md",
@@ -613,15 +621,15 @@ const LOCALS = {
       "provider.@id:http%3A//dp.la/api/contributor/vt"
     ],
     name: "Vermont Green Mountain Digital Archive",
-    background: "home-hero-bg.jpg",
+    background: "vt-hero.png",
     favicon: "favicon.ico",
     logo: "logo.svg",
+    heroLogo: "logo-vert.svg",
     description: "Vermont Green Mountain Digital Archive",
     externalLink: "https://libraries.vermont.gov/GMDA",
     locationFacet: "%22Vermont%22",
     subjectFacet: "%22Vermont%22",
-    hasAbout: true,
-    hasTerms: false,
+    hasAbout: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -636,6 +644,98 @@ const LOCALS = {
       }
     }
   },
+  oklahoma: {
+    theme: "oklahoma",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/oklahoma"
+    ],
+    name: "OKHUB",
+    background: "ok.jpg",
+    favicon: "favicon.ico",
+    logo: "logo.jpg",
+    heroLogo: "logo-big.jpg",
+    description: "",
+    locationFacet: "%22Oklahoma%22",
+    subjectFacet: "%22Oklahoma%22",
+    hasAbout: true,
+    hasSidebar: true,
+    hasBrowseByPartner: true,
+    hasBrowseAll: false,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      },
+      "/about/contributing-organizations" : {
+        parentDir: "/about",
+        path: "contributing-organizations.md",
+        title: "Contributing Organizations",
+        description: "Currently Contributing Organizations to the DPLA through the OKHUB",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/managing-partners" : {
+        parentDir: "/about",
+        path: "managing-partners.md",
+        title: "Managing Partners",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/ingest-and-workflow" : {
+        parentDir: "/about",
+        path: "ingest-and-workflow.md",
+        title: "Ingest and Workflow",
+        description: "",
+        isTopLevel: false,
+        category: "About"
+      },
+      "/participate": {
+        title: "Participate",
+        parentDir: "/participate",
+        path: "participate.md",
+        description: "",
+        isTopLevel: true,
+        category: "Participate"
+      },
+      "/participate/metadata": {
+        title: "Metadata",
+        parentDir: "participate",
+        path: "metadata.md",
+        description: "OKHub Metadata Guidelines and Best Practices",
+        isTopLevel: false,
+        category: "Participate"
+      },
+      "/participate/rights-statements": {
+        title: "Rights Statements",
+        parentDir: "participate",
+        path: "rights-statements.md",
+        description: "",
+        isTopLevel: false,
+        category: "Participate"
+      },
+      "/resources": {
+        parentDir: "/resources",
+        title: "Resources",
+        path: "resources.md",
+        description: "",
+        isTopLevel: true,
+        category: "Resources"
+      },
+      "/contact": {
+        parentDir: "/contact",
+        title: "Contact",
+        path: "contact.md",
+        description: "",
+        isTopLevel: true,
+        category: "Contact"
+      }
+    }
+  }
 };
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js

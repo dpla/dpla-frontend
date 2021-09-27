@@ -3,7 +3,7 @@
 # Expect that `yarn build` has already been run.
 
 
-FROM node:carbon-alpine
+FROM node:fermium-alpine
 WORKDIR /opt/dpla-frontend
 COPY . /opt/dpla-frontend
 EXPOSE 3000

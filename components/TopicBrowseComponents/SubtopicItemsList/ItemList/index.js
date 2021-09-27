@@ -19,7 +19,7 @@ class ItemList extends React.Component {
     const { view } = this.state;
 
     return (
-      <div className={css.itemList}>
+      <div className={css.itemList} data-cy={"subtopic-item-list"}>
         {/* <div className={css.itemListHeader}>
           <div className={css.viewButtons}>
             <button

@@ -7,6 +7,7 @@ import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
+import HarmfulContent from "components/shared/HarmfulContent";
 import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import { CheckableLists } from "components/ListComponents/CheckableLists";
@@ -54,6 +55,7 @@ const ItemDetail = ({
         ]}
         route={url}
       />
+      <HarmfulContent/>
       {isQA && <QA item={item} randomItemId={randomItemId} />}
       <div
         id="main"

@@ -20,11 +20,6 @@ const NavigationPro = ({ isHome, className, css }) =>
         </Link>
       </li>
       <li>
-        <Link prefetch as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
-          <a>Ebooks</a>
-        </Link>
-      </li>
-      <li>
         <Link prefetch as="/projects" href="/pro/wp?section=projects">
           <a>Projects</a>
         </Link>
@@ -46,13 +41,18 @@ const NavigationPro = ({ isHome, className, css }) =>
     <span className={css.divider} />
     <ul className={`${css.links} ${css.tertiaryLinks}`}>
       <li>
-        <Link href={USER_BASE_URL}>
-          <a>DPLA Main Site</a>
+        <Link href={USER_BASE_URL + "/news"}>
+          <a>News</a>
         </Link>
       </li>
       <li>
-        <Link href={USER_BASE_URL + "/news"}>
-          <a>News</a>
+        <Link href={"https://ebooks.dp.la"}>
+          <a>Ebooks</a>
+        </Link>
+      </li>
+      <li>
+        <Link href={USER_BASE_URL}>
+          <a>DPLA Main Site</a>
         </Link>
       </li>
     </ul>

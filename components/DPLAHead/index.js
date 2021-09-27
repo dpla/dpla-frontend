@@ -67,7 +67,7 @@ class DPLAHead extends React.Component {
           <meta name="twitter:image" content={pageImage || defaultImageUrl} />
           {pageImageCaption &&
             <meta name="twitter:image:alt" content={pageImageCaption} />}
-          <meta name="og:image" itemprop="image" content={pageImage || defaultImageUrl} />
+          <meta name="og:image" itemProp="image" content={pageImage || defaultImageUrl} />
           <meta name="og:title" content={pageTitle || defaultPageTitle} />
           <meta name="og:type" content={seoType || "website"} />
           <meta name="theme-color" content="#ffffff" />

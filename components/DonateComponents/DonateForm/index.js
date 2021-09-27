@@ -90,7 +90,7 @@ class DonateForm extends React.Component {
 
   render() {
     return (
-      <form action="" className={css.donateForm}>
+      <form action="" className={css.donateForm} data-cy="donate-form">
         <h2 id="donation-frequency">Frequency</h2>
         <ul className={`row start-xs`}>
           {frequencyMap.map((freq, i) =>

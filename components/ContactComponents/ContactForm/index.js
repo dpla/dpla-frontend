@@ -201,7 +201,7 @@ class ContactForm extends React.Component {
               will
               get in touch with you shortly.
             </p>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} data-cy="contact-form">
               <label htmlFor="contact-name">
                 <span>
                   Your name (required)

@@ -65,6 +65,8 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set
     };
+    //app.render(req, res)
+
     serverFunctions.renderAndCache(
       app,
       req,

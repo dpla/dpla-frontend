@@ -67,7 +67,9 @@ class MainLayout extends React.Component {
           route={route}
           isHome={isHome}
         />
-        <GlobalHeader isHome={isHome} />
+        <GlobalHeader            
+          isHome={isHome} 
+        />
         {!hidePageHeader &&
           <PageHeader
             query={route.query}

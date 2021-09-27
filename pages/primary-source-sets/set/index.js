@@ -1,4 +1,5 @@
 import React from "react";
+import Error from "../../_error"
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
@@ -15,11 +16,16 @@ import { PSS_BASE_URL } from "constants/env";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-const SingleSet = ({ set, url, currentFullUrl }) =>
-  <MainLayout
-    route={url}
-    pageTitle={set.name.replace(/\*/g, "")}
-    pageImage={set.repImageUrl || set.thumbnailUrl}
+const SingleSet = ({ error, set, url, currentFullUrl }) => {
+
+  if (error) {
+    return <Error statusCode={ error.status }/>;
+  }
+
+  return (<MainLayout
+      route={url}
+      pageTitle={set.name.replace(/\*/g, "")}
+      pageImage={set.repImageUrl || set.thumbnailUrl}
   >
     <BreadcrumbsModule
       breadcrumbs={[
@@ -49,12 +55,35 @@ const SingleSet = ({ set, url, currentFullUrl }) =>
     </ResourcesTabs>
     <RelatedSets sets={set.isRelatedTo} />
     <PSSFooter />
-  </MainLayout>;
+  </MainLayout>);
+}
 
-SingleSet.getInitialProps = async ({ query, req }) => {
-  const currentFullUrl = getCurrentFullUrl(req);
-  const res = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
-  const json = await res.json();
+
+SingleSet.getInitialProps = async (context) => {
+  const currentFullUrl = getCurrentFullUrl(context.req);
+  const api = await fetch(`${PSS_BASE_URL}/sets/${context.query.set}.json`);
+
+  console.log("PSS API Status", api.status)
+
+  // setting the http error code is not working for some reason
+  // leaving this as a todo for nextjs 10 where they give you a
+  // real way to handle this
+
+  if (api.status > 399) {
+    if (context.res) {
+      context.res.status = 404
+    }
+    return { error: { statusCode: api.status } }
+  }
+  const json = await api.json();
+
+  if (!json) {
+    if (context.res) {
+      context.res.status = 500;
+    }
+    return { error: { statusCode: 500 } }
+  }
+
   const parts = json.hasPart.map(part => {
     let thumbnailUrl = part.thumbnailUrl;
     let useDefaultImage = false;

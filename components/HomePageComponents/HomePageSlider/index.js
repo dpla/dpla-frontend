@@ -19,7 +19,7 @@ const HomePageSlider = ({
   title,
   theme
 }) =>
-  <div className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `}>
+  <div className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `} data-cy={browseLinkName}>
     <div className={`${css.content} site-max-width`}>
       <div className={css.heading}>
         <h2 className={css.title}>{title}</h2>

@@ -49,7 +49,7 @@ class Exhibition extends React.Component {
           ]}
           route={router}
         />
-        <div id="main" role="main">
+        <div id="main" role="main" data-cy="exhibition-home">
           <ImageAndCaption exhibition={exhibition} route={router} />
           <Details
             exhibition={exhibition}

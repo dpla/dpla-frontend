@@ -9,7 +9,7 @@ import css from "./NewsLane.scss";
 const smallChevron = "/static/images/chevron-thick-orange.svg";
 
 const NewsLane = ({ title, items }) =>
-  <div className={css.wrapper}>
+  <div className={css.wrapper} data-cy="news">
     <div className={`${css.content} site-max-width`}>
       <div className="row">
         <div className="col-xs-12 col-md-3">

@@ -10,7 +10,7 @@ import css from "../shared/DesktopStyles.scss";
 import { SITE_ENV } from "constants/env";
 
 const GlobalHeader = ({ isHome }) =>
-  <div className={css.header}>
+  <div className={css.header} data-cy="global-header">
     {SITE_ENV === "user" &&
       <NavigationUser
         className={`${css.linksContainer} site-max-width`}

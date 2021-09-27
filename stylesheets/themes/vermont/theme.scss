@@ -1,15 +1,13 @@
-// $theme-main-color: #00703F;
-// $theme-dark-color: #1f1f1f;
-
-$theme-main-color: #D2E97C;
-$theme-dark-color: #000;
-$theme-link-color:  #00703E;
+$theme-link-color: #00703E;
+$theme-dark-color: darken($theme-link-color, 15%); //header color
+$theme-main-color: mix($theme-link-color, #aaa); // mobile header color
+$heroBackgroundColor: lighten($casablancaOrange, 36%); //lighten($theme-link-color, 76%);
 $theme-background-color: #fff;
-$theme-colder-tint: rgb(245, 245, 245);
-$theme-warmer-tint: lighten($theme-main-color, 70%);
+$theme-colder-tint: darken(rgb(245, 245, 245), 10%);
+$theme-warmer-tint: lighten($theme-main-color, 50%);
 
 $linkColor: $theme-link-color;
-$linkHoverColor: brighten($linkColor, 10%);
+$linkHoverColor: lighten($linkColor, 10%);
 $visitedLinkColor: darken($linkColor, 10%);
 $paginationLinkColor: $linkColor;
 $headingColor: $theme-dark-color;
@@ -41,11 +39,12 @@ $errorColor: $linkColor;
 // $memberColor: #006d84;
 // $featureBackgroundColor: #cbe3e8;
 $footerLightColor: $theme-main-color;
-$footerDarkColor: $mobileNavColor;
+$footerDarkColor: darken($theme-main-color, 4%); //darken($mobileNavColor, 15%);
 
 .homeLogo {
   .localLogo {
-    height: 10rem !important;
+    padding-left: 35px;
+    height: 8rem !important;
   }
 }
 
@@ -54,3 +53,7 @@ $footerDarkColor: $mobileNavColor;
     margin-bottom: 1.5em !important;
   }
 }
+
+//HomeHero > .links {
+//  display: none;
+//}

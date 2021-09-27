@@ -14,7 +14,7 @@ import css from "./Sidebar.scss";
 //   </div>;
 
 const Sidebar = ({ image, title, description }) =>
-  <div className={css.sidebar}>
+  <div className={css.sidebar} data-cy={'subtopic-sidebar'}>
     <div className={css.subtopicInfo}>
       <img src={image} alt={title} className={css.image} />
       <div className={css.subtopicInfoText}>

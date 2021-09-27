@@ -114,7 +114,7 @@ class StayInformed extends React.Component {
   render() {
     const emailProps = { required: this.state.email !== undefined };
     return (
-      <div className={css.wrapper}>
+      <div className={css.wrapper} data-cy="stay-informed">
         <div className={`${css.content} site-max-width`}>
           <div className="row">
             <div className="col-xs-12 col-md-3">

@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
+import HarmfulContent from "components/shared/HarmfulContent";
 import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
@@ -79,6 +80,7 @@ class Search extends React.Component {
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}
         />
+        <HarmfulContent/>
         <FiltersList
           showFilters={this.state.showSidebar}
           onClickToggleFilters={this.toggleFilters}
@@ -114,8 +116,8 @@ Search.getInitialProps = async context => {
   const currentUrl = getCurrentUrl(req);
   const q = query.q
     ? encodeURIComponent(query.q.trim())
-          .replace(/'/g, "%27")
-          .replace(/"/g, "%22")
+      .replace(/'/g, "%27")
+      .replace(/"/g, "%22")
     : "";
 
   let filters = isLocal && local.filters ? local.filters : [];
@@ -217,9 +219,9 @@ Search.getInitialProps = async context => {
     const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
     const filtersParam = filters.map(x => `&filter=${x}`).join("");
     const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}${facetsParam}${filtersParam}`;
-
     const res = await fetch(url);
 
+    // api response for facets
     let json = await res.json();
     const docs = json.docs.map(result => {
       const thumbnailUrl = getItemThumbnail(result);

@@ -8,16 +8,31 @@ import { LOCALS } from "constants/local";
 
 import css from "./HomeHero.scss";
 
+const getHeroLogo = () => {
+  if (SITE_ENV !== "local") {
+    return ""
+  }
+  const local = LOCALS[LOCAL_ID]
+  if ('heroLogo' in local) {
+    return local.heroLogo
+  } else {
+    return local.logo
+  }
+}
+
+const heroLogo = getHeroLogo()
+
 const bgImage = SITE_ENV !== "local"
   ? "/static/images/home-hero-bg.png"
   : `/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID].background}`;
 
 const HomeHero = ({ headerDescription, feature }) =>
   <div
+    data-cy="home-hero"
     className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
     style={{ backgroundImage: `url(${bgImage})` }}
   >
-    <div className={`${css.header} site-max-width`}>
+    <div data-cy="dpla-logo" className={`${css.header} site-max-width`}>
       {SITE_ENV !== "local" &&
         <div className={`${css.homeLogo} ${css.dplaLogo}`}>
           <h1>Digital Public Library of America</h1>
@@ -26,8 +41,7 @@ const HomeHero = ({ headerDescription, feature }) =>
         <div className={`${css.homeLogo} `}>
           <img
             className={css.localLogo}
-            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
-              .logo}`}
+            src={`/static/local/${LOCALS[LOCAL_ID].theme}/${heroLogo}`}
           />
           <h1 className={css.localText}>{LOCALS[LOCAL_ID].name}</h1>
         </div>}
