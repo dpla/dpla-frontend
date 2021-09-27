@@ -6,15 +6,15 @@ import FeedbackForm from "components/FeedbackForm";
 
 import { PRO_BASE_URL } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class FooterUser extends React.Component {
   render() {
-    const { route } = this.props;
     return (
-      <div className={`${css.footer} site-max-width`} data-cy="footer">
-        <div className="row">
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+      <div className={`${css.footer} ${utils.siteMaxWidth}`} data-cy="footer">
+        <div className={utils.row}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>DPLA</h2>
             <ul>
               <li>
@@ -57,7 +57,7 @@ class FooterUser extends React.Component {
                 </Link>
               </li>
               <li>
-                <FeedbackForm route={route} />
+                <FeedbackForm />
               </li>
               <li>
                 <Link href="/news">
@@ -66,7 +66,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>Tools</h2>
             <ul>
               <li>
@@ -103,7 +103,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className={`${css.linkGroup} col-xs-6 col-sm-4 col-md-3`}>
+          <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}>
             <h2 className={css.linkHeader}>DPLA Pro</h2>
             <ul>
               <li>
@@ -153,7 +153,7 @@ class FooterUser extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="col-xs-12 col-md-3">
+          <div className={`${utils.colXs12} ${utils.colMd3}`}>
             <Button
               data-cy="footer-donate"
               type="primary"

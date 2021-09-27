@@ -1,7 +1,7 @@
 import React from "react";
 
-import utils from "stylesheets/utils.scss";
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const OtherInfo = () =>
   <div className={css.wrapper}>

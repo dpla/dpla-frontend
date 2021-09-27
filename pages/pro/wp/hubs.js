@@ -7,7 +7,6 @@ import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 
 import { wordpressLinks } from "lib";
 
@@ -17,7 +16,8 @@ import {
   SEO_TYPE
 } from "constants/content-pages";
 
-import css from "stylesheets/hubs.scss";
+import css from "stylesheets/hubs.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class HubsPage extends React.Component {
   refreshExternalLinks() {
@@ -43,7 +43,6 @@ class HubsPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="network" />
-            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
           {page.acf.feature &&
@@ -56,7 +55,7 @@ class HubsPage extends React.Component {
               imageSrc={page.acf.feature.image}
             />}
           <div>
-            <section className={`${css.tileSectionWrapper} site-max-width`}>
+            <section className={`${css.tileSectionWrapper} ${utils.siteMaxWidth}`}>
               <ul className={css.sectionList}>
                 {page.acf.sections.map((section, index) => {
                   return (

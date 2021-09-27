@@ -2,7 +2,8 @@ import React from "react";
 
 import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
-import css from "./StayInformed.scss";
+import css from "./StayInformed.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class StayInformed extends React.Component {
   state = {
@@ -115,14 +116,14 @@ class StayInformed extends React.Component {
     const emailProps = { required: this.state.email !== undefined };
     return (
       <div className={css.wrapper} data-cy="stay-informed">
-        <div className={`${css.content} site-max-width`}>
-          <div className="row">
-            <div className="col-xs-12 col-md-3">
+        <div className={`${css.content} ${utils.siteMaxWidth}`}>
+          <div className={utils.row}>
+            <div className={`${utils.colXs12} ${utils.colMd3}`}>
               <div className={css.header}>
                 <h2 className={css.headerText}>Stay informed</h2>
               </div>
             </div>
-            <div className={`${css.formWrapper} col-xs-12 col-md-9`}>
+            <div className={`${css.formWrapper} ${utils.colXs12} ${utils.colMd9}`}>
               {!this.state.isSent &&
                 <form className={css.form} onSubmit={this.handleSubmit}>
                   <h3 className={css.formCallToAction}>

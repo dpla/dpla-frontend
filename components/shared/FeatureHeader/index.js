@@ -1,8 +1,7 @@
-import React from "react";
+ import React from "react";
 
-import utils from "stylesheets/utils.scss";
-
-import css from "./FeatureHeader.scss";
+import css from "./FeatureHeader.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const FeatureHeader = ({ title, description, titleClassName }) =>
   <div className={css.wrapper}>

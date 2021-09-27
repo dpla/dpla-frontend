@@ -2,12 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 
-import DPLALogoWide from "../../../../static/images/dpla-logo-white.svg";
+import DPLALogoWide from "public/static/images/dpla-logo-white.svg";
 
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-import css from "./PageHeader.scss";
+import css from "./PageHeader.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class PageHeader extends React.Component {
   render() {
@@ -21,16 +22,16 @@ class PageHeader extends React.Component {
         <div
           className={`${css.flexWrapper}  ${SITE_ENV === "pro"
             ? css.pro
-            : ""} site-max-width`}
+            : ""} ${utils.siteMaxWidth}`}
         >
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
-            <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
               <a className={css.logo} title="Home Page">
                 <DPLALogoWide className={css.logoImg} />
               </a>
             </Link>}
           {SITE_ENV === "local" &&
-            <Link prefetch href="/local" as="/">
+            <Link href="/local" as="/">
               <a className={`${css.logo} ${css.local}`} title="Home Page">
                 <img
                   className={css.localLogo}

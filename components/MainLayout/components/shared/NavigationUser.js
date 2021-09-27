@@ -11,38 +11,38 @@ class NavigationUser extends React.Component {
         <ul className={css.links}>
           {!isHome &&
             <li>
-              <Link prefetch href="/">
+              <Link href="/">
                 <a data-cy="link-home">
                   Home
                 </a>
               </Link>
             </li>}
           <li>
-            <Link prefetch href="/browse-by-topic">
+            <Link href="/browse-by-topic">
               <a data-cy="browse-topics">Browse by Topic</a>
             </Link>
           </li>
           <li>
-            <Link prefetch href="/browse-by-partner">
+            <Link href="/browse-by-partner">
               <a data-cy="browse-partners">Browse by Partner</a>
             </Link>
           </li>
           <li>
-            <Link prefetch href="/exhibitions">
+            <Link href="/exhibitions">
               <a data-cy="exhibitions">
                 Exhibitions
               </a>
             </Link>
           </li>
           <li>
-            <Link prefetch href="/primary-source-sets">
+            <Link href="/primary-source-sets">
               <a data-cy="primary-source-sets">
                 Primary Source Sets
               </a>
             </Link>
           </li>
           <li>
-            <Link prefetch href="/lists">
+            <Link href="/lists">
               <a data-cy="my-lists">
                 My Lists
               </a>
@@ -52,12 +52,12 @@ class NavigationUser extends React.Component {
         <span className={css.divider} />
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
-            <Link prefetch as="/about" href="/about?section=about-us">
+            <Link as="/about" href="/about?section=about-us">
               <a data-cy="about-dpla">About DPLA</a>
             </Link>
           </li>
           <li>
-            <Link prefetch href="/news">
+            <Link href="/news">
               <a data-cy="news">News</a>
             </Link>
           </li>

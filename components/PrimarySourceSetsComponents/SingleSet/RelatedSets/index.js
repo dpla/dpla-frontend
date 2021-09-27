@@ -5,15 +5,15 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import { extractSourceSetSlug } from "lib/";
+import { extractSourceSetSlug } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import css from "./RelatedSets.scss";
+import css from "./RelatedSets.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const RelatedSets = ({ sets }) => {
   return (
     <div className={css.wrapper} data-cy={'pss-relateds'}>
-      <div className={[utils.container, css.relatedSets].join(" ")}>
+      <div className={`${utils.container} ${css.relatedSets}`}>
         <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider
           slidesToShow={4.5}
@@ -35,9 +35,8 @@ const RelatedSets = ({ sets }) => {
           ]}
         >
           {sets.map((set, index) =>
-            <div key={`${set.name}-${index}`} className={`${css.item}`}>
+            <div key={`${set.name}-${index}`} className={css.item}>
               <Link
-                prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
                   set["@id"]
                 )}`}

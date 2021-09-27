@@ -1,11 +1,10 @@
 import React from "react";
-import Helmet from "react-helmet";
 
 import Header from "./Header";
 import Body from "./Body";
 import FooterNav from "./FooterNav";
 
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const ExhibitionView = ({
   exhibition,
@@ -17,7 +16,6 @@ const ExhibitionView = ({
   previousQueryParams
 }) =>
   <div className={css.exhibitionView} data-cy="exhibit-page">
-    <Helmet htmlAttributes={{ lang: "en" }} />
     <Header title={exhibition.title} route={route} />
     <Body
       route={route}

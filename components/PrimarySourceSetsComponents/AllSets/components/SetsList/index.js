@@ -8,16 +8,16 @@ import {
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
 
-import css from "./SetsList.scss";
+import css from "./SetsList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SetsList = ({ sets, route }) =>
-  <div className={`${css.setsWrapper} site-max-width`}>
-    <ul className="row">
+  <div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
+    <ul className={utils.row}>
       {sets.itemListElement.map(set =>
-        <li className={`${css.itemWrapper} col-xs-6 col-md-4`} key={set.name}>
+        <li className={`${css.itemWrapper} ${utils.colXs6} ${utils.colMd4}`} key={set.name}>
           <div className={css.item}>
             <Link
-              prefetch
               href={{
                 pathname: "/primary-source-sets/set",
                 query: Object.assign(
@@ -45,13 +45,12 @@ const SetsList = ({ sets, route }) =>
             </Link>
             <div className={css.itemContent}>
               <Link
-                prefetch
                 href={`/primary-source-sets/set?set=${extractSourceSetSlug(
                   set["@id"]
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
               >
-                <a className={`${css.title} hover-underline`} title={set.name}>
+                <a className={`${css.title} ${utils.hoverUnderline}`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
                     allowedTypes={["emphasis", "text"]}
@@ -68,7 +67,6 @@ const SetsList = ({ sets, route }) =>
                   .map((tag, i, tags) =>
                     <li className={css.tag} key={`${tag}—${i}`}>
                       <Link
-                        prefetch
                         href={{
                           pathname: "/primary-source-sets",
                           query: Object.assign({}, route.query, {
@@ -93,7 +91,6 @@ const SetsList = ({ sets, route }) =>
                   .map((tag, i, tags) =>
                     <li key={tag.name} className={css.tag}>
                       <Link
-                        prefetch
                         href={{
                           pathname: "/primary-source-sets",
                           query: Object.assign({}, route.query, {

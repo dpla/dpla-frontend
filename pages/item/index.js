@@ -12,7 +12,7 @@ import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import { CheckableLists } from "components/ListComponents/CheckableLists";
 
-import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import { API_ENDPOINT } from "constants/items";
 
 import {
   getCurrentUrl,
@@ -22,14 +22,13 @@ import {
   getRandomItemIdAsync
 } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import css from "components/ItemComponents/itemComponent.scss";
+import css from "components/ItemComponents/itemComponent.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const ItemDetail = ({
   error,
   url,
   item,
-  currentFullUrl,
   randomItemId,
   isQA
 }) => {

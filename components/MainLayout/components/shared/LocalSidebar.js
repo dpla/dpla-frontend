@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "components/shared/ContentPagesSidebar/Sidebar.scss";
+import css from "shared/ContentPagesSidebar/Sidebar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SidebarLink = ({ route, isActive, title }) => {
   return (
-    <Link prefetch href={"/local" + route} as={route}>
+    <Link href={"/local" + route} as={route}>
       <a className={`${css.link} ${isActive ? css.selected : ""}`}>
         {title}
       </a>
@@ -53,7 +54,7 @@ const Sidebar = ({ className, items, activePage, render }) => {
     not rendered with data from the routes object in Locals.js, which is where
     all the other pages' data ultimately comes from
   */
-  if (items[0].category == "About") {
+  if (items[0].category === "About") {
     items.unshift({
       route: "/about",
       title: "About",
@@ -83,7 +84,7 @@ const Sidebar = ({ className, items, activePage, render }) => {
     });
 
     return (
-      <div className={`${className} col-xs-12 col-md-4`}>
+      <div className={`${className} ${utils.colXs12} ${utils.colMd4}`}>
         <div className={css.sidebar}>
           {render && <ul className={css.links}>
             <li>
@@ -99,7 +100,7 @@ const Sidebar = ({ className, items, activePage, render }) => {
     );
   } else
     return (
-      <div className="col-xs-12 col-md-4"/>
+      <div className={`${utils.colXs12} ${utils.colMd4}`}/>
   );
 };
 

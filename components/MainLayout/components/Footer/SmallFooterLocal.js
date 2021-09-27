@@ -3,14 +3,15 @@ import Link from "next/link";
 
 import { LOCAL_ID } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
+
 import { LOCALS } from "constants/local";
 
 const logo = "/static/images/dpla-logo.svg";
 
 class SmallFooterLocal extends React.Component {
   render() {
-    const { route } = this.props;
     var logoHtml;
     if (LOCAL_ID === "wisconsin") {
         logoHtml = (
@@ -25,7 +26,7 @@ class SmallFooterLocal extends React.Component {
         );
     } else if (LOCAL_ID === "tennessee") {
         logoHtml = (
-            <Link prefetch href="/local" as="/">
+            <Link href="/local" as="/">
                 <a>
                     <img
                         className={css.localLogo}
@@ -38,7 +39,7 @@ class SmallFooterLocal extends React.Component {
 
     } else {
       logoHtml = (
-        <Link prefetch href="/local" as="/">
+        <Link href="/local" as="/">
           <a>
             <img
               className={css.localLogo}
@@ -52,9 +53,9 @@ class SmallFooterLocal extends React.Component {
     }
     return (
       <div className={css.smallFooterWrapper}>
-        <div className={`${css.smallFooter} site-max-width`}>
+        <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           {logoHtml}
-          <Link prefetch href="//dp.la">
+          <Link href="https://dp.la">
             <a>
               <img
                 className={css.partnershipLogo}

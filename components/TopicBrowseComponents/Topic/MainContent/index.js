@@ -3,22 +3,21 @@ import Link from "next/link";
 
 import HeadingRule from "shared/HeadingRule";
 
-import utils from "stylesheets/utils.scss";
-import css from "./MainContent.scss";
+import css from "./MainContent.module.scss";
+import utils from "stylesheets/utils.module.scss";
 
 const MainContent = ({ topic }) =>
   <div className={css.wrapper}>
-    <div className={`${utils.container} ${css.container} site-max-width`}>
+    <div className={`${utils.container} ${css.container}`}>
       <h1 className={css.header}>{topic.name}</h1>
       <HeadingRule color="#F9BA3F" />
-      <ul className="row">
+      <ul className={utils.row}>
         {topic.subtopics.map((subtopic, index) =>
           <li
-            className={`${css.subtopic} col-xs-12 col-sm-6 col-md-4`}
+            className={`${css.subtopic} ${utils.colXs12} ${utils.colSm6} ${utils.colMd4}`}
             key={`${subtopic.name}-${index}`}
           >
             <Link
-              prefetch
               as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
               href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
             >

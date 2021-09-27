@@ -1,0 +1,61 @@
+@import "stylesheets/variables.module";
+
+.itemList {
+  flex: 1;
+  padding-bottom: 125px;
+}
+
+.itemListHeader {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  @media (min-width: $smallRem) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.itemCount {
+  font-size: 1.375rem;
+  line-height: 1.75;
+}
+
+.viewButtons {
+  margin-left: auto;
+}
+
+.gridViewButton {
+  border-radius: 2px 0 0 2px;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+}
+
+.listViewButton {
+  border-radius: 0 2px 2px 0;
+  padding: 7px 7px 5px;
+  transform: rotate(180deg);
+}
+
+.viewButtonInactive.gridViewButton {
+  box-shadow: 0 -1px 2px 0 $lightBorderColor;
+}
+
+.viewButtonInactive.listViewButton {
+  box-shadow: 0 -1px 2px 0 $lightBorderColor;
+}
+
+.viewButtonActive {
+  cursor: default;
+  background-color: #ebe9e8;
+}
+
+.viewButtonActive .viewButtonIcon {
+  opacity: 0.45;
+}
+
+.viewButtonIcon {
+  height: 18px;
+}

@@ -2,18 +2,18 @@ import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-import css from "./Breadcrumbs.scss";
+import css from "./Breadcrumbs.module.scss";
 
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div className={css.breadcrumbs}>
     {breadcrumbs.map((breadcrumb, idx) => {
       if (idx < breadcrumbs.length - 1) {
         return (
-          <div className={css.breadcrumbLinkWrapper} key={`${idx}`}>
-            <Link prefetch href={breadcrumb.url} as={breadcrumb.as}>
+          <div className={css.breadcrumbLinkWrapper} key={idx}>
+            <Link href={breadcrumb.url} as={breadcrumb.as}>
               <a>
                 <ReactMarkdown
-                  className={`${css.breadcrumbLink}`}
+                  className={css.breadcrumbLink}
                   source={breadcrumb.title}
                   allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
@@ -29,7 +29,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
             source={breadcrumb.title}
             allowedTypes={["emphasis", "text"]}
             unwrapDisallowed
-            key={`${idx}`}
+            key={idx}
           />
         );
       }

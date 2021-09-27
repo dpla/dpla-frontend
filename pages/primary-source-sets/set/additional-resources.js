@@ -11,9 +11,9 @@ import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/Reso
 import { PSS_BASE_URL } from "constants/env";
 import { getCurrentFullUrl, removeQueryParams, markdownLinks } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.scss";
+import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 
 const SingleSet = ({ url, set, currentFullUrl }) =>
   <MainLayout

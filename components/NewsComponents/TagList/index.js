@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
-import { SITE_ENV } from "constants/env";
+import { NEWS_TAGS } from "constants/news";
 
 const TagList = ({ url, currentTag, keywords, author }) =>
   <ul className="collapsed">
@@ -15,7 +14,6 @@ const TagList = ({ url, currentTag, keywords, author }) =>
       const id = tag.id;
       const markup = tag.name.toLowerCase().replace(" ", "-") !== currentTag
         ? <Link
-            prefetch
             href={{
               pathname: url.pathname,
               query: Object.assign({}, url.query, {

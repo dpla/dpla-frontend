@@ -1,7 +1,7 @@
 import React from "react";
 
-import utils from "stylesheets/utils.scss";
-import css from "./MaxPageError.scss";
+import css from "./MaxPageError.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const MaxPageError = ({ maxPage, requestedPage }) =>
   <div className={`${utils.container} ${css.maxPageError}`}>

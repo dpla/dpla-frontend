@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/server";
 
-import css from "./mediaViewers.scss";
+import css from "./mediaViewers.module.scss";
 
 const viewerId = "openseadragon1";
 

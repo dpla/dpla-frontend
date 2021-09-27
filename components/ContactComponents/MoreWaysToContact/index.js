@@ -1,35 +1,36 @@
 import React from "react";
 
-import css from "./MoreWaysToContact.scss";
+import css from "./MoreWaysToContact.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const MoreWaysToContact = () => (
-  <div className={css.contactForm}>
+  <div>
     <h2 className={css.header}>More Ways To Contact Us</h2>
     <table className={css.contentTable}>
       <tbody>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+        <tr className={`${utils.row} ${css.paddedRow}`}>
+          <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>
             General Email
           </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+          <td className={`${utils.colXs12} ${utils.colSm7} ${css.tableItem}`}>
             <a className={css.mailToLink} href="mailto:info@dp.la">
               info@dp.la
             </a>
           </td>
         </tr>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+        <tr className={`${utils.row} ${css.paddedRow}`}>
+          <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>
             Telephone
           </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+          <td className={`${utils.colXs12} ${utils.colSm7} ${css.tableItem}`}>
             888-444-0612
           </td>
         </tr>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+        <tr className={`${utils.row} ${css.paddedRow}`}>
+          <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>
             Mailing Address
           </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+          <td className={`${utils.colXs12} ${utils.colSm7} ${css.tableItem}`}>
             Digital Public Library of America
             <br />
             (at Government Center)
@@ -40,40 +41,40 @@ const MoreWaysToContact = () => (
             <br />
           </td>
         </tr>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+        <tr className={`${utils.row} ${css.paddedRow}`}>
+          <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>
             Social Media
           </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+          <td className={`${utils.colXs12} ${utils.colSm7} ${css.tableItem}`}>
             <ul>
               <li>
-                <a href="//twitter.com/dpla">Twitter</a>
+                <a href="https://twitter.com/dpla">Twitter</a>
               </li>
               <li>
-                <a href="//www.facebook.com/digitalpubliclibraryofamerica">
+                <a href="https://www.facebook.com/digitalpubliclibraryofamerica">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="//www.instagram.com/digpublib/">Instagram</a>
+                <a href="https://www.instagram.com/digpublib/">Instagram</a>
               </li>
               <li>
-                <a href="//digitalpubliclibraryofamerica.tumblr.com/">Tumblr</a>
+                <a href="https://digitalpubliclibraryofamerica.tumblr.com/">Tumblr</a>
               </li>
               <li>
-                <a href="//www.flickr.com/photos/dpla/albums">Flickr</a>
+                <a href="https://www.flickr.com/photos/dpla/albums">Flickr</a>
               </li>
               <li>
-                <a href="//www.youtube.com/user/digpublib/videos">YouTube</a>
+                <a href="https://www.youtube.com/user/digpublib/videos">YouTube</a>
               </li>
             </ul>
           </td>
         </tr>
-        <tr className={`row ${css.paddedRow}`}>
-          <td className={`col-xs-12 col-sm-5 ${css.tableHeading}`}>
+        <tr className={`${utils.row} ${css.paddedRow}`}>
+          <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>
             Mailing Lists
           </td>
-          <td className={`col-xs-12 col-sm-7 ${css.tableItem}`}>
+          <td className={`${utils.colXs12} ${utils.colSm7} ${css.tableItem}`}>
             <ul>
               <li>
                 <a href="https://us4.list-manage.com/subscribe?u=e1490d1305c4b651f3ad0ace4&id=1ee988aadc">

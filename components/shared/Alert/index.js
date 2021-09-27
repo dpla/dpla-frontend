@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Alert.scss";
+import css from "./Alert.module.scss";
 
 const Alert = ({ showMessage }) =>
   <div

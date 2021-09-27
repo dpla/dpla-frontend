@@ -4,10 +4,10 @@ import Link from "next/link";
 import IconComponent from "shared/IconComponent";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 import StayInformed from "shared/StayInformed";
 
-import css from "./HomePro.scss";
+import css from "./HomePro.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const HomePro = ({ url, news, content }) =>
   <div>
@@ -16,7 +16,7 @@ const HomePro = ({ url, news, content }) =>
         ? css.withFeature
         : ""}`}
     >
-      <div className={`${css.heroText} site-max-width`}>
+      <div className={`${css.heroText} ${utils.siteMaxWidth}`}>
         <h1>
           Welcome to the DPLA
           Professional Community
@@ -24,7 +24,6 @@ const HomePro = ({ url, news, content }) =>
         <p>
           DPLA Pro is where DPLA, our Hub Network, and our broader community
           connect and share resources.
-          <WPEdit page={content} url={url} />
         </p>
       </div>
     </div>
@@ -37,8 +36,8 @@ const HomePro = ({ url, news, content }) =>
         buttonUrl={content.acf.feature.button_url}
         imageSrc={content.acf.feature.image}
       />}
-    <div className={`${css.sectionList}`}>
-      <ul className={`site-max-width`}>
+    <div className={css.sectionList}>
+      <ul className={utils.siteMaxWidth}>
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
             <a>

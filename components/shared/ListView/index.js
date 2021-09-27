@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
 import ListImage from "./ListImage";
 import ListNameModal from "components/ListComponents/ListNameModal";
@@ -12,14 +13,17 @@ import {
   truncateString,
   bindLinkEvent
 } from "lib";
+
 import {
   getLocalForageLists,
   setLocalForageItem,
   getLocalForageItem
 } from "lib/localForage";
+
 import { UNTITLED_TEXT, MESSAGE_DELAY, MAX_LIST_ITEMS } from "constants/site";
 
-import css from "./ListView.scss";
+import css from "./ListView.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const joinTruncate = str => truncateString(joinIfArray(str));
 
@@ -64,7 +68,7 @@ class ListView extends React.Component {
     Array.from(links).forEach(function(link) {
       // Find item with sourceUrl that matches link href.
       const item = items.filter(function(i) {
-        return i.sourceUrl == link.href;
+        return i.sourceUrl === link.href;
       })[0];
 
       // Sanity check
@@ -126,7 +130,7 @@ class ListView extends React.Component {
     lists.sort((a, b) => b.createdAt - a.createdAt);
     if (this.props.defaultUUID) {
       readOnly = true;
-      this.loadList(this.props.defaultUUID);
+      await this.loadList(this.props.defaultUUID);
     }
     this.setState({
       readOnly: readOnly,
@@ -327,7 +331,7 @@ class ListView extends React.Component {
   };
 
   render() {
-    const { items, route, exportable, viewMode } = this.props;
+    const { items, router, exportable, viewMode } = this.props;
     const {
       readOnly,
       listsInitialized,
@@ -392,7 +396,7 @@ class ListView extends React.Component {
             const realId = item.itemDplaId || item.id;
             const checked = selectedHash[realId] !== undefined;
             const shouldDisable =
-              (!checked && listCount >= MAX_LIST_ITEMS) ||
+              (!checked && listCount > MAX_LIST_ITEMS) ||
               realId === "http://dp.la/api/items/#sourceResource";
             const disabledMessage = `Maximum ${MAX_LIST_ITEMS} items per list.`;
             return (
@@ -411,12 +415,12 @@ class ListView extends React.Component {
                   useDefaultImage={item.useDefaultImage}
                 />
                 <div className={css.itemInfo}>
-                  <h2 className={`hover-underline ${css.itemTitle}`}>
+                  <h2 className={`${utils.hoverUnderline} ${css.itemTitle}`}>
                     {/* see issue #869 for details on this hack */}
                     {realId !== "http://dp.la/api/items/#sourceResource" &&
                       <Link href={item.linkHref} as={item.linkAs}>
-                        <a className={`internalItemLink`}>
-                          {route.pathname.indexOf("/search") === 0 && item.title
+                        <a className={"internalItemLink"}>
+                          {router.pathname.indexOf("/search") === 0 && item.title
                             ? truncateString(item.title, 150)
                             : item.title ? item.title : UNTITLED_TEXT}
                         </a>
@@ -424,17 +428,17 @@ class ListView extends React.Component {
                     {/* see issue #869 for details on this hack */}
                     {realId === "http://dp.la/api/items/#sourceResource" &&
                       <span>
-                        {route.pathname.indexOf("/search") === 0 && item.title
+                        {router.pathname.indexOf("/search") === 0 && item.title
                           ? truncateString(item.title, 150)
                           : item.title ? item.title : UNTITLED_TEXT}
                       </span>}
                   </h2>
                   {(item.date || item.creator) &&
                     <span className={css.itemAuthorAndDate}>
-                      {route.pathname.indexOf("/search") === 0 &&
+                      {router.pathname.indexOf("/search") === 0 &&
                         item.date &&
                         <span>{item.date.displayDate}</span>}
-                      {route.pathname.indexOf("/search") === 0 &&
+                      {router.pathname.indexOf("/search") === 0 &&
                         item.date &&
                         item.date.displayDate &&
                         item.creator &&
@@ -448,7 +452,7 @@ class ListView extends React.Component {
                     href={item.sourceUrl}
                     target="_blank"
                     rel="noopener"
-                    className={`hover-underline clickThrough external ${css.itemSource}`}
+                    className={`${utils.hoverUnderline} ${utils.external} ${css.itemSource}`}
                   >
                     {item.type === "image"
                       ? "View Full Image"
@@ -479,7 +483,7 @@ class ListView extends React.Component {
                       data-id={realId}
                       onChange={this.onCheckItem}
                       checked={selectedHash[realId] !== undefined}
-                      disabled={shouldDisable ? true : false}
+                      disabled={shouldDisable}
                       key={`checkbox-${realId}`}
                       id={`checkbox-${realId}`}
                     />
@@ -515,4 +519,4 @@ class ListView extends React.Component {
   }
 }
 
-export default ListView;
+export default withRouter(ListView);

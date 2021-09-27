@@ -6,19 +6,18 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import { getMenuItemUrl, wordpressLinks } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/guides.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/guides.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class Guides extends React.Component {
   refreshExternalLinks() {
-    var links = document.getElementById("main").getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
@@ -35,10 +34,7 @@ class Guides extends React.Component {
       <MainLayout route={router} pageTitle={guide.title} seoType={SEO_TYPE}>
         <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />
         <div
-          className={`
-        ${utils.container}
-        ${contentCss.sidebarAndContentWrapper}
-      `}
+          className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar
@@ -53,7 +49,6 @@ class Guides extends React.Component {
                 role="main"
                 className={[css.content, contentCss.content].join(" ")}
               >
-                <WPEdit page={guide} url={router} />
                 <img
                   src={guide.bannerImage}
                   alt=""

@@ -6,12 +6,13 @@ import FeedbackForm from "components/FeedbackForm";
 
 import { USER_BASE_URL } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
-const FooterPro = ({ route }) =>
-  <div className={`${css.footer} site-max-width`}>
-    <div className="row">
-      <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
+const FooterPro = () =>
+  <div className={`${css.footer} ${utils.siteMaxWidth}`}>
+    <div className={utils.row}>
+      <div className={`${css.linkGroup} ${utils.colXs12} ${utils.colSm6} ${utils.colMd3}`}>
         <h2 className={css.linkHeader}>About Us</h2>
         <ul>
           <li>
@@ -25,7 +26,7 @@ const FooterPro = ({ route }) =>
             </Link>
           </li>
           <li>
-            <FeedbackForm route={route} />
+            <FeedbackForm/>
           </li>
           <li>
             <Link as="/projects" href="/pro/wp?section=projects">
@@ -39,7 +40,7 @@ const FooterPro = ({ route }) =>
           </li>
         </ul>
       </div>
-      <div className={`${css.linkGroup} col-xs-12 col-sm-6 col-md-3`}>
+      <div className={`${css.linkGroup} ${utils.colXs12} ${utils.colSm} ${utils.colMd3}`}>
         <h2 className={css.linkHeader}>Communities</h2>
         <ul>
           <li>
@@ -77,7 +78,7 @@ const FooterPro = ({ route }) =>
           </li>
         </ul>
       </div>
-      <div className={`${css.linkGroup} col-xs-6 col-sm-6 col-md-3`}>
+      <div className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm6} ${utils.colMd3}`}>
         <h2 className={css.linkHeader}>DPLA</h2>
         <ul>
           <li>
@@ -112,7 +113,7 @@ const FooterPro = ({ route }) =>
           </li>
         </ul>
       </div>
-      <div className="col-xs-12 col-md-3">
+      <div className={`${utils.colXs12} ${utils.colMd3}`}>
         <Button
           type="primary"
           size="large"

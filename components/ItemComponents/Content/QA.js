@@ -1,14 +1,9 @@
 import React from "react";
-import Router, { withRouter } from "next/router";
+import { withRouter } from "next/router";
 
-import MainMetadata from "./MainMetadata";
-import OtherMetadata from "./OtherMetadata";
-import JsonLdMarkup from "./JsonLdMarkup";
 import Link from "next/link";
 
-import { UNTITLED_TEXT } from "constants/site";
-
-import css from "./Content.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class QA extends React.Component {
   render() {
@@ -28,20 +23,20 @@ class QA extends React.Component {
       width: "48%",
       paddingLeft: "20px"
     };
-    let originalRecord = "";
-    if ("stringValue" in item.originalRecord) {
-      originalRecord = item.originalRecord.stringValue;
-    } else {
-      originalRecord = JSON.stringify(item.originalRecord, null, 2);
-    }
+
+    const originalRecord = "stringValue" in item.originalRecord ?
+        item.originalRecord.stringValue
+        : JSON.stringify(item.originalRecord, null, 2)
+
     const enrichedRecord = JSON.stringify(item.doc, null, 2);
+
     return (
       <div style={{ paddingTop: "8px" }}>
 
         {randomItemId &&
           <div style={{ padding: "8px 20px 20px" }}>
-            <Link prefetch href={`/item/${randomItemId}`}>
-              <a className={`internalItemLink`}>
+            <Link href={`/item/${randomItemId}`}>
+              <a>
                 Fetch Random Item
               </a>
             </Link>

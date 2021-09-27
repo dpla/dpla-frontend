@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./mediaViewers.scss";
+import css from "./mediaViewers.module.scss";
 
 const AudioPlayer = ({ pathToFile, fileFormat }) =>
   <div className={css.audioPlayerWrapper}>

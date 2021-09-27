@@ -1,22 +1,20 @@
 import React from "react";
-import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
 import DonateForm from "components/DonateComponents/DonateForm";
-import Button from "shared/Button";
 
 import { SEO_TITLE } from "constants/donate";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/donate.scss";
+import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/donate.module.scss";
 
 const Donate = ({ url }) =>
   <MainLayout route={url} pageTitle={SEO_TITLE}>
     <div className={css.donateBackground}>
-      <div id="main" role="main" className={`${utils.container}`}>
-        <div className={`${css.donateContent} row`}>
-          <div className={`col-xs-12 col-md-7`}>
+      <div id="main" role="main" className={utils.container}>
+        <div className={`${css.donateContent} ${utils.row}`}>
+          <div className={`${utils.colXs12} ${utils.colMd7}`}>
             <div className={`${css.byPaypal} ${contentCss.content}`}>
               <h1>
                 Thank you for supporting DPLA
@@ -39,13 +37,13 @@ const Donate = ({ url }) =>
 
               <p className={contentCss.address}>
                 Digital Public Library of America<br />
-                c/o Boston Public Library<br />
-                700 Boylston Street<br />
-                Boston, MA 02116<br />
+                (at Government Center)<br />
+                1 Washington Mall #1019<br />
+                Boston, MA 02108
               </p>
             </div>
           </div>
-          <div className={`${css.testimonial} col-xs-12 col-md-5`}>
+          <div className={`${css.testimonial} ${utils.colXs12} ${utils.colMd5}`}>
             {/* testimonial */}
             <div className={`${contentCss.content} ${css.testimonialImage}`}>
               <img

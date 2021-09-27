@@ -1,0 +1,298 @@
+@import "stylesheets/variables.module";
+
+$borderColor: rgba(0, 0, 0, 0.75);
+
+.backgroundTint {
+  background-color: $warmerBackgroundColor;
+}
+
+.sidebar {
+  @media (max-width: $mediumRem) {
+    /* so the sidebar doesnt show up first in mobile views */
+    margin-top: 1rem;
+    order: 2;
+  }
+}
+
+.bannerImage {
+  display: block;
+  height: 12rem;
+  margin: 0 auto 1rem;
+  max-width: 100%;
+  filter: grayscale(1) sepia(1) hue-rotate(160deg) brightness(1);
+
+  @media (max-width: $mediumRem) {
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.sidebarAndContentWrapper {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: $smallRem) {
+    padding-top: 2rem;
+  }
+
+  @media (min-width: $mediumRem) {
+    padding-bottom: 8rem;
+  }
+
+  @media (min-width: $largeRem) {
+    padding-top: 3rem;
+  }
+}
+
+.content {
+  margin-top: 2rem;
+  line-height: 1.5;
+  font-family: $serifFont;
+
+  table {
+    background: #f7f7f7;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.9rem;
+
+    th {
+      background: #ccc;
+      border: solid 1px #ccc;
+      text-align: left;
+    }
+
+    td {
+      padding: 8px;
+      background: #fff;
+      //border: solid 1px #eee;
+    }
+  }
+
+  @media (min-width: $largeRem) {
+    margin-top: 0;
+  }
+
+  & h1, & h2, & h3, & h4, & h5, & h6 {
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  & h1 {
+    font-family: $serifFont;
+    font-weight: normal;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+
+    & bold {
+      font-weight: normal;
+    }
+
+    @media (min-width: $mediumRem) {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  & h2 {
+    font-family: $sansFont;
+    font-size: 1.75rem;
+    font-weight: normal;
+    margin-top: 2.5rem;
+  }
+
+  & h3 {
+    font-size: 1.25rem;
+    font-weight: normal;
+    font-family: $sansFont;
+  }
+
+  & h4 {
+    font-size: 1.5rem;
+  }
+
+  & h5 {
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  & h6 {
+    font-size: 1.25rem;
+  }
+
+  & p {
+    margin-bottom: 1rem;
+  }
+
+  & code, & pre {
+    background-color: $colderBackgroundColor;
+    font-family: $monoFont;
+    font-size: 0.85rem;
+    padding: 0.125rem 0.25rem;
+  }
+
+  & pre {
+    border-left: 0.1rem solid $secondaryColor;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  & iframe {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  & p, & ul, & ol {
+    font-weight: normal;
+
+    @media (min-width: $mediumRem) {
+    }
+
+    @media (min-width: $largeRem) {
+    }
+  }
+
+  & ul, & ol {
+    padding-left: 1.5em;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    counter-reset: start-from 0;
+
+    @media (max-width: $mediumRem) {
+      padding-left: 1rem;
+    }
+  }
+
+  & li ul {
+    margin-left: 1rem;
+  }
+
+  & ol li, & ul li {
+    list-style-type: none;
+    position: relative;
+    counter-increment: start-from;
+  }
+
+  & li {
+    margin-bottom: .5rem;
+  }
+
+  & li::before {
+    padding-right: 0.5rem;
+    text-align: right;
+    color: $primaryBulletColor;
+    box-sizing: border-box;
+    margin-left: -1.2em;
+  }
+
+  & li ul li::before {
+    color: $secondaryBulletColor;
+  }
+
+  & ul li::before {
+    content: "\2022";
+  }
+
+  & ol li::before {
+    content: counters(start-from, ".") ".";
+  }
+
+  & li.donate::before {
+    content: "";
+  }
+
+  & ul {
+    list-style-type: disc;
+  }
+
+  & blockquote, & blockquote p {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  & blockquote p + p {
+    font-size: 1.25rem;
+  }
+
+  & blockquote q {
+    font-size: 1.5rem;
+    font-style: normal;
+  }
+
+  & table {
+    border-collapse: collapse;
+    margin-bottom: 4rem;
+    width: 100%;
+  }
+
+  & td:not(:first-child) {
+  }
+
+  & th, & td {
+    padding: 1rem;
+  }
+
+  & td p:last-child {
+    margin-bottom: 0;
+  }
+
+  & tr:not(:last-child) {
+  }
+
+  & hr {
+    border: 0.075rem solid $borderColor;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: $mediumRem) {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  & :global .alignright, & :global .alignleft, & :global .wp-caption {
+    margin-bottom: 0.5rem;
+  }
+
+  & :global .alignleft {
+    float: left;
+    margin-right: 0.75rem;
+  }
+
+  & :global .aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  & :global .alignright {
+    float: right;
+    margin-left: 0.75rem;
+  }
+
+  & :global .wp-caption-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  & :global .wp-caption {
+    max-width: 100%;
+  }
+}
+
+

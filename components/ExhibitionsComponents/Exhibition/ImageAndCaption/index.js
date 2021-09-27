@@ -3,8 +3,8 @@ import React from "react";
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ImageAndCaption.scss";
+import css from "./ImageAndCaption.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const ImageAndCaption = ({ exhibition, route }) =>
   <figure className={css.wrapper}>
@@ -13,7 +13,6 @@ const ImageAndCaption = ({ exhibition, route }) =>
       <div className={css.imageWrapper}>
         <div
           className={css.image}
-          alt={exhibition.title}
           style={{
             backgroundImage: `url(${exhibition.thumbnailUrl})`
           }}
@@ -27,7 +26,6 @@ const ImageAndCaption = ({ exhibition, route }) =>
             <Button
               type="primary"
               size="large"
-              prefetch
               className={css.exploreLink}
               url={{
                 pathname: "/exhibitions/exhibition/section/subsection",

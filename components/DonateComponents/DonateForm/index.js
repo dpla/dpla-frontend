@@ -4,8 +4,9 @@ import Button from "shared/Button";
 import { getCurrentFullUrl, endsWith } from "lib";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/donate.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/donate.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const frequencyMap = [
   { v: "once", k: "Give Once" },
@@ -92,9 +93,9 @@ class DonateForm extends React.Component {
     return (
       <form action="" className={css.donateForm} data-cy="donate-form">
         <h2 id="donation-frequency">Frequency</h2>
-        <ul className={`row start-xs`}>
+        <ul className={`${utils.row} ${utils.startXs}`}>
           {frequencyMap.map((freq, i) =>
-            <li key={i} className={`${contentCss.donate} col-xs-12 col-md-4`}>
+            <li key={i} className={`${contentCss.donate} ${utils.colXs12} ${utils.colMd4}`}>
               <DualStateButton
                 id={"freq" + i}
                 key={"freq" + i}
@@ -108,9 +109,9 @@ class DonateForm extends React.Component {
           )}
         </ul>
         <h2 id="donation-amount">Donation amount</h2>
-        <ul className={`row`}>
+        <ul className={utils.row}>
           {amountMap.map((amt, i) =>
-            <li key={i} className={`${contentCss.donate} col-xs-6 col-md-4`}>
+            <li key={i} className={`${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}>
               <DualStateButton
                 id={"amt" + i}
                 labelledby={"donation-amount amt" + i}
@@ -123,21 +124,20 @@ class DonateForm extends React.Component {
             </li>
           )}
           <li
-            className={`${contentCss.donate} ${css.otherAmount} col-xs-6 col-md-4`}
+            className={`${css.otherAmount} ${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}
           >
             <input
               type="text"
               aria-label="Give other amount"
               placeholder="Other amount"
-              className={css.otherAmount}
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
             />
           </li>
         </ul>
         <hr />
-        <div className={`row`}>
-          <div className={`col-xs-12 col-md-4`}>
+        <div className={utils.row}>
+          <div className={`${utils.colXs12} ${utils.colMd4}`}>
             <Button
               type="primary"
               className={css.donateButton}

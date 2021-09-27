@@ -3,18 +3,14 @@ import Link from "next/link";
 
 import ListImage from "shared/ListView/ListImage";
 
-import {
-  addCommasToNumber,
-  joinIfArray,
-  truncateString,
-  removeQueryParams
-} from "lib";
+import {joinIfArray, removeQueryParams, truncateString} from "lib";
 
-import { LOCALS } from "constants/local";
-import { LOCAL_ID } from "constants/env";
+import {LOCALS} from "constants/local";
+import {LOCAL_ID} from "constants/env";
 
-import utils from "stylesheets/utils.scss";
-import css from "./AboutLocal.scss";
+import css from "./AboutLocal.module.scss";
+import utils from "stylesheets/utils.module.scss"
+import {UNTITLED_TEXT} from "constants/site";
 
 const dplaLink = query => {
   let newQuery = Object.assign(
@@ -27,24 +23,17 @@ const dplaLink = query => {
             `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}`
           ].join("|")
         : `${decodeURIComponent(LOCALS[LOCAL_ID].subjectFacet)}` //,
-      // location: query.location
-      //   ? [
-      //       `${query.location}`,
-      //       `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
-      //     ].join("|")
-      //   : `${decodeURIComponent(LOCALS[LOCAL_ID].locationFacet)}`
     }
   );
   newQuery = removeQueryParams(newQuery, ["page"]);
-  const url = `//dp.la/search?${Object.keys(newQuery)
-    .map(key => `${key}=${newQuery[key]}`)
-    .join("&")}`;
-  return url;
+    return `//dp.la/search?${Object.keys(newQuery)
+      .map(key => `${key}=${newQuery[key]}`)
+      .join("&")}`;
 };
 
 const AboutLocal = ({ items, count, query }) =>
   <section className={`${css.wrapper}`}>
-    <div className={`${utils.container}`}>
+    <div className={utils.container}>
       <h1 className={css.header}>
         <Link href={dplaLink(query)}>
           <a className="external">
@@ -55,7 +44,7 @@ const AboutLocal = ({ items, count, query }) =>
       </h1>
       <ul className={css.itemList}>
         {items.map((item, index) => {
-          item.linkHref = `//dp.la/item/${item.id}`;
+          item.linkHref = `https://dp.la/item/${item.id}`;
           return (
             <li key={`ab_${index}`} className={css.item}>
               <ListImage
@@ -67,9 +56,9 @@ const AboutLocal = ({ items, count, query }) =>
                 useDefaultImage={item.useDefaultImage}
               />
               <div className={css.itemInfo}>
-                <p className={`hover-underline ${css.itemTitle}`}>
+                <p className={`${utils.hoverUnderline} ${css.itemTitle}`}>
                   <Link href={item.linkHref}>
-                    <a className={`external`}>
+                    <a className={"external"}>
                       {item.title
                         ? truncateString(item.title, 150)
                         : item.title ? item.title : UNTITLED_TEXT}

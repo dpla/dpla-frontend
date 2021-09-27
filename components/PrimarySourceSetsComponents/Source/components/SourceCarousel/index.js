@@ -3,24 +3,21 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 import CarouselSlider from "./CarouselSlider";
-import ThickChevron from "../../../../../static/images/chevron-thick-orange.svg";
+import ThickChevron from "public/static/images/chevron-thick-orange.svg";
 
 import { extractSourceId, removeQueryParams } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import css from "./SourceCarousel.scss";
-
-const thickChevron = "/static/images/chevron-thick-orange.svg";
+import css from "./SourceCarousel.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
   <div className={css.wrapper}>
-    <div className={[css.sourceCarousel, utils.container].join(" ")}>
+    <div className={`${css.sourceCarousel} ${utils.container}`}>
       <div className={css.headerAndNav}>
         <h2 className={css.header}>
           <span>{`Item ${currentSourceIdx + 1} of ${sources.length}
             in the Primary Source Set `}</span>
           <Link
-            prefetch
             as={{
               pathname: `/primary-source-sets/${route.query.set}`,
               query: removeQueryParams(route.query, ["source", "set"])
@@ -33,7 +30,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               )
             }}
           >
-            <a className={`link ${css.linkToSourceSet}`}>
+            <a className={`${utils.link} ${css.linkToSourceSet}`}>
               <ReactMarkdown
                 source={set.name}
                 allowedTypes={["emphasis", "text"]}
@@ -45,7 +42,6 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
         <div className={css.prevAndNextButtons}>
           {currentSourceIdx > 0
             ? <Link
-                prefetch
                 as={{
                   pathname: `/primary-source-sets/${route.query
                     .set}/sources/${extractSourceId(
@@ -54,7 +50,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   query: removeQueryParams(route.query, ["source", "set"])
                 }}
                 href={{
-                  pathname: `/primary-source-sets/set/sources`,
+                  pathname: "/primary-source-sets/set/sources",
                   query: Object.assign({}, route.query, {
                     source: extractSourceId(
                       sources[currentSourceIdx - 1]["@id"]
@@ -62,7 +58,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a className={`${css.previousItemButton} hover-underline`}>
+                <a className={`${css.previousItemButton} ${utils.hoverUnderline}`}>
                   <ThickChevron
                     className={`${css.thickChevron} ${css.flippedH}`}
                   />
@@ -79,7 +75,6 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
               </button>}
           {currentSourceIdx < sources.length - 1
             ? <Link
-                prefetch
                 as={{
                   pathname: `/primary-source-sets/${route.query
                     .set}/sources/${extractSourceId(
@@ -96,7 +91,7 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
                   })
                 }}
               >
-                <a className={`${css.nextItemButton} hover-underline`}>
+                <a className={`${css.nextItemButton} ${utils.hoverUnderline}`}>
                   <span>Next Item</span>
                   <ThickChevron className={css.thickChevron} />
                 </a>

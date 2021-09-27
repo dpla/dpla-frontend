@@ -7,7 +7,6 @@ import IconComponent from "shared/IconComponent";
 import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 
 import { wordpressLinks } from "lib";
 
@@ -19,7 +18,7 @@ import {
 
 import { midPageBlockContent } from "constants/ebooks-landing-page";
 
-import css from "stylesheets/hubs.scss";
+import css from "stylesheets/hubs.module.scss";
 
 class EbooksPage extends React.Component {
   refreshExternalLinks() {
@@ -45,7 +44,6 @@ class EbooksPage extends React.Component {
               : ""}`}
           >
             <IconComponent className={css.icon} name="ebooks" />
-            <WPEdit page={page} url={router} />
             <h1>{page.title.rendered}</h1>
           </div>
        
@@ -57,7 +55,7 @@ class EbooksPage extends React.Component {
             imageSrc="static/images/ebooks/ebooks-feature.png"
           />
 
-          <section className={`${css.tileSectionWrapper} site-max-width`}>
+          <section className={`${css.tileSectionWrapper} ${utils.siteMaxWidth}`}>
             <ul className={css.sectionList}>
               {page.acf.sections.map((section, index) => {
                 return (

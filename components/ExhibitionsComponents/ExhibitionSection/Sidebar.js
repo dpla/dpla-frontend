@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
 
 const Sidebar = ({
   exhibition,
@@ -14,7 +14,6 @@ const Sidebar = ({
       {exhibition.sections.map(section =>
         <li key={section.id}>
           <Link
-            prefetch
             href={{
               pathname: `/exhibitions/exhibition/section/subsection`,
               query: { exhibition: exhibition.slug, section: section.slug }
@@ -41,7 +40,6 @@ const Sidebar = ({
                   ].join(" ")}
                 >
                   <Link
-                    prefetch
                     href={{
                       pathname: `/exhibitions/exhibition/section/subsection`,
                       query: {

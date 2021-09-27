@@ -6,10 +6,10 @@ import {
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified
 } from "constants/search";
-import { removeQueryParams, joinIfArray } from "lib";
+import { joinIfArray } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import css from "./FiltersList.scss";
+import css from "./FiltersList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const closeIcon = "/static/images/close-white.svg";
 
@@ -42,7 +42,6 @@ const Filter = ({ name, queryKey, route }) => {
   return (
     <li className={css.filter}>
       <Link
-        prefetch
         href={{
           pathname: route.pathname,
           query: Object.assign({}, clearFacet(route.query, queryKey, name))
@@ -104,13 +103,12 @@ class FiltersList extends React.Component {
                       })
                     );
                   } else {
-                    return null;
+                    return <></>;
                   }
                 })}
               </ul>
             </div>
             <Link
-              prefetch
               href={{
                 pathname: this.props.route.pathname,
                 query: Object.assign({}, clearAllFacets(query))

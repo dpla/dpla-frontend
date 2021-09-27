@@ -1,20 +1,20 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
-import DPLALogoWide from "../../../static/images/dpla-logo-black.svg";
+import DPLALogoWide from "public/static/images/dpla-logo-black.svg";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ExhibitionSection.scss";
+import css from "./ExhibitionSection.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const chevron = "/static/images/chevron-thick-white.svg";
 const blackChevron = "/static/images/chevron-thick-black.svg";
 
-const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
+const NavButton = withRouter(({ queryParams, router, nextOrPrevious = "next" }) =>
   queryParams
     ? <Link
-        prefetch
         href={{
-          pathname: route.pathname,
+          pathname: router.pathname,
           query: {
             exhibition: queryParams.exhibition,
             section: queryParams.section,
@@ -46,23 +46,22 @@ const NavButton = ({ queryParams, route, nextOrPrevious = "next" }) =>
         <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
         {nextOrPrevious === "next" &&
           <img src={chevron} className={css.nextChevron} alt="" />}
-      </span>;
+      </span>);
 
-const FooterNav = ({
+const FooterNav = withRouter(({
   exhibition,
-  route,
+  router,
   nextQueryParams,
   previousQueryParams,
   nextSubsectionTitle
 }) =>
   <div className={css.footerWrapper}>
     <div className={[utils.container, css.footerNav].join(" ")}>
-      <Link prefetch href="/">
+      <Link href="/">
         <DPLALogoWide className={css.dplaLogo} />
       </Link>
       <div className={css.navButtons}>
         <NavButton
-          route={route}
           queryParams={previousQueryParams}
           nextOrPrevious="previous"
         />
@@ -72,7 +71,6 @@ const FooterNav = ({
               {nextSubsectionTitle}
             </div>}
           <NavButton
-            route={route}
             queryParams={nextQueryParams}
             nextSubsectionTitle={nextQueryParams && nextSubsectionTitle}
             nextOrPrevious="next"
@@ -80,6 +78,6 @@ const FooterNav = ({
         </div>
       </div>
     </div>
-  </div>;
+  </div>);
 
 export default FooterNav;

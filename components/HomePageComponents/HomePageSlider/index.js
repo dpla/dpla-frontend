@@ -5,11 +5,10 @@ import ReactMarkdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import css from "./HomePageSlider.scss";
+import css from "./HomePageSlider.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const moreLinkChevron = "static/images/chevron-thick-orange.svg";
-const moreLinkChevronBlue = "static/images/chevron-thick-blue.svg";
-const largeChevron = "static/images/chevron-thin.svg";
 
 const HomePageSlider = ({
   browseLinkName,
@@ -20,11 +19,11 @@ const HomePageSlider = ({
   theme
 }) =>
   <div className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `} data-cy={browseLinkName}>
-    <div className={`${css.content} site-max-width`}>
+    <div className={`${css.content} ${utils.siteMaxWidth}`}>
       <div className={css.heading}>
         <h2 className={css.title}>{title}</h2>
-        <Link prefetch href={browseLinkUrl}>
-          <a className={`hover-underline ${css.moreLink}`}>
+        <Link href={browseLinkUrl}>
+          <a className={`${utils.hoverUnderline} ${css.moreLink}`}>
             Browse all{" "}
             <span className={css.moreLinkNoun}>{browseLinkName}</span>
             <img
@@ -58,7 +57,7 @@ const HomePageSlider = ({
         {items.map(
           ({ name, repImageUrl, thumbnailUrl, isFeatured, href, as }, index) =>
             <div key={`${name}—${index}`}>
-              <Link prefetch href={href} as={as}>
+              <Link href={href} as={as}>
                 <a className={css.item}>
                   <div className={css.itemImgWrapper}>
                     <div

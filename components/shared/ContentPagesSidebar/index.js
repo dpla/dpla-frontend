@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
 
 import { GUIDES_PARENT_ID } from "constants/content-pages";
 import { SITE_ENV } from "constants/env";
@@ -11,9 +12,10 @@ import {
   endsWith
 } from "lib";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
-const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
+const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
   return (
     <Link as={linkObject.as} href={linkObject.href}>
       <a className={`${css.link} ${isCurrentLink ? css.selected : ""}`}>
@@ -23,10 +25,10 @@ const SidebarLink = ({ isCurrentLink, isGuide, linkObject, title }) => {
   );
 };
 
-const NestedSidebarLinks = ({
+const NestedSidebarLinks = withRouter(({
   item,
   items,
-  route,
+  router,
   activeItemId,
   breadcrumbs
 }) => {
@@ -100,7 +102,6 @@ const NestedSidebarLinks = ({
               return (
                 <li key={child.ID}>
                   <NestedSidebarLinks
-                    route={route}
                     activeItemId={activeItemId}
                     item={child}
                     breadcrumbs={breadcrumbs}
@@ -113,9 +114,9 @@ const NestedSidebarLinks = ({
         : null}
     </div>
   );
-};
+});
 
-const Sidebar = ({ className, activeItemId, items, route }) => {
+const Sidebar = ({ className, activeItemId, items, router }) => {
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
@@ -168,7 +169,7 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
   ];
 
   return (
-    <div className={`${className} col-xs-12 col-md-4`}>
+    <div className={`${className} ${utils.colXs12} ${utils.colMd4}`}>
       <div className={css.sidebar}>
         <ul className={css.links}>
           {items
@@ -181,7 +182,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
               return (
                 <li key={item.ID}>
                   <NestedSidebarLinks
-                    route={route}
                     activeItemId={activeItemId}
                     item={item}
                     items={items}
@@ -195,7 +195,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
         <ul>
           <li>
             <NestedSidebarLinks
-              route={route}
               activeItemId={activeItemId}
               item={aboutItem}
               items={items}
@@ -205,7 +204,6 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
           {eventsId &&
             <li>
               <NestedSidebarLinks
-                route={route}
                 activeItemId={activeItemId}
                 item={eventsItem}
                 items={items}
@@ -217,7 +215,7 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
               <SidebarLink
                 title="News"
                 section="news"
-                isCurrentLink={route.pathname.indexOf("/news") === 0}
+                isCurrentLink={router.pathname.indexOf("/news") === 0}
                 linkObject={{ as: "/news", href: "/news" }}
               />
             </li>}
@@ -235,4 +233,4 @@ const Sidebar = ({ className, activeItemId, items, route }) => {
   );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

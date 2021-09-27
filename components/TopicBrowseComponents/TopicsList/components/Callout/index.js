@@ -1,10 +1,9 @@
 import React from "react";
-import Link from "next/link";
 
 import Button from "components/shared/Button";
-import css from "./Callout.scss";
+import css from "./Callout.module.scss";
 
-const Callout = ({ topics }) =>
+const Callout = () =>
   <div className={css.calloutWrapper}>
     <div className={css.callout}>
       <div className={css.content}>
@@ -13,7 +12,7 @@ const Callout = ({ topics }) =>
           You might also like our Online Exhibitions.
         </p>
       </div>
-      <Button type="primary" url="/exhibitions" prefetch className={css.link}>
+      <Button type="primary" url="/exhibitions" className={css.link}>
         Visit Online Exhibitions
       </Button>
     </div>

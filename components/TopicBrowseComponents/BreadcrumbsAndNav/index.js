@@ -1,17 +1,11 @@
 import React from "react";
 
 import Breadcrumbs from "shared/Breadcrumbs";
-import NavLinks from "./components/NavLinks";
-
-import utils from "stylesheets/utils.scss";
-import css from "./BreadcrumbsAndNav.scss";
+import css from "./BreadcrumbsAndNav.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const BreadcrumbsAndNav = ({
-  breadcrumbs,
-  previousSubtopic,
-  nextSubtopic,
-  topic,
-  route
+  breadcrumbs
 }) =>
   <div className={utils.breadcrumbsWrapper}>
     <div className={[css.breadcrumbsAndNav, utils.container].join(" ")}>

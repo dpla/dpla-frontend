@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import FooterPro from "./FooterPro";
 import FooterUser from "./FooterUser";
@@ -8,14 +7,14 @@ import SmallFooter from "./SmallFooter";
 
 import { SITE_ENV } from "constants/env";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
 
-const Footer = ({ route }) =>
+const Footer = () =>
   <footer className={css.wrapper}>
-    {SITE_ENV === "user" && <FooterUser route={route} />}
-    {SITE_ENV === "pro" && <FooterPro route={route} />}
+    {SITE_ENV === "user" && <FooterUser />}
+    {SITE_ENV === "pro" && <FooterPro />}
     {(SITE_ENV === "user" || SITE_ENV === "pro") &&
-      <SmallFooter route={route} />}
-    {SITE_ENV === "local" && <SmallFooterLocal route={route} />}
+      <SmallFooter />}
+    {SITE_ENV === "local" && <SmallFooterLocal />}
   </footer>;
 export default Footer;
