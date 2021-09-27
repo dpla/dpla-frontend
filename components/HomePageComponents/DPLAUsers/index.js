@@ -4,17 +4,18 @@ import GuideLink from "components/shared/GuideLink";
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
 
-import css from "./DPLAUsers.scss";
+import css from "./DPLAUsers.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const DPLAUsers = ({ guides }) =>
   <div className={css.wrapper} data-cy="guides">
-    <div className={`${css.DPLAUsers} site-max-width`}>
+    <div className={`${css.DPLAUsers} ${utils.siteMaxWidth}`}>
       <h2 className={css.header}>How can I use DPLA?</h2>
       <HeadingRule />
-      <div className="row">
+      <div className={utils.row}>
         {guides.map(guide =>
           <div
-            className={`${css.itemColumn} col-xs-12 col-sm-6 col-lg-3`}
+            className={`${css.itemColumn} ${utils.colXs12} ${utils.colSm6} ${utils.colLg3}`}
             key={guide.slug}
           >
             <GuideLink guide={guide} />
@@ -31,7 +32,6 @@ const DPLAUsers = ({ guides }) =>
         <Button
           type="secondary"
           size="large"
-          prefetch
           className={css.captionButton}
           url={"/guides"}
         >

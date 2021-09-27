@@ -1,0 +1,42 @@
+@import "stylesheets/variables.module";
+
+.featureTitle {
+  width: 100%;
+}
+
+.partnerBrowse {
+  line-height: 1.25;
+  margin-top: 2rem;
+  padding-bottom: 5.5rem;
+
+  @media (min-width: $largeRem) {
+    margin-top: 4rem;
+  }
+}
+
+.partners {
+  display: grid;
+  grid-column-gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  padding: 0 0.5rem;
+}
+
+.partnerLink {
+  border-bottom: 0.075rem solid $grayBorderColor;
+  display: flex;
+  height: 100%;
+  padding: 0.85rem 0;
+}
+
+.name {
+  font-family: $serifFont;
+  font-size: 1.3125rem;
+  margin-right: 0.75rem;
+  max-width: 75%;
+}
+
+.itemCount {
+  color: $dimmedTextColor;
+  font-size: 1.25rem;
+  margin-left: auto;
+}

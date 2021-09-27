@@ -18,12 +18,11 @@ import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
 import {
-  API_ENDPOINT as DPLA_ITEM_ENDPOINT,
-  THUMBNAIL_ENDPOINT
+  API_ENDPOINT as DPLA_ITEM_ENDPOINT
 } from "constants/items";
 
-import utils from "stylesheets/utils.scss";
-import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.scss";
+import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const SubtopicItemsList = ({
   url,
@@ -56,7 +55,7 @@ const SubtopicItemsList = ({
     <div
       id="main"
       role="main"
-      className={[css.sidebarAndItemList, utils.container].join(" ")}
+      className={`${css.sidebarAndItemList} ${utils.container}`}
     >
       <Sidebar
         title={subtopic.name}

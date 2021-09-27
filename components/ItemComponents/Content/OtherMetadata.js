@@ -5,7 +5,8 @@ import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
 
-import css from "./Content.scss";
+import css from "./Content.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const OtherMetadata = ({ item }) =>
   <div className={css.otherMetadata}>
@@ -99,7 +100,7 @@ const OtherMetadata = ({ item }) =>
             <a
               href={item.edmRights}
               rel="noopener noreferrer"
-              className={`${css.label} link external`}
+              className={`${css.label} ${utils.link} external`}
               target="_blank"
             >
               {readMyRights(item.edmRights).label}:

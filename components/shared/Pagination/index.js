@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-import Chevron from "../../../static/images/chevron-thick.svg";
+import Chevron from "public/static/images/chevron-thick.svg";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
-import css from "./Pagination.scss";
+import css from "./Pagination.module.scss";
 
 /**
   * @param current, current page number
@@ -30,7 +30,6 @@ const centerWindow = (current, pageCount) => {
 
 const PageLink = ({ route, page, className }) =>
   <Link
-    prefetch
     href={{
       pathname: route.pathname,
       query: Object.assign({}, route.query, {
@@ -54,7 +53,6 @@ const NextOrPrevButton = ({ route, currentPage, disabled, type = "next" }) =>
         {type === "next" && <Chevron className={css.nextChevron} />}
       </button>
     : <Link
-        prefetch
         href={{
           pathname: route.pathname,
           query: Object.assign({}, route.query, {
@@ -81,10 +79,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
     />
     {pageCount > 1 &&
       <PageLink
-        className={[
-          css.link,
-          parseInt(currentPage, 10) === 1 ? css.activeLink : ""
-        ].join(" ")}
+        className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
         route={route}
         page={1}
       />}
@@ -96,10 +91,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
         page > 1 && page < pageCount
           ? <PageLink
               key={page}
-              className={[
-                css.link,
-                page === parseInt(currentPage, 10) ? css.activeLink : ""
-              ].join(" ")}
+              className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
               route={route}
               page={page}
             />
@@ -111,10 +103,7 @@ const Pagination = ({ route, pageCount, currentPage }) =>
       <span className={css.ellipses}>...</span>}
     {pageCount > 1 &&
       <PageLink
-        className={[
-          css.link,
-          pageCount === parseInt(currentPage, 10) ? css.activeLink : ""
-        ].join(" ")}
+        className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
         route={route}
         page={pageCount}
       />}

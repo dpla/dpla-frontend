@@ -7,9 +7,10 @@ import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 
 import { SITE_ENV } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import donateCss from "stylesheets/donate.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import donateCss from "stylesheets/donate.module.scss";
+import utils from "stylesheets/utils.module.scss"
+
 
 export default withRouter(
   class Error extends React.Component {
@@ -28,8 +29,7 @@ export default withRouter(
       return (
         <MinimalLayout route={this.props.router}>
           <div
-            className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+            className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
           >
             <div className="row">
               <div className={`col-md-2 col-xs-12`} />

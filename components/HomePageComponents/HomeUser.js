@@ -6,12 +6,10 @@ import DPLAUsers from "./DPLAUsers";
 import NewsLane from "shared/NewsLane";
 import StayInformed from "shared/StayInformed";
 import WebsiteFeature from "shared/WebsiteFeature";
-import WPEdit from "shared/WPEdit";
 
-import css from "./HomeUser.scss";
+import css from "./HomeUser.module.scss";
 
 const HomeUser = ({
-  url,
   sourceSets,
   exhibitions,
   guides,
@@ -24,7 +22,6 @@ const HomeUser = ({
       headerDescription={headerDescription}
       feature={content.acf.feature}
     />
-    <WPEdit page={content} url={url} />
     {content.acf.feature &&
       content.acf.feature.title !== "" &&
       <WebsiteFeature

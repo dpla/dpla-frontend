@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {withRouter} from "next/router";
 
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
@@ -10,22 +10,17 @@ import Pagination from "shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
-import { formatDate } from "lib";
+import {formatDate} from "lib";
 
-import { SITE_ENV, WORDPRESS_URL } from "constants/env";
-import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
-import {
-  PRO_MENU_ENDPOINT,
-  ABOUT_MENU_ENDPOINT,
-  NEWS_ENDPOINT,
-  TAGS_ENDPOINT,
-  SEO_TYPE
-} from "constants/content-pages";
-import { DEFAULT_PAGE_SIZE } from "constants/search";
+import {SITE_ENV, WORDPRESS_URL} from "constants/env";
+import {DESCRIPTION, NEWS_TAGS, TITLE} from "constants/news";
+import {ABOUT_MENU_ENDPOINT, NEWS_ENDPOINT, PRO_MENU_ENDPOINT, SEO_TYPE} from "constants/content-pages";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/news.scss";
+import {DEFAULT_PAGE_SIZE} from "constants/search";
+
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/news.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class NewsPage extends React.Component {
   componentWillMount() {
@@ -56,10 +51,9 @@ class NewsPage extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const keywords = e.target.elements.k.value;
-    const url = `/news?k=${keywords}&tag=${this.state.tag}${this.state.author
-      ? `&author=${this.state.author}`
-      : ""}`;
-    document.location = url;
+    document.location = `/news?k=${keywords}&tag=${this.state.tag}${this.state.author
+        ? `&author=${this.state.author}`
+        : ""}`;
   }
 
   render() {
@@ -70,10 +64,7 @@ class NewsPage extends React.Component {
       pageItem,
       newsCount,
       newsPageCount,
-      currentTag,
       currentPage,
-      keywords,
-      author
     } = this.props;
     const resultSummary = `${this.state.authorName
       ? " by " + this.state.authorName
@@ -89,8 +80,7 @@ class NewsPage extends React.Component {
       <MainLayout route={router} pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+          className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className="row">
             <ContentPagesSidebar

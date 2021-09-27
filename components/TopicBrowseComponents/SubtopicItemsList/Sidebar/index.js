@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 
 // const RelatedResource = ({ type, title, image }) =>
 //   <div className={css.relatedResource}>

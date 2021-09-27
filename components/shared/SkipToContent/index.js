@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./SkipToContent.scss";
+import css from "./SkipToContent.module.scss";
 
 const SkipToContent = ({ className, id, isHidden, children }) =>
   <div className={css.skipLink} tabIndex="-1">

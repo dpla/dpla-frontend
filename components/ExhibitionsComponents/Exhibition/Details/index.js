@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
@@ -8,8 +7,8 @@ import CiteButton from "shared/CiteButton";
 import { getFullPath, joinIfArray, parseDplaItemRecord } from "lib";
 import * as gtag from "lib/gtag";
 
-import utils from "stylesheets/utils.scss";
-import css from "./Details.scss";
+import css from "./Details.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event
@@ -51,7 +50,6 @@ class Details extends React.Component {
                 {exhibition.sections.map((section, idx) =>
                   <li key={idx} className={css.tableOfContentsSection}>
                     <Link
-                      prefetch
                       href={{
                         pathname: "/exhibitions/exhibition/section/subsection",
                         query: Object.assign({}, route.query, {
@@ -90,7 +88,6 @@ class Details extends React.Component {
               <Button
                 type="primary"
                 size="large"
-                prefetch
                 className={css.exploreLink}
                 url={{
                   pathname: "/exhibitions/exhibition/section/subsection",

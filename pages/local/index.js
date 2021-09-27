@@ -20,8 +20,7 @@ const Home = ({ router, content }) =>
 
 Home.getInitialProps = async ({ req }) => {
   const fullUrl = getCurrentUrl(req);
-  const markdownUrl = `${fullUrl}/static/local/${LOCALS[LOCAL_ID]
-    .theme}/homepage.md`;
+  const markdownUrl = `${fullUrl}/static/local/${LOCALS[LOCAL_ID].theme}/homepage.md`;
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
 

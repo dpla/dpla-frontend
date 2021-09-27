@@ -3,30 +3,30 @@ import Link from "next/link";
 
 import { LOCALS } from "constants/local";
 import { LOCAL_ID } from "constants/env";
-import * as PropTypes from "prop-types";
+// import * as PropTypes from "prop-types";
 
 class NavigationLocal extends Component {
+
   render() {
-    let { isHome, className, css } = this.props;
-    var visitHtml;
-    var contactHtml;
-    var arbitraryHtml = null;
-    var blogHtml = null;
-    var surveyHtml = null;
+    const { isHome, className, css } = this.props;
+    let visitHtml;
+    let contactHtml;
+    let arbitraryHtml = null;
+    let blogHtml = null;
 
     if (LOCALS[LOCAL_ID].routes) {
-
       const routesObj = LOCALS[LOCAL_ID].routes;
-
       const dynamicRoutes = Object.keys(routesObj);
 
-      const categories = dynamicRoutes.map(function(category, i) {
+      const categories = dynamicRoutes
+          .map(function(category, i) {
         const keys = Object.assign({}, i);
         keys.id = i;
         keys.route = dynamicRoutes[i];
         keys.isTopLevel = routesObj[dynamicRoutes[i]].isTopLevel;
         keys.category = routesObj[dynamicRoutes[i]].category;
         return keys;
+
       }).filter(category =>
         category.isTopLevel
       );
@@ -35,14 +35,14 @@ class NavigationLocal extends Component {
         return(
           <li key={navItem.id}>
             <Link
-              prefetch href={"/local/" + navItem.route}
+              href={"/local/" + navItem.route}
               as={navItem.route}>
               <a>{navItem.category}</a>
             </Link>
           </li>
         );
       });
-    };
+    }
 
     if (LOCAL_ID === "aviation") {
       visitHtml = (
@@ -57,7 +57,9 @@ class NavigationLocal extends Component {
           <a href="about:blank">PRIMARY SOURCE SET</a>
         </li>
       );
+
     } else if (LOCAL_ID === "wisconsin") {
+
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
@@ -67,11 +69,13 @@ class NavigationLocal extends Component {
           </li>
         </ul>
       );
+
       contactHtml = (
         <li>
           <a href={LOCALS[LOCAL_ID].externalLink + "/contact"}>Contact</a>
         </li>
       );
+
     } else if (LOCAL_ID === "illinois") {
       blogHtml = (
           <li>
@@ -80,6 +84,7 @@ class NavigationLocal extends Component {
             </Link>
           </li>
       );
+
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
@@ -91,6 +96,7 @@ class NavigationLocal extends Component {
         </ul>
       );
       contactHtml = null;
+
     } else {
       visitHtml = null;
       contactHtml = null;
@@ -101,7 +107,7 @@ class NavigationLocal extends Component {
         <ul className={css.links}>
           {!isHome && (
             <li>
-              <Link prefetch href="/local" as="/">
+              <Link href="/local" as="/">
                 <a>Home</a>
               </Link>
             </li>
@@ -110,27 +116,27 @@ class NavigationLocal extends Component {
           {contactHtml && contactHtml}
           {LOCALS[LOCAL_ID].hasTerms && (
             <li>
-              <Link prefetch href="/terms">
+              <Link href="/terms">
                 <a>Terms and Conditions</a>
               </Link>
             </li>
           )}
           {LOCALS[LOCAL_ID].hasBrowseByPartner && (
             <li>
-              <Link prefetch href="/browse-by-partner">
+              <Link href="/browse-by-partner">
                 <a>Browse by Partner</a>
               </Link>
             </li>
           )}
           {LOCALS[LOCAL_ID].hasBrowseAll && (
             <li>
-              <Link prefetch href="/search">
+              <Link href="/search">
                 <a>Browse All</a>
               </Link>
             </li>
           )}
           <li>
-            <Link prefetch href="/lists">
+            <Link href="/lists">
               <a>My Lists</a>
             </Link>
           </li>
@@ -140,7 +146,7 @@ class NavigationLocal extends Component {
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           {blogHtml}
           <li>
-              <a  href="//dp.la">Visit DPLA</a>
+              <a href="https://dp.la">Visit DPLA</a>
           </li>
         </ul>
       </div>
@@ -148,10 +154,10 @@ class NavigationLocal extends Component {
   }
 }
 
-NavigationLocal.propTypes = {
-  isHome: PropTypes.any,
-  className: PropTypes.any,
-  css: PropTypes.any
-};
+// NavigationLocal.propTypes = {
+//   isHome: PropTypes.any,
+//   className: PropTypes.any,
+//   css: PropTypes.any
+// };
 
 export default NavigationLocal;

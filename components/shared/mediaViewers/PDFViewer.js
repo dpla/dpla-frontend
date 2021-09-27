@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./mediaViewers.scss";
+import css from "./mediaViewers.module.scss";
 
 class PDFViewer extends React.Component {
   render() {

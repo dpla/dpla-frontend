@@ -1,6 +1,4 @@
 import React from "react";
-import Router from "next/router";
-import Helmet from "react-helmet";
 
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
@@ -8,6 +6,8 @@ import SmallScreenHeader from "./components/SmallScreenHeader";
 import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
+
+import { withRouter } from 'next/router'
 
 import * as gtag from "lib/gtag";
 import { getFullPath, getCurrentFullUrl } from "lib";
@@ -17,7 +17,7 @@ import { SITE_ENV } from "constants/env";
 class MainLayout extends React.Component {
   // Google Analytics tracking for MainLayout-using pages
   componentDidMount() {
-    Router.onRouteChangeComplete = url => this.trackPageview();
+    this.props.router.onRouteChangeComplete = url => this.trackPageview();
   }
 
   trackPageview() {
@@ -37,7 +37,7 @@ class MainLayout extends React.Component {
   render() {
     const {
       children,
-      route,
+      router,
       hideSearchBar,
       hidePageHeader,
       isSearchPage,
@@ -48,12 +48,11 @@ class MainLayout extends React.Component {
       seoType
     } = this.props;
     const isHome =
-      (SITE_ENV === "local" && route.pathname === "/local") ||
-      (SITE_ENV === "pro" && route.pathname === "/pro") ||
-      (SITE_ENV === "user" && route.pathname === "/");
+      (SITE_ENV === "local" && router.pathname === "/local") ||
+      (SITE_ENV === "pro" && router.pathname === "/pro") ||
+      (SITE_ENV === "user" && router.pathname === "/");
     return (
       <div>
-        <Helmet htmlAttributes={{ lang: "en" }} />
         <DPLAHead
           additionalLinks={headLinks}
           pageTitle={pageTitle}
@@ -64,7 +63,6 @@ class MainLayout extends React.Component {
         <SkipToContent />
         <SmallScreenHeader
           isSearchPage={isSearchPage}
-          route={route}
           isHome={isHome}
         />
         <GlobalHeader            
@@ -72,15 +70,15 @@ class MainLayout extends React.Component {
         />
         {!hidePageHeader &&
           <PageHeader
-            query={route.query}
-            searchQuery={route.query.q}
+            query={router.query}
+            searchQuery={router.query.q}
             hideSearchBar={hideSearchBar}
           />}
         {children}
-        <Footer route={route} />
+        <Footer />
       </div>
     );
   }
 }
 
-export default MainLayout;
+export default withRouter(MainLayout);

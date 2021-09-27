@@ -8,9 +8,9 @@ import AboutLocal from "./AboutLocal";
 import { addLinkInfoToResults } from "lib";
 import { SITE_ENV } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
-import css from "./MainContent.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import css from "./MainContent.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const MainContent = ({
   results,

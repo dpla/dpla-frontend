@@ -1,6 +1,5 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import Router from "next/router";
 
 import {
   ZoomableImageViewer,
@@ -21,8 +20,8 @@ import {
 } from "lib";
 import * as gtag from "lib/gtag";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ContentAndMetadata.scss";
+import utils from "stylesheets/utils.module.scss";
+import css from "./ContentAndMetadata.module.scss";
 
 const link = "/static/images/link.svg";
 const external = "/static/images/external-link-black.svg";
@@ -146,7 +145,7 @@ class ContentAndMetadata extends React.Component {
 
     return (
       <div className={css.wrapper}>
-        <div className={[css.contentAndMetadata, utils.container].join(" ")}>
+        <div className={`${css.contentAndMetadata} ${utils.container}`}>
           <h1 className={css.contentHeader}>
             <ReactMarkdown
               source={source.name}
@@ -255,7 +254,7 @@ class ContentAndMetadata extends React.Component {
                   <div className={css.linkWrapper}>
                     <a
                       href={getSourceLink(source)}
-                      className={`${css.sourceLink}`}
+                      className={css.sourceLink}
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener"
                       target="_blank"

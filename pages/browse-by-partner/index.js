@@ -11,11 +11,11 @@ import { TITLE, DESCRIPTION } from "constants/browse-by-partner";
 import { LOCALS } from "constants/local";
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 
-import css from "components/PartnerBrowseComponents/PartnerBrowseContent.scss";
+import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 
 const PartnerBrowse = ({ partners, url }) =>
   <div>
-    <MainLayout route={url} pageTitle={TITLE}>
+    <MainLayout pageTitle={TITLE}>
       <div id="main" role="main">
         <FeatureHeader
           titleClassName={css.featureTitle}

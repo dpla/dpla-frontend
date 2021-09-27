@@ -8,8 +8,8 @@ import { addCommasToNumber } from "lib";
 
 import { MAX_LIST_ITEMS } from "constants/site";
 
-import utils from "stylesheets/utils.scss";
-import css from "./ListComponents.scss";
+import css from "./ListComponents.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 export const List = ({ uuid, name, itemCount, createdAt }) =>
   <Link href={`/lists/${uuid}`}>
@@ -26,7 +26,7 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
   </Link>;
 
 export const Lists = ({ lists }) =>
-  <ul className={`${css.lists} col-xs-12`}>
+  <ul className={`${css.lists} ${utils.colXs12}`}>
     {lists.map((l, index) =>
       <li key={`l_${index}`}>
         <List
@@ -44,14 +44,15 @@ export const ListEmpty = () =>
     <p>This list is empty.</p>
     <p>
       Add up to 50 items from our{" "}
-      <Link prefetch href="/browse-by-topic">
+      <Link href="/browse-by-topic">
         <a>topics</a>
       </Link>{" "}or{" "}
-      <Link prefetch href="/search">
+      <Link href="/search">
         <a>search results</a>
       </Link>:
     </p>
     <video
+        className={css.listVideo}
       poster="/static/video/list-add_poster.png"
       title="video with no audio showing how to add items to a list"
       controls
@@ -66,7 +67,7 @@ export const ListEmpty = () =>
   </div>;
 
 export const ListNote = () =>
-  <div className={`${css.note} col-xs-12`}>
+  <div className={`${css.note} ${utils.colXs12}`}>
     <p>
       <strong>Note:</strong> You won't see lists created in
       another browser here. To view those lists, open the browser
@@ -75,20 +76,21 @@ export const ListNote = () =>
   </div>;
 
 export const ListsEmpty = () =>
-  <div className={`${css.empty}  col-xs-12`}>
+  <div className={`${css.empty} ${utils.colXs12}`}>
     <h2 className={css.contentTitle}>Create your lists</h2>
     <p>
       Create lists from our{" "}
-      <Link prefetch href="/browse-by-topic">
+      <Link href="/browse-by-topic">
         <a>topics</a>
       </Link>{" "}or{" "}
-      <Link prefetch href="/search">
+      <Link href="/search">
         <a>search results</a>
       </Link>{" "}
       (up to 50 items in each list):
     </p>
     <video
-      poster="/static/video/list-new_poster.png"
+        className={css.listVideo}
+        poster="/static/video/list-new_poster.png"
       title="video with no audio showing how to create a list and add items"
       controls
     >
@@ -103,7 +105,7 @@ export const ListsEmpty = () =>
     <p>
       Once you have created a list, you can visit{" "}
       <code>
-        <Link prefetch href="/lists">
+        <Link href="/lists">
           <a>dp.la/lists</a>
         </Link>
       </code>{" "}
@@ -112,7 +114,8 @@ export const ListsEmpty = () =>
       spreadsheet program:
     </p>
     <video
-      poster="/static/video/list-download_poster.png"
+        className={css.listVideo}
+        poster="/static/video/list-download_poster.png"
       title="video with no audio showing how to download a list"
       controls
     >
@@ -133,13 +136,13 @@ export const ListsEmpty = () =>
   </div>;
 
 export const ListLoading = () =>
-  <div className={`${css.loading}`}>
+  <div className={css.loading}>
     <h2 className={css.contentTitle}>Loading</h2><p>Please wait…</p>
   </div>;
 
 export const ListsContent = ({ initialized, lists, onCreateList }) =>
-  <div className={`${utils.container}`}>
-    <div className={`row ${css.wrapper}`}>
+  <div className={utils.container}>
+    <div className={`${utils.row} ${css.wrapper}`}>
       {!initialized && <ListLoading />}
       {initialized && lists.length > 0 && <ListNote />}
       {initialized && lists.length === 0 && <ListsEmpty />}
@@ -173,7 +176,7 @@ export const ListCheckbox = ({
         value={list.uuid}
         checked={isChecked}
         onChange={onCheckList}
-        disabled={shouldDisable ? true : false}
+        disabled={!!shouldDisable}
         className={`${css.checkbox} ${shouldDisable ? css.disabled : ""}`}
       />
       <span>{list.name}</span>

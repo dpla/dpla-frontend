@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Footer.scss";
+import css from "./Footer.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 import { SITE_ENV } from "constants/env";
 
@@ -13,11 +14,10 @@ const twitterIcon = "/static/images/twitter.svg";
 
 class SmallFooter extends React.Component {
   render() {
-    const { route } = this.props;
     return (
       <div className={css.smallFooterWrapper}>
-        <div className={`${css.smallFooter} site-max-width`}>
-          <Link prefetch as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+        <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
+          <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
             <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
           </Link>
           <div className={css.socialIcons}>

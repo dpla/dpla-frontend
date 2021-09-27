@@ -7,7 +7,6 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import {
@@ -15,6 +14,7 @@ import {
   PAGES_ENDPOINT,
   SEO_TYPE
 } from "constants/content-pages";
+
 import {
   getBreadcrumbs,
   getItemWithId,
@@ -23,19 +23,21 @@ import {
   decodeHTMLEntities
 } from "lib";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    var links = document.getElementById("main").getElementsByTagName("a");
+    const links = document
+        .getElementById("main")
+        .getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     this.refreshExternalLinks();
   }
 
@@ -48,6 +50,7 @@ class AboutMenuPage extends React.Component {
       pageTitle,
       pageDescription
     } = this.props;
+
     return (
       <MainLayout
         route={router}
@@ -60,19 +63,17 @@ class AboutMenuPage extends React.Component {
         {breadcrumbs.length === 0 &&
           <FeatureHeader title={pageTitle} description={""} />}
         <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+          className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               route={router}
               items={items}
               activeItemId={content.id}
               className={contentCss.sidebar}
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={router} />
                 {breadcrumbs.length > 0 &&
                   <h1
                     dangerouslySetInnerHTML={{ __html: content.title.rendered }}

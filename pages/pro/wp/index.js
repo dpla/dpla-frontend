@@ -8,13 +8,10 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-import WPEdit from "shared/WPEdit";
 
 import {
-  endsWith,
   getBreadcrumbs,
   getItemWithId,
-  getItemWithName,
   getMenuItemUrl,
   decodeHTMLEntities,
   wordpressLinks
@@ -22,8 +19,8 @@ import {
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
+import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -60,11 +57,10 @@ class ProMenuPage extends React.Component {
         {breadcrumbs.length === 0 &&
           !illustration &&
           <FeatureHeader title={pageTitle} description={""} />}
-        <div
-          className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
+        <div className={`${utils.container}
+            ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               className={contentCss.sidebar}
               route={router}
@@ -72,9 +68,8 @@ class ProMenuPage extends React.Component {
               activeItemId={page.id}
               rootPath="wp"
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={page} url={router} />
                 {/* fancy pages (with illustrations) get special heading */}
                 {illustration &&
                   <div>

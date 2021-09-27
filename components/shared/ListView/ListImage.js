@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { getDefaultThumbnail } from "lib";
 
-import css from "./ListView.scss";
+import css from "./ListView.module.scss";
 
 class ListImage extends React.Component {
   state = {

@@ -4,14 +4,13 @@ import ReactMarkdown from "react-markdown";
 
 import { removeQueryParams, markdownLinks } from "lib";
 
-import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "./TeachersGuide.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "./TeachersGuide.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const printer = "/static/images/printer.svg";
-const link = "/static/images/link.svg";
+
 
 class TeachersGuide extends React.Component {
   state = { routePath: null };
@@ -24,8 +23,6 @@ class TeachersGuide extends React.Component {
     const {
       route,
       teachingGuide,
-      setName,
-      currentPath,
       isPrintable
     } = this.props;
     return (
@@ -35,8 +32,8 @@ class TeachersGuide extends React.Component {
         aria-labelledby="tab-teachingguide"
       >
         <div className={`${css.teachingGuide} ${utils.container}`}>
-          <div className="row">
-            <div className="col-xs-12 col-md-8">
+          <div className={utils.row}>
+            <div className={`${utils.colXs12} ${utils.colMd8}`}>
               <div className={css.content}>
                 <div className={contentCss.content}>
                   <h3>Discussion questions</h3>
@@ -71,14 +68,13 @@ class TeachersGuide extends React.Component {
                     source
                     set,{" "}
                     <Link
-                      prefetch
                       href={`/primary-source-sets/set?set=${route.query.set}`}
                       as={{
                         pathname: `/primary-source-sets/${route.query.set}`,
                         query: removeQueryParams(route.query, ["set"])
                       }}
                     >
-                      <a className={`link ${css.aboutThisLink}`}>
+                      <a className={`${utils.link} ${css.aboutThisLink}`}>
                         <ReactMarkdown
                           source={teachingGuide.isPartOf.name}
                           allowedTypes={["emphasis"]}
@@ -98,8 +94,8 @@ class TeachersGuide extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={`col-xs-12 col-md-4 ${css.sidebar}`}>
-              <div className={[css.teacherTools, css.sidebarSection].join(" ")}>
+            <div className={`${utils.colXs12} ${utils.colMd4} ${css.sidebar}`}>
+              <div className={`${css.teacherTools} ${css.sidebarSection}`}>
                 <h3 className={css.sidebarHeader}>Created By</h3>
                 {teachingGuide.author.map((author, i) =>
                   <ReactMarkdown

@@ -1,0 +1,162 @@
+@import "stylesheets/variables.module";
+
+.wrapper {
+  color: white;
+  background-color: $footerLightColor;
+  position: relative;
+
+  @media print {
+    display: none;
+  }
+}
+
+.footer {
+  padding: 2rem 1rem;
+  line-height: 1.5;
+  color: $gray75;
+  margin: 0 auto;
+
+  @media (min-width: $mediumRem) {
+    padding: 3rem 1rem;
+  }
+
+  @media (min-width: $largeRem) {
+    padding: 3rem 0;
+  }
+
+  & li a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: $largeRem) {
+      font-size: 1.15rem;
+    }
+  }
+}
+
+/* Select all but the first two */
+.linkGroup {
+  &:nth-of-type(n + 3) {
+    margin-top: 1rem;
+
+    @media (min-width: $smallRem) {
+      margin-top: 0;
+    }
+  }
+}
+
+.linkHeader {
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 1rem;
+
+  @media (min-width: $largeRem) {
+    font-size: 1.25rem;
+  }
+}
+
+.donateButton {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media (min-width: $mediumRem) {
+    margin-top: 0;
+  }
+
+  @media (min-width: $largeRem) {
+    float: right;
+    width: auto;
+  }
+}
+
+.smallFooterWrapper {
+  background-color: $footerDarkColor;
+}
+
+.smallFooter {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $mediumRem) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @media (min-width: $largeRem) {
+    padding: 2rem 0;
+  }
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 15rem;
+  height: 3rem;
+
+  @media (min-width: $mediumRem) {
+    margin: 0;
+    width: 18rem;
+  }
+}
+
+.partnershipLogo {
+  display: block;
+  margin: 0 auto;
+  width: 15rem;
+  height: 2rem;
+
+  @media (min-width: $mediumRem) {
+    margin: 0;
+    width: 15rem;
+  }
+}
+
+.localLogo {
+  display: block;
+  height: 3rem;
+  margin: 0 auto 2rem;
+  max-width: 16rem;
+
+  @media (min-width: $largeRem) {
+    height: 3rem;
+    margin: 0;
+    max-width: 18rem;
+  }
+}
+
+.socialIcons {
+  text-align: center;
+  margin-top: 2rem;
+
+  @media (min-width: $mediumRem) {
+    margin-top: 0;
+  }
+}
+
+.socialButton {
+  padding-right: 1rem;
+  width: 2.25rem;
+  height: 1.25rem;
+
+  &:last-child {
+    padding: 0;
+  }
+
+  @media (min-width: $mediumRem) {
+    width: 2.5rem;
+    height: 1.5rem;
+  }
+}

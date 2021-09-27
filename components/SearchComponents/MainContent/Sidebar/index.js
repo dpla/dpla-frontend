@@ -16,13 +16,13 @@ import {
 import { SITE_ENV } from "constants/env";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
-import css from "./Sidebar.scss";
+import css from "./Sidebar.module.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
     if (disabled) {
-        return (<span className={[css.facet].join(" ")}>
-            <span className={[css.facetName, css.activeFacetName].join(" ")}>
+        return (<span className={css.facet}>
+            <span className={`${css.facetName} ${css.activeFacetName}`}>
                  {`${termObject.term} `}
             </span>
             <span className={css.facetCount}>
@@ -43,11 +43,10 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
     };
 
     return (<div className={css.facet}>
-
             <span className={css.facetName}><Link
                 prefetch
                 href={href}
-            ><a className={css.facetLink}>{`${termObject.term}`}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
+            ><a className={css.facetLink}>{termObject.term}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
             (<Link href={tooltips[termObject.term].link}>
                     <a className={css.toolTip}>
                         <Tooltip
@@ -67,6 +66,7 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
             </Link>
         </div>);
 }
+
 class DateFacet extends React.Component {
     componentWillMount() {
         this.setState({
@@ -106,7 +106,7 @@ class DateFacet extends React.Component {
 
     validateAfter = event => {
         let year = this.cleanText(event.target, this.state.after);
-        if (year != "" && this.state.before !== "" && year > this.state.before) {
+        if (year !== "" && this.state.before !== "" && year > this.state.before) {
             year = this.state.before;
             this.setState({
                 before: this.state.before,
@@ -125,7 +125,7 @@ class DateFacet extends React.Component {
 
     validateBefore = event => {
         let year = this.cleanText(event.target, this.state.before);
-        if (year != "" && this.state.after !== "" && year < this.state.after) {
+        if (year !== "" && this.state.after !== "" && year < this.state.after) {
             year = this.state.after;
             this.setState({
                 after: this.state.after,
@@ -135,7 +135,7 @@ class DateFacet extends React.Component {
     };
 
     handleKeyDown(e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             this.handleDateSubmit(e);
         }
     }
@@ -215,6 +215,7 @@ class DateFacet extends React.Component {
 }
 
 class Sidebar extends React.Component {
+
     componentWillReceiveProps(nextProps) {
         if (
             possibleFacets.some(

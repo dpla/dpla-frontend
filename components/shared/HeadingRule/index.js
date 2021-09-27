@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./HeadingRule.scss";
+import css from "./HeadingRule.module.scss";
 
 const HeadingRule = ({ color }) =>
   <div>

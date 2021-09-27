@@ -3,7 +3,8 @@ import fetch from "isomorphic-fetch";
 
 import Button from "shared/Button";
 
-import css from "./ContactForm.scss";
+import css from "./ContactForm.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const selectOptions = [
   { value: "General inquiry", label: "General inquiry" },
@@ -265,7 +266,7 @@ class ContactForm extends React.Component {
                 tabIndex="-1"
                 autoComplete="off"
               />
-              <div className={`col-xs-12 col-md-4`}>
+              <div className={`${utils.colXs12} ${utils.colMd4}`}>
                 {!this.state.isSending &&
                   <Button type="primary" {...buttonProps}>
                     Send message

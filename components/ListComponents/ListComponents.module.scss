@@ -1,0 +1,171 @@
+@import "stylesheets/variables.module";
+
+.wrapper {
+  margin: 1rem 0 2rem;
+}
+
+.note {
+  margin: 1rem 0;
+}
+
+.loading {
+  margin: 3rem 0;
+}
+
+.empty p {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  max-width: 60ch;
+}
+
+.contentTitle {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.createList {
+  margin-bottom: 1rem;
+}
+
+.listDetailWrapper {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.listDetailName {
+  display: flex;
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.listRenameButton {
+  margin-left: 1rem;
+}
+
+.listDeleteConfirm {
+  display: flex;
+}
+
+.lists {
+  display: grid;
+  grid-gap: 1rem 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.listItem {
+  align-items: baseline;
+  border-bottom: 0.075rem solid $grayBorderColor;
+  display: grid;
+  grid-template: "name count" auto "date date" 1.5rem / 3fr 1fr;
+  height: 100%;
+  padding-bottom: 0.5rem;
+
+  &:hover {
+    border-bottom-color: $linkColor;
+    text-decoration: none;
+  }
+
+  @media (max-width: $mediumRem) {
+    display: block;
+  }
+}
+
+.listName {
+  font-family: $serifFont;
+  font-weight: normal;
+  grid-area: name;
+}
+
+.listCount {
+  color: $dimmedTextColor;
+  grid-area: count;
+  margin-left: auto;
+}
+
+.listDate {
+  color: $dimmedTextColor;
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  grid-area: date;
+  margin-bottom: 1rem;
+}
+
+.listOfLists {
+  margin-top: 1rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9rem;
+  margin: 0 0.5rem 0.5rem;
+
+  &.disabled {
+    color: $dimmedTextColor;
+  }
+
+  @media (max-width: $mediumRem) {
+    margin: 1.5rem 0.5rem;
+  }
+}
+
+.checkbox {
+  appearance: none;
+  border: 0.125rem solid $subLinkColor;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  min-width: 1.2rem;
+  position: relative;
+
+  &[disabled] {
+    border-color: $dimmedTextColor;
+  }
+
+  &:checked {
+    background-color: $subLinkColor;
+    border-color: $subLinkColor;
+  }
+
+  &:checked:after {
+    border: 0.2rem solid white;
+    border-top: none;
+    border-right: none;
+    color: white;
+    content: "";
+    height: 0.3rem;
+    left: 0.1rem;
+    position: absolute;
+    top: 0.1rem;
+    transform: rotate(-45deg);
+    width: 0.6rem;
+  }
+}
+
+.listCount {
+  color: $dimmedTextColor;
+  white-space: nowrap;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.newListModal {
+  margin: 0.5rem 0;
+}
+
+.listVideo {
+  border-radius: 0.5rem;
+  display: inline-block;
+  margin: 2rem 0;
+  max-width: 600px;
+  width: 100%;
+}

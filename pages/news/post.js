@@ -7,12 +7,11 @@ import { withRouter } from "next/router";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
-import WPEdit from "shared/WPEdit";
 
 import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
 
 import { SITE_ENV } from "constants/env";
-import { TITLE, DESCRIPTION, NEWS_TAGS } from "constants/news";
+import { NEWS_TAGS } from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
   ABOUT_MENU_ENDPOINT,
@@ -22,9 +21,9 @@ import {
 
 import { WORDPRESS_URL } from "constants/env";
 
-import utils from "stylesheets/utils.scss";
-import contentCss from "stylesheets/content-pages.scss";
-import css from "stylesheets/news.scss";
+import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import css from "stylesheets/news.module.scss";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
@@ -80,7 +79,6 @@ class PostPage extends React.Component {
             />
             <div className="col-xs-12 col-md-7">
               <div id="main" role="main" className={contentCss.content}>
-                <WPEdit page={content} url={router} />
                 <h1
                   dangerouslySetInnerHTML={{
                     __html: content.title.rendered
@@ -89,7 +87,6 @@ class PostPage extends React.Component {
                 <div className={css.resultSummary}>
                   By{" "}
                   <Link
-                    prefetch
                     href={{
                       pathname: "/news",
                       query: Object.assign(
@@ -115,7 +112,6 @@ class PostPage extends React.Component {
                         return tag
                           ? <li key={tag.id}>
                               <Link
-                                prefetch
                                 href={`/news?tag=${tag.name
                                   .toLowerCase()
                                   .replace(" ", "-")}`}

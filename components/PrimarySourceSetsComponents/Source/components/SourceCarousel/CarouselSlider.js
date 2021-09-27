@@ -7,7 +7,7 @@ import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceId, removeQueryParams } from "lib";
 
-import css from "./SourceCarousel.scss";
+import css from "./SourceCarousel.module.scss";
 
 const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
   <div>
@@ -42,7 +42,6 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
         <div key={name} className={css.item}>
           {/* for some reason react-slick can't have <Link /> as direct child */}
           <Link
-            prefetch
             as={{
               pathname: `/primary-source-sets/${route.query
                 .set}/sources/${extractSourceId(sources[i]["@id"])}`,
@@ -57,12 +56,11 @@ const CarouselSlider = ({ currentSourceIdx, sources, route }) =>
           >
             <a>
               <div
-                className={[
-                  css.itemImgWrapper,
-                  useDefaultImage ? css.defaultImageWrapper : "",
-                  i === currentSourceIdx && css.currentItemImgWrapper
-                ].join(" ")}
-              >
+                className={`
+                    ${css.itemImgWrapper} 
+                    ${useDefaultImage ? css.defaultImageWrapper : ""}
+                    ${i === currentSourceIdx && css.currentItemImgWrapper}`
+                }>
                 <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
               <ReactMarkdown

@@ -1,7 +1,8 @@
 import React from "react";
 
-import css from "./FullPageWidthBlock.scss";
-import hub from "stylesheets/hubs.scss";
+import css from "./FullPageWidthBlock.module.scss";
+import hub from "stylesheets/hubs.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 const FullPageWidthBlock = ({
   className,
@@ -15,8 +16,8 @@ const FullPageWidthBlock = ({
   imageHref,
   links,
 }) => (
-    <section className={`${className ? className : ""} ${css.fullPageWidthBlock} site-max-width`}>
-      <div className={`${css.fullPageWidthBlockWrapper} site-max-width`}>
+    <section className={`${className ? className : ""} ${css.fullPageWidthBlock} ${utils.siteMaxWidth}`}>
+      <div className={`${css.fullPageWidthBlockWrapper} ${utils.siteMaxWidth}`}>
         <div className={css.fullPageWidthBlockText}>
           <h2>{title}</h2>
           <p>{text}</p>

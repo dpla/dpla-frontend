@@ -16,13 +16,14 @@ import {
   getCurrentUrl,
   getItemThumbnail
 } from "lib";
+
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
-import { API_ENDPOINT, THUMBNAIL_ENDPOINT } from "constants/items";
+import { API_ENDPOINT } from "constants/items";
 import { LISTS_TITLE } from "constants/lists";
 
-import utils from "stylesheets/utils.scss";
-import css from "components/ListComponents/ListComponents.scss";
+import utils from "stylesheets/utils.module.scss";
+import css from "components/ListComponents/ListComponents.module.scss";
 
 class List extends React.Component {
   state = {

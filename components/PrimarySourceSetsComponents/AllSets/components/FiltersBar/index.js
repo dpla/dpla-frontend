@@ -1,34 +1,38 @@
 import React from "react";
 import Router from "next/router";
+import { withRouter } from "next/router"
+
 
 import {
   sortOptions,
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
 } from "constants/primarySourceSets";
+
 import { removeQueryParams } from "lib";
 
-import css from "shared/FiltersBar/FiltersBar.scss";
+import css from "shared/FiltersBar/FiltersBar.module.scss";
+import utils from "stylesheets/utils.module.scss"
 
 class FiltersBar extends React.Component {
   componentWillMount() {
     this.setState({
-      sortValue: this.props.route.query.order || "recently_added",
-      timePeriodValue: this.props.route.query.timePeriod || "all-time-periods",
-      subjectValue: this.props.route.query.subject || "all-subjects"
+      sortValue: this.props.router.query.order || "recently_added",
+      timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
+      subjectValue: this.props.router.query.subject || "all-subjects"
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.route.query.order !== this.state.order ||
-      nextProps.route.query.timePeriod !== this.state.timePeriod ||
-      nextProps.route.query.subject !== this.state.subject
+      nextProps.router.query.order !== this.state.order ||
+      nextProps.router.query.timePeriod !== this.state.timePeriod ||
+      nextProps.router.query.subject !== this.state.subject
     ) {
       this.setState({
-        sortValue: nextProps.route.query.order || "recently_added",
-        timePeriodValue: nextProps.route.query.timePeriod || "all-time-periods",
-        subjectValue: nextProps.route.query.subject || "all-subjects"
+        sortValue: nextProps.router.query.order || "recently_added",
+        timePeriodValue: nextProps.router.query.timePeriod || "all-time-periods",
+        subjectValue: nextProps.router.query.subject || "all-subjects"
       });
     }
   }
@@ -45,7 +49,7 @@ class FiltersBar extends React.Component {
   onSubjectChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         subject: val.target.value
       })
     });
@@ -65,7 +69,7 @@ class FiltersBar extends React.Component {
       pathname: "/primary-source-sets",
       query: Object.assign(
         {},
-        removeQueryParams(this.props.route.query, ["subject", "timePeriod"])
+        removeQueryParams(this.props.router.query, ["subject", "timePeriod"])
       )
     });
     this.setState({
@@ -93,8 +97,8 @@ class FiltersBar extends React.Component {
     );
     return (
       <div className={css.filtersWrapper}>
-        <div className={`${css.filters} site-max-width`}>
-          <div className={`row ${css.filtersRow}`}>
+        <div className={`${css.filters} ${utils.siteMaxWidth}`}>
+          <div className={`${utils.row} ${css.filtersRow}`}>
             {(this.state.timePeriodValue !== "all-time-periods" ||
               this.state.subjectValue !== "all-subjects") &&
               <div className={css.clearAll}>
@@ -118,7 +122,7 @@ class FiltersBar extends React.Component {
                   <span>Clear filters</span>
                 </button>
               </div>}
-            <div className={`${css.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd3}`}>
               <label htmlFor="filter-subject">Subject</label>
               <select
                 id="filter-subject"
@@ -132,7 +136,7 @@ class FiltersBar extends React.Component {
                 )}
               </select>
             </div>
-            <div className={`${css.filter} col-xs-12 col-md-3`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd3}`}>
               <label htmlFor="filter-period">Time Period</label>
               <select
                 id="filter-period"
@@ -146,7 +150,7 @@ class FiltersBar extends React.Component {
                 )}
               </select>
             </div>
-            <div className={`${css.filter} col-xs-12 col-md-4`}>
+            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd4}`}>
               <label htmlFor="filter-sort">Sort by</label>
               <select
                 id="filter-sort"
@@ -167,4 +171,4 @@ class FiltersBar extends React.Component {
   }
 }
 
-export default FiltersBar;
+export default withRouter(FiltersBar);
