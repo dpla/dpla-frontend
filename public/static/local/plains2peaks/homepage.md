@@ -1,7 +1,7 @@
 # Explore the Plains to Peaks
 
 Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our rich cultural history. This online collection brings together these unique objects and their stories, allowing visitors to freely explore photographs, manuscripts, books, audio recordings, artifacts, and videos found at a variety of cultural heritage institutions in both states.
-
+<br> <br>
 ## Collection Highlights
 
 - ### [Mining](/search?q=mine*)
@@ -32,6 +32,19 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 
   Examine how homesteading and agricultural activities such as dry farming, livestock production, cowboys and stockmen, irrigation, and water laws played an important part in the economic success of Colorado and Wyoming.
 
+<br> <br>
+## Collections by Format<br><br>
+
+  ### [Maps](/search?q=map&type=image)<br><br>
+
+  ### [Oral Histories](/search?q=oral+history&type=sound)<br><br>
+
+  ### [Images](/search?type=image)<br><br>
+
+  ### [Physical Objects](/search?type=%22physical+object%22)<br><br>
+
+<br><br>
 ## [PPC Digital Collections Blog](https://www.coloradovirtuallibrary.org/digital-colorado/)
 
 Colorado’s digital footprint is growing and there are many ways to get involved and historic collections available online. [Explore highlights and news](https://www.coloradovirtuallibrary.org/digital-colorado/) from digital collections and initiatives found throughout the state.
+
