@@ -8,15 +8,15 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 
   Explore how the rush to the Rockies for mining led to national and international technological advancements, drove the economy, and created numerous cities and towns, some of which survived and while others live on only as ghost towns.
 
-- ### [Railroads](/search?q=railway*+railroad*)
+- ### [Railroads](/search?q=railway*+OR+railroad*)
 
   Examine how huge feats of railroad engineering facilitated western expansion and settlement, and shaped the appearance and character of the Rocky Mountain West.
 
-- ### [Boosterism and Tourism](/search?q=camping+Bike*+Tourism+Tourist+Climbing+Mountaineering+raft*+ski+Skiing+%22national+park%22)
+- ### [Boosterism and Tourism](/search?q=camping+OR+Bike*+OR+Tourism+OR+Tourist+OR+Climbing+OR+Mountaineering+OR+raft*+OR+ski+OR+Skiing+OR+%22national+park%22)
 
   Learn how boosterism played an important role in the initial exploration of these two states, paving the way for tourism to become one of the region's largest industries with several National Parks, a world-class ski industry and outdoor recreation destination that includes camping, mountaineering, endurance sports, and so much more.
 
-- ### [LGBTQ+](/search?q=Lesbian+LGBT*+bisexual)
+- ### [LGBTQ+](/search?q=Lesbian+OR+LGBT*+OR+bisexual)
 
   Discover documents, photographs, oral histories, and artifacts that document the compelling and complex story of Colorado and Wyoming’s LGBTQ+ community.
 
@@ -28,7 +28,7 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 
   Explore how organized activism in Colorado and Wyoming carried out by movements such as women's suffrage, Black power, Chicanx/Latinx, voting rights, civil rights, women’s rights, labor rights, the Me Too movement, and Black Lives Matter. All these cultural movements impacted changes not only in these two states but nationally as well.
 
-- ### [Agriculture and Homesteading](/search?q=%22dry+farming%22+farm*+ranch*+irrigation+cowboy*+stockmen+homestead*+agriculture+beet*+crop*+cattle+Sheep)
+- ### [Agriculture and Homesteading](/search?q=%22dry+farming%22+OR+farm*+OR+ranch*+OR+irrigation+OR+cowboy*+OR+stockmen+OR+homestead*+agriculture+OR+beet*+OR+crop*+OR+cattle+OR+sheep)
 
   Examine how homesteading and agricultural activities such as dry farming, livestock production, cowboys and stockmen, irrigation, and water laws played an important part in the economic success of Colorado and Wyoming.
 

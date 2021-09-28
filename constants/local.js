@@ -7,14 +7,14 @@ const LOCALS = {
     name: "Plains to Peaks Collective",
     favicon: "favicon.png",
     provider: "%22Plains%20to%20Peaks%20Collective%22",
-    background: "p2p-hero.png",
+    background: "p2p-hero.jpg",
     logo: "logo.png",
     heroLogo: "logo-big.png",
     description: "",
     locationFacet: "%22Colorado%20OR%20Wyoming%22",
     subjectFacet: "%22Colorado%20OR%20Wyoming%22",
-    hasAbout: true,
-    hasSidebar: false,
+    hasAbout: false,
+    hasSidebar: true,
     hasBrowseByPartner: true,
     hasContact: true,
     routes: {
@@ -26,21 +26,29 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
-      "/contact" : {
-        parentDir: "/contact",
+      "/about/contact": {
+        parentDir: "/about",
         path: "contact.md",
         title: "Contact",
         description: "",
-        isTopLevel: true,
-        category: "Contact"
+        isTopLevel: false,
+        category: "About"
       },
-      "/terms" : {
-        parentDir: "/terms",
+      "/about/terms" : {
+        parentDir: "/about",
         path: "terms.md",
         title: "Terms of Use",
         description: "",
-        isTopLevel: true,
-        category: "Terms of Use"
+        isTopLevel: false,
+        category: "About"
+      },
+      "/about/harmful-content" : {
+        parentDir: "/about",
+        path: "harmful-content.md",
+        title: "Statement on Potentially Harmful Content",
+        description: "",
+        isTopLevel: false,
+        category: "About"
       }
     }
   },

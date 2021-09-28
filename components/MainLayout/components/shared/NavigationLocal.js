@@ -83,7 +83,14 @@ class NavigationLocal extends Component {
             </Link>
           </li>
       );
-
+    } else if (LOCAL_ID === "plains2peaks") {
+      visitHtml = (
+        <ul className={`${css.links} ${css.secondaryLinks}`}>
+          <li>
+            <a href={"https://ppc.cvlsites.org/"}>Visit The Plains to Peaks Collective</a>
+          </li>
+        </ul>
+      );
     } else if ("externalLink" in LOCALS[LOCAL_ID]) {
       visitHtml = (
         <ul className={`${css.links} ${css.secondaryLinks}`}>
