@@ -23,7 +23,7 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
         ${contentCss.sidebarAndContentWrapper}
       `}
     >
-      <div className="row">
+      <div className={utils.row}>
         <ContentPagesSidebar
           route={url}
           items={sidebarItems}
@@ -33,13 +33,13 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
         <div
           id="main"
           role="main"
-          className={`${css.wrapper} col-xs-12 col-md-8`}
+          className={`${css.wrapper} ${utils.colXs12} ${utils.colMd8}`}
         >
-          <ul className="row">
+          <ul className={utils.row}>
             {guides.map((guide, i) =>
               <li
                 key={i}
-                className={`col-xs-12 col-md-6 col-lg-4 ${css.itemColumn}`}
+                className={`${utils.colXs12} ${utils.colMd6} ${utils.colLg4} ${css.itemColumn}`}
               >
                 <GuideLink guide={guide} />
               </li>
