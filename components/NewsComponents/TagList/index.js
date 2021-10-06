@@ -3,8 +3,10 @@ import Link from "next/link";
 
 import { NEWS_TAGS } from "constants/news";
 
+import css from "stylesheets/content-pages.module.scss"
+
 const TagList = ({ url, currentTag, keywords, author }) =>
-  <ul className="collapsed">
+  <ul className={css.collapsed}>
     {(currentTag || author !== "" || keywords !== "") &&
       <li>
         <a href="/news">All News</a>

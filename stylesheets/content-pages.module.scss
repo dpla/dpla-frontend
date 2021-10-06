@@ -2,6 +2,29 @@
 
 $borderColor: rgba(0, 0, 0, 0.75);
 
+.collapsed {
+
+  list-style-type: none;
+
+  & li {
+    display: inline-flex;
+    margin-left: 0;
+  }
+
+  li::before {
+    content: "|" !important;
+  }
+
+  & li:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+
+  @media (max-width: $mediumRem) {
+    padding-left: 0;
+  }
+}
+
+
 .backgroundTint {
   background-color: $warmerBackgroundColor;
 }
@@ -292,6 +315,24 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
   & :global .wp-caption {
     max-width: 100%;
+  }
+
+  :global .btn, :global .btn:visited {
+    display: block;
+    max-width: 18rem;
+    background-color: $linkColor;
+    color: white;
+    font-family: $sansFont;
+    padding: 0.75rem 1.5rem;
+    margin: 1rem auto;
+    text-align: center;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease-out;
+
+    &:hover {
+      background-color: $linkHoverColor;
+      text-decoration: none;
+    }
   }
 }
 
