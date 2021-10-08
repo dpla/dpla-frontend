@@ -118,9 +118,4 @@ module.exports = (app, server) => {
       }
     })
   );
-
-  server.get("/thumb/*", (req, res) => {
-    const thumbp = require("./lib/thumbp.js");
-    return new thumbp.Connection(req, res);
-  });
 };
