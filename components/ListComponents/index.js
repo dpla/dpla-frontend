@@ -1,8 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import moment from "moment";
 
 import ListNameModal from "components/ListComponents/ListNameModal";
+
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime)
 
 import { addCommasToNumber } from "lib";
 
@@ -20,7 +23,7 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
       </span>
       {createdAt &&
         <span className={css.listDate}>
-          Created {moment(createdAt, "x").fromNow()}
+          Created {dayjs(createdAt, "x").fromNow()}
         </span>}
     </a>
   </Link>;

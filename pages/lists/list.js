@@ -1,6 +1,9 @@
 import React from "react";
-import moment from "moment";
 import Router from "next/router";
+
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime)
 
 import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
@@ -160,7 +163,7 @@ class List extends React.Component {
                 </h1>}
               {list.createdAt &&
                 <p className={css.listDate}>
-                  Created {moment(list.createdAt, "x").fromNow()}
+                  Created {dayjs(list.createdAt, "x").fromNow()}
                 </p>}
               <p>
                 <strong>
