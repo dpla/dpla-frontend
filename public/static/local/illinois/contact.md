@@ -13,7 +13,7 @@ Consortium of Academic and Research Libraries in Illinois
 ### [Megan N Pearson](mailto:megannp4@illinois.edu)
 **IDHH Metadata Manager and Webmaster**  
 Metadata Services Specialist  
-University of Illinois, Urbana-Champaign
+University of Illinois Urbana-Champaign
 
 ### [Jessica Gibson](mailto:oram@uillinois.edu)
 **IDHH Harvesting Manager**  
@@ -28,8 +28,11 @@ Consortium for Academic and Research Libraries in Illinois
 ### Hannah Stitzlein
 **IDHH Metadata Manager, 2016-2018**
 
-### Anna Wondrasek
+### Caleb Britton
 **Graduate Student Assistant, 2021-**
+
+### Anna Wondrasek
+**Graduate Student Assistant, 2021**
 
 ### Tath Haver
 **Graduate Student Assistant, 2019-2021**
