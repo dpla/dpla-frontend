@@ -26,19 +26,6 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 }
 
-.external {
-  background-image: url("/static/images/external-link-blue.svg");
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-size: 0.7em;
-  padding-right: 1em;
-
-  &.white {
-    background-image: url("/static/images/external-link-white.svg");
-    background-position: 90% center;
-    padding-right: 0;
-  }
-}
 
 .underline {
   text-decoration: underline;

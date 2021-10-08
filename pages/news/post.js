@@ -44,7 +44,7 @@ class PostPage extends React.Component {
     NEWS_TAGS.forEach(tag => {
       if (content.tags.indexOf(tag.id) !== -1) {
         hasTags = true;
-        return;
+        return (<></>);
       }
     });
     return (
@@ -69,7 +69,7 @@ class PostPage extends React.Component {
           className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               route={router}
               items={menuItems}
@@ -77,7 +77,7 @@ class PostPage extends React.Component {
               className={contentCss.sidebar}
               rootPath="wp"
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
                 <h1
                   dangerouslySetInnerHTML={{

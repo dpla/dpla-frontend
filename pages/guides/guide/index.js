@@ -36,18 +36,18 @@ class Guides extends React.Component {
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
-          <div className="row">
+          <div className={utils.row}>
             <ContentPagesSidebar
               route={router}
               items={sidebarItems}
               activeItemId={guide.slug}
               className={contentCss.sidebar}
             />
-            <div className="col-xs-12 col-md-7">
+            <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div
                 id="main"
                 role="main"
-                className={[css.content, contentCss.content].join(" ")}
+                className={`${css.content} ${contentCss.content}`}
               >
                 <img
                   src={guide.bannerImage}
