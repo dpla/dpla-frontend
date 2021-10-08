@@ -1,2 +1,5 @@
 npm-debug.log
 yarn-error.log
+
+snapshots.js
+.git/*
