@@ -4,7 +4,7 @@ describe('The big screen top nav', () => {
     
     beforeEach(() => {
         cy.viewport(1024, 768);
-        cy.visit('/')
+        cy.visit('/about')
     })
 
     //big header
