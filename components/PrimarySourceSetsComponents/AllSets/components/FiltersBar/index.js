@@ -40,7 +40,7 @@ class FiltersBar extends React.Component {
   onSortChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         order: val.target.value
       })
     });
@@ -58,7 +58,7 @@ class FiltersBar extends React.Component {
   onTimePeriodChange = val => {
     Router.push({
       pathname: "/primary-source-sets",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         timePeriod: val.target.value
       })
     });

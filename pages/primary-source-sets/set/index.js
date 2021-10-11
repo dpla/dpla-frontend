@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "next/router";
 import Error from "../../_error"
 import fetch from "isomorphic-fetch";
 
@@ -16,14 +17,13 @@ import { PSS_BASE_URL } from "constants/env";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-const SingleSet = ({ error, set, url, currentFullUrl }) => {
+const SingleSet = ({ router, error, set, currentFullUrl }) => {
 
   if (error) {
     return <Error statusCode={ error.status }/>;
   }
 
   return (<MainLayout
-      route={url}
       pageTitle={set.name.replace(/\*/g, "")}
       pageImage={set.repImageUrl || set.thumbnailUrl}
   >
@@ -33,24 +33,22 @@ const SingleSet = ({ error, set, url, currentFullUrl }) => {
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets",
-            query: removeQueryParams(url.query, ["set"])
+            query: removeQueryParams(router.query, ["set"])
           }
         },
         { title: set.name, search: "" }
       ]}
-      route={url}
     />
     <SourceSetInfo
       set={set}
       currentFullUrl={currentFullUrl}
       openDescription={false}
     />
-    <ResourcesTabs route={url} currentTab="sourceSet" set={set}>
+    <ResourcesTabs currentTab="sourceSet" set={set}>
       <SourceSetSources
         sources={set.hasPart.filter(
           item => item.disambiguatingDescription === "source"
         )}
-        route={url}
       />
     </ResourcesTabs>
     <RelatedSets sets={set.isRelatedTo} />
@@ -101,4 +99,4 @@ SingleSet.getInitialProps = async (context) => {
   return { set: Object.assign({}, json, { hasPart: parts }), currentFullUrl };
 };
 
-export default SingleSet;
+export default withRouter(SingleSet);

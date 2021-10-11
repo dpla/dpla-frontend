@@ -17,11 +17,10 @@ const OtherInfo = () =>
         <span>
           These sets were created and reviewed by the teachers on the&nbsp;
         </span>
-        <Link href="//pro.dp.la/education/education-advisory-committee">
-          <a className="link">
-            DPLA's Education Advisory Committee.
-          </a>
-        </Link>{" "}
+        <a href="https://pro.dp.la/education/education-advisory-committee" className="link">
+          DPLA's Education Advisory Committee.
+        </a>
+        {" "}
         <span>
           Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
