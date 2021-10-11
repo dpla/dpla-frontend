@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router"
+
 import ReactMarkdown from "react-markdown";
 
-import { extractSourceSetSlug, removeQueryParams } from "lib/";
+import { extractSourceSetSlug, removeQueryParams } from "lib";
 import {
   mapTimePeriodNameToSlug,
   mapSubjectNameToSlug
@@ -11,7 +13,7 @@ import {
 import css from "./SetsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const SetsList = ({ sets, route }) =>
+const SetsList = ({ sets, router }) =>
   <div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
     <ul className={utils.row}>
       {sets.itemListElement.map(set =>
@@ -22,7 +24,7 @@ const SetsList = ({ sets, route }) =>
                 pathname: "/primary-source-sets/set",
                 query: Object.assign(
                   {},
-                  removeQueryParams(route.query, ["subject", "timePeriod"]),
+                  removeQueryParams(router.query, ["subject", "timePeriod"]),
                   {
                     set: extractSourceSetSlug(set["@id"])
                   }
@@ -32,7 +34,7 @@ const SetsList = ({ sets, route }) =>
                 pathname: `/primary-source-sets/${extractSourceSetSlug(
                   set["@id"]
                 )}`,
-                query: removeQueryParams(route.query)
+                query: removeQueryParams(router.query)
               }}
             >
               <a aria-hidden>
@@ -69,7 +71,7 @@ const SetsList = ({ sets, route }) =>
                       <Link
                         href={{
                           pathname: "/primary-source-sets",
-                          query: Object.assign({}, route.query, {
+                          query: Object.assign({}, router.query, {
                             timePeriod: mapTimePeriodNameToSlug(tag.name)
                           })
                         }}
@@ -93,7 +95,7 @@ const SetsList = ({ sets, route }) =>
                       <Link
                         href={{
                           pathname: "/primary-source-sets",
-                          query: Object.assign({}, route.query, {
+                          query: Object.assign({}, router.query, {
                             subject: mapSubjectNameToSlug(tag.name)
                           })
                         }}
@@ -113,4 +115,4 @@ const SetsList = ({ sets, route }) =>
     </ul>
   </div>;
 
-export default SetsList;
+export default withRouter(SetsList);

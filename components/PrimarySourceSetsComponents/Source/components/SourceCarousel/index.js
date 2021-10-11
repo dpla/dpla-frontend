@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
 import CarouselSlider from "./CarouselSlider";
@@ -10,7 +11,7 @@ import { extractSourceId, removeQueryParams } from "lib";
 import css from "./SourceCarousel.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
+const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
   <div className={css.wrapper}>
     <div className={`${css.sourceCarousel} ${utils.container}`}>
       <div className={css.headerAndNav}>
@@ -19,14 +20,14 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
             in the Primary Source Set `}</span>
           <Link
             as={{
-              pathname: `/primary-source-sets/${route.query.set}`,
-              query: removeQueryParams(route.query, ["source", "set"])
+              pathname: `/primary-source-sets/${router.query.set}`,
+              query: removeQueryParams(router.query, ["source", "set"])
             }}
             href={{
               pathname: "/primary-source-sets/set/",
               query: Object.assign(
                 {},
-                removeQueryParams(route.query, ["source"])
+                removeQueryParams(router.query, ["source"])
               )
             }}
           >
@@ -43,15 +44,15 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
           {currentSourceIdx > 0
             ? <Link
                 as={{
-                  pathname: `/primary-source-sets/${route.query
+                  pathname: `/primary-source-sets/${router.query
                     .set}/sources/${extractSourceId(
                     sources[currentSourceIdx - 1]["@id"]
                   )}`,
-                  query: removeQueryParams(route.query, ["source", "set"])
+                  query: removeQueryParams(router.query, ["source", "set"])
                 }}
                 href={{
                   pathname: "/primary-source-sets/set/sources",
-                  query: Object.assign({}, route.query, {
+                  query: Object.assign({}, router.query, {
                     source: extractSourceId(
                       sources[currentSourceIdx - 1]["@id"]
                     )
@@ -76,15 +77,15 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
           {currentSourceIdx < sources.length - 1
             ? <Link
                 as={{
-                  pathname: `/primary-source-sets/${route.query
+                  pathname: `/primary-source-sets/${router.query
                     .set}/sources/${extractSourceId(
                     sources[currentSourceIdx + 1]["@id"]
                   )}`,
-                  query: removeQueryParams(route.query, ["source", "set"])
+                  query: removeQueryParams(router.query, ["source", "set"])
                 }}
                 href={{
                   pathname: `/primary-source-sets/set/sources`,
-                  query: Object.assign({}, route.query, {
+                  query: Object.assign({}, router.query, {
                     source: extractSourceId(
                       sources[currentSourceIdx + 1]["@id"]
                     )
@@ -107,9 +108,8 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, route }) =>
       <CarouselSlider
         currentSourceIdx={currentSourceIdx}
         sources={sources}
-        route={route}
       />
     </div>
   </div>;
 
-export default SourceCarousel;
+export default withRouter(SourceCarousel);

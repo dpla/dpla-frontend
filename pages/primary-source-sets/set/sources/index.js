@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "next/router";
 import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
@@ -14,9 +15,8 @@ import { removeQueryParams } from "lib";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-const Source = ({ url, source, set, currentSourceIdx }) =>
+const Source = ({ router, source, set, currentSourceIdx }) =>
   <MainLayout
-    route={url}
     pageTitle={source.name}
     pageImage={source.thumbnailUrl}
   >
@@ -26,23 +26,22 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets",
-            query: removeQueryParams(url.query, ["source", "set"])
+            query: removeQueryParams(router.query, ["source", "set"])
           }
         },
         {
           title: set.name,
           as: {
-            pathname: `/primary-source-sets/${url.query.set}`,
-            query: removeQueryParams(url.query, ["source", "set"])
+            pathname: `/primary-source-sets/${router.query.set}`,
+            query: removeQueryParams(router.query, ["source", "set"])
           },
           url: {
             pathname: "/primary-source-sets/set",
-            query: Object.assign({}, removeQueryParams(url.query, ["source"]))
+            query: Object.assign({}, removeQueryParams(router.query, ["source"]))
           }
         },
         { title: source.name, url: "" }
       ]}
-      route={url}
     />
     <div id="main" role="main">
       <ContentAndMetadata source={source} />
@@ -52,7 +51,6 @@ const Source = ({ url, source, set, currentSourceIdx }) =>
         item => item.disambiguatingDescription === "source"
       )}
       currentSourceIdx={currentSourceIdx}
-      route={url}
       set={set}
     />
     <PSSFooter />
@@ -91,4 +89,4 @@ Source.getInitialProps = async ({ query }) => {
   };
 };
 
-export default Source;
+export default withRouter(Source);

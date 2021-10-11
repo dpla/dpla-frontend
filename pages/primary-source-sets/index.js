@@ -7,11 +7,11 @@ import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import { PSS_BASE_URL } from "constants/env";
 import { TITLE } from "constants/primarySourceSets";
 
-const PrimarySourceSets = ({ url, sets }) =>
+const PrimarySourceSets = ({ sets }) =>
   <div>
-    <MainLayout route={url} pageTitle={TITLE}>
+    <MainLayout pageTitle={TITLE}>
       <div id="main" role="main" data-cy={"pss-home"}>
-        <AllSets route={url} sets={sets} />
+        <AllSets sets={sets} />
       </div>
       <PSSFooter />
     </MainLayout>
