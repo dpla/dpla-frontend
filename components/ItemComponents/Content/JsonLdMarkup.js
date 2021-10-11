@@ -1,13 +1,9 @@
 import React from "react";
+import { withRouter } from "next/router";
 
 import {joinIfArray} from "lib";
 
-/**
-  * @param item, DPLA Item
-  * @param url, URL of the current web page
-  * @return HTML <script>
-  */
-const JsonLdMarkup = ({ item, url }) => {
+const JsonLdMarkup = ({ item, router }) => {
   /**
     * @param array: Array, possibly nested, of defined and undefined values.
     * @return Array, flattened, only containing defined values.
@@ -232,9 +228,9 @@ const JsonLdMarkup = ({ item, url }) => {
     "@context": "http://schema.org/",
     "@type": type(),
     // TODO: Is there a better way to generate the api URI?
-    "@id": "http://api.dp.la/items/" + url.query.itemId,
+    "@id": "http://api.dp.la/items/" + router.query.itemId,
     // TODO: Is there a better way to generate the URL of this page?
-    mainEntityOfPage: "https://dp.la/item/" + url.query.itemId,
+    mainEntityOfPage: "https://dp.la/item/" + router.query.itemId,
     isAccessibleForFree: true,
     provider: provider(),
     license: license(),
@@ -263,4 +259,4 @@ const JsonLdMarkup = ({ item, url }) => {
   );
 };
 
-export default JsonLdMarkup;
+export default withRouter(JsonLdMarkup);
