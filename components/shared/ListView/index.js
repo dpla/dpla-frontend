@@ -452,7 +452,7 @@ class ListView extends React.Component {
                     href={item.sourceUrl}
                     target="_blank"
                     rel="noopener"
-                    className={`${utils.hoverUnderline} ${utils.external} ${css.itemSource}`}
+                    className={`${utils.hoverUnderline} external ${css.itemSource}`}
                   >
                     {item.type === "image"
                       ? "View Full Image"

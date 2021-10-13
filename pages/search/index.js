@@ -66,13 +66,11 @@ class Search extends React.Component {
     return (
       <MainLayout
         isSearchPage={true}
-        route={router}
         pageTitle={getSearchPageTitle(router.query.q)}
       >
         <OptionsBar
           showFilters={this.state.showSidebar}
           currentPage={currentPage}
-          route={router}
           itemCount={itemCount}
           onClickToggleFilters={this.toggleFilters}
           numberOfActiveFacets={numberOfActiveFacets}

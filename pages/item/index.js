@@ -37,7 +37,6 @@ const ItemDetail = ({
   }
   return (
     <MainLayout
-      route={url}
       pageTitle={item.title}
       pageImage={item.thumbnailUrl}
     >
