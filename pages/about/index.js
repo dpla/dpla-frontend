@@ -53,7 +53,6 @@ class AboutMenuPage extends React.Component {
 
     return (
       <MainLayout
-        route={router}
         pageTitle={pageTitle}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
@@ -67,7 +66,6 @@ class AboutMenuPage extends React.Component {
         >
           <div className={utils.row}>
             <ContentPagesSidebar
-              route={router}
               items={items}
               activeItemId={content.id}
               className={contentCss.sidebar}

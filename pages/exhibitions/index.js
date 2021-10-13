@@ -12,10 +12,10 @@ import {
   FILES_ENDPOINT
 } from "constants/exhibitions";
 
-const Exhibitions = ({ url, exhibitions }) =>
-  <MainLayout route={url} pageTitle={TITLE}>
+const Exhibitions = ({ exhibitions }) =>
+  <MainLayout pageTitle={TITLE}>
     <div id="main" role="main">
-      <AllExhibitions route={url} exhibitions={exhibitions} />
+      <AllExhibitions exhibitions={exhibitions} />
     </div>
     <Footer />
   </MainLayout>;

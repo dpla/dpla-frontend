@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import HomeHero from "components/HomePageComponents/HomeHero";
@@ -10,8 +9,8 @@ import { getCurrentUrl } from "lib";
 import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
-const Home = ({ router, content }) =>
-  <MainLayout hidePageHeader={true} hideSearchBar={true} route={router}>
+const Home = ({ content }) =>
+  <MainLayout hidePageHeader={true} hideSearchBar={true}>
     <div id="main" role="main">
       <HomeHero />
       <LocalIntro content={content} />
@@ -29,4 +28,4 @@ Home.getInitialProps = async ({ req }) => {
   };
 };
 
-export default withRouter(Home);
+export default Home;

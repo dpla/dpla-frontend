@@ -10,21 +10,18 @@ const ExhibitionView = ({
   exhibition,
   section,
   subsection,
-  route,
   nextQueryParams,
   nextSubsectionTitle,
   previousQueryParams
 }) =>
   <div className={css.exhibitionView} data-cy="exhibit-page">
-    <Header title={exhibition.title} route={route} />
+    <Header title={exhibition.title} />
     <Body
-      route={route}
       exhibition={exhibition}
       section={section}
       subsection={subsection}
     />
     <FooterNav
-      route={route}
       exhibition={exhibition}
       previousQueryParams={previousQueryParams}
       nextQueryParams={nextQueryParams}

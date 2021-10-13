@@ -55,10 +55,9 @@ class ListsPage extends React.Component {
   };
 
   render() {
-    const { url } = this.props;
     const { lists, initialized } = this.state;
     return (
-      <MainLayout route={url} pageTitle={LISTS_TITLE}>
+      <MainLayout pageTitle={LISTS_TITLE}>
         <div id="main" role="main">
           <FeatureHeader title={LISTS_TITLE} />
           <ListsContent
@@ -71,8 +70,5 @@ class ListsPage extends React.Component {
     );
   }
 }
-ListsPage.getInitialProps = async ({ req }) => {
-  return {};
-};
 
 export default ListsPage;

@@ -1,5 +1,4 @@
 import  React, { Component } from "react";
-import { withRouter } from 'next/router'
 
 import Link from "next/link";
 import NavigationUser from "../shared/NavigationUser";
@@ -34,7 +33,7 @@ class SmallScreenHeader extends Component {
 
   render() {
     const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, router, isHome } = this.props;
+    const { isSearchPage, isHome } = this.props;
 
     return (
       <div className={css.wrapper} data-cy="small-screen-header">
@@ -97,4 +96,4 @@ class SmallScreenHeader extends Component {
   }
 }
 
-export default withRouter(SmallScreenHeader);
+export default SmallScreenHeader;

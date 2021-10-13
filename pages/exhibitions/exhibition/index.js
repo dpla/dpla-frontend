@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
@@ -20,7 +19,6 @@ import {
   getCurrentUrl,
   getCurrentFullUrl,
   getDplaItemIdFromExhibit,
-  removeQueryParams
 } from "lib";
 
 class Exhibition extends React.Component {
@@ -30,10 +28,9 @@ class Exhibition extends React.Component {
   }
 
   render() {
-    const { router, exhibition, currentFullUrl } = this.props;
+    const { exhibition, currentFullUrl } = this.props;
     return (
       <MainLayout
-        route={router}
         pageImage={exhibition.thumbnailUrl}
         pageTitle={exhibition.title.replace(/\*/g, "")}
         seoType={SEO_TYPE}
@@ -47,13 +44,11 @@ class Exhibition extends React.Component {
             },
             { title: exhibition.title, search: "" }
           ]}
-          route={router}
         />
         <div id="main" role="main" data-cy="exhibition-home">
-          <ImageAndCaption exhibition={exhibition} route={router} />
+          <ImageAndCaption exhibition={exhibition} />
           <Details
             exhibition={exhibition}
-            route={router}
             currentFullUrl={currentFullUrl}
           />
         </div>
@@ -120,4 +115,4 @@ Exhibition.getInitialProps = async ({ query, req }) => {
   };
 };
 
-export default withRouter(Exhibition);
+export default Exhibition;

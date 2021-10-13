@@ -52,7 +52,6 @@ class Subsection extends React.Component {
   render() {
     const {
       error,
-      url,
       exhibition,
       section,
       subsection,
@@ -68,7 +67,6 @@ class Subsection extends React.Component {
         <DPLAHead pageTitle={section.title} seoType={SEO_TYPE} />
         <SkipToContent />
         <Content
-          route={url}
           previousQueryParams={previousQueryParams}
           nextQueryParams={nextQueryParams}
           nextSubsectionTitle={nextSubsectionTitle}

@@ -4,6 +4,7 @@ import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNa
 import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
+import { withRouter } from "next/router";
 
 import {
   decodeHTMLEntities,
@@ -25,7 +26,7 @@ import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItem
 import utils from "stylesheets/utils.module.scss"
 
 const SubtopicItemsList = ({
-  url,
+  router,
   topic,
   subtopic,
   previousSubtopic,
@@ -33,7 +34,6 @@ const SubtopicItemsList = ({
   items
 }) =>
   <MainLayout
-    route={url}
     pageTitle={subtopic.name}
     pageImage={subtopic.thumbnailUrl}
   >
@@ -50,7 +50,6 @@ const SubtopicItemsList = ({
       previousSubtopic={previousSubtopic}
       nextSubtopic={nextSubtopic}
       topic={topic}
-      route={url}
     />
     <div
       id="main"
@@ -62,7 +61,7 @@ const SubtopicItemsList = ({
         description={subtopic.description}
         image={subtopic.thumbnailUrl}
       />
-      <ItemList route={url} items={items} />
+      <ItemList items={items} />
     </div>
     <BreadcrumbsAndNav
       breadcrumbs={[
@@ -77,7 +76,6 @@ const SubtopicItemsList = ({
       previousSubtopic={previousSubtopic}
       nextSubtopic={nextSubtopic}
       topic={topic}
-      route={url}
     />
   </MainLayout>;
 
@@ -159,4 +157,4 @@ SubtopicItemsList.getInitialProps = async ({ query, req }) => {
   };
 };
 
-export default SubtopicItemsList;
+export default withRouter(SubtopicItemsList);

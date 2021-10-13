@@ -1,7 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import ReactMarkdown from "react-markdown";
-import { withRouter } from "next/router";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -21,7 +20,6 @@ class Printable extends React.Component {
 
   render() {
     const {
-      router,
       set,
       teachingGuide,
       currentPath
@@ -69,4 +67,4 @@ Printable.getInitialProps = async ({ query, req }) => {
   return { set, teachingGuide, currentPath, currentFullUrl };
 };
 
-export default withRouter(Printable);
+export default Printable;

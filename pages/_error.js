@@ -27,7 +27,7 @@ export default withRouter(
 
     render() {
       return (
-        <MinimalLayout route={this.props.router}>
+        <MinimalLayout>
           <div
             className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
           >

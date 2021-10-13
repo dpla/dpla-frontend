@@ -27,7 +27,6 @@ import utils from "stylesheets/utils.module.scss"
 
 const ItemDetail = ({
   error,
-  url,
   item,
   randomItemId,
   isQA
@@ -40,8 +39,7 @@ const ItemDetail = ({
       pageTitle={item.title}
       pageImage={item.thumbnailUrl}
     >
-      <BreadcrumbsModule /* searchItemCount={searchItemCount} */
-        /* paginationInfo={paginationInfo} */
+      <BreadcrumbsModule
         breadcrumbs={[
           {
             title: "All items",
@@ -51,7 +49,6 @@ const ItemDetail = ({
           },
           { title: joinIfArray(item.title), search: "" }
         ]}
-        route={url}
       />
       <HarmfulContent/>
       {isQA && <QA item={item} randomItemId={randomItemId} />}
@@ -61,7 +58,7 @@ const ItemDetail = ({
         className={`${utils.container} ${css.contentWrapper}`}
       >
 
-        <Content item={item} url={url} />
+        <Content item={item} />
 
         <div className={css.faveAndCiteButtons}>
           <CiteButton

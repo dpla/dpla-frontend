@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
+
 
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
@@ -19,7 +20,7 @@ import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 import css from "./Sidebar.module.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
-const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
+const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip}) => {
     if (disabled) {
         return (<span className={css.facet}>
             <span className={`${css.facetName} ${css.activeFacetName}`}>
@@ -32,11 +33,11 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
     }
 
     const href = {
-        pathname: route.pathname,
-        query: Object.assign({}, route.query, {
+        pathname: router.pathname,
+        query: Object.assign({}, router.query, {
             // some facet names have spaces, and we need to wrap them in " "
-            [queryKey]: route.query[queryKey]
-                ? [`${route.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
+            [queryKey]: router.query[queryKey]
+                ? [`${router.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
                 : `"${termObject.term}"`,
             page: 1
         })
@@ -64,7 +65,7 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
                 <a className={css.facetCount}>{addCommasToNumber(termObject.count)}</a>
             </Link>
         </div>);
-}
+});
 
 class DateFacet extends React.Component {
     componentWillMount() {
@@ -143,10 +144,10 @@ class DateFacet extends React.Component {
         e.preventDefault();
         const dateProps = this.getDateProps();
         Router.push({
-            pathname: this.props.route.pathname,
+            pathname: this.props.router.pathname,
             query: Object.assign(
                 {},
-                removeQueryParams(this.props.route.query, ["after", "before"]),
+                removeQueryParams(this.props.router.query, ["after", "before"]),
                 dateProps,
                 {
                     page: 1
@@ -164,16 +165,17 @@ class DateFacet extends React.Component {
 
     render() {
         // NOTE: this form should maybe be wrapping the entire sidebar?
+        const { router } = this.props;
         const formVals = Object.assign(
             {},
-            removeQueryParams(this.props.route.query, ["after", "before", "page"]),
+            removeQueryParams(router.query, ["after", "before", "page"]),
             {
                 page: 1
             }
         );
         return (
             <form
-                action={this.props.route.pathname}
+                action={router.pathname}
                 method="get"
                 className={css.dateRangeFacet}
                 onSubmit={e => this.handleDateSubmit(e)}
@@ -227,13 +229,13 @@ class Sidebar extends React.Component {
     }
 
     render() {
-        const {route, facets} = this.props;
+        const { router, facets } = this.props;
         const isFacetValueInQuery = (facetKey, value) =>
-            route.query[mapFacetsToURLPrettified[facetKey]] &&
+            router.query[mapFacetsToURLPrettified[facetKey]] &&
             // handles case of sources with both
             // "moving image" and "image" as types
             new RegExp('"' + escapeForRegex(value) + '"').test(
-                route.query[mapFacetsToURLPrettified[facetKey]]
+                router.query[mapFacetsToURLPrettified[facetKey]]
             );
         let hasDates = false;
         return (
@@ -258,7 +260,6 @@ class Sidebar extends React.Component {
                                     return {
                                         content: qaFacets.includes(key)
                                             ? <FacetLink
-                                                route={route}
                                                 termObject={termObject}
                                                 queryKey={mapFacetsToURLPrettified[key]}
                                                 disabled={isFacetValueInQuery(key, termObject.term)}
@@ -272,13 +273,13 @@ class Sidebar extends React.Component {
                             if (!hasDates) {
                                 hasDates = true; // because there's facets for after and before we dont want two date ranges
                                 let dateProps = {};
-                                if (route.query.after) dateProps.after = route.query.after;
-                                if (route.query.before) dateProps.before = route.query.before;
+                                if (router.query.after) dateProps.after = router.query.after;
+                                if (router.query.before) dateProps.before = router.query.before;
                                 return {
                                     name: prettifiedFacetMap[key],
                                     active: true,
                                     type: "date",
-                                    subitems: <DateFacet route={route} {...dateProps} />
+                                    subitems: <DateFacet router={router} {...dateProps} />
                                 };
                             } else {
                                 return "";
@@ -291,4 +292,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

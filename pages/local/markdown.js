@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -16,11 +15,10 @@ import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
-import localMarkdown from "stylesheets/local_markdown.module.scss"
 
 class MarkdownPage extends React.Component {
   render() {
-    const { router, path, pageData, content } = this.props;
+    const { path, pageData, content } = this.props;
 
     const local = LOCALS[LOCAL_ID];
     const routesObj = local.routes;
@@ -58,7 +56,6 @@ class MarkdownPage extends React.Component {
 
     return (
       <MainLayout
-        route={router}
         pageTitle={`${pageData.title}`}
         pageDescription={`${pageData.description}`}
       >
@@ -76,7 +73,7 @@ class MarkdownPage extends React.Component {
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className={utils.row}>
-              <Sidebar
+            <Sidebar
               className={contentCss.sidebar}
               items={pages}
               activePage={path}
@@ -110,4 +107,4 @@ MarkdownPage.getInitialProps = async context => {
   };
 };
 
-export default withRouter(MarkdownPage);
+export default MarkdownPage;

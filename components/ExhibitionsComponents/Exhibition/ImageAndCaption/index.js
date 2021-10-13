@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "next/router";
 
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
@@ -6,7 +7,7 @@ import Button from "shared/Button";
 import css from "./ImageAndCaption.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const ImageAndCaption = ({ exhibition, route }) =>
+const ImageAndCaption = ({ exhibition, router }) =>
   <figure className={css.wrapper}>
     <div className={[utils.container, css.imageAndCaption].join(" ")}>
       <p className={css.exhibitionTitle}>{exhibition.title}</p>
@@ -29,7 +30,7 @@ const ImageAndCaption = ({ exhibition, route }) =>
               className={css.exploreLink}
               url={{
                 pathname: "/exhibitions/exhibition/section/subsection",
-                query: Object.assign({}, route.query, {
+                query: Object.assign({}, router.query, {
                   section: exhibition.sections[0].slug,
                   exhibition: exhibition.slug,
                   subsection: ""
@@ -52,4 +53,4 @@ const ImageAndCaption = ({ exhibition, route }) =>
     </div>
   </figure>;
 
-export default ImageAndCaption;
+export default withRouter(ImageAndCaption);

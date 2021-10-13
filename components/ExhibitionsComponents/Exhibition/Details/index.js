@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
@@ -37,7 +38,7 @@ class Details extends React.Component {
   }
 
   render() {
-    const { exhibition, route } = this.props;
+    const { exhibition, router } = this.props;
     return (
       <div className={css.wrapper}>
         <div className={[utils.container, css.details].join(" ")}>
@@ -52,7 +53,7 @@ class Details extends React.Component {
                     <Link
                       href={{
                         pathname: "/exhibitions/exhibition/section/subsection",
-                        query: Object.assign({}, route.query, {
+                        query: Object.assign({}, router.query, {
                           section: section.slug,
                           exhibition: exhibition.slug,
                           subsection: ""
@@ -91,7 +92,7 @@ class Details extends React.Component {
                 className={css.exploreLink}
                 url={{
                   pathname: "/exhibitions/exhibition/section/subsection",
-                  query: Object.assign({}, route.query, {
+                  query: Object.assign({}, router.query, {
                     section: exhibition.sections[0].slug,
                     exhibition: exhibition.slug,
                     subsection: ""
@@ -124,4 +125,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default withRouter(Details);

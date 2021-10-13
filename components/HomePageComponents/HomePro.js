@@ -9,7 +9,7 @@ import StayInformed from "shared/StayInformed";
 import css from "./HomePro.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const HomePro = ({ url, news, content }) =>
+const HomePro = ({ news, content }) =>
   <div>
     <div
       className={`${css.heroWrapper} ${content.acf.feature

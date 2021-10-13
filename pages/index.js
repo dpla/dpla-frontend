@@ -29,7 +29,6 @@ import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { SITE_ENV } from "constants/env";
 
 const Home = ({
-  url,
   sourceSets,
   guides,
   exhibitions,
@@ -40,7 +39,6 @@ const Home = ({
   <MainLayout
     hidePageHeader={SITE_ENV === "user"}
     hideSearchBar={SITE_ENV === "pro"}
-    route={url}
   >
     <div id="main" role="main">
       <HomeUser
@@ -50,7 +48,6 @@ const Home = ({
         headerDescription={headerDescription}
         news={news}
         content={content}
-        url={url}
       />
     </div>
   </MainLayout>;

@@ -20,8 +20,8 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const Contact = ({ url, sidebarItems }) =>
-  <MainLayout route={url} pageTitle={TITLE} seoType={SEO_TYPE}>
+const Contact = ({ sidebarItems }) =>
+  <MainLayout pageTitle={TITLE} seoType={SEO_TYPE}>
     <FeatureHeader title={TITLE} description={""} />
     <div>
       <div
@@ -29,7 +29,6 @@ const Contact = ({ url, sidebarItems }) =>
       >
         <div className={utils.row}>
           <ContentPagesSidebar
-            route={url}
             activeItemId="contact-us"
             items={sidebarItems}
             className={contentCss.sidebar}

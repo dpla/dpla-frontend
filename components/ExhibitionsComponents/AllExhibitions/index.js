@@ -5,10 +5,10 @@ import ExhibitionsList from "./components/ExhibitionsList";
 
 import { TITLE, DESCRIPTION } from "constants/exhibitions.js";
 
-const AllSets = ({ route, exhibitions }) =>
+const AllSets = ({ exhibitions }) =>
   <div data-cy="exhibitions-home">
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
-    <ExhibitionsList exhibitions={exhibitions} route={route} />
+    <ExhibitionsList exhibitions={exhibitions} />
   </div>;
 
 export default AllSets;

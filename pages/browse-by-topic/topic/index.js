@@ -1,21 +1,22 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import { extractSourceSetSlug } from "lib/";
+import { extractSourceSetSlug, getCurrentUrl } from "lib";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
 import MainLayout from "components/MainLayout";
+
 import {
   API_ENDPOINT_ALL_TOPICS,
   API_ENDPOINT_SUBTOPICS_FOR_TOPIC
 } from "constants/topicBrowse";
+
 import {
   EXHIBIT_PAGES_ENDPOINT,
   EXHIBITS_ENDPOINT,
   FILES_ENDPOINT
 } from "constants/exhibitions";
-import { getCurrentUrl } from "lib";
 
 const sanitizeSourceSetId = id => {
   let sanitized = id.replace(" ", "");
@@ -25,8 +26,8 @@ const sanitizeSourceSetId = id => {
   return sanitized;
 };
 
-const Topic = ({ url, topic, subtopics, suggestions }) =>
-  <MainLayout route={url} pageTitle={topic.name}>
+const Topic = ({ topic, subtopics, suggestions }) =>
+  <MainLayout pageTitle={topic.name}>
     <BreadcrumbsAndNav
       breadcrumbs={[
         {

@@ -6,14 +6,14 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 
-const Home = ({ url, news, content }) =>
-  <MainLayout hidePageHeader={false} hideSearchBar={true} route={url}>
+const Home = ({ news, content }) =>
+  <MainLayout hidePageHeader={false} hideSearchBar={true} >
     <div id="main" role="main">
-      <HomePro url={url} news={news} content={content} />
+      <HomePro news={news} content={content} />
     </div>
   </MainLayout>;
 
-Home.getInitialProps = async ({ req }) => {
+Home.getInitialProps = async () => {
   // fetch home info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
