@@ -44,7 +44,6 @@ const FacetLink = ({route, queryKey, termObject, disabled, isTooltip}) => {
 
     return (<div className={css.facet}>
             <span className={css.facetName}><Link
-                prefetch
                 href={href}
             ><a className={css.facetLink}>{termObject.term}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
             (<Link href={tooltips[termObject.term].link}>
