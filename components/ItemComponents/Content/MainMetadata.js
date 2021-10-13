@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 import ItemImage from "./ItemImage";
 import ItemTermValuePair from "./ItemTermValuePair";
@@ -76,11 +75,11 @@ class MainMetadata extends React.Component {
                 useDefaultImage={item.useDefaultImage}
               />
               {item.sourceUrl &&
-                <Link href={item.sourceUrl}>
                   <a
                     rel="noopener"
                     target="_blank"
                     className={`${css.sourceLink} clickThrough external white`}
+                    href={item.sourceUrl}
                   >
                     <span className={css.sourceLinkText}>
                       {item.type === "image"
@@ -90,7 +89,7 @@ class MainMetadata extends React.Component {
                           : "View Full Item"}
                     </span>
                   </a>
-                </Link>}
+                }
               {this.renderRightsBadge(item)}
             </dd>
           </div>

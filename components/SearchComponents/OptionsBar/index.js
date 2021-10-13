@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Router from "next/router";
+import { withRouter } from "next/router";
 
 import { addCommasToNumber } from "lib";
 import {
@@ -19,7 +20,7 @@ const listViewIcon = "/static/images/list-view-icon.svg";
 
 class OptionsBar extends React.Component {
   componentWillMount() {
-    const { sort_by, sort_order, page_size } = this.props.route.query;
+    const { sort_by, sort_order, page_size } = this.props.router.query;
     this.setState({
       sortValue: getSortOptionFromParams({
         sortBy: sort_by || "",
@@ -30,12 +31,12 @@ class OptionsBar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { sort_by, sort_order, page_size } = this.props.route.query;
+    const { sort_by, sort_order, page_size } = this.props.router.query;
     const {
       sort_by: next_sort_by,
       sort_order: next_sort_order,
       page_size: next_page_size
-    } = nextProps.route.query;
+    } = nextProps.router.query;
     if (
       next_sort_by !== sort_by ||
       next_sort_order !== sort_order ||
@@ -54,7 +55,7 @@ class OptionsBar extends React.Component {
   onPageSizeChange = val => {
     Router.push({
       pathname: "/search",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         page_size: val.target.value,
         page: 1
       })
@@ -64,7 +65,7 @@ class OptionsBar extends React.Component {
   onSortChange = val => {
     Router.push({
       pathname: "/search",
-      query: Object.assign({}, this.props.route.query, {
+      query: Object.assign({}, this.props.router.query, {
         sort_by: mapSortOptionsToParams[val.target.value].sort_by,
         sort_order: mapSortOptionsToParams[val.target.value].sort_order,
         page: 1
@@ -78,6 +79,7 @@ class OptionsBar extends React.Component {
 
   render() {
     const {
+      router,
       currentPage,
       onClickToggleFilters,
       showFilters,
@@ -91,11 +93,11 @@ class OptionsBar extends React.Component {
               <span>
                 {addCommasToNumber(this.props.itemCount)} results{" "}
               </span>
-              {this.props.route.query.q &&
+              {router.query.q &&
                 <span className={css.resultsCountQuery}>
                   <span>for </span>
                   <span className={css.resultsCountQueryText}>
-                    {this.props.route.query.q}
+                    {router.query.q}
                   </span>
                 </span>}
             </h1>
@@ -179,8 +181,8 @@ class OptionsBar extends React.Component {
               <div className={css.viewButtons}>
                 <Link
                   href={{
-                    pathname: this.props.route.pathname,
-                    query: Object.assign({}, this.props.route.query, {
+                    pathname: router.pathname,
+                    query: Object.assign({}, router.query, {
                       list_view: "list"
                     })
                   }}
@@ -188,7 +190,7 @@ class OptionsBar extends React.Component {
                   <a
                     className={[
                       css.listViewButton,
-                      this.props.route.query.list_view === "grid"
+                      router.query.list_view === "grid"
                         ? css.viewButtonInactive
                         : css.viewButtonActive
                     ].join(" ")}
@@ -202,8 +204,8 @@ class OptionsBar extends React.Component {
                 </Link>
                 <Link
                   href={{
-                    pathname: this.props.route.pathname,
-                    query: Object.assign({}, this.props.route.query, {
+                    pathname: router.pathname,
+                    query: Object.assign({}, router.query, {
                       list_view: "grid"
                     })
                   }}
@@ -211,7 +213,7 @@ class OptionsBar extends React.Component {
                   <a
                     className={[
                       css.gridViewButton,
-                      this.props.route.query.list_view === "grid"
+                      router.query.list_view === "grid"
                         ? css.viewButtonActive
                         : css.viewButtonInactive
                     ].join(" ")}
@@ -232,4 +234,4 @@ class OptionsBar extends React.Component {
   }
 }
 
-export default OptionsBar;
+export default withRouter(OptionsBar);
