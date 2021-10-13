@@ -101,14 +101,16 @@ class SourceSetInfo extends React.Component {
                     <h2 className={css.metadataHeader}>
                       Created By
                     </h2>
+                    <ul>
                     {set.author.map(author =>
-                      <ReactMarkdown
+                        <li key={author.name}><ReactMarkdown
                         key={author.name}
                         source={author.name + ", " + author.affiliation.name}
                         allowedTypes={["emphasis", "text"]}
                         unwrapDisallowed
-                      />
+                        /></li>
                     )}
+                    </ul>
                   </div>
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>

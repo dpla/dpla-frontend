@@ -40,7 +40,6 @@ class Printable extends React.Component {
         <TeachersGuide
           teachingGuide={teachingGuide}
           setName={set.name}
-          route={router}
           currentPath={currentPath}
           isPrintable={true}
         />

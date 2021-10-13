@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { withRouter } from "next/router";
 
 import { removeQueryParams, markdownLinks } from "lib";
 
@@ -16,12 +17,12 @@ class TeachersGuide extends React.Component {
   state = { routePath: null };
 
   componentDidMount() {
-    this.setState({ routePath: this.props.route.asPath });
+    this.setState({ routePath: this.props.router.asPath });
   }
 
   render() {
     const {
-      route,
+      router,
       teachingGuide,
       isPrintable
     } = this.props;
@@ -68,10 +69,10 @@ class TeachersGuide extends React.Component {
                     source
                     set,{" "}
                     <Link
-                      href={`/primary-source-sets/set?set=${route.query.set}`}
+                      href={`/primary-source-sets/set?set=${router.query.set}`}
                       as={{
-                        pathname: `/primary-source-sets/${route.query.set}`,
-                        query: removeQueryParams(route.query, ["set"])
+                        pathname: `/primary-source-sets/${router.query.set}`,
+                        query: removeQueryParams(router.query, ["set"])
                       }}
                     >
                       <a className={`${utils.link} ${css.aboutThisLink}`}>
@@ -195,4 +196,4 @@ class TeachersGuide extends React.Component {
   }
 }
 
-export default TeachersGuide;
+export default withRouter(TeachersGuide);

@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "next/router";
 import fetch from "isomorphic-fetch";
 import ReactMarkdown from "react-markdown";
 
@@ -15,9 +16,8 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 
-const SingleSet = ({ url, set, currentFullUrl }) =>
+const SingleSet = ({ router, set, currentFullUrl }) =>
   <MainLayout
-    route={url}
     pageTitle={set.name.replace(/\*/g, "")}
     pageImage={set.repImageUrl || set.thumbnailUrl}
   >
@@ -27,15 +27,14 @@ const SingleSet = ({ url, set, currentFullUrl }) =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets",
-            query: removeQueryParams(url.query, ["set"])
+            query: removeQueryParams(router.query, ["set"])
           }
         },
         { title: set.name, search: "" }
       ]}
-      route={url}
     />
     <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
-    <ResourcesTabs route={url} currentTab="additionalResources" set={set}>
+    <ResourcesTabs currentTab="additionalResources" set={set}>
       <div className={css.content}>
         <div
           className={utils.container}
@@ -64,4 +63,4 @@ SingleSet.getInitialProps = async ({ query, req }) => {
   return { set, currentFullUrl };
 };
 
-export default SingleSet;
+export default withRouter(SingleSet);

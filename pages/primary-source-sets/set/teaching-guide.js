@@ -1,5 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
+import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -12,9 +13,8 @@ import { PSS_BASE_URL } from "constants/env";
 
 import { removeQueryParams, getCurrentFullUrl } from "lib";
 
-const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
+const SingleSet = ({ router, set, teachingGuide, currentPath, currentFullUrl }) =>
   <MainLayout
-    route={url}
     pageTitle={set.name.replace(/\*/g, "")}
     pageImage={set.repImageUrl || set.thumbnailUrl}
   >
@@ -24,19 +24,17 @@ const SingleSet = ({ url, set, teachingGuide, currentPath, currentFullUrl }) =>
           title: "Primary Source Sets",
           url: {
             pathname: "/primary-source-sets",
-            query: removeQueryParams(url.query, ["set"])
+            query: removeQueryParams(router.query, ["set"])
           }
         },
         { title: set.name, search: "" }
       ]}
-      route={url}
     />
     <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
-    <ResourcesTabs route={url} currentTab="teachingGuide" set={set}>
+    <ResourcesTabs currentTab="teachingGuide" set={set}>
       <TeachersGuide
         teachingGuide={teachingGuide}
         setName={set.name}
-        route={url}
         currentPath={currentPath}
       />
     </ResourcesTabs>
@@ -63,4 +61,4 @@ SingleSet.getInitialProps = async ({ query, req }) => {
   return { set, teachingGuide, currentPath, currentFullUrl };
 };
 
-export default SingleSet;
+export default withRouter(SingleSet);
