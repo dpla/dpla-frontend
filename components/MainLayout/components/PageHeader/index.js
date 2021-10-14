@@ -13,8 +13,8 @@ import utils from "stylesheets/utils.module.scss"
 class PageHeader extends React.Component {
   render() {
     const { hideSearchBar, router } = this.props;
-    const searchQuery = (router && router.pathname === "/search" && router.query)
-        ? router.query : ""
+    const searchQuery = (router && router.pathname === "/search" && router.query && router.query.q)
+        ? router.query.q : ""
     return (
       <div
         className={`${css.headerSearchBar} ${SITE_ENV === "pro"
