@@ -53,7 +53,7 @@ class NavigationLocal extends Component {
       );
       contactHtml = (
         <li>
-          <a href="about:blank">PRIMARY SOURCE SET</a>
+          <a href="https://dp.la/primary-source-sets/aviation">PAN AM PRIMARY SOURCE SET</a>
         </li>
       );
 
