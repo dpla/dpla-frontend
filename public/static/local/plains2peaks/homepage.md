@@ -20,11 +20,11 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 
   Discover documents, photographs, oral histories, and artifacts that document the compelling and complex story of Colorado and Wyoming’s LGBTQ+ community.
 
-- ### [Racial and ethnic minorities](/search?q=%22African+American%22+%22Asian+American%22+%22Native+American%22+indigenous+Chicano+%22Mexican+American%22+Immigrant+%22Italian+American%22+Chinese+Hispanic+Latino+Migrant+Refugee+Jews+Jewish+Japanese+Internment+%22relocation+center%22)
+- ### [Racial and ethnic minorities](/search?q=%22African+American%22+OR+%22Asian+American%22+OR+Native+American+OR+indigenous+OR+Chicano+OR+%22Mexican+American%22+OR+Chinese+OR+Hispanic+OR+Latino+OR+Migrant+OR+Jews+OR+Jewish+OR+Japanese+OR+Internment)
 
   Learn from the lives and experiences of Black people, people of color, multiracial people, Native American or Indigenous peoples, Asian-Americans and Pacific Islanders, and immigrant or refugee populations who help shape our two states.
 
-- ### [Social Protest Movements](/search?q=%22Chicano+movement%22+%22Civil+rights%22+%22Women's+rights%22+Protest+%22United+Mine+Workers+of+America%22+%22Ludlow+Strike%22+Suffrag*+%22Black+lives+matter%22+%22Labor+movement%22+%22Railroad+Strike%22+%22me+too+movement%22+%22political+activism%22)
+- ### [Social Protest Movements](/search?q=%22Chicano+movement%22+OR+%22Civil+rights%22+OR+%22Women's+rights%22+OR+%22United+mine+worker*%22+OR+%22Ludlow+Strike%22+OR+Suffrag*+OR+%22Black+lives+matter%22+OR+%22Labor+movement%22+OR+%22Railroad+Strike*%22+OR+%22me+too+movement%22)
 
   Explore how organized activism in Colorado and Wyoming carried out by movements such as women's suffrage, Black power, Chicanx/Latinx, voting rights, civil rights, women’s rights, labor rights, the Me Too movement, and Black Lives Matter. All these cultural movements impacted changes not only in these two states but nationally as well.
 
@@ -35,13 +35,21 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 <br> <br>
 ## Collections by Format<br><br>
 
-  ### [Maps](/search?q=map&type=image)<br><br>
+- ### [Maps](/search?q=map&type=image)
 
-  ### [Oral Histories](/search?q=oral+history&type=sound)<br><br>
+  Discover neighborhood, city, state, territory and topographic maps from 1846 to present day representing Colorado, Wyoming and the West.
 
-  ### [Images](/search?type=image)<br><br>
+- ### [Oral Histories](/search?q=oral+history&type=sound)
 
-  ### [Physical Objects](/search?type=%22physical+object%22)<br><br>
+  Learn about Colorado and Wyoming by listening to the personal experiences of our residents.
+
+- ### [Images](/search?type=image)
+
+  Explore thousands of images including photographs and postcards  depicting people, places and events.
+
+- ### [Physical Objects](/search?type=%22physical+object%22)
+
+  Discover a diverse set of objects including household and personal artifacts, clothing and textiles, agricultural and industrial materials, and archaeological collections that bring our history to life.
 
 <br><br>
 ## [PPC Digital Collections Blog](https://www.coloradovirtuallibrary.org/digital-colorado/)
