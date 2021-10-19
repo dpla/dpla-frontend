@@ -1,5 +1,6 @@
 import React from "react";
 import Router from "next/router";
+import { withRouter } from "next/router";
 
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -37,8 +38,8 @@ class List extends React.Component {
   };
 
   componentDidMount() {
-    const { url } = this.props;
-    const uuid = url.query.list;
+    const { router } = this.props;
+    const uuid = router.query.list;
     this.setState({
       uuid: uuid
     });
@@ -61,7 +62,7 @@ class List extends React.Component {
   };
 
   getItems = async (uuid, list) => {
-    const currentUrl = getCurrentUrl(this.props.url.query.req);
+    const currentUrl = getCurrentUrl(this.props.router.query.req);
     const itemIds = Object.keys(list.selectedHash);
     const ids = itemIds.join(",");
     if (ids.length === 0) {
@@ -124,13 +125,12 @@ class List extends React.Component {
   };
 
   render() {
-    const { url, req } = this.props;
     const { uuid, list, items, initialized } = this.state;
     if (initialized && (!list || list.length === 0)) {
       return <Error statusCode={404} />;
     }
     return (
-      <MainLayout route={url} pageTitle={list ? list.name : LISTS_TITLE}>
+      <MainLayout pageTitle={list ? list.name : LISTS_TITLE}>
         <BreadcrumbsModule
           breadcrumbs={[
             {
@@ -140,7 +140,6 @@ class List extends React.Component {
             },
             { title: list ? list.name : LISTS_TITLE }
           ]}
-          route={url}
         />
         <div
           id="main"
@@ -178,7 +177,6 @@ class List extends React.Component {
                 <ListView
                   name={list.name}
                   exportable={true}
-                  route={url}
                   items={addLinkInfoToResults(items, url.query)}
                   defaultUUID={uuid}
                 />}
@@ -198,9 +196,5 @@ class List extends React.Component {
     );
   }
 }
-
-List.getInitialProps = async ({ req }) => {
-  return {};
-};
 
 export default List;

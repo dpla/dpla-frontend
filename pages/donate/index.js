@@ -9,8 +9,8 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/donate.module.scss";
 
-const Donate = ({ url }) =>
-  <MainLayout route={url} pageTitle={SEO_TITLE}>
+const Donate = () =>
+  <MainLayout pageTitle={SEO_TITLE}>
     <div className={css.donateBackground}>
       <div id="main" role="main" className={utils.container}>
         <div className={`${css.donateContent} ${utils.row}`}>

@@ -79,7 +79,6 @@ class Search extends React.Component {
         <FiltersList
           showFilters={this.state.showSidebar}
           onClickToggleFilters={this.toggleFilters}
-          route={router}
           facets={results.facets}
         />
         {currentPage <= MAX_PAGE_SIZE &&
@@ -90,7 +89,6 @@ class Search extends React.Component {
               pageSize: pageSize || DEFAULT_PAGE_SIZE,
               currentPage: currentPage
             }}
-            route={router}
             facets={results.facets}
             results={results.docs}
             aboutness={aboutness}

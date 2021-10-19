@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "next/router";
 
 import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
@@ -59,7 +58,7 @@ class Content extends React.Component {
   }
 
   render() {
-    const { item, url } = this.props;
+    const { item } = this.props;
     return (
       <div className={css.content}>
         <h1 className={css.title}>
@@ -67,10 +66,10 @@ class Content extends React.Component {
         </h1>
         <MainMetadata item={item} />
         <OtherMetadata item={item} />
-        <JsonLdMarkup item={item} url={url} />
+        <JsonLdMarkup item={item} />
       </div>
     );
   }
 }
 
-export default withRouter(Content);
+export default Content;

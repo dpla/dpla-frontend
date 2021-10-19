@@ -15,8 +15,8 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
-  <MainLayout route={url} pageTitle={TITLE}>
+const Guides = ({ guides, sidebarItems, activeItemId }) =>
+  <MainLayout pageTitle={TITLE}>
     <div
       className={`
         ${utils.container}
@@ -25,7 +25,6 @@ const Guides = ({ url, guides, sidebarItems, activeItemId }) =>
     >
       <div className={utils.row}>
         <ContentPagesSidebar
-          route={url}
           items={sidebarItems}
           activeItemId={activeItemId}
           className={contentCss.sidebar}

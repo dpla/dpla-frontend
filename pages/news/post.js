@@ -2,7 +2,6 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
 import striptags from "striptags";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
@@ -39,7 +38,7 @@ class PostPage extends React.Component {
   }
 
   render() {
-    const { router, content, menuItems, author, pageDescription } = this.props;
+    const { content, menuItems, author, pageDescription } = this.props;
     let hasTags = false;
     NEWS_TAGS.forEach(tag => {
       if (content.tags.indexOf(tag.id) !== -1) {
@@ -49,7 +48,6 @@ class PostPage extends React.Component {
     });
     return (
       <MainLayout
-        route={router}
         pageTitle={content.title.rendered}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
@@ -63,7 +61,6 @@ class PostPage extends React.Component {
             },
             { title: content.title.rendered }
           ]}
-          route={router}
         />
         <div
           className={`${utils.container}
@@ -71,7 +68,6 @@ class PostPage extends React.Component {
         >
           <div className={utils.row}>
             <ContentPagesSidebar
-              route={router}
               items={menuItems}
               activeItemId={content.id}
               className={contentCss.sidebar}
@@ -170,4 +166,4 @@ PostPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default withRouter(PostPage);
+export default PostPage;

@@ -35,7 +35,6 @@ class MinimalLayout extends React.Component {
   render() {
     const {
       children,
-      route,
       headLinks,
       pageTitle,
       pageImage,
@@ -53,7 +52,6 @@ class MinimalLayout extends React.Component {
         {!isPrintable && <SkipToContent />}
         {!isPrintable &&
           <PageHeader
-            searchQuery={route ? route.query.q : ""}
             hideSearchBar={SITE_ENV === "pro"}
           />}
         {children}

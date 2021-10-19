@@ -6,16 +6,16 @@ import TopicsList from "components/TopicBrowseComponents/TopicsList";
 import { API_ENDPOINT_ALL_TOPICS_100_PER_PAGE } from "constants/topicBrowse";
 import { TITLE } from "constants/topicBrowse";
 
-const TopicBrowse = ({ url, topics }) =>
+const TopicBrowse = ({ topics }) =>
   <div>
-    <MainLayout route={url} pageTitle={TITLE}>
+    <MainLayout pageTitle={TITLE}>
       <div id="main" role="main" data-cy={'topics-home'}>
         <TopicsList topics={topics} />
       </div>
     </MainLayout>
   </div>;
 
-TopicBrowse.getInitialProps = async ({ query }) => {
+TopicBrowse.getInitialProps = async () => {
   const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   const json = await res.json();
   const topics = json.filter(

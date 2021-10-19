@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "next/router";
 
 import ListView from "shared/ListView";
 import Pagination from "shared/Pagination";
@@ -14,7 +15,7 @@ import utils from "stylesheets/utils.module.scss"
 
 const MainContent = ({
   results,
-  route,
+  router,
   facets,
   paginationInfo,
   hideSidebar,
@@ -24,14 +25,13 @@ const MainContent = ({
     <div className={[utils.container, css.mainContent].join(" ")}>
       {results.length > 0 &&
         <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
-          <Sidebar route={route} facets={facets} />
+          <Sidebar facets={facets} />
         </div>}
       <div id="main" role="main" className={css.resultsAndPagination}>
         {results.length > 0 &&
           <ListView
-            route={route}
-            items={addLinkInfoToResults(results, route.query)}
-            viewMode={route.query.list_view}
+            items={addLinkInfoToResults(results, router.query)}
+            viewMode={router.query.list_view}
           />}
         {results.length === 0 &&
           <div className={`${css.noResults} ${contentCss.content}`}>
@@ -49,7 +49,6 @@ const MainContent = ({
             </ul>
           </div>}
         <Pagination
-          route={route}
           itemsPerPage={paginationInfo.pageSize}
           currentPage={parseInt(paginationInfo.currentPage, 10)}
           totalItems={paginationInfo.pageCount}
@@ -65,9 +64,9 @@ const MainContent = ({
       <AboutLocal
         items={aboutness.docs}
         count={aboutness.count}
-        query={route.query}
+        query={router.query}
       />}
 
   </div>;
 
-export default MainContent;
+export default withRouter(MainContent);

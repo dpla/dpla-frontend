@@ -29,16 +29,15 @@ class Guides extends React.Component {
   }
 
   render() {
-    const { router, sidebarItems, breadcrumbs, guide } = this.props;
+    const { sidebarItems, breadcrumbs, guide } = this.props;
     return (
-      <MainLayout route={router} pageTitle={guide.title} seoType={SEO_TYPE}>
-        <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />
+      <MainLayout pageTitle={guide.title} seoType={SEO_TYPE}>
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} />
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className={utils.row}>
             <ContentPagesSidebar
-              route={router}
               items={sidebarItems}
               activeItemId={guide.slug}
               className={contentCss.sidebar}

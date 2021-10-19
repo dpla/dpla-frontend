@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 import {
   possibleFacets,
@@ -37,14 +38,14 @@ const clearFacet = (query, queryKey, facet) => {
   return duped;
 };
 
-const Filter = ({ name, queryKey, route }) => {
+const Filter = withRouter(({ name, queryKey, router }) => {
   const label = queryKey !== "q" ? queryKey : "keywords";
   return (
     <li className={css.filter}>
       <Link
         href={{
-          pathname: route.pathname,
-          query: Object.assign({}, clearFacet(route.query, queryKey, name))
+          pathname: router.pathname,
+          query: Object.assign({}, clearFacet(router.query, queryKey, name))
         }}
       >
         <a
@@ -58,12 +59,12 @@ const Filter = ({ name, queryKey, route }) => {
       </Link>
     </li>
   );
-};
+});
 
 class FiltersList extends React.Component {
   render() {
-    const { query } = this.props.route;
-    const { onClickToggleFilters, showFilters } = this.props;
+    const { query } = this.props.router;
+    const { onClickToggleFilters, showFilters, router } = this.props;
     return Object.keys(query).some(queryKey =>
       possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey]) || queryKey === "tags"
     )
@@ -94,7 +95,6 @@ class FiltersList extends React.Component {
                           : paramValue;
                         return (
                           <Filter
-                            route={this.props.route}
                             queryKey={queryKey}
                             key={idx}
                             name={name}
@@ -110,7 +110,7 @@ class FiltersList extends React.Component {
             </div>
             <Link
               href={{
-                pathname: this.props.route.pathname,
+                pathname: this.props.router.pathname,
                 query: Object.assign({}, clearAllFacets(query))
               }}
             >
@@ -139,4 +139,4 @@ class FiltersList extends React.Component {
   }
 }
 
-export default FiltersList;
+export default withRouter(FiltersList);

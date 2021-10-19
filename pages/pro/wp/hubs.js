@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
@@ -33,9 +32,9 @@ class HubsPage extends React.Component {
   }
 
   render() {
-    const { router, page, pageTitle, news } = this.props;
+    const { page, pageTitle, news } = this.props;
     return (
-      <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main">
           <div
             className={`${css.pageHero} ${page.acf.feature
@@ -115,4 +114,4 @@ HubsPage.getInitialProps = async ({ req, query, res }) => {
   return { page: hubItem, pageTitle: hubItem.title.rendered, news: newsItems };
 };
 
-export default withRouter(HubsPage);
+export default HubsPage;

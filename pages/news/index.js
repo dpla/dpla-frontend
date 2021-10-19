@@ -34,16 +34,16 @@ class NewsPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.url.query.k !== this.state.keywords ||
-      nextProps.url.query.author !== this.state.author ||
+      nextProps.router.query.k !== this.state.keywords ||
+      nextProps.router.query.author !== this.state.author ||
       (nextProps.author && nextProps.author.name !== this.state.authorName) ||
-      nextProps.url.query.tag !== this.state.tag
+      nextProps.router.query.tag !== this.state.tag
     ) {
       this.setState({
-        keywords: nextProps.url.query.k || "",
-        author: nextProps.url.query.author || "",
+        keywords: nextProps.router.query.k || "",
+        author: nextProps.router.query.author || "",
         authorName: nextProps.author ? nextProps.author.name : "",
-        tag: nextProps.url.query.tag || ""
+        tag: nextProps.router.query.tag || ""
       });
     }
   }
@@ -77,14 +77,13 @@ class NewsPage extends React.Component {
       ? " with keywords “" + this.state.keywords + "”"
       : ""}`;
     return (
-      <MainLayout route={router} pageTitle={pageItem.title} seoType={SEO_TYPE}>
+      <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
         <FeatureHeader title={TITLE} description={DESCRIPTION} />
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className={utils.row}>
             <ContentPagesSidebar
-              route={router}
               items={menuItems}
               activeItemId={pageItem.id}
               className={contentCss.sidebar}

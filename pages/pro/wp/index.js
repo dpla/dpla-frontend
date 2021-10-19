@@ -1,7 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import striptags from "striptags";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
@@ -37,7 +36,6 @@ class ProMenuPage extends React.Component {
 
   render() {
     const {
-      router,
       page,
       items,
       breadcrumbs,
@@ -47,13 +45,12 @@ class ProMenuPage extends React.Component {
     } = this.props;
     return (
       <MainLayout
-        route={router}
         pageTitle={pageTitle}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
         {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />}
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} />}
         {breadcrumbs.length === 0 &&
           !illustration &&
           <FeatureHeader title={pageTitle} description={""} />}
@@ -63,7 +60,6 @@ class ProMenuPage extends React.Component {
           <div className={utils.row}>
             <ContentPagesSidebar
               className={contentCss.sidebar}
-              route={router}
               items={items}
               activeItemId={page.id}
               rootPath="wp"
@@ -161,4 +157,4 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default withRouter(ProMenuPage);
+export default ProMenuPage;

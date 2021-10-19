@@ -8,8 +8,8 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/donate.module.scss";
 
-const DonateThankYou = ({ url }) =>
-  <MainLayout route={url} pageTitle={SEO_TITLE}>
+const DonateThankYou = () =>
+  <MainLayout pageTitle={SEO_TITLE}>
     <div
       className={`${utils.container}
       ${contentCss.sidebarAndContentWrapper}`}

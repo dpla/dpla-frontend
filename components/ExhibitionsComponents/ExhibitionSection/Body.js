@@ -17,7 +17,7 @@ class Body extends React.Component {
   componentWillUnmount() {}
 
   render() {
-    const { exhibition, section, subsection, route } = this.props;
+    const { exhibition, section, subsection } = this.props;
     return (
       <div className={`${utils.container} ${css.body}`}>
         <Subheader
@@ -34,7 +34,6 @@ class Body extends React.Component {
             isShowing={this.state.isMenuOpen}
           />
           <Viewer
-            route={route}
             subsection={subsection}
             exhibition={exhibition}
             section={section}

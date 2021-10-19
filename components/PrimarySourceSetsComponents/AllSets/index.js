@@ -6,7 +6,7 @@ import SetsList from "./components/SetsList";
 
 import { TITLE, DESCRIPTION } from "constants/primarySourceSets.js";
 
-const AllSets = ({ router, sets }) =>
+const AllSets = ({ sets }) =>
   <div>
     <FeatureHeader title={TITLE} description={DESCRIPTION} />
     <FiltersBar

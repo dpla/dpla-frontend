@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { LOCALS } from "constants/local";
 import { LOCAL_ID } from "constants/env";
-// import * as PropTypes from "prop-types";
 
 class NavigationLocal extends Component {
 
@@ -153,11 +152,5 @@ class NavigationLocal extends Component {
     );
   }
 }
-
-// NavigationLocal.propTypes = {
-//   isHome: PropTypes.any,
-//   className: PropTypes.any,
-//   css: PropTypes.any
-// };
 
 export default NavigationLocal;

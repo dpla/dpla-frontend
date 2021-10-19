@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
@@ -34,9 +33,9 @@ class EbooksPage extends React.Component {
   }
 
   render() {
-    const { router, page, pageTitle, news, showWPFeature } = this.props;
+    const { page, pageTitle, news, showWPFeature } = this.props;
     return (
-      <MainLayout route={router} pageTitle={pageTitle} seoType={SEO_TYPE}>
+      <MainLayout pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main">
           <div
             className={`${css.pageHero} ${page.acf.feature
@@ -145,4 +144,4 @@ EbooksPage.getInitialProps = async ({ req, query, res }) => {
   };
 };
 
-export default withRouter(EbooksPage);
+export default EbooksPage;
