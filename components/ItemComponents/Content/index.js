@@ -3,6 +3,7 @@ import React from "react";
 import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
+import { withRouter } from "next/router";
 
 import * as gtag from "lib/gtag";
 import { bindLinkEvent, getFullPath, joinIfArray } from "lib";
@@ -72,4 +73,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content;
+export default withRouter(Content);
