@@ -86,4 +86,4 @@ $proSiteColor: $elephantBlue !default;
 $proIconColor: #5d7384 !default;
 $memberColor: #006d84 !default;
 
-@import "theme"; // overrides the values above with ./themes/[LOCAL_ID.theme]/theme
+@import "stylesheets/themes/theme.module"; // overrides the values above with ./themes/[LOCAL_ID.theme]/theme
