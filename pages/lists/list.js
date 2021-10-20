@@ -57,7 +57,7 @@ class List extends React.Component {
         }
       })
       .catch(function(err) {
-        console.log(err);
+        console.log("getList", err);
       });
   };
 
@@ -126,6 +126,7 @@ class List extends React.Component {
 
   render() {
     const { uuid, list, items, initialized } = this.state;
+    const { router } = this.props
     if (initialized && (!list || list.length === 0)) {
       return <Error statusCode={404} />;
     }
@@ -177,7 +178,7 @@ class List extends React.Component {
                 <ListView
                   name={list.name}
                   exportable={true}
-                  items={addLinkInfoToResults(items, url.query)}
+                  items={addLinkInfoToResults(items, router.query)}
                   defaultUUID={uuid}
                 />}
               {items.length === 0 && <ListEmpty />}
@@ -197,4 +198,8 @@ class List extends React.Component {
   }
 }
 
-export default List;
+// strangely, this makes the list uuid available in router.query.
+// there's probably a better way...
+List.getInitialProps = async context => { return({}); }
+
+export default withRouter(List);
