@@ -64,7 +64,6 @@
     "babel-eslint": "^10.0.2",
     "babel-preset-react-app": "^9.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
-    "chai": "^4.2.0",
     "cypress": "^6.8.0",
     "eslint": "^8.0.0",
     "file-loader": "^4.1.0",
@@ -74,10 +73,6 @@
     "object-assign": "^4.1.1",
     "prettier": "^1.18.2",
     "promise": "^8.0.3",
-    "react-dev-utils": "^9.0.1",
-    "react-error-overlay": "^5.1.6",
-    "react-test-renderer": "^17.0.2",
-    "sinon": "^7.3.2",
     "url-loader": "^2.1.0"
   },
   "eslintConfig": {
