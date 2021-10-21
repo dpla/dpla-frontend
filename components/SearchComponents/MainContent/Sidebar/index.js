@@ -68,11 +68,19 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
 });
 
 class DateFacet extends React.Component {
-    componentWillMount() {
-        this.setState({
+    // componentWillMount() {
+    //     this.setState({
+    //         after: this.props.after || "",
+    //         before: this.props.before || ""
+    //     });
+    // }
+
+    constructor(props) {
+        super(props);
+        this.state = {
             after: this.props.after || "",
             before: this.props.before || ""
-        });
+        };
     }
 
     componentWillReceiveProps(nextProps) {

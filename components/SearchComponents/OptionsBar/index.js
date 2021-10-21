@@ -19,15 +19,28 @@ const gridViewIcon = "/static/images/grid-view-icon.svg";
 const listViewIcon = "/static/images/list-view-icon.svg";
 
 class OptionsBar extends React.Component {
-  componentWillMount() {
-    const { sort_by, sort_order, page_size } = this.props.router.query;
-    this.setState({
+
+  // componentWillMount() {
+  //   const { sort_by, sort_order, page_size } = this.props.router.query;
+  //   this.setState({
+  //     sortValue: getSortOptionFromParams({
+  //       sortBy: sort_by || "",
+  //       sortOrder: sort_order || ""
+  //     }),
+  //     pageSizeValue: page_size || DEFAULT_PAGE_SIZE
+  //   });
+  // }
+
+  constructor(props) {
+    super(props);
+    const { sort_by, sort_order, page_size } = props.router.query;
+    this.state = {
       sortValue: getSortOptionFromParams({
         sortBy: sort_by || "",
         sortOrder: sort_order || ""
       }),
       pageSizeValue: page_size || DEFAULT_PAGE_SIZE
-    });
+    };
   }
 
   componentWillReceiveProps(nextProps) {
