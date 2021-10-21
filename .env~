@@ -1,8 +1,0 @@
-API_KEY=00529aa4925f81abc77f752ef050e690
-API_URL=http://api.dp.la/v2
-NODE_ENV=development
-SITE_ENV=user
-LOCAL_ID=vermont
-OMEKA_URL=http://omeka.internal.dp.la
-ELASTIC_URL=http://search.internal.dp.la:9200/dpla_alias
-SQS_URL=https://sqs.us-east-1.amazonaws.com/283408157088%
