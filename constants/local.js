@@ -652,12 +652,13 @@ const LOCALS = {
     name: "OKHUB",
     background: "ok.jpg",
     favicon: "favicon.ico",
-    logo: "logo.jpg",
-    heroLogo: "logo-big.jpg",
+    logo: "logo.png",
+    heroLogo: "logo.png",
     description: "",
     locationFacet: "%22Oklahoma%22",
     subjectFacet: "%22Oklahoma%22",
     hasAbout: true,
+    hasTerms: false,
     hasSidebar: true,
     hasBrowseByPartner: true,
     hasBrowseAll: false,
@@ -736,6 +737,6 @@ const LOCALS = {
       }
     }
   }
-};
+}
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js

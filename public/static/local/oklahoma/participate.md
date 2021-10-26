@@ -19,7 +19,3 @@ If you answered yes to all of the above:
 Once your metadata is ready, OKHub will harvest your collection. Then, DPLA will harvest your collection from OKHub. At that point, your collection has joined the more than twenty million items already in DPLA!
 
 Still have questions? Contact [Sarah Milligan](mailto:sarah.milligan@okstate.edu).
-
-
-
-
