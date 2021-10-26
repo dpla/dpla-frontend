@@ -1,3 +1,5 @@
+## Terms of Use
+
 The copyright status of items shared by our PPC partner varies. Many items are in the public domain, while others are under rights restrictions or have not been evaluated but nonetheless publicly viewable.
 
 For individual rights information about an item, please check the “Rights” field in the record and click on the Rights Statement link provided to learn more about copyright status and information about reuse.

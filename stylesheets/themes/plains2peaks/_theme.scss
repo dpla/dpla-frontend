@@ -5,6 +5,10 @@ $theme-background-color: #f9f6f0;
 $theme-colder-tint: rgb(245, 245, 245);
 $theme-warmer-tint: lighten($theme-main-color, 36%); //bottom bar
 
+.homeSearchForm {
+  padding-top: 200px !important;
+}
+
 $linkColor: $theme-link-color;
 $linkHoverColor: lighten($linkColor, 10%);
 $visitedLinkColor: darken($linkColor, 10%);

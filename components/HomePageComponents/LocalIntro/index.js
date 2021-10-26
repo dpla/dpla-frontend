@@ -6,7 +6,7 @@ import utils from "stylesheets/utils.module.scss"
 
 const LocalIntro = ({ content }) =>
   <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
-    <ReactMarkdown className={css.intro} source={content} />
+    <ReactMarkdown className={css.intro} source={content} skipHtml={false} escapeHtml={false}  />
   </div>;
 
 export default LocalIntro;
