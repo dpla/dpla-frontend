@@ -51,7 +51,7 @@ const HomeHero = ({ headerDescription, feature }) =>
           Donate
         </Button>}
     </div>
-    <div className={css.content}>
+    <div className={`${css.content} ${utils.homeSearchForm}`}>
       {headerDescription && <p className={css.headline}>{headerDescription}</p>}
       <form action="/search">
         <div className={css.search}>
