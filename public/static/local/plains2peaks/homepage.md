@@ -26,7 +26,7 @@ Libraries, archives, and museums in Colorado and Wyoming all hold pieces of our 
 
 - ### [Social Protest Movements](/search?q=%22Chicano+movement%22+OR+%22Civil+rights%22+OR+%22Women's+rights%22+OR+%22United+mine+worker*%22+OR+%22Ludlow+Strike%22+OR+Suffrag*+OR+%22Black+lives+matter%22+OR+%22Labor+movement%22+OR+%22Railroad+Strike*%22+OR+%22me+too+movement%22)
 
-  Explore how organized activism in Colorado and Wyoming impacted local and national movements such as women's suffrage, Black power, Chicanx/Latinx, voting rights, civil rights, women’s rights, labor rights, the Me Too movement, and Black Lives Matter
+  Explore how organized activism in Colorado and Wyoming impacted local and national movements such as women's suffrage, Black power, Chicanx/Latinx, voting rights, civil rights, women’s rights, labor rights, the Me Too movement, and Black Lives Matter.
 
 - ### [Agriculture and Homesteading](/search?q=%22dry+farming%22+OR+farm*+OR+ranch*+OR+irrigation+OR+cowboy*+OR+stockmen+OR+homestead*+agriculture+OR+beet*+OR+crop*+OR+cattle+OR+sheep)
 
