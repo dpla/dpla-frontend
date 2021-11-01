@@ -1,6 +1,6 @@
 # Harvesting Workflow
 
-![IDHH harvest workflow illustration, described below](/public/static/static/local/illinois/idhh-harvest-workflow.PNG  "IDHH Harvest Workflow Overview")
+![IDHH harvest workflow illustration, described below](/static/local/illinois/idhh-harvest-workflow.PNG  "IDHH Harvest Workflow Overview")
 
 1. **On-boarding**
    - Institution consents to providing metadata for specific collections, by completing the [contributor agreement form](https://drive.google.com/file/d/0By5ezltuoaTHM016a215dXJHbk0) and returning it to the [IDHH Coordinator](/about/contact).

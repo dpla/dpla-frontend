@@ -1,6 +1,6 @@
 # Rights Statements Guide
 
-[![Click to watch a video introducing standardized rights statements on Vimeo](/public/static/static/local/illinois/standardized-rights-video.png "Click to watch a video introducing standardized rights statements")](https://vimeo.com/391276209)
+[![Click to watch a video introducing standardized rights statements on Vimeo](/static/local/illinois/standardized-rights-video.png "Click to watch a video introducing standardized rights statements")](https://vimeo.com/391276209)
 _[IDHH Standardized Rights](https://vimeo.com/391276209) from [Illinois Digital Heritage Hub](https://vimeo.com/user64994398) on [Vimeo](https://vimeo.com/)._
 
 Standardized rights statements are highly recommended by the DPLA and are important for the discoverability and usability of your organization’s digital objects. Currently, there are more than 1,000 different rights statements in the IDHH alone and 1,000s in the DPLA’s entire record set. This can be quite overwhelming to users and generate a great deal of uncertainty on if and how digital material can be used.
@@ -17,7 +17,7 @@ Re-use is good for digital library users and institutions who contribute to digi
 
 Standardized rights are good for users, contributors, and digital library developers. As the number of possible free-text rights statements is nearly infinite, it is not easy to develop applications around them. However, due to the limited number of Creative Commons licenses and rightsstatements.org statements, it is possible to develop widgets that allow users to browse by and facet by particular statements. An example of this is the [Europeana Collections](https://www.europeana.eu/portal/en) digital library, pictured below.
 
-![Rights statements facets in the Europeana Collections catalog](/public/static/static/local/illinois/europeana-reuse-facets.png "Rights statements facets in the Europeana Collections catalog")
+![Rights statements facets in the Europeana Collections catalog](/static/local/illinois/europeana-reuse-facets.png "Rights statements facets in the Europeana Collections catalog")
 _Europeana catalog search results provide a facet by rights statements made possible by contributors’ use of standardized rights statements._
 
 ## How to implement standardized rights

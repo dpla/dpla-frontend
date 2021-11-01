@@ -1,4 +1,4 @@
-![Montana State Library Logo](/public/static/static/local/bigsky/msl_logo.png "Montana State Library")
+![Montana State Library Logo](/static/local/bigsky/msl_logo.png "Montana State Library")
   
 **Jennifer Birnel**  
 *Montana Memory Project Director*    
@@ -7,7 +7,7 @@ Email: Jbirnel@mt.gov
 
 &nbsp;
 
-![Montana Historical Society Logo](/public/static/static/local/bigsky/mhs_logo.jpg "Montana Historical Society")
+![Montana Historical Society Logo](/static/local/bigsky/mhs_logo.jpg "Montana Historical Society")
 
 **Molly Kruckenberg**  
 *Research Center Director*   
@@ -17,7 +17,7 @@ Email: mkruckenberg@mt.gov
 &nbsp;
  
  
-![Montana State University Logo](/public/static/static/local/bigsky/msu_logo.png "Montana State University")
+![Montana State University Logo](/static/local/bigsky/msu_logo.png "Montana State University")
 
 **Kenning Arlitsch**   
 *Dean of the Library*   
@@ -26,7 +26,7 @@ Email: kenning.arlitsch@montana.edu
  
 &nbsp;
 
-![University of Montana Logo](/public/static/static/local/bigsky/um_logo.png "University of Montana")
+![University of Montana Logo](/static/local/bigsky/um_logo.png "University of Montana")
 
 **Barry Brown**   
 *Dean (Interim) of the Library*  
@@ -36,7 +36,7 @@ E-mail: barry.brown@umontana.edu
 
 &nbsp;
  
-![North Dakota State Library Logo](/public/static/static/local/bigsky/ndsl_logo.png "North Dakota State Library")
+![North Dakota State Library Logo](/static/local/bigsky/ndsl_logo.png "North Dakota State Library")
  
 **Angela Houser**  
 *Digital Initiatives Co-Coordinator*   
