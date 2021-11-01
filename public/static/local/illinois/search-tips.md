@@ -4,12 +4,12 @@ Check out the [DPLA’s own search tips](https://dp.la/about/search-tips), which
 ## Faceting Results
 Facets allow users to narrow by media type, subject, location, language, and contributing institution. Select one or more facets on the left of the results page after conducting an initial search.
 
-![Illustration of facets on search results screen](/public/static/static/local/illinois/idhh-search.PNG  "IDHH search results screen")
+![Illustration of facets on search results screen](/static/local/illinois/idhh-search.PNG  "IDHH search results screen")
 
 ## Narrowing Results
 You can also use the `AND` operator in the search URL in your browser. Use a single pipe { `|` }, a plus sign { `+` }, or simply a single space between terms in quotes in order to input multiple values.
 
-![Illustration of search cue URL](/public/static/static/local/illinois/search-idhh-url.PNG  "IDHH search cue URL")
+![Illustration of search cue URL](/static/local/illinois/search-idhh-url.PNG  "IDHH search cue URL")
 
 For example:
 

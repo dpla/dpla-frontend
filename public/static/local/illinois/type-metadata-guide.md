@@ -2,11 +2,11 @@
 
 The IDHH works with the DPLA to enhance contributed Type metadata. Type is a [strongly recommended field](https://docs.google.com/document/d/1q1AORHoa0ey0fUGOTYMHLvZNCm6Wq1Qe9DDvFZSRPT0/edit#heading=h.xit522hc5xod) and values are used to create links and facets that greatly enhance the usability and the findability of local items and collections in the DPLA environment.
 
-![Type metadata facets in DPLA catalog](/public/static/static/local/illinois/dpla-type-facets.png  "Type metadata facets in DPLA catalog")
+![Type metadata facets in DPLA catalog](/static/local/illinois/dpla-type-facets.png  "Type metadata facets in DPLA catalog")
 
 _Type metadata improves faceting between sets of items with particular values._
 
-![Type metadata links in DPLA item page](/public/static/static/local/illinois/type-in-dpla-record.png  "Type metadata links in DPLA item page")
+![Type metadata links in DPLA item page](/static/local/illinois/type-in-dpla-record.png  "Type metadata links in DPLA item page")
 
 _Type metadata allows the user to discover other items available in the DPLA portal._
 
