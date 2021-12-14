@@ -6,6 +6,6 @@ This project was made possible by a 2018 Digitizing Hidden Collections grant fro
 
 Browse Pan Am materials digitized by each of the project partners.
 
-* [Duke University](about:blank)
-* [HistoryMiami Museum](about:blank)
-* [University of Miami](about:blank)
+* [Duke University](https://aviation.dp.la/search?provider=%22Duke%20University%20Libraries%22)
+* [HistoryMiami Museum](https://aviation.dp.la/search?provider=%22HistoryMiami%20Museum%22)
+* [University of Miami](https://aviation.dp.la/search?provider=%22University%20of%20Miami%20Libraries%22)
