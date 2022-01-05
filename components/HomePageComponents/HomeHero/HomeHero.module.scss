@@ -1,5 +1,19 @@
 @import "stylesheets/variables.module";
 
+.searchType {
+  float: right;
+  margin: .2rem 0 0 0;
+  font-size: 1.0rem;
+  .searchTypeSpan {
+    display: inline-block;
+    padding: 0 0 0 .7rem;
+    input {
+      display: inline-block;
+      margin-right: .2rem;
+    }
+  }
+}
+
 .wrapper {
   background-color: $heroBackgroundColor;
   background-size: cover;
@@ -124,7 +138,7 @@
   padding: 1rem;
   position: relative;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
 
   /* Remove browser search input defaults */
   &::-webkit-search-decoration,
@@ -155,13 +169,62 @@
     padding-right: 11rem;
     font-size: 1.2rem;
   }
+  @media (max-width: $smallRem) {
+    border-radius: 3px 3px 0 0;
+    //padding-left: 1.5rem;
+
+    /* Clear right for button */
+    //padding-right: 11rem;
+    font-size: 1.2rem;
+  }
+}
+
+.searchSelect {
+  appearance: none;
+  height: 100%;
+  width: 7rem;
+  text-align: center;
+  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat calc(100% - 0.5rem) center;
+  background-size: 0.9em;
+  border-radius: 0;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem 0.5rem 0.25rem;
+  border: 1px solid white;
+  border-left: 1px solid #eee;
+  font-weight: bold;
+  color: $secondaryButtonColor;
+  align-items: center;
+  @media (max-width: $smallRem) {
+    width: 50%;
+    display: flex;
+    border-radius: 0 0 0 3px;
+    border-top: 1px solid #eee;
+  }
+}
+
+.searchControls {
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+
+  @media (max-width: $smallRem) {
+    right: auto;
+    top: auto;
+    width: 100%;
+    height: 80%;
+    margin-bottom: 8px;
+  }
 }
 
 .searchButton {
   transition: background-color 0.2s ease-out;
-  position: absolute;
-  right: 0;
-  top: 0;
   height: 100%;
   background-color: $secondaryButtonColor;
   color: white;
@@ -181,6 +244,13 @@
     align-items: center;
     justify-content: center;
   }
+
+  @media (max-width: $smallRem) {
+    width: 50%;
+    //width: auto;
+    //display: flex;
+    //height: 100%;
+  }
 }
 
 .links {
@@ -190,6 +260,10 @@
 
   @media (min-width: $mediumRem) {
     font-size: 1.25rem;
+  }
+
+  @media (max-width: $smallRem) {
+    margin-top: 3rem;
   }
 
   & a, & a:visited {
@@ -202,4 +276,5 @@
       text-decoration: none;
     }
   }
+
 }

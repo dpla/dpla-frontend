@@ -96,6 +96,30 @@
   }
 }
 
+.searchSelect {
+  appearance: none;
+  height: 100%;
+  width: 7rem;
+  text-align: center;
+  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat calc(100% - 0.5rem) center;
+  background-size: 0.9em;
+  border-radius: 0;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem 0.5rem 0.25rem;
+  border: 1px solid white;
+  border-left: 1px solid #eee;
+  font-weight: bold;
+  color: $secondaryButtonColor;
+  align-items: center;
+  @media (max-width: $smallRem) {
+    width: 50%;
+    display: flex;
+    border-radius: 0 0 0 3px;
+    border-top: 1px solid #eee;
+  }
+}
+
+
 .logo, .logo:visited, .logo:hover {
   display: none; /* hide logo in small screens */
   line-height: 0;

@@ -58,6 +58,11 @@ class PageHeader extends React.Component {
                 autoComplete="off"
                 defaultValue={searchQuery}
               />
+              {SITE_ENV === "user" &&
+                <select className={css.searchSelect}>
+                  <option>Artifacts</option>
+                  <option>Ebooks</option>
+                </select>}
               {router &&
                 router.pathname === "/search" &&
                 router.query &&

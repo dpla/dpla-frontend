@@ -57,15 +57,22 @@ const HomeHero = ({ headerDescription, feature }) =>
         <div className={css.search}>
           <input
             className={css.searchInput}
-            aria-label="Search the collection"
-            placeholder="Search the collection"
+            aria-label="Search the collections"
+            placeholder="Search the collections"
             name="q"
             autoComplete="off"
             type="search"
           />
-          <button type="submit" className={css.searchButton}>
-            <span>Search</span>
-          </button>
+          <div className={css.searchControls}>
+            {SITE_ENV === "user" &&
+              <select className={css.searchSelect}>
+                <option>Artifacts</option>
+                <option>Ebooks</option>
+              </select>}
+            <button type="submit" className={css.searchButton}>
+              <span>Search</span>
+            </button>
+          </div>
         </div>
       </form>
       {SITE_ENV !== "local" &&
