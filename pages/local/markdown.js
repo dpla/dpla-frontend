@@ -91,9 +91,10 @@ class MarkdownPage extends React.Component {
   }
 }
 
-MarkdownPage.getInitialProps = async context => {
+
+export async function getServerSideProps(context) {
   const fullUrl = getCurrentUrl(context.req);
-  const asPath = context.asPath;
+  const asPath = context.req.originalUrl; //context.asPath;
   const local = LOCALS[LOCAL_ID];
   const routes = local["routes"];
   const pageData = routes[asPath];
@@ -101,10 +102,12 @@ MarkdownPage.getInitialProps = async context => {
   const markdownResponse = await fetch(markdownUrl);
   const pageMarkdown = await markdownResponse.text();
   return {
-    path: asPath,
-    pageData: pageData,
-    content: pageMarkdown
+    props: {
+      path: asPath,
+      pageData: pageData,
+      content: pageMarkdown
+    }
   };
-};
+}
 
 export default MarkdownPage;
