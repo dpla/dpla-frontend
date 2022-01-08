@@ -3,11 +3,9 @@ import React from "react";
 import MainLayout from "components/MainLayout";
 import HomeHero from "components/HomePageComponents/HomeHero";
 import LocalIntro from "components/HomePageComponents/LocalIntro";
-
-import { getCurrentUrl } from "lib";
-
 import { LOCAL_ID } from "constants/env";
-import { LOCALS } from "constants/local";
+import { join } from "path";
+import fs from 'fs';
 
 const Home = ({ content }) =>
   <MainLayout hidePageHeader={true} hideSearchBar={true}>
@@ -17,15 +15,17 @@ const Home = ({ content }) =>
     </div>
   </MainLayout>;
 
-Home.getInitialProps = async ({ req }) => {
-  const fullUrl = getCurrentUrl(req);
-  const markdownUrl = `${fullUrl}/static/local/${LOCALS[LOCAL_ID].theme}/homepage.md`;
-  const markdownResponse = await fetch(markdownUrl);
-  const pageMarkdown = await markdownResponse.text();
+
+export async function getServerSideProps() {
+  const localStaticDirectory = join(process.cwd(), 'public', 'static', 'local');
+  const markdownPath = join(localStaticDirectory, LOCAL_ID, "homepage.md");
+  const pageMarkdown = await fs.promises.readFile(markdownPath, { encoding: "utf8"});
 
   return {
-    content: pageMarkdown
+    props: {
+      content: pageMarkdown
+    }
   };
-};
+}
 
 export default Home;

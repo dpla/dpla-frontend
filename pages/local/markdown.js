@@ -1,14 +1,12 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import ReactMarkdown from "react-markdown";
-
 import MainLayout from "components/MainLayout";
 
 import Sidebar from "components/MainLayout/components/shared/LocalSidebar.js"
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
-
-import { getCurrentUrl } from "lib";
+import fs from "fs";
+import { join } from "path";
 
 import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -91,16 +89,13 @@ class MarkdownPage extends React.Component {
   }
 }
 
-
 export async function getServerSideProps(context) {
-  const fullUrl = getCurrentUrl(context.req);
-  const asPath = context.req.originalUrl; //context.asPath;
+  const asPath = context.req.originalUrl;
   const local = LOCALS[LOCAL_ID];
   const routes = local["routes"];
   const pageData = routes[asPath];
-  const markdownUrl = `${fullUrl}/static/local/${LOCAL_ID}/${pageData.path}`;
-  const markdownResponse = await fetch(markdownUrl);
-  const pageMarkdown = await markdownResponse.text();
+  const markdownPath = join(process.cwd(), 'public', 'static', 'local', LOCAL_ID, pageData.path);
+  const pageMarkdown = await fs.promises.readFile(markdownPath, { encoding: "utf8"})
   return {
     props: {
       path: asPath,
