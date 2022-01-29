@@ -63,6 +63,7 @@ class AboutMenuPage extends React.Component {
           <FeatureHeader title={pageTitle} description={""} />}
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
+          data-cy={'content'}
         >
           <div className={utils.row}>
             <ContentPagesSidebar
