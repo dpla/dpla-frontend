@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "next/router";
+import {withRouter} from "next/router";
 import Error from "../../_error"
 import fetch from "isomorphic-fetch";
 
@@ -11,92 +11,98 @@ import RelatedSets from "components/PrimarySourceSetsComponents/SingleSet/Relate
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
-import { removeQueryParams, getCurrentFullUrl } from "lib";
-import { PSS_BASE_URL } from "constants/env";
+import {removeQueryParams, getCurrentFullUrl} from "lib";
+import {PSS_BASE_URL} from "constants/env";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-const SingleSet = ({ router, error, set, currentFullUrl }) => {
+const SingleSet = ({router, error, set, currentFullUrl}) => {
 
-  if (error) {
-    return <Error statusCode={ error.status }/>;
-  }
+    if (error) {
+        return <Error statusCode={error.status}/>;
+    }
 
-  return (<MainLayout
-      pageTitle={set.name.replace(/\*/g, "")}
-      pageImage={set.repImageUrl || set.thumbnailUrl}
-  >
-    <BreadcrumbsModule
-      breadcrumbs={[
-        {
-          title: "Primary Source Sets",
-          url: {
-            pathname: "/primary-source-sets",
-            query: removeQueryParams(router.query, ["set"])
-          }
-        },
-        { title: set.name, search: "" }
-      ]}
-    />
-    <SourceSetInfo
-      set={set}
-      currentFullUrl={currentFullUrl}
-      openDescription={false}
-    />
-    <ResourcesTabs currentTab="sourceSet" set={set}>
-      <SourceSetSources
-        sources={set.hasPart.filter(
-          item => item.disambiguatingDescription === "source"
-        )}
-      />
-    </ResourcesTabs>
-    <RelatedSets sets={set.isRelatedTo} />
-    <PSSFooter />
-  </MainLayout>);
+    return (<MainLayout
+        pageTitle={set.name.replace(/\*/g, "")}
+        pageImage={set.repImageUrl || set.thumbnailUrl}
+    >
+        <BreadcrumbsModule
+            breadcrumbs={[
+                {
+                    title: "Primary Source Sets",
+                    url: {
+                        pathname: "/primary-source-sets",
+                        query: removeQueryParams(router.query, ["set"])
+                    }
+                },
+                {title: set.name, search: ""}
+            ]}
+        />
+        <SourceSetInfo
+            set={set}
+            currentFullUrl={currentFullUrl}
+            openDescription={false}
+        />
+        <ResourcesTabs currentTab="sourceSet" set={set}>
+            <SourceSetSources
+                sources={set.hasPart.filter(
+                    item => item.disambiguatingDescription === "source"
+                )}
+            />
+        </ResourcesTabs>
+        <RelatedSets sets={set.isRelatedTo}/>
+        <PSSFooter/>
+    </MainLayout>);
 }
 
 
-SingleSet.getInitialProps = async (context) => {
-  const currentFullUrl = getCurrentFullUrl(context.req);
-  const api = await fetch(`${PSS_BASE_URL}/sets/${context.query.set}.json`);
+export const getServerSideProps = async (context) => {
+    const currentFullUrl = getCurrentFullUrl(context.req);
+    const api = await fetch(`${PSS_BASE_URL}/sets/${context.query.set}.json`);
 
-  console.log("PSS API Status", api.status)
+    console.log("PSS API Status", api.status)
 
-  // setting the http error code is not working for some reason
-  // leaving this as a todo for nextjs 10 where they give you a
-  // real way to handle this
+    // setting the http error code is not working for some reason
+    // leaving this as a todo for nextjs 10 where they give you a
+    // real way to handle this
 
-  if (api.status > 399) {
-    if (context.res) {
-      context.res.status = 404
+    if (api.status > 399) {
+        if (context.res) {
+            context.res.status = 404
+        }
+        return {error: {statusCode: api.status}}
     }
-    return { error: { statusCode: api.status } }
-  }
-  const json = await api.json();
+    const json = await api.json();
 
-  if (!json) {
-    if (context.res) {
-      context.res.status = 500;
+    if (!json) {
+        if (context.res) {
+            context.res.status = 500;
+        }
+        return {error: {statusCode: 500}}
     }
-    return { error: { statusCode: 500 } }
-  }
 
-  const parts = json.hasPart.map(part => {
-    let thumbnailUrl = part.thumbnailUrl;
-    let useDefaultImage = false;
-    const type =
-      part.mainEntity && part.mainEntity[0] && part.mainEntity[0]["@type"];
-    if (type === "AudioObject") {
-      thumbnailUrl = audioIcon;
-      useDefaultImage = true;
-    } else if (type === "VideoObject") {
-      thumbnailUrl = videoIcon;
-      useDefaultImage = true;
-    }
-    return Object.assign({}, part, { thumbnailUrl, useDefaultImage });
-  });
-  return { set: Object.assign({}, json, { hasPart: parts }), currentFullUrl };
+    const parts = json.hasPart.map(part => {
+        let thumbnailUrl = part.thumbnailUrl;
+        let useDefaultImage = false;
+        const type =
+            part.mainEntity && part.mainEntity[0] && part.mainEntity[0]["@type"];
+        if (type === "AudioObject") {
+            thumbnailUrl = audioIcon;
+            useDefaultImage = true;
+        } else if (type === "VideoObject") {
+            thumbnailUrl = videoIcon;
+            useDefaultImage = true;
+        }
+        return Object.assign({}, part, {thumbnailUrl, useDefaultImage});
+    });
+
+    return {
+        props: {
+            set: Object.assign({}, json, {hasPart: parts}),
+            currentFullUrl
+        }
+    };
 };
 
 export default withRouter(SingleSet);

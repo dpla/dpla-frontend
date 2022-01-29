@@ -23,7 +23,7 @@ if (require.main === module) {
     // Fork workers, 1 for each CPU.
     cluster
       .on("exit", (worker, code, signal) => {
-        console.log(`worker ${worker.process.pid} died`);
+        console.log(`worker ${worker.process.pid} died`, code, signal);
       })
       .on("online", worker => {
         console.log(`worker ${worker.process.pid} online`);

@@ -98,7 +98,7 @@ class ProMenuPage extends React.Component {
   }
 }
 
-ProMenuPage.getInitialProps = async ({ req, query, res }) => {
+export const getServerSideProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   const menuJson = await menuResponse.json();
@@ -148,12 +148,14 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
   }
 
   return {
-    page: pageJson,
-    items: menuItems,
-    pageTitle: pageItem.title,
-    pageDescription: pageDescription,
-    breadcrumbs: breadcrumbs,
-    illustration: pageJson.acf.illustration
+    props: {
+      page: pageJson,
+      items: menuItems,
+      pageTitle: pageItem.title,
+      pageDescription: pageDescription,
+      breadcrumbs: breadcrumbs,
+      illustration: pageJson.acf.illustration
+    }
   };
 };
 

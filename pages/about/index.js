@@ -89,7 +89,7 @@ class AboutMenuPage extends React.Component {
   }
 }
 
-AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
+export const getServerSideProps = async ({ req, query, res }) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
@@ -103,21 +103,11 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
   const pageItem = json.items.find(item => item.post_name === pageName);
   const guidesPageItem = json.items.find(item => item.url === endpoint);
   if (pageItem === guidesPageItem) {
-    if (res) {
-      res.redirect("/guides");
-    } else {
-      Router.push("/guides");
-    }
+    //res.redirect("/guides");
     return {};
+
   } else if (pageItem.menu_item_parent === guidesPageItem.object_id) {
-    if (res) {
-      res.redirect(`/guides/guide?guide=${pageItem.post_name}`);
-    } else {
-      Router.push(
-        `/guides/guide?guide=${pageItem.post_name}`,
-        `/guides/${pageItem.post_name}`
-      );
-    }
+    //res.redirect(`/guides/guide?guide=${pageItem.post_name}`);
     return {};
   }
 
@@ -162,12 +152,16 @@ AboutMenuPage.getInitialProps = async ({ req, query, res }) => {
     );
   }
 
-  return {
+  const props = {
     content: pageJson,
     items: json.items,
     breadcrumbs: breadcrumbs,
     pageTitle: pageItem.title,
     pageDescription: pageDescription
+  };
+
+  return {
+    props: props
   };
 };
 

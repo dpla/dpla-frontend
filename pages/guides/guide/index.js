@@ -1,32 +1,33 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import { withRouter } from "next/router";
+import {withRouter} from "next/router";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
-import { getMenuItemUrl, wordpressLinks } from "lib";
+import {getMenuItemUrl, wordpressLinks} from "lib";
 
-import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+import {ABOUT_MENU_ENDPOINT, SEO_TYPE} from "constants/content-pages";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 class Guides extends React.Component {
-  refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
-    wordpressLinks(links);
-  }
-  componentDidMount() {
-    this.refreshExternalLinks();
-  }
+    refreshExternalLinks() {
+        const links = document.getElementById("main").getElementsByTagName("a");
+        wordpressLinks(links);
+    }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
-  }
+    componentDidMount() {
+        this.refreshExternalLinks();
+    }
+
+    componentDidUpdate() {
+        this.refreshExternalLinks();
+    }
 
   render() {
     const { sidebarItems, breadcrumbs, guide } = this.props;
@@ -66,33 +67,42 @@ class Guides extends React.Component {
   }
 }
 
-Guides.getInitialProps = async ({ query }) => {
-  const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
-  const menuItemsJson = await menuItemsRes.json();
-  const guideSlug = query.guide;
-  const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
-  const guideRes = await fetch(getMenuItemUrl(guide));
-  const guideJson = await guideRes.json();
+export const getServerSideProps = async ({query}) => {
 
-  let breadcrumbs = [];
-  breadcrumbs.push({
-    title: "Guides",
-    url: "/guides"
-  });
-  breadcrumbs.push({ title: guideJson.title.rendered });
+    console.log("IN: guide");
 
-  return {
-    sidebarItems: menuItemsJson.items,
-    breadcrumbs: breadcrumbs,
-    guide: Object.assign({}, guideJson, {
-      slug: guide.url,
-      summary: guideJson.acf.summary,
-      title: guideJson.title.rendered,
-      color: guideJson.acf.color,
-      bannerImage: guideJson.acf.banner_image,
-      content: guideJson.content.rendered
-    })
-  };
+    const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
+    const menuItemsJson = await menuItemsRes.json();
+    const guideSlug = query.guide;
+    const guide = menuItemsJson.items.find(item => item.post_name === guideSlug);
+    const guideRes = await fetch(getMenuItemUrl(guide));
+    const guideJson = await guideRes.json();
+
+    let breadcrumbs = [];
+
+    breadcrumbs.push({
+        title: "Guides",
+        url: "/guides"
+    });
+
+    breadcrumbs.push({title: guideJson.title.rendered});
+
+    const props = {
+        sidebarItems: menuItemsJson.items,
+        breadcrumbs: breadcrumbs,
+        guide: Object.assign({}, guideJson, {
+            slug: guide.url,
+            summary: guideJson.acf.summary,
+            title: guideJson.title.rendered,
+            color: guideJson.acf.color,
+            bannerImage: guideJson.acf.banner_image,
+            content: guideJson.content.rendered
+        })
+    };
+
+    return {
+        props: props
+    };
 };
 
 export default withRouter(Guides);
