@@ -22,6 +22,7 @@ const Guides = ({ guides, sidebarItems, activeItemId }) =>
         ${utils.container}
         ${contentCss.sidebarAndContentWrapper}
       `}
+      data-cy={'content'}
     >
       <div className={utils.row}>
         <ContentPagesSidebar

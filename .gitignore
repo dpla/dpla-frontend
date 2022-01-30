@@ -50,3 +50,4 @@ cypress/videos/*
 /cypress/fixtures/exhibitions.json
 /cypress/fixtures/sets.json
 /cypress/fixtures/topics.json
+/dpla-frontend.iml
