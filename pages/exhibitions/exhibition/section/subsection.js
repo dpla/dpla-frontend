@@ -142,6 +142,7 @@ export const getServerSideProps = async ({query, req, res}) => {
                 section,
                 query
             );
+
             const nextQueryParamsAndTitle = getNextQueryParams(
                 sections,
                 subsection,
@@ -214,18 +215,21 @@ export const getServerSideProps = async ({query, req, res}) => {
             );
             const filesJson = await filesRes.json();
             const thumbnailUrl = filesJson[0].file_urls.fullsize;
+
+            const props = {
+                exhibition: Object.assign({}, exhibition, {
+                    sections,
+                    thumbnailUrl
+                }),
+                section,
+                nextQueryParams: nextQueryParamsAndTitle && nextQueryParamsAndTitle.queryParams ? nextQueryParamsAndTitle.queryParams : null,
+                nextSubsectionTitle: nextQueryParamsAndTitle && nextQueryParamsAndTitle.title ? nextQueryParamsAndTitle.title : "",
+                previousQueryParams: previousQueryParams && previousQueryParams.queryParams ? previousQueryParams.queryParams : null,
+                subsection: Object.assign({}, subsection, {page_blocks})
+            };
+
             return {
-                props: {
-                    exhibition: Object.assign({}, exhibition, {
-                        sections,
-                        thumbnailUrl
-                    }),
-                    section,
-                    nextQueryParams: nextQueryParamsAndTitle.queryParams,
-                    nextSubsectionTitle: nextQueryParamsAndTitle.title,
-                    previousQueryParams: previousQueryParams.queryParams,
-                    subsection: Object.assign({}, subsection, {page_blocks})
-                }
+                props: props
             };
 
         } catch (error) {
