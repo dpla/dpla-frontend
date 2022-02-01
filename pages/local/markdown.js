@@ -13,6 +13,7 @@ import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
+import {washObject} from "lib/washObject";
 
 class MarkdownPage extends React.Component {
   render() {

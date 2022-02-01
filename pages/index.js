@@ -27,6 +27,7 @@ import {
 } from "constants/content-pages";
 import {API_SETTINGS_ENDPOINT} from "constants/site";
 import {SITE_ENV} from "constants/env";
+import {washObject} from "lib/washObject";
 
 const Home = ({
                   sourceSets,
