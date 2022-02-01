@@ -12,6 +12,7 @@ import {LOCALS} from "constants/local";
 import {SITE_ENV, LOCAL_ID} from "constants/env";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
+import {washObject} from "lib/washObject";
 
 const PartnerBrowse = ({partners, url}) =>
     <div>
@@ -46,11 +47,11 @@ export const getServerSideProps = async ({query, req}) => {
 
     const res = await fetch(apiQuery);
     const json = await res.json();
-    const partners = json.facets[facetName].terms.map(partner => ({
+    const partners = washObject(json.facets[facetName].terms.map(partner => ({
         name: partner.term,
         facet: linkParam,
         itemCount: partner.count
-    }));
+    })));
     return {
         props: {
             partners

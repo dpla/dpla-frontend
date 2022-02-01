@@ -6,6 +6,7 @@ import LocalIntro from "components/HomePageComponents/LocalIntro";
 import { LOCAL_ID } from "constants/env";
 import { join } from "path";
 import fs from 'fs';
+import {washObject} from "lib/washObject";
 
 const Home = ({ content }) =>
   <MainLayout hidePageHeader={true} hideSearchBar={true}>
@@ -21,10 +22,12 @@ export async function getServerSideProps() {
   const markdownPath = join(localStaticDirectory, LOCAL_ID, "homepage.md");
   const pageMarkdown = await fs.promises.readFile(markdownPath, { encoding: "utf8"});
 
+  const props = washObject({
+    content: pageMarkdown
+  });
+
   return {
-    props: {
-      content: pageMarkdown
-    }
+    props: props
   };
 }
 

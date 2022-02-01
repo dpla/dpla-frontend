@@ -6,6 +6,7 @@ import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import {PSS_BASE_URL} from "constants/env";
 import {TITLE} from "constants/primarySourceSets";
+import {washObject} from "lib/washObject";
 
 const PrimarySourceSets = ({sets}) =>
     <div>
@@ -24,10 +25,12 @@ export const getServerSideProps = async ({query}) => {
 
     const json = await res.json();
 
+    const props = washObject({
+        sets: json
+    });
+
     return {
-        props: {
-            sets: json
-        }
+        props: props
     };
 };
 

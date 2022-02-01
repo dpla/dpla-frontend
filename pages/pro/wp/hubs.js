@@ -17,6 +17,7 @@ import {
 
 import css from "stylesheets/hubs.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 class HubsPage extends React.Component {
     refreshExternalLinks() {
@@ -112,12 +113,14 @@ export const getServerSideProps = async ({req, query, res}) => {
     const newsRes = await fetch(NEWS_PRO_ENDPOINT);
     const newsItems = await newsRes.json();
 
+    const props = washObject({
+        page: hubItem,
+        pageTitle: hubItem.title.rendered,
+        news: newsItems
+    });
+
     return {
-        props: {
-            page: hubItem,
-            pageTitle: hubItem.title.rendered,
-            news: newsItems
-        }
+        props:  props
     };
 };
 

@@ -184,15 +184,17 @@ export const getServerSideProps = async ({req}) => {
     const newsRes = await fetch(NEWS_USER_ENDPOINT);
     const newsItems = await newsRes.json();
 
+    const props = washObject({
+        sourceSets,
+        guides,
+        exhibitions: featuredExhibitionsWithData,
+        headerDescription,
+        news: newsItems,
+        content: homepageJson
+    });
+
     return {
-        props: {
-            sourceSets,
-            guides,
-            exhibitions: featuredExhibitionsWithData,
-            headerDescription,
-            news: newsItems,
-            content: homepageJson
-        }
+        props: props
     };
 };
 

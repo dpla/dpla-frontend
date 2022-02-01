@@ -17,6 +17,7 @@ import {
     EXHIBITS_ENDPOINT,
     FILES_ENDPOINT
 } from "constants/exhibitions";
+import {washObject} from "lib/washObject";
 
 const sanitizeSourceSetId = id => {
     let sanitized = id.replace(" ", "");
@@ -128,11 +129,14 @@ export const getServerSideProps = async ({query, req}) => {
                 }
             })
         );
+
+    const props = washObject({
+        topic: Object.assign({}, currentTopic, {subtopics}),
+        suggestions: suggestions.filter(suggestion => !!suggestion)
+    });
+
     return {
-        props: {
-            topic: Object.assign({}, currentTopic, {subtopics}),
-            suggestions: suggestions.filter(suggestion => !!suggestion)
-        }
+        props: props
     };
 };
 

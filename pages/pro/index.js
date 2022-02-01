@@ -5,6 +5,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 
 import {NEWS_PRO_ENDPOINT, PAGES_ENDPOINT} from "constants/content-pages";
 import {API_SETTINGS_ENDPOINT} from "constants/site";
+import {washObject} from "lib/washObject";
 
 const Home = ({news, content}) =>
     <MainLayout hidePageHeader={false} hideSearchBar={true}>
@@ -29,11 +30,13 @@ export const getServerSideProps = async () => {
     const newsRes = await fetch(NEWS_PRO_ENDPOINT);
     const newsItems = await newsRes.json();
 
+    const props = washObject({
+        news: newsItems,
+        content: homeJson
+    });
+
     return {
-        props: {
-            news: newsItems,
-            content: homeJson
-        }
+        props: props
     };
 };
 

@@ -18,6 +18,7 @@ import {
 import {midPageBlockContent} from "constants/ebooks-landing-page";
 
 import css from "stylesheets/hubs.module.scss";
+import {washObject} from "lib/washObject";
 
 class EbooksPage extends React.Component {
     refreshExternalLinks() {
@@ -137,13 +138,15 @@ export const getServerSideProps = async ({req, query, res}) => {
     const newsRes = await fetch(NEWS_EBOOKS_ENDPOINT);
     const newsItems = await newsRes.json();
 
+    const props = washObject({
+        page: ebooksItem,
+        pageTitle: ebooksItem.title.rendered,
+        news: newsItems,
+        showWPFeature: false
+    });
+
     return {
-        props: {
-            page: ebooksItem,
-            pageTitle: ebooksItem.title.rendered,
-            news: newsItems,
-            showWPFeature: false
-        }
+        props: props
     };
 };
 

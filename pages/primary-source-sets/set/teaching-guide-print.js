@@ -11,6 +11,7 @@ import {PSS_BASE_URL} from "constants/env";
 import {getCurrentFullUrl} from "lib";
 
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 class Printable extends React.Component {
     componentDidMount() {
@@ -65,13 +66,15 @@ export const getServerSideProps = async ({query, req}) => {
     const teachingGuideRes = await fetch(guideEndpoint);
     const teachingGuide = await teachingGuideRes.json();
 
+    const props = washObject({
+        set,
+        teachingGuide,
+        currentPath,
+        currentFullUrl
+    });
+
     return {
-        props: {
-            set,
-            teachingGuide,
-            currentPath,
-            currentFullUrl
-        }
+        props: props
     };
 };
 

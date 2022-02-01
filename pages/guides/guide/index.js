@@ -14,6 +14,7 @@ import {ABOUT_MENU_ENDPOINT, SEO_TYPE} from "constants/content-pages";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 class Guides extends React.Component {
     refreshExternalLinks() {
@@ -87,7 +88,7 @@ export const getServerSideProps = async ({query}) => {
 
     breadcrumbs.push({title: guideJson.title.rendered});
 
-    const props = {
+    const props = washObject({
         sidebarItems: menuItemsJson.items,
         breadcrumbs: breadcrumbs,
         guide: Object.assign({}, guideJson, {
@@ -98,7 +99,7 @@ export const getServerSideProps = async ({query}) => {
             bannerImage: guideJson.acf.banner_image,
             content: guideJson.content.rendered
         })
-    };
+    });
 
     return {
         props: props

@@ -24,6 +24,7 @@ import {
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 const ItemDetail = ({
                         error,
@@ -104,26 +105,29 @@ export const getServerSideProps = async context => {
             : doc.sourceResource.language;
         const strippedDoc = Object.assign({}, doc, {originalRecord: ""});
         delete strippedDoc.originalRecord;
+
+        const props = washObject({
+            currentFullUrl,
+            item: Object.assign({}, doc.sourceResource, {
+                id: doc.id,
+                thumbnailUrl,
+                contributor: doc.dataProvider,
+                intermediateProvider: doc.intermediateProvider,
+                date: date,
+                language: language,
+                partner: doc.provider.name,
+                sourceUrl: doc.isShownAt,
+                useDefaultImage: !doc.object,
+                edmRights: doc.rights,
+                doc: strippedDoc,
+                originalRecord: doc.originalRecord
+            }),
+            randomItemId,
+            isQA
+        });
+
         return {
-            props: {
-                currentFullUrl,
-                item: Object.assign({}, doc.sourceResource, {
-                    id: doc.id,
-                    thumbnailUrl,
-                    contributor: doc.dataProvider,
-                    intermediateProvider: doc.intermediateProvider,
-                    date: date,
-                    language: language,
-                    partner: doc.provider.name,
-                    sourceUrl: doc.isShownAt,
-                    useDefaultImage: !doc.object,
-                    edmRights: doc.rights,
-                    doc: strippedDoc,
-                    originalRecord: doc.originalRecord
-                }),
-                randomItemId,
-                isQA
-            }
+            props: props
         };
     } catch (error) {
         console.log(error);

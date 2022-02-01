@@ -20,6 +20,7 @@ import {
     getCurrentFullUrl,
     getDplaItemIdFromExhibit,
 } from "lib";
+import {washObject} from "lib/washObject";
 
 class Exhibition extends React.Component {
     componentDidMount() {
@@ -102,18 +103,21 @@ export const getServerSideProps = async ({query, req}) => {
     const dplaItemJson = await dplaApiRes.json();
 
     const thumbnailUrl = filesJson[0].file_urls.fullsize;
+
+    const props = washObject({
+        currentFullUrl,
+        exhibition: Object.assign({}, exhibition, {
+            thumbnailUrl,
+            caption,
+            text,
+            dplaItemId,
+            dplaItemJson,
+            sections: sortedExhibitPages.slice(1)
+        })
+    });
+
     return {
-        props: {
-            currentFullUrl,
-            exhibition: Object.assign({}, exhibition, {
-                thumbnailUrl,
-                caption,
-                text,
-                dplaItemId,
-                dplaItemJson,
-                sections: sortedExhibitPages.slice(1)
-            })
-        }
+        props: props
     };
 };
 

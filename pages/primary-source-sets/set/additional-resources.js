@@ -15,6 +15,7 @@ import {getCurrentFullUrl, removeQueryParams, markdownLinks} from "lib";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
+import {washObject} from "lib/washObject";
 
 const SingleSet = ({router, set, currentFullUrl}) =>
     <MainLayout
@@ -60,11 +61,14 @@ export const getServerSideProps = async ({query, req}) => {
     const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     const set = await setRes.json();
+
+    const props = washObject({
+        set,
+        currentFullUrl
+    });
+
     return {
-        props: {
-            set,
-            currentFullUrl
-        }
+        props: props
     };
 };
 

@@ -21,6 +21,7 @@ import {DEFAULT_PAGE_SIZE} from "constants/search";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 class NewsPage extends React.Component {
     componentWillMount() {
@@ -232,18 +233,21 @@ export const getServerSideProps = async ({req, query, res}) => {
         retries++;
     }
 
+    const props = washObject({
+        menuItems: menuJson.items,
+        newsItems: newsItems,
+        pageItem: pageItem,
+        currentPage: page,
+        newsCount: Number(newsCount),
+        currentTag: query.tag ? query.tag : null,
+        newsPageCount: Number(newsPageCount),
+        keywords: query.k ? query.k : null,
+        author: authorJson
+    });
+
+
     return {
-        props: {
-            menuItems: menuJson.items,
-            newsItems: newsItems,
-            pageItem: pageItem,
-            currentPage: page,
-            newsCount: Number(newsCount),
-            currentTag: query.tag ? query.tag : null,
-            newsPageCount: Number(newsPageCount),
-            keywords: query.k ? query.k : null,
-            author: authorJson
-        }
+        props: props
     };
 };
 

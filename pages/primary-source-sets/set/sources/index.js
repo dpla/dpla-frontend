@@ -11,6 +11,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 import {PSS_BASE_URL} from "constants/env";
 
 import {removeQueryParams} from "lib";
+import {washObject} from "lib/washObject";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -82,12 +83,14 @@ export const getServerSideProps = async ({query}) => {
         .slice(1)
         .findIndex(source => source["@id"] === sourceId);
 
+    const props = washObject({
+        source: sanitizedSourceJson,
+        set: Object.assign({}, setJson, {hasPart: parts}),
+        currentSourceIdx
+    });
+
     return {
-        props: {
-            source: sanitizedSourceJson,
-            set: Object.assign({}, setJson, {hasPart: parts}),
-            currentSourceIdx
-        }
+        props: props
     };
 };
 

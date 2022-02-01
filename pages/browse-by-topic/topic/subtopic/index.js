@@ -24,6 +24,7 @@ import {
 
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 const SubtopicItemsList = ({
                                router,
@@ -146,17 +147,19 @@ export const getServerSideProps = async ({query, req}) => {
 
     const filteredItems = items.filter(item => item);
 
-    return {
-        props: {
-            topic: currentTopic,
-            subtopic: Object.assign({}, currentSubtopic, {
-                thumbnailUrl: currentSubtopic.acf.category_image
-            }),
-            items: filteredItems.sort((a, b) => a.acf.order - b.acf.order),
-            previousSubtopic: subtopics[previousSubtopicIdx],
-            nextSubtopic: subtopics[nextSubtopicIdx]
-        }
-    };
+    const props = washObject({
+        topic: currentTopic,
+        subtopic: Object.assign({}, currentSubtopic, {
+            thumbnailUrl: currentSubtopic.acf.category_image
+        }),
+        items: filteredItems.sort((a, b) => a.acf.order - b.acf.order),
+        previousSubtopic: subtopics[previousSubtopicIdx],
+        nextSubtopic: subtopics[nextSubtopicIdx]
+    });
+
+    console.log("PROPS", props);
+
+    return { props };
 };
 
 export default withRouter(SubtopicItemsList);

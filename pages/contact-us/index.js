@@ -19,6 +19,7 @@ import {TITLE} from "constants/contact";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 const Contact = ({sidebarItems}) =>
     <MainLayout pageTitle={TITLE} seoType={SEO_TYPE}>
@@ -47,11 +48,10 @@ export const getServerSideProps = async () => {
         SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
     );
     const aboutMenuJson = await aboutMenuRes.json();
+    const props = washObject({sidebarItems: aboutMenuJson.items});
 
     return {
-        props: {
-            sidebarItems: aboutMenuJson.items
-        }
+        props: props
     };
 };
 

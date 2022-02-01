@@ -7,7 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
     sassOptions: {
         includePaths: [
-            // to allow SCSS files to import a plain “_theme.scss” file
+            // to allow SCSS files to import a plain “theme.module.scss” file
             "./stylesheets/themes" +
             (process.env.SITE_ENV === "local" ? "/" + LOCALS[process.env.LOCAL_ID].theme : "")
         ]

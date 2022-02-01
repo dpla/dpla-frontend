@@ -13,6 +13,7 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import {removeQueryParams, getCurrentFullUrl} from "lib";
 import {PSS_BASE_URL} from "constants/env";
+import {washObject} from "lib/washObject";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -97,11 +98,13 @@ export const getServerSideProps = async (context) => {
         return Object.assign({}, part, {thumbnailUrl, useDefaultImage});
     });
 
+    const props = washObject({
+        set: Object.assign({}, json, {hasPart: parts}),
+        currentFullUrl
+    });
+
     return {
-        props: {
-            set: Object.assign({}, json, {hasPart: parts}),
-            currentFullUrl
-        }
+        props: props
     };
 };
 

@@ -25,6 +25,7 @@ import {
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -152,13 +153,13 @@ export const getServerSideProps = async ({ req, query, res }) => {
     );
   }
 
-  const props = {
+  const props = washObject({
     content: pageJson,
     items: json.items,
     breadcrumbs: breadcrumbs,
     pageTitle: pageItem.title,
     pageDescription: pageDescription
-  };
+  });
 
   return {
     props: props

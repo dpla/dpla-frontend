@@ -11,6 +11,7 @@ import {
     EXHIBIT_PAGES_ENDPOINT,
     FILES_ENDPOINT
 } from "constants/exhibitions";
+import {washObject} from "lib/washObject";
 
 const Exhibitions = ({exhibitions}) =>
     <MainLayout pageTitle={TITLE}>
@@ -56,10 +57,10 @@ export const getServerSideProps = async ({req}) => {
         );
     }
 
+    const props = washObject({exhibitions});
+
     return {
-        props: {
-            exhibitions
-        }
+        props: props
     };
 };
 

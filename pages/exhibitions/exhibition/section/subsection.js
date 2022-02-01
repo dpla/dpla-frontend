@@ -27,6 +27,7 @@ import {
 } from "constants/exhibitions";
 import {SEO_TYPE} from "constants/exhibition";
 import {API_ENDPOINT} from "constants/items";
+import {washObject} from "lib/washObject";
 
 class Subsection extends React.Component {
     // Google Analytics tracking because this doesnt use MainLayout
@@ -216,7 +217,7 @@ export const getServerSideProps = async ({query, req, res}) => {
             const filesJson = await filesRes.json();
             const thumbnailUrl = filesJson[0].file_urls.fullsize;
 
-            const props = {
+            const props = washObject({
                 exhibition: Object.assign({}, exhibition, {
                     sections,
                     thumbnailUrl
@@ -226,7 +227,7 @@ export const getServerSideProps = async ({query, req, res}) => {
                 nextSubsectionTitle: nextQueryParamsAndTitle && nextQueryParamsAndTitle.title ? nextQueryParamsAndTitle.title : "",
                 previousQueryParams: previousQueryParams && previousQueryParams.queryParams ? previousQueryParams.queryParams : null,
                 subsection: Object.assign({}, subsection, {page_blocks})
-            };
+            });
 
             return {
                 props: props

@@ -14,6 +14,7 @@ import {TITLE} from "constants/guides";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {washObject} from "lib/washObject";
 
 const Guides = ({guides, sidebarItems, activeItemId}) =>
     <MainLayout pageTitle={TITLE}>
@@ -83,11 +84,11 @@ export const getServerSideProps = async () => {
             })
     );
 
-    const props = {
+    const props = washObject({
         guides,
         sidebarItems: aboutMenuJson.items,
         activeItemId: indexPageItem.url
-    };
+    });
 
     return {
         props: props

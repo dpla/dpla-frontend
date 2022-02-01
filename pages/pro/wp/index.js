@@ -20,6 +20,7 @@ import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
+import {washObject} from "lib/washObject";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -147,15 +148,17 @@ export const getServerSideProps = async ({ req, query, res }) => {
     );
   }
 
+  const props = washObject({
+    page: pageJson,
+    items: menuItems,
+    pageTitle: pageItem.title,
+    pageDescription: pageDescription,
+    breadcrumbs: breadcrumbs,
+    illustration: pageJson.acf.illustration
+  });
+
   return {
-    props: {
-      page: pageJson,
-      items: menuItems,
-      pageTitle: pageItem.title,
-      pageDescription: pageDescription,
-      breadcrumbs: breadcrumbs,
-      illustration: pageJson.acf.illustration
-    }
+    props: props
   };
 };
 

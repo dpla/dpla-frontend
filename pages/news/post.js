@@ -23,6 +23,7 @@ import {WORDPRESS_URL} from "constants/env";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
+import {washObject} from "lib/washObject";
 
 class PostPage extends React.Component {
     refreshExternalLinks() {
@@ -159,13 +160,15 @@ export const getServerSideProps = async ({req, query, res}) => {
         );
     }
 
+    const props = washObject({
+        content: postJson[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
+        pageDescription: pageDescription,
+        menuItems: menuJson.items,
+        author: authorJson
+    });
+
     return {
-        props: {
-            content: postJson[0], // endpoint returns array (WP doesnt allow duplicate slugs anyway)
-            pageDescription: pageDescription,
-            menuItems: menuJson.items,
-            author: authorJson
-        }
+        props: props
     };
 };
 

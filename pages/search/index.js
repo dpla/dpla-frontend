@@ -33,6 +33,7 @@ import {SITE_ENV, LOCAL_ID} from "constants/env";
 import {LOCALS} from "constants/local";
 
 import MaxPageError from "components/SearchComponents/MaxPageError";
+import {washObject} from "lib/washObject";
 
 class Search extends React.Component {
     state = {
@@ -246,15 +247,17 @@ export const getServerSideProps = async context => {
         const maxResults = MAX_PAGE_SIZE * page_size;
         const pageCount = json.count > maxResults ? maxResults : json.count;
 
+        const props = washObject({
+            results: Object.assign({}, json, {docs}),
+            numberOfActiveFacets,
+            currentPage: page,
+            pageCount,
+            pageSize: page_size,
+            aboutness: aboutness
+        });
+
         return {
-            props: {
-                results: Object.assign({}, json, {docs}),
-                numberOfActiveFacets,
-                currentPage: page,
-                pageCount,
-                pageSize: page_size,
-                aboutness: aboutness
-            }
+            props: props
         };
     }
 };

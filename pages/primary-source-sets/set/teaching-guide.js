@@ -12,6 +12,7 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 import {PSS_BASE_URL} from "constants/env";
 
 import {removeQueryParams, getCurrentFullUrl} from "lib";
+import {washObject} from "lib/washObject";
 
 const SingleSet = ({router, set, teachingGuide, currentPath, currentFullUrl}) =>
     <MainLayout
@@ -59,13 +60,15 @@ export const getServerSideProps = async ({query, req}) => {
     const teachingGuideRes = await fetch(guideEndpoint);
     const teachingGuide = await teachingGuideRes.json();
 
+    const props = washObject({
+        set,
+        teachingGuide,
+        currentPath,
+        currentFullUrl
+    });
+
     return {
-        props: {
-            set,
-            teachingGuide,
-            currentPath,
-            currentFullUrl
-        }
+        props: props
     };
 };
 
