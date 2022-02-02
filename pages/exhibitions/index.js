@@ -22,7 +22,7 @@ const Exhibitions = ({exhibitions}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({req}) => {
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = req.baseURL;
     const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
     const exhibitsJson = await exhibitsRes.json();
     let exhibitions = [];
@@ -49,6 +49,7 @@ export const getServerSideProps = async ({req}) => {
                     const filesJson = await filesRes.json();
 
                     const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
+
                     return Object.assign({}, exhibit, {
                         thumbnailUrl
                     });
