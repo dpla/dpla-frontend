@@ -16,7 +16,7 @@ const NewsLane = ({ title, items }) =>
         <div className={`${utils.colXs12} ${utils.colMd3}`}>
           <div className={css.header}>
             <h2 className={css.headerText}>{title}</h2>
-            <Link href={`${USER_BASE_URL}/news`}>
+            <Link href={"/news"}>
               <a className={`hover-underline ${css.headerLink}`}>
                 <span>Browse the archives</span>
                 <img
