@@ -14,8 +14,6 @@ class Body extends React.Component {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {});
   }
 
-  componentWillUnmount() {}
-
   render() {
     const { exhibition, section, subsection } = this.props;
     return (
