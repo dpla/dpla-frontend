@@ -1,4 +1,5 @@
 const { LOCALS } = require("./constants/local");
+const path = require('path')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
@@ -6,10 +7,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
     sassOptions: {
-        includePaths: [
-            // to allow SCSS files to import a plain “theme.module.scss” file
-            "./stylesheets/themes" +
-            (process.env.SITE_ENV === "local" ? "/" + LOCALS[process.env.LOCAL_ID].theme : "")
-        ]
-    },
+        // to allow SCSS files to import a plain “theme.module.scss” file
+        includePaths: [ process.env.SITE_ENV === "local" ?
+            path.join(__dirname, "stylesheets", "themes", LOCALS[process.env.LOCAL_ID].theme) :
+            path.join(__dirname, "stylesheets", "themes") ]
+    }
 })
