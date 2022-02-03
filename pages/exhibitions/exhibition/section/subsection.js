@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router from "next/router";
 
 import Error from "pages/_error";
 import DPLAHead from "components/DPLAHead";
@@ -12,11 +11,8 @@ import {
     getNextQueryParams
 } from "lib/exhibitions/getInitialProps";
 import {
-    getCurrentFullUrl,
     getDplaItemIdFromExhibit,
-    getFullPath
 } from "lib";
-import * as gtag from "lib/gtag";
 
 import {
     EXHIBITS_ENDPOINT,
@@ -29,25 +25,6 @@ import {API_ENDPOINT} from "constants/items";
 import {washObject} from "lib/washObject";
 
 class Subsection extends React.Component {
-    // Google Analytics tracking because this doesnt use MainLayout
-    componentDidMount() {
-        this.trackPageview();
-        Router.onRouteChangeComplete = url => this.trackPageview();
-    }
-
-    trackPageview() {
-        const fullPath = getFullPath();
-        const fullUrl = getCurrentFullUrl();
-
-        if (fullPath !== this.lastTrackedPath) {
-            gtag.pageview({
-                path: fullPath,
-                url: fullUrl,
-                title: this.props.section.title
-            });
-            this.lastTrackedPath = fullPath;
-        }
-    }
 
     render() {
         const {
