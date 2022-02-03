@@ -12,7 +12,6 @@ import {
     getNextQueryParams
 } from "lib/exhibitions/getInitialProps";
 import {
-    getCurrentUrl,
     getCurrentFullUrl,
     getDplaItemIdFromExhibit,
     getFullPath
@@ -82,8 +81,7 @@ class Subsection extends React.Component {
 
 // TODO: refactor this so it isn't so long
 export const getServerSideProps = async ({query, req, res}) => {
-        const currentFullUrl = getCurrentFullUrl(req);
-        const currentUrl = getCurrentUrl(req);
+        const currentUrl = `${req.protocol}://${req.get("host")}`;
         ////////
         // check if exhibit is found
         try {

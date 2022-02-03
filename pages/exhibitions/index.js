@@ -4,7 +4,6 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
-import {getCurrentUrl} from "lib";
 import {
     TITLE,
     EXHIBITS_ENDPOINT,
@@ -22,7 +21,7 @@ const Exhibitions = ({exhibitions}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({req}) => {
-    const currentUrl = req.baseURL;
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
     const exhibitsJson = await exhibitsRes.json();
     let exhibitions = [];

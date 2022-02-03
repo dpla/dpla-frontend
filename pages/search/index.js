@@ -11,7 +11,6 @@ import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
 import {
-    getCurrentUrl,
     getItemThumbnail,
     getSearchPageTitle,
 } from "lib";
@@ -107,7 +106,7 @@ export const getServerSideProps = async context => {
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const q = query.q
         ? encodeURIComponent(query.q.trim())
             .replace(/'/g, "%27")

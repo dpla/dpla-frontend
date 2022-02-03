@@ -9,7 +9,6 @@ import {withRouter} from "next/router";
 import {
     decodeHTMLEntities,
     extractItemId,
-    getCurrentUrl,
     getItemThumbnail
 } from "lib";
 
@@ -81,7 +80,7 @@ const SubtopicItemsList = ({
     </MainLayout>;
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );

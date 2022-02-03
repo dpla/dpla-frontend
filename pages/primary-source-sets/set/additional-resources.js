@@ -10,7 +10,7 @@ import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/Sour
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 
 import {PSS_BASE_URL} from "constants/env";
-import {getCurrentFullUrl, removeQueryParams, markdownLinks} from "lib";
+import {removeQueryParams, markdownLinks} from "lib";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -57,7 +57,7 @@ const SingleSet = ({router, set, currentFullUrl}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = getCurrentFullUrl(req);
+    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
     const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     const set = await setRes.json();

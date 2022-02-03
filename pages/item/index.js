@@ -15,8 +15,6 @@ import {CheckableLists} from "components/ListComponents/CheckableLists";
 import {API_ENDPOINT} from "constants/items";
 
 import {
-    getCurrentUrl,
-    getCurrentFullUrl,
     joinIfArray,
     getItemThumbnail,
     getRandomItemIdAsync
@@ -84,8 +82,8 @@ export const getServerSideProps = async context => {
     const req = context.req;
     const res = context.res;
     const isQA = parseCookies(context).hasOwnProperty("qa");
-    const currentFullUrl = getCurrentFullUrl(req);
-    const currentUrl = getCurrentUrl(req);
+    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const randomItemId = isQA ? await getRandomItemIdAsync(currentUrl) : null;
     // check if item is found
     try {

@@ -5,7 +5,6 @@ import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
 
 import {
-    getCurrentUrl,
     addCommasToNumber,
     getMenuItemUrl
 } from "lib";
@@ -54,7 +53,7 @@ const Home = ({
     </MainLayout>;
 
 export const getServerSideProps = async ({req}) => {
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
 
     // fetch home info
     // 1. fetch the settings from WP

@@ -49,7 +49,7 @@ class Printable extends React.Component {
 }
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = getCurrentFullUrl(req);
+    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
     const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     const currentPath = req

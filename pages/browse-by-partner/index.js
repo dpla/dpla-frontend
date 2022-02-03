@@ -5,7 +5,6 @@ import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
-import {getCurrentUrl} from "lib";
 import {API_ENDPOINT} from "constants/items";
 import {TITLE, DESCRIPTION} from "constants/browse-by-partner";
 import {LOCALS} from "constants/local";
@@ -29,7 +28,7 @@ const PartnerBrowse = ({partners, url}) =>
     </div>;
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     let apiQuery = "";
     let facetName = "";
     let linkParam = "";

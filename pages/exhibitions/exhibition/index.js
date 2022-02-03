@@ -16,8 +16,6 @@ import {SEO_TYPE} from "constants/exhibition";
 import {API_ENDPOINT} from "constants/items";
 
 import {
-    getCurrentUrl,
-    getCurrentFullUrl,
     getDplaItemIdFromExhibit,
 } from "lib";
 import {washObject} from "lib/washObject";
@@ -59,8 +57,8 @@ class Exhibition extends React.Component {
 }
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = getCurrentFullUrl(req);
-    const currentUrl = getCurrentUrl(req);
+    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const {exhibition: exhibitionSlug} = query;
     const exhibitionsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
     const exhibitionsJson = await exhibitionsRes.json();

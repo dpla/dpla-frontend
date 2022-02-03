@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import {extractSourceSetSlug, getCurrentUrl} from "lib";
+import {extractSourceSetSlug} from "lib";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
@@ -49,7 +49,7 @@ const Topic = ({topic, subtopics, suggestions}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentUrl = getCurrentUrl(req);
+    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );
