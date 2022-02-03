@@ -58,25 +58,25 @@ const SingleSet = ({router, error, set, currentFullUrl}) => {
 }
 
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async ({req, res, query}) => {
     const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
-    const api = await fetch(`${PSS_BASE_URL}/sets/${context.query.set}.json`);
+    const api = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     // setting the http error code is not working for some reason
     // leaving this as a todo for nextjs 10 where they give you a
     // real way to handle this
 
     if (api.status > 399) {
-        if (context.res) {
-            context.res.status = 404
+        if (res) {
+            res.status = 404
         }
         return {error: {statusCode: api.status}}
     }
     const json = await api.json();
 
     if (!json) {
-        if (context.res) {
-            context.res.status = 500;
+        if (res) {
+            res.status = 500;
         }
         return {error: {statusCode: 500}}
     }
