@@ -181,9 +181,6 @@ class NewsPage extends React.Component {
 }
 
 export const getServerSideProps = async ({req, query, res}) => {
-
-    console.log("IN: news");
-
     // sidebar menu fetch
     const menuResponse = await fetch(
         SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
