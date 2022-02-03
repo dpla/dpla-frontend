@@ -23,8 +23,6 @@ export const getServerSideProps = async () => {
         topic => !topic.parent && topic.name !== "Uncategorized"
     ));
 
-
-
     return {
         props: {
             topics
