@@ -98,7 +98,7 @@ export const getServerSideProps = async ({query, req}) => {
 
     // Call DPLA API
     const dplaApiRes = await fetch(`${currentUrl}${API_ENDPOINT}/${dplaItemId}`);
-    const dplaItemJson = await dplaApiRes.json();
+    const dplaItemJson = dplaApiRes.status === 200 ? await dplaApiRes.json() : null;
 
     const thumbnailUrl = filesJson[0].file_urls.fullsize;
 
