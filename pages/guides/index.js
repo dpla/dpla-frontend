@@ -53,9 +53,6 @@ const Guides = ({guides, sidebarItems, activeItemId}) =>
 
 
 export const getServerSideProps = async () => {
-
-    console.log("IN: guides");
-
     // fetch page info
     // 1. fetch the settings from WP
     const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
