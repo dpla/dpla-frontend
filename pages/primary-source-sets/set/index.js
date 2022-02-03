@@ -59,10 +59,8 @@ const SingleSet = ({router, error, set, currentFullUrl}) => {
 
 
 export const getServerSideProps = async (context) => {
-    const currentFullUrl = getCurrentFullUrl(context.req);
+    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
     const api = await fetch(`${PSS_BASE_URL}/sets/${context.query.set}.json`);
-
-    console.log("PSS API Status", api.status)
 
     // setting the http error code is not working for some reason
     // leaving this as a todo for nextjs 10 where they give you a
