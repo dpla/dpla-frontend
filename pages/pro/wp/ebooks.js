@@ -22,7 +22,7 @@ import {washObject} from "lib/washObject";
 
 class EbooksPage extends React.Component {
     refreshExternalLinks() {
-        var links = document.getElementById("main").getElementsByTagName("a");
+        const links = document.getElementById("main").getElementsByTagName("a");
         wordpressLinks(links);
     }
 

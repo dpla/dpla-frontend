@@ -24,7 +24,7 @@ import {washObject} from "lib/washObject";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
-    var links = document.getElementById("main").getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
