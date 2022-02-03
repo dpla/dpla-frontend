@@ -104,8 +104,6 @@ const NestedSidebarLinks = withRouter(({
     };
   }
 
-  console.log("LINK OBJECT", linkObject);
-
   const isCurrentLink =
     item.url.match(new RegExp(activeItemId + "$")) ||
     Number(item.object_id) === activeItemId ||
