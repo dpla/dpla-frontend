@@ -39,3 +39,13 @@ export default function Custom404() {
         </MinimalLayout>
     )
 }
+
+export const getStaticProps = ({ res, err }) => {
+    if (res) {
+        res.setHeader(
+            "Cache-Control",
+            "max-age=60, must-revalidate"
+        );
+    }
+};
+
