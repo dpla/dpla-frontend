@@ -24,7 +24,7 @@ import { resourceTypes } from "constants/site";
 
 import css from "./ExhibitionSection.module.scss";
 
-const chevron = "public/static/images/chevron-thick-black.svg";
+const chevron = "/static/images/chevron-thick-black.svg";
 
 const getFileType = (fileType, originalUrl) => {
   if (
