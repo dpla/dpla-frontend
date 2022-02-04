@@ -57,7 +57,7 @@ const FooterNav = withRouter(({
 }) =>
   <div className={css.footerWrapper}>
     <div className={[utils.container, css.footerNav].join(" ")}>
-      <Link href="/">
+      <Link href={"/"}>
         <DPLALogoWide className={css.dplaLogo} />
       </Link>
       <div className={css.navButtons}>

@@ -47,7 +47,6 @@ export const getStaticProps = ({ res, err }) => {
             "max-age=60, must-revalidate"
         );
     }
-
     return { props: {} };
 };
 

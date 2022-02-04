@@ -13,6 +13,7 @@ import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
+import {washObject} from "lib/washObject";
 
 class MarkdownPage extends React.Component {
   render() {
@@ -96,12 +97,13 @@ export async function getServerSideProps(context) {
   const pageData = routes[asPath];
   const markdownPath = join(process.cwd(), 'public', 'static', 'local', LOCAL_ID, pageData.path);
   const pageMarkdown = await fs.promises.readFile(markdownPath, { encoding: "utf8"})
+  const props = washObject({
+    path: asPath,
+    pageData: pageData,
+    content: pageMarkdown
+  });
   return {
-    props: {
-      path: asPath,
-      pageData: pageData,
-      content: pageMarkdown
-    }
+    props: props
   };
 }
 

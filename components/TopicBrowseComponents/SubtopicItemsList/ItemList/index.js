@@ -5,8 +5,9 @@ import ListView from "shared/ListView";
 import css from "./ItemList.module.scss";
 
 class ItemList extends React.Component {
-  componentWillMount() {
-    this.setState({ view: "list" });
+  constructor(props) {
+    super(props);
+    this.state = { view: "list" };
   }
 
   updateView = view => this.setState({ view });
