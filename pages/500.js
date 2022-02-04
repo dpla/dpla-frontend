@@ -47,4 +47,5 @@ export const getStaticProps = ({ res, err }) => {
             "max-age=0, private, no-cache, no-store, must-revalidate"
         );
     }
+    return { props: {} };
 };
