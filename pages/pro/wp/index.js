@@ -20,10 +20,11 @@ import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
+import {washObject} from "lib/washObject";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
-    var links = document.getElementById("main").getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
@@ -98,7 +99,7 @@ class ProMenuPage extends React.Component {
   }
 }
 
-ProMenuPage.getInitialProps = async ({ req, query, res }) => {
+export const getServerSideProps = async ({ req, query, res }) => {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   const menuJson = await menuResponse.json();
@@ -147,13 +148,17 @@ ProMenuPage.getInitialProps = async ({ req, query, res }) => {
     );
   }
 
-  return {
+  const props = washObject({
     page: pageJson,
     items: menuItems,
     pageTitle: pageItem.title,
     pageDescription: pageDescription,
     breadcrumbs: breadcrumbs,
     illustration: pageJson.acf.illustration
+  });
+
+  return {
+    props: props
   };
 };
 
