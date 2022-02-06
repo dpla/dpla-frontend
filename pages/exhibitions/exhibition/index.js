@@ -19,8 +19,10 @@ import {
     getDplaItemIdFromExhibit,
 } from "lib";
 import {washObject} from "lib/washObject";
+import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 
 class Exhibition extends React.Component {
+
     componentDidMount() {
         window.scrollTo(0, 0);
         document.body.focus();
@@ -60,14 +62,14 @@ export const getServerSideProps = async ({query, req}) => {
     const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
     const currentUrl = `${req.protocol}://${req.get("host")}`;
     const {exhibition: exhibitionSlug} = query;
-    const exhibitionsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
+    const exhibitionsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitionsJson = await exhibitionsRes.json();
     const exhibition = exhibitionsJson.find(
         exhibition => exhibition.slug === exhibitionSlug
     );
 
     const exhibitPageRes = await fetch(
-        `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
+        `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibition.id}`
     );
     const exhibitPageJson = await exhibitPageRes.json();
     const sortedExhibitPages = exhibitPageJson
@@ -85,22 +87,21 @@ export const getServerSideProps = async ({query, req}) => {
 
     // Get homepage item file
     const filesRes = await fetch(
-        `${currentUrl}${FILES_ENDPOINT}?item=${item.id}`
+        `${process.env.OMEKA_URL}/api/files?item=${item.id}`
     );
     const filesJson = await filesRes.json();
 
     // Get homepage item (full metadata)
-    const itemRes = await fetch(`${currentUrl}${ITEMS_ENDPOINT}/${item.id}`);
+    const itemRes = await fetch(`${process.env.OMEKA_URL}/api/items/${item.id}`);
     const itemJson = await itemRes.json();
 
     // Get DPLA item ID
     const dplaItemId = getDplaItemIdFromExhibit(itemJson);
 
     // Call DPLA API
-    const dplaApiRes = await fetch(`${currentUrl}${API_ENDPOINT}/${dplaItemId}`);
+    const dplaApiRes = await fetch(`https://api.dp.la/v2/items/${dplaItemId}?api_key=${process.env.API_KEY}`);
     const dplaItemJson = dplaApiRes.status === 200 ? await dplaApiRes.json() : null;
-
-    const thumbnailUrl = filesJson[0].file_urls.fullsize;
+    const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize, currentUrl);
 
     const props = washObject({
         currentFullUrl,

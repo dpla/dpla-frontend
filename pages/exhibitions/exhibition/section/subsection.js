@@ -5,23 +5,23 @@ import Error from "pages/_error";
 import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
 import Content from "components/ExhibitionsComponents/ExhibitionSection";
+import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
+
 
 import {
     getPreviousQueryParams,
     getNextQueryParams
 } from "lib/exhibitions/getInitialProps";
+
 import {
     getDplaItemIdFromExhibit,
 } from "lib";
 
 import {
-    EXHIBITS_ENDPOINT,
-    EXHIBIT_PAGES_ENDPOINT,
     FILES_ENDPOINT,
     ITEMS_ENDPOINT
 } from "constants/exhibitions";
 import {SEO_TYPE} from "constants/exhibition";
-import {API_ENDPOINT} from "constants/items";
 import {washObject} from "lib/washObject";
 
 class Subsection extends React.Component {
@@ -62,13 +62,13 @@ export const getServerSideProps = async ({query, req, res}) => {
         ////////
         // check if exhibit is found
         try {
-            const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
+            const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
             const exhibitsJson = await exhibitsRes.json();
             const exhibition = exhibitsJson.find(
                 exhibit => exhibit.slug === query.exhibition
             );
             const exhibitPageRes = await fetch(
-                `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
+                `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibition.id}`
             );
             const exhibitPageJson = await exhibitPageRes.json();
 
@@ -140,12 +140,12 @@ export const getServerSideProps = async ({query, req, res}) => {
                     .map(async (block, i) => {
                         const itemId = block.attachments[0].item.id;
                         const filesRes = await fetch(
-                            `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+                            `${process.env.OMEKA_URL}/api/files?item=${itemId}`
                         );
                         const filesJson = await filesRes.json();
-                        const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
-                        const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
-                        const originalUrl = filesJson[0].file_urls.original;
+                        const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.square_thumbnail, currentUrl);
+                        const fullsizeImgUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize, currentUrl);
+                        const originalUrl = exhibitFilesHelper(filesJson[0].file_urls.original, currentUrl);
                         const itemRes = await fetch(
                             `${currentUrl}${ITEMS_ENDPOINT}/${itemId}`
                         );
@@ -157,7 +157,7 @@ export const getServerSideProps = async ({query, req, res}) => {
 
                         // Call DPLA API
                         const dplaApiRes = await fetch(
-                            `${currentUrl}${API_ENDPOINT}/${dplaItemId}`
+                            `https://api.dp.la/v2/items/${dplaItemId}?api_key=${process.env.API_KEY}`
                         );
                         const dplaItemJson = await dplaApiRes.json();
 

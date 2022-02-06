@@ -24,6 +24,7 @@ import utils from "stylesheets/utils.module.scss"
 import {washObject} from "lib/washObject";
 
 class NewsPage extends React.Component {
+
     componentWillMount() {
         this.setState({
             keywords: this.props.router.query.k || "",
@@ -67,6 +68,7 @@ class NewsPage extends React.Component {
             newsPageCount,
             currentPage,
         } = this.props;
+
         const resultSummary = `${this.state.authorName
             ? " by " + this.state.authorName
             : ""}${this.state.tag
@@ -77,6 +79,7 @@ class NewsPage extends React.Component {
             : ""}${this.state.keywords
             ? " with keywords “" + this.state.keywords + "”"
             : ""}`;
+
         return (
             <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
                 <FeatureHeader title={TITLE} description={DESCRIPTION}/>

@@ -2,6 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 
 import {extractSourceSetSlug} from "lib";
+import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
@@ -12,11 +13,6 @@ import {
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC
 } from "constants/topicBrowse";
 
-import {
-    EXHIBIT_PAGES_ENDPOINT,
-    EXHIBITS_ENDPOINT,
-    FILES_ENDPOINT
-} from "constants/exhibitions";
 import {washObject} from "lib/washObject";
 
 const sanitizeSourceSetId = id => {
@@ -70,7 +66,7 @@ export const getServerSideProps = async ({query, req}) => {
             currentTopic.acf.related_content.map(async item => {
                 if (item.related_content_type === "Exhibition") {
                     const exhibitionsRes = await fetch(
-                        `${currentUrl}${EXHIBITS_ENDPOINT}`
+                        `${process.env.OMEKA_URL}/api/exhibits`
                     );
                     const exhibitionsJson = await exhibitionsRes.json();
                     const exhibition = exhibitionsJson.find(
@@ -78,7 +74,7 @@ export const getServerSideProps = async ({query, req}) => {
                             parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
                     );
                     const exhibitPageRes = await fetch(
-                        `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${item.exhibition_id}`
+                        `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${item.exhibition_id}`
                     );
                     const exhibitPageJson = await exhibitPageRes.json();
                     // skip a nil exhibit
@@ -93,12 +89,17 @@ export const getServerSideProps = async ({query, req}) => {
                         item: homePageItem
                     } = homePage.page_blocks[0].attachments[0];
                     const filesRes = await fetch(
-                        `${currentUrl}${FILES_ENDPOINT}?item=${homePageItem.id}`
+                        `${process.env.OMEKA_URL}/api/files?item=${homePageItem.id}`
                     );
                     const filesJson = await filesRes.json();
-
                     const title = exhibition.title;
-                    const thumbnailUrl = filesJson[0].file_urls.fullsize;
+                    const originalThumbnailUrl =  filesJson[0].file_urls.fullsize;
+
+                    const thumbnailUrl = exhibitFilesHelper(
+                        originalThumbnailUrl,
+                        currentUrl
+                    );
+
                     const slug = exhibition.slug;
                     if (!slug) {
                         return null;

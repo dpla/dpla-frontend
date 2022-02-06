@@ -87,7 +87,7 @@ export const getServerSideProps = async context => {
     const randomItemId = isQA ? await getRandomItemIdAsync(currentUrl) : null;
     // check if item is found
     try {
-        const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
+        const res = await fetch(`https://api.dp.la/v2/items/${query.itemId}?api_key=${process.env.API_KEY}`);
         const json = await res.json();
         const doc = json.docs[0];
         const thumbnailUrl = getItemThumbnail(doc);
@@ -127,6 +127,7 @@ export const getServerSideProps = async context => {
         return {
             props: props
         };
+
     } catch (error) {
         console.log(error);
 
@@ -143,4 +144,5 @@ export const getServerSideProps = async context => {
         };
     }
 };
+
 export default ItemDetail;
