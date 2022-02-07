@@ -72,26 +72,26 @@ class DPLAHead extends React.Component {
               key="180"
               rel="apple-touch-icon"
               sizes="180x180"
-              href="/public/static/favicons/apple-touch-icon.png"
+              href="/static/favicons/apple-touch-icon.png"
             />,
             <link
               key="32"
               rel="icon"
               type="image/png"
               sizes="32x32"
-              href="/public/static/favicons/favicon-32x32.png"
+              href="/static/favicons/favicon-32x32.png"
             />,
             <link
               key="16"
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href="/public/static/favicons/favicon-16x16.png"
+              href="/static/favicons/favicon-16x16.png"
             />,
             <link
               key="mask"
               rel="mask-icon"
-              href="/public/static/favicons/safari-pinned-tab.svg"
+              href="/static/favicons/safari-pinned-tab.svg"
               color="#5bbad5"
             />,
             <link key="manifest" rel="manifest" href="/manifest.json" />
