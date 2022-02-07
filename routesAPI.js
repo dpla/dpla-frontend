@@ -26,6 +26,7 @@ module.exports = (app, server) => {
     "/api/files",
     proxy(process.env.OMEKA_URL, {
       userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
+          console.log(userReq.protocol);
         const data = JSON.parse(proxyResData.toString("utf8"));
         const file_urls = data[0].file_urls;
         Object.keys(file_urls).forEach(key => {
