@@ -143,9 +143,12 @@ export const getServerSideProps = async ({query, req, res}) => {
                             `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
                         );
                         const filesJson = await filesRes.json();
-                        const thumbnailUrl = fixProtocol(filesJson[0].file_urls.square_thumbnail);
-                        const fullsizeImgUrl = fixProtocol(filesJson[0].file_urls.fullsize);
-                        const originalUrl = fixProtocol(filesJson[0].file_urls.original);
+                        console.log("Getting image urls");
+                        const thumbnailUrl = fixProtocol(req.protocol, filesJson[0].file_urls.square_thumbnail);
+                        const fullsizeImgUrl = fixProtocol(req.protocol, filesJson[0].file_urls.fullsize);
+                        const originalUrl = fixProtocol(req.protocol, filesJson[0].file_urls.original);
+
+                        console.log("Original Url: " + originalUrl);
                         const itemRes = await fetch(
                             `${currentUrl}${ITEMS_ENDPOINT}/${itemId}`
                         );
