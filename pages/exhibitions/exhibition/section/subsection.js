@@ -143,9 +143,9 @@ export const getServerSideProps = async ({query, req, res}) => {
                             `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
                         );
                         const filesJson = await filesRes.json();
-                        const thumbnailUrl = filesJson[0].file_urls.square_thumbnail;
-                        const fullsizeImgUrl = filesJson[0].file_urls.fullsize;
-                        const originalUrl = filesJson[0].file_urls.original;
+                        const thumbnailUrl = fixProtocol(filesJson[0].file_urls.square_thumbnail);
+                        const fullsizeImgUrl = fixProtocol(filesJson[0].file_urls.fullsize);
+                        const originalUrl = fixProtocol(filesJson[0].file_urls.original);
                         const itemRes = await fetch(
                             `${currentUrl}${ITEMS_ENDPOINT}/${itemId}`
                         );
@@ -222,5 +222,15 @@ export const getServerSideProps = async ({query, req, res}) => {
         }
     }
 ;
+
+
+// terrible hack that will go away shortly
+const fixProtocol = (protocol, urlString) => {
+    const url = new URL(urlString);
+    if (url.protocol.replace(":", "") !== protocol) {
+        url.protocol = `${protocol}:`;
+    }
+    return url.toString();
+}
 
 export default Subsection;
