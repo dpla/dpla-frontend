@@ -180,10 +180,24 @@ export const getServerSideProps = async context => {
     let aboutness = {};
     if (isLocal && q.length > 0) {
         const aboutness_max = 4;
-        const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
-        const aboutnessRes = await fetch(aboutnessUrl);
+        const provider = local["provider"];
+        const location = local["locationFacet"];
+        const subject = local["subjectFacet"];
+        const apiKey = process.env.API_KEY;
+        const apiUrl = process.env.API_URL;
+        const query =
+            `${encodeURIComponent(q)}%20AND%20` +
+            `(sourceResource.spatial.name:${location}` +
+            `%20OR%20sourceResource.subject.name:${subject})` +
+            `%20AND%20NOT%20provider.name:${provider}&`;
+        const url =
+            `${apiUrl}/items?api_key=${apiKey}` +
+            `&exact_field_match=true&q=${query}`;
+        const aboutnessRes = await fetch(url);
+
         if (aboutnessRes.status !== 200) {
             aboutness = {docs: [], count: 0};
+
         } else {
             const aboutnessJson = await aboutnessRes.json();
             const aboutnessDocs = aboutnessJson.docs
