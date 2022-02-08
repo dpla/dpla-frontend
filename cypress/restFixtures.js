@@ -6,7 +6,6 @@ const baseUrl = config.baseUrl;
 
 const PSS_BASE_URL = process.env.PSS_BASE_URL || 'https://dp.la/pssapi';
 const WORDPRESS_URL = process.env.WORDPRESS_URL || 'https://dpla.wpengine.com';
-const ABOUT_MENU_ENDPOINT = `${WORDPRESS_URL}/wp-json/menus/v1/menus/about-us`;
 const API_ENDPOINT_ALL_TOPICS = `${WORDPRESS_URL}/wp-json/dpla/v2/categories`;
 const API_ENDPOINT_SUBTOPICS_FOR_TOPIC = `${WORDPRESS_URL}/wp-json/dpla/v2/subcategories`;
 
@@ -37,9 +36,9 @@ const loadSets = async () => {
 
 const loadExhibits = async () => {
     let result = [];
-    const exhibitsJson = await loadData(`${baseUrl}/api/exhibitions`);
+    const exhibitsJson = await loadData(`http://omeka.internal.dp.la/api/exhibits`);
     for (const exhibit of exhibitsJson) {
-        const pageData = await loadData(`${baseUrl}/api/exhibition_pages?exhibit=${exhibit.id}`)
+        const pageData = await loadData(`http://omeka.internal.dp.la/api/exhibit_pages?exhibit=${exhibit.id}`)
         const pageSlugs = pageData.map( (page) => page.slug)
         result.push( { slug: exhibit.slug, pages: pageSlugs} );
     }
