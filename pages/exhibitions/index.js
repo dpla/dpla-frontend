@@ -25,7 +25,6 @@ export const getServerSideProps = async ({req}) => {
     const currentUrl = `${req.protocol}://${req.get("host")}`;
     const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitsJson = await exhibitsRes.json();
-    console.log(exhibitsJson);
     let exhibitions = [];
     if (exhibitsJson.length > 0) {
         exhibitions = await Promise.all(
