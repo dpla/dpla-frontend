@@ -22,8 +22,9 @@ export default async function handler(req, res) {
     }
 
     try {
+        const url = `${process.env.OMEKA_URL}/files/${type}/${filename}`;
         const axiosRes = await axios.get(
-            `${process.env.OMEKA_URL}/files/${type}/${filename}`,
+            url,
             {responseType: 'stream'}
         )
 
@@ -31,7 +32,12 @@ export default async function handler(req, res) {
 
         if (
             axiosRes.status === 200 &&
-            contentType.startsWith("image")
+            (
+                contentType.startsWith("image") ||
+                contentType.startsWith("application") ||
+                contentType.startsWith("video") ||
+                contentType.startsWith("audio")
+            )
         ) {
             res
                 .type(contentType)
