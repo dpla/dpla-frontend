@@ -231,7 +231,8 @@ const fixProtocol = (protocol, urlString) => {
         return null;
     }
     const url = new URL(urlString);
-    if (url.protocol.replace(":", "") !== protocol) {
+    if (url.protocol !== protocol) {
+        console.log("Changing protocol.", urlString, protocol);
         url.protocol = protocol;
     }
 
