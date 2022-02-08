@@ -147,7 +147,7 @@ export const getServerSideProps = async ({query, req, res}) => {
                         const fullsizeImgUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize, currentUrl);
                         const originalUrl = exhibitFilesHelper(filesJson[0].file_urls.original, currentUrl);
                         const itemRes = await fetch(
-                            `${currentUrl}${ITEMS_ENDPOINT}/${itemId}`
+                            `${process.env.OMEKA_URL}/api/items/${itemId}`
                         );
                         const itemJson = await itemRes.json();
                         const fileType = itemJson.item_type && itemJson.item_type.name;
@@ -187,10 +187,10 @@ export const getServerSideProps = async ({query, req, res}) => {
 
             const {item} = homePage.page_blocks[0].attachments[0];
             const filesRes = await fetch(
-                `${currentUrl}${FILES_ENDPOINT}?item=${item.id}`
+                `${process.env.OMEKA_URL}/api/files?item=${item.id}`
             );
             const filesJson = await filesRes.json();
-            const thumbnailUrl = filesJson[0].file_urls.fullsize;
+            const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize);
 
             const props = washObject({
                 exhibition: Object.assign({}, exhibition, {
@@ -209,6 +209,7 @@ export const getServerSideProps = async ({query, req, res}) => {
             };
 
         } catch (error) {
+            console.log(error);
 
             if (res) {
                 res.statusCode = 404;
