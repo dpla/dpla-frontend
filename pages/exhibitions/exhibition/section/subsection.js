@@ -62,16 +62,15 @@ export const getServerSideProps = async ({query, req, res}) => {
         ////////
         // check if exhibit is found
         try {
-            const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
+            const exhibitsUrl = `${currentUrl}${EXHIBITS_ENDPOINT}`;
+            const exhibitsRes = await fetch(exhibitsUrl);
             const exhibitsJson = await exhibitsRes.json();
             const exhibition = exhibitsJson.find(
                 exhibit => exhibit.slug === query.exhibition
             );
-            const exhibitPageRes = await fetch(
-                `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`
-            );
+            const exhibitPagesUrl = `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibition.id}`;
+            const exhibitPageRes = await fetch(exhibitPagesUrl);
             const exhibitPageJson = await exhibitPageRes.json();
-
             const section = exhibitPageJson.find(page => page.slug === query.section);
 
             const subsection = !query.subsection
@@ -139,16 +138,13 @@ export const getServerSideProps = async ({query, req, res}) => {
                     )
                     .map(async (block, i) => {
                         const itemId = block.attachments[0].item.id;
-                        const filesRes = await fetch(
-                            `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
-                        );
+                        const filesUrl = `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`;
+                        const filesRes = await fetch(filesUrl);
                         const filesJson = await filesRes.json();
-                        console.log("Getting image urls");
                         const thumbnailUrl = fixProtocol(req.protocol, filesJson[0].file_urls.square_thumbnail);
                         const fullsizeImgUrl = fixProtocol(req.protocol, filesJson[0].file_urls.fullsize);
                         const originalUrl = fixProtocol(req.protocol, filesJson[0].file_urls.original);
 
-                        console.log("Original Url: " + originalUrl);
                         const itemRes = await fetch(
                             `${currentUrl}${ITEMS_ENDPOINT}/${itemId}`
                         );
@@ -213,6 +209,8 @@ export const getServerSideProps = async ({query, req, res}) => {
 
         } catch (error) {
 
+            console.log("Caught error.", error);
+
             if (res) {
                 res.statusCode = 404;
             }
@@ -229,10 +227,14 @@ export const getServerSideProps = async ({query, req, res}) => {
 
 // terrible hack that will go away shortly
 const fixProtocol = (protocol, urlString) => {
+    if (!urlString) {
+        return null;
+    }
     const url = new URL(urlString);
     if (url.protocol.replace(":", "") !== protocol) {
-        url.protocol = `${protocol}:`;
+        url.protocol = protocol;
     }
+
     return url.toString();
 }
 
