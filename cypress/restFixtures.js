@@ -38,7 +38,7 @@ const loadExhibits = async () => {
     let result = [];
     const exhibitsJson = await loadData(`http://omeka.internal.dp.la/api/exhibits`);
     for (const exhibit of exhibitsJson) {
-        const pageData = await loadData(`http://omeka.internal.dp.laclear/api/exhibit_pages?exhibit=${exhibit.id}`)
+        const pageData = await loadData(`http://omeka.internal.dp.la/api/exhibit_pages?exhibit=${exhibit.id}`)
         const pageSlugs = pageData.map( (page) => page.slug)
         result.push( { slug: exhibit.slug, pages: pageSlugs} );
     }
