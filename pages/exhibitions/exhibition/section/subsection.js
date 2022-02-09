@@ -17,10 +17,6 @@ import {
     getDplaItemIdFromExhibit,
 } from "lib";
 
-import {
-    FILES_ENDPOINT,
-    ITEMS_ENDPOINT
-} from "constants/exhibitions";
 import {SEO_TYPE} from "constants/exhibition";
 import {washObject} from "lib/washObject";
 
