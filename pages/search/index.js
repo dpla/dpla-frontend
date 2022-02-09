@@ -24,10 +24,7 @@ import {
     DEFAULT_PAGE_SIZE,
     MAX_PAGE_SIZE
 } from "constants/search";
-import {
-    API_ENDPOINT,
-    LOCAL_ABOUT_ENDPOINT
-} from "constants/items";
+
 import {SITE_ENV, LOCAL_ID} from "constants/env";
 import {LOCALS} from "constants/local";
 
@@ -54,7 +51,7 @@ class Search extends React.Component {
             aboutness
         } = this.props;
 
-        var itemCount = 0;// default handles unexpected error
+        let itemCount = 0;// default handles unexpected error
         if ("count" in results) {
             if (results.count.value !== undefined) {
                 itemCount = results.count.value // ElasticSearch 7
@@ -106,7 +103,6 @@ export const getServerSideProps = async context => {
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const q = query.q
         ? encodeURIComponent(query.q.trim())
             .replace(/'/g, "%27")
