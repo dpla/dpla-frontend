@@ -17,6 +17,7 @@ import {
   joinIfArray,
   parseDplaItemRecord
 } from "lib";
+
 import * as gtag from "lib/gtag";
 
 import { ITEM_TYPES } from "constants/exhibitions";
@@ -132,7 +133,7 @@ class Viewer extends React.Component {
   }
 
   render() {
-    const { exhibition, section, subsection, router } = this.props;
+    const { subsection, router } = this.props;
     const pageBlocks = subsection.page_blocks;
     const pageWithText = pageBlocks.find(block => block.text);
     const text = pageWithText ? pageWithText.text : "";
