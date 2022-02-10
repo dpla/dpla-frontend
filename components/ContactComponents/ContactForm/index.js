@@ -132,7 +132,8 @@ class ContactForm extends React.Component {
       },
       body: body
     });
-    const data = await res.text();
+
+    await res.text();
 
     this.setState({
       isSending: false,
@@ -185,9 +186,6 @@ class ContactForm extends React.Component {
     };
     const messageProps = {
       required: this.state.message !== undefined
-    };
-    const subjectProps = {
-      required: this.state.subject !== undefined
     };
     const buttonProps = {
       mustSubmit: this.touchedAll(),
