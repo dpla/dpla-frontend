@@ -8,7 +8,7 @@ const BreadcrumbsAndNav = ({
   breadcrumbs
 }) =>
   <div className={utils.breadcrumbsWrapper}>
-    <div className={[css.breadcrumbsAndNav, utils.container].join(" ")}>
+    <div className={`${css.breadcrumbsAndNav} ${utils.container}`}>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
     </div>
   </div>;

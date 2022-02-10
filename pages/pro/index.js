@@ -20,8 +20,8 @@ export const getServerSideProps = async () => {
     const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
     const settingsJson = await settingsRes.json();
     // 2. get the corresponding value
-    const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
-        .pro_homepage_endpoint}`;
+    const endpoint =
+        `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
     // 3. fetch it
     const homeRes = await fetch(endpoint);
     const homeJson = await homeRes.json();

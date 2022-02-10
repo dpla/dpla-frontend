@@ -27,7 +27,7 @@ import {washObject} from "lib/washObject";
 
 class PostPage extends React.Component {
     refreshExternalLinks() {
-        var links = document.getElementById("main").getElementsByTagName("a");
+        const links = document.getElementById("main").getElementsByTagName("a");
         wordpressLinks(links);
     }
 
@@ -64,10 +64,9 @@ class PostPage extends React.Component {
                         {title: content.title.rendered}
                     ]}
                 />
-                <div
-                    className={`${utils.container}
-      ${contentCss.sidebarAndContentWrapper}`}
-                >
+                <div className={
+                    `${utils.container} ${contentCss.sidebarAndContentWrapper}`
+                }>
                     <div className={utils.row}>
                         <ContentPagesSidebar
                             items={menuItems}
@@ -135,7 +134,7 @@ class PostPage extends React.Component {
     }
 }
 
-export const getServerSideProps = async ({req, query, res}) => {
+export const getServerSideProps = async ({query}) => {
     // sidebar menu fetch
     const menuResponse = await fetch(
         SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT

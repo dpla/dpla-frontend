@@ -99,7 +99,7 @@ class ProMenuPage extends React.Component {
   }
 }
 
-export const getServerSideProps = async ({ req, query, res }) => {
+export const getServerSideProps = async ({query}) => {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   const menuJson = await menuResponse.json();

@@ -41,7 +41,7 @@ class Details extends React.Component {
     const { exhibition, router } = this.props;
     return (
       <div className={css.wrapper}>
-        <div className={[utils.container, css.details].join(" ")}>
+        <div className={`${utils.container} ${css.details}`}>
           <div className={css.tableOfContents}>
             <h2 className={css.tableOfContentsHeader}>
               In This Exhibition
@@ -99,7 +99,8 @@ class Details extends React.Component {
                   })
                 }}
                 as={{
-                  pathname: `/exhibitions/${exhibition.slug}/${exhibition
+                  pathname:
+                      `/exhibitions/${exhibition.slug}/${exhibition
                     .sections[0].slug}/`
                 }}
               >

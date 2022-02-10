@@ -20,7 +20,6 @@ class Body extends React.Component {
       <div className={`${utils.container} ${css.body}`}>
         <Subheader
           onClickMenuButton={() => this.toggleMenu()}
-          section={section}
           subsection={subsection}
           isMenuOpen={this.state.isMenuOpen}
         />

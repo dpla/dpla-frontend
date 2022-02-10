@@ -17,10 +17,6 @@ import {
     API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
 
-import {
-    API_ENDPOINT as DPLA_ITEM_ENDPOINT
-} from "constants/items";
-
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 import {washObject} from "lib/washObject";
@@ -92,7 +88,7 @@ const SubtopicItemsList = (
         />
     </MainLayout>;
 
-export const getServerSideProps = async ({query, req}) => {
+export const getServerSideProps = async ({query}) => {
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );

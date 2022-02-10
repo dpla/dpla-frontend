@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import Router, { withRouter } from "next/router";
+import { withRouter } from "next/router";
 import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
@@ -90,7 +90,7 @@ class AboutMenuPage extends React.Component {
   }
 }
 
-export const getServerSideProps = async ({ req, query, res }) => {
+export const getServerSideProps = async ({query}) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);

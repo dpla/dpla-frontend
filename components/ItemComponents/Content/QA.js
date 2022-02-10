@@ -3,8 +3,6 @@ import { withRouter } from "next/router";
 
 import Link from "next/link";
 
-import utils from "stylesheets/utils.module.scss"
-
 class QA extends React.Component {
   render() {
     const { item, randomItemId } = this.props;
@@ -18,6 +16,7 @@ class QA extends React.Component {
       borderRadius: "4px",
       padding: "9.5px"
     };
+
     const divStyle = {
       float: "left",
       width: "48%",

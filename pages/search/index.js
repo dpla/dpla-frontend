@@ -99,7 +99,6 @@ class Search extends React.Component {
 
 export const getServerSideProps = async context => {
     const query = context.query;
-    const req = context.req;
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");

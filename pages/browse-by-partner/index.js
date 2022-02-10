@@ -1,11 +1,9 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
-import {API_ENDPOINT} from "constants/items";
 import {TITLE, DESCRIPTION} from "constants/browse-by-partner";
 import {LOCALS} from "constants/local";
 import {SITE_ENV, LOCAL_ID} from "constants/env";
@@ -28,36 +26,10 @@ const PartnerBrowse = ({partners}) =>
         </MainLayout>
     </div>;
 
-    /*
-    server.get(
-    [
-      "/api/dpla/items",
-      "/api/dpla/items*",
-      "/api/dpla/items",
-      "/api/dpla/items/*"
-    ],
-    proxy(process.env.API_URL, {
-      proxyReqPathResolver: function(req) {
-        var separator = req.url.indexOf("?") === -1 ? "?" : "&";
-        var newPath = req.url.replace(
-          /^\/api\/dpla(.*)$/,
-          "/" +
-          (process.env.API_VERSION || "v2") + // to support absent v2 env variable
-            "$1" +
-            separator +
-            "api_key=" +
-            process.env.API_KEY
-        );
 
-        return newPath;
-      }
-    })
-  );
-     */
-
-export const getServerSideProps = async ({req}) => {
-    let apiQuery = "";
-    let facetName = "";
+export const getServerSideProps = async () => {
+    let apiQuery;
+    let facetName;
     let linkParam = "";
 
     const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
