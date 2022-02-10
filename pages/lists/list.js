@@ -28,23 +28,22 @@ import utils from "stylesheets/utils.module.scss";
 import css from "components/ListComponents/ListComponents.module.scss";
 
 class List extends React.Component {
-  state = {
-    uuid: "",
-    list: null,
-    items: [],
-    initialized: false
-  };
 
-  componentDidMount() {
-    const { router } = this.props;
-    const uuid = router.query.list;
-    this.setState({
-      uuid: uuid
-    });
-    this.getList(uuid);
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: null,
+      items: [],
+      initialized: false
+    };
+  }
+
+  async componentDidMount() {
+    await this.getList(this.props.listId);
   }
 
   getList = async uuid => {
+    console.log("IN: getList", uuid);
     localforage
       .getItem(uuid)
       .then(list => {
@@ -62,11 +61,11 @@ class List extends React.Component {
   getItems = async (uuid, list) => {
     const itemIds = Object.keys(list.selectedHash);
     const ids = itemIds.join(",");
+    console.log("IDS", ids);
     if (ids.length === 0) {
       this.setState({
         initialized: true,
         list: list,
-        uuid: uuid,
         items: []
       });
       return;
@@ -91,7 +90,6 @@ class List extends React.Component {
       this.setState({
         initialized: true,
         list: list,
-        uuid: uuid,
         items: items
       });
     } catch (error) {
@@ -100,7 +98,7 @@ class List extends React.Component {
   };
 
   onNameChange = value => {
-    let uuid = this.state.uuid;
+    let uuid = this.props.listId;
     let list = deepCopyObject(this.state.list);
     list.name = value;
     this.setState({ list: list });
@@ -123,7 +121,7 @@ class List extends React.Component {
 
   render() {
     const { uuid, list, items, initialized } = this.state;
-    const { router } = this.props
+    const { router, listId } = this.props
     if (initialized && (!list || list.length === 0)) {
       return <Error statusCode={404} />;
     }
@@ -197,6 +195,11 @@ class List extends React.Component {
 
 // strangely, this makes the list uuid available in router.query.
 // there's probably a better way...
-List.getInitialProps = async () => { return({}); }
+List.getInitialProps = async (context) => {
+  console.log(context.req.params.list);
+  return({
+    listId: context.req.params.list
+  });
+}
 
 export default withRouter(List);
