@@ -17,13 +17,11 @@ import { ListLoading, ListEmpty } from "components/ListComponents";
 import {
   addLinkInfoToResults,
   deepCopyObject,
-  getCurrentUrl,
   getItemThumbnail
 } from "lib";
 
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
-import { API_ENDPOINT } from "constants/items";
 import { LISTS_TITLE } from "constants/lists";
 
 import utils from "stylesheets/utils.module.scss";
@@ -62,7 +60,6 @@ class List extends React.Component {
   };
 
   getItems = async (uuid, list) => {
-    const currentUrl = getCurrentUrl(this.props.router.query.req);
     const itemIds = Object.keys(list.selectedHash);
     const ids = itemIds.join(",");
     if (ids.length === 0) {
@@ -75,7 +72,7 @@ class List extends React.Component {
       return;
     }
     try {
-      const url = `${currentUrl}${API_ENDPOINT}/${ids}`;
+      const url = `https://api.dp.la/v2/items/${ids}?api_key=${process.env.API_KEY}`;
       const res = await fetch(url);
       const json = await res.json();
       const items = json.docs
@@ -200,6 +197,6 @@ class List extends React.Component {
 
 // strangely, this makes the list uuid available in router.query.
 // there's probably a better way...
-List.getInitialProps = async context => { return({}); }
+List.getInitialProps = async () => { return({}); }
 
 export default withRouter(List);

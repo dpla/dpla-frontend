@@ -10,20 +10,17 @@ import {
 } from "lib";
 
 import {NUMBER_OF_USER_GUIDES_TO_SHOW} from "constants/home";
+
 import {
     HEADER_DESCRIPTION_TOKEN
 } from "constants/home";
-import {API_ENDPOINT as ITEMS_API_ENDPOINT} from "constants/items";
-import {
-    EXHIBITS_ENDPOINT,
-    EXHIBIT_PAGES_ENDPOINT,
-    FILES_ENDPOINT
-} from "constants/exhibitions";
+
 import {
     PAGES_ENDPOINT,
     ABOUT_MENU_ENDPOINT,
     NEWS_USER_ENDPOINT
 } from "constants/content-pages";
+
 import {API_SETTINGS_ENDPOINT} from "constants/site";
 import {SITE_ENV} from "constants/env";
 import {washObject} from "lib/washObject";
@@ -53,8 +50,8 @@ const Home = ({
         </div>
     </MainLayout>;
 
-export const getServerSideProps = async ({req}) => {
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async () => {
+    const currentUrl = process.env.BASE_URL;
 
     // fetch home info
     // 1. fetch the settings from WP
@@ -62,8 +59,8 @@ export const getServerSideProps = async ({req}) => {
     const settingsJson = await settingsRes.json();
     // 2. get the corresponding value
     const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
-    const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
-        .guides_endpoint}`;
+    const guides_endpoint =
+        `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
     // 3. fetch it
     const homeRes = await fetch(endpoint);
     const homepageJson = await homeRes.json();
@@ -95,9 +92,9 @@ export const getServerSideProps = async ({req}) => {
 
     const featuredExhibitionsWithData = await Promise.all(
         featuredExhibitions.map(async exhibit => {
-            const exhibitPageRes = await fetch(
-                `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibit.id}`
-            );
+            const exhibitPageUrl =
+                `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibit.id}`;
+            const exhibitPageRes = await fetch(exhibitPageUrl);
             const exhibitJson = await exhibitPageRes.json();
 
             const itemId = exhibitJson.find(

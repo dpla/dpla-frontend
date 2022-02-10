@@ -53,8 +53,8 @@ class Subsection extends React.Component {
 }
 
 // TODO: refactor this so it isn't so long
-export const getServerSideProps = async ({query, req, res}) => {
-        const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async ({query, res}) => {
+        const currentUrl = process.env.BASE_URL;
         ////////
         // check if exhibit is found
         try {

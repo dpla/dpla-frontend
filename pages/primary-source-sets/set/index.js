@@ -11,7 +11,7 @@ import RelatedSets from "components/PrimarySourceSetsComponents/SingleSet/Relate
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/SourceSetSources";
 
-import {removeQueryParams, getCurrentFullUrl} from "lib";
+import {removeQueryParams} from "lib";
 import {PSS_BASE_URL} from "constants/env";
 import {washObject} from "lib/washObject";
 
@@ -59,7 +59,7 @@ const SingleSet = ({router, error, set, currentFullUrl}) => {
 
 
 export const getServerSideProps = async ({req, res, query}) => {
-    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
+    const currentFullUrl = `${process.env.BASE_URL}${req.url}`;
     const api = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     // setting the http error code is not working for some reason

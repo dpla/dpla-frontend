@@ -57,7 +57,7 @@ const SingleSet = ({router, set, currentFullUrl}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
+    const currentFullUrl = `${process.env.BASE_URL}${req.url}`;
     const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     const set = await setRes.json();

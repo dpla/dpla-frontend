@@ -4,12 +4,7 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
-import {
-    TITLE,
-    EXHIBITS_ENDPOINT,
-    EXHIBIT_PAGES_ENDPOINT,
-    FILES_ENDPOINT
-} from "constants/exhibitions";
+import {TITLE} from "constants/exhibitions";
 import {washObject} from "lib/washObject";
 import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 
@@ -21,8 +16,7 @@ const Exhibitions = ({exhibitions}) =>
         <Footer/>
     </MainLayout>;
 
-export const getServerSideProps = async ({req}) => {
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async () => {
     const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitsJson = await exhibitsRes.json();
     let exhibitions = [];
@@ -34,21 +28,18 @@ export const getServerSideProps = async ({req}) => {
                         `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibit.id}`
                     );
                     const exhibitJson = await exhibitPageRes.json();
-
                     const pageBlock = exhibitJson.find(
                         exhibit =>
                             exhibit.slug === "home-page" ||
                             exhibit.slug === "homepage" ||
                             exhibit.order === 0
                     ).page_blocks[0];
-
                     const itemId = pageBlock.attachments[0].item.id;
                     const filesRes = await fetch(
                         `${process.env.OMEKA_URL}/api/files?item=${itemId}`
                     );
                     const filesJson = await filesRes.json();
-
-                    const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.square_thumbnail, currentUrl);
+                    const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.square_thumbnail);
 
                     return Object.assign({}, exhibit, {
                         thumbnailUrl
@@ -59,7 +50,6 @@ export const getServerSideProps = async ({req}) => {
     }
 
     const props = washObject({exhibitions});
-
     return {
         props: props
     };

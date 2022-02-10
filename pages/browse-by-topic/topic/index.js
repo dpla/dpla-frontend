@@ -23,7 +23,7 @@ const sanitizeSourceSetId = id => {
     return sanitized;
 };
 
-const Topic = ({topic, subtopics, suggestions}) =>
+const Topic = ({topic, suggestions}) =>
     <MainLayout pageTitle={topic.name}>
         <BreadcrumbsAndNav
             breadcrumbs={[
@@ -44,8 +44,8 @@ const Topic = ({topic, subtopics, suggestions}) =>
         </div>
     </MainLayout>;
 
-export const getServerSideProps = async ({query, req}) => {
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async ({query}) => {
+    const currentUrl = process.env.BASE_URL;
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );

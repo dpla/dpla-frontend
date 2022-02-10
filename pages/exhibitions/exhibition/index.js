@@ -6,14 +6,7 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "components/ExhibitionsComponents/Exhibition/Details";
 
-import {
-    EXHIBITS_ENDPOINT,
-    EXHIBIT_PAGES_ENDPOINT,
-    FILES_ENDPOINT,
-    ITEMS_ENDPOINT
-} from "constants/exhibitions";
 import {SEO_TYPE} from "constants/exhibition";
-import {API_ENDPOINT} from "constants/items";
 
 import {
     getDplaItemIdFromExhibit,
@@ -29,7 +22,7 @@ class Exhibition extends React.Component {
     }
 
     render() {
-        const {exhibition, currentFullUrl} = this.props;
+        const {exhibition} = this.props;
         return (
             <MainLayout
                 pageImage={exhibition.thumbnailUrl}
@@ -48,19 +41,15 @@ class Exhibition extends React.Component {
                 />
                 <div id="main" role="main" data-cy="exhibition-home">
                     <ImageAndCaption exhibition={exhibition}/>
-                    <Details
-                        exhibition={exhibition}
-                        currentFullUrl={currentFullUrl}
-                    />
+                    <Details exhibition={exhibition}/>
                 </div>
             </MainLayout>
         );
     }
 }
 
-export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async ({query}) => {
+    const currentUrl = process.env.BASE_URL;
     const {exhibition: exhibitionSlug} = query;
     const exhibitionsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitionsJson = await exhibitionsRes.json();
@@ -104,7 +93,6 @@ export const getServerSideProps = async ({query, req}) => {
     const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize, currentUrl);
 
     const props = washObject({
-        currentFullUrl,
         exhibition: Object.assign({}, exhibition, {
             thumbnailUrl,
             caption,
