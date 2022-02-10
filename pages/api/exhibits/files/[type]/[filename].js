@@ -1,5 +1,4 @@
 import axios from "axios";
-import {resolve} from "promise";
 
 const fileSizes = {
     original: true,
