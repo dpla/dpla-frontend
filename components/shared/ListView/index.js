@@ -420,9 +420,14 @@ class ListView extends React.Component {
                     {realId !== "http://dp.la/api/items/#sourceResource" &&
                       <Link href={item.linkHref} as={item.linkAs}>
                         <a className={"internalItemLink"}>
-                          {router.pathname.indexOf("/search") === 0 && item.title
-                            ? truncateString(item.title, 150)
-                            : item.title ? item.title : UNTITLED_TEXT}
+                          { router.pathname.indexOf("/search") === 0 && item.title
+                            ? truncateString(
+                                joinIfArray(item.title, ", "), 150
+                              )
+                            : item.title ?
+                                  joinIfArray(item.title, ", ")
+                                  : UNTITLED_TEXT
+                          }
                         </a>
                       </Link>}
                     {/* see issue #869 for details on this hack */}
