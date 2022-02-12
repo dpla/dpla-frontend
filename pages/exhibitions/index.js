@@ -16,7 +16,7 @@ const Exhibitions = ({exhibitions}) =>
         <Footer/>
     </MainLayout>;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitsJson = await exhibitsRes.json();
     let exhibitions = [];
