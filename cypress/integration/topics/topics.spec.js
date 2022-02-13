@@ -1,10 +1,6 @@
 const topics = require('../../fixtures/topics.json')
 describe('Topics', async () => {
 
-    beforeEach(() => {
-        cy.viewport(1024, 768);
-    });
-
     it(`home hasn't changed`, () => {
         cy
             .visit('/browse-by-topic')

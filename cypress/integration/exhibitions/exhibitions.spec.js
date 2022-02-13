@@ -1,9 +1,8 @@
 const exhibits = require('../../fixtures/exhibitions.json')
-describe('Exhibitions', async () => {
-
-    beforeEach(() => {
-        cy.viewport(1024, 768);
-    })
+describe(
+    'Exhibitions',
+    {},
+    async () => {
 
     it(`home hasn't changed`, () => {
         cy

@@ -3,7 +3,6 @@ import topnav from "../../fixtures/topnav.json";
 describe('The big screen top nav', () => {
     
     beforeEach(() => {
-        cy.viewport(1024, 768);
         cy.visit('/about')
     })
 

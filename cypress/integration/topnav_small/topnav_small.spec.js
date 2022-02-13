@@ -1,10 +1,12 @@
 import topnav from "../../fixtures/topnav.json";
 
-describe('The small screen top nav', () => {
+describe(
+    'The small screen top nav',
+    {
+        viewportWidth: 800,
+        viewportHeight: 600
+    }, () => {
 
-    beforeEach(() => {
-        cy.viewport(800, 600);
-    });
 
     const origPage = "/";
 

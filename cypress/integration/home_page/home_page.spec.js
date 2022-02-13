@@ -1,7 +1,6 @@
 describe('The Home Page', () => {
 
     beforeEach(() => {
-        cy.viewport(1024, 768);
         cy.visit('/');
     });
 

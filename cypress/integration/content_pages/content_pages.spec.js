@@ -21,10 +21,6 @@ describe('Content Pages', async () => {
         {title: "For Developers", path: "/guides/for-developers"}
     ];
 
-    beforeEach(() => {
-        cy.viewport(1024, 768);
-    });
-
     for (const page of pages) {
         it(`${page.title} hasn't changed`, () => {
             cy

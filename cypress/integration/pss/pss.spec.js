@@ -1,10 +1,6 @@
 const sets = require('../../fixtures/sets.json')
 describe('Primary Source Sets', async () => {
 
-    beforeEach(() => {
-        cy.viewport(1024, 768);
-    });
-
     it(`home hasn't changed`, () => {
         cy
             .visit('/primary-source-sets')
