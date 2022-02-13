@@ -1,6 +1,22 @@
 const serverFunctions = require("./lib/serverFunctions");
+const proxy = require("express-http-proxy");
 
 module.exports = (app, server) => {
+
+  server.get(
+      [
+        "/api/exhibits/files/square_thumbnails/*",
+        "/api/exhibits/files/thumbnails/*",
+        "/api/exhibits/files/original/*",
+        "/api/exhibits/files/fullsize/*"
+      ],
+      proxy(process.env.OMEKA_URL, {
+        proxyReqPathResolver: function(req) {
+          return req.url.replace("/api/exhibits/files", "/files");
+        }
+      })
+  );
+
   server.get("/", (req, res) => {
     const actualPage = "/";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
