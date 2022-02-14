@@ -58,8 +58,8 @@ const SingleSet = ({router, error, set, currentFullUrl}) => {
 }
 
 
-export const getServerSideProps = async ({req, res, query}) => {
-    const currentFullUrl = `${process.env.BASE_URL}${req.url}`;
+export const getServerSideProps = async ({res, query}) => {
+    const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
     const api = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
 
     // setting the http error code is not working for some reason
