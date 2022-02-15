@@ -11,10 +11,10 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import {PSS_BASE_URL} from "constants/env";
 
-import {removeQueryParams, getCurrentFullUrl} from "lib";
+import {removeQueryParams} from "lib";
 import {washObject} from "lib/washObject";
 
-const SingleSet = ({router, set, teachingGuide, currentPath, currentFullUrl}) =>
+const SingleSet = ({router, set, teachingGuide, currentFullUrl}) =>
     <MainLayout
         pageTitle={set.name.replace(/\*/g, "")}
         pageImage={set.repImageUrl || set.thumbnailUrl}
@@ -36,19 +36,14 @@ const SingleSet = ({router, set, teachingGuide, currentPath, currentFullUrl}) =>
             <TeachersGuide
                 teachingGuide={teachingGuide}
                 setName={set.name}
-                currentPath={currentPath}
             />
         </ResourcesTabs>
         <PSSFooter/>
     </MainLayout>;
 
-export const getServerSideProps = async ({query, req}) => {
-    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
+export const getServerSideProps = async ({query}) => {
+    const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
     const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
-
-    const currentPath = req
-        ? `${req.get("Host")}/primary-source-sets/${query.set}`
-        : "";
 
     const set = await setRes.json();
     const guidePage = set.hasPart.find(
@@ -63,7 +58,6 @@ export const getServerSideProps = async ({query, req}) => {
     const props = washObject({
         set,
         teachingGuide,
-        currentPath,
         currentFullUrl
     });
 

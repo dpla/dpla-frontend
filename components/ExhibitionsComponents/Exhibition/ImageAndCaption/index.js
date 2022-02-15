@@ -9,7 +9,7 @@ import utils from "stylesheets/utils.module.scss"
 
 const ImageAndCaption = ({ exhibition, router }) =>
   <figure className={css.wrapper}>
-    <div className={[utils.container, css.imageAndCaption].join(" ")}>
+    <div className={`${utils.container} ${css.imageAndCaption}`}>
       <p className={css.exhibitionTitle}>{exhibition.title}</p>
       <div className={css.imageWrapper}>
         <div

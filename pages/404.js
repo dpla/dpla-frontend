@@ -14,11 +14,11 @@ export default function Custom404() {
                 className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
             >
                 <div className="row">
-                    <div className={`col-md-2 col-xs-12`}/>
+                    <div className={`${utils.colMd2} ${utils.colXs12}`}/>
                     <div
                         id="main"
                         role="main"
-                        className={`${contentCss.content} ${donateCss.thankYou} col-md-8 col-xs-12`}
+                        className={`${contentCss.content} ${donateCss.thankYou} ${utils.colMd8} ${utils.colXs12}`}
                     >
                         <div>
                             <h1>

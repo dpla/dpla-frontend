@@ -6,7 +6,7 @@ import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 const Header = ({ title, router }) =>
-  <div className={[css.header, utils.container].join(" ")}>
+  <div className={`${css.header} ${utils.container}`}>
     <div className={css.exhibitionsLinkAndTitle}>
       <Link href="/exhibitions">
         <a className={css.exhibitionsLink}>Exhibitions</a>

@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./ExhibitionSection.module.scss";
 
-const Subheader = ({ section, subsection, onClickMenuButton, isMenuOpen }) =>
+const Subheader = ({ subsection, onClickMenuButton, isMenuOpen }) =>
   <div className={`${isMenuOpen ? css.openMenu : ""}`}>
     <div className={css.menuButtonAndBreadcrumbs}>
       <button

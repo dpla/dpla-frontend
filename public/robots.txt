@@ -1,0 +1,7 @@
+User-agent: *
+
+
+Disallow: /search
+Disallow: /timeline
+Disallow: /map
+Disallow: /bookshelf

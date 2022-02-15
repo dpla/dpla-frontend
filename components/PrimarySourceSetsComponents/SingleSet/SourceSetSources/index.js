@@ -11,7 +11,7 @@ import utils from "stylesheets/utils.module.scss"
 
 const SourceSetSources = ({ router, sources }) =>
   <div role="tabpanel" aria-labelledby="tab-sourceset" className={css.wrapper}>
-    <ul className={[css.sourceSetSources, utils.container].join(" ")}>
+    <ul className={`${css.sourceSetSources} ${utils.container}`}>
       {sources.map(({ name, thumbnailUrl, useDefaultImage }, i) => {
         const sourceId = extractSourceId(sources[i]["@id"]);
         return (

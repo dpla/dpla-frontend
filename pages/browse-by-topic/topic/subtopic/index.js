@@ -4,7 +4,6 @@ import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNa
 import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
-import {withRouter} from "next/router";
 
 import {
     decodeHTMLEntities,
@@ -17,35 +16,39 @@ import {
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC,
     API_ENDPOINT_ALL_ITEMS_100_PER_PAGE
 } from "constants/topicBrowse";
-import {
-    API_ENDPOINT as DPLA_ITEM_ENDPOINT
-} from "constants/items";
 
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 import {washObject} from "lib/washObject";
 
-const SubtopicItemsList = ({
-                               router,
-                               topic,
-                               subtopic,
-                               previousSubtopic,
-                               nextSubtopic,
-                               items
-                           }) =>
+const SubtopicItemsList = (
+    {
+        topic,
+        subtopic,
+        previousSubtopic,
+        nextSubtopic,
+        items
+    }
+) =>
     <MainLayout
         pageTitle={subtopic.name}
         pageImage={subtopic.thumbnailUrl}
     >
         <BreadcrumbsAndNav
             breadcrumbs={[
-                {title: "Browse by Topic", url: "/browse-by-topic"},
+                {
+                    title: "Browse by Topic",
+                    url: "/browse-by-topic"
+                },
                 {
                     title: topic.name,
                     as: `/browse-by-topic/${topic.slug}`,
                     url: `/browse-by-topic/topic?topic=${topic.slug}`
                 },
-                {title: subtopic.name, url: ""}
+                {
+                    title: subtopic.name,
+                    url: ""
+                }
             ]}
             previousSubtopic={previousSubtopic}
             nextSubtopic={nextSubtopic}
@@ -65,13 +68,19 @@ const SubtopicItemsList = ({
         </div>
         <BreadcrumbsAndNav
             breadcrumbs={[
-                {title: "Browse by Topic", url: "/browse-by-topic"},
+                {
+                    title: "Browse by Topic",
+                    url: "/browse-by-topic"
+                },
                 {
                     title: topic.name,
                     as: `/browse-by-topic/${topic.slug}`,
                     url: `/browse-by-topic/topic?topic=${topic.slug}`
                 },
-                {title: subtopic.name, url: ""}
+                {
+                    title: subtopic.name,
+                    url: ""
+                }
             ]}
             previousSubtopic={previousSubtopic}
             nextSubtopic={nextSubtopic}
@@ -79,8 +88,7 @@ const SubtopicItemsList = ({
         />
     </MainLayout>;
 
-export const getServerSideProps = async ({query, req}) => {
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async ({query}) => {
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );
@@ -116,7 +124,7 @@ export const getServerSideProps = async ({query, req}) => {
         itemsJson.map(async item => {
             const itemDplaId = extractItemId(item.acf.dpla_url);
             const itemRes = await fetch(
-                `${currentUrl}${DPLA_ITEM_ENDPOINT}/${itemDplaId}`
+                `${process.env.API_URL}/items/${itemDplaId}?api_key=${process.env.API_KEY}`
             );
             if (!itemRes.ok) {
                 return null;
@@ -156,9 +164,7 @@ export const getServerSideProps = async ({query, req}) => {
         nextSubtopic: subtopics[nextSubtopicIdx]
     });
 
-    console.log("PROPS", props);
-
-    return { props };
+    return {props};
 };
 
-export default withRouter(SubtopicItemsList);
+export default SubtopicItemsList;

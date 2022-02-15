@@ -70,8 +70,6 @@ class Guides extends React.Component {
 
 export const getServerSideProps = async ({query}) => {
 
-    console.log("IN: guide");
-
     const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
     const menuItemsJson = await menuItemsRes.json();
     const guideSlug = query.guide;

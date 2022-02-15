@@ -24,10 +24,7 @@ import {
     DEFAULT_PAGE_SIZE,
     MAX_PAGE_SIZE
 } from "constants/search";
-import {
-    API_ENDPOINT,
-    LOCAL_ABOUT_ENDPOINT
-} from "constants/items";
+
 import {SITE_ENV, LOCAL_ID} from "constants/env";
 import {LOCALS} from "constants/local";
 
@@ -54,7 +51,7 @@ class Search extends React.Component {
             aboutness
         } = this.props;
 
-        var itemCount = 0;// default handles unexpected error
+        let itemCount = 0;// default handles unexpected error
         if ("count" in results) {
             if (results.count.value !== undefined) {
                 itemCount = results.count.value // ElasticSearch 7
@@ -102,11 +99,9 @@ class Search extends React.Component {
 
 export const getServerSideProps = async context => {
     const query = context.query;
-    const req = context.req;
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
     const q = query.q
         ? encodeURIComponent(query.q.trim())
             .replace(/'/g, "%27")
@@ -180,10 +175,24 @@ export const getServerSideProps = async context => {
     let aboutness = {};
     if (isLocal && q.length > 0) {
         const aboutness_max = 4;
-        const aboutnessUrl = `${currentUrl}${LOCAL_ABOUT_ENDPOINT}?q=${q}`;
-        const aboutnessRes = await fetch(aboutnessUrl);
+        const provider = local["provider"];
+        const location = local["locationFacet"];
+        const subject = local["subjectFacet"];
+        const apiKey = process.env.API_KEY;
+        const apiUrl = process.env.API_URL;
+        const query =
+            `${encodeURIComponent(q)}%20AND%20` +
+            `(sourceResource.spatial.name:${location}` +
+            `%20OR%20sourceResource.subject.name:${subject})` +
+            `%20AND%20NOT%20provider.name:${provider}&`;
+        const url =
+            `${apiUrl}/items?api_key=${apiKey}` +
+            `&exact_field_match=true&q=${query}`;
+        const aboutnessRes = await fetch(url);
+
         if (aboutnessRes.status !== 200) {
             aboutness = {docs: [], count: 0};
+
         } else {
             const aboutnessJson = await aboutnessRes.json();
             const aboutnessDocs = aboutnessJson.docs
@@ -211,7 +220,11 @@ export const getServerSideProps = async context => {
 
         const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
         const filtersParam = filters.map(x => `&filter=${x}`).join("");
-        const url = `${currentUrl}${API_ENDPOINT}?exact_field_match=true&q=${q}&page=${page}&page_size=${page_size}&sort_order=${sort_order}&sort_by=${sort_by}${facetsParam}${filtersParam}`;
+        const url =
+            `https://api.dp.la/v2/items?api_key=${process.env.API_KEY}` +
+            `&exact_field_match=true&q=${q}` +
+            `&page=${page}&page_size=${page_size}&sort_order=${sort_order}` +
+            `&sort_by=${sort_by}${facetsParam}${filtersParam}`;
         const res = await fetch(url);
 
         // api response for facets

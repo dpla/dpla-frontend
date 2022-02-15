@@ -12,8 +12,6 @@ import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import {CheckableLists} from "components/ListComponents/CheckableLists";
 
-import {API_ENDPOINT} from "constants/items";
-
 import {
     joinIfArray,
     getItemThumbnail,
@@ -79,15 +77,12 @@ const ItemDetail = ({
 
 export const getServerSideProps = async context => {
     const query = context.query;
-    const req = context.req;
     const res = context.res;
     const isQA = parseCookies(context).hasOwnProperty("qa");
-    const currentFullUrl = `${req.protocol}://${req.get("host")}${req.url}`;
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
-    const randomItemId = isQA ? await getRandomItemIdAsync(currentUrl) : null;
+    const randomItemId = isQA ? await getRandomItemIdAsync() : null;
     // check if item is found
     try {
-        const res = await fetch(`${currentUrl}${API_ENDPOINT}/${query.itemId}`);
+        const res = await fetch(`https://api.dp.la/v2/items/${query.itemId}?api_key=${process.env.API_KEY}`);
         const json = await res.json();
         const doc = json.docs[0];
         const thumbnailUrl = getItemThumbnail(doc);
@@ -105,7 +100,6 @@ export const getServerSideProps = async context => {
         delete strippedDoc.originalRecord;
 
         const props = washObject({
-            currentFullUrl,
             item: Object.assign({}, doc.sourceResource, {
                 id: doc.id,
                 thumbnailUrl,
@@ -127,6 +121,7 @@ export const getServerSideProps = async context => {
         return {
             props: props
         };
+
     } catch (error) {
         console.log(error);
 
@@ -143,4 +138,5 @@ export const getServerSideProps = async context => {
         };
     }
 };
+
 export default ItemDetail;

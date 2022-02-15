@@ -98,7 +98,7 @@ class MainMetadata extends React.Component {
               <dt className={css.term}>
                 Created Date
               </dt>
-              <dd className={[css.value, css.mainMetadataText].join(" ")}>
+              <dd className={`${css.value} ${css.mainMetadataText}`}>
                 {item.date.displayDate}
               </dd>
             </div>}
@@ -107,7 +107,7 @@ class MainMetadata extends React.Component {
               <dt className={css.term}>
                 Description
               </dt>
-              <dd className={[css.value, css.mainMetadataText].join(" ")}>
+              <dd className={`${css.value} ${css.mainMetadataText}`}>
                 <div
                   id="dpla-description"
                   className={`${descriptionIsLong

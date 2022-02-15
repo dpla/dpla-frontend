@@ -1,0 +1,41 @@
+module.exports = {
+  "The bottom nav": {
+    "hasn't changed on /": {
+      "1": "<div class=\"Footer_footer__gCR4u utils_siteMaxWidth__379uF\"\n  data-cy=\"footer\">\n  <div class=\"utils_row__-7dE8\">\n    <div\n      class=\"Footer_linkGroup__1hbRo utils_colXs6__1_Avx utils_colSm4__3uEG9 utils_colMd3__spKhX\">\n      <h2 class=\"Footer_linkHeader__3H061\">DPLA</h2>\n      <ul>\n        <li><a data-cy=\"footer-link-frequently-asked-questions\"\n            href=\"/about/frequently-asked-questions\">Frequently Asked\n            Questions</a></li>\n        <li><a data-cy=\"footer-link-guides\"\n            href=\"/guides\">How Can I Use DPLA?</a></li>\n        <li><a data-cy=\"footer-link-terms-conditions\"\n            href=\"/about/terms-conditions\">Terms &amp; Conditions</a></li>\n        <li><a href=\"/about/harmful-language-statement\">Harmful Content</a></li>\n        <li><a data-cy=\"footer-link-about\"\n            href=\"/about\">About DPLA</a></li>\n        <li><a data-cy=\"footer-link-contact\"\n            href=\"/contact\">Contact Us</a></li>\n        <li>\n          <div><a href=\"#\">Feedback</a>\n            <div role=\"dialog\"\n              class=\"FeedbackForm_feedbackModal__Q91mb \"></div>\n          </div>\n        </li>\n        <li><a data-cy=\"footer-link-news\"\n            href=\"/news\">News</a></li>\n      </ul>\n    </div>\n    <div\n      class=\"Footer_linkGroup__1hbRo utils_colXs6__1_Avx utils_colSm4__3uEG9 utils_colMd3__spKhX\">\n      <h2 class=\"Footer_linkHeader__3H061\">Tools</h2>\n      <ul>\n        <li><a data-cy=\"footer-link-primary-source-sets\"\n            href=\"/primary-source-sets\">Primary Source Sets</a></li>\n        <li><a data-cy=\"footer-link-browse-by-partner\"\n            href=\"/browse-by-partner\">Browse by Partner</a></li>\n        <li><a data-cy=\"footer-link-browse-by-topic\"\n            href=\"/browse-by-topic\">Browse by Topic</a></li>\n        <li><a data-cy=\"footer-link-exhibitions\"\n            href=\"/exhibitions\">Exhibitions</a></li>\n        <li><a data-cy=\"footer-link-lists\"\n            href=\"/lists\">My Lists</a></li>\n        <li><a data-cy=\"footer-link-search\"\n            href=\"/search\">Search</a></li>\n      </ul>\n    </div>\n    <div\n      class=\"Footer_linkGroup__1hbRo utils_colXs6__1_Avx utils_colSm4__3uEG9 utils_colMd3__spKhX\">\n      <h2 class=\"Footer_linkHeader__3H061\">DPLA Pro</h2>\n      <ul>\n        <li><a data-cy=\"footer-link-pro\"\n            href=\"https://pro.dp.la\">DPLA Pro Home</a></li>\n        <li><a data-cy=\"footer-link-prospective-hubs\"\n            href=\"https://pro.dp.la/prospective-hubs\">Prospective Hubs</a></li>\n        <li><a data-cy=\"footer-link-community-reps\"\n            href=\"https://pro.dp.la/community-reps\">Community Reps</a></li>\n        <li><a data-cy=\"footer-link-hub-network\"\n            href=\"https://pro.dp.la/hubs\">Hub Network</a></li>\n        <li><a data-cy=\"footer-link-developers\"\n            href=\"https://pro.dp.la/developers\">Developers</a></li>\n        <li><a data-cy=\"footer-link-education\"\n            href=\"https://pro.dp.la/education\">Education</a></li>\n        <li><a data-cy=\"footer-link-projects\"\n            href=\"https://pro.dp.la/projects\">Projects</a></li>\n        <li><a data-cy=\"footer-link-ebooks\"\n            href=\"https://pro.dp.la/ebooks\">Ebooks</a></li>\n        <li><a data-cy=\"footer-link-events\"\n            href=\"https://pro.dp.la/events\">Events</a></li>\n      </ul>\n    </div>\n    <div class=\"utils_colXs12__mOWQw utils_colMd3__spKhX\">\n      <div class=\"Footer_donateButton__AQ69m\"><a\n          class=\"Button_buttonBase__1NS65 Button_buttonPrimary__35T3z Button_buttonLarge__2b87W\"\n          href=\"/donate\">Donate</a></div>\n    </div>\n  </div>\n</div>"
+    },
+    "on /, footer-link-frequently-asked-questions navigates to /about/frequently-asked-questions": {
+      "Page title": "Frequently Asked Questions | DPLA"
+    },
+    "on /, footer-link-guides navigates to /guides": {
+      "Page title": "Guides | DPLA"
+    },
+    "on /, footer-link-terms-conditions navigates to /about/terms-conditions": {
+      "Page title": "Terms & Conditions | DPLA"
+    },
+    "on /, footer-link-about navigates to /about": {
+      "Page title": "About Us | DPLA"
+    },
+    "on /, footer-link-contact navigates to /contact": {
+      "Page title": "Contact Us | DPLA"
+    },
+    "on /, footer-link-news navigates to /news": {
+      "Page title": "News | DPLA"
+    },
+    "on /, footer-link-primary-source-sets navigates to /primary-source-sets": {
+      "Page title": "Primary Source Sets | DPLA"
+    },
+    "on /, footer-link-browse-by-partner navigates to /browse-by-partner": {
+      "Page title": "Browse by Partner | DPLA"
+    },
+    "on /, footer-link-browse-by-topic navigates to /browse-by-topic": {
+      "Page title": "Browse by Topic | DPLA"
+    },
+    "on /, footer-link-exhibitions navigates to /exhibitions": {
+      "Page title": "Exhibitions | DPLA"
+    },
+    "on /, footer-link-lists navigates to /lists": {
+      "Page title": "My Lists | DPLA"
+    }
+  },
+  "__version": "6.9.1"
+}

@@ -22,7 +22,7 @@ const MainContent = ({
   aboutness
 }) =>
   <div className={css.wrapper}>
-    <div className={[utils.container, css.mainContent].join(" ")}>
+    <div className={`${utils.container} ${css.mainContent}`}>
       {results.length > 0 &&
         <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
           <Sidebar facets={facets} />

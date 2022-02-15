@@ -33,12 +33,6 @@ yarn-error.log*
 .env
 .vscode
 
-# selenium stuff
-test/selenium/bin/
-test/selenium/lib/
-test/selenium/.Python
-test/selenium/.python-version
-test/selenium/pip-selfcheck.json
 
 .idea/
 
@@ -47,7 +41,4 @@ cypress/results/*
 cypress/reports/*
 cypress/screenshots/*
 cypress/videos/*
-/cypress/fixtures/exhibitions.json
-/cypress/fixtures/sets.json
-/cypress/fixtures/topics.json
 /dpla-frontend.iml

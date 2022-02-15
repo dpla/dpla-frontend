@@ -10,23 +10,21 @@ import {
 } from "lib";
 
 import {NUMBER_OF_USER_GUIDES_TO_SHOW} from "constants/home";
+
 import {
     HEADER_DESCRIPTION_TOKEN
 } from "constants/home";
-import {API_ENDPOINT as ITEMS_API_ENDPOINT} from "constants/items";
-import {
-    EXHIBITS_ENDPOINT,
-    EXHIBIT_PAGES_ENDPOINT,
-    FILES_ENDPOINT
-} from "constants/exhibitions";
+
 import {
     PAGES_ENDPOINT,
     ABOUT_MENU_ENDPOINT,
     NEWS_USER_ENDPOINT
 } from "constants/content-pages";
+
 import {API_SETTINGS_ENDPOINT} from "constants/site";
 import {SITE_ENV} from "constants/env";
 import {washObject} from "lib/washObject";
+import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 
 const Home = ({
                   sourceSets,
@@ -52,8 +50,8 @@ const Home = ({
         </div>
     </MainLayout>;
 
-export const getServerSideProps = async ({req}) => {
-    const currentUrl = `${req.protocol}://${req.get("host")}`;
+export const getServerSideProps = async () => {
+    const currentUrl = process.env.BASE_URL;
 
     // fetch home info
     // 1. fetch the settings from WP
@@ -61,8 +59,8 @@ export const getServerSideProps = async ({req}) => {
     const settingsJson = await settingsRes.json();
     // 2. get the corresponding value
     const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
-    const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf
-        .guides_endpoint}`;
+    const guides_endpoint =
+        `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
     // 3. fetch it
     const homeRes = await fetch(endpoint);
     const homepageJson = await homeRes.json();
@@ -74,8 +72,7 @@ export const getServerSideProps = async ({req}) => {
         exhibit => exhibit.exhibit_id
     );
 
-    const exhibitsRes = await fetch(`${currentUrl}${EXHIBITS_ENDPOINT}`);
-
+    const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
     const exhibitsJson = await exhibitsRes.json();
     const featuredExhibitions = [];
     if (exhibitsJson.length > 0)
@@ -92,11 +89,12 @@ export const getServerSideProps = async ({req}) => {
                 );
             }
         });
+
     const featuredExhibitionsWithData = await Promise.all(
         featuredExhibitions.map(async exhibit => {
-            const exhibitPageRes = await fetch(
-                `${currentUrl}${EXHIBIT_PAGES_ENDPOINT}?exhibit=${exhibit.id}`
-            );
+            const exhibitPageUrl =
+                `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibit.id}`;
+            const exhibitPageRes = await fetch(exhibitPageUrl);
             const exhibitJson = await exhibitPageRes.json();
 
             const itemId = exhibitJson.find(
@@ -106,11 +104,15 @@ export const getServerSideProps = async ({req}) => {
                     exhibit.order === 0
             ).page_blocks[0].attachments[0].item.id;
             const filesRes = await fetch(
-                `${currentUrl}${FILES_ENDPOINT}?item=${itemId}`
+                `${process.env.OMEKA_URL}/api/files?item=${itemId}`
             );
             const filesJson = await filesRes.json();
 
-            const thumbnailUrl = filesJson[0].file_urls.fullsize;
+            const thumbnailUrl = exhibitFilesHelper(
+                filesJson[0].file_urls.fullsize,
+                currentUrl
+            );
+
             return Object.assign({}, exhibit, {
                 thumbnailUrl,
                 name: exhibit.title,
@@ -138,11 +140,10 @@ export const getServerSideProps = async ({req}) => {
 
     // fetch item count
 
-    const itemsRes = await fetch(
-        `${currentUrl}${ITEMS_API_ENDPOINT}?page_size=0`
-    );
+    const apiUrl = `https://api.dp.la/v2/items?page_size=0&api_key=${process.env.API_KEY}`;
+    const itemsRes = await fetch(apiUrl);
     const itemsJson = await itemsRes.json();
-    var itemCount = 0 // default handles unexpected error
+    let itemCount = 0 // default handles unexpected error
     if ("count" in itemsJson) {
         if (itemsJson.count.value !== undefined) {
             itemCount = itemsJson.count.value // ElasticSearch 7
@@ -156,7 +157,6 @@ export const getServerSideProps = async ({req}) => {
     );
 
     // fetch user guides data
-
     const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
     const aboutMenuJson = await aboutMenuRes.json();
     const indexPageItem = aboutMenuJson.items.find(
