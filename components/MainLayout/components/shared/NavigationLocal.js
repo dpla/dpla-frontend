@@ -31,10 +31,10 @@ class NavigationLocal extends Component {
       );
 
       arbitraryHtml = categories.map(navItem => {
-        return(
+        return (
           <li key={navItem.id}>
             <Link
-              href={"/local/" + navItem.route}
+              href={"/local" + navItem.route}
               as={navItem.route}>
               <a>{navItem.category}</a>
             </Link>
