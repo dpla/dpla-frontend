@@ -49,9 +49,9 @@ const RelatedSets = ({ sets }) => {
                     className={css.setImage}
                   />
                   <ReactMarkdown
-                    source={set.name}
+                    children={set.name}
                     className={css.title}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
                   />
                 </a>

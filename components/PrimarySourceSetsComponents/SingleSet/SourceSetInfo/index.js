@@ -60,8 +60,8 @@ class SourceSetInfo extends React.Component {
                 <div className={css.bannerTextWrapper}>
                   <h1 className={css.bannerTitle}>
                     <ReactMarkdown
-                      source={set.name}
-                      allowedTypes={["emphasis", "text"]}
+                      children={set.name}
+                      allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
                     />
                   </h1>
@@ -69,7 +69,7 @@ class SourceSetInfo extends React.Component {
               </div>
               <ReactMarkdown
                 id="dpla-description"
-                source={set.hasPart.find(item => item.name === "Overview").text}
+                children={set.hasPart.find(item => item.name === "Overview").text}
                 className={`${css.description} ${css.description} ${this.state
                   .isOpen
                   ? css.open
@@ -105,8 +105,8 @@ class SourceSetInfo extends React.Component {
                     {set.author.map(author =>
                         <li key={author.name}><ReactMarkdown
                         key={author.name}
-                        source={author.name + ", " + author.affiliation.name}
-                        allowedTypes={["emphasis", "text"]}
+                        children={author.name + ", " + author.affiliation.name}
+                        allowedElements={["emphasis", "text"]}
                         unwrapDisallowed
                         /></li>
                     )}
@@ -129,8 +129,8 @@ class SourceSetInfo extends React.Component {
                           >
                             <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
-                                source={period}
-                                allowedTypes={["emphasis", "text"]}
+                                children={period}
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
                             </a>
@@ -154,8 +154,8 @@ class SourceSetInfo extends React.Component {
                           >
                             <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
-                                source={subject}
-                                allowedTypes={["emphasis", "text"]}
+                                children={subject}
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
                             </a>

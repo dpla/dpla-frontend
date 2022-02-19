@@ -27,8 +27,8 @@ class Printable extends React.Component {
                 <div className={utils.container}>
                     <h1 className={utils.printableH1}>
                         <ReactMarkdown
-                            source={set.name}
-                            allowedTypes={["emphasis", "text"]}
+                            children={set.name}
+                            allowedElements={["emphasis", "text"]}
                             unwrapDisallowed
                         />
                     </h1>

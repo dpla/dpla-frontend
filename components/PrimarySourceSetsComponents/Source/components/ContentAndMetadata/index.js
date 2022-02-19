@@ -148,8 +148,8 @@ class ContentAndMetadata extends React.Component {
         <div className={`${css.contentAndMetadata} ${utils.container}`}>
           <h1 className={css.contentHeader}>
             <ReactMarkdown
-              source={source.name}
-              allowedTypes={["emphasis", "text"]}
+              children={source.name}
+              allowedElements={["emphasis", "text"]}
               unwrapDisallowed
             />
           </h1>
@@ -169,7 +169,7 @@ class ContentAndMetadata extends React.Component {
                   className={`${css.description} ${descriptionIsLong
                     ? css.longDescription
                     : ""} ${this.state.isOpen ? css.open : ""}`}
-                  source={source.text.replace(/<br\/?>/g, "\n\n")}
+                  children={source.text.replace(/<br\/?>/g, "\n\n").replace(/\[/, "\[").replace(/]/, "\]")}
                   renderers={{
                     linkReference: reference => markdownLinks(reference),
                     link: reference => markdownLinks(reference)
@@ -213,23 +213,23 @@ class ContentAndMetadata extends React.Component {
                 {getSourceCitation(source, "credits") &&
                   <ReactMarkdown
                     className={css.courtesyOf}
-                    source={joinIfArray(getSourceCitation(source, "credits"))}
-                    allowedTypes={["emphasis", "text"]}
+                    children={joinIfArray(getSourceCitation(source, "credits"))}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
                   <ReactMarkdown
                     className={css.courtesyOf}
-                    source={source.mainEntity[0]["dct:provenance"].name}
-                    allowedTypes={["emphasis", "text"]}
+                    children={source.mainEntity[0]["dct:provenance"].name}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
                   />}
                 {source.copyright &&
                   <div className={css.copyrightInfo}>
                     <ReactMarkdown
                       className={css.copyrightText}
-                      source={source.copyright}
-                      allowedTypes={["emphasis", "text"]}
+                      children={source.copyright}
+                      allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
                     />
                   </div>}

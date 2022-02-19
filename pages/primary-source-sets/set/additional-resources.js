@@ -44,7 +44,7 @@ const SingleSet = ({router, set, currentFullUrl}) =>
                 >
                     <ReactMarkdown
                         className={`${contentCss.content} ${utils.container}`}
-                        source={set.hasPart.find(item => item.name === "Resources").text}
+                        children={set.hasPart.find(item => item.name === "Resources").text}
                         renderers={{
                             linkReference: reference => markdownLinks(reference),
                             link: reference => markdownLinks(reference)

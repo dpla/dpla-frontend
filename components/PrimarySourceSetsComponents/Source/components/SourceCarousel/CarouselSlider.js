@@ -66,8 +66,8 @@ const CarouselSlider = ({ currentSourceIdx, sources, router }) =>
               </div>
               <ReactMarkdown
                 className={css.itemText}
-                source={name}
-                allowedTypes={["emphasis", "text"]}
+                children={name}
+                allowedElements={["emphasis", "text"]}
                 unwrapDisallowed
               />
             </a>

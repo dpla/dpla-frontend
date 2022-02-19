@@ -14,8 +14,8 @@ const Breadcrumbs = ({ breadcrumbs }) => (
               <a>
                 <ReactMarkdown
                   className={css.breadcrumbLink}
-                  source={breadcrumb.title}
-                  allowedTypes={["emphasis", "text"]}
+                  children={breadcrumb.title}
+                  allowedElements={["emphasis", "text"]}
                   unwrapDisallowed
                 />
               </a>
@@ -26,8 +26,8 @@ const Breadcrumbs = ({ breadcrumbs }) => (
         return (
           <ReactMarkdown
             className={css.activeBreadcrumb}
-            source={breadcrumb.title}
-            allowedTypes={["emphasis", "text"]}
+            children={breadcrumb.title}
+            allowedElements={["emphasis", "text"]}
             unwrapDisallowed
             key={idx}
           />

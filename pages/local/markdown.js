@@ -80,7 +80,7 @@ class MarkdownPage extends React.Component {
             />
             <div className={bodyColumnsStyle}>
               <div id="main" role="main" className={contentCss.content}>
-                <ReactMarkdown escapeHtml={false} skipHtml={false} source={content} />
+                <ReactMarkdown escapeHtml={false} skipHtml={false} children={content} />
               </div>
             </div>
           </div>

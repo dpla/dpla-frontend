@@ -51,7 +51,7 @@
     "react": "^17.0.2",
     "react-aria-modal": "^4.0.0",
     "react-dom": "^17.0.2",
-    "react-markdown": "^4.0.1",
+    "react-markdown": "^8.0.0",
     "react-slick": "^0.28.1",
     "sass": "^1.39.0",
     "striptags": "^3.1.1",

@@ -39,7 +39,7 @@ class TeachersGuide extends React.Component {
                 <div className={contentCss.content}>
                   <h3>Discussion questions</h3>
                   <ReactMarkdown
-                    source={
+                    children={
                       teachingGuide.hasPart.find(
                         item => item.name === "Questions"
                       ).text
@@ -51,7 +51,7 @@ class TeachersGuide extends React.Component {
                   />
                   <h3>Classroom activities</h3>
                   <ReactMarkdown
-                    source={
+                    children={
                       teachingGuide.hasPart.find(
                         item => item.name === "Activity"
                       ).text
@@ -77,8 +77,8 @@ class TeachersGuide extends React.Component {
                     >
                       <a className={`${utils.link} ${css.aboutThisLink}`}>
                         <ReactMarkdown
-                          source={teachingGuide.isPartOf.name}
-                          allowedTypes={["emphasis"]}
+                          children={teachingGuide.isPartOf.name}
+                          allowedElements={["emphasis"]}
                           unwrapDisallowed
                         />
                       </a>
@@ -102,8 +102,8 @@ class TeachersGuide extends React.Component {
                   <ReactMarkdown
                     className={css.sidebarSection}
                     key={i}
-                    source={author.name + ", " + author.affiliation.name}
-                    allowedTypes={["emphasis", "text"]}
+                    children={author.name + ", " + author.affiliation.name}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
                   />
                 )}

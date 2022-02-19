@@ -41,8 +41,8 @@ const SourceSetSources = ({ router, sources }) =>
                 </div>
                 <ReactMarkdown
                   className={css.title}
-                  source={name}
-                  allowedTypes={["emphasis", "text"]}
+                  children={name}
+                  allowedElements={["emphasis", "text"]}
                   unwrapDisallowed
                 />
               </a>
