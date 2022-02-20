@@ -70,8 +70,6 @@ const HomePageSlider = ({
                   <ReactMarkdown
                     className={css.itemText}
                     children={name}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
                   />
                 </a>
               </Link>

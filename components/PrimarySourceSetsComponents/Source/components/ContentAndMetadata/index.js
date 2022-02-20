@@ -149,8 +149,6 @@ class ContentAndMetadata extends React.Component {
           <h1 className={css.contentHeader}>
             <ReactMarkdown
               children={source.name}
-              allowedElements={["emphasis", "text"]}
-              unwrapDisallowed
             />
           </h1>
           <div className={css.flexWrapper}>
@@ -214,23 +212,17 @@ class ContentAndMetadata extends React.Component {
                   <ReactMarkdown
                     className={css.courtesyOf}
                     children={joinIfArray(getSourceCitation(source, "credits"))}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
                   />}
                 {source.mainEntity[0]["dct:provenance"] &&
                   <ReactMarkdown
                     className={css.courtesyOf}
                     children={source.mainEntity[0]["dct:provenance"].name}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
                   />}
                 {source.copyright &&
                   <div className={css.copyrightInfo}>
                     <ReactMarkdown
                       className={css.copyrightText}
                       children={source.copyright}
-                      allowedElements={["emphasis", "text"]}
-                      unwrapDisallowed
                     />
                   </div>}
                 <div className={css.divider} />

@@ -61,8 +61,6 @@ class SourceSetInfo extends React.Component {
                   <h1 className={css.bannerTitle}>
                     <ReactMarkdown
                       children={set.name}
-                      allowedElements={["emphasis", "text"]}
-                      unwrapDisallowed
                     />
                   </h1>
                 </div>
@@ -70,10 +68,7 @@ class SourceSetInfo extends React.Component {
               <ReactMarkdown
                 id="dpla-description"
                 children={set.hasPart.find(item => item.name === "Overview").text}
-                className={`${css.description} ${css.description} ${this.state
-                  .isOpen
-                  ? css.open
-                  : ""}`}
+                className={`${css.description} ${this.state.isOpen ? css.open : ""}`}
                 renderers={{
                   linkReference: reference => markdownLinks(reference),
                   link: reference => markdownLinks(reference)
@@ -106,8 +101,6 @@ class SourceSetInfo extends React.Component {
                         <li key={author.name}><ReactMarkdown
                         key={author.name}
                         children={author.name + ", " + author.affiliation.name}
-                        allowedElements={["emphasis", "text"]}
-                        unwrapDisallowed
                         /></li>
                     )}
                     </ul>
@@ -117,7 +110,7 @@ class SourceSetInfo extends React.Component {
                       Time Period
                     </h2>
                     <ul>
-                      {extractTimePeriod(set.about).map((period, i, periods) =>
+                      {extractTimePeriod(set.about).map((period) =>
                         <li key={period}>
                           <Link
                             href={{
@@ -128,11 +121,7 @@ class SourceSetInfo extends React.Component {
                             }}
                           >
                             <a className={`${utils.link} ${css.link}`}>
-                              <ReactMarkdown
-                                children={period}
-                                allowedElements={["emphasis", "text"]}
-                                unwrapDisallowed
-                              />
+                              <ReactMarkdown children={period} />
                             </a>
                           </Link>
                         </li>
@@ -142,7 +131,7 @@ class SourceSetInfo extends React.Component {
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>Subjects</h2>
                     <ul>
-                      {extractSubjects(set.about).map((subject, i, subjects) =>
+                      {extractSubjects(set.about).map((subject) =>
                         <li key={subject}>
                           <Link
                             href={{
@@ -153,11 +142,7 @@ class SourceSetInfo extends React.Component {
                             }}
                           >
                             <a className={`${utils.link} ${css.link}`}>
-                              <ReactMarkdown
-                                children={subject}
-                                allowedElements={["emphasis", "text"]}
-                                unwrapDisallowed
-                              />
+                              <ReactMarkdown children={subject} />
                             </a>
                           </Link>
                         </li>

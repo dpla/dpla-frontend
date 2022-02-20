@@ -51,8 +51,6 @@ const RelatedSets = ({ sets }) => {
                   <ReactMarkdown
                     children={set.name}
                     className={css.title}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
                   />
                 </a>
               </Link>

@@ -76,11 +76,7 @@ class TeachersGuide extends React.Component {
                       }}
                     >
                       <a className={`${utils.link} ${css.aboutThisLink}`}>
-                        <ReactMarkdown
-                          children={teachingGuide.isPartOf.name}
-                          allowedElements={["emphasis"]}
-                          unwrapDisallowed
-                        />
+                        <ReactMarkdown children={teachingGuide.isPartOf.name} />
                       </a>
                     </Link>, in the classroom. It offers discussion questions,
                     classroom
@@ -103,8 +99,6 @@ class TeachersGuide extends React.Component {
                     className={css.sidebarSection}
                     key={i}
                     children={author.name + ", " + author.affiliation.name}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
                   />
                 )}
                 {isPrintable !== true &&

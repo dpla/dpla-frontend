@@ -39,12 +39,7 @@ const SourceSetSources = ({ router, sources }) =>
                 >
                   <img alt="" src={thumbnailUrl} className={css.image} />
                 </div>
-                <ReactMarkdown
-                  className={css.title}
-                  children={name}
-                  allowedElements={["emphasis", "text"]}
-                  unwrapDisallowed
-                />
+                <ReactMarkdown className={css.title} children={name} />
               </a>
             </Link>
           </li>

@@ -68,8 +68,6 @@ const Suggestions = ({ suggestions }) =>
                       <ReactMarkdown
                         className={css.suggestionTitle}
                         children={suggestion.title}
-                        allowedElements={["emphasis", "text"]}
-                        unwrapDisallowed
                       />
                     </div>
                   </div>

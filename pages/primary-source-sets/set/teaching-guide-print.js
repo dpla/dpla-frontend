@@ -26,11 +26,7 @@ class Printable extends React.Component {
             <MinimalLayout route={this.props.router} isPrintable={true}>
                 <div className={utils.container}>
                     <h1 className={utils.printableH1}>
-                        <ReactMarkdown
-                            children={set.name}
-                            allowedElements={["emphasis", "text"]}
-                            unwrapDisallowed
-                        />
+                        <ReactMarkdown children={set.name} />
                     </h1>
                 </div>
                 <TeachersGuide

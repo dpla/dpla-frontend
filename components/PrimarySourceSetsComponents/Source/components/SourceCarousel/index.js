@@ -34,8 +34,6 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
             <a className={`${utils.link} ${css.linkToSourceSet}`}>
               <ReactMarkdown
                 children={set.name}
-                allowedElements={["emphasis", "text"]}
-                unwrapDisallowed
               />
             </a>
           </Link>
