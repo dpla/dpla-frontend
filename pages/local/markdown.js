@@ -30,11 +30,11 @@ class MarkdownPage extends React.Component {
 
     const pages = allRoutes.map(function(page, i) {
       const objects = Object.assign({}, i);
-      objects.route = allRoutes[i];
-      objects.title = routesObj[allRoutes[i]].title;
-      objects.category = routesObj[allRoutes[i]].category;
-      objects.isTopLevel = routesObj[allRoutes[i]].isTopLevel;
-      objects.isActive = false;
+      objects['route'] = allRoutes[i];
+      objects['title'] = routesObj[allRoutes[i]].title;
+      objects['category'] = routesObj[allRoutes[i]].category;
+      objects['isTopLevel'] = routesObj[allRoutes[i]].isTopLevel;
+      objects['isActive'] = false;
       return objects;
     }).filter(page =>
       page.category === pageData.category
@@ -80,7 +80,7 @@ class MarkdownPage extends React.Component {
             />
             <div className={bodyColumnsStyle}>
               <div id="main" role="main" className={contentCss.content}>
-                <ReactMarkdown escapeHtml={false} skipHtml={false} children={content} />
+                <ReactMarkdown skipHtml={false} children={content} />
               </div>
             </div>
           </div>
