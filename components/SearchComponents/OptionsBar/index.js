@@ -98,6 +98,9 @@ class OptionsBar extends React.Component {
       showFilters,
       numberOfActiveFacets
     } = this.props;
+
+    const vertical = router.query.vertical ? router.query.vertical : "artifacts"
+
     return (
       <div className={css.wrapper}>
         <div className={`${utils.container} ${css.optionsBar}`}>
@@ -113,6 +116,8 @@ class OptionsBar extends React.Component {
                     {router.query.q}
                   </span>
                 </span>}
+              {vertical === "artifacts" && <span> in Artifacts</span>}
+              {vertical === "ebooks" && <span> in Ebooks</span>}
             </h1>
             <p className={css.pageNumber}>Page {currentPage}</p>
             <button

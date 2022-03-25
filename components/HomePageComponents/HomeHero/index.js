@@ -65,9 +65,12 @@ const HomeHero = ({ headerDescription, feature }) =>
           />
           <div className={css.searchControls}>
             {SITE_ENV === "user" &&
-              <select className={css.searchSelect}>
-                <option>Artifacts</option>
-                <option>Ebooks</option>
+              <select
+                  name={"vertical"}
+                  id={"vertical"}
+                  className={css.searchSelect}>
+                <option value={"artifacts"}>Artifacts</option>
+                <option value={"ebooks"}>Ebooks</option>
               </select>}
             <button type="submit" className={css.searchButton}>
               <span>Search</span>

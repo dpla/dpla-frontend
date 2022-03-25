@@ -100,7 +100,15 @@ class Search extends React.Component {
 
 export const getServerSideProps = async context => {
     const query = context.query;
-    const vertical = query.vertical ? query.vertical : "artifacts";
+    let vertical = query.vertical ? query.vertical : "artifacts";
+    vertical = Array.isArray(vertical) ? vertical[0] : vertical;
+
+    if (vertical !== "artifacts" && vertical !== "ebooks") {
+        return {
+            notFound: true
+        }
+    }
+
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
@@ -232,6 +240,12 @@ export const getServerSideProps = async context => {
             `&sort_by=${sort_by}${facetsParam}${filtersParam}`;
 
         const res = await fetch(url);
+
+        if (res.status !== 200) {
+            return {
+                notFound: true
+            }
+        }
 
         // api response for facets
         let json = await res.json();
