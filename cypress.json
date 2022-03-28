@@ -1,8 +1,6 @@
 {
     "baseUrl": "http://localhost:3000",
     "projectId" : "d944bj",
-    "useRelativeSnapshots": true,
-    "snapshotFileName": "snapshot.data",
     "viewportWidth": 1280,
     "viewportHeight": 800
 }
