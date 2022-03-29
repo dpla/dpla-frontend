@@ -1,5 +1,5 @@
 const exhibits = require('../../fixtures/exhibitions.json');
-const exhibit = exhibits["erie-cana"];
+const exhibit = exhibits["erie-canal"];
 describe(
     `Exhibition ${exhibit.slug}`,
     {},
