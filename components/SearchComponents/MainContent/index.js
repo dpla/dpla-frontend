@@ -25,7 +25,7 @@ const MainContent = ({
     <div className={`${utils.container} ${css.mainContent}`}>
       {results.length > 0 &&
         <div className={`${!hideSidebar ? css.isOpen : ""} ${css.sidebar}`}>
-          {/*<Sidebar facets={facets} />*/}
+          <Sidebar facets={facets} />
         </div>}
       <div id="main" role="main" className={css.resultsAndPagination}>
         {results.length > 0 &&
