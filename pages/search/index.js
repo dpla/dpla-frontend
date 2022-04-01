@@ -49,7 +49,8 @@ class Search extends React.Component {
             pageCount,
             currentPage,
             pageSize,
-            aboutness
+            aboutness,
+            pagePath
         } = this.props;
 
         let itemCount = 0;// default handles unexpected error
@@ -90,6 +91,7 @@ class Search extends React.Component {
                     facets={results.facets}
                     results={results.docs}
                     aboutness={aboutness}
+                    pagePath={pagePath}
                 />}
                 {currentPage > MAX_PAGE_SIZE &&
                 <MaxPageError maxPage={MAX_PAGE_SIZE} requestedPage={currentPage}/>}
@@ -108,6 +110,8 @@ export const getServerSideProps = async context => {
             notFound: true
         }
     }
+
+    const pagePath = vertical === "ebooks" ? "ebook" : "item";
 
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
@@ -285,7 +289,8 @@ export const getServerSideProps = async context => {
             currentPage: page,
             pageCount,
             pageSize: page_size,
-            aboutness: aboutness
+            aboutness,
+            pagePath
         });
 
         return {

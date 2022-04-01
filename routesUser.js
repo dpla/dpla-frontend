@@ -241,6 +241,22 @@ module.exports = (app, server) => {
     );
   });
 
+  server.get("/ebook/:itemId", (req, res) => {
+    const actualPage = "/ebook";
+    const params = {
+      itemId: req.params.itemId
+    };
+    serverFunctions.renderAndCache(
+        app,
+        req,
+        res,
+        actualPage,
+        req.query,
+        params
+    );
+  });
+
+
   // lists routes
 
   server.get("/lists/:list", (req, res) => {
