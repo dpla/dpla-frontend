@@ -78,10 +78,10 @@ const OtherMetadata = ({ item }) =>
         </ItemTermValuePair>}
       {item.language &&
         <ItemTermValuePair heading="Language">
-          <FacetLink
-            facet="language"
-            value={joinIfArray(item.language, ", ")}
-          />
+          {/*<FacetLink*/}
+          {/*  facet="language"*/}
+          {/*  value={joinIfArray(item.language, ", ")}*/}
+          {/*/>*/}
         </ItemTermValuePair>}
       {item.sourceUrl &&
         <ItemTermValuePair heading="URL">
