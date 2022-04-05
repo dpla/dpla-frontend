@@ -130,6 +130,14 @@ export const getServerSideProps = async ({query}) => {
                 return null;
             }
             const itemJson = await itemRes.json();
+
+            // Try reading dataProvider from object.
+            // If this fails, read dataProvider from string.
+            const dataProviderFromObj = itemJson.docs[0].dataProvider.name;
+            const dataProvider = dataProviderFromObj ?
+                dataProviderFromObj :
+                itemJson.docs[0].dataProvider;
+
             return Object.assign({}, item, {
                 title: decodeHTMLEntities(item.title.rendered),
                 linkHref: `/item?itemId=${itemDplaId}`,
@@ -140,7 +148,7 @@ export const getServerSideProps = async ({query}) => {
                 date: itemJson.docs[0].sourceResource.date,
                 creator: itemJson.docs[0].sourceResource.creator,
                 description: itemJson.docs[0].sourceResource.description,
-                dataProvider: itemJson.docs[0].dataProvider,
+                dataProvider: dataProvider,
                 useDefaultImage: !itemJson.docs[0].object,
                 itemDplaId: itemDplaId,
                 provider:

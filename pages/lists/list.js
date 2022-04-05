@@ -86,12 +86,21 @@ class List extends React.Component {
                 .filter(result => result.error === undefined)
                 .map(result => {
                     const thumbnailUrl = getItemThumbnail(result);
+
+                    // Try reading dataProvider from object.
+                    // If this fails, read dataProvider from string.
+                    const dataProviderFromObj = result.dataProvider && 
+                        result.dataProvider.name;
+                    const dataProvider = dataProviderFromObj ?
+                        dataProviderFromObj :
+                        result.dataProvider;
+
                     return Object.assign({}, result.sourceResource, {
                         thumbnailUrl,
                         id: result.id ? result.id : result.sourceResource["@id"],
                         sourceUrl: result.isShownAt,
                         provider: result.provider && result.provider.name,
-                        dataProvider: result.dataProvider,
+                        dataProvider: dataProvider,
                         useDefaultImage: !result.object
                     });
                 });
