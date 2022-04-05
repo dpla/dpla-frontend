@@ -96,6 +96,9 @@ export const getServerSideProps = async context => {
                 return lang.name;
             })
             : doc.sourceResource.language;
+        const dataProvider = doc.dataProvider.name
+            ? doc.dataProvider.name
+            : doc.dataProvider;
         const strippedDoc = Object.assign({}, doc, {originalRecord: ""});
         delete strippedDoc.originalRecord;
 
@@ -103,7 +106,7 @@ export const getServerSideProps = async context => {
             item: Object.assign({}, doc.sourceResource, {
                 id: doc.id,
                 thumbnailUrl,
-                contributor: doc.dataProvider,
+                contributor: dataProvider,
                 intermediateProvider: doc.intermediateProvider,
                 date: date,
                 language: language,

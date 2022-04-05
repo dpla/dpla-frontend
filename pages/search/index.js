@@ -231,14 +231,11 @@ export const getServerSideProps = async context => {
         let json = await res.json();
         const docs = json.docs.map(result => {
             const thumbnailUrl = getItemThumbnail(result);
-
-            // Try reading dataProvider from object.
-            // If this fails, read dataProvider from string.
             const dataProviderFromObj = result.dataProvider && 
                 result.dataProvider.name;
-            const dataProvider = dataProviderFromObj ?
-                dataProviderFromObj :
-                result.dataProvider;
+            const dataProvider = dataProviderFromObj
+                ? dataProviderFromObj
+                : result.dataProvider;
 
             return Object.assign({}, result.sourceResource, {
                 thumbnailUrl,

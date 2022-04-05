@@ -130,13 +130,9 @@ export const getServerSideProps = async ({query}) => {
                 return null;
             }
             const itemJson = await itemRes.json();
-
-            // Try reading dataProvider from object.
-            // If this fails, read dataProvider from string.
-            const dataProviderFromObj = itemJson.docs[0].dataProvider.name;
-            const dataProvider = dataProviderFromObj ?
-                dataProviderFromObj :
-                itemJson.docs[0].dataProvider;
+            const dataProvider = itemJson.docs[0].dataProvider.name
+                ? itemJson.docs[0].dataProvider.name
+                : itemJson.docs[0].dataProvider;
 
             return Object.assign({}, item, {
                 title: decodeHTMLEntities(item.title.rendered),
