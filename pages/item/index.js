@@ -82,7 +82,9 @@ export const getServerSideProps = async context => {
     const randomItemId = isQA ? await getRandomItemIdAsync() : null;
     // check if item is found
     try {
-        const res = await fetch(`${process.env.API_URL}/items/${query.itemId}?api_key=${process.env.API_KEY}`);
+        const itemUrl = `${process.env.API_URL}/${process.env.API_VERSION}` +
+            `/items/${query.itemId}?api_key=${process.env.API_KEY}`
+        const res = await fetch(itemUrl);
         const json = await res.json();
         const doc = json.docs[0];
         const thumbnailUrl = getItemThumbnail(doc);

@@ -221,7 +221,8 @@ export const getServerSideProps = async context => {
         const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
         const filtersParam = filters.map(x => `&filter=${x}`).join("");
         const url =
-            `${process.env.API_URL}/items?api_key=${process.env.API_KEY}` +
+            `${process.env.API_URL}/${process.env.API_VERSION}/items?` +
+            `api_key=${process.env.API_KEY}` +
             `&exact_field_match=true&q=${q}` +
             `&page=${page}&page_size=${page_size}&sort_order=${sort_order}` +
             `&sort_by=${sort_by}${facetsParam}${filtersParam}`;
