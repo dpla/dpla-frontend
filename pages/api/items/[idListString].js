@@ -21,7 +21,8 @@ export default async function handler(req, res) {
 
     try {
         const url =
-            `http://api.dp.la/v2/items/${validIds.join(",")}` +
+            `${process.env.API_URL}/${process.env.API_VERSION}/items/` +
+            `${validIds.join(",")}` +
             `?api_key=${process.env.API_KEY}`;
 
         const axiosRes = await axios.get(url, {responseType: 'stream'});

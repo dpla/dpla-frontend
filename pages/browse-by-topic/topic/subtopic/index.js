@@ -123,13 +123,17 @@ export const getServerSideProps = async ({query}) => {
     const items = await Promise.all(
         itemsJson.map(async item => {
             const itemDplaId = extractItemId(item.acf.dpla_url);
-            const itemRes = await fetch(
-                `${process.env.API_URL}/items/${itemDplaId}?api_key=${process.env.API_KEY}`
-            );
+            const itemUrl = `${process.env.API_URL}/${process.env.API_VERSION}` +
+                `/items/${itemDplaId}?api_key=${process.env.API_KEY}`
+            const itemRes = await fetch(itemUrl);
             if (!itemRes.ok) {
                 return null;
             }
             const itemJson = await itemRes.json();
+            const dataProvider = itemJson.docs[0].dataProvider.name
+                ? itemJson.docs[0].dataProvider.name
+                : itemJson.docs[0].dataProvider;
+
             return Object.assign({}, item, {
                 title: decodeHTMLEntities(item.title.rendered),
                 linkHref: `/item?itemId=${itemDplaId}`,
@@ -140,7 +144,7 @@ export const getServerSideProps = async ({query}) => {
                 date: itemJson.docs[0].sourceResource.date,
                 creator: itemJson.docs[0].sourceResource.creator,
                 description: itemJson.docs[0].sourceResource.description,
-                dataProvider: itemJson.docs[0].dataProvider,
+                dataProvider: dataProvider,
                 useDefaultImage: !itemJson.docs[0].object,
                 itemDplaId: itemDplaId,
                 provider:

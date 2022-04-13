@@ -203,7 +203,7 @@ export const getServerSideProps = async context => {
                         id: result.id ? result.id : result.sourceResource["@id"],
                         sourceUrl: result.isShownAt,
                         provider: result.provider && result.provider.name,
-                        dataProvider: result.dataProvider,
+                        dataProvider: result.dataProvider && result.dataProvider.name,
                         useDefaultImage: !result.object
                     });
                 })
@@ -221,7 +221,8 @@ export const getServerSideProps = async context => {
         const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
         const filtersParam = filters.map(x => `&filter=${x}`).join("");
         const url =
-            `https://api.dp.la/v2/items?api_key=${process.env.API_KEY}` +
+            `${process.env.API_URL}/${process.env.API_VERSION}/items?` +
+            `api_key=${process.env.API_KEY}` +
             `&exact_field_match=true&q=${q}` +
             `&page=${page}&page_size=${page_size}&sort_order=${sort_order}` +
             `&sort_by=${sort_by}${facetsParam}${filtersParam}`;
@@ -231,12 +232,18 @@ export const getServerSideProps = async context => {
         let json = await res.json();
         const docs = json.docs.map(result => {
             const thumbnailUrl = getItemThumbnail(result);
+            const dataProviderFromObj = result.dataProvider && 
+                result.dataProvider.name;
+            const dataProvider = dataProviderFromObj
+                ? dataProviderFromObj
+                : result.dataProvider;
+
             return Object.assign({}, result.sourceResource, {
                 thumbnailUrl,
                 id: result.id ? result.id : result.sourceResource["@id"],
                 sourceUrl: result.isShownAt,
                 provider: result.provider && result.provider.name,
-                dataProvider: result.dataProvider,
+                dataProvider: dataProvider,
                 useDefaultImage: !result.object
             });
         });

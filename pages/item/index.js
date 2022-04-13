@@ -82,7 +82,9 @@ export const getServerSideProps = async context => {
     const randomItemId = isQA ? await getRandomItemIdAsync() : null;
     // check if item is found
     try {
-        const res = await fetch(`https://api.dp.la/v2/items/${query.itemId}?api_key=${process.env.API_KEY}`);
+        const itemUrl = `${process.env.API_URL}/${process.env.API_VERSION}` +
+            `/items/${query.itemId}?api_key=${process.env.API_KEY}`
+        const res = await fetch(itemUrl);
         const json = await res.json();
         const doc = json.docs[0];
         const thumbnailUrl = getItemThumbnail(doc);
@@ -96,6 +98,9 @@ export const getServerSideProps = async context => {
                 return lang.name;
             })
             : doc.sourceResource.language;
+        const dataProvider = doc.dataProvider.name
+            ? doc.dataProvider.name
+            : doc.dataProvider;
         const strippedDoc = Object.assign({}, doc, {originalRecord: ""});
         delete strippedDoc.originalRecord;
 
@@ -103,7 +108,7 @@ export const getServerSideProps = async context => {
             item: Object.assign({}, doc.sourceResource, {
                 id: doc.id,
                 thumbnailUrl,
-                contributor: doc.dataProvider,
+                contributor: dataProvider,
                 intermediateProvider: doc.intermediateProvider,
                 date: date,
                 language: language,
