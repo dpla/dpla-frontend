@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     try {
         const url =
-            `${process.env.API_URL}/${process.env.API_VERSION}/items/` +
+            `${process.env.API_URL}/items/` +
             `${validIds.join(",")}` +
             `?api_key=${process.env.API_KEY}`;
 

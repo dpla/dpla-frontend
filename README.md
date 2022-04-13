@@ -80,7 +80,6 @@ The system makes extensive use of environment variables to decouple the differen
 
 - `API_KEY`: your DPLA API key
 - `API_URL`: the DPLA API base URL
-- `API_VERSION`: the version of the DPLA API used (eg: `v2`)
 - `ELASTIC_URL`: the ElasticSearch server base URL
 - `GOOGLE_CLIENT`: Google authentication client
 - `GOOGLE_CONTACT_SHEET_ID`: the Google spreadsheet ID where **contact form** responses are stored in

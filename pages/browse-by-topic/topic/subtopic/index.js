@@ -123,8 +123,8 @@ export const getServerSideProps = async ({query}) => {
     const items = await Promise.all(
         itemsJson.map(async item => {
             const itemDplaId = extractItemId(item.acf.dpla_url);
-            const itemUrl = `${process.env.API_URL}/${process.env.API_VERSION}` +
-                `/items/${itemDplaId}?api_key=${process.env.API_KEY}`
+            const itemUrl = `${process.env.API_URL}/items/${itemDplaId}` +
+                `?api_key=${process.env.API_KEY}`
             const itemRes = await fetch(itemUrl);
             if (!itemRes.ok) {
                 return null;
