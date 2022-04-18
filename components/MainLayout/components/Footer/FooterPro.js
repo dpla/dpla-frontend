@@ -57,11 +57,6 @@ const FooterPro = () =>
             </Link>
           </li>
           <li>
-            <Link as="/community-reps" href="/pro/wp?section=community-reps">
-              <a>Community Reps</a>
-            </Link>
-          </li>
-          <li>
             <Link as="/developers" href="/pro/wp?section=developers">
               <a>Developers</a>
             </Link>
