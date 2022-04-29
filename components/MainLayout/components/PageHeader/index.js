@@ -14,20 +14,10 @@ function PageHeader(props) {
 
     const submitSearch = async (event) => {
         event.preventDefault();
-        const oldQuery = router.query;
-        delete oldQuery.vertical;
-        const select = event.target.vertical;
-        console.log("SELECT", select[0]);
-        const vertical = select[0].value; //? select.options[select.selectedIndex].value : "artifacts";
-
-        console.log(vertical);
-
-
-        const newQuery = Object.assign(
-            {},
-            oldQuery,
-            {vertical}
-        );
+        const verticalSelect = event.target.vertical[0];
+        const vertical = verticalSelect.options[verticalSelect.options.selectedIndex].value;
+        const q = event.target.q.value;
+        const newQuery = { q, vertical };
 
         props.router.push(
             {
@@ -37,7 +27,7 @@ function PageHeader(props) {
         );
     };
 
-    const {hideSearchBar, router} = props;
+    const { hideSearchBar, router } = props;
 
     const hasQuery =
         router
@@ -90,6 +80,7 @@ function PageHeader(props) {
                     action={"/search"}
                     onSubmit={submitSearch}
                     className={css.searchBar}
+                    id={"searchBarForm"}
                 >
                     <input
                         key={searchQuery}
@@ -107,7 +98,7 @@ function PageHeader(props) {
                         id={"vertical"}
                         defaultValue={vertical}
                         className={css.searchSelect}
-                        // onChange={this.onVerticalChange}
+
                     >
                         <option value={"artifacts"}>Artifacts</option>
                         <option value={"ebooks"}>Ebooks</option>
