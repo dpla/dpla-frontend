@@ -109,9 +109,14 @@ export const getServerSideProps = async context => {
         : "";
 
     let filters = isLocal && local.filters ? local.filters : [];
-    let tags = []
+    let tags = isLocal && local.tags ? local.tags : [];
     if (query.tags) {
-        tags = Array.isArray(query.tags) ? query.tags : new Array(query.tags);
+        const queryTags =
+            Array.isArray(query.tags)
+                ? query.tags
+                : new Array(query.tags);
+
+        tags = tags.concat(queryTags);
     }
 
     let hasDates = false;
