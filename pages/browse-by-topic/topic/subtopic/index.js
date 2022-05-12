@@ -130,7 +130,7 @@ export const getServerSideProps = async ({query}) => {
                 return null;
             }
             const itemJson = await itemRes.json();
-            const dataProvider = itemJson.docs[0].dataProvider.name
+            const dataProvider = itemJson.docs[0].dataProvider?.name
                 ? itemJson.docs[0].dataProvider.name
                 : itemJson.docs[0].dataProvider;
 
