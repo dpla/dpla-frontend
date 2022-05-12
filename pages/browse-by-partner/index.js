@@ -35,11 +35,25 @@ export const getServerSideProps = async () => {
     const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
 
     if (SITE_ENV === "local") {
-        const filtersParam = LOCALS[LOCAL_ID]
-            .filters.map(x => `&filter=${x}`)
-            .join("");
 
-        apiQuery = `${apiUrlBase}&facets=dataProvider${filtersParam}`;
+        const local = LOCALS[LOCAL_ID];
+
+        const filtersParam = local.filters
+            ? local
+                .filters
+                .map(x => `&filter=${x}`)
+                .join("")
+            : [];
+
+        const tagsParam = local.tags
+            ? local
+                .tags
+                .map(x => `&tags=${x}`)
+                .join("")
+            : [];
+
+
+        apiQuery = `${apiUrlBase}&facets=dataProvider${filtersParam}${tagsParam}`;
         facetName = "dataProvider";
         linkParam = "provider";
 

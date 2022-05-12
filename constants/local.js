@@ -344,8 +344,8 @@ const LOCALS = {
     hasBrowseAll: true,
     hasSidebar: false,
     externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=2",
-    filters: [
-      "tags:aviation"
+    tags: [
+      "aviation"
     ],
     routes: {
       "/about" : {
@@ -369,8 +369,8 @@ const LOCALS = {
     hasBrowseByPartner: false,
     hasBrowseAll: false,
     hasSidebar: true,
-    filters: [
-      "tags:blackwomensuffrage"
+    tags: [
+      "blackwomensuffrage"
     ],
     routes: {
       "/about" : {

@@ -109,10 +109,14 @@ export const getServerSideProps = async context => {
         : "";
 
     let filters = isLocal && local.filters ? local.filters : [];
-    let tags = [];
+    let tags = isLocal && local.tags ? local.tags : [];
     if (query.tags) {
-        tags = Array.isArray(query.tags) ? query.tags : new Array(query.tags);
-        filters = filters.concat(tags.map(tag => `tags:${tag}`));
+        const queryTags =
+            Array.isArray(query.tags)
+                ? query.tags
+                : new Array(query.tags);
+
+        tags = tags.concat(queryTags);
     }
 
     let hasDates = false;
@@ -220,12 +224,20 @@ export const getServerSideProps = async context => {
 
         const facetsParam = `&facets=${theseFacets.join(",")}&${facetQueries}`;
         const filtersParam = filters.map(x => `&filter=${x}`).join("");
+        const tagsParam = tags.map(x => `&tags=${x}`).join("");
         const url =
-            `${process.env.API_URL}/items?` +
-            `api_key=${process.env.API_KEY}` +
-            `&exact_field_match=true&q=${q}` +
-            `&page=${page}&page_size=${page_size}&sort_order=${sort_order}` +
-            `&sort_by=${sort_by}${facetsParam}${filtersParam}`;
+            `${process.env.API_URL}/items` +
+            `?api_key=${process.env.API_KEY}` +
+            `&exact_field_match=true` +
+            `&q=${q}` +
+            `&page=${page}` +
+            `&page_size=${page_size}` +
+            `&sort_order=${sort_order}` +
+            `&sort_by=${sort_by}` +
+            facetsParam +
+            filtersParam +
+            tagsParam;
+
         const res = await fetch(url);
 
         // api response for facets
