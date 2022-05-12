@@ -68,10 +68,6 @@
             "url": "https://pro.dp.la/prospective-hubs"
         },
         {
-            "selector": "footer-link-community-reps",
-            "url": "https://pro.dp.la/community-reps"
-        },
-        {
             "selector": "footer-link-hub-network",
             "url": "https://pro.dp.la/hubs"
         },
