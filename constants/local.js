@@ -423,8 +423,7 @@ const LOCALS = {
     hasAbout: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
-    hasBrowseAll: false,
-    routes: {}
+    hasBrowseAll: false
   }
 }
 
