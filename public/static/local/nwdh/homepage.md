@@ -46,7 +46,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [Oregon Fairs & Festivals](/search?q=fair*+OR+festival+AND+Oregon)
 
-- ### [Japanese American Oral Histories](https://dp.la/search?type=%22moving+image%22)
+- ### [Japanese American Oral Histories](/search?type=%22moving+image%22)
 
   Video interviews with Japanese Americans reveal their experiences during WWII incarceration and more.
 
