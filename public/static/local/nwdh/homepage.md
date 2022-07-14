@@ -46,7 +46,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [Oregon Fairs & Festivals](/search?q=fair*+OR+festival+AND+Oregon)
 
-- ### [Japanese American Oral Histories](/search?type=%22moving+image%22)
+- ### [Japanese American Oral Histories](/search?type="moving+image"&provider="Densho")
 
   Video interviews with Japanese Americans reveal their experiences during WWII incarceration and more.
 
@@ -100,7 +100,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [Fishing & Fisheries](/search?q=fishing+OR+fishery+OR+fisheries+OR+salmon)
 
-- ### [Oregon Federal Art Project](/search?q=%22oregon+art+project)
+- ### [Oregon Federal Art Project](/search?q=%22oregon+art+project%22)
 
   Depression-era Oregon artists found employment through the Federal Art Project, a program of the Works Progress Administration.
 
