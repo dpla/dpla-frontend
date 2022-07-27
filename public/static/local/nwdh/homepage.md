@@ -106,6 +106,24 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [WPA & CCC](/search?q=WPA+OR+%22Works+Progress+Administration%22+OR+CCC+OR+C.C.C.+OR+%22Civilian+Conservation+Corps%22+OR+%22oregon+art+project%22)
 
+<br>
+
+## Our Partners:
+
+- [![Orbis Cascade Alliance](/static/local/nwdh/alliance.png)](https://www.orbiscascade.org/)
+
+- [![Institute of Museum and Library Services](/static/local/nwdh/imls.png)](https://www.imls.gov/)
+
+- [![Oregon Digital](/static/local/nwdh/oregon-digital.png)](https://oregondigital.org/)
+
+- [![Oregon Heritage](/static/local/nwdh/oregon-heritage.png)](https://www.oregon.gov/oprd/OH/Pages/default.aspx)
+
+- [![State Library of Oregon](/static/local/nwdh/state-library.jpg)](https://www.oregon.gov/library/Pages/default.aspx)
+
+- [![University of Washington](/static/local/nwdh/uwashington.png)](https://www.washington.edu/)
+
+- [![Washington State Library](/static/local/nwdh/washington-state.png)](https://www.sos.wa.gov/library/)
+
+
 
 *Funding for this project is provided in part by the Library Services and Technology Act, administered by the federal Institute of Museum and Library Services.*
-
