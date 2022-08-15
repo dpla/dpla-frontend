@@ -142,6 +142,7 @@ export const getServerSideProps = async ({query, res}) => {
                         const thumbnailUrl = exhibitFilesHelper(filesJson[0].file_urls.square_thumbnail, currentUrl);
                         const fullsizeImgUrl = exhibitFilesHelper(filesJson[0].file_urls.fullsize, currentUrl);
                         const originalUrl = exhibitFilesHelper(filesJson[0].file_urls.original, currentUrl);
+
                         const itemRes = await fetch(
                             `${process.env.OMEKA_URL}/api/items/${itemId}`
                         );
@@ -150,12 +151,17 @@ export const getServerSideProps = async ({query, res}) => {
 
                         // Get DPLA item ID
                         const dplaItemId = getDplaItemIdFromExhibit(itemJson);
+                        let dplaItemJson = {};
 
-                        // Call DPLA API
-                        const dplaApiRes = await fetch(
-                            `https://api.dp.la/v2/items/${dplaItemId}?api_key=${process.env.API_KEY}`
-                        );
-                        const dplaItemJson = await dplaApiRes.json();
+                        if (dplaItemId) {
+                            try {
+                                 const dplaApiRes = await fetch(
+                                    `https://api-v2.dp.la/v2/items/${dplaItemId}?api_key=${process.env.API_KEY}`
+                                );
+                                dplaItemJson = await dplaApiRes.json();
+                            } catch (e) {
+                            }
+                        }
 
                         return Object.assign({}, block, {
                             fullsizeImgUrl,
