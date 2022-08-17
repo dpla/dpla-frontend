@@ -135,9 +135,14 @@ class MainMetadata extends React.Component {
                   </div>}
               </dd>
             </div>}
-          <ItemTermValuePair heading="Creator">
-            {joinIfArray(item.creator, ", ")}
-          </ItemTermValuePair>
+          {item.creator && 
+            <ItemTermValuePair heading="Creator">
+          {Array.isArray(item.creator)
+                    ? item.creator.map((element, index) => {
+                      return <p key={index}>{element}</p>;
+                    })
+                    : item.creator}
+              </ItemTermValuePair>}
         </dl>
       </div>
     );
