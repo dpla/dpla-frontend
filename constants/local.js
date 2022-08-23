@@ -408,8 +408,8 @@ const LOCALS = {
   },
   nwdh: {
     theme: "nwdh",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/northwest-digital-heritage"
+    tags: [
+        "nwdh"
     ],
     name: "Northwest Digital Heritage",
     background: "nwdh-hero.png",
