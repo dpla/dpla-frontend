@@ -2,47 +2,20 @@ name: Wisconsin Local to ECR
 
 on:
   workflow_dispatch:
-    inputs:
-      site_env:
-        description: "local, pro or user"
-        required: true
-        default: "local"
-      wordpress_url:
-        description: "WP URL"
-        required: true
-        default: "https://dpla.wpengine.com"
-      user_base_url:
-        description: "Local URL"
-        required: true
-        default: "https://recollectionwisconsin.dp.la"
-      pro_base_url:
-        description: "Link to pro site"
-        required: true
-        default: "https://pro.dp.la"
-      pss_base_url:
-        description: "URL for Primary Source Sets"
-        required: true
-        default: "https://dp.la/pssapi"
-      local_id: 
-        description: "Key for local"
-        required: true
-        default: "wisconsin"
-      ga_tracking_id: 
-        description: "Analytics tracking ID"
-        required: true
-        default: "UA-128040088-1"
-      omeka_url: 
-        description: "Omeka URL"
-        required: true
-        default: "http://omeka.internal.dp.la"
+
+env: 
+  SITE_ENV:       "local"
+  LOCAL_ID:       "wisconsin"
+  GA_TRACKING_ID: "UA-128040088-1"
+  WORDPRESS_URL:  "https://dpla.wpengine.com"
+  USER_BASE_URL:  "https://recollectionwisconsin.dp.la"
+  PRO_BASE_URL:   "https://pro.dp.la"
+  PSS_BASE_URL:   "https://dp.la/pssapi"
+  OMEKA_URL:      "http://omeka.internal.dp.la"
 
 jobs:
   ecr:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
 
     steps:
       - name: Checkout
@@ -80,13 +53,13 @@ jobs:
       - name: Create and populate constants/env.js
         run: |
           touch constants/env.js
-          echo export const SITE_ENV = "${{ github.event.inputs.site_env }}"; >> constants/env.js
-          echo export const USER_BASE_URL = "${{ github.event.inputs.user_base_url }}"; >> constants/env.js
-          echo export const WORDPRESS_URL = "${{ github.event.inputs.wordpress_url }}"; >> constants/env.js
-          echo export const PRO_BASE_URL = "${{ github.event.inputs.pro_base_url }}"; >> constants/env.js
-          echo export const PSS_BASE_URL = "${{ github.event.inputs.pss_base_url }}"; >> constants/env.js
-          echo export const LOCAL_ID = ""${{ github.event.inputs.local_id }}""; >> constants/env.js
-          echo export const gaTrackingId = "${{ github.event.inputs.ga_tracking_id }}"; >> constants/env.js
+          echo export const SITE_ENV = "$SITE_ENV"; >> constants/env.js
+          echo export const USER_BASE_URL = "$USER_BASE_URL"; >> constants/env.js
+          echo export const WORDPRESS_URL = "$WORDPRESS_URL"; >> constants/env.js
+          echo export const PRO_BASE_URL = "$PRO_BASE_URL"; >> constants/env.js
+          echo export const PSS_BASE_URL = "$PSS_BASE_URL"; >> constants/env.js
+          echo export const LOCAL_ID = "$LOCAL_ID"; >> constants/env.js
+          echo export const gaTrackingId = "$GA_TRACKING_ID"; >> constants/env.js
         shell: bash
 
       - name: Add path 
@@ -95,12 +68,6 @@ jobs:
         shell: bash
       
       - name: Build the app with Yarn
-        env: 
-          SITE_ENV: "${{ github.event.inputs.site_env }}"
-          LOCAL_ID: "${{ github.event.inputs.local_id }}"
-          BASE_URL: "${{ github.event.inputs.base_url }}"
-          OMEKA_URL: "${{ github.event.inputs.omeka_url }}"
-
         run: |
           yarn clean
           yarn build
