@@ -52,7 +52,7 @@ jobs:
 
       - name: Delete Exhibitions from app 
         run: |
-          rm -f pages/exhibitions
+          rm -rf pages/exhibitions
         shell: bash
       
       # Building the frontend app
