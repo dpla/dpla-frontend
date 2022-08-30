@@ -4,35 +4,35 @@ on:
   workflow_dispatch:
     inputs:
       site_env:
-        description: ""
+        description: "local, pro or user"
         required: true
         default: "local"
       wordpress_url:
-        description: ""
+        description: "WP URL"
         required: true
         default: "https://dpla.wpengine.com"
       user_base_url:
-        description: ""
+        description: "Local URL"
         required: true
         default: "https://recollectionwisconsin.dp.la"
       pro_base_url:
-        description: ""
+        description: "Link to pro site"
         required: true
         default: "https://pro.dp.la"
       pss_base_url:
-        description: ""
+        description: "URL for Primary Source Sets"
         required: true
         default: "https://dp.la/pssapi"
       local_id: 
-        description: ""
+        description: "Key for local"
         required: true
         default: "wisconsin"
       ga_tracking_id: 
-        description: ""
+        description: "Analytics tracking ID"
         required: true
         default: "UA-128040088-1"
       omeka_url: 
-        description: ""
+        description: "Omeka URL"
         required: true
         default: "http://omeka.internal.dp.la"
 
@@ -76,16 +76,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Get branch name (merge)
-        if: github.event_name != 'pull_request'
-        shell: bash
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
-
-      - name: Get branch name (pull request)
-        if: github.event_name == 'pull_request'
-        shell: bash
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
-
+      # Building the frontend app
       - name: Create and populate constants/env.js
         run: |
           touch constants/env.js
@@ -96,9 +87,6 @@ jobs:
           echo export const PSS_BASE_URL = "${{ github.event.inputs.pss_base_url }}"; >> constants/env.js
           echo export const LOCAL_ID = ""${{ github.event.inputs.local_id }}""; >> constants/env.js
           echo export const gaTrackingId = "${{ github.event.inputs.ga_tracking_id }}"; >> constants/env.js
-
-          echo "cat constants/env.js"
-          cat constants/env.js
         shell: bash
 
       - name: Add path 
@@ -106,7 +94,7 @@ jobs:
           echo "HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
         shell: bash
       
-      - name: Build the app 
+      - name: Build the app with Yarn
         env: 
           SITE_ENV: "${{ github.event.inputs.site_env }}"
           LOCAL_ID: "${{ github.event.inputs.local_id }}"
@@ -117,7 +105,19 @@ jobs:
           yarn clean
           yarn build
         shell: bash
-      
+
+      # Get branch names for ECR tagging 
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+      # Push to ECR
       - name: Build, tag, and push image to Amazon ECR
         if: ${{ !env.ACT }}
         id: build-image
