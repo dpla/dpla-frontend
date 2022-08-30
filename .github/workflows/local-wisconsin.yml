@@ -48,14 +48,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
+      - name: Read .nvmrc
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+        id: nvm
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+
+      - name: Set AWS credentials
+        if: ${{ !env.ACT }}
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1    
 
       - name: Login to Amazon ECR
+        if: ${{ !env.ACT }}
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
@@ -81,36 +91,42 @@ jobs:
 
       - name: Create and populate constants/env.js
         run: |
-          touch contants/env.js
-          echo export const SITE_ENV = "${{ github.event.inputs.site_env }}"; >> contants/env.js
-          echo export const USER_BASE_URL = "${{ github.event.inputs.user_base_url }}"; >> contants/env.js
-          echo export const WORDPRESS_URL = ${{ github.event.inputs.wordpress_url }}""; >> contants/env.js
-          echo export const PRO_BASE_URL = "${{ github.event.inputs.pro_base_url }}"; >> contants/env.js
-          echo export const PSS_BASE_URL = "${{ github.event.inputs.pss_base_url }}"; >> contants/env.js
-          echo export const LOCAL_ID = ""${{ github.event.inputs.local_id }}""; >> contants/env.js
-          echo export const gaTrackingId = "${{ github.event.inputs.ga_tracking_id }}"; >> contants/env.js
+          touch constants/env.js
+          echo export const SITE_ENV = "${{ github.event.inputs.site_env }}"; >> constants/env.js
+          echo export const USER_BASE_URL = "${{ github.event.inputs.user_base_url }}"; >> constants/env.js
+          echo export const WORDPRESS_URL = "${{ github.event.inputs.wordpress_url }}"; >> constants/env.js
+          echo export const PRO_BASE_URL = "${{ github.event.inputs.pro_base_url }}"; >> constants/env.js
+          echo export const PSS_BASE_URL = "${{ github.event.inputs.pss_base_url }}"; >> constants/env.js
+          echo export const LOCAL_ID = ""${{ github.event.inputs.local_id }}""; >> constants/env.js
+          echo export const gaTrackingId = "${{ github.event.inputs.ga_tracking_id }}"; >> constants/env.js
 
-          echo "cat contants/env.js"
-          cat contants/env.js
+          echo "cat constants/env.js"
+          cat constants/env.js
         shell: bash
 
-      - name: Build the app 
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Add path 
         run: |
-          export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-          export NVM_DIR="$HOME/.nvm"
-          export SITE_ENV="${{ github.event.inputs.site_env }}"
-          export LOCAL_ID="${{ github.event.inputs.local_id }}""
-          export BASE_URL="${{ github.event.inputs.base_url }}"
-          export OMEKA_URL="${{ github.event.inputs.omeka_url }}"
-          . "$NVM_DIR/nvm.sh"
-          set -e
-          nvm install
-          nvm use
+          echo "HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
+        shell: bash
+      
+      - name: Build the app 
+        env: 
+          SITE_ENV: "${{ github.event.inputs.site_env }}"
+          LOCAL_ID: "${{ github.event.inputs.local_id }}"
+          BASE_URL: "${{ github.event.inputs.base_url }}"
+          OMEKA_URL: "${{ github.event.inputs.omeka_url }}"
+
+        run: |
+          yarn install
           yarn clean
           yarn build
         shell: bash
       
       - name: Build, tag, and push image to Amazon ECR
+        if: ${{ !env.ACT }}
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
