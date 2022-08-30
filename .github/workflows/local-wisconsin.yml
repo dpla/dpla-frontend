@@ -26,6 +26,12 @@ jobs:
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
         id: nvm
       
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64,arm
+
       - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
