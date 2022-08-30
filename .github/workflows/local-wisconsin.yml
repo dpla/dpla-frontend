@@ -51,10 +51,14 @@ jobs:
       - name: Read .nvmrc
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
         id: nvm
+      
       - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      
+      - name: Install Yarn
+        run: npm install -g yarn
 
       - name: Set AWS credentials
         if: ${{ !env.ACT }}
@@ -82,13 +86,6 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
 
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-      #     cache: 'yarn'
-      # - run: yarn run build
-
       - name: Create and populate constants/env.js
         run: |
           touch constants/env.js
@@ -104,9 +101,6 @@ jobs:
           cat constants/env.js
         shell: bash
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - name: Add path 
         run: |
           echo "HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
@@ -120,7 +114,6 @@ jobs:
           OMEKA_URL: "${{ github.event.inputs.omeka_url }}"
 
         run: |
-          yarn install
           yarn clean
           yarn build
         shell: bash
