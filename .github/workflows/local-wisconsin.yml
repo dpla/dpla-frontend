@@ -68,13 +68,13 @@ jobs:
       - name: Create and populate constants/env.js
         run: |
           touch constants/env.js
-          echo "export const SITE_ENV = $SITE_ENV"; >> constants/env.js
-          echo "export const USER_BASE_URL = $USER_BASE_URL"; >> constants/env.js
-          echo "export const WORDPRESS_URL = $WORDPRESS_URL"; >> constants/env.js
-          echo "export const PRO_BASE_URL = $PRO_BASE_URL"; >> constants/env.js
-          echo "export const PSS_BASE_URL = $PSS_BASE_URL"; >> constants/env.js
-          echo "export const LOCAL_ID = $LOCAL_ID"; >> constants/env.js
-          echo "export const gaTrackingId = $GA_TRACKING_ID"; >> constants/env.js
+          echo "export const SITE_ENV = \"$SITE_ENV\";" >> constants/env.js
+          echo "export const USER_BASE_URL = \"$USER_BASE_URL\";" >> constants/env.js
+          echo "export const WORDPRESS_URL = \"$WORDPRESS_URL\";" >> constants/env.js
+          echo "export const PRO_BASE_URL = \"$PRO_BASE_URL\";" >> constants/env.js
+          echo "export const PSS_BASE_URL = \"$PSS_BASE_URL\";" >> constants/env.js
+          echo "export const LOCAL_ID = \"$LOCAL_ID\";" >> constants/env.js
+          echo "export const gaTrackingId = \"$GA_TRACKING_ID\";" >> constants/env.js
 
 
         shell: bash
