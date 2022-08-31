@@ -1,0 +1,15 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "$TASK_DEFINITION"
+        LoadBalancerInfo:
+          ContainerName: "$CONTAINER_NAME"
+          ContainerPort: "$APP_PORT"
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: ["$SUBNET_A","$SUBNET_B","$SUBNET_C"]
+            SecurityGroups: ["$DPLAAPI_SECURITY_GROUP"]
+            AssignPublicIp: "ENABLED"
