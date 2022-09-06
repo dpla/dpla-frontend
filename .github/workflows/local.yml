@@ -1,4 +1,4 @@
-name: Oklahoma Local to ECR
+name: Build DPLA Local Docker + ECR
 
 on:
   workflow_dispatch:
