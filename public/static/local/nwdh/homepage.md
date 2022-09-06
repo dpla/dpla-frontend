@@ -1,8 +1,8 @@
 ## Sharing Our Common Heritage
 
-Northwest Digital Heritage brings together unique historical collections from over 150 libraries, archives, and museums throughout Oregon and Washington. Explore photographs, maps, books, oral histories and more from throughout the Pacific Northwest and beyond.
+Northwest Digital Heritage brings together unique historical collections from over 150 libraries, archives, and museums throughout Oregon, Washington, and Idaho. Explore photographs, maps, oral histories and more from the Pacific Northwest and beyond.
 
-Content for this portal is provided by the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), and [University of Washington Libraries](https://www.lib.washington.edu/).
+Content for this portal is provided by [member institutions](/browse-by-partner) in coordination with the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), [University of Washington Libraries](https://www.lib.washington.edu), and [Oregon Digital](https://oregondigital.org/catalog?).
 
 <br>
 
@@ -28,7 +28,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [Volcanoes](/search?q=volcan*)
 
-- ### [Women’s Suffrage](/search?q=women+AND+suffrag*)
+- ### [Women’s Suffrage](/search?q=women*+AND+suffrag*)
 
   From Emily Olney to Emma Smith Devoe and Abigail Scott Duniway, the equal suffrage movement took early root in the Northwest.
 
@@ -50,7 +50,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   Video interviews with Japanese Americans reveal their experiences during WWII incarceration and more.
 
-  SEE ALSO: [Japanese American internment, WWII](/search?q="japanese+american"+AND+internment+OR+incarceration)
+  SEE ALSO: [Japanese American internment, WWII](/search?q=japan*+AND+internment+OR+incarceration)
 
 - ### [Agricultural Labor Movements](/search?q=%22valley+migrant+league%22+OR+%22farm+labor%22+OR+%22agricultural+labor%22)
 
@@ -66,7 +66,7 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
 - ### [Crater Lake National Park](/search?q=crater+lake)
 
-  An explosive eruption of Mount Mazama 7,700 years ago would become the deepest lake in the United States.
+  An explosive eruption of Mount Mazama 7,700 years ago would create the deepest lake in the United States.
 
   SEE ALSO: [Oregon State Parks](/search?q=%22state+park*)
 
@@ -106,24 +106,35 @@ Content for this portal is provided by the [Oregon Heritage Commission](https://
 
   SEE ALSO: [WPA & CCC](/search?q=WPA+OR+%22Works+Progress+Administration%22+OR+CCC+OR+C.C.C.+OR+%22Civilian+Conservation+Corps%22+OR+%22oregon+art+project%22)
 
+- ### [Spruce Production Division](/search?q=spruce+division)
+
+  During WWI, the U.S. government created the Spruce Production Division in the Northwest to quickly obtain spruce trees necessary for airplane production.  
+  
+  SEE ALSO: [Logging & Lumber Industry](/search?q=logg*+OR+"lumber")
+
+- ### [Ruth Mountaingrove Collection](/search?q=ruth+mountaingrove) 
+
+  Photographs documenting Rootworks, a lesbian commune in Southern Oregon founded during the 1960s-70s feminist and countercultural movements.  
+  
+  SEE ALSO: [LGBTQ+ Pride Events](/search?q="pride+parade"+OR+"pride+march"+OR+"pride+event"+OR+"pride+center"+OR+"gay+rights"+OR+lesb*)
+
 <br>
 
 ## Our Partners:
 
-- [![Orbis Cascade Alliance](/static/local/nwdh/alliance.png)](https://www.orbiscascade.org/)
-
-- [![Institute of Museum and Library Services](/static/local/nwdh/imls.png)](https://www.imls.gov/)
-
-- [![Oregon Digital](/static/local/nwdh/oregon-digital.png)](https://oregondigital.org/)
-
-- [![Oregon Heritage](/static/local/nwdh/oregon-heritage.png)](https://www.oregon.gov/oprd/OH/Pages/default.aspx)
+- [![Washington State Library](/static/local/nwdh/washington-state.png)](https://www.sos.wa.gov/library/)
 
 - [![State Library of Oregon](/static/local/nwdh/state-library.jpg)](https://www.oregon.gov/library/Pages/default.aspx)
 
+- [![Oregon Heritage](/static/local/nwdh/oregon-heritage.png)](https://www.oregon.gov/oprd/OH/Pages/default.aspx)
+
+- [![Orbis Cascade Alliance](/static/local/nwdh/alliance.png)](https://www.orbiscascade.org/)
+
 - [![University of Washington](/static/local/nwdh/uwashington.png)](https://www.washington.edu/)
 
-- [![Washington State Library](/static/local/nwdh/washington-state.png)](https://www.sos.wa.gov/library/)
+- [![Oregon Digital](/static/local/nwdh/oregon-digital.png)](https://oregondigital.org/)
 
+- [![Institute of Museum and Library Services](/static/local/nwdh/imls.png)](https://www.imls.gov/)
 
 
 *Funding for this project is provided in part by the Library Services and Technology Act, administered by the federal Institute of Museum and Library Services.*
