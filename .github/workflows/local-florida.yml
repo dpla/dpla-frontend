@@ -7,7 +7,7 @@ env:
   SITE_ENV:       "local"
   LOCAL_ID:       "florida"
   ECR_REPOSITORY: "dpla-local-florida"
-  GA_TRACKING_ID: "UA-128040088-1"
+  GA_TRACKING_ID: "UA-137505667-1"
   WORDPRESS_URL:  "https://dpla.wpengine.com"
   USER_BASE_URL:  "https://ssdn.dp.la"
   PRO_BASE_URL:   "https://pro.dp.la"
