@@ -1,4 +1,4 @@
-name: Oklahoma Local to ECR
+name: Local Oklahoma ECR
 
 on:
   workflow_dispatch:

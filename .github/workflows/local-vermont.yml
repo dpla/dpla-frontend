@@ -1,4 +1,4 @@
-name: Vermont Local to ECR
+name: Local Vermont to ECR
 
 on:
   workflow_dispatch:
