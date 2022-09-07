@@ -1,4 +1,4 @@
-name: Florida Local to ECR
+name: Local Florida ECR
 
 on:
   workflow_dispatch:

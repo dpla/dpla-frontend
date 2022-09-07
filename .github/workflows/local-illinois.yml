@@ -1,4 +1,4 @@
-name: Illinois Local to ECR
+name:  Local Illinois ECR
 
 on:
   workflow_dispatch:

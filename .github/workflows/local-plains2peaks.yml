@@ -1,4 +1,4 @@
-name: Plains2Peaks Local to ECR
+name: Local Plains to Peaks ECR
 
 on:
   workflow_dispatch:
