@@ -2,7 +2,7 @@
 
 Northwest Digital Heritage brings together unique historical collections from over 150 libraries, archives, and museums throughout Oregon, Washington, and Idaho. Explore photographs, maps, oral histories and more from the Pacific Northwest and beyond.
 
-Content for this portal is provided by [member institutions](/browse-by-partner) in coordination with the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), [University of Washington Libraries](https://www.lib.washington.edu), and [Oregon Digital](https://oregondigital.org/catalog?).
+Content for this portal is provided by [Northwest institutions](/browse-by-partner) in coordination with the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), [University of Washington Libraries](https://www.lib.washington.edu), and [Oregon Digital](https://oregondigital.org/catalog?).
 
 <br>
 
@@ -94,7 +94,7 @@ Content for this portal is provided by [member institutions](/browse-by-partner)
 
   SEE ALSO: [Fires](/search?q=fires)
 
-- ### [Tribal Fishing Rights](/search?q=trib*+OR+native+american+OR+indigenous+AND+fishing)
+- ### [Tribal Fishing Rights](/search?q=boldt%20OR%20sovereignty%20OR%20tribe%20OR%20tribal%20OR%20indigenous%20OR%20indian%20AND%20fishing)
 
   Rights to traditional fisheries and fishing practices have been a crucial component of asserting Northwest tribal sovereignty.
 
