@@ -1,0 +1,120 @@
+name: NJ/DE ECR
+
+on:
+  workflow_dispatch:
+
+env: 
+  SITE_ENV:       "local"
+  LOCAL_ID:       "njde"
+  ECR_REPOSITORY: "dpla-local-njde"
+  GA_TRACKING_ID: ""
+  WORDPRESS_URL:  "https://dpla.wpengine.com"
+  USER_BASE_URL:  "https://njde.dp.la"
+  PRO_BASE_URL:   "https://pro.dp.la"
+  PSS_BASE_URL:   "https://dp.la/pssapi"
+  OMEKA_URL:      "http://omeka.internal.dp.la"
+
+jobs:
+  ecr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+        id: nvm
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64,arm
+
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      
+      - name: Install npm 
+        run: npm install 
+        
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Set AWS credentials
+        if: ${{ !env.ACT }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1    
+
+      - name: Login to Amazon ECR
+        if: ${{ !env.ACT }}
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Delete Exhibitions from app 
+        run: |
+          rm -rf pages/exhibitions
+        shell: bash
+      
+      # Building the frontend app
+      - name: Create and populate constants/env.js
+        run: |
+          touch constants/env.js
+          echo "export const SITE_ENV = \"$SITE_ENV\";" >> constants/env.js
+          echo "export const USER_BASE_URL = \"$USER_BASE_URL\";" >> constants/env.js
+          echo "export const WORDPRESS_URL = \"$WORDPRESS_URL\";" >> constants/env.js
+          echo "export const PRO_BASE_URL = \"$PRO_BASE_URL\";" >> constants/env.js
+          echo "export const PSS_BASE_URL = \"$PSS_BASE_URL\";" >> constants/env.js
+          echo "export const LOCAL_ID = \"$LOCAL_ID\";" >> constants/env.js
+          echo "export const gaTrackingId = \"$GA_TRACKING_ID\";" >> constants/env.js
+
+
+        shell: bash
+
+      - name: Add path 
+        run: |
+          echo "HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
+        shell: bash
+      
+      - name: Build the app with Yarn
+        run: |
+          yarn clean
+          yarn build
+        shell: bash
+
+      # Get branch names for ECR tagging 
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+      # Push to ECR
+      - name: Build, tag, and push image to Amazon ECR
+        if: ${{ !env.ACT }}
+        id: build-image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker buildx build \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          --platform linux/amd64,linux/arm64 . \
+          --push
+      
+
