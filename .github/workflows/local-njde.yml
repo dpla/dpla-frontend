@@ -1,4 +1,4 @@
-name: NJ/DE ECR
+name: Local NJ/DE ECR
 
 on:
   workflow_dispatch:

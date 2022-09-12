@@ -1,4 +1,4 @@
-name: Northwest Digital Heritage ECR
+name: Local NWDH ECR
 
 on:
   workflow_dispatch:
