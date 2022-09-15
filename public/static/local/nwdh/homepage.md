@@ -16,7 +16,7 @@ Content for this portal is provided by [Northwest institutions](/browse-by-partn
 
   SEE ALSO: [Floods](/search?q=flood*)
 
-- ### [Camp Jordan](/search?&subject=%22Camp+George+Jordan+(Seattle%2C+Wash.)%22+OR+%22Camp+Jordan%22)
+- ### [Camp Jordan](/search?q=%22Camp+George+Jordan+(Seattle%2C+Wash.)%22+OR+%22Camp+Jordan%22)
 
   A WWII-era segregated soldier camp in Seattle. The Marjorie Sotero Photograph Collection documents service club activities at Camp Jordan.
 
@@ -68,7 +68,7 @@ Content for this portal is provided by [Northwest institutions](/browse-by-partn
 
   An explosive eruption of Mount Mazama 7,700 years ago would create the deepest lake in the United States.
 
-  SEE ALSO: [Oregon State Parks](/search?q=%22state+park*)
+  SEE ALSO: [Oregon State Parks](/search?q=%22state+park*%22+Oregon)
 
 - ### [Olympic National Park](/search?q=olympic+national+park)
 
