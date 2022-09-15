@@ -405,6 +405,25 @@ const LOCALS = {
         category: "Contact"
       }
     }
+  },
+  nwdh: {
+    theme: "nwdh",
+    tags: [
+        "nwdh"
+    ],
+    name: "Northwest Digital Heritage",
+    background: "nwdh-hero.png",
+    favicon: "favicon.ico",
+    logo: "nwdh-logo.png",
+    heroLogo: "nwdh-hero-logo.png",
+    description: "Northwest Digital Heritage",
+    externalLink: "https://www.northwestdigitalheritage.org/",
+    locationFacet: "%22Northwest%22",
+    subjectFacet: "%22Northwest%22",
+    hasAbout: false,
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    hasBrowseAll: false
   }
 }
 
