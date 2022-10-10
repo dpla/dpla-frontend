@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Script from 'next/script'
 
 import { getMetaPageTitle, getCurrentFullUrl } from "lib";
 
@@ -137,8 +138,8 @@ class DPLAHead extends React.Component {
           />
           {additionalLinks}
           <title>{getMetaPageTitle(pageTitle)}</title>
-          <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,EventSource,Object.values,Object.entries,Object.keys,Array.prototype.includes,Intl.~locale.en" />
-          <script src="/static/js/localforage.min.js" type="text/javascript" />
+          <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,EventSource,Intl.~locale.en" />
+          <Script src="/static/js/localforage.min.js" />
         </Head>
       </div>
     );

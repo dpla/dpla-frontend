@@ -279,9 +279,9 @@ class ContentAndMetadata extends React.Component {
                 </p>
                 <ul className={css.tips}>
                   <li className={css.tip}>
-                    the author's point of view
+                    the author&apos;s point of view
                   </li>
-                  <li className={css.tip}>the author's purpose</li>
+                  <li className={css.tip}>the author&apos;s purpose</li>
                   <li className={css.tip}>historical context</li>
                   <li className={css.tip}>audience</li>
                 </ul>

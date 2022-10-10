@@ -18,13 +18,13 @@ const OtherInfo = () =>
           These sets were created and reviewed by the teachers on the&nbsp;
         </span>
         <a href="https://pro.dp.la/education/education-advisory-committee" className="link">
-          DPLA's Education Advisory Committee.
+          DPLA&apos;s Education Advisory Committee.
         </a>
         {" "}
         <span>
           Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
-            <a>Using DPLA's Primary Source Sets</a>
+            <a>Using DPLA&apos;s Primary Source Sets</a>
           </Link>{" "}
           in your classroom.
         </span>

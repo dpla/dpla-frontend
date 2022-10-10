@@ -58,19 +58,19 @@ const Donate = () =>
               <h2>How will DPLA use your donation?</h2>
               <p>
                 Your donation will directly support the development and
-                expansion of America's largest digital library for people like
+                expansion of America&apos;s largest digital library for people like
                 Adena, a high school school teacher in West Virginia. Adena uses
-                Primary Source Sets in her teaching, and here's a few of her own
+                Primary Source Sets in her teaching, and here&apos;s a few of her own
                 words on how important they are to her:
               </p>
               <blockquote>
                 “I teach in a rural West Virginia high school. Many of my
                 students have never left the state of West Virginia, but the
-                Digital Public Library of America's Primary Source Sets deliver
+                Digital Public Library of America&apos;s Primary Source Sets deliver
                 context and new landscapes while allowing my students to
                 experience the highs and lows of American History, and to view
                 history through a variety of viewpoints, collected from the
-                nation's cultural heritage institutions.”
+                nation&apos;s cultural heritage institutions.”
               </blockquote>
               <p>
                 Please consider making a donation to the Digital Public Library
