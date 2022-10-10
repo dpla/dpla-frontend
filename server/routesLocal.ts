@@ -1,5 +1,13 @@
 import * as serverFunctions from "../lib/serverFunctions";
 import * as locals from "../constants/local";
+import {
+  newsRedirects,
+  topicBrowseRedirects,
+  pssRedirects,
+  exhibitionsRedirects,
+  guidesRedirects,
+  aboutRedirects
+} from "./userRedirects"
 
 const localId = process.env.LOCAL_ID;
 const local = locals["LOCALS"][localId];
@@ -16,6 +24,13 @@ module.exports.dynamic = (app, server) => {
 };
 
 module.exports.static = (app, server) => {
+
+  newsRedirects(server);
+  topicBrowseRedirects(server);
+  pssRedirects(server);
+  exhibitionsRedirects(server);
+  guidesRedirects(server);
+  aboutRedirects(server);
 
   // partner browse routes
 
