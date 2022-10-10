@@ -139,7 +139,7 @@ class DPLAHead extends React.Component {
           {additionalLinks}
           <title>{getMetaPageTitle(pageTitle)}</title>
           <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,EventSource,Intl.~locale.en" />
-          <Script src="/static/js/localforage.min.js" />
+          <script src="/static/js/localforage.min.js" />
         </Head>
       </div>
     );
