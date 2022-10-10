@@ -42,3 +42,4 @@ cypress/reports/*
 cypress/screenshots/*
 cypress/videos/*
 /dpla-frontend.iml
+/next-env.d.ts
