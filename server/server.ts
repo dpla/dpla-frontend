@@ -1,13 +1,13 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const next = require("next");
-const bodyParser = require("body-parser");
-const fetch = require("isomorphic-fetch");
-const cluster = require("cluster");
-const numCPUs = require("os").cpus().length;
+import express from "express";
+import cookieParser from "cookie-parser";
+import next from "next";
+import * as bodyParser from "body-parser";
+import * as fetch from "isomorphic-fetch";
+import * as os from "os";
+import * as serverFunctions from "../lib/serverFunctions";
+import cluster from "cluster";
 
-const serverFunctions = require("./lib/serverFunctions");
-
+const numCPUs = os.cpus().length;
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
 const mustFork = process.env.MUST_FORK === "true" || production;
@@ -19,7 +19,7 @@ if (require.main === module) {
     process.exit(1);
   });
 
-  if (cluster.isMaster && mustFork) {
+  if (cluster.isPrimary && mustFork) {
     // Fork workers, 1 for each CPU.
     cluster
       .on("exit", (worker, code, signal) => {
@@ -28,9 +28,11 @@ if (require.main === module) {
       .on("online", worker => {
         console.log(`worker ${worker.process.pid} online`);
       });
-    for (var i = 0; i < numCPUs; i++) {
+
+    for (let i = 0; i < numCPUs; i++) {
       cluster.fork();
     }
+
   } else {
     // Worker
 
@@ -84,14 +86,14 @@ if (require.main === module) {
         });
 
         server.get(["/contact", "/contact-us"], (req, res) => {
-          app.render(req, res, "/contact-us", req.query);
+          serverFunctions.renderAndCache(app, req, res, "/contact-us", req.query);
         });
 
         // rerouting wp-content links
         server.get("/wp-content/*", (req, res) => {
-          var contentStart = req.url.indexOf("/wp-content");
-          var newPath =
-            process.env.WORDPRESS_URL + req.url.substr(contentStart);
+          const contentStart = req.url.indexOf("/wp-content");
+          const newPath =
+            process.env.WORDPRESS_URL + req.url.substring(contentStart);
           res.redirect(newPath);
         });
 
@@ -132,13 +134,13 @@ if (require.main === module) {
               }),
               body: body
             });
-            const data = await mRes.json();
+            await mRes.json();
 
             // send the response back
             res.sendStatus(200);
           } catch (error) {
             // res.sendStatus(500);
-            throw new Error('An error occured', error)
+            throw new Error('An error occurred', error)
           }
         });
 
@@ -156,7 +158,7 @@ if (require.main === module) {
           const message = req.body.message || "";
           const subject = req.body.subject || "";
           const addressed = "no";
-          const options = {
+          const options: Intl.DateTimeFormatOptions = {
             month: "numeric",
             day: "numeric",
             year: "numeric",
@@ -189,7 +191,7 @@ if (require.main === module) {
               }),
               body: newRow
             });
-            const data = await gRes.json();
+            await gRes.json();
 
             // email
             const to_email = subject !== "Ebooks"
@@ -227,7 +229,7 @@ if (require.main === module) {
           const message = req.body.message || "";
           const url = req.body.url || "";
           const addressed = "no";
-          const options = {
+          const options: Intl.DateTimeFormatOptions = {
             month: "numeric",
             day: "numeric",
             year: "numeric",
@@ -260,7 +262,7 @@ if (require.main === module) {
               }),
               body: newRow
             });
-            const data = await gRes.json();
+            await gRes.json();
 
             // send the response back
             res.sendStatus(200);
@@ -274,9 +276,8 @@ if (require.main === module) {
         return handle(req, res);
       });
 
-      server.listen(PORT, err => {
-        if (err) throw err;
-        console.log("> Ready on http://localhost:" + PORT);
+      server.listen(PORT, () => {
+        console.log("> Listening on " + PORT);
       });
     });
   } // if (cluster.isMaster)

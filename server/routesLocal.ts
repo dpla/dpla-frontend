@@ -1,6 +1,5 @@
-const proxy = require("express-http-proxy");
-const serverFunctions = require("./lib/serverFunctions");
-const locals = require("./constants/local");
+import * as serverFunctions from "../lib/serverFunctions";
+import * as locals from "../constants/local";
 
 const localId = process.env.LOCAL_ID;
 const local = locals["LOCALS"][localId];
@@ -17,6 +16,13 @@ module.exports.dynamic = (app, server) => {
 };
 
 module.exports.static = (app, server) => {
+
+  // partner browse routes
+
+  server.get("/browse-by-partner", (req, res) => {
+    app.render(req, res, "/browse-by-partner", req.query);
+  });
+
   server.get("/", (req, res) => {
     const actualPage = "/local";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);

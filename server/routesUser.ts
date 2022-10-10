@@ -1,5 +1,5 @@
-const serverFunctions = require("./lib/serverFunctions");
-const proxy = require("express-http-proxy");
+import * as serverFunctions from "../lib/serverFunctions";
+import proxy from "express-http-proxy";
 
 module.exports = (app, server) => {
 
