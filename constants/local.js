@@ -424,7 +424,25 @@ const LOCALS = {
     hasSidebar: false,
     hasBrowseByPartner: true,
     hasBrowseAll: false
+  },
+  texas: {
+    theme: "texas",
+    filters: [
+        "provider.@id:http%3A//dp.la/api/contributor/txdl"
+    ],
+    name: "TxHub",
+    background: "",
+    favicon: "favicon.ico",
+    logo: "texas-logo.png",
+    description: "TxHub",
+    locationFacet: "%22Texas%22",
+    subjectFacet: "%22Texas%22",
+    hasAbout: false,
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    hasBrowseAll: false
   }
+
 }
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
