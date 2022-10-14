@@ -8,6 +8,7 @@ import {
   guidesRedirects,
   aboutRedirects
 } from "./userRedirects"
+import {proRedirects} from "./proRedirects";
 
 const localId = process.env.LOCAL_ID;
 const local = locals["LOCALS"][localId];
@@ -31,6 +32,7 @@ module.exports.static = (app, server) => {
   exhibitionsRedirects(server);
   guidesRedirects(server);
   aboutRedirects(server);
+  proRedirects(server);
 
   // partner browse routes
 

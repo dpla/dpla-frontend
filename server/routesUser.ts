@@ -1,7 +1,12 @@
 import * as serverFunctions from "../lib/serverFunctions";
 import proxy from "express-http-proxy";
+import {localRedirects} from "./localRedirects";
+import {proRedirects} from "./proRedirects";
 
 module.exports = (app, server) => {
+
+  localRedirects(server);
+  proRedirects(server);
 
   server.get(
       [

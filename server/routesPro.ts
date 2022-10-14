@@ -1,7 +1,23 @@
 import * as serverFunctions from "../lib/serverFunctions";
 import {SECTIONS}  from "../constants/pro";
+import {
+  aboutRedirects,
+  exhibitionsRedirects,
+  guidesRedirects,
+  pssRedirects,
+  topicBrowseRedirects
+} from "./userRedirects";
+import {localRedirects} from "./localRedirects";
 
 module.exports = (app, server) => {
+
+  topicBrowseRedirects(server);
+  pssRedirects(server);
+  exhibitionsRedirects(server);
+  guidesRedirects(server);
+  aboutRedirects(server);
+  localRedirects(server);
+
   server.get("/", (req, res) => {
     const actualPage = "/pro";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
@@ -22,17 +38,11 @@ module.exports = (app, server) => {
     );
   });
 
-  // allow relative /news links in pro site
-  server.get(["/news/*", "/news"], (req, res) => {
-    const contentStart = req.url.indexOf("/news");
-    const newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
-    res.redirect(newPath);
-  });
 
   // allow relative /search links in pro site
   server.get("/search", (req, res) => {
     const contentStart = req.url.indexOf("/search");
-    const newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
+    const newPath = process.env.USER_BASE_URL + req.url.substring(contentStart);
     res.redirect(newPath);
   });
 
