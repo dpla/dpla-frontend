@@ -1,8 +1,8 @@
 const fs = require('fs').promises;
 const axios = require('axios').default;
-const config = require('../cypress.json');
+const config = require('../cypress.config');
 
-const baseUrl = config.baseUrl;
+const baseUrl = config.e2e.baseUrl;
 
 const PSS_BASE_URL = process.env.PSS_BASE_URL || 'https://dp.la/pssapi';
 const WORDPRESS_URL = process.env.WORDPRESS_URL || 'https://dpla.wpengine.com';
