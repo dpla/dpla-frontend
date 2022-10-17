@@ -18,12 +18,12 @@ describe('The Home Page', () => {
         cy.contains('Get the latest DPLA news in your inbox');
 
         cy.getDataCy('home-hero').within(() => {
-            cy.getDataCy('dpla-logo').snapshot();
-            cy.get('form').snapshot();
+            cy.getDataCy('dpla-logo').toMatchSnapshot();
+            cy.get('form').toMatchSnapshot();
         });
 
-        cy.getDataCy('stay-informed').snapshot();
-        cy.getDataCy('guides').snapshot();
+        cy.getDataCy('stay-informed').toMatchSnapshot();
+        cy.getDataCy('guides').toMatchSnapshot();
 
         cy.getDataCy('Exhibitions').should('exist');
         cy.getDataCy("Sets").should('exist');

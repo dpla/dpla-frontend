@@ -59,12 +59,12 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.5.5",
-    "@cypress/snapshot": "^2.1.7",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.2",
     "babel-preset-react-app": "^9.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "cypress": "^10.10.0",
+    "cypress-plugin-snapshots": "^1.4.4",
     "eslint": "^8.0.0",
     "file-loader": "^4.1.0",
     "identity-obj-proxy": "^3.0.0",

@@ -1,5 +1,8 @@
 const { defineConfig } = require('cypress')
 
+const { initPlugin } = require('cypress-plugin-snapshots/plugin');
+
+
 module.exports = defineConfig({
     e2e: {
         baseUrl: 'http://localhost:3000',
@@ -9,6 +12,10 @@ module.exports = defineConfig({
         excludeSpecPattern: [
             "**/__snapshots__/*",
             "**/__image_snapshots__/*"
-        ]
+        ],
+        setupNodeEvents(on, config) {
+            initPlugin(on, config);
+            return config;
+        }
     }
 })

@@ -13,9 +13,10 @@ describe('The bottom nav', () => {
     it(`hasn't changed on /`, () => {
         const globalHeader = cy.getDataCy('footer');
         globalHeader.should('be.visible')
-        globalHeader.snapshot();
+        globalHeader.toMatchSnapshot();
 
     });
+
     ['DPLA', 'Tools'].forEach((section) => {
         bottomnav[section].forEach((destPage) => {
             it(`on /, ${destPage.selector} navigates to ${destPage.path}`, () => {

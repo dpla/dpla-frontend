@@ -12,7 +12,7 @@ describe('The big screen top nav', () => {
         cy.getDataCy('menu-button').should('not.be.visible');
         const globalHeader = cy.getDataCy('global-header');
         globalHeader.should('be.visible')
-        globalHeader.snapshot();
+        globalHeader.toMatchSnapshot();
 
     });
     topnav.forEach((destPage) => {

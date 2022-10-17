@@ -18,7 +18,7 @@ describe(
         menuButton.click();
         const smallScreenHeader = cy.getDataCy('small-screen-header')
         smallScreenHeader.should('be.visible');
-        smallScreenHeader.snapshot();
+        smallScreenHeader.toMatchSnapshot();
     });
 
     topnav.forEach((destPage) => {

@@ -6,7 +6,7 @@ describe(
             cy
                 .visit('/exhibitions')
                 .getDataCy('exhibitions-home')
-                .snapshot();
+                .toMatchSnapshot();
         })
     }
 );
