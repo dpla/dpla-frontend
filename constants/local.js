@@ -395,14 +395,6 @@ const LOCALS = {
         description: "",
         isTopLevel: true,
         category: "Resources"
-      },
-      "/contact": {
-        parentDir: "/contact",
-        title: "Contact",
-        path: "contact.md",
-        description: "",
-        isTopLevel: true,
-        category: "Contact"
       }
     }
   },
@@ -440,7 +432,17 @@ const LOCALS = {
     hasAbout: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
-    hasBrowseAll: false
+    hasBrowseAll: false,
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
   }
 
 }
