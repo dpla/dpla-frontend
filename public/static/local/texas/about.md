@@ -1,0 +1,7 @@
+TxHub is a service hub of the Digital Public Library of America (DPLA) for Texas. We provide descriptive records for over 1.8 million cultural heritage items to DPLA, where those items can be discovered alongside resources from around the country. These materials are held in institutions all across the state of Texas, including libraries of all sizes, archives, museums, historical commissions, churches, and more. The majority of the items are from and about Texas, but you’ll also find materials about the rest of the United States and the world.
+
+TxHub is a collaborative effort between the [Texas Digital Library](http://www.tdl.org/) consortium and [The Portal to Texas History](https://texashistory.unt.edu/) of the [University of North Texas](https://library.unt.edu/digital-projects-unit/). The Portal to Texas History supplies metadata for its collections and partners directly to DPLA. Texas Digital Library aggregates metadata from its member institutions’ digital repositories and shares that with DPLA.
+
+This website combines the collections that the Portal to Texas History and TDL members share with DPLA in a single, easy-to-use discovery platform. We hope that it helps illuminate connections between collections all around the state.
+
+To find out more or discuss sharing your institution’s materials with TxHub, please contact [The Portal to Texas History](https://texashistory.unt.edu/about/portal/collaboration/) or [Texas Digital Library](https://www.tdl.org/services/txhub-dpla-aggregation/).
