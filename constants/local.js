@@ -427,8 +427,8 @@ const LOCALS = {
   },
   texas: {
     theme: "texas",
-    filters: [
-        "provider.@id:http%3A//dp.la/api/contributor/txdl"
+    tags: [
+        "texas"
     ],
     name: "TxHub",
     background: "",
