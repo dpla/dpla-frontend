@@ -57,11 +57,11 @@ const Donate = () =>
               Your donation will help support a thriving national digital library that is free and open to the public. This includes:
               </p>
               <ul>
-                <li>Maintaining <a href="https://dp.la">DPLA</a> as a single access point to search and discover more than 45 million cultural heritage artifacts, including images, documents, sounds, and videos, from more than 5,000 institutions across the country.</li>
-                <li>Growing the <a href ="https://palacebookshelf.dp.la/palace_bookshelf">Palace Bookshelf</a> collection of more than 15,000 open-access ebooks, which are always free to libraries and readers and are available to download 24 hours a day, 7 days a week.</li>
+                <li>Maintaining <a className={css.whiteLink} href="https://dp.la">DPLA</a> as a single access point to search and discover more than 45 million cultural heritage artifacts, including images, documents, sounds, and videos, from more than 5,000 institutions across the country.</li>
+                <li>Growing the <a className={css.whiteLink} href ="https://palacebookshelf.dp.la/palace_bookshelf">Palace Bookshelf</a> collection of more than 15,000 open-access ebooks, which are always free to libraries and readers and are available to download 24 hours a day, 7 days a week.</li>
                 <li>Making possible DPLA's collaborative work with libraries and archives nationwide to share knowledge and ideas and improve our work, ultimately making it easier to tell the story of our nation through cultural heritage artifacts.</li>
               </ul>
-              <p><a href="https://pro.dp.la/about-dpla-pro/strategic-plan">Find out more about our mission here.</a></p>
+              <p><a className={css.whiteLink} href="https://pro.dp.la/about-dpla-pro/strategic-plan">Find out more about our mission here.</a></p>
              
             </div>
           </div>
