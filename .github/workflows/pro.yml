@@ -6,7 +6,7 @@ on:
 env: 
   SITE_ENV:       "pro"
   LOCAL_ID:       ""
-  ECR_REPOSITORY: "dpla-frontend-pro"
+  ECR_REPOSITORY: "frontend-pro"
   GA_TRACKING_ID: "UA-128040088-1"
   WORDPRESS_URL:  "https://dpla.wpengine.com"
   USER_BASE_URL:  "https://pro.dp.la"
