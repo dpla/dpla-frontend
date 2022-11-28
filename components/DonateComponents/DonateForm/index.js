@@ -126,13 +126,13 @@ class DonateForm extends React.Component {
           <li
             className={`${css.otherAmount} ${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}
           >
-            <input
+            <div className=""><input
               type="text"
               aria-label="Give other amount"
               placeholder="Other amount"
               value={this.state.amountText}
               onChange={e => this.handleAmountText(e)}
-            />
+            /></div>
           </li>
         </ul>
         <hr />
