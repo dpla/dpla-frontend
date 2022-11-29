@@ -3,14 +3,29 @@ import React from "react";
 import css from "./HarmfulContent.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
+import {SITE_ENV, LOCAL_ID} from "constants/env";
+import {LOCALS} from "constants/local";
+
+
 class HarmfulContent extends React.Component {
 
   render() {
+    let linkUrl = "https://dp.la/about/harmful-language-statement";
+    let linkText = "DPLA's Statement on Potentially Harmful Content";
+
+    if (SITE_ENV === "local") {
+      const local = LOCALS[LOCAL_ID];
+      linkUrl = local['hlsLink'] ? local['hlsLink'] : linkUrl;
+      linkText = local['hlsLinkText'] ? local['hlsLinkText'] : linkText;
+    }
+
+    let hlsLink = <>Please read <a href={linkUrl}>{linkText}</a>.</>;
+
     return (
       <div className={css.wrapper}>
         <div className={utils.container}>
           <p className={css.harmfulContent}>
-            Please read <a href="https://dp.la/about/harmful-language-statement">DPLA’s Statement on Potentially Harmful Content</a>.
+            {hlsLink}
           </p>
         </div>
       </div>
