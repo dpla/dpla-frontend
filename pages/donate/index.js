@@ -47,36 +47,22 @@ const Donate = () =>
             {/* testimonial */}
             <div className={`${contentCss.content} ${css.testimonialImage}`}>
               <img
-                srcSet="/static/images/adena_lo.jpg,
-                        /static/images/adena_hi.jpg 2x"
-                src="/static/images/adena_lo.jpg"
-                alt="Adena, a high school school teacher in West Virginia, leads her students in a U.S. History lesson using DPLA Primary Source Sets."
+                src="/static/images/read.jpg"
+                alt="An e-reader"
               />
-              <span>Adena, a high school school teacher in West Virginia</span>
             </div>
             <div className={contentCss.content}>
               <h2>How will DPLA use your donation?</h2>
               <p>
-                Your donation will directly support the development and
-                expansion of America's largest digital library for people like
-                Adena, a high school school teacher in West Virginia. Adena uses
-                Primary Source Sets in her teaching, and here's a few of her own
-                words on how important they are to her:
+              Your donation will help support a thriving national digital library that is free and open to the public. This includes:
               </p>
-              <blockquote>
-                “I teach in a rural West Virginia high school. Many of my
-                students have never left the state of West Virginia, but the
-                Digital Public Library of America's Primary Source Sets deliver
-                context and new landscapes while allowing my students to
-                experience the highs and lows of American History, and to view
-                history through a variety of viewpoints, collected from the
-                nation's cultural heritage institutions.”
-              </blockquote>
-              <p>
-                Please consider making a donation to the Digital Public Library
-                of America so we can continue to build these important
-                educational materials.
-              </p>
+              <ul>
+                <li>Maintaining <a className={css.whiteLink} href="https://dp.la">DPLA</a> as a single access point to search and discover more than 45 million cultural heritage artifacts, including images, documents, sounds, and videos, from more than 5,000 institutions across the country.</li>
+                <li>Growing the <a className={css.whiteLink} href ="https://palacebookshelf.dp.la/palace_bookshelf">Palace Bookshelf</a> collection of more than 15,000 open-access ebooks, which are always free to libraries and readers and are available to download 24 hours a day, 7 days a week.</li>
+                <li>Making possible DPLA's collaborative work with libraries and archives nationwide to share knowledge and ideas and improve our work, ultimately making it easier to tell the story of our nation through cultural heritage artifacts.</li>
+              </ul>
+              <p><a className={css.whiteLink} href="https://pro.dp.la/about-dpla-pro/strategic-plan">Find out more about our mission here.</a></p>
+             
             </div>
           </div>
         </div>
