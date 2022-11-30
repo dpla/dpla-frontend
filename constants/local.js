@@ -67,7 +67,9 @@ const LOCALS = {
     externalLink: "https://recollectionwisconsin.org",
     contactLink: "https://recollectionwisconsin.org/contact",
     hasAbout: false,
-    hasBrowseByPartner: true
+    hasBrowseByPartner: true,
+    hlsLink: "https://recollectionwisconsin.org/harmful-content-statement",
+    hlsLinkText: "our Statement on Harmful Content"
   },
   illinois: {
     theme: "illinois",
