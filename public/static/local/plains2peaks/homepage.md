@@ -24,7 +24,7 @@ states.
   tourism to become one of the region's largest industries with several National Parks, a world-class ski industry and
   outdoor recreation destination that includes camping, mountaineering, endurance sports, and so much more.
 
-- ### [LGBTQ+](/search?q=Lesbian+OR+LGBT*+OR+bisexual)
+- ### [LGBTQ+](/search?q=Lesbian+OR+LGBT*+OR+bisexual+OR+%22gay+rights%22)
 
   Discover documents, photographs, oral histories, and artifacts that document the compelling and complex story of
   Colorado and Wyoming’s LGBTQ+ community.
