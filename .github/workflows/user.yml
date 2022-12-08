@@ -13,6 +13,7 @@ env:
   PRO_BASE_URL:   "https://pro.dp.la"
   PSS_BASE_URL:   "https://dp.la/pssapi"
   OMEKA_URL:      "http://omeka.internal.dp.la"
+  BASE_URL:       "http://staging.dp.la"
 
 jobs:
   ecr:
