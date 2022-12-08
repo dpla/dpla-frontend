@@ -63,11 +63,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
-      - name: Delete Exhibitions from app 
-        run: |
-          rm -rf pages/exhibitions
-        shell: bash
       
       # Building the frontend app
       - name: Create and populate constants/env.js
