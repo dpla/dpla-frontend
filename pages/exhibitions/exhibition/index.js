@@ -10,7 +10,10 @@ import {SEO_TYPE} from "constants/exhibition";
 
 import {
     getDplaItemIdFromExhibit,
+    loadExhibitions,
+    loadExhibition
 } from "lib";
+
 import {washObject} from "lib/washObject";
 import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 
@@ -48,20 +51,26 @@ class Exhibition extends React.Component {
     }
 }
 
-export const getServerSideProps = async ({query}) => {
-    const currentUrl = process.env.BASE_URL;
-    const {exhibition: exhibitionSlug} = query;
-    const exhibitionsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
-    const exhibitionsJson = await exhibitionsRes.json();
-    const exhibition = exhibitionsJson.find(
-        exhibition => exhibition.slug === exhibitionSlug
-    );
+export async function getStaticPaths() {
+    const exhibitions = await loadExhibitions();
+    const slugs = exhibitions.exhibitions.map(exhibition => {exhibition.slug});
+    const paths = slugs.map(slug => { params: { slug }});
 
-    const exhibitPageRes = await fetch(
-        `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibition.id}`
-    );
-    const exhibitPageJson = await exhibitPageRes.json();
-    const sortedExhibitPages = exhibitPageJson
+    return {
+      paths,
+      fallback: false
+    }
+  }
+
+export const getStaticProps = async (context) => {
+    const currentUrl = process.env.BASE_URL;
+
+    // load exhibition
+    const exhibition = await loadExhibition(context.slug)
+
+    // load page
+
+    const sortedExhibitPages = exhibition.pages
         .filter(exhibition => !exhibition.parent)
         .sort((a, b) => a.order - b.order);
 

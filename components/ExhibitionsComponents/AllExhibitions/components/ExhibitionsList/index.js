@@ -21,11 +21,6 @@ const Exhibition = withRouter(({exhibition: exhibition, router }) => {
           }}
         >
           <a className={` ${css.exhibition}`}>
-            {exhibition.new &&
-              !featured &&
-              <div className={css.newBanner}>
-                New
-              </div>}
             <img
               alt=""
               className={css.exhibitionImage}
