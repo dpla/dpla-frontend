@@ -1,21 +1,7 @@
 const serverFunctions = require("./lib/serverFunctions");
-const proxy = require("express-http-proxy");
 
 module.exports = (app, server) => {
 
-  server.get(
-      [
-        "/api/exhibits/files/square_thumbnails/*",
-        "/api/exhibits/files/thumbnails/*",
-        "/api/exhibits/files/original/*",
-        "/api/exhibits/files/fullsize/*"
-      ],
-      proxy(process.env.OMEKA_URL, {
-        proxyReqPathResolver: function(req) {
-          return req.url.replace("/api/exhibits/files", "/files");
-        }
-      })
-  );
 
   server.get("/", (req, res) => {
     const actualPage = "/";
@@ -141,63 +127,6 @@ module.exports = (app, server) => {
     const params = {
       set: req.params.set,
       source: req.params.source
-    };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
-  });
-
-  // exhibitions routes
-
-  server.get(["/exhibitions", "/exhibitions"], (req, res) => {
-    const actualPage = "/exhibitions";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  });
-
-  server.get("/exhibitions/:exhibition", (req, res) => {
-    const actualPage = "/exhibitions/exhibition";
-    const params = {
-      exhibition: req.params.exhibition
-    };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
-  });
-
-  server.get("/exhibitions/:exhibition/:section/:subsection", (req, res) => {
-    const actualPage = "/exhibitions/exhibition/section/subsection";
-    const params = {
-      exhibition: req.params.exhibition,
-      section: req.params.section,
-      subsection: req.params.subsection
-    };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
-  });
-
-  // empty subsection signals that the Introduction subsection should be used
-  server.get("/exhibitions/:exhibition/:section", (req, res) => {
-    const actualPage = "/exhibitions/exhibition/section/subsection";
-    const params = {
-      exhibition: req.params.exhibition,
-      section: req.params.section,
-      subsection: ""
     };
     serverFunctions.renderAndCache(
       app,

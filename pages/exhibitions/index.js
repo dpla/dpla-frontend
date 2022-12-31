@@ -4,7 +4,7 @@ import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
 import {TITLE} from "constants/exhibitions";
-import {loadExhibitions} from "lib/exhibitions/exhibitionsStatic";
+import {loadExhibitionList} from "lib/exhibitions/exhibitionsStatic";
 
 const Exhibitions = ({exhibitions}) =>
     <MainLayout pageTitle={TITLE}>
@@ -15,7 +15,7 @@ const Exhibitions = ({exhibitions}) =>
     </MainLayout>;
 
 export const getStaticProps = async () => {
-    const exhibitions = loadExhibitions();
+    const exhibitions = await loadExhibitionList();
     return {
         props: exhibitions
     };

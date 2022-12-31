@@ -13,12 +13,14 @@
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "yarn && BUNDLE_ANALYZE=true yarn build",
     "test": "mocha",
+    "lint": "next lint",
     "cy:fixtures": "node cypress/restFixtures.js",
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run": "./node_modules/.bin/cypress run",
     "cy:record": "./node_modules/.bin/cypress run --record"
   },
   "dependencies": {
+    "process":  "^0.11.10",
     "@babel/core": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/core": "^4.11.3",
@@ -67,6 +69,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "cypress": "^6.8.0",
     "eslint": "^8.0.0",
+    "eslint-config-next": "^13.1.1",
     "file-loader": "^4.1.0",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^9.2.1",
@@ -77,6 +80,6 @@
     "url-loader": "^2.1.0"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "next/core-web-vitals"
   }
 }
