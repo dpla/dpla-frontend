@@ -9,7 +9,7 @@ const TagList = ({ url, currentTag, keywords, author }) =>
   <ul className={css.collapsed}>
     {(currentTag || author !== "" || keywords !== "") &&
       <li>
-        <a href="/news">All News</a>
+        <Link href="/news"><a>All News</a></Link>
       </li>}
     {!(currentTag || author !== "" || keywords !== "") && <li>All News</li>}
     {NEWS_TAGS.map(tag => {

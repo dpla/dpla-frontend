@@ -25,7 +25,7 @@ import {washObject} from "lib/washObject";
 
 class NewsPage extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             keywords: this.props.router.query.k || "",
             author: this.props.router.query.author || "",
@@ -34,18 +34,18 @@ class NewsPage extends React.Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (
-            nextProps.router.query.k !== this.state.keywords ||
-            nextProps.router.query.author !== this.state.author ||
-            (nextProps.author && nextProps.author.name !== this.state.authorName) ||
-            nextProps.router.query.tag !== this.state.tag
+            this.props.router.query.k !== this.state.keywords ||
+            this.props.router.query.author !== this.state.author ||
+            (this.props.author && this.props.author.name !== this.state.authorName) ||
+            this.props.router.query.tag !== this.state.tag
         ) {
             this.setState({
-                keywords: nextProps.router.query.k || "",
-                author: nextProps.router.query.author || "",
-                authorName: nextProps.author ? nextProps.author.name : "",
-                tag: nextProps.router.query.tag || ""
+                keywords: this.props.router.query.k || "",
+                author: this.props.router.query.author || "",
+                authorName: this.props.author ? nextProps.author.name : "",
+                tag: this.props.router.query.tag || ""
             });
         }
     }
@@ -183,7 +183,7 @@ class NewsPage extends React.Component {
     }
 }
 
-export const getServerSideProps = async ({req, query, res}) => {
+export const getServerSideProps = async ({query}) => {
     // sidebar menu fetch
     const menuResponse = await fetch(
         SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT

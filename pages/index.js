@@ -5,8 +5,8 @@ import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
 
 import {
-    addCommasToNumber,
-    getMenuItemUrl
+    addCommasToNumber, exhibitHomePage,
+    getMenuItemUrl, loadExhibition
 } from "lib";
 
 import {NUMBER_OF_USER_GUIDES_TO_SHOW} from "constants/home";
@@ -24,7 +24,6 @@ import {
 import {API_SETTINGS_ENDPOINT} from "constants/site";
 import {SITE_ENV} from "constants/env";
 import {washObject} from "lib/washObject";
-import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
 
 const Home = ({
                   sourceSets,
@@ -51,7 +50,6 @@ const Home = ({
     </MainLayout>;
 
 export const getServerSideProps = async () => {
-    const currentUrl = process.env.BASE_URL;
 
     // fetch home info
     // 1. fetch the settings from WP
@@ -67,62 +65,37 @@ export const getServerSideProps = async () => {
 
     // fetch featured exhibits data
 
-    const featuredExhibits = homepageJson.acf.featured_exhibits;
-    const featuredExhibitIds = featuredExhibits.map(
-        exhibit => exhibit.exhibit_id
-    );
+    //homepageJson.acf.featured_exhibits;
+    // hardcoded here temporarily
+    const featuredExhibitSlugs = [
+        "japanese-internment",
+        "american-aviatrixes",
+        "history-of-survivance",
+        "history-us-public-libraries",
+        "mapping-american-civil-war",
+        "children-progressive-era"
+    ];
 
-    const exhibitsRes = await fetch(`${process.env.OMEKA_URL}/api/exhibits`);
-    const exhibitsJson = await exhibitsRes.json();
-    const featuredExhibitions = [];
-    if (exhibitsJson.length > 0)
-        featuredExhibitIds.forEach(id => {
-            const featuredExhibit = exhibitsJson.find(
-                exhibit => exhibit.id === parseInt(id, 10)
-            );
-            if (featuredExhibit) {
-                featuredExhibitions.push(
-                    Object.assign({}, featuredExhibit, {
-                        href: `/exhibitions/exhibition?exhibition=${featuredExhibit.slug}`,
-                        as: `/exhibitions/${featuredExhibit.slug}`
-                    })
-                );
-            }
-        });
+    const featuredExhibits = await Promise.all(
+        featuredExhibitSlugs.map(async exhibit => {
+            const exhibitJson = await loadExhibition(exhibit);
+            const homePage = exhibitHomePage(exhibitJson);
+            const thumbnailUrl = homePage.page_blocks[0].attachments[0].files[0].file_urls.fullsize;
 
-    const featuredExhibitionsWithData = await Promise.all(
-        featuredExhibitions.map(async exhibit => {
-            const exhibitPageUrl =
-                `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${exhibit.id}`;
-            const exhibitPageRes = await fetch(exhibitPageUrl);
-            const exhibitJson = await exhibitPageRes.json();
-
-            const itemId = exhibitJson.find(
-                exhibit =>
-                    exhibit.slug === "home-page" ||
-                    exhibit.slug === "homepage" ||
-                    exhibit.order === 0
-            ).page_blocks[0].attachments[0].item.id;
-            const filesRes = await fetch(
-                `${process.env.OMEKA_URL}/api/files?item=${itemId}`
-            );
-            const filesJson = await filesRes.json();
-
-            const thumbnailUrl = exhibitFilesHelper(
-                filesJson[0].file_urls.fullsize,
-                currentUrl
-            );
-
-            return Object.assign({}, exhibit, {
+            return {
+                name: exhibitJson.title,
+                repImageUrl: thumbnailUrl,
                 thumbnailUrl,
-                name: exhibit.title,
-                id: exhibit.slug
-            });
+                featured: false,
+                href: `/exhibitions/${exhibitJson.slug}`,
+                as: `/exhibitions/${exhibitJson.slug}`
+            }
         })
     );
 
-    // fetch featured primary source sets data
+    console.log(featuredExhibits);
 
+    // fetch featured primary source sets data
     const featuredPrimarySourceSets =
         homepageJson.acf.featured_primary_source_sets;
 
@@ -187,7 +160,7 @@ export const getServerSideProps = async () => {
     const props = washObject({
         sourceSets,
         guides,
-        exhibitions: featuredExhibitionsWithData,
+        exhibitions: featuredExhibits,
         headerDescription,
         news: newsItems,
         content: homepageJson

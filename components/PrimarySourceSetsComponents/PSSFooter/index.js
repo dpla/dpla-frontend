@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 import {
-  DPLA_CONTACT_EMAIL,
-  PSS_SUGGESTION_URL,
   PSS_NHD_URL
 } from "constants/site";
 
@@ -15,16 +13,13 @@ const OtherInfo = () =>
     <div className={`${utils.container} ${css.otherInfo}`}>
       <p className={css.p}>
         <span>
-          These sets were created and reviewed by the teachers on the&nbsp;
-        </span>
-        <a href="https://pro.dp.la/education/education-advisory-committee" className="link">
-          DPLA's Education Advisory Committee.
-        </a>
+          These sets were created and reviewed by teachers.
         {" "}
+        </span>
         <span>
           Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
-            <a>Using DPLA's Primary Source Sets</a>
+            <a>Using DPLA&apos;s Primary Source Sets</a>
           </Link>{" "}
           in your classroom.
         </span>
@@ -32,19 +27,11 @@ const OtherInfo = () =>
       <p className={css.p}>
         <span>
           To give feedback, contact us at {" "}
-          <a className={utils.link} href={`mailto:${DPLA_CONTACT_EMAIL}`}>
-            education@dp.la
-          </a>. You can also{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link external"
-            href={PSS_SUGGESTION_URL}
-          >
-            suggest a primary source set topic
-          </a>{" "}
-          or view resources for{" "}
-          <a className="link external" target="_blank" href={PSS_NHD_URL}>
+          <a className={utils.link} href={`mailto:info@dp.la`}>
+            info@dp.la
+          </a>. You can also
+          {" "}view resources for{" "}
+          <a className="link external" href={PSS_NHD_URL}>
             National History Day
           </a>.
         </span>

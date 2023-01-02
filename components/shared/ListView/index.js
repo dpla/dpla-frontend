@@ -274,7 +274,7 @@ class ListView extends React.Component {
         const realId = item.itemDplaId || item.id;
         return this.state.selectedHash[realId] !== undefined;
       })
-      .map((item, index) => {
+      .map((item) => {
         const realId = item.itemDplaId || item.id;
         const thumbnailUrl = item.thumbnailUrl.indexOf("placeholderImages") ===
           -1
@@ -455,7 +455,6 @@ class ListView extends React.Component {
                   <ItemDescription description={item.description} />
                   <a
                     href={item.sourceUrl}
-                    target="_blank"
                     rel="noopener"
                     className={`clickThrough external ${css.itemSource}`}
                   >

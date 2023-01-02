@@ -68,12 +68,6 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
 });
 
 class DateFacet extends React.Component {
-    // componentWillMount() {
-    //     this.setState({
-    //         after: this.props.after || "",
-    //         before: this.props.before || ""
-    //     });
-    // }
 
     constructor(props) {
         super(props);
@@ -83,14 +77,14 @@ class DateFacet extends React.Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (
-            nextProps.after !== this.state.after ||
-            nextProps.before !== this.state.before
+            this.props.after !== prevProps.after ||
+            this.props.before !== prevProps.before
         ) {
             this.setState({
-                after: nextProps.after || "",
-                before: nextProps.before || ""
+                after: this.props.after || "",
+                before: this.props.before || ""
             });
         }
     }
@@ -225,12 +219,12 @@ class DateFacet extends React.Component {
 
 class Sidebar extends React.Component {
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (
             possibleFacets.some(
-                facet => nextProps.facets[facet] !== this.props.facets[facet]
+                facet => this.props.facets[facet] !== prevProps.facets[facet]
             ) ||
-            nextProps.query !== this.props.query
+            prevProps.query !== this.props.query
         ) {
             this.forceUpdate();
         }

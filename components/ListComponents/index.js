@@ -63,7 +63,7 @@ export const ListEmpty = () =>
       <source src="/static/video/list-add.mp4" type="video/mp4" />
       <source src="/static/video/list-add.ogv" type="video/ogg" />
       <p>
-        Your browser doesn't support HTML5 video. Here is
+        Your browser doesn&apos;t support HTML5 video. Here is
         a <a href="/static/video/list-add.mp4">link to the video</a> instead.
       </p>
     </video>
@@ -72,7 +72,7 @@ export const ListEmpty = () =>
 export const ListNote = () =>
   <div className={`${css.note} ${utils.colXs12}`}>
     <p>
-      <strong>Note:</strong> You won't see lists created in
+      <strong>Note:</strong> You won&apos;t see lists created in
       another browser here. To view those lists, open the browser
       you used when creating them.
     </p>
@@ -100,7 +100,7 @@ export const ListsEmpty = () =>
       <source src="/static/video/list-new.mp4" type="video/mp4" />
       <source src="/static/video/list-new.ogv" type="video/ogg" />
       <p>
-        Your browser doesn't support HTML5 video. Here is
+        Your browser doesn&apos;t support HTML5 video. Here is
         a <a href="/static/video/list-new.mp4">link to the video</a> instead.
       </p>
     </video>
@@ -125,7 +125,7 @@ export const ListsEmpty = () =>
       <source src="/static/video/list-download.mp4" type="video/mp4" />
       <source src="/static/video/list-download.mp4" type="video/ogg" />
       <p>
-        Your browser doesn't support HTML5 video. Here is
+        Your browser doesn&apos;t support HTML5 video. Here is
         a <a href="/static/video/list-download.mp4">link to the video</a>{" "}
         instead.
       </p>

@@ -4,6 +4,7 @@ import {withRouter} from "next/router";
 
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import localforage from "localforage";
 
 dayjs.extend(relativeTime)
 
@@ -190,7 +191,7 @@ class List extends React.Component {
                                     Note:
                                 </strong>
                                 {" "}
-                                The link to this list won't work for someone else or in another
+                                The link to this list won&apos;t work for someone else or in another
                                 browser.
                             </p>
                             {items &&

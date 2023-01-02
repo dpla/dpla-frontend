@@ -77,7 +77,6 @@ class MainMetadata extends React.Component {
               {item.sourceUrl &&
                   <a
                     rel="noopener"
-                    target="_blank"
                     className={`${css.sourceLink} clickThrough external white`}
                     href={item.sourceUrl}
                   >

@@ -5,10 +5,6 @@ import { withRouter } from "next/router"
 import ReactMarkdown from "react-markdown";
 
 import { extractSourceSetSlug, removeQueryParams } from "lib";
-import {
-  mapTimePeriodNameToSlug,
-  mapSubjectNameToSlug
-} from "constants/primarySourceSets";
 
 import css from "./SetsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
@@ -68,18 +64,18 @@ const SetsList = ({ sets, router }) =>
                   )
                   .map((tag, i, tags) =>
                     <li className={css.tag} key={`${tag}—${i}`}>
-                      <Link
-                        href={{
-                          pathname: "/primary-source-sets",
-                          query: Object.assign({}, router.query, {
-                            timePeriod: mapTimePeriodNameToSlug(tag.name)
-                          })
-                        }}
-                      >
-                        <a className="hover-underline" title={tag.name}>
+                      {/*<Link*/}
+                      {/*  href={{*/}
+                      {/*    pathname: "/primary-source-sets",*/}
+                      {/*    query: Object.assign({}, router.query, {*/}
+                      {/*      timePeriod: mapTimePeriodNameToSlug(tag.name)*/}
+                      {/*    })*/}
+                      {/*  }}*/}
+                      {/*>*/}
+                      {/*  <a className="hover-underline" title={tag.name}>*/}
                           {tag.name}
-                        </a>
-                      </Link>
+                      {/*  </a>*/}
+                      {/*</Link>*/}
                       {i < tags.length - 1 && <span>, </span>}
                     </li>
                   )}
@@ -92,18 +88,18 @@ const SetsList = ({ sets, router }) =>
                   )
                   .map((tag, i, tags) =>
                     <li key={tag.name} className={css.tag}>
-                      <Link
-                        href={{
-                          pathname: "/primary-source-sets",
-                          query: Object.assign({}, router.query, {
-                            subject: mapSubjectNameToSlug(tag.name)
-                          })
-                        }}
-                      >
-                        <a className="hover-underline" title={tag.name}>
+                      {/*<Link*/}
+                      {/*  href={{*/}
+                      {/*    pathname: "/primary-source-sets",*/}
+                      {/*    query: Object.assign({}, router.query, {*/}
+                      {/*      subject: mapSubjectNameToSlug(tag.name)*/}
+                      {/*    })*/}
+                      {/*  }}*/}
+                      {/*>*/}
+                      {/*  <a className="hover-underline" title={tag.name}>*/}
                           {tag.name.replace("&amp;", "&")}
-                        </a>
-                      </Link>
+                      {/*  </a>*/}
+                      {/*</Link>*/}
                       {i < tags.length - 1 && <span>, </span>}
                     </li>
                   )}

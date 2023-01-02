@@ -28,7 +28,7 @@ const OtherMetadata = ({ item }) =>
       {item.collection &&
         <ItemTermValuePair heading="Collection">
           {Array.isArray(item.collection)
-            ? item.collection.map((collection, i, collections) =>
+            ? item.collection.map((collection, i) =>
               <span key={i}>
                 <FacetLink facet="collection" value={collection.title} /><br />
               </span>
@@ -41,7 +41,7 @@ const OtherMetadata = ({ item }) =>
         </ItemTermValuePair>}
       {item.subject &&
         <ItemTermValuePair className={css.subjects} heading="Subjects">
-          {item.subject.map((subj, i, subjects) =>
+          {item.subject.map((subj, i) =>
             <span key={i}>
               <FacetLink facet="subject" value={subj.name} />
               <br />
@@ -51,7 +51,7 @@ const OtherMetadata = ({ item }) =>
       {item.spatial &&
         <ItemTermValuePair heading="Location">
           {Array.isArray(item.spatial)
-            ? item.spatial.map((spatial, i, spatials) =>
+            ? item.spatial.map((spatial, i) =>
               <span key={i}>
                 <FacetLink facet="location" value={spatial.name} /><br />
               </span>
@@ -61,7 +61,7 @@ const OtherMetadata = ({ item }) =>
       {item.type &&
         <ItemTermValuePair heading="Type">
           {Array.isArray(item.type)
-            ? item.type.map((type, i, types) =>
+            ? item.type.map((type, i) =>
               <span key={i}>
                 <FacetLink facet="type" value={type} /><br />
               </span>
@@ -88,7 +88,6 @@ const OtherMetadata = ({ item }) =>
           <a
             className="link clickThrough external"
             href={item.sourceUrl}
-            target="_blank"
           >
             {item.sourceUrl}
           </a>

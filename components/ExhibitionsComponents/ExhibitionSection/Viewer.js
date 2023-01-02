@@ -43,7 +43,6 @@ const getFileType = (fileType, originalUrl) => {
 };
 
 const getViewerComponent = (fileType, originalUrl, pathToFile) => {
-    console.log("getViewerComponent", fileType, originalUrl, pathToFile);
     if (
         fileType === ITEM_TYPES.MOVING_IMAGE ||
         /\.(mp4|webm|ogg)/i.test(originalUrl)
@@ -169,8 +168,9 @@ class Viewer extends React.Component {
                                     router.query.sectionSlug,
                                     "/",
                                     router.query.subsectionSlug,
-                                    "?item=", previousBlock.id].join("")
-                            }>
+                                    "?item=",
+                                    previousBlock.id
+                                ].join("")}>
                                 <a className={css.previousItemButton}>
                                     <img
                                         src={chevron}
@@ -188,9 +188,16 @@ class Viewer extends React.Component {
                             )}
                             {nextBlock &&
                                 <Link
-                                    href={` / exhibitions /${router.query.exhibitionSlug}/${router.query
-                                        .sectionSlug}/${router.query.subsectionSlug}`}
-                                >
+                                    href={[
+                                        "/exhibitions/",
+                                        router.query.exhibitionSlug,
+                                        "/",
+                                        router.query.sectionSlug,
+                                        "/",
+                                        router.query.subsectionSlug,
+                                        "?item=",
+                                        nextBlock.id
+                                    ].join("")}>
                                     <a className={css.nextItemButton}>
                                         <img src={chevron} alt="" className={css.nextItemChevron}/>
                                     </a>
