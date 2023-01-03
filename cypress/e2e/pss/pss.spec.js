@@ -5,16 +5,16 @@ describe('Primary Source Sets', async () => {
         cy
             .visit('/primary-source-sets')
             .getDataCy('pss-home')
-            .snapshot();
+            .toMatchSnapshot();
     });
 
     for (const set of sets) {
         it(`${set} hasn't changed`, () => {
             cy.visit(`/primary-source-sets/${set}`)
-                .getDataCy('pss-tabs').snapshot()
-                .getDataCy('pss-breadcrumbs').snapshot()
-                .getDataCy('pss-relateds').snapshot()
-                .getDataCy('pss-footer').snapshot();
+                .getDataCy('pss-tabs').toMatchSnapshot()
+                .getDataCy('pss-breadcrumbs').toMatchSnapshot()
+                .getDataCy('pss-relateds').toMatchSnapshot()
+                .getDataCy('pss-footer').toMatchSnapshot();
         });
     }
 });

@@ -13,7 +13,7 @@ describe('The bottom nav', () => {
     it(`hasn't changed on /`, () => {
         const globalHeader = cy.getDataCy('footer');
         globalHeader.should('be.visible')
-        globalHeader.snapshot();
+        globalHeader.toMatchSnapshot();
 
     });
     ['DPLA', 'Tools'].forEach((section) => {

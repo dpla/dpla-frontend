@@ -5,7 +5,7 @@ describe('Topics', async () => {
         cy
             .visit('/browse-by-topic')
             .getDataCy('topics-home')
-            .snapshot();
+            .toMatchSnapshot();
     });
 
     for (const topic of topics) {
@@ -13,13 +13,13 @@ describe('Topics', async () => {
             cy
                 .visit(`/browse-by-topic/${topic.slug}`)
                 .getDataCy('topic-home')
-                .snapshot();
+                .toMatchSnapshot();
         });
 
         for (const subtopic of topic.subtopics) {
             it(`${topic.slug} ${subtopic} works correctly`, () => {
                 cy.visit(`/browse-by-topic/${topic.slug}/${subtopic}`);
-                cy.getDataCy('subtopic-sidebar').snapshot();
+                cy.getDataCy('subtopic-sidebar').toMatchSnapshot();
                 cy.getDataCy('subtopic-item-list').find('li').its('length').should('be.gt', 5);
             });
         }

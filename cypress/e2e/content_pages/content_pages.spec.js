@@ -26,7 +26,7 @@ describe('Content Pages', async () => {
             cy
                 .visit(page.path)
                 .getDataCy('content')
-                .snapshot();
+                .toMatchSnapshot();
         });
      }
 });
