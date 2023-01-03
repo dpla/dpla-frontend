@@ -14,7 +14,6 @@ module.exports = withBundleAnalyzer({
             path.join(__dirname, "stylesheets", "themes", LOCALS[process.env.LOCAL_ID].theme) :
             path.join(__dirname, "stylesheets", "themes")]
     },
-    webpack5: true,
     webpack: (config) => {
         config.resolve.fallback = {
             fs: false,
