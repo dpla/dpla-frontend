@@ -93,8 +93,6 @@ export const getServerSideProps = async () => {
         })
     );
 
-    console.log(featuredExhibits);
-
     // fetch featured primary source sets data
     const featuredPrimarySourceSets =
         homepageJson.acf.featured_primary_source_sets;
