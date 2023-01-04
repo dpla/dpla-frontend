@@ -59,12 +59,6 @@ const MoreWaysToContact = () => (
                 <a href="https://www.instagram.com/digpublib/">Instagram</a>
               </li>
               <li>
-                <a href="https://digitalpubliclibraryofamerica.tumblr.com/">Tumblr</a>
-              </li>
-              <li>
-                <a href="https://www.flickr.com/photos/dpla/albums">Flickr</a>
-              </li>
-              <li>
                 <a href="https://www.youtube.com/user/digpublib/videos">YouTube</a>
               </li>
             </ul>
