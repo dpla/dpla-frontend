@@ -97,8 +97,9 @@ class EbooksPage extends React.Component {
                         buttonUrl={page.acf.call_to_action.button_url}
                         imageSrc={page.acf.call_to_action.image}
                         imageCaption={page.acf.call_to_action.image_credit}
-                        imageAlt={page.acf.call_to_action.image_credit}
-                        imageAlt={page.acf.call_to_action.image_href}
+                        imageAlt={
+                        page.acf.call_to_action.image_credit +
+                            " " + page.acf.call_to_action.image_href}
                     />
                     }
 
@@ -129,7 +130,7 @@ class EbooksPage extends React.Component {
     }
 }
 
-export const getServerSideProps = async ({req, query, res}) => {
+export const getServerSideProps = async ({}) => {
     const ebooksRes = await fetch(PAGES_ENDPOINT + "?slug=ebooks");
     const ebooksJson = await ebooksRes.json();
     const ebooksItem = ebooksJson[0];

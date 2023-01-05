@@ -43,13 +43,13 @@ class OptionsBar extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { sort_by, sort_order, page_size } = this.props.router.query;
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { sort_by, sort_order, page_size } = prevProps.router.query;
     const {
       sort_by: next_sort_by,
       sort_order: next_sort_order,
       page_size: next_page_size
-    } = nextProps.router.query;
+    } = this.props.router.query;
     if (
       next_sort_by !== sort_by ||
       next_sort_order !== sort_order ||

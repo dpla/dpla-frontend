@@ -1,13 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 import CiteButton from "components/shared/CiteButton";
-
-import {
-  mapTimePeriodNameToSlug,
-  mapSubjectNameToSlug
-} from "constants/primarySourceSets";
 
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
@@ -32,8 +26,10 @@ class SourceSetInfo extends React.Component {
     this.setState({ isOpen: false, href: window.location.href });
   }
 
-  componentWillReceiveProps() {
-    this.setState({ isOpen: this.props.openDescription || false });
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.openDescription !== prevProps.openDescription) {
+      this.setState({isOpen: prevProps.openDescription || false});
+    }
   }
 
   showMoreDescription() {
@@ -117,24 +113,24 @@ class SourceSetInfo extends React.Component {
                       Time Period
                     </h2>
                     <ul>
-                      {extractTimePeriod(set.about).map((period, i, periods) =>
+                      {extractTimePeriod(set.about).map((period) =>
                         <li key={period}>
-                          <Link
-                            href={{
-                              pathname: "/primary-source-sets",
-                              query: {
-                                timePeriod: mapTimePeriodNameToSlug(period)
-                              }
-                            }}
-                          >
-                            <a className={`${utils.link} ${css.link}`}>
+                          {/*<Link*/}
+                          {/*  href={{*/}
+                          {/*    pathname: "/primary-source-sets",*/}
+                          {/*    query: {*/}
+                          {/*      timePeriod: mapTimePeriodNameToSlug(period)*/}
+                          {/*    }*/}
+                          {/*  }}*/}
+                          {/*>*/}
+                          {/*  <a className={`${utils.link} ${css.link}`}>*/}
                               <ReactMarkdown
                                 source={period}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                            </a>
-                          </Link>
+                          {/*  </a>*/}
+                          {/*</Link>*/}
                         </li>
                       )}
                     </ul>
@@ -142,24 +138,24 @@ class SourceSetInfo extends React.Component {
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>Subjects</h2>
                     <ul>
-                      {extractSubjects(set.about).map((subject, i, subjects) =>
+                      {extractSubjects(set.about).map((subject) =>
                         <li key={subject}>
-                          <Link
-                            href={{
-                              pathname: "/primary-source-sets",
-                              query: {
-                                subject: mapSubjectNameToSlug(subject)
-                              }
-                            }}
-                          >
-                            <a className={`${utils.link} ${css.link}`}>
+                          {/*<Link*/}
+                          {/*  href={{*/}
+                          {/*    pathname: "/primary-source-sets",*/}
+                          {/*    query: {*/}
+                          {/*      subject: mapSubjectNameToSlug(subject)*/}
+                          {/*    }*/}
+                          {/*  }}*/}
+                          {/*>*/}
+                          {/*  <a className={`${utils.link} ${css.link}`}>*/}
                               <ReactMarkdown
                                 source={subject}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                            </a>
-                          </Link>
+                          {/*  </a>*/}
+                          {/*</Link>*/}
                         </li>
                       )}
                     </ul>
@@ -188,8 +184,9 @@ class SourceSetInfo extends React.Component {
                           .replace("teaching-guide", "")
                           .replace("additional-resources", "")}`}
                         className={css.toolLink}
-                        rel="noopener"
+                        rel="noopener noreferrer"
                         target="_blank"
+
                       >
                         Share to Google Classroom
                       </a>

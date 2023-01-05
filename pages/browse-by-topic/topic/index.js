@@ -63,57 +63,58 @@ export const getServerSideProps = async ({query}) => {
     const suggestions = !currentTopic.acf.related_content
         ? []
         : await Promise.all(
-            currentTopic.acf.related_content.map(async item => {
-                if (item.related_content_type === "Exhibition") {
-                    const exhibitionsRes = await fetch(
-                        `${process.env.OMEKA_URL}/api/exhibits`
-                    );
-                    const exhibitionsJson = await exhibitionsRes.json();
-                    const exhibition = exhibitionsJson.find(
-                        exhibition =>
-                            parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
-                    );
-                    const exhibitPageRes = await fetch(
-                        `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${item.exhibition_id}`
-                    );
-                    const exhibitPageJson = await exhibitPageRes.json();
-                    // skip a nil exhibit
-                    if (exhibitPageJson.length === 0) return;
-                    // end skip nil exhibit
-                    const homePage =
-                        exhibitPageJson.find(
-                            exhibit =>
-                                exhibit.slug === "home-page" || exhibit.slug === "homepage"
-                        ) || exhibitPageJson[0];
-                    const {
-                        item: homePageItem
-                    } = homePage.page_blocks[0].attachments[0];
-                    const filesRes = await fetch(
-                        `${process.env.OMEKA_URL}/api/files?item=${homePageItem.id}`
-                    );
-                    const filesJson = await filesRes.json();
-                    const title = exhibition.title;
-                    const originalThumbnailUrl =  filesJson[0].file_urls.fullsize;
-
-                    const thumbnailUrl = exhibitFilesHelper(
-                        originalThumbnailUrl,
-                        currentUrl
-                    );
-
-                    const slug = exhibition.slug;
-                    if (!slug) {
-                        return null;
-                    }
-                    const href = `/exhibitions/exhibition?exhibition=${slug}`;
-                    const as = `/exhibitions/${slug}`;
-                    return {
-                        title,
-                        thumbnailUrl,
-                        as,
-                        href,
-                        type: "Exhibition"
-                    };
-                } else if (item.related_content_type === "Primary Source Set") {
+           currentTopic.acf.related_content.map(async item => {
+                // if (item.related_content_type === "Exhibition") {
+                //     const exhibitionsRes = await fetch(
+                //         `${process.env.OMEKA_URL}/api/exhibits`
+                //     );
+                //     const exhibitionsJson = await exhibitionsRes.json();
+                //     const exhibition = exhibitionsJson.find(
+                //         exhibition =>
+                //             parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
+                //     );
+                //     const exhibitPageRes = await fetch(
+                //         `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${item.exhibition_id}`
+                //     );
+                //     const exhibitPageJson = await exhibitPageRes.json();
+                //     // skip a nil exhibit
+                //     if (exhibitPageJson.length === 0) return;
+                //     // end skip nil exhibit
+                //     const homePage =
+                //         exhibitPageJson.find(
+                //             exhibit =>
+                //                 exhibit.slug === "home-page" || exhibit.slug === "homepage"
+                //         ) || exhibitPageJson[0];
+                //     const {
+                //         item: homePageItem
+                //     } = homePage.page_blocks[0].attachments[0];
+                //     const filesRes = await fetch(
+                //         `${process.env.OMEKA_URL}/api/files?item=${homePageItem.id}`
+                //     );
+                //     const filesJson = await filesRes.json();
+                //     const title = exhibition.title;
+                //     const originalThumbnailUrl =  filesJson[0].file_urls.fullsize;
+                //
+                //     const thumbnailUrl = exhibitFilesHelper(
+                //         originalThumbnailUrl,
+                //         currentUrl
+                //     );
+                //
+                //     const slug = exhibition.slug;
+                //     if (!slug) {
+                //         return null;
+                //     }
+                //     const href = `/exhibitions/exhibition?exhibition=${slug}`;
+                //     const as = `/exhibitions/${slug}`;
+                //     return {
+                //         title,
+                //         thumbnailUrl,
+                //         as,
+                //         href,
+                //         type: "Exhibition"
+                //     };
+                //} else
+                    if (item.related_content_type === "Primary Source Set") {
                     const setId = sanitizeSourceSetId(item.primary_source_set_id);
                     const sourceSetRes = await fetch(`${setId}.json`);
                     const sourceSetJson = await sourceSetRes.json();

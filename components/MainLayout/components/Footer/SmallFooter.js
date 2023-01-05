@@ -38,14 +38,6 @@ class SmallFooter extends React.Component {
               <img className={css.socialButton} alt="Instagram" src={igIcon} />
             </a>
             <a
-              href="http://digitalpubliclibraryofamerica.tumblr.com/"
-              title="Tumblr"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img className={css.socialButton} alt="Tumblr" src={tumblrIcon} />
-            </a>
-            <a
               href="https://twitter.com/dpla"
               title="Twitter"
               rel="noopener noreferrer"

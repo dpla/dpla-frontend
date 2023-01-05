@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
@@ -21,12 +20,12 @@ class Details extends React.Component {
     const fullPath = getFullPath();
 
     if (fullPath !== this.lastTrackedPath) {
-      const dplaItemJson = this.props.exhibition.dplaItemJson;
+      const dplaItemJson = this.props.dplaItemJson;
       const dplaItem = parseDplaItemRecord(dplaItemJson);
 
       const gaEvent = {
         type: "View Exhibition Item",
-        itemId: this.props.exhibition.dplaItemId,
+        itemId: this.props.dplaItemId,
         title: joinIfArray(dplaItem.title, ", "),
         partner: joinIfArray(dplaItem.partner, ", "),
         contributor: joinIfArray(dplaItem.dataProvider, ", ")
@@ -38,7 +37,14 @@ class Details extends React.Component {
   }
 
   render() {
-    const { exhibition, router } = this.props;
+    const {
+      slug,
+      sections,
+      description,
+      title,
+      text,
+      credits
+    } = this.props;
     return (
       <div className={css.wrapper}>
         <div className={`${utils.container} ${css.details}`}>
@@ -48,20 +54,10 @@ class Details extends React.Component {
             </h2>
             <div className={css.tableOfContentsContents}>
               <ul className={css.tableOfContentsSections}>
-                {exhibition.sections.map((section, idx) =>
+                {sections.map((section, idx) =>
                   <li key={idx} className={css.tableOfContentsSection}>
                     <Link
-                      href={{
-                        pathname: "/exhibitions/exhibition/section/subsection",
-                        query: Object.assign({}, router.query, {
-                          section: section.slug,
-                          exhibition: exhibition.slug,
-                          subsection: ""
-                        })
-                      }}
-                      as={{
-                        pathname: `/exhibitions/${exhibition.slug}/${section.slug}`
-                      }}
+                      href={`/exhibitions/${slug}/${section.slug}`}
                     >
                       <a className="hover-underline">
                         {section.title}
@@ -75,48 +71,36 @@ class Details extends React.Component {
               <CiteButton
                 toCiteText="exhibition"
                 className={css.citeButton}
-                freeText={exhibition.description}
-                title={exhibition.name}
+                freeText={description}
+                title={title}
               />
             </div>
           </div>
           <div className={css.body}>
             <div
               className={css.bodyText}
-              dangerouslySetInnerHTML={{ __html: exhibition.text }}
+              dangerouslySetInnerHTML={{ __html: text }}
             />
             <div className={css.exploreButton}>
               <Button
                 type="primary"
                 size="large"
                 className={css.exploreLink}
-                url={{
-                  pathname: "/exhibitions/exhibition/section/subsection",
-                  query: Object.assign({}, router.query, {
-                    section: exhibition.sections[0].slug,
-                    exhibition: exhibition.slug,
-                    subsection: ""
-                  })
-                }}
-                as={{
-                  pathname:
-                      `/exhibitions/${exhibition.slug}/${exhibition
-                    .sections[0].slug}/`
-                }}
+                url={`/exhibitions/${slug}/${sections[0].slug}`}
               >
                 Explore Exhibition
               </Button>
             </div>
             <p className={css.credits}>
               <span className={css.creditsBold}>Credit: </span>
-              <span className={css.creditsText}>{exhibition.credits}</span>
+              <span className={css.creditsText}>{credits}</span>
             </p>
             <div className={css.faveAndCiteButtonsWrapper}>
               <CiteButton
                 toCiteText="exhibition"
                 className={css.citeButton}
-                freeText={exhibition.description}
-                title={exhibition.name}
+                freeText={description}
+                title={title}
               />
             </div>
           </div>
@@ -126,4 +110,4 @@ class Details extends React.Component {
   }
 }
 
-export default withRouter(Details);
+export default Details;

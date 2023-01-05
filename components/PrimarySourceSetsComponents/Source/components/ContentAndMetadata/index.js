@@ -90,12 +90,11 @@ class ContentAndMetadata extends React.Component {
     this.trackSourceView();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     this.trackSourceView();
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ isOpen: this.props.openDescription || false });
+    if (prevProps.openDescription !== this.props.openDescription) {
+      this.setState({isOpen: prevProps.openDescription || false});
+    }
   }
 
   showMoreDescription() {
@@ -257,7 +256,6 @@ class ContentAndMetadata extends React.Component {
                       className={css.sourceLink}
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener"
-                      target="_blank"
                     >
                       <img
                         alt="External link icon"
@@ -279,9 +277,9 @@ class ContentAndMetadata extends React.Component {
                 </p>
                 <ul className={css.tips}>
                   <li className={css.tip}>
-                    the author's point of view
+                    the author&apos;s point of view
                   </li>
-                  <li className={css.tip}>the author's purpose</li>
+                  <li className={css.tip}>the author&apos;s purpose</li>
                   <li className={css.tip}>historical context</li>
                   <li className={css.tip}>audience</li>
                 </ul>

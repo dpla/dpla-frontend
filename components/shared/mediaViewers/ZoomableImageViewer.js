@@ -26,10 +26,10 @@ export default class ZoomableImageViewer extends React.Component {
     this.viewer = initOpenSeaDragon(this.props.pathToFile);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.pathToFile !== this.props.pathToFile) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.pathToFile !== prevProps.pathToFile) {
       // this works locally. might be necessary to preload the image like in: https://jsfiddle.net/ashraffayad/074navyp/
-      this.viewer.open({ type: "image", url: nextProps.pathToFile });
+      this.viewer.open({ type: "image", url: this.props.pathToFile });
     }
   }
 

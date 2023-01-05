@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./ExhibitionSection.module.scss";
 
-const Subheader = ({ subsection, onClickMenuButton, isMenuOpen }) =>
+const Subheader = ({ subsectionTitle, onClickMenuButton, isMenuOpen }) =>
   <div className={`${isMenuOpen ? css.openMenu : ""}`}>
     <div className={css.menuButtonAndBreadcrumbs}>
       <button
@@ -13,7 +13,7 @@ const Subheader = ({ subsection, onClickMenuButton, isMenuOpen }) =>
         {isMenuOpen ? "Hide" : "Show"}<br />Menu
       </button>
       <h2 className={css.breadcrumbSubsection}>
-        {subsection.title}
+        {subsectionTitle}
       </h2>
     </div>
   </div>;

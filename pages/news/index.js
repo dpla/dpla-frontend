@@ -1,7 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import Link from "next/link";
-import {withRouter} from "next/router";
 
 import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
@@ -25,59 +24,29 @@ import {washObject} from "lib/washObject";
 
 class NewsPage extends React.Component {
 
-    componentWillMount() {
-        this.setState({
-            keywords: this.props.router.query.k || "",
-            author: this.props.router.query.author || "",
-            authorName: this.props.author ? this.props.author.name : "",
-            tag: this.props.router.query.tag || ""
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (
-            nextProps.router.query.k !== this.state.keywords ||
-            nextProps.router.query.author !== this.state.author ||
-            (nextProps.author && nextProps.author.name !== this.state.authorName) ||
-            nextProps.router.query.tag !== this.state.tag
-        ) {
-            this.setState({
-                keywords: nextProps.router.query.k || "",
-                author: nextProps.router.query.author || "",
-                authorName: nextProps.author ? nextProps.author.name : "",
-                tag: nextProps.router.query.tag || ""
-            });
-        }
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        const keywords = e.target.elements.k.value;
-        document.location = `/news?k=${keywords}&tag=${this.state.tag}${this.state.author
-            ? `&author=${this.state.author}`
-            : ""}`;
-    }
 
     render() {
         const {
-            router,
             menuItems,
             newsItems,
             pageItem,
             newsCount,
             newsPageCount,
             currentPage,
+            currentTag,
+            keywords,
+            author
         } = this.props;
 
-        const resultSummary = `${this.state.authorName
-            ? " by " + this.state.authorName
-            : ""}${this.state.tag
+        const resultSummary = `${author
+            ? " by " + author
+            : ""}${currentTag
             ? " under " +
             NEWS_TAGS.filter(
-                tag => tag.name.toLowerCase().replace(" ", "-") === this.state.tag
+                tag => tag.name.toLowerCase().replace(" ", "-") === currentTag
             )[0].name
-            : ""}${this.state.keywords
-            ? " with keywords “" + this.state.keywords + "”"
+            : ""}${keywords
+            ? " with keywords “" + keywords + "”"
             : ""}`;
 
         return (
@@ -100,23 +69,22 @@ class NewsPage extends React.Component {
                                     action="/news"
                                     method="get"
                                     className={css.search}
-                                    onSubmit={e => this.handleSubmit(e)}
                                 >
                                     <input
                                         type="text"
                                         name="k"
                                         aria-label="search news"
                                         className={css.keywordsInput}
-                                        defaultValue={this.state.keywords}
+                                        defaultValue={keywords}
                                     />
-                                    {this.state.tag !== "" &&
-                                    <input type="hidden" name="tag" value={this.state.tag}/>}
-                                    {this.state.author &&
-                                    <input
-                                        type="hidden"
-                                        name="author"
-                                        value={this.state.author}
-                                    />}
+                                    {currentTag !== "" &&
+                                        <input type="hidden" name="tag" value={currentTag}/>}
+                                    {author &&
+                                        <input
+                                            type="hidden"
+                                            name="author"
+                                            value={author}
+                                        />}
                                     <Button
                                         type="secondary"
                                         size="medium"
@@ -127,21 +95,20 @@ class NewsPage extends React.Component {
                                     </Button>
                                 </form>
                                 <TagList
-                                    currentTag={this.state.tag}
-                                    url={router}
-                                    keywords={this.state.keywords}
-                                    author={this.state.author}
+                                    currentTag={currentTag}
+                                    keywords={keywords}
+                                    author={author}
                                 />
                                 <div className={css.resultSummary}>
                                     {newsCount === 0 &&
-                                    <p>
-                                        No posts found{resultSummary}.
-                                    </p>}
+                                        <p>
+                                            No posts found{resultSummary}.
+                                        </p>}
                                     {newsCount > 0 &&
-                                    <p>
-                                        {newsCount} post{newsCount !== 1 ? "s" : ""} found{resultSummary}.
-                                        Showing page {currentPage} of {newsPageCount}.
-                                    </p>}
+                                        <p>
+                                            {newsCount} post{newsCount !== 1 ? "s" : ""} found{resultSummary}.
+                                            Showing page {currentPage} of {newsPageCount}.
+                                        </p>}
                                 </div>
                                 {newsItems.map((item, index) => {
                                     return (
@@ -168,7 +135,6 @@ class NewsPage extends React.Component {
                                     );
                                 })}
                                 <Pagination
-                                    route={router}
                                     itemsPerPage={DEFAULT_PAGE_SIZE}
                                     currentPage={parseInt(currentPage, 10)}
                                     totalItems={newsCount}
@@ -183,7 +149,7 @@ class NewsPage extends React.Component {
     }
 }
 
-export const getServerSideProps = async ({req, query, res}) => {
+export const getServerSideProps = async ({query}) => {
     // sidebar menu fetch
     const menuResponse = await fetch(
         SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT
@@ -239,16 +205,14 @@ export const getServerSideProps = async ({req, query, res}) => {
         pageItem: pageItem,
         currentPage: page,
         newsCount: Number(newsCount),
-        currentTag: query.tag ? query.tag : null,
+        currentTag: query.tag ? query.tag : "",
         newsPageCount: Number(newsPageCount),
-        keywords: query.k ? query.k : null,
-        author: authorJson
+        keywords: query.k ? query.k : "",
+        author: authorJson ? authorJson : ""
     });
 
 
-    return {
-        props: props
-    };
+    return {props};
 };
 
-export default withRouter(NewsPage);
+export default NewsPage;

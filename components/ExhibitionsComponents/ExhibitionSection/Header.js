@@ -16,8 +16,7 @@ const Header = ({ title, router }) =>
       </h1>
     </div>
     <Link
-      href={`/exhibitions/exhibition?exhibition=${router.query.exhibition}`}
-      as={`/exhibitions/${router.query.exhibition}`}
+      href={`/exhibitions/${router.query.exhibitionSlug}`}
     >
       <a className={`hover-underline ${css.closeExhibition}`}>
         <svg

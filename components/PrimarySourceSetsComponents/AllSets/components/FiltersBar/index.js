@@ -15,30 +15,39 @@ import css from "shared/FiltersBar/FiltersBar.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 class FiltersBar extends React.Component {
-  componentWillMount() {
-    this.setState({
-      sortValue: this.props.router.query.order || "recently_added",
-      timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
-      subjectValue: this.props.router.query.subject || "all-subjects"
-    });
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.router.query.order !== this.state.order ||
-      nextProps.router.query.timePeriod !== this.state.timePeriod ||
-      nextProps.router.query.subject !== this.state.subject
-    ) {
-      this.setState({
-        sortValue: nextProps.router.query.order || "recently_added",
-        timePeriodValue: nextProps.router.query.timePeriod || "all-time-periods",
-        subjectValue: nextProps.router.query.subject || "all-subjects"
-      });
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //       sortValue: this.props.router.query.order || "recently_added",
+  //       timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
+  //       subjectValue: this.props.router.query.subject || "all-subjects"
+  //   };
+  // }
+  // componentDidMount() {
+  //   this.setState({
+  //     sortValue: this.props.router.query.order || "recently_added",
+  //     timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
+  //     subjectValue: this.props.router.query.subject || "all-subjects"
+  //   });
+  // }
 
-  onSortChange = val => {
-    Router.push({
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (
+  //     this.props.router.query.order !== prevProps.router.query.order ||
+  //     this.props.router.query.timePeriod !== prevProps.router.query.timePeriod ||
+  //     this.props.router.query.subject !== prevProps.router.query.subject
+  //   ) {
+  //     this.setState({
+  //       sortValue: this.props.router.query.order || "recently_added",
+  //       timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
+  //       subjectValue: this.props.router.query.subject || "all-subjects"
+  //     });
+  //   }
+  // }
+
+  onSortChange = async val => {
+    await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.router.query, {
         order: val.target.value
@@ -46,8 +55,8 @@ class FiltersBar extends React.Component {
     });
   };
 
-  onSubjectChange = val => {
-    Router.push({
+  onSubjectChange = async val => {
+    await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.router.query, {
         subject: val.target.value
@@ -55,8 +64,8 @@ class FiltersBar extends React.Component {
     });
   };
 
-  onTimePeriodChange = val => {
-    Router.push({
+  onTimePeriodChange = async val => {
+    await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.router.query, {
         timePeriod: val.target.value
@@ -64,17 +73,13 @@ class FiltersBar extends React.Component {
     });
   };
 
-  onClearFilters = e => {
-    Router.push({
+  onClearFilters = async e => {
+    await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign(
         {},
         removeQueryParams(this.props.router.query, ["subject", "timePeriod"])
       )
-    });
-    this.setState({
-      timePeriodValue: "all-time-periods",
-      subjectValue: "all-subjects"
     });
   };
 
@@ -99,8 +104,8 @@ class FiltersBar extends React.Component {
       <div className={css.filtersWrapper}>
         <div className={`${css.filters} ${utils.siteMaxWidth}`}>
           <div className={`${utils.row} ${css.filtersRow}`}>
-            {(this.state.timePeriodValue !== "all-time-periods" ||
-              this.state.subjectValue !== "all-subjects") &&
+            {(this.props.timePeriodValue !== "all-time-periods" ||
+              this.props.subjectValue !== "all-subjects") &&
               <div className={css.clearAll}>
                 <button onClick={this.onClearFilters}>
                   <svg
@@ -126,7 +131,7 @@ class FiltersBar extends React.Component {
               <label htmlFor="filter-subject">Subject</label>
               <select
                 id="filter-subject"
-                value={this.state.subjectValue}
+                value={this.props.subjectValue}
                 onChange={this.onSubjectChange}
               >
                 {subjectOptions.map((item, index) =>
@@ -140,7 +145,7 @@ class FiltersBar extends React.Component {
               <label htmlFor="filter-period">Time Period</label>
               <select
                 id="filter-period"
-                value={this.state.timePeriodValue}
+                value={this.props.timePeriodValue}
                 onChange={this.onTimePeriodChange}
               >
                 {timePeriodOptions.map((item, index) =>
@@ -154,7 +159,7 @@ class FiltersBar extends React.Component {
               <label htmlFor="filter-sort">Sort by</label>
               <select
                 id="filter-sort"
-                value={this.state.sortValue}
+                value={this.props.sortValue}
                 onChange={this.onSortChange}
               >
                 {sortOptions.map((item, index) =>

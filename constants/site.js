@@ -14,9 +14,6 @@ export const PAYPAL_DONATE_MONTHLY =
 
 export const GOOGLE_CLASSROOMS_SHARE_URL =
   "https://classroom.google.com/u/0/share";
-export const DPLA_CONTACT_EMAIL = "education@dp.la";
-export const PSS_SUGGESTION_URL =
-  "https://docs.google.com/a/dp.la/forms/d/e/1FAIpQLSfOGifC4Z591F_8hMrI8YiHX1BhXEGNPZqIq7LRFEYwiNYF9w/viewform";
 export const PSS_NHD_URL = "https://pro.dp.la/education/national-history-day";
 
 export const MAILCHIMP_LIST_ID = "4c517f4bd0";

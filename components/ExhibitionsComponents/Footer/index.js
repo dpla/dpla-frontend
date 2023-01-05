@@ -13,11 +13,11 @@ const OtherInfo = () =>
       </p>
       <p className={css.footerText}>
         <span>
-          Feedback? Interested in curating an exhibition for DPLA? Contact us
+          Feedback? Contact us
           at&nbsp;
         </span>
-        <a className="link" href="mailto:education@dp.la">
-          education@dp.la
+        <a className="link" href="mailto:info@dp.la">
+          info@dp.la
         </a>.
       </p>
     </div>

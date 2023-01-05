@@ -1,31 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from 'next/router'
 
 import css from "./ExhibitionsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const Exhibition = withRouter(({exhibition: exhibition, router }) => {
+const Exhibition = ({exhibition: exhibition }) => {
   return exhibition
     ? <li>
         <Link
-          href={{
-            pathname: "/exhibitions/exhibition",
-            query: Object.assign({}, router.query, {
-              exhibition: exhibition.slug
-            })
-          }}
-          as={{
-            pathname: `/exhibitions/${exhibition.slug}`,
-            query: router.query
-          }}
+          href={`/exhibitions/${exhibition.slug}`}
         >
           <a className={` ${css.exhibition}`}>
-            {exhibition.new &&
-              !featured &&
-              <div className={css.newBanner}>
-                New
-              </div>}
             <img
               alt=""
               className={css.exhibitionImage}
@@ -41,13 +26,13 @@ const Exhibition = withRouter(({exhibition: exhibition, router }) => {
         </Link>
       </li>
     : <></>;
-});
+};
 
 const ExhibitionsList = ({ exhibitions }) =>
   <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
     <div className={css.row}>
       <ul className={css.exhibitionList}>
-        {exhibitions.map((exhibition, index) =>
+        {exhibitions.map((exhibition) =>
           <Exhibition
             exhibition={exhibition}
             key={exhibition.slug}
@@ -57,4 +42,4 @@ const ExhibitionsList = ({ exhibitions }) =>
     </div>
   </div>;
 
-export default withRouter(ExhibitionsList);
+export default ExhibitionsList;

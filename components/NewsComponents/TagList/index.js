@@ -4,12 +4,13 @@ import Link from "next/link";
 import { NEWS_TAGS } from "constants/news";
 
 import css from "stylesheets/content-pages.module.scss"
+import {withRouter} from "next/router";
 
-const TagList = ({ url, currentTag, keywords, author }) =>
+const TagList = ({ router, currentTag, keywords, author }) =>
   <ul className={css.collapsed}>
     {(currentTag || author !== "" || keywords !== "") &&
       <li>
-        <a href="/news">All News</a>
+        <Link href="/news"><a>All News</a></Link>
       </li>}
     {!(currentTag || author !== "" || keywords !== "") && <li>All News</li>}
     {NEWS_TAGS.map(tag => {
@@ -17,8 +18,8 @@ const TagList = ({ url, currentTag, keywords, author }) =>
       const markup = tag.name.toLowerCase().replace(" ", "-") !== currentTag
         ? <Link
             href={{
-              pathname: url.pathname,
-              query: Object.assign({}, url.query, {
+              pathname: router.pathname,
+              query: Object.assign({}, router.query, {
                 tag: tag.name.toLowerCase().replace(" ", "-"),
                 k: keywords,
                 page: 1,
@@ -33,4 +34,4 @@ const TagList = ({ url, currentTag, keywords, author }) =>
     })}
   </ul>;
 
-export default TagList;
+export default withRouter(TagList);

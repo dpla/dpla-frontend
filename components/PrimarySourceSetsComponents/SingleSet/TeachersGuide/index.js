@@ -128,6 +128,7 @@ class TeachersGuide extends React.Component {
                           "-print"
                         }
                         target="_blank"
+                        rel={"noreferrer"}
                         className={`${css.toolLink} ${css.print}`}
                       >
                         Print this Guide
@@ -141,8 +142,8 @@ class TeachersGuide extends React.Component {
                 </h3>
                 <p>For each source, ask students to indicate:</p>
                 <ul className={css.ul}>
-                  <li>the author's point of view</li>
-                  <li>the author's purpose</li>
+                  <li>the author&apos;s point of view</li>
+                  <li>the author&apos;s purpose</li>
                   <li>historical context</li>
                   <li>audience</li>
                 </ul>

@@ -41,6 +41,7 @@ const HomeHero = ({ headerDescription, feature }) =>
       {SITE_ENV === "local" &&
         <div className={`${css.homeLogo} `}>
           <img
+              alt={""}
             className={css.localLogo}
             src={`/static/local/${LOCALS[LOCAL_ID].theme}/${heroLogo}`}
           />
