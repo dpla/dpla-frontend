@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
-import * as gtag from '../lib/gtag'
+import {gtag} from '../lib'
 import {gaTrackingId} from "constants/env";
 
 import 'stylesheets/reset.scss'

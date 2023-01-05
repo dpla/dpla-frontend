@@ -54,8 +54,8 @@ class ListView extends React.Component {
     showMessage: ""
   };
 
-  componentDidMount() {
-    this.getLists();
+  async componentDidMount() {
+    await this.getLists();
     this.bindClickThroughEvent();
     this.bindBrowseEvent();
   }
@@ -113,7 +113,6 @@ class ListView extends React.Component {
             partner: joinIfArray(item.provider),
             contributor: joinIfArray(item.dataProvider)
           };
-
           bindLinkEvent(gaEvent, [link], "_self");
         }
       });
