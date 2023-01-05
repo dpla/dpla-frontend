@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import {withRouter} from "next/router"
 
-import DPLALogoWide from "public/static/images/dpla-logo-black.svg";
+const dplaLogoWide = "/static/images/dpla-logo-black.svg";
 
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"
@@ -57,7 +57,11 @@ const FooterNav = ({
     <div className={css.footerWrapper}>
         <div className={`${utils.container} ${css.footerNav}`}>
             <Link href={"/"}>
-                <DPLALogoWide className={css.dplaLogo}/>
+                <img
+                    alt="Digital Public Library of America"
+                    src={dplaLogoWide}
+                    className={css.dplaLogo}
+                />
             </Link>
             <div className={css.navButtons}>
                 <NavButton
