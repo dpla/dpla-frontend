@@ -1,5 +1,5 @@
 const exhibits = require('../../fixtures/exhibitions.json');
-const exhibit = exhibits["japanese-internment"];
+const exhibit = exhibits.find(e => e.slug === "japanese-internment");
 describe(`Exhibition ${exhibit.slug}`, () => {
         it(`${exhibit.slug}'s home hasn't changed`, () => {
             cy.testExhibitHome(exhibit)

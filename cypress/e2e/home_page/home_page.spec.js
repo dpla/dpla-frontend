@@ -18,7 +18,7 @@ describe('The Home Page', () => {
         cy.contains('Get the latest DPLA news in your inbox');
 
         cy.getDataCy('home-hero').within(() => {
-            cy.getDataCy('dpla-logo').snapshot();
+            cy.getDataCy('dpla-logo').toMatchSnapshot();
             cy.get('form').toMatchSnapshot();
         });
 

@@ -1,9 +1,7 @@
 import 'cypress-plugin-snapshots/commands';
 
 Cypress.Commands.add('checkTitle', (title) => {
-    cy.title()
-        .should('eq', title)
-        .toMatchSnapshot()
+    cy.title().should('eq', title)
   }
 );
 
