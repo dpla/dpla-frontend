@@ -20,7 +20,8 @@ export const getServerSideProps = async (context) => {
         return {notFound: true}
     }
     const section = findPage(exhibit, context.params.sectionSlug);
-    if (section == null) return {notFound: true}
+    console.log("section", section);
+    if (section == null || section.parent) return {notFound: true}
     const sections = exhibitParentPages(exhibit);
     section.page_blocks = await processPageBlocks(section, context.query.item);
     if (!section.page_blocks.find(block => block.isActive)) return {notFound: true}
