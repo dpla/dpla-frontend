@@ -1,13 +1,57 @@
+const path = require("path");
+
 const fs = require('fs').promises;
 const axios = require('axios').default;
-const config = require('../cypress.json');
-
-const baseUrl = config.baseUrl;
 
 const PSS_BASE_URL = process.env.PSS_BASE_URL || 'https://dp.la/pssapi';
 const WORDPRESS_URL = process.env.WORDPRESS_URL || 'https://dpla.wpengine.com';
 const API_ENDPOINT_ALL_TOPICS = `${WORDPRESS_URL}/wp-json/dpla/v2/categories`;
 const API_ENDPOINT_SUBTOPICS_FOR_TOPIC = `${WORDPRESS_URL}/wp-json/dpla/v2/subcategories`;
+
+
+const loadExhibitionList = async () => {
+    return await loadExhibitFile("exhibitions.json")
+}
+
+const loadExhibition = async (slug) => {
+    return (slug === "exhibitions")
+        ? null
+        : await loadExhibitFile(`${slug}.json`);
+}
+
+const sortFun = (a, b) => a.order - b.order;
+
+const exhibitHomePage = exhibition => {
+    const sortedExhibitPages = exhibition.pages
+        .filter(exhibition => !exhibition.parent)
+        .sort(sortFun);
+    return sortedExhibitPages.find(
+        exhibit =>
+            exhibit.slug === "home-page"
+            || exhibit.slug === "homepage"
+    ) || sortedExhibitPages[0];
+}
+
+const exhibitParentPages = exhibit => {
+    const home = exhibitHomePage(exhibit);
+    return exhibit.pages
+        .filter(p => p.parent === null)
+        .filter(p => p.slug !== home.slug)
+        .sort(sortFun);
+}
+
+const loadExhibitFile = async (filename) => {
+    const root = process.cwd();
+    const filePath = path.join(root, "exhibitions-data", filename);;
+    const exhibitionsText = await fs.readFile(filePath, "utf-8");
+    return await JSON.parse(exhibitionsText);
+}
+
+const exhibitPageSubpages = (exhibit, page) => {
+    return exhibit.pages.filter(p => {
+        return p.parent !== null && p.parent.id === page.id
+    }).sort((a, b) => a.order - b.order);
+}
 
 const extractSourceSetSlug = (url) => /\/primary-source-sets\/sets\/([-\w]*)/.exec(url)[1];
 
@@ -36,11 +80,17 @@ const loadSets = async () => {
 
 const loadExhibits = async () => {
     let result = [];
-    const exhibitsJson = await loadData(`http://omeka.internal.dp.la/api/exhibits`);
-    for (const exhibit of exhibitsJson) {
-        const pageData = await loadData(`http://omeka.internal.dp.la/api/exhibit_pages?exhibit=${exhibit.id}`)
-        const pageSlugs = pageData.map( (page) => page.slug)
-        result.push( { slug: exhibit.slug, pages: pageSlugs} );
+    const exhibitionList = await loadExhibitionList();
+    for (const entry of exhibitionList['exhibitions']) {
+        const exhibition = await loadExhibition(entry.slug)
+        const parents = exhibitParentPages(exhibition);
+        const pageSlugs = parents.map( (page) => page.slug);
+        const subPagePaths = parents.flatMap(parent => {
+            return exhibitPageSubpages(exhibition, parent).map(
+                subpage => `${parent.slug}/${subpage.slug}`
+            )
+        });
+        result.push({ slug: exhibition.slug, pages: pageSlugs.concat(subPagePaths)} );
     }
     return result;
 }

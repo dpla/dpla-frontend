@@ -1,7 +1,7 @@
-require('@cypress/snapshot').register();
+import 'cypress-plugin-snapshots/commands';
 
 Cypress.Commands.add('checkTitle', (title) => {
-    cy.title().should('eq', title).snapshot({name: "Page title"})
+    cy.title().should('eq', title)
   }
 );
 
@@ -13,7 +13,7 @@ Cypress.Commands.add('testExhibitHome', (exhibit) => {
     cy
         .visit(`/exhibitions/${exhibit.slug}`)
         .getDataCy('exhibition-home')
-        .snapshot();
+        .toMatchSnapshot();
 });
 
 Cypress.Commands.add('testExhibitPage', (exhibit, exhibitPage) => {
@@ -27,6 +27,6 @@ Cypress.Commands.add('testExhibitPage', (exhibit, exhibitPage) => {
             seadragon.remove()
         }
     })
-    cy.get(`[data-cy="exhibit-page"]`).snapshot();
+    cy.get(`[data-cy="exhibit-page"]`).toMatchSnapshot();
 });
 
