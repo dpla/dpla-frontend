@@ -20,13 +20,19 @@ export const getServerSideProps = async (context) => {
         return { notFound: true }
     }
     const section = findPage(exhibit, context.params.sectionSlug);
-    if (section == null || section.parent) return { notFound: true }
-    const subsection = findPage(exhibit, context.params.subsectionSlug);
+    if (section == null || section.parent) {
+        return { notFound: true }
+    }
+    const subsection = exhibitPageSubpages(exhibit, section)
+        .find(subsection => subsection.slug === context.params.subsectionSlug)
+
     if (
         subsection == null
         || !subsection.parent
         || subsection.parent.id !== section.id
-    ) return { notFound: true }
+    ) {
+        return { notFound: true }
+    }
     subsection.page_blocks = await processPageBlocks(subsection, context.query.item);
     if (!subsection.page_blocks.find(block => block.isActive)) return { notFound: true }
 
