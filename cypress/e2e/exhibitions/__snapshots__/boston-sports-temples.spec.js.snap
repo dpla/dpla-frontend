@@ -4843,3 +4843,516 @@ exports[`Exhibition boston-sports-temples > boston-sports-temples's page suffolk
   </div>
 </div>
 `;
+
+exports[`Exhibition boston-sports-temples > boston-sports-temples's page fenway-park/in-the-stands hasn't changed #0`] = `
+<div class="ExhibitionSection_exhibitionView__ps7Hs" data-cy="exhibit-page">
+  <div class="ExhibitionSection_header__CSNXL utils_container__kFHcI">
+    <div class="ExhibitionSection_exhibitionsLinkAndTitle__dRymO">
+      <a class="ExhibitionSection_exhibitionsLink__uWp0K" href="/exhibitions"
+        >Exhibitions</a
+      >
+      <h1 class="ExhibitionSection_exhibitionTitle__kJfM5">
+        Boston Sports Temples
+      </h1>
+    </div>
+    <a
+      class="hover-underline ExhibitionSection_closeExhibition__CdCLd"
+      href="/exhibitions/boston-sports-temples"
+      ><svg
+        class="ExhibitionSection_closeIcon__HB_2G"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" fill-rule="evenodd">
+          <path d="M-9-9h36v36H-9z"></path>
+          <path
+            class="ExhibitionSection_closeIconX__KW7sQ"
+            d="M11.1869671 9.0007313l6.6321036-6.6336231c.241215-.2405136.241215-.6305716 0-.8710852L16.5043505.1805657C16.3886778.0648899 16.2320966 0 16.0684517 0c-.1636448 0-.3202116.0648899-.4358987.1805657L8.9997271 6.8134666 2.3669012.1805657c-.230634-.23134078-.6404416-.23134078-.8710756 0L.18038312 1.496023c-.24051083.2405136-.24051083.6305716 0 .8710852L6.8132094 9.0007313.18038312 15.6329099c-.24051083.2405136-.24051083.6305716 0 .8717894l1.31544248 1.314735C1.6107941 17.9351083 1.7680795 18 1.9317247 18c.1629298 0 .3202116-.0648917.4351946-.1805657l6.6328258-6.6329009 6.6328259 6.6329009c.1156727.115674.2722539.1805657.4358988.1805657.1636448 0 .3202116-.0648917.4358987-.1805657l1.3147202-1.314735c.2412151-.2412178.2412151-.6312758 0-.8717894l-6.6321216-6.6321786z"
+          ></path>
+        </g></svg
+      ><span class="ExhibitionSection_closeExhibitionText__bVrl0"
+        >Close Exhibition</span
+      ></a
+    >
+  </div>
+  <div class="utils_container__kFHcI ExhibitionSection_body__ML_re">
+    <div class="">
+      <div class="ExhibitionSection_menuButtonAndBreadcrumbs__2qTk2">
+        <button
+          class="ExhibitionSection_menuButton__PaUly"
+          aria-expanded="false"
+        >
+          Show<br />Menu
+        </button>
+        <h2 class="ExhibitionSection_breadcrumbSubsection__XNLcA">
+          In the Stands
+        </h2>
+      </div>
+    </div>
+    <div id="main" role="main" class="ExhibitionSection_mainContent__EnIW6">
+      <div class="ExhibitionSection_sidebar__hTwtF ">
+        <ul class="ExhibitionSection_sidebarSections__30Wuv">
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/braves-field"
+              >Braves Field</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot ExhibitionSection_active__f8YpK"
+              href="/exhibitions/boston-sports-temples/fenway-park"
+              >Fenway Park</a
+            >
+            <ul>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a href="/exhibitions/boston-sports-temples/fenway-park"
+                  >Introduction</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/boston-sports-temples/fenway-park/field-of-dreams"
+                  >Field of Dreams</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a href="/exhibitions/boston-sports-temples/fenway-park/legends"
+                  >Legends</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/boston-sports-temples/fenway-park/behind-the-scenes"
+                  >Behind the Scenes</a
+                >
+              </li>
+              <li
+                class="ExhibitionSection_subsectionTitle__Whnrt ExhibitionSection_active__f8YpK"
+              >
+                <a
+                  href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands"
+                  >In the Stands</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/boston-garden"
+              >Boston Garden</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/suffolk-downs"
+              >Suffolk Downs</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="ExhibitionSection_viewer__PYPBZ">
+        <h2 class="ExhibitionSection_titleSubsection__RykoL">In the Stands</h2>
+        <div class="ExhibitionSection_viewerContent__6_185">
+          <div class="ExhibitionSection_mediaAndCaption__WHUSZ">
+            <div class="ExhibitionSection_mainMedia__AuO61">
+              <a
+                class="ExhibitionSection_nextItemButton__MMfMM"
+                href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands?item=479"
+                ><img
+                  src="/static/images/chevron-thick-black.svg"
+                  alt=""
+                  class="ExhibitionSection_nextItemChevron__Hrwr0"
+              /></a>
+            </div>
+            <ul class="ExhibitionSection_itemLinks__tVpBn">
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t ExhibitionSection_activeItemLink__IxB8j"
+                  href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands?item=478"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/d98d1734cf24242e2280a68380e6d120.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands?item=479"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/10ff228acd5214a5ab444a9ad360d852.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands?item=480"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/d73a5a146a68291e35a9852e8cd660f0.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/fenway-park/in-the-stands?item=481"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/9e27c76d7b468c65d2012a94b26a982f.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+            </ul>
+            <a
+              class="ExhibitionSection_viewItemLink__HWR0_"
+              href="/item/c13cee2ed766a2296914eab82e59208b"
+              >View item information</a
+            >
+            <div class="ExhibitionSection_caption__IoJ81">
+              <p class="p1">
+                TWO LADIES AT TICKET WINDOW, FENWAY PARK, ca. 1945.&nbsp;Leslie
+                Jones Collection,&nbsp;BPL Print Department
+              </p>
+            </div>
+          </div>
+          <div class="ExhibitionSection_text__O5lNj">
+            <p class="p1">
+              Generations of passionate Red Sox fans have filled Fenway's stands
+              night after night, season after season, cheering on their beloved
+              team.&nbsp;
+            </p>
+            <p class="p1">
+              While the earliest fans at Fenway Park enjoyed a quick succession
+              of World Series championships in 1912, 1915, 1916, and 1918, the
+              legions of loyal supporters born after 1918 waited for nearly a
+              lifetime until they were rewarded with championships in 2004 and
+              2007.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ExhibitionSection_footerWrapper__6Ne2y">
+    <div class="utils_container__kFHcI ExhibitionSection_footerNav__fZSqt">
+      <img
+        alt="Digital Public Library of America"
+        src="/static/images/dpla-logo-black.svg"
+        class="ExhibitionSection_dplaLogo__EDPeb"
+      />
+      <div class="ExhibitionSection_navButtons__T2Gqd">
+        <a
+          class="ExhibitionSection_prevButton__m0VNa"
+          href="/exhibitions/boston-sports-temples/fenway-park/behind-the-scenes"
+          ><img
+            src="/static/images/chevron-thick-black.svg"
+            class="ExhibitionSection_previousChevron__NGE0v"
+            alt=""
+          /><span>Previous</span></a
+        >
+        <div class="ExhibitionSection_nextButtonAndTitleWrapper__6NL5W">
+          <div class="ExhibitionSection_nextSubsectionTitle__pmtHU">
+            Boston Garden
+          </div>
+          <a
+            class="ExhibitionSection_nextButton__WWSu7"
+            href="/exhibitions/boston-sports-temples/boston-garden"
+            ><span>Next</span
+            ><img
+              src="/static/images/chevron-thick-white.svg"
+              class="ExhibitionSection_nextChevron__Ga_Wq"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Exhibition boston-sports-temples > boston-sports-temples's page suffolk-downs/behind-the-scenes hasn't changed #0`] = `
+<div class="ExhibitionSection_exhibitionView__ps7Hs" data-cy="exhibit-page">
+  <div class="ExhibitionSection_header__CSNXL utils_container__kFHcI">
+    <div class="ExhibitionSection_exhibitionsLinkAndTitle__dRymO">
+      <a class="ExhibitionSection_exhibitionsLink__uWp0K" href="/exhibitions"
+        >Exhibitions</a
+      >
+      <h1 class="ExhibitionSection_exhibitionTitle__kJfM5">
+        Boston Sports Temples
+      </h1>
+    </div>
+    <a
+      class="hover-underline ExhibitionSection_closeExhibition__CdCLd"
+      href="/exhibitions/boston-sports-temples"
+      ><svg
+        class="ExhibitionSection_closeIcon__HB_2G"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" fill-rule="evenodd">
+          <path d="M-9-9h36v36H-9z"></path>
+          <path
+            class="ExhibitionSection_closeIconX__KW7sQ"
+            d="M11.1869671 9.0007313l6.6321036-6.6336231c.241215-.2405136.241215-.6305716 0-.8710852L16.5043505.1805657C16.3886778.0648899 16.2320966 0 16.0684517 0c-.1636448 0-.3202116.0648899-.4358987.1805657L8.9997271 6.8134666 2.3669012.1805657c-.230634-.23134078-.6404416-.23134078-.8710756 0L.18038312 1.496023c-.24051083.2405136-.24051083.6305716 0 .8710852L6.8132094 9.0007313.18038312 15.6329099c-.24051083.2405136-.24051083.6305716 0 .8717894l1.31544248 1.314735C1.6107941 17.9351083 1.7680795 18 1.9317247 18c.1629298 0 .3202116-.0648917.4351946-.1805657l6.6328258-6.6329009 6.6328259 6.6329009c.1156727.115674.2722539.1805657.4358988.1805657.1636448 0 .3202116-.0648917.4358987-.1805657l1.3147202-1.314735c.2412151-.2412178.2412151-.6312758 0-.8717894l-6.6321216-6.6321786z"
+          ></path>
+        </g></svg
+      ><span class="ExhibitionSection_closeExhibitionText__bVrl0"
+        >Close Exhibition</span
+      ></a
+    >
+  </div>
+  <div class="utils_container__kFHcI ExhibitionSection_body__ML_re">
+    <div class="">
+      <div class="ExhibitionSection_menuButtonAndBreadcrumbs__2qTk2">
+        <button
+          class="ExhibitionSection_menuButton__PaUly"
+          aria-expanded="false"
+        >
+          Show<br />Menu
+        </button>
+        <h2 class="ExhibitionSection_breadcrumbSubsection__XNLcA">
+          Behind the Scenes
+        </h2>
+      </div>
+    </div>
+    <div id="main" role="main" class="ExhibitionSection_mainContent__EnIW6">
+      <div class="ExhibitionSection_sidebar__hTwtF ">
+        <ul class="ExhibitionSection_sidebarSections__30Wuv">
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/braves-field"
+              >Braves Field</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/fenway-park"
+              >Fenway Park</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/boston-sports-temples/boston-garden"
+              >Boston Garden</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot ExhibitionSection_active__f8YpK"
+              href="/exhibitions/boston-sports-temples/suffolk-downs"
+              >Suffolk Downs</a
+            >
+            <ul>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a href="/exhibitions/boston-sports-temples/suffolk-downs"
+                  >Introduction</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/and-they-re-off-"
+                  >And They're Off!</a
+                >
+              </li>
+              <li
+                class="ExhibitionSection_subsectionTitle__Whnrt ExhibitionSection_active__f8YpK"
+              >
+                <a
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes"
+                  >Behind the Scenes</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/track-stars"
+                  >Track Stars</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/changing-times"
+                  >Changing Times</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="ExhibitionSection_viewer__PYPBZ">
+        <h2 class="ExhibitionSection_titleSubsection__RykoL">
+          Behind the Scenes
+        </h2>
+        <div class="ExhibitionSection_viewerContent__6_185">
+          <div class="ExhibitionSection_mediaAndCaption__WHUSZ">
+            <div class="ExhibitionSection_mainMedia__AuO61">
+              <a
+                class="ExhibitionSection_nextItemButton__MMfMM"
+                href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes?item=520"
+                ><img
+                  src="/static/images/chevron-thick-black.svg"
+                  alt=""
+                  class="ExhibitionSection_nextItemChevron__Hrwr0"
+              /></a>
+            </div>
+            <ul class="ExhibitionSection_itemLinks__tVpBn">
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t ExhibitionSection_activeItemLink__IxB8j"
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes?item=519"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/a9ed173834def815586f14066b329fc8.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes?item=520"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/958716fac8c030f651365357a3f4dc81.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes?item=521"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/5966cc8430f5f5a9a94fb5d33da10931.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/boston-sports-temples/suffolk-downs/behind-the-scenes?item=522"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/d8f9e762ae536fa77a310a64185ebf4c.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+            </ul>
+            <a
+              class="ExhibitionSection_viewItemLink__HWR0_"
+              href="/item/db75fdbf337bb9b2768cf3314b7ae7e5"
+              >View item information</a
+            >
+            <div class="ExhibitionSection_caption__IoJ81">
+              <p class="p1">
+                JOCKEYS C. AND IRA HANFORD, 1935.&nbsp;Leslie Jones Collection,
+                BPL Print Department.&nbsp;&nbsp;
+              </p>
+              <p class="p1">
+                Nebraska-born brothers Carl and Ira Hanford both rode in the
+                opening meet at Suffolk Downs in July 1935. Carl triumphed in
+                the first race run at the new track aboard horse Eddie Wrack.
+                Ira would go on to ride legendary horse Seabiscuit three times
+                and win the 1936 Kentucky Derby atop Bold Venture.&nbsp;
+              </p>
+            </div>
+          </div>
+          <div class="ExhibitionSection_text__O5lNj">
+            <p class="p1">
+              Home of the popular Massachusetts Handicap, the racetrack has
+              welcomed many hall-of-fame horses, riders, and trainers throughout
+              its more than 70-year history.&nbsp;
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ExhibitionSection_footerWrapper__6Ne2y">
+    <div class="utils_container__kFHcI ExhibitionSection_footerNav__fZSqt">
+      <img
+        alt="Digital Public Library of America"
+        src="/static/images/dpla-logo-black.svg"
+        class="ExhibitionSection_dplaLogo__EDPeb"
+      />
+      <div class="ExhibitionSection_navButtons__T2Gqd">
+        <a
+          class="ExhibitionSection_prevButton__m0VNa"
+          href="/exhibitions/boston-sports-temples/suffolk-downs/and-they-re-off-"
+          ><img
+            src="/static/images/chevron-thick-black.svg"
+            class="ExhibitionSection_previousChevron__NGE0v"
+            alt=""
+          /><span>Previous</span></a
+        >
+        <div class="ExhibitionSection_nextButtonAndTitleWrapper__6NL5W">
+          <div class="ExhibitionSection_nextSubsectionTitle__pmtHU">
+            Track Stars
+          </div>
+          <a
+            class="ExhibitionSection_nextButton__WWSu7"
+            href="/exhibitions/boston-sports-temples/suffolk-downs/track-stars"
+            ><span>Next</span
+            ><img
+              src="/static/images/chevron-thick-white.svg"
+              class="ExhibitionSection_nextChevron__Ga_Wq"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
