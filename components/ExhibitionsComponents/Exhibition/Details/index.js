@@ -4,8 +4,7 @@ import Link from "next/link";
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
 
-import { getFullPath, joinIfArray, parseDplaItemRecord } from "lib";
-import * as gtag from "lib/gtag";
+import { getFullPath, joinIfArray, parseDplaItemRecord, gtag } from "lib";
 
 import css from "./Details.module.scss";
 import utils from "stylesheets/utils.module.scss"

@@ -14,10 +14,9 @@ import {
     getDefaultThumbnail,
     getFullPath,
     joinIfArray,
-    parseDplaItemRecord
+    parseDplaItemRecord,
+    gtag
 } from "lib";
-
-import * as gtag from "lib/gtag";
 
 import {ITEM_TYPES} from "constants/exhibitions";
 import {resourceTypes} from "constants/site";

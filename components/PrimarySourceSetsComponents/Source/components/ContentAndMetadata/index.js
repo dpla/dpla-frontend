@@ -85,7 +85,6 @@ class ContentAndMetadata extends React.Component {
   state = { isOpen: true }; // show it if js is disabled
 
   componentDidMount() {
-    // now collapse it
     this.setState({ isOpen: false });
     this.trackSourceView();
   }
@@ -113,7 +112,6 @@ class ContentAndMetadata extends React.Component {
         partner: joinIfArray(getPartner(source)),
         contributor: joinIfArray(getContributor(source))
       };
-
       gtag.event(gaEvent);
       this.lastTrackedPath = fullPath;
     }
