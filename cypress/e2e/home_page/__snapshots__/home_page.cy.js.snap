@@ -1,4 +1,8 @@
 exports[`The Home Page > successfully loads #0`] = `
+Digital Public Library of America
+`;
+
+exports[`The Home Page > successfully loads #1`] = `
 <div
   data-cy="dpla-logo"
   class="HomeHero_header__hjI0d utils_siteMaxWidth__RoKR0"
@@ -16,7 +20,7 @@ exports[`The Home Page > successfully loads #0`] = `
 </div>
 `;
 
-exports[`The Home Page > successfully loads #1`] = `
+exports[`The Home Page > successfully loads #2`] = `
 <form action="/search">
   <div class="HomeHero_search__oqEHq">
     <input
@@ -33,7 +37,7 @@ exports[`The Home Page > successfully loads #1`] = `
 </form>
 `;
 
-exports[`The Home Page > successfully loads #2`] = `
+exports[`The Home Page > successfully loads #3`] = `
 <div class="StayInformed_wrapper__oTIE5" data-cy="stay-informed">
   <div class="StayInformed_content__XpMST utils_siteMaxWidth__RoKR0">
     <div class="utils_row__rgSWa">
@@ -106,7 +110,7 @@ exports[`The Home Page > successfully loads #2`] = `
 </div>
 `;
 
-exports[`The Home Page > successfully loads #3`] = `
+exports[`The Home Page > successfully loads #4`] = `
 <div class="DPLAUsers_wrapper__1Qk98" data-cy="guides">
   <div class="DPLAUsers_DPLAUsers__mW_y7 utils_siteMaxWidth__RoKR0">
     <h2 class="DPLAUsers_header__VCgvS">How can I use DPLA?</h2>
