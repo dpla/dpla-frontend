@@ -6,25 +6,29 @@ import {
     loadExhibition,
     processPageBlocks
 } from "lib/exhibitions/exhibitionsStatic";
-import {washObject} from "lib/washObject";
+import { washObject } from "lib/washObject";
 
 
 export const getServerSideProps = async (context) => {
     if (!context?.query?.item) {
-        Object.assign(context, {query: {item: "-1"}});
+        Object.assign(context, { query: { item: "-1" } });
     }
     let exhibit = {};
     try {
         exhibit = await loadExhibition(context.params.exhibitionSlug);
     } catch (e) {
-        return {notFound: true}
+        return { notFound: true }
     }
     const section = findPage(exhibit, context.params.sectionSlug);
-    if (section == null) return {notFound: true}
+    if (section == null || section.parent) return { notFound: true }
     const subsection = findPage(exhibit, context.params.subsectionSlug);
-    if (subsection == null) return {notFound: true}
+    if (
+        subsection == null
+        || !subsection.parent
+        || subsection.parent.id !== section.id
+    ) return { notFound: true }
     subsection.page_blocks = await processPageBlocks(subsection, context.query.item);
-    if (!subsection.page_blocks.find(block => block.isActive)) return {notFound: true}
+    if (!subsection.page_blocks.find(block => block.isActive)) return { notFound: true }
 
     const sections = exhibitParentPages(exhibit);
     const subsections = exhibitPageSubpages(exhibit, section);
@@ -81,7 +85,7 @@ export const getServerSideProps = async (context) => {
         }
     }
 
-    const pageMap = page => ({id: page.id, title: page.title, slug: page.slug})
+    const pageMap = page => ({ id: page.id, title: page.title, slug: page.slug })
     const sectionMap = sections.map(pageMap);
     const subsectionMap = [{
         id: section.id, title: "Introduction", slug: ""
@@ -99,7 +103,7 @@ export const getServerSideProps = async (context) => {
         previousQueryParams: previousQueryParams,
     });
 
-    return {props};
+    return { props };
 };
 
 export default drawExhibitionPage;
