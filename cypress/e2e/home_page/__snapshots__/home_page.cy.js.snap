@@ -1,0 +1,222 @@
+exports[`The Home Page > successfully loads #0`] = `
+Digital Public Library of America
+`;
+
+exports[`The Home Page > successfully loads #1`] = `
+<div
+  data-cy="dpla-logo"
+  class="HomeHero_header__hjI0d utils_siteMaxWidth__RoKR0"
+>
+  <div class="HomeHero_homeLogo__b7l9a HomeHero_dplaLogo___h8Nr">
+    <h1>Digital Public Library of America</h1>
+  </div>
+  <div class="">
+    <a
+      class="Button_buttonBase__t1PTy Button_buttonPrimary__R1eIM Button_buttonLarge__yJ6bG"
+      href="/donate"
+      >Donate</a
+    >
+  </div>
+</div>
+`;
+
+exports[`The Home Page > successfully loads #2`] = `
+<form action="/search">
+  <div class="HomeHero_search__oqEHq">
+    <input
+      type="search"
+      class="HomeHero_searchInput__xk_hF"
+      aria-label="Search the collection"
+      placeholder="Search the collection"
+      name="q"
+      autocomplete="off"
+    /><button type="submit" class="HomeHero_searchButton__Bc6EL">
+      <span>Search</span>
+    </button>
+  </div>
+</form>
+`;
+
+exports[`The Home Page > successfully loads #3`] = `
+<div class="StayInformed_wrapper__oTIE5" data-cy="stay-informed">
+  <div class="StayInformed_content__XpMST utils_siteMaxWidth__RoKR0">
+    <div class="utils_row__rgSWa">
+      <div class="utils_colXs12__z6Otq utils_colMd3__yxbeL">
+        <div class="StayInformed_header__CKGAp">
+          <h2 class="StayInformed_headerText__1_vxZ">Stay informed</h2>
+        </div>
+      </div>
+      <div
+        class="StayInformed_formWrapper__2pVdf utils_colXs12__z6Otq utils_colMd9__OUghl"
+      >
+        <form class="StayInformed_form__9Y0v7">
+          <h3 class="StayInformed_formCallToAction__E4EdG">
+            Get the latest DPLA news in your inbox
+          </h3>
+          <div class="StayInformed_formInputs__2V5MG">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              aria-label="Enter your email"
+              class="StayInformed_email__8iX_j"
+            /><input
+              type="checkbox"
+              name="i_prefer_usps_mail"
+              value="1"
+              class="StayInformed_miel__TRMpI"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="StayInformed_interestsContainer__ABDZn StayInformed_email__8iX_j"
+          >
+            <div>
+              <input
+                type="checkbox"
+                name="news"
+                checked=""
+                tabindex="-1"
+              /><label>General News</label>
+            </div>
+            <div>
+              <input type="checkbox" name="ebooks" tabindex="-1" /><label
+                >Ebooks</label
+              >
+            </div>
+            <div>
+              <input type="checkbox" name="education" tabindex="-1" /><label
+                >Education</label
+              >
+            </div>
+            <div>
+              <input type="checkbox" name="genealogy" tabindex="-1" /><label
+                >Genealogy</label
+              >
+            </div>
+          </div>
+          <input
+            type="submit"
+            aria-live="assertive"
+            value="Sign Up"
+            name="signup"
+            class="StayInformed_button__HBe4v"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The Home Page > successfully loads #4`] = `
+<div class="DPLAUsers_wrapper__1Qk98" data-cy="guides">
+  <div class="DPLAUsers_DPLAUsers__mW_y7 utils_siteMaxWidth__RoKR0">
+    <h2 class="DPLAUsers_header__VCgvS">How can I use DPLA?</h2>
+    <div>
+      <div
+        class="HeadingRule_rule___roNX"
+        style="border-color:rgba(0,0,0,.15)"
+      ></div>
+    </div>
+    <div class="utils_row__rgSWa">
+      <div
+        class="DPLAUsers_itemColumn__BjQUF utils_colXs12__z6Otq utils_colSm6__Lzstr utils_colLg3__UdJtD"
+      >
+        <div class="GuideLink_item__9GR3e">
+          <a
+            class="GuideLink_itemLink__vAI_s"
+            href="/guides/the-education-guide-to-dpla"
+            ><img
+              alt="Illustrated image of a graduation mortarboard hat"
+              class="GuideLink_itemImg__yegUT"
+              src="https://dpla.wpengine.com/wp-content/uploads/2017/09/education_guide_art.png"
+            />
+            <div class="GuideLink_itemHeader__oy1ku">Education</div>
+            <p class="GuideLink_text__zwRjt">
+              Educators and students explore our Primary Source Sets to discover
+              history and culture through primary sources and ideas for
+              classroom use.
+            </p></a
+          >
+        </div>
+      </div>
+      <div
+        class="DPLAUsers_itemColumn__BjQUF utils_colXs12__z6Otq utils_colSm6__Lzstr utils_colLg3__UdJtD"
+      >
+        <div class="GuideLink_item__9GR3e">
+          <a
+            class="GuideLink_itemLink__vAI_s"
+            href="/guides/the-family-research-guide-to-dpla"
+            ><img
+              alt="Illustrated image of three trees"
+              class="GuideLink_itemImg__yegUT"
+              src="https://dpla.wpengine.com/wp-content/uploads/2017/09/family_guide_art.png"
+            />
+            <div class="GuideLink_itemHeader__oy1ku">Family Research</div>
+            <p class="GuideLink_text__zwRjt">
+              Genealogists use our search tools to find free materials for their
+              family history research projects.
+            </p></a
+          >
+        </div>
+      </div>
+      <div
+        class="DPLAUsers_itemColumn__BjQUF utils_colXs12__z6Otq utils_colSm6__Lzstr utils_colLg3__UdJtD"
+      >
+        <div class="GuideLink_item__9GR3e">
+          <a
+            class="GuideLink_itemLink__vAI_s"
+            href="/guides/the-guide-to-lifelong-learning-with-dpla"
+            ><img
+              alt="Illustrated image of an electronic table reader with a video displayed"
+              class="GuideLink_itemImg__yegUT"
+              src="https://dpla.wpengine.com/wp-content/uploads/2017/09/learning_guide_art.png"
+            />
+            <div class="GuideLink_itemHeader__oy1ku">Lifelong Learning</div>
+            <p class="GuideLink_text__zwRjt">
+              Lifelong learners enjoy browsing by topic and viewing Online
+              Exhibitions to learn more about their interests.
+            </p></a
+          >
+        </div>
+      </div>
+      <div
+        class="DPLAUsers_itemColumn__BjQUF utils_colXs12__z6Otq utils_colSm6__Lzstr utils_colLg3__UdJtD"
+      >
+        <div class="GuideLink_item__9GR3e">
+          <a
+            class="GuideLink_itemLink__vAI_s"
+            href="/guides/the-scholarly-research-guide-to-dpla"
+            ><img
+              alt="Illustrated image of a university"
+              class="GuideLink_itemImg__yegUT"
+              src="https://dpla.wpengine.com/wp-content/uploads/2017/09/research_guide_art.png"
+            />
+            <div class="GuideLink_itemHeader__oy1ku">Scholarly Research</div>
+            <p class="GuideLink_text__zwRjt">
+              Scholarly researchers use DPLA to find open access sources from
+              archives across the country through a single portal.
+            </p></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="DPLAUsers_caption__Bn8JN">
+      <p>
+        If you’re new to DPLA, these research guides will give you a head start
+        using our site. The guides reflect a few key activities that attract
+        visitors to DPLA, but you can explore many other interests here too.
+      </p>
+      <div class="DPLAUsers_captionButton__I569V">
+        <a
+          class="Button_buttonBase__t1PTy Button_buttonSecondary___pVA8 Button_buttonLarge__yJ6bG"
+          href="/guides"
+          >View all user guides</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+`;

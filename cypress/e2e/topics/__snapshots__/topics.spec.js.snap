@@ -374,13 +374,16 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
             />
           </button>
           <div class="slick-list">
-            <div class="slick-track" style="width:111.11111111111111%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 1140px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:20%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -411,7 +414,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:20%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -442,7 +445,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:20%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -473,7 +476,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:20%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -504,7 +507,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:20%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -902,13 +905,16 @@ exports[`Topics > aviation's home hasn't changed #0`] = `
       <div>
         <div class="slick-slider slick-initialized">
           <div class="slick-list">
-            <div class="slick-track" style="width:22.22222222222222%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:100%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1249,13 +1255,16 @@ exports[`Topics > baseball's home hasn't changed #0`] = `
       <div>
         <div class="slick-slider slick-initialized">
           <div class="slick-list">
-            <div class="slick-track" style="width:22.22222222222222%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:100%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1612,13 +1621,16 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
             />
           </button>
           <div class="slick-list">
-            <div class="slick-track" style="width:155.55555555555554%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 1596px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1650,7 +1662,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1681,7 +1693,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1712,7 +1724,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1743,7 +1755,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1774,7 +1786,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -1805,7 +1817,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2153,13 +2165,16 @@ exports[`Topics > food's home hasn't changed #0`] = `
       <div>
         <div class="slick-slider slick-initialized">
           <div class="slick-list">
-            <div class="slick-track" style="width:66.66666666666666%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 684px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:33.333333333333336%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2190,7 +2205,7 @@ exports[`Topics > food's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:33.333333333333336%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2221,7 +2236,7 @@ exports[`Topics > food's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:33.333333333333336%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2621,13 +2636,16 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
             />
           </button>
           <div class="slick-list">
-            <div class="slick-track" style="width:155.55555555555554%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 1596px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2658,7 +2676,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2689,7 +2707,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2720,7 +2738,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2751,7 +2769,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2782,7 +2800,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -2813,7 +2831,7 @@ exports[`Topics > immigration-since-1840's home hasn't changed #0`] = `
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
-                style="outline:none;width:14.285714285714286%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -3240,13 +3258,16 @@ exports[`Topics > photography's home hasn't changed #0`] = `
       <div>
         <div class="slick-slider slick-initialized">
           <div class="slick-list">
-            <div class="slick-track" style="width:22.22222222222222%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:100%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -3625,13 +3646,16 @@ exports[`Topics > women-in-science's home hasn't changed #0`] = `
       <div>
         <div class="slick-slider slick-initialized">
           <div class="slick-list">
-            <div class="slick-track" style="width:44.44444444444444%;left:0%">
+            <div
+              class="slick-track"
+              style="width: 456px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:50%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div
@@ -3662,7 +3686,7 @@ exports[`Topics > women-in-science's home hasn't changed #0`] = `
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
-                style="outline:none;width:50%"
+                style="outline: none; width: 228px;"
               >
                 <div>
                   <div

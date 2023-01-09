@@ -72,8 +72,8 @@ exports[`The Home Page > successfully loads #2`] = `
               <input
                 type="checkbox"
                 name="news"
-                tabindex="-1"
                 checked=""
+                tabindex="-1"
               /><label>General News</label>
             </div>
             <div>

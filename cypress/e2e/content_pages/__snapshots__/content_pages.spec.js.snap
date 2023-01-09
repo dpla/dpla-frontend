@@ -139,11 +139,15 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
             >
           </p>
           <p>
-            Get information about<a href="https://ebooks.dp.la/">
+            Get information about<a
+              href="https://ebooks.dp.la/"
+              class="external"
+            >
               DPLA’s ebook program</a
             >
             and
-            <a href="https://ebooks.dp.la/dpla-exchange/">Palace Marketplace</a
+            <a href="https://ebooks.dp.la/dpla-exchange/" class="external"
+              >Palace Marketplace</a
             >.
           </p>
           <p>
@@ -160,11 +164,13 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
             46-1160948. View DPLA’s
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Charter-1.pdf"
+              class="external"
               >Charter</a
             >
             and
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Bylaws.pdf"
+              class="external"
               >By-Laws</a
             >.
           </p>
@@ -173,48 +179,56 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2022/09/DPLA_21_990_FINAL.pdf"
+                class="external"
                 >2021</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2021/12/DPLA_20_990_FINAL.pdf"
+                class="external"
                 >2020</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2020/10/TAX_DPL_990_FY19_PublicVersion.pdf"
+                class="external"
                 >2019</a
               >
             </li>
             <li>
               <a
                 href="https://dpla.wpengine.com/wp-content/uploads/2019/07/2018-990.pdf"
+                class="external"
                 >2018</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/2017-990.pdf"
+                class="external"
                 >2017</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/2016-461160948-0e08086b-9.pdf"
+                class="external"
                 >2016</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/2015-461160948-0c4ddfe5-9.pdf"
+                class="external"
                 >2015</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/2014-461160948-0b1a8644-9.pdf"
+                class="external"
                 >2014</a
               >
             </li>
@@ -224,54 +238,63 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2022/09/DPLA_Audit_2021_FINAL-2.pdf"
+                class="external"
                 >2021</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2021/12/DPLA_AuditedFinancials_2020_FINAL.pdf"
+                class="external"
                 >2020</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2020/10/Digital-Public-Library-of-America-06-30-2019-Financial-Statement.pdf"
+                class="external"
                 >2019</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2019/07/DPLA_Finanicial_2018.pdf"
+                class="external"
                 >2018</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Financial_2017.pdf"
+                class="external"
                 >2017</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Financial_2015-2016.pdf"
+                class="external"
                 >2016</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Financial_2015-2016.pdf"
+                class="external"
                 >2015</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Financial_2014.pdf"
+                class="external"
                 >2014</a
               >
             </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2018/11/DPLA_Financial_2013.pdf"
+                class="external"
                 >2013</a
               >
             </li>
@@ -547,7 +570,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               addition to his professional work, he is an active amateur
               musician with a current solo project called Sounds from Upstairs
               audible on Soundcloud at </span
-            ><a href="https://soundcloud.com/jlucia"
+            ><a href="https://soundcloud.com/jlucia" class="external"
               ><span style="font-weight: 400;"
                 >https://soundcloud.com/jlucia</span
               ></a
@@ -761,6 +784,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             DPLA’s
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLA_OpenMeetingsGuidelines.pdf"
+              class="external"
               >Open Meetings Guidelines</a
             >.
           </p>
@@ -781,6 +805,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             If you’d like to attend,
             <a
               href="https://dpla.zoom.us/webinar/register/WN_9mzUrwQkRIqf5ToJkSzzGw"
+              class="external"
               >please register here</a
             >.
           </p>
@@ -800,36 +825,43 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               href="https://youtu.be/uJ8IA-1O8Ms"
               target="_blank"
               rel="noopener"
+              class="external"
               >Monday, January 10, 2022</a
             >
           </p>
           <p>
-            <a href="https://youtu.be/pSgNH3Lzeh4"
+            <a href="https://youtu.be/pSgNH3Lzeh4" class="external"
               ><span style="font-weight: 400;">Monday, April 11, 2022</span></a
             >
           </p>
           <p>
-            <a href="https://youtu.be/cs_V8mFg_BE"
+            <a href="https://youtu.be/cs_V8mFg_BE" class="external"
               ><span style="font-weight: 400;">Monday, July 11, 2022</span></a
             >
           </p>
           <p><span style="font-weight: 400;">Monday, October 17, 2022</span></p>
           <h3><strong>2021</strong></h3>
           <p>
-            <a href="https://youtu.be/JVkGTd4Buig">Friday, January 15, 2021</a>
+            <a href="https://youtu.be/JVkGTd4Buig" class="external"
+              >Friday, January 15, 2021</a
+            >
           </p>
           <p>
-            <a href="https://youtu.be/fZviEs8gW7A"
+            <a href="https://youtu.be/fZviEs8gW7A" class="external"
               >Friday, April 9, 2021&nbsp;</a
             >
           </p>
           <p>
-            <a href="https://www.youtube.com/watch?v=2BSofqi9yVk"
+            <a
+              href="https://www.youtube.com/watch?v=2BSofqi9yVk"
+              class="external"
               >Friday, June 11, 2021</a
             >
           </p>
           <p>
-            <a href="https://youtu.be/koSVnqtn6n4">Friday, October 15, 2021</a>
+            <a href="https://youtu.be/koSVnqtn6n4" class="external"
+              >Friday, October 15, 2021</a
+            >
           </p>
           <h2>Notes from Past Board Calls</h2>
           <h3><strong>2020</strong></h3>
@@ -837,14 +869,20 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             Tuesday, January 14, 2020 (<em
               >recording not available due to technical difficulties</em
             >)<br />
-            <a href="https://youtu.be/Wg-hVVY1L6I">Tuesday, April 14, 2020</a
+            <a href="https://youtu.be/Wg-hVVY1L6I" class="external"
+              >Tuesday, April 14, 2020</a
             >&nbsp;
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/06/Board-Meeting-Notes-4.14.2020.pdf"
+              class="external"
               >(Please find minutes here.</a
             >)<br />
-            <a href="https://youtu.be/uzoYwy4iAvE">Friday, June 26, 2020</a> (<a
+            <a href="https://youtu.be/uzoYwy4iAvE" class="external"
+              >Friday, June 26, 2020</a
+            >
+            (<a
               href="http://dpla.wpengine.com/wp-content/uploads/2021/03/06.26.2020-DPLA-Community-Board-Mtg-Minutes-Approved.docx.pdf"
+              class="external"
               >Please find minutes here</a
             >.)
           </p>
@@ -859,16 +897,19 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/07/January92018_PublicSession_DPLABoardCall.pdf"
+              class="external"
               >January 9, 2018</a
             ><br />
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/05/April162018_PublicSession_DPLABoardCall.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              class="external"
               >April 16, 2018</a
             ><br />
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/10/July102018_PublicSession_DPLABoardCall-2.pdf"
+              class="external"
               >July 10, 2018</a
             >
           </p>
@@ -878,18 +919,21 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               href="http://dpla.wpengine.com/wp-content/uploads/2018/02/DPLABoardofDirectorsQuarterlyCall_March2017.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              class="external"
               >March 15, 2017</a
             ><br />
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLABoardofDirectorsQuarterlyCall_June2017-2.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              class="external"
               >June 15, 2017</a
             ><br />
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLABoardofDirectorsQuarterlyCall_September2017-2.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              class="external"
               >September 15, 2017</a
             >
           </p>
@@ -903,30 +947,35 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/Responsibilities-of-the-Board-for-Signature.pdf"
+              class="external"
               >Responsibilities of the Board of Directors</a
             >
           </p>
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2021/04/Board-of-Directors-Policies.pdf"
+              class="external"
               >Board of Directors Policies</a
             >
           </p>
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/DPLA-Confidentiality-Agreement-for-Signature.pdf"
+              class="external"
               >DPLA Confidentiality Agreement</a
             >
           </p>
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/DPLA-Conflict-of-Interest-Policy-for-Signature.pdf"
+              class="external"
               >DPLA Conflict of Interest Policy</a
             >
           </p>
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2021/04/DPLA_Bylaws.pdf"
+              class="external"
               >DPLA Bylaws</a
             >
           </p>
@@ -1450,7 +1499,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
 
           <p><br /></p>
 
-          <a href="https://knightfoundation.org/"
+          <a href="https://knightfoundation.org/" class="external"
             ><img
               decoding="async"
               loading="lazy"
@@ -1462,7 +1511,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26010"
           /></a>
 
-          <a href="https://macfound.org/"
+          <a href="https://macfound.org/" class="external"
             ><img
               decoding="async"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 2px"
@@ -1471,7 +1520,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26010"
           /></a>
 
-          <a href="https://mellon.org/"
+          <a href="https://mellon.org/" class="external"
             ><img
               decoding="async"
               loading="lazy"
@@ -1483,7 +1532,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26007"
           /></a>
 
-          <a href="https://netgainpartnership.org/"
+          <a href="https://netgainpartnership.org/" class="external"
             ><img
               decoding="async"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 8px"
@@ -1492,7 +1541,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26007"
           /></a>
 
-          <a href="https://sloan.org/"
+          <a href="https://sloan.org/" class="external"
             ><img
               decoding="async"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 8px"
@@ -1501,7 +1550,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26008"
           /></a>
 
-          <a href="https://unfinished.com/"
+          <a href="https://unfinished.com/" class="external"
             ><img
               decoding="async"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 16px"
@@ -1510,7 +1559,7 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
               class="wp-image-26007"
           /></a>
 
-          <a href="https://wikimediafoundation.org/"
+          <a href="https://wikimediafoundation.org/" class="external"
             ><img
               decoding="async"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 8px"
@@ -1616,33 +1665,45 @@ exports[`Content Pages > Credits hasn't changed #0`] = `
           <ul>
             <li>
               Web developer,&nbsp;List, Ebook, School, and Chat by
-              <a href="https://thenounproject.com/coquet_adrien/"
+              <a
+                href="https://thenounproject.com/coquet_adrien/"
+                class="external"
                 >Adrien Coquet</a
               >
               from the Noun Project
             </li>
             <li>
               Woman and Avatar by
-              <a href="https://thenounproject.com/grega.cresnar/"
+              <a
+                href="https://thenounproject.com/grega.cresnar/"
+                class="external"
                 >Gregor Cresnar</a
               >
               from the Noun Project
             </li>
             <li>
               Mouse and Video Player designed by
-              <a href="https://www.flaticon.com/authors/freepik">Freepik</a>
+              <a
+                href="https://www.flaticon.com/authors/freepik"
+                class="external"
+                >Freepik</a
+              >
               from Flaticon
             </li>
             <li>
               Temple and Mortar Board designed by
-              <a href="https://www.flaticon.com/authors/elias-bikbulatov"
+              <a
+                href="https://www.flaticon.com/authors/elias-bikbulatov"
+                class="external"
                 >Elias Bikbulatov</a
               >
               from Flaticon
             </li>
             <li>
               Tree designed by
-              <a href="https://www.flaticon.com/authors/made-by-made"
+              <a
+                href="https://www.flaticon.com/authors/made-by-made"
+                class="external"
                 >Made by Made</a
               >
               from Flaticon
@@ -1829,8 +1890,10 @@ exports[`Content Pages > Frequently Asked Questions hasn't changed #0`] = `
           </p>
           <h2>What are those icons on a DPLA record?</h2>
           <p>
-            <a href="http://rightsstatements.org">Rights Statements</a> icons
-            are part of a new endeavor, developed in collaboration with
+            <a href="http://rightsstatements.org" class="external"
+              >Rights Statements</a
+            >
+            icons are part of a new endeavor, developed in collaboration with
             Europeana, to clearly communicate the copyright status of items
             available on our site. We will be working with our content providers
             to attach a standardized rights statement, and accompanying icon, to
@@ -1891,14 +1954,14 @@ exports[`Content Pages > Frequently Asked Questions hasn't changed #0`] = `
           <p>
             Of course! Visit <a href="http://pro.dp.la">DPLA Pro</a> to learn
             more<span style="font-weight: 400;">&nbsp;or reach</span> out to
-            <a href="mailto:content@dp.la">content@dp.la</a>.
+            <a href="mailto:content@dp.la" class="external">content@dp.la</a>.
           </p>
           <hr />
           <h2>What technologies does DPLA use?</h2>
           <p>
             We’re a firm believer in open source technology, both in terms of
             use and our open source code which is available on
-            <a href="http://github.com/dpla">Github</a>.
+            <a href="http://github.com/dpla" class="external">Github</a>.
           </p>
           <h2>Where can I see your stack?</h2>
           <p>
@@ -1906,7 +1969,9 @@ exports[`Content Pages > Frequently Asked Questions hasn't changed #0`] = `
               >Head over to the
               <a href="http://pro.dp.la/developers">Developers</a> page on DPLA
               Pro to find more information about our tech stack or v</span
-            >isit our organization on&nbsp;<a href="https://github.com/dpla"
+            >isit our organization on&nbsp;<a
+              href="https://github.com/dpla"
+              class="external"
               >Github</a
             >.
           </p>
@@ -1921,7 +1986,9 @@ exports[`Content Pages > Frequently Asked Questions hasn't changed #0`] = `
             DPLA follows open web standards and follows best practice
             accessibility guidelines. If you notice anything awry, or wish for
             more information, contact us at
-            <a href="mailto:accessibility@dp.la">accessibility@dp.la</a>.
+            <a href="mailto:accessibility@dp.la" class="external"
+              >accessibility@dp.la</a
+            >.
           </p>
           <h2>DPLA gets blocked on my network. Why is that?</h2>
           <p>
@@ -2196,7 +2263,9 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
           <ul>
             <li>
               You can help us understand this issue and find solutions by
-              <a href="mailto:info@dp.la">reporting harmful content</a>.
+              <a href="mailto:info@dp.la" class="external"
+                >reporting harmful content</a
+              >.
             </li>
             <li>
               DPLA will forward your report to the institution(s) that are
@@ -2222,6 +2291,7 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
                 rel="noreferrer noopener"
                 target="_blank"
                 href="mailto:info@dp.la"
+                class="external"
                 >info@dp.la</a
               >.</em
             >
@@ -2506,11 +2576,13 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
 
           <p>
             These categories are based on the
-            <a href="https://rightsstatements.org/page/1.0/?language=en"
+            <a
+              href="https://rightsstatements.org/page/1.0/?language=en"
+              class="external"
               >RightsStatements.org statements</a
             >
             and the
-            <a href="https://creativecommons.org/licenses/"
+            <a href="https://creativecommons.org/licenses/" class="external"
               >Creative Commons licenses</a
             >, which communicate item copyright status. For more information on
             individual items, review the associated statement or license, or
@@ -2535,37 +2607,44 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
 
           <ul>
             <li>
-              <a href="https://creativecommons.org/publicdomain/mark/1.0/"
+              <a
+                href="https://creativecommons.org/publicdomain/mark/1.0/"
+                class="external"
                 >Creative Commons Public Domain Mark</a
               >
             </li>
             <li>
               No Rights Reserved (<a
                 href="https://creativecommons.org/share-your-work/public-domain/cc0"
+                class="external"
                 >CC0</a
               >)&nbsp;
             </li>
             <li>
               Creative Commons Attribution (<a
                 href="https://creativecommons.org/licenses/by/4.0/"
+                class="external"
                 >CC BY</a
               >)
             </li>
             <li>
               Creative Commons Attribution ShareAlike (<a
                 href="https://creativecommons.org/licenses/by-sa/4.0/"
+                class="external"
                 >CC BY-SA</a
               >)
             </li>
             <li>
               No Copyright – US (<a
                 href="https://rightsstatements.org/page/NoC-US/1.0/?language=en"
+                class="external"
                 >NoC-US</a
               >)
             </li>
             <li>
               No Known Copyright (<a
                 href="http://rightsstatements.org/vocab/NKC/1.0/"
+                class="external"
                 >NKC</a
               >)
             </li>
@@ -2583,24 +2662,28 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             <li>
               No Copyright – Non-Commercial Use Permitted (<a
                 href="http://rightsstatements.org/vocab/NoC-NC/1.0/"
+                class="external"
                 >NoC-NC</a
               >)
             </li>
             <li>
               No Copyright – Contractual Restrictions (<a
                 href="http://rightsstatements.org/vocab/NoC-CR/1.0/"
+                class="external"
                 >NoC-CR</a
               >)
             </li>
             <li>
               Creative Commons Attribution NonCommercial (<a
                 href="https://creativecommons.org/licenses/by-nc/4.0"
+                class="external"
                 >CC BY-NC</a
               >)
             </li>
             <li>
               Creative Commons Attribution NonCommercial ShareAlike (<a
                 href="https://creativecommons.org/licenses/by-nc-sa/4.0"
+                class="external"
                 >CC BY-NC-SA</a
               >)
             </li>
@@ -2618,24 +2701,28 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             <li>
               Creative Commons Attribution NonCommercial NoDerivatives (<a
                 href="https://creativecommons.org/licenses/by-nc-nd/4.0"
+                class="external"
                 >CC BY-NC-ND</a
               >)
             </li>
             <li>
               Creative Commons Attribution NoDerivatives (<a
                 href="https://creativecommons.org/licenses/by-nd/4.0"
+                class="external"
                 >CC BY-ND</a
               >)
             </li>
             <li>
               In Copyright – Educational Use Permitted (<a
                 href="http://rightsstatements.org/vocab/InC-EDU/1.0/"
+                class="external"
                 >InC-EDU</a
               >)
             </li>
             <li>
               In Copyright – Non Commercial Use Permitted (<a
                 href="http://rightsstatements.org/vocab/InC-NC/1.0/"
+                class="external"
                 >InC-NC</a
               >)
             </li>
@@ -2654,18 +2741,21 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             <li>
               In Copyright US (<a
                 href="http://rightsstatements.org/vocab/InC/1.0/"
+                class="external"
                 >InC</a
               >)
             </li>
             <li>
               EU Orphan Work (<a
                 href="http://rightsstatements.org/vocab/InC-OW-EU/1.0/"
+                class="external"
                 >InC-OW-EU</a
               >)
             </li>
             <li>
               Unknown Rightsholder (<a
                 href="http://rightsstatements.org/vocab/InC-RUU/1.0/"
+                class="external"
                 >InC-RUU</a
               >)
             </li>
@@ -2689,12 +2779,14 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             <li>
               Copyright Not Evaluated (<a
                 href="https://rightsstatements.org/page/CNE/1.0/?language=en"
+                class="external"
                 >CNE</a
               >)
             </li>
             <li>
               Copyright Undetermined (<a
                 href="https://rightsstatements.org/page/UND/1.0/?language=en"
+                class="external"
                 >UND</a
               >)
             </li>
@@ -2706,6 +2798,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
           <p>
             Fair Use (Section 107) is a provision of the<a
               href="https://www.copyright.gov/title17/"
+              class="external"
             >
               U.S. Copyright Law</a
             >
@@ -2727,7 +2820,9 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             >, can be used with permission from the contributing institution or
             rights-holder, or if the user determines their re-use is reasonable
             after a
-            <a href="https://librarycopyright.net/resources/fairuse/index.php"
+            <a
+              href="https://librarycopyright.net/resources/fairuse/index.php"
+              class="external"
               >fair use evaluation</a
             >.
           </p>
@@ -2737,19 +2832,26 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
           <p>
             More information about using<a
               href="https://rightsstatements.org/en/"
+              class="external"
             >
               RightsStatements.org</a
             >
-            and <a href="https://creativecommons.org/">Creative Commons</a> in
-            your own cultural heritage collections can be found at
-            <a href="https://rights-portal.dp.la/">The Rights Portal</a>, a
-            project of the Digital Public Library of America (DPLA) maintained
-            by the DPLA Rights Statements Working Group. Here you will find
-            implementation and best practices resources as well as a place to
-            connect with other participating cultural institutions primarily
-            based in the U.S. If you have questions or comments about rights
-            statements as found in DPLA collections, please contact the
-            <a href="mailto:rightsstatements-implementation@dp.la"
+            and
+            <a href="https://creativecommons.org/" class="external"
+              >Creative Commons</a
+            >
+            in your own cultural heritage collections can be found at
+            <a href="https://rights-portal.dp.la/" class="external"
+              >The Rights Portal</a
+            >, a project of the Digital Public Library of America (DPLA)
+            maintained by the DPLA Rights Statements Working Group. Here you
+            will find implementation and best practices resources as well as a
+            place to connect with other participating cultural institutions
+            primarily based in the U.S. If you have questions or comments about
+            rights statements as found in DPLA collections, please contact the
+            <a
+              href="mailto:rightsstatements-implementation@dp.la"
+              class="external"
               >Rights Statements Working Group</a
             >.
           </p>
@@ -2892,7 +2994,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             ><strong><br /></strong
             ><a href="https://dp.la/about/search-tips">Searching DPLA</a
             ><br /><strong
-              ><a href="http://video3"
+              ><a href="http://video3" class="external"
                 >Tutorial Video: Strategies for Searching in DPLA<br /></a></strong
             ><a href="#faq">Frequently Asked Questions</a><br />
           </p>
@@ -3092,6 +3194,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
               >10 Ways to Use the Primary Source Sets in Your Classroom</a
             >” or watch the recording of our webinar, “<a
               href="https://youtu.be/AvqUKO_03p4"
+              class="external"
               >Using DPLA to Teach with Primary Sources</a
             >.”<br />
           </p>
@@ -3198,7 +3301,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             in that they are freely available for educators and students to use,
             reuse, and adapt for educational purposes. The sets are made
             available under the
-            <a href="http://creativecommons.org/licenses/by/3.0/legalcode"
+            <a
+              href="http://creativecommons.org/licenses/by/3.0/legalcode"
+              class="external"
               >CC BY 3.0 License</a
             >. However, not all of the individual items within the sets are
             copyright-free and may have restrictions for downloading, sharing,
@@ -3230,10 +3335,12 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
           <p>
             <a
               href="https://dp.us4.list-manage.com/subscribe?u=e1490d1305c4b651f3ad0ace4&amp;id=de870d2705"
+              class="external"
               >Join our education email list</a
             >
             and send us your questions and feedback to
-            <a href="mailto:education@dp.la">education@dp.la</a>.
+            <a href="mailto:education@dp.la" class="external">education@dp.la</a
+            >.
           </p>
 
           <p>
@@ -3434,6 +3541,7 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
               Creative Commons Attribution 3.0 Unported License, the terms of
               which are available at&nbsp;<a
                 href="http://creativecommons.org/licenses/by/3.0/legalcode"
+                class="external"
                 >http://creativecommons.org/licenses/by/3.0/legalcode</a
               >&nbsp;(otherwise known as the “CC BY 3.0 License”), to allow
               others to freely re-use and adapt your User Content with proper
@@ -3451,6 +3559,7 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
             Services is made available and licensed by the DPLA under
             the&nbsp;<a
               href="http://creativecommons.org/licenses/by/3.0/legalcode"
+              class="external"
               >CC BY 3.0 License</a
             >.
           </p>
@@ -3557,9 +3666,10 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
             <li>By phone: 617-859-2116</li>
             <li>By email:</li>
             <li>
-              By email:&nbsp;<a href="mailto:dmca@dp.la">dmca@dp.la</a>. This
-              email is for DMCA notices only. For all other inquiries, please
-              <a href="/contact">contact DPLA</a>.
+              By email:&nbsp;<a href="mailto:dmca@dp.la" class="external"
+                >dmca@dp.la</a
+              >. This email is for DMCA notices only. For all other inquiries,
+              please <a href="/contact">contact DPLA</a>.
             </li>
           </ul>
           <h5>7.3. Counter-Notice</h5>
@@ -3711,10 +3821,14 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
           <h5>12.7. Site Source Code</h5>
           <p>
             DPLA makes some of its source code related to the Services available
-            under the&nbsp;<a href="http://www.gnu.org/licenses/agpl-3.0.html"
+            under the&nbsp;<a
+              href="http://www.gnu.org/licenses/agpl-3.0.html"
+              class="external"
               >GNU Affero General Public License</a
             >. You can obtain the source code that DPLA makes available as open
-            source software at&nbsp;<a href="https://github.com/dpla"
+            source software at&nbsp;<a
+              href="https://github.com/dpla"
+              class="external"
               >https://github.com/dpla</a
             >.
           </p>
@@ -4368,10 +4482,11 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
           </p>
           <p>
             If you are a K-12 educator in a Title I or low-income community,
-            check out <a href="http://openebooks.net">Open eBooks</a>. Open
-            eBooks inspires a love of reading by offering readers popular and
-            award-winning eBooks for free, with no holds or late fees. DPLA is
-            proud to support this ConnectED initiative.
+            check out
+            <a href="http://openebooks.net" class="external">Open eBooks</a>.
+            Open eBooks inspires a love of reading by offering readers popular
+            and award-winning eBooks for free, with no holds or late fees. DPLA
+            is proud to support this ConnectED initiative.
           </p>
           <div
             id="attachment_5466"
@@ -4405,7 +4520,7 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
             Want to learn more? Read about DPLA’s work with professional
             educators on <a href="http://pro.dp.la/education">DPLA Pro</a>.
             Email
-            <a href="mailto:education@dp.la"
+            <a href="mailto:education@dp.la" class="external"
               ><span style="font-weight: 400;">education@dp.la</span></a
             ><span style="font-weight: 400;">
               to get free classroom posters, informational postcards, and other
@@ -4830,11 +4945,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
                 href="https://youtu.be/TAyzMAvdkok"
                 target="_blank"
                 rel="noopener"
+                class="external"
                 >This recording of a genealogy webinar</a
               >
               and
               <a
                 href="https://www.youtube.com/watch?v=bcxYEVpyYp8&amp;ab_channel=digpublib"
+                class="external"
                 >this recording of a follow-up webinar</a
               >
               with genealogist Allison Ryall, presented by the DPLA Outreach and
@@ -4842,7 +4959,7 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
               watch video of past family research
               <a href="http://pro.dp.la/events/workshops#genealogy">workshops</a
               >&nbsp;or email us at </span
-            ><a href="mailto:education@dp.la"
+            ><a href="mailto:education@dp.la" class="external"
               ><span style="font-weight: 400;">education@dp.la</span></a
             ><span style="font-weight: 400;">
               for support and free giveaways for an event.
@@ -5077,7 +5194,7 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
           </p>
           <p>
             <span style="font-weight: 400;">Send us feedback at </span
-            ><a href="mailto:info@dp.la"
+            ><a href="mailto:info@dp.la" class="external"
               ><span style="font-weight: 400;">info@dp.la</span></a
             ><span style="font-weight: 400;">
               or <a href="/contact">follow us on social media</a>!</span
@@ -5277,7 +5394,7 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
               each item record features information about its copyright status.
               We’re working with our contributing institutions to add a
               standardized rights statement to every item through our </span
-            ><a href="http://rightsstatements.org/"
+            ><a href="http://rightsstatements.org/" class="external"
               ><span style="font-weight: 400;">righststatements.org</span></a
             ><span style="font-weight: 400;">
               partnership. If the item is open, still be sure to mention the
@@ -5329,7 +5446,7 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
               <a href="http://pro.dp.la/community-reps">Community Reps</a>
               program to help us raise awareness of DPLA in local communities.
               Send us feedback at </span
-            ><a href="mailto:info@dp.la"
+            ><a href="mailto:info@dp.la" class="external"
               ><span style="font-weight: 400;">info@dp.la</span></a
             ><span style="font-weight: 400;">
               or <a href="/contact">follow us on social media</a>!</span
@@ -5491,7 +5608,7 @@ exports[`Content Pages > For Developers hasn't changed #0`] = `
               is available</span
             >
             <span style="font-weight: 400;">on</span>
-            <a href="https://github.com/dpla"
+            <a href="https://github.com/dpla" class="external"
               ><span style="font-weight: 400;">GitHub</span></a
             ><span style="font-weight: 400;">.</span>
           </p>
@@ -5526,14 +5643,15 @@ exports[`Content Pages > For Developers hasn't changed #0`] = `
           <p>
             <!--<span style="font-weight: 400;">App Library – Awesome tools that have been built using our API are featured in our</span> <a href="http://pro.dp.la"><span style="font-weight: 400;">App Library</span></a><span style="font-weight: 400;">.-->
             Have you made something cool? Want to show it off? If so, let us
-            know at <a href="mailto:apps@dp.la">apps@dp.la</a>.<i></i>
+            know at
+            <a href="mailto:apps@dp.la" class="external">apps@dp.la</a>.<i></i>
           </p>
           <h2>Find out more information</h2>
           <p>
             To learn more about the technology backing DPLA, head on over to
             <a href="http://pro.dp.la">DPLA Pro</a>. If you have any questions
             or feedback, let us know at
-            <a href="mailto:tech@dp.la">tech@dp.la</a>.
+            <a href="mailto:tech@dp.la" class="external">tech@dp.la</a>.
           </p>
         </div>
       </div>
