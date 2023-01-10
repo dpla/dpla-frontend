@@ -23,7 +23,7 @@ import {resourceTypes} from "constants/site";
 
 import css from "./ExhibitionSection.module.scss";
 
-const chevron = "/static/images/chevron-thick-black.svg";
+import ChevronThickBlack from "components/svg/ChevronThickBlack";
 
 const getFileType = (fileType, originalUrl) => {
     if (
@@ -171,8 +171,7 @@ class Viewer extends React.Component {
                                     previousBlock.id
                                 ].join("")}>
                                 <a className={css.previousItemButton}>
-                                    <img
-                                        src={chevron}
+                                    <ChevronThickBlack
                                         alt=""
                                         className={css.previousItemChevron}
                                     />
@@ -198,7 +197,7 @@ class Viewer extends React.Component {
                                         nextBlock.id
                                     ].join("")}>
                                     <a className={css.nextItemButton}>
-                                        <img src={chevron} alt="" className={css.nextItemChevron}/>
+                                        <ChevronThickBlack alt="" className={css.nextItemChevron}/>
                                     </a>
                                 </Link>}
                         </div>

@@ -7,9 +7,9 @@ import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
 import css from "./SourceSetInfo.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
-const googleClassroom = "/static/images/google-classroom.svg";
+import GoogleClassroom from "components/svg/GoogleClassroom";
 
 
 // Only the time period has a sameAs field
@@ -174,8 +174,7 @@ class SourceSetInfo extends React.Component {
                 {this.state.href !== "" &&
                   <div className={css.tools}>
                     <div className={css.toolLinkAndIcon}>
-                      <img
-                        src={googleClassroom}
+                      <GoogleClassroom
                         alt=""
                         className={css.toolIcon}
                       />

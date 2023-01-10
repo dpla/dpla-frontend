@@ -2,13 +2,13 @@ import React from "react";
 import Link from "next/link";
 import {withRouter} from "next/router"
 
-const dplaLogoWide = "/static/images/dpla-logo-black.svg";
+import DPLALogoWide from "components/svg/DplaLogoBlack";
 
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const chevron = "/static/images/chevron-thick-white.svg";
-const blackChevron = "/static/images/chevron-thick-black.svg";
+const Chevron = "components/svg/ChevronThickWhite";
+const BlackChevron = "components/svg/ChevronThickBlack";
 
 const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) => {
         return queryParams
@@ -31,7 +31,7 @@ const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) =>
                         <img src={blackChevron} className={css.previousChevron} alt=""/>}
                     <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
                     {nextOrPrevious === "next" &&
-                        <img src={chevron} className={css.nextChevron} alt=""/>}
+                        <Chevron className={css.nextChevron} alt=""/>}
                 </a>
             </Link>
             : <span
@@ -41,10 +41,10 @@ const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) =>
                 ].join(" ")}
             >
         {nextOrPrevious === "previous" &&
-            <img src={blackChevron} className={css.previousChevron} alt=""/>}
+            <BlackChevron className={css.previousChevron} alt=""/>}
                 <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
                 {nextOrPrevious === "next" &&
-                    <img src={chevron} className={css.nextChevron} alt=""/>}
+                    <Chevron className={css.nextChevron} alt=""/>}
       </span>
     }
 );
@@ -57,11 +57,7 @@ const FooterNav = ({
     <div className={css.footerWrapper}>
         <div className={`${utils.container} ${css.footerNav}`}>
             <Link href={"/"}>
-                <img
-                    alt="Digital Public Library of America"
-                    src={dplaLogoWide}
-                    className={css.dplaLogo}
-                />
+                <DPLALogoWide className={css.dplaLogo}/>
             </Link>
             <div className={css.navButtons}>
                 <NavButton

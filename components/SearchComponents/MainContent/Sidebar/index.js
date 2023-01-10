@@ -5,7 +5,7 @@ import Router, { withRouter } from "next/router";
 
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
-const informationIcon = "/static/images/information.svg";
+import InformationIcon from "components/svg/Information";
 
 import {
   possibleFacets,
@@ -53,8 +53,7 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
                             title={tooltips[termObject.term].text}
                             placement="top"
                         >
-                            <img
-                                src={informationIcon}
+                            <InformationIcon
                                 alt=""
                                 className={css.informationIcon}
                             />

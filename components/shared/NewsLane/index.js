@@ -2,12 +2,11 @@ import React from "react";
 import Link from "next/link";
 
 import { formatDate } from "lib";
-import { USER_BASE_URL } from "constants/env";
 
 import css from "./NewsLane.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const smallChevron = "/static/images/chevron-thick-orange.svg";
+import SmallChevron from "components/svg/ChevronThickOrange";
 
 const NewsLane = ({ title, items }) =>
   <div className={css.wrapper} data-cy="news">
@@ -19,9 +18,8 @@ const NewsLane = ({ title, items }) =>
             <Link href={"/news"}>
               <a className={`hover-underline ${css.headerLink}`}>
                 <span>Browse the archives</span>
-                <img
-                  alt="browse the blog"
-                  src={smallChevron}
+                <SmallChevron
+                  alt=""
                   className={css.chevron}
                 />
               </a>
@@ -29,7 +27,7 @@ const NewsLane = ({ title, items }) =>
           </div>
         </div>
         <ul className={`${utils.colXs12} ${utils.colMd9}`}>
-          {items.map((post, index) => {
+          {items.map((post) => {
             const dateText = formatDate(post.date);
             let summary = post.acf.summary
               ? post.acf.summary

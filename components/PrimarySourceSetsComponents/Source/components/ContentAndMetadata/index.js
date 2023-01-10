@@ -23,8 +23,8 @@ import * as gtag from "lib/gtag";
 import utils from "stylesheets/utils.module.scss";
 import css from "./ContentAndMetadata.module.scss";
 
-const link = "/static/images/link.svg";
-const external = "/static/images/external-link-black.svg";
+import Link from "components/svg/Link";
+import ExternalLinkBlack from "components/svg/ExternalLinkBlack";
 
 const getSourceLink = source =>
   source.mainEntity[0]["dct:references"].filter(
@@ -237,9 +237,8 @@ class ContentAndMetadata extends React.Component {
                       className={css.sourceLink}
                       href={`/item/${getItemId(source)}`}
                     >
-                      <img
+                      <Link
                         alt="Link icon"
-                        src={link}
                         className={css.linkIcon}
                       />
                       <span className={css.linkText}>
@@ -255,9 +254,8 @@ class ContentAndMetadata extends React.Component {
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener"
                     >
-                      <img
+                      <ExternalLinkBlack
                         alt="External link icon"
-                        src={external}
                         className={css.externalIcon}
                       />
                       <span className={css.linkText}>

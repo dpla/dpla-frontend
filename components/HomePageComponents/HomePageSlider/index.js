@@ -8,7 +8,7 @@ import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 import css from "./HomePageSlider.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const moreLinkChevron = "static/images/chevron-thick-orange.svg";
+import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
 const HomePageSlider = ({
   browseLinkName,
@@ -26,11 +26,10 @@ const HomePageSlider = ({
           <a className={`${utils.hoverUnderline} ${css.moreLink}`}>
             Browse all{" "}
             <span className={css.moreLinkNoun}>{browseLinkName}</span>
-            <img
+            <ChevronThickOrange
               alt="Browse exhibitions"
               aria-hidden="true"
               className={css.moreLinkChevron}
-              src={moreLinkChevron}
             />
           </a>
         </Link>

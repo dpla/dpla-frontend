@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import css from "./NavArrows.module.scss";
 
-const chevron = "/static/images/chevron-thick-orange.svg";
+import Chevron from "components/svg/ChevronThickOrange";
 
 const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
   nextSubtopic || previousSubtopic
@@ -14,7 +14,7 @@ const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
             href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
           >
             <a className={css.prevLink}>
-              <img src={chevron} alt="" className={css.prevArrow} />
+              <Chevron alt="" className={css.prevArrow} />
               <span>Previous Section</span>
             </a>
           </Link>}
@@ -25,7 +25,7 @@ const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
           >
             <a>
               <span>Next Section</span>
-              <img src={chevron} alt="" className={css.nextArrow} />
+              <Chevron alt="" className={css.nextArrow} />
             </a>
           </Link>}
       </div>

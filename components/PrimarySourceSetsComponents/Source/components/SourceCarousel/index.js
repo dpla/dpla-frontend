@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
 import CarouselSlider from "./CarouselSlider";
-import ThickChevron from "public/static/images/chevron-thick-orange.svg";
+import ThickChevron from "components/svg/ChevronThickOrange";
 
 import { extractSourceId, removeQueryParams } from "lib";
 

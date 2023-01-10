@@ -12,7 +12,7 @@ import { joinIfArray } from "lib";
 import css from "./FiltersList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const closeIcon = "/static/images/close-white.svg";
+import CloseIcon from "components/svg/CloseWhite";
 
 const clearAllFacets = query => {
   const duped = Object.assign({}, query);
@@ -54,7 +54,7 @@ const Filter = withRouter(({ name, queryKey, router }) => {
           aria-label={`Remove ${label} ${name} filter`}
         >
           {label}: <span className={css.filterText}>{name}</span>
-          <img src={closeIcon} className={css.closeIcon} alt="" />
+          <CloseIcon className={css.closeIcon} alt="" />
         </a>
       </Link>
     </li>
@@ -64,7 +64,7 @@ const Filter = withRouter(({ name, queryKey, router }) => {
 class FiltersList extends React.Component {
   render() {
     const { query } = this.props.router;
-    const { onClickToggleFilters, showFilters, router } = this.props;
+    const { showFilters } = this.props;
     return Object.keys(query).some(queryKey =>
       possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey]) || queryKey === "tags"
     )

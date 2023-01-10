@@ -3,9 +3,9 @@ import Link from "next/link"
 
 import css from "./Accordion.module.scss";
 
-const addIcon = "/static/images/add.svg";
-const subtractIcon = "/static/images/subtract.svg";
-const informationIcon = "/static/images/information.svg";
+import AddIcon from "components/svg/Add";
+import SubtractIcon from "components/svg/Subtract";
+import InformationIcon from "components/svg/Information";
 import Tooltip from "@material-ui/core/Tooltip";
 
 class Accordion extends React.Component {
@@ -78,8 +78,7 @@ class Accordion extends React.Component {
                                                 title="This facet is used to filter by copyright status."
                                                 placement="top"
                                             >
-                                                <img
-                                                    src={informationIcon}
+                                                <InformationIcon
                                                     alt=""
                                                     className={css.informationIcon}
                                                 />
@@ -87,13 +86,12 @@ class Accordion extends React.Component {
                                     }</h3>
 
                                     {item.active &&
-                                        <img
-                                            src={subtractIcon}
+                                        <SubtractIcon
                                             alt=""
                                             className={css.subtractIcon}
                                         />}
                                     {!item.active &&
-                                        <img src={addIcon} alt="" className={css.addIcon}/>}
+                                        <AddIcon alt="" className={css.addIcon}/>}
                                 </button>
                                 {item.type === "term" &&
                                     <ul id={`facets_${i}`} className={css.subitems}>

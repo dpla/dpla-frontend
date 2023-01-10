@@ -8,7 +8,7 @@ import utils from "stylesheets/utils.module.scss"
 
 import { LOCALS } from "constants/local";
 
-const logo = "/static/images/dpla-logo.svg";
+import Logo from "components/svg/DplaLogo";
 
 class SmallFooterLocal extends React.Component {
   render() {
@@ -57,10 +57,9 @@ class SmallFooterLocal extends React.Component {
           {logoHtml}
           <Link href="https://dp.la">
             <a>
-              <img
+              <Logo
                 className={css.partnershipLogo}
                 alt="In partnership with DPLA"
-                src={logo}
               />
             </a>
           </Link>

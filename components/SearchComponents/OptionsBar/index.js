@@ -15,8 +15,8 @@ import {
 import css from "./OptionsBar.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const gridViewIcon = "/static/images/grid-view-icon.svg";
-const listViewIcon = "/static/images/list-view-icon.svg";
+import GridViewIcon from "components/svg/GridViewIcon";
+import ListViewIcon from "components/ListViewIcon";
 
 class OptionsBar extends React.Component {
 
@@ -208,9 +208,8 @@ class OptionsBar extends React.Component {
                         : css.viewButtonActive
                     ].join(" ")}
                   >
-                    <img
+                    <ListViewIcon
                       className={css.viewButtonIcon}
-                      src={listViewIcon}
                       alt="List View"
                     />
                   </a>
@@ -231,9 +230,8 @@ class OptionsBar extends React.Component {
                         : css.viewButtonInactive
                     ].join(" ")}
                   >
-                    <img
+                    <GridViewIcon
                       className={css.viewButtonIcon}
-                      src={gridViewIcon}
                       alt="Grid View"
                     />
                   </a>

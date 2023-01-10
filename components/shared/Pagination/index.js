@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 
-import Chevron from "public/static/images/chevron-thick.svg";
+import Chevron from "components/svg/ChevronThick";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
