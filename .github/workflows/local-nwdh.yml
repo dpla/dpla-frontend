@@ -7,7 +7,7 @@ env:
   SITE_ENV:       "local"
   LOCAL_ID:       "nwdh"
   ECR_REPOSITORY: "dpla-local-nwdh"
-  GA_TRACKING_ID: ""
+  GA_TRACKING_ID: "G-64QXSW0Q5K"
   WORDPRESS_URL:  "https://dpla.wpengine.com"
   USER_BASE_URL:  "https://nwdh.dp.la"
   PRO_BASE_URL:   "https://pro.dp.la"
