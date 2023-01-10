@@ -1,5 +1,4 @@
 import {
-    drawExhibitionPage,
     exhibitPageSubpages,
     exhibitParentPages,
     findPage,
@@ -7,6 +6,7 @@ import {
     processPageBlocks
 } from "lib/exhibitions/exhibitionsStatic";
 import { washObject } from "lib/washObject";
+import ExhibitionPage from "components/ExhibitionsComponents/ExhibitionSection/ExhibitionPage";
 
 
 export const getServerSideProps = async (context) => {
@@ -112,4 +112,4 @@ export const getServerSideProps = async (context) => {
     return { props };
 };
 
-export default drawExhibitionPage;
+export default ExhibitionPage;

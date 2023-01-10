@@ -12,6 +12,7 @@ Cypress.Commands.add('getDataCy', (selector) => {
 Cypress.Commands.add('testExhibitHome', (exhibit) => {
     cy
         .visit(`/exhibitions/${exhibit.slug}`)
+        .wait(1000) // wait for citation button to close
         .getDataCy('exhibition-home')
         .toMatchSnapshot();
 });

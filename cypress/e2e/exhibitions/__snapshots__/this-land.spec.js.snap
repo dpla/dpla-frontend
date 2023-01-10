@@ -6081,3 +6081,451 @@ exports[`Exhibition this-land > this-land's page wildlifeandpeople/the-infamous-
   </div>
 </div>
 `;
+
+exports[`Exhibition this-land > this-land's page landscapes hasn't changed #0`] = `
+<div class="ExhibitionSection_exhibitionView__ps7Hs" data-cy="exhibit-page">
+  <div class="ExhibitionSection_header__CSNXL utils_container__kFHcI">
+    <div class="ExhibitionSection_exhibitionsLinkAndTitle__dRymO">
+      <a class="ExhibitionSection_exhibitionsLink__uWp0K" href="/exhibitions"
+        >Exhibitions</a
+      >
+      <h1 class="ExhibitionSection_exhibitionTitle__kJfM5">
+        This Land Is Your Land: Parks and Public Spaces
+      </h1>
+    </div>
+    <a
+      class="hover-underline ExhibitionSection_closeExhibition__CdCLd"
+      href="/exhibitions/this-land"
+      ><svg
+        class="ExhibitionSection_closeIcon__HB_2G"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" fill-rule="evenodd">
+          <path d="M-9-9h36v36H-9z"></path>
+          <path
+            class="ExhibitionSection_closeIconX__KW7sQ"
+            d="M11.1869671 9.0007313l6.6321036-6.6336231c.241215-.2405136.241215-.6305716 0-.8710852L16.5043505.1805657C16.3886778.0648899 16.2320966 0 16.0684517 0c-.1636448 0-.3202116.0648899-.4358987.1805657L8.9997271 6.8134666 2.3669012.1805657c-.230634-.23134078-.6404416-.23134078-.8710756 0L.18038312 1.496023c-.24051083.2405136-.24051083.6305716 0 .8710852L6.8132094 9.0007313.18038312 15.6329099c-.24051083.2405136-.24051083.6305716 0 .8717894l1.31544248 1.314735C1.6107941 17.9351083 1.7680795 18 1.9317247 18c.1629298 0 .3202116-.0648917.4351946-.1805657l6.6328258-6.6329009 6.6328259 6.6329009c.1156727.115674.2722539.1805657.4358988.1805657.1636448 0 .3202116-.0648917.4358987-.1805657l1.3147202-1.314735c.2412151-.2412178.2412151-.6312758 0-.8717894l-6.6321216-6.6321786z"
+          ></path>
+        </g></svg
+      ><span class="ExhibitionSection_closeExhibitionText__bVrl0"
+        >Close Exhibition</span
+      ></a
+    >
+  </div>
+  <div class="utils_container__kFHcI ExhibitionSection_body__ML_re">
+    <div class="">
+      <div class="ExhibitionSection_menuButtonAndBreadcrumbs__2qTk2">
+        <button
+          class="ExhibitionSection_menuButton__PaUly"
+          aria-expanded="false"
+        >
+          Show<br />Menu
+        </button>
+        <h2 class="ExhibitionSection_breadcrumbSubsection__XNLcA">
+          Landscapes
+        </h2>
+      </div>
+    </div>
+    <div id="main" role="main" class="ExhibitionSection_mainContent__EnIW6">
+      <div class="ExhibitionSection_sidebar__hTwtF ">
+        <ul class="ExhibitionSection_sidebarSections__30Wuv">
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/building"
+              >Building the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/interpretation"
+              >Interpretation of Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot ExhibitionSection_active__f8YpK"
+              href="/exhibitions/this-land/landscapes"
+              >Landscapes</a
+            >
+            <ul>
+              <li
+                class="ExhibitionSection_subsectionTitle__Whnrt ExhibitionSection_active__f8YpK"
+              >
+                <a href="/exhibitions/this-land/landscapes">Introduction</a>
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/this-land/landscapes/eastern-park-landscapes"
+                  >Eastern Park Landscapes</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/this-land/landscapes/intermountain-and-pacific-west"
+                  >Intermountain and Pacific-West Landscapes</a
+                >
+              </li>
+              <li class="ExhibitionSection_subsectionTitle__Whnrt false">
+                <a
+                  href="/exhibitions/this-land/landscapes/alaskan-park-landscapes"
+                  >Alaskan Park Landscapes</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/protecting"
+              >Protecting the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/stewards"
+              >Stewards of the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/wildlifeandpeople"
+              >Wildlife and People</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="ExhibitionSection_viewer__PYPBZ">
+        <h2 class="ExhibitionSection_titleSubsection__RykoL">Landscapes</h2>
+        <div class="ExhibitionSection_viewerContent__6_185">
+          <div class="ExhibitionSection_mediaAndCaption__WHUSZ">
+            <div class="ExhibitionSection_mainMedia__AuO61"></div>
+            <ul class="ExhibitionSection_itemLinks__tVpBn">
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t ExhibitionSection_activeItemLink__IxB8j"
+                  href="/exhibitions/this-land/landscapes?item=121"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/da1f58a196cf324727092d2ed2ca72f6.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+            </ul>
+            <div class="ExhibitionSection_caption__IoJ81">
+              <p class="title">
+                Glen Canyon National Recreation Area, Arizona &amp; Utah,
+                includes over 1.2 million acres for unparalleled water-based and
+                backcountry recreation opportunities.
+              </p>
+            </div>
+          </div>
+          <div class="ExhibitionSection_text__O5lNj">
+            <p>
+              Protecting natural and cultural areas is solely influenced by the
+              connections that people have with these places. What makes these
+              areas so distinct that they need to be protected from destruction
+              or disturbances? The natural beauty of a vast, open landscape is
+              irresistible and breathtaking—being able to stand in front of
+              Yosemite Falls or hike through the Great Smoky Mountains—to see
+              these magnificent, man-made treasures is an unforgettable
+              experience that does not wane over time. It nurtures and frees the
+              spirit for adventure, creating a bond between human and nature and
+              the need for preservation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ExhibitionSection_footerWrapper__6Ne2y">
+    <div class="utils_container__kFHcI ExhibitionSection_footerNav__fZSqt">
+      <img
+        alt="Digital Public Library of America"
+        src="/static/images/dpla-logo-black.svg"
+        class="ExhibitionSection_dplaLogo__EDPeb"
+      />
+      <div class="ExhibitionSection_navButtons__T2Gqd">
+        <a
+          class="ExhibitionSection_prevButton__m0VNa"
+          href="/exhibitions/this-land/interpretation"
+          ><img
+            src="/static/images/chevron-thick-black.svg"
+            class="ExhibitionSection_previousChevron__NGE0v"
+            alt=""
+          /><span>Previous</span></a
+        >
+        <div class="ExhibitionSection_nextButtonAndTitleWrapper__6NL5W">
+          <div class="ExhibitionSection_nextSubsectionTitle__pmtHU">
+            Eastern Park Landscapes
+          </div>
+          <a
+            class="ExhibitionSection_nextButton__WWSu7"
+            href="/exhibitions/this-land/landscapes/eastern-park-landscapes"
+            ><span>Next</span
+            ><img
+              src="/static/images/chevron-thick-white.svg"
+              class="ExhibitionSection_nextChevron__Ga_Wq"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Exhibition this-land > this-land's page interpretation hasn't changed #0`] = `
+<div class="ExhibitionSection_exhibitionView__ps7Hs" data-cy="exhibit-page">
+  <div class="ExhibitionSection_header__CSNXL utils_container__kFHcI">
+    <div class="ExhibitionSection_exhibitionsLinkAndTitle__dRymO">
+      <a class="ExhibitionSection_exhibitionsLink__uWp0K" href="/exhibitions"
+        >Exhibitions</a
+      >
+      <h1 class="ExhibitionSection_exhibitionTitle__kJfM5">
+        This Land Is Your Land: Parks and Public Spaces
+      </h1>
+    </div>
+    <a
+      class="hover-underline ExhibitionSection_closeExhibition__CdCLd"
+      href="/exhibitions/this-land"
+      ><svg
+        class="ExhibitionSection_closeIcon__HB_2G"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" fill-rule="evenodd">
+          <path d="M-9-9h36v36H-9z"></path>
+          <path
+            class="ExhibitionSection_closeIconX__KW7sQ"
+            d="M11.1869671 9.0007313l6.6321036-6.6336231c.241215-.2405136.241215-.6305716 0-.8710852L16.5043505.1805657C16.3886778.0648899 16.2320966 0 16.0684517 0c-.1636448 0-.3202116.0648899-.4358987.1805657L8.9997271 6.8134666 2.3669012.1805657c-.230634-.23134078-.6404416-.23134078-.8710756 0L.18038312 1.496023c-.24051083.2405136-.24051083.6305716 0 .8710852L6.8132094 9.0007313.18038312 15.6329099c-.24051083.2405136-.24051083.6305716 0 .8717894l1.31544248 1.314735C1.6107941 17.9351083 1.7680795 18 1.9317247 18c.1629298 0 .3202116-.0648917.4351946-.1805657l6.6328258-6.6329009 6.6328259 6.6329009c.1156727.115674.2722539.1805657.4358988.1805657.1636448 0 .3202116-.0648917.4358987-.1805657l1.3147202-1.314735c.2412151-.2412178.2412151-.6312758 0-.8717894l-6.6321216-6.6321786z"
+          ></path>
+        </g></svg
+      ><span class="ExhibitionSection_closeExhibitionText__bVrl0"
+        >Close Exhibition</span
+      ></a
+    >
+  </div>
+  <div class="utils_container__kFHcI ExhibitionSection_body__ML_re">
+    <div class="">
+      <div class="ExhibitionSection_menuButtonAndBreadcrumbs__2qTk2">
+        <button
+          class="ExhibitionSection_menuButton__PaUly"
+          aria-expanded="false"
+        >
+          Show<br />Menu
+        </button>
+        <h2 class="ExhibitionSection_breadcrumbSubsection__XNLcA">
+          Interpretation of Parks
+        </h2>
+      </div>
+    </div>
+    <div id="main" role="main" class="ExhibitionSection_mainContent__EnIW6">
+      <div class="ExhibitionSection_sidebar__hTwtF ">
+        <ul class="ExhibitionSection_sidebarSections__30Wuv">
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/building"
+              >Building the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot ExhibitionSection_active__f8YpK"
+              href="/exhibitions/this-land/interpretation"
+              >Interpretation of Parks</a
+            >
+            <ul>
+              <li
+                class="ExhibitionSection_subsectionTitle__Whnrt ExhibitionSection_active__f8YpK"
+              >
+                <a href="/exhibitions/this-land/interpretation">Introduction</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/landscapes"
+              >Landscapes</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/protecting"
+              >Protecting the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/stewards"
+              >Stewards of the Parks</a
+            >
+          </li>
+          <li>
+            <a
+              class="ExhibitionSection_sectionTitle__N2wot false"
+              href="/exhibitions/this-land/wildlifeandpeople"
+              >Wildlife and People</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="ExhibitionSection_viewer__PYPBZ">
+        <h2 class="ExhibitionSection_titleSubsection__RykoL">
+          Interpretation of Parks
+        </h2>
+        <div class="ExhibitionSection_viewerContent__6_185">
+          <div class="ExhibitionSection_mediaAndCaption__WHUSZ">
+            <div class="ExhibitionSection_mainMedia__AuO61">
+              <a
+                class="ExhibitionSection_nextItemButton__MMfMM"
+                href="/exhibitions/this-land/interpretation?item=117"
+                ><img
+                  src="/static/images/chevron-thick-black.svg"
+                  alt=""
+                  class="ExhibitionSection_nextItemChevron__Hrwr0"
+              /></a>
+            </div>
+            <ul class="ExhibitionSection_itemLinks__tVpBn">
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t ExhibitionSection_activeItemLink__IxB8j"
+                  href="/exhibitions/this-land/interpretation?item=116"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/e4918fe0b871596cf6046bd675010825.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/this-land/interpretation?item=117"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/5a13ed20c1ffa240aa194e4263fa435d.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/this-land/interpretation?item=118"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/65c223a279da85669b42acdc1b3c7590.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="ExhibitionSection_itemLink__v2u7t "
+                  href="/exhibitions/this-land/interpretation?item=119"
+                  ><div
+                    class="ItemImage_imageWrapper__sHktq
+          "
+                  >
+                    <img
+                      src="https://dp.la/api/exhibits/files/square_thumbnails/21f79ae22f9897b0174d1dbc31856b6e.jpg"
+                      alt="Show item in viewer"
+                      class="ItemImage_image__4_WAe"
+                    /></div
+                ></a>
+              </li>
+            </ul>
+            <div class="ExhibitionSection_caption__IoJ81">
+              <p class="title">
+                Iowa monument, Andersonville National Historic Site, Georgia.
+              </p>
+            </div>
+          </div>
+          <div class="ExhibitionSection_text__O5lNj">
+            <p>
+              The singular relationship that people have to the parks varies
+              from person to person; for some it is being able to experience an
+              untamed wilderness that they have never seen before, others come
+              for the chance to see the unique history or culture. Every visitor
+              that comes is an opportunity for park personnel to enhance their
+              visit by explaining and promoting the preservation and
+              conservation of the parks and why this is necessary so that future
+              generations can enjoy what we see now. Through interpretation,
+              parks show us how our relationship to nature is inextricable from
+              our lives and how important that it is that we respect this bond.
+              Interpretation shows us the history of our country, the battles
+              that we have fought, the positions that we defended in the face of
+              adversity, and what we have done together as a country to get us
+              where we are today.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ExhibitionSection_footerWrapper__6Ne2y">
+    <div class="utils_container__kFHcI ExhibitionSection_footerNav__fZSqt">
+      <img
+        alt="Digital Public Library of America"
+        src="/static/images/dpla-logo-black.svg"
+        class="ExhibitionSection_dplaLogo__EDPeb"
+      />
+      <div class="ExhibitionSection_navButtons__T2Gqd">
+        <a
+          class="ExhibitionSection_prevButton__m0VNa"
+          href="/exhibitions/this-land/building/reconstruction"
+          ><img
+            src="/static/images/chevron-thick-black.svg"
+            class="ExhibitionSection_previousChevron__NGE0v"
+            alt=""
+          /><span>Previous</span></a
+        >
+        <div class="ExhibitionSection_nextButtonAndTitleWrapper__6NL5W">
+          <div class="ExhibitionSection_nextSubsectionTitle__pmtHU">
+            Landscapes
+          </div>
+          <a
+            class="ExhibitionSection_nextButton__WWSu7"
+            href="/exhibitions/this-land/landscapes"
+            ><span>Next</span
+            ><img
+              src="/static/images/chevron-thick-white.svg"
+              class="ExhibitionSection_nextChevron__Ga_Wq"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
