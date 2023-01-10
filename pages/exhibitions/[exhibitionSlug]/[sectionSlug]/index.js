@@ -25,7 +25,6 @@ export const getServerSideProps = async (context) => {
     const sections = exhibitParentPages(exhibit);
     section.page_blocks = await processPageBlocks(section, context.query.item);
     if (!section.page_blocks.find(block => block.isActive)) return {notFound: true}
-
     const subsections = exhibitPageSubpages(exhibit, section);
     const isFirstSection = section.slug === sections[0].slug
     const isLastPage =
@@ -37,17 +36,24 @@ export const getServerSideProps = async (context) => {
     if (!isFirstSection) {
         const previousSection = sections.find(s => s.order === section.order - 1);
         const previousSectionSubsections = exhibitPageSubpages(exhibit, previousSection);
-        const previousSectionFinalSubsection = previousSectionSubsections[previousSectionSubsections.length - 1];
-        Object.assign(previousQueryParams, {
-            exhibitionSlug: exhibit.slug,
-            sectionSlug: previousSection.slug,
-            subsectionSlug: previousSectionFinalSubsection.slug
-        });
+        if (previousSectionSubsections && previousSectionSubsections.length > 0) {
+            const previousSectionFinalSubsection = previousSectionSubsections[previousSectionSubsections.length - 1];
+            Object.assign(previousQueryParams, {
+                exhibitionSlug: exhibit.slug,
+                sectionSlug: previousSection.slug,
+                subsectionSlug: previousSectionFinalSubsection.slug
+            });
+        } else { // some sections don't have subsections
+            Object.assign(previousQueryParams, {
+                exhibitionSlug: exhibit.slug,
+                sectionSlug: previousSection.slug,
+            })
+        }
     } else {
         previousQueryParams = null;
     }
 
-    if (!isLastPage) {
+    if (!isLastPage && subsections && subsections.length > 0) {
         Object.assign(
             nextQueryParamsAndTitle,
             {title: subsections[0].title},
@@ -57,6 +63,17 @@ export const getServerSideProps = async (context) => {
                     subsectionSlug: subsections[0].slug
             }}
         );
+    } else { // some sections don't have subsections
+        const nextSection = sections.find(s => s.order === section.order + 1);
+        Object.assign(
+            nextQueryParamsAndTitle,
+            {title: nextSection.title},
+            {queryParams: {
+                    exhibitionSlug: exhibit.slug,
+                    sectionSlug: nextSection.slug,
+                }}
+        );
+
     }
 
     const pageMap = page => ({id: page.id, title: page.title, slug: page.slug})
