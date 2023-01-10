@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    drawExhibitionPage,
     exhibitPageSubpages,
     exhibitParentPages,
     findPage,
@@ -8,6 +7,7 @@ import {
     processPageBlocks
 } from "lib/exhibitions/exhibitionsStatic";
 import {washObject} from "lib/washObject";
+import ExhibitionPage from "components/ExhibitionsComponents/ExhibitionSection/ExhibitionPage";
 
 export const getServerSideProps = async (context) => {
     if (!context?.query?.item) {
@@ -20,7 +20,6 @@ export const getServerSideProps = async (context) => {
         return {notFound: true}
     }
     const section = findPage(exhibit, context.params.sectionSlug);
-    console.log("section", section);
     if (section == null || section.parent) return {notFound: true}
     const sections = exhibitParentPages(exhibit);
     section.page_blocks = await processPageBlocks(section, context.query.item);
@@ -65,15 +64,16 @@ export const getServerSideProps = async (context) => {
         );
     } else { // some sections don't have subsections
         const nextSection = sections.find(s => s.order === section.order + 1);
-        Object.assign(
-            nextQueryParamsAndTitle,
-            {title: nextSection.title},
-            {queryParams: {
-                    exhibitionSlug: exhibit.slug,
-                    sectionSlug: nextSection.slug,
-                }}
-        );
-
+        if (nextSection) {
+            Object.assign(
+                nextQueryParamsAndTitle,
+                {title: nextSection.title},
+                {queryParams: {
+                        exhibitionSlug: exhibit.slug,
+                        sectionSlug: nextSection.slug,
+                    }}
+            );
+        }
     }
 
     const pageMap = page => ({id: page.id, title: page.title, slug: page.slug})
@@ -99,4 +99,4 @@ export const getServerSideProps = async (context) => {
 };
 
 
-export default drawExhibitionPage;
+export default ExhibitionPage;
