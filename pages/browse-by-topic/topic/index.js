@@ -1,17 +1,13 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 
-import {extractSourceSetSlug} from "lib";
-import {exhibitFilesHelper} from "lib/exhibitions/exhibitFilesHelper";
+import {extractSourceSetSlug, loadExhibitionList} from "lib";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
 import MainLayout from "components/MainLayout";
 
-import {
-    API_ENDPOINT_ALL_TOPICS,
-    API_ENDPOINT_SUBTOPICS_FOR_TOPIC
-} from "constants/topicBrowse";
+import {API_ENDPOINT_ALL_TOPICS, API_ENDPOINT_SUBTOPICS_FOR_TOPIC} from "constants/topicBrowse";
 
 import {washObject} from "lib/washObject";
 
@@ -45,7 +41,6 @@ const Topic = ({topic, suggestions}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({query}) => {
-    const currentUrl = process.env.BASE_URL;
     const topicsRes = await fetch(
         API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic
     );
@@ -60,60 +55,27 @@ export const getServerSideProps = async ({query}) => {
         Object.assign({}, subtopic, {thumbnailUrl: subtopic.acf.category_image})
     );
 
+    const exhibitions = await loadExhibitionList();
+
     const suggestions = !currentTopic.acf.related_content
         ? []
         : await Promise.all(
            currentTopic.acf.related_content.map(async item => {
-                // if (item.related_content_type === "Exhibition") {
-                //     const exhibitionsRes = await fetch(
-                //         `${process.env.OMEKA_URL}/api/exhibits`
-                //     );
-                //     const exhibitionsJson = await exhibitionsRes.json();
-                //     const exhibition = exhibitionsJson.find(
-                //         exhibition =>
-                //             parseInt(exhibition.id, 10) === parseInt(item.exhibition_id, 10)
-                //     );
-                //     const exhibitPageRes = await fetch(
-                //         `${process.env.OMEKA_URL}/api/exhibit_pages?exhibit=${item.exhibition_id}`
-                //     );
-                //     const exhibitPageJson = await exhibitPageRes.json();
-                //     // skip a nil exhibit
-                //     if (exhibitPageJson.length === 0) return;
-                //     // end skip nil exhibit
-                //     const homePage =
-                //         exhibitPageJson.find(
-                //             exhibit =>
-                //                 exhibit.slug === "home-page" || exhibit.slug === "homepage"
-                //         ) || exhibitPageJson[0];
-                //     const {
-                //         item: homePageItem
-                //     } = homePage.page_blocks[0].attachments[0];
-                //     const filesRes = await fetch(
-                //         `${process.env.OMEKA_URL}/api/files?item=${homePageItem.id}`
-                //     );
-                //     const filesJson = await filesRes.json();
-                //     const title = exhibition.title;
-                //     const originalThumbnailUrl =  filesJson[0].file_urls.fullsize;
-                //
-                //     const thumbnailUrl = exhibitFilesHelper(
-                //         originalThumbnailUrl,
-                //         currentUrl
-                //     );
-                //
-                //     const slug = exhibition.slug;
-                //     if (!slug) {
-                //         return null;
-                //     }
-                //     const href = `/exhibitions/exhibition?exhibition=${slug}`;
-                //     const as = `/exhibitions/${slug}`;
-                //     return {
-                //         title,
-                //         thumbnailUrl,
-                //         as,
-                //         href,
-                //         type: "Exhibition"
-                //     };
-                //} else
+                if (item.related_content_type === "Exhibition") {
+                    // load exhibit
+                    const exhibition = exhibitions.exhibitions.find(exhibition => exhibition.slug === item.exhibition_id);
+                    // skip a nil exhibit
+                    if (!exhibition) return;
+                    const href = `/exhibitions/${exhibition.slug}`;
+                    const as = `/exhibitions/${exhibition.slug}`;
+                    return {
+                        title: exhibition.title,
+                        thumbnailUrl: exhibition.thumbnailUrl,
+                        as,
+                        href,
+                        type: "Exhibition"
+                    };
+                } else
                     if (item.related_content_type === "Primary Source Set") {
                     const setId = sanitizeSourceSetId(item.primary_source_set_id);
                     const sourceSetRes = await fetch(`${setId}.json`);

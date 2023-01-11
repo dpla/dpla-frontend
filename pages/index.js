@@ -64,21 +64,11 @@ export const getServerSideProps = async () => {
     const homepageJson = await homeRes.json();
 
     // fetch featured exhibits data
-
-    //homepageJson.acf.featured_exhibits;
-    // hardcoded here temporarily
-    const featuredExhibitSlugs = [
-        "japanese-internment",
-        "american-aviatrixes",
-        "history-of-survivance",
-        "history-us-public-libraries",
-        "mapping-american-civil-war",
-        "children-progressive-era"
-    ];
+    const featuredExhibitSlugs = homepageJson.acf.featured_exhibits;
 
     const featuredExhibits = await Promise.all(
         featuredExhibitSlugs.map(async exhibit => {
-            const exhibitJson = await loadExhibition(exhibit);
+            const exhibitJson = await loadExhibition(exhibit.exhibit_id);
             const homePage = exhibitHomePage(exhibitJson);
             const thumbnailUrl = homePage.page_blocks[0].attachments[0].files[0].file_urls.fullsize;
 
