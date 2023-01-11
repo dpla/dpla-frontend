@@ -4,7 +4,7 @@ import {
     findPage,
     loadExhibition,
     processPageBlocks
-} from "lib/exhibitions/exhibitionsStatic";
+} from "lib/exhibitionsStatic";
 import { washObject } from "lib/washObject";
 import ExhibitionPage from "components/ExhibitionsComponents/ExhibitionSection/ExhibitionPage";
 

@@ -16,7 +16,7 @@ import {
 } from "lib";
 
 import {washObject} from "lib/washObject";
-import {loadDplaItem} from "lib/exhibitions/exhibitionsStatic";
+import {loadDplaItem} from "lib/exhibitionsStatic";
 
 class Exhibition extends React.Component {
 
