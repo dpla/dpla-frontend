@@ -52,8 +52,17 @@
   }
 }
 
+.sliderChevron {
+  height: .75rem;
+  padding-left: 0.25rem;
+  position: relative;
+  top: 0;
+  width: 1rem;
+}
+
+
 .moreLinkChevron {
-  height: 0.75rem;
+  height: .75rem;
   padding-left: 0.25rem;
   position: relative;
   top: 0;
@@ -162,7 +171,7 @@
 .prevArrow {
   left: -0.5rem !important;
 
-  & img {
+  & svg {
     transform: rotate(180deg);
     margin-left: -0.25rem;
   }
@@ -179,7 +188,7 @@
     right: -3.5rem !important;
   }
 
-  & img {
+  & svg {
     margin-left: 0.25rem;
   }
 }

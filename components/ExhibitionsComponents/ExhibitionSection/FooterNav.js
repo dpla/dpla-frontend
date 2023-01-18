@@ -7,8 +7,8 @@ import DPLALogoWide from "components/svg/DplaLogoBlack";
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const Chevron = "components/svg/ChevronThickWhite";
-const BlackChevron = "components/svg/ChevronThickBlack";
+import Chevron from "components/svg/ChevronThickWhite";
+import BlackChevron from "components/svg/ChevronThickBlack";
 
 const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) => {
         return queryParams
@@ -28,7 +28,7 @@ const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) =>
                     }
                 >
                     {nextOrPrevious === "previous" &&
-                        <img src={blackChevron} className={css.previousChevron} alt=""/>}
+                        <BlackChevron className={css.previousChevron} alt=""/>}
                     <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
                     {nextOrPrevious === "next" &&
                         <Chevron className={css.nextChevron} alt=""/>}

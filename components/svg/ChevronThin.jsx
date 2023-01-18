@@ -4,7 +4,7 @@ function ChevronThin(props) {
     return (
         <svg
             width="13px"
-            height="24px"
+            height="48px"
             viewBox="0 0 13 24"
             xmlns="http://www.w3.org/2000/svg"
             {...props}

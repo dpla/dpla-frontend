@@ -33,7 +33,7 @@
     outline: 0.25rem solid $outlineColor;
   }
 
-  & img {
+  & svg {
     width: 0.9rem;
 
     @media (min-width: $largeRem) {
@@ -55,7 +55,7 @@
 .prevArrow {
   left: -0.5rem !important;
 
-  & img {
+  & svg {
     transform: rotate(180deg);
     margin-left: -0.25rem;
   }
@@ -72,7 +72,7 @@
     right: -3.5rem !important;
   }
 
-  & img {
+  & svg {
     margin-left: 0.25rem;
   }
 }
