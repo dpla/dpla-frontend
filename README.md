@@ -93,7 +93,6 @@ The system makes extensive use of environment variables to decouple the differen
   "production", e.g. when running `yarn dev`. The server always forks when
   `NODE_ENV=production`.
 - `NODE_ENV`: the node environment, `development` or `production`
-- `OMEKA_URL`: the Omeka server base URL
 - `PRO_BASE_URL`: base URL for user site to allow for links from user to pro site (also exposed in `constants/env.js`)
 - `PSS_BASE_URL`: the primary source sets application API base URL (also exposed in `constants/env.js`)
 - `SITE_ENV`: the environment's type, `user`, `pro`, or `local` (also exposed in `constants/env.js`)

@@ -4,7 +4,7 @@ import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
 import {TITLE} from "constants/exhibitions";
-import {loadExhibitionList} from "lib/exhibitions/exhibitionsStatic";
+import {loadExhibitionList} from "lib/exhibitionsStatic";
 
 const Exhibitions = ({exhibitions}) =>
     <MainLayout pageTitle={TITLE}>
