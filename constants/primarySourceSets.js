@@ -3,12 +3,6 @@ export const DESCRIPTION = `Primary source collections exploring topics in
 history, literature, and culture developed by educators — complete with
 teaching guides for class use.`;
 
-export const sortOptions = [
-  { value: "recently_added", label: "Recently Added" },
-  { value: "chronology_asc", label: "Chronology, oldest first" },
-  { value: "chronology_desc", label: "Chronology, most recent first" }
-];
-
 export const subjectOptions = [
   { value: "all-subjects", label: "All Subjects" },
   { value: "us-history", label: "US History" },
