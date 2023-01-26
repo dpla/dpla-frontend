@@ -9,14 +9,6 @@ const informationIcon = "/static/images/information.svg";
 import Tooltip from "@material-ui/core/Tooltip";
 
 class Accordion extends React.Component {
-    // componentWillMount() {
-    //   // first save the original items
-    //   const originalItems = this.props.items.map(item => {
-    //     return Object.assign({}, item, { active: true });
-    //   });
-    //   // activate all of them
-    //   this.setState({ items: originalItems });
-    // }
 
     constructor(props) {
         super(props);
