@@ -134,9 +134,6 @@ class FiltersBar extends React.Component {
                     <span>Clear filters</span>
                   </button>
                 </div>}
-            <div className={`${css.filter} ${utils.colXs12} ${utils.colMd4}`}>&nbsp;
-
-            </div>
           </div>
         </div>
       </div>
