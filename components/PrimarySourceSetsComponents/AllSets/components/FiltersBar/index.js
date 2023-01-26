@@ -21,13 +21,6 @@ class FiltersBar extends React.Component {
         subjectValue: this.props.router.query.subject || "all-subjects"
     };
   }
-  // componentDidMount() {
-  //   this.setState({
-  //     timePeriodValue: this.props.router.query.timePeriod || "all-time-periods",
-  //     subjectValue: this.props.router.query.subject || "all-subjects"
-  //   });
-  // }
-  //
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (
       this.props.router.query.timePeriod !== prevProps.router.query.timePeriod ||
@@ -60,7 +53,7 @@ class FiltersBar extends React.Component {
     });
   };
 
-  onClearFilters = async e => {
+  onClearFilters = async () => {
     console.log("onClearFilters")
     await Router.push({
       pathname: "/primary-source-sets"
