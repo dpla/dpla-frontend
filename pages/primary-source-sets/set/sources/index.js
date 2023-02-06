@@ -8,8 +8,6 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import ContentAndMetadata from "components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
 
-import {PSS_BASE_URL} from "constants/env";
-
 import {removeQueryParams} from "lib";
 import {washObject} from "lib/washObject";
 
@@ -58,10 +56,13 @@ const Source = ({router, source, set, currentSourceIdx}) =>
     </MainLayout>;
 
 export const getServerSideProps = async ({query}) => {
-    const sourceRes = await fetch(`${PSS_BASE_URL}/sources/${query.source}.json`);
+    const sourceRes = await fetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(query.source)}?api_key=${process.env.API_KEY}`);
     const sourceJson = await sourceRes.text();
+
     const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
-    const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
+
+    const setRes = await fetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`);
+
     const setJson = await setRes.json();
     const parts = setJson.hasPart.map(part => {
         let thumbnailUrl = part.thumbnailUrl;
@@ -80,7 +81,7 @@ export const getServerSideProps = async ({query}) => {
 
     const sourceId = sanitizedSourceJson["@id"];
     const currentSourceIdx = setJson.hasPart
-        .slice(1)
+
         .findIndex(source => source["@id"] === sourceId);
 
     const props = washObject({

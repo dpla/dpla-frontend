@@ -65,9 +65,6 @@ class FiltersBar extends React.Component {
     const timePeriod = this.props.router.query.timePeriod;
     const subject = this.props.router.query.subject;
 
-    console.log("SUBJECT", subject);
-    console.log("TIME PERIOD", timePeriod);
-
     const needsClearButton =
         (timePeriod && timePeriod !== "all-time-periods") ||
         (subject && subject !== "all-subjects");

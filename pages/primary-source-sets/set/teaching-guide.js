@@ -9,8 +9,6 @@ import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/Sour
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-import {PSS_BASE_URL} from "constants/env";
-
 import {removeQueryParams} from "lib";
 import {washObject} from "lib/washObject";
 
@@ -43,17 +41,14 @@ const SingleSet = ({router, set, teachingGuide, currentFullUrl}) =>
 
 export const getServerSideProps = async ({query}) => {
     const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
-    const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
-
+    const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
+    const setRes = await fetch(url);
     const set = await setRes.json();
-    const guidePage = set.hasPart.find(
+
+
+    const teachingGuide = set.hasPart.find(
         item => item.disambiguatingDescription === "guide"
-    )["@id"];
-    const guideEndpoint =
-        guidePage.replace(/^.*primary-source-sets(.*)/, `${PSS_BASE_URL}$1`) +
-        ".json";
-    const teachingGuideRes = await fetch(guideEndpoint);
-    const teachingGuide = await teachingGuideRes.json();
+    );
 
     const props = washObject({
         set,

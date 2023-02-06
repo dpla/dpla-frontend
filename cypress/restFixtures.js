@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require('fs').promises;
 const axios = require('axios').default;
 
-const PSS_BASE_URL = process.env.PSS_BASE_URL || 'https://dp.la/pssapi';
+const API_URL = process.env.API_URL || 'https://api.dp.la/v2';
 const WORDPRESS_URL = process.env.WORDPRESS_URL || 'https://dpla.wpengine.com';
 const API_ENDPOINT_ALL_TOPICS = `${WORDPRESS_URL}/wp-json/dpla/v2/categories`;
 const API_ENDPOINT_SUBTOPICS_FOR_TOPIC = `${WORDPRESS_URL}/wp-json/dpla/v2/subcategories`;
@@ -74,7 +74,7 @@ const loadTopics = async () => {
 }
 
 const loadSets = async () => {
-    const setsJson = await loadData(`${PSS_BASE_URL}/sets.json`);
+    const setsJson = await loadData(`${API_URL}/pss/sets?api_key=${process.env.API_KEY}`);
     return setsJson['itemListElement'].map( (set) => extractSourceSetSlug(set['@id']))
 }
 

@@ -24,7 +24,8 @@ class TeachersGuide extends React.Component {
     const {
       router,
       teachingGuide,
-      isPrintable
+      isPrintable,
+      setName
     } = this.props;
     return (
       <div
@@ -76,11 +77,7 @@ class TeachersGuide extends React.Component {
                       }}
                     >
                       <a className={`${utils.link} ${css.aboutThisLink}`}>
-                        <ReactMarkdown
-                          source={teachingGuide.isPartOf.name}
-                          allowedTypes={["emphasis"]}
-                          unwrapDisallowed
-                        />
+                        {setName}
                       </a>
                     </Link>, in the classroom. It offers discussion questions,
                     classroom

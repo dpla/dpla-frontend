@@ -39,7 +39,6 @@ export const getServerSideProps = async ({query}) => {
         filter = `&filter=about.name:${encodeURIComponent(subject)}`;
     }
     const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
-    console.log(url);
     const res = await fetch(url);
     const json = await res.json();
     const props = washObject({
