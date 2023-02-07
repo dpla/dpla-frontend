@@ -34,7 +34,6 @@ class FiltersBar extends React.Component {
   }
 
   onSubjectChange = async val => {
-    console.log("onTimePeriodChange", val.target.value);
     await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.router.query, {
@@ -44,7 +43,6 @@ class FiltersBar extends React.Component {
   };
 
   onTimePeriodChange = async val => {
-    console.log("onTimePeriodChange", val.target);
     await Router.push({
       pathname: "/primary-source-sets",
       query: Object.assign({}, this.props.router.query, {
@@ -54,7 +52,6 @@ class FiltersBar extends React.Component {
   };
 
   onClearFilters = async () => {
-    console.log("onClearFilters")
     await Router.push({
       pathname: "/primary-source-sets"
     });
