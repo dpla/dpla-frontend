@@ -4,9 +4,13 @@ import fetch from "isomorphic-fetch";
 import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
-import {PSS_BASE_URL} from "constants/env";
 import {TITLE} from "constants/primarySourceSets";
 import {washObject} from "lib/washObject";
+
+import {
+    subjectOptions,
+    timePeriodOptions
+} from "constants/primarySourceSets";
 
 const PrimarySourceSets = ({sets}) =>
     <div>
@@ -19,16 +23,27 @@ const PrimarySourceSets = ({sets}) =>
     </div>;
 
 export const getServerSideProps = async ({query}) => {
-    const res = await fetch(
-        `${PSS_BASE_URL}/sets.json?order=${query.order}&tags%5B%5D=${query.subject}&tags%5B%5D=${query.timePeriod}`
-    );
 
+    const findTimePeriod = timePeriodOptions.find(option => option.value === query.timePeriod);
+    const timePeriod = findTimePeriod?.label;
+
+    const findSubject = subjectOptions.find(subject => subject.value === query.subject);
+    const subject = findSubject?.label;
+
+    let filter = "";
+    if (timePeriod && subject) {
+        filter = `&filter=about.name:${encodeURIComponent(timePeriod)}+AND+${encodeURIComponent(subject)}`;
+    } else if (timePeriod) {
+        filter = `&filter=about.name:${encodeURIComponent(timePeriod)}`;
+    } else if (subject) {
+        filter = `&filter=about.name:${encodeURIComponent(subject)}`;
+    }
+    const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
+    const res = await fetch(url);
     const json = await res.json();
-
     const props = washObject({
         sets: json
     });
-
     return {
         props: props
     };

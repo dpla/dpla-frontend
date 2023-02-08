@@ -8,6 +8,8 @@ import { markdownLinks } from "lib";
 
 import css from "./SourceSetInfo.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {mapSubjectNameToSlug, mapTimePeriodNameToSlug} from "constants/primarySourceSets";
+import Link from "next/link";
 
 const googleClassroom = "/static/images/google-classroom.svg";
 
@@ -115,22 +117,22 @@ class SourceSetInfo extends React.Component {
                     <ul>
                       {extractTimePeriod(set.about).map((period) =>
                         <li key={period}>
-                          {/*<Link*/}
-                          {/*  href={{*/}
-                          {/*    pathname: "/primary-source-sets",*/}
-                          {/*    query: {*/}
-                          {/*      timePeriod: mapTimePeriodNameToSlug(period)*/}
-                          {/*    }*/}
-                          {/*  }}*/}
-                          {/*>*/}
-                          {/*  <a className={`${utils.link} ${css.link}`}>*/}
+                          <Link
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                timePeriod: mapTimePeriodNameToSlug(period)
+                              }
+                            }}
+                          >
+                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={period}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                          {/*  </a>*/}
-                          {/*</Link>*/}
+                            </a>
+                          </Link>
                         </li>
                       )}
                     </ul>
@@ -140,22 +142,22 @@ class SourceSetInfo extends React.Component {
                     <ul>
                       {extractSubjects(set.about).map((subject) =>
                         <li key={subject}>
-                          {/*<Link*/}
-                          {/*  href={{*/}
-                          {/*    pathname: "/primary-source-sets",*/}
-                          {/*    query: {*/}
-                          {/*      subject: mapSubjectNameToSlug(subject)*/}
-                          {/*    }*/}
-                          {/*  }}*/}
-                          {/*>*/}
-                          {/*  <a className={`${utils.link} ${css.link}`}>*/}
+                          <Link
+                            href={{
+                              pathname: "/primary-source-sets",
+                              query: {
+                                subject: mapSubjectNameToSlug(subject)
+                              }
+                            }}
+                          >
+                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={subject}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                          {/*  </a>*/}
-                          {/*</Link>*/}
+                            </a>
+                          </Link>
                         </li>
                       )}
                     </ul>

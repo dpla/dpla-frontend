@@ -6,14 +6,11 @@ import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-import {PSS_BASE_URL} from "constants/env";
-
 import utils from "stylesheets/utils.module.scss"
 import {washObject} from "lib/washObject";
 
 class Printable extends React.Component {
     componentDidMount() {
-        // make it print!
         window.print();
     }
 
@@ -36,6 +33,7 @@ class Printable extends React.Component {
                 <TeachersGuide
                     teachingGuide={teachingGuide}
                     isPrintable={true}
+                    setName={set.name}
                 />
                 <PSSFooter/>
             </MinimalLayout>
@@ -44,23 +42,16 @@ class Printable extends React.Component {
 }
 
 export const getServerSideProps = async ({query}) => {
-    const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
-
+    const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
+    const setRes = await fetch(url);
     const set = await setRes.json();
-    const guidePage = set.hasPart.find(
+    const teachingGuide = set.hasPart.find(
         item => item.disambiguatingDescription === "guide"
-    )["@id"];
-    const guideEndpoint =
-        guidePage.replace(/^.*primary-source-sets(.*)/, `${PSS_BASE_URL}$1`) +
-        ".json";
-    const teachingGuideRes = await fetch(guideEndpoint);
-    const teachingGuide = await teachingGuideRes.json();
-
+    );
     const props = washObject({
         set,
         teachingGuide
     });
-
     return {
         props: props
     };

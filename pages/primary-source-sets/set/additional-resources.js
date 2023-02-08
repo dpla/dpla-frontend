@@ -9,7 +9,6 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 
-import {PSS_BASE_URL} from "constants/env";
 import {removeQueryParams, markdownLinks} from "lib";
 
 import utils from "stylesheets/utils.module.scss";
@@ -58,7 +57,7 @@ const SingleSet = ({router, set, currentFullUrl}) =>
 
 export const getServerSideProps = async ({query}) => {
     const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
-    const setRes = await fetch(`${PSS_BASE_URL}/sets/${query.set}.json`);
+    const setRes = await fetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`);
 
     const set = await setRes.json();
 
