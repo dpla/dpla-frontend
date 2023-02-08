@@ -75,11 +75,11 @@ class TeachersGuide extends React.Component {
                         pathname: `/primary-source-sets/${router.query.set}`,
                         query: removeQueryParams(router.query, ["set"])
                       }}
-                    >
-                      <a className={`${utils.link} ${css.aboutThisLink}`}>
-                        {setName}
-                      </a>
-                    </Link>, in the classroom. It offers discussion questions,
+                    ><a className={utils.link}><ReactMarkdown
+                      source={setName}
+                      allowedTypes={["emphasis", "text"]}
+                      unwrapDisallowed
+                    /></a></Link>, in the classroom. It offers discussion questions,
                     classroom
                     activities, and primary source analysis tools. It is
                     intended to
