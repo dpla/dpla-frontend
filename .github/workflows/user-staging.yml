@@ -11,7 +11,6 @@ env:
   WORDPRESS_URL:  "https://dpla.wpengine.com"
   USER_BASE_URL:  "https://dp.la"
   PRO_BASE_URL:   "https://pro.dp.la"
-  PSS_BASE_URL:   "https://dp.la/pssapi"
   BASE_URL:       "https://staging.dp.la"
 
 jobs:
@@ -72,7 +71,6 @@ jobs:
           echo "export const USER_BASE_URL = \"$USER_BASE_URL\";" >> constants/env.js
           echo "export const WORDPRESS_URL = \"$WORDPRESS_URL\";" >> constants/env.js
           echo "export const PRO_BASE_URL = \"$PRO_BASE_URL\";" >> constants/env.js
-          echo "export const PSS_BASE_URL = \"$PSS_BASE_URL\";" >> constants/env.js
           echo "export const LOCAL_ID = \"$LOCAL_ID\";" >> constants/env.js
           echo "export const gaTrackingId = \"$GA_TRACKING_ID\";" >> constants/env.js
 
