@@ -33,10 +33,10 @@ const getSourceLink = source =>
 
 const getSourceCitation = (source, type = "citation") =>
   source.mainEntity[0]["citation"]
-    ? source.mainEntity[0]["citation"].filter(
-        ref => ref["disabmiguationDescription"] === type
-      )[0]["text"]
-    : source.mainEntity[0]["citation"];
+      ? source.mainEntity[0]["citation"].filter(
+          ref => ref["disabmiguationDescription"] === type
+      )[0]?.["text"]
+      : source.mainEntity[0]["citation"];
 
 const getViewerComponent = (fileFormat, type, pathToFile) => {
   if (type === "MediaObject") {
@@ -204,9 +204,6 @@ class ContentAndMetadata extends React.Component {
                       />
                     </div>}
                 </div>
-                {/* <a href={fullContentUrl} download className={css.button}>
-                Download
-              </a> */}
                 {getSourceCitation(source, "credits") &&
                   <ReactMarkdown
                     className={css.courtesyOf}
