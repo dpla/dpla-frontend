@@ -11,7 +11,6 @@ env:
   WORDPRESS_URL:  "https://dpla.wpengine.com"
   USER_BASE_URL:  "https://dp.la"
   PRO_BASE_URL:   "https://pro.dp.la"
-  OMEKA_URL:      "http://omeka.internal.dp.la"
   BASE_URL:       "https://dp.la"
 
 jobs:
