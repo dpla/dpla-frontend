@@ -16,7 +16,7 @@ const sanitizeSourceSetId = id => {
     if (sanitized[sanitized.length - 1] === "/") {
         sanitized = sanitized.slice(0, sanitized.length - 1);
     }
-    return sanitized;
+    return sanitized.substring(26);
 };
 
 const Topic = ({topic, suggestions}) =>
@@ -75,10 +75,9 @@ export const getServerSideProps = async ({query}) => {
                         href,
                         type: "Exhibition"
                     };
-                } else
-                    if (item.related_content_type === "Primary Source Set") {
+                } else if (item.related_content_type === "Primary Source Set") {
                     const setId = sanitizeSourceSetId(item.primary_source_set_id);
-                    const sourceSetRes = await fetch(`${setId}.json`);
+                    const sourceSetRes = await fetch(`${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`);
                     const sourceSetJson = await sourceSetRes.json();
                     const slug = extractSourceSetSlug(sourceSetJson["@id"]);
                     return {
