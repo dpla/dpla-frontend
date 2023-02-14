@@ -9,7 +9,7 @@ env:
   ECR_REPOSITORY: "frontend-user-staging"
   GA_TRACKING_ID: ""
   WORDPRESS_URL:  "https://dpla.wpengine.com"
-  USER_BASE_URL:  "https://dp.la"
+  USER_BASE_URL:  "https://staging.dp.la"
   PRO_BASE_URL:   "https://pro.dp.la"
   BASE_URL:       "https://staging.dp.la"
 
