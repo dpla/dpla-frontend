@@ -10,10 +10,10 @@ Please do not contact the IDHH for permissions to use images or other material i
 Senior Director  
 Consortium of Academic and Research Libraries in Illinois
 
-### [Megan N Pearson](mailto:megannp4@illinois.edu)
-**IDHH Metadata Manager and Webmaster**  
-Metadata Services Specialist  
-University of Illinois Urbana-Champaign
+### [Megan N Pearson](mailto:megannp4@uillinois.edu)
+**IDHH Project Coordinator**  
+Library Services Coordinator  
+Consortium for Academic and Research Libraries in Illinois
 
 ### [Jessica Gibson](mailto:oram@uillinois.edu)
 **IDHH Harvesting Manager**  
@@ -29,7 +29,7 @@ Consortium for Academic and Research Libraries in Illinois
 **IDHH Metadata Manager, 2016-2018**
 
 ### Caleb Britton
-**Graduate Student Assistant, 2021-**
+**Graduate Student Assistant, 2021-2022**
 
 ### Anna Wondrasek
 **Graduate Student Assistant, 2021**

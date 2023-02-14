@@ -174,6 +174,11 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
   Videos include interviews with Illinois veterans, theatrical performances, lectures, historical footage, and more
 
-## [IDHH Highlights Blog](http://finditillinois.org/idhh/)
+## [IDHH Highlights Blog](https://www.library.illinois.edu/idhh-highlights/)
 
-Check out the collections highlights blog for new posts about every two weeks. The IDHH highlights newly-provided contributors and collections as well as items relevant to certain holidays and current or historical events. If you are from an IDHH provider institution and have an idea for a post on your contributed collections, contact the [IDHH metadata manager](/about/contact).
+Check out the IDHH Highlights blog for posts highlighting new contributors and collections as well as items relevant to certain holidays and current or historical events.
+
+- ###
+## [IDHH Exhibits Site](https://omeka-s.library.illinois.edu/s/idhh/page/welcome)
+
+Check out the IDHH Exhibits site for digital exhibits that dig into topics important to Illinois History and relevant to current and historical events, featuring items curated from our collections that are immense in volume and rich in historical detail.
