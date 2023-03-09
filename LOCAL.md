@@ -15,7 +15,7 @@ These are the main areas relevant to any Local instance:
 
 ## Static File Folder
 
-Static files belonging to each Local need to be placed in a subfolder of the `static/` folder. The subfolder needs to be named with the `LOCAL_ID` (for example `static/wisconsin/` for Recollection Wisconsin). Files that go in this folder are:
+Static files belonging to each Local need to be placed in a subfolder of the `public/static/local` folder. The subfolder needs to be named with the `LOCAL_ID` (for example `static/wisconsin/` for Recollection Wisconsin). Files that go in this folder are:
 
 - Local favicon file displayed in browser tabs (filename defined in the Constants file below)
 - Local logo file displayed in the header and footer (filename defined in the Constants file below)
