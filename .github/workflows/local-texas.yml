@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Read .nvmrc
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+        run: echo "{NODE_VERSION}={cat .nvmrc}" >> $GITHUB_OUTPUT
         id: nvm
       
       - name: Set up QEMU
