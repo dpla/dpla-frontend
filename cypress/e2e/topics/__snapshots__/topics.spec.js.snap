@@ -376,11 +376,42 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 1140px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 1368px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/9ed4b761ae99408a81608699e3288e14.jpg)"
+                      href="/exhibitions/mapping-american-civil-war"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            Torn in Two: Mapping the American Civil War
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
                 style="outline: none; width: 228px;"
@@ -410,7 +441,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="1"
+                data-index="2"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -441,7 +472,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="2"
+                data-index="3"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -472,7 +503,7 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="3"
+                data-index="4"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -503,10 +534,10 @@ exports[`Topics > american-civil-war's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="4"
-                class="slick-slide slick-active"
+                data-index="5"
+                class="slick-slide"
                 tabindex="-1"
-                aria-hidden="false"
+                aria-hidden="true"
                 style="outline: none; width: 228px;"
               >
                 <div>
@@ -907,11 +938,73 @@ exports[`Topics > aviation's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 684px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/c6cbf28a0bc976243d8260783d56993a.jpg)"
+                      href="/exhibitions/american-aviatrixes"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            American Aviatrixes: Women with Wings
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/8f9d4ca625e80ec795a03a759bd2545a.jpg)"
+                      href="/exhibitions/race-to-the-moon"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            Race to the Moon
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="2"
+                class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
                 style="outline: none; width: 228px;"
@@ -1257,7 +1350,7 @@ exports[`Topics > baseball's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 456px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
@@ -1283,6 +1376,37 @@ exports[`Topics > baseball's home hasn't changed #0`] = `
                           </p>
                           <div class="Suggestions_suggestionTitle__YwGKc">
                             Negro League Baseball
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/a789d1ad79792f8cd89d5e7cb435ff3c.jpg)"
+                      href="/exhibitions/boston-sports-temples"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            Boston Sports Temples
                           </div>
                         </div>
                       </div></a
@@ -1623,11 +1747,42 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 1596px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 1824px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/a107d31dbd93b27570f49534a6846bd6.jpg)"
+                      href="/exhibitions/activism"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            Activism in the US
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
                 style="outline: none; width: 228px;"
@@ -1658,7 +1813,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="1"
+                data-index="2"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -1689,7 +1844,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="2"
+                data-index="3"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -1720,7 +1875,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="3"
+                data-index="4"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -1751,10 +1906,10 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="4"
-                class="slick-slide slick-active"
+                data-index="5"
+                class="slick-slide"
                 tabindex="-1"
-                aria-hidden="false"
+                aria-hidden="true"
                 style="outline: none; width: 228px;"
               >
                 <div>
@@ -1782,7 +1937,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="5"
+                data-index="6"
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
@@ -1813,7 +1968,7 @@ exports[`Topics > civil-rights-movement's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="6"
+                data-index="7"
                 class="slick-slide"
                 tabindex="-1"
                 aria-hidden="true"
@@ -2167,11 +2322,43 @@ exports[`Topics > food's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 684px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 912px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/61d4f47b94272b61c3825231a8c27a92.jpg)"
+                      href="/exhibitions/spirits"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            Indomitable Spirits: Prohibition in the United
+                            States
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
                 style="outline: none; width: 228px;"
@@ -2201,7 +2388,7 @@ exports[`Topics > food's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="1"
+                data-index="2"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -2232,7 +2419,7 @@ exports[`Topics > food's home hasn't changed #0`] = `
                 </div>
               </div>
               <div
-                data-index="2"
+                data-index="3"
                 class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
@@ -3260,11 +3447,42 @@ exports[`Topics > photography's home hasn't changed #0`] = `
           <div class="slick-list">
             <div
               class="slick-track"
-              style="width: 228px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+              style="width: 456px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
             >
               <div
                 data-index="0"
                 class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 228px;"
+              >
+                <div>
+                  <div
+                    class="Suggestions_suggestedSlide__dPOmO Suggestions_suggestedItem__zL_Le Suggestions_exhibition__7jQbh"
+                    tabindex="-1"
+                    style="width:100%;display:inline-block"
+                  >
+                    <a
+                      class="Suggestions_imageWrapper__qg4u8"
+                      style="background-image:url(https://dp.la/api/exhibits/files/square_thumbnails/98cdd949349b8c86a1cefee993d75188.jpg)"
+                      href="/exhibitions/evolution-personal-camera"
+                      ><div class="Suggestions_gradientBackground__Khmhp">
+                        <div class="Suggestions_typeAndTitle__Vb3sY">
+                          <p class="Suggestions_resourceType__S4wvY">
+                            Exhibition
+                          </p>
+                          <div class="Suggestions_suggestionTitle__YwGKc">
+                            In Focus: The Evolution of the Personal Camera
+                          </div>
+                        </div>
+                      </div></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
                 tabindex="-1"
                 aria-hidden="false"
                 style="outline: none; width: 228px;"
