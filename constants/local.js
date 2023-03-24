@@ -425,8 +425,8 @@ const LOCALS = {
         "texas"
     ],
     name: "TxHub",
-    background: "",
-    favicon: "favicon.ico",
+    background: "hero_image.png",
+    favicon: "favicon.png",
     logo: "texas-logo.png",
     description: "TxHub",
     locationFacet: "%22Texas%22",
