@@ -496,9 +496,9 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
                 width="150"
                 height="150"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1-300x300.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1-150x150.jpg 150w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1.jpg         500w
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1-300x300.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1-150x150.jpg 150w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1.jpg         500w
                 "
                 sizes="(max-width: 150px) 100vw, 150px"
             /></span>
@@ -544,9 +544,9 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
                 width="151"
                 height="151"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1-300x300.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1-150x150.jpg 150w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1.jpg         500w
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1-300x300.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1-150x150.jpg 150w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1.jpg         500w
                 "
                 sizes="(max-width: 151px) 100vw, 151px"
             /></span>
@@ -620,9 +620,9 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               width="150"
               height="150"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-300x300.jpg 300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-150x150.jpg 150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1.jpg         500w
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-300x300.jpg 300w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-150x150.jpg 150w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1.jpg         500w
               "
               sizes="(max-width: 150px) 100vw, 150px"
             />Executive Director, Black Metropolis Research Consortium
@@ -678,9 +678,9 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               width="149"
               height="149"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1-300x300.jpg 300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1-150x150.jpg 150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1.jpg         498w
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1-300x300.jpg 300w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1-150x150.jpg 150w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1.jpg         498w
               "
               sizes="(max-width: 149px) 100vw, 149px"
             />Executive Director, Las Vegas-Clark County Library District
@@ -780,42 +780,62 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             can’t make it).
           </p>
           <p>
-            The Open Board + Community meetings are open to the public, per
-            DPLA’s
-            <a
-              href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLA_OpenMeetingsGuidelines.pdf"
-              class="external"
-              >Open Meetings Guidelines</a
-            >.
-          </p>
-          <p>
-            <span style="font-weight: 400;"
-              >At our first Open Board + Community meeting of 2023, which will
-              be held on Monday, January 9, 2023, at 2p ET, we’ll talk about the
-              <a
-                href="https://dp.la/news/dpla-to-make-cultural-treasures-freely-available-on-wikipedia-with-new-sloan-foundation-support"
-                >recently announced growth of our Wikimedia work</a
-              >, and hear from representatives from Wikimedia and the DPLA
-              community about the vast potential of Wikimedia and Wikipedia to
-              dramatically increase the visibility and use of library
-              collections</span
-            >
-          </p>
-          <p>
-            If you’d like to attend,
-            <a
-              href="https://dpla.zoom.us/webinar/register/WN_9mzUrwQkRIqf5ToJkSzzGw"
-              class="external"
-              >please register here</a
-            >.
-          </p>
-          <p>
             More information about how to join will be posted approximately two
             weeks prior to each meeting.
           </p>
+          <p>
+            Our next Open Board + Community Meeting will be held on Monday,
+            April 10, at 2p ET, and
+            <span style="font-weight: 400;"
+              >will address the connections between two of the most significant
+              issues facing our field, intellectual freedom and equity. Our
+              meeting will extend conversations begun in February at a Knight
+              Foundation convening of 50 library leaders to share lessons of how
+              libraries have evolved their efforts to meet community needs over
+              the last three years.&nbsp;</span
+            >
+          </p>
+          <p>
+            <span style="font-weight: 400;">Guests will include:&nbsp;</span>
+          </p>
+          <p>
+            <span style="font-weight: 400;"
+              >Brian Bannon, Merryl and James Tisch Director, New York Public
+              Library&nbsp;</span
+            >
+          </p>
+          <p>
+            <span style="font-weight: 400;"
+              >Vickery Bowles, City Librarian, Toronto Public Library</span
+            >
+          </p>
+          <p>
+            <span style="font-weight: 400;"
+              >Charles Thomas, Program Director, John S. and James L. Knight
+              Foundation</span
+            >
+          </p>
+          <p>
+            <span style="font-weight: 400;">Felton Thomas, </span
+            ><span style="font-weight: 400;"
+              >Executive Director &amp; CEO, Cleveland Public Library and DPLA
+              Board Chair</span
+            >
+          </p>
+          <p>
+            <a
+              href="https://dpla.zoom.us/webinar/register/WN_B2uTqyxqShm6NgjchDKRPQ"
+              class="external"
+              >Please register here</a
+            >.
+          </p>
           <h2><strong>Open Board Call Schedule</strong></h2>
           <h3><strong>2023</strong></h3>
-          <p>Monday, January 9, 2023</p>
+          <p>
+            <a href="https://youtu.be/5rVal1K64xI" class="external"
+              >Monday, January 9, 2023</a
+            >
+          </p>
           <p>Monday, April 10, 2023</p>
           <p>Monday, July 10. 2023</p>
           <p>Monday, October 16, 2023</p>
@@ -1083,26 +1103,20 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="165"
               height="164"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Audrey-Altman.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Audrey-Altman-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Audrey-Altman.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Audrey-Altman-150x150.jpg 150w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Audrey Altman
           </h2>
           <h3>Senior Software Engineer</h3>
           <p>
-            Audrey
-            <span style="font-weight: 400;"
-              >is one of our software engineers. She works on many projects,
-              including DPLA’s metadata ingestion system and machine learning
-              R&amp;D. Past projects include developing the Primary Source Sets
-              and Hub Analytics Dashboard applications. She holds a Masters of
-              Library and Information Science from the University of Iowa, and
-              an M.A. in American Studies from the University of Alabama. In her
-              free time, she enjoys studying mathematics and computer science,
-              listening to classical music, going to the theater and playing
-              games with her friends and very large extended family.
-            </span>
+            Audrey (she/her) is one of our senior software engineers. She works
+            on applications and systems that allow our data to be accessed and
+            managed in multiple contexts for diverse use cases. She holds a
+            Masters of Library and Information Science from the University of
+            Iowa, and an M.A. in American Studies from the University of
+            Alabama.
           </p>
           <h2>
             <img
@@ -1114,8 +1128,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="164"
               height="166"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/John-Bracken-296x300.jpg 296w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/John-Bracken.jpg         300w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/John-Bracken-296x300.jpg 296w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/John-Bracken.jpg         300w
               "
               sizes="(max-width: 164px) 100vw, 164px"
             />John Bracken
@@ -1148,8 +1162,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
                 width="165"
                 height="165"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt.jpg         300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt-150x150.jpg 150w
+                  https://dpla.wpengine.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt.jpg         300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt-150x150.jpg 150w
                 "
                 sizes="(max-width: 165px) 100vw, 165px"
             /></span>
@@ -1180,8 +1194,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="165"
               height="164"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Michael-Della-Bitta.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Michael-Della-Bitta-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Michael-Della-Bitta.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Michael-Della-Bitta-150x150.jpg 150w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Michael Della Bitta
@@ -1212,11 +1226,11 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="165"
               height="169"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-291x300.jpg    291w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-995x1024.jpg   995w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-768x791.jpg    768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-1492x1536.jpg 1492w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee.jpg           1823w
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-291x300.jpg    291w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-995x1024.jpg   995w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-768x791.jpg    768w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-1492x1536.jpg 1492w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee.jpg           1823w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Suzanne Gilbert Lee
@@ -1245,8 +1259,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="165"
               height="165"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Micah-May.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Micah-May-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Micah-May.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Micah-May-150x150.jpg 150w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Micah May
@@ -1300,8 +1314,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="165"
               height="165"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Scott-Williams.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Scott-Williams-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Scott-Williams.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Scott-Williams-150x150.jpg 150w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Scott Williams
@@ -1327,8 +1341,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="149"
               height="167"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Kat-Williams-268x300.jpg 268w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Kat-Williams.jpg         300w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Kat-Williams-268x300.jpg 268w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Kat-Williams.jpg         300w
               "
               sizes="(max-width: 149px) 100vw, 149px"
             />Kathleen Williams
@@ -1358,12 +1372,12 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
               width="152"
               height="152"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-300x300.jpg    300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-1024x1024.jpg 1024w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-150x150.jpg    150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-768x768.jpg    768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-1536x1536.jpg 1536w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small.jpg           1827w
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-300x300.jpg    300w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-1024x1024.jpg 1024w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-150x150.jpg    150w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-768x768.jpg    768w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-1536x1536.jpg 1536w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small.jpg           1827w
               "
               sizes="(max-width: 152px) 100vw, 152px"
             />Shaneé Yvette Willis
@@ -3013,9 +3027,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
                   width="502"
                   height="290"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM.png         1003w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-300x173.png  300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-768x443.png  768w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM.png         1003w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-300x173.png  300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-768x443.png  768w
                   "
                   sizes="(max-width: 502px) 100vw, 502px"
               /></a>
@@ -3061,10 +3075,10 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
               alt=""
               class="wp-image-25868"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-1024x277.png 1024w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-300x81.png    300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-768x208.png   768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM.png          1095w
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-1024x277.png 1024w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-300x81.png    300w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-768x208.png   768w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM.png          1095w
               "
               sizes="(max-width: 1024px) 100vw, 1024px"
             />
@@ -3092,10 +3106,10 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
                   width="512"
                   height="405"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-1024x810.png 1024w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-300x237.png   300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-768x608.png   768w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM.png          1131w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-1024x810.png 1024w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-300x237.png   300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-768x608.png   768w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM.png          1131w
                   "
                   sizes="(max-width: 512px) 100vw, 512px"
               /></a>
@@ -3124,9 +3138,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
                   width="490"
                   height="323"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM.png         980w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-300x198.png 300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-768x506.png 768w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM.png         980w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-300x198.png 300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-768x506.png 768w
                   "
                   sizes="(max-width: 490px) 100vw, 490px"
               /></a>
@@ -3660,8 +3674,8 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
           </p>
           <ul>
             <li>
-              By mail: DPLA, c/o Boston Public Library, 700 Boylston St.,
-              Boston, MA 02116
+              By mail: Digital Public Library of America (at Government Center)
+              1 Washington Mall #1019 Boston, MA 02108
             </li>
             <li>By phone: 617-859-2116</li>
             <li>By email:</li>
@@ -4451,10 +4465,10 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
                 width="1024"
                 height="669"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-1024x669.png 1024w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-300x196.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-768x502.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM.png          1108w
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-1024x669.png 1024w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-300x196.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-768x502.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM.png          1108w
                 "
                 sizes="(max-width: 1024px) 100vw, 1024px"
             /></a>
@@ -4504,10 +4518,10 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
                 width="800"
                 height="706"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW.jpg          2160w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-300x265.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-768x678.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-1024x904.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW.jpg          2160w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-300x265.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-768x678.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-1024x904.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -4717,9 +4731,9 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
                 width="810"
                 height="194"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964.png         810w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-300x72.png  300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-768x184.png 768w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964.png         810w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-300x72.png  300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-768x184.png 768w
                 "
                 sizes="(max-width: 810px) 100vw, 810px"
             /></a>
@@ -4766,8 +4780,8 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
                   loading="lazy"
                   aria-describedby="gallery-1-5475"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-150x150.jpg 150w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-300x297.jpg 300w
+                    https://dpla.wpengine.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-150x150.jpg 150w,
+                    https://dpla.wpengine.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-300x297.jpg 300w
                   "
                   sizes="(max-width: 150px) 100vw, 150px"
                 />
@@ -5125,10 +5139,10 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
                 width="800"
                 height="403"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy.png          1117w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-300x151.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-768x387.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-1024x516.png 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy.png          1117w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-300x151.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-768x387.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-1024x516.png 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5170,10 +5184,10 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
                 width="800"
                 height="596"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy.jpg          2728w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-300x224.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-768x572.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-1024x763.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy.jpg          2728w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-300x224.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-768x572.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-1024x763.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5359,10 +5373,10 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
                 width="800"
                 height="393"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy.png          1439w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-300x147.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-768x377.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-1024x503.png 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy.png          1439w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-300x147.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-768x377.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-1024x503.png 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5417,10 +5431,10 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
                 width="800"
                 height="426"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin.jpg          1385w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-300x160.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-768x409.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-1024x546.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin.jpg          1385w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-300x160.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-768x409.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-1024x546.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5628,9 +5642,9 @@ exports[`Content Pages > For Developers hasn't changed #0`] = `
                 width="800"
                 height="451"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG.jpg         967w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-300x169.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-768x433.jpg 768w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG.jpg         967w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-300x169.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-768x433.jpg 768w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
