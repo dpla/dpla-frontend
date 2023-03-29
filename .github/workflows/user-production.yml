@@ -40,9 +40,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-      
-      - name: Install npm 
-        run: npm install --legacy-peer-deps 
         
       - name: Install Yarn
         run: npm install -g yarn
