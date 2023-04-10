@@ -2,7 +2,7 @@
 
 TxHub makes digital photos, maps, books, artifacts, oral histories and more from libraries, archives, museums, and historical societies across the state freely available through a single site.
 
-TxHub is a partnership between [The Portal to Texas History](https://texashistory.unt.edu/) of the University of North Texas and [Texas Digital Library](https://www.tdl.org/). Citations for images in the header are [here](https://texasdigitallibrary.atlassian.net/l/cp/0Lk312Bc).
+TxHub is a partnership between [The Portal to Texas History](https://texashistory.unt.edu/) and [Texas Digital Library](https://www.tdl.org/). Citations for images in the header are [here](https://texasdigitallibrary.atlassian.net/l/cp/0Lk312Bc).
 
 <br>
 
