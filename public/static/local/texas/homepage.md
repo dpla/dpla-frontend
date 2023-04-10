@@ -1,8 +1,8 @@
-## Explore the rich history and culture in Texas collections.
+## Access TXHUB to explore the rich history and culture in Texas collections.
 
 TxHub makes digital photos, maps, books, artifacts, oral histories and more from libraries, archives, museums, and historical societies across the state freely available through a single site.
 
-TxHub is a partnership between [The Portal to Texas History](https://texashistory.unt.edu/) of the University of North Texas and [Texas Digital Library](https://www.tdl.org/).
+TxHub is a partnership between [The Portal to Texas History](https://texashistory.unt.edu/) of the University of North Texas and [Texas Digital Library](https://www.tdl.org/). Citations for images in the header are [here](https://texasdigitallibrary.atlassian.net/l/cp/0Lk312Bc).
 
 <br>
 
@@ -27,3 +27,5 @@ TxHub is a partnership between [The Portal to Texas History](https://texashistor
 - ### [State parks](/search?q=%22state%20park%22%20OR%20%22state%20parks%22)
 
 - ### [Oral histories](/search?q=%22oral%20history%22%20OR%20%22oral%20histories%22)
+
+- ### [Medicine](search?q=medic*)
