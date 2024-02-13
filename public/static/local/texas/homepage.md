@@ -22,10 +22,14 @@ TxHub is a partnership between [The Portal to Texas History](https://texashistor
 
 - ### [LGBTQ Pride](/search?q=pride%20AND%20%28gay%20OR%20lgbt%2A%20OR%20glbt%2A%29)
 
-- ### [Food](/search?q=food)
+- ### [Food](/search?q=food%20OR%20menu*%20OR%20cookbook*)
 
 - ### [State parks](/search?q=%22state%20park%22%20OR%20%22state%20parks%22)
 
 - ### [Oral histories](/search?q=%22oral%20history%22%20OR%20%22oral%20histories%22)
 
-- ### [Medicine](search?q=medic*)
+- ### [Medicine](/search?q=medic*)
+
+- ### [Railroads](/search?q=railroad*)
+
+- ### [Migrations](/search?q=migration*%20OR%20immigration*%20OR%20%E2%80%9CTexas%20promotional%20literature%E2%80%9D)
