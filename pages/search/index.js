@@ -13,6 +13,7 @@ import MainContent from "components/SearchComponents/MainContent";
 import {
     getItemThumbnail,
     getSearchPageTitle,
+    isBalanced
 } from "lib";
 
 import {
@@ -102,6 +103,12 @@ export const getServerSideProps = async context => {
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
+
+    if (!isBalanced(query.q)) {
+        // User gave us something that will blow up, strip it out.
+        query.q = query.q.replace(/['"\[\](){}]/, "")
+    }
+
     const q = query.q
         ? encodeURIComponent(query.q.trim())
             .replace(/'/g, "%27")
