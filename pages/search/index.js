@@ -104,7 +104,7 @@ export const getServerSideProps = async context => {
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
     const isQA = parseCookies(context).hasOwnProperty("qa");
 
-    if (!isBalanced(query.q)) {
+    if (query.q && !isBalanced(query.q)) {
         // User gave us something that will blow up, strip it out.
         query.q = query.q.replace(/['"\[\](){}]/, "")
     }
