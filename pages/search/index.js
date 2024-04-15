@@ -106,7 +106,12 @@ export const getServerSideProps = async context => {
 
     if (query.q && !isBalanced(query.q)) {
         // User gave us something that will blow up, strip it out.
-        query.q = query.q.replace(/['"\[\](){}]/, "")
+        query.q = query.q.replace(/['"\[\](){}]/, "");
+    }
+
+    if (query.q) {
+        // unescaped slashes will blow up the API query
+        query.q = query.q.replace("/", "");
     }
 
     const q = query.q
