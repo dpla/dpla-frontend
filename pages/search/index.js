@@ -1,5 +1,6 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
+import axios from "axios";
+
 import {withRouter} from "next/router";
 
 import {parseCookies} from "nookies";
@@ -110,8 +111,8 @@ export const getServerSideProps = async context => {
     }
 
     if (query.q) {
-        // unescaped slashes will blow up the API query
-        query.q = query.q.replace("/", "");
+        // unescaped slashes and colons will blow up the API query
+        query.q = query.q.replace("/", "").replace(":", "");
     }
 
     const q = query.q
@@ -204,29 +205,29 @@ export const getServerSideProps = async context => {
         const url =
             `${apiUrl}/items?api_key=${apiKey}` +
             `&exact_field_match=true&q=${query}`;
-        const aboutnessRes = await fetch(url);
 
-        if (aboutnessRes.status !== 200) {
-            aboutness = {docs: [], count: 0};
-
-        } else {
-            const aboutnessJson = await aboutnessRes.json();
-            const aboutnessDocs = aboutnessJson.docs
-                .map(result => {
-                    const thumbnailUrl = getItemThumbnail(result);
-                    return Object.assign({}, result.sourceResource, {
-                        thumbnailUrl,
-                        id: result.id ? result.id : result.sourceResource["@id"],
-                        sourceUrl: result.isShownAt,
-                        provider: result.provider && result.provider.name,
-                        dataProvider: result.dataProvider && result.dataProvider.name,
-                        useDefaultImage: !result.object
-                    });
-                })
-                .splice(0, aboutness_max);
-            const aboutnessCount = aboutnessJson.count;
-            aboutness = {docs: aboutnessDocs, count: aboutnessCount};
+        let aboutnessJson = {docs: [], count: 0};
+        try {
+            const axiosRes = await axios.get(url);
+            aboutnessJson = axiosRes.data;
+        } catch (error) {
+            //ignoring errors for aboutness requests
         }
+        const aboutnessDocs = aboutnessJson.docs
+            .map(result => {
+                const thumbnailUrl = getItemThumbnail(result);
+                return Object.assign({}, result.sourceResource, {
+                    thumbnailUrl,
+                    id: result.id ? result.id : result.sourceResource["@id"],
+                    sourceUrl: result.isShownAt,
+                    provider: result.provider && result.provider.name,
+                    dataProvider: result.dataProvider && result.dataProvider.name,
+                    useDefaultImage: !result.object
+                });
+            })
+            .splice(0, aboutness_max);
+        const aboutnessCount = aboutnessJson.count;
+        aboutness = {docs: aboutnessDocs, count: aboutnessCount};
     }
 
     if (page <= MAX_PAGE_SIZE) {
@@ -250,11 +251,10 @@ export const getServerSideProps = async context => {
             filtersParam +
             tagsParam;
 
-        const res = await fetch(url);
+        const res = await axios.get(url);
 
         // api response for facets
-        let json = await res.json();
-        const docs = json.docs.map(result => {
+        const docs = res.data.docs.map(result => {
             const thumbnailUrl = getItemThumbnail(result);
             const dataProviderFromObj = result.dataProvider && 
                 result.dataProvider.name;
@@ -275,7 +275,7 @@ export const getServerSideProps = async context => {
         // fix facets because ES no longer returns them in the requested order
         let newFacets = {};
         theseFacets.forEach(facet => {
-            if (json.facets[facet]) newFacets[facet] = json.facets[facet];
+            if (res.data.facets[facet]) newFacets[facet] = res.data.facets[facet];
         });
 
         if (tags) {
@@ -285,13 +285,13 @@ export const getServerSideProps = async context => {
             };
         }
 
-        json.facets = newFacets;
+        res.data.facets = newFacets;
 
         const maxResults = MAX_PAGE_SIZE * page_size;
-        const pageCount = json.count > maxResults ? maxResults : json.count;
+        const pageCount = res.data.count > maxResults ? maxResults : res.data.count;
 
         const props = washObject({
-            results: Object.assign({}, json, {docs}),
+            results: Object.assign({}, res.data, {docs}),
             numberOfActiveFacets,
             currentPage: page,
             pageCount,
