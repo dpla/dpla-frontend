@@ -94,7 +94,6 @@ export const getServerSideProps = async context => {
         const axiosRes = await axios.get(itemUrl);
 
         if (!("docs" in axiosRes.data) || axiosRes.data.docs.length < 1) {
-            console.log("Item not found.")
             return notFound;
         }
 
