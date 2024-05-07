@@ -1,6 +1,6 @@
 ## Sharing Our Common Heritage
 
-Northwest Digital Heritage brings together unique historical collections from over 150 libraries, archives, and museums throughout Oregon, Washington, and Idaho. Explore photographs, maps, oral histories and more from the Pacific Northwest and beyond.
+Northwest Digital Heritage brings together unique historical collections from over 250 libraries, archives, and museums throughout Oregon, Washington, and Idaho. Explore photographs, maps, oral histories and more from the Pacific Northwest and beyond.
 
 Content for this portal is provided by [Northwest institutions](/browse-by-partner) in coordination with the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), [University of Washington Libraries](https://www.lib.washington.edu), and [Oregon Digital](https://oregondigital.org/catalog?).
 
@@ -16,7 +16,7 @@ Content for this portal is provided by [Northwest institutions](/browse-by-partn
 
   SEE ALSO: [Floods](/search?q=flood*)
 
-- ### [Camp Jordan](/search?q=%22Camp+George+Jordan+(Seattle%2C+Wash.)%22+OR+%22Camp+Jordan%22)
+- ### [Camp Jordan](</search?q=%22Camp+George+Jordan+(Seattle%2C+Wash.)%22+OR+%22Camp+Jordan%22>)
 
   A WWII-era segregated soldier camp in Seattle. The Marjorie Sotero Photograph Collection documents service club activities at Camp Jordan.
 
@@ -108,14 +108,14 @@ Content for this portal is provided by [Northwest institutions](/browse-by-partn
 
 - ### [Spruce Production Division](/search?q=spruce+division)
 
-  During WWI, the U.S. government created the Spruce Production Division in the Northwest to quickly obtain spruce trees necessary for airplane production.  
-  
+  During WWI, the U.S. government created the Spruce Production Division in the Northwest to quickly obtain spruce trees necessary for airplane production.
+
   SEE ALSO: [Logging & Lumber Industry](/search?q=logg*+OR+"lumber")
 
-- ### [Ruth Mountaingrove Collection](/search?q=ruth+mountaingrove) 
+- ### [Ruth Mountaingrove Collection](/search?q=ruth+mountaingrove)
 
-  Photographs documenting Rootworks, a lesbian commune in Southern Oregon founded during the 1960s-70s feminist and countercultural movements.  
-  
+  Photographs documenting Rootworks, a lesbian commune in Southern Oregon founded during the 1960s-70s feminist and countercultural movements.
+
   SEE ALSO: [LGBTQ+ Pride Events](/search?q="pride+parade"+OR+"pride+march"+OR+"pride+event"+OR+"pride+center"+OR+"gay+rights"+OR+lesb*)
 
 <br>
@@ -136,5 +136,4 @@ Content for this portal is provided by [Northwest institutions](/browse-by-partn
 
 - [![Institute of Museum and Library Services](/static/local/nwdh/imls.png)](https://www.imls.gov/)
 
-
-*Funding for this project is provided in part by the Library Services and Technology Act, administered by the federal Institute of Museum and Library Services.*
+_Funding for this project is provided in part by the Library Services and Technology Act, administered by the federal Institute of Museum and Library Services._
