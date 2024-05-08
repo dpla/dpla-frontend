@@ -3,7 +3,7 @@
 # Expect that `yarn build` has already been run.
 
 
-FROM node:iron-bullseye-slim
+FROM node:iron-bookworm-slim
 RUN apt update && apt install -y tini
 WORKDIR /opt/dpla-frontend
 COPY . /opt/dpla-frontend
