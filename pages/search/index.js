@@ -32,6 +32,7 @@ import {LOCALS} from "constants/local";
 
 import MaxPageError from "components/SearchComponents/MaxPageError";
 import {washObject} from "lib/washObject";
+import FilterQueryError from "components/SearchComponents/FilterQueryError";
 
 class Search extends React.Component {
     state = {
@@ -50,7 +51,9 @@ class Search extends React.Component {
             pageCount,
             currentPage,
             pageSize,
-            aboutness
+            aboutness,
+            filterQueryError,
+            maxPageError
         } = this.props;
 
         let itemCount = 0;// default handles unexpected error
@@ -92,8 +95,9 @@ class Search extends React.Component {
                     results={results.docs}
                     aboutness={aboutness}
                 />}
-                {currentPage > MAX_PAGE_SIZE &&
+                {maxPageError &&
                 <MaxPageError maxPage={MAX_PAGE_SIZE} requestedPage={currentPage}/>}
+                {filterQueryError && <FilterQueryError />}
             </MainLayout>
         );
     }
@@ -115,11 +119,15 @@ export const getServerSideProps = async context => {
         query.q = query.q.replace("/", "").replace(":", "");
     }
 
-    const q = query.q
+    let q = query.q
         ? encodeURIComponent(query.q.trim())
             .replace(/'/g, "%27")
             .replace(/"/g, "%22")
         : "";
+
+    if (q.length > 200) {
+        q = q.substring(0, 200)
+    }
 
     let filters = isLocal && local.filters ? local.filters : [];
     let tags = isLocal && local.tags ? local.tags : [];
@@ -172,6 +180,17 @@ export const getServerSideProps = async context => {
 
     const facetQueries = queryArray.join("&");
 
+    const isUnilteredQuery = (!q || q.length < 2) && filters.length === 0 && tags.length === 0 && !facetQueries
+
+    if (isUnilteredQuery) {
+        return {
+            props: {
+                filterQueryError: true,
+                results: []
+            }
+        }
+    }
+
     let sort_by = "";
     if (query.sort_by === "title") {
         sort_by = "sourceResource.title";
@@ -190,7 +209,7 @@ export const getServerSideProps = async context => {
 
     // get the aboutness links
     let aboutness = {};
-    if (isLocal && q.length > 0) {
+    if (isLocal && q.length > 2) {
         const aboutness_max = 4;
         const provider = local["provider"];
         const location = local["locationFacet"];
@@ -230,7 +249,16 @@ export const getServerSideProps = async context => {
         aboutness = {docs: aboutnessDocs, count: aboutnessCount};
     }
 
-    if (page <= MAX_PAGE_SIZE) {
+    if (page > MAX_PAGE_SIZE) {
+        return {
+            props: {
+                maxPageError: true,
+                currentPage: page,
+                results: []
+            }
+        }
+
+    } else {
         const numberOfActiveFacets = facetQueries
             .split(/(&|\+AND\+)/)
             .filter(facet => facet && facet !== "+AND+" && facet !== "&").length;
@@ -296,7 +324,8 @@ export const getServerSideProps = async context => {
             currentPage: page,
             pageCount,
             pageSize: page_size,
-            aboutness: aboutness
+            aboutness: aboutness,
+            filterQueryError: false
         });
 
         return {
