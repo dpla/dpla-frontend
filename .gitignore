@@ -42,3 +42,6 @@ cypress/reports/*
 cypress/screenshots/*
 cypress/videos/*
 /dpla-frontend.iml
+
+# Sentry Config File
+.env.sentry-build-plugin
