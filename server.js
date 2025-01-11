@@ -180,7 +180,7 @@ function mailchimp() {
       }
     }
 
-    if (!availableListIds.contains(list_id) ) {
+    if (!availableListIds.includes(list_id) ) {
       // don't know that list
       return res.sendStatus(400);
     }
