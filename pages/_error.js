@@ -13,22 +13,23 @@ import { SITE_ENV } from "constants/env";
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import res from "express/lib/response";
 
 class Error extends React.Component {
   static async getInitialProps(context) {
     await Sentry.captureUnderscoreErrorException(context);
 
-    let statusCode = null;
+    let statusCode;
 
-    if (context.res) {
+    if (context?.res) {
       statusCode = context.res.statusCode;
-      res.setHeader(
+      context.res.setHeader(
         "Cache-Control",
         "max-age=0, private, no-cache, no-store, must-revalidate"
       );
-    } else if (context.err) {
+    } else if (context?.err) {
       statusCode = context.err.statusCode;
+    } else {
+      statusCode = 500;
     }
 
     return { statusCode: statusCode };
