@@ -1,6 +1,5 @@
 const { LOCALS } = require("./constants/local");
 const path = require("path");
-const dotenv = require("dotenv").config();
 const process = require("process");
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
@@ -23,6 +22,7 @@ module.exports = withBundleAnalyzer({
   },
   webpack: config => {
     config.resolve.fallback = {
+      async_hooks: false,
       fs: false,
       path: false,
       process: false
