@@ -20,6 +20,7 @@ const cluster = require("node:cluster");
 const numCPUs = require("node:os").availableParallelism ;
 
 const serverFunctions = require("./lib/serverFunctions");
+const {MAILCHIMP_GROUP_IDS} = require("constants/site");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
@@ -171,6 +172,18 @@ function mailchimp() {
     const interests = req.body.interests || [];
 
     if (list_id === "") return res.sendStatus(400);
+
+    const availableListIds = [];
+    for (let key in MAILCHIMP_GROUP_IDS) {
+      if (MAILCHIMP_GROUP_IDS.hasOwnProperty(key)) {
+        availableListIds.push(MAILCHIMP_GROUP_IDS[key]);
+      }
+    }
+
+    if (!availableListIds.contains(list_id) ) {
+      // don't know that list
+      return res.sendStatus(400);
+    }
 
     const url = `https://us4.api.mailchimp.com/3.0/lists/${list_id}/members`;
 
