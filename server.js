@@ -17,7 +17,7 @@ const next = require("next");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
 const cluster = require("node:cluster");
-const numCPUs = require("node:os").availableParallelism ;
+const numCPUs = require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
 const {MAILCHIMP_GROUP_IDS} = require("constants/site");
