@@ -8,8 +8,6 @@ export default async function handler(req, res) {
     const idList = idListString ? idListString.split(",") : []
     const validIds = idList.filter(id => !!id && dplaIdRegex.test(id));
 
-    console.log("Loading", validIds);
-
     if (validIds.length === 0) {
         console.log("Zero valid ids");
         res

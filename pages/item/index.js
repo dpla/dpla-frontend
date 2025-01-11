@@ -102,7 +102,7 @@ export const getServerSideProps = async context => {
     } catch (error) {
         if (error != null && typeof error.response ===  'object' && "status" in error.response) {
             console.log(`Got status ${error.response.status} from API for item id ${query.itemId}`)
-            if (error.response.status !== 404) {
+            if (error.response.status !== 404 && error.response.status !== 400) {
                 throw new Error(`Bad status from API`);
             } else {
                 return notFound;
