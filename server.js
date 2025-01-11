@@ -20,7 +20,7 @@ const cluster = require("node:cluster");
 const numCPUs = require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
-const {MAILCHIMP_GROUP_IDS} = require("constants/site");
+const {MAILCHIMP_GROUP_IDS} = require("./constants/site");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;

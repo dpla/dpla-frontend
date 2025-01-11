@@ -1,4 +1,4 @@
-import { WORDPRESS_URL } from "./env";
+import { WORDPRESS_URL } from "./env.js";
 
 export const API_SETTINGS_ENDPOINT = `${WORDPRESS_URL}/wp-json/acf/v3/options/dpla-api-settings`;
 
