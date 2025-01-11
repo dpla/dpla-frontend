@@ -7,6 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer({
+  poweredByHeader: false,
   sassOptions: {
     // to allow SCSS files to import a plain “theme.module.scss” file
     includePaths: [
