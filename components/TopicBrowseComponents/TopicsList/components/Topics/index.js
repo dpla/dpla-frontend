@@ -19,8 +19,8 @@ const Topics = ({ topics }) =>
           <Link
             as={`/browse-by-topic/${topic.slug}`}
             href={`/browse-by-topic/topic?topic=${topic.slug}`}
+            className={css.topic}
           >
-            <a className={css.topic}>
               {topic.isFeatured && <div className={css.ribbon}>Featured</div>}
               {topic.isNew &&
                 !topic.isFeatured &&
@@ -33,7 +33,6 @@ const Topics = ({ topics }) =>
               <div className={css.title}>
                 {topic.name}
               </div>
-            </a>
           </Link>
         </li>
       )}

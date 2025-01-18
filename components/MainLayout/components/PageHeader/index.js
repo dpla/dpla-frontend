@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
+import Image from "next/image";
 
-import DPLALogoWide from "public/static/images/dpla-logo-white.svg";
+const dplaLogoWide  = "public/static/images/dpla-logo-white.svg";
 
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -27,14 +28,11 @@ class PageHeader extends React.Component {
             : ""} ${utils.siteMaxWidth}`}
         >
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
-            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-              <a className={css.logo} title="Home Page">
-                <DPLALogoWide className={css.logoImg} />
-              </a>
+            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"} className={css.logo} title="Home Page">
+              <Image src={"/static/images/dpla-logo-white.svg"} width="749" height="90" alt="DPLA" className={css.logoImg} />
             </Link>}
           {SITE_ENV === "local" &&
-            <Link href="/local" as="/">
-              <a className={`${css.logo} ${css.local}`} title="Home Page">
+            <Link href="/local" as="/" className={`${css.logo} ${css.local}`} title="Home Page">
                 <img
                   className={css.localLogo}
                   alt={`${LOCALS[LOCAL_ID].name} Home`}
@@ -43,7 +41,7 @@ class PageHeader extends React.Component {
                   ].logo}`}
                 />
                 <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
-              </a>
+
             </Link>}
           {!hideSearchBar &&
             SITE_ENV !== "pro" &&

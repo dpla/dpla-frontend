@@ -71,10 +71,8 @@ const HomeHero = ({ headerDescription, feature }) =>
       </form>
       {SITE_ENV !== "local" &&
         <div className={css.links}>
-          <Link href="/browse-by-topic">
-            <a title="Browse DPLA by a curated set of topics">
+          <Link href="/browse-by-topic" >
               Browse by Topic
-            </a>
           </Link>
           <Link href="/guides">
             <a title="View our Getting Started Guides">New? Start Here</a>
@@ -84,7 +82,7 @@ const HomeHero = ({ headerDescription, feature }) =>
         LOCALS[LOCAL_ID].hasAbout &&
         <div className={css.links}>
           <Link href="/local/about" as="/about">
-            <a>Learn more about {LOCALS[LOCAL_ID].name}</a>
+            Learn more about {LOCALS[LOCAL_ID].name}
           </Link>
         </div>}
     </div>

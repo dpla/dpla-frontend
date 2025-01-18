@@ -22,9 +22,7 @@ class ResourcesTabs extends React.Component {
                 href={`/primary-source-sets/set?set=${router.query.set}#tabs`}
                 as={`/primary-source-sets/${router.query.set}#tabs`}
               >
-                <a>
-                  Source Set
-                </a>
+                Source Set
               </Link>
             </li>
             <li
@@ -42,9 +40,7 @@ class ResourcesTabs extends React.Component {
                 as={`/primary-source-sets/${router.query
                   .set}/additional-resources#tabs`}
               >
-                <a>
-                  Additional Resources
-                </a>
+                Additional Resources
               </Link>
             </li>
             <li
@@ -62,9 +58,7 @@ class ResourcesTabs extends React.Component {
                 as={`/primary-source-sets/${router.query
                   .set}/teaching-guide#tabs`}
               >
-                <a>
-                  Teaching Guide
-                </a>
+                Teaching Guide
               </Link>
             </li>
           </ul>

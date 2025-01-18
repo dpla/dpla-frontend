@@ -19,7 +19,7 @@ const OtherInfo = () =>
         <span>
           Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
-            <a>Using DPLA&apos;s Primary Source Sets</a>
+            Using DPLA&apos;s Primary Source Sets
           </Link>{" "}
           in your classroom.
         </span>

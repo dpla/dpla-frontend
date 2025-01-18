@@ -12,7 +12,7 @@ const logo = "/static/images/dpla-logo.svg";
 
 class SmallFooterLocal extends React.Component {
   render() {
-    var logoHtml;
+    let logoHtml;
     if (LOCAL_ID === "wisconsin") {
         logoHtml = (
             <a href={`${LOCALS[LOCAL_ID].externalLink}`}>
@@ -27,27 +27,26 @@ class SmallFooterLocal extends React.Component {
     } else if (LOCAL_ID === "tennessee") {
         logoHtml = (
             <Link href="/local" as="/">
-                <a>
+
                     <img
                         className={css.localLogo}
                         alt={`${LOCALS[LOCAL_ID].name} Home`}
                         src={`/static/local/tennessee/logo2.png`}
                     />
-                </a>
             </Link>
         );
 
     } else {
       logoHtml = (
         <Link href="/local" as="/">
-          <a>
+
             <img
               className={css.localLogo}
               alt={`${LOCALS[LOCAL_ID].name} Home`}
               src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[LOCAL_ID]
                 .logo}`}
             />
-          </a>
+
         </Link>
       );
     }
@@ -56,13 +55,12 @@ class SmallFooterLocal extends React.Component {
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           {logoHtml}
           <Link href="https://dp.la">
-            <a>
+
               <img
                 className={css.partnershipLogo}
                 alt="In partnership with DPLA"
                 src={logo}
               />
-            </a>
           </Link>
         </div>
       </div>

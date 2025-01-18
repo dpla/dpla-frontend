@@ -11,62 +11,54 @@ class NavigationUser extends React.Component {
         <ul className={css.links}>
           {!isHome &&
             <li>
-              <Link href="/">
-                <a data-cy="link-home">
-                  Home
-                </a>
+              <Link href="/" data-cy="link-home">
+                Home
               </Link>
             </li>}
           <li>
-            <Link href="/browse-by-topic">
-              <a data-cy="browse-topics">Browse by Topic</a>
+            <Link href="/browse-by-topic" data-cy="browse-topics">
+              Browse by Topic
             </Link>
           </li>
           <li>
-            <Link href="/browse-by-partner">
-              <a data-cy="browse-partners">Browse by Partner</a>
+            <Link href="/browse-by-partner" data-cy="browse-partners">
+              Browse by Partner
             </Link>
           </li>
           <li>
-            <Link href="/exhibitions">
-              <a data-cy="exhibitions">
-                Exhibitions
-              </a>
+            <Link href="/exhibitions" data-cy="exhibitions">
+              Exhibitions
             </Link>
           </li>
           <li>
-            <Link href="/primary-source-sets">
-              <a data-cy="primary-source-sets">
-                Primary Source Sets
-              </a>
+            <Link href="/primary-source-sets" data-cy="primary-source-sets">
+              Primary Source Sets
             </Link>
           </li>
           <li>
-            <Link href="/lists">
-              <a data-cy="my-lists">
-                My Lists
-              </a>
+            <Link href="/lists" data-cy="my-lists">
+              My Lists
             </Link>
           </li>
         </ul>
         <span className={css.divider} />
         <ul className={`${css.links} ${css.secondaryLinks}`}>
           <li>
-            <Link as="/about" href="/about?section=about-us">
-              <a data-cy="about-dpla">About DPLA</a>
+            <Link as="/about" href="/about?section=about-us" data-cy="about-dpla">
+              About DPLA
             </Link>
           </li>
           <li>
-            <Link href="/news">
-              <a data-cy="news">News</a>
+            <Link href="/news" data-cy="news">
+              News
             </Link>
           </li>
         </ul>
         <span className={css.divider} />
         <ul className={`${css.links} ${css.tertiaryLinks}`}>
           <li>
-            <Link href={PRO_BASE_URL}>
-              <a data-cy="dpla-pro">DPLA Pro</a>
+            <Link href={PRO_BASE_URL} data-cy="dpla-pro">
+              DPLA Pro
             </Link>
           </li>
         </ul>

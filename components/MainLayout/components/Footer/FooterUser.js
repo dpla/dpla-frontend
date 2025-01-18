@@ -21,21 +21,23 @@ class FooterUser extends React.Component {
                 <Link
                   href="/about?section=frequently-asked-questions"
                   as="/about/frequently-asked-questions"
+                  data-cy="footer-link-frequently-asked-questions"
                 >
-                  <a data-cy="footer-link-frequently-asked-questions">Frequently Asked Questions</a>
+                  Frequently Asked Questions
                 </Link>
               </li>
               <li>
-                <Link href="/guides">
-                  <a data-cy="footer-link-guides">How Can I Use DPLA?</a>
+                <Link href="/guides" data-cy="footer-link-guides">
+                  How Can I Use DPLA?
                 </Link>
               </li>
               <li>
                 <Link
                   href="/about?section=terms-conditions"
                   as="/about/terms-conditions"
+                  data-cy="footer-link-terms-conditions"
                 >
-                  <a data-cy="footer-link-terms-conditions">Terms &amp; Conditions</a>
+                  Terms &amp; Conditions
                 </Link>
               </li>
               <li>
@@ -43,25 +45,25 @@ class FooterUser extends React.Component {
                     href="/about?section=harmful-language-statement"
                     as="/about/harmful-language-statement"
                 >
-                  <a>Harmful Content</a>
+                  Harmful Content
                 </Link>
               </li>
               <li>
-                <Link href="/about?section=about-us" as="/about">
-                  <a data-cy="footer-link-about">About DPLA</a>
+                <Link href="/about?section=about-us" as="/about" data-cy="footer-link-about">
+                  About DPLA
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" as="/contact">
-                  <a data-cy="footer-link-contact">Contact Us</a>
+                <Link href="/contact-us" as="/contact" data-cy="footer-link-contact">
+                  Contact Us
                 </Link>
               </li>
               <li>
                 <FeedbackForm />
               </li>
               <li>
-                <Link href="/news">
-                  <a data-cy="footer-link-news">News</a>
+                <Link href="/news" data-cy="footer-link-news">
+                  News
                 </Link>
               </li>
             </ul>
@@ -70,35 +72,33 @@ class FooterUser extends React.Component {
             <h2 className={css.linkHeader}>Tools</h2>
             <ul>
               <li>
-                <Link href="/primary-source-sets">
-                  <a data-cy="footer-link-primary-source-sets">Primary Source Sets</a>
+                <Link href="/primary-source-sets" data-cy="footer-link-primary-source-sets">
+                  Primary Source Sets
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-partner">
-                  <a data-cy="footer-link-browse-by-partner">Browse by Partner</a>
+                <Link href="/browse-by-partner" data-cy="footer-link-browse-by-partner">
+                  Browse by Partner
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-topic">
-                  <a data-cy="footer-link-browse-by-topic">Browse by Topic</a>
+                <Link href="/browse-by-topic" data-cy="footer-link-browse-by-topic">
+                  Browse by Topic
                 </Link>
               </li>
               <li>
-                <Link href="/exhibitions">
-                  <a data-cy="footer-link-exhibitions">Exhibitions</a>
+                <Link href="/exhibitions" data-cy="footer-link-exhibitions">
+                  Exhibitions
                 </Link>
               </li>
               <li>
-                <Link href="/lists">
-                  <a data-cy="footer-link-lists">
-                    My Lists
-                  </a>
+                <Link href="/lists" data-cy="footer-link-lists">
+                  My Lists
                 </Link>
               </li>
               <li>
-                <Link href="/search">
-                  <a data-cy="footer-link-search">Search</a>
+                <Link href="/search" data-cy="footer-link-search">
+                  Search
                 </Link>
               </li>
             </ul>
@@ -107,43 +107,43 @@ class FooterUser extends React.Component {
             <h2 className={css.linkHeader}>DPLA Pro</h2>
             <ul>
               <li>
-                <Link href={PRO_BASE_URL}>
-                  <a data-cy="footer-link-pro">DPLA Pro Home</a>
+                <Link href={PRO_BASE_URL} data-cy="footer-link-pro">
+                  DPLA Pro Home
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/prospective-hubs"}>
-                  <a data-cy="footer-link-prospective-hubs">Prospective Hubs</a>
+                <Link href={PRO_BASE_URL + "/prospective-hubs"} data-cy="footer-link-prospective-hubs">
+                  Prospective Hubs
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/hubs"}>
-                  <a data-cy="footer-link-hub-network">Hub Network</a>
+                <Link href={PRO_BASE_URL + "/hubs"} data-cy="footer-link-hub-network">
+                  Hub Network
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/developers"}>
-                  <a data-cy="footer-link-developers">Developers</a>
+                <Link href={PRO_BASE_URL + "/developers"} data-cy="footer-link-developers"a>
+                  Developers
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/education"}>
-                  <a data-cy="footer-link-education">Education</a>
+                <Link href={PRO_BASE_URL + "/education"} data-cy="footer-link-education">
+                  Education
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/projects"}>
-                  <a data-cy="footer-link-projects">Projects</a>
+                <Link href={PRO_BASE_URL + "/projects"} data-cy="footer-link-projects">
+                  Projects
                 </Link>
               </li>
               <li>
-                <Link href={"https://ebooks.dp.la"}>
-                  <a data-cy="footer-link-ebooks">Ebooks</a>
+                <Link href={"https://ebooks.dp.la"} data-cy="footer-link-ebooks">
+                  Ebooks
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/events"}>
-                  <a data-cy="footer-link-events">Events</a>
+                <Link href={PRO_BASE_URL + "/events"} data-cy="footer-link-events">
+                  Events
                 </Link>
               </li>
             </ul>

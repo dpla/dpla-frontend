@@ -57,10 +57,9 @@ class Details extends React.Component {
                   <li key={idx} className={css.tableOfContentsSection}>
                     <Link
                       href={`/exhibitions/${slug}/${section.slug}`}
+                      className="hover-underline"
                     >
-                      <a className="hover-underline">
-                        {section.title}
-                      </a>
+                      {section.title}
                     </Link>
                   </li>
                 )}

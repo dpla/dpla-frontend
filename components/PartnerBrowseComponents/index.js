@@ -7,13 +7,11 @@ import css from "./PartnerBrowseContent.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 const Partner = ({ name, itemCount, facetName, index }) =>
-  <Link href={`/search?${facetName}="${encodeURIComponent(name)}"`}>
-    <a className={css.partnerLink}>
+  <Link href={`/search?${facetName}="${encodeURIComponent(name)}"`} className={css.partnerLink}>
       <span className={css.name}>{name}</span>
       <span className={css.itemCount}>
         {addCommasToNumber(itemCount)}
       </span>
-    </a>
   </Link>;
 
 const mapPartnersToComponents = partners =>

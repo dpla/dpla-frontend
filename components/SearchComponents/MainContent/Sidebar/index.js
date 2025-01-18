@@ -46,9 +46,9 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
     return (<div className={css.facet}>
             <span className={css.facetName}><Link
                 href={href}
-            ><a className={css.facetLink}>{termObject.term}</a></Link>{(isTooltip && tooltips[termObject.term] != null) &&
-            (<Link href={tooltips[termObject.term].link}>
-                    <a className={css.toolTip}>
+                className={css.facetLink}
+            >{termObject.term}</Link>{(isTooltip && tooltips[termObject.term] != null) &&
+            (<Link href={tooltips[termObject.term].link} className={css.toolTip}>
                         <Tooltip
                             title={tooltips[termObject.term].text}
                             placement="top"
@@ -59,10 +59,9 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
                                 className={css.informationIcon}
                             />
                         </Tooltip>
-                    </a>
                 </Link>)
-            }</span>{" "}<Link href={href}>
-                <a className={css.facetCount}>{addCommasToNumber(termObject.count)}</a>
+            }</span>{" "}<Link href={href} className={css.facetCount}>
+                {addCommasToNumber(termObject.count)}
             </Link>
         </div>);
 });
@@ -271,21 +270,19 @@ class Sidebar extends React.Component {
                                     };
                                 })
                             };
+                        } else if (!hasDates) {
+                            hasDates = true; // because there's facets for after and before we dont want two date ranges
+                            let dateProps = {};
+                            if (router.query.after) dateProps.after = router.query.after;
+                            if (router.query.before) dateProps.before = router.query.before;
+                            return {
+                                name: prettifiedFacetMap[key],
+                                active: true,
+                                type: "date",
+                                subitems: <DateFacet router={router} {...dateProps} />
+                            };
                         } else {
-                            if (!hasDates) {
-                                hasDates = true; // because there's facets for after and before we dont want two date ranges
-                                let dateProps = {};
-                                if (router.query.after) dateProps.after = router.query.after;
-                                if (router.query.before) dateProps.before = router.query.before;
-                                return {
-                                    name: prettifiedFacetMap[key],
-                                    active: true,
-                                    type: "date",
-                                    subitems: <DateFacet router={router} {...dateProps} />
-                                };
-                            } else {
-                                return "";
-                            }
+                            return "";
                         }
                     })}
                 />

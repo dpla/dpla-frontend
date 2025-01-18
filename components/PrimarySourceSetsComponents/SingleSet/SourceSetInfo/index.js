@@ -124,14 +124,13 @@ class SourceSetInfo extends React.Component {
                                 timePeriod: mapTimePeriodNameToSlug(period)
                               }
                             }}
+                            className={`${utils.link} ${css.link}`}
                           >
-                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={period}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                            </a>
                           </Link>
                         </li>
                       )}
@@ -149,14 +148,13 @@ class SourceSetInfo extends React.Component {
                                 subject: mapSubjectNameToSlug(subject)
                               }
                             }}
+                            className={`${utils.link} ${css.link}`}
                           >
-                            <a className={`${utils.link} ${css.link}`}>
                               <ReactMarkdown
                                 source={subject}
                                 allowedTypes={["emphasis", "text"]}
                                 unwrapDisallowed
                               />
-                            </a>
                           </Link>
                         </li>
                       )}

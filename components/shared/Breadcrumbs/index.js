@@ -11,14 +11,12 @@ const Breadcrumbs = ({ breadcrumbs }) => (
         return (
           <div className={css.breadcrumbLinkWrapper} key={idx}>
             <Link href={breadcrumb.url} as={breadcrumb.as}>
-              <a>
-                <ReactMarkdown
+              <ReactMarkdown
                   className={css.breadcrumbLink}
                   source={breadcrumb.title}
                   allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
                 />
-              </a>
             </Link>
           </div>
         );

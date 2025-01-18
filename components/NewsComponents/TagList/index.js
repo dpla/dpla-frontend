@@ -10,7 +10,7 @@ const TagList = ({ router, currentTag, keywords, author }) =>
   <ul className={css.collapsed}>
     {(currentTag || author !== "" || keywords !== "") &&
       <li>
-        <Link href="/news"><a>All News</a></Link>
+        <Link href="/news">All News</Link>
       </li>}
     {!(currentTag || author !== "" || keywords !== "") && <li>All News</li>}
     {NEWS_TAGS.map(tag => {
@@ -26,8 +26,9 @@ const TagList = ({ router, currentTag, keywords, author }) =>
                 author: author
               })
             }}
+            title={`View only posts under ${tag.name}`}
           >
-            <a title={`View only posts under ${tag.name}`}>{tag.name}</a>
+            {tag.name}
           </Link>
         : <span>{tag.name}</span>;
       return <li key={id}>{markup}</li>;

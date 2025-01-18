@@ -6,49 +6,49 @@ const ErrorLinksPro = () =>
     <li>
       learn{" "}
       <Link href="/pro/wp?section=about-dpla-pro" as="/about">
-        <a>about DPLA</a>
+        about DPLA
       </Link>{" "}as an organization
     </li>
     <li>
       explore our{" "}
       <Link href="/pro/wp?section=projects" as="/projects">
-        <a>projects</a>
+        projects
       </Link>
     </li>
     <li>
       get information about our{" "}
       <Link href="/pro/wp?section=events" as="/events">
-        <a>events</a>
+        events
       </Link>
     </li>
     <li>
       engage with our{" "}
       <Link href="/pro/wp/hubs?section=hubs" as="/hubs">
-        <a>Hub Network</a>
+        Hub Network
       </Link>
     </li>
     <li>
       discover our{" "}
       <Link href="/pro/wp?section=developers" as="/developers">
-        <a>resources for developers</a>
+        resources for developers
       </Link>
     </li>
     <li>
       read about our work in{" "}
       <Link href="/pro/wp?section=education" as="/education">
-        <a>education</a>
+        education
       </Link>
     </li>
     <li>
       meet our Community Reps and learn about the {" "}
       <Link href="/pro/wp?section=community-reps" as="/community-reps">
-        <a>reps program</a>
+        reps program
       </Link>
     </li>
     <li>
       find out more about our work with {" "}
       <Link href="/pro/wp?section=ebooks" as="/ebooks">
-        <a>ebooks</a>
+        ebooks
       </Link>
     </li>
   </ul>;

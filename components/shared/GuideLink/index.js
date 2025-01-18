@@ -8,8 +8,8 @@ const GuideLink = ({ guide }) =>
     <Link
       href={`/guides/guide?guide=${guide.slug}`}
       as={`/guides/${guide.slug}`}
+      className={css.itemLink}
     >
-      <a className={css.itemLink}>
         <img
           alt={guide.illustration.alt || guide.title}
           className={css.itemImg}
@@ -19,7 +19,6 @@ const GuideLink = ({ guide }) =>
           {guide.displayTitle || guide.title}
         </div>
         <p className={css.text}>{guide.summary}</p>
-      </a>
     </Link>
   </div>;
 

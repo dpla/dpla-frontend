@@ -17,14 +17,11 @@ const Sidebar = ({
                 <li key={section.id}>
                     <Link
                         href={`/exhibitions/${exhibitionSlug}/${section.slug}`}>
-                        <a
-                            className={[
-                                css.sectionTitle,
-                                section.id === currentSection.id && css.active
-                            ].join(" ")}
-                        >
-                            {section.title}
-                        </a>
+                        className={[
+                        css.sectionTitle,
+                        section.id === currentSection.id && css.active
+                    ].join(" ")}
+                        {section.title}
                     </Link>
                     {section.id === currentSection.id &&
                         <ul>
@@ -44,7 +41,7 @@ const Sidebar = ({
                                                     : ""
                                             }`}
                                     >
-                                        <a>{subsection.title}</a>
+                                        {subsection.title}
                                     </Link>
                                 </li>
                             )}

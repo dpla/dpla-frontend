@@ -30,14 +30,13 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
                 removeQueryParams(router.query, ["source"])
               )
             }}
+            className={`${utils.link} ${css.linkToSourceSet}`}
           >
-            <a className={`${utils.link} ${css.linkToSourceSet}`}>
               <ReactMarkdown
                 source={set.name}
                 allowedTypes={["emphasis", "text"]}
                 unwrapDisallowed
               />
-            </a>
           </Link>
         </h2>
         <div className={css.prevAndNextButtons}>
@@ -58,13 +57,12 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
                     )
                   })
                 }}
+                className={`${css.previousItemButton} ${utils.hoverUnderline}`}
               >
-                <a className={`${css.previousItemButton} ${utils.hoverUnderline}`}>
                   <ThickChevron
                     className={`${css.thickChevron} ${css.flippedH}`}
                   />
                   <span>Previous Item</span>
-                </a>
               </Link>
             : <button
                 className={`${css.previousItemButton} ${css.disabledNextOrPrevButton}`}
@@ -91,11 +89,10 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
                     )
                   })
                 }}
+                className={`${css.nextItemButton} ${utils.hoverUnderline}`}
               >
-                <a className={`${css.nextItemButton} ${utils.hoverUnderline}`}>
                   <span>Next Item</span>
                   <ThickChevron className={css.thickChevron} />
-                </a>
               </Link>
             : <button
                 className={`${css.nextItemButton} ${css.disabledNextOrPrevButton}`}

@@ -31,7 +31,6 @@ const SourceSetSources = ({ router, sources }) =>
                 })
               }}
             >
-              <a>
                 <div
                   className={`${css.imageWrapper} ${useDefaultImage
                     ? css.defaultImageWrapper
@@ -45,7 +44,7 @@ const SourceSetSources = ({ router, sources }) =>
                   allowedTypes={["emphasis", "text"]}
                   unwrapDisallowed
                 />
-              </a>
+
             </Link>
           </li>
         );

@@ -43,18 +43,17 @@ class ListImage extends React.Component {
       >
         {/* see issue #869 for details on this hack */}
         {item.id !== "http://dp.la/api/items/#sourceResource" &&
-          <Link href={item.linkHref} as={item.linkAs}>
-            <a
-              className={`${css.listItemImageLink} internalItemLink`}
-              title={title}
-              aria-hidden
-            >
+          <Link href={item.linkHref} as={item.linkAs}
+                className={`${css.listItemImageLink} internalItemLink`}
+                title={title}
+                aria-hidden
+          >
+
               <img
                 src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
                 alt=""
                 className={css.image}
               />
-            </a>
           </Link>}
         {/* see issue #869 for details on this hack */}
         {item.id === "http://dp.la/api/items/#sourceResource" &&

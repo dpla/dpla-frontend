@@ -17,12 +17,12 @@ const FooterPro = () =>
         <ul>
           <li>
             <Link as="/about" href="/pro/wp?section=about-dpla-pro">
-              <a>About DPLA Pro</a>
+              About DPLA Pro
             </Link>
           </li>
           <li>
             <Link href="/contact-us" as="/contact">
-              <a>Contact Us</a>
+              Contact Us
             </Link>
           </li>
           <li>
@@ -30,12 +30,12 @@ const FooterPro = () =>
           </li>
           <li>
             <Link as="/projects" href="/pro/wp?section=projects">
-              <a>Projects</a>
+              Projects
             </Link>
           </li>
           <li>
             <Link as="/events" href="/pro/wp?section=events">
-              <a>Events</a>
+              Events
             </Link>
           </li>
         </ul>
@@ -45,7 +45,7 @@ const FooterPro = () =>
         <ul>
           <li>
             <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
-              <a>Hub Network</a>
+              Hub Network
             </Link>
           </li>
           <li>
@@ -53,22 +53,22 @@ const FooterPro = () =>
               as="/prospective-hubs"
               href="/pro/wp?section=prospective-hubs"
             >
-              <a>Prospective Hubs</a>
+              Prospective Hubs
             </Link>
           </li>
           <li>
             <Link as="/developers" href="/pro/wp?section=developers">
-              <a>Developers</a>
+              Developers
             </Link>
           </li>
           <li>
             <Link as="/education" href="/pro/wp?section=education">
-              <a>Education</a>
+              Education
             </Link>
           </li>
           <li>
             <Link as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
-              <a>Ebooks</a>
+              Ebooks
             </Link>
           </li>
         </ul>
@@ -78,32 +78,32 @@ const FooterPro = () =>
         <ul>
           <li>
             <Link href={USER_BASE_URL}>
-              <a>DPLA Home</a>
+              DPLA Home
             </Link>
           </li>
           <li>
             <Link href={USER_BASE_URL + "/primary-source-sets"}>
-              <a>Primary Source Sets</a>
+              Primary Source Sets
             </Link>
           </li>
           <li>
             <Link href={USER_BASE_URL + "/browse-by-partner"}>
-              <a>Browse by Partner</a>
+              Browse by Partner
             </Link>
           </li>
           <li>
             <Link href={USER_BASE_URL + "/browse-by-topic"}>
-              <a>Browse by Topic</a>
+              Browse by Topic
             </Link>
           </li>
           <li>
             <Link href={USER_BASE_URL + "/exhibitions"}>
-              <a>Exhibitions</a>
+              Exhibitions
             </Link>
           </li>
           <li>
             <Link href={USER_BASE_URL + "/search"}>
-              <a>Search</a>
+              Search
             </Link>
           </li>
         </ul>

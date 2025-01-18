@@ -41,8 +41,8 @@ const RelatedSets = ({ sets }) => {
                   set["@id"]
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
+                className={css.setLink}
               >
-                <a className={css.setLink}>
                   <img
                     alt=""
                     src={set.repImageUrl || set.thumbnailUrl}
@@ -54,7 +54,6 @@ const RelatedSets = ({ sets }) => {
                     allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />
-                </a>
               </Link>
             </div>
           )}

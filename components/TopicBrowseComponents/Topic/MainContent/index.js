@@ -20,8 +20,8 @@ const MainContent = ({ topic }) =>
             <Link
               as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
               href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
+              className={css.subtopicAnchor}
             >
-              <a className={css.subtopicAnchor}>
                 <div
                   className={css.image}
                   aria-hidden="true"
@@ -33,7 +33,6 @@ const MainContent = ({ topic }) =>
                     {subtopic.description}
                   </p>
                 </div>
-              </a>
             </Link>
           </li>
         )}

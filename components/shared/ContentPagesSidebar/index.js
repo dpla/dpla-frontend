@@ -17,10 +17,10 @@ import utils from "stylesheets/utils.module.scss"
 
 const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
   return (
-    <Link as={linkObject.as} href={linkObject.href}>
-      <a className={`${css.link} ${isCurrentLink ? css.selected : ""}`}>
-        {title}
-      </a>
+    <Link as={linkObject.as} href={linkObject.href}
+          className={`${css.link} ${isCurrentLink ? css.selected : ""}`}
+    >
+      {title}
     </Link>
   );
 };
@@ -153,7 +153,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
 
   let breadcrumbs = {};
 
-  // if not a news item (those dont show up in sidebar)
+  // if not a news item (those don't show up in sidebar)
   if (menuItem) {
     // find the menu tree
     let breadcrumb = {};
@@ -170,7 +170,6 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
     items: items,
     name: SITE_ENV === "pro" ? "about-dpla-pro" : "about-us"
   });
-  const aboutId = aboutItem.url.substr(aboutItem.url.lastIndexOf("/"));
 
   // events item
   let eventsId = null;
