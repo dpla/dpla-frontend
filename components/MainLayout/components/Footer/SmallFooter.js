@@ -18,7 +18,7 @@ class SmallFooter extends React.Component {
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-            <a><img className={css.logo} alt="DPLA Home" src={logo} /></a>
+            <img className={css.logo} alt="DPLA Home" src={logo} />
           </Link>
           <div className={css.socialIcons}>
             <a

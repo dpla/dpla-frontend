@@ -5,32 +5,32 @@ const ErrorLinksUser = () =>
   <ul>
     <li>
       <Link href="/search">
-        <a>search</a>
+        search
       </Link>{" "}
       our collections
     </li>
     <li>
       browse {" "}
       <Link href="/browse-by-topic">
-        <a>items by topic</a>
+        items by topic
       </Link>
     </li>
     <li>
       discover items from specific{" "}
       <Link href="/browse-by-partner">
-        <a>partners</a>
+        partners
       </Link>
     </li>
     <li>
       view our {" "}
       <Link href="/exhibitions">
-        <a>exhibitions</a>
+        exhibitions
       </Link>
     </li>
     <li>
       explore our{" "}
       <Link href="/primary-source-sets">
-        <a>primary source sets</a>
+        primary source sets
       </Link>
     </li>
   </ul>;

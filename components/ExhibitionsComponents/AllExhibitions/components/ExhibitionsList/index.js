@@ -9,8 +9,8 @@ const Exhibition = ({exhibition: exhibition }) => {
     ? <li>
         <Link
           href={`/exhibitions/${exhibition.slug}`}
+          className={` ${css.exhibition}`}
         >
-          <a className={` ${css.exhibition}`}>
             <img
               alt=""
               className={css.exhibitionImage}
@@ -22,7 +22,6 @@ const Exhibition = ({exhibition: exhibition }) => {
                 {exhibition.title}
               </h2>
             </div>
-          </a>
         </Link>
       </li>
     : <></>;

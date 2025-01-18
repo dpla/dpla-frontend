@@ -12,21 +12,20 @@ const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
           <Link
             as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
             href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
+            className={css.prevLink}
           >
-            <a className={css.prevLink}>
               <img src={chevron} alt="" className={css.prevArrow} />
               <span>Previous Section</span>
-            </a>
           </Link>}
         {nextSubtopic &&
           <Link
             as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
             href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
           >
-            <a>
+
               <span>Next Section</span>
               <img src={chevron} alt="" className={css.nextArrow} />
-            </a>
+            
           </Link>}
       </div>
     : null;

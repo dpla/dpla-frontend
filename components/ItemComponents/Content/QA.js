@@ -34,11 +34,7 @@ class QA extends React.Component {
 
         {randomItemId &&
           <div style={{ padding: "8px 20px 20px" }}>
-            <Link href={`/item/${randomItemId}`}>
-              <a>
-                Fetch Random Item
-              </a>
-            </Link>
+            <Link href={`/item/${randomItemId}`}>Fetch Random Item</Link>
           </div>}
 
         <div style={divStyle}>

@@ -55,12 +55,10 @@ const AboutLocal = ({items, count, query}) =>
                             />
                             <div className={css.itemInfo}>
                                 <p className={`${utils.hoverUnderline} ${css.itemTitle}`}>
-                                    <Link href={item.linkHref}>
-                                        <a className={"external"}>
+                                    <Link href={item.linkHref} className={"external"}>
                                             {item.title
                                                 ? truncateString(item.title, 150)
                                                 : item.title ? item.title : UNTITLED_TEXT}
-                                        </a>
                                     </Link>
                                 </p>
                                 {(item.date || item.creator) &&

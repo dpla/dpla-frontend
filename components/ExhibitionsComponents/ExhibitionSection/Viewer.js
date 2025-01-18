@@ -82,19 +82,17 @@ const ItemLink = withRouter(({
         itemId
     ].join("")
     return (
-        <Link href={itemUrl}>
-            <a className={[css.itemLink, className].join(" ")}>
-                <ItemImage
-                    type={getFileType(fileType, originalUrl)}
-                    title="Show item in viewer"
-                    url={
-                        thumbnailUrl ||
-                        getDefaultThumbnail(getFileType(fileType, originalUrl))
-                    }
-                    defaultImageClass={css.defaultItemImage}
-                    useDefaultImage={!thumbnailUrl}
-                />
-            </a>
+        <Link href={itemUrl} className={[css.itemLink, className].join(" ")}>
+            <ItemImage
+                type={getFileType(fileType, originalUrl)}
+                title="Show item in viewer"
+                url={
+                    thumbnailUrl ||
+                    getDefaultThumbnail(getFileType(fileType, originalUrl))
+                }
+                defaultImageClass={css.defaultItemImage}
+                useDefaultImage={!thumbnailUrl}
+            />
         </Link>
     );
 });
@@ -169,14 +167,14 @@ class Viewer extends React.Component {
                                     router.query.subsectionSlug,
                                     "?item=",
                                     previousBlock.id
-                                ].join("")}>
-                                <a className={css.previousItemButton}>
-                                    <img
-                                        src={chevron}
-                                        alt=""
-                                        className={css.previousItemChevron}
-                                    />
-                                </a>
+                                ].join("")}
+                                className={css.previousItemButton}
+                            >
+                                <img
+                                    src={chevron}
+                                    alt=""
+                                    className={css.previousItemChevron}
+                                />
                             </Link>}
                             {getViewerComponent(
                                 activeBlock.fileType,
@@ -196,10 +194,10 @@ class Viewer extends React.Component {
                                         router.query.subsectionSlug,
                                         "?item=",
                                         nextBlock.id
-                                    ].join("")}>
-                                    <a className={css.nextItemButton}>
-                                        <img src={chevron} alt="" className={css.nextItemChevron}/>
-                                    </a>
+                                    ].join("")}
+                                    className={css.nextItemButton}
+                                >
+                                    <img src={chevron} alt="" className={css.nextItemChevron}/>
                                 </Link>}
                         </div>
                         <ul className={css.itemLinks}>
@@ -219,8 +217,9 @@ class Viewer extends React.Component {
                             <Link
                                 as={`/item/${itemId}`}
                                 href={`/item?itemId=${itemId}`}
+                                className={css.viewItemLink}
                             >
-                                <a className={css.viewItemLink}>View item information</a>
+                                View item information
                             </Link>}
                         <div
                             className={css.caption}

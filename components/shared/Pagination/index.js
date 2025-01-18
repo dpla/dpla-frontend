@@ -37,8 +37,9 @@ const PageLink = withRouter(({ router, page, className }) =>
         page: page
       })
     }}
+    className={className}
   >
-    <a className={className}>{addCommasToNumber(page)}</a>
+    {addCommasToNumber(page)}
   </Link>);
 
 const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "next" }) =>
@@ -62,12 +63,11 @@ const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "ne
               : parseInt(currentPage, 10) - 1
           })
         }}
+        className={type === "next" ? css.nextButton : css.previousButton}
       >
-        <a className={type === "next" ? css.nextButton : css.previousButton}>
           {type === "prev" && <Chevron className={css.prevChevron} />}
           {type === "next" ? "Next" : "Previous"}
           {type === "next" && <Chevron className={css.nextChevron} />}
-        </a>
       </Link>);
 
 const Pagination = ({ pageCount, currentPage }) =>

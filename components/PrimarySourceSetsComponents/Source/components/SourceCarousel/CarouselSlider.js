@@ -55,7 +55,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, router }) =>
               })
             }}
           >
-            <a>
+
               <div
                 className={`
                     ${css.itemImgWrapper} 
@@ -70,7 +70,6 @@ const CarouselSlider = ({ currentSourceIdx, sources, router }) =>
                 allowedTypes={["emphasis", "text"]}
                 unwrapDisallowed
               />
-            </a>
           </Link>
         </div>
       )}
