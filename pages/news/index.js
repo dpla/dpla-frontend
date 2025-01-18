@@ -117,12 +117,10 @@ class NewsPage extends React.Component {
                                                 <Link
                                                     as={`/news/${item.slug}`}
                                                     href={`/news/post?slug=${item.slug}`}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: item.title.rendered
+                                                    }}
                                                 >
-                                                    <a
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: item.title.rendered
-                                                        }}
-                                                    />
                                                 </Link>
                                             </h2>
                                             <div

@@ -15,8 +15,7 @@ import css from "./ListComponents.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 export const List = ({ uuid, name, itemCount, createdAt }) =>
-  <Link href={`/lists/${uuid}`}>
-    <a className={css.listItem}>
+  <Link href={`/lists/${uuid}`} className={css.listItem}>
       <h2 className={css.listName}>{name}</h2>
       <span className={css.listCount}>
         {addCommasToNumber(itemCount)} {itemCount !== 1 ? "items " : "item "}
@@ -25,7 +24,6 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
         <span className={css.listDate}>
           Created {dayjs(createdAt, "x").fromNow()}
         </span>}
-    </a>
   </Link>;
 
 export const Lists = ({ lists }) =>
@@ -48,10 +46,10 @@ export const ListEmpty = () =>
     <p>
       Add up to 50 items from our{" "}
       <Link href="/browse-by-topic">
-        <a>topics</a>
+        topics
       </Link>{" "}or{" "}
       <Link href="/search">
-        <a>search results</a>
+        search results
       </Link>:
     </p>
     <video
@@ -84,10 +82,10 @@ export const ListsEmpty = () =>
     <p>
       Create lists from our{" "}
       <Link href="/browse-by-topic">
-        <a>topics</a>
+        topics
       </Link>{" "}or{" "}
       <Link href="/search">
-        <a>search results</a>
+        search results
       </Link>{" "}
       (up to 50 items in each list):
     </p>
@@ -109,7 +107,7 @@ export const ListsEmpty = () =>
       Once you have created a list, you can visit{" "}
       <code>
         <Link href="/lists">
-          <a>dp.la/lists</a>
+          dp.la/lists
         </Link>
       </code>{" "}
       to

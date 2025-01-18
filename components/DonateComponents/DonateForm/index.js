@@ -95,7 +95,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-frequency">Frequency</h2>
         <ul className={`${utils.row} ${utils.startXs}`}>
           {frequencyMap.map((freq, i) =>
-            <li key={i} className={`${contentCss.donate} ${utils.colXs12} ${utils.colMd4}`}>
+            <li key={freq.v} className={`${contentCss.donate} ${utils.colXs12} ${utils.colMd4}`}>
               <DualStateButton
                 id={"freq" + i}
                 key={"freq" + i}
@@ -111,7 +111,7 @@ class DonateForm extends React.Component {
         <h2 id="donation-amount">Donation amount</h2>
         <ul className={utils.row}>
           {amountMap.map((amt, i) =>
-            <li key={i} className={`${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}>
+            <li key={amt.k} className={`${contentCss.donate} ${utils.colXs6} ${utils.colMd4}`}>
               <DualStateButton
                 id={"amt" + i}
                 labelledby={"donation-amount amt" + i}

@@ -20,17 +20,6 @@ const listViewIcon = "/static/images/list-view-icon.svg";
 
 class OptionsBar extends React.Component {
 
-  // componentWillMount() {
-  //   const { sort_by, sort_order, page_size } = this.props.router.query;
-  //   this.setState({
-  //     sortValue: getSortOptionFromParams({
-  //       sortBy: sort_by || "",
-  //       sortOrder: sort_order || ""
-  //     }),
-  //     pageSizeValue: page_size || DEFAULT_PAGE_SIZE
-  //   });
-  // }
-
   constructor(props) {
     super(props);
     const { sort_by, sort_order, page_size } = props.router.query;
@@ -199,21 +188,18 @@ class OptionsBar extends React.Component {
                       list_view: "list"
                     })
                   }}
-                >
-                  <a
-                    className={[
-                      css.listViewButton,
-                      router.query.list_view === "grid"
+                  className={[
+                    css.listViewButton,
+                    router.query.list_view === "grid"
                         ? css.viewButtonInactive
                         : css.viewButtonActive
-                    ].join(" ")}
-                  >
-                    <img
-                      className={css.viewButtonIcon}
-                      src={listViewIcon}
-                      alt="List View"
-                    />
-                  </a>
+                  ].join(" ")}
+                >
+                  <img
+                    className={css.viewButtonIcon}
+                    src={listViewIcon}
+                    alt="List View"
+                  />
                 </Link>
                 <Link
                   href={{
@@ -222,21 +208,18 @@ class OptionsBar extends React.Component {
                       list_view: "grid"
                     })
                   }}
-                >
-                  <a
-                    className={[
-                      css.gridViewButton,
-                      router.query.list_view === "grid"
+                  className={[
+                    css.gridViewButton,
+                    router.query.list_view === "grid"
                         ? css.viewButtonActive
                         : css.viewButtonInactive
-                    ].join(" ")}
-                  >
-                    <img
-                      className={css.viewButtonIcon}
-                      src={gridViewIcon}
-                      alt="Grid View"
-                    />
-                  </a>
+                  ].join(" ")}
+                >
+                  <img
+                    className={css.viewButtonIcon}
+                    src={gridViewIcon}
+                    alt="Grid View"
+                  />
                 </Link>
               </div>
             </div>

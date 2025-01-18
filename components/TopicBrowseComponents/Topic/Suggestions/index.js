@@ -55,11 +55,10 @@ const Suggestions = ({ suggestions }) =>
                 mapTypeToClass(suggestion.type)
               ].join(" ")}
             >
-              <Link href={suggestion.href} as={suggestion.as}>
-                <a
-                  className={css.imageWrapper}
-                  style={{ backgroundImage: `url(${suggestion.thumbnailUrl})` }}
-                >
+              <Link href={suggestion.href} as={suggestion.as}
+                    className={css.imageWrapper}
+                    style={{ backgroundImage: `url(${suggestion.thumbnailUrl})` }}
+              >
                   <div className={css.gradientBackground}>
                     <div className={css.typeAndTitle}>
                       <p className={css.resourceType}>
@@ -73,7 +72,6 @@ const Suggestions = ({ suggestions }) =>
                       />
                     </div>
                   </div>
-                </a>
               </Link>
             </div>
           )}

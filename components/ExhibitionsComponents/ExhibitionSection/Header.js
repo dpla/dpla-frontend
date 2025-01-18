@@ -8,8 +8,8 @@ import utils from "stylesheets/utils.module.scss"
 const Header = ({ title, router }) =>
   <div className={`${css.header} ${utils.container}`}>
     <div className={css.exhibitionsLinkAndTitle}>
-      <Link href="/exhibitions">
-        <a className={css.exhibitionsLink}>Exhibitions</a>
+      <Link href="/exhibitions" className={css.exhibitionsLink}>
+        Exhibitions
       </Link>
       <h1 className={css.exhibitionTitle}>
         {title}
@@ -17,8 +17,8 @@ const Header = ({ title, router }) =>
     </div>
     <Link
       href={`/exhibitions/${router.query.exhibitionSlug}`}
+      className={`hover-underline ${css.closeExhibition}`}
     >
-      <a className={`hover-underline ${css.closeExhibition}`}>
         <svg
           className={css.closeIcon}
           width="18"
@@ -35,7 +35,6 @@ const Header = ({ title, router }) =>
           </g>
         </svg>
         <span className={css.closeExhibitionText}>Close Exhibition</span>
-      </a>
     </Link>
   </div>;
 

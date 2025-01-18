@@ -33,14 +33,9 @@ const SetsList = ({ sets, router }) =>
                 )}`,
                 query: removeQueryParams(router.query)
               }}
+              aria-hidden
             >
-              <a aria-hidden>
-                <img
-                  alt=""
-                  src={set.repImageUrl || set.thumbnailUrl}
-                  className={css.image}
-                />
-              </a>
+              <img alt="" src={set.repImageUrl || set.thumbnailUrl} className={css.image}/>
             </Link>
             <div className={css.itemContent}>
               <Link
@@ -48,14 +43,13 @@ const SetsList = ({ sets, router }) =>
                   set["@id"]
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
+                className={`${css.title} ${utils.hoverUnderline}`} title={set.name}
               >
-                <a className={`${css.title} ${utils.hoverUnderline}`} title={set.name}>
                   <ReactMarkdown
                     source={set.name}
                     allowedTypes={["emphasis", "text"]}
                     unwrapDisallowed
                   />
-                </a>
               </Link>
               <ul className={css.timePeriod}>
                 {set.about
@@ -72,10 +66,9 @@ const SetsList = ({ sets, router }) =>
                             timePeriod: mapTimePeriodNameToSlug(tag.name)
                           })
                         }}
+                        className="hover-underline" title={tag.name}
                       >
-                        <a className="hover-underline" title={tag.name}>
                           {tag.name}
-                        </a>
                       </Link>
                       {i < tags.length - 1 && <span>, </span>}
                     </li>
@@ -96,10 +89,9 @@ const SetsList = ({ sets, router }) =>
                             subject: mapSubjectNameToSlug(tag.name)
                           })
                         }}
+                        className="hover-underline" title={tag.name}
                       >
-                        <a className="hover-underline" title={tag.name}>
-                          {tag.name.replace("&amp;", "&")}
-                        </a>
+                        {tag.name.replace("&amp;", "&")}
                       </Link>
                       {i < tags.length - 1 && <span>, </span>}
                     </li>

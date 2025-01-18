@@ -67,10 +67,8 @@ const Button = ({
       break;
   }
 
-  switch (state) {
-    case "active":
-      buttonClasses = `${buttonClasses} ${css.active}`;
-      break;
+  if (state === "active") {
+    buttonClasses = `${buttonClasses} ${css.active}`;
   }
 
   let linkProps = {};
@@ -80,10 +78,8 @@ const Button = ({
   return (
     <div className={className}>
       {url
-        ? <Link href={url} {...linkProps}>
-            <a {...props} className={buttonClasses} style={style}>
-              {children}
-            </a>
+        ? <Link href={url} {...linkProps} {...props} className={buttonClasses} style={style}>
+            {children}
           </Link>
         : <button
             {...props}

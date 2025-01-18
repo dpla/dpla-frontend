@@ -7,7 +7,7 @@ const FeatureHeader = ({ title, description, titleClassName }) =>
   <div className={css.wrapper}>
     <div className={`${utils.container} ${css.content}`}>
       <h1
-        className={`${titleClassName ? titleClassName : ""} ${description === ""
+        className={`${titleClassName || ""} ${description === ""
           ? css.long
           : ""} ${css.text}`}
       >

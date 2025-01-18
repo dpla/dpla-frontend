@@ -9,11 +9,7 @@ import {
     getMenuItemUrl, loadExhibition
 } from "lib";
 
-import {NUMBER_OF_USER_GUIDES_TO_SHOW} from "constants/home";
-
-import {
-    HEADER_DESCRIPTION_TOKEN
-} from "constants/home";
+import {NUMBER_OF_USER_GUIDES_TO_SHOW, HEADER_DESCRIPTION_TOKEN} from "constants/home";
 
 import {
     PAGES_ENDPOINT,
