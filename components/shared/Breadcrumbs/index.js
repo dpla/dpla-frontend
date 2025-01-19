@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import css from "./Breadcrumbs.module.scss";
 
@@ -11,24 +11,22 @@ const Breadcrumbs = ({ breadcrumbs }) => (
         return (
           <div className={css.breadcrumbLinkWrapper} key={idx}>
             <Link href={breadcrumb.url} as={breadcrumb.as}>
-              <ReactMarkdown
+              <Markdown
                   className={css.breadcrumbLink}
-                  source={breadcrumb.title}
-                  allowedTypes={["emphasis", "text"]}
+                  allowedElements={["emphasis", "text"]}
                   unwrapDisallowed
-                />
+              >{breadcrumb.title}</Markdown>
             </Link>
           </div>
         );
       } else {
         return (
-          <ReactMarkdown
+          <Markdown
             className={css.activeBreadcrumb}
-            source={breadcrumb.title}
-            allowedTypes={["emphasis", "text"]}
+            allowedElements={["emphasis", "text"]}
             unwrapDisallowed
-            key={idx}
-          />
+            key={breadcrumb.title}
+          >{breadcrumb.title}</Markdown>
         );
       }
     })}

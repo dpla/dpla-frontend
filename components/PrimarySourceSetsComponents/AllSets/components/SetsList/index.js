@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router"
 
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import { extractSourceSetSlug, removeQueryParams } from "lib";
 
@@ -45,11 +45,10 @@ const SetsList = ({ sets, router }) =>
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
                 className={`${css.title} ${utils.hoverUnderline}`} title={set.name}
               >
-                  <ReactMarkdown
-                    source={set.name}
-                    allowedTypes={["emphasis", "text"]}
+                  <Markdown
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />
+                  >{set.name}</Markdown>
               </Link>
               <ul className={css.timePeriod}>
                 {set.about

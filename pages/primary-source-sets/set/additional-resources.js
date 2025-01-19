@@ -1,7 +1,7 @@
 import React from "react";
 import {withRouter} from "next/router";
 import fetch from "isomorphic-fetch";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -41,14 +41,12 @@ const SingleSet = ({router, set, currentFullUrl}) =>
                     role="tabpanel"
                     aria-labelledby="tab-additionalresources"
                 >
-                    <ReactMarkdown
+                    <Markdown
                         className={`${contentCss.content} ${utils.container}`}
-                        source={set.hasPart.find(item => item.name === "Resources").text}
-                        renderers={{
-                            linkReference: reference => markdownLinks(reference),
-                            link: reference => markdownLinks(reference)
+                        components={{
+                            a(reference){ return markdownLinks(reference) }
                         }}
-                    />
+                    >{set.hasPart.find(item => item.name === "Resources").text}</Markdown>
                 </div>
             </div>
         </ResourcesTabs>

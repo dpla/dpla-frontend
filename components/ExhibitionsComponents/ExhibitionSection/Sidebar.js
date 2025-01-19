@@ -16,11 +16,11 @@ const Sidebar = ({
             {sectionMap.map(section =>
                 <li key={section.id}>
                     <Link
-                        href={`/exhibitions/${exhibitionSlug}/${section.slug}`}>
+                        href={`/exhibitions/${exhibitionSlug}/${section.slug}`}
                         className={[
                         css.sectionTitle,
                         section.id === currentSection.id && css.active
-                    ].join(" ")}
+                    ].join(" ")}>
                         {section.title}
                     </Link>
                     {section.id === currentSection.id &&

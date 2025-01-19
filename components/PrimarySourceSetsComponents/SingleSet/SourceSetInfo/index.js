@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import CiteButton from "components/shared/CiteButton";
 
@@ -57,26 +57,23 @@ class SourceSetInfo extends React.Component {
                 />
                 <div className={css.bannerTextWrapper}>
                   <h1 className={css.bannerTitle}>
-                    <ReactMarkdown
-                      source={set.name}
-                      allowedTypes={["emphasis", "text"]}
+                    <Markdown
+                      allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
-                    />
+                    >{set.name}</Markdown>
                   </h1>
                 </div>
               </div>
-              <ReactMarkdown
+              <Markdown
                 id="dpla-description"
-                source={set.hasPart.find(item => item.name === "Overview").text}
                 className={`${css.description} ${css.description} ${this.state
                   .isOpen
                   ? css.open
                   : ""}`}
-                renderers={{
-                  linkReference: reference => markdownLinks(reference),
-                  link: reference => markdownLinks(reference)
+                components={{
+                  a(props) { return markdownLinks(props) }
                 }}
-              />
+              >{set.hasPart.find(item => item.name === "Overview").text}</Markdown>
               <div
                 id="dpla-showmore"
                 aria-hidden="true"
@@ -101,12 +98,11 @@ class SourceSetInfo extends React.Component {
                     </h2>
                     <ul>
                     {set.author.map(author =>
-                        <li key={author.name}><ReactMarkdown
+                        <li key={author.name}><Markdown
                         key={author.name}
-                        source={author.name + ", " + author.affiliation.name}
-                        allowedTypes={["emphasis", "text"]}
+                        allowedElements={["emphasis", "text"]}
                         unwrapDisallowed
-                        /></li>
+                        >{author.name + ", " + author.affiliation.name}</Markdown></li>
                     )}
                     </ul>
                   </div>
@@ -126,11 +122,10 @@ class SourceSetInfo extends React.Component {
                             }}
                             className={`${utils.link} ${css.link}`}
                           >
-                              <ReactMarkdown
-                                source={period}
-                                allowedTypes={["emphasis", "text"]}
+                              <Markdown
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
-                              />
+                              >{period}</Markdown>
                           </Link>
                         </li>
                       )}
@@ -150,11 +145,10 @@ class SourceSetInfo extends React.Component {
                             }}
                             className={`${utils.link} ${css.link}`}
                           >
-                              <ReactMarkdown
-                                source={subject}
-                                allowedTypes={["emphasis", "text"]}
+                              <Markdown
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
-                              />
+                              >{subject}</Markdown>
                           </Link>
                         </li>
                       )}

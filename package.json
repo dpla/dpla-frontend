@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "yarn && node server.js",
+    "dev": "yarn && node server.js --trace-deprecation",
     "clean": "rm -rf .next ./build ./coverage ./node_modules",
     "build": "yarn && NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
@@ -22,7 +22,6 @@
   "dependencies": {
     "@babel/core": "^7.20.7",
     "@babel/preset-react": "^7.0.0",
-    "@material-ui/core": "^4.11.3",
     "@sentry/nextjs": "^8",
     "@sentry/node": "^8.48.0",
     "@sentry/profiling-node": "^8.48.0",
@@ -54,14 +53,14 @@
     "postcss-loader": "^3.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
-    "react": "^19.0.0",
+    "react": "^18.2.0",
     "react-aria-modal": "^4.0.0",
-    "react-dom": "^19.0.0",
-    "react-markdown": "^4.0.1",
-    "react-slick": "^0.28.1",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.3",
+    "react-slick": "^0.30.3",
     "sass": "^1.39.0",
     "slick-carousel": "^1.8.1",
-    "striptags": "^3.1.1",
+    "striptags": "^3.2.0",
     "sw-precache-webpack-plugin": "^0.11.5"
   },
   "devDependencies": {
@@ -88,7 +87,7 @@
   "eslintConfig": {
     "extends": "next/core-web-vitals",
     "rules": {
-      " @next/next/no-img-element": "off"
+      "@next/next/no-img-element": "off"
     }
   }
 }

@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 import { formatDate } from "lib";
-import { USER_BASE_URL } from "constants/env";
 
 import css from "./NewsLane.module.scss";
 import utils from "stylesheets/utils.module.scss"

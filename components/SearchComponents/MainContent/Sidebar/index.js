@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Router, { withRouter } from "next/router";
-
-
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
 const informationIcon = "/static/images/information.svg";
@@ -11,14 +9,12 @@ import {
   possibleFacets,
   qaFacets,
   mapFacetsToURLPrettified,
-  prettifiedFacetMap,
-    tooltips
+  prettifiedFacetMap, tooltips
 } from "constants/search";
 import { SITE_ENV } from "constants/env";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
 import css from "./Sidebar.module.scss";
-import Tooltip from "@material-ui/core/Tooltip";
 
 const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip}) => {
     if (disabled) {
@@ -47,19 +43,19 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
             <span className={css.facetName}><Link
                 href={href}
                 className={css.facetLink}
-            >{termObject.term}</Link>{(isTooltip && tooltips[termObject.term] != null) &&
-            (<Link href={tooltips[termObject.term].link} className={css.toolTip}>
-                        <Tooltip
-                            title={tooltips[termObject.term].text}
-                            placement="top"
-                        >
-                            <img
-                                src={informationIcon}
-                                alt=""
-                                className={css.informationIcon}
-                            />
-                        </Tooltip>
-                </Link>)
+            >{termObject.term}</Link>{
+                (isTooltip && tooltips[termObject.term] != null) &&
+            (<Link href={tooltips[termObject.term].link}
+                   title={tooltips[termObject.term].text}
+                   aria-label={tooltips[termObject.term].text}
+            >
+                <img
+
+                    src={informationIcon}
+                    alt=""
+                    className={css.informationIcon}
+                />
+            </Link>)
             }</span>{" "}<Link href={href} className={css.facetCount}>
                 {addCommasToNumber(termObject.count)}
             </Link>

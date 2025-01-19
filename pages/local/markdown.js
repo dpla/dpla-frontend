@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import MainLayout from "components/MainLayout";
 
 import Sidebar from "components/MainLayout/components/shared/LocalSidebar.js"
@@ -80,7 +80,7 @@ class MarkdownPage extends React.Component {
             />
             <div className={bodyColumnsStyle}>
               <div id="main" role="main" className={contentCss.content}>
-                <ReactMarkdown escapeHtml={false} skipHtml={false} source={content} />
+                <Markdown skipHtml={false}>{content}</Markdown>
               </div>
             </div>
           </div>
