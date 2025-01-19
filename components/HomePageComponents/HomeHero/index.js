@@ -74,8 +74,8 @@ const HomeHero = ({ headerDescription, feature }) =>
           <Link href="/browse-by-topic" >
               Browse by Topic
           </Link>
-          <Link href="/guides">
-            <a title="View our Getting Started Guides">New? Start Here</a>
+          <Link href="/guides" title="View our Getting Started Guides">
+            New? Start Here
           </Link>
         </div>}
       {SITE_ENV === "local" &&

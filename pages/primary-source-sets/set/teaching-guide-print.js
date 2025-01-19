@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -23,11 +23,10 @@ class Printable extends React.Component {
             <MinimalLayout route={this.props.router} isPrintable={true}>
                 <div className={utils.container}>
                     <h1 className={utils.printableH1}>
-                        <ReactMarkdown
-                            source={set.name}
-                            allowedTypes={["emphasis", "text"]}
+                        <Markdown
+                            allowedElements={["emphasis", "text"]}
                             unwrapDisallowed
-                        />
+                        >{set.name}</Markdown>
                     </h1>
                 </div>
                 <TeachersGuide

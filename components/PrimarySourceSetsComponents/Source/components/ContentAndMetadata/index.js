@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import {
   ZoomableImageViewer,
@@ -144,11 +144,10 @@ class ContentAndMetadata extends React.Component {
       <div className={css.wrapper}>
         <div className={`${css.contentAndMetadata} ${utils.container}`}>
           <h1 className={css.contentHeader}>
-            <ReactMarkdown
-              source={source.name}
-              allowedTypes={["emphasis", "text"]}
+            <Markdown
+              allowedElements={["emphasis", "text"]}
               unwrapDisallowed
-            />
+            >{source.name}</Markdown>
           </h1>
           <div className={css.flexWrapper}>
             <div className={css.contentWrapper}>
@@ -161,17 +160,15 @@ class ContentAndMetadata extends React.Component {
                 {viewerComponent}
               </div>
               {source.text &&
-                <ReactMarkdown
+                <Markdown
                   id="dpla-description"
                   className={`${css.description} ${descriptionIsLong
                     ? css.longDescription
                     : ""} ${this.state.isOpen ? css.open : ""}`}
-                  source={source.text.replace(/<br\/?>/g, "\n\n")}
-                  renderers={{
-                    linkReference: reference => markdownLinks(reference),
-                    link: reference => markdownLinks(reference)
+                  components={{
+                    a(props) { return markdownLinks(props)}
                   }}
-                />}
+                >{source.text.replace(/<br\/?>/g, "\n\n")}</Markdown>}
               {descriptionIsLong &&
                 <div
                   id="dpla-showmore"
@@ -205,27 +202,23 @@ class ContentAndMetadata extends React.Component {
                     </div>}
                 </div>
                 {getSourceCitation(source, "credits") &&
-                  <ReactMarkdown
+                  <Markdown
                     className={css.courtesyOf}
-                    source={joinIfArray(getSourceCitation(source, "credits"))}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />}
+                  >{joinIfArray(getSourceCitation(source, "credits"))}</Markdown>}
                 {source.mainEntity[0]["dct:provenance"] &&
-                  <ReactMarkdown
+                  <Markdown
                     className={css.courtesyOf}
-                    source={source.mainEntity[0]["dct:provenance"].name}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />}
+                  >{source.mainEntity[0]["dct:provenance"].name}</Markdown>}
                 {source.copyright &&
                   <div className={css.copyrightInfo}>
-                    <ReactMarkdown
+                    <Markdown
                       className={css.copyrightText}
-                      source={source.copyright}
-                      allowedTypes={["emphasis", "text"]}
-                      unwrapDisallowed
-                    />
+                      allowedElements={["emphasis", "text"]}
+                      unwrapDisallowed>{source.copyright}</Markdown>
                   </div>}
                 <div className={css.divider} />
                 {source.mainEntity[0]["dct:references"] &&

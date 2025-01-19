@@ -170,7 +170,7 @@ class OptionsBar extends React.Component {
                 onChange={this.onPageSizeChange}
               >
                 {pageSizeOptions.map((item, index) =>
-                  <option value={item.value} key={index}>
+                  <option value={item.value} key={item.value}>
                     {item.label}
                   </option>
                 )}

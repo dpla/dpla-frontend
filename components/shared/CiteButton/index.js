@@ -31,6 +31,8 @@ class CiteButton extends React.Component {
       freeText,
       title
     } = this.props;
+    const date = formatDate(new Date());
+
     return (
       <div className={css.wrapper}>
         <Button
@@ -56,7 +58,7 @@ class CiteButton extends React.Component {
             {freeText &&
               <dl className={css.citationList}>
                 <dt>Citation Information</dt>
-                <dd dangerouslySetInnerHTML={{ __html: freeText }} />
+                <dd>{freeText}</dd>
               </dl>}
             {!freeText &&
               <dl className={css.citationList}>
@@ -68,7 +70,7 @@ class CiteButton extends React.Component {
                   {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
                   Retrieved from the Digital Public Library of America
                   {sourceUrl ? ", " + sourceUrl + ". " : " "}
-                  (Accessed {formatDate()}.)
+                  (Accessed {date}.)
                 </dd>
                 <dt>APA citation style</dt>
                 <dd>

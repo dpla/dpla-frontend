@@ -1,12 +1,12 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import css from "./LocalIntro.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 const LocalIntro = ({ content }) =>
   <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
-    <ReactMarkdown className={css.intro} source={content} skipHtml={false} escapeHtml={false}  />
+      <Markdown className={css.intro} skipHtml={false}>{content}</Markdown>
   </div>;
 
 export default LocalIntro;
