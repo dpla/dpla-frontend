@@ -374,7 +374,7 @@ class ListView extends React.Component {
                 <option value="">No list</option>
                 {lists.map((list, index) => {
                   return (
-                    <option key={index} value={list.uuid}>
+                    <option key={list.uuid} value={list.uuid}>
                       {list.name} ({list.count}
                       {list.count !== 1 ? " items" : " item"})
                     </option>
@@ -417,8 +417,8 @@ class ListView extends React.Component {
                   <h2 className={`${utils.hoverUnderline} ${css.itemTitle}`}>
                     {/* see issue #869 for details on this hack */}
                     {realId !== "http://dp.la/api/items/#sourceResource" &&
-                      <Link href={item.linkHref} as={item.linkAs}>
-                        <a className={"internalItemLink"}>
+                      <Link href={item.linkHref} as={item.linkAs} className={"internalItemLink"}>
+
                           { router.pathname.indexOf("/search") === 0 && item.title
                             ? truncateString(
                                 joinIfArray(item.title, ", "), 150
@@ -427,7 +427,7 @@ class ListView extends React.Component {
                                   joinIfArray(item.title, ", ")
                                   : UNTITLED_TEXT
                           }
-                        </a>
+
                       </Link>}
                     {/* see issue #869 for details on this hack */}
                     {realId === "http://dp.la/api/items/#sourceResource" &&

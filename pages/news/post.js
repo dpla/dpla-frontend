@@ -93,10 +93,9 @@ class PostPage extends React.Component {
                                                 }
                                             )
                                         }}
+                                        title={`View more posts by ${author.name}`}
                                     >
-                                        <a title={`View more posts by ${author.name}`}>
-                                            {author.name}
-                                        </a>
+                                        {author.name}
                                     </Link>,{" "}
                                     {formatDate(content.date)}.
                                 </div>
@@ -112,10 +111,9 @@ class PostPage extends React.Component {
                                                         href={`/news?tag=${tag.name
                                                             .toLowerCase()
                                                             .replace(" ", "-")}`}
+                                                        title={`View more posts under ${tag.name}`}
                                                     >
-                                                        <a title={`View more posts under ${tag.name}`}>
-                                                            {tag.name}
-                                                        </a>
+                                                        {tag.name}
                                                     </Link>
                                                 </li>
                                                 : null;

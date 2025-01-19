@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
@@ -22,21 +22,19 @@ const HomePageSlider = ({
     <div className={`${css.content} ${utils.siteMaxWidth}`}>
       <div className={css.heading}>
         <h2 className={css.title}>{title}</h2>
-        <Link href={browseLinkUrl}>
-          <a className={`${utils.hoverUnderline} ${css.moreLink}`}>
-            Browse all{" "}
-            <span className={css.moreLinkNoun}>{browseLinkName}</span>
-            <img
-              alt="Browse exhibitions"
-              aria-hidden="true"
-              className={css.moreLinkChevron}
-              src={moreLinkChevron}
-            />
-          </a>
+        <Link href={browseLinkUrl} className={`${utils.hoverUnderline} ${css.moreLink}`}>
+          Browse all{" "}
+          <span className={css.moreLinkNoun}>{browseLinkName}</span>
+          <img
+            alt="Browse exhibitions"
+            aria-hidden="true"
+            className={css.moreLinkChevron}
+            src={moreLinkChevron}
+          />
         </Link>
       </div>
       <Slider
-        slidesToShow={slidesToShow ? slidesToShow : 2.5}
+        slidesToShow={slidesToShow || 2.5}
         infinite={false}
         nextArrow={<NextArrow className={`${css.arrow} ${css.nextArrow}`} />}
         prevArrow={<PrevArrow className={`${css.arrow} ${css.prevArrow}`} />}
@@ -57,8 +55,7 @@ const HomePageSlider = ({
         {items.map(
           ({ name, repImageUrl, thumbnailUrl, isFeatured, href, as }, index) =>
             <div key={`${name}—${index}`}>
-              <Link href={href} as={as}>
-                <a className={css.item}>
+              <Link href={href} as={as} className={css.item}>
                   <div className={css.itemImgWrapper}>
                     <div
                       className={css.itemImg}
@@ -67,13 +64,11 @@ const HomePageSlider = ({
                       }}
                     />
                   </div>
-                  <ReactMarkdown
+                  <Markdown
                     className={css.itemText}
-                    source={name}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />
-                </a>
+                  >{name}</Markdown>
               </Link>
             </div>
         )}

@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 import { withRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
@@ -55,7 +55,7 @@ const CarouselSlider = ({ currentSourceIdx, sources, router }) =>
               })
             }}
           >
-            <a>
+
               <div
                 className={`
                     ${css.itemImgWrapper} 
@@ -64,13 +64,11 @@ const CarouselSlider = ({ currentSourceIdx, sources, router }) =>
                 }>
                 <img alt="" src={thumbnailUrl} className={css.itemImg} />
               </div>
-              <ReactMarkdown
+              <Markdown
                 className={css.itemText}
-                source={name}
-                allowedTypes={["emphasis", "text"]}
+                allowedElements={["emphasis", "text"]}
                 unwrapDisallowed
-              />
-            </a>
+              >{name}</Markdown>
           </Link>
         </div>
       )}

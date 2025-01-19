@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import Link from "next/link";
 
@@ -31,7 +31,6 @@ const SourceSetSources = ({ router, sources }) =>
                 })
               }}
             >
-              <a>
                 <div
                   className={`${css.imageWrapper} ${useDefaultImage
                     ? css.defaultImageWrapper
@@ -39,13 +38,12 @@ const SourceSetSources = ({ router, sources }) =>
                 >
                   <img alt="" src={thumbnailUrl} className={css.image} />
                 </div>
-                <ReactMarkdown
+                <Markdown
                   className={css.title}
-                  source={name}
-                  allowedTypes={["emphasis", "text"]}
+                  allowedElements={["emphasis", "text"]}
                   unwrapDisallowed
-                />
-              </a>
+                >{name}</Markdown>
+
             </Link>
           </li>
         );

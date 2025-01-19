@@ -16,15 +16,12 @@ const Sidebar = ({
             {sectionMap.map(section =>
                 <li key={section.id}>
                     <Link
-                        href={`/exhibitions/${exhibitionSlug}/${section.slug}`}>
-                        <a
-                            className={[
-                                css.sectionTitle,
-                                section.id === currentSection.id && css.active
-                            ].join(" ")}
-                        >
-                            {section.title}
-                        </a>
+                        href={`/exhibitions/${exhibitionSlug}/${section.slug}`}
+                        className={[
+                        css.sectionTitle,
+                        section.id === currentSection.id && css.active
+                    ].join(" ")}>
+                        {section.title}
                     </Link>
                     {section.id === currentSection.id &&
                         <ul>
@@ -44,7 +41,7 @@ const Sidebar = ({
                                                     : ""
                                             }`}
                                     >
-                                        <a>{subsection.title}</a>
+                                        {subsection.title}
                                     </Link>
                                 </li>
                             )}

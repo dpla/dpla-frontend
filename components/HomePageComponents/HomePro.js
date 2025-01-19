@@ -40,42 +40,36 @@ const HomePro = ({ news, content }) =>
       <ul className={utils.siteMaxWidth}>
         <li>
           <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
-            <a>
               <IconComponent className={css.icon} name="network" />
               Hub Network
-            </a>
           </Link>
         </li>
         <li>
           <Link as="/prospective-hubs" href="/pro/wp?section=prospective-hubs">
-            <a>
               <IconComponent className={css.icon} name="prospective" />
               Prospective Hubs
-            </a>
           </Link>
         </li>
         <li>
           <Link as="/developers" href="/pro/wp?section=developers">
-            <a>
               <IconComponent className={css.icon} name="developers" />
               Developers
-            </a>
           </Link>
         </li>
         <li>
           <Link as="/education" href="/pro/wp?section=education">
-            <a>
+
               <IconComponent className={css.icon} name="education" />
               Education
-            </a>
+
           </Link>
         </li>
         <li>
           <Link as="/events" href="/pro/wp?section=events">
-            <a>
+
               <IconComponent className={css.icon} name="community" />
               Events
-            </a>
+
           </Link>
         </li>
         <li>

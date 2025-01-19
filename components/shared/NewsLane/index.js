@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 import { formatDate } from "lib";
-import { USER_BASE_URL } from "constants/env";
 
 import css from "./NewsLane.module.scss";
 import utils from "stylesheets/utils.module.scss"
@@ -16,15 +15,13 @@ const NewsLane = ({ title, items }) =>
         <div className={`${utils.colXs12} ${utils.colMd3}`}>
           <div className={css.header}>
             <h2 className={css.headerText}>{title}</h2>
-            <Link href={"/news"}>
-              <a className={`hover-underline ${css.headerLink}`}>
+            <Link href={"/news"} className={`hover-underline ${css.headerLink}`}>
                 <span>Browse the archives</span>
                 <img
                   alt="browse the blog"
                   src={smallChevron}
                   className={css.chevron}
                 />
-              </a>
             </Link>
           </div>
         </div>
@@ -45,10 +42,8 @@ const NewsLane = ({ title, items }) =>
                   <Link
                     as={`/news/${post.slug}`}
                     href={`/news/post?slug=${post.slug}`}
+                    dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   >
-                    <a
-                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                    />
                   </Link>
                 </div>
                 <div className={css.date}>

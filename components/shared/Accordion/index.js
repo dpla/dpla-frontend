@@ -6,7 +6,6 @@ import css from "./Accordion.module.scss";
 const addIcon = "/static/images/add.svg";
 const subtractIcon = "/static/images/subtract.svg";
 const informationIcon = "/static/images/information.svg";
-import Tooltip from "@material-ui/core/Tooltip";
 
 class Accordion extends React.Component {
 
@@ -58,6 +57,7 @@ class Accordion extends React.Component {
                     ) {
                         return (
                             <li key={i} className={item.active ? css.active : css.inactive}>
+
                                 <button
                                     className={css.itemHeader}
                                     aria-controls={`facets_${i}`}
@@ -65,19 +65,16 @@ class Accordion extends React.Component {
                                     onClick={() => this.onClickItem(i)}
                                 >
                                     <h3 className={css.accordionTitle}>{item.name}{item.name === 'How Can I Use It?' &&
-                                        <Link href={"https://dp.la/about/rights-categories"}><a>
-                                            <Tooltip
-                                                title="This facet is used to filter by copyright status."
-                                                placement="top"
-                                            >
-                                                <img
-                                                    src={informationIcon}
-                                                    alt=""
-                                                    className={css.informationIcon}
-                                                />
-                                            </Tooltip></a></Link>
+                                        <a href={"https://dp.la/about/rights-categories"}
+                                           title={"This facet is used to filter by copyright status. Click to learn more."}
+                                           aria-label={"This facet is used to filter by copyright status. Click to learn more."}
+                                        ><img
+                                            id={"how-can-i-use-it-info"}
+                                            src={informationIcon}
+                                            alt={""}
+                                            className={css.informationIcon}
+                                        /></a>
                                     }</h3>
-
                                     {item.active &&
                                         <img
                                             src={subtractIcon}

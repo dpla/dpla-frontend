@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
@@ -41,20 +41,18 @@ const RelatedSets = ({ sets }) => {
                   set["@id"]
                 )}`}
                 as={`/primary-source-sets/${extractSourceSetSlug(set["@id"])}`}
+                className={css.setLink}
               >
-                <a className={css.setLink}>
                   <img
                     alt=""
                     src={set.repImageUrl || set.thumbnailUrl}
                     className={css.setImage}
                   />
-                  <ReactMarkdown
-                    source={set.name}
+                  <Markdown
                     className={css.title}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />
-                </a>
+                  >{set.name}</Markdown>
               </Link>
             </div>
           )}

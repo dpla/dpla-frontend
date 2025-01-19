@@ -21,18 +21,15 @@ const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) =>
                     "/",
                     queryParams.subsectionSlug ? queryParams.subsectionSlug : ""
                 ].join("")}
+                className={
+                    nextOrPrevious === "next" ? css.nextButton : css.prevButton
+                }
             >
-                <a
-                    className={
-                        nextOrPrevious === "next" ? css.nextButton : css.prevButton
-                    }
-                >
                     {nextOrPrevious === "previous" &&
                         <img src={blackChevron} className={css.previousChevron} alt=""/>}
                     <span>{nextOrPrevious === "next" ? "Next" : "Previous"}</span>
                     {nextOrPrevious === "next" &&
                         <img src={chevron} className={css.nextChevron} alt=""/>}
-                </a>
             </Link>
             : <span
                 className={[
