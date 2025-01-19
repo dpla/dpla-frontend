@@ -1,4 +1,3 @@
-const proxy = require("express-http-proxy");
 const serverFunctions = require("./lib/serverFunctions");
 const locals = require("./constants/local");
 
@@ -64,7 +63,7 @@ module.exports.static = (app, server) => {
   // item routes
   server.get("/item/:itemId", (req, res) => {
     const actualPage = "/item";
-    const isQA = "qa" in req.cookies;
+    const isQA = false;
     const params = {
       itemId: req.params.itemId,
       isQA: isQA
