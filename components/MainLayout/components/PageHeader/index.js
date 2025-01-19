@@ -41,7 +41,6 @@ class PageHeader extends React.Component {
                   ].logo}`}
                 />
                 <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
-
             </Link>}
           {!hideSearchBar &&
             SITE_ENV !== "pro" &&

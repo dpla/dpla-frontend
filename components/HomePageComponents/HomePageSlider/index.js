@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
@@ -56,7 +56,6 @@ const HomePageSlider = ({
           ({ name, repImageUrl, thumbnailUrl, isFeatured, href, as }, index) =>
             <div key={`${name}—${index}`}>
               <Link href={href} as={as} className={css.item}>
-
                   <div className={css.itemImgWrapper}>
                     <div
                       className={css.itemImg}
@@ -65,12 +64,11 @@ const HomePageSlider = ({
                       }}
                     />
                   </div>
-                  <ReactMarkdown
+                  <Markdown
                     className={css.itemText}
-                    source={name}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />
+                  >{name}</Markdown>
               </Link>
             </div>
         )}
