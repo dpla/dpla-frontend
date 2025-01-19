@@ -10,7 +10,6 @@ import {SITE_ENV, LOCAL_ID} from "constants/env";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import {washObject} from "lib/washObject";
-import axios from "axios";
 
 const PartnerBrowse = ({partners}) =>
     <div>
@@ -63,8 +62,11 @@ export const getServerSideProps = async () => {
         linkParam = "partner";
     }
 
-    const res = await axios.get(apiQuery);
-    const json = res.data;
+    const res = await fetch(apiQuery);
+    if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+    }
+    const json = await res.json();
 
     const partners = washObject(
         json

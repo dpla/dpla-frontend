@@ -1,4 +1,4 @@
-import axios from "axios";
+import {Readable} from "stream";
 
 const dplaIdRegex = /^[0-9a-f]{32}$/;
 
@@ -11,9 +11,10 @@ export default async function handler(req, res) {
     if (validIds.length === 0) {
         console.log("Zero valid ids");
         res
-            .type("text/plain")
+            .type("application/json")
             .status(404)
-            .end("Not found.");
+            .body("{}")
+            .end();
         return
     }
 
@@ -23,13 +24,13 @@ export default async function handler(req, res) {
             `${validIds.join(",")}` +
             `?api_key=${process.env.API_KEY}`;
 
-        const axiosRes = await axios.get(url, {responseType: 'stream'});
-
-        if (axiosRes.status === 200) {
+        const fetchRes = await fetch(url);
+        if (fetchRes.ok) {
+            const contentType = fetchRes.headers.get("Content-Type") || "application/json";
             res
-                .type(axiosRes.headers['content-type'])
+                .type(contentType)
                 .status(200);
-            await axiosRes.data.pipe(res);
+            await Readable.fromWeb(fetchRes.body).pipe(res);
 
         } else {
             res
@@ -41,8 +42,9 @@ export default async function handler(req, res) {
     } catch (err) {
         console.log("Error proxying request to DPLA API.", err);
         res
-            .type("text/plain")
+            .type("application/json")
             .status(404)
-            .end("Not found.");
+            .body("{}")
+            .end();
     }
 }

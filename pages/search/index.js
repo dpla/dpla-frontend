@@ -1,8 +1,5 @@
 import React from "react";
-import axios from "axios";
-
 import {withRouter} from "next/router";
-
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
 import HarmfulContent from "components/shared/HarmfulContent";
@@ -225,8 +222,8 @@ export const getServerSideProps = async context => {
 
         let aboutnessJson = {docs: [], count: 0};
         try {
-            const axiosRes = await axios.get(url);
-            aboutnessJson = axiosRes.data;
+            const res = await fetch(url);
+            aboutnessJson = res.json();
         } catch (error) {
             //ignoring errors for aboutness requests
         }
@@ -277,10 +274,16 @@ export const getServerSideProps = async context => {
             filtersParam +
             tagsParam;
 
-        const res = await axios.get(url);
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error(`Response status: ${res.status}`);
+        }
+
+        const json = await res.json();
 
         // api response for facets
-        const docs = res.data.docs.map(result => {
+        const docs = json.docs.map(result => {
             const thumbnailUrl = getItemThumbnail(result);
             const dataProviderFromObj = result.dataProvider && 
                 result.dataProvider.name;
@@ -301,7 +304,7 @@ export const getServerSideProps = async context => {
         // fix facets because ES no longer returns them in the requested order
         let newFacets = {};
         theseFacets.forEach(facet => {
-            if (res.data.facets[facet]) newFacets[facet] = res.data.facets[facet];
+            if (json.facets[facet]) newFacets[facet] = json.facets[facet];
         });
 
         if (tags) {
@@ -311,13 +314,13 @@ export const getServerSideProps = async context => {
             };
         }
 
-        res.data.facets = newFacets;
+        json.facets = newFacets;
 
         const maxResults = MAX_PAGE_SIZE * page_size;
-        const pageCount = res.data.count > maxResults ? maxResults : res.data.count;
+        const pageCount = json.count > maxResults ? maxResults : json.count;
 
         const props = washObject({
-            results: Object.assign({}, res.data, {docs}),
+            results: Object.assign({}, json, {docs}),
             numberOfActiveFacets,
             currentPage: page,
             pageCount,
