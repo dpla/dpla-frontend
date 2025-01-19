@@ -3,8 +3,6 @@ import axios from "axios";
 
 import {withRouter} from "next/router";
 
-import {parseCookies} from "nookies";
-
 import MainLayout from "components/MainLayout";
 import OptionsBar from "components/SearchComponents/OptionsBar";
 import HarmfulContent from "components/shared/HarmfulContent";
@@ -40,7 +38,7 @@ class Search extends React.Component {
     };
 
     toggleFilters = () => {
-        this.setState({showSidebar: !this.state.showSidebar});
+        this.setState(prevState => {return  {showSidebar: !prevState.showSidebar}});
     };
 
     render() {
@@ -107,7 +105,7 @@ export const getServerSideProps = async context => {
     const query = context.query;
     const isLocal = SITE_ENV === "local";
     let local = isLocal ? LOCALS[LOCAL_ID] : {};
-    const isQA = parseCookies(context).hasOwnProperty("qa");
+    const isQA = false;
 
     if (query.q && !isBalanced(query.q)) {
         // User gave us something that will blow up, strip it out.

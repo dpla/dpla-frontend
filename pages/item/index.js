@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-import {parseCookies} from "nookies";
-
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
@@ -81,7 +79,7 @@ export const getServerSideProps = async context => {
         return notFound;
     }
 
-    const isQA = parseCookies(context).hasOwnProperty("qa");
+    const isQA = false;
     const randomItemId = isQA ? await getRandomItemIdAsync() : null;
     // check if item is found
     const itemUrl =

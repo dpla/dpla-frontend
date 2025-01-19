@@ -12,7 +12,6 @@ Sentry.init({
   profilesSampleRate: 1.0,
 });
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const next = require("next");
 const bodyParser = require("body-parser");
 const fetch = require("isomorphic-fetch");
@@ -60,10 +59,8 @@ function follower() {
     const expressApp = express();
     Sentry.setupExpressErrorHandler(expressApp);
     expressApp.disable("x-powered-by")
-    expressApp.use(cookieParser());
     expressApp.use(bodyParser.urlencoded({extended: true}));
     expressApp.use(bodyParser.json());
-    expressApp.get("/qa", qa());
     expressApp.get("/healthcheck", healthcheck());
 
 
@@ -102,17 +99,6 @@ function follower() {
 function catchall(handle) {
   return (req, res) => {
     return handle(req, res);
-  };
-}
-
-function qa() {
-  return (req, res) => {
-    const cookies = req.cookies;
-    if ("qa" in cookies) {
-      res.clearCookie("qa").send("QA mode disabled");
-    } else {
-      res.cookie("qa", "qa").send("QA mode enabled");
-    }
   };
 }
 

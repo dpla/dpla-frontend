@@ -1,6 +1,5 @@
 const { LOCALS } = require("./constants/local");
 const path = require("path");
-const process = require("process");
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
@@ -68,5 +67,5 @@ module.exports = withSentryConfig(module.exports, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  automaticVercelMonitors: false
 });
