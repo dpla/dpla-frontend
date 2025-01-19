@@ -1,7 +1,6 @@
 const path = require("path");
 
 const fs = require('fs').promises;
-const axios = require('axios').default;
 
 const API_URL = process.env.API_URL || 'https://api.dp.la/v2';
 const WORDPRESS_URL = process.env.WORDPRESS_URL || 'https://dpla.wpengine.com';
@@ -56,8 +55,8 @@ const exhibitPageSubpages = (exhibit, page) => {
 const extractSourceSetSlug = (url) => /\/primary-source-sets\/sets\/([-\w]*)/.exec(url)[1];
 
 const loadData = async (url) => {
-    const response = await axios.get(url);
-    return response.data;
+    const response = await fetch(url);
+    return await response.json();
 }
 
 const loadTopics = async () => {

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
@@ -88,13 +87,17 @@ export const getServerSideProps = async context => {
 
     let data = {};
     try {
-        const axiosRes = await axios.get(itemUrl);
+        const res = await fetch(itemUrl);
+        if (!res.ok) {
+            throw new Error(`Response status: ${res.status}`);
+        }
+        const json = await res.json();
 
-        if (!("docs" in axiosRes.data) || axiosRes.data.docs.length < 1) {
+        if (!("docs" in json) || json.docs.length < 1) {
             return notFound;
         }
 
-        data = axiosRes.data;
+        data = json;
 
     } catch (error) {
         if (error != null && typeof error.response ===  'object' && "status" in error.response) {
