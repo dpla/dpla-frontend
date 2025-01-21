@@ -12,9 +12,9 @@ const Exhibition = ({exhibition: exhibition }) => {
           className={` ${css.exhibition}`}
         >
             <img
-              alt=""
-              className={css.exhibitionImage}
-              src={exhibition.thumbnailUrl}
+                alt=""
+                className={css.exhibitionImage}
+                src={exhibition.thumbnailUrl}
             />
 
             <div className={css.exhibitionText}>

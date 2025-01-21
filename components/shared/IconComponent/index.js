@@ -8,7 +8,7 @@ import Network from "public/static/images/pro/network.svg";
 import Prospective from "public/static/images/pro/prospective.svg";
 
 const IconComponent =  ({ className, name }) =>
-  <span aria-hidden className={className ? className : ""}>
+  <span aria-hidden className={className || ""}>
     {name === "developers" && <Developers />}
     {name === "community" && <Community />}
     {name === "ebooks" && <Ebooks />}

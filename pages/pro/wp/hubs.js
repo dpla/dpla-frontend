@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import IconComponent from "shared/IconComponent";
@@ -21,7 +20,7 @@ import {washObject} from "lib/washObject";
 
 class HubsPage extends React.Component {
     refreshExternalLinks() {
-        var links = document.getElementById("main").getElementsByTagName("a");
+        const links = document.getElementById("main").getElementsByTagName("a");
         wordpressLinks(links);
     }
 

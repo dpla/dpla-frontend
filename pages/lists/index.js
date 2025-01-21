@@ -12,8 +12,8 @@ import { LISTS_TITLE } from "constants/lists";
 class ListsPage extends React.Component {
   state = { lists: [], initialized: false };
 
-  componentDidMount() {
-    this.getLists();
+  async componentDidMount() {
+    await this.getLists();
   }
 
   getLists = async () => {
@@ -25,8 +25,8 @@ class ListsPage extends React.Component {
     });
   };
 
-  onCreateList = value => {
-    this.createList(value);
+  onCreateList = async value => {
+    await this.createList(value);
   };
 
   createList = async listName => {
@@ -51,7 +51,7 @@ class ListsPage extends React.Component {
       lists: newLists
     });
     await setLocalForageItem(uuid, savedList);
-    Router.push({ pathname: `/lists/${uuid}` });
+    await Router.push({ pathname: `/lists/${uuid}` });
   };
 
   render() {

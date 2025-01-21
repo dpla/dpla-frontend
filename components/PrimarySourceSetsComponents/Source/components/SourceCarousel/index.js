@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 import Markdown from "react-markdown";
 
 import CarouselSlider from "./CarouselSlider";
-import ThickChevron from "public/static/images/chevron-thick-orange.svg";
+import ChevronThickOrange from "components/svg/chevron-thick-orange";
 
 import { extractSourceId, removeQueryParams } from "lib";
 
@@ -57,19 +57,17 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
                 }}
                 className={`${css.previousItemButton} ${utils.hoverUnderline}`}
               >
-                  <ThickChevron
-                    className={`${css.thickChevron} ${css.flippedH}`}
-                  />
+                  {/*<Image src={thickChevron} width="15" height="24" alt="" className={`${css.thickChevron} ${css.flippedH}`} />*/}
+                  <ChevronThickOrange className={`${css.thickChevron} ${css.flippedH}`} />
                   <span>Previous Item</span>
               </Link>
             : <button
                 className={`${css.previousItemButton} ${css.disabledNextOrPrevButton}`}
               >
-                <ThickChevron
-                  className={`${css.thickChevron} ${css.flippedH}`}
-                />
-                <span>Previous Item</span>
-              </button>}
+                  <ChevronThickOrange className={`${css.thickChevron} ${css.flippedH}`} />
+                  <span>Previous Item</span>
+              </button>
+          }
           {currentSourceIdx < sources.length - 1
             ? <Link
                 as={{
@@ -90,14 +88,16 @@ const SourceCarousel = ({ sources, set, currentSourceIdx, router }) =>
                 className={`${css.nextItemButton} ${utils.hoverUnderline}`}
               >
                   <span>Next Item</span>
-                  <ThickChevron className={css.thickChevron} />
+                  {/*<Image src={thickChevron} width="15" height="24" alt="" className={css.thickChevron} />*/}
+                  <ChevronThickOrange className={css.thickChevron} />
               </Link>
-            : <button
+              : <button
                 className={`${css.nextItemButton} ${css.disabledNextOrPrevButton}`}
               >
-                <span>Next Item</span>
-                <ThickChevron className={css.thickChevron} />
-              </button>}
+                  <span>Next Item</span>
+                  <ChevronThickOrange className={css.thickChevron} />
+              </button>
+          }
         </div>
       </div>
       <CarouselSlider

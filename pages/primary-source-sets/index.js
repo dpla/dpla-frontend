@@ -1,15 +1,14 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
-import {TITLE} from "constants/primarySourceSets";
 import {washObject} from "lib/washObject";
 
 import {
     subjectOptions,
-    timePeriodOptions
+    timePeriodOptions,
+    TITLE
 } from "constants/primarySourceSets";
 
 const PrimarySourceSets = ({sets}) =>

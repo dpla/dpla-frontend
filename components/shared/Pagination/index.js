@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 
-import Chevron from "public/static/images/chevron-thick.svg";
+import ChevronThick from "components/svg/chevron-thick";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
@@ -50,9 +50,9 @@ const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "ne
           ? css.nextButton
           : css.previousButton} ${css.hideOnLargeScreens}`}
       >
-        {type === "prev" && <Chevron className={css.prevChevron} />}
+        {type === "prev" && <ChevronThick className={css.prevChevron} />}
         {type === "next" ? "Next" : "Previous"}
-        {type === "next" && <Chevron className={css.nextChevron} />}
+        {type === "next" && <ChevronThick className={css.nextChevron} />}
       </button>
     : <Link
         href={{
@@ -65,9 +65,9 @@ const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "ne
         }}
         className={type === "next" ? css.nextButton : css.previousButton}
       >
-          {type === "prev" && <Chevron className={css.prevChevron} />}
+          {type === "prev" && <ChevronThick className={css.prevChevron} />}
           {type === "next" ? "Next" : "Previous"}
-          {type === "next" && <Chevron className={css.nextChevron} />}
+          {type === "next" && <ChevronThick className={css.nextChevron} />}
       </Link>);
 
 const Pagination = ({ pageCount, currentPage }) =>

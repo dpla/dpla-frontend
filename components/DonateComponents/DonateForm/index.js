@@ -61,19 +61,19 @@ class DonateForm extends React.Component {
   }
 
   handleFrequencyClick(freq) {
-    this.setState({
+    this.setState(prevState => ({
       frequency: freq,
-      amount: this.state.amount,
-      amountText: this.state.amountText
-    });
+      amount: prevState.amount,
+      amountText: prevState.amountText
+    }));
   }
 
   handleAmountClick(amount) {
-    this.setState({
-      frequency: this.state.frequency,
+    this.setState(prevState => ({
+      frequency: prevState.frequency,
       amount: amount,
       amountText: ""
-    });
+    }));
   }
 
   handleAmountText(event) {
@@ -82,11 +82,11 @@ class DonateForm extends React.Component {
       amount = this.state.amount;
       event.target.value = amount;
     }
-    this.setState({
-      frequency: this.state.frequency,
+    this.setState(prevState => ({
+      frequency: prevState.frequency,
       amount: amount,
       amountText: amount
-    });
+    }));
   }
 
   render() {

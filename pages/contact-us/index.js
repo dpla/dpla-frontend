@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";

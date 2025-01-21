@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import {extractSourceSetSlug, loadExhibitionList} from "lib";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
