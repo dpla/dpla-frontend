@@ -1,5 +1,5 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
+
 import {withRouter} from "next/router";
 
 import MainLayout from "components/MainLayout";

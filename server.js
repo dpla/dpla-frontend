@@ -1,5 +1,6 @@
 // IMPORTANT: Sentry init must be first!
 const Sentry = require('@sentry/node');
+require('dotenv').config()
 const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 Sentry.init({
   debug: process.env.SENTRY_DEBUG === "true",
@@ -14,7 +15,6 @@ Sentry.init({
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
-const fetch = require("isomorphic-fetch");
 const cluster = require("node:cluster");
 const numCPUs = require("node:os").availableParallelism();
 

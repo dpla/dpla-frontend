@@ -64,7 +64,6 @@ class List extends React.Component {
     };
 
     getItems = async (uuid, list) => {
-        console.log("IN: getItems");
         const itemIds = Object.keys(list.selectedHash);
         const ids = itemIds.join(",");
         if (ids.length === 0) {
@@ -86,9 +85,7 @@ class List extends React.Component {
                     const thumbnailUrl = getItemThumbnail(result);
                     const dataProviderFromObj = result.dataProvider && 
                         result.dataProvider.name;
-                    const dataProvider = dataProviderFromObj
-                        ? dataProviderFromObj
-                        : result.dataProvider;
+                    const dataProvider = dataProviderFromObj || result.dataProvider;
 
                     return Object.assign({}, result.sourceResource, {
                         thumbnailUrl,

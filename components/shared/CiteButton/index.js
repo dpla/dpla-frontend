@@ -6,6 +6,13 @@ import { joinIfArray, removeEndPunctuation, formatDate } from "lib";
 import css from "./CiteButton.module.scss";
 
 class CiteButton extends React.Component {
+
+
+  constructor(props, context, updater) {
+    super(props, context, updater);
+    this.date = formatDate();
+  }
+
   state = {
     showCitation: true // show it if js is disabled
   };
@@ -16,7 +23,7 @@ class CiteButton extends React.Component {
   }
 
   toggleCiteButton = e => {
-    this.setState({ showCitation: !this.state.showCitation });
+    this.setState(prevState => { return { showCitation: !prevState.showCitation }});
     e.preventDefault();
   };
 
@@ -31,7 +38,6 @@ class CiteButton extends React.Component {
       freeText,
       title
     } = this.props;
-    const date = formatDate(new Date());
 
     return (
       <div className={css.wrapper}>
@@ -70,7 +76,7 @@ class CiteButton extends React.Component {
                   {displayDate ? removeEndPunctuation(displayDate) + ". " : ""}
                   Retrieved from the Digital Public Library of America
                   {sourceUrl ? ", " + sourceUrl + ". " : " "}
-                  (Accessed {date}.)
+                  (Accessed {this.date}.)
                 </dd>
                 <dt>APA citation style</dt>
                 <dd>

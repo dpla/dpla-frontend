@@ -19,7 +19,7 @@ class DPLAHead extends React.Component {
 
   componentDidMount() {
     const fullUrl = getCurrentFullUrl();
-    let url = fullUrl.substr(0, fullUrl.indexOf("/", 8));
+    let url = fullUrl.substring(0, fullUrl.indexOf("/", 8));
     if (SITE_ENV !== "local") {
       url += "/static/images/dpla-logo-square_250.png";
     } else {

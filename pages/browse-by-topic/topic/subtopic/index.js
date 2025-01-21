@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemList";
 import MainLayout from "components/MainLayout";

@@ -1,6 +1,5 @@
 import React from "react";
 import {withRouter} from "next/router";
-import fetch from "isomorphic-fetch";
 import Markdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";

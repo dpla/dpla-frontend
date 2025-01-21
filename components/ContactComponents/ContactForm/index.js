@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 
 import Button from "shared/Button";
 
@@ -135,14 +134,14 @@ class ContactForm extends React.Component {
 
     await res.text();
 
-    this.setState({
+    this.setState(prevState => ({
       isSending: false,
       isSent: true,
-      subject: this.state.subject,
-      name: this.state.name,
-      message: this.state.message,
-      email: this.state.email
-    });
+      subject: prevState.subject,
+      name: prevState.name,
+      message: prevState.message,
+      email: prevState.email
+    }));
   };
 
   formIsValid() {
@@ -159,14 +158,14 @@ class ContactForm extends React.Component {
   }
 
   activateRequired = () => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      message: this.state.message || "",
-      name: this.state.name || "",
-      email: this.state.email || "",
-      subject: this.state.subject || ""
-    });
+    this.setState(prevState => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      message: prevState.message || "",
+      name: prevState.name || "",
+      email: prevState.email || "",
+      subject: prevState.subject || ""
+    }));
   };
 
   touchedAll() {
@@ -250,7 +249,7 @@ class ContactForm extends React.Component {
                   onChange={this.onSubjectChange}
                 >
                   {selectOptions.map((option, index) =>
-                    <option key={index} value={option.value}>
+                    <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
                   )}

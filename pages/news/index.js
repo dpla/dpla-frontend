@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import Link from "next/link";
 
 import MainLayout from "components/MainLayout";
@@ -206,7 +205,7 @@ export const getServerSideProps = async ({query}) => {
         currentTag: query.tag ? query.tag : "",
         newsPageCount: Number(newsPageCount),
         keywords: query.k ? query.k : "",
-        author: authorJson ? authorJson : ""
+        author: authorJson || ""
     });
 
 

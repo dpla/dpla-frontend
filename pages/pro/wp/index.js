@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
@@ -81,7 +80,7 @@ class ProMenuPage extends React.Component {
                       dangerouslySetInnerHTML={{ __html: page.title.rendered }}
                     />
                   </div>}
-                {/* for non fancy pages, a normal heading */}
+                {/* for non-fancy pages, a normal heading */}
                 {!illustration &&
                   breadcrumbs.length !== 0 &&
                   <h1

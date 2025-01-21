@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import Markdown from "react-markdown";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";

@@ -1,8 +1,8 @@
 import React from "react";
 import {withRouter} from "next/router";
 import MainLayout from "components/MainLayout";
-import OptionsBar from "components/SearchComponents/OptionsBar";
 import HarmfulContent from "components/shared/HarmfulContent";
+import OptionsBar from "components/SearchComponents/OptionsBar";
 import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 

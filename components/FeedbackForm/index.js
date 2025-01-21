@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import AriaModal from "react-aria-modal";
 
 import { withRouter } from 'next/router'

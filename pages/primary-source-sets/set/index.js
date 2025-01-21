@@ -1,7 +1,6 @@
 import React from "react";
 import {withRouter} from "next/router";
 import Error from "../../_error"
-import fetch from "isomorphic-fetch";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";

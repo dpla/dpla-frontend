@@ -20,6 +20,15 @@ module.exports = withBundleAnalyzer({
         : path.join(__dirname, "stylesheets", "themes")
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'dp.la',
+        pathname: '/api/exhibits/files/square_thumbnails/**',
+      },
+    ],
+  },
   webpack: config => {
     config.resolve.fallback = {
       async_hooks: false,
