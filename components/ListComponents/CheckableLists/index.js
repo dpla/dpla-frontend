@@ -125,12 +125,12 @@ export class CheckableLists extends React.Component {
     const { lists, showMessage, checkedLists } = this.state;
     const listOfLists = lists.length > 0
       ? <ul className={css.listOfLists}>
-          {lists.map((l, index) => {
+          {lists.map((l) => {
             const isChecked = checkedLists.indexOf(l.uuid) !== -1;
             const shouldDisable = l.count > 50 && !isChecked;
             return (
               <ListCheckbox
-                key={`l_${index}`}
+                key={`l_${l.uuid}`}
                 list={l}
                 shouldDisable={shouldDisable}
                 isChecked={isChecked}

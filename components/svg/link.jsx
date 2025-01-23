@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Link = (props) => (
+const LinkIcon = (props) => (
     <svg width="30" height="30" viewBox="0 0 30 30" {...props}>
         <g fill="none" fillRule="evenodd">
             <path d="M-3-3h36v36H-3z"/>
@@ -13,4 +13,4 @@ const Link = (props) => (
     </svg>
 );
 
-export default Link;
+export default LinkIcon;

@@ -93,7 +93,7 @@ class FiltersBar extends React.Component {
                 onChange={this.onTimePeriodChange}
               >
                 {timePeriodOptions.map((item, index) =>
-                  <option value={item.value} key={index}>
+                  <option value={item.value} key={item.value}>
                     {item.label}
                   </option>
                 )}

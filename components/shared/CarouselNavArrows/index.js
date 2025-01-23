@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./CarouselNavArrows.module.scss";
 
-const largeChevron = "/static/images/chevron-thin.svg";
+import LargeChevron from "components/svg/chevron-thin";
 
 const NextArrow = ({ onClick, className }) =>
   <button
@@ -11,7 +11,7 @@ const NextArrow = ({ onClick, className }) =>
     aria-hidden={true}
     onClick={onClick}
   >
-    <img alt="Right-pointing arrow" src={largeChevron} />
+    <LargeChevron/>
   </button>;
 
 const PrevArrow = ({ onClick, className }) =>

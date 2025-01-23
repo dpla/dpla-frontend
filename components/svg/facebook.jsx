@@ -2,6 +2,7 @@ import * as React from "react";
 
 const Facebook = (props) => (
     <svg width="24px" height="24px" viewBox="0 0 24 24" {...props}>
+        <title>Facebook</title>
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(-364.000000, -205.000000)" fill="#000000">
                 <path opacity="0.75" fill="#ffffff"

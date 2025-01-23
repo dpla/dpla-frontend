@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
-import { withRouter } from "next/router";
+import Router, { withRouter } from "next/router";
 
 import { addCommasToNumber } from "lib";
 import {
@@ -15,8 +14,9 @@ import {
 import css from "./OptionsBar.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const gridViewIcon = "/static/images/grid-view-icon.svg";
-const listViewIcon = "/static/images/list-view-icon.svg";
+import GridViewIcon from "components/svg/grid-view-icon";
+import ListViewIcon from "components/svg/list-view-icon";
+
 
 class OptionsBar extends React.Component {
 
@@ -54,24 +54,24 @@ class OptionsBar extends React.Component {
     }
   }
 
-  onPageSizeChange = val => {
-    Router.push({
+  onPageSizeChange = async val => {
+    await Router.push({
       pathname: "/search",
-      query: Object.assign({}, this.props.router.query, {
-        page_size: val.target.value,
+      query: {
+        ...this.props.router.query, page_size: val.target.value,
         page: 1
-      })
+      }
     });
   };
 
-  onSortChange = val => {
-    Router.push({
+  onSortChange = async val => {
+    await Router.push({
       pathname: "/search",
-      query: Object.assign({}, this.props.router.query, {
-        sort_by: mapSortOptionsToParams[val.target.value].sort_by,
+      query: {
+        ...this.props.router.query, sort_by: mapSortOptionsToParams[val.target.value].sort_by,
         sort_order: mapSortOptionsToParams[val.target.value].sort_order,
         page: 1
-      })
+      }
     });
   };
 
@@ -184,9 +184,7 @@ class OptionsBar extends React.Component {
                 <Link
                   href={{
                     pathname: router.pathname,
-                    query: Object.assign({}, router.query, {
-                      list_view: "list"
-                    })
+                    query: {...router.query, list_view: "list"}
                   }}
                   className={[
                     css.listViewButton,
@@ -195,18 +193,12 @@ class OptionsBar extends React.Component {
                         : css.viewButtonActive
                   ].join(" ")}
                 >
-                  <img
-                    className={css.viewButtonIcon}
-                    src={listViewIcon}
-                    alt="List View"
-                  />
+                  <ListViewIcon className={css.viewButtonIcon} />
                 </Link>
                 <Link
                   href={{
                     pathname: router.pathname,
-                    query: Object.assign({}, router.query, {
-                      list_view: "grid"
-                    })
+                    query: {...router.query, list_view: "grid"}
                   }}
                   className={[
                     css.gridViewButton,
@@ -215,11 +207,7 @@ class OptionsBar extends React.Component {
                         : css.viewButtonInactive
                   ].join(" ")}
                 >
-                  <img
-                    className={css.viewButtonIcon}
-                    src={gridViewIcon}
-                    alt="Grid View"
-                  />
+                  <GridViewIcon className={css.viewButtonIcon} />
                 </Link>
               </div>
             </div>

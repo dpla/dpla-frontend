@@ -9,9 +9,7 @@ const BreadcrumbsModule = ({ breadcrumbs }) =>
     <div className={`${utils.container} ${utils.breadcrumbsModule}`}>
       <Breadcrumbs
         breadcrumbs={breadcrumbs.map(breadcrumb =>
-          Object.assign({}, breadcrumb, {
-            title: breadcrumb.title
-          })
+            ({...breadcrumb, title: breadcrumb.title})
         )}
       />
     </div>
