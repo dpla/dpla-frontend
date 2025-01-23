@@ -16,7 +16,7 @@ const Partner = ({ name, itemCount, facetName, index }) =>
 
 const mapPartnersToComponents = partners =>
   partners.map((partner, index) =>
-    <li key={`p_${index}`}>
+    <li key={`p_${partner.name}`}>
       <Partner
         name={partner.name}
         itemCount={partner.itemCount}

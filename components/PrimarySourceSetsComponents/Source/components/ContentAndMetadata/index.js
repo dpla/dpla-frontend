@@ -18,13 +18,15 @@ import {
   getContributor,
   markdownLinks
 } from "lib";
+
 import * as gtag from "lib/gtag";
 
 import utils from "stylesheets/utils.module.scss";
 import css from "./ContentAndMetadata.module.scss";
 
-const link = "/static/images/link.svg";
-const external = "/static/images/external-link-black.svg";
+import LinkIcon from "components/svg/link-icon";
+import ExternalLink from "components/svg/external-link";
+import Link from "next/link";
 
 const getSourceLink = source =>
   source.mainEntity[0]["dct:references"].filter(
@@ -223,19 +225,15 @@ class ContentAndMetadata extends React.Component {
                 <div className={css.divider} />
                 {source.mainEntity[0]["dct:references"] &&
                   <div className={css.linkWrapper}>
-                    <a
+                    <Link
                       className={css.sourceLink}
                       href={`/item/${getItemId(source)}`}
                     >
-                      <img
-                        alt="Link icon"
-                        src={link}
-                        className={css.linkIcon}
-                      />
+                      <LinkIcon className={css.linkIcon}/>
                       <span className={css.linkText}>
                         View item information
                       </span>
-                    </a>
+                    </Link>
                   </div>}
                 {source.mainEntity[0]["dct:references"] &&
                   <div className={css.linkWrapper}>
@@ -245,11 +243,7 @@ class ContentAndMetadata extends React.Component {
                       onClick={e => trackClickThrough(e, source)}
                       rel="noopener"
                     >
-                      <img
-                        alt="External link icon"
-                        src={external}
-                        className={css.externalIcon}
-                      />
+                      <ExternalLink className={css.externalIcon}/>
                       <span className={css.linkText}>
                         View in {getPartner(source)}
                       </span>

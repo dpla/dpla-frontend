@@ -1,11 +1,10 @@
 import React from "react";
-import Link from "next/link"
 
 import css from "./Accordion.module.scss";
 
-const addIcon = "/static/images/add.svg";
-const subtractIcon = "/static/images/subtract.svg";
-const informationIcon = "/static/images/information.svg";
+import AddIcon from "components/svg/add-icon";
+import SubtractIcon from "components/svg/subtract-icon";
+import InformationIcon from "components/svg/information";
 
 class Accordion extends React.Component {
 
@@ -13,12 +12,11 @@ class Accordion extends React.Component {
         super(props);
         // first save the original items
         const originalItems = props.items.map(item => {
-            return Object.assign({}, item, {active: true});
+            return {...item, active: true};
         });
         // activate all of them
         this.state = {items: originalItems};
     }
-
 
     componentDidMount() {
         // now collapse accordions for realz
@@ -29,7 +27,7 @@ class Accordion extends React.Component {
         if (prevProps.items !== this.props.items) {
             this.setState({
                 items: this.props.items.map((item, i) =>
-                    Object.assign({}, item, {active: this.state.items[i].active})
+                    ({...item, active: prevState.items[i].active})
                 )
             });
         }
@@ -39,7 +37,7 @@ class Accordion extends React.Component {
         const {items} = this.state;
         const newItemsArray = items.map((item, i) => {
             if (i === index) {
-                return Object.assign({}, item, {active: !item.active});
+                return {...item, active: !item.active};
             } else {
                 return item;
             }
@@ -56,8 +54,7 @@ class Accordion extends React.Component {
                         item.type === "date"
                     ) {
                         return (
-                            <li key={i} className={item.active ? css.active : css.inactive}>
-
+                            <li key={item.name} className={item.active ? css.active : css.inactive}>
                                 <button
                                     className={css.itemHeader}
                                     aria-controls={`facets_${i}`}
@@ -68,35 +65,23 @@ class Accordion extends React.Component {
                                         <a href={"https://dp.la/about/rights-categories"}
                                            title={"This facet is used to filter by copyright status. Click to learn more."}
                                            aria-label={"This facet is used to filter by copyright status. Click to learn more."}
-                                        ><img
-                                            id={"how-can-i-use-it-info"}
-                                            src={informationIcon}
-                                            alt={""}
-                                            className={css.informationIcon}
-                                        /></a>
+                                        ><InformationIcon className={css.informationIcon} /></a>
                                     }</h3>
-                                    {item.active &&
-                                        <img
-                                            src={subtractIcon}
-                                            alt=""
-                                            className={css.subtractIcon}
-                                        />}
-                                    {!item.active &&
-                                        <img src={addIcon} alt="" className={css.addIcon}/>}
+                                    {item.active && <SubtractIcon className={css.subtractIcon}/>}
+                                    {!item.active && <AddIcon className={css.addIcon}/>}
                                 </button>
                                 {item.type === "term" &&
                                     <ul id={`facets_${i}`} className={css.subitems}>
-                                        {item.subitems.map((subitem, j) =>
-                                            <li key={j}>{subitem.content}</li>
+                                        {item.subitems.map((subitem) =>
+                                            <li key={subitem.content}>{subitem.content}</li>
                                         )}
                                     </ul>}
                                 {item.type === "date" &&
                                     <div
                                         id={`facets_${i}`}
                                         className={`${css.subitems} ${css.date}`}
-                                    >
-                                        {item.subitems}
-                                    </div>}
+                                    >{item.subitems}</div>
+                                }
                             </li>
                         );
                     }

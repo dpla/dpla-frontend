@@ -2,6 +2,7 @@ import * as React from "react";
 
 const DplaLogo = (props) => (
     <svg viewBox="0 0 477.84 58" {...props}>
+        <title>DPLA</title>
         <defs>
             <style>{`.cls-1{fill:none;}.cls-2{fill:#749baf;}.cls-3{fill:#7ca1b4;}.cls-4{fill:#fff;}.cls-5{clip - path:url(#clip-path);}`}</style>
             <clipPath>

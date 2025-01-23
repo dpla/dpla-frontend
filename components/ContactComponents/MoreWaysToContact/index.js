@@ -7,6 +7,12 @@ const MoreWaysToContact = () => (
   <div>
     <h2 className={css.header}>More Ways To Contact Us</h2>
     <table className={css.contentTable}>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
       <tbody>
         <tr className={`${utils.row} ${css.paddedRow}`}>
           <td className={`${utils.colXs12} ${utils.colSm5} ${css.tableHeading}`}>

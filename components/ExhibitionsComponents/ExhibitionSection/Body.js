@@ -11,13 +11,7 @@ class Body extends React.Component {
     state = {isMenuOpen: false};
 
     toggleMenu() {
-        this.setState(
-            {
-                isMenuOpen: !this.state.isMenuOpen
-            },
-            () => {
-            }
-        );
+        this.setState(prevState => ({isMenuOpen: !prevState.isMenuOpen}));
     }
 
     render() {

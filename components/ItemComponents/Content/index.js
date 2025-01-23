@@ -5,13 +5,13 @@ import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
 import {withRouter} from "next/router";
 
-import {gtag} from "lib";
-import {bindLinkEvent, getFullPath, joinIfArray} from "lib";
+import {bindLinkEvent, getFullPath, joinIfArray, gtag} from "lib";
 import {UNTITLED_TEXT} from "constants/site";
 
 import css from "./Content.module.scss";
 
 class Content extends React.Component {
+
     // items track the clickthroughs and the view for the partner
     componentDidMount() {
         this.trackItemView();

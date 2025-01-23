@@ -3,7 +3,7 @@ import Link from "next/link";
 import { withRouter } from "next/router";
 import Image from "next/image";
 
-const dplaLogoWide  = "public/static/images/dpla-logo-white.svg";
+import DplaLogoWhite from "components/svg/dpla-logo-white";
 
 import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
@@ -29,7 +29,8 @@ class PageHeader extends React.Component {
         >
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
             <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"} className={css.logo} title="Home Page">
-              <Image src={"/static/images/dpla-logo-white.svg"} width="749" height="90" alt="DPLA" className={css.logoImg} />
+              <DplaLogoWhite className={css.logoImg}/>
+              {/*<Image src={"/static/images/dpla-logo-white.svg"} width="749" height="90" alt="DPLA" className={css.logoImg} />*/}
             </Link>}
           {SITE_ENV === "local" &&
             <Link href="/local" as="/" className={`${css.logo} ${css.local}`} title="Home Page">
@@ -63,7 +64,7 @@ class PageHeader extends React.Component {
                     return (
                       <input
                         type="hidden"
-                        key={`k_${index}`}
+                        key={`k_${key}`}
                         name={key}
                         value={router.query[key]}
                       />

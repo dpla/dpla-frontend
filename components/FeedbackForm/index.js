@@ -36,73 +36,73 @@ class FeedbackForm extends React.Component {
 
   openForm = e => {
     e.preventDefault();
-    this.setState({
+    this.setState( prevState => ({
       timestamp: Date.now(),
       isSending: false,
       isSent: false,
-      url: this.state.url,
+      url: prevState.url,
       modalActive: true,
       type: "comment",
       step: 1,
       email: "",
       message: undefined
-    });
+    }));
   };
 
   onTypeChange = e => {
-    this.setState({
-      timestamp: this.state.timestamp,
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
+    this.setState( prevState => ({
+      timestamp: prevState.timestamp,
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      url: prevState.url,
+      modalActive: prevState.modalActive,
       type: e.target.value,
-      step: this.state.step,
-      email: this.state.email,
-      message: this.state.message
-    });
+      step: prevState.step,
+      email: prevState.email,
+      message: prevState.message
+    }));
   };
 
   onMessageChange = e => {
-    this.setState({
-      timestamp: this.state.timestamp,
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
-      type: this.state.type,
-      step: this.state.step,
-      email: this.state.email,
+    this.setState(prevState => ({
+      timestamp: prevState.timestamp,
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      url: prevState.url,
+      modalActive: prevState.modalActive,
+      type: prevState.type,
+      step: prevState.step,
+      email: prevState.email,
       message: e.target.value
-    });
+    }));
   };
 
   onEmailChange = e => {
-    this.setState({
-      timestamp: this.state.timestamp,
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
-      type: this.state.type,
-      step: this.state.step,
+    this.setState(prevState => ({
+      timestamp: prevState.timestamp,
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      url: prevState.url,
+      modalActive: prevState.modalActive,
+      type: prevState.type,
+      step: prevState.step,
       email: e.target.value,
-      message: this.state.message
-    });
+      message: prevState.message
+    }));
   };
 
   activateRequired = e => {
-    this.setState({
-      timestamp: this.state.timestamp,
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
-      type: this.state.type,
-      step: this.state.step,
-      email: this.state.email,
-      message: this.state.message || ""
-    });
+    this.setState( prevState => ({
+      timestamp: prevState.timestamp,
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      url: prevState.url,
+      modalActive: prevState.modalActive,
+      type: prevState.type,
+      step: prevState.step,
+      email: prevState.email,
+      message: prevState.message || ""
+    }));
   };
 
   formIsValid() {
@@ -114,29 +114,27 @@ class FeedbackForm extends React.Component {
   }
 
   handleSubmit = async e => {
-    let close_button = e.target.elements.close_button;
+    const close_button = e.target.elements.close_button;
     e.preventDefault();
     if (!this.formIsValid()) return;
-
-    this.setState({
-      timestamp: this.state.timestamp,
+    this.setState(prevState => ({
+      timestamp: prevState.timestamp,
       isSending: true,
       isSent: false,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
-      type: this.state.type,
+      url: prevState.url,
+      modalActive: prevState.modalActive,
+      type: prevState.type,
       step: 2,
-      email: this.state.email,
-      message: this.state.message
-    });
+      email: prevState.email,
+      message: prevState.message
+    }));
 
-    let url = this.state.url;
-    let message = this.state.message;
-    let type = this.state.type;
-    let email = this.state.email;
-    let miel = e.target.elements.i_prefer_usps_mail.value;
-
-    let body = JSON.stringify({
+    const url = this.state.url;
+    const message = this.state.message;
+    const type = this.state.type;
+    const email = this.state.email;
+    const miel = e.target.elements.i_prefer_usps_mail.value;
+    const body = JSON.stringify({
       url: url,
       type: type,
       message: message,
@@ -151,18 +149,19 @@ class FeedbackForm extends React.Component {
       body: body
     });
     const data = await res.text();
+    if (!data.ok) throw new Error("Failed to send feedback");
 
-    this.setState({
-      timestamp: this.state.timestamp,
+    this.setState(prevState => ({
+      timestamp: prevState.timestamp,
       isSending: false,
       isSent: true,
-      url: this.state.url,
-      modalActive: this.state.modalActive,
-      type: this.state.type,
-      step: this.state.step,
-      email: this.state.email,
-      message: this.state.message
-    });
+      url: prevState.url,
+      modalActive: prevState.modalActive,
+      type: prevState.type,
+      step: prevState.step,
+      email: prevState.email,
+      message: prevState.message
+    }));
 
     close_button.focus();
   };

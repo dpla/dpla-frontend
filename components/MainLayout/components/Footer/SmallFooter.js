@@ -6,11 +6,10 @@ import utils from "stylesheets/utils.module.scss"
 
 import { SITE_ENV } from "constants/env";
 
-const logo = "/static/images/dpla-logo.svg";
-const fbIcon = "/static/images/facebook.svg";
-const igIcon = "/static/images/instagram.svg";
-const tumblrIcon = "/static/images/tumblr.svg";
-const twitterIcon = "/static/images/twitter.svg";
+import DplaLogo from "components/svg/dpla-logo";
+import Facebook from "components/svg/facebook";
+import Instagram from "components/svg/instagram";
+import Twitter from "components/svg/twitter";
 
 class SmallFooter extends React.Component {
   render() {
@@ -18,7 +17,7 @@ class SmallFooter extends React.Component {
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-            <img className={css.logo} alt="DPLA Home" src={logo} />
+            <DplaLogo className={css.logo} />
           </Link>
           <div className={css.socialIcons}>
             <a
@@ -27,7 +26,7 @@ class SmallFooter extends React.Component {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img className={css.socialButton} alt="Facebook" src={fbIcon} />
+              <Facebook className={css.socialButton} />
             </a>
             <a
               href="https://www.instagram.com/digpublib/"
@@ -35,7 +34,7 @@ class SmallFooter extends React.Component {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img className={css.socialButton} alt="Instagram" src={igIcon} />
+              <Instagram className={css.socialButton} />
             </a>
             <a
               href="https://twitter.com/dpla"
@@ -43,11 +42,7 @@ class SmallFooter extends React.Component {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img
-                className={css.socialButton}
-                alt="Twitter"
-                src={twitterIcon}
-              />
+              <Twitter className={css.socialButton} />
             </a>
           </div>
         </div>

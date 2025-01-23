@@ -10,7 +10,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const printer = "/static/images/printer.svg";
+import Printer from "components/svg/printer"
 
 
 class TeachersGuide extends React.Component {
@@ -107,7 +107,7 @@ class TeachersGuide extends React.Component {
                   this.state.routePath &&
                   <div className={css.tools}>
                     <div className={css.toolLinkAndIcon}>
-                      <img src={printer} alt="" className={css.toolIcon} />
+                      <Printer className={css.toolIcon}/>
                       <a
                         href={
                           "" +

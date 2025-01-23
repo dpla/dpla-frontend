@@ -19,7 +19,7 @@ class NavigationLocal extends Component {
 
             const categories = dynamicRoutes
                 .map(function (category, i) {
-                    const keys = Object.assign({}, i);
+                    const keys = {};
                     keys.id = i;
                     keys.route = dynamicRoutes[i];
                     keys.isTopLevel = routesObj[dynamicRoutes[i]].isTopLevel;
@@ -144,7 +144,7 @@ class NavigationLocal extends Component {
                     )}
                     <li>
                         <Link href="/lists">
-                            <a>My Lists</a>
+                            My Lists
                         </Link>
                     </li>
                 </ul>

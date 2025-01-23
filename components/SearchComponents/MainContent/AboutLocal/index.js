@@ -31,7 +31,7 @@ const dplaLink = query => {
         .join("&")}`;
 };
 
-const AboutLocal = ({items, count, query}) =>
+const AboutLocal = ({items, query}) =>
     <section className={`${css.wrapper}`}>
         <div className={utils.container}>
             <h1 className={css.header}>
@@ -44,7 +44,7 @@ const AboutLocal = ({items, count, query}) =>
                 {items.map((item, index) => {
                     item.linkHref = `https://dp.la/item/${item.id}`;
                     return (
-                        <li key={`ab_${index}`} className={css.item}>
+                        <li key={`ab_${item.id}`} className={css.item}>
                             <ListImage
                                 className={css.itemImage}
                                 item={item}

@@ -61,6 +61,18 @@ class MainMetadata extends React.Component {
       ? joinIfArray(item.description).length > maxDescriptionLength
       : false;
 
+    let viewFullItemText;
+    switch(item.type) {
+      case "image":
+        viewFullItemText = "View Full Image";
+        break;
+        case "text":
+        viewFullItemText = "View Full Text";
+        break;
+      default:
+        viewFullItemText = "View Full Item";
+    }
+
     return (
       <div className={css.mainMetadata}>
         <dl className={css.contentDL}>
@@ -81,11 +93,7 @@ class MainMetadata extends React.Component {
                     href={item.sourceUrl}
                   >
                     <span className={css.sourceLinkText}>
-                      {item.type === "image"
-                        ? "View Full Image"
-                        : item.type === "text"
-                          ? "View Full Text"
-                          : "View Full Item"}
+                      {viewFullItemText}
                     </span>
                   </a>
                 }

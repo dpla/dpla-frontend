@@ -8,7 +8,7 @@ import utils from "stylesheets/utils.module.scss"
 
 import { LOCALS } from "constants/local";
 
-const logo = "/static/images/dpla-logo.svg";
+import DplaLogo from "components/svg/dpla-logo";
 
 class SmallFooterLocal extends React.Component {
   render() {
@@ -27,7 +27,6 @@ class SmallFooterLocal extends React.Component {
     } else if (LOCAL_ID === "tennessee") {
         logoHtml = (
             <Link href="/local" as="/">
-
                     <img
                         className={css.localLogo}
                         alt={`${LOCALS[LOCAL_ID].name} Home`}
@@ -55,12 +54,7 @@ class SmallFooterLocal extends React.Component {
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
           {logoHtml}
           <Link href="https://dp.la">
-
-              <img
-                className={css.partnershipLogo}
-                alt="In partnership with DPLA"
-                src={logo}
-              />
+              <DplaLogo className={css.partnershipLogo}/>
           </Link>
         </div>
       </div>

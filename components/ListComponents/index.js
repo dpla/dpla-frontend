@@ -28,8 +28,8 @@ export const List = ({ uuid, name, itemCount, createdAt }) =>
 
 export const Lists = ({ lists }) =>
   <ul className={`${css.lists} ${utils.colXs12}`}>
-    {lists.map((l, index) =>
-      <li key={`l_${index}`}>
+    {lists.map((l) =>
+      <li key={`l_${l.uuid}`}>
         <List
           uuid={l.uuid}
           name={l.name}
@@ -160,7 +160,6 @@ export const ListsContent = ({ initialized, lists, onCreateList }) =>
   </div>;
 
 export const ListCheckbox = ({
-  index,
   list,
   shouldDisable,
   isChecked,

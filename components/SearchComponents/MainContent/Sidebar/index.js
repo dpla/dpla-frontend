@@ -3,7 +3,8 @@ import Link from "next/link";
 import Router, { withRouter } from "next/router";
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
-const informationIcon = "/static/images/information.svg";
+
+import InformationIcon from "components/svg/information";
 
 import {
   possibleFacets,
@@ -30,13 +31,13 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
 
     const href = {
         pathname: router.pathname,
-        query: Object.assign({}, router.query, {
-            // some facet names have spaces, and we need to wrap them in " "
+        query: {
+            ...router.query, // some facet names have spaces, and we need to wrap them in " "
             [queryKey]: router.query[queryKey]
                 ? [`${router.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
                 : `"${termObject.term}"`,
             page: 1
-        })
+        }
     };
 
     return (<div className={css.facet}>
@@ -49,12 +50,7 @@ const FacetLink = withRouter(({router, queryKey, termObject, disabled, isTooltip
                    title={tooltips[termObject.term].text}
                    aria-label={tooltips[termObject.term].text}
             >
-                <img
-
-                    src={informationIcon}
-                    alt=""
-                    className={css.informationIcon}
-                />
+                <InformationIcon className={css.informationIcon} />
             </Link>)
             }</span>{" "}<Link href={href} className={css.facetCount}>
                 {addCommasToNumber(termObject.count)}
@@ -95,10 +91,10 @@ class DateFacet extends React.Component {
 
     handleAfterText = event => {
         let year = this.cleanText(event.target, this.state.after);
-        this.setState({
-            before: this.state.before,
+        this.setState(prevState => ({
+            before: prevState.before,
             after: year
-        });
+        }));
     };
 
     validateAfter = event => {
@@ -142,14 +138,11 @@ class DateFacet extends React.Component {
         const dateProps = this.getDateProps();
         Router.push({
             pathname: this.props.router.pathname,
-            query: Object.assign(
-                {},
-                removeQueryParams(this.props.router.query, ["after", "before"]),
-                dateProps,
-                {
-                    page: 1
-                }
-            )
+            query: {
+                ...removeQueryParams(this.props.router.query, ["after", "before"]),
+                ...dateProps,
+                page: 1
+            }
         });
     }
 
@@ -163,13 +156,10 @@ class DateFacet extends React.Component {
     render() {
         // NOTE: this form should maybe be wrapping the entire sidebar?
         const { router } = this.props;
-        const formVals = Object.assign(
-            {},
-            removeQueryParams(router.query, ["after", "before", "page"]),
-            {
-                page: 1
-            }
-        );
+        const formVals = {
+            ...removeQueryParams(router.query, ["after", "before", "page"]),
+            page: 1
+        };
         return (
             <form
                 action={router.pathname}
@@ -202,7 +192,7 @@ class DateFacet extends React.Component {
                     />
                 </label>
                 {Object.entries(formVals).map(([k, v], index) => {
-                    return <input type="hidden" name={k} key={index} value={v}/>;
+                    return <input type="hidden" name={k} key={k} value={v}/>;
                 })}
                 <Button type="secondary" className={css.dateButton} mustSubmit={true}>
                     Update

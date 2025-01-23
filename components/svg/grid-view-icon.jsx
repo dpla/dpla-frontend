@@ -2,6 +2,7 @@ import * as React from "react";
 
 const GridViewIcon = (props) => (
     <svg width="32" height="32" viewBox="0 0 32 32" {...props}>
+        <title>Grid View</title>
         <g fill="none" fillRule="evenodd">
             <path d="M-2-2h36v36H-2z"/>
             <g fill="#000">

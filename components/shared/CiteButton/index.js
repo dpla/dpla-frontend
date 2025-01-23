@@ -64,7 +64,7 @@ class CiteButton extends React.Component {
             {freeText &&
               <dl className={css.citationList}>
                 <dt>Citation Information</dt>
-                <dd>{freeText}</dd>
+                <dd dangerouslySetInnerHTML={{__html: freeText}} />
               </dl>}
             {!freeText &&
               <dl className={css.citationList}>
