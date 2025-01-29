@@ -97,17 +97,17 @@ export async function getServerSideProps() {
   const sourceSets = [];
   featuredPrimarySourceSets.forEach((featuredSet) => {
     if (featuredSet) {
-      const setWithLinkInfo = Object.assign({}, featuredSet, {
+      const setWithLinkInfo = {
+        ...featuredSet,
         href: `/primary-source-sets/set?set=${featuredSet.primary_source_set_id}`,
         as: `/primary-source-sets/${featuredSet.primary_source_set_id}`,
         repImageUrl: featuredSet.image_url,
-      });
+      };
       sourceSets.push(setWithLinkInfo);
     }
   });
 
   // fetch item count
-
   const apiUrl = `https://api.dp.la/v2/items?page_size=0&api_key=${process.env.API_KEY}`;
   const itemsRes = await fetch(apiUrl);
   const itemsJson = await itemsRes.json();
