@@ -29,7 +29,7 @@ class Body extends React.Component {
                     subsectionTitle={subsection.title}
                     isMenuOpen={this.state.isMenuOpen}
                 />
-                <div id="main" role="main" className={css.mainContent}>
+                <main id="main" role="main" className={css.mainContent}>
                     <Sidebar
                         currentSubsection={subsection}
                         currentSection={section}
@@ -42,7 +42,7 @@ class Body extends React.Component {
                         subsection={subsection}
                         section={section}
                     />
-                </div>
+                </main>
             </div>
         );
     }

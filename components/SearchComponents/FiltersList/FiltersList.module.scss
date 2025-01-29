@@ -116,8 +116,8 @@
   margin-right: 0.5rem;
   position: relative;
   top: 1px;
-}
 
-.clearAllIconPath {
-  fill: $linkColor;
+  g path.clearAllIconPath {
+    fill: $linkColor;
+  }
 }

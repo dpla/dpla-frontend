@@ -1,16 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import {withRouter} from "next/router"
 
-import DplaLogoBlack from "components/svg/dpla-logo-black";
+import BlackChevron from "components/svg/ChevronThickBlack";
+import Chevron from "components/svg/ChevronThickWhite";
+import DplaLogoBlack from "components/svg/DplaLogoBlack";
 
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-import Chevron from "components/svg/chevron-thick-white";
-import BlackChevron from "components/svg/chevron-thick-black";
 
-const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) => {
+function NavButton({queryParams, nextOrPrevious = "next"}) {
     const label = nextOrPrevious === "next" ? "Next" : "Previous"
     if (queryParams) {
         return (
@@ -33,28 +32,30 @@ const NavButton = withRouter(({queryParams, router, nextOrPrevious = "next"}) =>
             </span>
         )
     }
-});
+}
 
-const FooterNav = ({nextQueryParams, previousQueryParams, nextSubsectionTitle}) => (
-    <div className={css.footerWrapper}>
-        <div className={`${utils.container} ${css.footerNav}`}>
-            <Link href={"/"}><DplaLogoBlack className={css.dplaLogo}/></Link>
-            <div className={css.navButtons}>
-                <NavButton
-                    queryParams={previousQueryParams}
-                    nextOrPrevious="previous"
-                />
-                <div className={css.nextButtonAndTitleWrapper}>
-                    {nextSubsectionTitle && <div className={css.nextSubsectionTitle}>{nextSubsectionTitle}</div>}
+function FooterNav({nextQueryParams, previousQueryParams, nextSubsectionTitle}) {
+    return (
+        <div className={css.footerWrapper}>
+            <div className={`${utils.container} ${css.footerNav}`}>
+                <Link href={"/"}><DplaLogoBlack className={css.dplaLogo}/></Link>
+                <div className={css.navButtons}>
                     <NavButton
-                        queryParams={nextQueryParams}
-                        nextSubsectionTitle={nextQueryParams && nextSubsectionTitle}
-                        nextOrPrevious="next"
+                        queryParams={previousQueryParams}
+                        nextOrPrevious="previous"
                     />
+                    <div className={css.nextButtonAndTitleWrapper}>
+                        {nextSubsectionTitle && <div className={css.nextSubsectionTitle}>{nextSubsectionTitle}</div>}
+                        <NavButton
+                            queryParams={nextQueryParams}
+                            nextSubsectionTitle={nextQueryParams && nextSubsectionTitle}
+                            nextOrPrevious="next"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default FooterNav;

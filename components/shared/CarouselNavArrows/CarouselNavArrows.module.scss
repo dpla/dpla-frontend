@@ -55,9 +55,10 @@
 .prevArrow {
   left: -0.5rem !important;
 
-  & img {
-    transform: rotate(180deg);
+  & svg {
+    transform: rotate(180deg) scale(1.8,1.8);
     margin-left: -0.25rem;
+
   }
 
   @media (min-width: $largeRem) {
@@ -72,7 +73,8 @@
     right: -3.5rem !important;
   }
 
-  & img {
+  & svg {
     margin-left: 0.25rem;
+    transform: scale(1.8,1.8);
   }
 }

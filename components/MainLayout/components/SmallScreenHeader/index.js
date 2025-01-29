@@ -13,27 +13,18 @@ import { LOCALS } from "constants/local";
 
 class SmallScreenHeader extends Component {
   state = {
-    menuIsOpen: false,
-    searchIsOpen: false
+    menuIsOpen: false
   };
 
   toggleMenu = () => {
-    this.setState({
-      menuIsOpen: !this.state.menuIsOpen,
-      searchIsOpen: false
-    });
-  };
-
-  toggleSearch = () => {
-    this.setState({
-      searchIsOpen: !this.state.searchIsOpen,
-      menuIsOpen: false
-    });
+    this.setState(prevState => ({
+      menuIsOpen: !prevState.menuIsOpen
+    }));
   };
 
   render() {
-    const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, isHome } = this.props;
+    const { menuIsOpen } = this.state;
+    const { isHome } = this.props;
 
     return (
       <div className={css.wrapper} data-cy="small-screen-header">

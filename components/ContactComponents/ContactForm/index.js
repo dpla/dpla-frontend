@@ -3,45 +3,45 @@ import React from "react";
 import Button from "shared/Button";
 
 import css from "./ContactForm.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
 const selectOptions = [
   { value: "General inquiry", label: "General inquiry" },
   {
     value: "Item usage and rights",
-    label: "Item usage and rights"
+    label: "Item usage and rights",
   },
   {
     value: "Hubs and adding new content to DPLA",
-    label: "Hubs and adding new content to DPLA"
+    label: "Hubs and adding new content to DPLA",
   },
   {
     value: "Report a problem with the website",
-    label: "Report a problem with the website"
+    label: "Report a problem with the website",
   },
   {
     value: "Report an error with our data",
-    label: "Report an error with our data"
+    label: "Report an error with our data",
   },
   {
     value: "Report an accessibility issue",
-    label: "Report an accessibility issue"
+    label: "Report an accessibility issue",
   },
   {
     value: "API, bulk data, and developer-related questions",
-    label: "API, bulk data, and developer-related questions"
+    label: "API, bulk data, and developer-related questions",
   },
   {
     value: "App Library subsmission",
-    label: "App Library subsmission"
+    label: "App Library subsmission",
   },
   {
     value: "Education and Primary Source Sets",
-    label: "Education and Primary Source Sets"
+    label: "Education and Primary Source Sets",
   },
   { value: "Community Reps", label: "Community Reps" },
   { value: "Ebooks", label: "Ebooks" },
-  { value: "Press inquiry", label: "Press inquiry" }
+  { value: "Press inquiry", label: "Press inquiry" },
 ];
 
 class ContactForm extends React.Component {
@@ -51,96 +51,96 @@ class ContactForm extends React.Component {
     email: undefined,
     name: undefined,
     message: undefined,
-    subject: "General inquiry"
+    subject: "General inquiry",
   };
 
-  onEmailChange = e => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
+  onEmailChange = (e) => {
+    this.setState((prevState) => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
       email: e.target.value,
-      name: this.state.name,
-      message: this.state.message,
-      subject: this.state.subject
-    });
+      name: prevState.name,
+      message: prevState.message,
+      subject: prevState.subject,
+    }));
   };
 
-  onNameChange = e => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
+  onNameChange = (e) => {
+    this.setState((prevState) => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
       name: e.target.value,
-      email: this.state.email,
-      message: this.state.message,
-      subject: this.state.subject
-    });
+      email: prevState.email,
+      message: prevState.message,
+      subject: prevState.subject,
+    }));
   };
 
-  onMessageChange = e => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
+  onMessageChange = (e) => {
+    this.setState((prevState) => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
       message: e.target.value,
-      name: this.state.name,
-      email: this.state.email,
-      subject: this.state.subject
-    });
+      name: prevState.name,
+      email: prevState.email,
+      subject: prevState.subject,
+    }));
   };
 
-  onSubjectChange = selectedOption => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
+  onSubjectChange = (selectedOption) => {
+    this.setState((prevState) => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
       subject: selectedOption.target.value,
-      name: this.state.name,
-      message: this.state.message,
-      email: this.state.email
-    });
+      name: prevState.name,
+      message: prevState.message,
+      email: prevState.email,
+    }));
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if (!this.formIsValid()) return;
 
-    this.setState({
+    this.setState((prevState) => ({
       isSending: true,
       isSent: false,
-      subject: this.state.subject,
-      name: this.state.name,
-      message: this.state.message,
-      email: this.state.email
-    });
+      subject: prevState.subject,
+      name: prevState.name,
+      message: prevState.message,
+      email: prevState.email,
+    }));
 
-    let email = this.state.email;
-    let name = this.state.name;
-    let message = this.state.message;
-    let subject = this.state.subject;
-    let miel = e.target.elements.i_prefer_usps_mail.value;
+    const email = this.state.email;
+    const name = this.state.name;
+    const message = this.state.message;
+    const subject = this.state.subject;
+    const miel = e.target.elements.i_prefer_usps_mail.value;
 
-    let body = JSON.stringify({
+    const body = JSON.stringify({
       email: email,
       name: name,
       subject: subject,
       message: message,
-      miel: miel
+      miel: miel,
     });
     const res = await fetch("/g/contact", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json; charset=utf-8"
+        "Content-Type": "application/json; charset=utf-8",
       },
-      body: body
+      body: body,
     });
 
     await res.text();
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isSending: false,
       isSent: true,
       subject: prevState.subject,
       name: prevState.name,
       message: prevState.message,
-      email: prevState.email
+      email: prevState.email,
     }));
   };
 
@@ -158,13 +158,13 @@ class ContactForm extends React.Component {
   }
 
   activateRequired = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isSending: prevState.isSending,
       isSent: prevState.isSent,
       message: prevState.message || "",
       name: prevState.name || "",
       email: prevState.email || "",
-      subject: prevState.subject || ""
+      subject: prevState.subject || "",
     }));
   };
 
@@ -178,32 +178,29 @@ class ContactForm extends React.Component {
 
   render() {
     const nameProps = {
-      required: this.state.name !== undefined
+      required: this.state.name !== undefined,
     };
     const emailProps = {
-      required: this.state.email !== undefined
+      required: this.state.email !== undefined,
     };
     const messageProps = {
-      required: this.state.message !== undefined
+      required: this.state.message !== undefined,
     };
     const buttonProps = {
       mustSubmit: this.touchedAll(),
-      onClick: this.activateRequired
+      onClick: this.activateRequired,
     };
     return (
       <div className={css.contactForm}>
-        {!this.state.isSent &&
+        {!this.state.isSent && (
           <div>
             <p className={css.instructions}>
               We would love to hear from you! Please fill out this form and we
-              will
-              get in touch with you shortly.
+              will get in touch with you shortly.
             </p>
             <form onSubmit={this.handleSubmit} data-cy="contact-form">
               <label htmlFor="contact-name">
-                <span>
-                  Your name (required)
-                </span>
+                <span>Your name (required)</span>
                 <input
                   id="contact-name"
                   name="name"
@@ -214,9 +211,7 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-email">
-                <span>
-                  Your email (required)
-                </span>
+                <span>Your email (required)</span>
                 <input
                   id="contact-email"
                   type="email"
@@ -227,9 +222,7 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-message">
-                <span>
-                  Your message (required)
-                </span>
+                <span>Your message (required)</span>
                 <textarea
                   id="contact-message"
                   name="message"
@@ -239,20 +232,18 @@ class ContactForm extends React.Component {
                 />
               </label>
               <label htmlFor="contact-subject">
-                <span className={css.notFixed}>
-                  Subject (required)
-                </span>
+                <span className={css.notFixed}>Subject (required)</span>
                 <select
                   id="contact-subject"
                   value={this.state.subject}
                   required
                   onChange={this.onSubjectChange}
                 >
-                  {selectOptions.map((option, index) =>
+                  {selectOptions.map((option, index) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
-                  )}
+                  ))}
                 </select>
               </label>
               <input
@@ -264,28 +255,32 @@ class ContactForm extends React.Component {
                 autoComplete="off"
               />
               <div className={`${utils.colXs12} ${utils.colMd4}`}>
-                {!this.state.isSending &&
+                {!this.state.isSending && (
                   <Button type="primary" {...buttonProps}>
                     Send message
-                  </Button>}
-                {this.state.isSending &&
+                  </Button>
+                )}
+                {this.state.isSending && (
                   <Button
                     type="secondary"
                     className={css.disabledButton}
                     live="assertive"
                   >
                     Sending message…
-                  </Button>}
+                  </Button>
+                )}
               </div>
             </form>
-          </div>}
-        {this.state.isSent &&
+          </div>
+        )}
+        {this.state.isSent && (
           <div aria-live="assertive">
             <h1 className={css.header}>Thank you!</h1>
             <p className={css.instructions}>
               A DPLA staff member will contact you soon.
             </p>
-          </div>}
+          </div>
+        )}
       </div>
     );
   }

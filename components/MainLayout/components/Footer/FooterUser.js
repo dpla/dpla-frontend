@@ -122,7 +122,7 @@ class FooterUser extends React.Component {
                 </Link>
               </li>
               <li>
-                <Link href={PRO_BASE_URL + "/developers"} data-cy="footer-link-developers"a>
+                <Link href={PRO_BASE_URL + "/developers"} data-cy="footer-link-developers">
                   Developers
                 </Link>
               </li>

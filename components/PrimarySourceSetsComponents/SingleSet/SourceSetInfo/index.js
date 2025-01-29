@@ -11,8 +11,7 @@ import utils from "stylesheets/utils.module.scss"
 import {mapSubjectNameToSlug, mapTimePeriodNameToSlug} from "constants/primarySourceSets";
 import Link from "next/link";
 
-const googleClassroom = "/static/images/google-classroom.svg";
-
+import GoogleClassroom from "components/svg/GoogleClassroom";
 
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
@@ -50,8 +49,7 @@ class SourceSetInfo extends React.Component {
                 <div
                   className={css.bannerImage}
                   style={{
-                    backgroundImage: `url(${set.repImageUrl ||
-                      set.thumbnailUrl})`,
+                    backgroundImage: `url(${set.repImageUrl || set.thumbnailUrl})`,
                     backgroundPosition: "50% 25%"
                   }}
                 />
@@ -99,7 +97,6 @@ class SourceSetInfo extends React.Component {
                     <ul>
                     {set.author.map(author =>
                         <li key={author.name}><Markdown
-                        key={author.name}
                         allowedElements={["emphasis", "text"]}
                         unwrapDisallowed
                         >{author.name + ", " + author.affiliation.name}</Markdown></li>
@@ -168,11 +165,7 @@ class SourceSetInfo extends React.Component {
                 {this.state.href !== "" &&
                   <div className={css.tools}>
                     <div className={css.toolLinkAndIcon}>
-                      <img
-                        src={googleClassroom}
-                        alt=""
-                        className={css.toolIcon}
-                      />
+                      <GoogleClassroom className={css.toolIcon}/>
                       <a
                         href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${this.state.href
                           .replace("teaching-guide", "")
@@ -180,7 +173,6 @@ class SourceSetInfo extends React.Component {
                         className={css.toolLink}
                         rel="noopener noreferrer"
                         target="_blank"
-
                       >
                         Share to Google Classroom
                       </a>

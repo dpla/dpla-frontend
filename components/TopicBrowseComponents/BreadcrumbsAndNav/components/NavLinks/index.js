@@ -3,31 +3,43 @@ import Link from "next/link";
 
 import css from "./NavArrows.module.scss";
 
-const chevron = "/static/images/chevron-thick-orange.svg";
+import Chevron from "components/svg/ChevronThickOrange";
+import * as PropTypes from "prop-types";
 
-const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
-  nextSubtopic || previousSubtopic
-    ? <div className={css.navLinks}>
-        {previousSubtopic &&
-          <Link
-            as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
-            href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
-            className={css.prevLink}
-          >
-              <img src={chevron} alt="" className={css.prevArrow} />
-              <span>Previous Section</span>
-          </Link>}
-        {nextSubtopic &&
-          <Link
-            as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
-            href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
-          >
+function NavArrows(props) {
+  const { previousSubtopic, nextSubtopic, topic, route } = props;
+  return nextSubtopic || previousSubtopic ? (
+    <div className={css.navLinks}>
+      {previousSubtopic && (
+        <Link
+          as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
+          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
+          className={css.prevLink}
+        >
+          <Chevron className={css.prevArrow} />
+          <span>Previous Section</span>
+        </Link>
+      )}
+      {nextSubtopic && (
+        <Link
+          as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
+          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
+        >
+          <span>Next Section</span>
+          <Chevron className={css.nextArrow} />
+        </Link>
+      )}
+    </div>
+  ) : (
+    <></>
+  );
+}
 
-              <span>Next Section</span>
-              <img src={chevron} alt="" className={css.nextArrow} />
-            
-          </Link>}
-      </div>
-    : null;
+NavArrows.propTypes = {
+  previousSubtopic: PropTypes.any,
+  nextSubtopic: PropTypes.any,
+  topic: PropTypes.any,
+  route: PropTypes.any,
+};
 
 export default NavArrows;

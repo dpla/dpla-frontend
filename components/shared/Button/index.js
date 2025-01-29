@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import css from "./Button.module.scss";
 
-const Button = ({
+function Button({
   id,
   as,
   children,
@@ -15,7 +15,6 @@ const Button = ({
   selected,
   checked,
   expanded,
-  icon,
   onClick,
   size,
   style,
@@ -27,7 +26,7 @@ const Button = ({
   disabled,
   live,
   url
-}) => {
+}) {
   let buttonClasses = `${css.buttonBase}`;
 
   let props = {};
@@ -93,6 +92,6 @@ const Button = ({
           </button>}
     </div>
   );
-};
+}
 
 export default Button;

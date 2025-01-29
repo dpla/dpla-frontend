@@ -5,13 +5,11 @@ import { withRouter } from "next/router";
 
 import { removeQueryParams, markdownLinks } from "lib";
 
-
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-import Printer from "components/svg/printer"
-
+import Printer from "components/svg/Printer"
 
 class TeachersGuide extends React.Component {
   state = { routePath: null };
@@ -77,14 +75,10 @@ class TeachersGuide extends React.Component {
                       allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
                     >{setName}</Markdown></Link>, in the classroom. It offers discussion questions,
-                    classroom
-                    activities, and primary source analysis tools. It is
-                    intended to
-                    spark pedagogical creativity by giving a sample approach to
-                    the
-                    material. Please feel free to share, reuse, and adapt the
-                    resources
-                    in this guide for your teaching purposes.
+                    classroom activities, and primary source analysis tools. It is
+                    intended to spark pedagogical creativity by giving a sample approach to
+                    the material. Please feel free to share, reuse, and adapt the
+                    resources in this guide for your teaching purposes.
                   </div>
                 </div>
               </div>

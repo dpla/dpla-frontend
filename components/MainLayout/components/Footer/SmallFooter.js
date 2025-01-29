@@ -2,14 +2,14 @@ import React from "react";
 import Link from "next/link";
 
 import css from "./Footer.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
 import { SITE_ENV } from "constants/env";
 
-import DplaLogo from "components/svg/dpla-logo";
-import Facebook from "components/svg/facebook";
-import Instagram from "components/svg/instagram";
-import Twitter from "components/svg/twitter";
+import DplaLogo from "components/svg/DplaLogo";
+import Facebook from "components/svg/Facebook";
+import Instagram from "components/svg/Instagram";
+import Twitter from "components/svg/Twitter";
 
 class SmallFooter extends React.Component {
   render() {

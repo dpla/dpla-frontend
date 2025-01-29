@@ -2,7 +2,7 @@ import React from "react";
 
 import {joinIfArray} from "lib";
 
-const JsonLdMarkup = ({ item }) => {
+function JsonLdMarkup({ item }) {
   /**
     * @param values Array, possibly nested, of defined and undefined values.
     * @return Array, flattened, only containing defined values.
@@ -253,6 +253,6 @@ const JsonLdMarkup = ({ item }) => {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(JsonLd) }}
     />
   );
-};
+}
 
 export default JsonLdMarkup;

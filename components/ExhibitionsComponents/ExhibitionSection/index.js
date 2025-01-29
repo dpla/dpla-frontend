@@ -6,7 +6,7 @@ import FooterNav from "./FooterNav";
 
 import css from "./ExhibitionSection.module.scss";
 
-const ExhibitionView = ({
+function ExhibitionView({
                             exhibitionTitle,
                             section,
                             subsection,
@@ -16,21 +16,24 @@ const ExhibitionView = ({
                             nextQueryParams,
                             nextSubsectionTitle,
                             previousQueryParams
-                        }) =>
-    <div className={css.exhibitionView} data-cy="exhibit-page">
-        <Header title={exhibitionTitle}/>
-        <Body
-            section={section}
-            subsection={subsection}
-            sectionMap={sectionMap}
-            subsectionMap={subsectionMap}
-            exhibitionSlug={exhibitionSlug}
-        />
-        <FooterNav
-            previousQueryParams={previousQueryParams}
-            nextQueryParams={nextQueryParams}
-            nextSubsectionTitle={nextSubsectionTitle}
-        />
-    </div>;
+                        }) {
+    return (
+        <div className={css.exhibitionView} data-cy="exhibit-page">
+            <Header title={exhibitionTitle}/>
+            <Body
+                section={section}
+                subsection={subsection}
+                sectionMap={sectionMap}
+                subsectionMap={subsectionMap}
+                exhibitionSlug={exhibitionSlug}
+            />
+            <FooterNav
+                previousQueryParams={previousQueryParams}
+                nextQueryParams={nextQueryParams}
+                nextSubsectionTitle={nextSubsectionTitle}
+            />
+        </div>
+    );
+}
 
 export default ExhibitionView;

@@ -15,23 +15,22 @@ import {
 import css from "./Sidebar.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
+function SidebarLink({ isCurrentLink, linkObject, title }) {
   return (
     <Link as={linkObject.as} href={linkObject.href}
-          className={`${css.link} ${isCurrentLink ? css.selected : ""}`}
+          className={`${css.link} ${isCurrentLink && css.selected}`}
     >
       {title}
     </Link>
   );
-};
+}
 
-const NestedSidebarLinks = withRouter(({
+function NestedSidebarLinks({
   item,
   items,
-  router,
   activeItemId,
   breadcrumbs
-}) => {
+}) {
   // recursive function
   const title = decodeHTMLEntities(item.title);
   const itemId = String(item.ID);
@@ -136,18 +135,18 @@ const NestedSidebarLinks = withRouter(({
               );
             })}
           </ul>
-        : null}
+        : <></>}
     </div>
   );
-});
+}
 
-const Sidebar = ({ className, activeItemId, items, router }) => {
+function Sidebar({ className, activeItemId, items, router }) {
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
   const menuItem = items.filter(
     item =>
-      item.url.match(new RegExp(activeItemId + "$")) !== null ||
+      item.url.toString().endsWith(activeItemId) ||
       Number(item.object_id) === activeItemId
   )[0];
 
@@ -179,7 +178,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
       items: items,
       name: "events"
     });
-    eventsId = eventsItem.url.substr(eventsItem.url.lastIndexOf("/"));
+    eventsId = eventsItem.url.substring(eventsItem.url.lastIndexOf("/"));
   }
 
   // exclude these items from main sidebar
@@ -210,6 +209,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
                     item={item}
                     items={items}
                     breadcrumbs={breadcrumbs}
+                    router
                   />
                 </li>
               );
@@ -217,25 +217,27 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
         </ul>
         <div className={css.divider} />
         <ul>
-          <li>
+          <li key={"about"}>
             <NestedSidebarLinks
               activeItemId={activeItemId}
               item={aboutItem}
               items={items}
               breadcrumbs={breadcrumbs}
+              router
             />
           </li>
           {eventsId &&
-            <li>
+            <li key={"events"}>
               <NestedSidebarLinks
                 activeItemId={activeItemId}
                 item={eventsItem}
                 items={items}
                 breadcrumbs={breadcrumbs}
+                router
               />
             </li>}
           {SITE_ENV === "user" &&
-            <li>
+            <li key={"news"}>
               <SidebarLink
                 title="News"
                 section="news"
@@ -243,7 +245,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
                 linkObject={{ as: "/news", href: "/news" }}
               />
             </li>}
-          <li>
+          <li key={"contact-us"}>
             <SidebarLink
               title="Contact Us"
               section="contact-us"
@@ -255,6 +257,6 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
       </div>
     </div>
   );
-};
+}
 
 export default withRouter(Sidebar);
