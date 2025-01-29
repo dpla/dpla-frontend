@@ -7,9 +7,8 @@ import css from "./CiteButton.module.scss";
 
 class CiteButton extends React.Component {
 
-
-  constructor(props, context, updater) {
-    super(props, context, updater);
+  constructor(props) {
+    super(props);
     this.date = formatDate();
   }
 
@@ -23,7 +22,7 @@ class CiteButton extends React.Component {
   }
 
   toggleCiteButton = e => {
-    this.setState(prevState => { return { showCitation: !prevState.showCitation }});
+    this.setState(prevState => ({ showCitation: !prevState.showCitation }));
     e.preventDefault();
   };
 

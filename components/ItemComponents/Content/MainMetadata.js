@@ -8,13 +8,13 @@ import { joinIfArray, readMyRights } from "lib";
 import css from "./Content.module.scss";
 
 /**
-  * @param url, url to check for rights info
-  * @return HTML with rights badge or null
-  */
-const RightsBadge = ({ url }) => {
+ * @param url, url to check for rights info
+ * @return HTML with rights badge or null
+ */
+function RightsBadge({ url }) {
   const myRights = readMyRights(url);
-  return myRights
-    ? <div className={css.rightsStatement}>
+  return myRights ? (
+    <div className={css.rightsStatement}>
       <a
         href={myRights.url}
         title="Learn more about the copyright status of this item"
@@ -22,8 +22,10 @@ const RightsBadge = ({ url }) => {
         <img src={myRights.image} alt={myRights.description} />
       </a>
     </div>
-    : null;
-};
+  ) : (
+    <></>
+  );
+}
 
 class MainMetadata extends React.Component {
   state = { isOpen: true }; // show it if js is disabled
@@ -37,7 +39,7 @@ class MainMetadata extends React.Component {
     this.setState({ isOpen: true });
   }
 
-  renderRightsBadge = (item) => {
+  renderRightsBadge(item) {
     /* 
     for situations where the rights are in sourceResource
     see: https://dp.la/item/7f2973c3c4429087b4874725f3bc67ad
@@ -45,11 +47,11 @@ class MainMetadata extends React.Component {
     */
 
     if (item.edmRights) {
-      return <RightsBadge url={item.edmRights} />
+      return <RightsBadge url={item.edmRights} />;
     } else if (item.rights && Array.isArray(item.rights)) {
       return <RightsBadge url={item.rights[0]} />;
     } else if (item.rights) {
-      return <RightsBadge url={item.rights} />
+      return <RightsBadge url={item.rights} />;
     }
   }
 
@@ -62,11 +64,11 @@ class MainMetadata extends React.Component {
       : false;
 
     let viewFullItemText;
-    switch(item.type) {
+    switch (item.type) {
       case "image":
         viewFullItemText = "View Full Image";
         break;
-        case "text":
+      case "text":
         viewFullItemText = "View Full Text";
         break;
       default:
@@ -86,17 +88,15 @@ class MainMetadata extends React.Component {
                 defaultImageClass={css.defaultItemImage}
                 useDefaultImage={item.useDefaultImage}
               />
-              {item.sourceUrl &&
-                  <a
-                    rel="noopener"
-                    className={`${css.sourceLink} clickThrough external white`}
-                    href={item.sourceUrl}
-                  >
-                    <span className={css.sourceLinkText}>
-                      {viewFullItemText}
-                    </span>
+              {item.sourceUrl && (
+                <a
+                  rel="noopener"
+                  className={`${css.sourceLink} clickThrough external white`}
+                  href={item.sourceUrl}
+                >
+                  <span className={css.sourceLinkText}>{viewFullItemText}</span>
                 </a>
-              }
+              )}
               {item.ipfs && <div style={{paddingTop: "10px"}} >
                 <a
                   rel="noopener"
@@ -112,34 +112,31 @@ class MainMetadata extends React.Component {
               {this.renderRightsBadge(item)}
             </dd>
           </div>
-          {item.date &&
+          {item.date && (
             <div className={css.termValuePair}>
-              <dt className={css.term}>
-                Created Date
-              </dt>
+              <dt className={css.term}>Created Date</dt>
               <dd className={`${css.value} ${css.mainMetadataText}`}>
                 {item.date.displayDate}
               </dd>
-            </div>}
-          {item.description &&
+            </div>
+          )}
+          {item.description && (
             <div className={css.termValuePair}>
-              <dt className={css.term}>
-                Description
-              </dt>
+              <dt className={css.term}>Description</dt>
               <dd className={`${css.value} ${css.mainMetadataText}`}>
                 <div
                   id="dpla-description"
-                  className={`${descriptionIsLong
-                    ? css.longDescription
-                    : ""} ${isOpen ? css.open : ""}`}
+                  className={`${
+                    descriptionIsLong ? css.longDescription : ""
+                  } ${isOpen ? css.open : ""}`}
                 >
                   {Array.isArray(item.description)
                     ? item.description.map((element, index) => {
-                      return <p key={index}>{element}</p>;
-                    })
+                        return <p key={index}>{element}</p>;
+                      })
                     : item.description}
                 </div>
-                {descriptionIsLong &&
+                {descriptionIsLong && (
                   <div
                     id="dpla-showmore"
                     aria-hidden="true"
@@ -151,17 +148,20 @@ class MainMetadata extends React.Component {
                     >
                       Show full description
                     </span>
-                  </div>}
+                  </div>
+                )}
               </dd>
-            </div>}
-          {item.creator && 
+            </div>
+          )}
+          {item.creator && (
             <ItemTermValuePair heading="Creator">
-          {Array.isArray(item.creator)
-                    ? item.creator.map((element, index) => {
-                      return <p key={index}>{element}</p>;
-                    })
-                    : item.creator}
-              </ItemTermValuePair>}
+              {Array.isArray(item.creator)
+                ? item.creator.map((element, index) => {
+                    return <p key={index}>{element}</p>;
+                  })
+                : item.creator}
+            </ItemTermValuePair>
+          )}
         </dl>
       </div>
     );

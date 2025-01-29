@@ -5,29 +5,37 @@ import HomeHero from "components/HomePageComponents/HomeHero";
 import LocalIntro from "components/HomePageComponents/LocalIntro";
 import { LOCAL_ID } from "constants/env";
 import { join } from "path";
-import fs from 'fs';
-import {washObject} from "lib/washObject";
+import fs from "fs";
+import { washObject } from "lib/washObject";
+import * as PropTypes from "prop-types";
 
-const Home = ({ content }) =>
-  <MainLayout hidePageHeader={true} hideSearchBar={true}>
-    <div id="main" role="main">
-      <HomeHero />
-      <LocalIntro content={content} />
-    </div>
-  </MainLayout>;
+function Home(props) {
+  const { content } = props;
+  return (
+    <MainLayout hidePageHeader={true} hideSearchBar={true}>
+      <div id="main" role="main">
+        <HomeHero />
+        <LocalIntro content={content} />
+      </div>
+    </MainLayout>
+  );
+}
 
+Home.propTypes = { content: PropTypes.any };
 
 export async function getServerSideProps() {
-  const localStaticDirectory = join(process.cwd(), 'public', 'static', 'local');
+  const localStaticDirectory = join(process.cwd(), "public", "static", "local");
   const markdownPath = join(localStaticDirectory, LOCAL_ID, "homepage.md");
-  const pageMarkdown = await fs.promises.readFile(markdownPath, { encoding: "utf8"});
+  const pageMarkdown = await fs.promises.readFile(markdownPath, {
+    encoding: "utf8",
+  });
 
   const props = washObject({
-    content: pageMarkdown
+    content: pageMarkdown,
   });
 
   return {
-    props: props
+    props: props,
   };
 }
 

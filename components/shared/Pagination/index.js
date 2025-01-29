@@ -2,20 +2,20 @@ import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 
-import ChevronThick from "components/svg/chevron-thick";
+import ChevronThick from "components/svg/ChevronThick";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
 import css from "./Pagination.module.scss";
 
 /**
-  * @param current, current page number
-  * @param pageCount, total pages
-  * @return array sorted with page numbers to show
-  */
-const centerWindow = (current, pageCount) => {
+ * @param current current page number
+ * @param pageCount total pages
+ * @return array sorted with page numbers to show
+ */
+function centerWindow(current, pageCount) {
   const windowSize = 2;
-  let windowArray = [];
+  const windowArray = [];
   for (let i = 1; i <= windowSize; i++) {
     if (current + i < pageCount) {
       windowArray.push(current + i);
@@ -27,88 +27,109 @@ const centerWindow = (current, pageCount) => {
   }
   windowArray.push(current);
   return windowArray.sort((a, b) => a - b);
-};
+}
 
-const PageLink = withRouter(({ router, page, className }) =>
-  <Link
-    href={{
-      pathname: router.pathname,
-      query: Object.assign({}, router.query, {
-        page: page
-      })
-    }}
-    className={className}
-  >
-    {addCommasToNumber(page)}
-  </Link>);
+function PageLink({ router, page, className }) {
+  return (
+    <Link
+      href={{
+        pathname: router.pathname,
+        query: { ...router.query, page: page },
+      }}
+      className={className}
+    >
+      {addCommasToNumber(page)}
+    </Link>
+  );
+}
 
-const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "next" }) =>
-  disabled
-    ? <button
+function NextOrPrevButton({ router, currentPage, disabled, type = "next" }) {
+  if (disabled) {
+    return (
+      <button
         disabled
-        className={`${type === "next"
-          ? css.nextButton
-          : css.previousButton} ${css.hideOnLargeScreens}`}
+        className={`${
+          type === "next" ? css.nextButton : css.previousButton
+        } ${css.hideOnLargeScreens}`}
       >
         {type === "prev" && <ChevronThick className={css.prevChevron} />}
         {type === "next" ? "Next" : "Previous"}
         {type === "next" && <ChevronThick className={css.nextChevron} />}
       </button>
-    : <Link
+    );
+  } else {
+    return (
+      <Link
         href={{
           pathname: router.pathname,
-          query: Object.assign({}, router.query, {
-            page: type === "next"
-              ? parseInt(currentPage, 10) + 1
-              : parseInt(currentPage, 10) - 1
-          })
+          query: {
+            ...router.query,
+            page:
+              type === "next"
+                ? parseInt(currentPage, 10) + 1
+                : parseInt(currentPage, 10) - 1,
+          },
         }}
         className={type === "next" ? css.nextButton : css.previousButton}
       >
-          {type === "prev" && <ChevronThick className={css.prevChevron} />}
-          {type === "next" ? "Next" : "Previous"}
-          {type === "next" && <ChevronThick className={css.nextChevron} />}
-      </Link>);
+        {type === "prev" && <ChevronThick className={css.prevChevron} />}
+        {type === "next" ? "Next" : "Previous"}
+        {type === "next" && <ChevronThick className={css.nextChevron} />}
+      </Link>
+    );
+  }
+}
 
-const Pagination = ({ pageCount, currentPage }) =>
-  <div className={css.pagination}>
-    <NextOrPrevButton
-      disabled={!(currentPage > 1 && pageCount > 1)}
-      type="prev"
-      currentPage={currentPage}
-    />
-    {pageCount > 1 &&
-      <PageLink
-        className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
-        page={1}
-      />}
-    {currentPage >= 5 &&
-      pageCount > 5 &&
-      <span className={css.ellipses}>...</span>}
-    {centerWindow(currentPage, pageCount).map(
-      page =>
-        page > 1 && page < pageCount
-          ? <PageLink
-              key={page}
-              className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
-              page={page}
-            />
-          : null
-    )}
+function Pagination({ pageCount, currentPage, router }) {
+  return (
+    <div className={css.pagination}>
+      <NextOrPrevButton
+        disabled={!(currentPage > 1 && pageCount > 1)}
+        type="prev"
+        currentPage={currentPage}
+        router
+      />
+      {pageCount > 1 && (
+        <PageLink
+          className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
+          page={1}
+          router
+        />
+      )}
+      {currentPage >= 5 && pageCount > 5 && (
+        <span className={css.ellipses}>...</span>
+      )}
+      {centerWindow(currentPage, pageCount).map((page) =>
+        page > 1 && page < pageCount ? (
+          <PageLink
+            key={page}
+            className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
+            page={page}
+            router
+          />
+        ) : (
+          <></>
+        ),
+      )}
 
-    {currentPage <= pageCount - 4 &&
-      pageCount > 5 &&
-      <span className={css.ellipses}>...</span>}
-    {pageCount > 1 &&
-      <PageLink
-        className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
-        page={pageCount}
-      />}
-    <NextOrPrevButton
-      disabled={!(currentPage < pageCount && pageCount > 1)}
-      currentPage={currentPage}
-      type="next"
-    />
-  </div>;
+      {currentPage <= pageCount - 4 && pageCount > 5 && (
+        <span className={css.ellipses}>...</span>
+      )}
+      {pageCount > 1 && (
+        <PageLink
+          className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
+          page={pageCount}
+          router
+        />
+      )}
+      <NextOrPrevButton
+        disabled={!(currentPage < pageCount && pageCount > 1)}
+        currentPage={currentPage}
+        type="next"
+        router
+      />
+    </div>
+  );
+}
 
-export default Pagination;
+export default withRouter(Pagination);

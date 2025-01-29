@@ -13,44 +13,37 @@ class ListsPage extends React.Component {
   state = { lists: [], initialized: false };
 
   async componentDidMount() {
-    await this.getLists();
-  }
-
-  getLists = async () => {
-    let lists = await getLocalForageLists();
+    const lists = await getLocalForageLists();
     lists.sort((a, b) => b.createdAt - a.createdAt);
     this.setState({
       lists: lists,
-      initialized: true
+      initialized: true,
     });
-  };
+  }
 
-  onCreateList = async value => {
-    await this.createList(value);
-  };
-
-  createList = async listName => {
-    // add the new list to local storage
-    const uuid = createUUID();
-    const createdAt = Date.now();
-    let newLists = deepCopyObject(this.state.lists);
-    newLists.push({
-      uuid: uuid,
-      name: listName,
-      count: 0,
-      createdAt: createdAt
+  onCreateList = async (listName) => {
+    this.setState(async (prevState) => {
+      const uuid = createUUID();
+      const createdAt = Date.now();
+      const newLists = deepCopyObject(prevState.lists);
+      newLists.push({
+        uuid: uuid,
+        name: listName,
+        count: 0,
+        createdAt: createdAt,
+      });
+      newLists.sort((a, b) => b.createdAt - a.createdAt);
+      const savedList = {
+        name: listName,
+        selectedHash: {},
+        createdAt: createdAt,
+        updatedAt: createdAt,
+      };
+      await setLocalForageItem(uuid, savedList);
+      return {
+        lists: newLists,
+      };
     });
-    newLists.sort((a, b) => b.createdAt - a.createdAt);
-    let savedList = {
-      name: listName,
-      selectedHash: {},
-      createdAt: createdAt,
-      updatedAt: createdAt
-    };
-    this.setState({
-      lists: newLists
-    });
-    await setLocalForageItem(uuid, savedList);
     await Router.push({ pathname: `/lists/${uuid}` });
   };
 

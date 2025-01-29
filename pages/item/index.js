@@ -6,155 +6,148 @@ import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import HarmfulContent from "components/shared/HarmfulContent";
 import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
-import {CheckableLists} from "components/ListComponents/CheckableLists";
+import CheckableLists from "components/ListComponents/CheckableLists";
 
-import {
-    joinIfArray,
-    getItemThumbnail,
-    getRandomItemIdAsync
-} from "lib";
+import {getItemThumbnail, getRandomItemIdAsync, joinIfArray} from "lib";
 
 import css from "components/ItemComponents/itemComponent.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 import {washObject} from "lib/washObject";
 
-const ItemDetail = ({
-
-                        item,
-                        randomItemId,
-                        isQA
-                    }) => {
-    return (
-        <MainLayout
-            pageTitle={item.title}
-            pageImage={item.thumbnailUrl}
+function ItemDetail(props) {
+  const {item, randomItemId, isQA} = props;
+  return (
+    <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
+      <BreadcrumbsModule
+        breadcrumbs={[
+          {
+            title: "All items",
+            url: {
+              pathname: "/search",
+            },
+          },
+          {title: joinIfArray(item.title), search: ""},
+        ]}
+      />
+      <HarmfulContent/>
+      {isQA && <QA item={item} randomItemId={randomItemId}/>}
+      <div
+        id="main"
+        role="main"
+        className={`${utils.container} ${css.contentWrapper}`}
+      >
         >
-            <BreadcrumbsModule
-                breadcrumbs={[
-                    {
-                        title: "All items",
-                        url: {
-                            pathname: "/search"
-                        }
-                    },
-                    {title: joinIfArray(item.title), search: ""}
-                ]}
-            />
-            <HarmfulContent/>
-            {isQA && <QA item={item} randomItemId={randomItemId}/>}
-            <div
-                id="main"
-                role="main"
-                className={`${utils.container} ${css.contentWrapper}`}
-            >
+        <Content item={item}/>
 
-                <Content item={item}/>
+        <div className={css.faveAndCiteButtons}>
+          <CiteButton
+            creator={item.creator}
+            displayDate={item.date ? item.date.displayDate : item.date}
+            spatialName={item.spatial ? item.spatial.name : item.spatial}
+            sourceUrl={item.sourceUrl}
+            className={css.citeButton}
+            toCiteText="item"
+            title={item.title}
+          />
+          <CheckableLists itemId={item.id}/>
+        </div>
+      </div>
+    </MainLayout>
+  );
+}
 
-                <div className={css.faveAndCiteButtons}>
-                    <CiteButton
-                        creator={item.creator}
-                        displayDate={item.date ? item.date.displayDate : item.date}
-                        spatialName={item.spatial ? item.spatial.name : item.spatial}
-                        sourceUrl={item.sourceUrl}
-                        className={css.citeButton}
-                        toCiteText="item"
-                        title={item.title}
-                    />
-                    <CheckableLists itemId={item.id}/>
-                </div>
-            </div>
 
-        </MainLayout>
-    );
-};
+export async function getServerSideProps(context) {
+  const notFound = {
+    notFound: true,
+  };
+  const query = context.query;
+  if (!query || query === "" || !("itemId" in query)) {
+    return notFound;
+  }
 
-export const getServerSideProps = async context => {
+  const isQA = false;
+  const randomItemId = isQA ? await getRandomItemIdAsync() : null;
+  // check if item is found
+  const itemUrl =
+    `${process.env.API_URL}/items/${query.itemId}` +
+    `?api_key=${process.env.API_KEY}`;
 
-    const notFound = {
-        notFound: true
+  let data = {};
+  try {
+    const res = await fetch(itemUrl);
+    if (!res.ok) {
+      throw new Error(`API Response status: ${res.status}`);
     }
-    const query = context.query;
-    if (!query || query === "" || !("itemId" in query)) {
+    const json = await res.json();
+
+    if (!("docs" in json) || json.docs.length < 1) {
+      return notFound;
+    }
+
+    data = json;
+  } catch (error) {
+    if (
+      error != null &&
+      typeof error.response === "object" &&
+      "status" in error.response
+    ) {
+      console.log(
+        `Got status ${error.response.status} from API for item id ${query.itemId}`,
+      );
+      if (error.response.status !== 404 && error.response.status !== 400) {
+        throw new Error(`Bad status from API`);
+      } else {
         return notFound;
+      }
+    } else {
+      throw new Error("API not responding.");
     }
+  }
 
-    const isQA = false;
-    const randomItemId = isQA ? await getRandomItemIdAsync() : null;
-    // check if item is found
-    const itemUrl =
-        `${process.env.API_URL}/items/${query.itemId}` +
-        `?api_key=${process.env.API_KEY}`
+  const doc = data.docs[0];
+  const thumbnailUrl = getItemThumbnail(doc);
+  const date =
+    doc.sourceResource.date && Array.isArray(doc.sourceResource.date)
+      ? doc.sourceResource.date[0]
+      : doc.sourceResource.date;
+  const language =
+    doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
+      ? doc.sourceResource.language.map((lang) => {
+        return lang.name;
+      })
+      : doc.sourceResource.language;
+  const dataProvider =
+    doc.dataProvider && doc.dataProvider.name
+      ? doc.dataProvider.name
+      : doc.dataProvider;
+  const strippedDoc = {...doc, originalRecord: ""};
+  delete strippedDoc.originalRecord;
 
-    let data = {};
-    try {
-        const res = await fetch(itemUrl);
-        if (!res.ok) {
-            throw new Error(`Response status: ${res.status}`);
-        }
-        const json = await res.json();
+  const props = washObject({
+    item: {
+      ...doc.sourceResource,
+      id: doc.id,
+      thumbnailUrl,
+      contributor: dataProvider,
+      intermediateProvider: doc.intermediateProvider,
+      date: date,
+      language: language,
+      partner: doc.provider.name,
+      sourceUrl: doc.isShownAt,
+      useDefaultImage: !doc.object,
+      edmRights: doc.rights,
+      doc: strippedDoc,
+      originalRecord: doc.originalRecord,
+      ipfs: doc.ipfs
+    },
+    randomItemId,
+    isQA
+  });
 
-        if (!("docs" in json) || json.docs.length < 1) {
-            return notFound;
-        }
-
-        data = json;
-
-    } catch (error) {
-        if (error != null && typeof error.response ===  'object' && "status" in error.response) {
-            console.log(`Got status ${error.response.status} from API for item id ${query.itemId}`)
-            if (error.response.status !== 404 && error.response.status !== 400) {
-                throw new Error(`Bad status from API`);
-            } else {
-                return notFound;
-            }
-        } else {
-            throw new Error("API not responding.");
-        }
-    }
-
-    const doc = data.docs[0];
-    const thumbnailUrl = getItemThumbnail(doc);
-    const date = doc.sourceResource.date &&
-    Array.isArray(doc.sourceResource.date)
-        ? doc.sourceResource.date[0]
-        : doc.sourceResource.date;
-    const language = doc.sourceResource.language &&
-    Array.isArray(doc.sourceResource.language)
-        ? doc.sourceResource.language.map(lang => {
-            return lang.name;
-        })
-        : doc.sourceResource.language;
-    const dataProvider = doc.dataProvider && doc.dataProvider.name
-        ? doc.dataProvider.name
-        : doc.dataProvider;
-    const strippedDoc = Object.assign({}, doc, {originalRecord: ""});
-    delete strippedDoc.originalRecord;
-
-    const props = washObject({
-        item: Object.assign({}, doc.sourceResource, {
-            id: doc.id,
-            thumbnailUrl,
-            contributor: dataProvider,
-            intermediateProvider: doc.intermediateProvider,
-            date: date,
-            language: language,
-            partner: doc.provider.name,
-            sourceUrl: doc.isShownAt,
-            useDefaultImage: !doc.object,
-            edmRights: doc.rights,
-            doc: strippedDoc,
-            originalRecord: doc.originalRecord,
-            ipfs: doc.ipfs
-        }),
-        randomItemId,
-        isQA
-    });
-
-    return {
-        props: props
-    };
-
-
-};
+  return {
+    props: props,
+  };
+}
 
 export default ItemDetail;

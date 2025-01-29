@@ -7,7 +7,7 @@ import utils from "stylesheets/utils.module.scss"
 
 class ResourcesTabs extends React.Component {
   render() {
-    const { currentTab, router } = this.props;
+    const { currentTab, router, children} = this.props;
     return (
       <div id="tabs" className={css.wrapper} data-cy={"pss-tabs"}>
         <div className={css.tabsWrapper}>
@@ -63,7 +63,7 @@ class ResourcesTabs extends React.Component {
             </li>
           </ul>
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   }

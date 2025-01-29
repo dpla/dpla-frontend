@@ -62,6 +62,10 @@
   position: relative;
   width: 100%;
 
+  iframe {
+    border: none;
+  }
+
   .pdfDocument {
     align-items: center;
     display: flex;

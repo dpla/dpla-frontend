@@ -3,7 +3,7 @@ import React from "react";
 import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
 
 import css from "./StayInformed.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
 class StayInformed extends React.Component {
   state = {
@@ -13,104 +13,98 @@ class StayInformed extends React.Component {
     interests: {
       news: {
         group_id: MAILCHIMP_GROUP_IDS.NEWS,
-        value: true
+        value: true,
       },
       ebooks: {
         group_id: MAILCHIMP_GROUP_IDS.EBOOKS,
-        value: false
+        value: false,
       },
       education: {
         group_id: MAILCHIMP_GROUP_IDS.EDUCATION,
-        value: false
+        value: false,
       },
       genealogy: {
         group_id: MAILCHIMP_GROUP_IDS.GENEALOGY,
-        value: false
-      }
-    }
+        value: false,
+      },
+    },
   };
 
-  onEmailChange = e => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      email: e.target.value
-    });
+  onEmailChange = (e) => {
+    this.setState((prevState) => ({
+      isSending: prevState.isSending,
+      isSent: prevState.isSent,
+      email: e.target.value,
+    }));
   };
 
-  onCheckboxChange = e => {
-    const { name, checked } = e.target
+  onCheckboxChange = (e) => {
+    const { name, checked } = e.target;
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       interests: {
         ...prevState.interests,
         [name]: {
           ...prevState.interests[name],
-          value: checked
-        }
-      }
+          value: checked,
+        },
+      },
     }));
   };
 
   onButtonClick(e) {
     if (!this.state.email) {
-      this.setState({
-        isSending: this.state.isSending,
-        isSent: this.state.isSent,
-        email: ""
-      });
+      this.setState((prevState) => ({
+        isSending: prevState.isSending,
+        isSent: prevState.isSent,
+        email: "",
+      }));
     }
   }
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if (!this.formIsValid()) return;
 
-    this.setState({
+    this.setState((prevState) => ({
       isSending: true,
       isSent: false,
-      email: this.state.email
-    });
+      email: prevState,
+    }));
 
-    let interests = this.state.interests;
-    let email = this.state.email;
-    let miel = e.target.elements.i_prefer_usps_mail.value;
+    const interests = this.state.interests;
+    const email = this.state.email;
+    const miel = e.target.elements.i_prefer_usps_mail.value;
 
-    let body = JSON.stringify({
-      email: email,
+    const body = JSON.stringify({
+      email,
       id: MAILCHIMP_LIST_ID,
-      miel: miel,
-      interests: interests
+      miel,
+      interests,
     });
 
     const res = await fetch("/mailchimp", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json; charset=utf-8"
+        "Content-Type": "application/json; charset=utf-8",
       },
-      body: body
-    })
+      body: body,
+    });
 
-    const data = await res.text()
+    if (!res.ok) {
+      throw new Error("Form not recorded: " + res.status);
+    }
 
-    this.setState({
+    this.setState((prevState) => ({
       isSending: false,
       isSent: true,
-      email: this.state.email
-    });
+      email: prevState.email,
+    }));
   };
 
   formIsValid() {
     return this.state.email && this.state.email.length > 3;
   }
-
-  activateRequired = () => {
-    this.setState({
-      isSending: this.state.isSending,
-      isSent: this.state.isSent,
-      email: this.state.email || ""
-    });
-  };
 
   render() {
     const emailProps = { required: this.state.email !== undefined };
@@ -123,8 +117,10 @@ class StayInformed extends React.Component {
                 <h2 className={css.headerText}>Stay informed</h2>
               </div>
             </div>
-            <div className={`${css.formWrapper} ${utils.colXs12} ${utils.colMd9}`}>
-              {!this.state.isSent &&
+            <div
+              className={`${css.formWrapper} ${utils.colXs12} ${utils.colMd9}`}
+            >
+              {!this.state.isSent && (
                 <form className={css.form} onSubmit={this.handleSubmit}>
                   <h3 className={css.formCallToAction}>
                     Get the latest DPLA news in your inbox
@@ -155,74 +151,70 @@ class StayInformed extends React.Component {
                     <div>
                       <input
                         type="checkbox"
+                        id={"newsCheckbox"}
                         name="news"
                         checked={this.state.interests.news.value}
                         tabIndex="-1"
                         onChange={this.onCheckboxChange}
                       />
-                      <label>
-                        General News
-                      </label>
+                      <label htmlFor={"newsCheckbox"}>General News</label>
                     </div>
 
                     <div>
                       <input
                         type="checkbox"
                         name="ebooks"
+                        id={"ebooksCheckbox"}
                         checked={this.state.interests.ebooks.value}
                         tabIndex="-1"
                         onChange={this.onCheckboxChange}
                       />
-                      <label>
-                        Ebooks
-                      </label>
+                      <label htmlFor={"ebooksCheckbox"}>Ebooks</label>
                     </div>
 
                     <div>
                       <input
                         type="checkbox"
                         name="education"
+                        id={"educationCheckbox"}
                         checked={this.state.interests.education.value}
                         tabIndex="-1"
                         onChange={this.onCheckboxChange}
                       />
-                      <label>
-                        Education
-                      </label>
+                      <label htmlFor={"educationCheckbox"}>Education</label>
                     </div>
 
                     <div>
                       <input
                         type="checkbox"
                         name="genealogy"
+                        id="genealogyCheckbox"
                         checked={this.state.interests.genealogy.value}
                         tabIndex="-1"
                         onChange={this.onCheckboxChange}
                       />
-                      <label>
-                        Genealogy
-                      </label>
+                      <label htmlFor={"genealogyCheckbox"}>Genealogy</label>
                     </div>
                   </div>
 
                   <input
                     aria-live="assertive"
                     type="submit"
-                    value={
-                      !this.state.isSending ? "Sign Up" : "Subscribing..."
-                    }
+                    value={!this.state.isSending ? "Sign Up" : "Subscribing..."}
                     name="signup"
                     className={css.button}
-                    onClick={e => this.onButtonClick(e)}
+                    onClick={(e) => this.onButtonClick(e)}
                   />
+                </form>
+              )}
 
-                </form>}
-              {this.state.isSent &&
+              {this.state.isSent && (
                 <h3 aria-live="assertive" className={css.formCallToAction}>
-                  You have successfully subscribed to DPLA&apos;s general email list!
-                  We&apos;ll send you announcements about our projects and events.
-                  </h3>}
-
+                  You have successfully subscribed to DPLA&apos;s general email
+                  list! We&apos;ll send you announcements about our projects and
+                  events.
+                </h3>
+              )}
             </div>
           </div>
         </div>
