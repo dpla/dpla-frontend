@@ -10,7 +10,7 @@ The documentation below will help guide new contributors through the process of 
 
 ## IDHH Metadata Documentation & Links
 
-- [IDHH Metadata Best Practices](https://uofi.app.box.com/file/1566637559189)
+- [IDHH Metadata Best Practices](https://uofi.box.com/s/6hmijuiillqaauh4t3eoj106bk4hl2zl)
 - [IDHH Introduction to Metadata in the DPLA (Slides and Recording)](https://drive.google.com/file/d/191MsR44Rp2URMXPS9fKM-S0H2yY392ZS)
 - [IDHH Metadata Best Practices (Slides and Recording)](https://drive.google.com/file/d/1RHQYfeUERBDo0EYNjyv6M3DQs35KjPKf)
 - [Provider Metadata Guide](/for-contributors/provider-metadata-guide)
