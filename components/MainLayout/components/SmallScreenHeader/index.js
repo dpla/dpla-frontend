@@ -13,48 +13,35 @@ import { LOCALS } from "constants/local";
 
 class SmallScreenHeader extends Component {
   state = {
-    menuIsOpen: false,
-    searchIsOpen: false
+    menuIsOpen: false
   };
 
   toggleMenu = () => {
-    this.setState({
-      menuIsOpen: !this.state.menuIsOpen,
-      searchIsOpen: false
-    });
-  };
-
-  toggleSearch = () => {
-    this.setState({
-      searchIsOpen: !this.state.searchIsOpen,
-      menuIsOpen: false
-    });
+    this.setState(prevState => ({
+      menuIsOpen: !prevState.menuIsOpen
+    }));
   };
 
   render() {
-    const { searchIsOpen, menuIsOpen } = this.state;
-    const { isSearchPage, isHome } = this.props;
+    const { menuIsOpen } = this.state;
+    const { isHome } = this.props;
 
     return (
       <div className={css.wrapper} data-cy="small-screen-header">
         <div className={css.header}>
           {(SITE_ENV === "user" || SITE_ENV === "pro") &&
-            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
-              <a className={css.logo}>
-                <span>Digital Public Library of America</span>
-              </a>
+            <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"} className={css.logo}>
+              <span>Digital Public Library of America</span>
             </Link>}
           {SITE_ENV === "local" &&
             <Link as="/" href="/local">
-              <a>
-                <img
+              <img
                   className={css.localLogo}
                   alt={`${LOCALS[LOCAL_ID].name} Home`}
                   src={`/static/local/${LOCALS[LOCAL_ID].theme}/${LOCALS[
                     LOCAL_ID
                   ].logo}`}
                 />
-              </a>
             </Link>}
           <button
             type="button"

@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import { withRouter } from "next/router";
 import striptags from "striptags";
 
@@ -12,7 +11,7 @@ import { API_SETTINGS_ENDPOINT } from "constants/site";
 import {
   ABOUT_MENU_ENDPOINT,
   PAGES_ENDPOINT,
-  SEO_TYPE
+  SEO_TYPE,
 } from "constants/content-pages";
 
 import {
@@ -20,20 +19,19 @@ import {
   getItemWithId,
   wordpressLinks,
   getMenuItemUrl,
-  decodeHTMLEntities
+  decodeHTMLEntities,
 } from "lib";
 
 import contentCss from "stylesheets/content-pages.module.scss";
-import utils from "stylesheets/utils.module.scss"
-import {washObject} from "lib/washObject";
+import utils from "stylesheets/utils.module.scss";
+import { washObject } from "lib/washObject";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document
-        .getElementById("main")
-        .getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
+
   componentDidMount() {
     this.refreshExternalLinks();
   }
@@ -43,14 +41,8 @@ class AboutMenuPage extends React.Component {
   }
 
   render() {
-    const {
-      router,
-      content,
-      items,
-      breadcrumbs,
-      pageTitle,
-      pageDescription
-    } = this.props;
+    const { router, content, items, breadcrumbs, pageTitle, pageDescription } =
+      this.props;
 
     return (
       <MainLayout
@@ -58,13 +50,15 @@ class AboutMenuPage extends React.Component {
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
-        {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />}
-        {breadcrumbs.length === 0 &&
-          <FeatureHeader title={pageTitle} description={""} />}
+        {breadcrumbs.length > 0 && (
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} route={router} />
+        )}
+        {breadcrumbs.length === 0 && (
+          <FeatureHeader title={pageTitle} description={""} />
+        )}
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
-          data-cy={'content'}
+          data-cy={"content"}
         >
           <div className={utils.row}>
             <ContentPagesSidebar
@@ -74,10 +68,11 @@ class AboutMenuPage extends React.Component {
             />
             <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
-                {breadcrumbs.length > 0 &&
+                {breadcrumbs.length > 0 && (
                   <h1
                     dangerouslySetInnerHTML={{ __html: content.title.rendered }}
-                  />}
+                  />
+                )}
                 <div
                   dangerouslySetInnerHTML={{ __html: content.content.rendered }}
                 />
@@ -90,52 +85,50 @@ class AboutMenuPage extends React.Component {
   }
 }
 
-export const getServerSideProps = async ({query}) => {
+export const getServerSideProps = async ({ query }) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-
   const pageName = query.subsection || query.section;
   const response = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await response.json();
-  const pageItem = json.items.find(item => item.post_name === pageName);
-  const guidesPageItem = json.items.find(item => item.url === endpoint);
-  if (pageItem === guidesPageItem) {
-    //res.redirect("/guides");
-    return {};
-
-  } else if (pageItem.menu_item_parent === guidesPageItem.object_id) {
-    //res.redirect(`/guides/guide?guide=${pageItem.post_name}`);
-    return {};
+  const pageItem = json.items.find((item) => item.post_name === pageName);
+  const guidesPageItem = json.items.find((item) => item.url === endpoint);
+  if (
+    !pageItem ||
+    pageItem === guidesPageItem ||
+    pageItem?.menu_item_parent === guidesPageItem.object_id
+  ) {
+    return { notFound: true };
   }
 
   // for the breadcrumbs
   const breadcrumbObject = getBreadcrumbs({
     items: json.items,
-    leafId: pageItem.object_id
+    leafId: pageItem.object_id,
   });
 
-  let breadcrumbs = [];
+  const breadcrumbs = [];
 
   if (JSON.stringify(breadcrumbObject) !== "{}") {
-    Object.values(breadcrumbObject).map(crumb => {
+    Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
       let url = "/about?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
       if (crumb.menu_item_parent !== "0") {
         const parent = getItemWithId({
           items: json.items,
-          id: crumb.menu_item_parent
+          id: crumb.menu_item_parent,
         });
         slug = slug + parent.post_name + "/";
       }
       breadcrumbs.push({
         title: crumb.title,
         url: url,
-        as: slug + crumb.post_name
+        as: slug + crumb.post_name,
       });
     });
     breadcrumbs.push({ title: pageItem.title });
@@ -149,7 +142,7 @@ export const getServerSideProps = async ({query}) => {
   let pageDescription = "";
   if (pageJson.excerpt && pageJson.excerpt.rendered) {
     pageDescription = decodeHTMLEntities(
-      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…"))
+      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…")),
     );
   }
 
@@ -158,12 +151,10 @@ export const getServerSideProps = async ({query}) => {
     items: json.items,
     breadcrumbs: breadcrumbs,
     pageTitle: pageItem.title,
-    pageDescription: pageDescription
+    pageDescription: pageDescription,
   });
 
-  return {
-    props: props
-  };
+  return { props };
 };
 
 export default withRouter(AboutMenuPage);

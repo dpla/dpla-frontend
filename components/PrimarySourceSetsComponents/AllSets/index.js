@@ -4,13 +4,16 @@ import FiltersBar from "./components/FiltersBar";
 import FeatureHeader from "shared/FeatureHeader";
 import SetsList from "./components/SetsList";
 
-import { TITLE, DESCRIPTION } from "constants/primarySourceSets.js";
+import {TITLE, DESCRIPTION} from "constants/primarySourceSets.js";
 
-const AllSets = ({ sets }) =>
-  <div>
-    <FeatureHeader title={TITLE} description={DESCRIPTION} />
-    <FiltersBar/>
-    <SetsList sets={sets} />
-  </div>;
+function AllSets({sets}) {
+    return (
+        <div>
+            <FeatureHeader title={TITLE} description={DESCRIPTION}/>
+            <FiltersBar/>
+            <SetsList sets={sets}/>
+        </div>
+    );
+}
 
 export default AllSets;

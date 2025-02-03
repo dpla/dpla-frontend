@@ -1,13 +1,13 @@
 const { LOCALS } = require("./constants/local");
 const path = require("path");
-const process = require("process");
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
+  enabled: process.env.ANALYZE === "true",
 });
 
 module.exports = withBundleAnalyzer({
   poweredByHeader: false,
+  reactStrictMode: true,
   sassOptions: {
     // to allow SCSS files to import a plain “theme.module.scss” file
     includePaths: [
@@ -16,20 +16,30 @@ module.exports = withBundleAnalyzer({
             __dirname,
             "stylesheets",
             "themes",
-            LOCALS[process.env.LOCAL_ID].theme
+            LOCALS[process.env.LOCAL_ID].theme,
           )
-        : path.join(__dirname, "stylesheets", "themes")
-    ]
+        : path.join(__dirname, "stylesheets", "themes"),
+    ],
   },
-  webpack: config => {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dp.la",
+        pathname: "/api/exhibits/files/square_thumbnails/**",
+      },
+    ],
+  },
+  webpack: (config) => {
+    //config.infrastructureLogging = { debug: /PackFileCache/ };
     config.resolve.fallback = {
       async_hooks: false,
       fs: false,
       path: false,
-      process: false
+      process: false,
     };
     return config;
-  }
+  },
 });
 
 // Injected content via Sentry wizard below
@@ -68,5 +78,5 @@ module.exports = withSentryConfig(module.exports, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  automaticVercelMonitors: false,
 });

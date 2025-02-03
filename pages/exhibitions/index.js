@@ -3,22 +3,26 @@ import React from "react";
 import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
-import {TITLE} from "constants/exhibitions";
-import {loadExhibitionList} from "lib/exhibitionsStatic";
+import { TITLE } from "constants/exhibitions";
+import { loadExhibitionList } from "lib/exhibitionsStatic";
 
-const Exhibitions = ({exhibitions}) =>
+function Exhibitions(props) {
+  let { exhibitions } = props;
+  return (
     <MainLayout pageTitle={TITLE}>
-        <div id="main" role="main">
-            <AllExhibitions exhibitions={exhibitions}/>
-        </div>
-        <Footer/>
-    </MainLayout>;
+      <div id="main" role="main">
+        <AllExhibitions exhibitions={exhibitions} />
+      </div>
+      <Footer />
+    </MainLayout>
+  );
+}
 
-export const getStaticProps = async () => {
-    const exhibitions = await loadExhibitionList();
-    return {
-        props: exhibitions
-    };
-};
+export async function getStaticProps() {
+  const exhibitions = await loadExhibitionList();
+  return {
+    props: exhibitions,
+  };
+}
 
 export default Exhibitions;

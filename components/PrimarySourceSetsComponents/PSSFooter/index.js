@@ -1,25 +1,23 @@
 import React from "react";
 import Link from "next/link";
 
-import {
-  PSS_NHD_URL
-} from "constants/site";
+import {PSS_NHD_URL} from "constants/site";
 
 import css from "./PSSFooter.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const OtherInfo = () =>
-  <div className={css.wrapper} data-cy={'pss-footer'}>
+function OtherInfo() {
+  return (<div className={css.wrapper} data-cy={'pss-footer'}>
     <div className={`${utils.container} ${css.otherInfo}`}>
       <p className={css.p}>
         <span>
           These sets were created and reviewed by teachers.
-        {" "}
+          {" "}
         </span>
         <span>
           Explore resources and ideas for{" "}
           <Link href="/about/using-dplas-primary-source-sets">
-            <a>Using DPLA&apos;s Primary Source Sets</a>
+            Using DPLA&apos;s Primary Source Sets
           </Link>{" "}
           in your classroom.
         </span>
@@ -37,6 +35,7 @@ const OtherInfo = () =>
         </span>
       </p>
     </div>
-  </div>;
+  </div>);
+}
 
 export default OtherInfo;
