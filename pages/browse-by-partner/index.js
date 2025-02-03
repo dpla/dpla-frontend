@@ -10,7 +10,6 @@ import { LOCAL_ID, SITE_ENV } from "constants/env";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function PartnerBrowse(props) {
   const { partners } = props;
@@ -29,8 +28,6 @@ function PartnerBrowse(props) {
     </div>
   );
 }
-
-PartnerBrowse.propTypes = { partners: PropTypes.any };
 
 export const getServerSideProps = async () => {
   let apiQuery;

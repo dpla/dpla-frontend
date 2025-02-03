@@ -24,7 +24,6 @@ import {
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { SITE_ENV } from "constants/env";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function Home(props) {
   const { sourceSets, guides, exhibitions, headerDescription, news, content } =
@@ -47,15 +46,6 @@ function Home(props) {
     </MainLayout>
   );
 }
-
-Home.propTypes = {
-  sourceSets: PropTypes.any,
-  guides: PropTypes.any,
-  exhibitions: PropTypes.any,
-  headerDescription: PropTypes.any,
-  news: PropTypes.any,
-  content: PropTypes.any,
-};
 
 export async function getServerSideProps() {
   // fetch home info

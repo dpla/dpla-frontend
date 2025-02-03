@@ -199,7 +199,7 @@ class Viewer extends React.Component {
               {subsection.page_blocks.map((block) => (
                 <li key={block.id}>
                   <ItemLink
-                    router
+                    router={router}
                     fileType={block.type}
                     className={block.isActive ? css.activeItemLink : ""}
                     itemId={block.id}

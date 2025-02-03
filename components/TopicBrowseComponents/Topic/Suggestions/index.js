@@ -7,7 +7,6 @@ import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import css from "./Suggestions.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 function mapTypeToClass(type) {
   if (type === "Exhibition") {
@@ -87,7 +86,5 @@ function Suggestions(props) {
     </div>
   );
 }
-
-Suggestions.propTypes = { suggestions: PropTypes.any };
 
 export default Suggestions;

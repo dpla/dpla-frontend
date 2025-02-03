@@ -10,7 +10,7 @@ function Breadcrumbs({ breadcrumbs }) {
       {breadcrumbs.map((breadcrumb, idx) => {
         if (idx < breadcrumbs.length - 1) {
           return (
-            <div className={css.breadcrumbLinkWrapper} key={breadcrumb.url}>
+            <div className={css.breadcrumbLinkWrapper} key={breadcrumb.title}>
               <Link href={breadcrumb.url} as={breadcrumb.as}>
                 <Markdown
                   className={css.breadcrumbLink}

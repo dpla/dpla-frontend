@@ -8,12 +8,16 @@ import Content from "components/ItemComponents/Content";
 import QA from "components/ItemComponents/Content/QA";
 import CheckableLists from "components/ListComponents/CheckableLists";
 
-import { getItemThumbnail, getRandomItemIdAsync, joinIfArray } from "lib";
+import {
+  getItemThumbnail,
+  getRandomItemIdAsync,
+  joinIfArray,
+  truncateString,
+} from "lib";
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function ItemDetail(props) {
   const { item, randomItemId, isQA } = props;
@@ -22,12 +26,25 @@ function ItemDetail(props) {
       <BreadcrumbsModule
         breadcrumbs={[
           {
-            title: "All items",
+            title: item.partner,
             url: {
               pathname: "/search",
+              search: `?partner="${item.partner}"`,
             },
           },
-          { title: joinIfArray(item.title), search: "" },
+          {
+            title: item.contributingInstitution,
+            url: {
+              pathname: "/search",
+              search: `?partner="${item.partner}"&provider="${item.contributingInstitution}"`,
+            },
+          },
+          {
+            title: truncateString(joinIfArray(item.title, ", ")),
+            url: {
+              pathname: "",
+            },
+          },
         ]}
       />
       <HarmfulContent />
@@ -38,7 +55,6 @@ function ItemDetail(props) {
         className={`${utils.container} ${css.contentWrapper}`}
       >
         <Content item={item} />
-
         <div className={css.faveAndCiteButtons}>
           <CiteButton
             creator={item.creator}
@@ -56,12 +72,6 @@ function ItemDetail(props) {
   );
 }
 
-ItemDetail.propTypes = {
-  item: PropTypes.any,
-  randomItemId: PropTypes.any,
-  isQA: PropTypes.any,
-};
-
 export async function getServerSideProps(context) {
   const notFound = {
     notFound: true,
@@ -70,14 +80,12 @@ export async function getServerSideProps(context) {
   if (!query || query === "" || !("itemId" in query)) {
     return notFound;
   }
-
   const isQA = false;
   const randomItemId = isQA ? await getRandomItemIdAsync() : null;
   // check if item is found
   const itemUrl =
     `${process.env.API_URL}/items/${query.itemId}` +
     `?api_key=${process.env.API_KEY}`;
-
   let data = {};
   try {
     const res = await fetch(itemUrl);
@@ -85,11 +93,9 @@ export async function getServerSideProps(context) {
       throw new Error(`API Response status: ${res.status}`);
     }
     const json = await res.json();
-
     if (!("docs" in json) || json.docs.length < 1) {
       return notFound;
     }
-
     data = json;
   } catch (error) {
     if (
@@ -138,6 +144,7 @@ export async function getServerSideProps(context) {
       intermediateProvider: doc.intermediateProvider,
       date: date,
       language: language,
+      contributingInstitution: dataProvider,
       partner: doc.provider.name,
       sourceUrl: doc.isShownAt,
       useDefaultImage: !doc.object,

@@ -24,7 +24,6 @@ import { MAX_LIST_ITEMS, MESSAGE_DELAY, UNTITLED_TEXT } from "constants/site";
 
 import css from "./ListView.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 function joinTruncate(str) {
   return truncateString(joinIfArray(str));
@@ -44,21 +43,22 @@ function ItemDescription(props) {
   );
 }
 
-ItemDescription.propTypes = { description: PropTypes.any };
-
 class ListView extends React.Component {
-  state = {
-    readOnly: false,
-    listsInitialized: false,
-    listName: "",
-    listUUID: "",
-    selectedHash: {},
-    lists: [],
-    checkboxShown: false,
-    hasList: false,
-    listCreatedAt: 0,
-    showMessage: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      readOnly: false,
+      listsInitialized: false,
+      listName: "",
+      listUUID: "",
+      selectedHash: {},
+      lists: [],
+      checkboxShown: false,
+      hasList: false,
+      listCreatedAt: 0,
+      showMessage: "",
+    };
+  }
 
   async componentDidMount() {
     await this.getLists();
@@ -127,9 +127,6 @@ class ListView extends React.Component {
 
   getLists = async () => {
     let readOnly = false;
-    this.setState({
-      listsInitialized: true,
-    });
     const lists = await getLocalForageLists();
     lists.sort((a, b) => b.createdAt - a.createdAt);
     if (this.props.defaultUUID) {
@@ -139,6 +136,7 @@ class ListView extends React.Component {
     this.setState({
       readOnly: readOnly,
       lists: lists,
+      listsInitialized: true,
     });
   };
 
@@ -211,6 +209,7 @@ class ListView extends React.Component {
   };
 
   onCheckItem = async (e) => {
+    console.log("onCheckItem");
     const element = e.target;
     const id = element.getAttribute("data-id");
     const selected = element.checked;
@@ -384,7 +383,7 @@ class ListView extends React.Component {
                 onChange={this.listSelectChange}
               >
                 <option value="">No list</option>
-                {lists.map((list, index) => {
+                {lists.map((list) => {
                   return (
                     <option key={list.uuid} value={list.uuid}>
                       {list.name} ({list.count}
@@ -443,7 +442,7 @@ class ListView extends React.Component {
                         as={item.linkAs}
                         className={"internalItemLink"}
                       >
-                        {router.pathname.indexOf("/search") === 0 && item.title
+                        {item.title
                           ? truncateString(joinIfArray(item.title, ", "), 150)
                           : UNTITLED_TEXT}
                       </Link>
@@ -451,7 +450,7 @@ class ListView extends React.Component {
                     {/* see issue #869 for details on this hack */}
                     {realId === "http://dp.la/api/items/#sourceResource" && (
                       <span>
-                        {router.pathname.indexOf("/search") === 0 && item.title
+                        {item.title
                           ? truncateString(item.title, 150)
                           : UNTITLED_TEXT}
                       </span>

@@ -92,18 +92,17 @@ export const getServerSideProps = async ({ query }) => {
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-
   const pageName = query.subsection || query.section;
   const response = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await response.json();
   const pageItem = json.items.find((item) => item.post_name === pageName);
   const guidesPageItem = json.items.find((item) => item.url === endpoint);
-  if (pageItem === guidesPageItem) {
-    //res.redirect("/guides");
-    return {};
-  } else if (pageItem.menu_item_parent === guidesPageItem.object_id) {
-    //res.redirect(`/guides/guide?guide=${pageItem.post_name}`);
-    return {};
+  if (
+    !pageItem ||
+    pageItem === guidesPageItem ||
+    pageItem?.menu_item_parent === guidesPageItem.object_id
+  ) {
+    return { notFound: true };
   }
 
   // for the breadcrumbs
@@ -115,7 +114,7 @@ export const getServerSideProps = async ({ query }) => {
   const breadcrumbs = [];
 
   if (JSON.stringify(breadcrumbObject) !== "{}") {
-    Object.values(breadcrumbObject).map((crumb) => {
+    Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
       let url = "/about?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem

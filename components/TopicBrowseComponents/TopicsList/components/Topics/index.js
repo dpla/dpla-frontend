@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import css from "./Topics.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 function Topics(props) {
   const { topics } = props;
@@ -41,7 +40,5 @@ function Topics(props) {
     </div>
   );
 }
-
-Topics.propTypes = { topics: PropTypes.any };
 
 export default Topics;

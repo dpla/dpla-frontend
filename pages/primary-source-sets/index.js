@@ -10,7 +10,6 @@ import {
   timePeriodOptions,
   TITLE,
 } from "constants/primarySourceSets";
-import * as PropTypes from "prop-types";
 
 function PrimarySourceSets(props) {
   const { sets } = props;
@@ -25,8 +24,6 @@ function PrimarySourceSets(props) {
     </div>
   );
 }
-
-PrimarySourceSets.propTypes = { sets: PropTypes.any };
 
 export async function getServerSideProps({ query }) {
   const findTimePeriod = timePeriodOptions.find(

@@ -10,17 +10,13 @@ const NAME_CHAR_LIMIT = 64;
 import utils from "stylesheets/utils.module.scss";
 
 class ListNameModal extends React.Component {
-  state = {
-    active: false,
-    value: "",
-    onChange: null,
-  };
-
-  componentDidMount() {
-    this.setState({
-      value: this.props.value,
-      onChange: this.props.onChange,
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false,
+      value: props.value,
+      onChange: props.onChange,
+    };
   }
 
   openForm = (e) => {
@@ -32,7 +28,6 @@ class ListNameModal extends React.Component {
 
   closeForm = (e) => {
     this.setState({
-      value: this.props.value,
       active: false,
     });
   };
@@ -43,19 +38,22 @@ class ListNameModal extends React.Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    let tempName = this.state.value.trim();
-    if (tempName === "") {
-      tempName = DEFAULT_NAME;
-    }
-    this.setState({ value: "", active: false });
-    this.state.onChange(tempName);
+    this.setState(async (prevState) => {
+      let tempName = prevState.value.trim();
+      if (tempName === "") {
+        tempName = DEFAULT_NAME;
+      }
+      this.props.onChange(tempName);
+      return { value: tempName, active: false };
+    });
+    this.closeForm();
   };
 
   render() {
     let { name, type, className } = this.props;
-    type = type ? type : DEFAULT_TYPE;
+    type = type || DEFAULT_TYPE;
     const { active, value } = this.state;
     const modal = active ? (
       <AriaModal

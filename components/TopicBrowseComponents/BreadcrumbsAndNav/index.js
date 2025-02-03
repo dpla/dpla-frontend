@@ -3,7 +3,6 @@ import React from "react";
 import Breadcrumbs from "shared/Breadcrumbs";
 import css from "./BreadcrumbsAndNav.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 function BreadcrumbsAndNav(props) {
   const { breadcrumbs } = props;
@@ -15,7 +14,5 @@ function BreadcrumbsAndNav(props) {
     </div>
   );
 }
-
-BreadcrumbsAndNav.propTypes = { breadcrumbs: PropTypes.any };
 
 export default BreadcrumbsAndNav;

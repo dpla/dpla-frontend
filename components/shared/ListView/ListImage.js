@@ -8,7 +8,7 @@ import css from "./ListView.module.scss";
 class ListImage extends React.Component {
   state = {
     updateToDefaultImage: false,
-    item: this.props.item
+    item: this.props.item,
   };
 
   componentDidMount() {
@@ -38,32 +38,35 @@ class ListImage extends React.Component {
 
     return (
       <div
+        aria-hidden
         className={`${className} ${css.imageWrapper}
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}
-        {item.id !== "http://dp.la/api/items/#sourceResource" &&
-          <Link href={item.linkHref} as={item.linkAs}
-                className={`${css.listItemImageLink} internalItemLink`}
-                title={title}
-                aria-hidden
+        {item.id !== "http://dp.la/api/items/#sourceResource" && (
+          <Link
+            href={item.linkHref}
+            as={item.linkAs}
+            className={`${css.listItemImageLink} internalItemLink`}
+            title={title}
           >
-
-              <img
-                src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
-                alt=""
-                className={css.image}
-              />
-          </Link>}
-        {/* see issue #869 for details on this hack */}
-        {item.id === "http://dp.la/api/items/#sourceResource" &&
-          <span className={css.listItemImageLink} aria-hidden>
             <img
               src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
               alt=""
               className={css.image}
             />
-          </span>}
+          </Link>
+        )}
+        {/* see issue #869 for details on this hack */}
+        {item.id === "http://dp.la/api/items/#sourceResource" && (
+          <span className={css.listItemImageLink}>
+            <img
+              src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
+              alt=""
+              className={css.image}
+            />
+          </span>
+        )}
       </div>
     );
   }

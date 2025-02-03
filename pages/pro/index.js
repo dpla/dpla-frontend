@@ -6,7 +6,6 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function Home(props) {
   const { news, content } = props;
@@ -18,11 +17,6 @@ function Home(props) {
     </MainLayout>
   );
 }
-
-Home.propTypes = {
-  news: PropTypes.any,
-  content: PropTypes.any,
-};
 
 export async function getServerSideProps() {
   // fetch home info

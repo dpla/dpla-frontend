@@ -140,20 +140,22 @@ export async function getServerSideProps(context) {
       if (facet.indexOf("sourceResource.date") !== -1 && !hasDates) {
         hasDates = true; // do it only once for date queries
         // the date “facets” from ES do not map to the way the API expects requests
-        // remove whatever is after the last periot (“begin” or “end”)
+        // remove whatever is after the last period (“begin” or “end”)
         facet = facet.replace(".begin", "");
         facet = facet.replace(".end", "");
-        // dates are special (also all those pretty/uglifiers shold be one object instead of three but ¯\_(ツ)_/¯)
+        // dates are special (also all those pretty/uglifiers should be one object instead of three but ¯\_(ツ)_/¯)
         let dateQuery = [];
         let beginYear = "";
         let endYear = "";
-        if (query.after && !isNaN(Number(query.after))) {
-          beginYear = Number(query.after);
-          dateQuery.push(`${facet}.after=${beginYear}-01-01`);
-        }
         if (query.before && !isNaN(Number(query.before))) {
-          endYear = Number(query.before);
-          dateQuery.push(`${facet}.before=${endYear}-12-31`);
+          beginYear = Number(query.before);
+          const beginYearString = String(beginYear).padStart(4, "0");
+          dateQuery.push(`${facet}.before=${beginYearString}-01-01`);
+        }
+        if (query.after && !isNaN(Number(query.after))) {
+          endYear = Number(query.after);
+          const endYearString = String(endYear).padStart(4, "0");
+          dateQuery.push(`${facet}.after=${endYearString}-12-31`);
         }
         return dateQuery.join("&");
       }
@@ -172,13 +174,13 @@ export async function getServerSideProps(context) {
 
   const facetQueries = queryArray.join("&");
 
-  const isUnilteredQuery =
+  const isUnfilteredQuery =
     (!q || q.length < 2) &&
     filters.length === 0 &&
     tags.length === 0 &&
     !facetQueries;
 
-  if (isUnilteredQuery) {
+  if (isUnfilteredQuery) {
     return {
       props: {
         filterQueryError: true,
@@ -226,19 +228,20 @@ export async function getServerSideProps(context) {
       const res = await fetch(url);
       aboutnessJson = res.json();
     } catch (error) {
-      //ignoring errors for aboutness requests
+      // Purposefully ignoring errors for aboutness requests
     }
     const aboutnessDocs = aboutnessJson.docs
       .map((result) => {
         const thumbnailUrl = getItemThumbnail(result);
-        return Object.assign({}, result.sourceResource, {
+        return {
+          ...result.sourceResource,
           thumbnailUrl,
           id: result.id ? result.id : result.sourceResource["@id"],
           sourceUrl: result.isShownAt,
           provider: result.provider && result.provider.name,
           dataProvider: result.dataProvider && result.dataProvider.name,
           useDefaultImage: !result.object,
-        });
+        };
       })
       .splice(0, aboutness_max);
     const aboutnessCount = aboutnessJson.count;

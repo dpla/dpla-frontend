@@ -12,7 +12,6 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -46,11 +45,6 @@ function Topic(props) {
     </MainLayout>
   );
 }
-
-Topic.propTypes = {
-  topic: PropTypes.any,
-  suggestions: PropTypes.any,
-};
 
 export const getServerSideProps = async ({ query }) => {
   const topicsRes = await fetch(

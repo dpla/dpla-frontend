@@ -4,7 +4,6 @@ import Link from "next/link";
 import css from "./NavArrows.module.scss";
 
 import Chevron from "components/svg/ChevronThickOrange";
-import * as PropTypes from "prop-types";
 
 function NavArrows(props) {
   const { previousSubtopic, nextSubtopic, topic, route } = props;
@@ -34,12 +33,5 @@ function NavArrows(props) {
     <></>
   );
 }
-
-NavArrows.propTypes = {
-  previousSubtopic: PropTypes.any,
-  nextSubtopic: PropTypes.any,
-  topic: PropTypes.any,
-  route: PropTypes.any,
-};
 
 export default NavArrows;

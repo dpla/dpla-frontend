@@ -1,7 +1,6 @@
 import React from "react";
 
 import css from "./mediaViewers.module.scss";
-import * as PropTypes from "prop-types";
 
 function VideoPlayer(props) {
   const { pathToFile, fileFormat } = props;
@@ -13,10 +12,5 @@ function VideoPlayer(props) {
     </div>
   );
 }
-
-VideoPlayer.propTypes = {
-  pathToFile: PropTypes.any,
-  fileFormat: PropTypes.any,
-};
 
 export default VideoPlayer;
