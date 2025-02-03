@@ -10,7 +10,7 @@ The documentation below will help guide new contributors through the process of 
 
 ## IDHH Metadata Documentation & Links
 
-- [IDHH Metadata Best Practices](https://docs.google.com/document/d/1q1AORHoa0ey0fUGOTYMHLvZNCm6Wq1Qe9DDvFZSRPT0)
+- [IDHH Metadata Best Practices](https://uofi.app.box.com/file/1566637559189)
 - [IDHH Introduction to Metadata in the DPLA (Slides and Recording)](https://drive.google.com/file/d/191MsR44Rp2URMXPS9fKM-S0H2yY392ZS)
 - [IDHH Metadata Best Practices (Slides and Recording)](https://drive.google.com/file/d/1RHQYfeUERBDo0EYNjyv6M3DQs35KjPKf)
 - [Provider Metadata Guide](/for-contributors/provider-metadata-guide)
@@ -18,7 +18,7 @@ The documentation below will help guide new contributors through the process of 
 - [Type Metadata Guide](/for-contributors/type-metadata-guide)
 - [Rights Statements Guide](/for-contributors/rights-statements-guide)
 - [IDHH Metadata Assessment Rubric](https://docs.google.com/document/d/1I46jjoehq5KI78VNWRBjR6a6DpLZIN_Xv7IaCD6lB3w)
-- [IDHH Metadata Updates](http://finditillinois.org/idhh/index.php/category/metadata/)
+- [IDHH Metadata Updates](https://www.library.illinois.edu/idhh-highlights/index.php/category/metadata/)
 
 ## DPLA Metadata Resources
 
