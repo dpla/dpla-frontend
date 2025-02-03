@@ -5,7 +5,6 @@ import HeadingRule from "shared/HeadingRule";
 
 import css from "./MainContent.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 function MainContent(props) {
   const { topic } = props;
@@ -49,7 +48,5 @@ function MainContent(props) {
     </div>
   );
 }
-
-MainContent.propTypes = { topic: PropTypes.any };
 
 export default MainContent;

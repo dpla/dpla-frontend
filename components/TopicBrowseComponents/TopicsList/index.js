@@ -5,7 +5,6 @@ import Topics from "./components/Topics";
 import Callout from "./components/Callout";
 
 import { DESCRIPTION, TITLE } from "constants/topicBrowse";
-import * as PropTypes from "prop-types";
 
 function TopicsList(props) {
   const { topics } = props;
@@ -17,7 +16,5 @@ function TopicsList(props) {
     </div>
   );
 }
-
-TopicsList.propTypes = { topics: PropTypes.any };
 
 export default TopicsList;

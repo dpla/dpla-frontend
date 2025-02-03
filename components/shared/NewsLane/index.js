@@ -5,7 +5,6 @@ import { formatDate } from "lib";
 
 import css from "./NewsLane.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import * as PropTypes from "prop-types";
 
 import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
@@ -60,10 +59,5 @@ function NewsLane(props) {
     </div>
   );
 }
-
-NewsLane.propTypes = {
-  title: PropTypes.any,
-  items: PropTypes.any,
-};
 
 export default NewsLane;

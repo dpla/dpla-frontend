@@ -116,8 +116,7 @@
   margin-right: 0.5rem;
   position: relative;
   top: 1px;
-
-  g path.clearAllIconPath {
-    fill: $linkColor;
+  g path {
+    fill: $linkColor
   }
 }

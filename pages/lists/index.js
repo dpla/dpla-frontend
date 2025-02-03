@@ -22,8 +22,8 @@ class ListsPage extends React.Component {
   }
 
   onCreateList = async (listName) => {
-    this.setState(async (prevState) => {
-      const uuid = createUUID();
+    const uuid = createUUID();
+    await this.setState(async (prevState) => {
       const createdAt = Date.now();
       const newLists = deepCopyObject(prevState.lists);
       newLists.push({

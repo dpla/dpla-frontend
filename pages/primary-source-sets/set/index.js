@@ -12,7 +12,6 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -59,13 +58,6 @@ function SingleSet(props) {
   );
 }
 
-SingleSet.propTypes = {
-  router: PropTypes.any,
-  error: PropTypes.any,
-  set: PropTypes.any,
-  currentFullUrl: PropTypes.any,
-};
-
 export async function getServerSideProps({ res, query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const api = await fetch(
@@ -77,10 +69,7 @@ export async function getServerSideProps({ res, query }) {
   // real way to handle this
 
   if (api.status > 399) {
-    if (res) {
-      res.status = 404;
-    }
-    return { error: { statusCode: api.status } };
+    return { notFound: true };
   }
   const json = await api.json();
 

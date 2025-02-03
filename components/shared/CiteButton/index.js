@@ -6,14 +6,13 @@ import { joinIfArray, removeEndPunctuation, formatDate } from "lib";
 import css from "./CiteButton.module.scss";
 
 class CiteButton extends React.Component {
-
   constructor(props) {
     super(props);
     this.date = formatDate();
   }
 
   state = {
-    showCitation: true // show it if js is disabled
+    showCitation: true, // show it if js is disabled
   };
 
   componentDidMount() {
@@ -21,8 +20,8 @@ class CiteButton extends React.Component {
     this.setState({ showCitation: false });
   }
 
-  toggleCiteButton = e => {
-    this.setState(prevState => ({ showCitation: !prevState.showCitation }));
+  toggleCiteButton = (e) => {
+    this.setState((prevState) => ({ showCitation: !prevState.showCitation }));
     e.preventDefault();
   };
 
@@ -35,7 +34,7 @@ class CiteButton extends React.Component {
       className,
       toCiteText,
       freeText,
-      title
+      title,
     } = this.props;
 
     return (
@@ -45,9 +44,9 @@ class CiteButton extends React.Component {
           controls="citation-content"
           expanded={this.state.showCitation}
           type="ghost"
-          className={`${css.button} ${className} ${this.state.showCitation
-            ? css.activeButton
-            : ""}`}
+          className={`${css.button} ${className} ${
+            this.state.showCitation ? css.activeButton : ""
+          }`}
         >
           <h2>Cite this {toCiteText}</h2>
         </Button>
@@ -55,20 +54,21 @@ class CiteButton extends React.Component {
         <div
           id="citation-content"
           aria-hidden={!this.state.showCitation}
-          className={`${css.citeButton} ${this.state.showCitation
-            ? ""
-            : css.hidden}`}
+          className={`${css.citeButton} ${
+            this.state.showCitation ? "" : css.hidden
+          }`}
         >
           <div className={css.citationsWrapper}>
-            {freeText &&
+            {freeText && (
               <dl className={css.citationList}>
                 <dt>Citation Information</dt>
-                <dd dangerouslySetInnerHTML={{__html: freeText}} />
-              </dl>}
-            {!freeText &&
+                <dd dangerouslySetInnerHTML={{ __html: freeText }} />
+              </dl>
+            )}
+            {!freeText && (
               <dl className={css.citationList}>
                 <dt>Chicago citation style</dt>
-                <dd>
+                <dd suppressHydrationWarning>
                   {creator ? joinIfArray(creator, ", ") + ". " : ""}
                   {title ? removeEndPunctuation(title) + ". " : ""}
                   {spatialName ? removeEndPunctuation(spatialName) + ", " : ""}
@@ -94,7 +94,8 @@ class CiteButton extends React.Component {
                   Retrieved from the Digital Public Library of America
                   {sourceUrl ? " <" + sourceUrl + ">. " : ""}
                 </dd>
-              </dl>}
+              </dl>
+            )}
             <span className={css.disclaimer}>
               <strong>Note:</strong> These citations are programmatically
               generated and may be incomplete.

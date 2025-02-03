@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/server";
 
 import css from "./mediaViewers.module.scss";
-import * as PropTypes from "prop-types";
 
 const viewerId = "openseadragon1";
 
@@ -12,20 +11,22 @@ function Noscript(props) {
   return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
 }
 
-Noscript.propTypes = { children: PropTypes.any };
-
-const initOpenSeaDragon = (url) => {
-  const OpenSeaDragon = require("openseadragon");
-  return OpenSeaDragon({
-    id: viewerId,
-    tileSources: { type: "image", url },
-    prefixUrl: "/static/images/openseadragon/",
-  });
-};
-
 export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
-    this.viewer = initOpenSeaDragon(this.props.pathToFile);
+    if (!this.viewer) {
+      const OpenSeaDragon = require("openseadragon");
+      const url = this.props.pathToFile;
+
+      this.viewer = new OpenSeaDragon({
+        id: viewerId,
+        tileSources: { type: "image", url },
+        prefixUrl: "/static/images/openseadragon/",
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.viewer = null;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

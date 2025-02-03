@@ -34,15 +34,17 @@ class Accordion extends React.Component {
   }
 
   onClickItem = (index) => {
-    const { items } = this.state;
-    const newItemsArray = items.map((item, i) => {
-      if (i === index) {
-        return { ...item, active: !item.active };
-      } else {
-        return item;
-      }
+    this.setState((prevState) => {
+      const { items } = prevState;
+      const newItemsArray = items.map((item, i) => {
+        if (i === index) {
+          return { ...item, active: !item.active };
+        } else {
+          return item;
+        }
+      });
+      return { items: newItemsArray };
     });
-    this.setState({ items: newItemsArray });
   };
 
   render() {
@@ -83,8 +85,8 @@ class Accordion extends React.Component {
                 </button>
                 {item.type === "term" && (
                   <ul id={`facets_${i}`} className={css.subitems}>
-                    {item.subitems.map((subitem) => (
-                      <li key={subitem.content}>{subitem.content}</li>
+                    {item.subitems.map((subitem, index) => (
+                      <li key={index}>{subitem.content}</li>
                     ))}
                   </ul>
                 )}

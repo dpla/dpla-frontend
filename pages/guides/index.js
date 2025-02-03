@@ -14,7 +14,6 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function Guides(props) {
   const { guides, sidebarItems, activeItemId } = props;
@@ -54,12 +53,6 @@ function Guides(props) {
     </MainLayout>
   );
 }
-
-Guides.propTypes = {
-  guides: PropTypes.any,
-  sidebarItems: PropTypes.any,
-  activeItemId: PropTypes.any,
-};
 
 export async function getServerSideProps() {
   // fetch page info

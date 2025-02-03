@@ -19,7 +19,6 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function Contact(props) {
   const { sidebarItems } = props;
@@ -50,8 +49,6 @@ function Contact(props) {
     </MainLayout>
   );
 }
-
-Contact.propTypes = { sidebarItems: PropTypes.any };
 
 export const getServerSideProps = async () => {
   const aboutMenuRes = await fetch(

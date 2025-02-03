@@ -10,7 +10,6 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function SingleSet(props) {
   const { router, set, teachingGuide, currentFullUrl } = props;
@@ -39,13 +38,6 @@ function SingleSet(props) {
     </MainLayout>
   );
 }
-
-SingleSet.propTypes = {
-  router: PropTypes.any,
-  set: PropTypes.any,
-  teachingGuide: PropTypes.any,
-  currentFullUrl: PropTypes.any,
-};
 
 export async function getServerSideProps({ query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;

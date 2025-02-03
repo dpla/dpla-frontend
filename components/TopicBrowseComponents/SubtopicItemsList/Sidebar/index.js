@@ -1,7 +1,6 @@
 import React from "react";
 
 import css from "./Sidebar.module.scss";
-import * as PropTypes from "prop-types";
 
 // const RelatedResource = ({ type, title, image }) =>
 //   <div className={css.relatedResource}>
@@ -41,11 +40,5 @@ function Sidebar(props) {
     </div>
   );
 }
-
-Sidebar.propTypes = {
-  image: PropTypes.any,
-  title: PropTypes.any,
-  description: PropTypes.any,
-};
 
 export default Sidebar;

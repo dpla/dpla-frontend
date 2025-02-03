@@ -32,6 +32,7 @@ function centerWindow(current, pageCount) {
 function PageLink({ router, page, className }) {
   return (
     <Link
+      key={"page " + page}
       href={{
         pathname: router.pathname,
         query: { ...router.query, page: page },
@@ -87,46 +88,57 @@ function Pagination({ pageCount, currentPage, router }) {
         disabled={!(currentPage > 1 && pageCount > 1)}
         type="prev"
         currentPage={currentPage}
-        router
+        router={router}
+        key={"prev"}
       />
+
       {pageCount > 1 && (
         <PageLink
+          key={1}
           className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
           page={1}
-          router
+          router={router}
         />
       )}
+
       {currentPage >= 5 && pageCount > 5 && (
         <span className={css.ellipses}>...</span>
       )}
-      {centerWindow(currentPage, pageCount).map((page) =>
-        page > 1 && page < pageCount ? (
-          <PageLink
-            key={page}
-            className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
-            page={page}
-            router
-          />
-        ) : (
-          <></>
-        ),
-      )}
+
+      {centerWindow(currentPage, pageCount)
+        .map((page) =>
+          page > 1 && page < pageCount ? (
+            <PageLink
+              key={page}
+              className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
+              page={page}
+              router={router}
+            />
+          ) : null,
+        )
+        .filter((x) => x !== null)}
 
       {currentPage <= pageCount - 4 && pageCount > 5 && (
-        <span className={css.ellipses}>...</span>
+        <span key="ellipses" className={css.ellipses}>
+          ...
+        </span>
       )}
+
       {pageCount > 1 && (
         <PageLink
           className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
           page={pageCount}
-          router
+          router={router}
+          key={pageCount}
         />
       )}
+
       <NextOrPrevButton
         disabled={!(currentPage < pageCount && pageCount > 1)}
         currentPage={currentPage}
         type="next"
-        router
+        router={router}
+        key={"next"}
       />
     </div>
   );

@@ -67,7 +67,9 @@
 
 .informationIcon {
   width: 15px;
-  vertical-align: bottom;
+  height: 15px;
   margin: 0 .4em;
+  padding: 0;
+  vertical-align: bottom;
   filter: invert(61%) sepia(24%) saturate(666%) hue-rotate(153deg) brightness(90%) contrast(84%);
 }

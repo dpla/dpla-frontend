@@ -7,7 +7,6 @@ import { LOCAL_ID } from "constants/env";
 import { join } from "path";
 import fs from "fs";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function Home(props) {
   const { content } = props;
@@ -20,8 +19,6 @@ function Home(props) {
     </MainLayout>
   );
 }
-
-Home.propTypes = { content: PropTypes.any };
 
 export async function getServerSideProps() {
   const localStaticDirectory = join(process.cwd(), "public", "static", "local");

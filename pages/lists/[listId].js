@@ -15,7 +15,7 @@ import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
 import { ListLoading, ListEmpty } from "components/ListComponents";
 
-import { addLinkInfoToResults, deepCopyObject, getItemThumbnail } from "lib";
+import { addLinkInfoToResults, getItemThumbnail } from "lib";
 
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
@@ -23,46 +23,43 @@ import { LISTS_TITLE } from "constants/lists";
 
 import utils from "stylesheets/utils.module.scss";
 import css from "components/ListComponents/ListComponents.module.scss";
+import { UNTITLED_TEXT } from "constants/site";
 
 class List extends React.Component {
   constructor(props) {
     super(props);
-    this.listId = this.props.router.asPath.substring("/list/".length + 1);
+    this.listId = this.props.router.query.listId;
+    console.log("IN CONSTRUCTOR", this.listId);
     this.state = {
       list: null,
       items: [],
       initialized: false,
-      uuid: "",
     };
   }
 
   async componentDidMount() {
-    localforage
-      .getItem(this.listId)
-      .then(async (list) => {
-        if (list) {
-          await this.getItems(uuid, list);
-        } else {
-          this.setState({ initialized: true });
-        }
-      })
-      .catch(function (err) {
-        console.log("getList", err);
-      });
-  }
+    console.log("IN componentDidMount", this.listId);
+    const list = await localforage.getItem(this.listId);
 
-  getItems = async (uuid, list) => {
+    // no such list exists
+    if (!list) {
+      this.setState({ initialized: true, items: [] });
+      return;
+    }
+
     const itemIds = Object.keys(list.selectedHash);
-    const ids = itemIds.join(",");
-    if (ids.length === 0) {
+
+    // empty list
+    if (itemIds.length === 0) {
       this.setState({
         initialized: true,
-        list: list,
         items: [],
-        uuid: uuid,
+        list: list,
       });
       return;
     }
+
+    const ids = itemIds.join(",");
 
     try {
       const url = `/api/items/${ids}`;
@@ -90,42 +87,49 @@ class List extends React.Component {
         initialized: true,
         list: list,
         items: items,
-        uuid: uuid,
       });
     } catch (error) {
+      // unable to load items
       this.setState({
         initialized: true,
         list: list,
-        uuid: uuid,
         items: [],
       });
     }
-  };
+  }
 
   onNameChange = async (value) => {
+    console.log("NEW NAME", value);
     await this.setState(async (prevState) => {
-      const uuid = this.props.listId;
-      const list = deepCopyObject(prevState.list);
+      const list = prevState.list;
       list.name = value;
-      await setLocalForageItem(uuid, list);
-      return { list };
+      await setLocalForageItem(this.listId, list);
+      return {
+        list: list,
+      };
     });
   };
 
-  handleConfirm = async (e) => {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("NEW STATE", nextState);
+  //   return true;
+  // }
+
+  handleConfirmDelete = async (e) => {
     e.preventDefault();
-    const { uuid } = this.state;
+    const uuid = this.listId;
     await removeLocalForageItem(uuid);
-    await Router.push({
+    await this.props.router.push({
       pathname: "/lists",
       query: "",
     });
   };
 
   render() {
-    const { uuid, list, items, initialized } = this.state;
+    const { list, items, initialized } = this.state;
     const { router } = this.props;
-    if (initialized && (!list || list.length === 0)) {
+    console.log(initialized, list, items, router.query.listId);
+    if (initialized && !list) {
       return <Error statusCode={404} />;
     }
     return (
@@ -137,7 +141,7 @@ class List extends React.Component {
               url: "/lists",
               as: "/lists",
             },
-            { title: list ? list.name : LISTS_TITLE },
+            { title: list ? list.name : UNTITLED_TEXT },
           ]}
         />
         <div
@@ -169,12 +173,12 @@ class List extends React.Component {
                 <strong>Note:</strong> The link to this list won&apos;t work for
                 someone else or in another browser.
               </p>
-              {items && uuid && (
+              {items && this.props.router.query.listId && (
                 <ListView
                   name={list.name}
                   exportable={true}
                   items={addLinkInfoToResults(items, router.query)}
-                  defaultUUID={uuid}
+                  defaultUUID={this.props.router.query.listId}
                 />
               )}
               {items.length === 0 && <ListEmpty />}
@@ -184,7 +188,7 @@ class List extends React.Component {
                   buttonText="Delete list"
                   confirmText="Delete list?"
                   confirmButtonText="Delete"
-                  onConfirm={this.handleConfirm}
+                  onConfirm={this.handleConfirmDelete}
                 />
               )}
             </div>

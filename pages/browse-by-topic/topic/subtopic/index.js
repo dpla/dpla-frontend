@@ -15,7 +15,6 @@ import {
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function SubtopicItemsList(props) {
   const { topic, subtopic, previousSubtopic, nextSubtopic, items } = props;
@@ -76,14 +75,6 @@ function SubtopicItemsList(props) {
     </MainLayout>
   );
 }
-
-SubtopicItemsList.propTypes = {
-  topic: PropTypes.any,
-  subtopic: PropTypes.any,
-  previousSubtopic: PropTypes.any,
-  nextSubtopic: PropTypes.any,
-  items: PropTypes.any,
-};
 
 export const getServerSideProps = async ({ query }) => {
   const topicsRes = await fetch(

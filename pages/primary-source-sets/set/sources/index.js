@@ -9,7 +9,6 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -57,13 +56,6 @@ function Source(props) {
     </MainLayout>
   );
 }
-
-Source.propTypes = {
-  router: PropTypes.any,
-  source: PropTypes.any,
-  set: PropTypes.any,
-  currentSourceIdx: PropTypes.any,
-};
 
 export async function getServerSideProps({ query }) {
   const sourceRes = await fetch(

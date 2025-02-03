@@ -234,51 +234,54 @@ class Sidebar extends React.Component {
       new RegExp('"' + escapeForRegex(value) + '"').test(
         router.query[mapFacetsToURLPrettified[facetKey]],
       );
-    const items = Object.keys(facets).map((key, i) => {
-      if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1) {
-        return <></>;
-      } else if (
-        key.indexOf("sourceResource.date") === -1 &&
-        key.indexOf("tags") === -1
-      ) {
-        return {
-          name: prettifiedFacetMap[key],
-          // first two items should be expanded as well as any items
-          // with an active subitem found in the query string
-          active:
-            i < 2 ||
-            facets[key].terms.some((termObject) =>
-              isFacetValueInQuery(key, termObject.term),
-            ),
-          type: "term",
-          subitems: facets[key].terms.map((termObject) => {
-            return {
-              content: qaFacets.includes(key) ? (
-                <FacetLink
-                  termObject={termObject}
-                  queryKey={mapFacetsToURLPrettified[key]}
-                  disabled={isFacetValueInQuery(key, termObject.term)}
-                  isTooltip={key === "rightsCategory"}
-                  router
-                />
-              ) : (
-                <></>
+    const items = Object.keys(facets)
+      .map((key, i) => {
+        if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1) {
+          return null;
+        } else if (
+          key.indexOf("sourceResource.date") === -1 &&
+          key.indexOf("tags") === -1
+        ) {
+          return {
+            name: prettifiedFacetMap[key],
+            // first two items should be expanded as well as any items
+            // with an active subitem found in the query string
+            active:
+              i < 2 ||
+              facets[key].terms.some((termObject) =>
+                isFacetValueInQuery(key, termObject.term),
               ),
-            };
-          }),
-        };
-      } else {
-        const dateProps = {};
-        if (router.query.after) dateProps.after = router.query.after;
-        if (router.query.before) dateProps.before = router.query.before;
-        return {
-          name: prettifiedFacetMap[key],
-          active: true,
-          type: "date",
-          subitems: <DateFacet router={router} {...dateProps} />,
-        };
-      }
+            type: "term",
+            subitems: facets[key].terms.map((termObject) => {
+              return {
+                content: qaFacets.includes(key) ? (
+                  <FacetLink
+                    termObject={termObject}
+                    queryKey={mapFacetsToURLPrettified[key]}
+                    disabled={isFacetValueInQuery(key, termObject.term)}
+                    isTooltip={key === "rightsCategory"}
+                    router={router}
+                  />
+                ) : null,
+              };
+            }),
+          };
+        } else {
+          return null;
+        }
+      })
+      .filter((x) => x !== null);
+
+    const dateProps = {};
+    if (router.query.after) dateProps.after = router.query.after;
+    if (router.query.before) dateProps.before = router.query.before;
+    items.splice(3, 0, {
+      name: prettifiedFacetMap["sourceResource.date.begin"],
+      active: true,
+      type: "date",
+      subitems: <DateFacet router={router} {...dateProps} />,
     });
+
     return (
       <div className={css.sidebar}>
         <h2>Refine your search</h2>

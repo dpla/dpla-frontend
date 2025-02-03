@@ -7,7 +7,6 @@ import {
   TITLE,
 } from "constants/topicBrowse";
 import { washObject } from "lib/washObject";
-import * as PropTypes from "prop-types";
 
 function TopicBrowse(props) {
   const { topics } = props;
@@ -21,8 +20,6 @@ function TopicBrowse(props) {
     </div>
   );
 }
-
-TopicBrowse.propTypes = { topics: PropTypes.any };
 
 export const getServerSideProps = async () => {
   const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
