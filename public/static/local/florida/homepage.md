@@ -20,5 +20,3 @@ From theme parks to beaches and everything in between, Florida’s economy and h
 
 - ### [Agriculture](/search?q=Agriculture)
 With a year-round temperate climate and large swaths of fertile land, Florida has been helping to feed the United States for centuries. Discover more about Florida’s diverse agricultural history.
-
-*SSDN membership to the DPLA Hub Network is supported through generous funding provided by the Library Services and Technology Act administered by the Florida Department of State, Division of Library and Information Services.*
