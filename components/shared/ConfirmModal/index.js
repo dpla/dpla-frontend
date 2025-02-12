@@ -84,7 +84,7 @@ class ConfirmModal extends React.Component {
             </div>
           </form>
         </AriaModal>
-      : null;
+      : <></>;
     return (
       <div className={className}>
         <Button

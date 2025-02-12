@@ -6,7 +6,7 @@ import css from "./ItemImage.module.scss";
 
 class ItemImage extends React.Component {
   state = {
-    updateToDefaultImage: false
+    updateToDefaultImage: false,
   };
 
   componentDidMount() {
@@ -25,9 +25,11 @@ class ItemImage extends React.Component {
     return (
       <div
         className={`${css.imageWrapper}
-          ${useDefaultWrapper
-            ? css.defaultImageWrapper + " " + defaultImageClass
-            : ""}`}
+          ${
+            useDefaultWrapper
+              ? css.defaultImageWrapper + " " + defaultImageClass
+              : ""
+          }`}
       >
         <img
           src={updateToDefaultImage ? getDefaultThumbnail(type) : url}

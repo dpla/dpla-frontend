@@ -1,7 +1,6 @@
 import * as Sentry from "@sentry/nextjs";
 
 import React from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
@@ -24,7 +23,7 @@ class Error extends React.Component {
       statusCode = context.res.statusCode;
       context.res.setHeader(
         "Cache-Control",
-        "max-age=0, private, no-cache, no-store, must-revalidate"
+        "max-age=0, private, no-cache, no-store, must-revalidate",
       );
     } else if (context?.err) {
       statusCode = context.err.statusCode;
@@ -76,9 +75,5 @@ class Error extends React.Component {
     );
   }
 }
-
-Error.propTypes = {
-  statusCode: PropTypes.number | null
-};
 
 export default withRouter(Error);

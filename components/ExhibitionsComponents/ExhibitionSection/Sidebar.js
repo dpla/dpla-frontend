@@ -3,55 +3,52 @@ import Link from "next/link";
 
 import css from "./ExhibitionSection.module.scss";
 
-const Sidebar = ({
-                     currentSubsection,
-                     currentSection,
-                     isShowing,
-                     sectionMap,
-                     subsectionMap,
-                     exhibitionSlug
-                 }) =>
+function Sidebar({
+  currentSubsection,
+  currentSection,
+  isShowing,
+  sectionMap,
+  subsectionMap,
+  exhibitionSlug,
+}) {
+  return (
     <div className={`${css.sidebar} ${isShowing ? css.overlayActive : ""}`}>
-        <ul className={css.sidebarSections}>
-            {sectionMap.map(section =>
-                <li key={section.id}>
+      <ul className={css.sidebarSections}>
+        {sectionMap.map((section) => (
+          <li key={section.id}>
+            <Link
+              href={`/exhibitions/${exhibitionSlug}/${section.slug}`}
+              className={[
+                css.sectionTitle,
+                section.id === currentSection.id && css.active,
+              ].join(" ")}
+            >
+              {section.title}
+            </Link>
+            {section.id === currentSection.id && (
+              <ul>
+                {subsectionMap.map((subsection) => (
+                  <li
+                    key={subsection.id}
+                    className={[
+                      css.subsectionTitle,
+                      subsection.id === currentSubsection.id && css.active,
+                    ].join(" ")}
+                  >
                     <Link
-                        href={`/exhibitions/${exhibitionSlug}/${section.slug}`}>
-                        <a
-                            className={[
-                                css.sectionTitle,
-                                section.id === currentSection.id && css.active
-                            ].join(" ")}
-                        >
-                            {section.title}
-                        </a>
+                      href={`/exhibitions/${exhibitionSlug}/${section.slug}/${subsection.slug !== section.slug ? subsection.slug : ""}`}
+                    >
+                      {subsection.title}
                     </Link>
-                    {section.id === currentSection.id &&
-                        <ul>
-                            {subsectionMap.map(subsection =>
-                                <li
-                                    key={subsection.id}
-                                    className={[
-                                        css.subsectionTitle,
-                                        subsection.id === currentSubsection.id && css.active
-                                    ].join(" ")}
-                                >
-                                    <Link
-                                        href={
-                                            `/exhibitions/${exhibitionSlug}/${section.slug}/${
-                                                subsection.slug !== section.slug
-                                                    ? subsection.slug
-                                                    : ""
-                                            }`}
-                                    >
-                                        <a>{subsection.title}</a>
-                                    </Link>
-                                </li>
-                            )}
-                        </ul>}
-                </li>
+                  </li>
+                ))}
+              </ul>
             )}
-        </ul>
-    </div>;
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default Sidebar;

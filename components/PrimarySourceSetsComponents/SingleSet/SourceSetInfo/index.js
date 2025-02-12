@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 import CiteButton from "components/shared/CiteButton";
 
@@ -11,8 +11,7 @@ import utils from "stylesheets/utils.module.scss"
 import {mapSubjectNameToSlug, mapTimePeriodNameToSlug} from "constants/primarySourceSets";
 import Link from "next/link";
 
-const googleClassroom = "/static/images/google-classroom.svg";
-
+import GoogleClassroom from "components/svg/GoogleClassroom";
 
 // Only the time period has a sameAs field
 const extractTimePeriod = tags =>
@@ -50,33 +49,29 @@ class SourceSetInfo extends React.Component {
                 <div
                   className={css.bannerImage}
                   style={{
-                    backgroundImage: `url(${set.repImageUrl ||
-                      set.thumbnailUrl})`,
+                    backgroundImage: `url(${set.repImageUrl || set.thumbnailUrl})`,
                     backgroundPosition: "50% 25%"
                   }}
                 />
                 <div className={css.bannerTextWrapper}>
                   <h1 className={css.bannerTitle}>
-                    <ReactMarkdown
-                      source={set.name}
-                      allowedTypes={["emphasis", "text"]}
+                    <Markdown
+                      allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
-                    />
+                    >{set.name}</Markdown>
                   </h1>
                 </div>
               </div>
-              <ReactMarkdown
+              <Markdown
                 id="dpla-description"
-                source={set.hasPart.find(item => item.name === "Overview").text}
                 className={`${css.description} ${css.description} ${this.state
                   .isOpen
                   ? css.open
                   : ""}`}
-                renderers={{
-                  linkReference: reference => markdownLinks(reference),
-                  link: reference => markdownLinks(reference)
+                components={{
+                  a(props) { return markdownLinks(props) }
                 }}
-              />
+              >{set.hasPart.find(item => item.name === "Overview").text}</Markdown>
               <div
                 id="dpla-showmore"
                 aria-hidden="true"
@@ -101,12 +96,10 @@ class SourceSetInfo extends React.Component {
                     </h2>
                     <ul>
                     {set.author.map(author =>
-                        <li key={author.name}><ReactMarkdown
-                        key={author.name}
-                        source={author.name + ", " + author.affiliation.name}
-                        allowedTypes={["emphasis", "text"]}
+                        <li key={author.name}><Markdown
+                        allowedElements={["emphasis", "text"]}
                         unwrapDisallowed
-                        /></li>
+                        >{author.name + ", " + author.affiliation.name}</Markdown></li>
                     )}
                     </ul>
                   </div>
@@ -124,14 +117,12 @@ class SourceSetInfo extends React.Component {
                                 timePeriod: mapTimePeriodNameToSlug(period)
                               }
                             }}
+                            className={`${utils.link} ${css.link}`}
                           >
-                            <a className={`${utils.link} ${css.link}`}>
-                              <ReactMarkdown
-                                source={period}
-                                allowedTypes={["emphasis", "text"]}
+                              <Markdown
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
-                              />
-                            </a>
+                              >{period}</Markdown>
                           </Link>
                         </li>
                       )}
@@ -149,14 +140,12 @@ class SourceSetInfo extends React.Component {
                                 subject: mapSubjectNameToSlug(subject)
                               }
                             }}
+                            className={`${utils.link} ${css.link}`}
                           >
-                            <a className={`${utils.link} ${css.link}`}>
-                              <ReactMarkdown
-                                source={subject}
-                                allowedTypes={["emphasis", "text"]}
+                              <Markdown
+                                allowedElements={["emphasis", "text"]}
                                 unwrapDisallowed
-                              />
-                            </a>
+                              >{subject}</Markdown>
                           </Link>
                         </li>
                       )}
@@ -176,11 +165,7 @@ class SourceSetInfo extends React.Component {
                 {this.state.href !== "" &&
                   <div className={css.tools}>
                     <div className={css.toolLinkAndIcon}>
-                      <img
-                        src={googleClassroom}
-                        alt=""
-                        className={css.toolIcon}
-                      />
+                      <GoogleClassroom className={css.toolIcon}/>
                       <a
                         href={`${GOOGLE_CLASSROOMS_SHARE_URL}?url=${this.state.href
                           .replace("teaching-guide", "")
@@ -188,7 +173,6 @@ class SourceSetInfo extends React.Component {
                         className={css.toolLink}
                         rel="noopener noreferrer"
                         target="_blank"
-
                       >
                         Share to Google Classroom
                       </a>

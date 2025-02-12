@@ -11,13 +11,7 @@ class Body extends React.Component {
     state = {isMenuOpen: false};
 
     toggleMenu() {
-        this.setState(
-            {
-                isMenuOpen: !this.state.isMenuOpen
-            },
-            () => {
-            }
-        );
+        this.setState(prevState => ({isMenuOpen: !prevState.isMenuOpen}));
     }
 
     render() {
@@ -35,7 +29,7 @@ class Body extends React.Component {
                     subsectionTitle={subsection.title}
                     isMenuOpen={this.state.isMenuOpen}
                 />
-                <div id="main" role="main" className={css.mainContent}>
+                <main id="main" role="main" className={css.mainContent}>
                     <Sidebar
                         currentSubsection={subsection}
                         currentSection={section}
@@ -48,7 +42,7 @@ class Body extends React.Component {
                         subsection={subsection}
                         section={section}
                     />
-                </div>
+                </main>
             </div>
         );
     }

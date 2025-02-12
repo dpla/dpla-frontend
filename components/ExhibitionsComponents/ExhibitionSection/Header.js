@@ -1,30 +1,28 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router"
+import { withRouter } from "next/router";
 
 import css from "./ExhibitionSection.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
-const Header = ({ title, router }) =>
-  <div className={`${css.header} ${utils.container}`}>
-    <div className={css.exhibitionsLinkAndTitle}>
-      <Link href="/exhibitions">
-        <a className={css.exhibitionsLink}>Exhibitions</a>
-      </Link>
-      <h1 className={css.exhibitionTitle}>
-        {title}
-      </h1>
-    </div>
-    <Link
-      href={`/exhibitions/${router.query.exhibitionSlug}`}
-    >
-      <a className={`hover-underline ${css.closeExhibition}`}>
+function Header({ title, router }) {
+  return (
+    <div className={`${css.header} ${utils.container}`}>
+      <div className={css.exhibitionsLinkAndTitle}>
+        <Link href="/exhibitions" className={css.exhibitionsLink}>
+          Exhibitions
+        </Link>
+        <h1 className={css.exhibitionTitle}>{title}</h1>
+      </div>
+      <Link
+        href={`/exhibitions/${router.query.exhibitionSlug}`}
+        className={`hover-underline ${css.closeExhibition}`}
+      >
         <svg
           className={css.closeIcon}
           width="18"
           height="18"
           viewBox="0 0 18 18"
-          xmlns="http://www.w3.org/2000/svg"
         >
           <g fill="none" fillRule="evenodd">
             <path d="M-9-9h36v36H-9z" />
@@ -35,8 +33,9 @@ const Header = ({ title, router }) =>
           </g>
         </svg>
         <span className={css.closeExhibitionText}>Close Exhibition</span>
-      </a>
-    </Link>
-  </div>;
+      </Link>
+    </div>
+  );
+}
 
 export default withRouter(Header);

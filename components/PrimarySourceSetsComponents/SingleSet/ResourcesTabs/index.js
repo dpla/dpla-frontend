@@ -7,7 +7,7 @@ import utils from "stylesheets/utils.module.scss"
 
 class ResourcesTabs extends React.Component {
   render() {
-    const { currentTab, router } = this.props;
+    const { currentTab, router, children} = this.props;
     return (
       <div id="tabs" className={css.wrapper} data-cy={"pss-tabs"}>
         <div className={css.tabsWrapper}>
@@ -22,9 +22,7 @@ class ResourcesTabs extends React.Component {
                 href={`/primary-source-sets/set?set=${router.query.set}#tabs`}
                 as={`/primary-source-sets/${router.query.set}#tabs`}
               >
-                <a>
-                  Source Set
-                </a>
+                Source Set
               </Link>
             </li>
             <li
@@ -42,9 +40,7 @@ class ResourcesTabs extends React.Component {
                 as={`/primary-source-sets/${router.query
                   .set}/additional-resources#tabs`}
               >
-                <a>
-                  Additional Resources
-                </a>
+                Additional Resources
               </Link>
             </li>
             <li
@@ -62,14 +58,12 @@ class ResourcesTabs extends React.Component {
                 as={`/primary-source-sets/${router.query
                   .set}/teaching-guide#tabs`}
               >
-                <a>
-                  Teaching Guide
-                </a>
+                Teaching Guide
               </Link>
             </li>
           </ul>
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   }

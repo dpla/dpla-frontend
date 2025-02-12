@@ -2,14 +2,15 @@ import React from "react";
 
 import css from "./HeadingRule.module.scss";
 
-const HeadingRule = ({ color }) =>
-  <div>
-    <div
-      className={css.rule}
-      style={{
-        borderColor: color ? color : "rgba(0,0,0,.15)"
-      }}
-    />
-  </div>;
+function HeadingRule({ color }) {
+  return (
+    <div>
+      <div
+        className={css.rule}
+        style={{ borderColor: color || "rgba(0,0,0,.15)" }}
+      />
+    </div>
+  );
+}
 
 export default HeadingRule;

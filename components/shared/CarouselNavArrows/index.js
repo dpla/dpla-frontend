@@ -2,26 +2,28 @@ import React from "react";
 
 import css from "./CarouselNavArrows.module.scss";
 
-const largeChevron = "/static/images/chevron-thin.svg";
+import LargeChevron from "components/svg/ChevronThin";
 
-const NextArrow = ({ onClick, className }) =>
-  <button
-    className={`${css.arrow} ${css.nextArrow} ${className}`}
-    tabIndex={-1}
-    aria-hidden={true}
-    onClick={onClick}
-  >
-    <img alt="Right-pointing arrow" src={largeChevron} />
-  </button>;
+function NextArrow({onClick, className}) {
+    return <button
+        className={`${css.arrow} ${css.nextArrow} ${className}`}
+        tabIndex={-1}
+        aria-hidden={true}
+        onClick={onClick}
+    >
+        <LargeChevron/>
+    </button>;
+}
 
-const PrevArrow = ({ onClick, className }) =>
-  <button
-    className={`${css.arrow} ${css.prevArrow} ${className}`}
-    tabIndex={-1}
-    aria-hidden={true}
-    onClick={onClick}
-  >
-    <img alt="Left-pointing arrow" src={largeChevron} />
-  </button>;
+function PrevArrow({onClick, className}) {
+    return <button
+        className={`${css.arrow} ${css.prevArrow} ${className}`}
+        tabIndex={-1}
+        aria-hidden={true}
+        onClick={onClick}
+    >
+        <LargeChevron/>
+    </button>;
+}
 
-export { PrevArrow, NextArrow };
+export {PrevArrow, NextArrow};

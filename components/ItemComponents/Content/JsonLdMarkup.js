@@ -1,18 +1,17 @@
 import React from "react";
-import { withRouter } from "next/router";
 
 import {joinIfArray} from "lib";
 
-const JsonLdMarkup = ({ item, router }) => {
+function JsonLdMarkup({ item }) {
   /**
-    * @param array: Array, possibly nested, of defined and undefined values.
+    * @param values Array, possibly nested, of defined and undefined values.
     * @return Array, flattened, only containing defined values.
     */
-  function definedAndFlattened(array) {
-    const defined = array.filter(function(x) {
+  function definedAndFlattened(values) {
+    const defined = values.filter(function(x) {
       return x !== undefined;
     });
-    return [].concat.apply([], defined);
+    return [].concat(...defined);
   }
 
   /**
@@ -59,7 +58,6 @@ const JsonLdMarkup = ({ item, router }) => {
     const dpla = {
       "@type": "Organization",
       name: "Digital Public Library of America",
-      // TODO Is there a better way to generate homepage URL?
       url: "https://dp.la/"
     };
 
@@ -171,8 +169,8 @@ const JsonLdMarkup = ({ item, router }) => {
   const spatial = () => {
     const all = definedAndFlattened([item.spatial]);
     return all.map(x => {
-      var lat = null;
-      var lon = null;
+      let lat = null;
+      let lon = null;
       let coordinates = joinIfArray(x.coordinates);
       if (coordinates !== undefined) {
         lat = Number(coordinates.split(",")[0]);
@@ -227,9 +225,7 @@ const JsonLdMarkup = ({ item, router }) => {
   const JsonLd = {
     "@context": "http://schema.org/",
     "@type": type(),
-    // TODO: Is there a better way to generate the api URI?
     "@id": "http://api.dp.la/items/" + item.id,
-    // TODO: Is there a better way to generate the URL of this page?
     mainEntityOfPage: "https://dp.la/item/" + item.id,
     isAccessibleForFree: true,
     provider: provider(),
@@ -257,6 +253,6 @@ const JsonLdMarkup = ({ item, router }) => {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(JsonLd) }}
     />
   );
-};
+}
 
-export default withRouter(JsonLdMarkup);
+export default JsonLdMarkup;
