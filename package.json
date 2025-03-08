@@ -29,7 +29,7 @@
     "@zeit/next-source-maps": "^0.0.3",
     "autoprefixer": "^9.6.1",
     "aws-sdk": "^2.502.0",
-    "axios": "^0.28.0",
+    "axios": "^1.8.2",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-inline-react-svg": "^1.1.0",
