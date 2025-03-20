@@ -83,7 +83,7 @@ const LOCALS = {
     description: "A Gateway to Illinois State History",
     locationFacet: "%22Illinois%22",
     subjectFacet: "*Illinois*",
-    externalLink: "http://finditillinois.org/idhh/",
+    externalLink: "https://www.library.illinois.edu/idhh-highlights/",
     hasAbout: true,
     hasSidebar: true,
     hasBrowseByPartner: true,
