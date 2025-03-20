@@ -40,7 +40,7 @@
   }
 }
 
-.facetLink {
+.facetLink, .facetLink:visited {
   color: black;
 }
 
@@ -56,7 +56,7 @@
   font-weight: bold;
 }
 
-.facetCount {
+.facetCount, .facetCount:visited {
   color: $dimmedTextColor;
   flex-basis: 20%;
   font-size: 0.8125rem;

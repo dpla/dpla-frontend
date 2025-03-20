@@ -32,6 +32,15 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -178,6 +187,22 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
           <ul>
             <li>
               <a
+                href="http://dpla.wpengine.com/wp-content/uploads/2024/07/DPLA_23_IRS-990_FINAL.pdf"
+                class="external"
+                >2023</a
+              >
+            </li>
+            <li>
+              <a
+                href="http://dpla.wpengine.com/wp-content/uploads/2023/06/DPLA_22_IRS-990_FINAL.pdf"
+                target="_blank"
+                rel="noopener"
+                class="external"
+                >2022</a
+              >
+            </li>
+            <li>
+              <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2022/09/DPLA_21_990_FINAL.pdf"
                 class="external"
                 >2021</a
@@ -235,6 +260,22 @@ exports[`Content Pages > About Us hasn't changed #0`] = `
           </ul>
           <h2>Audited Financial Statements:</h2>
           <ul>
+            <li>
+              <a
+                href="http://dpla.wpengine.com/wp-content/uploads/2024/07/DPLA_23_Audit_FINAL-1.pdf"
+                class="external"
+                >2023</a
+              >
+            </li>
+            <li>
+              <a
+                href="http://dpla.wpengine.com/wp-content/uploads/2023/06/DPLA_Audit_2022_FINAL.pdf"
+                target="_blank"
+                rel="noopener"
+                class="external"
+                >2022</a
+              >
+            </li>
             <li>
               <a
                 href="http://dpla.wpengine.com/wp-content/uploads/2022/09/DPLA_Audit_2021_FINAL-2.pdf"
@@ -340,6 +381,15 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -393,12 +443,35 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
       <div id="main" role="main" class="content-pages_content__ay29U">
         <h1>Board of Directors</h1>
         <div>
-          <h2>Members</h2>
-          <h2>Felton Thomas, Chair</h2>
-          <h4>
+          <h2 class="wp-block-heading">Open Board + Community Meetings</h2>
+
+          <p>
+            The Board of Directors holds regular Open Board + Community meetings
+            over Zoom. The board will strive to host at least one in-person
+            meeting per year (or video-enabled web conference for those who
+            can’t make it).
+          </p>
+
+          <p>
+            If you missed the previous meeting on July 8, you can
+            <a href="https://youtu.be/DLRl3es2Q24" class="external"
+              >watch the recording</a
+            >.
+          </p>
+
+          <p>
+            For the full calendar and past recordings,
+            <a href="#calendar">see below</a>.
+          </p>
+
+          <h2 class="wp-block-heading">Members</h2>
+
+          <h2 class="wp-block-heading">Felton Thomas, Chair</h2>
+
+          <h4 class="wp-block-heading">
             <img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               class="alignleft size-thumbnail wp-image-25958"
               src="http://dpla.wpengine.com/wp-content/uploads/2019/08/felton_thomas-150x150.jpg"
               alt=""
@@ -406,6 +479,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               height="150"
             />Director, Cleveland Public Library
           </h4>
+
           <p>
             Felton Thomas is the director of the Cleveland Public Library.
             During his tenure, Cleveland Public Library was named a “Top
@@ -420,11 +494,13 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             became the youngest employee in Las Vegas-Clark County Library
             District history.
           </p>
-          <h2>Jill Bourne, Secretary</h2>
-          <h4>
+
+          <h2 class="wp-block-heading">Jill Bourne, Secretary</h2>
+
+          <h4 class="wp-block-heading">
             <img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               class="alignleft size-thumbnail wp-image-25959"
               src="http://dpla.wpengine.com/wp-content/uploads/2019/08/jill_bourne-150x150.jpg"
               alt=""
@@ -432,6 +508,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               height="150"
             />City Librarian, San José, California
           </h4>
+
           <p>
             Jill Bourne is the City Librarian for San José, California, and
             Director of the San José Public Libraries.&nbsp; With a focus on
@@ -445,27 +522,33 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             the Cinequest Film Festival with the “Maverick Visionary Award.” She
             leads the San José Education and Digital Equity initiatives through
             extensive partnerships with academic agencies, telecommunications
-            providers, and community-based<br />
-            organizations, to remove barriers for under-connected and
-            under-resourced households throughout San<br />
-            José. Bourne holds a Bachelor of Arts with Honors from New York
-            University and a Masters of Library<br />
-            and Information Sciences from the University of Washington.
+            providers, and community-based<br />organizations, to remove
+            barriers for under-connected and under-resourced households
+            throughout San<br />José. Bourne holds a Bachelor of Arts with
+            Honors from New York University and a Masters of Library<br />and
+            Information Sciences from the University of Washington.
           </p>
-          <h2>Laura DeBonis, Treasurer</h2>
-          <p>
-            <span style="font-weight: 400;"
-              ><img
-                decoding="async"
+
+          <h2 class="wp-block-heading">Laura DeBonis, Treasurer</h2>
+
+          <div class="wp-block-image">
+            <figure class="alignleft">
+              <img
                 loading="lazy"
-                class="alignleft wp-image-25710 "
-                src="http://dpla.wpengine.com/wp-content/uploads/2018/10/IMG_2321-2-150x150.jpg"
-                alt="Laura DeBonis"
+                decoding="async"
                 width="150"
                 height="150"
-            /></span>
-          </p>
-          <h4>Independent Consultant</h4>
+                src="http://dpla.wpengine.com/wp-content/uploads/2018/10/IMG_2321-2-150x150.jpg"
+                alt="Laura DeBonis"
+                class="wp-image-25710"
+              />
+            </figure>
+          </div>
+
+          <p><span style="font-weight: 400;"></span></p>
+
+          <h4 class="wp-block-heading">Independent Consultant</h4>
+
           <p>
             <span style="font-weight: 400;"
               >Laura DeBonis works as an independent consultant and advisor to
@@ -484,31 +567,38 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             ><span style="font-weight: 400;">DPLA</span
             ><span style="font-weight: 400;">!</span>
           </p>
-          <h2>Josh Frazier-Sparks</h2>
-          <p>
-            <span style="font-weight: 400;"
-              ><img
-                decoding="async"
+
+          <h2 class="wp-block-heading">Josh Frazier-Sparks</h2>
+
+          <div class="wp-block-image">
+            <figure class="alignleft">
+              <img
                 loading="lazy"
-                class="wp-image-26530  alignleft"
+                decoding="async"
+                width="300"
+                height="300"
                 src="http://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1-300x300.jpg"
                 alt=""
-                width="150"
-                height="150"
+                class="wp-image-26530"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1-300x300.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1-150x150.jpg 150w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Josh-edited-1.jpg         500w
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1-300x300.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1-150x150.jpg 150w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/Josh-edited-1.jpg         500w
                 "
-                sizes="(max-width: 150px) 100vw, 150px"
-            /></span>
-          </p>
-          <h4>
+                sizes="(max-width: 300px) 100vw, 300px"
+              />
+            </figure>
+          </div>
+
+          <p><span style="font-weight: 400;"></span></p>
+
+          <h4 class="wp-block-heading">
             <strong
               >Director of Culture, Diversity, Equity, &amp; Inclusion at
               Walmart
             </strong>
           </h4>
+
           <p>
             <span style="font-weight: 400;"
               >Kentucky native Josh Frazier-Sparks is a proven thought leader
@@ -532,26 +622,35 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               criminal justice, and health.</span
             >
           </p>
-          <h2>Joseph Lucia</h2>
-          <p>
-            <span style="font-weight: 400;"
-              ><img
-                decoding="async"
+
+          <h2 class="wp-block-heading">Joseph Lucia</h2>
+
+          <div class="wp-block-image">
+            <figure class="alignleft">
+              <img
                 loading="lazy"
-                class="wp-image-26531  alignleft"
+                decoding="async"
+                width="300"
+                height="300"
                 src="http://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1-300x300.jpg"
                 alt=""
-                width="151"
-                height="151"
+                class="wp-image-26531"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1-300x300.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1-150x150.jpg 150w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/JoeLucia-edited-1.jpg         500w
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1-300x300.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1-150x150.jpg 150w,
+                  https://dpla.wpengine.com/wp-content/uploads/2021/10/JoeLucia-edited-1.jpg         500w
                 "
-                sizes="(max-width: 151px) 100vw, 151px"
-            /></span>
-          </p>
-          <h4><strong>Dean of Libraries, Temple University</strong></h4>
+                sizes="(max-width: 300px) 100vw, 300px"
+              />
+            </figure>
+          </div>
+
+          <p><span style="font-weight: 400;"></span></p>
+
+          <h4 class="wp-block-heading">
+            <strong>Dean of Libraries, Temple University</strong>
+          </h4>
+
           <p>
             <span style="font-weight: 400;"
               >Joseph Lucia is Dean of Libraries at Temple University. Under his
@@ -576,115 +675,76 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               ></a
             >
           </p>
-          <h2>Katherine Maher</h2>
-          <h4>
+
+          <h2 class="wp-block-heading">Marcia Walker-McWilliams</h2>
+
+          <h4 class="wp-block-heading">
             <img
-              decoding="async"
               loading="lazy"
-              class="alignleft wp-image-25711 size-thumbnail"
-              src="http://dpla.wpengine.com/wp-content/uploads/2018/10/Katherine_Maher-150x150.jpg"
-              alt="Katherine Maher "
-              width="150"
-              height="150"
-            />
-          </h4>
-          <p>
-            <span style="font-weight: 400;"
-              >Katherine Maher is the former CEO of the Wikimedia Foundation
-              (Wikipedia). Prior to leading Wikimedia, she was director of
-              advocacy for the digital rights organization Access Now, where she
-              focused on critical issues of freedom of expression, access to
-              information, and privacy. Prior to Access Now, Katherine worked at
-              the World Bank, the National Democratic Institute, and UNICEF,
-              founding and shaping technology and innovation agendas for
-              international development, human rights, and democratic
-              participation. She is a non-resident Senior Fellow at the Atlantic
-              Council, a term member of the Council on Foreign Relations, a
-              security fellow at the Truman National Security Project, and a
-              World Economic Forum Young Global Leader. She is a trustee of the
-              American University of Beirut, a director of the Digital Public
-              Library of America, and has served in advisory and board roles for
-              the Sunlight Foundation, the US Agency for Global Media’s Open
-              Technology Fund, and the ITU’s GIGA connectivity partnership,
-              among others.
-            </span>
-          </p>
-          <h2>Marcia Walker-McWilliams</h2>
-          <h4>
-            <img
               decoding="async"
-              loading="lazy"
               class="wp-image-26532  alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-300x300.jpg"
               alt=""
               width="150"
               height="150"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-300x300.jpg 300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-150x150.jpg 150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1.jpg         500w
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-300x300.jpg 300w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1-150x150.jpg 150w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/M.-Walker-McWilliams-Photo-edited-1.jpg         500w
               "
               sizes="(max-width: 150px) 100vw, 150px"
-            />Executive Director, Black Metropolis Research Consortium
+            />Executive Director, Tulane University History Project
           </h4>
+
           <p>
-            Marcia Walker-McWilliams<span style="font-weight: 400;">
-              is the Executive Director of the Black Metropolis Research
-              Consortium (BMRC) where she provides strategic leadership for the
-              consortium’s activities and works to facilitate the discovery,
-              preservation, and use of Black historical collections in
-              Chicago.&nbsp; Marcia received a Ph.D. in American History from
-              the University of Chicago and an undergraduate degree in Social
-              Policy and African American Studies from Northwestern University.
-              She is the author of </span
-            ><i
-              ><span style="font-weight: 400;"
-                >Reverend Addie Wyatt: Faith and the Fight for Labor, Gender,
-                and Racial Equality</span
-              ></i
-            ><span style="font-weight: 400;">
-              (University of Illinois Press, 2016) and co-author of two upcoming
-              projects:&nbsp; </span
-            ><i
-              ><span style="font-weight: 400;"
-                >The Civil Rights Movement Reader
-              </span></i
-            ><span style="font-weight: 400;"
-              >(University of Massachusetts Press) with Traci Parker and </span
-            ><i
-              ><span style="font-weight: 400;"
-                >Revisiting the Black Metropolis: New Histories of Black
-                Chicago</span
-              ></i
-            ><span style="font-weight: 400;">
-              (University of Illinois Press) with Simon Balto and Erik Gellman. </span
-            ><span style="font-weight: 400;">&nbsp;</span
-            ><span style="font-weight: 400;"
-              >Prior to the BMRC, Marcia taught courses in American history and
-              African American Studies at Lone Star College, Prairie View
-              A&amp;M University, the University of Houston and Rice University
-              where she also served as an Associate Director in the Center for
-              Civic Leadership.&nbsp;</span
+            Marcia Walker-McWilliams is the Executive Director of the Tulane
+            University History Project, a long-term project engaging the impacts
+            of slavery, segregation, and issues of racial equity at Tulane
+            University. She is a former Executive Director of the Black
+            Metropolis Research Consortium (BMRC). She received a Ph.D. in
+            American History from the University of Chicago and an undergraduate
+            degree in Social Policy and African American Studies from
+            Northwestern University. She is the author of
+            <em
+              >Reverend Addie Wyatt: Faith and the Fight for Labor, Gender, and
+              Racial Equality</em
             >
+            (University of Illinois Press, 2016) and co-author of
+            <em
+              >The New Civil Rights Movement Reader: Resistance, Resilience and
+              Justice</em
+            >
+            (University of Massachusetts Press, 2023) with Traci Parker. Marcia
+            has curated historical exhibits at the Chicago Public Library and
+            the University of Chicago Special Collections Research Center. Prior
+            to the BMRC, Marcia taught courses in American history and African
+            American Studies at Lone Star College, Prairie View A&amp;M
+            University, the University of Houston, and Rice University where she
+            also served as an Associate Director in the Center for Civic
+            Leadership. She sits on the board of several organizations including
+            the Digital Public Library of America.
           </p>
-          <h2>Kelvin Watson</h2>
-          <h4>
+
+          <h2 class="wp-block-heading">Kelvin Watson</h2>
+
+          <h4 class="wp-block-heading">
             <img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               class="wp-image-26533  alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1-300x300.jpg"
               alt=""
               width="149"
               height="149"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1-300x300.jpg 300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1-150x150.jpg 150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/10/Watson-edited-1.jpg         498w
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1-300x300.jpg 300w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1-150x150.jpg 150w,
+                https://dpla.wpengine.com/wp-content/uploads/2021/10/Watson-edited-1.jpg         498w
               "
               sizes="(max-width: 149px) 100vw, 149px"
             />Executive Director, Las Vegas-Clark County Library District
           </h4>
+
           <p>
             <span class="il">Watson</span>&nbsp;oversees 25 branches spanning
             8,000 square miles, a budget of $77 million, 700 employees, and a
@@ -705,34 +765,46 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             president, information, technology, and development, he was
             instrumental in establishing several groundbreaking programs, and he
             developed and implemented digital divide strategies, which promoted
-            equality and equity for all. He serves on the San Jose State
-            University School of Information, Leadership, and Management Program
-            Advisory Committee, co-chairs the American Library Association
-            Digital Content Working Group, and serves on the American Library
-            Association Business Advisory Group, REALM Project Steering
-            Committee and on the Board of the Book Industry Study Group. He is a
-            past president of Black Caucus of the American Library Association
-            and past Public Library Association Board member. Mr.&nbsp;<span
-              class="il"
-              >Watson</span
-            >&nbsp;earned a Bachelor of Science Degree in Business
-            Administration and a Minor in Military Science from Lincoln
-            University in Missouri. He earned his Masters of Library Science
-            Degree from North Carolina Central University and is a member of
-            Kappa Alpha Psi Fraternity, Inc.
+            equality and equity for all.
           </p>
-          <h2>Elaine Westbrooks</h2>
-          <h4>Carl A. Kroch University Librarian, Cornell University</h4>
-          <p style="font-weight: 400;">
-            <img
-              decoding="async"
-              loading="lazy"
-              class=" wp-image-26725 alignleft"
-              src="http://dpla.wpengine.com/wp-content/uploads/2022/08/ElaineWestbrooks-portrait.jpg"
-              alt=""
-              width="148"
-              height="152"
-            />Since July 2022, Elaine L. Westbrooks has been the Carl A Kroch
+
+          <p>
+            He serves on the San Jose State University School of Information,
+            Leadership, and Management Program Advisory Committee, co-chairs the
+            American Library Association Digital Content Working Group, and
+            serves on the American Library Association Business Advisory Group,
+            REALM Project Steering Committee and on the Board of the Book
+            Industry Study Group. He is a past president of Black Caucus of the
+            American Library Association and past Public Library Association
+            Board member. Mr.&nbsp;<span class="il">Watson</span>&nbsp;earned a
+            Bachelor of Science Degree in Business Administration and a Minor in
+            Military Science from Lincoln University in Missouri. He earned his
+            Masters of Library Science Degree from North Carolina Central
+            University and is a member of Kappa Alpha Psi Fraternity, Inc.
+          </p>
+
+          <h2 class="wp-block-heading">Elaine Westbrooks</h2>
+
+          <h4 class="wp-block-heading">
+            Carl A. Kroch University Librarian, Cornell University
+          </h4>
+
+          <div class="wp-block-image">
+            <figure class="alignleft">
+              <img
+                loading="lazy"
+                decoding="async"
+                width="200"
+                height="205"
+                src="http://dpla.wpengine.com/wp-content/uploads/2022/08/ElaineWestbrooks-portrait.jpg"
+                alt=""
+                class="wp-image-26725"
+              />
+            </figure>
+          </div>
+
+          <p>
+            Since July 2022, Elaine L. Westbrooks has been the Carl A Kroch
             University Librarian at Cornell University.&nbsp; She is responsible
             for the leadership and general administration of the University
             Library which includes over 15 libraries and 350 librarians,
@@ -746,80 +818,93 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
             Westbrooks has also emerged as a leading thinker on issues related
             to equity, inclusion, and social justice in academic libraries.
           </p>
-          <h2>Board Alumni</h2>
-          <p>
-            <span style="font-weight: 400;">Brian Bannon </span
-            ><span style="font-weight: 400;">•</span
-            ><span style="font-weight: 400;"> Chris Bourg </span
-            ><span style="font-weight: 400;">• </span
-            ><span style="font-weight: 400;">Sarah Burnes </span
-            ><span style="font-weight: 400;">• </span
-            ><span style="font-weight: 400;">Cathy Casserly</span
-            ><span style="font-weight: 400;"> • </span
-            ><span style="font-weight: 400;">Paul Courant </span
-            ><span style="font-weight: 400;">• </span
-            ><span style="font-weight: 400;">Robert Darnton</span
-            ><span style="font-weight: 400;"> • </span
-            ><span style="font-weight: 400;">Luis Herrera</span
-            ><span style="font-weight: 400;"> • </span
-            ><span style="font-weight: 400;">Jamie Hollier</span
-            ><span style="font-weight: 400;"> • Jennifer 8. Lee • </span
-            ><span style="font-weight: 400;">Mary Minow</span
-            ><span style="font-weight: 400;"> • </span
-            ><span style="font-weight: 400;">John Palfrey</span
-            ><span style="font-weight: 400;"> • Niko Pfund • </span
-            ><span style="font-weight: 400;">Amy Ryan</span
-            ><span style="font-weight: 400;"> • Denise Stephens • </span
-            ><span style="font-weight: 400;">Siva Vaidhyanathan</span>
-          </p>
-          <h2>Open Board + Community Meetings</h2>
-          <p>
-            The Board of Directors holds regular Open Board + Community meetings
-            over Zoom. The board will strive to host at least one in-person
-            meeting per year (or video-enabled web conference for those who
-            can’t make it).
-          </p>
-          <p>
-            The Open Board + Community meetings are open to the public, per
-            DPLA’s
-            <a
-              href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLA_OpenMeetingsGuidelines.pdf"
-              class="external"
-              >Open Meetings Guidelines</a
-            >.
-          </p>
+
+          <h2 class="wp-block-heading">Board Alumni</h2>
+
           <p>
             <span style="font-weight: 400;"
-              >At our first Open Board + Community meeting of 2023, which will
-              be held on Monday, January 9, 2023, at 2p ET, we’ll talk about the
-              <a
-                href="https://dp.la/news/dpla-to-make-cultural-treasures-freely-available-on-wikipedia-with-new-sloan-foundation-support"
-                >recently announced growth of our Wikimedia work</a
-              >, and hear from representatives from Wikimedia and the DPLA
-              community about the vast potential of Wikimedia and Wikipedia to
-              dramatically increase the visibility and use of library
-              collections</span
+              >Brian Bannon • Chris Bourg • Sarah Burnes • Cathy Casserly • Paul
+              Courant • Robert Darnton • Luis Herrera • Jamie Hollier • Jennifer
+              8. Lee • Katherine Maher</span
+            >
+            <span style="font-weight: 400;">•</span>
+            <span style="font-weight: 400;"
+              >Mary Minow • John Palfrey • Niko Pfund • Amy Ryan • Denise
+              Stephens • Siva Vaidhyanathan</span
             >
           </p>
+
+          <h2 class="wp-block-heading" id="calendar">
+            <strong>Open Board Call Schedule</strong>
+          </h2>
+
+          <h3 class="wp-block-heading"><strong>2024</strong></h3>
+
+          <p>January 19, 2024 (<em>closed meeting</em>)</p>
+
           <p>
-            If you’d like to attend,
+            <a href="https://youtu.be/CkjmHUBbh5c" class="external"
+              >April 22, 2024</a
+            >
+          </p>
+
+          <p>
+            <a href="https://youtu.be/DLRl3es2Q24" class="external"
+              >July 8, 2024</a
+            >
+          </p>
+
+          <p>October 21, 2024 (<em>tentative</em>)</p>
+
+          <h3 class="wp-block-heading"><strong>2023</strong></h3>
+
+          <p>
+            <a href="https://youtu.be/5rVal1K64xI" class="external"
+              >Monday, January 9, 2023</a
+            >
+          </p>
+
+          <p>
             <a
-              href="https://dpla.zoom.us/webinar/register/WN_9mzUrwQkRIqf5ToJkSzzGw"
+              href="https://youtu.be/eZOdd2j1QLg"
+              target="_blank"
+              rel="noopener"
               class="external"
-              >please register here</a
-            >.
+              >Monday, April 10, 2023</a
+            >
           </p>
+
+          <p>Saturday, June 24, 2023 (at ALA Annual)</p>
+
           <p>
-            More information about how to join will be posted approximately two
-            weeks prior to each meeting.
+            <a
+              href="https://youtu.be/PgCHmmW2PMA"
+              data-type="link"
+              data-id="https://youtu.be/PgCHmmW2PMA"
+              class="external"
+              >Monday, July 10, 2023</a
+            >
           </p>
-          <h2><strong>Open Board Call Schedule</strong></h2>
-          <h3><strong>2023</strong></h3>
-          <p>Monday, January 9, 2023</p>
-          <p>Monday, April 10, 2023</p>
-          <p>Monday, July 10. 2023</p>
-          <p>Monday, October 16, 2023</p>
-          <h3><strong>2022</strong></h3>
+
+          <p>
+            <a
+              href="https://youtu.be/NwOZwMuUNeE"
+              target="_blank"
+              rel="noreferrer noopener"
+              class="external"
+              >Monday, October 16, 2023</a
+            >
+            (<a
+              href="http://dpla.wpengine.com/wp-content/uploads/2023/10/FINAL-for-public-presentation-DPLA-Program-Assessment-10.16.2023.pptx-3-1.pdf"
+              target="_blank"
+              rel="noreferrer noopener"
+              class="external"
+              >View presentation deck here</a
+            >.)
+          </p>
+
+          <h3 class="wp-block-heading"><strong>2022</strong></h3>
+
           <p>
             <a
               href="https://youtu.be/uJ8IA-1O8Ms"
@@ -829,28 +914,35 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >Monday, January 10, 2022</a
             >
           </p>
+
           <p>
             <a href="https://youtu.be/pSgNH3Lzeh4" class="external"
               ><span style="font-weight: 400;">Monday, April 11, 2022</span></a
             >
           </p>
+
           <p>
             <a href="https://youtu.be/cs_V8mFg_BE" class="external"
               ><span style="font-weight: 400;">Monday, July 11, 2022</span></a
             >
           </p>
+
           <p><span style="font-weight: 400;">Monday, October 17, 2022</span></p>
-          <h3><strong>2021</strong></h3>
+
+          <h3 class="wp-block-heading"><strong>2021</strong></h3>
+
           <p>
             <a href="https://youtu.be/JVkGTd4Buig" class="external"
               >Friday, January 15, 2021</a
             >
           </p>
+
           <p>
             <a href="https://youtu.be/fZviEs8gW7A" class="external"
               >Friday, April 9, 2021&nbsp;</a
             >
           </p>
+
           <p>
             <a
               href="https://www.youtube.com/watch?v=2BSofqi9yVk"
@@ -858,26 +950,28 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >Friday, June 11, 2021</a
             >
           </p>
+
           <p>
             <a href="https://youtu.be/koSVnqtn6n4" class="external"
               >Friday, October 15, 2021</a
             >
           </p>
-          <h2>Notes from Past Board Calls</h2>
-          <h3><strong>2020</strong></h3>
+
+          <h2 class="wp-block-heading">Notes from Past Board Calls</h2>
+
+          <h3 class="wp-block-heading"><strong>2020</strong></h3>
+
           <p>
             Tuesday, January 14, 2020 (<em
               >recording not available due to technical difficulties</em
-            >)<br />
-            <a href="https://youtu.be/Wg-hVVY1L6I" class="external"
+            >)<br /><a href="https://youtu.be/Wg-hVVY1L6I" class="external"
               >Tuesday, April 14, 2020</a
             >&nbsp;
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/06/Board-Meeting-Notes-4.14.2020.pdf"
               class="external"
               >(Please find minutes here.</a
-            >)<br />
-            <a href="https://youtu.be/uzoYwy4iAvE" class="external"
+            >)<br /><a href="https://youtu.be/uzoYwy4iAvE" class="external"
               >Friday, June 26, 2020</a
             >
             (<a
@@ -886,34 +980,38 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >Please find minutes here</a
             >.)
           </p>
-          <h3>2019</h3>
+
+          <h3 class="wp-block-heading">2019</h3>
+
           <p>
             <a
               href="/wp-content/uploads/2019/01/Board-Call-Jan-15-2019-Public-Session-Minutes-1.pdf"
               >January 15, 2019</a
             >
           </p>
-          <h3>2018</h3>
+
+          <h3 class="wp-block-heading">2018</h3>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/07/January92018_PublicSession_DPLABoardCall.pdf"
               class="external"
               >January 9, 2018</a
-            ><br />
-            <a
+            ><br /><a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/05/April162018_PublicSession_DPLABoardCall.pdf"
               target="_blank"
               rel="noopener noreferrer"
               class="external"
               >April 16, 2018</a
-            ><br />
-            <a
+            ><br /><a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/10/July102018_PublicSession_DPLABoardCall-2.pdf"
               class="external"
               >July 10, 2018</a
             >
           </p>
-          <h3>2017</h3>
+
+          <h3 class="wp-block-heading">2017</h3>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/02/DPLABoardofDirectorsQuarterlyCall_March2017.pdf"
@@ -921,15 +1019,13 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               rel="noopener noreferrer"
               class="external"
               >March 15, 2017</a
-            ><br />
-            <a
+            ><br /><a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLABoardofDirectorsQuarterlyCall_June2017-2.pdf"
               target="_blank"
               rel="noopener noreferrer"
               class="external"
               >June 15, 2017</a
-            ><br />
-            <a
+            ><br /><a
               href="http://dpla.wpengine.com/wp-content/uploads/2018/03/DPLABoardofDirectorsQuarterlyCall_September2017-2.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -937,13 +1033,18 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >September 15, 2017</a
             >
           </p>
+
           <p>
             Find notes from previous Board calls in
             <a href="/about-dpla-pro/historical-materials"
               >Historical Materials</a
             >.
           </p>
-          <h2>Board Responsibilities and Expectations</h2>
+
+          <h2 class="wp-block-heading">
+            Board Responsibilities and Expectations
+          </h2>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/Responsibilities-of-the-Board-for-Signature.pdf"
@@ -951,6 +1052,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >Responsibilities of the Board of Directors</a
             >
           </p>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2021/04/Board-of-Directors-Policies.pdf"
@@ -958,6 +1060,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >Board of Directors Policies</a
             >
           </p>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/DPLA-Confidentiality-Agreement-for-Signature.pdf"
@@ -965,6 +1068,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >DPLA Confidentiality Agreement</a
             >
           </p>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2020/10/DPLA-Conflict-of-Interest-Policy-for-Signature.pdf"
@@ -972,6 +1076,7 @@ exports[`Content Pages > Board of Directors hasn't changed #0`] = `
               >DPLA Conflict of Interest Policy</a
             >
           </p>
+
           <p>
             <a
               href="http://dpla.wpengine.com/wp-content/uploads/2021/04/DPLA_Bylaws.pdf"
@@ -1017,6 +1122,15 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
             <div>
               <a class="Sidebar_link__v0Ms7 " href="/about/terms-conditions"
                 >Terms &amp; Conditions</a
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
               >
             </div>
           </li>
@@ -1073,49 +1187,19 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
       <div id="main" role="main" class="content-pages_content__ay29U">
         <h1>Staff</h1>
         <div>
+          <h2></h2>
           <h2>
             <img
-              decoding="async"
               loading="lazy"
-              class="wp-image-26201  alignleft"
-              src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Audrey-Altman.jpg"
-              alt=""
-              width="165"
-              height="164"
-              srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Audrey-Altman.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Audrey-Altman-150x150.jpg 150w
-              "
-              sizes="(max-width: 165px) 100vw, 165px"
-            />Audrey Altman
-          </h2>
-          <h3>Senior Software Engineer</h3>
-          <p>
-            Audrey
-            <span style="font-weight: 400;"
-              >is one of our software engineers. She works on many projects,
-              including DPLA’s metadata ingestion system and machine learning
-              R&amp;D. Past projects include developing the Primary Source Sets
-              and Hub Analytics Dashboard applications. She holds a Masters of
-              Library and Information Science from the University of Iowa, and
-              an M.A. in American Studies from the University of Alabama. In her
-              free time, she enjoys studying mathematics and computer science,
-              listening to classical music, going to the theater and playing
-              games with her friends and very large extended family.
-            </span>
-          </p>
-          <h2>
-            <img
               decoding="async"
-              loading="lazy"
               class="wp-image-26195  alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2020/07/John-Bracken-296x300.jpg"
               alt=""
               width="164"
               height="166"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/John-Bracken-296x300.jpg 296w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/John-Bracken.jpg         300w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/John-Bracken-296x300.jpg 296w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/John-Bracken.jpg         300w
               "
               sizes="(max-width: 164px) 100vw, 164px"
             />John Bracken
@@ -1123,132 +1207,138 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
           <h3>Executive Director</h3>
           <p>
             <span style="font-weight: 400;"
-              >John (he/him) is our executive director. Previously John worked
-              for nearly two decades as a philanthropic investor in digital
-              media, media policy, and innovation. He most recently served as
-              vice president for technology innovation at the John S. and James
-              L. Knight Foundation, where he oversaw the Knight News Challenge,
-              Knight’s Prototype Fund, and other efforts to improve the
-              creation, curation, and accessibility of information. He
-              previously managed technology and civic innovation programs at the
-              MacArthur Foundation and the Ford Foundation. He has a master’s
-              degree from the Annenberg School for Communication at the
-              University of Pennsylvania and a B.A. from Pitzer College. He
-              serves on the board of the Illinois Humanities Council.
-            </span>
+              >John (he/him) has been DPLA’s executive director since 2017.
+              Previously John worked for nearly two decades as a philanthropic
+              investor in digital media, media policy, and innovation. He most
+              recently served as vice president for technology innovation at the
+              John S. and James L. Knight Foundation, where he oversaw the
+              Knight News Challenge, Knight’s Prototype Fund, and other efforts
+              to improve the creation, curation, and accessibility of
+              information. He previously managed technology and civic innovation
+              programs at the MacArthur Foundation and the Ford Foundation. He
+              has a master’s degree from the Annenberg School for Communication
+              at the University of Pennsylvania and a B.A. from Pitzer College.
+              He serves on the board of the Poetry Foundation.</span
+            >
           </p>
           <p>
             <span style="color: inherit; font-size: 1.95em; font-weight: 600;"
               ><img
-                decoding="async"
                 loading="lazy"
+                decoding="async"
                 class="wp-image-26194  alignleft"
                 src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt-300x300.jpg"
                 alt=""
                 width="165"
                 height="165"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt.jpg         300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt-150x150.jpg 150w
+                  https://dpla.wpengine.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt.jpg         300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2020/07/Dominic-Byrd-McDevitt-150x150.jpg 150w
                 "
                 sizes="(max-width: 165px) 100vw, 165px"
             /></span>
           </p>
           <h2>Dominic Byrd-McDevitt</h2>
-          <h3>Data Fellow</h3>
+          <h3>Director of Community Engagement</h3>
           <p>
-            Dominic is our data fellow. Dominic is working to integrate DPLA’s
-            collections into Wikimedia projects and make them more readily
-            accessible and reusable online. Most recently, Dominic worked at the
-            National Archives and Records Administration where he was a digital
-            content specialist, helping to design the catalog’s crowdsourcing
-            features and launch the agency’s first catalog API, as well as being
-            the world’s longest-serving Wikipedian in Residence. Dominic also
-            served as Wikipedian in Residence at the Smithsonian Institution.
-            Dominic currently serves as a cultural partnerships advisor at
-            Wikimedia District of Columbia and has been an active Wikipedia
-            editor since 2004. He has a B.A. from Reed College and has studied
-            library science at Simmons College.
+            Dominic is DPLA’s director of community engagement, helping to
+            identify and<span style="font-weight: 400;">
+              develop services, partnerships, and products to support our
+              national network</span
+            >. Dominic is also working to integrate DPLA’s collections into
+            Wikimedia projects and make them more readily accessible and
+            reusable online. Most recently, Dominic worked at the National
+            Archives and Records Administration where he was a digital content
+            specialist, helping to design the catalog’s crowdsourcing features
+            and launch the agency’s first catalog API, as well as being the
+            world’s longest-serving Wikipedian in Residence. Dominic also served
+            as Wikipedian in Residence at the Smithsonian Institution. Dominic
+            currently serves as a cultural partnerships advisor at Wikimedia
+            District of Columbia and has been an active Wikipedia editor since
+            2004. He has a B.A. from Reed College and has studied library
+            science at Simmons College.
           </p>
           <h2>
             <img
-              decoding="async"
               loading="lazy"
-              class="wp-image-26189  alignleft"
+              decoding="async"
+              class="wp-image-26189 alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Michael-Della-Bitta.jpg"
               alt=""
-              width="165"
-              height="164"
+              width="166"
+              height="165"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Michael-Della-Bitta.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Michael-Della-Bitta-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Michael-Della-Bitta.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Michael-Della-Bitta-150x150.jpg 150w
               "
-              sizes="(max-width: 165px) 100vw, 165px"
+              sizes="(max-width: 166px) 100vw, 166px"
             />Michael Della Bitta
           </h2>
           <h3>Director of Technology</h3>
           <p>
-            Michael (he/him)
             <span style="font-weight: 400;"
-              >is our director of technology. Michael has worked in software
-              development and publications and in the startup, library, and
-              education space for nearly 20 years. Michael most recently worked
-              as a data and analytics developer, architect, and engineering
-              manager at the marketing company ScribbleLive. Prior to that,
-              Michael worked as a developer and architect on the repository and
-              digital gallery teams at the New York Public Library, and built
-              content management, online learning, and semantic metadata
-              applications at Columbia University. Michael holds a B.A. in
-              Philosophy from Bates College.
-            </span>
+              >Michael (he/him) is DPLA’s director of technology. Michael has
+              worked in data, search, analytics, and multi-tier application
+              development for over 20 years. Most recently, he worked as an
+              engineering manager at Harvard University’s Library Innovation
+              Lab. Previously, he was DPLA’s director of technology for over 7
+              years.&nbsp; Before DPLA, Michael worked as a data and analytics
+              developer, architect, and engineering manager at the marketing
+              company ScribbleLive and as a developer and architect on the
+              repository and digital gallery teams at the New York Public
+              Library.&nbsp; He also built content management, online learning,
+              and semantic metadata applications at Columbia University. Michael
+              holds a B.A. in Philosophy from Bates College.</span
+            >
           </p>
           <h2>
             <img
-              decoding="async"
               loading="lazy"
-              class="wp-image-26053  alignleft"
+              decoding="async"
+              class="wp-image-26053 alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-291x300.jpg"
               alt=""
               width="165"
-              height="169"
+              height="170"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-291x300.jpg    291w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-995x1024.jpg   995w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-768x791.jpg    768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee-1492x1536.jpg 1492w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/04/suzannegilbertlee.jpg           1823w
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-291x300.jpg    291w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-995x1024.jpg   995w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-768x791.jpg    768w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee-1492x1536.jpg 1492w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/04/suzannegilbertlee.jpg           1823w
               "
               sizes="(max-width: 165px) 100vw, 165px"
             />Suzanne Gilbert Lee
           </h2>
           <h3>Operations and Culture Manager</h3>
           <p>
-            <span style="font-weight: 400;"
-              >Suzanne is our operations and culture manager and is responsible
-              for a wide array of tasks that keep DPLA running smoothly, from
-              events management and grant reporting to human resources and
-              payroll. Suzanne has previously worked with several New England
-              not-for-profit organizations, including Rocky Neck Art Colony,
-              Historic New England and the North Shore Arts Association. She has
-              a B.A. in journalism from the University of Massachusetts, Amherst
-              and studied theology at the Weston Jesuit School of Theology in
-              Cambridge, Massachusetts.</span
-            >
+            Suzanne is DPLA’s operations &amp; culture manager and is
+            responsible for the business operations of the organization. Suzanne
+            oversees financial information and budgets, manages staffing and
+            workflow processes, human resources and benefit management,
+            organizational culture, and internal and external events and
+            meetings. Suzanne has previously worked with several New England
+            not-for-profit organizations, including Rocky Neck Art Colony,
+            Historic New England, and the North Shore Arts Association. She has
+            a B.A. in journalism from the University of Massachusetts, Amherst
+            and studied theology at the Weston Jesuit School of Theology in
+            Cambridge, Massachusetts. She serves on the advisory council of the
+            Manship Artists Residency.
           </p>
           <h2>
             <img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               class="wp-image-26193  alignleft"
               src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Micah-May-300x300.jpg"
               alt=""
-              width="165"
-              height="165"
+              width="167"
+              height="167"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Micah-May.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Micah-May-150x150.jpg 150w
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Micah-May.jpg         300w,
+                https://dpla.wpengine.com/wp-content/uploads/2020/07/Micah-May-150x150.jpg 150w
               "
-              sizes="(max-width: 165px) 100vw, 165px"
+              sizes="(max-width: 167px) 100vw, 167px"
             />Micah May
           </h2>
           <h3>Director of Ebook Services</h3>
@@ -1272,8 +1362,8 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
                 <span class="c-message__body" dir="auto" data-qa="message-text"
                   >Micah
                   <span style="font-weight: 400;"
-                    >is our&nbsp; director of ebook services, driving the DPLA
-                    Exchange and related ebook work. He previously served as
+                    >is DPLA’s director of ebook services, overseeing Palace
+                    Marketplace and related ebook work. He previously served as
                     director of technology for Library For All, creating open
                     children’s books and free reading apps for the developing
                     world. Before joining DPLA, Micah was director of strategy
@@ -1284,112 +1374,13 @@ exports[`Content Pages > Staff hasn't changed #0`] = `
                     schools, and the open source SimplyE reading app, among
                     others.&nbsp; Micah started his career as a consultant at
                     McKinsey &amp; Co. and has a B.A. from the University of
-                    Colorado, Boulder and a J.D. from Harvard Law School.
-                  </span></span
+                    Colorado, Boulder and a J.D. from Harvard Law School.</span
+                  ></span
                 >
               </p>
             </div>
           </div>
-          <h2>
-            <img
-              decoding="async"
-              loading="lazy"
-              class="wp-image-26191  alignleft"
-              src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Scott-Williams-300x300.jpg"
-              alt=""
-              width="165"
-              height="165"
-              srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Scott-Williams.jpg         300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Scott-Williams-150x150.jpg 150w
-              "
-              sizes="(max-width: 165px) 100vw, 165px"
-            />Scott Williams
-          </h2>
-          <h3>Senior Software Engineer</h3>
-          <p>
-            Scott<span style="font-weight: 400;">
-              is one of our software engineers, working to create streamlined
-              experiences for DPLA’s partner institutions. Before coming to
-              DPLA, Scott worked with museum data at the Yale University Art
-              Gallery and University of Pennsylvania Museum of Archaeology and
-              Anthropology. He holds degrees in history and computer science
-              from Miami University of Ohio.
-            </span>
-          </p>
-          <h2>
-            <img
-              decoding="async"
-              loading="lazy"
-              class="wp-image-26188 alignleft"
-              src="http://dpla.wpengine.com/wp-content/uploads/2020/07/Kat-Williams-268x300.jpg"
-              alt=""
-              width="149"
-              height="167"
-              srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Kat-Williams-268x300.jpg 268w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2020/07/Kat-Williams.jpg         300w
-              "
-              sizes="(max-width: 149px) 100vw, 149px"
-            />Kathleen Williams
-          </h2>
-          <h3>Director of Communications</h3>
-          <p>
-            Kat (she/her)
-            <span style="font-weight: 400;"
-              >is our director of communications, working to get the word out
-              about DPLA and our mission. She also helps create content for DPLA
-              projects. Previously, Kat was vice president of digital content
-              for the History Channel and A+E Networks. She has been nominated
-              for three primetime Emmy Awards, winning in 2013 for the short
-              documentary Remembering 9/11, and her website work has been
-              recognized by the Library of Congress. She holds a B.A. in history
-              from Dartmouth College and an M.A. in history education from
-              Teachers College at Columbia University.
-            </span>
-          </p>
-          <h2>
-            <img
-              decoding="async"
-              loading="lazy"
-              class="wp-image-26401 alignleft"
-              src="http://dpla.wpengine.com/wp-content/uploads/2021/04/Headshot-Small-300x300.jpg"
-              alt=""
-              width="152"
-              height="152"
-              srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-300x300.jpg    300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-1024x1024.jpg 1024w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-150x150.jpg    150w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-768x768.jpg    768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small-1536x1536.jpg 1536w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2021/04/Headshot-Small.jpg           1827w
-              "
-              sizes="(max-width: 152px) 100vw, 152px"
-            />Shaneé Yvette Willis
-          </h2>
-          <h3>Director of Community Engagement</h3>
-          <p>
-            Shaneé<span style="font-weight: 400;">
-              is our director of community engagement. She identifies and
-              develops services, partnerships, and products to support our
-              national network. Previously, Shaneé was the university archivist
-              and an assistant professor at the University of West Georgia.
-              Shaneé holds a B.A. in Religion and Philosophy from
-              Bethune-Cookman University, a Master of Divinity from Drew
-              Theological School and a Master of Library Science from North
-              Carolina Central University. As former Director of Library
-              Services and Archivist at Payne Theological Seminary, she curated
-              the Payne Theological Seminary and African Methodist Episcopal
-              Church Digital Collection. </span
-            ><span style="font-weight: 400;">Shaneé is also the current pr</span
-            ><span style="font-weight: 400;"
-              >esident of the Society of Georgia Archivists, serves on the Board
-              of Directors of Atla (formerly known as the American Theological
-              Library Association) and is a member of the Society of American
-              Archivists.
-            </span>
-          </p>
+          <h2></h2>
           <div class="yj6qo"></div>
           <div class="adL"></div>
         </div>
@@ -1430,6 +1421,15 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
             <div>
               <a class="Sidebar_link__v0Ms7 " href="/about/terms-conditions"
                 >Terms &amp; Conditions</a
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
               >
             </div>
           </li>
@@ -1501,8 +1501,8 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
 
           <a href="https://knightfoundation.org/" class="external"
             ><img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               width="300"
               height="85"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 3px"
@@ -1522,8 +1522,8 @@ exports[`Content Pages > Funders hasn't changed #0`] = `
 
           <a href="https://mellon.org/" class="external"
             ><img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               width="300"
               height="148"
               style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 8px"
@@ -1605,6 +1605,15 @@ exports[`Content Pages > Credits hasn't changed #0`] = `
             <div>
               <a class="Sidebar_link__v0Ms7 " href="/about/terms-conditions"
                 >Terms &amp; Conditions</a
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
               >
             </div>
           </li>
@@ -1783,6 +1792,15 @@ exports[`Content Pages > Frequently Asked Questions hasn't changed #0`] = `
             <div>
               <a class="Sidebar_link__v0Ms7 " href="/about/terms-conditions"
                 >Terms &amp; Conditions</a
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
               >
             </div>
           </li>
@@ -2084,6 +2102,15 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -2124,9 +2151,11 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             which are preserved for their historical significance.&nbsp;
           </p>
 
-          <h3><strong>Frequently Asked Questions</strong></h3>
+          <h3 class="wp-block-heading">
+            <strong>Frequently Asked Questions</strong>
+          </h3>
 
-          <h4>Where does this content come from?</h4>
+          <h4 class="wp-block-heading">Where does this content come from?</h4>
 
           <p>
             Digital Public Library of America collects and makes freely
@@ -2138,7 +2167,7 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             to partner’s organizations websites where the items are hosted.
           </p>
 
-          <h4>
+          <h4 class="wp-block-heading">
             <strong
               >What harmful or difficult content may be found in DPLA?</strong
             >
@@ -2146,7 +2175,7 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
 
           <p>Some items may:</p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               reflect white supremacist and American imperialist ideologies,
               which include racist, sexist, misogynistic/misogynoir, and
@@ -2167,7 +2196,9 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             </li>
           </ul>
 
-          <h4>Why does DPLA make potentially harmful content available?</h4>
+          <h4 class="wp-block-heading">
+            Why does DPLA make potentially harmful content available?
+          </h4>
 
           <p>
             DPLA and its partners collect, preserve, and present these materials
@@ -2178,14 +2209,14 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             are presented to and perceived by users.
           </p>
 
-          <h4>
+          <h4 class="wp-block-heading">
             <strong
               >How is this material described, and why are some of the terms
               used in the descriptions harmful?&nbsp;</strong
             >
           </h4>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               Librarians and archivists choose what language to use when
               describing materials. Some of these descriptions were written many
@@ -2217,14 +2248,14 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             </li>
           </ul>
 
-          <h4>
+          <h4 class="wp-block-heading">
             How are librarians and archivists working to address this problem
             and help users better understand such content?
           </h4>
 
           <p>Examples include:</p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               Working directly with misrepresented and underrepresented
               communities to improve the ways they are represented.
@@ -2258,9 +2289,11 @@ exports[`Content Pages > DPLA’s Statement on Potentially Harmful Content hasn'
             </li>
           </ul>
 
-          <h4><strong>How can I report harmful content?</strong></h4>
+          <h4 class="wp-block-heading">
+            <strong>How can I report harmful content?</strong>
+          </h4>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               You can help us understand this issue and find solutions by
               <a href="mailto:info@dp.la" class="external"
@@ -2363,6 +2396,15 @@ exports[`Content Pages > Search Tips hasn't changed #0`] = `
             <div>
               <a class="Sidebar_link__v0Ms7 " href="/about/terms-conditions"
                 >Terms &amp; Conditions</a
+              >
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
               >
             </div>
           </li>
@@ -2544,6 +2586,15 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -2565,7 +2616,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
       <div id="main" role="main" class="content-pages_content__ay29U">
         <h1>Copyright Status Filter</h1>
         <div>
-          <h2>Overview</h2>
+          <h2 class="wp-block-heading">Overview</h2>
 
           <p>
             This filter lets you search by copyright status, in order to find
@@ -2589,14 +2640,14 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             contact the contributing institution.
           </p>
 
-          <h2>Rights Categories</h2>
+          <h2 class="wp-block-heading">Rights Categories</h2>
 
           <p>
             The rights categories, with their corresponding rights statements,
             are listed below.
           </p>
 
-          <h3 id="unlimited">Unlimited Re-Use</h3>
+          <h3 class="wp-block-heading" id="unlimited">Unlimited Re-Use</h3>
 
           <p>
             Items in this category have no known restrictions and may be freely
@@ -2605,7 +2656,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             item.
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               <a
                 href="https://creativecommons.org/publicdomain/mark/1.0/"
@@ -2650,7 +2701,9 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             </li>
           </ul>
 
-          <h3 id="conditions">Re-use With Conditions</h3>
+          <h3 class="wp-block-heading" id="conditions">
+            Re-use With Conditions
+          </h3>
 
           <p>
             Items in this category may be used and modified without permission
@@ -2658,7 +2711,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             item.
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               No Copyright – Non-Commercial Use Permitted (<a
                 href="http://rightsstatements.org/vocab/NoC-NC/1.0/"
@@ -2689,7 +2742,9 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             </li>
           </ul>
 
-          <h3 id="no-modifications">Re-use, No Modification</h3>
+          <h3 class="wp-block-heading" id="no-modifications">
+            Re-use, No Modification
+          </h3>
 
           <p>
             Items in this category may be used in their current form without
@@ -2697,7 +2752,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             attached to the item.
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               Creative Commons Attribution NonCommercial NoDerivatives (<a
                 href="https://creativecommons.org/licenses/by-nc-nd/4.0"
@@ -2728,7 +2783,9 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             </li>
           </ul>
 
-          <h3 id="permission-fair-use">Permission or Fair Use</h3>
+          <h3 class="wp-block-heading" id="permission-fair-use">
+            Permission or Fair Use
+          </h3>
 
           <p>
             Items in this category are in copyright with no restrictions waived
@@ -2737,7 +2794,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             section for details).
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               In Copyright US (<a
                 href="http://rightsstatements.org/vocab/InC/1.0/"
@@ -2761,7 +2818,9 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             </li>
           </ul>
 
-          <h3 id="unspecified">Unspecified Rights Status</h3>
+          <h3 class="wp-block-heading" id="unspecified">
+            Unspecified Rights Status
+          </h3>
 
           <p>
             Items in this category have not been evaluated for copyright status
@@ -2775,7 +2834,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             fair use (see below).
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               Copyright Not Evaluated (<a
                 href="https://rightsstatements.org/page/CNE/1.0/?language=en"
@@ -2793,7 +2852,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             <li>No standardized statement with free text rights information</li>
           </ul>
 
-          <h2>What is “fair use”?</h2>
+          <h2 class="wp-block-heading">What is “fair use”?</h2>
 
           <p>
             Fair Use (Section 107) is a provision of the<a
@@ -2827,7 +2886,7 @@ exports[`Content Pages > Copyright Status Filter hasn't changed #0`] = `
             >.
           </p>
 
-          <h2>Information for institutions</h2>
+          <h2 class="wp-block-heading">Information for institutions</h2>
 
           <p>
             More information about using<a
@@ -2954,6 +3013,15 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -2999,30 +3067,32 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             ><a href="#faq">Frequently Asked Questions</a><br />
           </p>
 
-          <h2 id="pss">What are the Primary Source Sets?</h2>
+          <h2 class="wp-block-heading" id="pss">
+            What are the Primary Source Sets?
+          </h2>
 
           <div class="wp-block-image">
             <figure class="aligncenter is-resized">
               <a href="/primary-source-sets"
                 ><img
-                  decoding="async"
                   loading="lazy"
+                  decoding="async"
                   src="https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM.png"
                   alt=""
                   class="wp-image-25867"
                   width="502"
                   height="290"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM.png         1003w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-300x173.png  300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-768x443.png  768w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM.png         1003w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-300x173.png  300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-23-at-2.31.22-PM-768x443.png  768w
                   "
                   sizes="(max-width: 502px) 100vw, 502px"
               /></a>
             </figure>
           </div>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               <strong
                 >140 “highlight reel” primary source collections <br /></strong
@@ -3043,7 +3113,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             </li>
           </ul>
 
-          <h2 id="navigating">Navigating the sets</h2>
+          <h2 class="wp-block-heading" id="navigating">Navigating the sets</h2>
 
           <p>
             <strong>Finding a set</strong><strong><br /></strong>Use the subject
@@ -3053,18 +3123,18 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
 
           <figure class="wp-block-image">
             <img
-              decoding="async"
               loading="lazy"
+              decoding="async"
               width="1024"
               height="277"
               src="https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-1024x277.png"
               alt=""
               class="wp-image-25868"
               srcset="
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-1024x277.png 1024w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-300x81.png    300w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-768x208.png   768w,
-                https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM.png          1095w
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-1024x277.png 1024w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-300x81.png    300w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM-768x208.png   768w,
+                https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.01-PM.png          1095w
               "
               sizes="(max-width: 1024px) 100vw, 1024px"
             />
@@ -3084,18 +3154,18 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
                 target="_blank"
                 rel="noreferrer noopener"
                 ><img
-                  decoding="async"
                   loading="lazy"
+                  decoding="async"
                   src="https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-1024x810.png"
                   alt=""
                   class="wp-image-25869"
                   width="512"
                   height="405"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-1024x810.png 1024w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-300x237.png   300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-768x608.png   768w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM.png          1131w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-1024x810.png 1024w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-300x237.png   300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM-768x608.png   768w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-3.57.44-PM.png          1131w
                   "
                   sizes="(max-width: 512px) 100vw, 512px"
               /></a>
@@ -3116,17 +3186,17 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
                 target="_blank"
                 rel="noreferrer noopener"
                 ><img
-                  decoding="async"
                   loading="lazy"
+                  decoding="async"
                   src="https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM.png"
                   alt=""
                   class="wp-image-25870"
                   width="490"
                   height="323"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM.png         980w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-300x198.png 300w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-768x506.png 768w
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM.png         980w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-300x198.png 300w,
+                    https://dpla.wpengine.com/wp-content/uploads/2019/04/Screen-Shot-2019-01-28-at-4.07.44-PM-768x506.png 768w
                   "
                   sizes="(max-width: 490px) 100vw, 490px"
               /></a>
@@ -3140,7 +3210,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             thinking.<br />
           </p>
 
-          <h2 id="video1">
+          <h2 class="wp-block-heading" id="video1">
             Tutorial Video: Introduction to DPLA’s Primary Source Sets
           </h2>
 
@@ -3150,11 +3220,13 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             <div class="wp-block-embed__wrapper">
               <iframe
                 loading="lazy"
+                title="Introduction to the Digital Public Library of America's Primary Source Sets"
                 width="500"
                 height="281"
                 src="https://www.youtube.com/embed/03QpMI7GrM8?feature=oembed"
                 frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen=""
               ></iframe>
             </div>
@@ -3162,7 +3234,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
 
           <p><br /></p>
 
-          <h2 id="usingthesets">Using the Primary Source Sets</h2>
+          <h2 class="wp-block-heading" id="usingthesets">
+            Using the Primary Source Sets
+          </h2>
 
           <p>Try one of these implementation ideas or create your own!<br /></p>
 
@@ -3199,7 +3273,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             >.”<br />
           </p>
 
-          <h2 id="video2">Tutorial Video: Implementation Ideas</h2>
+          <h2 class="wp-block-heading" id="video2">
+            Tutorial Video: Implementation Ideas
+          </h2>
 
           <p>
             Education Advisory Committee member Jamie Lathan introduces and
@@ -3213,17 +3289,19 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             <div class="wp-block-embed__wrapper">
               <iframe
                 loading="lazy"
+                title="Implementation Ideas for DPLA's Primary Source Sets"
                 width="500"
                 height="281"
                 src="https://www.youtube.com/embed/UKhpEkSmIjA?feature=oembed"
                 frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen=""
               ></iframe>
             </div>
           </figure>
 
-          <h2 id="searchingdpla">Searching DPLA</h2>
+          <h2 class="wp-block-heading" id="searchingdpla">Searching DPLA</h2>
 
           <p>
             If the perfect resource is not in the Primary Source Sets, try
@@ -3233,7 +3311,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             help navigate DPLA’s vast content.
           </p>
 
-          <ul>
+          <ul class="wp-block-list">
             <li>
               <a href="https://dp.la/about/search-tips"
                 >Tips for searching DPLA</a
@@ -3251,7 +3329,9 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             </li>
           </ul>
 
-          <h2 id="video3">Tutorial Video: Strategies for Searching in DPLA</h2>
+          <h2 class="wp-block-heading" id="video3">
+            Tutorial Video: Strategies for Searching in DPLA
+          </h2>
 
           <p>
             In this video, Education Advisory Committee Member Cate Denial
@@ -3264,17 +3344,19 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             <div class="wp-block-embed__wrapper">
               <iframe
                 loading="lazy"
+                title="Strategies for Searching in DPLA"
                 width="500"
                 height="281"
                 src="https://www.youtube.com/embed/K24mxauu0ak?feature=oembed"
                 frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen=""
               ></iframe>
             </div>
           </figure>
 
-          <h2 id="faq">Frequently Asked Questions</h2>
+          <h2 class="wp-block-heading" id="faq">Frequently Asked Questions</h2>
 
           <p>
             <strong
@@ -3330,7 +3412,7 @@ exports[`Content Pages > Using DPLA’s Primary Source Sets hasn't changed #0`] 
             National History Day theme.
           </p>
 
-          <h2><strong>Stay Connected</strong></h2>
+          <h2 class="wp-block-heading"><strong>Stay Connected</strong></h2>
 
           <p>
             <a
@@ -3402,6 +3484,15 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
                   </div>
                 </li>
               </ul>
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
             </div>
           </li>
         </ul>
@@ -3660,11 +3751,10 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
           </p>
           <ul>
             <li>
-              By mail: DPLA, c/o Boston Public Library, 700 Boylston St.,
-              Boston, MA 02116
+              By mail: Digital Public Library of America (at Government Center)
+              1 Washington Mall #1019 Boston, MA 02108
             </li>
             <li>By phone: 617-859-2116</li>
-            <li>By email:</li>
             <li>
               By email:&nbsp;<a href="mailto:dmca@dp.la" class="external"
                 >dmca@dp.la</a
@@ -3821,10 +3911,9 @@ exports[`Content Pages > Terms & Conditions hasn't changed #0`] = `
           <h5>12.7. Site Source Code</h5>
           <p>
             DPLA makes some of its source code related to the Services available
-            under the&nbsp;<a
-              href="http://www.gnu.org/licenses/agpl-3.0.html"
-              class="external"
-              >GNU Affero General Public License</a
+            under
+            <a href="https://opensource.org/license/MIT" class="external"
+              >The MIT License</a
             >. You can obtain the source code that DPLA makes available as open
             source software at&nbsp;<a
               href="https://github.com/dpla"
@@ -3895,6 +3984,15 @@ exports[`Content Pages > Privacy Policy hasn't changed #0`] = `
                   </div>
                 </li>
               </ul>
+            </div>
+          </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
             </div>
           </li>
         </ul>
@@ -4160,6 +4258,15 @@ exports[`Content Pages > How Can I Use DPLA? hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -4380,6 +4487,15 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -4443,18 +4559,18 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
           <p>
             <a href="/primary-source-sets"
               ><img
-                decoding="async"
                 loading="lazy"
+                decoding="async"
                 class="aligncenter wp-image-25351 size-large"
                 src="http://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-1024x669.png"
                 alt="Primary Source Sets"
                 width="1024"
                 height="669"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-1024x669.png 1024w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-300x196.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-768x502.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM.png          1108w
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-1024x669.png 1024w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-300x196.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM-768x502.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-28-at-4.07.12-PM.png          1108w
                 "
                 sizes="(max-width: 1024px) 100vw, 1024px"
             /></a>
@@ -4495,19 +4611,19 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
           >
             <a href="/item/e440ffc2ba26215c0da139163789912b"
               ><img
-                aria-describedby="caption-attachment-5466"
-                decoding="async"
                 loading="lazy"
+                decoding="async"
+                aria-describedby="caption-attachment-5466"
                 class="wp-image-5466"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW.jpg"
                 alt="Student working with tutor"
                 width="800"
                 height="706"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW.jpg          2160w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-300x265.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-768x678.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-1024x904.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW.jpg          2160w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-300x265.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-768x678.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Marquette_student_tutors-for-education-page-RW-1024x904.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -4515,6 +4631,31 @@ exports[`Content Pages > Education Guide hasn't changed #0`] = `
               Courtesy of Marquette University via Recollection Wisconsin.
             </p>
           </div>
+          <h2>Teaching and Learning with DPLA Resources</h2>
+          <p>
+            On October 26, 2023, the DPLA Outreach &amp; Assessment Working
+            Group and educator Joanna Schimizzi explored the Primary Source Sets
+            from DPLA, including Feeding the Hungry with Food Stamp Programs.”
+            In this session, we chatted about the structure of the existing
+            Primary Source Sets and used framing questions to see what might be
+            missing. Joanna provided an OER Commons template to curate
+            additional resources and we provided feedback on what else could
+            enrich these sets. (This
+            <a
+              class="external"
+              href="https://oercommons.org/courses/feeding-the-hungry-with-food-stamp-programs"
+              >OER Commons link</a
+            >&nbsp;is helpful for this session.)
+          </p>
+          <p>
+            <a
+              href="https://youtu.be/uNFQj3_8rKc"
+              target="_blank"
+              rel="noopener"
+              class="external"
+              >Watch the recording here</a
+            >.
+          </p>
           <h2>More information</h2>
           <p>
             Want to learn more? Read about DPLA’s work with professional
@@ -4625,6 +4766,15 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -4709,17 +4859,17 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
           <p>
             <a href="https://dp.la"
               ><img
-                decoding="async"
                 loading="lazy"
+                decoding="async"
                 class="alignnone wp-image-5470 size-full"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964.png"
                 alt="DPLA search"
                 width="810"
                 height="194"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964.png         810w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-300x72.png  300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-768x184.png 768w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964.png         810w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-300x72.png  300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.04.10-PM-e1508938450964-768x184.png 768w
                 "
                 sizes="(max-width: 810px) 100vw, 810px"
             /></a>
@@ -4757,17 +4907,17 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon landscape">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Photograph of family in yard"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5475"
                   srcset="
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-150x150.jpg 150w,
-                    https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-300x297.jpg 300w
+                    https://dpla.wpengine.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-150x150.jpg 150w,
+                    https://dpla.wpengine.com/wp-content/uploads/2017/09/Family-photo-in-yard-Shades-of-LA-CDL-300x297.jpg 300w
                   "
                   sizes="(max-width: 150px) 100vw, 150px"
                 />
@@ -4782,13 +4932,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon portrait">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/new-Family-Bible-of-Robert-Frederick-Johnson-and-Sarah-Madison-Taylor-Johnson-DLT-large-copy-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Decorative Bible cover"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5483"
                 />
               </dt>
@@ -4800,13 +4950,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon landscape">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/new-Letter-from-Civil-War-Soldier-James-H.-Peterson-in-1861-IDHH-large-copy-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Civil War letter on Union stationary, 1861"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5484"
                 />
               </dt>
@@ -4822,13 +4972,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon landscape">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/new-Broome-County-New-York-map-BPL-DC-copy-2-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Broome County, New York map"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5481"
                 />
               </dt>
@@ -4843,13 +4993,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon portrait">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/new-The_Bitter_Root_Yearbook__1922-p17-BSCDN-copy-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="The Bitter Root school yearbook, 1922"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5485"
                 />
               </dt>
@@ -4862,13 +5012,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon portrait">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/new-WWI-soldier-in-uniform-PTH-large-copy-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Portrait of a World War I soldier"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5486"
                 />
               </dt>
@@ -4889,13 +5039,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon landscape">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/09/Screenshot-from-Alice-Royal-Oral-history-CDL-150x150.png"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Alice Royal oral history"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5477"
                 />
               </dt>
@@ -4908,13 +5058,13 @@ exports[`Content Pages > Family Research hasn't changed #0`] = `
             <dl class="gallery-item">
               <dt class="gallery-icon portrait">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   width="150"
                   height="150"
                   src="https://dpla.wpengine.com/wp-content/uploads/2017/10/Tomlin-Genealogy-front-page-left-HT-150x150.jpg"
                   class="attachment-thumbnail size-thumbnail"
                   alt="Title page from Tomlin genealogy book"
-                  decoding="async"
-                  loading="lazy"
                   aria-describedby="gallery-1-5487"
                 />
               </dt>
@@ -5060,6 +5210,15 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -5117,18 +5276,18 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
           <p>
             <a href="/browse-by-topic"
               ><img
-                decoding="async"
                 loading="lazy"
+                decoding="async"
                 class="aligncenter wp-image-6261"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy.png"
                 alt="DPLA Browse By Topic"
                 width="800"
                 height="403"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy.png          1117w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-300x151.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-768x387.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-1024x516.png 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy.png          1117w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-300x151.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-768x387.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-12-at-1.32.19-PM-copy-1024x516.png 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5161,19 +5320,19 @@ exports[`Content Pages > Lifelong Learning hasn't changed #0`] = `
           >
             <a href="/item/853850741de107c288baf37816db83e0"
               ><img
-                aria-describedby="caption-attachment-5490"
-                decoding="async"
                 loading="lazy"
+                decoding="async"
+                aria-describedby="caption-attachment-5490"
                 class="wp-image-5490"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy.jpg"
                 alt="Drawing of woman in library"
                 width="800"
                 height="596"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy.jpg          2728w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-300x224.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-768x572.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-1024x763.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy.jpg          2728w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-300x224.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-768x572.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Library-Cooper-Hewitt-SMIT-copy-1024x763.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5288,6 +5447,15 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -5350,19 +5518,19 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
           >
             <a href="/item/9c752e6021dbfb082f88f336b569db64"
               ><img
-                aria-describedby="caption-attachment-6260"
-                decoding="async"
                 loading="lazy"
+                decoding="async"
+                aria-describedby="caption-attachment-6260"
                 class="wp-image-6260"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy.png"
                 alt="DPLA item record page for a map of the United States"
                 width="800"
                 height="393"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy.png          1439w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-300x147.png   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-768x377.png   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-1024x503.png 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy.png          1439w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-300x147.png   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-768x377.png   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Screen-Shot-2017-10-25-at-12.28.29-PM-copy-1024x503.png 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5408,19 +5576,19 @@ exports[`Content Pages > Scholarly Research hasn't changed #0`] = `
           >
             <a href="/item/6901a0aad63c3060d533576a79c5cea2"
               ><img
-                aria-describedby="caption-attachment-5492"
-                decoding="async"
                 loading="lazy"
+                decoding="async"
+                aria-describedby="caption-attachment-5492"
                 class="wp-image-5492"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin.jpg"
                 alt="Woman reading in library aisle"
                 width="800"
                 height="426"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin.jpg          1385w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-300x160.jpg   300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-768x409.jpg   768w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-1024x546.jpg 1024w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin.jpg          1385w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-300x160.jpg   300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-768x409.jpg   768w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/09/Student-doing-research-Recollection-Wisconsin-1024x546.jpg 1024w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>
@@ -5540,6 +5708,15 @@ exports[`Content Pages > For Developers hasn't changed #0`] = `
               >
             </div>
           </li>
+          <li>
+            <div>
+              <a
+                class="Sidebar_link__v0Ms7 "
+                href="/about/a-new-home-for-americas-digital-heritage"
+                >Cultural Heritage Transition</a
+              >
+            </div>
+          </li>
         </ul>
         <div class="Sidebar_divider__ZRGqC"></div>
         <ul>
@@ -5619,18 +5796,18 @@ exports[`Content Pages > For Developers hasn't changed #0`] = `
           >
             <a href="/item/51c0fa2c35c9a7b56381567edc527005"
               ><img
-                aria-describedby="caption-attachment-5462"
-                decoding="async"
                 loading="lazy"
+                decoding="async"
+                aria-describedby="caption-attachment-5462"
                 class="wp-image-5462"
                 src="http://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG.jpg"
                 alt="1970s computer lab"
                 width="800"
                 height="451"
                 srcset="
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG.jpg         967w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-300x169.jpg 300w,
-                  https://dpla.wpenginepowered.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-768x433.jpg 768w
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG.jpg         967w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-300x169.jpg 300w,
+                  https://dpla.wpengine.com/wp-content/uploads/2017/10/computer-for-developers-page-DLG-768x433.jpg 768w
                 "
                 sizes="(max-width: 800px) 100vw, 800px"
             /></a>

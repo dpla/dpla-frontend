@@ -2515,10 +2515,9 @@
         var HOSTED_VIEWER_ORIGINS = [
           "null",
           "http://localhost:3000",
-          "http://dp.la",
           "https://dp.la",
-          "http://pro.dp.la",
-          "https://pro.dp.la"
+          "https://pro.dp.la",
+            "https://staging.dp.la"
         ];
         validateFileURL = function validateFileURL(file) {
           if (file === undefined) {

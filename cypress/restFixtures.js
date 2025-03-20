@@ -42,7 +42,7 @@ const exhibitParentPages = exhibit => {
 
 const loadExhibitFile = async (filename) => {
     const root = process.cwd();
-    const filePath = path.join(root, "exhibitions-data", filename);;
+    const filePath = path.join(root, "exhibitions-data", filename);
     const exhibitionsText = await fs.readFile(filePath, "utf-8");
     return await JSON.parse(exhibitionsText);
 }
@@ -113,6 +113,11 @@ const main = async () => {
 }
 
 if (require.main === module) {
+
+    if (!process.env.API_KEY) {
+        console.error("Please set API_KEY environment variable.");
+        process.exit(1);
+    }
 
     process.on("uncaughtException", err => {
         console.error("Uncaught Exception: ", err.stack);

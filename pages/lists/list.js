@@ -33,7 +33,7 @@ class List extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log("IN: constructor");
+        this.listId = this.props.router.asPath.substring("/list/".length + 1)
         this.state = {
             list: null,
             items: [],
@@ -43,20 +43,17 @@ class List extends React.Component {
     }
 
     async componentDidMount() {
-        console.log("IN: componentDidMount()");
         await this.getList(
-            this.props.listId,
-            this.props.baseUrl
+            this.listId,
         );
     }
 
-    getList = async (uuid, baseUrl) => {
-        console.log("IN: getList", uuid, baseUrl);
+    getList = async (uuid) => {
         localforage
             .getItem(uuid)
             .then(async (list) => {
                 if (list) {
-                    await this.getItems(uuid, list, baseUrl);
+                    await this.getItems(uuid, list);
                 } else {
                     this.setState({initialized: true});
                 }
@@ -108,7 +105,6 @@ class List extends React.Component {
                 items: items,
                 uuid: uuid
             });
-            console.log("YAY", items);
 
         } catch (error) {
             this.setState({
@@ -120,26 +116,23 @@ class List extends React.Component {
         }
     };
 
-    onNameChange = value => {
-        console.log("IN: onNameChange");
+    onNameChange = async value => {
         let uuid = this.props.listId;
         let list = deepCopyObject(this.state.list);
         list.name = value;
         this.setState({list: list});
-        setLocalForageItem(uuid, list);
+        await setLocalForageItem(uuid, list);
     };
 
-    handleConfirm = e => {
-        console.log("IN: handleConfirm");
+    handleConfirm = async e => {
         e.preventDefault();
-        this.removeList();
+        await this.removeList();
     };
 
     removeList = async () => {
-        console.log("IN: removeList");
         const {uuid} = this.state;
         await removeLocalForageItem(uuid);
-        Router.push({
+        await Router.push({
             pathname: "/lists",
             query: ""
         });
@@ -217,17 +210,6 @@ class List extends React.Component {
             </MainLayout>
         );
     }
-}
-
-// strangely, this makes the list uuid available in router.query.
-// there's probably a better way...
-export const getServerSideProps = async (context) => {
-    return {
-        props: {
-            listId: context.req.params.list,
-            baseUrl: process.env.BASE_URL
-        }
-    };
 }
 
 export default withRouter(List);

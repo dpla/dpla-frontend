@@ -425,8 +425,8 @@ const LOCALS = {
         "texas"
     ],
     name: "TxHub",
-    background: "",
-    favicon: "favicon.ico",
+    background: "hero_image.png",
+    favicon: "favicon.png",
     logo: "texas-logo.png",
     description: "TxHub",
     locationFacet: "%22Texas%22",
@@ -445,6 +445,25 @@ const LOCALS = {
         category: "About"
       }
     }
+  },
+  njde: {
+    theme: "njde",
+    filters: [
+      "provider.@id:http%3A//dp.la/api/contributor/njde"
+    ],
+    name: "NJ/DE Digital Collective",
+    background: "",
+    favicon: "favicon.ico",
+    logo: "njde-logo.png",
+    heroLogo: "njde-logo.png",
+    description: "NJ/DE Digital Collective",
+    locationFacet: "%22New%20Jersey%20OR%20Delaware%22",
+    subjectFacet: "%22New%20Jersey%20OR%20Delaware%22",
+    hasAbout: false,
+    hasSidebar: false,
+    hasBrowseByPartner: true,
+    externalLink: "https://www.njdedigitalcollective.org/",
+    hasBrowseAll: false
   }
 
 }
