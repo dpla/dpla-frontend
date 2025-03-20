@@ -10,7 +10,7 @@ If your digital collections are already part of [CARLI Digital Collections](http
 
 All other institutions who wish to contribute new items, including those who have already provided collections to the IDHH, should begin by completing the [Contributor Agreement form](https://uofi.box.com/s/jbtvvhfs0tdsipjffbayqyq159tcxxjp) and returning it to the [IDHH Coordinator](/about/contact). Once the form has been completed, IDHH staff will work with your institution to gather technical information about your collections and metadata and begin testing. Once again, institutions that have already completed contributor agreement forms for collections already provided will need to complete new agreement forms for any and all new collections they wish to contribute.
 
-New providers or current contributors whose OAI endpoints have changed should complete a technical information form and return it to the [IDHH Coordinator] (/about/contact). This form provides IDHH staff with information they need to begin gathering and assessing your collections’ metadata.
+New providers or current contributors whose OAI endpoints have changed should complete a technical information form and return it to the [IDHH Coordinator](/about/contact). This form provides IDHH staff with information they need to begin gathering and assessing your collections’ metadata.
 
 ## How it works
 
