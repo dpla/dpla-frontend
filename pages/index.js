@@ -101,7 +101,7 @@ export const getServerSideProps = async () => {
 
     // fetch item count
 
-    const apiUrl = `https://api.dp.la/v2/items?page_size=0&api_key=${process.env.API_KEY}`;
+    const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
     const itemsRes = await fetch(apiUrl);
     const itemsJson = await itemsRes.json();
     let itemCount = 0 // default handles unexpected error
