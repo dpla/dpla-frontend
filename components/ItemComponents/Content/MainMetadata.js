@@ -3,7 +3,7 @@ import React from "react";
 import ItemImage from "./ItemImage";
 import ItemTermValuePair from "./ItemTermValuePair";
 
-import { joinIfArray, readMyRights } from "lib";
+import {joinIfArray, readMyRights} from "lib";
 
 import css from "./Content.module.scss";
 
@@ -45,17 +45,17 @@ class MainMetadata extends React.Component {
     */
 
     if (item.edmRights) {
-      return <RightsBadge url={item.edmRights} />
+      return <RightsBadge url={item.edmRights}/>
     } else if (item.rights && Array.isArray(item.rights)) {
-      return <RightsBadge url={item.rights[0]} />;
+      return <RightsBadge url={item.rights[0]}/>;
     } else if (item.rights) {
-      return <RightsBadge url={item.rights} />
+      return <RightsBadge url={item.rights}/>
     }
   }
 
   render() {
-    const { isOpen } = this.state;
-    const { item } = this.props;
+    const {isOpen} = this.state;
+    const {item} = this.props;
     const maxDescriptionLength = 600; //characters
     const descriptionIsLong = item.description
       ? joinIfArray(item.description).length > maxDescriptionLength
@@ -75,20 +75,30 @@ class MainMetadata extends React.Component {
                 useDefaultImage={item.useDefaultImage}
               />
               {item.sourceUrl &&
-                  <a
-                    rel="noopener"
-                    className={`${css.sourceLink} clickThrough external white`}
-                    href={item.sourceUrl}
-                  >
+                <a
+                  rel="noopener"
+                  className={`${css.sourceLink} clickThrough external white`}
+                  href={item.sourceUrl}
+                >
                     <span className={css.sourceLinkText}>
-                      {item.type === "image"
-                        ? "View Full Image"
-                        : item.type === "text"
-                          ? "View Full Text"
-                          : "View Full Item"}
+                      {item.type === "image" && "View Full Image" }
+                      {item.type === "text" && "View Full Text" }
+                      {(item.type !== "text" && item.type !== "image") && "View Full Item"}
                     </span>
-                  </a>
-                }
+                </a>
+              }
+              {item.ipfs && <div style={{paddingTop: "10px"}} >
+                <a
+                  rel="noopener"
+                  className={`${css.sourceLink} clickThrough external white`}
+                  href={item.ipfs}
+                >
+                  <span className={css.sourceLinkText}>
+                    View Item in IPFS
+                  </span>
+                </a>
+              </div>
+              }
               {this.renderRightsBadge(item)}
             </dd>
           </div>
