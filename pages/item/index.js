@@ -143,7 +143,8 @@ export const getServerSideProps = async context => {
             useDefaultImage: !doc.object,
             edmRights: doc.rights,
             doc: strippedDoc,
-            originalRecord: doc.originalRecord
+            originalRecord: doc.originalRecord,
+            ipfs: doc.ipfs
         }),
         randomItemId,
         isQA
