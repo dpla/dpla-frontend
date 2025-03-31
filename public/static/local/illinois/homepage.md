@@ -116,39 +116,39 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 ## Illinois Communities
 
-- ### [Chicago](/search?location=*Chicago*)
+- ### [Chicago](/search?location=%22Chicago+%28Ill.%29%22)
 
   Illinois’ largest and North America’s fourth most populous city
 
-- ### [Aurora](/search?&location=*Aurora*&location=*Il*)
+- ### [Aurora](/search?&location=%22United+States--Illinois--Kane+County--Aurora%22)
 
   The “City of Lights” is one of Illinois’ most populous
 
-- ### [Naperville](/search?subject=*Naperville*)
+- ### [Naperville](/search?q=naperville)
 
   Home to one of the best-loved public libraries in the U.S.
 
-- ### [Joliet](/search?subject=*Joliet*)
+- ### [Joliet](/search?subject=%22Joliet+%28Ill.%29%22)
 
   Founded on one of the earliest European settlements in Illinois
 
-- ### [Rockford](/search?location=*Rockford*)
+- ### [Rockford](/search?q=rockford)
 
   Learn about the rich history of the Forest City
 
-- ### [Springfield](/search?location=*Springfield*&location=*Il*)
+- ### [Springfield](/search?q=springfield)
 
   The Home of Lincoln and the Illinois state capitol
 
-- ### [Elgin](/search?location=*Elgin*)
+- ### [Elgin](/search?subject=%22Elgin%2C+Illinois%22)
 
   The Jewel of the Midwest has a long history of settlement since the pre-Columbian era
 
-- ### [Peoria](/search?location=*Peoria*)
+- ### [Peoria](/search?location=%22Illinois--Peoria+County--Peoria%22)
 
   Peoria is known for museums and one of the oldest symphony orchestras in the U.S.
 
-- ### [Champaign](/search?location=*Champaign*)
+- ### [Champaign](/search?location=%22Champaign+%28Ill.%29%22)
 
   Home of Roger Ebert and the University of Illinois flagship campus
 
