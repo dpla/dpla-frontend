@@ -148,7 +148,7 @@ export async function getServerSideProps({ query }) {
 
   // get author info
   const authorId = query.author && /[0-9]+/.test(query.author) ? query.author : "";
-  const authorFilter = authorId !== "" ? `&author=${authorId}` : ""
+  const authorFilter = authorId !== "" ? `&author=${authorId}` : "";
   let authorJson = null;
   if (authorId !== "") {
     const authorRes = await fetch(
