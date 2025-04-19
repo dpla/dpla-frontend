@@ -21,12 +21,12 @@ import {
   PAGES_ENDPOINT,
 } from "constants/content-pages";
 
-import {API_SETTINGS_ENDPOINT} from "constants/site";
-import {SITE_ENV} from "constants/env";
-import {washObject} from "lib/washObject";
+import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { SITE_ENV } from "constants/env";
+import { washObject } from "lib/washObject";
 
 function Home(props) {
-  const {sourceSets, guides, exhibitions, headerDescription, news, content} =
+  const { sourceSets, guides, exhibitions, headerDescription, news, content } =
     props;
   return (
     <MainLayout
