@@ -19,12 +19,10 @@ export default async function handler(req, res) {
     }
 
     try {
-        const url =
-            `${process.env.API_URL}/items/` +
-            `${validIds.join(",")}` +
-            `?api_key=${process.env.API_KEY}`;
-
-        const fetchRes = await fetch(url);
+        const baseUrl = new URL(`${process.env.API_URL}/items/`);
+        baseUrl.searchParams.set('api_key', process.env.API_KEY);
+        baseUrl.pathname += validIds.join(",");
+        const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
             const contentType = fetchRes.headers.get("Content-Type") || "application/json";
             res
