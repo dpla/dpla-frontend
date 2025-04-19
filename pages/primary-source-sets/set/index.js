@@ -64,21 +64,12 @@ export async function getServerSideProps({ res, query }) {
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
 
-  // setting the http error code is not working for some reason
-  // leaving this as a todo for nextjs 10 where they give you a
-  // real way to handle this
-
-  if (api.status > 399) {
+  if (!api.ok) {
+    // treating all errors as 404 due to API bug
     return { notFound: true };
   }
-  const json = await api.json();
 
-  if (!json) {
-    if (res) {
-      res.status = 500;
-    }
-    return { error: { statusCode: 500 } };
-  }
+  const json = await api.json();
 
   const parts = json.hasPart.map((part) => {
     let thumbnailUrl = part.thumbnailUrl;

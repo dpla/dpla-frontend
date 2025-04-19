@@ -50,12 +50,38 @@ export const getServerSideProps = async ({ query }) => {
   const topicsRes = await fetch(
     API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic,
   );
+
+  if (!topicsRes.ok) {
+    if (topicsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load topics.")
+  }
+
   const topicsJson = await topicsRes.json();
   const currentTopic = topicsJson[0];
+
+  if (!currentTopic) {
+    return {
+      notFound: true,
+    };
+  }
 
   const subtopicsRes = await fetch(
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
+
+  if (!subtopicsRes.ok) {
+    if (subtopicsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load subtopics.")
+  }
+
   const subtopicsJson = await subtopicsRes.json();
   const subtopics = subtopicsJson.map((subtopic) => ({
     ...subtopic,

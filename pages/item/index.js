@@ -17,10 +17,10 @@ import {
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import { washObject } from "lib/washObject";
+import {washObject} from "lib/washObject";
 
 function ItemDetail(props) {
-  const { item, randomItemId, isQA } = props;
+  const {item, randomItemId, isQA} = props;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
       <BreadcrumbsModule
@@ -47,14 +47,14 @@ function ItemDetail(props) {
           },
         ]}
       />
-      <HarmfulContent />
-      {isQA && <QA item={item} randomItemId={randomItemId} />}
+      <HarmfulContent/>
+      {isQA && <QA item={item} randomItemId={randomItemId}/>}
       <div
         id="main"
         role="main"
         className={`${utils.container} ${css.contentWrapper}`}
       >
-        <Content item={item} />
+        <Content item={item}/>
         <div className={css.faveAndCiteButtons}>
           <CiteButton
             creator={item.creator}
@@ -65,7 +65,7 @@ function ItemDetail(props) {
             toCiteText="item"
             title={item.title}
           />
-          <CheckableLists itemId={item.id} />
+          <CheckableLists itemId={item.id}/>
         </div>
       </div>
     </MainLayout>
@@ -87,34 +87,18 @@ export async function getServerSideProps(context) {
   const itemUrl =
     `${process.env.API_URL}/items/${query.itemId}` +
     `?api_key=${process.env.API_KEY}`;
-  let data = {};
-  try {
-    const res = await fetch(itemUrl);
-    if (!res.ok) {
+
+  const res = await fetch(itemUrl);
+  if (!res.ok) {
+    if (res.status === 404) {
+      return notFound;
+    } else {
       throw new Error(`API Response status: ${res.status}`);
     }
-    const json = await res.json();
-    if (!("docs" in json) || json.docs.length < 1) {
-      return notFound;
-    }
-    data = json;
-  } catch (error) {
-    if (
-      error != null &&
-      typeof error.response === "object" &&
-      "status" in error.response
-    ) {
-      console.log(
-        `Got status ${error.response.status} from API for item id ${query.itemId}`,
-      );
-      if (error.response.status !== 404 && error.response.status !== 400) {
-        throw new Error(`Bad status from API`);
-      } else {
-        return notFound;
-      }
-    } else {
-      throw new Error("API not responding.");
-    }
+  }
+  const data = await res.json();
+  if (!("docs" in data) || data.docs.length < 1) {
+    return notFound;
   }
 
   const doc = data.docs[0];
@@ -133,7 +117,7 @@ export async function getServerSideProps(context) {
     doc.dataProvider && doc.dataProvider.name
       ? doc.dataProvider.name
       : doc.dataProvider;
-  const strippedDoc = { ...doc, originalRecord: "" };
+  const strippedDoc = {...doc, originalRecord: ""};
   delete strippedDoc.originalRecord;
 
   const props = washObject({

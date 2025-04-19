@@ -80,12 +80,38 @@ export const getServerSideProps = async ({ query }) => {
   const topicsRes = await fetch(
     API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic,
   );
+
+  if (!topicsRes.ok) {
+    if (topicsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load topics.")
+  }
+
+
   const topicsJson = await topicsRes.json();
   const currentTopic = topicsJson[0];
+  if (!currentTopic) {
+    return {
+      notFound: true,
+    };
+  }
 
   const subtopicsRes = await fetch(
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
+
+  if (!subtopicsRes.ok) {
+    if (subtopicsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load subtopics.")
+  }
+
   const subtopicsJson = await subtopicsRes.json();
   const subtopics = subtopicsJson.map((subtopic) => ({
     ...subtopic,
@@ -94,6 +120,13 @@ export const getServerSideProps = async ({ query }) => {
   const currentSubtopic = subtopics.find(
     (topic) => topic.slug === query.subtopic,
   );
+
+  if (!currentSubtopic) {
+    return {
+      notFound: true,
+    };
+  }
+
   const currentSubtopicIdx = subtopics.findIndex(
     (topic) => topic.term_id === currentSubtopic.term_id,
   );
@@ -107,6 +140,16 @@ export const getServerSideProps = async ({ query }) => {
   const itemsRes = await fetch(
     `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
   );
+
+  if (!itemsRes.ok) {
+    if (itemsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load items.")
+  }
+
   const itemsJson = await itemsRes.json();
 
   const items = await Promise.all(

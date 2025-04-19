@@ -104,10 +104,26 @@ class ProMenuPage extends React.Component {
 export async function getServerSideProps({ query }) {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
+  if (!menuResponse.ok) {
+    if (menuResponse.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load menu.");
+  }
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
   const pageItem = menuItems.find((item) => item.post_name === pageName);
   const pageRes = await fetch(getMenuItemUrl(pageItem));
+  if (!pageRes.ok) {
+    if (pageRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load page.");
+  }
   const pageJson = await pageRes.json();
 
   // for the breadcrumbs
@@ -119,7 +135,7 @@ export async function getServerSideProps({ query }) {
   let breadcrumbs = [];
 
   if (JSON.stringify(breadcrumbObject) !== "{}") {
-    Object.values(breadcrumbObject).map((crumb) => {
+    Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
       let url = "/pro/wp?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
@@ -144,7 +160,7 @@ export async function getServerSideProps({ query }) {
   }
 
   let pageDescription = "";
-  if (pageJson.excerpt && pageJson.excerpt.rendered) {
+  if (pageJson?.excerpt?.rendered) {
     pageDescription = decodeHTMLEntities(
       striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…")),
     );

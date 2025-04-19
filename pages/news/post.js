@@ -77,7 +77,7 @@ class PostPage extends React.Component {
                     __html: content.title.rendered,
                   }}
                 />
-                <div className={css.resultSummary}>
+                {author && <div className={css.resultSummary}>
                   By{" "}
                   <Link
                     href={{
@@ -91,7 +91,7 @@ class PostPage extends React.Component {
                     {author.name}
                   </Link>
                   , {formatDate(content.date)}.
-                </div>
+                </div>}
                 {hasTags && (
                   <div className={css.tags}>
                     Published under:
@@ -133,6 +133,16 @@ export async function getServerSideProps({ query }) {
   const menuResponse = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
+
+  if (!menuResponse.ok) {
+    if (menuResponse.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load about menu.");
+  }
+
   const menuJson = await menuResponse.json();
 
   // get news post
@@ -144,7 +154,17 @@ export async function getServerSideProps({ query }) {
   const authorRes = await fetch(
     `${WORDPRESS_URL}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
-  const authorJson = await authorRes.json();
+
+  if (!authorRes.ok) {
+    if (authorRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load author.");
+  }
+
+  const authorJson = authorRes.ok ? await authorRes.json() : {}
 
   let pageDescription = "";
   if (postJson[0].excerpt && postJson[0].excerpt.rendered) {

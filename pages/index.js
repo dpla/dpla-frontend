@@ -51,12 +51,18 @@ export async function getServerSideProps() {
   // fetch home info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
+  if(!settingsRes.ok) {
+    throw new Error("Couldn't load settings.");
+  }
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
   const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   // 3. fetch it
   const homeRes = await fetch(endpoint);
+  if (!homeRes.ok) {
+    throw new Error("Couldn't load home.");
+  }
   const homepageJson = await homeRes.json();
 
   // fetch featured exhibits data
@@ -87,31 +93,44 @@ export async function getServerSideProps() {
   const sourceSets = [];
   featuredPrimarySourceSets.forEach((featuredSet) => {
     if (featuredSet) {
-      const setWithLinkInfo = Object.assign({}, featuredSet, {
+      const setWithLinkInfo = {
+        ...featuredSet,
         href: `/primary-source-sets/set?set=${featuredSet.primary_source_set_id}`,
         as: `/primary-source-sets/${featuredSet.primary_source_set_id}`,
         repImageUrl: featuredSet.image_url,
-      });
+      };
       sourceSets.push(setWithLinkInfo);
     }
   });
 
   // fetch item count
+  const headerDescription = homepageJson.acf.header_description
   const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
   const itemsRes = await fetch(apiUrl);
   const itemsJson = await itemsRes.json();
   let itemCount = 0; // default handles unexpected error
-  if ("count" in itemsJson) {
-    if (itemsJson.count.value !== undefined) {
-      itemCount = itemsJson.count.value; // ElasticSearch 7
-    } else {
-      itemCount = itemsJson.count; // ElasticSearch 6
+  if (itemsRes.ok) {
+    const itemsJson = await itemsRes.json();
+
+    if ("count" in itemsJson) {
+      if (itemsJson.count.value !== undefined) {
+        itemCount = itemsJson.count.value; // ElasticSearch 7
+      } else {
+        itemCount = itemsJson.count; // ElasticSearch 6
+      }
     }
+    headerDescription.replace(
+      HEADER_DESCRIPTION_TOKEN,
+      addCommasToNumber(itemCount),
+    );
+  } else {
+    headerDescription.replace(
+      HEADER_DESCRIPTION_TOKEN,
+      "50,000,000",
+    );
   }
-  const headerDescription = homepageJson.acf.header_description.replace(
-    HEADER_DESCRIPTION_TOKEN,
-    addCommasToNumber(itemCount),
-  );
+
+
 
   // fetch user guides data
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);

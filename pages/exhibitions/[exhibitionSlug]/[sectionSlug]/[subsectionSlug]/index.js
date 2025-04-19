@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
   let exhibit = {};
   try {
     exhibit = await loadExhibition(context.params.exhibitionSlug);
-  } catch (e) {
+  } catch {
     return { notFound: true };
   }
 
@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
 
   if (
     subsection === null ||
-    !subsection.parent ||
+    !subsection?.parent ||
     subsection.parent.id !== section.id
   ) {
     return { notFound: true };

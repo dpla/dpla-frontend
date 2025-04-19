@@ -70,12 +70,28 @@ class Guides extends React.Component {
 
 export async function getServerSideProps({ query }) {
   const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
+  if (!menuItemsRes.ok) {
+    if (menuItemsRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load about menu.");
+  }
   const menuItemsJson = await menuItemsRes.json();
   const guideSlug = query.guide;
   const guide = menuItemsJson.items.find(
     (item) => item.post_name === guideSlug,
   );
   const guideRes = await fetch(getMenuItemUrl(guide));
+  if (!guideRes.ok) {
+    if (guideRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load guide.");
+  }
   const guideJson = await guideRes.json();
 
   let breadcrumbs = [];

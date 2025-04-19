@@ -58,6 +58,11 @@ export const getServerSideProps = async () => {
 
   const res = await fetch(apiQuery);
   if (!res.ok) {
+    if (res.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
     throw new Error(`Response status: ${res.status}`);
   }
   const json = await res.json();

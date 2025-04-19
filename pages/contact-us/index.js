@@ -54,6 +54,16 @@ export const getServerSideProps = async () => {
   const aboutMenuRes = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
+
+  if (!aboutMenuRes.ok) {
+    if (aboutMenuRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load about menu.");
+  }
+
   const aboutMenuJson = await aboutMenuRes.json();
   const props = washObject({ sidebarItems: aboutMenuJson.items });
 

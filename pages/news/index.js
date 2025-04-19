@@ -138,6 +138,14 @@ export async function getServerSideProps({ query }) {
   const menuResponse = await fetch(
     SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
+  if (!menuResponse.ok) {
+    if (menuResponse.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load menu.");
+  }
   const menuJson = await menuResponse.json();
   const pageItem = menuJson.items.find(
     (item) => item.post_name.indexOf("news") === 0,
@@ -150,6 +158,14 @@ export async function getServerSideProps({ query }) {
     const authorRes = await fetch(
       `${WORDPRESS_URL}/wp-json/wp/v2/users/${query.author}`,
     );
+    if (!authorRes.ok) {
+      if (authorRes.status === 404) {
+        return {
+          notFound: true,
+        };
+      }
+      throw new Error("Couldn't load author.");
+    }
     authorJson = await authorRes.json();
   }
 

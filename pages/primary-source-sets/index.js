@@ -3,7 +3,7 @@ import React from "react";
 import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
-import { washObject } from "lib/washObject";
+import {washObject} from "lib/washObject";
 
 import {
   subjectOptions,
@@ -12,28 +12,28 @@ import {
 } from "constants/primarySourceSets";
 
 function PrimarySourceSets(props) {
-  const { sets } = props;
+  const {sets} = props;
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
         <div id="main" role="main" data-cy={"pss-home"}>
-          <AllSets sets={sets} />
+          <AllSets sets={sets}/>
         </div>
-        <PSSFooter />
+        <PSSFooter/>
       </MainLayout>
     </div>
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const findTimePeriod = timePeriodOptions.find(
+export async function getServerSideProps({query}) {
+  const findTimePeriod = query.timePeriod && query.timePeriod !== "all-time-periods" ? timePeriodOptions.find(
     (option) => option.value === query.timePeriod,
-  );
+  ) : null;
   const timePeriod = findTimePeriod?.label;
 
-  const findSubject = subjectOptions.find(
+  const findSubject = query.subject && query.subject !== "all-subjects" ? subjectOptions.find(
     (subject) => subject.value === query.subject,
-  );
+  ) : null;
   const subject = findSubject?.label;
 
   let filter = "";
@@ -46,6 +46,14 @@ export async function getServerSideProps({ query }) {
   }
   const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
   const res = await fetch(url);
+  if (!res.ok) {
+    if (res.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load sets.");
+  }
   const json = await res.json();
   const props = washObject({
     sets: json,

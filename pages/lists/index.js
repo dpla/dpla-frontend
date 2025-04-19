@@ -1,67 +1,80 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Router from "next/router";
 
 import MainLayout from "components/MainLayout";
 import { ListsContent } from "components/ListComponents";
 import FeatureHeader from "shared/FeatureHeader";
 
-import { createUUID, deepCopyObject } from "lib";
 import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
 import { LISTS_TITLE } from "constants/lists";
+import {createUUID} from "lib/index";
 
-class ListsPage extends React.Component {
-  state = { lists: [], initialized: false };
+const ListsPage = () => {
 
-  async componentDidMount() {
-    const lists = await getLocalForageLists();
-    lists.sort((a, b) => b.createdAt - a.createdAt);
-    this.setState({
-      lists: lists,
-      initialized: true,
-    });
-  }
+  const [lists, setLists] = useState([]);
+  const [initialized, setInitialized] = useState(false);
+  const isCreatingRef = React.useRef(false);
 
-  onCreateList = async (listName) => {
-    const uuid = createUUID();
-    await this.setState(async (prevState) => {
+  useEffect( () => {
+    const fetchLists = async () => {
+      const fetchedLists = await getLocalForageLists();
+      fetchedLists.sort((a, b) => b.createdAt - a.createdAt);
+      setLists(fetchedLists);
+      setInitialized(true);
+    };
+
+    if (!initialized) fetchLists();
+  }, []);
+
+
+  const onCreateList = useCallback(async (name) => {
+    // this isCreating ref is used to prevent multiple calls to onCreateList in dev mode,
+    // and if React's API changes to depend on the callback being idempotent.
+    // We can't just depend on looking up the uuid in localForage because it's async.
+    if (isCreatingRef.current) {
+      return;
+    }
+
+    try {
+      isCreatingRef.current = true;
       const createdAt = Date.now();
-      const newLists = deepCopyObject(prevState.lists);
-      newLists.push({
-        uuid: uuid,
-        name: listName,
-        count: 0,
-        createdAt: createdAt,
-      });
-      newLists.sort((a, b) => b.createdAt - a.createdAt);
-      const savedList = {
-        name: listName,
+      const uuid = createUUID();
+      const newList = {
+        uuid,
+        name,
         selectedHash: {},
-        createdAt: createdAt,
-        updatedAt: createdAt,
-      };
-      await setLocalForageItem(uuid, savedList);
-      return {
-        lists: newLists,
-      };
-    });
-    await Router.push({ pathname: `/lists/${uuid}` });
-  };
+        count: 0,
+        createdAt,
+      }
 
-  render() {
-    const { lists, initialized } = this.state;
-    return (
-      <MainLayout pageTitle={LISTS_TITLE}>
-        <div id="main" role="main">
-          <FeatureHeader title={LISTS_TITLE} />
-          <ListsContent
-            lists={lists}
-            initialized={initialized}
-            onCreateList={this.onCreateList}
-          />
-        </div>
-      </MainLayout>
-    );
-  }
-}
+      await setLocalForageItem(uuid, newList);
+
+      setLists(prevLists => {
+        const updatedLists = [...prevLists, newList];
+        return updatedLists.sort((a, b) => b.createdAt - a.createdAt);
+      });
+
+      // Redirect to the new list
+      await Router.push({ pathname: `/lists/${uuid}` });
+
+    } finally {
+      isCreatingRef.current = false;
+    }
+  }, [lists]);
+
+
+  return (
+    <MainLayout pageTitle={LISTS_TITLE}>
+      <div id="main" role="main">
+        <FeatureHeader title={LISTS_TITLE} />
+        <ListsContent
+          lists={lists}
+          initialized={initialized}
+          onCreateList={onCreateList}
+        />
+      </div>
+    </MainLayout>
+  );
+};
 
 export default ListsPage;

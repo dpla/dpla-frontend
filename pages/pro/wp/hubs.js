@@ -95,7 +95,7 @@ class HubsPage extends React.Component {
             imageSrc={page.acf.call_to_action.image}
             imageCaption={page.acf.call_to_action.image_credit}
           />
-          <NewsLane title="Member News" items={news} />
+          {news && <NewsLane title="Member News" items={news} />}
         </div>
       </MainLayout>
     );
@@ -104,12 +104,21 @@ class HubsPage extends React.Component {
 
 export async function getServerSideProps() {
   const hubRes = await fetch(PAGES_ENDPOINT + "?slug=hubs");
+  if (!hubRes.ok) {
+    if (hubRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load hubs.");
+  }
   const hubJson = await hubRes.json();
   const hubItem = hubJson[0];
 
   // fetch news posts
   const newsRes = await fetch(NEWS_PRO_ENDPOINT);
-  const newsItems = await newsRes.json();
+
+  const newsItems = newsRes.ok ? await newsRes.json() : [];
 
   const props = washObject({
     page: hubItem,

@@ -61,13 +61,26 @@ export async function getServerSideProps({ query }) {
   const sourceRes = await fetch(
     `${process.env.API_URL}/pss/sources/${encodeURIComponent(query.source)}?api_key=${process.env.API_KEY}`,
   );
+  if (!sourceRes.ok) {
+    //treating all fetch errors as 404 due to API bug
+    return {
+      notFound: true,
+    };
+  }
   const sourceJson = await sourceRes.text();
-
   const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
 
   const setRes = await fetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
+  if (!setRes.ok) {
+    if (setRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Unable to load set.");
+  }
 
   const setJson = await setRes.json();
   const parts = setJson.hasPart.map((part) => {
