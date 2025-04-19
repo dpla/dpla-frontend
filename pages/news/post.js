@@ -23,8 +23,10 @@ import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
 
 class PostPage extends React.Component {
+
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const links =
+      document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -148,7 +150,21 @@ export async function getServerSideProps({ query }) {
   // get news post
   const slug = query.slug;
   const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
+  if (!postRes.ok) {
+    if (postRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load post.");
+  }
   const postJson = await postRes.json();
+  if (postJson.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
 
   // get author info
   const authorRes = await fetch(

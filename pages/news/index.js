@@ -26,27 +26,22 @@ import css from "stylesheets/news.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 
-function NewsPage(props) {
-  const {
-    menuItems,
-    newsItems,
-    pageItem,
-    newsCount,
-    newsPageCount,
-    currentPage,
-    currentTag,
-    keywords,
-    author,
-  } = props;
+function NewsPage({
+  menuItems,
+  newsItems,
+  pageItem,
+  newsCount,
+  newsPageCount,
+  currentPage,
+  currentTag,
+  keywords,
+  author,
+}) {
 
-  const resultSummary = `${author ? " by " + author : ""}${
-    currentTag
-      ? " under " +
-        NEWS_TAGS.filter(
-          (tag) => tag.name.toLowerCase().replace(" ", "-") === currentTag,
-        )[0].name
-      : ""
-  }${keywords ? " with keywords “" + keywords + "”" : ""}`;
+  const resultSummary =
+    `${author ? " by " + author.name : ""}` +
+    `${currentTag ? " under " + currentTag.name : ""}` +
+    `${keywords ? " with keywords “" + keywords + "”" : ""}`;
 
   return (
     <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
@@ -72,8 +67,8 @@ function NewsPage(props) {
                   className={css.keywordsInput}
                   defaultValue={keywords}
                 />
-                {currentTag !== "" && (
-                  <input type="hidden" name="tag" value={currentTag} />
+                {currentTag && (
+                  <input type="hidden" name="tag" value={currentTag.slug} />
                 )}
                 {author && <input type="hidden" name="author" value={author} />}
                 <Button
@@ -100,7 +95,7 @@ function NewsPage(props) {
                   </p>
                 )}
               </div>
-              {newsItems.map((item) => (
+              {Array.isArray(newsItems) && newsItems.map((item) => (
                 <article key={item.slug} className={css.newsItem}>
                   <h2 className={css.title}>
                     <Link
@@ -152,11 +147,12 @@ export async function getServerSideProps({ query }) {
   );
 
   // get author info
-  const author = query.author ? `&author=${query.author}` : "";
+  const authorId = query.author && /[0-9]+/.test(query.author) ? query.author : "";
+  const authorFilter = authorId !== "" ? `&author=${authorId}` : ""
   let authorJson = null;
-  if (author !== "") {
+  if (authorId !== "") {
     const authorRes = await fetch(
-      `${WORDPRESS_URL}/wp-json/wp/v2/users/${query.author}`,
+      `${WORDPRESS_URL}/wp-json/wp/v2/users/${authorId}`,
     );
     if (!authorRes.ok) {
       if (authorRes.status === 404) {
@@ -170,16 +166,11 @@ export async function getServerSideProps({ query }) {
   }
 
   // fetch news
-  const keywords = query.k ? `&search=${query.k}` : "";
-  let page = query.page || 1;
-  const tags = query.tag
-    ? [
-        NEWS_TAGS.filter(
-          (tag) => tag.name.toLowerCase().replace(" ", "-") === query.tag,
-        )[0].id,
-      ]
-    : [];
-
+  const keywords = query.k ? `&search=${encodeURIComponent(query.k)}` : "";
+  let page = query.page && /[0-9]+/.test(query.page) ? +query.page : 1;
+  const tag = query.tag && query.tag !== "" ?
+    NEWS_TAGS.filter((tag) => tag.slug === query.tag)?.[0]
+    : null;
   let error = true;
   let maxRetries = 2;
   let retries = 0;
@@ -188,8 +179,8 @@ export async function getServerSideProps({ query }) {
   let newsPageCount = 0;
   // because people mess up with the query string and WP doesnt provide a proper fallback with page
   while (error && retries < maxRetries) {
-    const filter = tags.length > 0 ? `&tags=${tags.join(",")}` : "";
-    const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${filter}${keywords}${author}`;
+    const tagFilter = tag ? `&tags=${tag.id}` : "";
+    const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${tagFilter}${keywords}${authorFilter}`;
     const newsRes = await fetch(url);
     newsItems = await newsRes.json();
     newsCount = newsRes.headers.get("X-WP-Total");
@@ -205,9 +196,9 @@ export async function getServerSideProps({ query }) {
     pageItem: pageItem,
     currentPage: page,
     newsCount: Number(newsCount),
-    currentTag: query.tag ? query.tag : "",
+    currentTag: tag,
     newsPageCount: Number(newsPageCount),
-    keywords: query.k ? query.k : "",
+    keywords: query.k,
     author: authorJson || "",
   });
 
