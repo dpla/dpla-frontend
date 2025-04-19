@@ -18,7 +18,6 @@ import {MAX_LIST_ITEMS, MESSAGE_DELAY, UNTITLED_TEXT} from "constants/site";
 
 import css from "./ListView.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import {initializedState} from "react-slick/lib/utils/innerSliderUtils";
 
 function joinTruncate(str) {
   return truncateString(joinIfArray(str));
@@ -59,7 +58,7 @@ function ListView({items, router, exportable, viewMode, defaultUUID, name}) {
       bindBrowseEvent();
     }
 
-    init().catch(e => console.log("Error initializing ListView", e));
+    init().catch(e => console.error("Error initializing ListView", e));
   }, []);
 
   useEffect(() => {
@@ -172,7 +171,7 @@ function ListView({items, router, exportable, viewMode, defaultUUID, name}) {
   }, [state.lists]);
 
   const onNameChange = useCallback((value) => {
-    createList(value).catch(e => console.log("Error creating list", e));
+    createList(value).catch(e => console.error("Error creating list", e));
   }, [state.lists]);
 
 
@@ -252,7 +251,7 @@ function ListView({items, router, exportable, viewMode, defaultUUID, name}) {
         hasList: false
       }));
     } else {
-      loadList(listUUID).catch(e => console.log("Error loading list", e));
+      loadList(listUUID).catch(e => console.error("Error loading list", e));
     }
   };
 
@@ -272,34 +271,34 @@ function ListView({items, router, exportable, viewMode, defaultUUID, name}) {
         l.count = Object.keys(hash).length;
       }
     });
-    setState((prevState) => ({...prevState, selectedHash: hash, lists: lists, showMessage: message}));
+    setState((prevState) => ({
+      ...prevState,
+      selectedHash: hash,
+      lists,
+      showMessage: message
+    }));
   };
 
   const onCheckItem = e => {
-    console.log("IN: onCheckItem");
     const element = e.target;
     let id = element.getAttribute("data-id");
     element.checked ? addCell(id) : removeCell(id);
   };
 
   const onRemoveItem = e => {
-    console.log("IN: onRemoveItem");
     const element = e.target;
-    console.log("element", element, element.checked);
     let id = element.getAttribute("data-id");
     element.checked ? removeCell(id) : addCell(id);
   };
 
   const addCell = id => {
-    console.log("IN: addCell");
     let hash = deepCopyObject(state.selectedHash);
     if (hash[id]) return; // check if item already selected
     hash[id] = id;
-    updateList(hash, "Item added").catch(e => console.log("Error updating list", e));
+    updateList(hash, "Item added").catch(e => console.error("Error updating list", e));
   };
 
   const removeCell = id => {
-    console.log("IN: removeCell");
     let hash = deepCopyObject(state.selectedHash);
     delete hash[id];
     const message = state.readOnly ? "Item removed. Uncheck to undo." : "Item removed";

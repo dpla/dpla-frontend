@@ -58,7 +58,7 @@ function SingleSet(props) {
   );
 }
 
-export async function getServerSideProps({ res, query }) {
+export async function getServerSideProps({ query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const api = await fetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
