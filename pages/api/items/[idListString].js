@@ -1,12 +1,12 @@
 import {Readable} from "stream";
+import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
-const dplaIdRegex = /^[0-9a-f]{32}$/;
 
 export default async function handler(req, res) {
 
     const { idListString } = req.query
     const idList = idListString ? idListString.split(",") : []
-    const validIds = idList.filter(id => !!id && dplaIdRegex.test(id));
+    const validIds = idList.filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
     if (validIds.length === 0) {
         console.log("Zero valid ids");

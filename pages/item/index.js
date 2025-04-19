@@ -18,6 +18,7 @@ import {
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import {washObject} from "lib/washObject";
+import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
 function ItemDetail(props) {
   const {item, randomItemId, isQA} = props;
@@ -83,10 +84,14 @@ export async function getServerSideProps(context) {
   }
   const isQA = false;
   const randomItemId = isQA ? await getRandomItemIdAsync() : null;
-  // check if item is found
-  const itemUrl =
-    `${process.env.API_URL}/items/${query.itemId}` +
-    `?api_key=${process.env.API_KEY}`;
+  if (!DPLA_ITEM_ID_REGEX.test(query.itemId)) {
+    return notFound;
+  }
+
+  const itemUrl = new URL(process.env.API_URL)
+  itemUrl.pathname += "/items/";
+  itemUrl.pathname += query.itemId;
+  itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await fetch(itemUrl);
   if (!res.ok) {
