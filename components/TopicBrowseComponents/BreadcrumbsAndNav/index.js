@@ -4,8 +4,7 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import css from "./BreadcrumbsAndNav.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function BreadcrumbsAndNav(props) {
-  const { breadcrumbs } = props;
+function BreadcrumbsAndNav({ breadcrumbs }) {
   return (
     <div className={utils.breadcrumbsWrapper}>
       <div className={`${css.breadcrumbsAndNav} ${utils.container}`}>

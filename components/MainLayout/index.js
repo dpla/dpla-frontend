@@ -7,23 +7,22 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
-import { SITE_ENV } from "constants/env";
+import {SITE_ENV} from "constants/env";
 
-function MainLayout(props) {
-  const {
-    children,
-    router,
-    hideSearchBar,
-    hidePageHeader,
-    isSearchPage,
-    headLinks,
-    pageTitle,
-    pageImage,
-    pageDescription,
-    seoType,
-  } = props;
+function MainLayout({
+                      children,
+                      hideSearchBar,
+                      hidePageHeader,
+                      isSearchPage,
+                      headLinks,
+                      pageTitle,
+                      pageImage,
+                      pageDescription,
+                      seoType,
+                    }) {
+  const router = useRouter();
   const isHome =
     (SITE_ENV === "local" && router.pathname === "/local") ||
     (SITE_ENV === "pro" && router.pathname === "/pro") ||
@@ -37,9 +36,9 @@ function MainLayout(props) {
         seoType={seoType}
         pageDescription={pageDescription}
       />
-      <SkipToContent />
-      <SmallScreenHeader isSearchPage={isSearchPage} isHome={isHome} />
-      <GlobalHeader isHome={isHome} />
+      <SkipToContent/>
+      <SmallScreenHeader isSearchPage={isSearchPage} isHome={isHome}/>
+      <GlobalHeader isHome={isHome}/>
       {!hidePageHeader && (
         <PageHeader
           query={router.query}
@@ -48,9 +47,9 @@ function MainLayout(props) {
         />
       )}
       {children}
-      <Footer />
+      <Footer/>
     </div>
   );
 }
 
-export default withRouter(MainLayout);
+export default MainLayout;

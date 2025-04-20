@@ -4,8 +4,7 @@ import "next/link";
 import css from "./WebsiteFeature.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function WebsiteFeature(props) {
-  const { className, title, text, imageSrc, buttonText, buttonUrl } = props;
+function WebsiteFeature({ className, title, text, imageSrc, buttonText, buttonUrl }) {
   return (
     <div className={`${className || ""} ${css.wrapper} ${utils.siteMaxWidth}`}>
       {imageSrc && (

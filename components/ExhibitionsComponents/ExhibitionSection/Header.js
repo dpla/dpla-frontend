@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
 import css from "./ExhibitionSection.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function Header({ title, router }) {
+function Header({ title }) {
+  const router = useRouter();
   return (
     <div className={`${css.header} ${utils.container}`}>
       <div className={css.exhibitionsLinkAndTitle}>
@@ -38,4 +39,4 @@ function Header({ title, router }) {
   );
 }
 
-export default withRouter(Header);
+export default Header;

@@ -6,8 +6,7 @@ import Callout from "./components/Callout";
 
 import { DESCRIPTION, TITLE } from "constants/topicBrowse";
 
-function TopicsList(props) {
-  const { topics } = props;
+function TopicsList({ topics }) {
   return (
     <div>
       <FeatureHeader title={TITLE} description={DESCRIPTION} />

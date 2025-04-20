@@ -5,23 +5,27 @@ import css from "./mediaViewers.module.scss";
 
 const viewerId = "openseadragon1";
 
-function Noscript(props) {
-  let { children } = props;
+function Noscript({ children }) {
   const staticMarkup = ReactDOM.renderToStaticMarkup(children);
   return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
 }
 
 export default class ZoomableImageViewer extends React.Component {
   componentDidMount() {
-    if (!this.viewer) {
-      const OpenSeaDragon = require("openseadragon");
-      const url = this.props.pathToFile;
+    if (!this.viewer && !this.loading) {
+      this.loading = true;
+      try {
+        const OpenSeaDragon = require("openseadragon");
+        const url = this.props.pathToFile;
 
-      this.viewer = new OpenSeaDragon({
-        id: viewerId,
-        tileSources: { type: "image", url },
-        prefixUrl: "/static/images/openseadragon/",
-      });
+        this.viewer = new OpenSeaDragon({
+          id: viewerId,
+          tileSources: {type: "image", url},
+          prefixUrl: "/static/images/openseadragon/",
+        });
+      } finally {
+        this.loading = false;
+      }
     }
   }
 

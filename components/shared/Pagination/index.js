@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {useRouter, withRouter} from "next/router";
 
 import ChevronThick from "components/svg/ChevronThick";
 
@@ -29,7 +29,8 @@ function centerWindow(current, pageCount) {
   return windowArray.sort((a, b) => a - b);
 }
 
-function PageLink({ router, page, className }) {
+function PageLink({ page, className }) {
+  const router = useRouter();
   return (
     <Link
       key={"page " + page}
@@ -44,7 +45,8 @@ function PageLink({ router, page, className }) {
   );
 }
 
-function NextOrPrevButton({ router, currentPage, disabled, type = "next" }) {
+function NextOrPrevButton({ currentPage, disabled, type = "next" }) {
+  const router = useRouter();
   if (disabled) {
     return (
       <button
@@ -81,7 +83,8 @@ function NextOrPrevButton({ router, currentPage, disabled, type = "next" }) {
   }
 }
 
-function Pagination({ pageCount, currentPage, router }) {
+export default function Pagination({ pageCount, currentPage }) {
+  const router = useRouter();
   return (
     <div className={css.pagination}>
       <NextOrPrevButton
@@ -128,7 +131,6 @@ function Pagination({ pageCount, currentPage, router }) {
         <PageLink
           className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
           page={pageCount}
-          router={router}
           key={pageCount}
         />
       )}
@@ -137,11 +139,9 @@ function Pagination({ pageCount, currentPage, router }) {
         disabled={!(currentPage < pageCount && pageCount > 1)}
         currentPage={currentPage}
         type="next"
-        router={router}
         key={"next"}
       />
     </div>
   );
 }
 
-export default withRouter(Pagination);

@@ -13,8 +13,7 @@ import css from "./Sidebar.module.scss";
 //     </p>
 //   </div>;
 
-function Sidebar(props) {
-  const { image, title, description } = props;
+function Sidebar({ image, title, description }) {
   return (
     <div className={css.sidebar} data-cy={"subtopic-sidebar"}>
       <div className={css.subtopicInfo}>

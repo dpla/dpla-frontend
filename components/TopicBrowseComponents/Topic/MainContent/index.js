@@ -6,8 +6,7 @@ import HeadingRule from "shared/HeadingRule";
 import css from "./MainContent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function MainContent(props) {
-  const { topic } = props;
+function MainContent({ topic }) {
   return (
     <div className={css.wrapper}>
       <div className={`${utils.container} ${css.container}`}>

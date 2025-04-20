@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Router, { withRouter } from "next/router";
+import Router, {useRouter, withRouter} from "next/router";
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
 
@@ -18,7 +18,8 @@ import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
 import css from "./Sidebar.module.scss";
 
-function FacetLink({ router, queryKey, termObject, disabled, isTooltip }) {
+function FacetLink({ queryKey, termObject, disabled, isTooltip }) {
+  const router = useRouter();
   if (disabled) {
     return (
       <span className={css.facet}>
@@ -260,7 +261,6 @@ class Sidebar extends React.Component {
                     queryKey={mapFacetsToURLPrettified[key]}
                     disabled={isFacetValueInQuery(key, termObject.term)}
                     isTooltip={key === "rightsCategory"}
-                    router={router}
                   />
                 ) : null,
               };

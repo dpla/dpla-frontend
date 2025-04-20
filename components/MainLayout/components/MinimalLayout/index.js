@@ -5,11 +5,9 @@ import DPLAHead from "components/DPLAHead";
 import SkipToContent from "shared/SkipToContent";
 import PageHeader from "../PageHeader";
 
-import { SITE_ENV } from "constants/env";
+import {SITE_ENV} from "constants/env";
 
-function MinimalLayout(props) {
-  const { children, headLinks, pageTitle, pageImage, seoType, isPrintable } =
-    props;
+function MinimalLayout({children, headLinks, pageTitle, pageImage, seoType, isPrintable}) {
   return (
     <div>
       <DPLAHead
@@ -18,8 +16,8 @@ function MinimalLayout(props) {
         pageImage={pageImage}
         seoType={seoType}
       />
-      {!isPrintable && <SkipToContent />}
-      {!isPrintable && <PageHeader hideSearchBar={SITE_ENV === "pro"} />}
+      {!isPrintable && <SkipToContent/>}
+      {!isPrintable && <PageHeader hideSearchBar={SITE_ENV === "pro"}/>}
       {children}
     </div>
   );

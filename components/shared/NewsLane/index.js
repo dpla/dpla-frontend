@@ -8,8 +8,7 @@ import utils from "stylesheets/utils.module.scss";
 
 import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
-function NewsLane(props) {
-  const { title, items } = props;
+function NewsLane({ title, items }) {
   return (
     <div className={css.wrapper} data-cy="news">
       <div className={`${css.content} ${utils.siteMaxWidth}`}>
@@ -27,7 +26,7 @@ function NewsLane(props) {
             </div>
           </div>
           <ul className={`${utils.colXs12} ${utils.colMd9}`}>
-            {items.map((post, index) => {
+            {items.map((post) => {
               const dateText = formatDate(post.date);
               let summary = post.acf.summary
                 ? post.acf.summary

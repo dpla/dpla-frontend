@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router"
+import {useRouter} from "next/router"
 
-import { GUIDES_PARENT_ID } from "constants/content-pages";
-import { SITE_ENV } from "constants/env";
+import {GUIDES_PARENT_ID} from "constants/content-pages";
+import {SITE_ENV} from "constants/env";
 import {
   decodeHTMLEntities,
   getBreadcrumbs,
@@ -15,7 +15,7 @@ import {
 import css from "./Sidebar.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-function SidebarLink({ isCurrentLink, linkObject, title }) {
+function SidebarLink({isCurrentLink, linkObject, title}) {
   return (
     <Link as={linkObject.as} href={linkObject.href}
           className={`${css.link} ${isCurrentLink && css.selected}`}
@@ -26,11 +26,11 @@ function SidebarLink({ isCurrentLink, linkObject, title }) {
 }
 
 function NestedSidebarLinks({
-  item,
-  items,
-  activeItemId,
-  breadcrumbs
-}) {
+                              item,
+                              items,
+                              activeItemId,
+                              breadcrumbs
+                            }) {
   // recursive function
   const title = decodeHTMLEntities(item.title);
   const itemId = String(item.ID);
@@ -58,7 +58,7 @@ function NestedSidebarLinks({
   });
 
   // link treatment varies per template (eg: guides/news/pro/hubs...)
-  let linkObject = { as: "/", href: "/" };
+  let linkObject = {as: "/", href: "/"};
 
   if (itemId === guidesParent) {
     linkObject = {
@@ -122,25 +122,26 @@ function NestedSidebarLinks({
       />
       {children.length && isOpen
         ? <ul>
-            {children.map(child => {
-              return (
-                <li key={child.ID}>
-                  <NestedSidebarLinks
-                    activeItemId={activeItemId}
-                    item={child}
-                    breadcrumbs={breadcrumbs}
-                    items={items}
-                  />
-                </li>
-              );
-            })}
-          </ul>
+          {children.map(child => {
+            return (
+              <li key={child.ID}>
+                <NestedSidebarLinks
+                  activeItemId={activeItemId}
+                  item={child}
+                  breadcrumbs={breadcrumbs}
+                  items={items}
+                />
+              </li>
+            );
+          })}
+        </ul>
         : <></>}
     </div>
   );
 }
 
-function Sidebar({ className, activeItemId, items, router }) {
+function Sidebar({className, activeItemId, items}) {
+  const router = useRouter();
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
@@ -209,13 +210,12 @@ function Sidebar({ className, activeItemId, items, router }) {
                     item={item}
                     items={items}
                     breadcrumbs={breadcrumbs}
-                    router
                   />
                 </li>
               );
             })}
         </ul>
-        <div className={css.divider} />
+        <div className={css.divider}/>
         <ul>
           <li key={"about"}>
             <NestedSidebarLinks
@@ -223,7 +223,6 @@ function Sidebar({ className, activeItemId, items, router }) {
               item={aboutItem}
               items={items}
               breadcrumbs={breadcrumbs}
-              router
             />
           </li>
           {eventsId &&
@@ -233,7 +232,6 @@ function Sidebar({ className, activeItemId, items, router }) {
                 item={eventsItem}
                 items={items}
                 breadcrumbs={breadcrumbs}
-                router
               />
             </li>}
           {SITE_ENV === "user" &&
@@ -242,7 +240,7 @@ function Sidebar({ className, activeItemId, items, router }) {
                 title="News"
                 section="news"
                 isCurrentLink={router.pathname.indexOf("/news") === 0}
-                linkObject={{ as: "/news", href: "/news" }}
+                linkObject={{as: "/news", href: "/news"}}
               />
             </li>}
           <li key={"contact-us"}>
@@ -250,7 +248,7 @@ function Sidebar({ className, activeItemId, items, router }) {
               title="Contact Us"
               section="contact-us"
               isCurrentLink={activeItemId === "contact-us"}
-              linkObject={{ as: "/contact", href: "/contact-us" }}
+              linkObject={{as: "/contact", href: "/contact-us"}}
             />
           </li>
         </ul>
@@ -259,4 +257,4 @@ function Sidebar({ className, activeItemId, items, router }) {
   );
 }
 
-export default withRouter(Sidebar);
+export default Sidebar;

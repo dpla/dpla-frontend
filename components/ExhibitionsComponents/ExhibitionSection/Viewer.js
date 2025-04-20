@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 
@@ -69,10 +69,10 @@ function ItemLink({
   thumbnailUrl,
   itemId,
   className,
-  router,
   fileType,
   originalUrl,
 }) {
+  const router = useRouter();
   const itemUrl = [
     "/exhibitions/",
     router.query.exhibitionSlug,
@@ -134,7 +134,8 @@ class Viewer extends React.Component {
   }
 
   render() {
-    const { subsection, router } = this.props;
+    const router = useRouter();
+    const { subsection } = this.props;
     const pageBlocks = subsection.page_blocks;
     const pageWithText = pageBlocks.find((block) => block.text);
     const text = pageWithText ? pageWithText.text : "";
@@ -199,7 +200,6 @@ class Viewer extends React.Component {
               {subsection.page_blocks.map((block) => (
                 <li key={block.id}>
                   <ItemLink
-                    router={router}
                     fileType={block.type}
                     className={block.isActive ? css.activeItemLink : ""}
                     itemId={block.id}
@@ -237,4 +237,4 @@ class Viewer extends React.Component {
   }
 }
 
-export default withRouter(Viewer);
+export default Viewer;

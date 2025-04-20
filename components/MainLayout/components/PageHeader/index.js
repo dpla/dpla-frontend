@@ -1,17 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
 import DplaLogoWhite from "components/svg/DplaLogoWhite";
 
-import { LOCAL_ID, SITE_ENV } from "constants/env";
-import { LOCALS } from "constants/local";
+import {LOCAL_ID, SITE_ENV} from "constants/env";
+import {LOCALS} from "constants/local";
 
 import css from "./PageHeader.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function PageHeader(props) {
-  const { hideSearchBar, router } = props;
+function PageHeader({hideSearchBar}) {
+  const router = useRouter();
   const searchQuery =
     router && router.pathname === "/search" && router.query && router.query.q
       ? router.query.q
@@ -32,7 +32,7 @@ function PageHeader(props) {
             className={css.logo}
             title="Home Page"
           >
-            <DplaLogoWhite className={css.logoImg} />
+            <DplaLogoWhite className={css.logoImg}/>
           </Link>
         )}
         {SITE_ENV === "local" && (
@@ -89,4 +89,4 @@ function PageHeader(props) {
   );
 }
 
-export default withRouter(PageHeader);
+export default PageHeader;

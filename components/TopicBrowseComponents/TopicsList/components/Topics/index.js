@@ -4,8 +4,7 @@ import Link from "next/link";
 import css from "./Topics.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function Topics(props) {
-  const { topics } = props;
+function Topics({ topics }) {
   return (
     <div className={`${css.topicsWrapper} ${utils.container}`}>
       <p className={css.topicsIntro}>

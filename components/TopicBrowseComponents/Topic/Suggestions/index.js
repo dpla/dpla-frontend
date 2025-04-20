@@ -18,8 +18,7 @@ function mapTypeToClass(type) {
   }
 }
 
-function Suggestions(props) {
-  const { suggestions } = props;
+function Suggestions({ suggestions }) {
   return (
     <div className={css.suggestionsWrapper}>
       <div className={`${css.suggestions} ${utils.container}`}>

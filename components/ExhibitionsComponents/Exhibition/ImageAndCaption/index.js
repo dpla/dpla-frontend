@@ -1,15 +1,16 @@
 import React from "react";
-import {withRouter} from "next/router";
 
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
 import css from "./ImageAndCaption.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {useRouter} from "next/router";
 
 function ImageAndCaption({
-                             title, thumbnailUrl, sectionSlug, slug, caption, router
+                             title, thumbnailUrl, sectionSlug, slug, caption
                          }) {
+    const router = useRouter();
     return (<figure className={css.wrapper}>
         <div className={`${utils.container} ${css.imageAndCaption}`}>
             <p className={css.exhibitionTitle}>{title}</p>
@@ -51,4 +52,4 @@ function ImageAndCaption({
     </figure>);
 }
 
-export default withRouter(ImageAndCaption);
+export default ImageAndCaption;

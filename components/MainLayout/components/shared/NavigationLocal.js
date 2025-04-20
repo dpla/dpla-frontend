@@ -1,11 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import { LOCALS } from "constants/local";
-import { LOCAL_ID } from "constants/env";
+import {LOCALS} from "constants/local";
+import {LOCAL_ID} from "constants/env";
 
-function NavigationLocal(props) {
-  const { isHome, className, css } = props;
+function NavigationLocal({isHome, className, css}) {
   let visitHtml;
   let contactHtml;
   let arbitraryHtml = null;
@@ -133,7 +132,7 @@ function NavigationLocal(props) {
           <Link href="/lists">My Lists</Link>
         </li>
       </ul>
-      {visitHtml && <span className={css.divider} />}
+      {visitHtml && <span className={css.divider}/>}
       {visitHtml}
       <ul className={`${css.links} ${css.tertiaryLinks}`}>
         {blogHtml}

@@ -5,8 +5,7 @@ import css from "./NavArrows.module.scss";
 
 import Chevron from "components/svg/ChevronThickOrange";
 
-function NavArrows(props) {
-  const { previousSubtopic, nextSubtopic, topic, route } = props;
+function NavArrows({ previousSubtopic, nextSubtopic, topic, route }) {
   return nextSubtopic || previousSubtopic ? (
     <div className={css.navLinks}>
       {previousSubtopic && (

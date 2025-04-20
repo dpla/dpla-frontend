@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {withRouter} from "next/router"
+import {useRouter} from "next/router"
 
 import Markdown from "react-markdown";
 
@@ -10,7 +10,8 @@ import css from "./SetsList.module.scss";
 import utils from "stylesheets/utils.module.scss"
 import {mapSubjectNameToSlug, mapTimePeriodNameToSlug} from "constants/primarySourceSets";
 
-function SetsList({sets, router}) {
+function SetsList({sets}) {
+    const router = useRouter();
     return (<div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
         <ul className={utils.row}>
             {sets.itemListElement.map(set => <li className={`${css.itemWrapper} ${utils.colXs6} ${utils.colMd4}`}
@@ -83,4 +84,4 @@ function SetsList({sets, router}) {
     </div>);
 }
 
-export default withRouter(SetsList);
+export default SetsList;

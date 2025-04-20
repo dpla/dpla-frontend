@@ -2,8 +2,7 @@ import React from "react";
 
 import css from "./mediaViewers.module.scss";
 
-function PDFViewer(props) {
-  const { pathToFile, height = "650px" } = props;
+function PDFViewer({ pathToFile, height = "650px" }) {
   return (
     <div className={css.pdfViewer} style={{ height }}>
       <iframe

@@ -7,22 +7,23 @@ import css from "./PSSFooter.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
 function OtherInfo() {
-  return (<div className={css.wrapper} data-cy={'pss-footer'}>
-    <div className={`${utils.container} ${css.otherInfo}`}>
-      <p className={css.p}>
+  return (
+    <div className={css.wrapper} data-cy={'pss-footer'}>
+      <div className={`${utils.container} ${css.otherInfo}`}>
+        <p className={css.p}>
         <span>
           These sets were created and reviewed by teachers.
           {" "}
         </span>
-        <span>
+          <span>
           Explore resources and ideas for{" "}
-          <Link href="/about/using-dplas-primary-source-sets">
+            <Link href="/about/using-dplas-primary-source-sets">
             Using DPLA&apos;s Primary Source Sets
           </Link>{" "}
-          in your classroom.
+            in your classroom.
         </span>
-      </p>
-      <p className={css.p}>
+        </p>
+        <p className={css.p}>
         <span>
           To give feedback, contact us at {" "}
           <a className={utils.link} href={`mailto:info@dp.la`}>
@@ -33,9 +34,10 @@ function OtherInfo() {
             National History Day
           </a>.
         </span>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>);
+  );
 }
 
 export default OtherInfo;

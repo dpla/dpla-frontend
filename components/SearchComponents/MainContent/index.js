@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
 import ListView from "shared/ListView";
 import Pagination from "shared/Pagination";
@@ -15,12 +15,12 @@ import utils from "stylesheets/utils.module.scss";
 
 function MainContent({
   results,
-  router,
   facets,
   paginationInfo,
   hideSidebar,
   aboutness,
 }) {
+  const router = useRouter();
   return (
     <div className={css.wrapper}>
       <div className={`${utils.container} ${css.mainContent}`}>
@@ -69,4 +69,4 @@ function MainContent({
   );
 }
 
-export default withRouter(MainContent);
+export default MainContent;
