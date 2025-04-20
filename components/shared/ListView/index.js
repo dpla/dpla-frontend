@@ -134,9 +134,7 @@ function ListView({items, router, exportable, viewMode, defaultUUID, name}) {
   };
 
   const createList = useCallback(async (listName) => {
-    if (isCreatingRef.current) {
-      return;
-    }
+    if (isCreatingRef.current) return;
 
     try {
       isCreatingRef.current = true;
