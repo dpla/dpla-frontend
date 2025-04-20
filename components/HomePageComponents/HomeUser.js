@@ -51,8 +51,8 @@ function HomeUser({
           theme="blue"
         />
       )}
-      <DPLAUsers guides={guides} />
-      <NewsLane title="DPLA News" items={news} />
+      {guides && guides.length > 0 && <DPLAUsers guides={guides} />}
+      {news && news.length > 0 && <NewsLane title="DPLA News" items={news} />}
       <StayInformed />
     </div>
   );
