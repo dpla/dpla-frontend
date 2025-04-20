@@ -21,13 +21,11 @@ import {
   PAGES_ENDPOINT,
 } from "constants/content-pages";
 
-import { API_SETTINGS_ENDPOINT } from "constants/site";
-import { SITE_ENV } from "constants/env";
-import { washObject } from "lib/washObject";
+import {API_SETTINGS_ENDPOINT} from "constants/site";
+import {SITE_ENV} from "constants/env";
+import {washObject} from "lib/washObject";
 
-function Home(props) {
-  const { sourceSets, guides, exhibitions, headerDescription, news, content } =
-    props;
+function Home({sourceSets, guides, exhibitions, headerDescription, news, content}) {
   return (
     <MainLayout
       hidePageHeader={SITE_ENV === "user"}
@@ -51,13 +49,13 @@ export async function getServerSideProps() {
   // fetch home info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
-  if(!settingsRes.ok) {
+  if (!settingsRes.ok) {
     throw new Error("Couldn't load settings.");
   }
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
-  const guides_endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
+  const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   // 3. fetch it
   const homeRes = await fetch(endpoint);
   if (!homeRes.ok) {
@@ -104,10 +102,9 @@ export async function getServerSideProps() {
   });
 
   // fetch item count
-  const headerDescription = homepageJson.acf.header_description
+  let headerDescription = homepageJson.acf.header_description
   const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
   const itemsRes = await fetch(apiUrl);
-  const itemsJson = await itemsRes.json();
   let itemCount = 0; // default handles unexpected error
   if (itemsRes.ok) {
     const itemsJson = await itemsRes.json();
@@ -119,47 +116,55 @@ export async function getServerSideProps() {
         itemCount = itemsJson.count; // ElasticSearch 6
       }
     }
-    headerDescription.replace(
+    headerDescription = headerDescription.replace(
       HEADER_DESCRIPTION_TOKEN,
       addCommasToNumber(itemCount),
     );
   } else {
-    headerDescription.replace(
+    headerDescription = headerDescription.replace(
       HEADER_DESCRIPTION_TOKEN,
-      "50,000,000",
+      "over 50,000,000",
     );
   }
 
-
-
   // fetch user guides data
+  let guides = [];
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
-  const aboutMenuJson = await aboutMenuRes.json();
-  const indexPageItem = aboutMenuJson.items.find(
-    (item) => item.url === guides_endpoint,
-  );
-  const guides = await Promise.all(
-    aboutMenuJson.items
-      .filter((item) => item.menu_item_parent === indexPageItem.object_id)
-      .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
-      .map(async (guide) => {
-        const guideRes = await fetch(getMenuItemUrl(guide));
-        const guideJson = await guideRes.json();
-        return {
-          ...guide,
-          slug: guide.post_name,
-          summary: guideJson.acf.summary,
-          title: guideJson.title.rendered,
-          displayTitle: guideJson.acf.display_title,
-          color: guideJson.acf.color,
-          illustration: guideJson.acf.illustration,
-        };
-      }),
-  );
+  if (!aboutMenuRes.ok) {
+    console.log("Unable to load user guides.", aboutMenuRes.status);
+  } else {
+    const aboutMenuJson = await aboutMenuRes.json();
+    const indexPageItem = aboutMenuJson.items.find(
+      (item) => item.url === guidesEndpoint,
+    );
+    guides = await Promise.all(
+      aboutMenuJson.items
+        .filter((item) => item.menu_item_parent === indexPageItem.object_id)
+        .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
+        .map(async (guide) => {
+          const guideRes = await fetch(getMenuItemUrl(guide));
+          const guideJson = await guideRes.json();
+          return {
+            ...guide,
+            slug: guide.post_name,
+            summary: guideJson.acf.summary,
+            title: guideJson.title.rendered,
+            displayTitle: guideJson.acf.display_title,
+            color: guideJson.acf.color,
+            illustration: guideJson.acf.illustration,
+          };
+        }),
+    );
+  }
 
   // fetch news posts
+  let newsItems = [];
   const newsRes = await fetch(NEWS_USER_ENDPOINT);
-  const newsItems = await newsRes.json();
+  if (!newsRes.ok) {
+    console.log("Unable to load news posts.", newsRes.status);
+  } else {
+    newsItems = await newsRes.json();
+  }
 
   const props = washObject({
     sourceSets,
