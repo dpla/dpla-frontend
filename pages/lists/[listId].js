@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect, useCallback, useRef} from "react";
 import Router, {useRouter} from "next/router";
 
 import * as dayjs from "dayjs";
@@ -33,7 +33,7 @@ const List = () => {
   const [list, setList] = useState(null);
   const [items, setItems] = useState([]);
   const [initialized, setInitialized] = useState(false);
-  const isRenamingRef =  React.useRef(false);
+  const isRenamingRef = useRef(false);
 
   useEffect(() => {
 
