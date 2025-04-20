@@ -52,7 +52,7 @@ class StayInformed extends React.Component {
     }));
   };
 
-  onButtonClick(e) {
+  onButtonClick() {
     if (!this.state.email) {
       this.setState((prevState) => ({
         isSending: prevState.isSending,
@@ -72,7 +72,6 @@ class StayInformed extends React.Component {
       email: prevState,
     }));
 
-    const interests = this.state.interests;
     const email = this.state.email;
     const miel = e.target.elements.i_prefer_usps_mail.value;
 
@@ -92,7 +91,7 @@ class StayInformed extends React.Component {
     });
 
     if (!res.ok) {
-      throw new Error("Form not recorded: " + res.status);
+      console.error("Form not recorded: " + res.status);
     }
 
     this.setState((prevState) => ({
@@ -103,7 +102,10 @@ class StayInformed extends React.Component {
   };
 
   formIsValid() {
-    return this.state.email && this.state.email.length > 3;
+    return this.state.email &&
+      this.state.email.length > 3 &&
+      this.state.interests &&
+      this.state.interests.length > 0;
   }
 
   render() {
