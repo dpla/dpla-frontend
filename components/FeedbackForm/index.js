@@ -20,7 +20,7 @@ class FeedbackForm extends React.Component {
     message: undefined,
   };
 
-  closeForm = (e) => {
+  closeForm = () => {
     this.setState((prevState) => ({
       timestamp: prevState.timestamp,
       isSending: false,
@@ -91,7 +91,7 @@ class FeedbackForm extends React.Component {
     }));
   };
 
-  activateRequired = (e) => {
+  activateRequired = () => {
     this.setState((prevState) => ({
       timestamp: prevState.timestamp,
       isSending: prevState.isSending,

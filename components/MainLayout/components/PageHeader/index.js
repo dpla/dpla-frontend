@@ -67,7 +67,7 @@ function PageHeader({hideSearchBar}) {
             {router &&
               router.pathname === "/search" &&
               router.query &&
-              Object.keys(router.query).map((key, index) => {
+              Object.keys(router.query).map((key) => {
                 if (key !== "q" && key !== "page") {
                   return (
                     <input
