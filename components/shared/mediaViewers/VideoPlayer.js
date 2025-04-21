@@ -6,7 +6,7 @@ function VideoPlayer({ pathToFile, fileFormat }) {
   return (
     <div className={css.videoPlayerWrapper}>
       <video className={css.videoPlayer} controls controlsList="nodownload">
-        <source src={pathToFile} type={`video/${fileFormat}`} />
+        <source src={pathToFile} />
       </video>
     </div>
   );
