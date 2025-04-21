@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import {useRouter, withRouter} from "next/router";
 
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 
@@ -134,8 +134,7 @@ class Viewer extends React.Component {
   }
 
   render() {
-    const router = useRouter();
-    const { subsection } = this.props;
+    const { subsection, router } = this.props;
     const pageBlocks = subsection.page_blocks;
     const pageWithText = pageBlocks.find((block) => block.text);
     const text = pageWithText ? pageWithText.text : "";
@@ -237,4 +236,4 @@ class Viewer extends React.Component {
   }
 }
 
-export default Viewer;
+export default withRouter(Viewer);
