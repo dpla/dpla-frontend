@@ -25,6 +25,7 @@ import { resourceTypes } from "constants/site";
 import css from "./ExhibitionSection.module.scss";
 
 import ChevronThickBlack from "components/svg/ChevronThickBlack";
+import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
 function getFileType(fileType, originalUrl) {
   if (
@@ -208,7 +209,7 @@ class Viewer extends React.Component {
                 </li>
               ))}
             </ul>
-            {itemId && (
+            {itemId && DPLA_ITEM_ID_REGEX.test(itemId) && (
               <Link
                 as={`/item/${itemId}`}
                 href={`/item?itemId=${itemId}`}
