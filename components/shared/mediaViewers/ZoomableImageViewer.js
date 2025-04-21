@@ -11,13 +11,20 @@ function Noscript({ children }) {
 }
 
 export default class ZoomableImageViewer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.viewer = null;
+    this.loading = false;
+  }
+
   componentDidMount() {
     if (!this.viewer && !this.loading) {
+      console.log("IN: componentDidMount", this.props);
       this.loading = true;
       try {
         const OpenSeaDragon = require("openseadragon");
         const url = this.props.pathToFile;
-
         this.viewer = new OpenSeaDragon({
           id: viewerId,
           tileSources: {type: "image", url},
@@ -31,9 +38,11 @@ export default class ZoomableImageViewer extends React.Component {
 
   componentWillUnmount() {
     this.viewer = null;
+    document.getElementById(viewerId).innerHTML = "";
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("IN: componentDidUpdate", this.props)
     if (this.props.pathToFile !== prevProps.pathToFile) {
       // this works locally. might be necessary to preload the image like in: https://jsfiddle.net/ashraffayad/074navyp/
       this.viewer.open({ type: "image", url: this.props.pathToFile });
