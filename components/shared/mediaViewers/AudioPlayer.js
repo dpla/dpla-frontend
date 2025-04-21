@@ -6,7 +6,7 @@ function AudioPlayer({ pathToFile, fileFormat }) {
   return (
     <div className={css.audioPlayerWrapper}>
       <audio className={css.audioPlayer} controls controlsList="nodownload">
-        <source src={pathToFile} type={`audio/${fileFormat}`} />
+        <source src={pathToFile} />
       </audio>
     </div>
   );
