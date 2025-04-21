@@ -32,8 +32,8 @@ const selectOptions = [
     label: "API, bulk data, and developer-related questions",
   },
   {
-    value: "App Library subsmission",
-    label: "App Library subsmission",
+    value: "App Library submission",
+    label: "App Library submission",
   },
   {
     value: "Education and Primary Source Sets",
