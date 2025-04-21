@@ -30,7 +30,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "localforage": "^1.10.0",
-    "next": "13",
+    "next": "^13.5.11",
     "openseadragon": "^2.4.1",
     "react": "^18.2.0",
     "react-aria-modal": "5.0.2",
