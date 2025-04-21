@@ -3,6 +3,13 @@
 $sidebarWidth: 11rem;
 $sidebarMargin: 1.25rem;
 
+.closeExhibition {
+  padding-left: 1rem;
+  vertical-align: top;
+  white-space: nowrap;
+  height: auto;
+}
+
 .exhibitionView {
   background-color: $warmerBackgroundColor;
 }
