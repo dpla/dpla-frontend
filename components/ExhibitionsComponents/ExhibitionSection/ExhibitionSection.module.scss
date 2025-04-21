@@ -5,9 +5,7 @@ $sidebarMargin: 1.25rem;
 
 .closeExhibition {
   padding-left: 1rem;
-  vertical-align: top;
   white-space: nowrap;
-  height: auto;
 }
 
 .exhibitionView {
@@ -15,7 +13,6 @@ $sidebarMargin: 1.25rem;
 }
 
 .exhibitionsLinkAndTitle {
-
 }
 
 .exhibitionsLink, .exhibitionsLink:visited {
@@ -93,17 +90,6 @@ $sidebarMargin: 1.25rem;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.2rem;
-}
-
-.closeMenuButton {
-  background-color: rgba(0, 0, 0, 0.12);
-  height: 100%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.75rem;
 }
 
 .menuHeader {
