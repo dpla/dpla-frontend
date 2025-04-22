@@ -7,7 +7,7 @@ import css from "./ItemList.module.scss";
 function ItemList({ items }) {
   return (
     <div className={css.itemList} data-cy={"subtopic-item-list"}>
-      <ListView items={items} />
+      <ListView items={items} behavior={"browse"}/>
     </div>
   );
 }

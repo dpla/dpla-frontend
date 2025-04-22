@@ -24,10 +24,21 @@ function CheckableLists({itemId}) {
 
   useEffect(() => {
     async function init() {
-      await getLists();
+      const lists = await getLocalForageLists();
+      lists.sort((a, b) => b.createdAt - a.createdAt);
+      const checkedLists = [];
+      lists.forEach((l) => {
+        if (l.selectedHash[itemId]) checkedLists.push(l.uuid);
+      });
+      setState((prevState) => ({
+        ...prevState,
+        lists: lists,
+        checkedLists: checkedLists,
+        initialized: true,
+      }));
     }
     init();
-  }, [])
+  }, [itemId])
 
   useEffect(() => {
     if (state.showMessage) {
@@ -35,22 +46,6 @@ function CheckableLists({itemId}) {
       return () => clearTimeout(timer);
     }
   }, [state.showMessage]);
-
-
-  const getLists = async () => {
-    const lists = await getLocalForageLists();
-    lists.sort((a, b) => b.createdAt - a.createdAt);
-    const checkedLists = [];
-    lists.forEach((l) => {
-      if (l.selectedHash[itemId]) checkedLists.push(l.uuid);
-    });
-    setState((prevState) => ({
-      ...prevState,
-      lists: lists,
-      checkedLists: checkedLists,
-      initialized: true,
-    }));
-  };
 
   const onNewList = useCallback(async (listName) => {
     if (isCreatingRef.current) return;
@@ -81,7 +76,7 @@ function CheckableLists({itemId}) {
     } finally {
       isCreatingRef.current = false;
     }
-  }, [state.checkedLists, state.lists]);
+  }, [state.checkedLists, state.lists, itemId]);
 
   const onCheckList = async (e) => {
     const element = e.target;

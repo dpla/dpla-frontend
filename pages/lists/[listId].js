@@ -183,7 +183,8 @@ const List = () => {
                 name={list.name}
                 exportable={true}
                 items={addLinkInfoToResults(items, router.query)}
-                defaultUUID={listId}
+                behavior={"list"}
+                viewingList={listId}
               />
             )}
             {items.length === 0 && <ListEmpty/>}

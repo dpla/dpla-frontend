@@ -24,7 +24,7 @@ const ListsPage = () => {
     };
 
     if (!initialized) fetchLists();
-  }, []);
+  }, [initialized]);
 
 
   const onCreateList = useCallback(async (name) => {
@@ -60,7 +60,7 @@ const ListsPage = () => {
     } finally {
       isCreatingRef.current = false;
     }
-  }, [lists]);
+  }, []);
 
 
   return (

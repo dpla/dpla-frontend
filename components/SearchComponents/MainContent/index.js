@@ -34,6 +34,7 @@ function MainContent({
             <ListView
               items={addLinkInfoToResults(results, router.query)}
               viewMode={router.query.list_view}
+              behavior={"search"}
             />
           )}
           {results.length === 0 && (
