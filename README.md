@@ -70,7 +70,6 @@ The system makes extensive use of environment variables to decouple the differen
   `NODE_ENV=production`.
 - `NODE_ENV`: the node environment, `development` or `production`
 - `SITE_ENV`: the environment's type, `user`, `pro`, or `local` (also exposed in `constants/env.js`)
-- `BASE_URL`: base URL for user site to allow for fully-rendered backlinks to point to the correct place (e.g. in citaitons)
 
 
 ## Yarn / NPM Scripts

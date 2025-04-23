@@ -43,8 +43,6 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.1",
-    "cypress": "^12.2.0",
-    "cypress-plugin-snapshots": "^1.4.4",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.1.5",
     "eslint-config-prettier": "^10.0.1",

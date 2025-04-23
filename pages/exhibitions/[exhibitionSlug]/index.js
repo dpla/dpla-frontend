@@ -1,22 +1,25 @@
 import React from "react";
+import {
+  exhibitParentPages,
+  exhibitHomePage,
+  loadDplaItem,
+  loadExhibitionList,
+  loadExhibition
+} from "lib/exhibitionsStatic";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
 import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "components/ExhibitionsComponents/Exhibition/Details";
 
-import { SEO_TYPE } from "constants/exhibition";
+import {SEO_TYPE} from "constants/exhibition";
 
 import {
   getDplaItemIdFromExhibit,
-  loadExhibitionList,
-  loadExhibition,
-  exhibitParentPages,
-  exhibitHomePage,
 } from "lib";
 
-import { washObject } from "lib/washObject";
-import { loadDplaItem } from "lib/exhibitionsStatic";
+import {washObject} from "lib/washObject";
+
 
 class Exhibition extends React.Component {
   componentDidMount() {
@@ -50,7 +53,7 @@ class Exhibition extends React.Component {
               url: "/exhibitions",
               as: "/exhibitions",
             },
-            { title, search: "" },
+            {title, search: ""},
           ]}
         />
         <div id="main" role="main" data-cy="exhibition-home">
@@ -83,7 +86,7 @@ export async function getStaticPaths() {
     return exhibition.slug;
   });
   const paths = exhibitionSlugs.map((exhibitionSlug) => {
-    return { params: { exhibitionSlug } };
+    return {params: {exhibitionSlug}};
   });
   return {
     paths,
@@ -99,8 +102,8 @@ export async function getStaticProps(context) {
     title: page.title,
     slug: page.slug,
   }));
-  const { text } = homePage.page_blocks[0];
-  const { caption, item } = homePage.page_blocks[0].attachments[0];
+  const {text} = homePage.page_blocks[0];
+  const {caption, item} = homePage.page_blocks[0].attachments[0];
   const homeFile = homePage.page_blocks[0].attachments[0].files[0];
   const thumbnailUrl = homeFile.file_urls.fullsize;
   const dplaItemId = getDplaItemIdFromExhibit(item);
@@ -119,7 +122,7 @@ export async function getStaticProps(context) {
     credits: exhibition.credits,
   });
 
-  return { props };
+  return {props};
 }
 
 export default Exhibition;

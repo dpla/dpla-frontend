@@ -1,13 +1,11 @@
 import React from "react";
-
+import { loadExhibitionList } from "lib/exhibitionsStatic";
 import MainLayout from "components/MainLayout";
 import AllExhibitions from "components/ExhibitionsComponents/AllExhibitions";
 import Footer from "components/ExhibitionsComponents/Footer";
 import { TITLE } from "constants/exhibitions";
-import { loadExhibitionList } from "lib/exhibitionsStatic";
 
-function Exhibitions(props) {
-  let { exhibitions } = props;
+function Exhibitions({ exhibitions }) {
   return (
     <MainLayout pageTitle={TITLE}>
       <div id="main" role="main">

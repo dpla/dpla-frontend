@@ -1,6 +1,5 @@
 import React from "react";
-import { withRouter } from "next/router";
-import Error from "../../_error";
+import {useRouter} from "next/router";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -16,13 +15,8 @@ import { washObject } from "lib/washObject";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function SingleSet(props) {
-  let { router, error, set, currentFullUrl } = props;
-
-  if (error) {
-    return <Error statusCode={error.status} />;
-  }
-
+function SingleSet({ set }) {
+  const router = useRouter();
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}
@@ -42,7 +36,6 @@ function SingleSet(props) {
       />
       <SourceSetInfo
         set={set}
-        currentFullUrl={currentFullUrl}
         openDescription={false}
       />
       <ResourcesTabs currentTab="sourceSet" set={set}>
@@ -59,7 +52,6 @@ function SingleSet(props) {
 }
 
 export async function getServerSideProps({ query }) {
-  const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const api = await fetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
@@ -88,7 +80,6 @@ export async function getServerSideProps({ query }) {
 
   const props = washObject({
     set: { ...json, hasPart: parts },
-    currentFullUrl,
   });
 
   return {
@@ -96,4 +87,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default withRouter(SingleSet);
+export default SingleSet;

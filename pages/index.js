@@ -4,10 +4,13 @@ import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
 
 import {
-  addCommasToNumber,
   exhibitHomePage,
+  loadExhibition
+} from "lib/exhibitionsStatic";
+
+import {
+  addCommasToNumber,
   getMenuItemUrl,
-  loadExhibition,
 } from "lib";
 
 import {
