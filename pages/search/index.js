@@ -226,10 +226,11 @@ export async function getServerSideProps(context) {
     let aboutnessJson = { docs: [], count: 0 };
     try {
       const res = await fetch(url);
-      aboutnessJson = res.json();
+      if (res.ok) aboutnessJson = await res.json();
     } catch (error) {
       // Purposefully ignoring errors for aboutness requests
     }
+
     const aboutnessDocs = aboutnessJson.docs
       .map((result) => {
         const thumbnailUrl = getItemThumbnail(result);
