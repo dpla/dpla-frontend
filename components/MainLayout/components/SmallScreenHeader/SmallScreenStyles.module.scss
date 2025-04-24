@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   display: block;
-  background-color: $mobileNavColor;
+  background-color: var(--mobileNavColor);
 
   /* The GlobalHeader component handles the navigation on larger screens */
   @media (min-width: $mediumRem) {
@@ -47,7 +47,7 @@
 
 .menuButton {
   align-items: center;
-  background-color: $navColor;
+  background-color: var(--navColor);
   color: white;
   display: flex;
   font-size: 0.75rem;
@@ -56,12 +56,12 @@
   width: 4rem;
 
   &.isOpen {
-    background-color: $mobileNavMenuButtonOpen;
+    background-color: var(--mobileNavMenuButtonOpen);
   }
 }
 
 .searchContainer {
-  background-color: $navColor;
+  background-color: var(--navColor);
   height: 0;
   visibility: hidden;
   transition: height 0.15s ease-in-out, visibility 0s 0.15s;
@@ -98,7 +98,7 @@
 }
 
 .menuContainer {
-  background-color: $navColor;
+  background-color: var(--navColor);
   margin: auto;
   padding: 0 2rem;
   font-size: 1.25rem;

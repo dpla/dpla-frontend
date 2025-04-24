@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   width: 100%;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

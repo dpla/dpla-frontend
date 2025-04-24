@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .featureTitle {
   width: 100%;
@@ -22,21 +22,21 @@
 }
 
 .partnerLink {
-  border-bottom: 0.075rem solid $grayBorderColor;
+  border-bottom: 0.075rem solid var(--grayBorderColor);
   display: flex;
   height: 100%;
   padding: 0.85rem 0;
 }
 
 .name {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1.3125rem;
   margin-right: 0.75rem;
   max-width: 75%;
 }
 
 .itemCount {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 1.25rem;
   margin-left: auto;
 }

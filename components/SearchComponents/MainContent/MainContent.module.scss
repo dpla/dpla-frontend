@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   @media (min-width: $smallRem) {

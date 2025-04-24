@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 $sidebarWidth: 11rem;
 $sidebarMargin: 1.25rem;
@@ -9,14 +9,14 @@ $sidebarMargin: 1.25rem;
 }
 
 .exhibitionView {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .exhibitionsLinkAndTitle {
 }
 
 .exhibitionsLink, .exhibitionsLink:visited {
-  color: $lightLinkColor;
+  color: var(--lightLinkColor);
   text-decoration: underline;
   font-weight: 600;
   text-transform: uppercase;
@@ -24,14 +24,14 @@ $sidebarMargin: 1.25rem;
   display: inline-block;
 
   @media (min-width: $smallRem) {
-    color: $linkColor;
+    color: var(--linkColor);
     text-decoration: none;
     font-size: 1rem;
   }
 }
 
 .exhibitionTitle {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   margin-top: 0.5rem;
   font-size: 1.5rem;
@@ -94,7 +94,7 @@ $sidebarMargin: 1.25rem;
 
 .menuHeader {
   display: none;
-  background-color: $linkColor;
+  background-color: var(--linkColor);
 }
 
 .closeMenuButtonIcon {
@@ -132,7 +132,7 @@ $sidebarMargin: 1.25rem;
 
     @media (max-width: $smallRem) {
       display: block;
-      background-color: $warmerBackgroundColor;
+      background-color: var(--warmerBackgroundColor);
     }
   }
 }
@@ -163,7 +163,7 @@ $sidebarMargin: 1.25rem;
   position: relative;
 
   &, & a {
-    color: $dimmedTextColor;
+    color: var(--dimmedTextColor);
   }
 }
 
@@ -177,7 +177,7 @@ $sidebarMargin: 1.25rem;
   display: block;
   height: 5px;
   width: 5px;
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   border-radius: 50%;
   position: absolute;
   top: 6px;
@@ -232,7 +232,7 @@ $sidebarMargin: 1.25rem;
   display: flex;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   align-items: center;
-  background-color: $mobileNavColor;
+  background-color: var(--mobileNavColor);
 
   @media (min-width: $smallRem) {
     padding-bottom: 1rem;
@@ -279,7 +279,7 @@ $sidebarMargin: 1.25rem;
 }
 
 .closeIconX {
-  fill: $mobileNavColor;
+  fill: var(--mobileNavColor);
 
   @media (min-width: $smallRem) {
     fill: white;
@@ -385,7 +385,7 @@ $sidebarMargin: 1.25rem;
 }
 
 .nextButton, .nextButton:visited {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   color: white;
 }
 
@@ -465,7 +465,7 @@ $sidebarMargin: 1.25rem;
   flex: 1;
   font-size: 0.875rem;
   padding: 0 1rem;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
 
   @media (min-width: $smallRem) {
     font-size: 0.95rem;
@@ -494,7 +494,7 @@ $sidebarMargin: 1.25rem;
   margin-bottom: 0.5rem;
 
   &:focus {
-    outline: 0.25rem solid $outlineColor;
+    outline: 0.25rem solid var(--outlineColor);
   }
 
   & :global(#openseadragon1) {
@@ -563,17 +563,17 @@ $sidebarMargin: 1.25rem;
 }
 
 .activeItemLink {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
 
   @media (max-width: $smallRem) {
     & .defaultItemImage {
-      background-color: $linkColor;
+      background-color: var(--linkColor);
     }
   }
 
   @media (min-width: $smallRem) {
     background-color: inherit;
-    border: 0.25rem solid $secondaryButtonColor;
+    border: 0.25rem solid var(--secondaryButtonColor);
     position: relative;
   }
 }
@@ -586,7 +586,7 @@ $sidebarMargin: 1.25rem;
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
-  border-bottom: 0.65rem solid $secondaryButtonColor;
+  border-bottom: 0.65rem solid var(--secondaryButtonColor);
   top: -0.8rem;
   left: 50%;
   transform: translateX(-50%);

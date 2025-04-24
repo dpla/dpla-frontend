@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .itemList {
   flex: 1;
@@ -40,11 +40,11 @@
 }
 
 .viewButtonInactive.gridViewButton {
-  box-shadow: 0 -1px 2px 0 $lightBorderColor;
+  box-shadow: 0 -1px 2px 0 var(--lightBorderColor);
 }
 
 .viewButtonInactive.listViewButton {
-  box-shadow: 0 -1px 2px 0 $lightBorderColor;
+  box-shadow: 0 -1px 2px 0 var(--lightBorderColor);
 }
 
 .viewButtonActive {

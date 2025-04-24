@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .donateBackground {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   background-image: url("/static/images/collage_light.jpg");
   background-size: cover;
   background-blend-mode: multiply;
@@ -20,7 +20,7 @@
 }
 
 .donateContent {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   margin: 1rem 0 4rem;
   box-shadow: 0 1rem 2rem gray;
 
@@ -88,7 +88,7 @@
 .otherAmount {
   padding-left: 0.25rem;
   & input {
-    border: 2px solid $colderBackgroundColor;
+    border: 2px solid var(--colderBackgroundColor);
     padding: 0.6rem 1.6rem;
     width: 100%;
     font-size: 1rem;
@@ -104,16 +104,16 @@
 }
 
 .link {
-  color: $linkColor;
+  color: var(--linkColor);
 }
 
 .testimonial {
-  background-color: $proSiteColor;
+  background-color: var(--proSiteColor);
   color: white;
   padding: 1.6rem 1.5rem;
 
   & h2 {
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     color: white;
     text-transform: uppercase;
     font-size: 1rem;

@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .filtersWrapper {
   width: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .filter label {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   display: inline-block;
   margin-bottom: 0.25rem;
 }
@@ -50,7 +50,7 @@
   padding-left: 0.375rem;
 
   button {
-    color: $linkColor;
+    color: var(--linkColor);
     margin-bottom: 0.5rem;
   }
 
@@ -59,7 +59,7 @@
   }
 
   @media (min-width: $mediumRem) {
-    color: $linkColor;
+    color: var(--linkColor);
     font-size: 1rem;
     margin-top: 0.2rem;
     order: 1;
@@ -75,11 +75,11 @@
 }
 
 .clearAllIconPath {
-  fill: $linkColor;
+  fill: var(--linkColor);
 }
 
 .textInput::placeholder {
-  color: $black50;
+  color: var(--black50);
 }
 
 .textInput {

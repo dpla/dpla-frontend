@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .sidebar {
   width: 100%;
@@ -12,7 +12,7 @@
 }
 
 .subtopicInfo {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   margin-bottom: 30px;
 }
 
@@ -21,13 +21,13 @@
 }
 
 .image {
-  border-bottom: 4px solid $lightLinkColor;
+  border-bottom: 4px solid var(--lightLinkColor);
   margin-bottom: 15px;
   width: 100%;
 }
 
 .title {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1.5rem;
   line-height: 1.25;
   margin-bottom: 10px;

@@ -1,5 +1,3 @@
-@import "stylesheets/variables.module";
-
 .wrapper {
   margin: auto;
   padding: 2rem 1rem;
@@ -13,7 +11,7 @@
   }
 
   h3 {
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-size: 1.5rem;
     line-height: 1.15;
     margin: 0 0 0.25rem;
@@ -31,11 +29,11 @@
 
   li {
     align-items: baseline;
-    border-bottom: 0.075rem solid $grayBorderColor;
+    border-bottom: 0.075rem solid var(--grayBorderColor);
     padding-bottom: 2rem;
 
     &:hover {
-      border-bottom-color: $linkColor;
+      border-bottom-color: var(--linkColor);
       text-decoration: none;
     }
   }

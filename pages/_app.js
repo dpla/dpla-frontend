@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { gtag } from "../lib";
 import { gaTrackingId } from "constants/env";
 
+import "stylesheets/colors.scss";
+import "stylesheets/typography.scss";
 import "stylesheets/reset.scss";
 import "stylesheets/global.scss";
 import "slick-carousel/slick/slick.css";

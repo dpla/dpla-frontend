@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .informationIcon {
   width: 15px;
@@ -50,12 +50,12 @@
 }
 
 .activeFacetName {
-  color: $formLabelColor;
+  color: var(--formLabelColor);
   font-weight: bold;
 }
 
 .facetCount, .facetCount:visited {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   flex-basis: 20%;
   font-size: 0.8125rem;
   margin-left: 0.25rem;
@@ -77,7 +77,7 @@
   }
 
   & input {
-    border: 0.05rem solid $dimmedTextColor;
+    border: 0.05rem solid var(--dimmedTextColor);
     border-radius: 0.125rem;
     padding: 0.5rem 0.5rem;
   }

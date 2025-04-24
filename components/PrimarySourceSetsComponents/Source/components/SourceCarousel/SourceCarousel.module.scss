@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   padding: 0.75rem 0 0 0;
@@ -6,7 +6,7 @@
   @media (min-width: $smallRem) {
     margin-top: 4rem;
     padding: 2rem 0;
-    background-color: $warmerBackgroundColor;
+    background-color: var(--warmerBackgroundColor);
   }
 }
 
@@ -120,7 +120,7 @@
 }
 
 .currentItemImgWrapper {
-  border: 0.3rem solid $secondaryButtonColor;
+  border: 0.3rem solid var(--secondaryButtonColor);
 }
 
 .prevAndNextButtons {
@@ -149,7 +149,7 @@
 }
 
 .nextItemButton, .nextItemButton:visited {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   color: white;
 
   @media (min-width: $smallRem) {
@@ -167,7 +167,7 @@
 
   @media (min-width: $smallRem) {
     margin-right: 1rem;
-    color: $linkColor;
+    color: var(--linkColor);
     background-color: transparent;
   }
 }
@@ -193,7 +193,7 @@
 
   @media (min-width: $smallRem) {
     & path {
-      fill: $linkColor;
+      fill: var(--linkColor);
     }
   }
 
@@ -206,7 +206,7 @@
 
     @media (min-width: $smallRem) {
       & path {
-        fill: $linkColor;
+        fill: var(--linkColor);
       }
     }
   }

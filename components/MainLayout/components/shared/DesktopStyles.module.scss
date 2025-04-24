@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .header {
   display: none;
-  background-color: $navColor;
+  background-color: var(--navColor);
 
   /* The SmallScreenGlobalHeader component handles the navigation on small screens */
   @media (min-width: $mediumRem) {
@@ -66,4 +66,3 @@
     margin-right: 1rem;
   }
 }
-

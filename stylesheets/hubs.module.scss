@@ -1,17 +1,17 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .pageWrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .pageHero {
-  background-color: $memberColor;
+  background-color: var(--memberColor);
   color: white;
   text-align: center;
   padding: 1rem 0 2rem;
 
   & h1 {
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-size: 3rem;
     font-weight: normal;
   }
@@ -53,13 +53,13 @@
 }
 
 .section {
-  background-color: $warmerBackgroundColor;
-  border-top: 0.4rem solid $memberColor;
+  background-color: var(--warmerBackgroundColor);
+  border-top: 0.4rem solid var(--memberColor);
   padding: 1.5rem 1rem 2rem;
 }
 
 .sectionTitle {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 1.5rem;
 
@@ -70,7 +70,7 @@
 
 .sectionText {
   margin: 0.5rem 0;
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 1.125rem;
 }
 
@@ -93,7 +93,7 @@
   width: 3rem;
   padding-right: 0.25rem;
   text-align: right;
-  color: $primaryBulletColor;
+  color: var(--primaryBulletColor);
   box-sizing: border-box;
 }
 

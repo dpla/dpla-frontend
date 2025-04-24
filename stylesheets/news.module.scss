@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .search {
   display: flex;
@@ -9,7 +9,7 @@
 .keywordsInput {
   box-sizing: border-box;
   font-size: 1rem;
-  border: 0.1rem solid $userSiteColor;
+  border: 0.1rem solid var(--userSiteColor);
   border-right: none;
   border-radius: 0.25rem 0 0 0.25rem;
   padding-left: 0.5rem;
@@ -59,8 +59,8 @@
 }
 
 .resultSummary {
-  color: $dimmedTextColor;
-  font-family: $sansFont;
+  color: var(--dimmedTextColor);
+  font-family: var(--sansFont), sans-serif;
   margin: 0;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .newsItem::before {
-  background-color: $userSiteColor;
+  background-color: var(--userSiteColor);
   content: "";
   display: block;
   height: 0.25rem;
@@ -85,8 +85,8 @@ h2.title {
 }
 
 .date {
-  color: $dimmedTextColor;
-  font-family: $sansFont;
+  color: var(--dimmedTextColor);
+  font-family: var(--sansFont), sans-serif;
   margin-top: 1rem;
   order: -1;
 }

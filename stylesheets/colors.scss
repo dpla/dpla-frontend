@@ -1,0 +1,91 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --riceCakeWhite: #ece9da;
+  --merinoWhite: #fbf8f4;
+  --alabasterGray: #f4f0e9;
+  --mysticGray: #dae4e8;
+  --romanceGray: #f9f6f0;
+  --gainsboroGray: #dcdcdc;
+  --charcoalGray: #424242;
+  --white60: rgba(255, 255, 255, 0.6);
+  --white50: rgba(255, 255, 255, 0.5);
+  --black80: rgba(0, 0, 0, 0.8);
+  --black60: rgba(0, 0, 0, 0.6);
+  --black50: rgba(0, 0, 0, 0.5);
+  --black12: rgba(0, 0, 0, 0.12);
+  --gray75: rgba(255, 255, 255, 0.75);
+  --wildSandGray: #f4f4f4;
+  --casablancaOrange: #f9ba3f;
+  --bambooOrange: #dd5c00;
+  --tiberBlue: #0a2a37;
+  --elephantBlue: #163f51;
+  --ebonyClayBlue: #273443;
+  --dplaHeroBlue: #2f4857;
+  --minuitBlue: #232f3c;
+  --vikingBlue: #5ab4dc;
+  --curiousBlue: #269ed4;
+  --cascadeBlue: #0674a5;
+  --hippieBlue: #639bb4;
+  --solitudeBlue: #e2ebee;
+  --oysterBayBlue: #d3e2e8;
+  --iceBlue: #eaf6fc;
+  --lisbonBrown: #464027;
+  --vanCleefRed: #563535;
+  --onionBrown: #493f28;
+  --pampasBrown: #f3f1ec;
+  --sisalBrown: #d1ccb6;
+  --coldTurkeyRed: #d2bfbf;
+  --silver: #ccc;
+  --rockBrown: #ece9da;
+  --bonjourRed: #e4dada;
+  --dimmerGray: #6d6d6d;
+  --visualBrown: #f9f8f5;
+  --softPeach: #f6ecf0;
+  --cranberry: #e04f8e;
+
+  /* semantic colors */
+
+  --linkColor: #ca4316;
+  --linkHoverColor: #cd570a;
+  --visitedLinkColor: #ad5c1d;
+  --paginationLinkColor: var(--cascadeBlue);
+
+  --lightLinkColor: color-mix(in srgb, black 10%, var(--casablancaOrange));
+  --subLinkColor: #007294;
+  --subLinkColorHover: color-mix(in srgb, black 10%, var(--linkColor));
+  --lightBorderColor: #e7e7e7;
+  --darkBorderColor: var(--hippieBlue);
+  --grayBorderColor: color-mix(in srgb, white 45%, var(--dimmerGray));
+  --headingColor: var(--cascadeBlue);
+  --navColor: var(--tiberBlue);
+  --userSiteColor: var(--hippieBlue);
+  --mobileNavColor: var(--elephantBlue);
+  --mobileNavMenuButtonOpen: color-mix(in srgb, white 10%, var(--navColor));
+  --secondaryButtonColor: #0080a5;
+  --secondaryColor: var(--secondaryButtonColor);
+  --primaryBulletColor: var(--secondaryButtonColor);
+  --secondaryBulletColor: var(--linkColor);
+  --darkSecondaryButtonColor: var(--elephantBlue);
+  --warmerBackgroundColor: var(--romanceGray);
+  --darkerBackgroundColor: color-mix(in srgb, black 20%, var(--warmerBackgroundColor));
+  --colderBackgroundColor: #f3f7f8;
+  --featuredBannerColor: var(--casablancaOrange);
+  --outgoingLinkColor: var(--subLinkColor);
+  --dimmedTextColor: var(--dimmerGray);
+  --donateFormButtonColor: var(--cascadeBlue);
+  --outlineColor: var(casablancaOrange);
+  --formLabelColor: var(--cascadeBlue);
+  --errorColor: var(--linkColor);
+  --radioButtonColor: var(--gainsboroGray);
+  --featureBackgroundColor: #cbe3e8;
+  --footerLightColor: var(--ebonyClayBlue);
+  --footerDarkColor: var(--minuitBlue);
+  --heroBackgroundColor: var(--dplaHeroBlue);
+
+  // pro colors
+  --proSiteColor: var(--elephantBlue);
+  --proIconColor: #5d7384;
+  --memberColor: #006d84;
+
+}

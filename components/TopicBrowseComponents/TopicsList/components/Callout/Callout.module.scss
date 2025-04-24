@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .calloutWrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   width: 100%;
   padding: 1rem;
   margin-top: 2rem;
@@ -22,7 +22,7 @@
   max-width: 46rem;
   margin: auto;
   padding: 2rem;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 
   @media (min-width: $mediumRem) {
     text-align: left;
@@ -43,7 +43,7 @@
 }
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2rem;
 }
@@ -51,7 +51,7 @@
 .text {
   margin-top: 0.5rem;
   font-size: 1.25rem;
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
 }
 
 .link {

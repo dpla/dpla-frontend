@@ -1,8 +1,6 @@
-@import "stylesheets/variables.module";
-
 .wrapper {
   width: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   box-shadow: inset 0 -0.075rem 0.075rem 0 rgba(0, 0, 0, 0.03);
 }
 
@@ -78,7 +76,7 @@
 }
 
 .optionHeader {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   display: inline-block;
   font-size: 0.8125rem;
   font-weight: normal;
@@ -109,11 +107,11 @@
 }
 
 .viewButtonInactive.gridViewButton {
-  box-shadow: 0 -0.075rem 0.15rem 0 $lightBorderColor;
+  box-shadow: 0 -0.075rem 0.15rem 0 var(--lightBorderColor);
 }
 
 .viewButtonInactive.listViewButton {
-  box-shadow: 0 -0.075rem 0.15rem 0 $lightBorderColor;
+  box-shadow: 0 -0.075rem 0.15rem 0 var(--lightBorderColor);
 }
 
 .viewButtonActive {
@@ -133,7 +131,7 @@
 .pageNumber {
   margin-left: 0.5rem;
   font-size: 0.875rem;
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
 
   @media (min-width: $smallRem) {
     display: none;
@@ -169,11 +167,11 @@
 
 @media (max-width: $smallRem) {
   .withActiveFacets {
-    color: $paginationLinkColor;
+    color: var(--paginationLinkColor);
 
     & .filtersButtonChevron {
       & path {
-        fill: $paginationLinkColor;
+        fill: var(--paginationLinkColor);
       }
     }
   }

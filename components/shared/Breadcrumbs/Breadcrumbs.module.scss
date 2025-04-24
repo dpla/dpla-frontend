@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .breadcrumbs {
   display: flex;
@@ -44,9 +44,8 @@
   &:after {
     content: "";
     display: block;
-    background: url("/static/images/chevron-thick-orange.svg") no-repeat;
     background-size: contain;
-    background-position: center;
+    background: url("/static/images/chevron-thick-orange.svg") no-repeat center;
     height: 0.7rem;
     position: relative;
     top: 0;

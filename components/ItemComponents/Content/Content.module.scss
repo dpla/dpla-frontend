@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 $listPadding: 1.125rem;
 
@@ -39,7 +39,7 @@ $listPadding: 1.125rem;
 }
 
 .term {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 0.875rem;
   font-weight: 600;
   padding-top: 0.25rem;
@@ -136,7 +136,7 @@ $listPadding: 1.125rem;
 
 .sourceLink, .sourceLink:visited {
   align-items: center;
-  background-color: $subLinkColor;
+  background-color: var(--subLinkColor);
   border-radius: 2px;
   color: white;
   display: inline-flex;
@@ -149,7 +149,7 @@ $listPadding: 1.125rem;
   width: 100%;
 
   &:hover {
-    background-color: $subLinkColorHover;
+    background-color: var(--subLinkColorHover);
     text-decoration: none;
   }
 
@@ -200,9 +200,9 @@ $listPadding: 1.125rem;
 }
 
 .url {
-  font-family: $monoFont;
+  font-family: var(--monoFont), monospace;
   padding: 9px 12px 12px;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   border-radius: 2px;
   font-size: 0.875rem;
   display: block;

@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 }
 
 .content {
@@ -29,7 +29,7 @@
 }
 
 .headerText {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2rem;
 
@@ -68,7 +68,7 @@
 .formCallToAction {
   margin-bottom: 1rem;
   text-transform: uppercase;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1rem;
 }
 
@@ -97,7 +97,7 @@
   width: 30%;
   border-radius: 0 0.2rem 0.2rem 0;
   color: white;
-  background-color: $secondaryButtonColor;
+  background-color: var(--secondaryButtonColor);
   cursor: pointer;
 }
 

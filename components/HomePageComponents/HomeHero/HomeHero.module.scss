@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
-  background-color: $heroBackgroundColor;
+  background-color: var(--heroBackgroundColor);
   background-size: cover;
   color: white;
 
@@ -75,7 +75,7 @@
 }
 
 .headline {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1.5625rem;
   font-weight: normal;
   line-height: 1.25;
@@ -136,7 +136,7 @@
 
   &::placeholder {
     transition: opacity 0.15s ease-out;
-    color: $mobileNavColor;
+    color: var(--mobileNavColor);
   }
 
   &:focus + .shadow {
@@ -163,7 +163,7 @@
   right: 0;
   top: 0;
   height: 100%;
-  background-color: $secondaryButtonColor;
+  background-color: var(--secondaryButtonColor);
   color: white;
   font-weight: 600;
   padding: 0 1rem;
@@ -171,7 +171,7 @@
   z-index: 2;
 
   &:hover {
-    background-color: $darkSecondaryButtonColor;
+    background-color: var(--darkSecondaryButtonColor);
   }
 
   @media (min-width: $mediumRem) {

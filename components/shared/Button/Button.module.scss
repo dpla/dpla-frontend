@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 $borderWidth: 0.15rem;
 $borderRadius: ($borderWidth * 2);
@@ -24,25 +24,25 @@ $padding: 1rem;
 
 .buttonPrimary, .buttonPrimary:visited {
   color: white;
-  background-color: $linkColor;
+  background-color: var(--linkColor);
 
   &:hover {
-    background-color: $linkHoverColor;
+    background-color: var(--linkHoverColor);
   }
 }
 
 .buttonSecondary, .buttonSecondary:visited {
   color: white;
-  background-color: $secondaryButtonColor;
+  background-color: var(--secondaryButtonColor);
 
   &:hover {
-    background-color: $darkSecondaryButtonColor;
+    background-color: var(--darkSecondaryButtonColor);
   }
 }
 
 .buttonGhost {
-  color: $donateFormButtonColor;
-  background-color: $colderBackgroundColor;
+  color: var(--donateFormButtonColor);
+  background-color: var(--colderBackgroundColor);
   border: $borderWidth solid white;
   padding: ($padding * 0.5) $padding;
 
@@ -52,8 +52,8 @@ $padding: 1rem;
 }
 
 .buttonDonate {
-  color: $donateFormButtonColor;
-  background-color: $colderBackgroundColor;
+  color: var(--donateFormButtonColor);
+  background-color: var(--colderBackgroundColor);
   display: block;
   width: 100%;
   margin-bottom: 1rem;
@@ -64,13 +64,13 @@ $padding: 1rem;
   }
 
   &.active, &:hover {
-    background-color: $donateFormButtonColor;
-    color: $colderBackgroundColor;
+    background-color: var(--donateFormButtonColor);
+    color: var(--colderBackgroundColor);
   }
 
   &:active {
-    background-color: $donateFormButtonColor;
-    color: $colderBackgroundColor;
+    background-color: var(--donateFormButtonColor);
+    color: var(--colderBackgroundColor);
   }
 }
 

@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   background-color: white;
@@ -19,7 +19,7 @@
 }
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-style: italic;
   font-size: 1.5rem;
@@ -49,7 +49,7 @@
 }
 
 .itemHeader {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-style: italic;
   font-size: 1.25rem;
@@ -65,7 +65,7 @@
   text-align: center;
   margin-top: 1rem;
   padding-bottom: 2rem;
-  color: $black80;
+  color: var(--black80);
 
   & p {
     max-width: 80%;

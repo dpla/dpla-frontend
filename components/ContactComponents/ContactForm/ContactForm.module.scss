@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .notFixed {
 
@@ -60,13 +60,13 @@
 }
 
 .error {
-  color: $errorColor;
+  color: var(--errorColor);
   display: inline-block;
   margin-left: 0.5rem;
 }
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2rem;
   margin-bottom: 1rem;

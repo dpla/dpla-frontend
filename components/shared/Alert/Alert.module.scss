@@ -1,7 +1,5 @@
-@import "stylesheets/variables.module";
-
 .alert {
-  background-color: $featuredBannerColor;
+  background-color: var(--featuredBannerColor);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   color: black;
   display: inline-block;

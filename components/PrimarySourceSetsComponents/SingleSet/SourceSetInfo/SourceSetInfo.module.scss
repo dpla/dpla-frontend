@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .tools {
   margin: 1rem 0 0;
@@ -31,7 +31,7 @@
 
 .wrapper {
   width: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .sourceSetInfo {
@@ -119,7 +119,7 @@
 }
 
 .bannerTitle {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 1.5rem;
   color: white;
@@ -165,7 +165,7 @@
   margin-bottom: 1rem;
   max-height: 5.5rem;
   overflow: hidden;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
 
   @media print {
     overflow: inherit;
@@ -239,7 +239,7 @@
 .citeButton {
   width: 100%;
   text-align: center;
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 }
 
 .link p {
@@ -247,5 +247,5 @@
 }
 
 .comma {
-  color: $linkColor;
+  color: var(--linkColor);
 }
