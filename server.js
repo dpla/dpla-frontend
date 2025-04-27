@@ -1,14 +1,12 @@
 // IMPORTANT: Sentry init must be first!
-const Sentry = require('@sentry/node');
-require('dotenv').config()
+const Sentry = require("@sentry/node");
+require("dotenv").config();
 const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 Sentry.init({
   debug: process.env.SENTRY_DEBUG === "true",
   dsn: process.env.SENTRY_DSN,
   environment: process.env.SENTRY_ENVIRONMENT ?? "development",
-  integrations: [
-    nodeProfilingIntegration(),
-  ],
+  integrations: [nodeProfilingIntegration()],
   tracesSampleRate: 1.0,
   profilesSampleRate: 1.0,
 });
@@ -19,7 +17,7 @@ const cluster = require("node:cluster");
 const numCPUs = require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
-const {MAILCHIMP_GROUP_IDS} = require("./constants/site");
+const { MAILCHIMP_GROUP_IDS } = require("./constants/site");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
@@ -38,44 +36,46 @@ if (require.main === module) {
 function leader() {
   // Fork workers, 1 for each CPU.
   cluster
-      .on("exit", (worker, code, signal) => {
-        console.log(`worker ${worker.process.pid} died`, code, signal);
-        console.log("Initiating replacement worker.");
-        cluster.fork();
-      })
-      .on("online", worker => {
-        console.log(`worker ${worker.process.pid} online`);
-      });
+    .on("exit", (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died`, code, signal);
+      console.log("Initiating replacement worker.");
+      cluster.fork();
+    })
+    .on("online", (worker) => {
+      console.log(`worker ${worker.process.pid} online`);
+    });
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
 }
 
 function follower() {
-  const nextApp = next({dev});
+  const nextApp = next({ dev });
   const handle = nextApp.getRequestHandler();
 
   nextApp.prepare().then(() => {
     const expressApp = express();
     Sentry.setupExpressErrorHandler(expressApp);
-    expressApp.disable("x-powered-by")
-    expressApp.use(bodyParser.urlencoded({extended: true}));
+    expressApp.disable("x-powered-by");
+    expressApp.use(bodyParser.urlencoded({ extended: true }));
     expressApp.use(bodyParser.json());
     expressApp.get("/healthcheck", healthcheck());
 
-
     // decide which routing to use depending on the site environment
-    if (process.env.SITE_ENV === "user") {
+    if (process.env.NEXT_PUBLIC_SITE_ENV === "user") {
       require("./routesUser")(nextApp, expressApp);
-    } else if (process.env.SITE_ENV === "pro") {
+    } else if (process.env.NEXT_PUBLIC_SITE_ENV === "pro") {
       require("./routesPro")(nextApp, expressApp);
-    } else if (process.env.SITE_ENV === "local") {
+    } else if (process.env.NEXT_PUBLIC_SITE_ENV === "local") {
       require("./routesLocal").static(nextApp, expressApp);
       require("./routesLocal").dynamic(nextApp, expressApp);
     }
 
     // routes that are common to user and pro sites
-    if (process.env.SITE_ENV === "user" || process.env.SITE_ENV === "pro") {
+    if (
+      process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
+      process.env.NEXT_PUBLIC_SITE_ENV === "pro"
+    ) {
       expressApp.get("/donate", donate(nextApp));
       expressApp.get("/donate/thank-you", thankYou(nextApp));
       expressApp.get(["/contact", "/contact-us"], contact(nextApp));
@@ -87,7 +87,7 @@ function follower() {
 
     expressApp.get("*", catchall(handle));
 
-    const server = expressApp.listen(PORT, err => {
+    const server = expressApp.listen(PORT, (err) => {
       if (err) throw err;
       console.log("> Ready on http://localhost:" + PORT);
     });
@@ -103,7 +103,7 @@ function catchall(handle) {
 }
 
 function uncaught() {
-  return err => {
+  return (err) => {
     console.error("Uncaught Exception: ", err.stack);
     process.exit(1);
   };
@@ -139,7 +139,7 @@ function wpContent() {
   return (req, res) => {
     const contentStart = req.url.indexOf("/wp-content");
     const newPath =
-        process.env.WORDPRESS_URL + req.url.substring(contentStart);
+      process.env.NEXT_ENV_WORDPRESS_URL + req.url.substring(contentStart);
     res.redirect(newPath);
   };
 }
@@ -147,10 +147,7 @@ function wpContent() {
 function mailchimp() {
   return async (req, res) => {
     if (!req.body) return res.sendStatus(400);
-    if (
-        req.body?.i_prefer_usps_mail &&
-        req.body.i_prefer_usps_mail === "1"
-    )
+    if (req.body?.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
       return res.sendStatus(400);
 
     const email = req.body.email || "";
@@ -166,7 +163,7 @@ function mailchimp() {
       }
     }
 
-    if (!availableListIds.includes(list_id) ) {
+    if (!availableListIds.includes(list_id)) {
       // don't know that list
       return res.sendStatus(400);
     }
@@ -180,34 +177,30 @@ function mailchimp() {
         [interests.news.group_id]: interests.news.value,
         [interests.ebooks.group_id]: interests.ebooks.value,
         [interests.education.group_id]: interests.education.value,
-        [interests.genealogy.group_id]: interests.genealogy.value
-      }
+        [interests.genealogy.group_id]: interests.genealogy.value,
+      },
     });
 
     const mRes = await fetch(url, {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: "apikey " + process.env.MAILCHIMP_KEY
+        Authorization: "apikey " + process.env.MAILCHIMP_KEY,
       }),
-      body: body
+      body: body,
     });
 
     await mRes.json();
 
     // send the response back
     res.sendStatus(200);
-
   };
 }
 
 function doContact() {
   return async (req, res) => {
     if (!req.body) return res.sendStatus(400);
-    if (
-        req.body?.i_prefer_usps_mail &&
-        req.body.i_prefer_usps_mail === "1"
-    )
+    if (req.body?.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
       return res.sendStatus(400);
 
     const email = req.body.email || "";
@@ -217,18 +210,16 @@ function doContact() {
 
     try {
       // email
-      const to_email = subject !== "Ebooks"
-          ? "info@dp.la"
-          : "ebooks@dp.la";
+      const to_email = subject !== "Ebooks" ? "info@dp.la" : "ebooks@dp.la";
       const from_email = "info@dp.la";
 
       // send email
       const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n`;
       await serverFunctions.sendEmail(
-          from_email,
-          to_email,
-          `DPLA Site Contact: ${subject}`,
-          email_message
+        from_email,
+        to_email,
+        `DPLA Site Contact: ${subject}`,
+        email_message,
       );
 
       // send the response back
@@ -242,10 +233,7 @@ function doContact() {
 function feedback() {
   return async (req, res) => {
     if (!req.body) return res.sendStatus(400);
-    if (
-        req.body.i_prefer_usps_mail &&
-        req.body.i_prefer_usps_mail === "1"
-    )
+    if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
       return res.sendStatus(400);
 
     const email = req.body.email || "";
@@ -259,7 +247,7 @@ function feedback() {
       hour: "numeric",
       minute: "numeric",
       hour12: false,
-      timeZone: "America/New_York"
+      timeZone: "America/New_York",
     };
 
     const date = Intl.DateTimeFormat("en-US", options).format(new Date());
@@ -270,17 +258,17 @@ function feedback() {
       `Message:\n${message}`,
       `URL:\n${url}`,
       `Date:\n${date}`,
-      `Browser:\n${browser}`
+      `Browser:\n${browser}`,
     ];
 
     const emailMessage = emailFields.join("\n\n");
 
     try {
       await serverFunctions.sendEmail(
-          "info@dp.la",
-          "info@dp.la",
-          `DPLA Site Feedback: ${type}`,
-          emailMessage
+        "info@dp.la",
+        "info@dp.la",
+        `DPLA Site Feedback: ${type}`,
+        emailMessage,
       );
 
       res.sendStatus(200);
@@ -315,19 +303,10 @@ function registerHandlers(server) {
   });
 
   process.on("uncaughtException", (err, origin) => {
-    handleExit(
-        "uncaughtException: " + String(err) + ": " + origin,
-        server,
-        1,
-    );
+    handleExit("uncaughtException: " + String(err) + ": " + origin, server, 1);
   });
 
   process.on("unhandledRejection", (err, origin) => {
-    handleExit(
-        "unhandledRejection: " + String(err) + ": " + origin,
-        server,
-        1,
-    );
+    handleExit("unhandledRejection: " + String(err) + ": " + origin, server, 1);
   });
 }
-

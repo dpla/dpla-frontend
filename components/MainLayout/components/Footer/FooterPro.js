@@ -4,12 +4,11 @@ import Link from "next/link";
 import Button from "components/shared/Button";
 import FeedbackForm from "components/FeedbackForm";
 
-import { USER_BASE_URL } from "constants/env";
-
 import css from "./Footer.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
 function FooterPro() {
+  const userBaseUrl = process.env.NEXT_PUBLIC_USER_BASE_URL;
   return (
     <div className={`${css.footer} ${utils.siteMaxWidth}`}>
       <div className={utils.row}>
@@ -84,28 +83,28 @@ function FooterPro() {
           <h2 className={css.linkHeader}>DPLA</h2>
           <ul>
             <li>
-              <Link href={USER_BASE_URL}>DPLA Home</Link>
+              <Link href={userBaseUrl}>DPLA Home</Link>
             </li>
             <li>
-              <Link href={USER_BASE_URL + "/primary-source-sets"}>
+              <Link href={userBaseUrl + "/primary-source-sets"}>
                 Primary Source Sets
               </Link>
             </li>
             <li>
-              <Link href={USER_BASE_URL + "/browse-by-partner"}>
+              <Link href={userBaseUrl + "/browse-by-partner"}>
                 Browse by Partner
               </Link>
             </li>
             <li>
-              <Link href={USER_BASE_URL + "/browse-by-topic"}>
+              <Link href={userBaseUrl + "/browse-by-topic"}>
                 Browse by Topic
               </Link>
             </li>
             <li>
-              <Link href={USER_BASE_URL + "/exhibitions"}>Exhibitions</Link>
+              <Link href={userBaseUrl + "/exhibitions"}>Exhibitions</Link>
             </li>
             <li>
-              <Link href={USER_BASE_URL + "/search"}>Search</Link>
+              <Link href={userBaseUrl + "/search"}>Search</Link>
             </li>
           </ul>
         </div>

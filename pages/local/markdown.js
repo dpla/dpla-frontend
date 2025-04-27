@@ -8,17 +8,18 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import fs from "fs";
 import { join } from "path";
 
-import { LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
+import rehypeRaw from "rehype-raw";
 
 function MarkdownPage(props) {
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
   const { path, pageData, content } = props;
 
-  const local = LOCALS[LOCAL_ID];
+  const local = LOCALS[localId];
   const routesObj = local.routes;
   const hasSidebar = local.hasSidebar;
   const bodyColumnsStyle = local.expandBody
@@ -82,7 +83,9 @@ function MarkdownPage(props) {
           />
           <div className={bodyColumnsStyle}>
             <div id="main" role="main" className={contentCss.content}>
-              <Markdown skipHtml={false}>{content}</Markdown>
+              <Markdown rehypePlugins={[rehypeRaw]} skipHtml={false}>
+                {content}
+              </Markdown>
             </div>
           </div>
         </div>
@@ -92,8 +95,9 @@ function MarkdownPage(props) {
 }
 
 export async function getServerSideProps(context) {
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
   const asPath = context.req.originalUrl;
-  const local = LOCALS[LOCAL_ID];
+  const local = LOCALS[localId];
   const routes = local["routes"];
   const pageData = routes[asPath];
   const markdownPath = join(
@@ -101,7 +105,7 @@ export async function getServerSideProps(context) {
     "public",
     "static",
     "local",
-    LOCAL_ID,
+    localId,
     pageData.path,
   );
   const pageMarkdown = await fs.promises.readFile(markdownPath, {

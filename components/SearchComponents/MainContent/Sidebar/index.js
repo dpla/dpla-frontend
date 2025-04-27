@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Router, {useRouter, withRouter} from "next/router";
+import Router, { useRouter, withRouter } from "next/router";
 import Button from "shared/Button";
 import Accordion from "components/shared/Accordion";
 
@@ -13,7 +13,6 @@ import {
   prettifiedFacetMap,
   tooltips,
 } from "constants/search";
-import { SITE_ENV } from "constants/env";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
 import css from "./Sidebar.module.scss";
@@ -228,6 +227,7 @@ class Sidebar extends React.Component {
 
   render() {
     const { router, facets } = this.props;
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     const isFacetValueInQuery = (facetKey, value) =>
       router.query[mapFacetsToURLPrettified[facetKey]] &&
       // handles case of sources with both
@@ -237,7 +237,7 @@ class Sidebar extends React.Component {
       );
     const items = Object.keys(facets)
       .map((key, i) => {
-        if (SITE_ENV === "local" && key.indexOf("provider.name") !== -1) {
+        if (siteEnv === "local" && key.indexOf("provider.name") !== -1) {
           return null;
         } else if (
           key.indexOf("sourceResource.date") === -1 &&

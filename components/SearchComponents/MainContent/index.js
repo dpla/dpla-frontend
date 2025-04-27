@@ -1,5 +1,5 @@
 import React from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 import ListView from "shared/ListView";
 import Pagination from "shared/Pagination";
@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar";
 import AboutLocal from "./AboutLocal";
 
 import { addLinkInfoToResults } from "lib";
-import { SITE_ENV } from "constants/env";
 
 import css from "./MainContent.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -20,6 +19,7 @@ function MainContent({
   hideSidebar,
   aboutness,
 }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const router = useRouter();
   return (
     <div className={css.wrapper}>
@@ -59,7 +59,7 @@ function MainContent({
           />
         </main>
       </div>
-      {SITE_ENV === "local" && aboutness.docs && aboutness.docs.length > 0 && (
+      {siteEnv === "local" && aboutness.docs && aboutness.docs.length > 0 && (
         <AboutLocal
           items={aboutness.docs}
           count={aboutness.count}

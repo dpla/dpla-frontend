@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import {PRO_BASE_URL} from "constants/env";
-
-function NavigationUser({isHome, className, css}) {
+function NavigationUser({ isHome, className, css }) {
+  const proBaseUrl = process.env.NEXT_PUBLIC_PRO_BASE_URL;
   return (
     <div className={className} data-cy="navigation-user">
       <ul className={css.links}>
@@ -40,7 +39,7 @@ function NavigationUser({isHome, className, css}) {
           </Link>
         </li>
       </ul>
-      <span className={css.divider}/>
+      <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
           <Link as="/about" href="/about?section=about-us" data-cy="about-dpla">
@@ -53,10 +52,10 @@ function NavigationUser({isHome, className, css}) {
           </Link>
         </li>
       </ul>
-      <span className={css.divider}/>
+      <span className={css.divider} />
       <ul className={`${css.links} ${css.tertiaryLinks}`}>
         <li>
-          <Link href={PRO_BASE_URL} data-cy="dpla-pro">
+          <Link href={proBaseUrl} data-cy="dpla-pro">
             DPLA Pro
           </Link>
         </li>

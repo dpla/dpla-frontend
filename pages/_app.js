@@ -2,15 +2,20 @@ import { useEffect } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { gtag } from "../lib";
-import { gaTrackingId } from "constants/env";
 
 import "stylesheets/colors.scss";
+import "stylesheets/themes/themes.scss";
 import "stylesheets/typography.scss";
+import "stylesheets/local.scss";
 import "stylesheets/reset.scss";
 import "stylesheets/global.scss";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 function App({ Component, pageProps }) {
+  const gaTrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -28,9 +33,11 @@ function App({ Component, pageProps }) {
 
   function gaLoad() {
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
+
     window.gtag = gtag;
     gtag("js", new Date());
     gtag("config", gaTrackingId, {

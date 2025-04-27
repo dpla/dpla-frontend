@@ -1,41 +1,44 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 import DplaLogoWhite from "components/svg/DplaLogoWhite";
 
-import {LOCAL_ID, SITE_ENV} from "constants/env";
-import {LOCALS} from "constants/local";
+import { LOCALS } from "constants/local";
 
 import css from "./PageHeader.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-function PageHeader({hideSearchBar}) {
+function PageHeader({ hideSearchBar }) {
   const router = useRouter();
   const searchQuery =
     router && router.pathname === "/search" && router.query && router.query.q
       ? router.query.q
       : "";
+
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
   return (
     <div
-      className={`${css.headerSearchBar} ${SITE_ENV === "pro" ? css.pro : ""}`}
+      className={`${css.headerSearchBar} ${siteEnv === "pro" ? css.pro : ""}`}
     >
       <div
         className={`${css.flexWrapper}  ${
-          SITE_ENV === "pro" ? css.pro : ""
+          siteEnv === "pro" ? css.pro : ""
         } ${utils.siteMaxWidth}`}
       >
-        {(SITE_ENV === "user" || SITE_ENV === "pro") && (
+        {(siteEnv === "user" || siteEnv === "pro") && (
           <Link
             as="/"
-            href={SITE_ENV === "user" ? "/" : "/pro"}
+            href={siteEnv === "user" ? "/" : "/pro"}
             className={css.logo}
             title="Home Page"
           >
-            <DplaLogoWhite className={css.logoImg}/>
+            <DplaLogoWhite className={css.logoImg} />
           </Link>
         )}
-        {SITE_ENV === "local" && (
+        {siteEnv === "local" && (
           <Link
             href="/local"
             as="/"
@@ -44,15 +47,15 @@ function PageHeader({hideSearchBar}) {
           >
             <img
               className={css.localLogo}
-              alt={`${LOCALS[LOCAL_ID].name} Home`}
-              src={`/static/local/${LOCALS[LOCAL_ID].theme}/${
-                LOCALS[LOCAL_ID].logo
+              alt={`${LOCALS[localId].name} Home`}
+              src={`/static/local/${LOCALS[localId].theme}/${
+                LOCALS[localId].logo
               }`}
             />
-            <span className={css.localText}>{LOCALS[LOCAL_ID].name}</span>
+            <span className={css.localText}>{LOCALS[localId].name}</span>
           </Link>
         )}
-        {!hideSearchBar && SITE_ENV !== "pro" && (
+        {!hideSearchBar && siteEnv !== "pro" && (
           <form action="/search" className={css.searchBar}>
             <input
               key={searchQuery}

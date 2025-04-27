@@ -7,26 +7,25 @@ import GlobalHeader from "./components/GlobalHeader";
 import PageHeader from "./components/PageHeader";
 import Footer from "./components/Footer";
 
-import {useRouter} from "next/router";
-
-import {SITE_ENV} from "constants/env";
+import { useRouter } from "next/router";
 
 function MainLayout({
-                      children,
-                      hideSearchBar,
-                      hidePageHeader,
-                      isSearchPage,
-                      headLinks,
-                      pageTitle,
-                      pageImage,
-                      pageDescription,
-                      seoType,
-                    }) {
+  children,
+  hideSearchBar,
+  hidePageHeader,
+  isSearchPage,
+  headLinks,
+  pageTitle,
+  pageImage,
+  pageDescription,
+  seoType,
+}) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const router = useRouter();
   const isHome =
-    (SITE_ENV === "local" && router.pathname === "/local") ||
-    (SITE_ENV === "pro" && router.pathname === "/pro") ||
-    (SITE_ENV === "user" && router.pathname === "/");
+    (siteEnv === "local" && router.pathname === "/local") ||
+    (siteEnv === "pro" && router.pathname === "/pro") ||
+    (siteEnv === "user" && router.pathname === "/");
   return (
     <div>
       <DPLAHead
@@ -36,9 +35,9 @@ function MainLayout({
         seoType={seoType}
         pageDescription={pageDescription}
       />
-      <SkipToContent/>
-      <SmallScreenHeader isSearchPage={isSearchPage} isHome={isHome}/>
-      <GlobalHeader isHome={isHome}/>
+      <SkipToContent />
+      <SmallScreenHeader isSearchPage={isSearchPage} isHome={isHome} />
+      <GlobalHeader isHome={isHome} />
       {!hidePageHeader && (
         <PageHeader
           query={router.query}
@@ -47,7 +46,7 @@ function MainLayout({
         />
       )}
       {children}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

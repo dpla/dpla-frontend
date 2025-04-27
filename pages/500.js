@@ -1,13 +1,13 @@
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
-import { SITE_ENV } from "constants/env";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
 import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import React from "react";
 
 export default function Custom500() {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MinimalLayout>
       <div
@@ -28,8 +28,8 @@ export default function Custom500() {
               </p>
             </div>
             <div>
-              {SITE_ENV === "user" && <ErrorLinksUser />}
-              {SITE_ENV === "pro" && <ErrorLinksPro />}
+              {siteEnv === "user" && <ErrorLinksUser />}
+              {siteEnv === "pro" && <ErrorLinksPro />}
             </div>
           </div>
         </div>

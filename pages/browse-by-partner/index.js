@@ -6,13 +6,11 @@ import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
 import { DESCRIPTION, TITLE } from "constants/browse-by-partner";
 import { LOCALS } from "constants/local";
-import { LOCAL_ID, SITE_ENV } from "constants/env";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
 
-function PartnerBrowse(props) {
-  const { partners } = props;
+function PartnerBrowse({ partners }) {
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
@@ -30,14 +28,17 @@ function PartnerBrowse(props) {
 }
 
 export const getServerSideProps = async () => {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
   let apiQuery;
   let facetName;
   let linkParam = "";
 
   const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
 
-  if (SITE_ENV === "local") {
-    const local = LOCALS[LOCAL_ID];
+  if (siteEnv === "local") {
+    const local = LOCALS[localId];
 
     const filtersParam = local.filters
       ? local.filters.map((x) => `&filter=${x}`).join("")

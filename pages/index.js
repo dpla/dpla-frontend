@@ -3,15 +3,9 @@ import React from "react";
 import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
 
-import {
-  exhibitHomePage,
-  loadExhibition
-} from "lib/exhibitionsStatic";
+import { exhibitHomePage, loadExhibition } from "lib/exhibitionsStatic";
 
-import {
-  addCommasToNumber,
-  getMenuItemUrl,
-} from "lib";
+import { addCommasToNumber, getMenuItemUrl } from "lib";
 
 import {
   HEADER_DESCRIPTION_TOKEN,
@@ -24,15 +18,22 @@ import {
   PAGES_ENDPOINT,
 } from "constants/content-pages";
 
-import {API_SETTINGS_ENDPOINT} from "constants/site";
-import {SITE_ENV} from "constants/env";
-import {washObject} from "lib/washObject";
+import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { washObject } from "lib/washObject";
 
-function Home({sourceSets, guides, exhibitions, headerDescription, news, content}) {
+function Home({
+  sourceSets,
+  guides,
+  exhibitions,
+  headerDescription,
+  news,
+  content,
+}) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MainLayout
-      hidePageHeader={SITE_ENV === "user"}
-      hideSearchBar={SITE_ENV === "pro"}
+      hidePageHeader={siteEnv === "user"}
+      hideSearchBar={siteEnv === "pro"}
     >
       <div id="main" role="main">
         <HomeUser
@@ -49,6 +50,12 @@ function Home({sourceSets, guides, exhibitions, headerDescription, news, content
 }
 
 export async function getServerSideProps() {
+  if (process.env.NEXT_PUBLIC_SITE_ENV === "local") {
+    return {
+      notFound: true,
+    };
+  }
+
   // fetch home info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
@@ -105,7 +112,7 @@ export async function getServerSideProps() {
   });
 
   // fetch item count
-  let headerDescription = homepageJson.acf.header_description
+  let headerDescription = homepageJson.acf.header_description;
   const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
   const itemsRes = await fetch(apiUrl);
   let itemCount = 0; // default handles unexpected error

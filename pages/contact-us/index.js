@@ -6,8 +6,6 @@ import ContactForm from "components/ContactComponents/ContactForm";
 import MoreWaysToContact from "components/ContactComponents/MoreWaysToContact";
 import FeatureHeader from "shared/FeatureHeader";
 
-import { SITE_ENV } from "constants/env";
-
 import {
   ABOUT_MENU_ENDPOINT,
   PRO_MENU_ENDPOINT,
@@ -51,8 +49,9 @@ function Contact(props) {
 }
 
 export const getServerSideProps = async () => {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const aboutMenuRes = await fetch(
-    SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
+    siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
   if (!aboutMenuRes.ok) {

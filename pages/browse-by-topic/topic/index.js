@@ -1,6 +1,7 @@
 import React from "react";
 
-import { extractSourceSetSlug, loadExhibitionList } from "lib";
+import { extractSourceSetSlug } from "lib";
+import { loadExhibitionList } from "lib/exhibitionsStatic";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
 import Suggestions from "components/TopicBrowseComponents/Topic/Suggestions";
@@ -57,7 +58,7 @@ export const getServerSideProps = async ({ query }) => {
         notFound: true,
       };
     }
-    throw new Error("Couldn't load topics.")
+    throw new Error("Couldn't load topics.");
   }
 
   const topicsJson = await topicsRes.json();
@@ -79,7 +80,7 @@ export const getServerSideProps = async ({ query }) => {
         notFound: true,
       };
     }
-    throw new Error("Couldn't load subtopics.")
+    throw new Error("Couldn't load subtopics.");
   }
 
   const subtopicsJson = await subtopicsRes.json();

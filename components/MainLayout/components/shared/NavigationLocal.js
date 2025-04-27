@@ -1,17 +1,17 @@
 import React from "react";
 import Link from "next/link";
 
-import {LOCALS} from "constants/local";
-import {LOCAL_ID} from "constants/env";
+import { LOCALS } from "constants/local";
 
-function NavigationLocal({isHome, className, css}) {
+function NavigationLocal({ isHome, className, css }) {
   let visitHtml;
   let contactHtml;
   let arbitraryHtml = null;
   let blogHtml = null;
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
-  if (LOCALS[LOCAL_ID].routes) {
-    const routesObj = LOCALS[LOCAL_ID].routes;
+  if (LOCALS[localId].routes) {
+    const routesObj = LOCALS[localId].routes;
     const dynamicRoutes = Object.keys(routesObj);
 
     const categories = dynamicRoutes
@@ -36,11 +36,11 @@ function NavigationLocal({isHome, className, css}) {
     });
   }
 
-  if (LOCAL_ID === "aviation") {
+  if (localId === "aviation") {
     visitHtml = (
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <a href={LOCALS[LOCAL_ID].externalLink}>PAN AM TIMELINE</a>
+          <a href={LOCALS[localId].externalLink}>PAN AM TIMELINE</a>
         </li>
       </ul>
     );
@@ -51,26 +51,26 @@ function NavigationLocal({isHome, className, css}) {
         </a>
       </li>
     );
-  } else if (LOCAL_ID === "wisconsin") {
+  } else if (localId === "wisconsin") {
     visitHtml = (
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <a href={LOCALS[LOCAL_ID].externalLink + "/explore/search"}>About</a>
+          <a href={LOCALS[localId].externalLink + "/explore/search"}>About</a>
         </li>
       </ul>
     );
     contactHtml = (
       <li>
-        <a href={LOCALS[LOCAL_ID].externalLink + "/contact"}>Contact</a>
+        <a href={LOCALS[localId].externalLink + "/contact"}>Contact</a>
       </li>
     );
-  } else if (LOCAL_ID === "illinois") {
+  } else if (localId === "illinois") {
     blogHtml = (
       <li>
-        <Link href={LOCALS[LOCAL_ID].externalLink}>Highlights Blog</Link>
+        <Link href={LOCALS[localId].externalLink}>Highlights Blog</Link>
       </li>
     );
-  } else if (LOCAL_ID === "plains2peaks") {
+  } else if (localId === "plains2peaks") {
     visitHtml = (
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
@@ -85,12 +85,12 @@ function NavigationLocal({isHome, className, css}) {
         </li>
       </ul>
     );
-  } else if ("externalLink" in LOCALS[LOCAL_ID]) {
+  } else if ("externalLink" in LOCALS[localId]) {
     visitHtml = (
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <a href={LOCALS[LOCAL_ID].externalLink}>
-            Visit {LOCALS[LOCAL_ID].name}
+          <a href={LOCALS[localId].externalLink}>
+            Visit {LOCALS[localId].name}
           </a>
         </li>
       </ul>
@@ -113,17 +113,17 @@ function NavigationLocal({isHome, className, css}) {
         )}
         {arbitraryHtml}
         {contactHtml}
-        {LOCALS[LOCAL_ID].hasTerms && (
+        {LOCALS[localId].hasTerms && (
           <li>
             <Link href="/terms">Terms and Conditions</Link>
           </li>
         )}
-        {LOCALS[LOCAL_ID].hasBrowseByPartner && (
+        {LOCALS[localId].hasBrowseByPartner && (
           <li>
             <Link href="/browse-by-partner">Browse by Partner</Link>
           </li>
         )}
-        {LOCALS[LOCAL_ID].hasBrowseAll && (
+        {LOCALS[localId].hasBrowseAll && (
           <li>
             <Link href="/search">Browse All</Link>
           </li>
@@ -132,7 +132,7 @@ function NavigationLocal({isHome, className, css}) {
           <Link href="/lists">My Lists</Link>
         </li>
       </ul>
-      {visitHtml && <span className={css.divider}/>}
+      {visitHtml && <span className={css.divider} />}
       {visitHtml}
       <ul className={`${css.links} ${css.tertiaryLinks}`}>
         {blogHtml}

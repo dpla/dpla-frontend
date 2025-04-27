@@ -8,7 +8,6 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 
 import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
 
-import { SITE_ENV, WORDPRESS_URL } from "constants/env";
 import { NEWS_TAGS } from "constants/news";
 import {
   PRO_MENU_ENDPOINT,
@@ -23,10 +22,8 @@ import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
 
 class PostPage extends React.Component {
-
   refreshExternalLinks() {
-    const links =
-      document.getElementById("main").getElementsByTagName("a");
+    const links = document.getElementById("main").getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -79,21 +76,23 @@ class PostPage extends React.Component {
                     __html: content.title.rendered,
                   }}
                 />
-                {author && <div className={css.resultSummary}>
-                  By{" "}
-                  <Link
-                    href={{
-                      pathname: "/news",
-                      query: {
-                        author: author.id,
-                      },
-                    }}
-                    title={`View more posts by ${author.name}`}
-                  >
-                    {author.name}
-                  </Link>
-                  , {formatDate(content.date)}.
-                </div>}
+                {author && (
+                  <div className={css.resultSummary}>
+                    By{" "}
+                    <Link
+                      href={{
+                        pathname: "/news",
+                        query: {
+                          author: author.id,
+                        },
+                      }}
+                      title={`View more posts by ${author.name}`}
+                    >
+                      {author.name}
+                    </Link>
+                    , {formatDate(content.date)}.
+                  </div>
+                )}
                 {hasTags && (
                   <div className={css.tags}>
                     Published under:
@@ -131,9 +130,12 @@ class PostPage extends React.Component {
 }
 
 export async function getServerSideProps({ query }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
+
   // sidebar menu fetch
   const menuResponse = await fetch(
-    SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
+    siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
   if (!menuResponse.ok) {
@@ -165,10 +167,9 @@ export async function getServerSideProps({ query }) {
     };
   }
 
-
   // get author info
   const authorRes = await fetch(
-    `${WORDPRESS_URL}/wp-json/wp/v2/users/${postJson[0].author}`,
+    `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
   if (!authorRes.ok) {
@@ -180,7 +181,7 @@ export async function getServerSideProps({ query }) {
     throw new Error("Couldn't load author.");
   }
 
-  const authorJson = authorRes.ok ? await authorRes.json() : {}
+  const authorJson = authorRes.ok ? await authorRes.json() : {};
 
   let pageDescription = "";
   if (postJson[0].excerpt && postJson[0].excerpt.rendered) {

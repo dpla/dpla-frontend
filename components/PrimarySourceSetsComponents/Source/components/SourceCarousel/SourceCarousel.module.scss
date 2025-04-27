@@ -157,7 +157,7 @@
   }
 
   @media (min-width: $smallRem) {
-    color: $linkColor;
+    color: var(--linkColor);
   }
 }
 

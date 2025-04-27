@@ -1,0 +1,36 @@
+@import "stylesheets/colors";
+
+:root.illinois {
+  --theme-warmer-tint: rgb(238.4951456311, 230.2427184466, 221.5048543689);
+  --theme-main-color: #453422;
+  --theme-dark-color: #1f1f1f;
+  --theme-link-color: #be0a2f;
+  --theme-background-color: #f9f6f0;
+  --theme-colder-tint: rgb(245, 245, 245);
+
+  --linkColor: var(--theme-link-color) !important;
+  --paginationLinkColor: var(--linkColor) !important;
+  --headingColor: var(--theme-dark-color) !important;
+  --navColor: var(--theme-dark-color) !important;
+  --userSiteColor: var(--theme-main-color) !important;
+  --secondaryButtonColor: var(--linkColor) !important;
+  --secondaryColor: var(--secondaryButtonColor) !important;
+  --primaryBulletColor: var(--theme-dark-color) !important;
+  --secondaryBulletColor: var(--theme-dark-color) !important;
+  --darkBorderColor: var(--theme-main-color) !important;
+  --subLinkColor: var(--linkColor) !important;
+  --donateFormButtonColor: var(--theme-dark-color) !important;
+  --formLabelColor: var(--theme-dark-color) !important;
+  --errorColor: var(--linkColor) !important;
+  --footerLightColor: var(--theme-main-color) !important;
+  --footerDarkColor: var(--mobileNavColor) !important;
+  --linkHoverColor: rgb(238.45, 12.55, 58.985) !important;
+  --visitedLinkColor: rgb(141.55, 7.45, 35.015) !important;
+  --mobileNavColor: rgb(50, 41.5, 32.5) !important;
+  --mobileNavMenuButtonOpen: rgb(43.75, 43.75, 43.75) !important;
+  --darkSecondaryButtonColor: rgb(50, 41.5, 32.5) !important;
+  --warmerBackgroundColor: rgb(243.7475728155, 238.1213592233, 230.7524271845) !important;
+  --colderBackgroundColor: rgb(248, 245.75, 241.25) !important;
+  --subLinkColorHover: rgb(141.55, 7.45, 35.015) !important;
+  --outlineColor: rgb(238.45, 12.55, 58.985) !important;
+}

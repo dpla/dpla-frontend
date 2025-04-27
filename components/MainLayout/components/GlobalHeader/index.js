@@ -7,26 +7,25 @@ import NavigationLocal from "../shared/NavigationLocal";
 import css from "../shared/DesktopStyles.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-import { SITE_ENV } from "constants/env";
-
 function GlobalHeader({ isHome }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <div className={css.header} data-cy="global-header">
-      {SITE_ENV === "user" && (
+      {siteEnv === "user" && (
         <NavigationUser
           className={`${css.linksContainer} ${utils.siteMaxWidth}`}
           css={css}
           isHome={isHome}
         />
       )}
-      {SITE_ENV === "pro" && (
+      {siteEnv === "pro" && (
         <NavigationPro
           className={`${css.linksContainer} ${utils.siteMaxWidth}`}
           css={css}
           isHome={isHome}
         />
       )}
-      {SITE_ENV === "local" && (
+      {siteEnv === "local" && (
         <NavigationLocal
           className={`${css.linksContainer} ${utils.siteMaxWidth}`}
           css={css}

@@ -18,7 +18,6 @@ import {
   MAX_PAGE_SIZE,
 } from "constants/search";
 
-import { SITE_ENV, LOCAL_ID } from "constants/env";
 import { LOCALS } from "constants/local";
 
 import MaxPageError from "components/SearchComponents/MaxPageError";
@@ -97,9 +96,12 @@ class Search extends React.Component {
 }
 
 export async function getServerSideProps(context) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
   const query = context.query;
-  const isLocal = SITE_ENV === "local";
-  let local = isLocal ? LOCALS[LOCAL_ID] : {};
+  const isLocal = siteEnv === "local";
+  let local = isLocal ? LOCALS[localId] : {};
   const isQA = false;
 
   if (query.q && !isBalanced(query.q)) {

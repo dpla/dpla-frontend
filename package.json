@@ -37,6 +37,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.3",
     "react-slick": "^0.30.3",
+    "rehype-raw": "^7.0.0",
     "sass": "^1.83.4",
     "slick-carousel": "^1.8.1",
     "striptags": "^3.2.0"

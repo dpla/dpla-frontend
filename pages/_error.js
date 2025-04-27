@@ -7,8 +7,6 @@ import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
 import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 
-import { SITE_ENV } from "constants/env";
-
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
 import utils from "stylesheets/utils.module.scss";
@@ -35,6 +33,7 @@ class Error extends React.Component {
   }
 
   render() {
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     return (
       <MinimalLayout>
         <div
@@ -65,8 +64,8 @@ class Error extends React.Component {
                 </div>
               )}
               <div>
-                {SITE_ENV === "user" && <ErrorLinksUser />}
-                {SITE_ENV === "pro" && <ErrorLinksPro />}
+                {siteEnv === "user" && <ErrorLinksUser />}
+                {siteEnv === "pro" && <ErrorLinksPro />}
               </div>
             </main>
           </div>

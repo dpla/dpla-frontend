@@ -10,7 +10,6 @@ import Button from "shared/Button";
 
 import { formatDate } from "lib";
 
-import { SITE_ENV, WORDPRESS_URL } from "constants/env";
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
 import {
   ABOUT_MENU_ENDPOINT,
@@ -37,7 +36,6 @@ function NewsPage({
   keywords,
   author,
 }) {
-
   const resultSummary =
     `${author ? " by " + author.name : ""}` +
     `${currentTag ? " under " + currentTag.name : ""}` +
@@ -95,25 +93,26 @@ function NewsPage({
                   </p>
                 )}
               </div>
-              {Array.isArray(newsItems) && newsItems.map((item) => (
-                <article key={item.slug} className={css.newsItem}>
-                  <h2 className={css.title}>
-                    <Link
-                      as={`/news/${item.slug}`}
-                      href={`/news/post?slug=${item.slug}`}
+              {Array.isArray(newsItems) &&
+                newsItems.map((item) => (
+                  <article key={item.slug} className={css.newsItem}>
+                    <h2 className={css.title}>
+                      <Link
+                        as={`/news/${item.slug}`}
+                        href={`/news/post?slug=${item.slug}`}
+                        dangerouslySetInnerHTML={{
+                          __html: item.title.rendered,
+                        }}
+                      ></Link>
+                    </h2>
+                    <div
                       dangerouslySetInnerHTML={{
-                        __html: item.title.rendered,
+                        __html: item.excerpt.rendered,
                       }}
-                    ></Link>
-                  </h2>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: item.excerpt.rendered,
-                    }}
-                  />
-                  <div className={css.date}>{formatDate(item.date)}</div>
-                </article>
-              ))}
+                    />
+                    <div className={css.date}>{formatDate(item.date)}</div>
+                  </article>
+                ))}
               <Pagination
                 itemsPerPage={DEFAULT_PAGE_SIZE}
                 currentPage={parseInt(currentPage, 10)}
@@ -129,9 +128,12 @@ function NewsPage({
 }
 
 export async function getServerSideProps({ query }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
+
   // sidebar menu fetch
   const menuResponse = await fetch(
-    SITE_ENV === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
+    siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
   if (!menuResponse.ok) {
     if (menuResponse.status === 404) {
@@ -147,12 +149,13 @@ export async function getServerSideProps({ query }) {
   );
 
   // get author info
-  const authorId = query.author && /[0-9]+/.test(query.author) ? query.author : "";
+  const authorId =
+    query.author && /[0-9]+/.test(query.author) ? query.author : "";
   const authorFilter = authorId !== "" ? `&author=${authorId}` : "";
   let authorJson = null;
   if (authorId !== "") {
     const authorRes = await fetch(
-      `${WORDPRESS_URL}/wp-json/wp/v2/users/${authorId}`,
+      `${wordPressUrl}/wp-json/wp/v2/users/${authorId}`,
     );
     if (!authorRes.ok) {
       if (authorRes.status === 404) {
@@ -168,9 +171,10 @@ export async function getServerSideProps({ query }) {
   // fetch news
   const keywords = query.k ? `&search=${encodeURIComponent(query.k)}` : "";
   let page = query.page && /[0-9]+/.test(query.page) ? +query.page : 1;
-  const tag = query.tag && query.tag !== "" ?
-    NEWS_TAGS.filter((tag) => tag.slug === query.tag)?.[0]
-    : null;
+  const tag =
+    query.tag && query.tag !== ""
+      ? NEWS_TAGS.filter((tag) => tag.slug === query.tag)?.[0]
+      : null;
   let error = true;
   let maxRetries = 2;
   let retries = 0;

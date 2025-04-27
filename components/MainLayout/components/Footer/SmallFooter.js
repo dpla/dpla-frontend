@@ -4,19 +4,19 @@ import Link from "next/link";
 import css from "./Footer.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-import { SITE_ENV } from "constants/env";
-
 import DplaLogo from "components/svg/DplaLogo";
 import Facebook from "components/svg/Facebook";
 import Instagram from "components/svg/Instagram";
 import Twitter from "components/svg/Twitter";
+import Bluesky from "components/svg/Bluesky";
 
 class SmallFooter extends React.Component {
   render() {
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     return (
       <div className={css.smallFooterWrapper}>
         <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
-          <Link as="/" href={SITE_ENV === "user" ? "/" : "/pro"}>
+          <Link as="/" href={siteEnv === "user" ? "/" : "/pro"}>
             <DplaLogo className={css.logo} />
           </Link>
           <div className={css.socialIcons}>
@@ -36,13 +36,21 @@ class SmallFooter extends React.Component {
             >
               <Instagram className={css.socialButton} />
             </a>
+            {/*<a*/}
+            {/*  href="https://twitter.com/dpla"*/}
+            {/*  title="Twitter"*/}
+            {/*  rel="noopener noreferrer"*/}
+            {/*  target="_blank"*/}
+            {/*>*/}
+            {/*  <Twitter className={css.socialButton} />*/}
+            {/*</a>*/}
             <a
-              href="https://twitter.com/dpla"
-              title="Twitter"
-              rel="noopener noreferrer"
-              target="_blank"
+              href={"https://bsky.app/profile/dpla.bsky.social"}
+              title="Bluesky"
+              rel={"noopener noreferrer"}
+              target={"_blank"}
             >
-              <Twitter className={css.socialButton} />
+              <Bluesky className={css.socialButton} />
             </a>
           </div>
         </div>

@@ -5,17 +5,16 @@ import FooterUser from "./FooterUser";
 import SmallFooterLocal from "./SmallFooterLocal";
 import SmallFooter from "./SmallFooter";
 
-import { SITE_ENV } from "constants/env";
-
 import css from "./Footer.module.scss";
 
 function Footer() {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <footer className={css.wrapper}>
-      {SITE_ENV === "user" && <FooterUser />}
-      {SITE_ENV === "pro" && <FooterPro />}
-      {(SITE_ENV === "user" || SITE_ENV === "pro") && <SmallFooter />}
-      {SITE_ENV === "local" && <SmallFooterLocal />}
+      {siteEnv === "user" && <FooterUser />}
+      {siteEnv === "pro" && <FooterPro />}
+      {(siteEnv === "user" || siteEnv === "pro") && <SmallFooter />}
+      {siteEnv === "local" && <SmallFooterLocal />}
     </footer>
   );
 }
