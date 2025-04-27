@@ -45,7 +45,9 @@
     content: "";
     display: block;
     background-size: contain !important;
-    background: url("/static/images/chevron-thick-orange.svg") no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/static/images/chevron-thick-orange.svg");
     height: 0.7rem;
     position: relative;
     top: 0;
