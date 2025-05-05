@@ -1,5 +1,5 @@
 {
-  "name": "dpla-end-user-site",
+  "name": "dpla-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -14,10 +14,6 @@
     "analyze": "yarn && ANALYZE=true yarn build",
     "test": "",
     "lint": "next lint",
-    "cy:fixtures": "node cypress/restFixtures.js",
-    "cy:open": "./node_modules/.bin/cypress open",
-    "cy:run": "./node_modules/.bin/cypress run",
-    "cy:record": "./node_modules/.bin/cypress run --record",
     "prepare": "husky"
   },
   "dependencies": {
@@ -32,6 +28,7 @@
     "localforage": "^1.10.0",
     "next": "^13.5.11",
     "openseadragon": "^2.4.1",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-aria-modal": "5.0.2",
     "react-dom": "^18.2.0",
