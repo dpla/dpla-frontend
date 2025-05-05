@@ -1,10 +1,10 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 
   &.theme_blue {
-    background-color: $colderBackgroundColor;
+    background-color: var(--colderBackgroundColor);
   }
 }
 
@@ -34,7 +34,7 @@
 }
 
 .moreLink {
-  color: $linkColor;
+  color: var(--linkColor);
   font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
@@ -61,7 +61,7 @@
 }
 
 .title {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 1.25rem;
 
@@ -147,7 +147,7 @@
   }
 
   &:focus {
-    outline: 0.25rem solid $outlineColor;
+    outline: 0.25rem solid var(--outlineColor);
   }
 
   & img {
@@ -187,7 +187,7 @@
 .featuredTag {
   text-transform: uppercase;
   position: absolute;
-  background-color: $featuredBannerColor;
+  background-color: var(--featuredBannerColor);
   top: 0.75rem;
   left: 0.5rem;
   padding: 0.25rem 0.5rem;

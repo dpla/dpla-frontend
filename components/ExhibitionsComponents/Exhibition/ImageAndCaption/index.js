@@ -1,21 +1,17 @@
 import React from "react";
-import {withRouter} from "next/router";
 
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
 import css from "./ImageAndCaption.module.scss";
 import utils from "stylesheets/utils.module.scss"
+import {useRouter} from "next/router";
 
-const ImageAndCaption = ({
-                             title,
-                             thumbnailUrl,
-                             sectionSlug,
-                             slug,
-                             caption,
-                             router
-                         }) =>
-    <figure className={css.wrapper}>
+function ImageAndCaption({
+                             title, thumbnailUrl, sectionSlug, slug, caption
+                         }) {
+    const router = useRouter();
+    return (<figure className={css.wrapper}>
         <div className={`${utils.container} ${css.imageAndCaption}`}>
             <p className={css.exhibitionTitle}>{title}</p>
             <div className={css.imageWrapper}>
@@ -37,11 +33,7 @@ const ImageAndCaption = ({
                             className={css.exploreLink}
                             url={{
                                 pathname: "/exhibitions/exhibition/section/subsection",
-                                query: Object.assign({}, router.query, {
-                                    section: sectionSlug,
-                                    exhibition: slug,
-                                    subsection: ""
-                                })
+                                query: {...router.query, section: sectionSlug, exhibition: slug, subsection: ""}
                             }}
                             as={{
                                 pathname: `/exhibitions/${slug}/${sectionSlug}`
@@ -57,6 +49,7 @@ const ImageAndCaption = ({
                 <div dangerouslySetInnerHTML={{__html: caption}}/>
             </figcaption>
         </div>
-    </figure>;
+    </figure>);
+}
 
-export default withRouter(ImageAndCaption);
+export default ImageAndCaption;

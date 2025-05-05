@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   padding: 0.75rem 0 0 0;
@@ -6,7 +6,7 @@
   @media (min-width: $smallRem) {
     margin-top: 4rem;
     padding: 2rem 0;
-    background-color: $warmerBackgroundColor;
+    background-color: var(--warmerBackgroundColor);
   }
 }
 
@@ -48,11 +48,12 @@
 .headerAndNav {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   flex-direction: column;
+  align-items: normal;
 
   @media (min-width: $smallRem) {
     margin-bottom: 1rem;
+    align-items: baseline;
   }
 }
 
@@ -119,7 +120,7 @@
 }
 
 .currentItemImgWrapper {
-  border: 0.3rem solid $secondaryButtonColor;
+  border: 0.3rem solid var(--secondaryButtonColor);
 }
 
 .prevAndNextButtons {
@@ -148,7 +149,7 @@
 }
 
 .nextItemButton, .nextItemButton:visited {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   color: white;
 
   @media (min-width: $smallRem) {
@@ -156,7 +157,7 @@
   }
 
   @media (min-width: $smallRem) {
-    color: $linkColor;
+    color: var(--linkColor);
   }
 }
 
@@ -166,7 +167,7 @@
 
   @media (min-width: $smallRem) {
     margin-right: 1rem;
-    color: $linkColor;
+    color: var(--linkColor);
     background-color: transparent;
   }
 }
@@ -181,10 +182,10 @@
 
 .thickChevron {
   height: 13px;
-  padding-left: 10px;
+  padding-left: 5px;
   position: relative;
-  top: 1px;
-  width: 7px;
+  top: 1.5px;
+  width: 15px;
 
   & path {
     fill: white;
@@ -192,7 +193,7 @@
 
   @media (min-width: $smallRem) {
     & path {
-      fill: $linkColor;
+      fill: var(--linkColor);
     }
   }
 
@@ -205,7 +206,7 @@
 
     @media (min-width: $smallRem) {
       & path {
-        fill: $linkColor;
+        fill: var(--linkColor);
       }
     }
   }

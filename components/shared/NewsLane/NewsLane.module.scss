@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .content {
@@ -51,7 +51,7 @@
 }
 
 .headerText {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2rem;
 
@@ -65,7 +65,7 @@
 }
 
 .headerLink {
-  color: $linkColor;
+  color: var(--linkColor);
   font-weight: 600;
   font-size: 1rem;
   margin-top: 0.25rem;
@@ -82,7 +82,7 @@
 
 .chevron {
   height: 0.65rem;
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
 }
 
 .post {
@@ -111,7 +111,7 @@
 }
 
 .date {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 0.9rem;
   font-weight: bold;
   margin-top: 0.25rem;

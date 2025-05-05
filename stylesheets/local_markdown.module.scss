@@ -1,5 +1,3 @@
-@import "stylesheets/variables.module";
-
 .blocks {
   ul {
     display: grid;
@@ -9,11 +7,11 @@
 
   li {
     align-items: baseline;
-    border-bottom: 0.075rem solid $grayBorderColor;
+    border-bottom: 0.075rem solid var(--grayBorderColor);
     padding-bottom: 2rem;
 
     &:hover {
-      border-bottom-color: $linkColor;
+      border-bottom-color: var(--linkColor);
       text-decoration: none;
     }
   }

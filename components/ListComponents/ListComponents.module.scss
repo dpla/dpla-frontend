@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   margin: 1rem 0 2rem;
@@ -56,14 +56,14 @@
 
 .listItem {
   align-items: baseline;
-  border-bottom: 0.075rem solid $grayBorderColor;
+  border-bottom: 0.075rem solid var(--grayBorderColor);
   display: grid;
   grid-template: "name count" auto "date date" 1.5rem / 3fr 1fr;
   height: 100%;
   padding-bottom: 0.5rem;
 
   &:hover {
-    border-bottom-color: $linkColor;
+    border-bottom-color: var(--linkColor);
     text-decoration: none;
   }
 
@@ -73,19 +73,19 @@
 }
 
 .listName {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   grid-area: name;
 }
 
 .listCount {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   grid-area: count;
   margin-left: auto;
 }
 
 .listDate {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   display: block;
   font-size: 0.8rem;
   font-style: italic;
@@ -107,7 +107,7 @@
   margin: 0 0.5rem 0.5rem;
 
   &.disabled {
-    color: $dimmedTextColor;
+    color: var(--dimmedTextColor);
   }
 
   @media (max-width: $mediumRem) {
@@ -117,7 +117,7 @@
 
 .checkbox {
   appearance: none;
-  border: 0.125rem solid $subLinkColor;
+  border: 0.125rem solid var(--subLinkColor);
   border-radius: 0.25rem;
   cursor: pointer;
   height: 1.2rem;
@@ -126,15 +126,15 @@
   position: relative;
 
   &[disabled] {
-    border-color: $dimmedTextColor;
+    border-color: var(--dimmedTextColor);
   }
 
   &:checked {
-    background-color: $subLinkColor;
-    border-color: $subLinkColor;
+    background-color: var(--subLinkColor);
+    border-color: var(--subLinkColor);
   }
 
-  &:checked:after {
+&:checked:after {
     border: 0.2rem solid white;
     border-top: none;
     border-right: none;
@@ -150,7 +150,7 @@
 }
 
 .listCount {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   white-space: nowrap;
 }
 

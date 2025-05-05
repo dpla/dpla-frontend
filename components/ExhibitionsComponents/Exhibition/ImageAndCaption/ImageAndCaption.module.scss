@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   margin-top: 1rem;
@@ -86,15 +86,12 @@
 .exhibitionTitle {
   padding: 0 1rem 1rem;
   line-height: 1.1;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1.75rem;
   font-weight: normal;
 
   @media (min-width: $smallRem) {
     font-size: 2.25rem;
-  }
-
-  @media (min-width: $smallRem) {
     display: none;
   }
 
@@ -119,7 +116,7 @@
 }
 
 .caption {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   display: flex;
   font-size: 0.875rem;
   line-height: 1.125;

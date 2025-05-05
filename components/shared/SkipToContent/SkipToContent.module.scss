@@ -1,9 +1,7 @@
-@import "stylesheets/variables.module";
-
 .skipLink a {
   background-color: white;
   border: 0;
-  color: linkColor;
+  color: var(--linkColor);
   display: block;
   font-size: 1rem;
   height: 1px;
@@ -17,7 +15,7 @@
   z-index: 1000;
 
   &:focus {
-    border: 0.5rem solid $linkColor;
+    border: 0.5rem solid var(--linkColor);
     height: auto;
     left: 1rem;
     outline: 0;

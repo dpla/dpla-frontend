@@ -2,12 +2,11 @@ import React from "react";
 
 import css from "./Alert.module.scss";
 
-const Alert = ({ showMessage }) =>
-  <div
-    role="alert"
-    className={`${css.alert} ${showMessage === "" ? "" : css.open}`}
-  >
-    {showMessage}
-  </div>;
+function Alert({showMessage}) {
+  const className = `${css.alert} ${showMessage === "" ? "" : css.open}`
+  return (
+    <div role="alert" className={className}>{showMessage}</div>
+  );
+}
 
 export default Alert;

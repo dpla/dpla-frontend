@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 html {
   font-size: 16px;
@@ -16,11 +16,11 @@ body {
 }
 
 body {
-  font-family: $sansFont;
+  font-family: var(--sansFont), sans-serif;
 }
 
 button, input, select, label, textarea {
-  font-family: $sansFont;
+  font-family: var(--sansFont), sans-serif;
 }
 
 button {
@@ -45,7 +45,7 @@ button, input, optgroup, select, textarea {
 
 a, button, input, optgroup, select, textarea {
   &:focus {
-    outline: 0.25rem solid $outlineColor;
+    outline: 0.25rem solid var(--outlineColor);
   }
 }
 

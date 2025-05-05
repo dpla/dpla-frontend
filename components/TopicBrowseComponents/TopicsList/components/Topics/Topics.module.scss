@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .topicsWrapper {
   margin-top: 1rem;
@@ -17,8 +17,8 @@
   font-weight: normal;
   font-size: 0.9rem;
   font-style: italic;
-  font-family: $serifFont;
-  color: $dimmedTextColor;
+  font-family: var(--serifFont), serif;
+  color: var(--dimmedTextColor);
 
   @media (min-width: $mediumRem) {
     font-size: 1.3rem;
@@ -49,7 +49,7 @@
   text-transform: uppercase;
   color: white;
   position: absolute;
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   top: 0.5rem;
   left: -0.25rem;
   padding: 0.35rem 0.65rem;

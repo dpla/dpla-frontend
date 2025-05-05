@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .sidebar {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   padding: 1rem 1.5rem;
 
   & .link {
@@ -65,7 +65,7 @@
   width: 0.4rem;
   top: 0.5rem;
   left: -0.75rem;
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   border-radius: 50%;
 
   @media (min-width: $mediumRem) {

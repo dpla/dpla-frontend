@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .setsWrapper {
   margin: -0.2rem auto 1rem;
@@ -48,7 +48,7 @@
 }
 
 .item {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 
   @media (min-width: $mediumRem) {
     background-color: transparent;
@@ -82,7 +82,7 @@
     text-decoration: underline;
   }
 
-  @media ($mediumRem) {
+  @media (min-width: $mediumRem) {
     font-size: 1.25rem;
   }
 }
@@ -92,7 +92,7 @@
   margin-top: 0.25rem;
 
   & a {
-    color: $subLinkColor;
+    color: var(--subLinkColor);
   }
 
   @media ($mediumRem) {
@@ -105,7 +105,7 @@
   margin-top: 0.25rem;
 
   & a {
-    color: $subLinkColor;
+    color: var(--subLinkColor);
   }
 }
 

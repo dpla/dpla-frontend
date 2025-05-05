@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .itemColumn {
   margin-bottom: 1rem;
@@ -10,7 +10,7 @@
 }
 
 .itemLink {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
   border-radius: 0.3rem;
   padding: 3rem 2rem 2rem;
   width: 100%;
@@ -31,7 +31,7 @@
 }
 
 .itemHeader {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-style: italic;
   font-size: 1.5rem;

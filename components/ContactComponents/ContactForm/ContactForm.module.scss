@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .notFixed {
 
@@ -21,7 +21,7 @@
     font-weight: bold;
     margin: 0 0 1rem;
     position: relative;
-    color: $formLabelColor;
+    color: var(--formLabelColor);
 
     & > span {
       display: block;
@@ -41,7 +41,7 @@
 
   & input[type="email"], & input[type="text"], & textarea {
     width: 100%;
-    border: 0.075rem solid $formLabelColor;
+    border: 0.075rem solid var(--formLabelColor);
     padding: 1.5rem 0.25rem 0.5rem 0.5rem;
     border-radius: 0.25rem;
   }
@@ -60,13 +60,13 @@
 }
 
 .error {
-  color: $errorColor;
+  color: var(--errorColor);
   display: inline-block;
   margin-left: 0.5rem;
 }
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2rem;
   margin-bottom: 1rem;

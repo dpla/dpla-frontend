@@ -13,20 +13,17 @@ import css from "./Sidebar.module.scss";
 //     </p>
 //   </div>;
 
-const Sidebar = ({ image, title, description }) =>
-  <div className={css.sidebar} data-cy={'subtopic-sidebar'}>
-    <div className={css.subtopicInfo}>
-      <img src={image} alt={title} className={css.image} />
-      <div className={css.subtopicInfoText}>
-        <h1 className={css.title}>
-          {title}
-        </h1>
-        <p className={css.description}>
-          {description}
-        </p>
+function Sidebar({ image, title, description }) {
+  return (
+    <div className={css.sidebar} data-cy={"subtopic-sidebar"}>
+      <div className={css.subtopicInfo}>
+        <img src={image} alt={title} className={css.image} />
+        <div className={css.subtopicInfoText}>
+          <h1 className={css.title}>{title}</h1>
+          <p className={css.description}>{description}</p>
+        </div>
       </div>
-    </div>
-    {/* <h3 className={css.relatedHeader}>You might also enjoy</h3>
+      {/* <h3 className={css.relatedHeader}>You might also enjoy</h3>
     <div className={css.relatedResources}>
       <RelatedResource
         type="Exhibition"
@@ -39,6 +36,8 @@ const Sidebar = ({ image, title, description }) =>
         image="http://lorempixel.com/140/100/food"
       />
     </div> */}
-  </div>;
+    </div>
+  );
+}
 
 export default Sidebar;

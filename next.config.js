@@ -1,40 +1,40 @@
-const { LOCALS } = require("./constants/local");
+const {LOCALS} = require("./constants/local");
 const path = require("path");
-const process = require("process");
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-});
-
-module.exports = withBundleAnalyzer({
+const config = {
   poweredByHeader: false,
-  sassOptions: {
-    // to allow SCSS files to import a plain “theme.module.scss” file
-    includePaths: [
-      process.env.SITE_ENV === "local"
-        ? path.join(
-            __dirname,
-            "stylesheets",
-            "themes",
-            LOCALS[process.env.LOCAL_ID].theme
-          )
-        : path.join(__dirname, "stylesheets", "themes")
-    ]
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dp.la",
+        pathname: "/api/exhibits/files/square_thumbnails/**",
+      },
+    ],
   },
-  webpack: config => {
+  webpack: (config) => {
+    //config.infrastructureLogging = { debug: /PackFileCache/ };
     config.resolve.fallback = {
       async_hooks: false,
       fs: false,
       path: false,
-      process: false
+      process: false,
     };
     return config;
-  }
-});
+  },
+}
+
+if (process.env.ANALYZE === "true") {
+  const withBundleAnalyzer = require("@next/bundle-analyzer")({
+    enabled: process.env.ANALYZE === "true",
+  })
+  module.exports = withBundleAnalyzer(config)
+}
 
 // Injected content via Sentry wizard below
 
-const { withSentryConfig } = require("@sentry/nextjs");
+const {withSentryConfig} = require("@sentry/nextjs");
 
 module.exports = withSentryConfig(module.exports, {
   // For all available options, see:
@@ -68,5 +68,5 @@ module.exports = withSentryConfig(module.exports, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  automaticVercelMonitors: false,
 });

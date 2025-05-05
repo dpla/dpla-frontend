@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .suggestionsWrapper {
   width: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .suggestions {
@@ -21,7 +21,7 @@
 
 .header {
   text-transform: uppercase;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.25;
@@ -75,19 +75,19 @@
 }
 
 .exhibition .imageWrapper {
-  border-top: 4px solid $linkColor;
+  border-top: 4px solid var(--linkColor);
 }
 
 .exhibition .resourceType {
-  color: $linkColor;
+  color: var(--linkColor);
 }
 
 .topic .imageWrapper {
-  border-top: 4px solid $lightLinkColor;
+  border-top: 4px solid var(--lightLinkColor);
 }
 
 .topic .resourceType {
-  color: $lightLinkColor;
+  color: var(--lightLinkColor);
 }
 
 .navArrow {

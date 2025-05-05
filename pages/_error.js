@@ -1,14 +1,11 @@
 import * as Sentry from "@sentry/nextjs";
 
 import React from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 
 import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
 import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
-
-import { SITE_ENV } from "constants/env";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
@@ -24,7 +21,7 @@ class Error extends React.Component {
       statusCode = context.res.statusCode;
       context.res.setHeader(
         "Cache-Control",
-        "max-age=0, private, no-cache, no-store, must-revalidate"
+        "max-age=0, private, no-cache, no-store, must-revalidate",
       );
     } else if (context?.err) {
       statusCode = context.err.statusCode;
@@ -36,6 +33,7 @@ class Error extends React.Component {
   }
 
   render() {
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     return (
       <MinimalLayout>
         <div
@@ -66,8 +64,8 @@ class Error extends React.Component {
                 </div>
               )}
               <div>
-                {SITE_ENV === "user" && <ErrorLinksUser />}
-                {SITE_ENV === "pro" && <ErrorLinksPro />}
+                {siteEnv === "user" && <ErrorLinksUser />}
+                {siteEnv === "pro" && <ErrorLinksPro />}
               </div>
             </main>
           </div>
@@ -76,9 +74,5 @@ class Error extends React.Component {
     );
   }
 }
-
-Error.propTypes = {
-  statusCode: PropTypes.number | null
-};
 
 export default withRouter(Error);

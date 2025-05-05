@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .faveAndCiteButtons {
   align-self: baseline;
@@ -26,7 +26,7 @@
   margin-top: 0.5rem;
   width: 100%;
   text-align: center;
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 }
 
 .notFound {

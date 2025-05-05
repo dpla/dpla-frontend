@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 $borderColor: rgba(0, 0, 0, 0.75);
 
@@ -26,7 +26,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
 
 .backgroundTint {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .sidebar {
@@ -73,7 +73,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .content {
   margin-top: 2rem;
   line-height: 1.5;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
 
   table {
     background: #f7f7f7;
@@ -105,13 +105,13 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & h1 {
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-weight: normal;
     font-size: 2rem;
     margin-bottom: 1rem;
     margin-top: 0;
 
-    & bold {
+    & b {
       font-weight: normal;
     }
 
@@ -122,7 +122,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & h2 {
-    font-family: $sansFont;
+    font-family: var(--sansFont), sans-serif;
     font-size: 1.75rem;
     font-weight: normal;
     margin-top: 2.5rem;
@@ -131,7 +131,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
   & h3 {
     font-size: 1.25rem;
     font-weight: normal;
-    font-family: $sansFont;
+    font-family: var(--sansFont), sans-serif;
   }
 
   & h4 {
@@ -153,14 +153,14 @@ $borderColor: rgba(0, 0, 0, 0.75);
   }
 
   & code, & pre {
-    background-color: $colderBackgroundColor;
-    font-family: $monoFont;
+    background-color: var(--colderBackgroundColor);
+    font-family: var(--monoFont), monospace;
     font-size: 0.85rem;
     padding: 0.125rem 0.25rem;
   }
 
   & pre {
-    border-left: 0.1rem solid $secondaryColor;
+    border-left: 0.1rem solid var(--secondaryColor);
     padding: 0.5rem;
     white-space: pre-wrap;
     word-break: break-all;
@@ -210,13 +210,13 @@ $borderColor: rgba(0, 0, 0, 0.75);
   & li::before {
     padding-right: 0.5rem;
     text-align: right;
-    color: $primaryBulletColor;
+    color: var(--primaryBulletColor);
     box-sizing: border-box;
     margin-left: -1.2em;
   }
 
   & li ul li::before {
-    color: $secondaryBulletColor;
+    color: var(--secondaryBulletColor);
   }
 
   & ul li::before {
@@ -319,9 +319,9 @@ $borderColor: rgba(0, 0, 0, 0.75);
   :global .btn, :global .btn:visited {
     display: block;
     max-width: 18rem;
-    background-color: $linkColor;
+    background-color: var(--linkColor);
     color: white;
-    font-family: $sansFont;
+    font-family: var(--sansFont), sans-serif;
     padding: 0.75rem 1.5rem;
     margin: 1rem auto;
     text-align: center;
@@ -329,7 +329,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
     transition: background-color 0.15s ease-out;
 
     &:hover {
-      background-color: $linkHoverColor;
+      background-color: var(--linkHoverColor);
       text-decoration: none;
     }
   }

@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   margin: 0 auto;
-  background-color: $featureBackgroundColor;
+  background-color: var(--featureBackgroundColor);
   display: flex;
   align-items: center;
   padding-right: 3rem;
@@ -40,7 +40,7 @@
 }
 
 .title {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
   font-size: 2.25rem;
   line-height: 1.1;
@@ -61,7 +61,7 @@
 
 .button, .button:visited {
   color: white;
-  background-color: $secondaryButtonColor;
+  background-color: var(--secondaryButtonColor);
   font-weight: normal;
   border-radius: 2px;
   padding: 0.75rem 2rem;
@@ -72,7 +72,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: $darkSecondaryButtonColor;
+    background-color: var(--darkSecondaryButtonColor);
   }
 
   @media (max-width: $mediumRem) {

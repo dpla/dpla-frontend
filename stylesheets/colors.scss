@@ -1,0 +1,134 @@
+/*
+The color theming function injects the colors into the css variables in the
+:root selector via a class on the Html element in _document.js.
+
+To add a new theme requires creating a theme.scss file in the themes
+directory and adding it to the theme list in the themes.scss file. The theme
+files are all imported into the DOM via the include in _app.js, but the
+one that is currently active depends on the class added to the html element.
+This is achieved by adding a class to the :root in the theme file, e.g.,
+:root.aviation {}.
+
+Unfortunately, converting all the color functions to pure css for all the
+themes isn't in scope right now, so all the colors need to be defined in
+scss first so we can use them in the themes with scss color functions. The
+colors are converted into css custom properties down below.
+
+If you're looking to convert the scss color functions in the themes to pure
+css, you can achieve this by doing the following:
+
+Change something like:
+
+darken($colorVariable, [amount])
+
+To:
+
+hsl(from var(--color-variable) h s calc(l * (1 - [amount])))
+
+If there are multiple nested color functions, you can adjust more than one
+property in the same hsl call.
+
+Mixing two colors is pretty much the same. Change:
+
+mix($theme-dark-color, $theme-main-color, [amount])
+
+to:
+
+color-mix(var(--theme-dark-color), var(--theme-main-color), [amount])
+
+If there's no amount, just omit it.
+
+You're probably going to have to QA the results to this, because color
+transforms are complicated (color spaces, algorithms, etc).
+
+ */
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --riceCakeWhite: #ece9da;
+  --merinoWhite: #fbf8f4;
+  --alabasterGray: #f4f0e9;
+  --mysticGray: #dae4e8;
+  --romanceGray: #f9f6f0;
+  --gainsboroGray: #dcdcdc;
+  --charcoalGray: #424242;
+  --white60: rgba(255, 255, 255, 0.6);
+  --white50: rgba(255, 255, 255, 0.5);
+  --black80: rgba(0, 0, 0, 0.8);
+  --black60: rgba(0, 0, 0, 0.6);
+  --black50: rgba(0, 0, 0, 0.5);
+  --black12: rgba(0, 0, 0, 0.12);
+  --gray75:  rgba(255, 255, 255, 0.75);
+  --wildSandGray: #f4f4f4;
+  --casablancaOrange: #f9ba3f;
+  --bambooOrange: #dd5c00;
+  --tiberBlue: #0a2a37;
+  --elephantBlue: #163f51;
+  --ebonyClayBlue: #273443;
+  --dplaHeroBlue: #2f4857;
+  --minuitBlue: #232f3c;
+  --vikingBlue: #5ab4dc;
+  --curiousBlue: #269ed4;
+  --cascadeBlue: #269ed4;
+  --hippieBlue: #639bb4;
+  --solitudeBlue: #e2ebee;
+  --oysterBayBlue: #d3e2e8;
+  --iceBlue: #eaf6fc;
+  --lisbonBrown: #464027;
+  --vanCleefRed: #563535;
+  --onionBrown: #493f28;
+  --pampasBrown: #f3f1ec;
+  --sisalBrown: #d1ccb6;
+  --coldTurkeyRed: #d2bfbf;
+  --silver: #ccc;
+  --rockBrown: #ece9da;
+  --bonjourRed: #e4dada;
+  --dimmerGray: #6d6d6d;
+  --visualBrown: #f9f8f5;
+  --softPeach: #f6ecf0;
+  --cranberry: #e04f8e;
+
+  /* semantic colors */
+
+  --linkColor: #ca4316;
+  --linkHoverColor: #cd570a;
+  --visitedLinkColor: #ad5c1d;
+  --paginationLinkColor: var(--cascadeBlue);
+  --lightLinkColor: rgb(247.4545454545, 168.2272727273, 13.5454545455);
+  --subLinkColor: #007294;
+  --subLinkColorHover: rgb(156.0089285714, 51.7455357143, 16.9910714286);
+  --lightBorderColor: #e7e7e7;
+  --darkBorderColor: var(--hippieBlue);
+  --grayBorderColor: rgb(223.75, 223.75, 223.75);
+  --headingColor: var(--cascadeBlue);
+  --navColor: var(--tiberBlue);
+  --userSiteColor: var(--hippieBlue);
+  --mobileNavColor: var(--elephantBlue);
+  --mobileNavMenuButtonOpen: rgb(2.1538461538, 9.0461538462, 11.8461538462);
+  --secondaryButtonColor: #0080a5;
+  --secondaryColor: var(--secondaryButtonColor);
+  --primaryBulletColor: var(--secondaryButtonColor);
+  --secondaryBulletColor: var(--linkColor);
+  --darkSecondaryButtonColor: var(--elephantBlue);
+  --warmerBackgroundColor: var(--romanceGray);
+  --darkerBackgroundColor: rgb(219.8571428571, 202.2857142857, 167.1428571429);
+  --colderBackgroundColor: #f3f7f8;
+  --featuredBannerColor: var(--casablancaOrange);
+  --outgoingLinkColor: var(--subLinkColor);
+  --dimmedTextColor: var(--dimmerGray);
+  --donateFormButtonColor: var(--cascadeBlue);
+  --outlineColor: var(--casablancaOrange);
+  --formLabelColor: var(--cascadeBlue);
+  --errorColor: var(--linkColor);
+  --radioButtonColor: var(--gainsboroGray);
+  --featureBackgroundColor: #cbe3e8;
+  --footerLightColor: var(--ebonyClayBlue);
+  --footerDarkColor: var(--minuitBlue);
+  --heroBackgroundColor: var(--dplaHeroBlue);
+
+  /* pro colors */
+  --proSiteColor: var(--elephantBlue);
+  --proIconColor: #5d7384;
+  --memberColor: #006d84;
+}

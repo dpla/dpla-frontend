@@ -1,5 +1,3 @@
-@import "stylesheets/variables.module";
-
 .wrapper {
   border-radius: 3px;
   width: 100%;
@@ -7,7 +5,7 @@
 }
 
 .button.activeButton {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -38,7 +36,7 @@
 }
 
 .citationsWrapper {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
   padding: 0.5rem 0.5rem;
   border-radius: 0 0 0.25rem 0.25rem;
 }
@@ -56,7 +54,7 @@
   & dd {
     background-color: white;
     border-radius: 0.25rem;
-    font-family: $monoFont;
+    font-family: var(--monoFont), monospace;
     font-size: 0.9rem;
     margin: 0 0 1rem;
     padding: 0.5rem;

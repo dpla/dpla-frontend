@@ -1,8 +1,7 @@
-const proxy = require("express-http-proxy");
 const serverFunctions = require("./lib/serverFunctions");
 const locals = require("./constants/local");
 
-const localId = process.env.LOCAL_ID;
+const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 const local = locals["LOCALS"][localId];
 
 const dynamicRoutes = local.routes ? local.routes : null;
@@ -27,7 +26,7 @@ module.exports.static = (app, server) => {
   server.get("/lists/:list", (req, res) => {
     const actualPage = "/lists/list";
     const params = {
-      list: req.params.list
+      list: req.params.list,
     };
     serverFunctions.renderAndCache(
       app,
@@ -35,7 +34,7 @@ module.exports.static = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -64,10 +63,10 @@ module.exports.static = (app, server) => {
   // item routes
   server.get("/item/:itemId", (req, res) => {
     const actualPage = "/item";
-    const isQA = "qa" in req.cookies;
+    const isQA = false;
     const params = {
       itemId: req.params.itemId,
-      isQA: isQA
+      isQA: isQA,
     };
     serverFunctions.renderAndCache(
       app,
@@ -75,7 +74,7 @@ module.exports.static = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 };

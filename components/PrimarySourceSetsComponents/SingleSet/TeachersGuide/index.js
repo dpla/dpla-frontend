@@ -1,17 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import { withRouter } from "next/router";
 
 import { removeQueryParams, markdownLinks } from "lib";
-
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.module.scss";
 import utils from "stylesheets/utils.module.scss"
 
-const printer = "/static/images/printer.svg";
-
+import Printer from "components/svg/Printer"
 
 class TeachersGuide extends React.Component {
   state = { routePath: null };
@@ -39,29 +37,26 @@ class TeachersGuide extends React.Component {
               <div className={css.content}>
                 <div className={contentCss.content}>
                   <h3>Discussion questions</h3>
-                  <ReactMarkdown
-                    source={
-                      teachingGuide.hasPart.find(
+                  <Markdown
+                      components={{
+                        a(props) { return markdownLinks(props) }
+                      }}
+                  >{teachingGuide.hasPart.find(
                         item => item.name === "Questions"
-                      ).text
-                    }
-                    renderers={{
-                      linkReference: reference => markdownLinks(reference),
-                      link: reference => markdownLinks(reference)
-                    }}
-                  />
+                    ).text
+                  }</Markdown>
                   <h3>Classroom activities</h3>
-                  <ReactMarkdown
-                    source={
-                      teachingGuide.hasPart.find(
-                        item => item.name === "Activity"
-                      ).text
-                    }
-                    renderers={{
-                      linkReference: reference => markdownLinks(reference),
-                      link: reference => markdownLinks(reference)
+                  <Markdown
+                    components={{
+                      a(props) {
+                        return markdownLinks(props)
+                      }
                     }}
-                  />
+                  >{
+                    teachingGuide.hasPart.find(
+                        item => item.name === "Activity"
+                    ).text
+                  }</Markdown>
                 </div>
                 <div className={css.aboutThis}>
                   <h3 className={css.aboutThisHeader}>About This Guide</h3>
@@ -75,19 +70,15 @@ class TeachersGuide extends React.Component {
                         pathname: `/primary-source-sets/${router.query.set}`,
                         query: removeQueryParams(router.query, ["set"])
                       }}
-                    ><a className={utils.link}><ReactMarkdown
-                      source={setName}
-                      allowedTypes={["emphasis", "text"]}
+                      className={utils.link}
+                    ><Markdown
+                      allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
-                    /></a></Link>, in the classroom. It offers discussion questions,
-                    classroom
-                    activities, and primary source analysis tools. It is
-                    intended to
-                    spark pedagogical creativity by giving a sample approach to
-                    the
-                    material. Please feel free to share, reuse, and adapt the
-                    resources
-                    in this guide for your teaching purposes.
+                    >{setName}</Markdown></Link>, in the classroom. It offers discussion questions,
+                    classroom activities, and primary source analysis tools. It is
+                    intended to spark pedagogical creativity by giving a sample approach to
+                    the material. Please feel free to share, reuse, and adapt the
+                    resources in this guide for your teaching purposes.
                   </div>
                 </div>
               </div>
@@ -95,14 +86,12 @@ class TeachersGuide extends React.Component {
             <div className={`${utils.colXs12} ${utils.colMd4} ${css.sidebar}`}>
               <div className={`${css.teacherTools} ${css.sidebarSection}`}>
                 <h3 className={css.sidebarHeader}>Created By</h3>
-                {teachingGuide.author.map((author, i) =>
-                  <ReactMarkdown
+                {teachingGuide.author.map((author) =>
+                  <Markdown key={author.name}
                     className={css.sidebarSection}
-                    key={i}
-                    source={author.name + ", " + author.affiliation.name}
-                    allowedTypes={["emphasis", "text"]}
+                    allowedElements={["emphasis", "text"]}
                     unwrapDisallowed
-                  />
+                  >{author.name + ", " + author.affiliation.name}</Markdown>
                 )}
                 {isPrintable !== true &&
                   <h3 className={css.sidebarHeader}>
@@ -112,7 +101,7 @@ class TeachersGuide extends React.Component {
                   this.state.routePath &&
                   <div className={css.tools}>
                     <div className={css.toolLinkAndIcon}>
-                      <img src={printer} alt="" className={css.toolIcon} />
+                      <Printer className={css.toolIcon}/>
                       <a
                         href={
                           "" +

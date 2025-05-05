@@ -1,10 +1,10 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .pagination {
   display: flex;
   margin-top: 20px;
   text-align: right;
-  font-family: $sansFont;
+  font-family: var(--sansFont), sans-serif;
 
   @media (min-width: $smallRem) {
     display: block;
@@ -16,7 +16,7 @@
 
   @media (min-width: $smallRem) {
     display: inline-block;
-    color: $paginationLinkColor;
+    color: var(--paginationLinkColor);
     font-size: 1.125rem;
     padding: 3px 10px;
     margin: 0 3px;
@@ -39,11 +39,11 @@
 .activeLink, .activeLink:visited {
   color: black;
   box-sizing: border-box;
-  border: 0.1rem solid $lightBorderColor;
+  border: 0.1rem solid var(--lightBorderColor);
 }
 
 .link:not(.activeLink):hover {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 }
 
 .nextButton, .previousButton {
@@ -70,19 +70,19 @@
   color: black;
 
   @media (min-width: $smallRem) {
-    background-color: $colderBackgroundColor;
-    color: $paginationLinkColor;
+    background-color: var(--colderBackgroundColor);
+    color: var(--paginationLinkColor);
     margin-right: 10px;
   }
 }
 
 .nextButton, .nextButton:visited {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   color: white;
 
   @media (min-width: $smallRem) {
-    background-color: $colderBackgroundColor;
-    color: $paginationLinkColor;
+    background-color: var(--colderBackgroundColor);
+    color: var(--paginationLinkColor);
     margin-left: 10px;
   }
 }
@@ -95,7 +95,7 @@
     fill: white;
 
     @media (min-width: $smallRem) {
-      fill: $paginationLinkColor;
+      fill: var(--paginationLinkColor);
     }
   }
 
@@ -117,7 +117,7 @@
     fill: black;
 
     @media (min-width: $smallRem) {
-      fill: $paginationLinkColor;
+      fill: var(--paginationLinkColor);
     }
   }
 

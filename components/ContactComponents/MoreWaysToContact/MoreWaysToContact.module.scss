@@ -1,7 +1,7 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .header {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   font-weight: normal;
@@ -10,7 +10,7 @@
 .contentTable {
   padding: 1rem 1.5rem;
   width: 100%;
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 
   @media (min-width: $mediumRem) {
     padding: 2rem 3rem;
@@ -20,7 +20,7 @@
 .tableHeading {
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-weight: 600;
   vertical-align: baseline;
 
@@ -31,7 +31,7 @@
 
 .tableItem {
   vertical-align: baseline;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   line-height: 1.25;
   margin-top: 0.5rem;
 

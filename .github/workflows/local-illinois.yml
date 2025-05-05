@@ -8,10 +8,6 @@ env:
   LOCAL_ID:       "illinois"
   ECR_REPOSITORY: "dpla-local-illinois"
   GA_TRACKING_ID: "UA-142501884-1"
-  WORDPRESS_URL:  "https://dpla.wpengine.com"
-  USER_BASE_URL:  "https://idhh.dp.la"
-  PRO_BASE_URL:   "https://pro.dp.la"
-  PSS_BASE_URL:   "https://dp.la/pssapi"
 
 jobs:
   ecr:
@@ -19,74 +15,50 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Read .nvmrc
-        run: echo "{NODE_VERSION}={cat .nvmrc}" >> $GITHUB_OUTPUT
-        id: nvm
-      
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf
         with:
           image: tonistiigi/binfmt:latest
           platforms: arm64,arm
 
-      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-        
-      - name: Install Yarn
-        run: npm install -g yarn
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5
 
-      - name: Set AWS credentials
-        if: ${{ !env.ACT }}
-        uses: aws-actions/configure-aws-credentials@v2
+      - uses: actions/setup-node@v4
         with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: us-east-1    
+          node-version-file: '.node-version'
+
+      #      - name: Install Yarn
+      #        run: npm install -g yarn
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
       - name: Login to Amazon ECR
-        if: ${{ !env.ACT }}
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Upload sourcemap to Sentry
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        run: |
+          yarn install --frozen-lockfile    
+          yarn run build
+          yarn run sentry:sourcemaps
+        shell: bash
 
-      - name: Delete Exhibitions from app 
+      - name: Delete Exhibitions from app
         run: |
           rm -rf pages/exhibitions
         shell: bash
-      
-      # Building the frontend app
-      - name: Create and populate constants/env.js
-        run: |
-          touch constants/env.js
-          echo "export const SITE_ENV = \"$SITE_ENV\";" >> constants/env.js
-          echo "export const USER_BASE_URL = \"$USER_BASE_URL\";" >> constants/env.js
-          echo "export const WORDPRESS_URL = \"$WORDPRESS_URL\";" >> constants/env.js
-          echo "export const PRO_BASE_URL = \"$PRO_BASE_URL\";" >> constants/env.js
-          echo "export const PSS_BASE_URL = \"$PSS_BASE_URL\";" >> constants/env.js
-          echo "export const LOCAL_ID = \"$LOCAL_ID\";" >> constants/env.js
-          echo "export const gaTrackingId = \"$GA_TRACKING_ID\";" >> constants/env.js
 
-
-        shell: bash
-
-      - name: Add path 
-        run: |
-          echo "HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" >> $GITHUB_PATH
-        shell: bash
-      
-      - name: Build the app with Yarn
-        run: |
-          yarn clean
-          yarn build
-        shell: bash
-
-      # Get branch names for ECR tagging 
+      # Get branch names for ECR tagging
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
         shell: bash
@@ -107,10 +79,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker buildx build \
+          --build-arg SITE_ENV=${{ env.SITE_ENV }} \
+          --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
           --platform linux/amd64,linux/arm64 . \
           --push
-      
-

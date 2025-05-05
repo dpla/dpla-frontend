@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 $imageMaxWidth: 10rem;
 
@@ -25,7 +25,7 @@ $imageMaxWidth: 10rem;
   }
 
   @media (min-width: $smallRem) {
-    background-color: $colderBackgroundColor;
+    background-color: var(--colderBackgroundColor);
     display: flex;
     margin: 2rem;
   }
@@ -36,7 +36,7 @@ $imageMaxWidth: 10rem;
 
   & .exhibitionImage {
     border-radius: 0.2rem 0.2rem 0 0;
-    border-bottom: 0.25rem solid $featuredBannerColor;
+    border-bottom: 0.25rem solid var(--featuredBannerColor);
     width: 100%;
 
     @media (min-width: $smallRem) {
@@ -51,7 +51,7 @@ $imageMaxWidth: 10rem;
     display: block;
 
     @media (min-width: $smallRem) {
-      border-left: 0.25rem solid $featuredBannerColor;
+      border-left: 0.25rem solid var(--featuredBannerColor);
     }
   }
 
@@ -74,7 +74,7 @@ $imageMaxWidth: 10rem;
 
   & .abstract {
     color: black;
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-size: 1rem;
 
     &:hover {
@@ -109,7 +109,7 @@ $imageMaxWidth: 10rem;
 }
 
 .exhibition {
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
   display: flex; // for ie11
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -129,7 +129,7 @@ $imageMaxWidth: 10rem;
 }
 
 .exhibitionText {
-  border-left: 0.25rem solid $darkBorderColor;
+  border-left: 0.25rem solid var(--darkBorderColor);
   display: flex;
   padding: 0.25rem;
 
@@ -139,7 +139,7 @@ $imageMaxWidth: 10rem;
 }
 
 .title {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-size: 1rem;
   font-weight: normal;
   margin: auto 0;
@@ -168,11 +168,11 @@ $imageMaxWidth: 10rem;
 }
 
 .featuredBanner {
-  background-color: $featuredBannerColor;
+  background-color: var(--featuredBannerColor);
   color: black;
 }
 
 .newBanner {
-  background-color: $linkColor;
+  background-color: var(--linkColor);
   color: white;
 }

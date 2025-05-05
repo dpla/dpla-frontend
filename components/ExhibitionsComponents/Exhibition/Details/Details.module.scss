@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {}
 
@@ -41,7 +41,7 @@
 .tableOfContentsHeader {
   padding: 1rem;
   font-size: 0.75rem;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: bold;
   line-height: 1.125;
   text-transform: uppercase;
@@ -58,7 +58,7 @@
 .tableOfContentsContents {
   padding: 1rem;
   font-size: 1rem;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   line-height: 1.25;
 
   @media (min-width: $mediumRem) {
@@ -80,7 +80,7 @@
 .bodyText {
   font-size: 1.125rem;
   display: block;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   line-height: 1.625;
 
   & p {
@@ -108,8 +108,8 @@
 }
 
 .credits {
-  border-top: 2px solid $lightBorderColor;
-  color: $dimmedTextColor;
+  border-top: 2px solid var(--lightBorderColor);
+  color: var(--dimmedTextColor);
   display: flex;
   font-size: 0.875rem;
   line-height: 1.125;
@@ -136,7 +136,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 
   & a {
-    color: $linkColor;
+    color: var(--linkColor);
     text-decoration: underline;
   }
 }
@@ -153,5 +153,5 @@
 .citeButton {
   width: 100%;
   text-align: center;
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
 }

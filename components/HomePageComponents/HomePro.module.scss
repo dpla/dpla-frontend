@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .heroWrapper {
   background-color: rgb(47, 74, 87);
@@ -21,7 +21,7 @@
   padding: 2rem 1rem;
 
   & h1 {
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-weight: normal;
     font-size: 1.8rem;
     max-width: 24rem;
@@ -91,18 +91,18 @@
 
   & a {
     align-items: center;
-    background: $colderBackgroundColor;
+    background: var(--colderBackgroundColor);
     border-radius: 0.25rem;
     display: flex;
     flex-direction: column;
-    font-family: $serifFont;
+    font-family: var(--serifFont), serif;
     font-size: 1.6rem;
     height: 15rem;
     justify-content: center;
   }
 
   & svg {
-    fill: $proIconColor;
+    fill: var(--proIconColor);
     width: 100%;
     margin-bottom: 1rem;
   }

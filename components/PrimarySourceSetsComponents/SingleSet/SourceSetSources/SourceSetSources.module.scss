@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .sourceSetSources {
   display: flex;
@@ -52,7 +52,7 @@
 }
 
 .imageWrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -4,39 +4,45 @@ import Head from "next/head";
 import { getMetaPageTitle, getCurrentFullUrl } from "lib";
 
 import { LOCALS } from "constants/local";
-import { SITE_ENV, LOCAL_ID } from "constants/env";
-
-const defaultDescription = SITE_ENV !== "local"
-  ? "The Digital Public Library of America brings together the riches of America’s libraries, archives, and museums, and makes them freely available to the world."
-  : LOCALS[LOCAL_ID].description;
-
-const defaultPageTitle = SITE_ENV !== "local"
-  ? "Digital Public Library of America"
-  : LOCALS[LOCAL_ID].name;
 
 class DPLAHead extends React.Component {
   state = { defaultImageUrl: "" };
 
   componentDidMount() {
     const fullUrl = getCurrentFullUrl();
-    let url = fullUrl.substr(0, fullUrl.indexOf("/", 8));
-    if (SITE_ENV !== "local") {
+    let url = fullUrl.substring(0, fullUrl.indexOf("/", 8));
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+    const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+    if (siteEnv !== "local") {
       url += "/static/images/dpla-logo-square_250.png";
     } else {
-      url += `/static/images/${LOCALS[LOCAL_ID].logo}`;
+      url += `/static/images/${LOCALS[localId].logo}`;
     }
     this.setState({ defaultImageUrl: url });
   }
 
   render() {
     const { defaultImageUrl } = this.state;
+    const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+
+    const defaultDescription =
+      siteEnv !== "local"
+        ? "The Digital Public Library of America brings together the riches of America’s libraries, archives, and museums, and makes them freely available to the world."
+        : LOCALS[localId].description;
+
+    const defaultPageTitle =
+      siteEnv !== "local"
+        ? "Digital Public Library of America"
+        : LOCALS[localId].name;
+
     const {
       additionalLinks,
       seoType,
       pageTitle,
       pageImage,
       pageImageCaption,
-      pageDescription
+      pageDescription,
     } = this.props;
 
     return (
@@ -61,13 +67,18 @@ class DPLAHead extends React.Component {
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
           <meta name="twitter:image" content={pageImage || defaultImageUrl} />
-          {pageImageCaption &&
-            <meta name="twitter:image:alt" content={pageImageCaption} />}
-          <meta name="og:image" itemProp="image" content={pageImage || defaultImageUrl} />
+          {pageImageCaption && (
+            <meta name="twitter:image:alt" content={pageImageCaption} />
+          )}
+          <meta
+            name="og:image"
+            itemProp="image"
+            content={pageImage || defaultImageUrl}
+          />
           <meta name="og:title" content={pageTitle || defaultPageTitle} />
           <meta name="og:type" content={seoType || "website"} />
           <meta name="theme-color" content="#ffffff" />
-          {SITE_ENV !== "local" && [
+          {siteEnv !== "local" && [
             <link
               key="180"
               rel="apple-touch-icon"
@@ -94,36 +105,36 @@ class DPLAHead extends React.Component {
               href="/static/favicons/safari-pinned-tab.svg"
               color="#5bbad5"
             />,
-            <link key="manifest" rel="manifest" href="/manifest.json" />
+            <link key="manifest" rel="manifest" href="/manifest.json" />,
           ]}
-          {SITE_ENV === "local" && [
+          {siteEnv === "local" && [
             <link
               key="180"
               rel="apple-touch-icon"
               sizes="180x180"
-              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+              href={`/static/local/${localId}/${LOCALS[localId].favicon}`}
             />,
             <link
               key="32"
               rel="icon"
               type="image/png"
               sizes="32x32"
-              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+              href={`/static/local/${localId}/${LOCALS[localId].favicon}`}
             />,
             <link
               key="16"
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+              href={`/static/local/${localId}/${LOCALS[localId].favicon}`}
             />,
             <link
               key="mask"
               rel="mask-icon"
-              href={`/static/local/${LOCAL_ID}/${LOCALS[LOCAL_ID].favicon}`}
+              href={`/static/local/${localId}/${LOCALS[localId].favicon}`}
               color="#ffffff"
             />,
-            <link key="manifest" rel="manifest" href="/manifest.json" />
+            <link key="manifest" rel="manifest" href="/manifest.json" />,
           ]}
           {additionalLinks}
           <title>{getMetaPageTitle(pageTitle)}</title>

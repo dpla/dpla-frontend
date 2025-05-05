@@ -1,61 +1,56 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router"
+import { useRouter } from "next/router";
 
 import { GUIDES_PARENT_ID } from "constants/content-pages";
-import { SITE_ENV } from "constants/env";
 import {
   decodeHTMLEntities,
   getBreadcrumbs,
   getItemWithId,
   getItemWithName,
-  endsWith
+  endsWith,
 } from "lib";
 
 import css from "./Sidebar.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
-const SidebarLink = ({ isCurrentLink, linkObject, title }) => {
+function SidebarLink({ isCurrentLink, linkObject, title }) {
   return (
-    <Link as={linkObject.as} href={linkObject.href}>
-      <a className={`${css.link} ${isCurrentLink ? css.selected : ""}`}>
-        {title}
-      </a>
+    <Link
+      as={linkObject.as}
+      href={linkObject.href}
+      className={`${css.link} ${isCurrentLink && css.selected}`}
+    >
+      {title}
     </Link>
   );
-};
+}
 
-const NestedSidebarLinks = withRouter(({
-  item,
-  items,
-  router,
-  activeItemId,
-  breadcrumbs
-}) => {
+function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   // recursive function
   const title = decodeHTMLEntities(item.title);
   const itemId = String(item.ID);
   const parentId = String(item.menu_item_parent);
   const guidesParent = String(GUIDES_PARENT_ID);
-  const isGuide =
-    parentId === guidesParent || itemId === guidesParent;
+  const isGuide = parentId === guidesParent || itemId === guidesParent;
 
   const children = items.filter(
-    child =>
+    (child) =>
       child.menu_item_parent === item.object_id ||
-      endsWith(item.guid, "?p=" + child.menu_item_parent)
+      endsWith(item.guid, "?p=" + child.menu_item_parent),
   );
 
   // get route to the top of this item
   const crumbs = getBreadcrumbs({
     items: items,
-    leafId: item.object_id
+    leafId: item.object_id,
   });
 
   // get the item's top parent info
   const parent = getItemWithId({
     items: items,
-    id: Object.keys(crumbs)[0]
+    id: Object.keys(crumbs)[0],
   });
 
   // link treatment varies per template (eg: guides/news/pro/hubs...)
@@ -64,34 +59,29 @@ const NestedSidebarLinks = withRouter(({
   if (itemId === guidesParent) {
     linkObject = {
       as: "/guides",
-      href: "/guides"
+      href: "/guides",
     };
-
   } else if (isGuide) {
     linkObject = {
       as: "/guides/" + item.post_name,
-      href: "/guides/guide?guide=" + item.post_name
+      href: "/guides/guide?guide=" + item.post_name,
     };
-
   } else if (item.post_name === "hubs") {
     linkObject = {
       as: "/hubs",
-      href: "/pro/wp/hubs?section=" + item.post_name
+      href: "/pro/wp/hubs?section=" + item.post_name,
     };
-
   } else if (item.post_name === "ebooks") {
     linkObject = {
       as: "/ebooks",
-      href: "/pro/wp/ebooks?section=" + item.post_name
+      href: "/pro/wp/ebooks?section=" + item.post_name,
     };
-
-  } else if (SITE_ENV === "user") {
+  } else if (siteEnv === "user") {
     linkObject = {
       as: "/about/" + item.post_name,
-      href: "/about?section=" + item.post_name
+      href: "/about?section=" + item.post_name,
     };
-
-  } else if (SITE_ENV === "pro") {
+  } else if (siteEnv === "pro") {
     let slug = "/";
     // if this is a child item the url is /:topsection/:thisitem
     if (item.menu_item_parent !== "0") {
@@ -100,7 +90,7 @@ const NestedSidebarLinks = withRouter(({
 
     linkObject = {
       as: slug + item.post_name,
-      href: "/pro/wp?section=" + item.post_name
+      href: "/pro/wp?section=" + item.post_name,
     };
   }
 
@@ -121,39 +111,43 @@ const NestedSidebarLinks = withRouter(({
         isGuide={isGuide}
         isCurrentLink={isCurrentLink}
       />
-      {children.length && isOpen
-        ? <ul>
-            {children.map(child => {
-              return (
-                <li key={child.ID}>
-                  <NestedSidebarLinks
-                    activeItemId={activeItemId}
-                    item={child}
-                    breadcrumbs={breadcrumbs}
-                    items={items}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        : null}
+      {children.length && isOpen ? (
+        <ul>
+          {children.map((child) => {
+            return (
+              <li key={child.ID}>
+                <NestedSidebarLinks
+                  activeItemId={activeItemId}
+                  item={child}
+                  breadcrumbs={breadcrumbs}
+                  items={items}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <></>
+      )}
     </div>
   );
-});
+}
 
-const Sidebar = ({ className, activeItemId, items, router }) => {
+function Sidebar({ className, activeItemId, items }) {
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const router = useRouter();
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
   const menuItem = items.filter(
-    item =>
-      item.url.match(new RegExp(activeItemId + "$")) !== null ||
-      Number(item.object_id) === activeItemId
+    (item) =>
+      item.url.toString().endsWith(activeItemId) ||
+      Number(item.object_id) === activeItemId,
   )[0];
 
   let breadcrumbs = {};
 
-  // if not a news item (those dont show up in sidebar)
+  // if not a news item (those don't show up in sidebar)
   if (menuItem) {
     // find the menu tree
     let breadcrumb = {};
@@ -161,26 +155,25 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
     breadcrumbs = getBreadcrumbs({
       items: items,
       leafId: menuItem.object_id,
-      breadcrumbs: breadcrumb
+      breadcrumbs: breadcrumb,
     });
   }
 
   // about item
   const aboutItem = getItemWithName({
     items: items,
-    name: SITE_ENV === "pro" ? "about-dpla-pro" : "about-us"
+    name: siteEnv === "pro" ? "about-dpla-pro" : "about-us",
   });
-  const aboutId = aboutItem.url.substr(aboutItem.url.lastIndexOf("/"));
 
   // events item
   let eventsId = null;
   let eventsItem = null;
-  if (SITE_ENV === "pro") {
+  if (siteEnv === "pro") {
     eventsItem = getItemWithName({
       items: items,
-      name: "events"
+      name: "events",
     });
-    eventsId = eventsItem.url.substr(eventsItem.url.lastIndexOf("/"));
+    eventsId = eventsItem.url.substring(eventsItem.url.lastIndexOf("/"));
   }
 
   // exclude these items from main sidebar
@@ -190,7 +183,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
     "about-us",
     "events",
     "news",
-    "news-2"
+    "news-2",
   ];
 
   return (
@@ -199,11 +192,11 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
         <ul className={css.links}>
           {items
             .filter(
-              item =>
+              (item) =>
                 item.menu_item_parent === "0" &&
-                excludeNames.indexOf(item.post_name) === -1
+                excludeNames.indexOf(item.post_name) === -1,
             )
-            .map(item => {
+            .map((item) => {
               return (
                 <li key={item.ID}>
                   <NestedSidebarLinks
@@ -218,7 +211,7 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
         </ul>
         <div className={css.divider} />
         <ul>
-          <li>
+          <li key={"about"}>
             <NestedSidebarLinks
               activeItemId={activeItemId}
               item={aboutItem}
@@ -226,25 +219,27 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
               breadcrumbs={breadcrumbs}
             />
           </li>
-          {eventsId &&
-            <li>
+          {eventsId && (
+            <li key={"events"}>
               <NestedSidebarLinks
                 activeItemId={activeItemId}
                 item={eventsItem}
                 items={items}
                 breadcrumbs={breadcrumbs}
               />
-            </li>}
-          {SITE_ENV === "user" &&
-            <li>
+            </li>
+          )}
+          {siteEnv === "user" && (
+            <li key={"news"}>
               <SidebarLink
                 title="News"
                 section="news"
                 isCurrentLink={router.pathname.indexOf("/news") === 0}
                 linkObject={{ as: "/news", href: "/news" }}
               />
-            </li>}
-          <li>
+            </li>
+          )}
+          <li key={"contact-us"}>
             <SidebarLink
               title="Contact Us"
               section="contact-us"
@@ -256,6 +251,6 @@ const Sidebar = ({ className, activeItemId, items, router }) => {
       </div>
     </div>
   );
-};
+}
 
-export default withRouter(Sidebar);
+export default Sidebar;

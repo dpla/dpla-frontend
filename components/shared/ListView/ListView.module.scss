@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .listTools {
   align-items: baseline;
-  background-color: $colderBackgroundColor;
+  background-color: var(--colderBackgroundColor);
   display: flex;
   flex-direction: row;
   margin-bottom: 0.5rem;
@@ -23,13 +23,13 @@
 }
 
 .csvExplainer {
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 0.8rem;
   font-style: italic;
 }
 
 .preformatted {
-  font-family: $monoFont;
+  font-family: var(--monoFont), monospace;
   white-space: pre-wrap;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .listItem {
-  border-bottom: 0.075rem solid $lightBorderColor;
+  border-bottom: 0.075rem solid var(--lightBorderColor);
   display: flex;
   flex-wrap: wrap;
   padding: 15px 0;
@@ -67,8 +67,8 @@
       -33deg,
       white,
       white 10px,
-      $grayBorderColor 10px,
-      $grayBorderColor 20px
+      var(--grayBorderColor) 10px,
+      var(--grayBorderColor) 20px
     );
     opacity: 0.6;
   }
@@ -84,13 +84,13 @@
 
 .checkboxLabel {
   align-items: center;
-  color: $subLinkColor;
+  color: var(--subLinkColor);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
   justify-content: center;
-  max-height: auto;
+  max-height: max-content;
   max-width: 5rem;
   order: -1;
   padding: 0.5rem;
@@ -98,7 +98,7 @@
   transition: all 0.2s ease-out;
 
   &.disabled {
-    color: $dimmedTextColor;
+    color: var(--dimmedTextColor);
   }
 
   &.collapsed {
@@ -111,7 +111,7 @@
   }
 
   &.remove {
-    color: $linkColor;
+    color: var(--linkColor);
   }
 
   @media (max-width: $mediumRem) {
@@ -128,7 +128,7 @@
 
 .checkboxInput {
   appearance: none;
-  border: 0.125rem solid $subLinkColor;
+  border: 0.125rem solid var(--subLinkColor);
   border-radius: 0.25rem;
   cursor: pointer;
   height: 1.2rem;
@@ -142,16 +142,16 @@
   }
 
   &[disabled] {
-    border-color: $dimmedTextColor;
+    border-color: var(--dimmedTextColor);
   }
 
   &:checked {
-    background-color: $subLinkColor;
-    border-color: $subLinkColor;
+    background-color: var(--subLinkColor);
+    border-color: var(--subLinkColor);
     font-size: 1rem;
 
     &.remove {
-      background-color: $linkColor;
+      background-color: var(--linkColor);
     }
   }
 
@@ -170,7 +170,7 @@
   }
 
   &.remove {
-    border-color: $linkColor;
+    border-color: var(--linkColor);
   }
 }
 
@@ -180,7 +180,7 @@
 
   @media (min-width: $smallRem) {
     font-weight: normal;
-    color: $linkColor;
+    color: var(--linkColor);
     font-size: 1.125rem;
     margin-right: 0.5rem;
   }
@@ -192,7 +192,7 @@
 }
 
 .defaultImageWrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   padding-bottom: 0;
   padding-top: 0;
 
@@ -237,7 +237,7 @@
 
 .itemSource, .itemSource:visited {
   font-size: 0.875rem;
-  color: $outgoingLinkColor;
+  color: var(--outgoingLinkColor);
 
   &:hover {
     text-decoration: underline;
@@ -256,7 +256,7 @@
 .itemAuthorAndDate {
   margin-top: 0.25rem;
   display: block;
-  color: $dimmedTextColor;
+  color: var(--dimmedTextColor);
   font-size: 0.875rem;
 }
 

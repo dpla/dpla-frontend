@@ -3,32 +3,34 @@ import Link from "next/link";
 
 import css from "./NavArrows.module.scss";
 
-const chevron = "/static/images/chevron-thick-orange.svg";
+import Chevron from "components/svg/ChevronThickOrange";
 
-const NavArrows = ({ previousSubtopic, nextSubtopic, topic, route }) =>
-  nextSubtopic || previousSubtopic
-    ? <div className={css.navLinks}>
-        {previousSubtopic &&
-          <Link
-            as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
-            href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
-          >
-            <a className={css.prevLink}>
-              <img src={chevron} alt="" className={css.prevArrow} />
-              <span>Previous Section</span>
-            </a>
-          </Link>}
-        {nextSubtopic &&
-          <Link
-            as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
-            href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
-          >
-            <a>
-              <span>Next Section</span>
-              <img src={chevron} alt="" className={css.nextArrow} />
-            </a>
-          </Link>}
-      </div>
-    : null;
+function NavArrows({ previousSubtopic, nextSubtopic, topic, route }) {
+  return nextSubtopic || previousSubtopic ? (
+    <div className={css.navLinks}>
+      {previousSubtopic && (
+        <Link
+          as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
+          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
+          className={css.prevLink}
+        >
+          <Chevron className={css.prevArrow} />
+          <span>Previous Section</span>
+        </Link>
+      )}
+      {nextSubtopic && (
+        <Link
+          as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
+          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
+        >
+          <span>Next Section</span>
+          <Chevron className={css.nextArrow} />
+        </Link>
+      )}
+    </div>
+  ) : (
+    <></>
+  );
+}
 
 export default NavArrows;

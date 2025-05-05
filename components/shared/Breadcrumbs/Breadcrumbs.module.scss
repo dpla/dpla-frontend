@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .breadcrumbs {
   display: flex;
@@ -26,7 +26,7 @@
 
 .breadcrumbLink {
   display: block;
-  max-width: 13.125rem;
+  max-width: 17.125rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -44,9 +44,10 @@
   &:after {
     content: "";
     display: block;
-    background: url("/static/images/chevron-thick-orange.svg") no-repeat;
-    background-size: contain;
+    background-size: contain !important;
+    background-repeat: no-repeat;
     background-position: center;
+    background-image: url("/static/images/chevron-thick-orange.svg");
     height: 0.7rem;
     position: relative;
     top: 0;

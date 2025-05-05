@@ -1,5 +1,4 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
 import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
@@ -13,14 +12,14 @@ import {
   getItemWithId,
   getMenuItemUrl,
   decodeHTMLEntities,
-  wordpressLinks
+  wordpressLinks,
 } from "lib";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
-import {washObject} from "lib/washObject";
+import { washObject } from "lib/washObject";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -42,7 +41,7 @@ class ProMenuPage extends React.Component {
       breadcrumbs,
       pageTitle,
       pageDescription,
-      illustration
+      illustration,
     } = this.props;
     return (
       <MainLayout
@@ -50,12 +49,14 @@ class ProMenuPage extends React.Component {
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
-        {breadcrumbs.length > 0 &&
-          <BreadcrumbsModule breadcrumbs={breadcrumbs} />}
-        {breadcrumbs.length === 0 &&
-          !illustration &&
-          <FeatureHeader title={pageTitle} description={""} />}
-        <div className={`${utils.container}
+        {breadcrumbs.length > 0 && (
+          <BreadcrumbsModule breadcrumbs={breadcrumbs} />
+        )}
+        {breadcrumbs.length === 0 && !illustration && (
+          <FeatureHeader title={pageTitle} description={""} />
+        )}
+        <div
+          className={`${utils.container}
             ${contentCss.sidebarAndContentWrapper}`}
         >
           <div className={utils.row}>
@@ -68,7 +69,7 @@ class ProMenuPage extends React.Component {
             <div className={`${utils.colXs12} ${utils.colMd7}`}>
               <div id="main" role="main" className={contentCss.content}>
                 {/* fancy pages (with illustrations) get special heading */}
-                {illustration &&
+                {illustration && (
                   <div>
                     <img
                       src={illustration.url}
@@ -80,13 +81,14 @@ class ProMenuPage extends React.Component {
                       className={contentCss.title}
                       dangerouslySetInnerHTML={{ __html: page.title.rendered }}
                     />
-                  </div>}
-                {/* for non fancy pages, a normal heading */}
-                {!illustration &&
-                  breadcrumbs.length !== 0 &&
+                  </div>
+                )}
+                {/* for non-fancy pages, a normal heading */}
+                {!illustration && breadcrumbs.length !== 0 && (
                   <h1
                     dangerouslySetInnerHTML={{ __html: page.title.rendered }}
-                  />}
+                  />
+                )}
                 <div
                   dangerouslySetInnerHTML={{ __html: page.content.rendered }}
                 />
@@ -99,32 +101,48 @@ class ProMenuPage extends React.Component {
   }
 }
 
-export const getServerSideProps = async ({query}) => {
+export async function getServerSideProps({ query }) {
   const pageName = query.subsection || query.section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
+  if (!menuResponse.ok) {
+    if (menuResponse.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load menu.");
+  }
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
-  const pageItem = menuItems.find(item => item.post_name === pageName);
+  const pageItem = menuItems.find((item) => item.post_name === pageName);
   const pageRes = await fetch(getMenuItemUrl(pageItem));
+  if (!pageRes.ok) {
+    if (pageRes.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+    throw new Error("Couldn't load page.");
+  }
   const pageJson = await pageRes.json();
 
   // for the breadcrumbs
   const breadcrumbObject = getBreadcrumbs({
     items: menuItems,
-    leafId: pageItem.object_id
+    leafId: pageItem.object_id,
   });
 
   let breadcrumbs = [];
 
   if (JSON.stringify(breadcrumbObject) !== "{}") {
-    Object.values(breadcrumbObject).map(crumb => {
+    Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
       let url = "/pro/wp?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
       if (crumb.menu_item_parent !== "0") {
         const parent = getItemWithId({
           items: menuItems,
-          id: crumb.menu_item_parent
+          id: crumb.menu_item_parent,
         });
         slug = slug + parent.post_name + "/";
       }
@@ -135,16 +153,16 @@ export const getServerSideProps = async ({query}) => {
       breadcrumbs.push({
         title: crumb.title,
         url: url,
-        as: slug + crumb.post_name
+        as: slug + crumb.post_name,
       });
     });
     breadcrumbs.push({ title: pageItem.title });
   }
 
   let pageDescription = "";
-  if (pageJson.excerpt && pageJson.excerpt.rendered) {
+  if (pageJson?.excerpt?.rendered) {
     pageDescription = decodeHTMLEntities(
-      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…"))
+      striptags(pageJson.excerpt.rendered.replace("[&hellip;]", "…")),
     );
   }
 
@@ -154,12 +172,12 @@ export const getServerSideProps = async ({query}) => {
     pageTitle: pageItem.title,
     pageDescription: pageDescription,
     breadcrumbs: breadcrumbs,
-    illustration: pageJson.acf.illustration
+    illustration: pageJson.acf.illustration,
   });
 
   return {
-    props: props
+    props: props,
   };
-};
+}
 
 export default ProMenuPage;

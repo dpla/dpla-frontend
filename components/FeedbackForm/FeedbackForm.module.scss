@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .feedbackModal {
   display: none;
@@ -20,7 +20,7 @@
 }
 
 .feedbackForm {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   padding: 1rem;
   position: fixed;
   top: 50%;
@@ -85,7 +85,7 @@
   }
 
   & input[type="radio"]:focus + label {
-    outline: 0.25rem solid $outlineColor;
+    outline: 0.25rem solid var(--outlineColor);
   }
 
   & label:before {
@@ -99,21 +99,21 @@
     margin-top: -0.5rem;
     width: 1rem;
     height: 1rem;
-    background-color: $radioButtonColor;
+    background-color: var(--radioButtonColor);
     border: 0.2rem solid white;
   }
 
   & input[type="radio"]:checked + label:before {
-    background-color: $linkColor;
+    background-color: var(--linkColor);
   }
 
   & input[type="radio"]:checked + label {
-    background-color: $radioButtonColor;
+    background-color: var(--radioButtonColor);
   }
 
   & input[type="email"], & input[type="text"] {
     width: 100%;
-    border: 0.075rem solid $formLabelColor;
+    border: 0.075rem solid var(--formLabelColor);
     padding: 0.5rem;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
@@ -123,7 +123,7 @@
     resize: none;
     width: 100%;
     height: 5rem;
-    border: 0.075rem solid $formLabelColor;
+    border: 0.075rem solid var(--formLabelColor);
     padding: 0.5rem;
     border-radius: 0.25rem;
   }

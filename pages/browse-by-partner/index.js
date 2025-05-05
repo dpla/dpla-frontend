@@ -4,86 +4,83 @@ import MainLayout from "components/MainLayout";
 import FeatureHeader from "shared/FeatureHeader";
 import PartnerBrowseContent from "components/PartnerBrowseComponents";
 
-import {TITLE, DESCRIPTION} from "constants/browse-by-partner";
-import {LOCALS} from "constants/local";
-import {SITE_ENV, LOCAL_ID} from "constants/env";
+import { DESCRIPTION, TITLE } from "constants/browse-by-partner";
+import { LOCALS } from "constants/local";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
-import {washObject} from "lib/washObject";
-import axios from "axios";
+import { washObject } from "lib/washObject";
 
-const PartnerBrowse = ({partners}) =>
+function PartnerBrowse({ partners }) {
+  return (
     <div>
-        <MainLayout pageTitle={TITLE}>
-            <div id="main" role="main">
-                <FeatureHeader
-                    titleClassName={css.featureTitle}
-                    title={TITLE}
-                    description={DESCRIPTION}
-                />
-                <PartnerBrowseContent partners={partners}/>
-            </div>
-        </MainLayout>
-    </div>;
-
+      <MainLayout pageTitle={TITLE}>
+        <div id="main" role="main">
+          <FeatureHeader
+            titleClassName={css.featureTitle}
+            title={TITLE}
+            description={DESCRIPTION}
+          />
+          <PartnerBrowseContent partners={partners} />
+        </div>
+      </MainLayout>
+    </div>
+  );
+}
 
 export const getServerSideProps = async () => {
-    let apiQuery;
-    let facetName;
-    let linkParam = "";
+  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+  const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
-    const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
+  let apiQuery;
+  let facetName;
+  let linkParam = "";
 
-    if (SITE_ENV === "local") {
+  const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
 
-        const local = LOCALS[LOCAL_ID];
+  if (siteEnv === "local") {
+    const local = LOCALS[localId];
 
-        const filtersParam = local.filters
-            ? local
-                .filters
-                .map(x => `&filter=${x}`)
-                .join("")
-            : [];
+    const filtersParam = local.filters
+      ? local.filters.map((x) => `&filter=${x}`).join("")
+      : [];
 
-        const tagsParam = local.tags
-            ? local
-                .tags
-                .map(x => `&tags=${x}`)
-                .join("")
-            : [];
+    const tagsParam = local.tags
+      ? local.tags.map((x) => `&tags=${x}`).join("")
+      : [];
 
+    apiQuery = `${apiUrlBase}&facets=dataProvider${filtersParam}${tagsParam}`;
+    facetName = "dataProvider";
+    linkParam = "provider";
+  } else {
+    apiQuery = `${apiUrlBase}&facets=provider.name`;
+    facetName = "provider.name";
+    linkParam = "partner";
+  }
 
-        apiQuery = `${apiUrlBase}&facets=dataProvider${filtersParam}${tagsParam}`;
-        facetName = "dataProvider";
-        linkParam = "provider";
-
-    } else {
-        apiQuery = `${apiUrlBase}&facets=provider.name`;
-        facetName = "provider.name";
-        linkParam = "partner";
+  const res = await fetch(apiQuery);
+  if (!res.ok) {
+    if (res.status === 404) {
+      return {
+        notFound: true,
+      };
     }
+    throw new Error(`Response status: ${res.status}`);
+  }
+  const json = await res.json();
 
-    const res = await axios.get(apiQuery);
-    const json = res.data;
+  const partners = washObject(
+    json.facets[facetName].terms.map((partner) => ({
+      name: partner.term,
+      facet: linkParam,
+      itemCount: partner.count,
+    })),
+  );
 
-    const partners = washObject(
-        json
-            .facets[facetName]
-            .terms.map(partner => (
-                {
-                    name: partner.term,
-                    facet: linkParam,
-                    itemCount: partner.count
-                }
-            )
-        )
-    );
-
-    return {
-        props: {
-            partners
-        }
-    };
+  return {
+    props: {
+      partners,
+    },
+  };
 };
 
 export default PartnerBrowse;

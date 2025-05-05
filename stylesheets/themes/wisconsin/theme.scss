@@ -1,0 +1,35 @@
+@import "stylesheets/colors";
+
+:root.wisconsin {
+  --theme-main-color: #515151;
+  --theme-dark-color: #1f1f1f;
+  --theme-link-color: #be5709;
+  --theme-background-color: #fff;
+  --theme-colder-tint: rgb(245, 245, 245);
+  --theme-warmer-tint: white;
+
+  --linkHoverColor: rgb(238.6934673367, 109.2964824121, 11.3065326633) !important;
+  --visitedLinkColor: rgb(141.3065326633, 64.7035175879, 6.6934673367) !important;
+  --mobileNavColor: #383838 !important;
+  --mobileNavMenuButtonOpen: rgb(43.75, 43.75, 43.75) !important;
+  --darkSecondaryButtonColor: #383838 !important;
+  --warmerBackgroundColor: white !important;
+  --colderBackgroundColor: rgb(252.5, 252.5, 252.5) !important;
+  --subLinkColorHover: rgb(141.3065326633, 64.7035175879, 6.6934673367) !important;
+  --linkColor: var(--theme-link-color) !important;
+  --paginationLinkColor: var(--linkColor) !important;
+  --headingColor: var(--theme-dark-color) !important;
+  --navColor: var(--theme-dark-color) !important;
+  --userSiteColor: var(--theme-main-color) !important;
+  --secondaryButtonColor: var(--linkColor) !important;
+  --secondaryColor: var(--secondaryButtonColor) !important;
+  --primaryBulletColor: var(--secondaryButtonColor) !important;
+  --secondaryBulletColor: var(--linkColor) !important;
+  --darkBorderColor: var(--theme-main-color) !important;
+  --subLinkColor: var(--linkColor) !important;
+  --donateFormButtonColor: var(--theme-dark-color) !important;
+  --formLabelColor: var(--theme-dark-color) !important;
+  --errorColor: var(--linkColor) !important;
+  --footerLightColor: var(--theme-main-color) !important;
+  --footerDarkColor: var(--mobileNavColor) !important;
+}

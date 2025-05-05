@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   background-color: white;
@@ -18,7 +18,7 @@
 .header {
   text-align: center;
   font-size: 3rem;
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: normal;
 
   @media (min-width: $smallRem) {
@@ -27,9 +27,9 @@
 }
 
 .topicDescription {
-  border-top: 0.2rem solid $lightLinkColor;
-  color: $dimmedTextColor;
-  font-family: $serifFont;
+  border-top: 0.2rem solid var(--lightLinkColor); //here
+  color: var(--dimmedTextColor);
+  font-family: var(--serifFont), serif;
   font-size: 1.25rem;
   margin-top: 1rem;
   padding-top: 1rem;
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   color: rgba(0, 0, 0, 0.75);
   overflow: hidden;
 
@@ -72,15 +72,15 @@
 }
 
 .textWrapper {
-  border-top: 0.25rem solid $lightLinkColor;
+  border-top: 0.25rem solid var(--lightLinkColor);
   padding-top: 1rem;
   z-index: 1;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }
 
 .subtopicTitle {
-  color: $dimmedTextColor;
-  font-family: $serifFont;
+  color: var(--dimmedTextColor);
+  font-family: var(--serifFont), serif;
   font-size: 1.75rem;
   font-weight: normal;
   line-height: 1.2;

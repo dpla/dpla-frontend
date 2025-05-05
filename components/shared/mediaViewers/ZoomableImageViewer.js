@@ -5,25 +5,39 @@ import css from "./mediaViewers.module.scss";
 
 const viewerId = "openseadragon1";
 
-// TODO: maybe move this into a shared directory
-//  idea from https://github.com/facebook/react/issues/1252
-const Noscript = ({ children }) => {
+function Noscript({ children }) {
   const staticMarkup = ReactDOM.renderToStaticMarkup(children);
   return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
-};
-
-const initOpenSeaDragon = url => {
-  const OpenSeaDragon = require("openseadragon");
-  return OpenSeaDragon({
-    id: viewerId,
-    tileSources: { type: "image", url },
-    prefixUrl: "/static/images/openseadragon/"
-  });
-};
+}
 
 export default class ZoomableImageViewer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.viewer = null;
+    this.loading = false;
+  }
+
   componentDidMount() {
-    this.viewer = initOpenSeaDragon(this.props.pathToFile);
+    if (!this.viewer && !this.loading) {
+      this.loading = true;
+      try {
+        const OpenSeaDragon = require("openseadragon");
+        const url = this.props.pathToFile;
+        this.viewer = new OpenSeaDragon({
+          id: viewerId,
+          tileSources: {type: "image", url},
+          prefixUrl: "/static/images/openseadragon/",
+        });
+      } finally {
+        this.loading = false;
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.viewer = null;
+    document.getElementById(viewerId).innerHTML = "";
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

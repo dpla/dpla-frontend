@@ -1,0 +1,43 @@
+@import "stylesheets/colors";
+
+:root.texas {
+  --txGreen: #b7e98a;
+  --txDkGrey: #454545;
+  --txLightGrey: #e4e4e4;
+  --txWhite: #f7f7f7;
+  --txBlueGreen: #108fad;
+  --txLink: #237291;
+
+  --theme-dark-color: rgb(30.75, 30.75, 30.75);
+  --theme-link-color: var(--txLink);
+  --theme-main-color: #454545;
+  --theme-background-color: var(--txWhite);
+  --theme-colder-tint: var(--txWhite);
+  --theme-warmer-tint: var(--txWhite);
+
+  --heroBackgroundColor: rgb(145.5, 145.5, 145.5) !important;
+  --linkHoverColor: rgb(44.9166666667, 146.3, 186.0833333333) !important;
+  --visitedLinkColor: rgb(25.0833333333, 81.7, 103.9166666667) !important;
+  --mobileNavColor: rgb(49.875, 49.875, 49.875) !important;
+  --mobileNavMenuButtonOpen: rgb(43.5, 43.5, 43.5) !important;
+  --darkSecondaryButtonColor: rgb(49.875, 49.875, 49.875) !important;
+  --warmerBackgroundColor: #f7f7f7 !important;
+  --colderBackgroundColor: #f7f7f7 !important;
+  --subLinkColorHover: rgb(25.0833333333, 81.7, 103.9166666667) !important;
+  --footerDarkColor: rgb(58.8, 58.8, 58.8) !important;
+  --linkColor: var(--theme-link-color) !important;
+  --paginationLinkColor: var(--linkColor) !important;
+  --headingColor: var(--theme-dark-color) !important;
+  --navColor: var(--theme-dark-color) !important;
+  --userSiteColor: var(--theme-main-color) !important;
+  --secondaryButtonColor: var(--linkColor) !important;
+  --secondaryColor: var(--secondaryButtonColor) !important;
+  --primaryBulletColor: var(--secondaryButtonColor) !important;
+  --secondaryBulletColor: var(--linkColor) !important;
+  --darkBorderColor: var(--theme-main-color) !important;
+  --subLinkColor: var(--linkColor) !important;
+  --donateFormButtonColor: var(--theme-dark-color) !important;
+  --formLabelColor: var(--theme-dark-color) !important;
+  --errorColor: var(--linkColor) !important;
+  --footerLightColor: var(--theme-main-color) !important;
+}

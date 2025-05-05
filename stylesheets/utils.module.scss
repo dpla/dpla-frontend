@@ -1,6 +1,6 @@
-@import "stylesheets/variables.module";
-
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
+
+@import "stylesheets/breakpoints.module";
 
 $gutterWidth: 1rem;
 $outerPadding: 1rem;
@@ -20,7 +20,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 }
 
 .link {
-  color: $linkColor;
+  color: var(--linkColor);
   text-decoration: none;
 
   &:hover {
@@ -41,7 +41,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .smallScreenOverlay {
   overflow: hidden;
 
-  @media ($md-viewport) {
+  @media (min-width: $mediumRem) {
     overflow: visible;
   }
 }
@@ -53,7 +53,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 }
 
 .modalForm {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 }
 
 .modalTextInput {
-  border: 0.075rem solid $formLabelColor;
+  border: 0.075rem solid var(--formLabelColor);
   border-radius: 0.25rem;
   font-size: 1.25rem;
   margin-right: 0.5rem;
@@ -106,7 +106,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
   margin-right: auto;
   max-width: $siteMaxWidth;
 
-  @media ($lg-viewport) {
+  @media (min-width: $largeRem) {
     padding-left: 0;
     padding-right: 0;
   }
@@ -118,7 +118,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 
 .breadcrumbsWrapper {
   width: 100%;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   padding: 0.5rem 0;
   box-shadow: inset 0 -0.075rem 0.075rem 0 rgba(0, 0, 0, 0.03);
 
@@ -378,7 +378,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colSmOffset11,
 .colSmOffset12 {}
 
-@media ($sm-viewport) {
+@media (min-width: $smallRem) {
   .colSm,
   .colSm1,
   .colSm2,
@@ -596,7 +596,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colMdOffset11,
 .colMdOffset12 {}
 
-@media ($md-viewport) {
+@media (min-width: $mediumRem) {
   .colMd,
   .colMd1,
   .colMd2,
@@ -814,7 +814,7 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colLgOffset11,
 .colLgOffset12 { }
 
-@media ($lg-viewport) {
+@media (min-width: $largeRem) {
   .colLg,
   .colLg1,
   .colLg2,

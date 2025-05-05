@@ -1,21 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { withRouter } from "next/router";
+import {useRouter} from "next/router";
 
-import Chevron from "public/static/images/chevron-thick.svg";
+import ChevronThick from "components/svg/ChevronThick";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
 import css from "./Pagination.module.scss";
 
 /**
-  * @param current, current page number
-  * @param pageCount, total pages
-  * @return array sorted with page numbers to show
-  */
-const centerWindow = (current, pageCount) => {
+ * @param current current page number
+ * @param pageCount total pages
+ * @return array sorted with page numbers to show
+ */
+function centerWindow(current, pageCount) {
   const windowSize = 2;
-  let windowArray = [];
+  const windowArray = [];
   for (let i = 1; i <= windowSize; i++) {
     if (current + i < pageCount) {
       windowArray.push(current + i);
@@ -27,88 +27,121 @@ const centerWindow = (current, pageCount) => {
   }
   windowArray.push(current);
   return windowArray.sort((a, b) => a - b);
-};
+}
 
-const PageLink = withRouter(({ router, page, className }) =>
-  <Link
-    href={{
-      pathname: router.pathname,
-      query: Object.assign({}, router.query, {
-        page: page
-      })
-    }}
-  >
-    <a className={className}>{addCommasToNumber(page)}</a>
-  </Link>);
+function PageLink({ page, className }) {
+  const router = useRouter();
+  return (
+    <Link
+      key={"page " + page}
+      href={{
+        pathname: router.pathname,
+        query: { ...router.query, page: page },
+      }}
+      className={className}
+    >
+      {addCommasToNumber(page)}
+    </Link>
+  );
+}
 
-const NextOrPrevButton = withRouter(({ router, currentPage, disabled, type = "next" }) =>
-  disabled
-    ? <button
+function NextOrPrevButton({ currentPage, disabled, type = "next" }) {
+  const router = useRouter();
+  if (disabled) {
+    return (
+      <button
         disabled
-        className={`${type === "next"
-          ? css.nextButton
-          : css.previousButton} ${css.hideOnLargeScreens}`}
+        className={`${
+          type === "next" ? css.nextButton : css.previousButton
+        } ${css.hideOnLargeScreens}`}
       >
-        {type === "prev" && <Chevron className={css.prevChevron} />}
+        {type === "prev" && <ChevronThick className={css.prevChevron} />}
         {type === "next" ? "Next" : "Previous"}
-        {type === "next" && <Chevron className={css.nextChevron} />}
+        {type === "next" && <ChevronThick className={css.nextChevron} />}
       </button>
-    : <Link
+    );
+  } else {
+    return (
+      <Link
         href={{
           pathname: router.pathname,
-          query: Object.assign({}, router.query, {
-            page: type === "next"
-              ? parseInt(currentPage, 10) + 1
-              : parseInt(currentPage, 10) - 1
-          })
+          query: {
+            ...router.query,
+            page:
+              type === "next"
+                ? parseInt(currentPage, 10) + 1
+                : parseInt(currentPage, 10) - 1,
+          },
         }}
+        className={type === "next" ? css.nextButton : css.previousButton}
       >
-        <a className={type === "next" ? css.nextButton : css.previousButton}>
-          {type === "prev" && <Chevron className={css.prevChevron} />}
-          {type === "next" ? "Next" : "Previous"}
-          {type === "next" && <Chevron className={css.nextChevron} />}
-        </a>
-      </Link>);
+        {type === "prev" && <ChevronThick className={css.prevChevron} />}
+        {type === "next" ? "Next" : "Previous"}
+        {type === "next" && <ChevronThick className={css.nextChevron} />}
+      </Link>
+    );
+  }
+}
 
-const Pagination = ({ pageCount, currentPage }) =>
-  <div className={css.pagination}>
-    <NextOrPrevButton
-      disabled={!(currentPage > 1 && pageCount > 1)}
-      type="prev"
-      currentPage={currentPage}
-    />
-    {pageCount > 1 &&
-      <PageLink
-        className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
-        page={1}
-      />}
-    {currentPage >= 5 &&
-      pageCount > 5 &&
-      <span className={css.ellipses}>...</span>}
-    {centerWindow(currentPage, pageCount).map(
-      page =>
-        page > 1 && page < pageCount
-          ? <PageLink
+export default function Pagination({ pageCount, currentPage }) {
+  const router = useRouter();
+  return (
+    <div className={css.pagination}>
+      <NextOrPrevButton
+        disabled={!(currentPage > 1 && pageCount > 1)}
+        type="prev"
+        currentPage={currentPage}
+        router={router}
+        key={"prev"}
+      />
+
+      {pageCount > 1 && (
+        <PageLink
+          key={1}
+          className={`${css.link} ${parseInt(currentPage, 10) === 1 ? css.activeLink : ""}`}
+          page={1}
+          router={router}
+        />
+      )}
+
+      {currentPage >= 5 && pageCount > 5 && (
+        <span className={css.ellipses}>...</span>
+      )}
+
+      {centerWindow(currentPage, pageCount)
+        .map((page) =>
+          page > 1 && page < pageCount ? (
+            <PageLink
               key={page}
               className={`${css.link} ${page === parseInt(currentPage, 10) ? css.activeLink : ""}`}
               page={page}
+              router={router}
             />
-          : null
-    )}
+          ) : null,
+        )
+        .filter((x) => x !== null)}
 
-    {currentPage <= pageCount - 4 &&
-      pageCount > 5 &&
-      <span className={css.ellipses}>...</span>}
-    {pageCount > 1 &&
-      <PageLink
-        className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
-        page={pageCount}
-      />}
-    <NextOrPrevButton
-      disabled={!(currentPage < pageCount && pageCount > 1)}
-      currentPage={currentPage}
-      type="next"
-    />
-  </div>;
+      {currentPage <= pageCount - 4 && pageCount > 5 && (
+        <span key="ellipses" className={css.ellipses}>
+          ...
+        </span>
+      )}
 
-export default Pagination;
+      {pageCount > 1 && (
+        <PageLink
+          className={`${css.link} ${pageCount === parseInt(currentPage, 10) ? css.activeLink : ""}`}
+          page={pageCount}
+          key={pageCount}
+        />
+      )}
+
+      <NextOrPrevButton
+        disabled={!(currentPage < pageCount && pageCount > 1)}
+        currentPage={currentPage}
+        type="next"
+        key={"next"}
+      />
+    </div>
+  );
+}
+

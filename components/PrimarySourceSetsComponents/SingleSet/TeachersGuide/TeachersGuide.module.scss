@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   width: 100%;
@@ -63,7 +63,7 @@
 }
 
 .toolLink {
-  color: $subLinkColor;
+  color: var(--subLinkColor);
   font-size: 1rem;
   line-height: 1.25;
   font-weight: 600;
@@ -102,7 +102,7 @@
   font-size: 0.875rem;
   margin-top: 50px;
   border: 2px solid rgba(0, 0, 0, 0.04);
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   padding: 18px 20px 20px;
   margin-bottom: 1rem;
 }
@@ -114,7 +114,7 @@
 }
 
 .aboutThisHeader {
-  font-family: $serifFont;
+  font-family: var(--serifFont), serif;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

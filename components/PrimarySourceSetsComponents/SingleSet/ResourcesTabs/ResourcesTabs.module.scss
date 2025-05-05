@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   width: 100%;
@@ -10,17 +10,14 @@
 }
 
 .tabsWrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   width: 100%;
   border-bottom: 1px solid rgba(53, 53, 53, 0.1);
   margin-bottom: 1rem;
 }
 
 .tabs {
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -67,8 +64,8 @@
 }
 
 .activeTab a, .activeTab a:hover {
-  color: $linkColor;
-  border-bottom: 0.2rem solid $linkColor;
+  color: var(--linkColor);
+  border-bottom: 0.2rem solid var(--linkColor);
 }
 
 .tab:last-child {

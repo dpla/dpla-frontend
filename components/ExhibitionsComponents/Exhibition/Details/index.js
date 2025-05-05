@@ -7,7 +7,7 @@ import CiteButton from "shared/CiteButton";
 import { getFullPath, joinIfArray, parseDplaItemRecord, gtag } from "lib";
 
 import css from "./Details.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
 class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event
@@ -27,7 +27,7 @@ class Details extends React.Component {
         itemId: this.props.dplaItemId,
         title: joinIfArray(dplaItem.title, ", "),
         partner: joinIfArray(dplaItem.partner, ", "),
-        contributor: joinIfArray(dplaItem.dataProvider, ", ")
+        contributor: joinIfArray(dplaItem.dataProvider, ", "),
       };
 
       gtag.event(gaEvent);
@@ -36,34 +36,24 @@ class Details extends React.Component {
   }
 
   render() {
-    const {
-      slug,
-      sections,
-      description,
-      title,
-      text,
-      credits
-    } = this.props;
+    const { slug, sections, description, title, text, credits } = this.props;
     return (
       <div className={css.wrapper}>
         <div className={`${utils.container} ${css.details}`}>
           <div className={css.tableOfContents}>
-            <h2 className={css.tableOfContentsHeader}>
-              In This Exhibition
-            </h2>
+            <h2 className={css.tableOfContentsHeader}>In This Exhibition</h2>
             <div className={css.tableOfContentsContents}>
               <ul className={css.tableOfContentsSections}>
-                {sections.map((section, idx) =>
-                  <li key={idx} className={css.tableOfContentsSection}>
+                {sections.map((section) => (
+                  <li key={section.slug} className={css.tableOfContentsSection}>
                     <Link
                       href={`/exhibitions/${slug}/${section.slug}`}
+                      className="hover-underline"
                     >
-                      <a className="hover-underline">
-                        {section.title}
-                      </a>
+                      {section.title}
                     </Link>
                   </li>
-                )}
+                ))}
               </ul>
             </div>
             <div className={css.faveAndCiteButtonsWrapper}>

@@ -1,0 +1,37 @@
+@import "stylesheets/colors";
+
+:root.nwdh {
+  --theme-link-color: #bc6128;
+  --theme-background-color: #efefef;
+  --theme-dark-color: rgb(15.5842105263, 8.0407894737, 3.3157894737);
+  --theme-main-color: rgb(0, 72.4, 39.3631067961);
+  --theme-warmer-tint: rgb(255, 255, 244.8);
+  --theme-colder-tint: rgb(232.453125, 251.546875, 232.453125);
+  --heroBackgroundColor: rgb(32.4052631579, 16.7197368421, 6.8947368421) !important;
+
+  --linkHoverColor: rgb(214.4736842105, 122.2763157895, 64.5263157895) !important;
+  --visitedLinkColor: rgb(145.9473684211, 75.3026315789, 31.0526315789) !important;
+  --mobileNavColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
+  --mobileNavMenuButtonOpen: rgb(36.6105263158, 18.8894736842, 7.7894736842) !important;
+  --darkSecondaryButtonColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
+  --warmerBackgroundColor: rgb(247, 247, 241.9) !important;
+  --colderBackgroundColor: rgb(237.36328125, 242.13671875, 237.36328125) !important;
+  --subLinkHoverColor: rgb(145.9473684211, 75.3026315789, 31.0526315789) !important;
+  --footerDarkColor: rgb(0, 52, 28.2718446602) !important;
+  --linkColor: var(--theme-link-color) !important;
+  --paginationLinkColor: var(--linkColor) !important;
+  --headingColor: var(--theme-dark-color) !important;
+  --navColor: var(--theme-dark-color) !important;
+  --userSiteColor: var(--theme-main-color) !important;
+  --secondaryButtonColor: var(--linkColor) !important;
+  --secondaryColor: var(--secondaryButtonColor) !important;
+  --primaryBulletColor: var(--secondaryButtonColor) !important;
+  --secondaryBulletColor: var(--linkColor) !important;
+  --darkBorderColor: var(--theme-main-color) !important;
+  --subLinkColor: var(--linkColor) !important;
+  --subLinkColorHover: hsl(from var(--linkColor) h s calc(l * .9)) !important; //darken($linkColor, 10%);
+  --donateFormButtonColor: var(--theme-dark-color) !important;
+  --formLabelColor: var(--theme-dark-color) !important;
+  --errorColor: var(--linkColor) !important;
+  --footerLightColor: var(--theme-main-color) !important;
+}

@@ -1,16 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-const FacetLink = ({ facet, value, facetLabel }) =>
-  <Link
-    href={{ pathname: "/search", query: { [facet]: `"${value}"` } }}
-  >
-    <a
-      className="link"
+function FacetLink({ facet, value, facetLabel }) {
+  return (
+    <Link
+      href={{ pathname: "/search", query: { [facet]: `"${value}"` } }}
       title={`Find more items with ${facetLabel || facet} "${value}"`}
+      className="link"
     >
       {value}
-    </a>
-  </Link>;
+    </Link>
+  );
+}
 
 export default FacetLink;

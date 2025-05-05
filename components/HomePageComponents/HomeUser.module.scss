@@ -1,5 +1,3 @@
-@import "stylesheets/variables.module";
-
 .wrapper {
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
 }

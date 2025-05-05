@@ -4,11 +4,11 @@ Northwest Digital Heritage brings together unique historical collections from ov
 
 Content for this portal is provided by [Northwest institutions](/browse-by-partner) in coordination with the [Oregon Heritage Commission](https://www.oregon.gov/oprd/oh/pages/default.aspx), [State Library of Oregon](https://www.oregon.gov/library/Pages/default.aspx), [Washington State Library](https://www.sos.wa.gov/library/), [Orbis Cascade Alliance](https://www.orbiscascade.org/), [University of Washington Libraries](https://www.lib.washington.edu), and [Oregon Digital](https://oregondigital.org/catalog?).
 
-<br>
+<br/>
 
 ### Highlights include:
 
-<br>
+<br/>
 
 - ### [Vanport Flood](/search?q=vanport+flood)
 

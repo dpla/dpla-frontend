@@ -1,4 +1,4 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .zoomableImageViewer {
   width: 100%;
@@ -16,7 +16,7 @@
   }
 
   &:focus, & canvas:focus, & div:focus {
-    outline: 0.25rem solid $outlineColor;
+    outline: 0.25rem solid var(--outlineColor);
   }
 }
 
@@ -36,7 +36,7 @@
 .audioPlayerWrapper {
   width: 100%;
   padding: 2rem;
-  background-color: $warmerBackgroundColor;
+  background-color: var(--warmerBackgroundColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,9 +58,13 @@
 }
 
 .pdfViewer {
-  border: 0.1rem solid $lightBorderColor;
+  border: 0.1rem solid var(--lightBorderColor);
   position: relative;
   width: 100%;
+
+  iframe {
+    border: none;
+  }
 
   .pdfDocument {
     align-items: center;
@@ -71,7 +75,7 @@
   }
 
   .pdfPagination {
-    background-color: $darkerBackgroundColor;
+    background-color: var(--darkerBackgroundColor);
     bottom: 0;
     font-size: 1rem;
     left: 0;

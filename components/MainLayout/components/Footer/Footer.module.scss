@@ -1,8 +1,8 @@
-@import "stylesheets/variables.module";
+@import "stylesheets/breakpoints.module";
 
 .wrapper {
   color: white;
-  background-color: $footerLightColor;
+  background-color: var(--footerLightColor);
   position: relative;
 
   @media print {
@@ -13,7 +13,7 @@
 .footer {
   padding: 2rem 1rem;
   line-height: 1.5;
-  color: $gray75;
+  color: var(--gray75);
   margin: 0 auto;
 
   @media (min-width: $mediumRem) {
@@ -80,7 +80,7 @@
 }
 
 .smallFooterWrapper {
-  background-color: $footerDarkColor;
+  background-color: var(--footerDarkColor);
 }
 
 .smallFooter {

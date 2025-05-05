@@ -1,4 +1,3 @@
-const proxy = require("express-http-proxy");
 const serverFunctions = require("./lib/serverFunctions");
 const SECTIONS = require("./constants/pro").SECTIONS;
 
@@ -25,15 +24,15 @@ module.exports = (app, server) => {
 
   // allow relative /news links in pro site
   server.get(["/news/*", "/news"], (req, res) => {
-    var contentStart = req.url.indexOf("/news");
-    var newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
+    const contentStart = req.url.indexOf("/news");
+    const newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
     res.redirect(newPath);
   });
 
   // allow relative /search links in pro site
   server.get("/search", (req, res) => {
-    var contentStart = req.url.indexOf("/search");
-    var newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
+    const contentStart = req.url.indexOf("/search");
+    const newPath = process.env.USER_BASE_URL + req.url.substr(contentStart);
     res.redirect(newPath);
   });
 
