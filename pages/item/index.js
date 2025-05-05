@@ -17,11 +17,11 @@ import {
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import {washObject} from "lib/washObject";
-import {DPLA_ITEM_ID_REGEX} from "constants/items";
+import { washObject } from "lib/washObject";
+import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 function ItemDetail(props) {
-  const {item, randomItemId, isQA} = props;
+  const { item, randomItemId, isQA } = props;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
       <BreadcrumbsModule
@@ -48,14 +48,14 @@ function ItemDetail(props) {
           },
         ]}
       />
-      <HarmfulContent/>
-      {isQA && <QA item={item} randomItemId={randomItemId}/>}
-      <div
+      <HarmfulContent />
+      {isQA && <QA item={item} randomItemId={randomItemId} />}
+      <main
         id="main"
         role="main"
         className={`${utils.container} ${css.contentWrapper}`}
       >
-        <Content item={item}/>
+        <Content item={item} />
         <div className={css.faveAndCiteButtons}>
           <CiteButton
             creator={item.creator}
@@ -66,13 +66,12 @@ function ItemDetail(props) {
             toCiteText="item"
             title={item.title}
           />
-          <CheckableLists itemId={item.id}/>
+          <CheckableLists itemId={item.id} />
         </div>
-      </div>
+      </main>
     </MainLayout>
   );
 }
-
 
 export async function getServerSideProps(context) {
   const notFound = {
@@ -88,7 +87,7 @@ export async function getServerSideProps(context) {
     return notFound;
   }
 
-  const itemUrl = new URL(process.env.API_URL)
+  const itemUrl = new URL(process.env.API_URL);
   itemUrl.pathname += "/items/";
   itemUrl.pathname += query.itemId;
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
@@ -115,14 +114,13 @@ export async function getServerSideProps(context) {
   const language =
     doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
       ? doc.sourceResource.language.map((lang) => {
-        return lang.name;
-      })
+          return lang.name;
+        })
       : doc.sourceResource.language;
-  const dataProvider =
-    doc.dataProvider && doc.dataProvider.name
-      ? doc.dataProvider.name
-      : doc.dataProvider;
-  const strippedDoc = {...doc, originalRecord: ""};
+  const dataProvider = doc.dataProvider?.name
+    ? doc.dataProvider.name
+    : doc.dataProvider;
+  const strippedDoc = { ...doc, originalRecord: "" };
   delete strippedDoc.originalRecord;
 
   const props = washObject({
@@ -141,10 +139,10 @@ export async function getServerSideProps(context) {
       edmRights: doc.rights,
       doc: strippedDoc,
       originalRecord: doc.originalRecord,
-      ipfs: doc.ipfs
+      filecoin: doc.filecoin,
     },
     randomItemId,
-    isQA
+    isQA,
   });
 
   return {

@@ -97,18 +97,19 @@ class MainMetadata extends React.Component {
                   <span className={css.sourceLinkText}>{viewFullItemText}</span>
                 </a>
               )}
-              {item.ipfs && <div style={{paddingTop: "10px"}} >
-                <a
-                  rel="noopener"
-                  className={`${css.sourceLink} clickThrough external white`}
-                  href={item.ipfs}
-                >
-                  <span className={css.sourceLinkText}>
-                    View Item in IPFS
-                  </span>
-                </a>
-              </div>
-              }
+              {item.filecoin && (
+                <div style={{ paddingTop: "10px" }}>
+                  <a
+                    rel="noopener"
+                    className={`${css.sourceLink} clickThrough external white`}
+                    href={item.filecoin}
+                  >
+                    <span className={css.sourceLinkText}>
+                      View Item in Filecoin
+                    </span>
+                  </a>
+                </div>
+              )}
               {this.renderRightsBadge(item)}
             </dd>
           </div>
