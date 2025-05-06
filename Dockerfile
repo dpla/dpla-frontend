@@ -33,7 +33,7 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY .eslintrc.json ./
-RUN yarn install --ignore-scripts && yarn run build
+RUN yarn install --ignore-scripts --immutable --prod && yarn run build
 
 FROM node:22-slim AS dpla-frontend
 RUN apt update && apt --no-install-recommends install -y tini curl && apt clean
@@ -51,7 +51,7 @@ COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY .eslintrc.json ./
 COPY --from=builder /opt/dpla-frontend/.next /opt/dpla-frontend/.next
-RUN yarn install --ignore-scripts --frozen-lockfile --prod
+COPY --from=builder /opt/dpla-frontend/node_modules /opt/dpla-frontend/node_modules
 USER node
 
 EXPOSE 3000
