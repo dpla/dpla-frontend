@@ -2,7 +2,9 @@ const { LOCALS } = require("./constants/local");
 const path = require("path");
 
 let config = {
-  instrumentationHook: true,
+  experimental: {
+    instrumentationHook: true,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
