@@ -21,6 +21,8 @@ ENV API_URL="https://api.dp.la/v2"
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+RUN apt update && apt --no-install-recommends install -y ca-certificates && apt clean
+
 WORKDIR /opt/dpla-frontend/
 COPY components ./components
 COPY constants ./constants
