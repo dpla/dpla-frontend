@@ -20,8 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-function ItemDetail(props) {
-  const { item, randomItemId, isQA } = props;
+export default function ItemDetail({ item, randomItemId, isQA }) {
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
       <BreadcrumbsModule
@@ -77,21 +76,21 @@ export async function getServerSideProps(context) {
   const notFound = {
     notFound: true,
   };
-  const query = context.query;
-  if (!query || query === "" || !("itemId" in query)) {
+  const itemId = context.params?.itemId;
+  if (!itemId) {
     console.log("No itemId in query");
     return notFound;
   }
   const isQA = false;
   const randomItemId = isQA ? await getRandomItemIdAsync() : null;
-  if (!DPLA_ITEM_ID_REGEX.test(query.itemId)) {
+  if (!DPLA_ITEM_ID_REGEX.test(itemId)) {
     console.log("ItemId didn't match regex");
     return notFound;
   }
 
   const itemUrl = new URL(process.env.API_URL);
   itemUrl.pathname += "/items/";
-  itemUrl.pathname += query.itemId;
+  itemUrl.pathname += itemId;
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await fetch(itemUrl);
@@ -153,5 +152,3 @@ export async function getServerSideProps(context) {
     props: props,
   };
 }
-
-export default ItemDetail;

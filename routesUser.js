@@ -1,8 +1,6 @@
 const serverFunctions = require("./lib/serverFunctions");
 
 module.exports = (app, server) => {
-
-
   server.get("/", (req, res) => {
     const actualPage = "/";
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
@@ -23,7 +21,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -33,7 +31,7 @@ module.exports = (app, server) => {
     const actualPage = "/browse-by-topic/topic/subtopic";
     const params = {
       topic: req.params.topic,
-      subtopic: req.params.subtopic
+      subtopic: req.params.subtopic,
     };
 
     serverFunctions.renderAndCache(app, req, res, actualPage, params);
@@ -65,7 +63,7 @@ module.exports = (app, server) => {
   server.get("/primary-source-sets/:set", (req, res) => {
     const actualPage = "/primary-source-sets/set";
     const params = {
-      set: req.params.set
+      set: req.params.set,
     };
     //app.render(req, res)
 
@@ -75,14 +73,14 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
   server.get("/primary-source-sets/:set/teaching-guide", (req, res) => {
     const actualPage = "/primary-source-sets/set/teaching-guide";
     const params = {
-      set: req.params.set
+      set: req.params.set,
     };
     serverFunctions.renderAndCache(
       app,
@@ -90,7 +88,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -103,14 +101,14 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
   server.get("/primary-source-sets/:set/additional-resources", (req, res) => {
     const actualPage = "/primary-source-sets/set/additional-resources";
     const params = {
-      set: req.params.set
+      set: req.params.set,
     };
     serverFunctions.renderAndCache(
       app,
@@ -118,7 +116,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -126,7 +124,7 @@ module.exports = (app, server) => {
     const actualPage = "/primary-source-sets/set/sources";
     const params = {
       set: req.params.set,
-      source: req.params.source
+      source: req.params.source,
     };
     serverFunctions.renderAndCache(
       app,
@@ -134,7 +132,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -151,31 +149,31 @@ module.exports = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
-  // item routes
-
-  server.get("/item/:itemId", (req, res) => {
-    const actualPage = "/item";
-    const isQA = false;
-    const params = {
-      itemId: req.params.itemId,
-      isQA: isQA
-    };
-    serverFunctions.renderAndCache(
-      app,
-      req,
-      res,
-      actualPage,
-      req.query,
-      params
-    );
-  });
+  // // item routes
+  //
+  // server.get("/item/:itemId", (req, res) => {
+  //   const actualPage = "/item";
+  //   const isQA = false;
+  //   const params = {
+  //     itemId: req.params.itemId,
+  //     isQA: isQA
+  //   };
+  //   serverFunctions.renderAndCache(
+  //     app,
+  //     req,
+  //     res,
+  //     actualPage,
+  //     req.query,
+  //     params
+  //   );
+  // });
 
   // lists routes
 
   server.get("/lists/:list", (req, res) => {
     const actualPage = "/lists/list";
     const params = {
-      list: req.params.list
+      list: req.params.list,
     };
     serverFunctions.renderAndCache(
       app,
@@ -183,7 +181,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -197,7 +195,7 @@ module.exports = (app, server) => {
   server.get("/guides/:guide", (req, res) => {
     const actualPage = "/guides/guide";
     const params = {
-      guide: req.params.guide
+      guide: req.params.guide,
     };
     serverFunctions.renderAndCache(
       app,
@@ -205,7 +203,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -223,14 +221,14 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
   server.get("/about/:section", (req, res) => {
     const actualPage = "/about";
     const params = {
-      section: req.params.section
+      section: req.params.section,
     };
     serverFunctions.renderAndCache(
       app,
@@ -238,7 +236,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 
@@ -246,7 +244,7 @@ module.exports = (app, server) => {
     const actualPage = "/about";
     const params = {
       section: req.params.section,
-      subsection: req.params.subsection
+      subsection: req.params.subsection,
     };
     serverFunctions.renderAndCache(
       app,
@@ -254,7 +252,7 @@ module.exports = (app, server) => {
       res,
       actualPage,
       req.query,
-      params
+      params,
     );
   });
 };
