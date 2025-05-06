@@ -1,6 +1,7 @@
 FROM node:22-slim AS builder
 
 
+ARG SENTRY_AUTH_TOKEN=""
 ARG SITE_ENV="user"
 ENV NEXT_PUBLIC_SITE_ENV=${SITE_ENV}
 ARG LOCAL_ID="aviation"
