@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 import {
   possibleFacets,
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified,
 } from "constants/search";
-import {joinIfArray} from "lib";
+import { joinIfArray } from "lib";
 
 import css from "./FiltersList.module.scss";
 import utils from "stylesheets/utils.module.scss";
@@ -16,7 +16,7 @@ import CloseIcon from "components/svg/Close";
 import ClearFiltersIcon from "components/svg/ClearFiltersIcon";
 
 function clearAllFacets(query) {
-  const duped = {...query};
+  const duped = { ...query };
   delete duped["q"];
   delete duped["page"];
   possibleFacets.forEach(
@@ -26,7 +26,7 @@ function clearAllFacets(query) {
 }
 
 function clearFacet(query, queryKey, facet) {
-  const duped = {...query};
+  const duped = { ...query };
   delete duped["page"];
   const value = joinIfArray(duped[queryKey], "|");
   duped[queryKey] = value
@@ -39,7 +39,7 @@ function clearFacet(query, queryKey, facet) {
   return duped;
 }
 
-function Filter({name, queryKey}) {
+function Filter({ name, queryKey }) {
   const router = useRouter();
   const label = queryKey !== "q" ? queryKey : "keywords";
   return (
@@ -47,23 +47,22 @@ function Filter({name, queryKey}) {
       <Link
         href={{
           pathname: router.pathname,
-          query: {...clearFacet(router.query, queryKey, name)},
+          query: { ...clearFacet(router.query, queryKey, name) },
         }}
         className={css.filterLink}
         title={`Remove ${label} ${name} filter`}
         aria-label={`Remove ${label} ${name} filter`}
       >
         {label}: <span className={css.filterText}>{name}</span>
-        <CloseIcon className={css.closeIcon}/>
+        <CloseIcon className={css.closeIcon} />
       </Link>
     </li>
   );
 }
 
-function FiltersList({showFilters}) {
-
+function FiltersList({ showFilters }) {
   const router = useRouter();
-  const {query} = router;
+  const { query } = router;
   const hasFacets = Object.keys(query).some(
     (queryKey) =>
       possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey]) ||
@@ -89,14 +88,14 @@ function FiltersList({showFilters}) {
           return (
             <Filter
               queryKey={queryKey}
-              key={queryKey}
+              key={`${queryKey}-${name}`}
               name={name}
             />
           );
         })
       );
     } else {
-      return <></>;
+      return null;
     }
   });
   return (
@@ -106,16 +105,16 @@ function FiltersList({showFilters}) {
       >
         <div className={css.labelAndFilters}>
           <span className={css.labelText}>Filtered by</span>
-          <ul className={css.filters}>{filterChildren}</ul>
+          {filterChildren && <ul className={css.filters}>{filterChildren}</ul>}
         </div>
         <Link
           href={{
             pathname: router.pathname,
-            query: {...clearAllFacets(query)},
+            query: { ...clearAllFacets(query) },
           }}
           className={css.clearAll}
         >
-          <ClearFiltersIcon className={css.clearAllIcon}/>
+          <ClearFiltersIcon className={css.clearAllIcon} />
           <span>Clear all filters</span>
         </Link>
       </div>

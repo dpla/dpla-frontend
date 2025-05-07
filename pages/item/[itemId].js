@@ -78,13 +78,11 @@ export async function getServerSideProps(context) {
   };
   const itemId = context.params?.itemId;
   if (!itemId) {
-    console.log("No itemId in query");
     return notFound;
   }
   const isQA = false;
   const randomItemId = isQA ? await getRandomItemIdAsync() : null;
   if (!DPLA_ITEM_ID_REGEX.test(itemId)) {
-    console.log("ItemId didn't match regex");
     return notFound;
   }
 
@@ -95,7 +93,6 @@ export async function getServerSideProps(context) {
 
   const res = await fetch(itemUrl);
   if (!res.ok) {
-    console.log("Bad response from API");
     if (res.status === 404) {
       return notFound;
     } else {
@@ -104,7 +101,6 @@ export async function getServerSideProps(context) {
   }
   const data = await res.json();
   if (!("docs" in data) || data.docs.length < 1) {
-    console.log("No docs in API response");
     return notFound;
   }
 

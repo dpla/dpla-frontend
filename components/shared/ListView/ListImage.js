@@ -38,15 +38,13 @@ class ListImage extends React.Component {
 
     return (
       <div
-        aria-hidden
-        className={`${className} ${css.imageWrapper}
+        className={`${className || ""} ${css.imageWrapper}
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}
         {item.id !== "http://dp.la/api/items/#sourceResource" && (
           <Link
             href={item.linkHref}
-            as={item.linkAs}
             className={`${css.listItemImageLink} internalItemLink`}
             title={title}
           >
