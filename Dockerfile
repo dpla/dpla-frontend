@@ -1,6 +1,7 @@
 FROM node:22-slim AS builder
 
 
+ARG SENTRY_AUTH_TOKEN=""
 ARG SITE_ENV="user"
 ENV NEXT_PUBLIC_SITE_ENV=${SITE_ENV}
 ARG LOCAL_ID="aviation"
@@ -20,6 +21,8 @@ ENV API_URL="https://api.dp.la/v2"
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+RUN apt update && apt --no-install-recommends install -y ca-certificates && apt clean
+
 WORKDIR /opt/dpla-frontend/
 COPY components ./components
 COPY constants ./constants
@@ -33,7 +36,7 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY .eslintrc.json ./
-RUN yarn install --ignore-scripts && yarn run build
+RUN yarn install --ignore-scripts --immutable --prod && yarn run build
 
 FROM node:22-slim AS dpla-frontend
 RUN apt update && apt --no-install-recommends install -y tini curl && apt clean
@@ -51,7 +54,7 @@ COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY .eslintrc.json ./
 COPY --from=builder /opt/dpla-frontend/.next /opt/dpla-frontend/.next
-RUN yarn install --ignore-scripts --frozen-lockfile --prod
+COPY --from=builder /opt/dpla-frontend/node_modules /opt/dpla-frontend/node_modules
 USER node
 
 EXPOSE 3000
