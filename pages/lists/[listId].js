@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useCallback, useRef} from "react";
-import Router, {useRouter} from "next/router";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import Router, { useRouter } from "next/router";
 
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -13,22 +13,23 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
-import {ListLoading, ListEmpty} from "components/ListComponents";
+import { ListLoading, ListEmpty } from "components/ListComponents";
 
-import {addLinkInfoToResults, getItemThumbnail} from "lib";
+import { addLinkInfoToResults, getItemThumbnail } from "lib";
 
-import {setLocalForageItem, removeLocalForageItem} from "lib/localForage";
+import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
 import utils from "stylesheets/utils.module.scss";
 import css from "components/ListComponents/ListComponents.module.scss";
 
-import {LISTS_TITLE} from "constants/lists";
-import {UNTITLED_TEXT} from "constants/site";
+import { LISTS_TITLE } from "constants/lists";
+import { UNTITLED_TEXT } from "constants/site";
 
 const List = () => {
-
   const router = useRouter();
-  const listId = Array.isArray(router.query.listId) ? router.query.listId[0] : router.query.listId;
+  const listId = Array.isArray(router.query.listId)
+    ? router.query.listId[0]
+    : router.query.listId;
 
   const [list, setList] = useState(null);
   const [items, setItems] = useState([]);
@@ -36,7 +37,6 @@ const List = () => {
   const isRenamingRef = useRef(false);
 
   useEffect(() => {
-
     const fetchList = async () => {
       if (!listId) {
         return;
@@ -115,14 +115,14 @@ const List = () => {
 
       try {
         isRenamingRef.current = true;
-        const updatedList = {...list, name: value};
+        const updatedList = { ...list, name: value };
         await setLocalForageItem(listId, updatedList);
         setList(updatedList);
       } finally {
         isRenamingRef.current = false;
       }
     },
-    [list, listId]
+    [list, listId],
   );
 
   const handleConfirmDelete = useCallback(async () => {
@@ -134,7 +134,7 @@ const List = () => {
   }, [listId]);
 
   if (initialized && !list) {
-    return <Error statusCode={404}/>;
+    return <Error statusCode={404} />;
   }
 
   return (
@@ -146,7 +146,7 @@ const List = () => {
             url: "/lists",
             as: "/lists",
           },
-          {title: list ? list.name : UNTITLED_TEXT},
+          { title: list ? list.name : UNTITLED_TEXT },
         ]}
       />
       <div
@@ -154,7 +154,7 @@ const List = () => {
         role="main"
         className={`${utils.container} ${css.listDetailWrapper}`}
       >
-        {!initialized && <ListLoading/>}
+        {!initialized && <ListLoading />}
         {list && (
           <div>
             {list.name && (
@@ -182,12 +182,12 @@ const List = () => {
               <ListView
                 name={list.name}
                 exportable={true}
-                items={addLinkInfoToResults(items, router.query)}
+                items={addLinkInfoToResults(items)}
                 behavior={"list"}
                 viewingList={listId}
               />
             )}
-            {items.length === 0 && <ListEmpty/>}
+            {items.length === 0 && <ListEmpty />}
             {list.name && (
               <ConfirmModal
                 className={css.listDeleteConfirm}

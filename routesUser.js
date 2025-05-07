@@ -149,25 +149,6 @@ module.exports = (app, server) => {
     serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
   });
 
-  // // item routes
-  //
-  // server.get("/item/:itemId", (req, res) => {
-  //   const actualPage = "/item";
-  //   const isQA = false;
-  //   const params = {
-  //     itemId: req.params.itemId,
-  //     isQA: isQA
-  //   };
-  //   serverFunctions.renderAndCache(
-  //     app,
-  //     req,
-  //     res,
-  //     actualPage,
-  //     req.query,
-  //     params
-  //   );
-  // });
-
   // lists routes
 
   server.get("/lists/:list", (req, res) => {

@@ -32,7 +32,7 @@ function MainContent({
         <main id="main" role="main" className={css.resultsAndPagination}>
           {results.length > 0 && (
             <ListView
-              items={addLinkInfoToResults(results, router.query)}
+              items={addLinkInfoToResults(results)}
               viewMode={router.query.list_view}
               behavior={"search"}
             />
