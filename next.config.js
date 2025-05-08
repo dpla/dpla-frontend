@@ -87,7 +87,6 @@ let config = {
           );
         }
       }
-      console.log(results);
       return { beforeFiles: results };
     } else if (siteEnv === "pro") {
       const results = [
