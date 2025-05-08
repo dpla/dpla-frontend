@@ -66,9 +66,6 @@ function follower() {
       process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
-      //expressApp.get("/donate", donate(nextApp));
-      //expressApp.get("/donate/thank-you", thankYou(nextApp));
-      //expressApp.get(["/contact", "/contact-us"], contact(nextApp));
       expressApp.get("/wp-content/*", wpContent());
       expressApp.post("/mailchimp", mailchimp());
       expressApp.post("/g/contact", doContact());
@@ -102,26 +99,6 @@ function uncaught() {
 function healthcheck() {
   return (req, res) => {
     res.send("OK");
-  };
-}
-
-function donate(app) {
-  return (req, res) => {
-    const actualPage = "/donate";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  };
-}
-
-function thankYou(app) {
-  return (req, res) => {
-    const actualPage = "/donate/thank-you";
-    serverFunctions.renderAndCache(app, req, res, actualPage, req.query);
-  };
-}
-
-function contact(app) {
-  return (req, res) => {
-    app.render(req, res, "/contact-us", req.query);
   };
 }
 
