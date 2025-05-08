@@ -24,7 +24,7 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      - name: Run build for user
+      - name: Run build for ${{ matrix.site_env }}
 
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
