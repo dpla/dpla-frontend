@@ -35,34 +35,31 @@ function HomePro({ news, content }) {
       <div className={css.sectionList}>
         <ul className={utils.siteMaxWidth}>
           <li>
-            <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
+            <Link href="/hubs">
               <IconComponent className={css.icon} name="network" />
               Hub Network
             </Link>
           </li>
           <li>
-            <Link
-              as="/prospective-hubs"
-              href="/pro/wp?section=prospective-hubs"
-            >
+            <Link href="/prospective-hubs">
               <IconComponent className={css.icon} name="prospective" />
               Prospective Hubs
             </Link>
           </li>
           <li>
-            <Link as="/developers" href="/pro/wp?section=developers">
+            <Link href="/developers">
               <IconComponent className={css.icon} name="developers" />
               Developers
             </Link>
           </li>
           <li>
-            <Link as="/education" href="/pro/wp?section=education">
+            <Link href="/education">
               <IconComponent className={css.icon} name="education" />
               Education
             </Link>
           </li>
           <li>
-            <Link as="/events" href="/pro/wp?section=events">
+            <Link href="/events">
               <IconComponent className={css.icon} name="community" />
               Events
             </Link>

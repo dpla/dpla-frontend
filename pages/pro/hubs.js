@@ -6,7 +6,7 @@ import NewsLane from "shared/NewsLane";
 import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 
-import { wordpressLinks } from "lib";
+import { wordpressLinks } from "lib/index";
 
 import {
   NEWS_PRO_ENDPOINT,

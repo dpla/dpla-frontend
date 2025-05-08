@@ -58,7 +58,6 @@ function Suggestions({ suggestions }) {
               >
                 <Link
                   href={suggestion.href}
-                  as={suggestion.as}
                   className={css.imageWrapper}
                   style={{
                     backgroundImage: `url(${suggestion.thumbnailUrl})`,

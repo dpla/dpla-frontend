@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -13,8 +13,8 @@ import { washObject } from "lib/washObject";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function Source(props) {
-  const { router, source, set, currentSourceIdx } = props;
+function Source({ source, set, currentSourceIdx }) {
+  const router = useRouter();
   return (
     <MainLayout pageTitle={source.name} pageImage={source.thumbnailUrl}>
       <BreadcrumbsModule
@@ -23,20 +23,12 @@ function Source(props) {
             title: "Primary Source Sets",
             url: {
               pathname: "/primary-source-sets",
-              query: removeQueryParams(router.query, ["source", "set"]),
             },
           },
           {
             title: set.name,
-            as: {
-              pathname: `/primary-source-sets/${router.query.set}`,
-              query: removeQueryParams(router.query, ["source", "set"]),
-            },
             url: {
-              pathname: "/primary-source-sets/set",
-              query: {
-                ...removeQueryParams(router.query, ["source"]),
-              },
+              pathname: `/primary-source-sets/${router.query.set}`,
             },
           },
           { title: source.name, url: "" },
@@ -57,9 +49,11 @@ function Source(props) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
+  const set = context.params?.set;
+  const source = context.params?.source;
   const sourceRes = await fetch(
-    `${process.env.API_URL}/pss/sources/${encodeURIComponent(query.source)}?api_key=${process.env.API_KEY}`,
+    `${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`,
   );
   if (!sourceRes.ok) {
     //treating all fetch errors as 404 due to API bug
@@ -71,7 +65,7 @@ export async function getServerSideProps({ query }) {
   const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
 
   const setRes = await fetch(
-    `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
+    `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
   if (!setRes.ok) {
     if (setRes.status === 404) {

@@ -19,8 +19,7 @@ function MainContent({ topic }) {
               key={`${subtopic.name}-${index}`}
             >
               <Link
-                as={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
-                href={`/browse-by-topic/topic/subtopic?subtopic=${subtopic.slug}&topic=${topic.slug}`}
+                href={`/browse-by-topic/${topic.slug}/${subtopic.slug}`}
                 className={css.subtopicAnchor}
               >
                 <div

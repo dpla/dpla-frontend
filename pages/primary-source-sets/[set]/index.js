@@ -1,5 +1,5 @@
 import React from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
@@ -34,10 +34,7 @@ function SingleSet({ set }) {
           { title: set.name, search: "" },
         ]}
       />
-      <SourceSetInfo
-        set={set}
-        openDescription={false}
-      />
+      <SourceSetInfo set={set} openDescription={false} />
       <ResourcesTabs currentTab="sourceSet" set={set}>
         <SourceSetSources
           sources={set.hasPart.filter(
@@ -51,9 +48,10 @@ function SingleSet({ set }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
+  const set = context.params?.set;
   const api = await fetch(
-    `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
+    `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
 
   if (!api.ok) {

@@ -1,13 +1,17 @@
 name: Node.js CI
 
+permissions:
+  contents: read
+
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
   build:
+    strategy:
+      matrix:
+        site_env: ["user", "pro", "local"]
 
     runs-on: ubuntu-latest
 
@@ -20,13 +24,17 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      #      - name: Install Yarn
-      #        run: npm install -g yarn
+      - name: Run build for ${{ matrix.site_env }}
 
-      - name: Run build
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          NEXT_PUBLIC_SITE_ENV: ${{ matrix.site_env }}
+          NEXT_PUBLIC_LOCAL_ID: aviation
+          NEXT_PUBLIC_WORDPRESS_URL: "https://dpla.wpengine.com"
+          NEXT_PUBLIC_PRO_BASE_URL: "https://pro.dp.la"
+          NEXT_PUBLIC_USER_BASE_URL: "https://dp.la"
         run: |
+          yarn clean
           yarn install --frozen-lockfile    
-          yarn run build
+          yarn build
         shell: bash

@@ -18,27 +18,19 @@ function FooterPro() {
           <h2 className={css.linkHeader}>About Us</h2>
           <ul>
             <li>
-              <Link as="/about" href="/pro/wp?section=about-dpla-pro">
-                About DPLA Pro
-              </Link>
+              <Link href="/about">About DPLA Pro</Link>
             </li>
             <li>
-              <Link href="/contact-us" as="/contact">
-                Contact Us
-              </Link>
+              <Link href="/contact">Contact Us</Link>
             </li>
             <li>
               <FeedbackForm />
             </li>
             <li>
-              <Link as="/projects" href="/pro/wp?section=projects">
-                Projects
-              </Link>
+              <Link href="/projects">Projects</Link>
             </li>
             <li>
-              <Link as="/events" href="/pro/wp?section=events">
-                Events
-              </Link>
+              <Link href="/events">Events</Link>
             </li>
           </ul>
         </div>
@@ -48,32 +40,19 @@ function FooterPro() {
           <h2 className={css.linkHeader}>Communities</h2>
           <ul>
             <li>
-              <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
-                Hub Network
-              </Link>
+              <Link href="/hubs">Hub Network</Link>
             </li>
             <li>
-              <Link
-                as="/prospective-hubs"
-                href="/pro/wp?section=prospective-hubs"
-              >
-                Prospective Hubs
-              </Link>
+              <Link href="/prospective-hubs">Prospective Hubs</Link>
             </li>
             <li>
-              <Link as="/developers" href="/pro/wp?section=developers">
-                Developers
-              </Link>
+              <Link href="/developers">Developers</Link>
             </li>
             <li>
-              <Link as="/education" href="/pro/wp?section=education">
-                Education
-              </Link>
+              <Link href="/education">Education</Link>
             </li>
             <li>
-              <Link as="/ebooks" href="/pro/wp/ebooks?section=ebooks">
-                Ebooks
-              </Link>
+              <Link href="/ebooks">Ebooks</Link>
             </li>
           </ul>
         </div>

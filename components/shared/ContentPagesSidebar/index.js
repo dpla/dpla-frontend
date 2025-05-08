@@ -17,7 +17,6 @@ import utils from "stylesheets/utils.module.scss";
 function SidebarLink({ isCurrentLink, linkObject, title }) {
   return (
     <Link
-      as={linkObject.as}
       href={linkObject.href}
       className={`${css.link} ${isCurrentLink && css.selected}`}
     >
@@ -54,32 +53,27 @@ function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
   });
 
   // link treatment varies per template (eg: guides/news/pro/hubs...)
-  let linkObject = { as: "/", href: "/" };
+  let linkObject = { href: "/" };
 
   if (itemId === guidesParent) {
     linkObject = {
-      as: "/guides",
       href: "/guides",
     };
   } else if (isGuide) {
     linkObject = {
-      as: "/guides/" + item.post_name,
-      href: "/guides/guide?guide=" + item.post_name,
+      href: "/guides/" + item.post_name,
     };
   } else if (item.post_name === "hubs") {
     linkObject = {
-      as: "/hubs",
-      href: "/pro/wp/hubs?section=" + item.post_name,
+      href: "/hubs",
     };
   } else if (item.post_name === "ebooks") {
     linkObject = {
-      as: "/ebooks",
-      href: "/pro/wp/ebooks?section=" + item.post_name,
+      href: "/ebooks",
     };
   } else if (siteEnv === "user") {
     linkObject = {
-      as: "/about/" + item.post_name,
-      href: "/about?section=" + item.post_name,
+      href: "/about/" + item.post_name,
     };
   } else if (siteEnv === "pro") {
     let slug = "/";
@@ -89,8 +83,7 @@ function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
     }
 
     linkObject = {
-      as: slug + item.post_name,
-      href: "/pro/wp?section=" + item.post_name,
+      href: slug + item.post_name,
     };
   }
 
@@ -235,7 +228,7 @@ function Sidebar({ className, activeItemId, items }) {
                 title="News"
                 section="news"
                 isCurrentLink={router.pathname.indexOf("/news") === 0}
-                linkObject={{ as: "/news", href: "/news" }}
+                linkObject={{ href: "/news" }}
               />
             </li>
           )}
@@ -244,7 +237,7 @@ function Sidebar({ className, activeItemId, items }) {
               title="Contact Us"
               section="contact-us"
               isCurrentLink={activeItemId === "contact-us"}
-              linkObject={{ as: "/contact", href: "/contact-us" }}
+              linkObject={{ href: "/contact" }}
             />
           </li>
         </ul>

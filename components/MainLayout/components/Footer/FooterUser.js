@@ -20,8 +20,7 @@ class FooterUser extends React.Component {
             <ul>
               <li>
                 <Link
-                  href="/about?section=frequently-asked-questions"
-                  as="/about/frequently-asked-questions"
+                  href="/about/frequently-asked-questions"
                   data-cy="footer-link-frequently-asked-questions"
                 >
                   Frequently Asked Questions
@@ -34,36 +33,24 @@ class FooterUser extends React.Component {
               </li>
               <li>
                 <Link
-                  href="/about?section=terms-conditions"
-                  as="/about/terms-conditions"
+                  href="/about/terms-conditions"
                   data-cy="footer-link-terms-conditions"
                 >
                   Terms &amp; Conditions
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about?section=harmful-language-statement"
-                  as="/about/harmful-language-statement"
-                >
+                <Link href="/about/harmful-language-statement">
                   Harmful Content
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about?section=about-us"
-                  as="/about"
-                  data-cy="footer-link-about"
-                >
+                <Link href="/about" data-cy="footer-link-about">
                   About DPLA
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contact-us"
-                  as="/contact"
-                  data-cy="footer-link-contact"
-                >
+                <Link href="/contact" data-cy="footer-link-contact">
                   Contact Us
                 </Link>
               </li>

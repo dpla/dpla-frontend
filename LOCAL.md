@@ -41,5 +41,5 @@ Since all Local instances share the same codebase, there is a [`constants/local.
 - `provider`: URL-encoded value used to restrict the search interface results to items belonging only to the specified `provider` (for example `%22Recollection%20Wisconsin%22` for Recollection Wisconsin)
 - `locationFacet`: URL-encoded value used to restrict the search interface results to items with the specified `sourceResource.spatial.name` (for example `%22Wisconsin%22` for Recollection Wisconsin)
 - `subjectFacet`: URL-encoded value used to restrict the search interface results to items with the specified `sourceResource.subject.name` (for example `%22Wisconsin%22` for Recollection Wisconsin)
-- `hasAbout`: determines whether to show (`true`) or not (`false`) the “About” link in the top navigation
+- `hasAbout`: determines whether to show (`true`) or not (`false`) the “About” link in the hero section on the homepage under the search box.
 - `externalLink`: URL for the top navigation link with the Local's `name`

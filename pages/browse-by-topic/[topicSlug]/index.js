@@ -1,6 +1,6 @@
 import React from "react";
 
-import { extractSourceSetSlug } from "lib";
+import { extractSourceSetSlug } from "lib/index";
 import { loadExhibitionList } from "lib/exhibitionsStatic";
 import BreadcrumbsAndNav from "components/TopicBrowseComponents/BreadcrumbsAndNav";
 import MainContent from "components/TopicBrowseComponents/Topic/MainContent";
@@ -47,10 +47,9 @@ function Topic(props) {
   );
 }
 
-export const getServerSideProps = async ({ query }) => {
-  const topicsRes = await fetch(
-    API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic,
-  );
+export const getServerSideProps = async (context) => {
+  const topicSlug = context.params?.topicSlug;
+  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
   if (!topicsRes.ok) {
     if (topicsRes.status === 404) {
@@ -121,8 +120,7 @@ export const getServerSideProps = async ({ query }) => {
             return {
               title: sourceSetJson.name,
               thumbnailUrl: sourceSetJson.thumbnailUrl,
-              as: `/primary-source-sets/${slug}`,
-              href: `/primary-source-sets/set?set=${slug}`,
+              href: `/primary-source-sets/${slug}`,
               type: "Primary Source Set",
             };
           } else {

@@ -4,12 +4,11 @@ import Link from "next/link";
 import css from "./Footer.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-import {LOCALS} from "constants/local";
+import { LOCALS } from "constants/local";
 
 import DplaLogo from "components/svg/DplaLogo";
 
 export default function SmallFooterLocal() {
-
   const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
   let logoHtml;
@@ -19,15 +18,13 @@ export default function SmallFooterLocal() {
         <img
           className={css.localLogo}
           alt={`${LOCALS[localId].name} Home`}
-          src={`/static/local/${LOCALS[localId].theme}/${
-            LOCALS[localId].logo
-          }`}
+          src={`/static/local/${LOCALS[localId].theme}/${LOCALS[localId].logo}`}
         />
       </a>
     );
   } else if (localId === "tennessee") {
     logoHtml = (
-      <Link href="/local" as="/">
+      <Link href="/">
         <img
           className={css.localLogo}
           alt={`${LOCALS[localId].name} Home`}
@@ -37,13 +34,11 @@ export default function SmallFooterLocal() {
     );
   } else {
     logoHtml = (
-      <Link href="/local" as="/">
+      <Link href="/local">
         <img
           className={css.localLogo}
           alt={`${LOCALS[localId].name} Home`}
-          src={`/static/local/${LOCALS[localId].theme}/${
-            LOCALS[localId].logo
-          }`}
+          src={`/static/local/${LOCALS[localId].theme}/${LOCALS[localId].logo}`}
         />
       </Link>
     );
@@ -53,7 +48,7 @@ export default function SmallFooterLocal() {
       <div className={`${css.smallFooter} ${utils.siteMaxWidth}`}>
         {logoHtml}
         <Link href="https://dp.la">
-          <DplaLogo className={css.partnershipLogo}/>
+          <DplaLogo className={css.partnershipLogo} />
         </Link>
       </div>
     </div>

@@ -63,7 +63,7 @@ function HomePageSlider({
               index,
             ) => (
               <div key={`${name}—${index}`}>
-                <Link href={href} as={as} className={css.item}>
+                <Link href={href} className={css.item}>
                   <div className={css.itemImgWrapper}>
                     <div
                       className={css.itemImg}

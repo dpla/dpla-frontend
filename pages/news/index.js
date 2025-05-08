@@ -98,8 +98,7 @@ function NewsPage({
                   <article key={item.slug} className={css.newsItem}>
                     <h2 className={css.title}>
                       <Link
-                        as={`/news/${item.slug}`}
-                        href={`/news/post?slug=${item.slug}`}
+                        href={`/news/${item.slug}`}
                         dangerouslySetInnerHTML={{
                           __html: item.title.rendered,
                         }}

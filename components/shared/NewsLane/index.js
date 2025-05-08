@@ -40,8 +40,7 @@ function NewsLane({ title, items }) {
                 <li key={post.id} className={`${css.post}`}>
                   <div className={css.postLink}>
                     <Link
-                      as={`/news/${post.slug}`}
-                      href={`/news/post?slug=${post.slug}`}
+                      href={`/news/${post.slug}`}
                       dangerouslySetInnerHTML={{
                         __html: post.title.rendered,
                       }}

@@ -101,8 +101,12 @@ class ProMenuPage extends React.Component {
   }
 }
 
-export async function getServerSideProps({ query }) {
-  const pageName = query.subsection || query.section;
+export async function getServerSideProps(context) {
+  // The logic in the rewrites function in next.config.js does a lot to
+  // set up the context here.
+  const section = context.query?.section;
+  const subsection = context.query?.subsection;
+  const pageName = subsection || section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
     if (menuResponse.status === 404) {
@@ -137,7 +141,6 @@ export async function getServerSideProps({ query }) {
   if (JSON.stringify(breadcrumbObject) !== "{}") {
     Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
-      let url = "/pro/wp?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
       if (crumb.menu_item_parent !== "0") {
         const parent = getItemWithId({
@@ -147,13 +150,10 @@ export async function getServerSideProps({ query }) {
         slug = slug + parent.post_name + "/";
       }
       // hubs homepage has different template
-      if (crumb.post_name === "hubs") {
-        url = "/pro/wp/hubs";
-      }
+
       breadcrumbs.push({
         title: crumb.title,
-        url: url,
-        as: slug + crumb.post_name,
+        url: slug + crumb.post_name,
       });
     });
     breadcrumbs.push({ title: pageItem.title });

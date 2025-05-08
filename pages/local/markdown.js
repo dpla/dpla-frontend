@@ -45,8 +45,7 @@ function MarkdownPage(props) {
     breadcrumbs.push(
       {
         title: pageData.category,
-        url: "/local" + pageData.parentDir,
-        as: pageData.parentDir,
+        url: pageData.parentDir,
       },
       {
         title: pageData.title,
@@ -96,10 +95,13 @@ function MarkdownPage(props) {
 
 export async function getServerSideProps(context) {
   const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
-  const asPath = context.req.originalUrl;
   const local = LOCALS[localId];
+  const section = context.query.section;
+  const subsection = context.query.subsection;
+  const asPath = subsection ? `/${section}/${subsection}` : `/${section}`;
   const routes = local["routes"];
   const pageData = routes[asPath];
+  console.log("PAGE DATA", pageData);
   const markdownPath = join(
     process.cwd(),
     "public",

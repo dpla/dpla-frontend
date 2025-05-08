@@ -8,33 +8,23 @@ function NavigationPro({ isHome, className, css }) {
       <ul className={css.links}>
         {!isHome && (
           <li>
-            <Link as="/" href="/pro">
-              Home
-            </Link>
+            <Link href="/">Home</Link>
           </li>
         )}
         <li>
-          <Link as="/hubs" href="/pro/wp/hubs?section=hubs">
-            Hubs
-          </Link>
+          <Link href="/hubs">Hubs</Link>
         </li>
         <li>
-          <Link as="/projects" href="/pro/wp?section=projects">
-            Projects
-          </Link>
+          <Link href="/projects">Projects</Link>
         </li>
       </ul>
       <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <Link as="/about" href="/pro/wp?section=about-dpla-pro">
-            About
-          </Link>
+          <Link href="/about">About</Link>
         </li>
         <li>
-          <Link as="/events" href="/pro/wp?section=events">
-            Events
-          </Link>
+          <Link href="/events">Events</Link>
         </li>
       </ul>
       <span className={css.divider} />

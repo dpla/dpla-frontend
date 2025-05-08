@@ -7,7 +7,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
-import { getMenuItemUrl, wordpressLinks } from "lib";
+import { getMenuItemUrl, wordpressLinks } from "lib/index";
 
 import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -68,7 +68,7 @@ class Guides extends React.Component {
   }
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
   const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
   if (!menuItemsRes.ok) {
     if (menuItemsRes.status === 404) {
@@ -79,7 +79,7 @@ export async function getServerSideProps({ query }) {
     throw new Error("Couldn't load about menu.");
   }
   const menuItemsJson = await menuItemsRes.json();
-  const guideSlug = query.guide;
+  const guideSlug = context.params.guideSlug;
   const guide = menuItemsJson.items.find(
     (item) => item.post_name === guideSlug,
   );

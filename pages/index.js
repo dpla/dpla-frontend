@@ -89,7 +89,6 @@ export async function getServerSideProps() {
         thumbnailUrl,
         featured: false,
         href: `/exhibitions/${exhibitJson.slug}`,
-        as: `/exhibitions/${exhibitJson.slug}`,
       };
     }),
   );
@@ -103,8 +102,7 @@ export async function getServerSideProps() {
     if (featuredSet) {
       const setWithLinkInfo = {
         ...featuredSet,
-        href: `/primary-source-sets/set?set=${featuredSet.primary_source_set_id}`,
-        as: `/primary-source-sets/${featuredSet.primary_source_set_id}`,
+        href: `/primary-source-sets/${featuredSet.primary_source_set_id}`,
         repImageUrl: featuredSet.image_url,
       };
       sourceSets.push(setWithLinkInfo);

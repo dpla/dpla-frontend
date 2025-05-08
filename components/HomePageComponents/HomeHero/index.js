@@ -100,9 +100,7 @@ function HomeHero({ headerDescription, feature }) {
         )}
         {siteEnv === "local" && LOCALS[localId].hasAbout && (
           <div className={css.links}>
-            <Link href="/local/about" as="/about">
-              Learn more about {LOCALS[localId].name}
-            </Link>
+            <Link href="/about">Learn more about {LOCALS[localId].name}</Link>
           </div>
         )}
       </div>

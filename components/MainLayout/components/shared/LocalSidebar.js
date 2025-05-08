@@ -7,8 +7,7 @@ import utils from "stylesheets/utils.module.scss";
 function SidebarLink({ route, isActive, title }) {
   return (
     <Link
-      href={"/local" + route}
-      as={route}
+      href={route}
       className={`${css.link} ${isActive ? css.selected : ""}`}
     >
       {title}

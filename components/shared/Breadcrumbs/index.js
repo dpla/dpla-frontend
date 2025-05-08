@@ -11,7 +11,7 @@ function Breadcrumbs({ breadcrumbs }) {
         if (idx < breadcrumbs.length - 1) {
           return (
             <div className={css.breadcrumbLinkWrapper} key={breadcrumb.title}>
-              <Link href={breadcrumb.url} as={breadcrumb.as} title={breadcrumb.title}>
+              <Link href={breadcrumb.url} title={breadcrumb.title}>
                 <Markdown
                   className={css.breadcrumbLink}
                   allowedElements={["emphasis", "text"]}

@@ -54,7 +54,6 @@ class PostPage extends React.Component {
             {
               title: "News",
               url: "/news",
-              as: "/news",
             },
             { title: content.title.rendered },
           ]}
@@ -100,7 +99,7 @@ class PostPage extends React.Component {
                       {content.tags.map((id) => {
                         const tag = NEWS_TAGS.filter((tag) => tag.id === id)[0];
                         return tag ? (
-                          <li key={tag.id}>
+                          <li key={`${tag.id}-${tag.name}`}>
                             <Link
                               href={`/news?tag=${tag.name
                                 .toLowerCase()
@@ -110,9 +109,7 @@ class PostPage extends React.Component {
                               {tag.name}
                             </Link>
                           </li>
-                        ) : (
-                          <></>
-                        );
+                        ) : null;
                       })}
                     </ul>
                   </div>
@@ -129,7 +126,7 @@ class PostPage extends React.Component {
   }
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
@@ -150,7 +147,7 @@ export async function getServerSideProps({ query }) {
   const menuJson = await menuResponse.json();
 
   // get news post
-  const slug = query.slug;
+  const slug = context.params?.slug;
   const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
   if (!postRes.ok) {
     if (postRes.status === 404) {

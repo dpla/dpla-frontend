@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter, withRouter} from "next/router";
+import { useRouter, withRouter } from "next/router";
 
 import ItemImage from "components/ItemComponents/Content/ItemImage";
 
@@ -25,7 +25,7 @@ import { resourceTypes } from "constants/site";
 import css from "./ExhibitionSection.module.scss";
 
 import ChevronThickBlack from "components/svg/ChevronThickBlack";
-import {DPLA_ITEM_ID_REGEX} from "constants/items";
+import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 function getFileType(fileType, originalUrl) {
   if (
@@ -66,13 +66,7 @@ function getViewerComponent(fileType, originalUrl, pathToFile) {
   }
 }
 
-function ItemLink({
-  thumbnailUrl,
-  itemId,
-  className,
-  fileType,
-  originalUrl,
-}) {
+function ItemLink({ thumbnailUrl, itemId, className, fileType, originalUrl }) {
   const router = useRouter();
   const itemUrl = [
     "/exhibitions/",
@@ -210,11 +204,7 @@ class Viewer extends React.Component {
               ))}
             </ul>
             {itemId && DPLA_ITEM_ID_REGEX.test(itemId) && (
-              <Link
-                as={`/item/${itemId}`}
-                href={`/item?itemId=${itemId}`}
-                className={css.viewItemLink}
-              >
+              <Link href={`/item/${itemId}`} className={css.viewItemLink}>
                 View item information
               </Link>
             )}
