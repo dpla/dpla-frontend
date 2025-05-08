@@ -34,14 +34,6 @@ class SmallFooter extends React.Component {
             >
               <Instagram className={css.socialButton} />
             </a>
-            {/*<a*/}
-            {/*  href="https://twitter.com/dpla"*/}
-            {/*  title="Twitter"*/}
-            {/*  rel="noopener noreferrer"*/}
-            {/*  target="_blank"*/}
-            {/*>*/}
-            {/*  <Twitter className={css.socialButton} />*/}
-            {/*</a>*/}
             <a
               href={"https://bsky.app/profile/dpla.bsky.social"}
               title="Bluesky"
