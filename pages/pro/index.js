@@ -7,8 +7,7 @@ import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
 
-function Home(props) {
-  const { news, content } = props;
+function Home({ news, content }) {
   return (
     <MainLayout hidePageHeader={false} hideSearchBar={true}>
       <div id="main" role="main">

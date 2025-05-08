@@ -1,7 +1,142 @@
 const { LOCALS } = require("./constants/local");
+const SECTIONS = require("./constants/pro").SECTIONS;
 const path = require("path");
 
+const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
+function fourOhFour(source) {
+  return {
+    source: source,
+    destination: "/404",
+  };
+}
+
+function rewrite(source, dest) {
+  return {
+    source: source,
+    destination: dest,
+  };
+}
+
+function redirect(source, dest, permanent = true) {
+  return {
+    source: source,
+    destination: dest,
+    permanent: permanent,
+  };
+}
+
 let config = {
+  async redirects() {
+    if (siteEnv === "local") {
+      return [];
+    } else if (siteEnv === "pro") {
+      const userUrl = process.env.NEXT_PUBLIC_USER_BASE_URL;
+      return [
+        redirect("/news", userUrl + "/news"),
+        redirect("/news/:slug", userUrl + "/news/:slug"),
+        redirect("/search", userUrl + "/search"),
+        redirect("/about", "/about-dpla-pro"),
+      ];
+    } else if (siteEnv === "user") {
+      return [
+        redirect("/about-us", "/about"),
+        redirect("/contact-us", "/contact"),
+      ];
+    } else {
+      throw new Error("Invalid site environment");
+    }
+  },
+  async rewrites() {
+    if (siteEnv === "local") {
+      const local = LOCALS[localId];
+      const results = [
+        rewrite("/", "/local"),
+        fourOhFour("/exhibitions"),
+        fourOhFour("/exhibitions/:slugs*"),
+        fourOhFour("/browse-by-topic"),
+        fourOhFour("/browse-by-topic/:slugs*"),
+        fourOhFour("/primary-source-sets"),
+        fourOhFour("/primary-source-sets/:slugs*"),
+        fourOhFour("/topics"),
+        fourOhFour("/topics/:slugs*"),
+        fourOhFour("/pro"),
+        fourOhFour("/pro/hubs"),
+        fourOhFour("/pro/wp"),
+        fourOhFour("/donate"),
+        fourOhFour("/donate/thank-you"),
+      ];
+      const dynamicRoutes = local?.routes || {};
+      for (const route in dynamicRoutes) {
+        const routePath = route.replace(/^\//, "");
+        const pathComponents = routePath.split("/");
+        const section = pathComponents[0];
+        const subsection = pathComponents?.[1];
+
+        if (section && !subsection) {
+          results.push(
+            rewrite(`/${section}`, `/local/markdown?section=${section}`),
+          );
+        } else if (section && subsection) {
+          results.push(
+            rewrite(
+              `/${section}/${subsection}`,
+              `/local/markdown?section=${section}&subsection=${subsection}`,
+            ),
+          );
+        }
+      }
+      console.log(results);
+      return { beforeFiles: results };
+    } else if (siteEnv === "pro") {
+      const results = [
+        rewrite("/", "/pro"),
+        rewrite("/hubs", "/pro/hubs"),
+        rewrite(
+          "/hubs/:subsection",
+          "/pro/wp?section=hubs&subsection=:subsection",
+        ),
+        fourOhFour("/exhibitions"),
+        fourOhFour("/exhibitions/:slugs*"),
+        fourOhFour("/browse-by-topic"),
+        fourOhFour("/browse-by-topic/:slugs*"),
+        fourOhFour("/browse-by-partner"),
+        fourOhFour("/browse-by-partner/:slugs*"),
+        fourOhFour("/primary-source-sets"),
+        fourOhFour("/primary-source-sets/:slugs*"),
+        fourOhFour("/topics"),
+        fourOhFour("/topics/:slugs*"),
+        fourOhFour("/local"),
+        fourOhFour("/local/markdown"),
+      ];
+      for (const key in SECTIONS) {
+        const section = SECTIONS[key];
+        if (section.slug) {
+          results.push(
+            rewrite(`/${section.slug}`, `/pro/wp?section=${section.slug}`),
+            rewrite(
+              `/${section.slug}/:subsection`,
+              `/pro/wp?section=${section.slug}&subsection=:subsection`,
+            ),
+          );
+        }
+      }
+      return { beforeFiles: results };
+    } else if (siteEnv === "user") {
+      return {
+        beforeFiles: [
+          fourOhFour("/pro"),
+          fourOhFour("/pro/hubs"),
+          fourOhFour("/pro/wp"),
+          fourOhFour("/local/"),
+          fourOhFour("/local/markdown"),
+        ],
+      };
+    } else {
+      throw new Error("Invalid site environment");
+    }
+  },
   experimental: {
     instrumentationHook: true,
   },
@@ -28,6 +163,7 @@ let config = {
   },
 };
 
+// Nextjs Bundle Analyzer
 if (process.env.ANALYZE === "true") {
   const withBundleAnalyzer = require("@next/bundle-analyzer")({
     enabled: process.env.ANALYZE === "true",
@@ -35,11 +171,11 @@ if (process.env.ANALYZE === "true") {
   config = withBundleAnalyzer(config);
 }
 
-// Injected content via Sentry wizard below
+// Sentry
 
 const { withSentryConfig } = require("@sentry/nextjs");
 
-module.exports = withSentryConfig(config, {
+config = withSentryConfig(config, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
@@ -64,3 +200,5 @@ module.exports = withSentryConfig(config, {
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: false,
 });
+
+module.exports = config;

@@ -29,19 +29,13 @@ function PageHeader({ hideSearchBar }) {
         } ${utils.siteMaxWidth}`}
       >
         {(siteEnv === "user" || siteEnv === "pro") && (
-          <Link
-            as="/"
-            href={siteEnv === "user" ? "/" : "/pro"}
-            className={css.logo}
-            title="Home Page"
-          >
+          <Link href="/" className={css.logo} title="Home Page">
             <DplaLogoWhite className={css.logoImg} />
           </Link>
         )}
         {siteEnv === "local" && (
           <Link
-            href="/local"
-            as="/"
+            href="/"
             className={`${css.logo} ${css.local}`}
             title="Home Page"
           >

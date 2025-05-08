@@ -85,17 +85,20 @@ class AboutMenuPage extends React.Component {
   }
 }
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async (context) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-  const pageName = query.subsection || query.section || "about-us";
+  const sections = context.params.sections;
+  const section = sections?.[0];
+  const subsection = sections?.[1];
+  const pageSlug = subsection || section || "about-us";
   const response = await fetch(ABOUT_MENU_ENDPOINT);
   const json = await response.json();
-  const pageItem = json.items.find((item) => item.post_name === pageName);
+  const pageItem = json.items.find((item) => item.post_name === pageSlug);
   const guidesPageItem = json.items.find((item) => item.url === endpoint);
   if (
     !pageItem ||
@@ -116,6 +119,7 @@ export const getServerSideProps = async ({ query }) => {
   if (JSON.stringify(breadcrumbObject) !== "{}") {
     Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
+      let url = "/about?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
       if (crumb.menu_item_parent !== "0") {
         const parent = getItemWithId({

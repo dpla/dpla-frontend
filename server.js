@@ -61,24 +61,14 @@ function follower() {
     expressApp.use(bodyParser.json());
     expressApp.get("/healthcheck", healthcheck());
 
-    // decide which routing to use depending on the site environment
-    if (process.env.NEXT_PUBLIC_SITE_ENV === "user") {
-      require("./routesUser")(nextApp, expressApp);
-    } else if (process.env.NEXT_PUBLIC_SITE_ENV === "pro") {
-      require("./routesPro")(nextApp, expressApp);
-    } else if (process.env.NEXT_PUBLIC_SITE_ENV === "local") {
-      require("./routesLocal").static(nextApp, expressApp);
-      require("./routesLocal").dynamic(nextApp, expressApp);
-    }
-
     // routes that are common to user and pro sites
     if (
       process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
-      expressApp.get("/donate", donate(nextApp));
-      expressApp.get("/donate/thank-you", thankYou(nextApp));
-      expressApp.get(["/contact", "/contact-us"], contact(nextApp));
+      //expressApp.get("/donate", donate(nextApp));
+      //expressApp.get("/donate/thank-you", thankYou(nextApp));
+      //expressApp.get(["/contact", "/contact-us"], contact(nextApp));
       expressApp.get("/wp-content/*", wpContent());
       expressApp.post("/mailchimp", mailchimp());
       expressApp.post("/g/contact", doContact());

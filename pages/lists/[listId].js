@@ -27,9 +27,9 @@ import { UNTITLED_TEXT } from "constants/site";
 
 const List = () => {
   const router = useRouter();
-  const listId = Array.isArray(router.query.listId)
+  const listId = Array.isArray(router.query?.listId)
     ? router.query.listId[0]
-    : router.query.listId;
+    : router.query?.listId;
 
   const [list, setList] = useState(null);
   const [items, setItems] = useState([]);
@@ -108,7 +108,6 @@ const List = () => {
 
   const onNameChange = useCallback(
     async (value) => {
-      console.log("Renaming list to: ", value);
       if (isRenamingRef.current) {
         return;
       }
@@ -144,7 +143,6 @@ const List = () => {
           {
             title: "My Lists",
             url: "/lists",
-            as: "/lists",
           },
           { title: list ? list.name : UNTITLED_TEXT },
         ]}

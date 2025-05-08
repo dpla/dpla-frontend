@@ -10,8 +10,7 @@ function NavArrows({ previousSubtopic, nextSubtopic, topic, route }) {
     <div className={css.navLinks}>
       {previousSubtopic && (
         <Link
-          as={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
-          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${previousSubtopic.slug}`}
+          href={`/browse-by-topic/${topic.slug}/${previousSubtopic.slug}`}
           className={css.prevLink}
         >
           <Chevron className={css.prevArrow} />
@@ -19,10 +18,7 @@ function NavArrows({ previousSubtopic, nextSubtopic, topic, route }) {
         </Link>
       )}
       {nextSubtopic && (
-        <Link
-          as={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}
-          href={`/${route.pathname}?topic=${topic.slug}&subtopic=${nextSubtopic.slug}`}
-        >
+        <Link href={`/browse-by-topic/${topic.slug}/${nextSubtopic.slug}`}>
           <span>Next Section</span>
           <Chevron className={css.nextArrow} />
         </Link>

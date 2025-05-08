@@ -28,8 +28,7 @@ function SubtopicItemsList(props) {
           },
           {
             title: topic.name,
-            as: `/browse-by-topic/${topic.slug}`,
-            url: `/browse-by-topic/topic?topic=${topic.slug}`,
+            url: `/browse-by-topic/${topic.slug}`,
           },
           {
             title: subtopic.name,
@@ -60,8 +59,7 @@ function SubtopicItemsList(props) {
           },
           {
             title: topic.name,
-            as: `/browse-by-topic/${topic.slug}`,
-            url: `/browse-by-topic/topic?topic=${topic.slug}`,
+            url: `/browse-by-topic/${topic.slug}`,
           },
           {
             title: subtopic.name,
@@ -76,10 +74,11 @@ function SubtopicItemsList(props) {
   );
 }
 
-export const getServerSideProps = async ({ query }) => {
-  const topicsRes = await fetch(
-    API_ENDPOINT_ALL_TOPICS + "?slug=" + query.topic,
-  );
+export const getServerSideProps = async (context) => {
+  const topicSlug = context.params?.topicSlug;
+  const subtopicSlug = context.params?.subtopicSlug;
+
+  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
   if (!topicsRes.ok) {
     if (topicsRes.status === 404) {
@@ -87,9 +86,8 @@ export const getServerSideProps = async ({ query }) => {
         notFound: true,
       };
     }
-    throw new Error("Couldn't load topics.")
+    throw new Error("Couldn't load topics.");
   }
-
 
   const topicsJson = await topicsRes.json();
   const currentTopic = topicsJson[0];
@@ -109,7 +107,7 @@ export const getServerSideProps = async ({ query }) => {
         notFound: true,
       };
     }
-    throw new Error("Couldn't load subtopics.")
+    throw new Error("Couldn't load subtopics.");
   }
 
   const subtopicsJson = await subtopicsRes.json();
@@ -118,7 +116,7 @@ export const getServerSideProps = async ({ query }) => {
     thumbnailUrl: subtopic.acf.category_image,
   }));
   const currentSubtopic = subtopics.find(
-    (topic) => topic.slug === query.subtopic,
+    (topic) => topic.slug === subtopicSlug,
   );
 
   if (!currentSubtopic) {
@@ -147,7 +145,7 @@ export const getServerSideProps = async ({ query }) => {
         notFound: true,
       };
     }
-    throw new Error("Couldn't load items.")
+    throw new Error("Couldn't load items.");
   }
 
   const itemsJson = await itemsRes.json();
@@ -170,7 +168,7 @@ export const getServerSideProps = async ({ query }) => {
       return {
         ...item,
         title: decodeHTMLEntities(item.title.rendered),
-        linkHref: `/item?itemId=${itemDplaId}`,
+        linkHref: `/item/${itemDplaId}`,
         linkAs: `/item/${itemDplaId}`,
         type: itemJson.docs[0].sourceResource.type,
         thumbnailUrl: getItemThumbnail(itemJson.docs[0]),

@@ -42,7 +42,7 @@ function NavigationUser({ isHome, className, css }) {
       <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <Link as="/about" href="/about?section=about-us" data-cy="about-dpla">
+          <Link href="/about" data-cy="about-dpla">
             About DPLA
           </Link>
         </li>

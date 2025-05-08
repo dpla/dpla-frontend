@@ -30,16 +30,12 @@ class SmallScreenHeader extends Component {
       <div className={css.wrapper} data-cy="small-screen-header">
         <div className={css.header}>
           {(siteEnv === "user" || siteEnv === "pro") && (
-            <Link
-              as="/"
-              href={siteEnv === "user" ? "/" : "/pro"}
-              className={css.logo}
-            >
+            <Link href="/" className={css.logo}>
               <span>Digital Public Library of America</span>
             </Link>
           )}
           {siteEnv === "local" && (
-            <Link as="/" href="/local">
+            <Link href="/">
               <img
                 className={css.localLogo}
                 alt={`${LOCALS[localId].name} Home`}

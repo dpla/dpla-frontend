@@ -28,9 +28,7 @@ function NavigationLocal({ isHome, className, css }) {
     arbitraryHtml = categories.map((navItem) => {
       return (
         <li key={navItem.id}>
-          <Link href={"/local" + navItem.route} as={navItem.route}>
-            {navItem.category}
-          </Link>
+          <Link href={navItem.route}>{navItem.category}</Link>
         </li>
       );
     });
@@ -106,9 +104,7 @@ function NavigationLocal({ isHome, className, css }) {
       <ul className={css.links}>
         {!isHome && (
           <li>
-            <Link href="/local" as="/">
-              Home
-            </Link>
+            <Link href="/">Home</Link>
           </li>
         )}
         {arbitraryHtml}

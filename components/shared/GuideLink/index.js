@@ -3,14 +3,10 @@ import Link from "next/link";
 
 import css from "./GuideLink.module.scss";
 
-function GuideLink({guide}) {
+function GuideLink({ guide }) {
   return (
     <div className={css.item}>
-      <Link
-        href={`/guides/guide?guide=${guide.slug}`}
-        as={`/guides/${guide.slug}`}
-        className={css.itemLink}
-      >
+      <Link href={`/guides/${guide.slug}`} className={css.itemLink}>
         <img
           alt={guide.illustration.alt || guide.title}
           className={css.itemImg}
