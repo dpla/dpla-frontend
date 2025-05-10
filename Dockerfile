@@ -42,7 +42,7 @@ COPY .eslintrc.json ./
 RUN yarn install --ignore-scripts --immutable --prod && yarn run build
 
 FROM node:22-slim AS dpla-frontend
-RUN apt update && apt --no-install-recommends install -y tini curl && apt clean
+RUN apt-get update && apt-get --no-install-recommends install -y tini curl && apt clean
 WORKDIR /opt/dpla-frontend/
 COPY components ./components
 COPY constants ./constants

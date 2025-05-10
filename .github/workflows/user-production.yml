@@ -8,6 +8,7 @@ env:
   LOCAL_ID:       "aviation"
   ECR_REPOSITORY: "frontend-user-production"
   GA_TRACKING_ID: "G-1P5QWL64H0"
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 jobs:
   ecr:
@@ -67,6 +68,7 @@ jobs:
           docker buildx build \
           --build-arg SITE_ENV=${{ env.SITE_ENV }} \
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
+          --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
