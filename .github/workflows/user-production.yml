@@ -68,7 +68,7 @@ jobs:
           docker buildx build \
           --build-arg SITE_ENV=${{ env.SITE_ENV }} \
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
-          --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
+          --build-arg SENTRY_AUTH_TOKEN=${{ env.SENTRY_AUTH_TOKEN }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
