@@ -21,7 +21,6 @@ function App({ Component, pageProps }) {
     const handleRouteChange = (url) => {
       gtag.pageview({
         url: window.location.href,
-        path: window.location.pathname,
         title: window.document.title,
       });
     };
