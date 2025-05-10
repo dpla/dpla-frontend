@@ -7,7 +7,7 @@ env:
   SITE_ENV:       "user"
   LOCAL_ID:       "aviation"
   ECR_REPOSITORY: "frontend-user-staging"
-  GA_TRACKING_ID: ""
+  GA_TRACKING_ID: "G-VDZEHM39MH"
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 jobs:
