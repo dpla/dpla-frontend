@@ -4,28 +4,11 @@
     "target": "ES6",
     "moduleResolution": "node",
     "paths": {
-      "lib/*": [
-        "./lib/*"
-      ],
-      "css/*": [
-        "./css/*"
-      ],
-      "static/*": [
-        "./public/static/*",
-        "./static/*"
-      ],
-      "shared/*": [
-        "./components/shared/*"
-      ],
-      "constants/*": [
-        "./constants/*"
-      ],
-      "stylesheets/*": [
-        "./stylesheets/*"
-      ],
-      "components/*": [
-        "./components/*"
-      ]
+      "lib/*": ["./lib/*"],
+      "shared/*": ["./components/shared/*"],
+      "constants/*": ["./constants/*"],
+      "stylesheets/*": ["./stylesheets/*"],
+      "components/*": ["./components/*"]
     }
   },
   "exclude": [
