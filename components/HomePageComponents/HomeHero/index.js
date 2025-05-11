@@ -39,6 +39,7 @@ function HomeHero({ headerDescription, feature }) {
   return (
     <div
       data-cy="home-hero"
+      data-testid="home-hero"
       className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
