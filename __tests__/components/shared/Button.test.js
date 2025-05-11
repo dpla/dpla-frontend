@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "../utils/test-utils";
-import Button from "components/shared/Button";
+import { render, screen, fireEvent } from "../../utils/test-utils";
+import Button from "shared/Button";
 
 describe("Button Component", () => {
   it("renders button with correct text", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../utils/test-utils";
+import { render, screen } from "../../utils/test-utils";
 import DPLAHead from "components/DPLAHead";
 
 // Mock next/head to just render children
@@ -9,7 +9,7 @@ jest.mock("next/head", () => ({
 }));
 
 // Mock lib functions
-jest.mock("lib", () => ({
+jest.mock("../../../lib/index", () => ({
   getMetaPageTitle: jest.fn((title) => title || "Default Title"),
   getCurrentFullUrl: jest.fn(() => "https://example.com/page"),
 }));

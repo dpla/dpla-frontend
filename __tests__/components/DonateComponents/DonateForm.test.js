@@ -1,9 +1,9 @@
 import React from "react";
-import { render, screen, fireEvent } from "../utils/test-utils";
+import { render, screen, fireEvent } from "../../utils/test-utils";
 import DonateForm from "components/DonateComponents/DonateForm";
 
 // Mock dependencies
-jest.mock("lib", () => ({
+jest.mock("../../../lib/index", () => ({
   getCurrentFullUrl: jest.fn(() => "https://example.com/donate"),
   endsWith: jest.fn((str, end) => str.endsWith(end)),
 }));
