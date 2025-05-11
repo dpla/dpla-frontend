@@ -11,6 +11,7 @@ if (typeof global.TextEncoder === "undefined") {
 // Mock next/router
 jest.mock("next/router", () => {
   const withRouter = (Component) => {
+    // eslint-disable-next-line react/display-name
     return (props) => {
       return (
         <Component
@@ -47,7 +48,7 @@ jest.mock("next/image", () => ({
   __esModule: true,
   default: (props) => {
     // eslint-disable-next-line jsx-a11y/alt-text
-    return <img {...props} />;
+    return <img alt={""} {...props} />;
   },
 }));
 
@@ -61,7 +62,7 @@ beforeAll(() => {
   console.error = (...args) => {
     if (
       /Warning: ReactDOM.render is no longer supported in React 18/.test(
-        args[0]
+        args[0],
       )
     ) {
       return;
