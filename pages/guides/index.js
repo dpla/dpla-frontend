@@ -24,7 +24,7 @@ function Guides(props) {
         ${utils.container}
         ${contentCss.sidebarAndContentWrapper}
       `}
-        data-cy={"content"}
+        data-testid={"content"}
       >
         <div className={utils.row}>
           <ContentPagesSidebar

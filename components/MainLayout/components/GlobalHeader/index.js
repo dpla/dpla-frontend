@@ -10,7 +10,7 @@ import utils from "stylesheets/utils.module.scss";
 function GlobalHeader({ isHome }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
-    <div className={css.header} data-cy="global-header">
+    <div className={css.header} data-testid="global-header">
       {siteEnv === "user" && (
         <NavigationUser
           className={`${css.linksContainer} ${utils.siteMaxWidth}`}

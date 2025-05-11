@@ -4,37 +4,37 @@ import Link from "next/link";
 function NavigationUser({ isHome, className, css }) {
   const proBaseUrl = process.env.NEXT_PUBLIC_PRO_BASE_URL;
   return (
-    <div className={className} data-cy="navigation-user">
+    <div className={className} data-testid="navigation-user">
       <ul className={css.links}>
         {!isHome && (
           <li>
-            <Link href="/" data-cy="link-home">
+            <Link href="/" data-testid="link-home">
               Home
             </Link>
           </li>
         )}
         <li>
-          <Link href="/browse-by-topic" data-cy="browse-topics">
+          <Link href="/browse-by-topic" data-testid="browse-topics">
             Browse by Topic
           </Link>
         </li>
         <li>
-          <Link href="/browse-by-partner" data-cy="browse-partners">
+          <Link href="/browse-by-partner" data-testid="browse-partners">
             Browse by Partner
           </Link>
         </li>
         <li>
-          <Link href="/exhibitions" data-cy="exhibitions">
+          <Link href="/exhibitions" data-testid="exhibitions">
             Exhibitions
           </Link>
         </li>
         <li>
-          <Link href="/primary-source-sets" data-cy="primary-source-sets">
+          <Link href="/primary-source-sets" data-testid="primary-source-sets">
             Primary Source Sets
           </Link>
         </li>
         <li>
-          <Link href="/lists" data-cy="my-lists">
+          <Link href="/lists" data-testid="my-lists">
             My Lists
           </Link>
         </li>
@@ -42,12 +42,12 @@ function NavigationUser({ isHome, className, css }) {
       <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <Link href="/about" data-cy="about-dpla">
+          <Link href="/about" data-testid="about-dpla">
             About DPLA
           </Link>
         </li>
         <li>
-          <Link href="/news" data-cy="news">
+          <Link href="/news" data-testid="news">
             News
           </Link>
         </li>
@@ -55,7 +55,7 @@ function NavigationUser({ isHome, className, css }) {
       <span className={css.divider} />
       <ul className={`${css.links} ${css.tertiaryLinks}`}>
         <li>
-          <Link href={proBaseUrl} data-cy="dpla-pro">
+          <Link href={proBaseUrl} data-testid="dpla-pro">
             DPLA Pro
           </Link>
         </li>

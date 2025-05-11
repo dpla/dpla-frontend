@@ -11,7 +11,10 @@ class FooterUser extends React.Component {
   render() {
     const proBaseUrl = process.env.NEXT_PUBLIC_PRO_BASE_URL;
     return (
-      <div className={`${css.footer} ${utils.siteMaxWidth}`} data-cy="footer">
+      <div
+        className={`${css.footer} ${utils.siteMaxWidth}`}
+        data-testid="footer"
+      >
         <div className={utils.row}>
           <div
             className={`${css.linkGroup} ${utils.colXs6} ${utils.colSm4} ${utils.colMd3}`}
@@ -21,20 +24,20 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href="/about/frequently-asked-questions"
-                  data-cy="footer-link-frequently-asked-questions"
+                  data-testid="footer-link-frequently-asked-questions"
                 >
                   Frequently Asked Questions
                 </Link>
               </li>
               <li>
-                <Link href="/guides" data-cy="footer-link-guides">
+                <Link href="/guides" data-testid="footer-link-guides">
                   How Can I Use DPLA?
                 </Link>
               </li>
               <li>
                 <Link
                   href="/about/terms-conditions"
-                  data-cy="footer-link-terms-conditions"
+                  data-testid="footer-link-terms-conditions"
                 >
                   Terms &amp; Conditions
                 </Link>
@@ -45,12 +48,12 @@ class FooterUser extends React.Component {
                 </Link>
               </li>
               <li>
-                <Link href="/about" data-cy="footer-link-about">
+                <Link href="/about" data-testid="footer-link-about">
                   About DPLA
                 </Link>
               </li>
               <li>
-                <Link href="/contact" data-cy="footer-link-contact">
+                <Link href="/contact" data-testid="footer-link-contact">
                   Contact Us
                 </Link>
               </li>
@@ -58,7 +61,7 @@ class FooterUser extends React.Component {
                 <FeedbackForm />
               </li>
               <li>
-                <Link href="/news" data-cy="footer-link-news">
+                <Link href="/news" data-testid="footer-link-news">
                   News
                 </Link>
               </li>
@@ -72,7 +75,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href="/primary-source-sets"
-                  data-cy="footer-link-primary-source-sets"
+                  data-testid="footer-link-primary-source-sets"
                 >
                   Primary Source Sets
                 </Link>
@@ -80,7 +83,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href="/browse-by-partner"
-                  data-cy="footer-link-browse-by-partner"
+                  data-testid="footer-link-browse-by-partner"
                 >
                   Browse by Partner
                 </Link>
@@ -88,23 +91,23 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href="/browse-by-topic"
-                  data-cy="footer-link-browse-by-topic"
+                  data-testid="footer-link-browse-by-topic"
                 >
                   Browse by Topic
                 </Link>
               </li>
               <li>
-                <Link href="/exhibitions" data-cy="footer-link-exhibitions">
+                <Link href="/exhibitions" data-testid="footer-link-exhibitions">
                   Exhibitions
                 </Link>
               </li>
               <li>
-                <Link href="/lists" data-cy="footer-link-lists">
+                <Link href="/lists" data-testid="footer-link-lists">
                   My Lists
                 </Link>
               </li>
               <li>
-                <Link href="/search" data-cy="footer-link-search">
+                <Link href="/search" data-testid="footer-link-search">
                   Search
                 </Link>
               </li>
@@ -116,14 +119,14 @@ class FooterUser extends React.Component {
             <h2 className={css.linkHeader}>DPLA Pro</h2>
             <ul>
               <li>
-                <Link href={proBaseUrl} data-cy="footer-link-pro">
+                <Link href={proBaseUrl} data-testid="footer-link-pro">
                   DPLA Pro Home
                 </Link>
               </li>
               <li>
                 <Link
                   href={proBaseUrl + "/prospective-hubs"}
-                  data-cy="footer-link-prospective-hubs"
+                  data-testid="footer-link-prospective-hubs"
                 >
                   Prospective Hubs
                 </Link>
@@ -131,7 +134,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={proBaseUrl + "/hubs"}
-                  data-cy="footer-link-hub-network"
+                  data-testid="footer-link-hub-network"
                 >
                   Hub Network
                 </Link>
@@ -139,7 +142,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={proBaseUrl + "/developers"}
-                  data-cy="footer-link-developers"
+                  data-testid="footer-link-developers"
                 >
                   Developers
                 </Link>
@@ -147,7 +150,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={proBaseUrl + "/education"}
-                  data-cy="footer-link-education"
+                  data-testid="footer-link-education"
                 >
                   Education
                 </Link>
@@ -155,7 +158,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={proBaseUrl + "/projects"}
-                  data-cy="footer-link-projects"
+                  data-testid="footer-link-projects"
                 >
                   Projects
                 </Link>
@@ -163,7 +166,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={"https://ebooks.dp.la"}
-                  data-cy="footer-link-ebooks"
+                  data-testid="footer-link-ebooks"
                 >
                   Ebooks
                 </Link>
@@ -171,7 +174,7 @@ class FooterUser extends React.Component {
               <li>
                 <Link
                   href={proBaseUrl + "/events"}
-                  data-cy="footer-link-events"
+                  data-testid="footer-link-events"
                 >
                   Events
                 </Link>
@@ -180,7 +183,7 @@ class FooterUser extends React.Component {
           </div>
           <div className={`${utils.colXs12} ${utils.colMd3}`}>
             <Button
-              data-cy="footer-donate"
+              data-testid="footer-donate"
               type="primary"
               size="large"
               className={css.donateButton}

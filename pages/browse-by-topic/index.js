@@ -13,7 +13,7 @@ function TopicBrowse(props) {
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
-        <div id="main" role="main" data-cy={"topics-home"}>
+        <div id="main" role="main" data-testid={"topics-home"}>
           <TopicsList topics={topics} />
         </div>
       </MainLayout>

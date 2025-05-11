@@ -8,7 +8,7 @@ import utils from "stylesheets/utils.module.scss";
 
 function OtherInfo() {
   return (
-    <div className={css.wrapper} data-cy={"pss-footer"}>
+    <div className={css.wrapper} data-testid={"pss-footer"}>
       <div className={`${utils.container} ${css.otherInfo}`}>
         <p className={css.p}>
           <span>These sets were created and reviewed by teachers. </span>

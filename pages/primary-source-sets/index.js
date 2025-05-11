@@ -16,7 +16,7 @@ function PrimarySourceSets(props) {
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
-        <div id="main" role="main" data-cy={"pss-home"}>
+        <div id="main" role="main" data-testid={"pss-home"}>
           <AllSets sets={sets} />
         </div>
         <PSSFooter />

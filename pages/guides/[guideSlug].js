@@ -37,7 +37,7 @@ class Guides extends React.Component {
         <BreadcrumbsModule breadcrumbs={breadcrumbs} />
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
-          data-cy={"content"}
+          data-testid={"content"}
         >
           <div className={utils.row}>
             <ContentPagesSidebar

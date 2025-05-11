@@ -58,7 +58,7 @@ class AboutMenuPage extends React.Component {
         )}
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
-          data-cy={"content"}
+          data-testid={"content"}
         >
           <div className={utils.row}>
             <ContentPagesSidebar

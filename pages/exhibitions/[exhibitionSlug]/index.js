@@ -52,7 +52,7 @@ class Exhibition extends React.Component {
             { title, search: "" },
           ]}
         />
-        <div id="main" role="main" data-cy="exhibition-home">
+        <div id="main" role="main" data-testid="exhibition-home">
           <ImageAndCaption
             title={title}
             thumbnailUrl={thumbnailUrl}

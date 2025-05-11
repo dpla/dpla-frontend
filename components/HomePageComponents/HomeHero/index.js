@@ -38,13 +38,12 @@ function HomeHero({ headerDescription, feature }) {
 
   return (
     <div
-      data-cy="home-hero"
       data-testid="home-hero"
       className={`${css.wrapper} ${feature ? css.withFeature : ""}`}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div
-        data-cy="dpla-logo"
+        data-testid="dpla-logo"
         className={`${css.header} ${utils.siteMaxWidth}`}
       >
         {siteEnv !== "local" && (

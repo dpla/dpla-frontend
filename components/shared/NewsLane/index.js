@@ -10,7 +10,7 @@ import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
 function NewsLane({ title, items }) {
   return (
-    <div className={css.wrapper} data-cy="news">
+    <div className={css.wrapper} data-testid="news">
       <div className={`${css.content} ${utils.siteMaxWidth}`}>
         <div className={utils.row}>
           <div className={`${utils.colXs12} ${utils.colMd3}`}>

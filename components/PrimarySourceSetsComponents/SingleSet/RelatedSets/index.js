@@ -34,7 +34,7 @@ function RelatedSets({ sets }) {
   ));
 
   return (
-    <div className={css.wrapper} data-cy={"pss-relateds"}>
+    <div className={css.wrapper} data-testid={"pss-relateds"}>
       <div className={`${utils.container} ${css.relatedSets}`}>
         <h2 className={css.header}>Related Primary Source Sets</h2>
         <Slider

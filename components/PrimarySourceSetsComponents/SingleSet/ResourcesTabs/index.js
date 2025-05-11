@@ -8,7 +8,7 @@ import utils from "stylesheets/utils.module.scss";
 function ResourcesTabs({ currentTab, children }) {
   const router = useRouter();
   return (
-    <div id="tabs" className={css.wrapper} data-cy={"pss-tabs"}>
+    <div id="tabs" className={css.wrapper} data-testid={"pss-tabs"}>
       <div className={css.tabsWrapper}>
         <ul role="tablist" className={`${css.tabs} ${utils.container}`}>
           <li

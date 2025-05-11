@@ -9,7 +9,7 @@ import utils from "stylesheets/utils.module.scss";
 
 function DPLAUsers({ guides }) {
   return (
-    <div className={css.wrapper} data-cy="guides">
+    <div className={css.wrapper} data-testid="guides">
       <div className={`${css.DPLAUsers} ${utils.siteMaxWidth}`}>
         <h2 className={css.header}>How can I use DPLA?</h2>
         <HeadingRule />

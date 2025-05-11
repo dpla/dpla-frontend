@@ -7,7 +7,7 @@ import { TITLE, DESCRIPTION } from "constants/exhibitions.js";
 
 function AllSets({ exhibitions }) {
   return (
-    <div data-cy="exhibitions-home">
+    <div data-testid="exhibitions-home">
       <FeatureHeader title={TITLE} description={DESCRIPTION} />
       <ExhibitionsList exhibitions={exhibitions} />
     </div>

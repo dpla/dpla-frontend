@@ -18,7 +18,7 @@ function ExhibitionView({
   previousQueryParams,
 }) {
   return (
-    <div className={css.exhibitionView} data-cy="exhibit-page">
+    <div className={css.exhibitionView} data-testid="exhibit-page">
       <Header title={exhibitionTitle} />
       <Body
         section={section}

@@ -21,7 +21,7 @@ function HomePageSlider({
   return (
     <div
       className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `}
-      data-cy={browseLinkName}
+      data-testid={browseLinkName}
     >
       <div className={`${css.content} ${utils.siteMaxWidth}`}>
         <div className={css.heading}>

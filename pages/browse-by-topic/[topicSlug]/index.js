@@ -37,7 +37,7 @@ function Topic(props) {
           },
         ]}
       />
-      <div id="main" role="main" data-cy={"topic-home"}>
+      <div id="main" role="main" data-testid={"topic-home"}>
         <MainContent topic={topic} />
         {topic.acf.related_content && topic.acf.related_content.length > 0 && (
           <Suggestions suggestions={suggestions} />

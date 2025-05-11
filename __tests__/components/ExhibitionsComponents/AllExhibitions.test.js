@@ -38,11 +38,11 @@ describe("AllExhibitions", () => {
 
   it("renders with correct HTML structure and data attributes", () => {
     const { container } = render(
-      <AllExhibitions exhibitions={mockExhibitions} />
+      <AllExhibitions exhibitions={mockExhibitions} />,
     );
 
-    // Check if the main wrapper has the correct data-cy attribute
-    const wrapper = container.querySelector('[data-cy="exhibitions-home"]');
+    // Check if the main wrapper has the correct data-testid attribute
+    const wrapper = container.querySelector('[data-testid="exhibitions-home"]');
     expect(wrapper).toBeInTheDocument();
   });
 

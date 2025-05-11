@@ -9,7 +9,7 @@ function BreadcrumbsModule({ breadcrumbs }) {
     title: breadcrumb.title,
   }));
   return (
-    <div className={utils.breadcrumbsWrapper} data-cy={"pss-breadcrumbs"}>
+    <div className={utils.breadcrumbsWrapper} data-testid={"pss-breadcrumbs"}>
       <div className={`${utils.container} ${utils.breadcrumbsModule}`}>
         <Breadcrumbs breadcrumbs={breadcrumbsParams} />
       </div>

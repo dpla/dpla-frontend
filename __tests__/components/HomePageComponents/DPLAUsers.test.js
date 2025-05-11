@@ -64,8 +64,10 @@ describe("DPLAUsers", () => {
     expect(button.closest("a")).toHaveAttribute("href", "/guides");
   });
 
-  it("applies correct data-cy attribute", () => {
+  it("applies correct data-testid attribute", () => {
     const { container } = render(<DPLAUsers guides={mockGuides} />);
-    expect(container.querySelector('[data-cy="guides"]')).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-testid="guides"]'),
+    ).toBeInTheDocument();
   });
 });

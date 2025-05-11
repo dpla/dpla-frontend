@@ -15,7 +15,7 @@ import css from "./Sidebar.module.scss";
 
 function Sidebar({ image, title, description }) {
   return (
-    <div className={css.sidebar} data-cy={"subtopic-sidebar"}>
+    <div className={css.sidebar} data-testid={"subtopic-sidebar"}>
       <div className={css.subtopicInfo}>
         <img src={image} alt={title} className={css.image} />
         <div className={css.subtopicInfoText}>
