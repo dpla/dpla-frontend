@@ -1,19 +1,46 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
+// Mock TextEncoder/TextDecoder
+if (typeof global.TextEncoder === "undefined") {
+  const { TextEncoder, TextDecoder } = require("util");
+  global.TextEncoder = TextEncoder;
+  global.TextDecoder = TextDecoder;
+}
+
 // Mock next/router
-jest.mock("next/router", () => ({
-  useRouter() {
-    return {
-      route: "/",
-      pathname: "",
-      query: {},
-      asPath: "",
-      push: jest.fn(),
-      replace: jest.fn(),
+jest.mock("next/router", () => {
+  const withRouter = (Component) => {
+    return (props) => {
+      return (
+        <Component
+          {...props}
+          router={{
+            route: "/",
+            pathname: "",
+            query: {},
+            asPath: "",
+            push: jest.fn(),
+            replace: jest.fn(),
+          }}
+        />
+      );
     };
-  },
-}));
+  };
+  return {
+    useRouter() {
+      return {
+        route: "/",
+        pathname: "",
+        query: {},
+        asPath: "",
+        push: jest.fn(),
+        replace: jest.fn(),
+      };
+    },
+    withRouter,
+  };
+});
 
 // Mock next/image
 jest.mock("next/image", () => ({
@@ -34,7 +61,7 @@ beforeAll(() => {
   console.error = (...args) => {
     if (
       /Warning: ReactDOM.render is no longer supported in React 18/.test(
-        args[0],
+        args[0]
       )
     ) {
       return;
