@@ -239,7 +239,7 @@ class ContactForm extends React.Component {
                   required
                   onChange={this.onSubjectChange}
                 >
-                  {selectOptions.map((option, index) => (
+                  {selectOptions.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>

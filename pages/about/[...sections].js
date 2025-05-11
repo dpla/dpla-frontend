@@ -119,7 +119,6 @@ export const getServerSideProps = async (context) => {
   if (JSON.stringify(breadcrumbObject) !== "{}") {
     Object.values(breadcrumbObject).forEach((crumb) => {
       let slug = "/";
-      let url = "/about?section=" + crumb.post_name;
       // if this is a child item the url is /:topsection/:thisitem
       if (crumb.menu_item_parent !== "0") {
         const parent = getItemWithId({
