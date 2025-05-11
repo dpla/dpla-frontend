@@ -1,48 +1,32 @@
-import {Readable} from "stream";
-import {DPLA_ITEM_ID_REGEX} from "constants/items";
-
+import { Readable } from "stream";
+import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default async function handler(req, res) {
+  const { idListString } = req.query;
+  const idList = idListString ? idListString.split(",") : [];
+  const validIds = idList.filter((id) => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
-    const { idListString } = req.query
-    const idList = idListString ? idListString.split(",") : []
-    const validIds = idList.filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
+  if (validIds.length === 0) {
+    console.log("Zero valid ids");
+    res.type("application/json").status(404).body("{}").end();
+    return;
+  }
 
-    if (validIds.length === 0) {
-        console.log("Zero valid ids");
-        res
-            .type("application/json")
-            .status(404)
-            .body("{}")
-            .end();
-        return
+  try {
+    const baseUrl = new URL(`${process.env.API_URL}/items/`);
+    baseUrl.searchParams.set("api_key", process.env.API_KEY);
+    baseUrl.pathname += validIds.join(",");
+    const fetchRes = await fetch(baseUrl);
+    if (fetchRes.ok) {
+      const contentType =
+        fetchRes.headers.get("Content-Type") || "application/json";
+      res.type(contentType).status(200);
+      await Readable.fromWeb(fetchRes.body).pipe(res);
+    } else {
+      res.type("text/plain").status(404).end("Not found.");
     }
-
-    try {
-        const baseUrl = new URL(`${process.env.API_URL}/items/`);
-        baseUrl.searchParams.set('api_key', process.env.API_KEY);
-        baseUrl.pathname += validIds.join(",");
-        const fetchRes = await fetch(baseUrl);
-        if (fetchRes.ok) {
-            const contentType = fetchRes.headers.get("Content-Type") || "application/json";
-            res
-                .type(contentType)
-                .status(200);
-            await Readable.fromWeb(fetchRes.body).pipe(res);
-
-        } else {
-            res
-                .type("text/plain")
-                .status(404)
-                .end("Not found.");
-        }
-
-    } catch (err) {
-        console.log("Error proxying request to DPLA API.", err);
-        res
-            .type("application/json")
-            .status(404)
-            .body("{}")
-            .end();
-    }
+  } catch (err) {
+    console.log("Error proxying request to DPLA API.", err);
+    res.type("application/json").status(404).body("{}").end();
+  }
 }

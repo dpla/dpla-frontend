@@ -8,7 +8,8 @@ h2 {
 
 select {
   appearance: none;
-  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat calc(100% - 0.5rem) center;
+  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat
+    calc(100% - 0.5rem) center;
   background-size: 0.9em;
   border: 0.075rem solid var(--formLabelColor);
   border-radius: 0.25rem;
@@ -61,4 +62,3 @@ a {
     padding-right: 0;
   }
 }
-

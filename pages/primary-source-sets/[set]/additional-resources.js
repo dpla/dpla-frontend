@@ -1,5 +1,5 @@
 import React from "react";
-import {withRouter} from "next/router";
+import { withRouter } from "next/router";
 import Markdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -8,14 +8,14 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/SourceSetInfo";
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 
-import {removeQueryParams, markdownLinks} from "lib";
+import { removeQueryParams, markdownLinks } from "lib";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
-import {washObject} from "lib/washObject";
+import { washObject } from "lib/washObject";
 
-function SingleSet({router, set, currentFullUrl}) {
+function SingleSet({ router, set, currentFullUrl }) {
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}
@@ -30,10 +30,10 @@ function SingleSet({router, set, currentFullUrl}) {
               query: removeQueryParams(router.query, ["set"]),
             },
           },
-          {title: set.name, search: ""},
+          { title: set.name, search: "" },
         ]}
       />
-      <SourceSetInfo set={set} currentFullUrl={currentFullUrl}/>
+      <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
       <ResourcesTabs currentTab="additionalResources" set={set}>
         <div className={css.content}>
           <div
@@ -54,12 +54,12 @@ function SingleSet({router, set, currentFullUrl}) {
           </div>
         </div>
       </ResourcesTabs>
-      <PSSFooter/>
+      <PSSFooter />
     </MainLayout>
   );
 }
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const setRes = await fetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,

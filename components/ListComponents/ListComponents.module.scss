@@ -134,7 +134,7 @@
     border-color: var(--subLinkColor);
   }
 
-&:checked:after {
+  &:checked:after {
     border: 0.2rem solid white;
     border-top: none;
     border-right: none;

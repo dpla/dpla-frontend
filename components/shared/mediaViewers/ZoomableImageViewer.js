@@ -11,7 +11,6 @@ function Noscript({ children }) {
 }
 
 export default class ZoomableImageViewer extends React.Component {
-
   constructor(props) {
     super(props);
     this.viewer = null;
@@ -26,7 +25,7 @@ export default class ZoomableImageViewer extends React.Component {
         const url = this.props.pathToFile;
         this.viewer = new OpenSeaDragon({
           id: viewerId,
-          tileSources: {type: "image", url},
+          tileSources: { type: "image", url },
           prefixUrl: "/static/images/openseadragon/",
         });
       } finally {

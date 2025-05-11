@@ -47,6 +47,7 @@ states.
   irrigation, and water laws played an important part in the economic success of Colorado and Wyoming.
 
 <br> <br>
+
 ## Collections by Format<br><br>
 
 - ### [Maps](/search?q=map&type=image)
@@ -68,6 +69,7 @@ states.
   industrial materials, and archaeological collections that bring our history to life.
 
 <br> <br>
+
 ## [Resources for Students and Educations](https://museumsfordigitallearning.org/museum/56/kits?page=2)<br><br>
 
 PPC Resource Kits are student activities created with primary and secondary sources found at memory institutions in
@@ -82,4 +84,3 @@ information, a set of primary sources, and additional links to related sources a
 Colorado’s digital footprint is growing and there are many ways to get involved and historic collections available
 online. [Explore highlights and news](https://www.coloradovirtuallibrary.org/digital-colorado/) from digital collections
 and initiatives found throughout the state.
-

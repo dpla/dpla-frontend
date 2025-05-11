@@ -12,7 +12,7 @@ describe("ContactForm", () => {
     fetch.mockImplementation(() =>
       Promise.resolve({
         text: () => Promise.resolve("success"),
-      })
+      }),
     );
   });
 

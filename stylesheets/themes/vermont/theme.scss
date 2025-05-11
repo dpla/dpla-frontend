@@ -3,22 +3,33 @@
 :root.vermont {
   --theme-dark-color: rgb(0, 35.5, 19.6517857143);
   --theme-main-color: #558d74;
-  --theme-link-color: #00703E;
+  --theme-link-color: #00703e;
   --theme-background-color: #fff;
   --theme-colder-tint: rgb(219.5, 219.5, 219.5);
   --theme-warmer-tint: rgb(236.907079646, 244.092920354, 240.8849557522);
 
-
-  --heroBackgroundColor: rgb(254.5636363636, 249.9818181818, 241.0363636364) !important;
+  --heroBackgroundColor: rgb(
+    254.5636363636,
+    249.9818181818,
+    241.0363636364
+  ) !important;
   --linkHoverColor: rgb(0, 163, 90.2321428571) !important;
   --visitedLinkColor: rgb(0, 61, 33.7678571429) !important;
   --mobileNavColor: rgb(42.5, 88.25, 67.8258928571) !important;
   --mobileNavMenuButtonOpen: rgb(0, 61, 33.7678571429) !important;
   --darkSecondaryButtonColor: rgb(42.5, 88.25, 67.8258928571) !important;
-  --warmerBackgroundColor: rgb(245.953539823, 249.546460177, 247.9424778761) !important;
+  --warmerBackgroundColor: rgb(
+    245.953539823,
+    249.546460177,
+    247.9424778761
+  ) !important;
   --colderBackgroundColor: rgb(246.125, 246.125, 246.125) !important;
   --subLinkColorHover: rgb(0, 61, 33.7678571429) !important;
-  --footerDarkColor: rgb(77.3274336283, 128.2725663717, 105.5292035398) !important;
+  --footerDarkColor: rgb(
+    77.3274336283,
+    128.2725663717,
+    105.5292035398
+  ) !important;
   --linkColor: var(--theme-link-color) !important;
   --paginationLinkColor: var(--linkColor) !important;
   --headingColor: var(--theme-dark-color) !important;

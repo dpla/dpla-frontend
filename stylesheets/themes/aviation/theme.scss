@@ -4,14 +4,22 @@
   --pan-am-blue: #2b67ac !important;
   --theme-dark-color: #122a46 !important; //color-mix(in hsl, black 45%, var(--pan-am-blue)) !important; //hsl(from var(--pan-am-blue) h s calc(l * .75)) !important; // darken($panAmBlue, 25%);
   --theme-link-color: #c83e14 !important;
-  --theme-main-color: rgb(210.7875, 221.4502906977, 233.7125) !important;//#d3ddea !important; //hsl(from var(--pan-am-blue) h calc(s * (1 - .25)) calc(l * 1.45)) !important; // desaturate(lighten($pan-am-blue, 45%), 25%);
+  --theme-main-color: rgb(
+    210.7875,
+    221.4502906977,
+    233.7125
+  ) !important; //#d3ddea !important; //hsl(from var(--pan-am-blue) h calc(s * (1 - .25)) calc(l * 1.45)) !important; // desaturate(lighten($pan-am-blue, 45%), 25%);
   --theme-background-color: #f2f5f9 !important; //hsl(from var(--theme-main-color), h s calc(l * 1.05)) !important; //lighten($theme-main-color, 5%);
   --theme-colder-tint: rgb(245, 245, 245) !important;
   --theme-warmer-tint: white !important;
   --heroBackgroundColor: rgb(107.5125, 143.0822674419, 183.9875) !important;
   --linkColor: var(--theme-link-color) !important;
   --linkHoverColor: #e95326 !important;
-  --visitedLinkColor: rgb(153.4435146444, 47.3765690377, 15.5564853556) !important;
+  --visitedLinkColor: rgb(
+    153.4435146444,
+    47.3765690377,
+    15.5564853556
+  ) !important;
   --paginationLinkColor: var(--linkColor) !important;
   --headingColor: var(--theme-dark-color) !important;
   --navColor: var(--theme-dark-color) !important;
@@ -22,12 +30,20 @@
   --secondaryColor: var(--secondaryButtonColor) !important;
   --primaryBulletColor: var(--secondaryButtonColor) !important;
   --secondaryBulletColor: var(--linkColor) !important;
-  --darkSecondaryButtonColor: rgb(114.14375, 131.6844476744, 151.85625) !important;
+  --darkSecondaryButtonColor: rgb(
+    114.14375,
+    131.6844476744,
+    151.85625
+  ) !important;
   --warmerBackgroundColor: rgb(241.5, 244.7558139535, 248.5) !important;
   --colderBackgroundColor: rgb(232.25, 237.1337209302, 242.75) !important;
   --darkBorderColor: var(--theme-main-color) !important;
   --subLinkColor: var(--linkColor) !important;
-  --subLinkColorHover: rgb(153.4435146444, 47.3765690377, 15.5564853556) !important;
+  --subLinkColorHover: rgb(
+    153.4435146444,
+    47.3765690377,
+    15.5564853556
+  ) !important;
   --donateFormButtonColor: var(--theme-dark-color) !important;
   --formLabelColor: var(--theme-dark-color) !important;
   --errorColor: var(--linkColor) !important;

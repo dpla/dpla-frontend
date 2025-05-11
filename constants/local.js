@@ -1,9 +1,7 @@
 const LOCALS = {
   plains2peaks: {
     theme: "plains2peaks",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/p2p"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/p2p"],
     name: "Plains to Peaks Collective",
     favicon: "favicon.png",
     provider: "%22Plains%20to%20Peaks%20Collective%22",
@@ -18,13 +16,13 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasContact: true,
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
+        category: "About",
       },
       "/about/contact": {
         parentDir: "/about",
@@ -32,31 +30,29 @@ const LOCALS = {
         title: "Contact",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
-      "/about/terms" : {
+      "/about/terms": {
         parentDir: "/about",
         path: "terms.md",
         title: "Terms of Use",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
-      "/about/harmful-content" : {
+      "/about/harmful-content": {
         parentDir: "/about",
         path: "harmful-content.md",
         title: "Statement on Potentially Harmful Content",
         description: "",
         isTopLevel: false,
-        category: "About"
-      }
-    }
+        category: "About",
+      },
+    },
   },
   wisconsin: {
     theme: "wisconsin",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/wisconsin"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/wisconsin"],
     name: "Recollection Wisconsin",
     favicon: "favicon.png",
     logo: "logo.png",
@@ -69,13 +65,11 @@ const LOCALS = {
     hasAbout: false,
     hasBrowseByPartner: true,
     hlsLink: "https://recollectionwisconsin.org/harmful-content-statement",
-    hlsLinkText: "our Statement on Harmful Content"
+    hlsLinkText: "our Statement on Harmful Content",
   },
   illinois: {
     theme: "illinois",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/il"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/il"],
     name: "Illinois Digital Heritage Hub",
     favicon: "favicon.png",
     logo: "logo.png",
@@ -89,13 +83,13 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
+        category: "About",
       },
       "/about/governance": {
         parentDir: "/about",
@@ -103,7 +97,7 @@ const LOCALS = {
         title: "Governance",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/about/usage-terms": {
         parentDir: "/about",
@@ -111,7 +105,7 @@ const LOCALS = {
         title: "Copyright and Usage",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/about/outreach": {
         parentDir: "/about",
@@ -119,7 +113,7 @@ const LOCALS = {
         title: "Outreach Materials",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/about/privacy": {
         parentDir: "/about",
@@ -127,7 +121,7 @@ const LOCALS = {
         title: "Privacy",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/about/image-credits": {
         parentDir: "/about",
@@ -135,7 +129,7 @@ const LOCALS = {
         title: "Image Credits",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/about/contact": {
         parentDir: "/about",
@@ -143,7 +137,7 @@ const LOCALS = {
         title: "Contact",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/for-contributors": {
         parentDir: "/for-contributors",
@@ -151,7 +145,7 @@ const LOCALS = {
         title: "For Contributors",
         description: "",
         isTopLevel: true,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/harvest-workflow": {
         parentDir: "/for-contributors",
@@ -159,7 +153,7 @@ const LOCALS = {
         title: "Harvest Workflow",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/readiness": {
         parentDir: "/for-contributors",
@@ -167,7 +161,7 @@ const LOCALS = {
         title: "Readiness Checklist",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/metadata": {
         parentDir: "/for-contributors",
@@ -175,7 +169,7 @@ const LOCALS = {
         title: "Metadata Resources",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/provider-metadata-guide": {
         parentDir: "/for-contributors",
@@ -183,7 +177,7 @@ const LOCALS = {
         title: "Provider Metadata Guide",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/subject-metadata-guide": {
         parentDir: "/for-contributors",
@@ -191,7 +185,7 @@ const LOCALS = {
         title: "Subject Metadata Guide",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/type-metadata-guide": {
         parentDir: "/for-contributors",
@@ -199,7 +193,7 @@ const LOCALS = {
         title: "Type Metadata Guide",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/copyright": {
         parentDir: "/for-contributors",
@@ -207,7 +201,7 @@ const LOCALS = {
         title: "Copyright Resources",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/rights-statements-guide": {
         parentDir: "/for-contributors",
@@ -215,7 +209,7 @@ const LOCALS = {
         title: "Rights Statements Guide",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-contributors/analytics": {
         parentDir: "/for-contributors",
@@ -223,7 +217,7 @@ const LOCALS = {
         title: "Analytics",
         description: "",
         isTopLevel: false,
-        category: "For Contributors"
+        category: "For Contributors",
       },
       "/for-educators": {
         parentDir: "/for-educators",
@@ -231,7 +225,7 @@ const LOCALS = {
         title: "For Educators",
         description: "",
         isTopLevel: true,
-        category: "For Educators"
+        category: "For Educators",
       },
       "/for-educators/search-tips": {
         parentDir: "/for-educators",
@@ -239,15 +233,13 @@ const LOCALS = {
         title: "Search Tips",
         description: "",
         isTopLevel: false,
-        category: "For Educators"
-      }
-    }
+        category: "For Educators",
+      },
+    },
   },
   florida: {
     theme: "florida",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/florida"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/florida"],
     name: "Sunshine State Digital Network",
     background: "home-hero-bg.png",
     favicon: "favicon.png",
@@ -258,7 +250,7 @@ const LOCALS = {
     subjectFacet: "%22Florida%22",
     hasAbout: false,
     hasBrowseByPartner: true,
-    hasBrowseAll: false
+    hasBrowseAll: false,
   },
   aviation: {
     theme: "aviation",
@@ -271,26 +263,23 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
-    externalLink: "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=2",
-    tags: [
-      "aviation"
-    ],
+    externalLink:
+      "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1tw6JSsgNWr6a7kqZxrFmTwcqD7f0ybam-XjqV57y810&font=Default&lang=en&initial_zoom=2",
+    tags: ["aviation"],
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
-      }
-    }
+        category: "About",
+      },
+    },
   },
   vermont: {
     theme: "vermont",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/vt"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/vt"],
     name: "Vermont Green Mountain Digital Archive",
     background: "vt-hero.png",
     favicon: "favicon.ico",
@@ -305,21 +294,19 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
-      }
-    }
+        category: "About",
+      },
+    },
   },
   oklahoma: {
     theme: "oklahoma",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/oklahoma"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/oklahoma"],
     name: "OKHUB",
     background: "ok.jpg",
     favicon: "favicon.ico",
@@ -334,37 +321,38 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
+        category: "About",
       },
-      "/about/contributing-organizations" : {
+      "/about/contributing-organizations": {
         parentDir: "/about",
         path: "contributing-organizations.md",
         title: "Contributing Organizations",
-        description: "Currently Contributing Organizations to the DPLA through the OKHUB",
+        description:
+          "Currently Contributing Organizations to the DPLA through the OKHUB",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
-      "/about/managing-partners" : {
+      "/about/managing-partners": {
         parentDir: "/about",
         path: "managing-partners.md",
         title: "Managing Partners",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
-      "/about/ingest-and-workflow" : {
+      "/about/ingest-and-workflow": {
         parentDir: "/about",
         path: "ingest-and-workflow.md",
         title: "Ingest and Workflow",
         description: "",
         isTopLevel: false,
-        category: "About"
+        category: "About",
       },
       "/participate": {
         title: "Participate",
@@ -372,7 +360,7 @@ const LOCALS = {
         path: "participate.md",
         description: "",
         isTopLevel: true,
-        category: "Participate"
+        category: "Participate",
       },
       "/participate/metadata": {
         title: "Metadata",
@@ -380,7 +368,7 @@ const LOCALS = {
         path: "metadata.md",
         description: "OKHub Metadata Guidelines and Best Practices",
         isTopLevel: false,
-        category: "Participate"
+        category: "Participate",
       },
       "/participate/rights-statements": {
         title: "Rights Statements",
@@ -388,7 +376,7 @@ const LOCALS = {
         path: "rights-statements.md",
         description: "",
         isTopLevel: false,
-        category: "Participate"
+        category: "Participate",
       },
       "/resources": {
         parentDir: "/resources",
@@ -396,15 +384,13 @@ const LOCALS = {
         path: "resources.md",
         description: "",
         isTopLevel: true,
-        category: "Resources"
-      }
-    }
+        category: "Resources",
+      },
+    },
   },
   nwdh: {
     theme: "nwdh",
-    tags: [
-        "nwdh"
-    ],
+    tags: ["nwdh"],
     name: "Northwest Digital Heritage",
     background: "nwdh-hero.png",
     favicon: "favicon.ico",
@@ -417,13 +403,11 @@ const LOCALS = {
     hasAbout: false,
     hasSidebar: false,
     hasBrowseByPartner: true,
-    hasBrowseAll: false
+    hasBrowseAll: false,
   },
   texas: {
     theme: "texas",
-    tags: [
-        "texas"
-    ],
+    tags: ["texas"],
     name: "TxHub",
     background: "hero_image.png",
     favicon: "favicon.png",
@@ -436,21 +420,19 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: false,
     routes: {
-      "/about" : {
+      "/about": {
         parentDir: "/about",
         path: "about.md",
         title: "About",
         description: "",
         isTopLevel: true,
-        category: "About"
-      }
-    }
+        category: "About",
+      },
+    },
   },
   njde: {
     theme: "njde",
-    filters: [
-      "provider.@id:http%3A//dp.la/api/contributor/njde"
-    ],
+    filters: ["provider.@id:http%3A//dp.la/api/contributor/njde"],
     name: "NJ/DE Digital Collective",
     background: "",
     favicon: "favicon.ico",
@@ -463,9 +445,8 @@ const LOCALS = {
     hasSidebar: false,
     hasBrowseByPartner: true,
     externalLink: "https://www.njdedigitalcollective.org/",
-    hasBrowseAll: false
-  }
-
-}
+    hasBrowseAll: false,
+  },
+};
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js

@@ -15,7 +15,17 @@ jest.mock("constants/site.js", () => ({
     "https://paypal.com/monthly?amount={amount}&return={returnUrl}",
 }));
 
+// Add this before the describe block
+const assignMock = jest.fn();
+
+delete window.location;
+window.location = { assign: assignMock };
+
 describe("DonateForm", () => {
+  beforeEach(() => {
+    assignMock.mockClear();
+  });
+
   it("renders frequency and amount options", () => {
     render(<DonateForm />);
     expect(screen.getByText("Frequency")).toBeInTheDocument();
@@ -35,10 +45,9 @@ describe("DonateForm", () => {
     fireEvent.click(screen.getByText("Monthly"));
     // Select $50
     fireEvent.click(screen.getByText("$50"));
-    // Check that the buttons are in active state
-    // These assertions may need to be updated based on your component implementation
-    // expect(screen.getByText("Monthly")).toHaveAttribute("state", "active");
-    // expect(screen.getByText("$50")).toHaveAttribute("state", "active");
+    //Check that the buttons are in active state
+    expect(screen.getByText("Monthly")).toHaveAttribute("aria-checked", "true");
+    expect(screen.getByText("$50")).toHaveAttribute("aria-checked", "true");
   });
 
   it("allows entering a custom amount", () => {
@@ -53,8 +62,8 @@ describe("DonateForm", () => {
     // Select $25
     fireEvent.click(screen.getByText("$25"));
     // Click Donate
-    const form = screen.getByRole("form");
-    const result = fireEvent.submit(form);
+    const donateButton = screen.getByText("Donate");
+    const result = fireEvent.click(donateButton);
     // Check the constructed URL
     const expectedUrl =
       "https://paypal.com/single?amount=25&return=" +
@@ -69,12 +78,12 @@ describe("DonateForm", () => {
     // Select $100
     fireEvent.click(screen.getByText("$100"));
     // Click Donate
-    const form = screen.getByRole("form"); // this is wrong
-    const result = fireEvent.submit(form);
-    // Check the constructed URL
+    fireEvent.click(screen.getByText("Donate"));
+
+    // Check if window.location.assign was called with the correct URL
     const expectedUrl =
       "https://paypal.com/monthly?amount=100&return=" +
       encodeURIComponent("https://example.com/donate/thank-you");
-    // expect(result).toBe(expectedUrl);
+    expect(assignMock).toHaveBeenCalledWith(expectedUrl);
   });
 });

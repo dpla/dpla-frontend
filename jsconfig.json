@@ -11,12 +11,5 @@
       "components/*": ["./components/*"]
     }
   },
-  "exclude": [
-    "snapshots.js",
-    "node_modules",
-    "lib",
-    ".tmp",
-    "build",
-    ".next"
-  ]
+  "exclude": ["snapshots.js", "node_modules", "lib", ".tmp", "build", ".next"]
 }

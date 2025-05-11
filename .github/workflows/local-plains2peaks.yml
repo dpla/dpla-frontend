@@ -3,9 +3,9 @@ name: Local Plains to Peaks ECR
 on:
   workflow_dispatch:
 
-env: 
-  SITE_ENV:       "local"
-  LOCAL_ID:       "plains2peaks"
+env:
+  SITE_ENV: "local"
+  LOCAL_ID: "plains2peaks"
   ECR_REPOSITORY: "dpla-local-plains2peaks"
   GA_TRACKING_ID: "G-PZK6XWKZDN"
 
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

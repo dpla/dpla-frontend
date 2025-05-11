@@ -58,7 +58,8 @@
   }
 }
 
-.breadcrumbLink p, .activeBreadcrumb p {
+.breadcrumbLink p,
+.activeBreadcrumb p {
   max-width: 7rem;
   white-space: nowrap;
   text-overflow: ellipsis;

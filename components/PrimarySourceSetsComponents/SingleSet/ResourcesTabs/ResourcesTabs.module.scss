@@ -63,7 +63,8 @@
   }
 }
 
-.activeTab a, .activeTab a:hover {
+.activeTab a,
+.activeTab a:hover {
   color: var(--linkColor);
   border-bottom: 0.2rem solid var(--linkColor);
 }

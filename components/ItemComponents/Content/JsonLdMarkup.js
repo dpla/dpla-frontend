@@ -1,31 +1,31 @@
 import React from "react";
 
-import {joinIfArray} from "lib";
+import { joinIfArray } from "lib";
 
 function JsonLdMarkup({ item }) {
   /**
-    * @param values Array, possibly nested, of defined and undefined values.
-    * @return Array, flattened, only containing defined values.
-    */
+   * @param values Array, possibly nested, of defined and undefined values.
+   * @return Array, flattened, only containing defined values.
+   */
   function definedAndFlattened(values) {
-    const defined = values.filter(function(x) {
+    const defined = values.filter(function (x) {
       return x !== undefined;
     });
     return [].concat(...defined);
   }
 
   /**
-    * @param begin String, begin date
-    * @param end String, end date
-    * @return String, date range in ISO 8601 format
+   * @param begin String, begin date
+   * @param end String, end date
+   * @return String, date range in ISO 8601 format
    */
   function dateRange(begin, end) {
     return `${begin}/${end}`;
   }
 
   /**
-    * @return String
-    */
+   * @return String
+   */
   const type = () => {
     if (Array.isArray(item.type)) {
       return "CreativeWork";
@@ -46,24 +46,26 @@ function JsonLdMarkup({ item }) {
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const provider = () => {
     const all = definedAndFlattened([
       item.partner,
       item.intermediateProvider,
-      item.contributor
+      item.contributor,
     ]);
 
     const dpla = {
       "@type": "Organization",
       name: "Digital Public Library of America",
-      url: "https://dp.la/"
+      url: "https://dp.la/",
     };
 
-    return all.map(x => {
-      return { "@type": "Organization", name: x };
-    }).push(dpla);
+    return all
+      .map((x) => {
+        return { "@type": "Organization", name: x };
+      })
+      .push(dpla);
   };
 
   /**
@@ -78,8 +80,8 @@ function JsonLdMarkup({ item }) {
   };
 
   /**
-    * @return Object
-    */
+   * @return Object
+   */
   const potentialAction = () => {
     const action = () => {
       switch (item.type) {
@@ -99,76 +101,74 @@ function JsonLdMarkup({ item }) {
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const collection = () => {
     const all = definedAndFlattened([item.collection]);
-    return all.map(x => {
+    return all.map((x) => {
       return {
         "@type": "Collection",
         "@id": x["@id"],
         name: x.title,
-        description: x.description
+        description: x.description,
       };
     });
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const contributor = () => {
-    return definedAndFlattened([item.contributor])
-        .map(x => {return { "@type": "Thing", name: x }});
+    return definedAndFlattened([item.contributor]).map((x) => {
+      return { "@type": "Thing", name: x };
+    });
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const creator = () => {
-    return definedAndFlattened([item.creator])
-        .map(x => {return { "@type": "Thing", name: x }});
+    return definedAndFlattened([item.creator]).map((x) => {
+      return { "@type": "Thing", name: x };
+    });
   };
 
   /**
-    * @return Array[String]
-    */
+   * @return Array[String]
+   */
   const description = () => {
-    return definedAndFlattened([
-      item.description,
-      item.format,
-      item.type
-    ]);
+    return definedAndFlattened([item.description, item.format, item.type]);
   };
   /**
-    * @return Array[String]
-    */
+   * @return Array[String]
+   */
   const date = () => {
     const all = definedAndFlattened([item.date]);
-    return all.map(x => {
+    return all.map((x) => {
       return dateRange(x.begin, x.end);
     });
   };
 
   /**
-    * @return Array[Object]
-    * TODO: item.langauge only retruns the langauge name. We could add
-    * the ISO label.
-    */
+   * @return Array[Object]
+   * TODO: item.langauge only retruns the langauge name. We could add
+   * the ISO label.
+   */
   const language = () => {
-    return definedAndFlattened([item.language]).map(x => {
+    return definedAndFlattened([item.language]).map((x) => {
       return {
         "@type": "Language",
-        name: x
+        name: x,
       };
     });
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const spatial = () => {
     const all = definedAndFlattened([item.spatial]);
-    return all.map(x => {
+    return all.map((x) => {
       let lat = null;
       let lon = null;
       let coordinates = joinIfArray(x.coordinates);
@@ -183,45 +183,45 @@ function JsonLdMarkup({ item }) {
           "@type": "GeoCoordinates",
           addressCountry: x.country,
           latitude: lat,
-          longitude: lon
-        }
+          longitude: lon,
+        },
       };
     });
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const publisher = () => {
     const all = definedAndFlattened([item.publisher]);
-    return all.map(x => {
+    return all.map((x) => {
       return { "@type": "Organization", name: x };
     });
   };
 
   /**
-    * @return Array[Object]
-    */
+   * @return Array[Object]
+   */
   const subject = () => {
     const all = definedAndFlattened([item.subject]);
-    return all.map(x => {
+    return all.map((x) => {
       return { "@type": "Thing", name: x.name };
     });
   };
 
   /**
-    * @return Array[String] ISO 8601 date range format
-    */
+   * @return Array[String] ISO 8601 date range format
+   */
   const temporal = () => {
     const all = definedAndFlattened([item.temporal]);
-    return all.map(x => {
+    return all.map((x) => {
       return dateRange(x.begin, x.end);
     });
   };
 
   /**
-    * @return Object, JSON-LD representation of DPLA Item
-    */
+   * @return Object, JSON-LD representation of DPLA Item
+   */
   const JsonLd = {
     "@context": "http://schema.org/",
     "@type": type(),
@@ -244,7 +244,7 @@ function JsonLdMarkup({ item }) {
     genre: item.specType,
     about: subject(),
     temporalCoverage: temporal(),
-    name: definedAndFlattened([item.title])
+    name: definedAndFlattened([item.title]),
   };
 
   return (

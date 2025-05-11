@@ -15,11 +15,14 @@
   padding-left: 0;
 
   /* overrides for react-slick css*/
-  & :global .slick-prev:before, & :global .slick-next:before {
+  & :global .slick-prev:before,
+  & :global .slick-next:before {
     content: none;
   }
 
-  & :global .slick-disabled, & :global .slick-next, & :global .slick-prev {
+  & :global .slick-disabled,
+  & :global .slick-next,
+  & :global .slick-prev {
     display: none;
   }
 
@@ -27,7 +30,8 @@
     padding-right: 1rem;
     padding-left: 1rem;
 
-    & :global .slick-next, & :global .slick-prev {
+    & :global .slick-next,
+    & :global .slick-prev {
       display: block;
     }
   }
@@ -135,7 +139,8 @@
   }
 }
 
-.nextItemButton, .previousItemButton {
+.nextItemButton,
+.previousItemButton {
   font-size: 1rem;
   font-weight: 600;
   padding: 0.75rem 0;
@@ -148,7 +153,8 @@
   }
 }
 
-.nextItemButton, .nextItemButton:visited {
+.nextItemButton,
+.nextItemButton:visited {
   background-color: var(--linkColor);
   color: white;
 
@@ -161,7 +167,8 @@
   }
 }
 
-.previousItemButton, .previousItemButton:visited {
+.previousItemButton,
+.previousItemButton:visited {
   color: black;
   background-color: #e3e0da;
 

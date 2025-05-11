@@ -208,9 +208,9 @@ export default function ListView({
         const url = item.sourceUrl;
         return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
       });
-    const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join("\r\n",)}`;
+    const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join("\r\n")}`;
     const filename = `${state?.currentList?.name || "list"}.csv`;
-    const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
     if (navigator?.msSaveBlob) {
       // IE 10+
       navigator.msSaveBlob(blob, filename);

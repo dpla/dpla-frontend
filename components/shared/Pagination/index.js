@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 import ChevronThick from "components/svg/ChevronThick";
 
@@ -144,4 +144,3 @@ export default function Pagination({ pageCount, currentPage }) {
     </div>
   );
 }
-

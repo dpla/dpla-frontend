@@ -11,7 +11,8 @@
   }
 }
 
-.link, .link:visited {
+.link,
+.link:visited {
   display: none;
 
   @media (min-width: $smallRem) {
@@ -36,7 +37,8 @@
   margin-left: 0;
 }
 
-.activeLink, .activeLink:visited {
+.activeLink,
+.activeLink:visited {
   color: black;
   box-sizing: border-box;
   border: 0.1rem solid var(--lightBorderColor);
@@ -46,7 +48,8 @@
   background-color: var(--colderBackgroundColor);
 }
 
-.nextButton, .previousButton {
+.nextButton,
+.previousButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +68,8 @@
   }
 }
 
-.previousButton, .previousButton:visited {
+.previousButton,
+.previousButton:visited {
   background-color: #e3e0da;
   color: black;
 
@@ -76,7 +80,8 @@
   }
 }
 
-.nextButton, .nextButton:visited {
+.nextButton,
+.nextButton:visited {
   background-color: var(--linkColor);
   color: white;
 

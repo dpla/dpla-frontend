@@ -17,7 +17,6 @@ The document includes best practices for creating shareable metadata for the DPL
 [DPLA Standardized Rights Statements Implementation Guidelines](http://bit.ly/dpla-rights-guidelines)<br>
 A description of DPLA’s implementation of standardized rights statements and recommendations for the use of statements in records that will be shared with DPLA.
 
-
 ## For Educators:
 
 [The Education Guide to DPLA](https://dp.la/guides/the-education-guide-to-dpla)

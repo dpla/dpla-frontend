@@ -3,6 +3,7 @@
 ## Governance Statement
 
 **ISL proposes, therefore, to implement a DPLA Service Hub that is a four-way partnership, including the Chicago Public Library (CPL), the Consortium of Academic and Research Libraries of Illinois (CARLI), the University of Illinois at Urbana-Champaign (UIUC) and ISL.** Each of the four Founding Partners—allies on many projects stretching over many years—brings different experience and a complementary perspective to the effort:
+
 - **CPL**, the state’s largest public library, a premier library organization and public library system, is uniquely positioned to steer outreach and marketing for the Service Hub. Their experience and abilities with social media and other kinds of publicity are exemplary.
 - **CARLI** supports a technical infrastructure that includes state-of-the-art equipment and staffing, and high-speed bandwidth. CARLI will host and manage the REPOX framework for the network.
 - **UIUC** has been home to the Institute of Museum and Library Services’ (IMLS) Digital Collections and Content program and is presently a DPLA Content Hub. Staff members who will be involved with the Illinois DPLA Service Hub have extensive experience with OAI, CONTENTdm, shareable metadata, Dublin Core, harvesting applications and working with contributing organizations to resolve aggregation issues. The UIUC DPLA Content Hub will be absorbed into the Service Hub.

@@ -8,15 +8,39 @@
   --theme-dark-color: rgb(3.5747607656, 2.097788916, 1.4252392344);
   --theme-warmer-tint: white;
 
-  --heroBackgroundColor: rgb(48.1781322194, 48.3104771784, 42.1895228216) !important;
-  --linkHoverColor: rgb(227.4880382775, 93.5167464115, 32.5119617225) !important;
-  --visitedLinkColor: rgb(140.6124401914, 55.9425837321, 17.3875598086) !important;
+  --heroBackgroundColor: rgb(
+    48.1781322194,
+    48.3104771784,
+    42.1895228216
+  ) !important;
+  --linkHoverColor: rgb(
+    227.4880382775,
+    93.5167464115,
+    32.5119617225
+  ) !important;
+  --visitedLinkColor: rgb(
+    140.6124401914,
+    55.9425837321,
+    17.3875598086
+  ) !important;
   --mobileNavColor: rgb(21.8060406699, 12.7965123874, 8.6939593301) !important;
-  --mobileNavMenuButtonOpen: rgb(21.8060406699, 12.7965123874, 8.6939593301) !important;
-  --darkSecondaryButtonColor: rgb(21.8060406699, 12.7965123874, 8.6939593301) !important;
+  --mobileNavMenuButtonOpen: rgb(
+    21.8060406699,
+    12.7965123874,
+    8.6939593301
+  ) !important;
+  --darkSecondaryButtonColor: rgb(
+    21.8060406699,
+    12.7965123874,
+    8.6939593301
+  ) !important;
   --warmerBackgroundColor: #f7f7f7 !important;
   --colderBackgroundColor: rgb(240.5, 240.5, 240.5) !important;
-  --subLinkColorHover: rgb(140.6124401914, 55.9425837321, 17.3875598086) !important;
+  --subLinkColorHover: rgb(
+    140.6124401914,
+    55.9425837321,
+    17.3875598086
+  ) !important;
   --linkColor: var(--theme-link-color) !important;
   --paginationLinkColor: var(--linkColor) !important;
   --headingColor: var(--theme-dark-color) !important;

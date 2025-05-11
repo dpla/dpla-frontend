@@ -7,15 +7,14 @@ import FeatureHeader from "shared/FeatureHeader";
 
 import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
 import { LISTS_TITLE } from "constants/lists";
-import {createUUID} from "lib/index";
+import { createUUID } from "lib/index";
 
 const ListsPage = () => {
-
   const [lists, setLists] = useState([]);
   const [initialized, setInitialized] = useState(false);
   const isCreatingRef = React.useRef(false);
 
-  useEffect( () => {
+  useEffect(() => {
     const fetchLists = async () => {
       const fetchedLists = await getLocalForageLists();
       fetchedLists.sort((a, b) => b.createdAt - a.createdAt);
@@ -25,7 +24,6 @@ const ListsPage = () => {
 
     if (!initialized) fetchLists();
   }, [initialized]);
-
 
   const onCreateList = useCallback(async (name) => {
     // this isCreating ref is used to prevent multiple calls to onCreateList in dev mode,
@@ -45,23 +43,21 @@ const ListsPage = () => {
         selectedHash: {},
         count: 0,
         createdAt,
-      }
+      };
 
       await setLocalForageItem(uuid, newList);
 
-      setLists(prevLists => {
+      setLists((prevLists) => {
         const updatedLists = [...prevLists, newList];
         return updatedLists.sort((a, b) => b.createdAt - a.createdAt);
       });
 
       // Redirect to the new list
       await Router.push({ pathname: `/lists/${uuid}` });
-
     } finally {
       isCreatingRef.current = false;
     }
   }, []);
-
 
   return (
     <MainLayout pageTitle={LISTS_TITLE}>

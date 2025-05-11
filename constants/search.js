@@ -3,24 +3,24 @@ import { joinIfArray } from "lib";
 export const tooltips = {
   "Unlimited Re-Use": {
     link: "https://dp.la/about/rights-categories#unlimited",
-    text: "Items in this category have no known restrictions and may be freely used and modified without permission. Some attribution may be required depending on the specific rights statement applied to the item. Click for more info."
+    text: "Items in this category have no known restrictions and may be freely used and modified without permission. Some attribution may be required depending on the specific rights statement applied to the item. Click for more info.",
   },
   "Re-use With Conditions": {
     link: "https://dp.la/about/rights-categories#conditions",
-    text: "Items in this category may be used and modified without permission as long as the user complies with stated conditions attached to the item. Click for more info."
+    text: "Items in this category may be used and modified without permission as long as the user complies with stated conditions attached to the item. Click for more info.",
   },
   "Re-use, No Modification": {
     link: "https://dp.la/about/rights-categories#no-modifications",
-    text: "Items in this category may be used in their current form without permission, as long as the user complies with stated conditions attached to the item. Click for more info."
+    text: "Items in this category may be used in their current form without permission, as long as the user complies with stated conditions attached to the item. Click for more info.",
   },
   "Permission or Fair Use": {
     link: "https://dp.la/about/rights-categories#permission-fair-use",
-    text: "Items in this category are in copyright with no restrictions waived (\"all rights reserved\"). Items may be used by seeking permission from the contributing institution or under fair use. Click for more info."
+    text: 'Items in this category are in copyright with no restrictions waived ("all rights reserved"). Items may be used by seeking permission from the contributing institution or under fair use. Click for more info.',
   },
   "Unspecified Rights Status": {
     link: "https://dp.la/about/rights-categories#unspecified",
-    text: "Items in this category have not been evaluated for copyright status or their status is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info."
-  }
+    text: "Items in this category have not been evaluated for copyright status or their status is uncertain. Users may contact the institution which provided the digital object for more information. Click for more info.",
+  },
 };
 
 export const possibleFacets = [
@@ -33,7 +33,7 @@ export const possibleFacets = [
   "sourceResource.language.name",
   "sourceResource.collection.title",
   "admin.contributingInstitution",
-  "provider.name"
+  "provider.name",
 ];
 
 // assumed to be a superset of possibleFacets,
@@ -51,7 +51,7 @@ export const qaFacets = [
   "provider.name",
   "intermediateProvider",
   "rightsCategory",
-  "rights"
+  "rights",
 ];
 
 export const mapFacetsToURLPrettified = {
@@ -67,7 +67,7 @@ export const mapFacetsToURLPrettified = {
   rightsCategory: "rightsCategory",
   intermediateProvider: "intermediateProvider",
   rights: "standardizedRightsStatement",
-  tags: "tags"
+  tags: "tags",
 };
 
 export const mapURLPrettifiedFacetsToUgly = {
@@ -83,7 +83,7 @@ export const mapURLPrettifiedFacetsToUgly = {
   partner: "provider.name",
   intermediateProvider: "intermediateProvider",
   standardizedRightsStatement: "rights",
-  tags: "tags"
+  tags: "tags",
 };
 
 export const prettifiedFacetMap = {
@@ -98,14 +98,14 @@ export const prettifiedFacetMap = {
   "provider.name": "Partner",
   intermediateProvider: "Intermediate Provider",
   rights: "Standardized Rights Statement",
-  rightsCategory: "How Can I Use It?"
+  rightsCategory: "How Can I Use It?",
 };
 
 export const pageSizeOptions = [
   { value: "10", label: "10" },
   { value: "20", label: "20" },
   { value: "50", label: "50" },
-  { value: "100", label: "100" }
+  { value: "100", label: "100" },
 ];
 
 export const sortOptions = [
@@ -113,30 +113,30 @@ export const sortOptions = [
   { value: "a_to_z", label: "A–Z" },
   { value: "z_to_a", label: "Z-A" },
   { value: "old_to_new", label: "Oldest to Newest" },
-  { value: "new_to_old", label: "Newest to Oldest" }
+  { value: "new_to_old", label: "Newest to Oldest" },
 ];
 
 export const mapSortOptionsToParams = {
   a_to_z: {
     sort_by: "title",
-    sort_order: "asc"
+    sort_order: "asc",
   },
   z_to_a: {
     sort_by: "title",
-    sort_order: "desc"
+    sort_order: "desc",
   },
   old_to_new: {
     sort_by: "created",
-    sort_order: "asc"
+    sort_order: "asc",
   },
   new_to_old: {
     sort_by: "created",
-    sort_order: "desc"
+    sort_order: "desc",
   },
   relevance: {
     sort_by: "",
-    sort_order: ""
-  }
+    sort_order: "",
+  },
 };
 
 export const getSortOptionFromParams = ({ sortBy, sortOrder }) => {
@@ -149,10 +149,10 @@ export const getSortOptionFromParams = ({ sortBy, sortOrder }) => {
   }
 };
 
-export const splitAndURIEncodeFacet = facet =>
+export const splitAndURIEncodeFacet = (facet) =>
   joinIfArray(facet, "|")
     .split("|")
-    .map(param => encodeURIComponent(param))
+    .map((param) => encodeURIComponent(param))
     .join("+AND+");
 
 export const DEFAULT_PAGE_SIZE = "20";

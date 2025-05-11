@@ -10,6 +10,6 @@ Resources:
         PlatformVersion: "LATEST"
         NetworkConfiguration:
           AwsvpcConfiguration:
-            Subnets: ["$SUBNET_A","$SUBNET_B","$SUBNET_C"]
+            Subnets: ["$SUBNET_A", "$SUBNET_B", "$SUBNET_C"]
             SecurityGroups: ["$SECURITY_GROUP"]
             AssignPublicIp: "ENABLED"

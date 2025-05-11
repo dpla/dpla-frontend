@@ -10,7 +10,8 @@
 
   /* overrides for react-slick css*/
   & :global {
-    .slick-prev:before, .slick-next:before {
+    .slick-prev:before,
+    .slick-next:before {
       content: none;
     }
 

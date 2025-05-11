@@ -9,13 +9,13 @@ For controlled vocabularies, the IDHH recommends OCLC’s [Faceted Application o
 
 The following is a scenario illustrating the problems related to coordinated subject terms in the IDHH, DPLA, and potentially, local catalogs. Consider a catalog subject search for subject terms equaling ‘Utility poles’. This search returns 2,398 records, including 129 contributed by IDHH institutions. This is good as it links at least a few of the IDHH’s records to 100s of others in the DPLA.
 
-![Subject term search in the DPLA catalog](/static/local/illinois/uncoordinated-subject-term-search.png  "Subject term search in the DPLA catalog")
+![Subject term search in the DPLA catalog](/static/local/illinois/uncoordinated-subject-term-search.png "Subject term search in the DPLA catalog")
 
 _Subject term search in the DPLA catalog._
 
 This allows users to more easily find IDHH records when they are searching by subject or when they click certain subject facets, either in the search results, above, or on an item page, below.
 
-![Uncoordinated subject terms on a DPLA item page](/static/local/illinois/uncoordinated-subject-terms-item-page.png  "Uncoordinated subject terms on a DPLA item page")
+![Uncoordinated subject terms on a DPLA item page](/static/local/illinois/uncoordinated-subject-terms-item-page.png "Uncoordinated subject terms on a DPLA item page")
 
 _Uncoordinated subject terms on a DPLA item page._
 
@@ -23,7 +23,7 @@ The above results are possible by uncoordinated terms. In a DC XML metadata reco
 
 Coordinated terms, on the other hand, result in small, idiosyncratic record sets in the DPLA. A user is unlikely to search by a coordinated subject term, ‘Utility poles--Illinois--Chicago’ but if they did, it would return only 215 results. All these records are contributed by a single institution within the IDHH. As it is very unlikely for a user to search for this specific subject term, it is similarly unlikely that a user would stumble upon any items in this record set from subject term facets either in the search results catalog UI or from the item pages.
 
-![Coordinated subject terms in the DPLA catalog](/static/local/illinois/coordinated-subject-term-search.png  "Coordinated subject terms in the DPLA catalog")
+![Coordinated subject terms in the DPLA catalog](/static/local/illinois/coordinated-subject-term-search.png "Coordinated subject terms in the DPLA catalog")
 
 _Example of the limitations of coordinated subject terms in the DPLA catalog._
 

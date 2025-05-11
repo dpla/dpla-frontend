@@ -34,7 +34,7 @@ beforeAll(() => {
   console.error = (...args) => {
     if (
       /Warning: ReactDOM.render is no longer supported in React 18/.test(
-        args[0]
+        args[0],
       )
     ) {
       return;

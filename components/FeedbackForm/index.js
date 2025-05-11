@@ -181,7 +181,9 @@ class FeedbackForm extends React.Component {
       mustSubmit: this.touchedAll(),
       onClick: this.activateRequired,
     };
-    const modal = !modalActive ?  <></> : (
+    const modal = !modalActive ? (
+      <></>
+    ) : (
       <AriaModal
         titleText="Feedback"
         onExit={this.closeForm}

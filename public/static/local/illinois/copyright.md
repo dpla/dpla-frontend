@@ -6,7 +6,7 @@ For most items in a digital collection, the standardized statements from RightsS
 
 [PA Digital](https://padigital.org/)’s interactive Rights Statement Selection Tool provides step-by-step instructions for determining the rights status of an item \[[Interactive PDF](https://padigital.org/wp-content/uploads/2018/10/Rights-Statement-Selection-Tool_Galson.pdf)\].
 
-![Rights Statement Selection Tool](/static/local/illinois/rights-statement-selection-tool.jpg  "Rights Statement Selection Tool")
+![Rights Statement Selection Tool](/static/local/illinois/rights-statement-selection-tool.jpg "Rights Statement Selection Tool")
 
 _[CC-BY-2.0](https://creativecommons.org/licenses/by/2.0/). Gabriel Galson, “Rights Statement Selection Tool,” 2018. [http://bit.ly/RightsTool](http://bit.ly/RightsTool)_
 

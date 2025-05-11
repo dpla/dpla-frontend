@@ -28,7 +28,6 @@
     box-shadow: none;
     margin: 0 -1rem;
   }
-
 }
 
 .testimonial {
@@ -36,7 +35,6 @@
     font-weight: normal;
     font-size: 1.6rem !important;
   }
-
 }
 
 .donateForm {
@@ -57,7 +55,8 @@
   }
 }
 
-.byPaypal, .byMail {
+.byPaypal,
+.byMail {
   padding: 2.5rem 2rem;
 
   @media (max-width: $smallRem) {

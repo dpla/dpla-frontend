@@ -42,7 +42,9 @@
   overflow: hidden;
   visibility: hidden;
   max-height: 0;
-  transition: max-height 0.15s ease-in-out, visibility 0s 0.15s;
+  transition:
+    max-height 0.15s ease-in-out,
+    visibility 0s 0.15s;
 
   &.isOpen {
     visibility: visible;

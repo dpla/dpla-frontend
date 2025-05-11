@@ -18,7 +18,7 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 - ### [Architecture](https://idhh.dp.la/search?q=architecture)
 
-    Structures in Illinois that range from historic to modern, commercial to residential, rural to urban
+  Structures in Illinois that range from historic to modern, commercial to residential, rural to urban
 
 - ### [Century of Progress](/search?q=*century+of+progress*)
 
@@ -76,7 +76,7 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 - ### [Jane Addams](/search?q=%22jane+addams%22+OR+%22Hull+House%22)
 
-    Social reformer, activist, Nobel Peace Prize winner. "The Mother of Social Work" founded Hull House in 1889
+  Social reformer, activist, Nobel Peace Prize winner. "The Mother of Social Work" founded Hull House in 1889
 
 - ### [Frank Lloyd Wright](https://idhh.dp.la/search?q=%22frank+lloyd+wright%22+OR+%22Wright%2C+Frank+Lloyd%22)
 
@@ -179,6 +179,7 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 Check out the IDHH Highlights blog for posts highlighting new contributors and collections as well as items relevant to certain holidays and current or historical events.
 
 - ###
+
 ## [IDHH Exhibits Site](https://omeka-s.library.illinois.edu/s/idhh/page/welcome)
 
 Check out the IDHH Exhibits site for digital exhibits that dig into topics important to Illinois History and relevant to current and historical events, featuring items curated from our collections that are immense in volume and rich in historical detail.

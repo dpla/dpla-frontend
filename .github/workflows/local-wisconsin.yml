@@ -3,9 +3,9 @@ name: Local Wisconsin ECR
 on:
   workflow_dispatch:
 
-env: 
-  SITE_ENV:       "local"
-  LOCAL_ID:       "wisconsin"
+env:
+  SITE_ENV: "local"
+  LOCAL_ID: "wisconsin"
   ECR_REPOSITORY: "dpla-local-wisconsin"
   GA_TRACKING_ID: "UA-128040088-1"
 
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

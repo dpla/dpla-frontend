@@ -25,7 +25,7 @@ function Button({
   name,
   disabled,
   live,
-  url
+  url,
 }) {
   let buttonClasses = `${css.buttonBase}`;
 
@@ -76,20 +76,28 @@ function Button({
 
   return (
     <div className={className}>
-      {url
-        ? <Link href={url} {...linkProps} {...props} className={buttonClasses} style={style}>
-            {children}
-          </Link>
-        : <button
-            {...props}
-            type={!mustSubmit ? "button" : "submit"}
-            onClick={onClick}
-            onTouchEnd={onClick}
-            className={buttonClasses}
-            style={style}
-          >
-            {children}
-          </button>}
+      {url ? (
+        <Link
+          href={url}
+          {...linkProps}
+          {...props}
+          className={buttonClasses}
+          style={style}
+        >
+          {children}
+        </Link>
+      ) : (
+        <button
+          {...props}
+          type={!mustSubmit ? "button" : "submit"}
+          onClick={onClick}
+          onTouchEnd={onClick}
+          className={buttonClasses}
+          style={style}
+        >
+          {children}
+        </button>
+      )}
     </div>
   );
 }

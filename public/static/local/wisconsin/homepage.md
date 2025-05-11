@@ -10,7 +10,7 @@ Recollection Wisconsin content highlights include:
 
 - ### [Protest movements](/search?q=protest*)
 
-  Civil rights marches for fair housing in Milwaukee, student-led protests against the Vietnam War and other grassroots activism. 
+  Civil rights marches for fair housing in Milwaukee, student-led protests against the Vietnam War and other grassroots activism.
 
 - ### [Dairy industry](/search?q=dairy*+OR+cheese*)
 

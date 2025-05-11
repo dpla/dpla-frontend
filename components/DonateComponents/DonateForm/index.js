@@ -58,7 +58,7 @@ class DonateForm extends React.Component {
       ? returnUrl + "thank-you"
       : returnUrl + "/thank-you";
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
-    document.location = url;
+    window.location.assign(url);
   }
 
   handleFrequencyClick(freq) {

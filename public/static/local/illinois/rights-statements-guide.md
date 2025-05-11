@@ -25,8 +25,8 @@ _Europeana catalog search results provide a facet by rights statements made poss
 Standardized rights statements or Creative Commons licenses can be implemented by first mapping your existing rights statements to standardized rights statements or, if your institution owns the copyright, Creative Commons licenses. This can be accomplished first by examining IDHH’s assessments of your collections’ metadata. In each assessment, we provide recommendations of standardized rights statements we believe will work for your collections. If you’re not sure where to start, from finding your metadata assessments to uncertainty on which statement to deploy, fear not! You have some options.
 
 - There are several flowcharts that can help you determine the right standardized rights statement for your collections, created by other DPLA hubs.
-    - [PA Digital](http://bit.ly/RightsTool) \[PDF download\]
-    - [Minnesota Digital Library](http://hdl.handle.net/11299/210229)
+  - [PA Digital](http://bit.ly/RightsTool) \[PDF download\]
+  - [Minnesota Digital Library](http://hdl.handle.net/11299/210229)
 - This [poster](https://scholarlyrepository.miami.edu/cgi/viewcontent.cgi?article=1001&context=librarypapers) \[PDF download\] details the University of Miami’s successful effort of migrating their free text rights statements to standardized rights.
 - If you have done your due diligence in trying to determine an item’s copyright status and are still unsure, you may use the _Copyright Undetermined_ option.
 - Last but not least, [contact the IDHH Metadata Manager](/about/contact) if you can’t find a solution above.

@@ -1,6 +1,6 @@
 ## About the Plains to Peaks Collective
 
-The Plains to Peaks Collective (PPC), the Colorado-Wyoming Service Hub of the Digital Public Library of America (DPLA), is a collaboration between the Colorado State Library and the Wyoming State Library that brings together unique collection material held by our partner libraries, archives, museums and collecting institutions. Through this portal PPC partners share their unique digital collections with a wider national audience of avid researchers, genealogists, students, teachers and history buffs. 
+The Plains to Peaks Collective (PPC), the Colorado-Wyoming Service Hub of the Digital Public Library of America (DPLA), is a collaboration between the Colorado State Library and the Wyoming State Library that brings together unique collection material held by our partner libraries, archives, museums and collecting institutions. Through this portal PPC partners share their unique digital collections with a wider national audience of avid researchers, genealogists, students, teachers and history buffs.
 
 ## About the Digital Public Library of America
 

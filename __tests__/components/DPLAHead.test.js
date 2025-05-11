@@ -41,17 +41,17 @@ describe("DPLAHead", () => {
   it("renders default meta tags and title for non-local env", () => {
     render(<DPLAHead />);
     expect(document.querySelector('meta[name="description"]').content).toMatch(
-      /Digital Public Library/
+      /Digital Public Library/,
     );
     expect(document.querySelector('meta[name="og:site_name"]').content).toBe(
-      "Digital Public Library of America"
+      "Digital Public Library of America",
     );
     expect(document.querySelector('meta[name="og:type"]').content).toBe(
-      "website"
+      "website",
     );
     expect(document.querySelector("title").textContent).toBe("Default Title");
     expect(
-      document.querySelector('link[rel="apple-touch-icon"]')
+      document.querySelector('link[rel="apple-touch-icon"]'),
     ).toHaveAttribute("href", "/static/favicons/apple-touch-icon.png");
   });
 
@@ -64,25 +64,25 @@ describe("DPLAHead", () => {
         pageImageCaption="Custom Caption"
         seoType="article"
         additionalLinks={<link rel="canonical" href="/custom-canonical" />}
-      />
+      />,
     );
     expect(document.querySelector('meta[name="description"]').content).toBe(
-      "Custom Description"
+      "Custom Description",
     );
     expect(document.querySelector('meta[name="og:title"]').content).toBe(
-      "Custom Title"
+      "Custom Title",
     );
     expect(document.querySelector('meta[name="og:type"]').content).toBe(
-      "article"
+      "article",
     );
     expect(document.querySelector('meta[name="twitter:image"]').content).toBe(
-      "/custom-image.png"
+      "/custom-image.png",
     );
     expect(
-      document.querySelector('meta[name="twitter:image:alt"]').content
+      document.querySelector('meta[name="twitter:image:alt"]').content,
     ).toBe("Custom Caption");
     expect(document.querySelector('link[rel="canonical"]').href).toMatch(
-      "/custom-canonical"
+      "/custom-canonical",
     );
   });
 
@@ -90,13 +90,13 @@ describe("DPLAHead", () => {
     process.env.NEXT_PUBLIC_SITE_ENV = "local";
     render(<DPLAHead />);
     expect(document.querySelector('meta[name="description"]').content).toBe(
-      "Test Local Description"
+      "Test Local Description",
     );
     expect(document.querySelector('meta[name="og:site_name"]').content).toBe(
-      "Test Local Name"
+      "Test Local Name",
     );
     expect(document.querySelector('link[rel="apple-touch-icon"]').href).toMatch(
-      "test-favicon.png"
+      "test-favicon.png",
     );
   });
 

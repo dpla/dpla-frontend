@@ -111,7 +111,8 @@
     background-color: var(--radioButtonColor);
   }
 
-  & input[type="email"], & input[type="text"] {
+  & input[type="email"],
+  & input[type="text"] {
     width: 100%;
     border: 0.075rem solid var(--formLabelColor);
     padding: 0.5rem;

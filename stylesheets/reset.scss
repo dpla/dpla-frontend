@@ -19,7 +19,11 @@ body {
   font-family: var(--sansFont), sans-serif;
 }
 
-button, input, select, label, textarea {
+button,
+input,
+select,
+label,
+textarea {
   font-family: var(--sansFont), sans-serif;
 }
 
@@ -33,17 +37,33 @@ ul {
   list-style: none;
 }
 
-p, ul, h1, h2, h3, h4, h5, h6 {
+p,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-size: 100%;
   margin: 0;
 }
 
-a, button, input, optgroup, select, textarea {
+a,
+button,
+input,
+optgroup,
+select,
+textarea {
   &:focus {
     outline: 0.25rem solid var(--outlineColor);
   }

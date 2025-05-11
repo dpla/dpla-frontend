@@ -3,9 +3,9 @@ name: Pro Site to ECR
 on:
   workflow_dispatch:
 
-env: 
-  SITE_ENV:       "pro"
-  LOCAL_ID:       ""
+env:
+  SITE_ENV: "pro"
+  LOCAL_ID: ""
   ECR_REPOSITORY: "frontend-pro"
   GA_TRACKING_ID: "UA-28197764-7"
 
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

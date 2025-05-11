@@ -9,7 +9,8 @@ $halfGutterWidth: calc((#{$gutterWidth} * 0.5));
 $siteMaxWidth: 64rem;
 $borderColor: rgba(0, 0, 0, 0.75);
 
-.homeSearchForm {}
+.homeSearchForm {
+}
 
 .siteMaxWidth {
   max-width: $siteMaxWidth;
@@ -27,7 +28,6 @@ $borderColor: rgba(0, 0, 0, 0.75);
     text-decoration: underline;
   }
 }
-
 
 .underline {
   text-decoration: underline;
@@ -376,7 +376,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colSmOffset9,
 .colSmOffset10,
 .colSmOffset11,
-.colSmOffset12 {}
+.colSmOffset12 {
+}
 
 @media (min-width: $smallRem) {
   .colSm,
@@ -594,7 +595,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colMdOffset9,
 .colMdOffset10,
 .colMdOffset11,
-.colMdOffset12 {}
+.colMdOffset12 {
+}
 
 @media (min-width: $mediumRem) {
   .colMd,
@@ -812,7 +814,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
 .colLgOffset9,
 .colLgOffset10,
 .colLgOffset11,
-.colLgOffset12 { }
+.colLgOffset12 {
+}
 
 @media (min-width: $largeRem) {
   .colLg,

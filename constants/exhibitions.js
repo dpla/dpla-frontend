@@ -9,5 +9,5 @@ export const ITEMS_ENDPOINT = `${BASE_ENDPOINT}/items`;
 export const ITEM_TYPES = {
   STILL_IMAGE: "Still Image",
   MOVING_IMAGE: "Moving Image",
-  SOUND: "Sound"
+  SOUND: "Sound",
 };

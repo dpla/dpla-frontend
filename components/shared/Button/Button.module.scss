@@ -22,7 +22,8 @@ $padding: 1rem;
 
 /* Types */
 
-.buttonPrimary, .buttonPrimary:visited {
+.buttonPrimary,
+.buttonPrimary:visited {
   color: white;
   background-color: var(--linkColor);
 
@@ -31,7 +32,8 @@ $padding: 1rem;
   }
 }
 
-.buttonSecondary, .buttonSecondary:visited {
+.buttonSecondary,
+.buttonSecondary:visited {
   color: white;
   background-color: var(--secondaryButtonColor);
 
@@ -63,7 +65,8 @@ $padding: 1rem;
     font-size: 1rem;
   }
 
-  &.active, &:hover {
+  &.active,
+  &:hover {
     background-color: var(--donateFormButtonColor);
     color: var(--colderBackgroundColor);
   }

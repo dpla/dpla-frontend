@@ -3,7 +3,7 @@
 .fullPageWidthBlock {
   background-color: var(--colderBackgroundColor);
   padding: 2rem;
-  
+
   @media (max-width: $largeRem) {
     padding: 1rem;
   }
@@ -58,7 +58,8 @@
   }
 }
 
-.button, .button:visited {
+.button,
+.button:visited {
   font-size: 1.125rem;
   color: white;
   background-color: var(--secondaryButtonColor);

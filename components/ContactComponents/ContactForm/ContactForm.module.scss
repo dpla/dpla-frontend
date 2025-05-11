@@ -1,7 +1,6 @@
 @import "stylesheets/breakpoints.module";
 
 .notFixed {
-
 }
 
 .contactForm {
@@ -39,7 +38,9 @@
     resize: none;
   }
 
-  & input[type="email"], & input[type="text"], & textarea {
+  & input[type="email"],
+  & input[type="text"],
+  & textarea {
     width: 100%;
     border: 0.075rem solid var(--formLabelColor);
     padding: 1.5rem 0.25rem 0.5rem 0.5rem;

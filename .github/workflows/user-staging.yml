@@ -3,9 +3,9 @@ name: User Staging ECR
 on:
   workflow_dispatch:
 
-env: 
-  SITE_ENV:       "user"
-  LOCAL_ID:       "aviation"
+env:
+  SITE_ENV: "user"
+  LOCAL_ID: "aviation"
   ECR_REPOSITORY: "frontend-user-staging"
   GA_TRACKING_ID: ""
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -29,7 +29,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

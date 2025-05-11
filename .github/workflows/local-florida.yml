@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  SITE_ENV:       "local"
-  LOCAL_ID:       "florida"
+  SITE_ENV: "local"
+  LOCAL_ID: "florida"
   ECR_REPOSITORY: "dpla-local-florida"
   GA_TRACKING_ID: "UA-137505667-1"
 
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

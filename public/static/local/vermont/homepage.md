@@ -1,10 +1,10 @@
 ## Explore the history and culture of our “Brave Little State”
 
-The ***Vermont Green Mountain Digital Archive*** (GMDA) is a collaboration between Middlebury College, Vermont State Archives & Records Administration, Vermont Historical Society, Rockingham Free Public Library, Norwich University, St. Michael’s College, University of Vermont, and Vermont Department of Libraries, and brings together photographs, documents, maps, recordings, and other resources related to Vermont and beyond.
+The **_Vermont Green Mountain Digital Archive_** (GMDA) is a collaboration between Middlebury College, Vermont State Archives & Records Administration, Vermont Historical Society, Rockingham Free Public Library, Norwich University, St. Michael’s College, University of Vermont, and Vermont Department of Libraries, and brings together photographs, documents, maps, recordings, and other resources related to Vermont and beyond.
 
 ### Collections by Topics
 
-Below are some suggested topics to browse.  The search box above can also be used to search for any keyword.
+Below are some suggested topics to browse. The search box above can also be used to search for any keyword.
 
 - ### [Agriculture](/search?q=agriculture)
 

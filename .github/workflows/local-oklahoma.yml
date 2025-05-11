@@ -3,9 +3,9 @@ name: Local Oklahoma ECR
 on:
   workflow_dispatch:
 
-env: 
-  SITE_ENV:       "local"
-  LOCAL_ID:       "oklahoma"
+env:
+  SITE_ENV: "local"
+  LOCAL_ID: "oklahoma"
   ECR_REPOSITORY: "dpla-local-oklahoma"
   GA_TRACKING_ID: ""
 
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
+          node-version-file: ".node-version"
 
       #      - name: Install Yarn
       #        run: npm install -g yarn

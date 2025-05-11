@@ -4,7 +4,6 @@
 
 This is the repository for the Digital Public Library of America's new frontend.
 
-
 ## Getting Started For Development
 
 ### Install the Yarn package manager
@@ -27,7 +26,7 @@ to set it up. Then, do the following in your shell:
 
 ```
 $ cd /path/to/dpla-frontend                                   # Checked out above from GitHub
-$ mise settings add idiomatic_version_file_enable_tools node  # Enables loading from .node-version 
+$ mise settings add idiomatic_version_file_enable_tools node  # Enables loading from .node-version
 $ mise use                                                    # Picks up correct Node version from `.node-version`
 ```
 
@@ -35,11 +34,11 @@ $ mise use                                                    # Picks up correct
 
 The recommended way to install Yarn:
 
-```npm install --global yarn```
+`npm install --global yarn`
 
 ### Set up environmental variables
 
-Copy the `.env.example` file to `.env` and replace the example values with correct ones for your environment. 
+Copy the `.env.example` file to `.env` and replace the example values with correct ones for your environment.
 
 ### Install dependencies and start the local development server
 
@@ -89,4 +88,3 @@ The project includes a number of scripts used for development, testing, and depl
 - `yarn run dev` - Builds the project and starts the server in development mode
 - `yarn run build` - Builds the project for production
 - `yarn run start` - Builds the project and starts the server in production mode
-

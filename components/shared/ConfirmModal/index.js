@@ -7,14 +7,14 @@ const DEFAULT_CONFIRM_TEXT = "Are you sure?";
 const DEFAULT_BUTTON_TEXT = "Delete";
 const DEFAULT_CONFIRM_BUTTON_TEXT = "Delete";
 
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.scss";
 
 class ConfirmModal extends React.Component {
   state = {
     confirmText: DEFAULT_CONFIRM_TEXT,
     buttonText: DEFAULT_BUTTON_TEXT,
     confirmButtonText: DEFAULT_CONFIRM_BUTTON_TEXT,
-    onConfirm: null
+    onConfirm: null,
   };
 
   componentDidMount() {
@@ -22,24 +22,24 @@ class ConfirmModal extends React.Component {
       confirmText: this.props.text || DEFAULT_CONFIRM_TEXT,
       buttonText: this.props.buttonText || DEFAULT_BUTTON_TEXT,
       confirmButtonText: this.props.buttonText || DEFAULT_CONFIRM_BUTTON_TEXT,
-      onConfirm: this.props.onConfirm
+      onConfirm: this.props.onConfirm,
     });
   }
 
-  openConfirm = e => {
+  openConfirm = (e) => {
     e.preventDefault();
     this.setState({
-      active: true
+      active: true,
     });
   };
 
-  closeConfirm = e => {
+  closeConfirm = (e) => {
     this.setState({
-      active: false
+      active: false,
     });
   };
 
-  handleConfirm = e => {
+  handleConfirm = (e) => {
     e.preventDefault();
     this.state.onConfirm(e);
   };
@@ -47,44 +47,44 @@ class ConfirmModal extends React.Component {
   render() {
     const { active, confirmButtonText, buttonText, confirmText } = this.state;
     const { className } = this.props;
-    const modal = active
-      ? <AriaModal
-          titleText={confirmText}
-          onExit={this.closeConfirm}
-          initialFocus="#confirm-cancel_button"
-          getApplicationNode={this.getApplicationNode}
+    const modal = active ? (
+      <AriaModal
+        titleText={confirmText}
+        onExit={this.closeConfirm}
+        initialFocus="#confirm-cancel_button"
+        getApplicationNode={this.getApplicationNode}
+      >
+        <form
+          action=""
+          className={utils.modalForm}
+          onSubmit={this.handleConfirm}
+          key={this.state.timestamp}
+          aria-live="assertive"
         >
-          <form
-            action=""
-            className={utils.modalForm}
-            onSubmit={this.handleConfirm}
-            key={this.state.timestamp}
-            aria-live="assertive"
-          >
-            <h2 className={utils.modalTitle}>
-              {confirmText}
-            </h2>
-            <div className={'.modalContinueCancelButtons'}>
-              <Button
-                className={utils.modalCancelButton}
-                type="ghost"
-                id="confirm-cancel_button"
-                onClick={this.closeConfirm}
-                name="confirm-cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="primary"
-                mustSubmit={true}
-                className={utils.modalContinueButton}
-              >
-                {confirmButtonText}
-              </Button>
-            </div>
-          </form>
-        </AriaModal>
-      : <></>;
+          <h2 className={utils.modalTitle}>{confirmText}</h2>
+          <div className={".modalContinueCancelButtons"}>
+            <Button
+              className={utils.modalCancelButton}
+              type="ghost"
+              id="confirm-cancel_button"
+              onClick={this.closeConfirm}
+              name="confirm-cancel_button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="primary"
+              mustSubmit={true}
+              className={utils.modalContinueButton}
+            >
+              {confirmButtonText}
+            </Button>
+          </div>
+        </form>
+      </AriaModal>
+    ) : (
+      <></>
+    );
     return (
       <div className={className}>
         <Button
@@ -95,9 +95,7 @@ class ConfirmModal extends React.Component {
         >
           {buttonText}
         </Button>
-        <div role="dialog">
-          {modal}
-        </div>
+        <div role="dialog">{modal}</div>
       </div>
     );
   }

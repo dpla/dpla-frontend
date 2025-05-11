@@ -3,7 +3,6 @@
 $borderColor: rgba(0, 0, 0, 0.75);
 
 .collapsed {
-
   list-style-type: none;
 
   & li {
@@ -23,7 +22,6 @@ $borderColor: rgba(0, 0, 0, 0.75);
     padding-left: 0;
   }
 }
-
 
 .backgroundTint {
   background-color: var(--warmerBackgroundColor);
@@ -98,7 +96,12 @@ $borderColor: rgba(0, 0, 0, 0.75);
     margin-top: 0;
   }
 
-  & h1, & h2, & h3, & h4, & h5, & h6 {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
     line-height: 1.15;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -152,7 +155,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
     margin-bottom: 1rem;
   }
 
-  & code, & pre {
+  & code,
+  & pre {
     background-color: var(--colderBackgroundColor);
     font-family: var(--monoFont), monospace;
     font-size: 0.85rem;
@@ -171,7 +175,9 @@ $borderColor: rgba(0, 0, 0, 0.75);
     margin-bottom: 1rem;
   }
 
-  & p, & ul, & ol {
+  & p,
+  & ul,
+  & ol {
     font-weight: normal;
 
     @media (min-width: $mediumRem) {
@@ -181,7 +187,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
     }
   }
 
-  & ul, & ol {
+  & ul,
+  & ol {
     padding-left: 1.5em;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -197,14 +204,15 @@ $borderColor: rgba(0, 0, 0, 0.75);
     margin-left: 1rem;
   }
 
-  & ol li, & ul li {
+  & ol li,
+  & ul li {
     list-style-type: none;
     position: relative;
     counter-increment: start-from;
   }
 
   & li {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   & li::before {
@@ -235,7 +243,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
     list-style-type: disc;
   }
 
-  & blockquote, & blockquote p {
+  & blockquote,
+  & blockquote p {
     font-weight: 400;
     font-style: italic;
   }
@@ -258,7 +267,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
   & td:not(:first-child) {
   }
 
-  & th, & td {
+  & th,
+  & td {
     padding: 1rem;
   }
 
@@ -285,7 +295,9 @@ $borderColor: rgba(0, 0, 0, 0.75);
     height: auto;
   }
 
-  & :global .alignright, & :global .alignleft, & :global .wp-caption {
+  & :global .alignright,
+  & :global .alignleft,
+  & :global .wp-caption {
     margin-bottom: 0.5rem;
   }
 
@@ -316,7 +328,8 @@ $borderColor: rgba(0, 0, 0, 0.75);
     max-width: 100%;
   }
 
-  :global .btn, :global .btn:visited {
+  :global .btn,
+  :global .btn:visited {
     display: block;
     max-width: 18rem;
     background-color: var(--linkColor);
@@ -334,5 +347,3 @@ $borderColor: rgba(0, 0, 0, 0.75);
     }
   }
 }
-
-

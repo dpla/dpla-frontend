@@ -102,10 +102,12 @@ class StayInformed extends React.Component {
   };
 
   formIsValid() {
-    return this.state.email &&
+    return (
+      this.state.email &&
       this.state.email.length > 3 &&
       this.state.interests &&
-      this.state.interests.length > 0;
+      this.state.interests.length > 0
+    );
   }
 
   render() {

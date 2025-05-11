@@ -134,7 +134,8 @@ $listPadding: 1.125rem;
   display: block;
 }
 
-.sourceLink, .sourceLink:visited {
+.sourceLink,
+.sourceLink:visited {
   align-items: center;
   background-color: var(--subLinkColor);
   border-radius: 2px;
@@ -219,5 +220,5 @@ $listPadding: 1.125rem;
 
 .label {
   font-weight: bold;
-  margin-right: .25em;
+  margin-right: 0.25em;
 }

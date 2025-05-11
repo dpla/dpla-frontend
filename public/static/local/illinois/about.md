@@ -13,6 +13,7 @@ The IDHH helps increase the visibility of Illinois cultural heritage institution
 ## Empowering Illinois Cultural Heritage Institutions
 
 The IDHH offers training and resources to help Illinois institutions and staff get started contributing their collections to the DPLA. IDHH staff frequently present programming at meetings and conferences like
+
 - Illinois State Library
 - Illinois Library Association
 - Reaching Across the Illinois Library System
