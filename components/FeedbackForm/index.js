@@ -20,6 +20,12 @@ class FeedbackForm extends React.Component {
     message: undefined,
   };
 
+  // This is here to make component testing possible.
+  // Should probably migrate to native HTML <dialog>
+  getApplicationNode = () => {
+    return document.getElementById("__next");
+  };
+
   closeForm = () => {
     this.setState((prevState) => ({
       timestamp: prevState.timestamp,
@@ -148,8 +154,8 @@ class FeedbackForm extends React.Component {
       },
       body: body,
     });
-    const data = await res.text();
-    if (!data.ok) throw new Error("Failed to send feedback");
+    if (!res.ok) throw new Error("Failed to send feedback");
+    await res.text();
 
     this.setState((prevState) => ({
       timestamp: prevState.timestamp,
@@ -316,15 +322,18 @@ class FeedbackForm extends React.Component {
     );
     return (
       <div className={css.feedbackComponent}>
-        <a href="#" className={css.feedbackButton} onClick={this.openForm}>
+        <button
+          type="button"
+          className={css.feedbackButton}
+          onClick={this.openForm}
+        >
           Feedback
-        </a>
-        <div
-          role="dialog"
+        </button>
+        <dialog
           className={`${css.feedbackModal} ${modalActive ? css.open : ""}`}
         >
           {modal}
-        </div>
+        </dialog>
       </div>
     );
   }
