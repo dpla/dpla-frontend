@@ -63,12 +63,12 @@ describe("DonateForm", () => {
     fireEvent.click(screen.getByText("$25"));
     // Click Donate
     const donateButton = screen.getByText("Donate");
-    const result = fireEvent.click(donateButton);
+    fireEvent.click(donateButton);
     // Check the constructed URL
     const expectedUrl =
       "https://paypal.com/single?amount=25&return=" +
       encodeURIComponent("https://example.com/donate/thank-you");
-    //expect(result).toBe(expectedUrl);
+    expect(assignMock).toHaveBeenCalledWith(expectedUrl);
   });
 
   it("returns correct URL for monthly donation", () => {
