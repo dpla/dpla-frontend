@@ -47,7 +47,7 @@ const customJestConfig = {
     "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
   },
   transformIgnorePatterns: [
-    "/node_modules/",
+    "/node_modules/(?!(react-markdown|vfile|vfile-message|markdown-table|unist-.*|mdast-.*|remark-.*|unified|bail|trough|is-plain-obj|micromark.*|decode-named-character-reference|rehype-raw|character-entities|property-information|space-separated-tokens|comma-separated-tokens|hast-util-.*)/)",
     "^.+\\.module\\.(css|sass|scss)$",
   ],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
