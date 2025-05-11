@@ -12,7 +12,7 @@ jest.mock("react-markdown", () => {
     const content = children.replace(/^# (.+)$/m, "$1").replace(/\n\n/g, " ");
     // Simple HTML parsing simulation
     const htmlContent = content.replace(/<strong>(.+?)<\/strong>/g, "$1");
-    
+
     return (
       <div id={id} className={className}>
         {htmlContent}
@@ -38,22 +38,24 @@ describe("LocalIntro", () => {
 
   it("renders the markdown content correctly", () => {
     render(<LocalIntro {...mockProps} />);
-    
+
     // Check if the content is rendered
-    expect(screen.getByText("Test Content This is a test markdown content.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Test Content This is a test markdown content."),
+    ).toBeInTheDocument();
   });
 
   it("applies correct CSS classes to wrapper", () => {
     const { container } = render(<LocalIntro {...mockProps} />);
     const wrapper = container.firstChild;
-    
+
     expect(wrapper).toHaveClass("wrapper", "siteMaxWidth");
   });
 
   it("sets correct id on markdown component", () => {
     const { container } = render(<LocalIntro {...mockProps} />);
     const markdownElement = container.querySelector("#test-local-intro");
-    
+
     expect(markdownElement).toBeInTheDocument();
   });
 
@@ -61,9 +63,9 @@ describe("LocalIntro", () => {
     const propsWithHtml = {
       content: "# Test Content\n\n<strong>Bold text</strong>",
     };
-    
+
     render(<LocalIntro {...propsWithHtml} />);
-    
+
     expect(screen.getByText("Test Content Bold text")).toBeInTheDocument();
   });
 });
