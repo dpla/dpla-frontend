@@ -1,4 +1,4 @@
-name: Local Plains to Peaks ECR
+name: Pro Site to ECR
 
 on:
   workflow_dispatch:
@@ -7,10 +7,10 @@ permissions:
   contents: read
 
 env: 
-  SITE_ENV:       "local"
-  LOCAL_ID:       "plains2peaks"
-  ECR_REPOSITORY: "dpla-local-plains2peaks"
-  GA_TRACKING_ID: "G-PZK6XWKZDN"
+  SITE_ENV:       "pro"
+  LOCAL_ID:       ""
+  ECR_REPOSITORY: "frontend-pro-staging"
+  GA_TRACKING_ID: "G-QFVBHC4JBB"
 
 jobs:
   ecr:

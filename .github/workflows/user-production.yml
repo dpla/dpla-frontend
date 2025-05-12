@@ -3,6 +3,9 @@ name: User Production ECR
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   SITE_ENV: "user"
   LOCAL_ID: "aviation"
