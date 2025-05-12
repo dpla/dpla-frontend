@@ -6,9 +6,9 @@ on:
 permissions:
   contents: read
 
-env: 
-  SITE_ENV:       "user"
-  LOCAL_ID:       "aviation"
+env:
+  SITE_ENV: "user"
+  LOCAL_ID: "aviation"
   ECR_REPOSITORY: "frontend-user-staging"
   GA_TRACKING_ID: "G-VDZEHM39MH"
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -32,10 +32,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.node-version'
-
-      #      - name: Install Yarn
-      #        run: npm install -g yarn
+          node-version-file: ".node-version"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
@@ -61,7 +58,6 @@ jobs:
 
       # Push to ECR
       - name: Build, tag, and push image to Amazon ECR
-        if: ${{ !env.ACT }}
         id: build-image
         env:
           IMAGE_TAG: ${{ github.sha }}
@@ -72,7 +68,7 @@ jobs:
           docker buildx build \
           --build-arg SITE_ENV=${{ env.SITE_ENV }} \
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
-          --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
+          --build-arg SENTRY_AUTH_TOKEN=${{ env.SENTRY_AUTH_TOKEN }} \
           --build-arg GA_TRACKING_ID=${{ env.GA_TRACKING_ID }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
