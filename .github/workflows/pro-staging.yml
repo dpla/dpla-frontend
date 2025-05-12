@@ -3,6 +3,9 @@ name: Pro Site to ECR
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env: 
   SITE_ENV:       "pro"
   LOCAL_ID:       ""

@@ -1,5 +1,8 @@
 name: Pro Site to ECR
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
 

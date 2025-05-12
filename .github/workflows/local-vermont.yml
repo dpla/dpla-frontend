@@ -3,6 +3,9 @@ name: Local Vermont ECR
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env: 
   SITE_ENV:       "local"
   LOCAL_ID:       "vermont"
