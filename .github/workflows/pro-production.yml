@@ -1,4 +1,4 @@
-name: Pro Site to ECR
+name: Pro Site to ECR Production
 
 permissions:
   contents: read
