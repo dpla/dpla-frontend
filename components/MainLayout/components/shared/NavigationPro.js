@@ -21,7 +21,7 @@ function NavigationPro({ isHome, className, css }) {
       <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
-          <Link href="/about">About</Link>
+          <Link href="/about-dpla-pro">About</Link>
         </li>
         <li>
           <Link href="/events">Events</Link>
