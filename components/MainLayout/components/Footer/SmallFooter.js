@@ -8,6 +8,7 @@ import DplaLogo from "components/svg/DplaLogo";
 import Facebook from "components/svg/Facebook";
 import Instagram from "components/svg/Instagram";
 import Bluesky from "components/svg/Bluesky";
+import LinkedIn from "components/svg/LinkedIn";
 
 class SmallFooter extends React.Component {
   render() {
@@ -18,6 +19,14 @@ class SmallFooter extends React.Component {
             <DplaLogo className={css.logo} />
           </Link>
           <div className={css.socialIcons}>
+            <a
+              href="https://www.linkedin.com/company/digpublib"
+              title="LinkedIn"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <LinkedIn className={css.socialButton} />
+            </a>
             <a
               href="https://www.facebook.com/digitalpubliclibraryofamerica"
               title="Facebook"
