@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import {
   possibleFacets,
+  qaFacets,
   mapURLPrettifiedFacetsToUgly,
   mapFacetsToURLPrettified,
 } from "constants/search";
@@ -15,13 +16,11 @@ import utils from "stylesheets/utils.module.scss";
 import CloseIcon from "components/svg/Close";
 import ClearFiltersIcon from "components/svg/ClearFiltersIcon";
 
-function clearAllFacets(query) {
+function clearAllFacets(query, facetList) {
   const duped = { ...query };
   delete duped["q"];
   delete duped["page"];
-  possibleFacets.forEach(
-    (facet) => delete duped[mapFacetsToURLPrettified[facet]],
-  );
+  facetList.forEach((facet) => delete duped[mapFacetsToURLPrettified[facet]]);
   return duped;
 }
 
@@ -39,7 +38,7 @@ function clearFacet(query, queryKey, facet) {
   return duped;
 }
 
-function Filter({ name, queryKey }) {
+function Filter({ name, queryKey, facetList }) {
   const router = useRouter();
   const label = queryKey !== "q" ? queryKey : "keywords";
   return (
@@ -63,9 +62,11 @@ function Filter({ name, queryKey }) {
 function FiltersList({ showFilters }) {
   const router = useRouter();
   const { query } = router;
+  const facetList =
+    process.env.NEXT_PUBLIC_SITE_ENV === "cqa" ? qaFacets : possibleFacets;
   const hasFacets = Object.keys(query).some(
     (queryKey) =>
-      possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey]) ||
+      facetList.includes(mapURLPrettifiedFacetsToUgly[queryKey]) ||
       queryKey === "tags",
   );
   if (!hasFacets) {
@@ -74,7 +75,7 @@ function FiltersList({ showFilters }) {
   const filterChildren = Object.keys(query).map((queryKey) => {
     const value = joinIfArray(query[queryKey], "|");
     if (
-      possibleFacets.includes(mapURLPrettifiedFacetsToUgly[queryKey]) ||
+      facetList.includes(mapURLPrettifiedFacetsToUgly[queryKey]) ||
       queryKey === "q" ||
       queryKey === "tags"
     ) {
@@ -110,7 +111,7 @@ function FiltersList({ showFilters }) {
         <Link
           href={{
             pathname: router.pathname,
-            query: { ...clearAllFacets(query) },
+            query: { ...clearAllFacets(query, facetList) },
           }}
           className={css.clearAll}
         >

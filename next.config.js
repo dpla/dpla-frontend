@@ -44,6 +44,8 @@ let config = {
         redirect("/about-us", "/about"),
         redirect("/contact-us", "/contact"),
       ];
+    } else if (siteEnv === "cqa") {
+      return [];
     } else {
       throw new Error("Invalid site environment");
     }
@@ -53,6 +55,7 @@ let config = {
       const local = LOCALS[localId];
       const results = [
         rewrite("/", "/local"),
+        fourOhFour("/qa"),
         fourOhFour("/exhibitions"),
         fourOhFour("/exhibitions/:slugs*"),
         fourOhFour("/browse-by-topic"),
@@ -96,6 +99,7 @@ let config = {
           "/hubs/:subsection",
           "/pro/wp?section=hubs&subsection=:subsection",
         ),
+        fourOhFour("/qa"),
         fourOhFour("/exhibitions"),
         fourOhFour("/exhibitions/:slugs*"),
         fourOhFour("/browse-by-topic"),
@@ -125,11 +129,50 @@ let config = {
     } else if (siteEnv === "user") {
       return {
         beforeFiles: [
+          fourOhFour("/qa"),
           fourOhFour("/pro"),
           fourOhFour("/pro/hubs"),
           fourOhFour("/pro/wp"),
           fourOhFour("/local/"),
           fourOhFour("/local/markdown"),
+        ],
+      };
+    } else if (siteEnv === "cqa") {
+      return {
+        beforeFiles: [
+          rewrite("/", "/qa"),
+          fourOhFour("/about"),
+          fourOhFour("/about/:slugs*"),
+
+          fourOhFour("/browse-by-topic"),
+          fourOhFour("/browse-by-topic/:slugs*"),
+
+          fourOhFour("/contact"),
+          fourOhFour("/contact/:slugs*"),
+
+          fourOhFour("/donate"),
+          fourOhFour("/donate/:slugs*"),
+
+          fourOhFour("/exhibitions"),
+          fourOhFour("/exhibitions/:slugs*"),
+
+          fourOhFour("/guides"),
+          fourOhFour("/guides/:slugs*"),
+
+          fourOhFour("/lists"),
+          fourOhFour("/lists/:slugs*"),
+
+          fourOhFour("/local/"),
+          fourOhFour("/local/:slugs*"),
+
+          fourOhFour("/news"),
+          fourOhFour("/news/:slugs*"),
+
+          fourOhFour("/primary-source-sets"),
+          fourOhFour("/primary-source-sets/:slugs*"),
+
+          fourOhFour("/pro"),
+          fourOhFour("/pro/:slugs*"),
         ],
       };
     } else {

@@ -80,7 +80,7 @@ export async function getServerSideProps(context) {
   if (!itemId) {
     return notFound;
   }
-  const isQA = false;
+  const isQA = process.env.NEXT_PUBLIC_SITE_ENV === "cqa";
   const randomItemId = isQA ? await getRandomItemIdAsync() : null;
   if (!DPLA_ITEM_ID_REGEX.test(itemId)) {
     return notFound;

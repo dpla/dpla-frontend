@@ -46,7 +46,7 @@ function HomeHero({ headerDescription, feature }) {
         data-cy="dpla-logo"
         className={`${css.header} ${utils.siteMaxWidth}`}
       >
-        {siteEnv !== "local" && (
+        {siteEnv === "user" && (
           <div className={`${css.homeLogo} ${css.dplaLogo}`}>
             <h1>Digital Public Library of America</h1>
           </div>
@@ -62,7 +62,7 @@ function HomeHero({ headerDescription, feature }) {
             <h1 className={css.localText}>{LOCALS[localId].name}</h1>
           </div>
         )}
-        {siteEnv !== "local" && (
+        {siteEnv === "user" && (
           <Button type="primary" size="large" url="/donate">
             Donate
           </Button>
@@ -90,7 +90,7 @@ function HomeHero({ headerDescription, feature }) {
             </button>
           </div>
         </form>
-        {siteEnv !== "local" && (
+        {siteEnv === "user" && (
           <div className={css.links}>
             <Link href="/browse-by-topic">Browse by Topic</Link>
             <Link href="/guides" title="View our Getting Started Guides">
