@@ -38,7 +38,7 @@ function clearFacet(query, queryKey, facet) {
   return duped;
 }
 
-function Filter({ name, queryKey, facetList }) {
+function Filter({ name, queryKey }) {
   const router = useRouter();
   const label = queryKey !== "q" ? queryKey : "keywords";
   return (
