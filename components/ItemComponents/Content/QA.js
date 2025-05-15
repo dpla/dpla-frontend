@@ -1,55 +1,47 @@
-import React from "react";
-import { withRouter } from "next/router";
+import React, { useState } from "react";
 
 import Link from "next/link";
+import css from "stylesheets/qa.module.scss";
 
-class QA extends React.Component {
-  render() {
-    const { item, randomItemId } = this.props;
-    const preStyle = {
-      fontSize: "13px",
-      wordBreak: "break-all",
-      wordWrap: "break-word",
-      whiteSpace: "pre-wrap",
-      border: "1px solid rgba(0, 0, 0, 0.15)",
-      backgroundColor: "#f5f5f5",
-      borderRadius: "4px",
-      padding: "9.5px",
-    };
+function QA({ item, randomItemId }) {
+  const [collapsed, setCollapsed] = useState(false);
 
-    const divStyle = {
-      float: "left",
-      width: "48%",
-      paddingLeft: "20px",
-    };
+  const originalRecord =
+    "stringValue" in item.originalRecord
+      ? item.originalRecord.stringValue
+      : JSON.stringify(item.originalRecord, null, 2);
 
-    const originalRecord =
-      "stringValue" in item.originalRecord
-        ? item.originalRecord.stringValue
-        : JSON.stringify(item.originalRecord, null, 2);
+  const toggleCollapse = () => {
+    setCollapsed((prev) => !prev);
+  };
 
-    const enrichedRecord = JSON.stringify(item.doc, null, 2);
+  const enrichedRecord = JSON.stringify(item.doc, null, 2);
 
-    return (
-      <div style={{ paddingTop: "8px" }}>
+  return (
+    <div style={{ paddingTop: "8px" }}>
+      <div style={{ padding: "8px 20px 20px" }}>
+        <button onClick={() => toggleCollapse()} className={css.btn}>
+          {collapsed ? "+ Show Metadata" : "- Collapse Metadata"}
+        </button>{" "}
         {randomItemId && (
-          <div style={{ padding: "8px 20px 20px" }}>
-            <Link href={`/item/${randomItemId}`}>Fetch Random Item</Link>
-          </div>
+          <Link href={`/item/${randomItemId}`} className={css.btn}>
+            Fetch Random Item &raquo;
+          </Link>
         )}
-
-        <div style={divStyle}>
-          <h3>Enriched Record</h3>
-          <pre style={preStyle}>{enrichedRecord}</pre>
+      </div>
+      <div id={"qa"} style={{ display: collapsed ? "none" : "block" }}>
+        <div className={css.qaDiv}>
+          <h3>Mapped and Enriched Record</h3>
+          <pre className={css.pre}>{enrichedRecord}</pre>
         </div>
-        <div style={divStyle}>
+        <div className={css.qaDiv}>
           <h3>Original Record</h3>
-          <pre style={preStyle}>{originalRecord}</pre>
+          <pre className={css.pre}>{originalRecord}</pre>
         </div>
         <div style={{ clear: "both" }}></div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default withRouter(QA);
+export default QA;

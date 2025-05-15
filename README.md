@@ -74,7 +74,7 @@ The system makes extensive use of environment variables to decouple the differen
   `NODE_ENV=production`.
 
 - `NODE_ENV`: the node environment, `development` or `production`
-- `NEXT_PUBLIC_SITE_ENV`: the environment's type, `user`, `pro`, or `local`.
+- `NEXT_PUBLIC_SITE_ENV`: the environment's type, `user`, `cqa`, `pro`, or `local`.
 - `NEXT_PUBLIC_LOCAL_ID`: ID of the Local partner if this is a Local instance
 - `NEXT_PUBLIC_WORDPRESS_URL`: URL of the wordpress instance for site content.
 - `NEXT_PUBLIC_PRO_BASE_URL`: The base URL for the Pro site for links. Usually https://pro.dp.la.

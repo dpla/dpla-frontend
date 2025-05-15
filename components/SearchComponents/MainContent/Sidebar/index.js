@@ -19,11 +19,20 @@ import css from "./Sidebar.module.scss";
 
 function FacetLink({ queryKey, termObject, disabled, isTooltip }) {
   const router = useRouter();
+  const termLabel =
+    termObject.term.startsWith("http://rightsstatements") ||
+    termObject.term.startsWith("http://creativecommons")
+      ? termObject.term
+          .replace("http://rightsstatements.org/vocab/", "Rights Statements/")
+          .replace("http://creativecommons.org/licenses/", "Creative Commons/")
+          .replace("http://creativecommons.org/publicdomain/", "Public Domain/")
+          .replaceAll("/", " ")
+      : termObject.term;
   if (disabled) {
     return (
       <span className={css.facet}>
         <span className={`${css.facetName} ${css.activeFacetName}`}>
-          {`${termObject.term} `}
+          {`${termLabel} `}
         </span>
         <span className={css.facetCount}>
           {addCommasToNumber(termObject.count)}
@@ -47,7 +56,7 @@ function FacetLink({ queryKey, termObject, disabled, isTooltip }) {
     <div className={css.facet}>
       <span className={css.facetName}>
         <Link href={href} className={css.facetLink}>
-          {termObject.term}
+          {termLabel}
         </Link>
         {isTooltip && tooltips[termObject.term] != null && (
           <Link

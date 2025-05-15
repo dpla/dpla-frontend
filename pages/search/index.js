@@ -102,7 +102,7 @@ export async function getServerSideProps(context) {
   const query = context.query;
   const isLocal = siteEnv === "local";
   let local = isLocal ? LOCALS[localId] : {};
-  const isQA = false;
+  const isQA = siteEnv === "cqa";
 
   if (query.q && !isBalanced(query.q)) {
     // User gave us something that will blow up, strip it out.
