@@ -116,7 +116,7 @@ export function ListsEmpty() {
       <h2>Download your lists</h2>
       <p>
         Once you have created a list, you can visit{" "}
-        <code>
+        <code className={css.code}>
           <Link href="/lists">Lists</Link>
         </code>{" "}
         to manage them. You can also download lists to use in your preferred
