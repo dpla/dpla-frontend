@@ -33,9 +33,6 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      #      - name: Install Yarn
-      #        run: npm install -g yarn
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
         with:
@@ -46,11 +43,6 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
-
-      - name: Delete Exhibitions from app
-        run: |
-          rm -rf pages/exhibitions
-        shell: bash
 
       # Get branch names for ECR tagging
       - name: Get branch name (merge)
@@ -73,7 +65,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker buildx build \
+          --sbom=true \
+          --provenance=false \
           --build-arg SITE_ENV=${{ env.SITE_ENV }} \
+          --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
           --build-arg GA_TRACKING_ID=${{ env.GA_TRACKING_ID }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
