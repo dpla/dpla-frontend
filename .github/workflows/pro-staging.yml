@@ -33,9 +33,6 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      #      - name: Install Yarn
-      #        run: npm install -g yarn
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
         with:
@@ -73,8 +70,11 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker buildx build \
+          --sbom=true \
+          --provenance=false \
           --build-arg SITE_ENV=${{ env.SITE_ENV }} \
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
+          --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
