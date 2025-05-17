@@ -169,3 +169,10 @@
   max-width: 600px;
   width: 100%;
 }
+
+.code {
+  background-color: var(--colderBackgroundColor);
+  font-family: var(--monoFont), monospace;
+  font-size: 0.85rem;
+  padding: 0.125rem 0.25rem;
+}
