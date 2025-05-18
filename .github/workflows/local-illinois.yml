@@ -10,7 +10,7 @@ env:
   SITE_ENV:       "local"
   LOCAL_ID:       "illinois"
   ECR_REPOSITORY: "dpla-local-illinois"
-  GA_TRACKING_ID: "UA-142501884-1"
+  GA_TRACKING_ID: "G-9ZE47RTKH5"
 
 jobs:
   ecr:

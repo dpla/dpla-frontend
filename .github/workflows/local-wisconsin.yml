@@ -10,7 +10,7 @@ env:
   SITE_ENV:       "local"
   LOCAL_ID:       "wisconsin"
   ECR_REPOSITORY: "dpla-local-wisconsin"
-  GA_TRACKING_ID: "UA-128040088-1"
+  GA_TRACKING_ID: "G-6FP9Q9EVYZ"
 
 jobs:
   ecr:

@@ -10,7 +10,7 @@ env:
   SITE_ENV:       "local"
   LOCAL_ID:       "florida"
   ECR_REPOSITORY: "dpla-local-florida"
-  GA_TRACKING_ID: "UA-137505667-1"
+  GA_TRACKING_ID: "G-6PYKFL6JZF"
 
 jobs:
   ecr:

@@ -10,7 +10,7 @@ env:
   SITE_ENV:       "pro"
   LOCAL_ID:       ""
   ECR_REPOSITORY: "frontend-pro"
-  GA_TRACKING_ID: "UA-28197764-7"
+  GA_TRACKING_ID: "G-M9E1L42WT8"
 
 jobs:
   ecr:
