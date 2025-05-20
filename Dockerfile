@@ -20,6 +20,7 @@ ENV MUST_FORK=true
 ENV API_URL="https://api.dp.la/v2"
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PS_COUNT=2
 
 RUN apt-get update \
     && apt-get --no-install-recommends install -y ca-certificates \

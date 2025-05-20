@@ -14,7 +14,8 @@ const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
 const cluster = require("node:cluster");
-const numCPUs = require("node:os").availableParallelism();
+const numCPUs =
+  Number(process.env.PS_COUNT) || require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
 const { MAILCHIMP_GROUP_IDS } = require("./constants/site");
