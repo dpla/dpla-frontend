@@ -101,7 +101,6 @@ export async function getServerSideProps(context) {
   const asPath = subsection ? `/${section}/${subsection}` : `/${section}`;
   const routes = local["routes"];
   const pageData = routes[asPath];
-  console.log("PAGE DATA", pageData);
   const markdownPath = join(
     process.cwd(),
     "public",
