@@ -34,6 +34,7 @@ let config = {
     } else if (siteEnv === "pro") {
       const userUrl = process.env.NEXT_PUBLIC_USER_BASE_URL;
       return [
+        redirect("/hubs/members-meeting", "/events/dpla-network-summit"),
         redirect("/news", userUrl + "/news"),
         redirect("/news/:slug", userUrl + "/news/:slug"),
         redirect("/search", userUrl + "/search"),
@@ -194,7 +195,6 @@ let config = {
     ],
   },
   webpack: (config) => {
-    //config.infrastructureLogging = { debug: /PackFileCache/ };
     config.resolve.fallback = {
       async_hooks: false,
       fs: false,
