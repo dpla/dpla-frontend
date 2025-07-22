@@ -99,7 +99,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/2.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic License.",
         "label": "Attribution-NonCommercial-NoDerivs 2.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/",
@@ -211,7 +211,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/2.0/de/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/2.0/de/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Germany License.",
         "label": "Attribution-NonCommercial-NoDerivs 2.0 Germany",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.0/de/",
@@ -461,7 +461,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/2.5/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/2.5/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 2.5 Generic License.",
         "label": "Attribution-NonCommercial-NoDerivs 2.5 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/2.5/",
@@ -925,7 +925,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/3.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/3.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.",
         "label": "Attribution-NonCommercial-NoDerivs 3.0 Unported",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/3.0/",
@@ -1541,7 +1541,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/3.0/us/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/3.0/us/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License.",
         "label": "Attribution-NonCommercial-NoDerivs 3.0 United States",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/3.0/us/",
@@ -1599,7 +1599,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/4.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.",
         "label": "Attribution-NonCommercial-NoDerivatives 4.0 International",
         "image": "/static/images/rightsstatements/cc-by-nc-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-nd/4.0/",
@@ -1615,7 +1615,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-sa/1.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-sa/1.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 1.0 Generic License.",
         "label": "Attribution-NonCommercial-ShareAlike 1.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/1.0/",
@@ -1687,7 +1687,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-sa/2.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic License.",
         "label": "Attribution-NonCommercial-ShareAlike 2.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/2.0/",
@@ -2614,7 +2614,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-sa/3.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.",
         "label": "Attribution-NonCommercial-ShareAlike 3.0 Unported",
         "image": "/static/images/rightsstatements/cc-by-nc-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/3.0/",
@@ -3366,7 +3366,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-sa/4.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.",
         "label": "Attribution-NonCommercial-ShareAlike 4.0 International",
         "image": "/static/images/rightsstatements/cc-by-nc-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc-sa/4.0/",
@@ -3384,7 +3384,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc/1.0/": {
         "url": "http://creativecommons.org/licenses/by-nc/1.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial 1.0 Generic License.",
         "label": "Attribution-NonCommercial 1.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/1.0/",
@@ -3452,7 +3452,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc/2.0/": {
         "url": "http://creativecommons.org/licenses/by-nc/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial 2.0 Generic License.",
         "label": "Attribution-NonCommercial 2.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nc.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/2.0/",
@@ -4328,7 +4328,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc/3.0/": {
         "url": "http://creativecommons.org/licenses/by-nc/3.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.",
         "label": "Attribution-NonCommercial 3.0 Unported",
         "image": "/static/images/rightsstatements/cc-by-nc.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/3.0/",
@@ -4980,7 +4980,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc/3.0/us/": {
         "url": "http://creativecommons.org/licenses/by-nc/3.0/us/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial 3.0 United States License.",
         "label": "Attribution-NonCommercial 3.0 United States",
         "image": "/static/images/rightsstatements/cc-by-nc.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/3.0/us/",
@@ -5041,7 +5041,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc/4.0/": {
         "url": "http://creativecommons.org/licenses/by-nc/4.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
         "label": "Attribution-NonCommercial 4.0 International",
         "image": "/static/images/rightsstatements/cc-by-nc.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nc/4.0/",
@@ -5058,7 +5058,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nd-nc/1.0/": {
         "url": "http://creativecommons.org/licenses/by-nd-nc/1.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NoDerivs-NonCommercial 1.0 Generic License.",
         "label": "Attribution-NoDerivs-NonCommercial 1.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd-nc/1.0/",
@@ -5564,7 +5564,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nd/2.5/": {
         "url": "http://creativecommons.org/licenses/by-nd/2.5/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NoDerivs 2.5 Generic License.",
         "label": "Attribution-NoDerivs 2.5 Generic",
         "image": "/static/images/rightsstatements/cc-by-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/2.5/",
@@ -6644,7 +6644,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nd/3.0/us/": {
         "url": "http://creativecommons.org/licenses/by-nd/3.0/us/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NoDerivs 3.0 United States License.",
         "label": "Attribution-NoDerivs 3.0 United States",
         "image": "/static/images/rightsstatements/cc-by-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/3.0/us/",
@@ -6702,7 +6702,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nd/4.0/": {
         "url": "http://creativecommons.org/licenses/by-nd/4.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.",
         "label": "Attribution-NoDerivatives 4.0 International",
         "image": "/static/images/rightsstatements/cc-by-nd.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-nd/4.0/",
@@ -6790,7 +6790,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-sa/2.0/": {
         "url": "http://creativecommons.org/licenses/by-sa/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-ShareAlike 2.0 Generic License.",
         "label": "Attribution-ShareAlike 2.0 Generic",
         "image": "/static/images/rightsstatements/cc-by-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/2.0/",
@@ -7717,7 +7717,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-sa/3.0/": {
         "url": "http://creativecommons.org/licenses/by-sa/3.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.",
         "label": "Attribution-ShareAlike 3.0 Unported",
         "image": "/static/images/rightsstatements/cc-by-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/3.0/",
@@ -8469,7 +8469,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-sa/4.0/": {
         "url": "http://creativecommons.org/licenses/by-sa/4.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.",
         "label": "Attribution-ShareAlike 4.0 International",
         "image": "/static/images/rightsstatements/cc-by-sa.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by-sa/4.0/",
@@ -8487,7 +8487,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by/1.0/": {
         "url": "http://creativecommons.org/licenses/by/1.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution 1.0 Generic License.",
         "label": "Attribution 1.0 Generic",
         "image": "/static/images/rightsstatements/cc-by.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/1.0/",
@@ -8555,7 +8555,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by/2.0/": {
         "url": "http://creativecommons.org/licenses/by/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution 2.0 Generic License.",
         "label": "Attribution 2.0 Generic",
         "image": "/static/images/rightsstatements/cc-by.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/2.0/",
@@ -9431,7 +9431,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by/3.0/": {
         "url": "http://creativecommons.org/licenses/by/3.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution 3.0 Unported License.",
         "label": "Attribution 3.0 Unported",
         "image": "/static/images/rightsstatements/cc-by.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/3.0/",
@@ -10083,7 +10083,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/by/3.0/us/": {
         "url": "http://creativecommons.org/licenses/by/3.0/us/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution 3.0 United States License.",
         "label": "Attribution 3.0 United States",
         "image": "/static/images/rightsstatements/cc-by.svg",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/by/3.0/us/",
@@ -10161,7 +10161,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/devnations/2.0/": {
         "url": "http://creativecommons.org/licenses/devnations/2.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons Attribution 4.0 International License.",
         "label": "Developing Nations License",
         "image": "http://i.creativecommons.org/l/devnations/2.0/88x31.png",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/devnations/2.0/",
@@ -10317,7 +10317,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/nc/1.0/": {
         "url": "http://creativecommons.org/licenses/nc/1.0/",
-        "description": "",
+        "description": "This work is licensed under a Creative Commons NonCommercial 1.0 Generic License.",
         "label": "NonCommercial 1.0 Generic",
         "image": "http://i.creativecommons.org/l/nc/1.0/88x31.png",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/nc/1.0/",
@@ -10501,7 +10501,7 @@ export const rights = {
     },
     "creativecommons.org/licenses/publicdomain/": {
         "url": "http://creativecommons.org/licenses/publicdomain/",
-        "description": "",
+        "description": "This work is in the Public Domain.",
         "label": "Public Domain",
         "image": "http://i.creativecommons.org/l/publicdomain/88x31.png",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/licenses/publicdomain/",
@@ -10671,7 +10671,7 @@ export const rights = {
     },
     "creativecommons.org/publicdomain/mark/1.0/": {
         "url": "http://creativecommons.org/publicdomain/mark/1.0/",
-        "description": "",
+        "description": "This work is free of known copyright restrictions.",
         "label": "Public Domain Mark 1.0",
         "image": "http://i.creativecommons.org/p/mark/1.0/88x31.png",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/mark/1.0/",
@@ -10705,7 +10705,7 @@ export const rights = {
     },
     "creativecommons.org/publicdomain/zero/1.0/": {
         "url": "http://creativecommons.org/publicdomain/zero/1.0/",
-        "description": "",
+        "description": "To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.",
         "label": "CC0 1.0 Universal",
         "image": "http://i.creativecommons.org/p/zero/1.0/88x31.png",
         "source": "http://api.creativecommons.org/rest/1.5/details?license-uri=http://creativecommons.org/publicdomain/zero/1.0/",
