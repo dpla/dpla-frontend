@@ -159,6 +159,7 @@ function StayInformed() {
                       id={"newsCheckbox"}
                       name="news"
                       checked={interests.news.value}
+                      tabIndex="-1"
                       onChange={onCheckboxChange}
                       disabled={isSending || isSent}
                     />
@@ -171,6 +172,7 @@ function StayInformed() {
                       name="ebooks"
                       id={"ebooksCheckbox"}
                       checked={interests.ebooks.value}
+                      tabIndex="-1"
                       onChange={onCheckboxChange}
                       disabled={isSending || isSent}
                     />
@@ -183,6 +185,7 @@ function StayInformed() {
                       name="education"
                       id={"educationCheckbox"}
                       checked={interests.education.value}
+                      tabIndex="-1"
                       onChange={onCheckboxChange}
                       disabled={isSending || isSent}
                     />
@@ -195,6 +198,7 @@ function StayInformed() {
                       name="genealogy"
                       id="genealogyCheckbox"
                       checked={interests.genealogy.value}
+                      tabIndex="-1"
                       onChange={onCheckboxChange}
                       disabled={isSending || isSent}
                     />
