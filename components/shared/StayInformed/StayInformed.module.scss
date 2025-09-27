@@ -101,6 +101,10 @@
   cursor: pointer;
 }
 
+.disabled {
+  cursor: not-allowed !important;
+}
+
 .miel {
   display: none !important; /* captcha */
 }
