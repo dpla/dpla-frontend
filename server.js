@@ -11,10 +11,12 @@ Sentry.init({
   profilesSampleRate: 1.0,
 });
 const mailchimp = require("@mailchimp/mailchimp_marketing");
-mailchimp.setConfig({
-  apiKey: process.env.MAILCHIMP_KEY,
-  server: process.env.MAILCHIMP_PREFIX || "us4",
-});
+if (process.env.MAILCHIMP_KEY) {
+  mailchimp.setConfig({
+    apiKey: process.env.MAILCHIMP_KEY || "",
+    server: process.env.MAILCHIMP_PREFIX || "us4",
+  });
+}
 
 const express = require("express");
 const next = require("next");
