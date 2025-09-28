@@ -183,8 +183,8 @@ function doMailchimp() {
         );
         return res.status(200).json("OK");
       } catch (error) {
-        console.error("Unable to modify existing user", error?.text);
-        return res.status(400).json(error?.text);
+        console.error("Unable to modify existing user", error?.title);
+        return res.status(400).json(error?.title);
       }
     } else {
       try {
@@ -195,8 +195,8 @@ function doMailchimp() {
         });
         return res.status(200).json("OK");
       } catch (error) {
-        console.error("Unable to subscribe new user", error?.text);
-        return res.status(400).json(error?.text);
+        console.error("Unable to subscribe new user", error?.title);
+        return res.status(400).json(error?.title);
       }
     }
   };
