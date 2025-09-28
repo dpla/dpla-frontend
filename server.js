@@ -172,7 +172,7 @@ function doMailchimp() {
 
     if (exists) {
       try {
-        await mailchimp.lists.updateListMemberWithHttpInfo(
+        await mailchimp.lists.updateListMember(
           MAILCHIMP_LIST_ID,
           subscriberHash,
           {
