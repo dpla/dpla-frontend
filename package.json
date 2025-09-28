@@ -17,9 +17,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@sentry/nextjs": "^8",
     "@sentry/node": "^8.55.0",
     "@sentry/profiling-node": "^8.55.0",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.21",
     "aws-sdk": "^2.1692.0",
     "body-parser": "^1.20.3",
     "dayjs": "^1.11.13",

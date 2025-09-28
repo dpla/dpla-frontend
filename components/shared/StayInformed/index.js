@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { MAILCHIMP_LIST_ID, MAILCHIMP_GROUP_IDS } from "constants/site";
-
 import css from "./StayInformed.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import Alert from "shared/Alert";
@@ -9,39 +7,15 @@ import Alert from "shared/Alert";
 function StayInformed() {
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [isFailure, setIsFailure] = useState(false);
   const [email, setEmail] = useState("");
-  const [interests, setInterests] = useState({
-    news: {
-      group_id: MAILCHIMP_GROUP_IDS.NEWS,
-      value: true,
-    },
-    ebooks: {
-      group_id: MAILCHIMP_GROUP_IDS.EBOOKS,
-      value: false,
-    },
-    education: {
-      group_id: MAILCHIMP_GROUP_IDS.EDUCATION,
-      value: false,
-    },
-    genealogy: {
-      group_id: MAILCHIMP_GROUP_IDS.GENEALOGY,
-      value: false,
-    },
-  });
+  const [news, setNews] = useState(true);
+  const [ebooks, setEbooks] = useState(false);
+  const [education, setEducation] = useState(false);
+  const [genealogy, setGenealogy] = useState(false);
   const [toast, setToast] = useState("");
 
   const onEmailChange = (e) => setEmail(e.target.value);
-
-  const onCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setInterests((prevInterests) => ({
-      ...prevInterests,
-      [name]: {
-        ...prevInterests[name],
-        value: checked,
-      },
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,13 +23,7 @@ function StayInformed() {
     const formIsValid =
       email &&
       email.length > 3 &&
-      interests &&
-      [
-        interests.news,
-        interests.education,
-        interests.ebooks,
-        interests.genealogy,
-      ].some((interests) => interests.value);
+      [news, education, ebooks, genealogy].some((interests) => interests);
 
     if (!formIsValid) {
       setToast(
@@ -68,10 +36,15 @@ function StayInformed() {
     setIsSent(false);
 
     const miel = e.target.elements.i_prefer_usps_mail.value;
+    const interests = {
+      news: news,
+      ebooks: ebooks,
+      education: education,
+      genealogy: genealogy,
+    };
 
     const body = JSON.stringify({
       email,
-      id: MAILCHIMP_LIST_ID,
       miel,
       interests,
     });
@@ -85,7 +58,8 @@ function StayInformed() {
     });
 
     if (!res.ok) {
-      console.error("Form not recorded: " + res.status);
+      setToast("Unable to subscribe. Please contact info@dp.la for help.");
+      setIsFailure(true);
     }
 
     setIsSending(false);
@@ -107,9 +81,13 @@ function StayInformed() {
   let buttonText = "Sign Up";
   if (isSending) {
     buttonText = "Subscribing...";
+  } else if (isFailure) {
+    buttonText = "Failed!";
   } else if (isSent) {
     buttonText = "Subscribed!";
   }
+
+  const disabled = isSending || isSent;
 
   return (
     <>
@@ -138,7 +116,7 @@ function StayInformed() {
                     className={css.email}
                     onChange={onEmailChange}
                     onBlur={onEmailChange}
-                    disabled={isSending || isSent}
+                    disabled={disabled}
                     {...emailProps}
                   />
 
@@ -158,9 +136,9 @@ function StayInformed() {
                       type="checkbox"
                       id={"newsCheckbox"}
                       name="news"
-                      checked={interests.news.value}
-                      onChange={onCheckboxChange}
-                      disabled={isSending || isSent}
+                      checked={news}
+                      onChange={(e) => setNews(e.target.checked)}
+                      disabled={disabled}
                     />
                     <label htmlFor={"newsCheckbox"}>General News</label>
                   </div>
@@ -170,9 +148,9 @@ function StayInformed() {
                       type="checkbox"
                       name="ebooks"
                       id={"ebooksCheckbox"}
-                      checked={interests.ebooks.value}
-                      onChange={onCheckboxChange}
-                      disabled={isSending || isSent}
+                      checked={ebooks}
+                      onChange={(e) => setEbooks(e.target.checked)}
+                      disabled={disabled}
                     />
                     <label htmlFor={"ebooksCheckbox"}>Ebooks</label>
                   </div>
@@ -182,9 +160,9 @@ function StayInformed() {
                       type="checkbox"
                       name="education"
                       id={"educationCheckbox"}
-                      checked={interests.education.value}
-                      onChange={onCheckboxChange}
-                      disabled={isSending || isSent}
+                      checked={education}
+                      onChange={(e) => setEducation(e.target.checked)}
+                      disabled={disabled}
                     />
                     <label htmlFor={"educationCheckbox"}>Education</label>
                   </div>
@@ -194,9 +172,9 @@ function StayInformed() {
                       type="checkbox"
                       name="genealogy"
                       id="genealogyCheckbox"
-                      checked={interests.genealogy.value}
-                      onChange={onCheckboxChange}
-                      disabled={isSending || isSent}
+                      checked={genealogy}
+                      onChange={(e) => setGenealogy(e.target.checked)}
+                      disabled={disabled}
                     />
                     <label htmlFor={"genealogyCheckbox"}>Genealogy</label>
                   </div>
@@ -208,11 +186,9 @@ function StayInformed() {
                   value={buttonText}
                   name="signup"
                   className={
-                    isSending || isSent
-                      ? `${css.button} ${css.disabled}`
-                      : css.button
+                    disabled ? `${css.button} ${css.disabled}` : css.button
                   }
-                  disabled={!!(isSending || isSent)}
+                  disabled={disabled}
                 />
               </form>
             </div>
