@@ -10,15 +10,22 @@ Sentry.init({
   tracesSampleRate: 1.0,
   profilesSampleRate: 1.0,
 });
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_KEY,
+  server: process.env.MAILCHIMP_PREFIX || "us4",
+});
+
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
 const cluster = require("node:cluster");
+const crypto = require("crypto");
 const numCPUs =
   Number(process.env.PS_COUNT) || require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
-const { MAILCHIMP_GROUP_IDS } = require("./constants/site");
+const { MAILCHIMP_GROUP_IDS, MAILCHIMP_LIST_ID } = require("./constants/site");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
@@ -68,7 +75,7 @@ function follower() {
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
       expressApp.get("/wp-content/*", wpContent());
-      expressApp.post("/mailchimp", mailchimp());
+      expressApp.post("/mailchimp", doMailchimp());
       expressApp.post("/g/contact", doContact());
       expressApp.post("/g/feedback", feedback());
     }
@@ -99,6 +106,7 @@ function uncaught() {
 
 function healthcheck() {
   return (req, res) => {
+    console.log(req);
     res.send("OK");
   };
 }
@@ -112,56 +120,83 @@ function wpContent() {
   };
 }
 
-function mailchimp() {
+function doMailchimp() {
   return async (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-    if (req.body?.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
+    if (!req.body) {
+      console.error("Mailchimp request body is empty");
       return res.sendStatus(400);
+    }
+
+    // bot captcha
+    if (req.body?.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1") {
+      console.error("Mailchimp request body has i_prefer_usps_mail set to 1");
+      return res.sendStatus(400);
+    }
 
     const email = req.body.email || "";
-    const list_id = req.body.id || "";
-    const interests = req.body.interests || [];
+    const md5 = crypto.createHash("md5");
+    const subscriberHash = md5.update(email.toLowerCase()).digest("hex");
+    const interests = {
+      [MAILCHIMP_GROUP_IDS.NEWS]: false,
+      [MAILCHIMP_GROUP_IDS.EBOOKS]: false,
+      [MAILCHIMP_GROUP_IDS.EDUCATION]: false,
+      [MAILCHIMP_GROUP_IDS.GENEALOGY]: false,
+    };
 
-    if (list_id === "") return res.sendStatus(400);
+    if (req.body?.interests?.news) {
+      interests[MAILCHIMP_GROUP_IDS.NEWS] = true;
+    }
 
-    const availableListIds = [];
-    for (let key in MAILCHIMP_GROUP_IDS) {
-      if (MAILCHIMP_GROUP_IDS.hasOwnProperty(key)) {
-        availableListIds.push(MAILCHIMP_GROUP_IDS[key]);
+    if (req.body?.interests?.ebooks) {
+      interests[MAILCHIMP_GROUP_IDS.EBOOKS] = true;
+    }
+
+    if (req.body?.interests?.education) {
+      interests[MAILCHIMP_GROUP_IDS.EDUCATION] = true;
+    }
+
+    if (req.body?.interests?.genealogy) {
+      interests[MAILCHIMP_GROUP_IDS.GENEALOGY] = true;
+    }
+
+    let exists = false;
+
+    try {
+      await mailchimp.lists.getListMember(MAILCHIMP_LIST_ID, subscriberHash);
+      exists = true;
+    } catch {
+      // assume user doesn't exist
+    }
+
+    if (exists) {
+      try {
+        await mailchimp.lists.updateListMemberWithHttpInfo(
+          MAILCHIMP_LIST_ID,
+          subscriberHash,
+          {
+            email_address: email,
+            status: "subscribed",
+            interests,
+          },
+        );
+        return res.status(200).json("OK");
+      } catch (error) {
+        console.error("Unable to modify existing user", error?.text);
+        return res.status(400).json(error?.text);
+      }
+    } else {
+      try {
+        await mailchimp.lists.setListMember(MAILCHIMP_LIST_ID, subscriberHash, {
+          email_address: email,
+          status: "subscribed",
+          interests,
+        });
+        return res.status(200).json("OK");
+      } catch (error) {
+        console.error("Unable to subscribe new user", error?.text);
+        return res.status(400).json(error?.text);
       }
     }
-
-    if (!availableListIds.includes(list_id)) {
-      // don't know that list
-      return res.sendStatus(400);
-    }
-
-    const url = `https://us4.api.mailchimp.com/3.0/lists/${list_id}/members`;
-
-    const body = JSON.stringify({
-      email_address: email,
-      status: "subscribed",
-      interests: {
-        [interests.news.group_id]: interests.news.value,
-        [interests.ebooks.group_id]: interests.ebooks.value,
-        [interests.education.group_id]: interests.education.value,
-        [interests.genealogy.group_id]: interests.genealogy.value,
-      },
-    });
-
-    const mRes = await fetch(url, {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: "apikey " + process.env.MAILCHIMP_KEY,
-      }),
-      body: body,
-    });
-
-    await mRes.json();
-
-    // send the response back
-    res.sendStatus(200);
   };
 }
 
@@ -271,10 +306,14 @@ function registerHandlers(server) {
   });
 
   process.on("uncaughtException", (err, origin) => {
-    handleExit("uncaughtException: " + String(err) + ": " + origin, server, 1);
+    handleExit(
+      "uncaughtException: " + err.name + "(" + err.message + "): " + origin,
+      server,
+      1,
+    );
   });
 
   process.on("unhandledRejection", (err, origin) => {
-    handleExit("unhandledRejection: " + String(err) + ": " + origin, server, 1);
+    handleExit("unhandledRejection: " + err + ": " + origin, server, 1);
   });
 }

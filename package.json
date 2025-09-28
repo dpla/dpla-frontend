@@ -17,6 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@sentry/nextjs": "^8",
     "@sentry/node": "^8.55.0",
     "@sentry/profiling-node": "^8.55.0",
