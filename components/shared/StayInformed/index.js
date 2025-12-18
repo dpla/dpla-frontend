@@ -9,10 +9,6 @@ function StayInformed() {
   const [isSent, setIsSent] = useState(false);
   const [isFailure, setIsFailure] = useState(false);
   const [email, setEmail] = useState("");
-  const [news, setNews] = useState(true);
-  const [ebooks, setEbooks] = useState(false);
-  const [education, setEducation] = useState(false);
-  const [genealogy, setGenealogy] = useState(false);
   const [toast, setToast] = useState("");
 
   const onEmailChange = (e) => setEmail(e.target.value);
@@ -20,15 +16,10 @@ function StayInformed() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formIsValid =
-      email &&
-      email.length > 3 &&
-      [news, education, ebooks, genealogy].some((interests) => interests);
+    const formIsValid = email && email.length > 3;
 
     if (!formIsValid) {
-      setToast(
-        "Please enter a valid email address and select at least one interest.",
-      );
+      setToast("Please enter a valid email address.");
       return;
     }
 
@@ -36,17 +27,10 @@ function StayInformed() {
     setIsSent(false);
 
     const miel = e.target.elements.i_prefer_usps_mail.value;
-    const interests = {
-      news: news,
-      ebooks: ebooks,
-      education: education,
-      genealogy: genealogy,
-    };
 
     const body = JSON.stringify({
       email,
       miel,
-      interests,
     });
 
     const res = await fetch("/mailchimp", {
@@ -128,56 +112,6 @@ function StayInformed() {
                     tabIndex="-1"
                     autoComplete="off"
                   />
-                </div>
-
-                <div className={`${css.interestsContainer} ${css.email}`}>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id={"newsCheckbox"}
-                      name="news"
-                      checked={news}
-                      onChange={(e) => setNews(e.target.checked)}
-                      disabled={disabled}
-                    />
-                    <label htmlFor={"newsCheckbox"}>General News</label>
-                  </div>
-
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="ebooks"
-                      id={"ebooksCheckbox"}
-                      checked={ebooks}
-                      onChange={(e) => setEbooks(e.target.checked)}
-                      disabled={disabled}
-                    />
-                    <label htmlFor={"ebooksCheckbox"}>Ebooks</label>
-                  </div>
-
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="education"
-                      id={"educationCheckbox"}
-                      checked={education}
-                      onChange={(e) => setEducation(e.target.checked)}
-                      disabled={disabled}
-                    />
-                    <label htmlFor={"educationCheckbox"}>Education</label>
-                  </div>
-
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="genealogy"
-                      id="genealogyCheckbox"
-                      checked={genealogy}
-                      onChange={(e) => setGenealogy(e.target.checked)}
-                      disabled={disabled}
-                    />
-                    <label htmlFor={"genealogyCheckbox"}>Genealogy</label>
-                  </div>
                 </div>
 
                 <input

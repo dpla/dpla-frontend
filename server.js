@@ -139,27 +139,8 @@ function doMailchimp() {
     const md5 = crypto.createHash("md5");
     const subscriberHash = md5.update(email.toLowerCase()).digest("hex");
     const interests = {
-      [MAILCHIMP_GROUP_IDS.NEWS]: false,
-      [MAILCHIMP_GROUP_IDS.EBOOKS]: false,
-      [MAILCHIMP_GROUP_IDS.EDUCATION]: false,
-      [MAILCHIMP_GROUP_IDS.GENEALOGY]: false,
+      [MAILCHIMP_GROUP_IDS.NEWS]: true,
     };
-
-    if (req.body?.interests?.news) {
-      interests[MAILCHIMP_GROUP_IDS.NEWS] = true;
-    }
-
-    if (req.body?.interests?.ebooks) {
-      interests[MAILCHIMP_GROUP_IDS.EBOOKS] = true;
-    }
-
-    if (req.body?.interests?.education) {
-      interests[MAILCHIMP_GROUP_IDS.EDUCATION] = true;
-    }
-
-    if (req.body?.interests?.genealogy) {
-      interests[MAILCHIMP_GROUP_IDS.GENEALOGY] = true;
-    }
 
     let exists = false;
 
