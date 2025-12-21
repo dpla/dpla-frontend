@@ -9,6 +9,7 @@ import Facebook from "components/svg/Facebook";
 import Instagram from "components/svg/Instagram";
 import Bluesky from "components/svg/Bluesky";
 import LinkedIn from "components/svg/LinkedIn";
+import YouTube from "components/svg/YouTube";
 
 class SmallFooter extends React.Component {
   render() {
@@ -50,6 +51,14 @@ class SmallFooter extends React.Component {
               target={"_blank"}
             >
               <Bluesky className={css.socialButton} />
+            </a>
+            <a
+              href="https://www.youtube.com/@digpublib"
+              title="YouTube"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <YouTube className={css.socialButton} />
             </a>
           </div>
         </div>
