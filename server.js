@@ -108,7 +108,7 @@ function uncaught() {
 
 function healthcheck() {
   return (req, res) => {
-    console.log(req);
+    console.log("healthcheck");
     res.send("OK");
   };
 }
@@ -201,7 +201,7 @@ function doContact() {
 
       // send email
       const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n`;
-      await serverFunctions.sendEmail(
+      serverFunctions.sendEmail(
         from_email,
         to_email,
         `DPLA Site Contact: ${subject}`,
@@ -211,6 +211,7 @@ function doContact() {
       // send the response back
       res.sendStatus(200);
     } catch (error) {
+      console.error("Contact submission failed", error);
       res.sendStatus(500);
     }
   };
