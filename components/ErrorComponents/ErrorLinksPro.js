@@ -19,16 +19,6 @@ function ErrorLinksPro() {
       <li>
         discover our <Link href="/developers">resources for developers</Link>
       </li>
-      <li>
-        read about our work in <Link href="/education">education</Link>
-      </li>
-      <li>
-        meet our Community Reps and learn about the{" "}
-        <Link href="/community-reps">reps program</Link>
-      </li>
-      <li>
-        find out more about our work with <Link href="/ebooks">ebooks</Link>
-      </li>
     </ul>
   );
 }
