@@ -1,0 +1,318 @@
+/* ============================================================
+   Wikimedia Metrics Dashboard — scoped styles
+   All rules are nested under .wikimedia-metrics-wrapper so
+   they do not leak into the surrounding pro.dp.la page styles.
+   ============================================================ */
+
+/* ── Wrapper ─────────────────────────────────────────────── */
+
+/* Flex column enables .back button's margin-left:auto alignment */
+.wikimedia-metrics-wrapper {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.wikimedia-metrics-wrapper * {
+    box-sizing: border-box;
+}
+
+/* ── Typography ──────────────────────────────────────────── */
+
+.wikimedia-metrics-wrapper h1 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #102a43;
+    letter-spacing: 0.3px;
+}
+
+/* ── Form Cards ──────────────────────────────────────────── */
+
+.wikimedia-metrics-wrapper form {
+    background: #ffffff;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(16, 42, 67, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wikimedia-metrics-wrapper label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334e68;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wikimedia-metrics-wrapper input[type="text"] {
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #d9e2ec;
+    background-color: #f9fbfd;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.wikimedia-metrics-wrapper input[type="text"]:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+
+.wikimedia-metrics-wrapper button {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.05s ease;
+}
+
+/* Primary button (Select item form) */
+.wikimedia-metrics-wrapper #showForm button {
+    background-color: #2563eb;
+    color: white;
+}
+
+.wikimedia-metrics-wrapper #showForm button:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* Secondary button (Show all / Show DPLA forms) */
+.wikimedia-metrics-wrapper #show button,
+.wikimedia-metrics-wrapper #showDpla button {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.wikimedia-metrics-wrapper #show button:hover,
+.wikimedia-metrics-wrapper #showDpla button:hover {
+    background-color: #d1d5db;
+}
+
+.wikimedia-metrics-wrapper button:active {
+    transform: translateY(1px);
+}
+
+/* ── Error Message ───────────────────────────────────────── */
+
+.wikimedia-metrics-wrapper #errorMessage {
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+
+/* ── Sections Container ──────────────────────────────────── */
+
+.wikimedia-metrics-wrapper #sections-container {
+    display: none;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+/* Hide forms and show the dashboard on filter views.
+   The filter-view class is set server-side via getServerSideProps,
+   so forms are never rendered visible on filtered pages (zero flash). */
+.wikimedia-metrics-wrapper.filter-view form            { display: none; }
+.wikimedia-metrics-wrapper.filter-view #sections-container { display: block; }
+
+/* ── DPLA Section Toggles & Bodies ──────────────────────── */
+
+/* "List of Hubs" and "List of Contributing Institutions" section-level toggle buttons */
+.wikimedia-metrics-wrapper .section-toggle {
+    display: block;
+    width: 100%;
+    margin-top: 32px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #627d98;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #e2e8f0;
+    border-radius: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.wikimedia-metrics-wrapper .section-toggle:hover {
+    color: #334e68;
+    border-bottom-color: #94a3b8;
+}
+
+/* Non-interactive variant (div) used in hub view — no hover effect */
+.wikimedia-metrics-wrapper .section-header-static {
+    cursor: default;
+}
+
+.wikimedia-metrics-wrapper .section-header-static:hover {
+    color: #627d98;
+    border-bottom-color: #e2e8f0;
+}
+
+.wikimedia-metrics-wrapper .section-toggle.active {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+}
+
+/* Collapsible body: hidden by default, shown when .open is added via JS */
+.wikimedia-metrics-wrapper .section-body {
+    display: none;
+}
+
+.wikimedia-metrics-wrapper .section-body.open {
+    display: block;
+}
+
+/* ── Panel Row (hub header + drill-down bubble) ──────────── */
+
+/* Flex wrapper that places the collapsible button and the hub link side-by-side */
+.wikimedia-metrics-wrapper .panel-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* The button inside a row inherits its margin from the row wrapper */
+.wikimedia-metrics-wrapper .panel-row .collapsible {
+    margin-top: 0;
+    flex: 1;
+}
+
+/* Shaded bubble link to the right of a hub panel header */
+.wikimedia-metrics-wrapper .hub-link-bubble {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334e68;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.wikimedia-metrics-wrapper .hub-link-bubble:hover {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #102a43;
+}
+
+/* ── Collapsible Dashboard Panels ────────────────────────── */
+
+.wikimedia-metrics-wrapper .collapsible {
+    background-color: #ffffff;
+    color: #102a43;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.wikimedia-metrics-wrapper .back {
+    background-color: #f1f5f9;
+    color: #102a43;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: auto;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.wikimedia-metrics-wrapper .collapsible:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.wikimedia-metrics-wrapper .collapsible.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Collapsed state */
+.wikimedia-metrics-wrapper .content,
+.wikimedia-metrics-wrapper .chart_div {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    border: none;
+    margin: 0;
+    background-color: #ffffff;
+    transition:
+        max-height 0.25s ease-out,
+        padding 0.2s ease;
+}
+
+/* Open state — full styling restored */
+.wikimedia-metrics-wrapper .content.open {
+    padding: 18px 20px;
+    border: 1px solid #e2e8f0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-bottom: 10px;
+}
+
+.wikimedia-metrics-wrapper .chart_div.open {
+    padding: 18px 20px;
+    border: 1px solid #e2e8f0;
+    border-top-right-radius: 50px;
+    overflow: auto;
+    min-height: 350px;
+}
+
+.wikimedia-metrics-wrapper .content p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.wikimedia-metrics-wrapper .content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.wikimedia-metrics-wrapper .content ul li {
+    margin: 6px 0;
+}
+
+/* Slight separation between form cards */
+.wikimedia-metrics-wrapper form + form {
+    margin-top: -5px;
+}
