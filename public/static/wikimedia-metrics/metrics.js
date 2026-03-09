@@ -118,10 +118,12 @@ function initMetrics() {
             //
             // max-height is driven by inline style because CSS transitions on max-height
             // require a concrete pixel value; setting it to null collapses to CSS default (0).
+            // openPanel() sets an initial height from scrollHeight, then fetchData()
+            // recalculates once the chart and list content have been rendered.
             //
             // autoOpen=true expands the panel immediately and fetches data without a click.
-            // For single-category cold loads, chartsReady guards against google.visualization
-            // not yet being available; user-initiated clicks need no guard.
+            // Both auto-open and click-open paths wait on chartsReady before calling
+            // fetchData, guarding against google.visualization not yet being available.
             function addPanel(category, autoOpen, target = container, options = {}) {
                 const { extraLink = null, displayName = null } = options;
 
@@ -163,8 +165,12 @@ function initMetrics() {
                     button.classList.add('active');
                     content.classList.add('open');
                     chartDiv.classList.add('open');
-                    content.style.maxHeight = '800px';
-                    chartDiv.style.maxHeight = '800px';
+                    // Use the current scrollHeight as an initial max-height (typically
+                    // just the "Loading..." placeholder). fetchData() recalculates both
+                    // values after the chart and monthly list have been rendered so that
+                    // panels with many years of data are never clipped.
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    chartDiv.style.maxHeight = chartDiv.scrollHeight + 'px';
                     if (linkAnchor) linkAnchor.style.display = 'inline-flex';
                 }
 
@@ -348,6 +354,10 @@ function initMetrics() {
         });
 }
 
+// Expose initMetrics globally so the Next.js page's onReady callback can call
+// it directly on client-side remounts without re-injecting this script.
+window.initMetrics = initMetrics;
+
 // Run immediately if the DOM is ready, otherwise wait for DOMContentLoaded.
 // This handles both direct page loads and Next.js script injection (where
 // DOMContentLoaded has already fired by the time the script runs).
@@ -405,6 +415,15 @@ function fetchData(content, category, chartDiv) {
                     .map(([month, count]) => `<li>${month}: ${count.toLocaleString()} views</li>`)
                     .join('');
                 content.innerHTML = `<p><strong>Total (since ${oldest}): ${total.toLocaleString()}</strong></p><ul>${listItems}</ul>`;
+
+                // Recalculate max-height now that real content has replaced "Loading...".
+                // setTimeout(0) lets the browser reflow first so scrollHeight is accurate.
+                if (content.classList.contains('open')) {
+                    setTimeout(() => {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        chartDiv.style.maxHeight = chartDiv.scrollHeight + 'px';
+                    }, 0);
+                }
             } else {
                 content.innerHTML = '<p>No data available.</p>';
                 chartDiv.style.display = 'none';

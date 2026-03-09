@@ -91,14 +91,25 @@ export default function WikimetricsPage({ items, isFilterView }) {
         </div>
       </div>
 
-      {/* Google Charts must load first; metrics.js is injected in onLoad */}
+      {/*
+        * Google Charts must be loaded before metrics.js runs.
+        * onReady fires on initial load AND on every client-side remount (e.g.
+        * navigating away and back), unlike onLoad which fires only once.
+        * On the first visit, metrics.js is injected and calls initMetrics()
+        * automatically. On remounts, window.initMetrics is already defined so
+        * we call it directly instead of re-injecting the script.
+        */}
       <Script
         src="https://www.gstatic.com/charts/loader.js"
         strategy="afterInteractive"
-        onLoad={() => {
-          const s = document.createElement("script");
-          s.src = "/static/wikimedia-metrics/metrics.js";
-          document.body.appendChild(s);
+        onReady={() => {
+          if (typeof window.initMetrics === "function") {
+            window.initMetrics();
+          } else {
+            const s = document.createElement("script");
+            s.src = "/static/wikimedia-metrics/metrics.js";
+            document.body.appendChild(s);
+          }
         }}
       />
     </MainLayout>
