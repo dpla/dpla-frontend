@@ -377,10 +377,11 @@ function fetchData(content, category, chartDiv) {
         .then(response => response.json())
         .then(apiData => {
             if (apiData.items && apiData.items.length > 0) {
-                // API timestamps are in YYYYMM00 format; extract YYYY-MM for display.
-                // Each row is [displayMonth, viewCount], e.g. ["2023-04", 1234].
+                // API timestamps are in YYYY-MM-DD format (e.g. "2023-11-00").
+                // Extract the YYYY-MM prefix for display.
+                // Each row is [displayMonth, viewCount], e.g. ["2023-11", 1234].
                 const pageviews = apiData.items.map(item => [
-                    item['timestamp'].substring(0, 4) + '-' + item['timestamp'].substring(4, 6),
+                    item['timestamp'].substring(0, 7),
                     item['pageview-count']
                 ]);
 
