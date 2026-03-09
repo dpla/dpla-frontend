@@ -54,29 +54,31 @@ export default function WikimetricsPage({ items, isFilterView }) {
 
                 {/* ── Select an item ── */}
                 <form id="showForm">
-                  <label htmlFor="wikiInput">Wikimedia category</label>
+                  <label htmlFor="showInput">Wikimedia category</label>
                   <input
                     type="text"
-                    id="wikiInput"
-                    placeholder="e.g. Category:Images_from_the_DPLA"
+                    id="showInput"
+                    list="showOptions"
+                    placeholder="e.g. Images_from_the_DPLA"
                   />
+                  <datalist id="showOptions" />
                   <span id="errorMessage">
                     Please enter a valid Wikimedia category name.
                   </span>
-                  <button type="button" id="showButton">
+                  <button type="submit" id="showButton">
                     Show metrics
                   </button>
                 </form>
 
                 {/* ── Show all / DPLA shortcuts ── */}
                 <form id="show">
-                  <button type="button" id="showAll">
+                  <button type="submit" id="showAll">
                     Show metrics for all hubs
                   </button>
                 </form>
 
                 <form id="showDpla">
-                  <button type="button" id="showDplaButton">
+                  <button type="submit" id="showDplaButton">
                     Show metrics for DPLA contributing institutions
                   </button>
                 </form>

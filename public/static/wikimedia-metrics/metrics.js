@@ -188,7 +188,7 @@ function initMetrics() {
                     } else {
                         openPanel();
                         if (!content.dataset.loaded) {
-                            fetchData(content, category, chartDiv);
+                            chartsReady.then(() => fetchData(content, category, chartDiv));
                         }
                     }
                 });
@@ -220,7 +220,7 @@ function initMetrics() {
             // Used for ?show=all and single-category (?show=<category>).
             function buildPanels(lines, autoOpen) {
                 appendBackButton();
-                lines.forEach(line => addPanel(line.trim(), autoOpen));
+                lines.forEach(line => { addPanel(line.trim(), autoOpen); });
             }
 
             // DPLA view: root at top, then two collapsed group sections.
@@ -258,7 +258,7 @@ function initMetrics() {
                     .sort((a, b) => categoryDisplayName(a).localeCompare(categoryDisplayName(b)));
 
                 const instBody = appendSectionToggle('List of Contributing Institutions');
-                allInstitutions.forEach(inst => addPanel(inst, false, instBody));
+                allInstitutions.forEach(inst => { addPanel(inst, false, instBody); });
             }
 
             // Hub view: a single hub panel, then a "Contributing Institutions" label,
@@ -272,7 +272,7 @@ function initMetrics() {
                 header.textContent = 'List of Contributing Institutions';
                 container.appendChild(header);
 
-                institutions.forEach(inst => addPanel(inst, false));
+                institutions.forEach(inst => { addPanel(inst, false); });
             }
 
             // ── Dispatch ─────────────────────────────────────────────────────────────
@@ -380,7 +380,7 @@ function fetchData(content, category, chartDiv) {
                 // API timestamps are in YYYYMM00 format; extract YYYY-MM for display.
                 // Each row is [displayMonth, viewCount], e.g. ["2023-04", 1234].
                 const pageviews = apiData.items.map(item => [
-                    item['timestamp'].substring(0, 4) + '-' + item['timestamp'].substring(5, 7),
+                    item['timestamp'].substring(0, 4) + '-' + item['timestamp'].substring(4, 6),
                     item['pageview-count']
                 ]);
 
