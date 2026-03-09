@@ -73,9 +73,9 @@ export const rights = {
     },
     "creativecommons.org/licenses/by-nc-nd/1.0/": {
         "url": "http://creativecommons.org/licenses/by-nc-nd/1.0/",
-        "description": "",
-        "label": "",
-        "image": "",
+        "description": "This work is licensed under a Creative Commons Attribution-NoDerivs-NonCommercial 1.0 Generic License.",
+        "label": "Attribution-NoDerivs-NonCommercial 1.0 Generic",
+        "image": "/static/images/rightsstatements/cc-by-nd.svg",
         "source": "observed",
         "deprecated": "",
         "permits": [],
