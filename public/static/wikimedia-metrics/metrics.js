@@ -386,6 +386,7 @@ function fetchData(content, category, chartDiv) {
 
                 // Sum all monthly counts for the lifetime total.
                 const total = pageviews.reduce((sum, [, count]) => sum + count, 0);
+                const oldest = pageviews[0][0];
 
                 // Build a Google Charts DataTable and draw the line chart.
                 const chartData = new google.visualization.DataTable();
@@ -402,7 +403,7 @@ function fetchData(content, category, chartDiv) {
                 const listItems = pageviews
                     .map(([month, count]) => `<li>${month}: ${count.toLocaleString()} views</li>`)
                     .join('');
-                content.innerHTML = `<p><strong>Total: ${total.toLocaleString()}</strong></p><ul>${listItems}</ul>`;
+                content.innerHTML = `<p><strong>Total (since ${oldest}): ${total.toLocaleString()}</strong></p><ul>${listItems}</ul>`;
             } else {
                 content.innerHTML = '<p>No data available.</p>';
                 chartDiv.style.display = 'none';
