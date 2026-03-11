@@ -61,8 +61,8 @@
 .wikimedia-metrics-wrapper input[type="text"]:focus {
     outline: none;
     background-color: #ffffff;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    border-color: #163f51;
+    box-shadow: 0 0 0 3px rgba(22, 63, 81, 0.15);
 }
 
 /* ── Buttons ─────────────────────────────────────────────── */
@@ -82,13 +82,13 @@
 
 /* Primary button (Select item form) */
 .wikimedia-metrics-wrapper #showForm button {
-    background-color: #2563eb;
+    background-color: #163f51;
     color: white;
 }
 
 .wikimedia-metrics-wrapper #showForm button:hover {
-    background-color: #1d4ed8;
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+    background-color: #0f2d3a;
+    box-shadow: 0 6px 14px rgba(22, 63, 81, 0.25);
 }
 
 /* Secondary button (Show all / Show DPLA forms) */
