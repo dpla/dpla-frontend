@@ -427,6 +427,11 @@ function fetchData(content, category, chartDiv) {
             } else {
                 content.innerHTML = '<p>No data available.</p>';
                 chartDiv.style.display = 'none';
+                if (content.classList.contains('open')) {
+                    setTimeout(() => {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }, 0);
+                }
             }
 
             content.dataset.loaded = true; // Prevent redundant fetches on re-open.
@@ -434,6 +439,11 @@ function fetchData(content, category, chartDiv) {
         .catch(error => {
             content.innerHTML = '<p>Error loading data.</p>';
             chartDiv.innerHTML = '';
+            if (content.classList.contains('open')) {
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 0);
+            }
             console.error('Error fetching data:', error);
         });
 }

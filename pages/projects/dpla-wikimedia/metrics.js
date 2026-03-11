@@ -15,7 +15,7 @@ import { washObject } from "lib/washObject";
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
   { title: "DPLA + Wikimedia", url: "/projects/dpla-wikimedia" },
-  { title: "Category Page Views" },
+  { title: "Wikimedia Page Views" },
 ];
 
 export default function WikimetricsPage({ items, isFilterView }) {
@@ -24,7 +24,7 @@ export default function WikimetricsPage({ items, isFilterView }) {
 
   return (
     <MainLayout
-      pageTitle="Category Page Views — DPLA + Wikimedia"
+      pageTitle="Wikimedia Page Views — DPLA + Wikimedia"
       pageDescription="Explore Wikimedia category page view metrics for DPLA hubs and contributing institutions."
     >
       <Head>
@@ -50,7 +50,14 @@ export default function WikimetricsPage({ items, isFilterView }) {
           <div className={`${utils.colXs12} ${utils.colMd7}`}>
             <div id="main" role="main" className={contentCss.content}>
               <div className={wrapperClass}>
-                <h1>Category Page Views</h1>
+                <h1>Wikimedia Page Views</h1>
+
+                {/* ── DPLA shortcut (first) ── */}
+                <form id="showDpla">
+                  <button type="submit" id="showDplaButton">
+                    Show metrics for DPLA contributing institutions
+                  </button>
+                </form>
 
                 {/* ── Select an item ── */}
                 <form id="showForm">
@@ -59,7 +66,7 @@ export default function WikimetricsPage({ items, isFilterView }) {
                     type="text"
                     id="showInput"
                     list="showOptions"
-                    placeholder="e.g. Images_from_the_DPLA"
+                    placeholder="e.g. Media_contributed_by_Indiana_Memory"
                   />
                   <datalist id="showOptions" />
                   <span id="errorMessage">
@@ -70,16 +77,10 @@ export default function WikimetricsPage({ items, isFilterView }) {
                   </button>
                 </form>
 
-                {/* ── Show all / DPLA shortcuts ── */}
+                {/* ── Show all ── */}
                 <form id="show">
                   <button type="submit" id="showAll">
-                    Show metrics for all hubs
-                  </button>
-                </form>
-
-                <form id="showDpla">
-                  <button type="submit" id="showDplaButton">
-                    Show metrics for DPLA contributing institutions
+                    Show metrics for all Wikimedia categories
                   </button>
                 </form>
 
