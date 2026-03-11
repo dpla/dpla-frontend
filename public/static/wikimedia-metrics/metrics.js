@@ -439,6 +439,11 @@ function fetchData(content, category, chartDiv) {
         .catch(error => {
             content.innerHTML = '<p>Error loading data.</p>';
             chartDiv.innerHTML = '';
+            if (content.classList.contains('open')) {
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 0);
+            }
             console.error('Error fetching data:', error);
         });
 }
