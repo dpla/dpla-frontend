@@ -59,7 +59,7 @@ export default function WikimetricsPage({ items, isFilterView }) {
                     type="text"
                     id="showInput"
                     list="showOptions"
-                    placeholder="e.g. Images_from_the_DPLA"
+                    placeholder="e.g. Media_contributed_by_Indiana_Memory"
                   />
                   <datalist id="showOptions" />
                   <span id="errorMessage">
@@ -73,7 +73,7 @@ export default function WikimetricsPage({ items, isFilterView }) {
                 {/* ── Show all / DPLA shortcuts ── */}
                 <form id="show">
                   <button type="submit" id="showAll">
-                    Show metrics for all hubs
+                    Show metrics for all Wikimedia categories
                   </button>
                 </form>
 
