@@ -104,6 +104,10 @@ export async function getServerSideProps(context) {
   let local = isLocal ? LOCALS[localId] : {};
   const isQA = siteEnv === "cqa";
 
+  if (Array.isArray(query.q)) {
+    query.q = query.q[0];
+  }
+
   if (query.q && !isBalanced(query.q)) {
     // User gave us something that will blow up, strip it out.
     query.q = query.q.replace(/['"\[\](){}]/g, "");
@@ -283,7 +287,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error(`Response status: ${res.status}`);
+      return { notFound: true };
     }
 
     const json = await res.json();
