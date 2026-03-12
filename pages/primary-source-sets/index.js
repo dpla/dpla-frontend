@@ -47,12 +47,7 @@ export async function getServerSideProps({query}) {
   const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
   const res = await fetch(url);
   if (!res.ok) {
-    if (res.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load sets.");
+    return { notFound: true };
   }
   const json = await res.json();
   const props = washObject({
