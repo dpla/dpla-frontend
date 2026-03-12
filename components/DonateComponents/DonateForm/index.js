@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "shared/Button";
 
-import { getCurrentFullUrl, endsWith } from "lib";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -53,10 +52,8 @@ class DonateForm extends React.Component {
         ? PAYPAL_DONATE_MONTHLY
         : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
-    let returnUrl = getCurrentFullUrl();
-    returnUrl = endsWith(returnUrl, "/")
-      ? returnUrl + "thank-you"
-      : returnUrl + "/thank-you";
+    const base = window.location.pathname.replace(/\/$/, "");
+    const returnUrl = `${window.location.origin}${base}/thank-you`;
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
     if (url.startsWith("https://www.paypal.com/")) {
       document.location = url;
