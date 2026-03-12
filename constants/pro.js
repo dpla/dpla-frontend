@@ -5,7 +5,6 @@ const SECTIONS = [
   { slug: "developers", name: "Developers" },
   { slug: "education", name: "Education" },
   { slug: "projects", name: "Projects" },
-  { slug: "ebooks", name: "Ebooks" },
   { slug: "events", name: "Events" }
 ];
 

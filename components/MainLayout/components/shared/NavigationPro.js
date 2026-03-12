@@ -33,9 +33,6 @@ function NavigationPro({ isHome, className, css }) {
           <Link href={userBaseUrl + "/news"}>News</Link>
         </li>
         <li>
-          <Link href={"https://ebooks.dp.la"}>Ebooks</Link>
-        </li>
-        <li>
           <Link href={userBaseUrl}>DPLA Main Site</Link>
         </li>
       </ul>

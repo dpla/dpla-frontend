@@ -51,9 +51,6 @@ function FooterPro() {
             <li>
               <Link href="/education">Education</Link>
             </li>
-            <li>
-              <a href="https://ebooks.dp.la">Ebooks</a>
-            </li>
           </ul>
         </div>
         <div
