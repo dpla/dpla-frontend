@@ -109,7 +109,8 @@ export async function getServerSideProps(context) {
   const pageName = subsection || section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
-    return { notFound: true };
+    if (menuResponse.status === 404) return { notFound: true };
+    throw new Error("Couldn't load pro menu.");
   }
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
@@ -119,7 +120,8 @@ export async function getServerSideProps(context) {
   }
   const pageRes = await fetch(getMenuItemUrl(pageItem));
   if (!pageRes.ok) {
-    return { notFound: true };
+    if (pageRes.status === 404) return { notFound: true };
+    throw new Error("Couldn't load page.");
   }
   const pageJson = await pageRes.json();
 
