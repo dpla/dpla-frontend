@@ -56,7 +56,7 @@ class DonateForm extends React.Component {
     const returnUrl = `${window.location.origin}${base}/thank-you`;
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
     if (url.startsWith("https://www.paypal.com/")) {
-      document.location = url;
+      document.location = url; // lgtm[js/xss-through-dom] - url is a hardcoded PayPal constant; returnUrl is URL-encoded and cannot produce a javascript: URL
     }
   }
 
