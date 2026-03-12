@@ -47,7 +47,7 @@ class DonateForm extends React.Component {
 
   buildDonationAndSend() {
     // encode the period
-    const amountStr = this.state.amount.toString().replace(".", "%2e");
+    const amountStr = this.state.amount.toString().replace(/\./g, "%2e");
     let url =
       this.state.frequency === "monthly"
         ? PAYPAL_DONATE_MONTHLY
@@ -58,7 +58,9 @@ class DonateForm extends React.Component {
       ? returnUrl + "thank-you"
       : returnUrl + "/thank-you";
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
-    document.location = url;
+    if (url.startsWith("https://www.paypal.com/")) {
+      document.location = url;
+    }
   }
 
   handleFrequencyClick(freq) {
