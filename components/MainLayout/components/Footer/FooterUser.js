@@ -162,14 +162,6 @@ class FooterUser extends React.Component {
               </li>
               <li>
                 <Link
-                  href={"https://ebooks.dp.la"}
-                  data-cy="footer-link-ebooks"
-                >
-                  Ebooks
-                </Link>
-              </li>
-              <li>
-                <Link
                   href={proBaseUrl + "/events"}
                   data-cy="footer-link-events"
                 >

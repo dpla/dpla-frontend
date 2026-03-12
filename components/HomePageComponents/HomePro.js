@@ -65,10 +65,10 @@ function HomePro({ news, content }) {
             </Link>
           </li>
           <li>
-            <a href={"https://ebooks.dp.la"}>
-              <IconComponent className={css.icon} name="ebooks" />
-              Ebooks
-            </a>
+            <Link href={"/projects/dpla-wikimedia"}>
+              <IconComponent className={css.icon} name="wikipedia" />
+              Wikipedia
+            </Link>
           </li>
         </ul>
       </div>
