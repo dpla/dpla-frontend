@@ -109,24 +109,17 @@ export async function getServerSideProps(context) {
   const pageName = subsection || section;
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
-    if (menuResponse.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load menu.");
+    return { notFound: true };
   }
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
   const pageItem = menuItems.find((item) => item.post_name === pageName);
+  if (!pageItem) {
+    return { notFound: true };
+  }
   const pageRes = await fetch(getMenuItemUrl(pageItem));
   if (!pageRes.ok) {
-    if (pageRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load page.");
+    return { notFound: true };
   }
   const pageJson = await pageRes.json();
 
