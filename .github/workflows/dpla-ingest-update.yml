@@ -1,0 +1,27 @@
+name: DPLA Ingest Update
+
+on:
+  schedule:
+    - cron: '0 13 * * *'  # 8 AM EST / 9 AM EDT daily
+  workflow_dispatch:        # allows manual trigger from GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run ingest update
+        env:
+          DPLA_API_KEY:        ${{ secrets.DPLA_API_KEY }}
+          DPLA_WP_USER:        ${{ secrets.DPLA_WP_USER }}
+          DPLA_WP_APP_PASSWORD: ${{ secrets.DPLA_WP_APP_PASSWORD }}
+          DPLA_SLACK_WEBHOOK:  ${{ secrets.DPLA_SLACK_WEBHOOK }}
+        run: python scripts/dpla_ingest_update.py
