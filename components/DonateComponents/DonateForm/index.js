@@ -45,18 +45,22 @@ class DonateForm extends React.Component {
   };
 
   buildDonationAndSend() {
+    // Coerce to a number primitive to prevent string taint from user input
+    const numAmount = Number(this.state.amount);
+    if (!isFinite(numAmount) || numAmount <= 0) return;
     // encode the period
-    const amountStr = this.state.amount.toString().replace(/\./g, "%2e");
+    const amountStr = numAmount.toString().replace(/\./g, "%2e");
     let url =
       this.state.frequency === "monthly"
         ? PAYPAL_DONATE_MONTHLY
         : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
-    const base = window.location.pathname.replace(/\/$/, "");
-    const returnUrl = `${window.location.origin}${base}/thank-you`;
+    // Use the build-time site URL constant rather than window.location so no
+    // runtime-tainted data reaches the navigation sink
+    const returnUrl = `${process.env.NEXT_PUBLIC_USER_BASE_URL}/donate/thank-you`;
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
     if (url.startsWith("https://www.paypal.com/")) {
-      document.location = url; // lgtm[js/xss-through-dom] - url is a hardcoded PayPal constant; returnUrl is URL-encoded and cannot produce a javascript: URL
+      document.location = url;
     }
   }
 
