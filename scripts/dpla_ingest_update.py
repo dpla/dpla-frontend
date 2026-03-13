@@ -1,4 +1,4 @@
-import json, os, re, requests
+import html, json, os, re, requests
 from datetime import datetime, timedelta
 from urllib.parse import quote
 
@@ -12,14 +12,26 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleW
 now       = datetime.now()
 yesterday = (now - timedelta(days=1)).strftime('%Y-%m-%d')
 
+
+def get_json(url, params=None):
+    resp = requests.get(url, params=params, timeout=20)
+    resp.raise_for_status()
+    return resp.json()
+
+
 # --- Fetch DPLA data ---
-providerurl  = f'https://api.dp.la/v2/items?facets=provider.name&api_key={DPLA_KEY}&page_size=0&facet_size=100'
-providernames = json.loads(requests.get(providerurl).text)['facets']['provider.name']['terms']
+providernames = get_json(
+    'https://api.dp.la/v2/items',
+    params={'facets': 'provider.name', 'api_key': DPLA_KEY, 'page_size': 0, 'facet_size': 100}
+)['facets']['provider.name']['terms']
+
 ingestdates = {}
 for provider in providernames:
-    ingesturl = f'https://api.dp.la/v2/items?provider.name="{provider["term"]}"&api_key={DPLA_KEY}&page_size=1&fields=ingestDate'
-    ingestdate = json.loads(requests.get(ingesturl).text)['docs'][0]['ingestDate']
-    ingestdates[provider['term']] = ingestdate[:10]
+    data = get_json(
+        'https://api.dp.la/v2/items',
+        params={'provider.name': f'"{provider["term"]}"', 'api_key': DPLA_KEY, 'page_size': 1, 'fields': 'ingestDate'}
+    )
+    ingestdates[provider['term']] = data['docs'][0]['ingestDate'][:10]
 
 # --- Sort into 4 groups ---
 g30, g90, g365, gold = {}, {}, {}, {}
@@ -44,12 +56,14 @@ print(f'90 days:  {len(g90)} hubs')
 print(f'365 days: {len(g365)} hubs')
 print(f'Older:    {len(gold)} hubs')
 
+
 # --- Generate table blocks ---
 def make_table(hubs):
     rows = ''
     for hub, date in hubs.items():
-        url = 'https://dp.la/search?partner=%22' + quote(hub) + '%22'
-        rows += f'<tr><td><strong><a href="{url}">{hub}</a></strong></td><td>{date}</td></tr>'
+        url         = 'https://dp.la/search?partner=%22' + quote(hub) + '%22'
+        escaped_hub = html.escape(hub)
+        rows += f'<tr><td><strong><a href="{url}">{escaped_hub}</a></strong></td><td>{date}</td></tr>'
     return (
         '<!-- wp:table -->\n'
         f'<figure class="wp-block-table"><table class="has-fixed-layout"><tbody>{rows}</tbody></table></figure>\n'
@@ -62,16 +76,20 @@ table_365 = make_table(g365)
 table_old = make_table(gold)
 
 # --- Fetch current page raw content ---
-resp    = requests.get('https://dpla.wpengine.com/wp-json/wp/v2/pages/27879?context=edit', auth=auth, headers=headers)
+resp    = requests.get('https://dpla.wpengine.com/wp-json/wp/v2/pages/27879?context=edit', auth=auth, headers=headers, timeout=20)
+resp.raise_for_status()
 content = resp.json()['content']['raw']
 
 # --- Only publish if data has changed ---
-table_pattern  = re.compile(r'<!-- wp:(?:buttons|table)[\s\S]*?-->.*?<!-- /wp:(?:buttons|table) -->', re.DOTALL)
+table_pattern   = re.compile(r'<!-- wp:table -->.*?<!-- /wp:table -->', re.DOTALL)
 existing_tables = table_pattern.findall(content)
 new_tables      = [table_30, table_90, table_365, table_old]
 
 if existing_tables == new_tables:
     print('No changes detected. WordPress update skipped.')
+elif len(existing_tables) != len(new_tables):
+    print(f'ERROR: expected {len(new_tables)} table blocks on page, found {len(existing_tables)}. Aborting update.')
+    raise SystemExit(1)
 else:
     def replacer(tables):
         it = iter(tables)
@@ -82,13 +100,10 @@ else:
     new_content  = table_pattern.sub(replacer(new_tables), content)
     update_resp  = requests.post(
         'https://dpla.wpengine.com/wp-json/wp/v2/pages/27879',
-        auth=auth, headers=headers, json={'content': new_content}
+        auth=auth, headers=headers, json={'content': new_content}, timeout=20
     )
-    if update_resp.status_code == 200:
-        print('Data changed — page updated successfully!')
-    else:
-        print(update_resp.text[:500])
-        raise SystemExit(1)
+    update_resp.raise_for_status()
+    print('Data changed — page updated successfully!')
 
 # --- Slack alert if any hub ingested yesterday ---
 yesterday_hubs = {k: v for k, v in ingestdates.items() if v == yesterday}
@@ -96,7 +111,7 @@ if yesterday_hubs:
     lines = [f'*DPLA hubs ingested on {yesterday}:*']
     for hub in sorted(yesterday_hubs, key=yesterday_hubs.get, reverse=True):
         lines.append(f'• {hub}: {yesterday_hubs[hub]}')
-    requests.post(SLACK_URL, json={'text': '\n'.join(lines)})
+    requests.post(SLACK_URL, json={'text': '\n'.join(lines)}, timeout=10)
     print(f'Slack alert sent for {len(yesterday_hubs)} hub(s).')
 else:
     print(f'No hubs ingested on {yesterday}. No Slack alert sent.')
