@@ -50,6 +50,9 @@
     "lint-staged": "^15.4.1",
     "prettier": "^3.4.2"
   },
+  "resolutions": {
+    "rollup": "3.30.0"
+  },
   "lint-staged": {
     "*": "next lint"
   }
