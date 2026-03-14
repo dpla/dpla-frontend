@@ -63,7 +63,7 @@ export default function ItemDetail({ item, randomItemId, isQA }) {
             sourceUrl={item.sourceUrl}
             className={css.citeButton}
             toCiteText="item"
-            title={item.title}
+            title={joinIfArray(item.title, ", ")}
           />
           <CheckableLists itemId={item.id} />
         </div>
