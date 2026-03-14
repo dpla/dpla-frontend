@@ -68,12 +68,8 @@ export async function getServerSideProps(context) {
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
   if (!setRes.ok) {
-    if (setRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Unable to load set.");
+    //treating all fetch errors as 404 due to API bug
+    return { notFound: true };
   }
 
   const setJson = await setRes.json();

@@ -93,11 +93,7 @@ export async function getServerSideProps(context) {
 
   const res = await fetch(itemUrl);
   if (!res.ok) {
-    if (res.status === 404) {
-      return notFound;
-    } else {
-      throw new Error(`API Response status: ${res.status}`);
-    }
+    return notFound;
   }
   const data = await res.json();
   if (!("docs" in data) || data.docs.length < 1) {
