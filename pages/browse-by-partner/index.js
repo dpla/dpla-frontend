@@ -40,13 +40,8 @@ export const getServerSideProps = async () => {
   if (siteEnv === "local") {
     const local = LOCALS[localId];
 
-    const filtersParam = local.filters
-      ? local.filters.map((x) => `&filter=${x}`).join("")
-      : [];
-
-    const tagsParam = local.tags
-      ? local.tags.map((x) => `&tags=${x}`).join("")
-      : [];
+    const filtersParam = (local.filters ?? []).map((x) => `&filter=${x}`).join("");
+    const tagsParam = (local.tags ?? []).map((x) => `&tags=${x}`).join("");
 
     apiQuery = `${apiUrlBase}&facets=dataProvider${filtersParam}${tagsParam}`;
     facetName = "dataProvider";
@@ -59,12 +54,7 @@ export const getServerSideProps = async () => {
 
   const res = await fetch(apiQuery);
   if (!res.ok) {
-    if (res.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error(`Response status: ${res.status}`);
+    return { notFound: true };
   }
   const json = await res.json();
 
