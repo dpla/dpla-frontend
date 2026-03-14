@@ -3,13 +3,13 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
 import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
-import MinimalLayout from "components/MainLayout/components/MinimalLayout";
+import MainLayout from "components/MainLayout";
 import React from "react";
 
 export default function Custom500() {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
-    <MinimalLayout>
+    <MainLayout>
       <div
         className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
       >
@@ -34,7 +34,7 @@ export default function Custom500() {
           </div>
         </div>
       </div>
-    </MinimalLayout>
+    </MainLayout>
   );
 }
 

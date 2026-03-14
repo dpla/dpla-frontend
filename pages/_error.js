@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/nextjs";
 import React from "react";
 import { withRouter } from "next/router";
 
-import MinimalLayout from "components/MainLayout/components/MinimalLayout";
+import MainLayout from "components/MainLayout";
 import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
 import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
 
@@ -35,7 +35,7 @@ class Error extends React.Component {
   render() {
     const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     return (
-      <MinimalLayout>
+      <MainLayout>
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >
@@ -45,21 +45,20 @@ class Error extends React.Component {
               id="main"
               className={`${contentCss.content} ${donateCss.thankYou} col-md-8 col-xs-12`}
             >
-              {this.props.statusCode && this.props.statusCode !== 404 && (
-                <div>
-                  <h1>An error occurred.</h1>
-                  <p>
-                    Thanks for your patience while we work to fix this issue. In
-                    the meantime, try one of these:
-                  </p>
-                </div>
-              )}
-              {this.props.statusCode === 404 && (
+              {this.props.statusCode === 404 ? (
                 <div>
                   <h1>Page not found.</h1>
                   <p>
                     We are sorry that the page you requested cannot be found.
                     Instead, try one of these:
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <h1>An error occurred.</h1>
+                  <p>
+                    Thanks for your patience while we work to fix this issue. In
+                    the meantime, try one of these:
                   </p>
                 </div>
               )}
@@ -70,7 +69,7 @@ class Error extends React.Component {
             </main>
           </div>
         </div>
-      </MinimalLayout>
+      </MainLayout>
     );
   }
 }
