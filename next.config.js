@@ -136,6 +136,7 @@ let config = {
           fourOhFour("/pro/wp"),
           fourOhFour("/local/"),
           fourOhFour("/local/markdown"),
+          fourOhFour("/projects/dpla-wikimedia/:slugs*"),
         ],
       };
     } else if (siteEnv === "cqa") {
