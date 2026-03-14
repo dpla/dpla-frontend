@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "shared/Button";
 
-import { getCurrentFullUrl, endsWith } from "lib";
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -46,19 +45,23 @@ class DonateForm extends React.Component {
   };
 
   buildDonationAndSend() {
+    // Coerce to a number primitive to prevent string taint from user input
+    const numAmount = Number(this.state.amount);
+    if (!isFinite(numAmount) || numAmount <= 0) return;
     // encode the period
-    const amountStr = this.state.amount.toString().replace(".", "%2e");
+    const amountStr = numAmount.toString().replace(/\./g, "%2e");
     let url =
       this.state.frequency === "monthly"
         ? PAYPAL_DONATE_MONTHLY
         : PAYPAL_DONATE_SINGLE;
     url = url.replace("{amount}", amountStr);
-    let returnUrl = getCurrentFullUrl();
-    returnUrl = endsWith(returnUrl, "/")
-      ? returnUrl + "thank-you"
-      : returnUrl + "/thank-you";
+    // Use the build-time site URL constant rather than window.location so no
+    // runtime-tainted data reaches the navigation sink
+    const returnUrl = `${process.env.NEXT_PUBLIC_USER_BASE_URL}/donate/thank-you`;
     url = url.replace("{returnUrl}", encodeURIComponent(returnUrl));
-    document.location = url;
+    if (url.startsWith("https://www.paypal.com/")) {
+      document.location = url;
+    }
   }
 
   handleFrequencyClick(freq) {
