@@ -1,6 +1,5 @@
 const { LOCALS } = require("./constants/local");
 const SECTIONS = require("./constants/pro").SECTIONS;
-const path = require("path");
 
 const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
 const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
@@ -136,6 +135,7 @@ let config = {
           fourOhFour("/pro/wp"),
           fourOhFour("/local/"),
           fourOhFour("/local/markdown"),
+          fourOhFour("/projects/dpla-wikimedia/:slugs*"),
         ],
       };
     } else if (siteEnv === "cqa") {
@@ -208,7 +208,7 @@ let config = {
 // Nextjs Bundle Analyzer
 if (process.env.ANALYZE === "true") {
   const withBundleAnalyzer = require("@next/bundle-analyzer")({
-    enabled: process.env.ANALYZE === "true",
+    enabled: true,
   });
   config = withBundleAnalyzer(config);
 }

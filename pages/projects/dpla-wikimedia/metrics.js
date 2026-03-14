@@ -6,7 +6,7 @@ import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
-import { ABOUT_MENU_ENDPOINT } from "constants/content-pages";
+import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -19,8 +19,7 @@ const BREADCRUMBS = [
 ];
 
 export default function WikimetricsPage({ items, isFilterView }) {
-  const wrapperClass =
-    "wikimedia-metrics-wrapper" + (isFilterView ? " filter-view" : "");
+  const wrapperClass = `wikimedia-metrics-wrapper${isFilterView ? " filter-view" : ""}`;
 
   return (
     <MainLayout
@@ -121,7 +120,7 @@ export async function getServerSideProps(context) {
   const { show, hub } = context.query;
   const isFilterView = !!(show || hub);
 
-  const menuResponse = await fetch(ABOUT_MENU_ENDPOINT);
+  const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
     if (menuResponse.status === 404) {
       return { notFound: true };
