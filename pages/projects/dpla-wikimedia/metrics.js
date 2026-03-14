@@ -19,8 +19,7 @@ const BREADCRUMBS = [
 ];
 
 export default function WikimetricsPage({ items, isFilterView }) {
-  const wrapperClass =
-    "wikimedia-metrics-wrapper" + (isFilterView ? " filter-view" : "");
+  const wrapperClass = `wikimedia-metrics-wrapper${isFilterView ? " filter-view" : ""}`;
 
   return (
     <MainLayout
