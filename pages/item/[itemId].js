@@ -21,6 +21,7 @@ import { washObject } from "lib/washObject";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, randomItemId, isQA }) {
+  if (!item) return null;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
       <BreadcrumbsModule
