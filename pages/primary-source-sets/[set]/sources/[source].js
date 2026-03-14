@@ -15,6 +15,7 @@ const audioIcon = "/static/placeholderImages/Sound.svg";
 
 function Source({ source, set, currentSourceIdx }) {
   const router = useRouter();
+  if (!source || !set) return null;
   return (
     <MainLayout pageTitle={source.name} pageImage={source.thumbnailUrl}>
       <BreadcrumbsModule
