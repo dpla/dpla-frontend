@@ -100,6 +100,31 @@ export async function getServerSideProps(context) {
   const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
   const query = context.query;
+
+  // Redirect malformed URLs where &amp; was used as a param separator instead of &,
+  // causing keys like "amp;page" or "amp;amp;page" to appear. This accumulates when
+  // links are copied from HTML source and re-saved through CMS editors.
+  if (Object.keys(query).some((k) => k.startsWith("amp;"))) {
+    const cleaned = {};
+    for (const [key, val] of Object.entries(query)) {
+      if (key.startsWith("amp;")) {
+        const cleanKey = key.replace(/^(amp;)+/, "");
+        if (!(cleanKey in cleaned)) cleaned[cleanKey] = val;
+      } else {
+        cleaned[key] = val; // non-amp keys always win over amp-prefixed equivalents
+      }
+    }
+    const params = new URLSearchParams();
+    for (const [key, val] of Object.entries(cleaned)) {
+      if (Array.isArray(val)) {
+        val.forEach((v) => params.append(key, v));
+      } else {
+        params.set(key, val);
+      }
+    }
+    return { redirect: { destination: `/search?${params.toString()}`, permanent: false } };
+  }
+
   const isLocal = siteEnv === "local";
   let local = isLocal ? LOCALS[localId] : {};
   const isQA = siteEnv === "cqa";
