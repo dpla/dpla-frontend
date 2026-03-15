@@ -24,12 +24,7 @@ function TopicBrowse(props) {
 export const getServerSideProps = async () => {
   const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
   if (!res.ok) {
-    if (res.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load topics.");
+    return { notFound: true };
   }
   const json = await res.json();
   const topics = washObject(

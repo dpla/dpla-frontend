@@ -136,12 +136,7 @@ export async function getServerSideProps(context) {
   );
 
   if (!menuResponse.ok) {
-    if (menuResponse.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load about menu.");
+    return { notFound: true };
   }
 
   const menuJson = await menuResponse.json();
@@ -150,12 +145,7 @@ export async function getServerSideProps(context) {
   const slug = context.params?.slug;
   const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
   if (!postRes.ok) {
-    if (postRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load post.");
+    return { notFound: true };
   }
   const postJson = await postRes.json();
   if (postJson.length === 0) {
@@ -170,15 +160,10 @@ export async function getServerSideProps(context) {
   );
 
   if (!authorRes.ok) {
-    if (authorRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load author.");
+    return { notFound: true };
   }
 
-  const authorJson = authorRes.ok ? await authorRes.json() : {};
+  const authorJson = await authorRes.json();
 
   let pageDescription = "";
   if (postJson[0].excerpt && postJson[0].excerpt.rendered) {

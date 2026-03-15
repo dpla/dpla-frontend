@@ -60,7 +60,7 @@ export async function getServerSideProps() {
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   if (!settingsRes.ok) {
-    throw new Error("Couldn't load settings.");
+    return { notFound: true };
   }
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
@@ -69,7 +69,7 @@ export async function getServerSideProps() {
   // 3. fetch it
   const homeRes = await fetch(endpoint);
   if (!homeRes.ok) {
-    throw new Error("Couldn't load home.");
+    return { notFound: true };
   }
   const homepageJson = await homeRes.json();
 
