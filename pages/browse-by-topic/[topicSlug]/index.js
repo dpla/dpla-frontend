@@ -52,12 +52,7 @@ export const getServerSideProps = async (context) => {
   const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
   if (!topicsRes.ok) {
-    if (topicsRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load topics.");
+    return { notFound: true };
   }
 
   const topicsJson = await topicsRes.json();
@@ -74,12 +69,7 @@ export const getServerSideProps = async (context) => {
   );
 
   if (!subtopicsRes.ok) {
-    if (subtopicsRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load subtopics.");
+    return { notFound: true };
   }
 
   const subtopicsJson = await subtopicsRes.json();

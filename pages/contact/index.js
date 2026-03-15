@@ -55,12 +55,7 @@ export const getServerSideProps = async () => {
   );
 
   if (!aboutMenuRes.ok) {
-    if (aboutMenuRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load about menu.");
+    return { notFound: true };
   }
 
   const aboutMenuJson = await aboutMenuRes.json();

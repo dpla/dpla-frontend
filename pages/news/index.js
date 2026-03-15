@@ -135,12 +135,7 @@ export async function getServerSideProps({ query }) {
     siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
   if (!menuResponse.ok) {
-    if (menuResponse.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load menu.");
+    return { notFound: true };
   }
   const menuJson = await menuResponse.json();
   const pageItem = menuJson.items.find(
@@ -157,12 +152,7 @@ export async function getServerSideProps({ query }) {
       `${wordPressUrl}/wp-json/wp/v2/users/${authorId}`,
     );
     if (!authorRes.ok) {
-      if (authorRes.status === 404) {
-        return {
-          notFound: true,
-        };
-      }
-      throw new Error("Couldn't load author.");
+      return { notFound: true };
     }
     authorJson = await authorRes.json();
   }

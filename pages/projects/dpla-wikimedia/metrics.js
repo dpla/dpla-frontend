@@ -122,10 +122,7 @@ export async function getServerSideProps(context) {
 
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
-    if (menuResponse.status === 404) {
-      return { notFound: true };
-    }
-    throw new Error("Couldn't load menu.");
+    return { notFound: true };
   }
   const menuJson = await menuResponse.json();
 

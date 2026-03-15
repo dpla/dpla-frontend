@@ -105,12 +105,7 @@ class HubsPage extends React.Component {
 export async function getServerSideProps() {
   const hubRes = await fetch(PAGES_ENDPOINT + "?slug=hubs");
   if (!hubRes.ok) {
-    if (hubRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load hubs.");
+    return { notFound: true };
   }
   const hubJson = await hubRes.json();
   const hubItem = hubJson[0];

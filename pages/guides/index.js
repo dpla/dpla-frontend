@@ -59,12 +59,7 @@ export async function getServerSideProps() {
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   if (!settingsRes.ok) {
-    if (settingsRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load settings.");
+    return { notFound: true };
   }
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
@@ -72,12 +67,7 @@ export async function getServerSideProps() {
 
   const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
   if (!aboutMenuRes.ok) {
-    if (aboutMenuRes.status === 404) {
-      return {
-        notFound: true,
-      };
-    }
-    throw new Error("Couldn't load about menu.");
+    return { notFound: true };
   }
   const aboutMenuJson = await aboutMenuRes.json();
   const indexPageItem = aboutMenuJson.items.find(
