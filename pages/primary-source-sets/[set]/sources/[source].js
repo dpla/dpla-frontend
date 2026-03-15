@@ -9,6 +9,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -53,27 +54,15 @@ function Source({ source, set, currentSourceIdx }) {
 export async function getServerSideProps(context) {
   const set = context.params?.set;
   const source = context.params?.source;
-  const sourceRes = await fetch(
-    `${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`,
-  );
-  if (!sourceRes.ok) {
-    //treating all fetch errors as 404 due to API bug
-    return {
-      notFound: true,
-    };
-  }
-  const sourceJson = await sourceRes.text();
-  const sanitizedSourceJson = JSON.parse(sourceJson.replace(/\r\n/gi, ""));
+  const [sourceRes, setRes] = await Promise.all([
+    safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
+    safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
+  ]);
+  //treating all fetch errors as 404 due to API bug
+  if (!sourceRes?.ok || !setRes?.ok) return { notFound: true };
 
-  const setRes = await fetch(
-    `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
-  );
-  if (!setRes.ok) {
-    //treating all fetch errors as 404 due to API bug
-    return { notFound: true };
-  }
-
-  const setJson = await setRes.json();
+  const [sourceText, setJson] = await Promise.all([sourceRes.text(), setRes.json()]);
+  const sanitizedSourceJson = JSON.parse(sourceText.replace(/\r\n/gi, ""));
   const parts = setJson.hasPart.map((part) => {
     let thumbnailUrl = part.thumbnailUrl;
     let useDefaultImage = false;

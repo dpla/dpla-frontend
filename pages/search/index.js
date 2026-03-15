@@ -7,6 +7,7 @@ import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
 import { getItemThumbnail, getSearchPageTitle, isBalanced } from "lib";
+import { safeFetch } from "lib/safeFetch";
 
 import {
   possibleFacets,
@@ -44,6 +45,7 @@ class Search extends React.Component {
       aboutness,
       filterQueryError,
       maxPageError,
+      fetchError,
     } = this.props;
 
     let itemCount = 0; // default handles unexpected error
@@ -60,20 +62,29 @@ class Search extends React.Component {
         isSearchPage={true}
         pageTitle={getSearchPageTitle(router.query.q)}
       >
-        <OptionsBar
-          showFilters={this.state.showSidebar}
-          currentPage={currentPage}
-          itemCount={itemCount}
-          onClickToggleFilters={this.toggleFilters}
-          numberOfActiveFacets={numberOfActiveFacets}
-        />
+        {!fetchError && (
+          <OptionsBar
+            showFilters={this.state.showSidebar}
+            currentPage={currentPage}
+            itemCount={itemCount}
+            onClickToggleFilters={this.toggleFilters}
+            numberOfActiveFacets={numberOfActiveFacets}
+          />
+        )}
         <HarmfulContent />
-        <FiltersList
-          showFilters={this.state.showSidebar}
-          onClickToggleFilters={this.toggleFilters}
-          facets={results.facets}
-        />
-        {currentPage <= MAX_PAGE_SIZE && (
+        {!fetchError && (
+          <FiltersList
+            showFilters={this.state.showSidebar}
+            onClickToggleFilters={this.toggleFilters}
+            facets={results.facets}
+          />
+        )}
+        {fetchError && (
+          <p style={{ textAlign: "center", padding: "2rem" }}>
+            Search results couldn&apos;t be loaded. Please try again.
+          </p>
+        )}
+        {!fetchError && currentPage <= MAX_PAGE_SIZE && (
           <MainContent
             hideSidebar={!this.state.showSidebar}
             paginationInfo={{
@@ -311,13 +322,17 @@ export async function getServerSideProps(context) {
       filtersParam +
       tagsParam;
 
-    const res = await fetch(url);
+    const fetchErrorProps = { props: washObject({ fetchError: true, results: { docs: [], facets: {} } }) };
 
-    if (!res.ok) {
-      return { notFound: true };
+    const res = await safeFetch(url);
+    if (!res?.ok) return fetchErrorProps;
+
+    let json;
+    try {
+      json = await res.json();
+    } catch {
+      return fetchErrorProps;
     }
-
-    const json = await res.json();
 
     // api response for facets
     const docs = json.docs.map((result) => {
