@@ -13,7 +13,6 @@ export const PSS_NHD_URL = "https://pro.dp.la/education/national-history-day";
 export const MAILCHIMP_LIST_ID = "4c517f4bd0";
 export const MAILCHIMP_GROUP_IDS = {
   NEWS: "65934fd87a",
-  EBOOKS: "0a0565e000",
   EDUCATION: "c68a1c3448",
   GENEALOGY: "f1bce877cd",
 };

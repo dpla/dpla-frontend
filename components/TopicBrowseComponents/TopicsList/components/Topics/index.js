@@ -8,8 +8,8 @@ function Topics({ topics }) {
   return (
     <div className={`${css.topicsWrapper} ${utils.container}`}>
       <p className={css.topicsIntro}>
-        This is a new feature designed to showcase content strengths in our
-        collection. Look for new topics in the future!
+        This is a feature designed to showcase content strengths in our
+        collection.
       </p>
       <ul className={utils.row}>
         {topics.map((topic) => (

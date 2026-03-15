@@ -195,15 +195,10 @@ function doContact() {
     const subject = req.body.subject || "";
 
     try {
-      // email
-      const to_email = subject !== "Ebooks" ? "info@dp.la" : "ebooks@dp.la";
-      const from_email = "info@dp.la";
-
-      // send email
       const email_message = `Name:\n${name}\n\nEmail:\n${email}\n\nMessage:\n${message}\n`;
       serverFunctions.sendEmail(
-        from_email,
-        to_email,
+        "info@dp.la",
+        "info@dp.la",
         `DPLA Site Contact: ${subject}`,
         email_message,
       );
