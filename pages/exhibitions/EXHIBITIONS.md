@@ -45,7 +45,7 @@ Any section or subsection URL may also include `?item={blockId}` to deep-link di
 
 ### Exhibition (`exhibitions-data/{slug}.json`)
 
-```
+```text
 title       string    Display title (e.g. "Roosevelt's Tree Army: The Civilian Conservation Corps")
 slug        string    URL slug (e.g. "civilian-conservation-corps")
 id          integer   Exhibition ID (legacy field from Omeka; not used by the frontend)
@@ -58,7 +58,7 @@ pages       Page[]    All pages: homepage + sections + subsections (see below)
 
 Every section and subsection is a "page" object in the `pages` array. Their role is determined by two fields:
 
-```
+```text
 slug        string         URL segment for this section/subsection
 title       string         Display title in sidebar and page header
 order       integer        Sort position within its level (0, 1, 2, ...)
@@ -76,7 +76,7 @@ This page holds the hero image and introductory text shown on the exhibition hom
 
 Each block represents one item (image, video, audio, or PDF) shown in the viewer:
 
-```
+```text
 id          integer        Block ID — used as the ?item= query param value
 order       integer        Position within the page (1, 2, 3, ...)
 text        string | null  HTML editorial text displayed beside the item (can be multi-paragraph with headings)
@@ -85,7 +85,7 @@ attachments Attachment[]   Always contains exactly one attachment
 
 ### Attachment
 
-```
+```text
 id          integer   Attachment ID
 caption     string    HTML caption (typically: title and source credit)
 item        Item      Item record with metadata and DPLA ID (see below)
@@ -94,7 +94,7 @@ files       File[]    Media file URLs (always one file per attachment in practic
 
 ### File
 
-```
+```text
 file_urls.fullsize          URL   Full-size image (primary display in ZoomableImageViewer)
 file_urls.square_thumbnail  URL   Square crop used in the gallery thumbnail strip
 file_urls.thumbnail         URL   Medium-size thumbnail
@@ -105,7 +105,7 @@ file_urls.original          URL   Original file — used for PDFs, video, audio,
 
 The `item` object contains Dublin Core metadata stored as a `element_texts` array (a legacy schema from Omeka):
 
-```
+```text
 element_texts[].element.name   The field name (see table below)
 element_texts[].text           The field value
 ```
@@ -142,7 +142,7 @@ Section and subsection pages are server-rendered rather than static because they
 
 For every block rendered on a page, the server calls the DPLA Search API to fetch the full item record:
 
-```
+```http
 GET https://api.dp.la/v2/items/{dplaItemId}?api_key={API_KEY}
 ```
 
@@ -168,7 +168,7 @@ Grid of cards, one per exhibition, showing the thumbnail image and title. Data c
 
 All section and subsection pages share the same three-panel layout:
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
 │  Header: Exhibition Title              [Close ×]    │
 ├──────────────┬──────────────────────────────────────┤

@@ -14,7 +14,7 @@ It is a [Next.js API route](https://nextjs.org/docs/pages/building-your-applicat
 
 ## URL Structure
 
-```
+```http
 GET /api/items/{id}
 GET /api/items/{id1},{id2},{id3},...
 ```
@@ -25,12 +25,12 @@ GET /api/items/{id1},{id2},{id3},...
 - If no valid IDs remain after filtering, returns `404 {}`
 
 **Single item:**
-```
+```text
 https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d
 ```
 
 **Multiple items:**
-```
+```text
 https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d,5a0e0c52dfb724c957a123e8dbde7280
 ```
 
@@ -42,7 +42,7 @@ https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d,5a0e0c52dfb724c957a123e
 2. Validate each ID against `/^[0-9a-f]{32}$/` — drop any that don't match
 3. If zero valid IDs remain → return `404 {}`
 4. Construct a DPLA Search API request:
-   ```
+   ```http
    GET {API_URL}/items/{id1},{id2},...?api_key={API_KEY}
    ```
 5. Stream the DPLA response body directly to the client (no buffering) — preserving the upstream `Content-Type`
@@ -121,7 +121,7 @@ It then maps the returned `docs` array into display-ready items, extracting:
 
 | Constraint | Value | Defined In |
 |-----------|-------|-----------|
-| Max items per list | 50 | `MAX_LIST_ITEMS` in `constants/site.js` |
+| Max items per list (UI-enforced) | 50 | `MAX_LIST_ITEMS` in `constants/site.js` |
 | ID format | 32-char hex | `DPLA_ITEM_ID_REGEX` in `constants/items.js` |
 | HTTP methods | GET only | — |
 
