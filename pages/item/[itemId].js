@@ -18,6 +18,7 @@ import {
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, randomItemId, isQA }) {
@@ -92,11 +93,14 @@ export async function getServerSideProps(context) {
   itemUrl.pathname += itemId;
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
-  const res = await fetch(itemUrl);
-  if (!res.ok) {
+  const res = await safeFetch(itemUrl);
+  if (!res?.ok) return notFound;
+  let data;
+  try {
+    data = await res.json();
+  } catch {
     return notFound;
   }
-  const data = await res.json();
   if (!("docs" in data) || data.docs.length < 1) {
     return notFound;
   }

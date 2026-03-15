@@ -11,6 +11,7 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -50,14 +51,11 @@ function SingleSet({ set }) {
 
 export async function getServerSideProps(context) {
   const set = context.params?.set;
-  const api = await fetch(
+  const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
-
-  if (!api.ok) {
-    // treating all errors as 404 due to API bug
-    return { notFound: true };
-  }
+  // treating all errors as 404 due to API bug
+  if (!api?.ok) return { notFound: true };
 
   const json = await api.json();
 

@@ -14,6 +14,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 import {washObject} from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 function SingleSet({router, set, currentFullUrl}) {
   return (
@@ -61,15 +62,11 @@ function SingleSet({router, set, currentFullUrl}) {
 
 export async function getServerSideProps({query}) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
-  const setRes = await fetch(
+  const setRes = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
-  if (!setRes.ok) {
-    // treating all non-200 responses as 404 due to API bug
-    return {
-      notFound: true,
-    };
-  }
+  // treating all non-200 responses as 404 due to API bug
+  if (!setRes?.ok) return { notFound: true };
   const set = await setRes.json();
   const props = washObject({
     set,
