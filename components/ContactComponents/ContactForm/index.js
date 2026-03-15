@@ -39,8 +39,6 @@ const selectOptions = [
     value: "Education and Primary Source Sets",
     label: "Education and Primary Source Sets",
   },
-  { value: "Community Reps", label: "Community Reps" },
-  { value: "Ebooks", label: "Ebooks" },
   { value: "Press inquiry", label: "Press inquiry" },
 ];
 
