@@ -17,7 +17,7 @@ There are currently **142 sets** live on the site. They are linked from the site
 
 PSS content flows through a three-layer pipeline:
 
-```
+```text
 github.com/dpla/pss-json   →   Elasticsearch (dpla_pss alias)   →   DPLA API   →   dpla-frontend
   (canonical source)              (indexed by hand)                 /v2/pss/        (this repo)
 ```
@@ -28,7 +28,7 @@ github.com/dpla/pss-json   →   Elasticsearch (dpla_pss alias)   →   DPLA API
 
 The repo has 142 set directories under `data/`, one per set:
 
-```
+```text
 data/
   boston-massacre/
     set.json          — set metadata, overview, source list, related sets
@@ -50,7 +50,7 @@ After running `pss-merge.py`, the `updated_*.json` files are manually indexed in
 
 The DPLA API serves the Elasticsearch data at these endpoints, which this frontend calls at request time:
 
-```
+```text
 /v2/pss/sets              — list of all sets
 /v2/pss/sets/{slug}       — full data for one set
 /v2/pss/sources/{id}      — individual source item
@@ -87,7 +87,7 @@ PSS data uses JSON-LD with schema.org vocabulary. The top-level response from `/
 
 ### Set object
 
-```
+```text
 @id             URL       API identifier; slug is extracted from this
 @type           string    "CreativeWork"
 name            string    Set title (may contain asterisks used as formatting)
@@ -102,7 +102,7 @@ isRelatedTo     Set[]     Related sets (same structure, partial — slug and ima
 
 ### Author
 
-```
+```text
 @type           "Person"
 name            string          Educator name
 affiliation     Organization    { "@type": "Organization", "name": "Institution name" }
@@ -110,7 +110,7 @@ affiliation     Organization    { "@type": "Organization", "name": "Institution 
 
 ### Tag (about array)
 
-```
+```text
 name                        string   Tag label (e.g. "US History", "Civil War and Reconstruction (1850-1877)")
 disambiguatingDescription   string   "Subject" or "Time Period"
 sameAs                      URL      Canonical URL (present on Time Period tags only)
@@ -128,7 +128,7 @@ The `hasPart` array mixes several different content types, distinguished by `nam
 | Resources | `"Resources"` | (none) | `name`, `text` (Markdown) |
 
 **Teaching Guide sub-parts** (nested `hasPart` within the guide):
-```
+```text
 name    "Questions"   text: Markdown — discussion questions
 name    "Activity"    text: Markdown — classroom activities
 ```
@@ -137,7 +137,7 @@ name    "Activity"    text: Markdown — classroom activities
 
 > Note: source responses are fetched as plain text and sanitized before JSON parsing (`\r\n` characters are stripped) due to a quirk in the API response format.
 
-```
+```text
 @id             URL             API identifier
 @type           "CreativeWork"
 name            string          Source title
@@ -149,7 +149,7 @@ mainEntity      MediaEntity[]   One or more media objects (see below)
 
 ### MediaEntity (mainEntity array)
 
-```
+```text
 @type                   string            "ImageObject" | "AudioObject" | "VideoObject" | "MediaObject" (PDF)
 associatedMedia         Media[]
   contentUrl            URL               Media file URL (may be a relative path; frontend reconstructs full URL)
@@ -169,14 +169,14 @@ citation                Citation[]
 ### Landing Page (`/primary-source-sets`)
 
 - Grid of all 142 set cards, each showing thumbnail, title, time period, and subject tags
-- **Subject filter** dropdown (15 options) and **Time Period filter** dropdown (11 options)
+- **Subject filter** dropdown (14 options) and **Time Period filter** dropdown (10 options)
 - Filters update the URL query string and re-fetch from the API with `&filter=about.name:{value}` parameters
 - Tags on individual set cards are clickable and apply that filter
 - Data: full set list fetched from `/v2/pss/sets`
 
 ### Set Page (`/primary-source-sets/[set]`)
 
-```
+```text
 ┌────────────────────────────────────────────────────────┐
 │  Hero image banner with set title overlay              │
 ├────────────────────────────┬───────────────────────────┤
@@ -218,7 +218,7 @@ citation                Citation[]
 
 ### Source Page (`/primary-source-sets/[set]/sources/[source]`)
 
-```
+```text
 ┌───────────────────────────────────────────────────────────┐
 │  [← Prev Source]  Source N of M in [Set Name]  [Next →]  │
 ├─────────────────────────────┬─────────────────────────────┤
@@ -256,10 +256,10 @@ Media URLs in `contentUrl` may be relative paths; the frontend reconstructs full
 
 ## Filtering (Landing Page)
 
-### Subject Options (15)
+### Subject Options (14)
 US History, American Literature, Science and Technology, World History, Arts, African Americans, Asian Americans, Labor History, Latino Americans, Law and Government, Migration, Native Americans, Social Movements, Women
 
-### Time Period Options (11)
+### Time Period Options (10)
 Three Worlds Meet (Beginnings to 1620), Colonization and Settlement (1585–1763), Revolution and the New Nation (1754–1820s), Expansion and Reform (1801–1861), Civil War and Reconstruction (1850–1877), The Development of the Industrial United States (1870–1900), The Emergence of Modern America (1890–1930), The Great Depression and World War II (1929–1945), Postwar United States (1945 to early 1970s), Contemporary United States (1968 to the present)
 
 Filter values and their URL slugs are defined in `constants/primarySourceSets.js`.
@@ -312,14 +312,14 @@ All set and source pages show: **Primary Source Sets › [Set Name]**
 ### Full workflow for a content change
 
 1. **Clone or pull `dpla/pss-json`**
-   ```
+   ```bash
    git clone https://github.com/dpla/pss-json
    ```
 
 2. **Edit the source files** for the set you're updating (see file reference below)
 
 3. **Run the merge script** from the repo root:
-   ```
+   ```bash
    python3 pss-merge.py ./data
    ```
    This regenerates `updated_{slug}.json` for every set.
@@ -395,13 +395,13 @@ If the set's subject or time period tags don't match any existing filter options
 ### Inspecting live data
 
 To view any set's current API data:
-```
+```text
 https://api.dp.la/v2/pss/sets/{slug}?api_key={YOUR_KEY}
 https://api.dp.la/v2/pss/sets/boston-massacre?api_key={YOUR_KEY}
 ```
 
 To list all sets:
-```
+```text
 https://api.dp.la/v2/pss/sets?api_key={YOUR_KEY}
 ```
 
