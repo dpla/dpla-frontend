@@ -24,7 +24,7 @@ Each exhibition has two relevant files:
 | `exhibitions-data/exhibitions.json` | Index listing — title, slug, and thumbnail URL for every exhibition |
 | `exhibitions-data/{slug}.json` | Full exhibition content — all sections, subsections, items, text, and captions |
 
-The JSON data structure originates from **Omeka**, a digital exhibition platform (reflected in its field conventions like `element_texts`, `item_type`, `file_urls`, etc.). When a new exhibition is created or an existing one updated in Omeka, the result is exported as JSON and committed to this repo.
+The JSON files are the canonical source of truth for exhibition content. The data structure reflects legacy conventions from **Omeka**, a digital exhibition platform that DPLA previously used and no longer operates — field names like `element_texts`, `item_type`, and `file_urls` are Omeka artifacts that persist in the JSON schema. New exhibitions and edits are made by directly authoring or modifying these JSON files.
 
 ---
 
@@ -48,7 +48,7 @@ Any section or subsection URL may also include `?item={blockId}` to deep-link di
 ```
 title       string    Display title (e.g. "Roosevelt's Tree Army: The Civilian Conservation Corps")
 slug        string    URL slug (e.g. "civilian-conservation-corps")
-id          integer   Omeka exhibition ID
+id          integer   Exhibition ID (legacy field from Omeka; not used by the frontend)
 description string    HTML — intro/citation paragraph shown on exhibition home
 credits     string    HTML — curator and contributor credits
 pages       Page[]    All pages: homepage + sections + subsections (see below)
@@ -70,7 +70,7 @@ page_blocks PageBlock[]    Ordered list of media items for this page
 This page holds the hero image and introductory text shown on the exhibition home (`/exhibitions/{slug}`). It does not appear as a section in the navigation.
 
 **Sections** are pages with `parent: null` and `order ≥ 1`.
-**Subsections** are pages whose `parent.id` matches the Omeka ID of their parent section.
+**Subsections** are pages whose `parent.id` matches the `id` field of their parent section.
 
 ### PageBlock
 
@@ -88,7 +88,7 @@ attachments Attachment[]   Always contains exactly one attachment
 ```
 id          integer   Attachment ID
 caption     string    HTML caption (typically: title and source credit)
-item        Item      Omeka item record with metadata and DPLA ID (see below)
+item        Item      Item record with metadata and DPLA ID (see below)
 files       File[]    Media file URLs (always one file per attachment in practice)
 ```
 
@@ -101,9 +101,9 @@ file_urls.thumbnail         URL   Medium-size thumbnail
 file_urls.original          URL   Original file — used for PDFs, video, audio, and as fallback
 ```
 
-### Item (Omeka record)
+### Item
 
-The `item` object contains Dublin Core metadata stored as a `element_texts` array:
+The `item` object contains Dublin Core metadata stored as a `element_texts` array (a legacy schema from Omeka):
 
 ```
 element_texts[].element.name   The field name (see table below)
@@ -119,7 +119,7 @@ element_texts[].text           The field value
 | `Contributor` | Additional contributor |
 | `Date` | Date created |
 | `Rights` | Rights statement |
-| `Identifier` | Omeka item identifier |
+| `Identifier` | Legacy item identifier |
 
 The `Has Version` field is the critical link between the exhibition data and the DPLA collection. At page render time, the frontend extracts this ID and fetches the live DPLA item record to display enriched metadata.
 
@@ -196,7 +196,7 @@ All section and subsection pages share the same three-panel layout:
 
 ## Media Types & Viewers
 
-The viewer component selects the appropriate player based on file extension or Omeka `item_type.name`:
+The viewer component selects the appropriate player based on file extension or the `item_type.name` field (a legacy field from the Omeka schema):
 
 | Type | Extensions | Viewer Component | Notes |
 |------|-----------|-----------------|-------|
@@ -377,7 +377,7 @@ Set `order` to the next available integer after existing sections.
 
 ### Adding a New Subsection
 
-Add a page object with `parent` pointing to the Omeka ID of the parent section:
+Add a page object with `parent` pointing to the `id` of the parent section:
 
 ```json
 {
@@ -426,7 +426,7 @@ After editing any file in `exhibitions-data/`:
 | `pages/exhibitions/[exhibitionSlug]/[sectionSlug]/index.js` | Section page |
 | `pages/exhibitions/[exhibitionSlug]/[sectionSlug]/[subsectionSlug]/index.js` | Subsection page |
 | `lib/exhibitionsStatic.js` | All data-loading functions (`loadExhibition`, `processPageBlocks`, etc.) |
-| `lib/getDplaItemIdFromExhibit.js` | Extracts DPLA item ID from Omeka `element_texts` |
+| `lib/getDplaItemIdFromExhibit.js` | Extracts DPLA item ID from the `element_texts` array |
 | `components/ExhibitionsComponents/` | All UI components for exhibitions |
 | `components/ExhibitionsComponents/ExhibitionSection/Viewer.js` | Media viewer + gallery + media type dispatch |
 | `components/ExhibitionsComponents/ExhibitionSection/Sidebar.js` | Section/subsection navigation tree |
