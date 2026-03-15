@@ -13,6 +13,7 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -49,9 +50,9 @@ function Topic(props) {
 
 export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
-  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
+  const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  if (!topicsRes.ok) {
+  if (!topicsRes?.ok) {
     return { notFound: true };
   }
 
@@ -64,11 +65,11 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const subtopicsRes = await fetch(
+  const subtopicsRes = await safeFetch(
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
 
-  if (!subtopicsRes.ok) {
+  if (!subtopicsRes?.ok) {
     return { notFound: true };
   }
 
@@ -102,9 +103,10 @@ export const getServerSideProps = async (context) => {
             };
           } else if (item.related_content_type === "Primary Source Set") {
             const setId = sanitizeSourceSetId(item.primary_source_set_id);
-            const sourceSetRes = await fetch(
+            const sourceSetRes = await safeFetch(
               `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
             );
+            if (!sourceSetRes?.ok) return null;
             const sourceSetJson = await sourceSetRes.json();
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
             return {

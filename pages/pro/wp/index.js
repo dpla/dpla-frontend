@@ -14,6 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
+import { safeFetch } from "lib/safeFetch";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -107,8 +108,8 @@ export async function getServerSideProps(context) {
   const section = context.query?.section;
   const subsection = context.query?.subsection;
   const pageName = subsection || section;
-  const menuResponse = await fetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse.ok) {
+  const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
+  if (!menuResponse?.ok) {
     return { notFound: true };
   }
   const menuJson = await menuResponse.json();
@@ -117,8 +118,8 @@ export async function getServerSideProps(context) {
   if (!pageItem) {
     return { notFound: true };
   }
-  const pageRes = await fetch(getMenuItemUrl(pageItem));
-  if (!pageRes.ok) {
+  const pageRes = await safeFetch(getMenuItemUrl(pageItem));
+  if (!pageRes?.ok) {
     return { notFound: true };
   }
   const pageJson = await pageRes.json();
@@ -140,7 +141,7 @@ export async function getServerSideProps(context) {
           items: menuItems,
           id: crumb.menu_item_parent,
         });
-        slug = slug + parent.post_name + "/";
+        if (parent?.post_name) slug = slug + parent.post_name + "/";
       }
       // hubs homepage has different template
 
@@ -165,7 +166,7 @@ export async function getServerSideProps(context) {
     pageTitle: pageItem.title,
     pageDescription: pageDescription,
     breadcrumbs: breadcrumbs,
-    illustration: pageJson.acf.illustration,
+    illustration: pageJson?.acf?.illustration,
   });
 
   return {

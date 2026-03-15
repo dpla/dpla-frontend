@@ -124,7 +124,7 @@ class FeedbackForm extends React.Component {
       url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
-      step: 2,
+      step: prevState.step,
       email: prevState.email,
       message: prevState.message,
     }));
@@ -148,8 +148,7 @@ class FeedbackForm extends React.Component {
       },
       body: body,
     });
-    const data = await res.text();
-    if (!data.ok) throw new Error("Failed to send feedback");
+    if (!res.ok) throw new Error("Failed to send feedback");
 
     this.setState((prevState) => ({
       timestamp: prevState.timestamp,
@@ -158,7 +157,7 @@ class FeedbackForm extends React.Component {
       url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
-      step: prevState.step,
+      step: 2,
       email: prevState.email,
       message: prevState.message,
     }));
