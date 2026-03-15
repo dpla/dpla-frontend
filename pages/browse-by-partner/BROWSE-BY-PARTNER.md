@@ -17,7 +17,7 @@ There are no sub-routes or dynamic segments — it is always a single page.
 The page is **server-side rendered on every request** (`getServerSideProps`). No content comes from WordPress or any static file. The data pipeline is:
 
 1. On each page load, the server calls the **DPLA Items API** with a `facets` parameter and `facet_size=1000`, requesting zero result items (only facet data):
-   ```
+   ```text
    GET {API_URL}/items?api_key={API_KEY}&facets=provider.name&facet_size=1000
    ```
 2. The API returns a `provider.name` facet containing every contributing partner and their current item count — **44 partners** as of March 2026.

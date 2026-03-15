@@ -10,7 +10,7 @@
 | `/about/[slug]` | `pages/about/[...sections].js` | Top-level About page (e.g. `/about/about-us`) |
 | `/about/[parent]/[child]` | `pages/about/[...sections].js` | Sub-page (e.g. `/about/about-us/funders`) |
 
-Both files render the same `AboutMenuPage` class component. The index route exists as a legacy fallback for older query-param style links; all new links use the clean-URL `[...sections]` route.
+Both files render the same `AboutMenuPage` class component. The index route exists as a legacy fallback for older query-param-style links; all new links use the clean-URL `[...sections]` route.
 
 ## How Pages Are Generated
 

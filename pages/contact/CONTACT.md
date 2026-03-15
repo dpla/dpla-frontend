@@ -28,7 +28,7 @@ On submit, the form POSTs JSON to **`/g/contact`**, a custom Express route defin
 
 1. Rejects the request if the honeypot field is set.
 2. Sends the email to `info@dp.la` with the subject line `DPLA Site Contact: {subject}`.
-4. Returns HTTP 200 on success; the form displays a "Thank you!" confirmation.
+3. Returns HTTP 200 on success; the form displays a "Thank you!" confirmation.
 
 ### Subject Options (hardcoded in `ContactForm`)
 

@@ -20,7 +20,7 @@ All three pages are **server-side rendered on every request** (`getServerSidePro
 
 ## Data Architecture
 
-```
+```text
 WordPress
 ├── Category taxonomy
 │   ├── Topic (parent=0, is_topic_browse_category=true)
@@ -62,7 +62,7 @@ Topics are top-level WordPress **categories** (`parent=0`) with `is_topic_browse
 | Slug | WP category Slug field | Used in URL: `/browse-by-topic/{slug}` |
 | Description | WP category Description field | Curator credit line, shown below subtopic grid |
 | `category_image` | ACF | Card thumbnail image URL |
-| `order` | ACF | Sort order (use increments of 10: 10, 20, 30…) |
+| `order` | ACF | Sort order (use increments of 10: 10, 20, 30…); note the first topic currently uses order=1 rather than 10 |
 | `is_topic_browse_category` | ACF | **Must be `true`** — this is the filter that includes the category in Browse by Topic |
 | `related_content` | ACF repeater | Optional list of Exhibitions and/or Primary Source Sets shown in a carousel below subtopics |
 
@@ -139,12 +139,6 @@ Items that fail the DPLA API fetch are silently filtered out.
 
 ### Total Items
 ~2,944 items total across all topics (as of March 2026). Subtopics typically contain around 60 items each.
-
----
-
-## Note: `isFeatured` and `isNew` Ribbons
-
-The topic card component contains code to display "Featured" and "New" ribbon badges. These fields (`isFeatured`, `isNew`) **do not exist in the WordPress API** and were never implemented. The ribbons will never appear on live data. This is dead code.
 
 ---
 
