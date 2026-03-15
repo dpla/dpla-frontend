@@ -109,6 +109,9 @@ export async function getServerSideProps() {
   }
   const hubJson = await hubRes.json();
   const hubItem = hubJson[0];
+  if (!hubItem) {
+    return { notFound: true };
+  }
 
   // fetch news posts
   const newsRes = await fetch(NEWS_PRO_ENDPOINT);

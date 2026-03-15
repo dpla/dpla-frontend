@@ -78,6 +78,9 @@ export async function getServerSideProps(context) {
   const guide = menuItemsJson.items.find(
     (item) => item.post_name === guideSlug,
   );
+  if (!guide) {
+    return { notFound: true };
+  }
   const guideRes = await fetch(getMenuItemUrl(guide));
   if (!guideRes.ok) {
     return { notFound: true };

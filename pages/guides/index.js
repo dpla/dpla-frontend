@@ -74,23 +74,26 @@ export async function getServerSideProps() {
     (item) => item.url === endpoint,
   );
 
-  const guides = await Promise.all(
-    aboutMenuJson.items
-      .filter((item) => item.menu_item_parent === indexPageItem.object_id)
-      .map(async (guide) => {
-        const guideRes = await fetch(getMenuItemUrl(guide));
-        const guideJson = await guideRes.json();
-        return {
-          ...guide,
-          slug: guide.post_name,
-          summary: guideJson.acf.summary,
-          title: guideJson.title.rendered,
-          displayTitle: guideJson.acf.display_title,
-          color: guideJson.acf.color,
-          illustration: guideJson.acf.illustration,
-        };
-      }),
-  );
+  const guides = (
+    await Promise.all(
+      aboutMenuJson.items
+        .filter((item) => item.menu_item_parent === indexPageItem.object_id)
+        .map(async (guide) => {
+          const guideRes = await fetch(getMenuItemUrl(guide));
+          if (!guideRes.ok) return null;
+          const guideJson = await guideRes.json();
+          return {
+            ...guide,
+            slug: guide.post_name,
+            summary: guideJson.acf.summary,
+            title: guideJson.title.rendered,
+            displayTitle: guideJson.acf.display_title,
+            color: guideJson.acf.color,
+            illustration: guideJson.acf.illustration,
+          };
+        }),
+    )
+  ).filter(Boolean);
 
   const props = washObject({
     guides,
