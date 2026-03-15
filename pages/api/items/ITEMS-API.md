@@ -1,27 +1,37 @@
-# Internal API Route: `/api/items/[idListString]`
+# API Route: `/api/items/[idListString]`
 
 ## Overview
 
-This is a **server-side proxy endpoint** that batch-fetches full DPLA item metadata on behalf of the client. It is a [Next.js API route](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) — not a page, not a custom Express handler, and not part of the public DPLA Search API. It is automatically served by Next.js from its location in `pages/api/`.
+This route serves two purposes:
 
-**Its sole purpose** is to support the Lists feature (`/lists/[listId]`). When a user views a saved list, only item IDs are stored in the browser (via localForage/IndexedDB). This route accepts those IDs, looks them up against the DPLA Search API using a server-side API key, and returns the full item records for display — without ever exposing the API key to the browser.
+**1. Developer/staff convenience** — A quick, key-free way to retrieve raw DPLA item JSON by ID. If you know an item's ID, you can fetch its full metadata directly at `https://dp.la/api/items/{id}` without registering for a DPLA API key or constructing a query against `api.dp.la`. It works in the browser, curl, or any HTTP client.
+
+**2. Lists feature backend** — The `/lists/[listId]` page stores only item IDs in the browser (via localForage/IndexedDB) and uses this route at runtime to fetch full metadata for display. The route hides the DPLA API key server-side so it is never exposed to the browser.
+
+It is a [Next.js API route](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) — not a page, not a custom Express handler, and not part of the public DPLA Search API. It is automatically served by Next.js from its location in `pages/api/`.
 
 ---
 
 ## URL Structure
 
 ```
+GET /api/items/{id}
 GET /api/items/{id1},{id2},{id3},...
 ```
 
 - IDs are comma-separated DPLA item identifiers in the URL path (not query string)
-- Each ID must be a **32-character lowercase hex string** (e.g. `00004e3dddc3c26b03e1e69063e3e1f8`)
+- Each ID must be a **32-character lowercase hex string**
 - Invalid IDs are silently filtered out before the upstream request is made
 - If no valid IDs remain after filtering, returns `404 {}`
 
-**Example:**
+**Single item:**
 ```
-GET /api/items/00004e3dddc3c26b03e1e69063e3e1f8,1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d
+https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d
+```
+
+**Multiple items:**
+```
+https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d,5a0e0c52dfb724c957a123e8dbde7280
 ```
 
 ---
@@ -44,7 +54,7 @@ The streaming implementation uses Node.js `Readable.fromWeb().pipe(res)` to forw
 
 ## Authentication & Environment
 
-The DPLA API key is **never sent to the browser**. This is the primary reason the proxy exists — client-side code can call `/api/items/...` freely, and the key is injected server-side.
+The DPLA API key is **never sent to the browser** — it is injected server-side on every request. Callers of this route do not need their own API key.
 
 | Environment Variable | Purpose |
 |---------------------|---------|
@@ -61,9 +71,9 @@ On success, the route passes through the raw DPLA Search API response:
 {
   "docs": [
     {
-      "id": "00004e3dddc3c26b03e1e69063e3e1f8",
+      "id": "777f28be51fcbd39120f1c17bc9b2d2d",
       "sourceResource": {
-        "title": "...",
+        "title": ["Photograph--Photograph"],
         "type": "image",
         "date": { "displayDate": "1920" },
         "creator": ["..."],
@@ -77,8 +87,6 @@ On success, the route passes through the raw DPLA Search API response:
   ]
 }
 ```
-
-Individual items within `docs` that have an `error` field are filtered out by the caller before display.
 
 ---
 
@@ -94,11 +102,9 @@ Errors are logged to the server console but not surfaced in the response body.
 
 ---
 
-## Who Calls This Route
+## Use in the Lists Feature
 
-**Only one caller exists:** `pages/lists/[listId].js`
-
-The list detail page collects stored item IDs from localForage, joins them into a comma-separated string, and fetches:
+`pages/lists/[listId].js` is the only internal caller. The list page collects stored item IDs from localForage, joins them into a comma-separated string, and fetches:
 
 ```javascript
 const res = await fetch(`/api/items/${ids}`);
@@ -109,8 +115,6 @@ It then maps the returned `docs` array into display-ready items, extracting:
 - Thumbnail URL via `getItemThumbnail()` (uses `https://dp.la/thumb/{id}` if `object` is present, otherwise a type-based SVG placeholder)
 - `id`, `sourceUrl` (link to item at source institution), `provider`, `dataProvider`
 
-No other page or component in the codebase calls this route.
-
 ---
 
 ## Limits & Constraints
@@ -120,7 +124,6 @@ No other page or component in the codebase calls this route.
 | Max items per list | 50 | `MAX_LIST_ITEMS` in `constants/site.js` |
 | ID format | 32-char hex | `DPLA_ITEM_ID_REGEX` in `constants/items.js` |
 | HTTP methods | GET only | — |
-| Persistence | None — IDs live only in the user's browser | `lib/localForage/` |
 
 ---
 
@@ -135,7 +138,7 @@ This is the **only API route** in the entire `pages/api/` directory. There are n
 | File | Role |
 |------|------|
 | `pages/api/items/[idListString].js` | The route handler itself |
-| `pages/lists/[listId].js` | Only caller; renders the fetched items |
+| `pages/lists/[listId].js` | Lists feature caller |
 | `constants/items.js` | `DPLA_ITEM_ID_REGEX` validation pattern |
-| `lib/getItemThumbnail.js` | Thumbnail URL resolution used by the caller |
+| `lib/getItemThumbnail.js` | Thumbnail URL resolution used by the Lists caller |
 | `constants/site.js` | `MAX_LIST_ITEMS` (50) cap on list size |
