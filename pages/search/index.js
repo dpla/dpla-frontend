@@ -117,7 +117,9 @@ export async function getServerSideProps(context) {
     const params = new URLSearchParams();
     for (const [key, val] of Object.entries(cleaned)) {
       if (Array.isArray(val)) {
-        val.forEach((v) => params.append(key, v));
+        val.forEach((v) => {
+          params.append(key, v);
+        });
       } else {
         params.set(key, val);
       }

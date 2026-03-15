@@ -38,7 +38,7 @@ export const getServerSideProps = async () => {
   const apiUrlBase = `${process.env.API_URL}/items?api_key=${process.env.API_KEY}&facet_size=1000`;
 
   if (siteEnv === "local") {
-    const local = LOCALS[localId];
+    const local = LOCALS[localId] ?? {};
 
     const filtersParam = (local.filters ?? []).map((x) => `&filter=${x}`).join("");
     const tagsParam = (local.tags ?? []).map((x) => `&tags=${x}`).join("");
