@@ -15,22 +15,52 @@ There are currently **142 sets** live on the site. They are linked from the site
 
 ## Where PSS Content Lives
 
-> **Primary Source Sets data is served entirely from the DPLA Search API.** It is not stored in WordPress, and it is not in JSON files in this repository.
-
-All PSS data is fetched at request time from:
+PSS content flows through a three-layer pipeline:
 
 ```
-https://api.dp.la/v2/pss/sets              — list of all sets
-https://api.dp.la/v2/pss/sets/{slug}       — full data for one set
-https://api.dp.la/v2/pss/sources/{id}      — individual source item
+github.com/dpla/pss-json   →   Elasticsearch (dpla_pss alias)   →   DPLA API   →   dpla-frontend
+  (canonical source)              (indexed by hand)                 /v2/pss/        (this repo)
 ```
 
-(In production the frontend uses the internal API URL `https://api-internal.dp.la/v2` via the `API_URL` environment variable, but the public `https://api.dp.la/v2` endpoints are identical and publicly accessible with an API key.)
+### 1. Canonical source: `dpla/pss-json` repo
 
-### Historical note: pss-json and WordPress CPT
+**https://github.com/dpla/pss-json** is the repository where all PSS content is authored and maintained. It is a data repository with a build script — not a running service. All edits to PSS content start here.
 
-- **pss-json** was a separate micro-service that previously served PSS data in this same JSON-LD format. It no longer exists. As of February 2023, the frontend was migrated to consume PSS data directly from the main DPLA API (`/v2/pss/`).
-- **WordPress** has a `primary_source_set` custom post type registered (with ACF support), but it contains zero posts and is not used. PSS content is not managed through the WordPress CMS.
+The repo has 142 set directories under `data/`, one per set:
+
+```
+data/
+  boston-massacre/
+    set.json          — set metadata, overview, source list, related sets
+    guide.json        — teaching guide (questions and activities in Markdown)
+    items/
+      18.json         — individual source item
+      19.json
+      ...
+    updated_boston-massacre.json   — merged output produced by pss-merge.py (committed)
+```
+
+A Python script `pss-merge.py` merges each set's source files into a single `updated_{slug}.json` document.
+
+### 2. Indexing: Elasticsearch
+
+After running `pss-merge.py`, the `updated_*.json` files are manually indexed into Elasticsearch under the `dpla_pss` alias using `curl` commands documented in the repo's README. This is a manual step run by DPLA staff after each content change.
+
+### 3. Serving: DPLA API
+
+The DPLA API serves the Elasticsearch data at these endpoints, which this frontend calls at request time:
+
+```
+/v2/pss/sets              — list of all sets
+/v2/pss/sets/{slug}       — full data for one set
+/v2/pss/sources/{id}      — individual source item
+```
+
+In production the frontend uses `https://api-internal.dp.la/v2` (via the `API_URL` environment variable). The public equivalent `https://api.dp.la/v2` is accessible with an API key.
+
+### WordPress CPT note
+
+WordPress has a `primary_source_set` custom post type registered (with ACF support) but it contains zero posts and is not used. PSS content is not managed through WordPress.
 
 ---
 
@@ -277,36 +307,107 @@ All set and source pages show: **Primary Source Sets › [Set Name]**
 
 ## How to Add or Edit a Primary Source Set
 
-Because PSS content lives in the DPLA API (not in this repository), **adding or editing a set requires changes to the DPLA platform's data layer, not to dpla-frontend**. No code change or redeployment of this frontend is needed for content updates — the site fetches live data on every request.
+**All content changes are made in the `dpla/pss-json` repository, not in this one.** No code change or redeployment of dpla-frontend is needed for content updates — the frontend fetches live data from the API on every request.
 
-The workflow for curating PSS content is:
+### Full workflow for a content change
 
-### What content editors control (via DPLA platform/ingestion pipeline)
+1. **Clone or pull `dpla/pss-json`**
+   ```
+   git clone https://github.com/dpla/pss-json
+   ```
 
-- **Set metadata**: title, representative image, thumbnail, date created, author(s) and affiliations, subject tags, time period tags
-- **Overview text**: Markdown displayed with "Show more/less" on the set page
-- **Sources**: The list of primary source items in the set — each with title, description (Markdown), media file URL, thumbnail, provenance, copyright, and citation
-- **Teaching Guide**: Discussion questions and classroom activities (both Markdown); guide author(s)
-- **Additional Resources**: Markdown text with links to supplementary materials
-- **Related Sets**: Cross-references to other PSS sets
+2. **Edit the source files** for the set you're updating (see file reference below)
 
-### What the data looks like at the API level
+3. **Run the merge script** from the repo root:
+   ```
+   python3 pss-merge.py ./data
+   ```
+   This regenerates `updated_{slug}.json` for every set.
 
-To inspect any live set's full data structure:
+4. **Commit and push** the changes (both the source files and the regenerated `updated_*.json`)
+
+5. **Index the updated set(s) into Elasticsearch** following the instructions in the pss-json README (manual `curl` commands to the `dpla_pss` ES alias)
+
+6. **Verify** by visiting `https://dp.la/primary-source-sets/{slug}` — changes appear immediately since all pages are server-rendered
+
+---
+
+### File reference: what to edit in `dpla/pss-json`
+
+#### Editing set metadata, overview, or sources list — `data/{slug}/set.json`
+
+This file controls:
+- `name` — set title
+- `repImageUrl` / `thumbnailUrl` — hero and thumbnail images
+- `dateCreated` — publication date
+- `author` — educator author(s) and affiliations
+- `about` — subject and time period tags
+- The overview text (`hasPart` entry with `name: "Overview"`, `text` in Markdown)
+- The list of sources (`hasPart` entries with `disambiguatingDescription: "source"`)
+- Additional resources (`hasPart` entry with `name: "Resources"`, `text` in Markdown)
+- Related sets (`isRelatedTo` array)
+
+#### Editing discussion questions or classroom activities — `data/{slug}/guide.json`
+
+This file controls the teaching guide content:
+- `author` — guide author(s) and affiliations
+- `hasPart[name="Questions"]` → `text` — Markdown discussion questions
+- `hasPart[name="Activity"]` → `text` — Markdown classroom activities
+
+#### Editing an individual source — `data/{slug}/items/{id}.json`
+
+Each source file controls:
+- `name` — source title
+- `text` — description (Markdown; shown with "Show full" toggle at 600 chars)
+- `thumbnailUrl` — thumbnail image
+- `copyright` — copyright notice
+- `mainEntity` — the media object (`@type`, `contentUrl`, `fileFormat`)
+- `dct:provenance` — providing institution
+- `dct:references` — link to original item at source institution
+- `citation` — citation text and credits ("Courtesy of")
+
+#### Adding a new source to a set
+
+1. Create `data/{slug}/items/{newId}.json` following the schema of an existing item file
+2. Add the source reference to `set.json`'s `hasPart` array:
+   ```json
+   {
+     "@id": "https://dp.la/primary-source-sets/sources/{newId}",
+     "@type": "CreativeWork",
+     "disambiguatingDescription": "source",
+     "name": "Source title",
+     "thumbnailUrl": "https://..."
+   }
+   ```
+3. Run `pss-merge.py` and re-index
+
+#### Adding a completely new set
+
+1. Create `data/{new-slug}/` with `set.json`, `guide.json`, and `items/` following existing set structures
+2. Run `pss-merge.py` to generate `updated_{new-slug}.json`
+3. Index the new set into Elasticsearch
+4. The new set will appear on the landing page automatically (all sets are fetched on every request)
+
+If the set's subject or time period tags don't match any existing filter options, also add them to `constants/primarySourceSets.js` in this repo (see below).
+
+---
+
+### Inspecting live data
+
+To view any set's current API data:
 ```
 https://api.dp.la/v2/pss/sets/{slug}?api_key={YOUR_KEY}
-```
-For example:
-```
 https://api.dp.la/v2/pss/sets/boston-massacre?api_key={YOUR_KEY}
 ```
 
-To see all sets:
+To list all sets:
 ```
 https://api.dp.la/v2/pss/sets?api_key={YOUR_KEY}
 ```
 
-### What requires a frontend code change
+---
+
+### What requires a change in *this* repo (dpla-frontend)
 
 The frontend code only needs to change if you want to:
 - Add a new **Subject** or **Time Period** filter option — update `constants/primarySourceSets.js`
