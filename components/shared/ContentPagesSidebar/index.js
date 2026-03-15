@@ -166,7 +166,9 @@ function Sidebar({ className, activeItemId, items }) {
       items: items,
       name: "events",
     });
-    eventsId = eventsItem.url.substring(eventsItem.url.lastIndexOf("/"));
+    if (eventsItem?.url) {
+      eventsId = eventsItem.url.substring(eventsItem.url.lastIndexOf("/"));
+    }
   }
 
   // exclude these items from main sidebar
