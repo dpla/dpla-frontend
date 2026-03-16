@@ -15,6 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 class Guides extends React.Component {
   refreshExternalLinks() {
@@ -69,8 +70,8 @@ class Guides extends React.Component {
 }
 
 export async function getServerSideProps(context) {
-  const menuItemsRes = await fetch(ABOUT_MENU_ENDPOINT);
-  if (!menuItemsRes.ok) {
+  const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
+  if (!menuItemsRes?.ok) {
     return { notFound: true };
   }
   const menuItemsJson = await menuItemsRes.json();
@@ -81,8 +82,8 @@ export async function getServerSideProps(context) {
   if (!guide) {
     return { notFound: true };
   }
-  const guideRes = await fetch(getMenuItemUrl(guide));
-  if (!guideRes.ok) {
+  const guideRes = await safeFetch(getMenuItemUrl(guide));
+  if (!guideRes?.ok) {
     return { notFound: true };
   }
   const guideJson = await guideRes.json();

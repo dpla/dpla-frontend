@@ -9,6 +9,7 @@ import { LOCALS } from "constants/local";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 function PartnerBrowse({ partners }) {
   return (
@@ -52,14 +53,18 @@ export const getServerSideProps = async () => {
     linkParam = "partner";
   }
 
-  const res = await fetch(apiQuery);
-  if (!res.ok) {
+  const res = await safeFetch(apiQuery);
+  if (!res?.ok) {
     return { notFound: true };
   }
   const json = await res.json();
+  const terms = json?.facets?.[facetName]?.terms;
+  if (!Array.isArray(terms)) {
+    return { notFound: true };
+  }
 
   const partners = washObject(
-    json.facets[facetName].terms.map((partner) => ({
+    terms.map((partner) => ({
       name: partner.term,
       facet: linkParam,
       itemCount: partner.count,

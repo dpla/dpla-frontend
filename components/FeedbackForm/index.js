@@ -124,7 +124,7 @@ class FeedbackForm extends React.Component {
       url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
-      step: 2,
+      step: prevState.step,
       email: prevState.email,
       message: prevState.message,
     }));
@@ -141,29 +141,35 @@ class FeedbackForm extends React.Component {
       email: email,
       miel: miel,
     });
-    const res = await fetch("/g/feedback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: body,
-    });
-    const data = await res.text();
-    if (!data.ok) throw new Error("Failed to send feedback");
+    try {
+      const res = await fetch("/g/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: body,
+      });
+      if (!res.ok) throw new Error("Failed to send feedback");
 
-    this.setState((prevState) => ({
-      timestamp: prevState.timestamp,
-      isSending: false,
-      isSent: true,
-      url: prevState.url,
-      modalActive: prevState.modalActive,
-      type: prevState.type,
-      step: prevState.step,
-      email: prevState.email,
-      message: prevState.message,
-    }));
+      this.setState((prevState) => ({
+        timestamp: prevState.timestamp,
+        isSending: false,
+        isSent: true,
+        url: prevState.url,
+        modalActive: prevState.modalActive,
+        type: prevState.type,
+        step: 2,
+        email: prevState.email,
+        message: prevState.message,
+      }));
 
-    close_button.focus();
+      close_button.focus();
+    } catch {
+      this.setState((prevState) => ({
+        ...prevState,
+        isSending: false,
+      }));
+    }
   };
 
   render() {
