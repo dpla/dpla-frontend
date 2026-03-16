@@ -1,8 +1,6 @@
 FROM node:22-slim AS builder
 
 
-ARG SENTRY_AUTH_TOKEN=""
-ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
 ARG SITE_ENV="user"
 ENV NEXT_PUBLIC_SITE_ENV=${SITE_ENV}
 ARG LOCAL_ID="aviation"
@@ -41,7 +39,10 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY .eslintrc.json ./
-RUN yarn install --ignore-scripts --immutable --prod && yarn run build
+RUN yarn install --ignore-scripts --immutable --prod
+RUN --mount=type=secret,id=sentry_auth \
+    SENTRY_AUTH_TOKEN=$(cat /run/secrets/sentry_auth 2>/dev/null || true) \
+    yarn run build
 
 FROM node:22-slim AS dpla-frontend
 RUN apt-get update && apt-get --no-install-recommends install -y tini curl && apt clean
