@@ -49,7 +49,7 @@ class Search extends React.Component {
     } = this.props;
 
     let itemCount = 0; // default handles unexpected error
-    if ("count" in results) {
+    if (results && "count" in results) {
       if (results.count.value !== undefined) {
         itemCount = results.count.value; // ElasticSearch 7
       } else {
