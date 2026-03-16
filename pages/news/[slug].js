@@ -20,6 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
@@ -130,24 +131,24 @@ export async function getServerSideProps(context) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
-  // sidebar menu fetch
-  const menuResponse = await fetch(
-    siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
-  );
-
-  if (!menuResponse.ok) {
-    return { notFound: true };
-  }
-
-  const menuJson = await menuResponse.json();
-
-  // get news post
+  // fetch sidebar menu and post in parallel (independent)
   const slug = context.params?.slug;
-  const postRes = await fetch(`${NEWS_ENDPOINT}?slug=${slug}`);
-  if (!postRes.ok) {
+  const [menuResponse, postRes] = await Promise.all([
+    safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
+    safeFetch(`${NEWS_ENDPOINT}?slug=${slug}`),
+  ]);
+
+  if (!menuResponse?.ok) {
     return { notFound: true };
   }
-  const postJson = await postRes.json();
+  if (!postRes?.ok) {
+    return { notFound: true };
+  }
+
+  const [menuJson, postJson] = await Promise.all([
+    menuResponse.json(),
+    postRes.json(),
+  ]);
   if (postJson.length === 0) {
     return {
       notFound: true,
@@ -155,11 +156,11 @@ export async function getServerSideProps(context) {
   }
 
   // get author info
-  const authorRes = await fetch(
+  const authorRes = await safeFetch(
     `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
-  if (!authorRes.ok) {
+  if (!authorRes?.ok) {
     return { notFound: true };
   }
 

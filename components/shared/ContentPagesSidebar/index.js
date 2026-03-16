@@ -28,6 +28,7 @@ function SidebarLink({ isCurrentLink, linkObject, title }) {
 function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   // recursive function
+  if (!item) return null;
   const title = decodeHTMLEntities(item.title);
   const itemId = String(item.ID);
   const parentId = String(item.menu_item_parent);
