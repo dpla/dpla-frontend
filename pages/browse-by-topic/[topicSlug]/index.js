@@ -102,6 +102,7 @@ export const getServerSideProps = async (context) => {
               type: "Exhibition",
             };
           } else if (item.related_content_type === "Primary Source Set") {
+            if (!item.primary_source_set_id) return null;
             const setId = sanitizeSourceSetId(item.primary_source_set_id);
             const sourceSetRes = await safeFetch(
               `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,

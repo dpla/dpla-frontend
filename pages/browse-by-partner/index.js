@@ -58,9 +58,13 @@ export const getServerSideProps = async () => {
     return { notFound: true };
   }
   const json = await res.json();
+  const terms = json?.facets?.[facetName]?.terms;
+  if (!Array.isArray(terms)) {
+    return { notFound: true };
+  }
 
   const partners = washObject(
-    json.facets[facetName].terms.map((partner) => ({
+    terms.map((partner) => ({
       name: partner.term,
       facet: linkParam,
       itemCount: partner.count,
