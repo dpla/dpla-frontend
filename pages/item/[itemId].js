@@ -18,7 +18,7 @@ import {
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, randomItemId, isQA }) {
@@ -94,7 +94,8 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
-  if (!res?.ok) return notFound;
+  const errorResult = checkResponseForSSR(res);
+  if (errorResult) return errorResult;
   let data;
   try {
     data = await res.json();

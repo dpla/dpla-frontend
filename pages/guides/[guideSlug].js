@@ -15,7 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 class Guides extends React.Component {
   refreshExternalLinks() {
@@ -71,9 +71,8 @@ class Guides extends React.Component {
 
 export async function getServerSideProps(context) {
   const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
-  if (!menuItemsRes?.ok) {
-    return { notFound: true };
-  }
+  const menuError = checkResponseForSSR(menuItemsRes);
+  if (menuError) return menuError;
   const menuItemsJson = await menuItemsRes.json();
   const guideSlug = context.params.guideSlug;
   const guide = menuItemsJson.items.find(
@@ -83,9 +82,8 @@ export async function getServerSideProps(context) {
     return { notFound: true };
   }
   const guideRes = await safeFetch(getMenuItemUrl(guide));
-  if (!guideRes?.ok) {
-    return { notFound: true };
-  }
+  const guideError = checkResponseForSSR(guideRes);
+  if (guideError) return guideError;
   const guideJson = await guideRes.json();
 
   let breadcrumbs = [];

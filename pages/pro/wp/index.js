@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -109,9 +109,8 @@ export async function getServerSideProps(context) {
   const subsection = context.query?.subsection;
   const pageName = subsection || section;
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse?.ok) {
-    return { notFound: true };
-  }
+  const menuError = checkResponseForSSR(menuResponse);
+  if (menuError) return menuError;
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
   const pageItem = menuItems.find((item) => item.post_name === pageName);
@@ -119,9 +118,8 @@ export async function getServerSideProps(context) {
     return { notFound: true };
   }
   const pageRes = await safeFetch(getMenuItemUrl(pageItem));
-  if (!pageRes?.ok) {
-    return { notFound: true };
-  }
+  const pageError = checkResponseForSSR(pageRes);
+  if (pageError) return pageError;
   const pageJson = await pageRes.json();
 
   // for the breadcrumbs

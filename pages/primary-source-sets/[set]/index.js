@@ -11,7 +11,7 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -54,8 +54,8 @@ export async function getServerSideProps(context) {
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
-  // treating all errors as 404 due to API bug
-  if (!api?.ok) return { notFound: true };
+  const apiError = checkResponseForSSR(api);
+  if (apiError) return apiError;
 
   const json = await api.json();
 
