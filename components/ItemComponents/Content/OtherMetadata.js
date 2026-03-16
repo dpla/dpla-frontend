@@ -20,11 +20,16 @@ function OtherMetadata({ item }) {
             facet="provider"
             value={item.contributor}
             facetLabel="contributing institution"
+            extraQuery={{ partner: `"${item.partner}"` }}
           />
         </ItemTermValuePair>
         {item.intermediateProvider && (
           <ItemTermValuePair heading="Supporting Institution">
-            <FacetLink facet="provider" value={item.intermediateProvider} />
+            <FacetLink
+              facet="provider"
+              value={item.intermediateProvider}
+              extraQuery={{ partner: `"${item.partner}"` }}
+            />
           </ItemTermValuePair>
         )}
         {item.collection && (
@@ -32,12 +37,26 @@ function OtherMetadata({ item }) {
             {Array.isArray(item.collection) ? (
               item.collection.map((collection) => (
                 <span key={collection.title}>
-                  <FacetLink facet="collection" value={collection.title} />
+                  <FacetLink
+                    facet="collection"
+                    value={collection.title}
+                    extraQuery={{
+                      provider: `"${item.contributor}"`,
+                      partner: `"${item.partner}"`,
+                    }}
+                  />
                   <br />
                 </span>
               ))
             ) : (
-              <FacetLink facet="collection" value={item.collection.title} />
+              <FacetLink
+                facet="collection"
+                value={item.collection.title}
+                extraQuery={{
+                  provider: `"${item.contributor}"`,
+                  partner: `"${item.partner}"`,
+                }}
+              />
             )}
           </ItemTermValuePair>
         )}
