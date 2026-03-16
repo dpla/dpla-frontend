@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { gtag } from "../lib";
+import { patchDOMForGoogleTranslate } from "../lib/patchDOMForGoogleTranslate";
 
 import "stylesheets/colors.scss";
 import "stylesheets/themes/themes.scss";
@@ -12,6 +13,8 @@ import "stylesheets/global.scss";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+patchDOMForGoogleTranslate();
 
 function App({ Component, pageProps }) {
   const gaTrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
