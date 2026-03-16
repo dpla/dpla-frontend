@@ -14,7 +14,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 import {washObject} from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 function SingleSet({router, set, currentFullUrl}) {
   return (
@@ -65,8 +65,8 @@ export async function getServerSideProps({query}) {
   const setRes = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
-  // treating all non-200 responses as 404 due to API bug
-  if (!setRes?.ok) return { notFound: true };
+  const setError = checkResponseForSSR(setRes);
+  if (setError) return setError;
   const set = await setRes.json();
   const props = washObject({
     set,

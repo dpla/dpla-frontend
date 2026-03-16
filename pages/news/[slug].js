@@ -20,7 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
@@ -138,12 +138,10 @@ export async function getServerSideProps(context) {
     safeFetch(`${NEWS_ENDPOINT}?slug=${slug}`),
   ]);
 
-  if (!menuResponse?.ok) {
-    return { notFound: true };
-  }
-  if (!postRes?.ok) {
-    return { notFound: true };
-  }
+  const menuError = checkResponseForSSR(menuResponse);
+  if (menuError) return menuError;
+  const postError = checkResponseForSSR(postRes);
+  if (postError) return postError;
 
   const [menuJson, postJson] = await Promise.all([
     menuResponse.json(),
@@ -160,9 +158,8 @@ export async function getServerSideProps(context) {
     `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
-  if (!authorRes?.ok) {
-    return { notFound: true };
-  }
+  const authorError = checkResponseForSSR(authorRes);
+  if (authorError) return authorError;
 
   const authorJson = await authorRes.json();
 

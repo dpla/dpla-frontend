@@ -10,7 +10,7 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 function SingleSet(props) {
   const { router, set, teachingGuide, currentFullUrl } = props;
@@ -44,8 +44,8 @@ export async function getServerSideProps({ query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
   const setRes = await safeFetch(url);
-  // treating all non-200 responses as 404 due to API bug
-  if (!setRes?.ok) return { notFound: true };
+  const setError = checkResponseForSSR(setRes);
+  if (setError) return setError;
   const set = await setRes.json();
 
   const teachingGuide = set.hasPart.find(

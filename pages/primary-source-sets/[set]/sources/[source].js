@@ -9,7 +9,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -58,8 +58,10 @@ export async function getServerSideProps(context) {
     safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
     safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
   ]);
-  //treating all fetch errors as 404 due to API bug
-  if (!sourceRes?.ok || !setRes?.ok) return { notFound: true };
+  const sourceError = checkResponseForSSR(sourceRes);
+  if (sourceError) return sourceError;
+  const setError = checkResponseForSSR(setRes);
+  if (setError) return setError;
 
   const [sourceText, setJson] = await Promise.all([sourceRes.text(), setRes.json()]);
   const sanitizedSourceJson = JSON.parse(sourceText.replace(/\r\n/gi, ""));

@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 function Home({ news, content }) {
   return (
@@ -24,17 +24,15 @@ export async function getServerSideProps() {
     safeFetch(API_SETTINGS_ENDPOINT),
     safeFetch(NEWS_PRO_ENDPOINT),
   ]);
-  if (!settingsRes?.ok) {
-    return { notFound: true };
-  }
+  const settingsError = checkResponseForSSR(settingsRes);
+  if (settingsError) return settingsError;
   const settingsJson = await settingsRes.json();
 
   // fetch home content (depends on settings for endpoint)
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
   const homeRes = await safeFetch(endpoint);
-  if (!homeRes?.ok) {
-    return { notFound: true };
-  }
+  const homeError = checkResponseForSSR(homeRes);
+  if (homeError) return homeError;
   const [homeJson, newsItems] = await Promise.all([
     homeRes.json(),
     newsRes?.ok ? newsRes.json() : Promise.resolve([]),

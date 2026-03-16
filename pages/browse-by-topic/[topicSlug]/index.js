@@ -13,7 +13,7 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -52,9 +52,8 @@ export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  if (!topicsRes?.ok) {
-    return { notFound: true };
-  }
+  const topicsError = checkResponseForSSR(topicsRes);
+  if (topicsError) return topicsError;
 
   const topicsJson = await topicsRes.json();
   const currentTopic = topicsJson[0];
@@ -69,9 +68,8 @@ export const getServerSideProps = async (context) => {
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
 
-  if (!subtopicsRes?.ok) {
-    return { notFound: true };
-  }
+  const subtopicsError = checkResponseForSSR(subtopicsRes);
+  if (subtopicsError) return subtopicsError;
 
   const subtopicsJson = await subtopicsRes.json();
   const subtopics = subtopicsJson.map((subtopic) => ({
