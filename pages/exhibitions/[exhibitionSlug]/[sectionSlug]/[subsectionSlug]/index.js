@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   }
 
   const section = findPage(exhibit, context.params.sectionSlug);
-  if (section === null || section.parent) {
+  if (!section || section.parent) {
     return { notFound: true };
   }
 
@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
   );
 
   if (
-    subsection === null ||
+    !subsection ||
     !subsection?.parent ||
     subsection.parent.id !== section.id
   ) {
