@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
   );
 
   if (
-    subsection === null ||
+    !subsection ||
     !subsection?.parent ||
     subsection.parent.id !== section.id
   ) {

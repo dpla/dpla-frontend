@@ -1,4 +1,5 @@
-import {Readable} from "stream";
+import { pipeline } from "stream/promises";
+import { Readable } from "stream";
 import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
 
@@ -23,7 +24,7 @@ export default async function handler(req, res) {
             const contentType = fetchRes.headers.get("Content-Type") || "application/json";
             res.setHeader("Content-Type", contentType);
             res.status(200);
-            await Readable.fromWeb(fetchRes.body).pipe(res);
+            await pipeline(Readable.fromWeb(fetchRes.body), res);
 
         } else {
             res.status(404).send("Not found.");
