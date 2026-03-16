@@ -12,8 +12,8 @@ import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
-function SingleSet(props) {
-  const { router, set, teachingGuide, currentFullUrl } = props;
+function SingleSet({ router, set, teachingGuide, currentFullUrl }) {
+  if (!set) return null;
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}

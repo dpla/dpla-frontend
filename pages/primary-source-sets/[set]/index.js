@@ -18,6 +18,7 @@ const audioIcon = "/static/placeholderImages/Sound.svg";
 
 function SingleSet({ set }) {
   const router = useRouter();
+  if (!set) return null;
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}

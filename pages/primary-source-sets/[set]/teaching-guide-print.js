@@ -15,6 +15,7 @@ class Printable extends React.Component {
 
   render() {
     const { set, teachingGuide } = this.props;
+    if (!set) return null;
     return (
       <MinimalLayout route={this.props.router} isPrintable={true}>
         <div className={utils.container}>
