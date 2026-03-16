@@ -228,7 +228,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         filterQueryError: true,
-        results: [],
+        results: { docs: [], facets: {} },
       },
     };
   }
@@ -298,7 +298,7 @@ export async function getServerSideProps(context) {
       props: {
         maxPageError: true,
         currentPage: page,
-        results: [],
+        results: { docs: [], facets: {} },
       },
     };
   } else {
