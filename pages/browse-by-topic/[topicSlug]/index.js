@@ -110,6 +110,7 @@ export const getServerSideProps = async (context) => {
             if (!sourceSetRes?.ok) return null;
             const sourceSetJson = await sourceSetRes.json();
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
+            if (!slug) return null;
             return {
               title: sourceSetJson.name,
               thumbnailUrl: sourceSetJson.thumbnailUrl,

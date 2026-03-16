@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   }
 
   const section = findPage(exhibit, context.params.sectionSlug);
-  if (section === null || section.parent) {
+  if (!section || section.parent) {
     return { notFound: true };
   }
 
