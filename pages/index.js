@@ -20,6 +20,7 @@ import {
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 function Home({
   sourceSets,
@@ -152,7 +153,8 @@ export async function getServerSideProps() {
           .filter((item) => item.menu_item_parent === indexPageItem.object_id)
           .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
           .map(async (guide) => {
-            const guideRes = await fetch(getMenuItemUrl(guide));
+            const guideRes = await safeFetch(getMenuItemUrl(guide));
+            if (!guideRes?.ok) return null;
             const guideJson = await guideRes.json();
             return {
               ...guide,
