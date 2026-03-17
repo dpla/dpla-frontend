@@ -15,7 +15,7 @@ import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
 import { ListLoading, ListEmpty } from "components/ListComponents";
 
-import { addLinkInfoToResults, getItemThumbnail } from "lib";
+import { addLinkInfoToResults, getDataProviderName, getItemThumbnail } from "lib";
 
 import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
 
@@ -79,9 +79,7 @@ const List = () => {
           .filter((result) => result.error === undefined)
           .map((result) => {
             const thumbnailUrl = getItemThumbnail(result);
-            const dataProviderFromObj =
-              result.dataProvider && result.dataProvider.name;
-            const dataProvider = dataProviderFromObj || result.dataProvider;
+            const dataProvider = getDataProviderName(result.dataProvider);
 
             return {
               ...result.sourceResource,

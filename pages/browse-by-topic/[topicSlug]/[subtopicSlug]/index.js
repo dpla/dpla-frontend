@@ -4,7 +4,7 @@ import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemLis
 import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
-import { decodeHTMLEntities, extractItemId, getItemThumbnail } from "lib";
+import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -146,9 +146,7 @@ export const getServerSideProps = async (context) => {
         return null;
       }
       const itemJson = await itemRes.json();
-      const dataProvider = itemJson.docs[0].dataProvider?.name
-        ? itemJson.docs[0].dataProvider.name
-        : itemJson.docs[0].dataProvider;
+      const dataProvider = getDataProviderName(itemJson.docs[0].dataProvider);
 
       return {
         ...item,

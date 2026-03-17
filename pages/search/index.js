@@ -6,7 +6,7 @@ import OptionsBar from "components/SearchComponents/OptionsBar";
 import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
-import { getItemThumbnail, getSearchPageTitle, isBalanced } from "lib";
+import { getDataProviderName, getItemThumbnail, getSearchPageTitle, isBalanced } from "lib";
 import { safeFetch } from "lib/safeFetch";
 
 import {
@@ -284,7 +284,7 @@ export async function getServerSideProps(context) {
           id: result.id ? result.id : result.sourceResource["@id"],
           sourceUrl: result.isShownAt,
           provider: result.provider && result.provider.name,
-          dataProvider: result.dataProvider && result.dataProvider.name,
+          dataProvider: getDataProviderName(result.dataProvider),
           useDefaultImage: !result.object,
         };
       })
@@ -337,9 +337,7 @@ export async function getServerSideProps(context) {
     // api response for facets
     const docs = json.docs.map((result) => {
       const thumbnailUrl = getItemThumbnail(result);
-      const dataProviderFromObj =
-        result.dataProvider && result.dataProvider.name;
-      const dataProvider = dataProviderFromObj || result.dataProvider;
+      const dataProvider = getDataProviderName(result.dataProvider);
 
       return {
         ...result.sourceResource,

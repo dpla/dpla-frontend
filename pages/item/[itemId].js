@@ -9,6 +9,7 @@ import QA from "components/ItemComponents/Content/QA";
 import CheckableLists from "components/ListComponents/CheckableLists";
 
 import {
+  getDataProviderName,
   getItemThumbnail,
   getRandomItemIdAsync,
   joinIfArray,
@@ -118,9 +119,7 @@ export async function getServerSideProps(context) {
           return lang.name;
         })
       : doc.sourceResource.language;
-  const dataProvider = doc.dataProvider?.name
-    ? doc.dataProvider.name
-    : doc.dataProvider;
+  const dataProvider = getDataProviderName(doc.dataProvider);
   const strippedDoc = { ...doc, originalRecord: "" };
   delete strippedDoc.originalRecord;
 
