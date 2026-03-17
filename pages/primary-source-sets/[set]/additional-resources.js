@@ -17,6 +17,7 @@ import {washObject} from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 
 function SingleSet({router, set, currentFullUrl}) {
+  if (!set) return null;
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}
