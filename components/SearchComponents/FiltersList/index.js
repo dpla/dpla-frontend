@@ -38,9 +38,16 @@ function clearFacet(query, queryKey, facet) {
   return duped;
 }
 
+const queryKeyDisplayLabels = {
+  rightsCategory: "rights",
+};
+
 function Filter({ name, queryKey }) {
   const router = useRouter();
-  const label = queryKey !== "q" ? queryKey : "keywords";
+  const label =
+    queryKey !== "q"
+      ? (queryKeyDisplayLabels[queryKey] ?? queryKey)
+      : "keywords";
   return (
     <li className={css.filter}>
       <Link
