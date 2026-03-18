@@ -1,8 +1,52 @@
+Sitemap: https://dp.la/sitemap/all_item_urls.xml
+
+# Default rules
 User-agent: *
 Disallow: /search
 Disallow: /qa
+Crawl-delay: 2
+
+# Content audit - Screaming Frog (allow full crawl including /search)
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+# AI training crawlers - block entirely
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
 
 User-agent: Amazonbot
 Disallow: /
 
-Sitemap: https://dp.la/sitemap/all_item_urls.xml
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: meta-external-agent
+Disallow: /
+
+# Aggressive SEO scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
