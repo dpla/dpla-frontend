@@ -57,7 +57,7 @@ function userStaticUrls() {
 
 async function exhibitionUrls() {
   const dataDir = path.join(process.cwd(), "exhibitions-data");
-  const index = JSON.parse(
+  const { exhibitions: index } = JSON.parse(
     fs.readFileSync(path.join(dataDir, "exhibitions.json"), "utf-8"),
   );
 
