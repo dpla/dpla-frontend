@@ -25,17 +25,25 @@ const API_KEY = process.env.API_KEY || "";
 const USER_BASE = "https://dp.la";
 const PRO_BASE = "https://pro.dp.la";
 
+function sanitizeUrl(url) {
+  return url.replace(/([?&]api_key=)[^&]+/i, "$1[REDACTED]");
+}
+
 async function safeFetch(url) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30_000);
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: controller.signal });
     if (!res.ok) {
-      console.warn(`  fetch ${url} → ${res.status}`);
+      console.warn(`  fetch ${sanitizeUrl(url)} → ${res.status}`);
       return null;
     }
     return res;
   } catch (err) {
-    console.warn(`  fetch ${url} failed: ${err.message}`);
+    console.warn(`  fetch ${sanitizeUrl(url)} failed: ${err.message}`);
     return null;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -206,6 +214,10 @@ async function proNewsUrls() {
     const cats = await catRes.json();
     if (cats.length) categoryId = cats[0].id;
   }
+  if (!categoryId) {
+    console.warn("generate-pages-sitemap: could not resolve WordPress 'pro' category");
+    return [];
+  }
   return wpPostUrls(PRO_BASE, categoryId);
 }
 
@@ -214,9 +226,9 @@ async function proNewsUrls() {
 function localUrls() {
   const { LOCALS, LOCAL_SUBDOMAINS } = require("../constants/local.js");
   const hub = LOCALS[LOCAL_ID];
-  if (!hub || !hub.routes) return [];
+  if (!hub) return [];
   const base = `https://${LOCAL_SUBDOMAINS[LOCAL_ID] || LOCAL_ID + ".dp.la"}`;
-  return Object.keys(hub.routes).map((route) => base + route);
+  return [base, ...Object.keys(hub.routes || {}).map((route) => base + route)];
 }
 
 // --- XML builder ---

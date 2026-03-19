@@ -57,12 +57,11 @@ TAG_HUBS = {
 ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
 
 
-def fetch_ids_from_s3(s3_client, hub_id):
-    """Stream JSONL files from S3 and yield item IDs for provider-based hubs."""
+def iter_ids_from_s3(s3_client, hub_id):
+    """Yield item IDs from S3 JSONL files for provider-based hubs."""
     prefix = PROVIDER_HUBS[hub_id]
     paginator = s3_client.get_paginator("list_objects_v2")
     pages = paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=f"{prefix}/jsonl/")
-    ids = []
     for page in pages:
         for obj in page.get("Contents", []):
             key = obj["Key"]
@@ -76,18 +75,16 @@ def fetch_ids_from_s3(s3_client, hub_id):
                     record = json.loads(line)
                     item_id = record.get("id") or record.get("_id")
                     if item_id:
-                        ids.append(item_id)
+                        yield item_id
                 except json.JSONDecodeError:
                     pass
-    return ids
 
 
-def fetch_ids_from_api(hub_id):
-    """Paginate the DPLA API to collect item IDs for tag-based hubs."""
+def iter_ids_from_api(hub_id):
+    """Yield item IDs from the DPLA API for tag-based hubs."""
     api_key = os.environ.get("API_KEY", "")
     api_url = os.environ.get("API_URL", "https://api.dp.la")
     tag = TAG_HUBS[hub_id]
-    ids = []
     page = 1
     page_size = 500
     while True:
@@ -99,24 +96,19 @@ def fetch_ids_from_api(hub_id):
             f"&page_size={page_size}"
             f"&fields=id"
         )
-        req = urllib.request.Request(url, headers={"Accept": "application/json"})
-        try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                data = json.loads(resp.read())
-        except Exception as exc:
-            print(f"  API error on page {page}: {exc}", file=sys.stderr)
-            break
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
+        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
+            data = json.loads(resp.read())
         docs = data.get("docs", [])
         if not docs:
             break
         for doc in docs:
             item_id = doc.get("id") or doc.get("_id")
             if item_id:
-                ids.append(item_id)
+                yield item_id
         if len(docs) < page_size:
             break
         page += 1
-    return ids
 
 
 def build_shard(urls, timestamp):
@@ -150,43 +142,57 @@ def build_index(shard_keys, timestamp):
     )
 
 
+def upload_shard(s3_client, key, xml, dry_run, shard_urls):
+    if dry_run:
+        print(f"\n--- {key} (first 3 URLs) ---")
+        for url in shard_urls[:3]:
+            print(f"  {url}")
+        print(f"  ... ({len(shard_urls)} total)")
+    else:
+        compressed = gzip.compress(xml.encode("utf-8"))
+        s3_client.put_object(
+            Bucket=SITEMAP_BUCKET,
+            Key=key,
+            Body=compressed,
+            ContentType="application/xml",
+            ContentEncoding="gzip",
+        )
+        print(f"  uploaded s3://{SITEMAP_BUCKET}/{key}")
+
+
 def generate_hub(hub_id, s3_client, dry_run, timestamp):
     print(f"  {hub_id}: collecting IDs...", flush=True)
     if hub_id in PROVIDER_HUBS:
-        ids = fetch_ids_from_s3(s3_client, hub_id)
+        id_iter = iter_ids_from_s3(s3_client, hub_id)
     else:
-        ids = fetch_ids_from_api(hub_id)
+        id_iter = iter_ids_from_api(hub_id)
 
-    print(f"  {hub_id}: {len(ids)} IDs", flush=True)
-    if not ids:
-        print(f"  {hub_id}: no IDs found, skipping", file=sys.stderr)
-        return
-
-    urls = [f"{ITEM_BASE}/{item_id}" for item_id in ids]
-    shards = [urls[i : i + SHARD_SIZE] for i in range(0, len(urls), SHARD_SIZE)]
     ts_str = timestamp.strftime("%Y%m%d-%H%M%S")
     shard_keys = []
+    shard_buf = []
+    total = 0
+    n = 0
 
-    for n, shard_urls in enumerate(shards, start=1):
-        xml = build_shard(shard_urls, timestamp)
-        compressed = gzip.compress(xml.encode("utf-8"))
-        shard_key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
-        shard_keys.append(shard_key)
+    for item_id in id_iter:
+        shard_buf.append(f"{ITEM_BASE}/{item_id}")
+        total += 1
+        if len(shard_buf) == SHARD_SIZE:
+            n += 1
+            key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
+            shard_keys.append(key)
+            upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
+            shard_buf = []
 
-        if dry_run:
-            print(f"\n--- {shard_key} (first 3 URLs) ---")
-            for url in shard_urls[:3]:
-                print(f"  {url}")
-            print(f"  ... ({len(shard_urls)} total)")
-        else:
-            s3_client.put_object(
-                Bucket=SITEMAP_BUCKET,
-                Key=shard_key,
-                Body=compressed,
-                ContentType="application/xml",
-                ContentEncoding="gzip",
-            )
-            print(f"  uploaded s3://{SITEMAP_BUCKET}/{shard_key}")
+    if shard_buf:
+        n += 1
+        key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
+        shard_keys.append(key)
+        upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
+
+    print(f"  {hub_id}: {total} IDs", flush=True)
+    if not shard_keys:
+        print(f"  {hub_id}: no IDs found, skipping", file=sys.stderr)
+        return
 
     index_xml = build_index(shard_keys, timestamp)
     index_key = f"sitemap/{hub_id}/all_item_urls.xml"
@@ -221,7 +227,8 @@ def main():
         print(f"Valid hubs: {', '.join(ALL_HUBS)}", file=sys.stderr)
         sys.exit(1)
 
-    s3_client = boto3.client("s3") if not args.dry_run else None
+    # Always create s3_client — provider hubs need S3 read access even in dry-run.
+    s3_client = boto3.client("s3")
     timestamp = datetime.now(timezone.utc)
 
     print(f"generate-hub-sitemaps: {'dry-run ' if args.dry_run else ''}generating for: {', '.join(hubs)}")

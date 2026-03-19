@@ -23,7 +23,6 @@ const next = require("next");
 const bodyParser = require("body-parser");
 const cluster = require("node:cluster");
 const crypto = require("crypto");
-const path = require("path");
 const numCPUs =
   Number(process.env.PS_COUNT) || require("node:os").availableParallelism();
 
@@ -143,7 +142,22 @@ function robotsTxt() {
       ].join("\n");
       res.type("text/plain").send(content);
     } else {
-      res.sendFile(path.join(__dirname, "public", "robots.txt"));
+      // user site (dp.la) and any other environment
+      const content = [
+        "Sitemap: https://dp.la/sitemap/all_item_urls.xml",
+        "Sitemap: https://dp.la/sitemap-pages.xml",
+        "",
+        "User-agent: *",
+        "Disallow: /search",
+        "Disallow: /qa",
+        "Crawl-delay: 2",
+        "",
+        "User-agent: Screaming Frog SEO Spider",
+        "Allow: /",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
     }
   };
 }
