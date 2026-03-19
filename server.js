@@ -141,8 +141,11 @@ function robotsTxt() {
         ...AI_BOT_RULES,
       ].join("\n");
       res.type("text/plain").send(content);
+    } else if (siteEnv === "cqa") {
+      // Staging — disallow all crawlers; sitemap-pages.xml is not generated for cqa
+      res.type("text/plain").send("User-agent: *\nDisallow: /");
     } else {
-      // user site (dp.la) and any other environment
+      // user site (dp.la)
       const content = [
         "Sitemap: https://dp.la/sitemap/all_item_urls.xml",
         "Sitemap: https://dp.la/sitemap-pages.xml",

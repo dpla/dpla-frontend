@@ -17,7 +17,7 @@ Run:
   python3 scripts/generate-hub-sitemaps.py [--hub HUB] [--dry-run]
 
   --hub HUB   Generate only for this hub (default: all hubs)
-  --dry-run   Print generated XML to stdout instead of uploading to S3
+  --dry-run   Skip S3 uploads and print shard URL previews plus full index XML
 """
 
 import argparse
@@ -68,7 +68,7 @@ def iter_ids_from_s3(s3_client, hub_id):
             if not key.endswith(".jsonl"):
                 continue
             response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=key)
-            for line in response["Body"].iter_lines():
+            for line_no, line in enumerate(response["Body"].iter_lines(), start=1):
                 if not line:
                     continue
                 try:
@@ -76,8 +76,8 @@ def iter_ids_from_s3(s3_client, hub_id):
                     item_id = record.get("id") or record.get("_id")
                     if item_id:
                         yield item_id
-                except json.JSONDecodeError:
-                    pass
+                except json.JSONDecodeError as exc:
+                    print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
 
 
 def iter_ids_from_api(hub_id):
@@ -191,8 +191,7 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
 
     print(f"  {hub_id}: {total} IDs", flush=True)
     if not shard_keys:
-        print(f"  {hub_id}: no IDs found, skipping", file=sys.stderr)
-        return
+        raise RuntimeError(f"{hub_id}: no IDs found — source data may be missing or empty")
 
     index_xml = build_index(shard_keys, timestamp)
     index_key = f"sitemap/{hub_id}/all_item_urls.xml"

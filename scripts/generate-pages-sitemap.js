@@ -82,6 +82,7 @@ async function exhibitionUrls() {
       const pages = data.pages || [];
       const topLevel = pages.filter((p) => !p.parent);
       for (const page of topLevel) {
+        if (!page.slug) continue;
         urls.push(`${USER_BASE}/exhibitions/${slug}/${page.slug}`);
         const subpages = pages.filter(
           (p) => p.parent && p.parent.id === page.id,
@@ -225,8 +226,9 @@ async function proNewsUrls() {
 
 function localUrls() {
   const { LOCALS, LOCAL_SUBDOMAINS } = require("../constants/local.js");
+  if (!LOCAL_ID) throw new Error("NEXT_PUBLIC_LOCAL_ID is required for local site builds");
   const hub = LOCALS[LOCAL_ID];
-  if (!hub) return [];
+  if (!hub) throw new Error(`Unknown local hub: ${LOCAL_ID}`);
   const base = `https://${LOCAL_SUBDOMAINS[LOCAL_ID] || LOCAL_ID + ".dp.la"}`;
   return [base, ...Object.keys(hub.routes || {}).map((route) => base + route)];
 }
