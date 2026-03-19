@@ -6,6 +6,7 @@
     "dev": "yarn && node server.js --trace-deprecation",
     "clean": "rm -rf .next ./build ./coverage ./node_modules",
     "build": "yarn && NODE_ENV=production next build",
+    "postbuild": "node scripts/generate-pages-sitemap.js",
     "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t dpla-frontend .",
     "docker:clean": "docker container rm -f dpla-frontend; docker image rm -f dpla-frontend",

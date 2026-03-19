@@ -1,0 +1,44 @@
+name: Generate Hub Sitemaps
+
+on:
+  workflow_dispatch:
+    inputs:
+      hub:
+        description: 'Hub to generate (leave blank for all hubs)'
+        required: false
+        default: ''
+
+permissions:
+  id-token: write   # required for OIDC
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install boto3
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::283408157088:role/github-actions-hub-sitemaps
+          aws-region: us-east-1
+
+      - name: Generate hub sitemaps
+        env:
+          API_KEY: ${{ secrets.DPLA_API_KEY }}
+          API_URL: https://api.dp.la
+        run: |
+          HUB="${{ github.event.inputs.hub }}"
+          if [ -n "$HUB" ]; then
+            python scripts/generate-hub-sitemaps.py --hub "$HUB"
+          else
+            python scripts/generate-hub-sitemaps.py
+          fi

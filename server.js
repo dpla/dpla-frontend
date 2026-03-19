@@ -23,11 +23,13 @@ const next = require("next");
 const bodyParser = require("body-parser");
 const cluster = require("node:cluster");
 const crypto = require("crypto");
+const path = require("path");
 const numCPUs =
   Number(process.env.PS_COUNT) || require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
 const { MAILCHIMP_GROUP_IDS, MAILCHIMP_LIST_ID } = require("./constants/site");
+const { LOCAL_SUBDOMAINS } = require("./constants/local");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
@@ -70,6 +72,7 @@ function follower() {
     expressApp.use(bodyParser.urlencoded({ extended: true }));
     expressApp.use(bodyParser.json());
     expressApp.get("/healthcheck", healthcheck());
+    expressApp.get("/robots.txt", robotsTxt());
 
     // routes that are common to user and pro sites
     if (
@@ -91,6 +94,58 @@ function follower() {
 
     registerHandlers(server);
   });
+}
+
+const AI_BOT_RULES = [
+  "GPTBot",
+  "ClaudeBot",
+  "anthropic-ai",
+  "CCBot",
+  "Google-Extended",
+  "Amazonbot",
+  "Bytespider",
+  "PerplexityBot",
+  "meta-external-agent",
+  "AhrefsBot",
+  "SemrushBot",
+  "MJ12bot",
+  "DotBot",
+].flatMap((bot) => [`User-agent: ${bot}`, "Disallow: /"]);
+
+function robotsTxt() {
+  return (req, res) => {
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+    const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
+    if (siteEnv === "local" && localId) {
+      const subdomain = LOCAL_SUBDOMAINS[localId] || `${localId}.dp.la`;
+      const base = `https://${subdomain}`;
+      const content = [
+        `Sitemap: https://sitemaps.dp.la/sitemap/${localId}/all_item_urls.xml`,
+        `Sitemap: ${base}/sitemap-pages.xml`,
+        "",
+        "User-agent: *",
+        "Disallow: /search",
+        "Crawl-delay: 2",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
+    } else if (siteEnv === "pro") {
+      const content = [
+        "Sitemap: https://pro.dp.la/sitemap-pages.xml",
+        "",
+        "User-agent: *",
+        "Allow: /",
+        "Crawl-delay: 2",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
+    } else {
+      res.sendFile(path.join(__dirname, "public", "robots.txt"));
+    }
+  };
 }
 
 function catchall(handle) {
