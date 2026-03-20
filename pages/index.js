@@ -155,7 +155,10 @@ export async function getServerSideProps() {
             .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
             .map(async (guide) => {
               const guideRes = await safeFetch(getMenuItemUrl(guide));
-              if (!guideRes?.ok) return null;
+              if (!guideRes?.ok) {
+                console.log("Unable to load guide.", guide.post_name, guideRes?.status);
+                return null;
+              }
               const guideJson = await guideRes.json();
               return {
                 ...guide,
