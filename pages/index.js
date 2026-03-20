@@ -148,25 +148,30 @@ export async function getServerSideProps() {
       (item) => item.url === guidesEndpoint,
     );
     if (indexPageItem) {
-      guides = await Promise.all(
-        aboutMenuJson.items
-          .filter((item) => item.menu_item_parent === indexPageItem.object_id)
-          .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
-          .map(async (guide) => {
-            const guideRes = await safeFetch(getMenuItemUrl(guide));
-            if (!guideRes?.ok) return null;
-            const guideJson = await guideRes.json();
-            return {
-              ...guide,
-              slug: guide.post_name,
-              summary: guideJson.acf.summary,
-              title: guideJson.title.rendered,
-              displayTitle: guideJson.acf.display_title,
-              color: guideJson.acf.color,
-              illustration: guideJson.acf.illustration,
-            };
-          }),
-      );
+      guides = (
+        await Promise.all(
+          aboutMenuJson.items
+            .filter((item) => item.menu_item_parent === indexPageItem.object_id)
+            .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
+            .map(async (guide) => {
+              const guideRes = await safeFetch(getMenuItemUrl(guide));
+              if (!guideRes?.ok) {
+                console.log("Unable to load guide.", guide.post_name, guideRes?.status);
+                return null;
+              }
+              const guideJson = await guideRes.json();
+              return {
+                ...guide,
+                slug: guide.post_name,
+                summary: guideJson.acf.summary,
+                title: guideJson.title.rendered,
+                displayTitle: guideJson.acf.display_title,
+                color: guideJson.acf.color,
+                illustration: guideJson.acf.illustration,
+              };
+            }),
+        )
+      ).filter(Boolean);
     }
   }
 
