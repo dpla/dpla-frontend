@@ -28,6 +28,7 @@ const numCPUs =
 
 const serverFunctions = require("./lib/serverFunctions");
 const { MAILCHIMP_GROUP_IDS, MAILCHIMP_LIST_ID } = require("./constants/site");
+const { LOCAL_SUBDOMAINS } = require("./constants/local");
 
 const dev = process.env.NODE_ENV !== "production";
 const production = !dev;
@@ -70,6 +71,7 @@ function follower() {
     expressApp.use(bodyParser.urlencoded({ extended: true }));
     expressApp.use(bodyParser.json());
     expressApp.get("/healthcheck", healthcheck());
+    expressApp.get("/robots.txt", robotsTxt());
 
     // routes that are common to user and pro sites
     if (
@@ -91,6 +93,76 @@ function follower() {
 
     registerHandlers(server);
   });
+}
+
+const AI_BOT_RULES = [
+  "GPTBot",
+  "ClaudeBot",
+  "anthropic-ai",
+  "CCBot",
+  "Google-Extended",
+  "Amazonbot",
+  "Bytespider",
+  "PerplexityBot",
+  "meta-external-agent",
+  "AhrefsBot",
+  "SemrushBot",
+  "MJ12bot",
+  "DotBot",
+].flatMap((bot) => [`User-agent: ${bot}`, "Disallow: /"]);
+
+function robotsTxt() {
+  return (req, res) => {
+    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
+    const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+
+    if (siteEnv === "local" && localId) {
+      const subdomain = LOCAL_SUBDOMAINS[localId] || `${localId}.dp.la`;
+      const base = `https://${subdomain}`;
+      const content = [
+        `Sitemap: https://sitemaps.dp.la/sitemap/${localId}/all_item_urls.xml`,
+        `Sitemap: ${base}/sitemap-pages.xml`,
+        "",
+        "User-agent: *",
+        "Disallow: /search",
+        "Crawl-delay: 2",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
+    } else if (siteEnv === "pro") {
+      const content = [
+        "Sitemap: https://pro.dp.la/sitemap-pages.xml",
+        "",
+        "User-agent: *",
+        "Allow: /",
+        "Crawl-delay: 2",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
+    } else if (siteEnv === "cqa") {
+      // Staging — disallow all crawlers; sitemap-pages.xml is not generated for cqa
+      res.type("text/plain").send("User-agent: *\nDisallow: /");
+    } else {
+      // user site (dp.la)
+      const content = [
+        "Sitemap: https://dp.la/sitemap/all_item_urls.xml",
+        "Sitemap: https://dp.la/sitemap-pages.xml",
+        "",
+        "User-agent: *",
+        "Disallow: /search",
+        "Disallow: /qa",
+        "Crawl-delay: 2",
+        "",
+        "User-agent: Screaming Frog SEO Spider",
+        "Allow: /",
+        "",
+        ...AI_BOT_RULES,
+      ].join("\n");
+      res.type("text/plain").send(content);
+    }
+  };
 }
 
 function catchall(handle) {
