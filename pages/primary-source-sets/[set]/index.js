@@ -12,6 +12,7 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import isValidPSSSlug from "lib/isValidPSSSlug";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -52,6 +53,7 @@ function SingleSet({ set }) {
 
 export async function getServerSideProps(context) {
   const set = context.params?.set;
+  if (!isValidPSSSlug(set)) return { notFound: true };
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );

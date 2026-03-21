@@ -15,6 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 import {washObject} from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import isValidPSSSlug from "lib/isValidPSSSlug";
 
 function SingleSet({router, set, currentFullUrl}) {
   if (!set) return null;
@@ -62,6 +63,7 @@ function SingleSet({router, set, currentFullUrl}) {
 }
 
 export async function getServerSideProps({query}) {
+  if (!isValidPSSSlug(query.set)) return { notFound: true };
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const setRes = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
