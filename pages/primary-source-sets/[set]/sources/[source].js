@@ -10,6 +10,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import isValidPSSSlug from "lib/isValidPSSSlug";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
@@ -54,6 +55,7 @@ function Source({ source, set, currentSourceIdx }) {
 export async function getServerSideProps(context) {
   const set = context.params?.set;
   const source = context.params?.source;
+  if (!isValidPSSSlug(set) || !isValidPSSSlug(source)) return { notFound: true };
   const [sourceRes, setRes] = await Promise.all([
     safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
     safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
