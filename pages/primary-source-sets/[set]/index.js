@@ -57,7 +57,13 @@ export async function getServerSideProps(context) {
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
-  const apiError = checkResponseForSSR(api);
+  let apiError;
+  try {
+    apiError = checkResponseForSSR(api);
+  } catch {
+    // API returned 5xx for this set (e.g. broken CMS data); treat as 404
+    return { notFound: true };
+  }
   if (apiError) return apiError;
 
   const json = await api.json();
