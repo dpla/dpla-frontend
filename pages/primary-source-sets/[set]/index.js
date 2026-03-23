@@ -57,7 +57,14 @@ export async function getServerSideProps(context) {
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
-  const apiError = checkResponseForSSR(api);
+  let apiError;
+  try {
+    apiError = checkResponseForSSR(api);
+  } catch (err) {
+    // API returned 5xx or network error for this set; treat as 404 for UX
+    console.error(`[PSS] checkResponseForSSR failed for set "${set}":`, err.message);
+    return { notFound: true };
+  }
   if (apiError) return apiError;
 
   const json = await api.json();

@@ -33,6 +33,26 @@ function App({ Component, pageProps }) {
     };
   }, [router.events]);
 
+  // When a JS chunk fails to load after a deploy, Next.js's error recovery
+  // tries to hard-navigate to the current URL, which the router rejects with
+  // this invariant. By the time it fires, history.pushState has already run,
+  // so reloading sends the user to the intended destination via a full SSR load.
+  useEffect(() => {
+    const handleStaleChunkError = (event) => {
+      if (
+        event.reason?.message?.startsWith(
+          "Invariant: attempted to hard navigate to the same URL "
+        )
+      ) {
+        event.preventDefault();
+        window.location.reload();
+      }
+    };
+    window.addEventListener("unhandledrejection", handleStaleChunkError);
+    return () =>
+      window.removeEventListener("unhandledrejection", handleStaleChunkError);
+  }, []);
+
   function gaLoad() {
     window.dataLayer = window.dataLayer || [];
 
