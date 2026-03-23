@@ -60,8 +60,9 @@ export async function getServerSideProps(context) {
   let apiError;
   try {
     apiError = checkResponseForSSR(api);
-  } catch {
-    // API returned 5xx for this set (e.g. broken CMS data); treat as 404
+  } catch (err) {
+    // API returned 5xx or network error for this set; treat as 404 for UX
+    console.error(`[PSS] checkResponseForSSR failed for set "${set}":`, err.message);
     return { notFound: true };
   }
   if (apiError) return apiError;
