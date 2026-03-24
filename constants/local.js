@@ -469,3 +469,17 @@ const LOCALS = {
 }
 
 exports.LOCALS = LOCALS; // so it can be read/imported by next.config.js
+
+const LOCAL_SUBDOMAINS = {
+  plains2peaks: "ppc.dp.la",
+  wisconsin: "recollectionwisconsin.dp.la",
+  illinois: "idhh.dp.la",
+  florida: "ssdn.dp.la",
+  aviation: "aviation.dp.la",
+  vermont: "vt.dp.la",
+  oklahoma: "oklahoma.dp.la",
+  nwdh: "nwdh.dp.la",
+  texas: "texas.dp.la",
+  njde: "njde.dp.la",
+};
+exports.LOCAL_SUBDOMAINS = LOCAL_SUBDOMAINS;
