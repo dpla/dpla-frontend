@@ -33,6 +33,7 @@ COPY exhibitions-data ./exhibitions-data
 COPY lib ./lib
 COPY pages ./pages
 COPY public ./public
+COPY scripts ./scripts
 COPY stylesheets ./stylesheets
 COPY *.js ./
 COPY package.json ./
