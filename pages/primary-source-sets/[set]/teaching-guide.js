@@ -10,7 +10,7 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 
 function SingleSet({ router, set, teachingGuide, currentFullUrl }) {
@@ -46,7 +46,7 @@ export async function getServerSideProps({ query }) {
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
   const setRes = await safeFetch(url);
-  const setError = checkResponseForSSR(setRes);
+  const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;
   const set = await setRes.json();
 

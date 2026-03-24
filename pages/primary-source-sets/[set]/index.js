@@ -11,7 +11,7 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
@@ -57,14 +57,7 @@ export async function getServerSideProps(context) {
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
-  let apiError;
-  try {
-    apiError = checkResponseForSSR(api);
-  } catch (err) {
-    // API returned 5xx or network error for this set; treat as 404 for UX
-    console.error(`[PSS] checkResponseForSSR failed for set "${set}":`, err.message);
-    return { notFound: true };
-  }
+  const apiError = checkResponseForSSRSafe(api, `set "${set}"`);
   if (apiError) return apiError;
 
   const json = await api.json();
