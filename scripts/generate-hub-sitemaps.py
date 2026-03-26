@@ -2,8 +2,8 @@
 """
 Generate per-hub item sitemaps for DPLA local hub subdomains.
 
-Provider-based hubs read JSONL records from s3://dpla-master-dataset/<hub>/jsonl/
-and extract the `id` field.
+Provider-based hubs read the latest snapshot from s3://dpla-master-dataset/<hub>/jsonl/
+and extract the DPLA item ID from each record's _source.id field.
 
 Tag-based hubs (aviation, nwdh, texas) paginate the DPLA API using a tag filter.
 
@@ -58,22 +58,55 @@ ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
 
 
 def iter_ids_from_s3(s3_client, hub_id):
-    """Yield item IDs from S3 JSONL files for provider-based hubs."""
+    """Yield item IDs from S3 JSONL files for provider-based hubs.
+
+    Reads only the latest snapshot under <prefix>/jsonl/.  Snapshots are
+    date-stamped subdirectories (e.g. 20260211_064914-p2p-.../); the most
+    recent one is selected by lexicographic sort.
+
+    Data files are gzip-compressed Spark output (part-*.txt.gz) or older
+    JSON batches (*.json).  Each line is an Elasticsearch-style document
+    whose DPLA item ID lives at _source.id.
+    """
     prefix = PROVIDER_HUBS[hub_id]
+    base_prefix = f"{prefix}/jsonl/"
+
+    # Find the latest snapshot subdirectory.
+    resp = s3_client.list_objects_v2(
+        Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/"
+    )
+    snapshots = sorted(
+        cp["Prefix"] for cp in resp.get("CommonPrefixes", [])
+    )
+    if not snapshots:
+        return
+    latest = snapshots[-1]
+
     paginator = s3_client.get_paginator("list_objects_v2")
-    pages = paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=f"{prefix}/jsonl/")
+    pages = paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=latest)
     for page in pages:
         for obj in page.get("Contents", []):
             key = obj["Key"]
-            if not key.endswith(".jsonl"):
+            basename = key.split("/")[-1]
+            # Skip zero-byte markers, checksums, and hidden files.
+            if obj["Size"] == 0 or basename.startswith(".") or basename.startswith("_"):
                 continue
+            is_gz = key.endswith(".gz")
+            if not (is_gz or key.endswith(".json")):
+                continue
+
             response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=key)
-            for line_no, line in enumerate(response["Body"].iter_lines(), start=1):
+            raw = response["Body"].read()
+            text = gzip.decompress(raw).decode("utf-8") if is_gz else raw.decode("utf-8")
+
+            for line_no, line in enumerate(text.splitlines(), start=1):
+                line = line.strip()
                 if not line:
                     continue
                 try:
                     record = json.loads(line)
-                    item_id = record.get("id") or record.get("_id")
+                    # Elasticsearch-wrapped format: { "_id": ..., "_source": { "id": ... } }
+                    item_id = record.get("_source", {}).get("id") or record.get("id")
                     if item_id:
                         yield item_id
                 except json.JSONDecodeError as exc:
