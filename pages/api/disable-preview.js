@@ -5,10 +5,13 @@
  *
  * Usage: navigate to /api/disable-preview  (or /api/disable-preview?redirect=/some/path)
  */
+/** Returns true only for relative paths like "/news/foo" — rejects "//evil.com" etc. */
+function isSafeRedirectPath(path) {
+  return typeof path === "string" && path.startsWith("/") && !path.startsWith("//");
+}
+
 export default function handler(req, res) {
   res.setDraftMode({ enable: false });
   const redirect = req.query.redirect;
-  res.redirect(
-    typeof redirect === "string" && redirect.startsWith("/") ? redirect : "/",
-  );
+  res.redirect(isSafeRedirectPath(redirect) ? redirect : "/");
 }

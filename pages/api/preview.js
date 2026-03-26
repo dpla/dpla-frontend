@@ -18,6 +18,11 @@
  *   post_type     — WP post type (e.g. "post", "page")
  *   redirect_path — front-end path to redirect to (e.g. "/news/my-draft")
  */
+/** Returns true only for relative paths like "/news/foo" — rejects "//evil.com" etc. */
+function isSafeRedirectPath(path) {
+  return typeof path === "string" && path.startsWith("/") && !path.startsWith("//");
+}
+
 export default function handler(req, res) {
   const { secret, redirect_path } = req.query;
 
@@ -25,7 +30,8 @@ export default function handler(req, res) {
     return res.status(401).json({ message: "Invalid preview token" });
   }
 
-  if (!redirect_path || !redirect_path.startsWith("/")) {
+  // Must be a relative path (starts with "/" but not "//") to prevent open-redirect
+  if (!isSafeRedirectPath(redirect_path)) {
     return res.status(400).json({ message: "Invalid redirect_path" });
   }
 
