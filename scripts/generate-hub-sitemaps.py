@@ -156,9 +156,11 @@ def iter_ids_from_api(hub_id):
     tag = TAG_HUBS[hub_id]
     page_size = 500
 
-    # Get total count (and provider facets for large hubs).
-    # page_size=1 so the API returns a valid count (page_size=0 may return count=0).
-    data = _api_get(api_url, api_key, tag, "page_size=1&facets=provider.name&facet_size=200")
+    # Get total count and dataProvider facets for large hubs.
+    # page_size=1 ensures the API returns a valid count (page_size=0 may return count=0).
+    # dataProvider is a flat top-level field (no nesting) — more reliable as a filter
+    # than the nested provider.name field.
+    data = _api_get(api_url, api_key, tag, "page_size=1&facets=dataProvider&facet_size=500")
     total = data.get("count", 0)
     print(f"  {hub_id}: {total} total items in API", flush=True)
 
@@ -167,20 +169,22 @@ def iter_ids_from_api(hub_id):
         providers = [None]
         print(f"  {hub_id}: using flat pagination", flush=True)
     else:
-        facet_entries = data.get("facets", {}).get("provider.name", {}).get("terms", [])
+        facet_entries = data.get("facets", {}).get("dataProvider", {}).get("terms", [])
         providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
-        print(f"  {hub_id}: segmenting by {len(providers)} providers", flush=True)
+        print(f"  {hub_id}: segmenting by {len(providers)} dataProviders:", flush=True)
+        for entry in facet_entries[:10]:
+            print(f"    {entry['term']!r}: {entry['count']}", flush=True)
         if not providers:
             providers = [None]
 
     seen = set()
     for provider in providers:
         page = 1
-        provider_param = (
-            f"&provider.name={urllib.parse.quote(provider)}"
-            if provider is not None
-            else ""
-        )
+        if provider is not None:
+            provider_param = f"&dataProvider={urllib.parse.quote(provider, safe='')}"
+            print(f"  {hub_id}: paginating dataProvider={provider!r}", flush=True)
+        else:
+            provider_param = ""
         while True:
             extra = f"page={page}&page_size={page_size}&fields=id{provider_param}"
             data = _api_get(api_url, api_key, tag, extra)
