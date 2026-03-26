@@ -212,11 +212,19 @@ def iter_ids_from_s3_by_tag(s3_client, tag):
             if first_key.endswith(".gz")
             else raw.decode("utf-8")
         )
-        probe_hit = any(
-            tag in json.loads(line.strip()).get("_source", json.loads(line.strip())).get("tags", [])
-            for line in text.splitlines()
-            if line.strip()
-        )
+        probe_hit = False
+        for line in text.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rec = json.loads(line)
+                src = rec.get("_source", rec)
+                if tag in src.get("tags", []):
+                    probe_hit = True
+                    break
+            except json.JSONDecodeError:
+                pass
         if not probe_hit:
             continue
 
