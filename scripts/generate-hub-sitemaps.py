@@ -141,66 +141,93 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
             raise
 
 
-MAX_API_WINDOW = 90_000  # stay under ES max_result_window (~100K)
+MAX_API_WINDOW = 49_000  # ES max_result_window is 50K; stay safely under it
+
+
+def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label):
+    """Paginate a single (provider [+ date]) segment, yielding unseen IDs."""
+    page = 1
+    while True:
+        extra = f"page={page}&page_size={page_size}&fields=id&{extra_base}"
+        data = _api_get(api_url, api_key, tag, extra)
+        if page == 1:
+            print(f"    {label}: count={data.get('count', '?')}", flush=True)
+        docs = data.get("docs", [])
+        if not docs:
+            break
+        for doc in docs:
+            item_id = doc.get("id") or doc.get("_id")
+            if item_id and item_id not in seen:
+                seen.add(item_id)
+                yield item_id
+        if len(docs) < page_size:
+            break
+        page += 1
 
 
 def iter_ids_from_api(hub_id):
     """Yield item IDs from the DPLA API for tag-based hubs.
 
-    For hubs with ≤90K items, paginates the API directly (flat).
-    For larger hubs, segments by provider to stay under the ES
-    max_result_window limit, then paginates within each provider.
+    Segments by dataProvider to stay under the ES max_result_window (50K).
+    For any provider that itself exceeds the window, further segments by
+    sourceResource.date.begin year.
     """
     api_key = os.environ.get("API_KEY", "")
     api_url = os.environ.get("API_URL", "https://api.dp.la")
     tag = TAG_HUBS[hub_id]
     page_size = 500
 
-    # Get total count and dataProvider facets for large hubs.
-    # page_size=1 ensures the API returns a valid count (page_size=0 may return count=0).
-    # dataProvider is a flat top-level field (no nesting) — more reliable as a filter
-    # than the nested provider.name field.
+    # Get total count and dataProvider facets.
     data = _api_get(api_url, api_key, tag, "page_size=1&facets=dataProvider&facet_size=500")
     total = data.get("count", 0)
     print(f"  {hub_id}: {total} total items in API", flush=True)
 
+    facet_entries = data.get("facets", {}).get("dataProvider", {}).get("terms", [])
+    providers = [(e["term"], e["count"]) for e in facet_entries if e.get("count", 0) > 0]
+
     if total <= MAX_API_WINDOW:
-        # Small enough to paginate flat — no provider segmentation needed.
-        providers = [None]
         print(f"  {hub_id}: using flat pagination", flush=True)
+        providers = [(None, total)]
     else:
-        facet_entries = data.get("facets", {}).get("dataProvider", {}).get("terms", [])
-        providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
-        print(f"  {hub_id}: segmenting by {len(providers)} dataProviders:", flush=True)
-        for entry in facet_entries[:10]:
-            print(f"    {entry['term']!r}: {entry['count']}", flush=True)
+        print(f"  {hub_id}: segmenting by {len(providers)} dataProviders", flush=True)
         if not providers:
-            providers = [None]
+            providers = [(None, total)]
 
     seen = set()
-    for provider in providers:
-        page = 1
+    for provider, provider_count in providers:
         if provider is not None:
-            provider_param = f"&dataProvider={urllib.parse.quote(provider, safe='')}"
-            print(f"  {hub_id}: paginating dataProvider={provider!r}", flush=True)
+            provider_param = f"dataProvider={urllib.parse.quote(provider, safe='')}"
+            print(f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)", flush=True)
         else:
             provider_param = ""
-        while True:
-            extra = f"page={page}&page_size={page_size}&fields=id{provider_param}"
-            data = _api_get(api_url, api_key, tag, extra)
-            if page == 1:
-                print(f"  {hub_id}: provider count={data.get('count', '?')}", flush=True)
-            docs = data.get("docs", [])
-            if not docs:
-                break
-            for doc in docs:
-                item_id = doc.get("id") or doc.get("_id")
-                if item_id and item_id not in seen:
-                    seen.add(item_id)
-                    yield item_id
-            if len(docs) < page_size:
-                break
-            page += 1
+
+        if provider_count <= MAX_API_WINDOW:
+            yield from _paginate_segment(
+                api_url, api_key, tag, provider_param, page_size, seen, provider or "all"
+            )
+        else:
+            # Provider exceeds window — sub-segment by year.
+            print(f"  {hub_id}: {provider!r} too large ({provider_count}), sub-segmenting by year", flush=True)
+            year_data = _api_get(
+                api_url, api_key, tag,
+                f"page_size=1&{provider_param}&facets=sourceResource.date.begin&facet_size=300",
+            )
+            year_entries = (
+                year_data.get("facets", {}).get("sourceResource.date.begin", {}).get("terms", [])
+            )
+            years = [e["term"] for e in year_entries if e.get("count", 0) > 0]
+            years.append("")  # catch items with no date
+            for year in years:
+                year_param = (
+                    f"&sourceResource.date.begin={urllib.parse.quote(year, safe='')}"
+                    if year else ""
+                )
+                yield from _paginate_segment(
+                    api_url, api_key, tag,
+                    f"{provider_param}{year_param}",
+                    page_size, seen,
+                    f"{provider}/{year or 'no-date'}",
+                )
 
 
 def build_shard(urls, timestamp):
