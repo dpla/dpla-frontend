@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -108,6 +108,8 @@ export async function getServerSideProps(context) {
   const section = context.query?.section;
   const subsection = context.query?.subsection;
   const pageName = subsection || section;
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
   const menuError = checkResponseForSSR(menuResponse);
   if (menuError) return menuError;
@@ -117,7 +119,9 @@ export async function getServerSideProps(context) {
   if (!pageItem) {
     return { notFound: true };
   }
-  const pageRes = await safeFetch(getMenuItemUrl(pageItem));
+  // In draft mode, append context=edit so WP returns draft content
+  const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
+  const pageRes = await safeFetch(pageUrl, authOptions);
   const pageError = checkResponseForSSR(pageRes);
   if (pageError) return pageError;
   const pageJson = await pageRes.json();
