@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -120,9 +120,7 @@ export async function getServerSideProps(context) {
     return { notFound: true };
   }
   // In draft mode, append context=edit so WP returns draft content
-  const pageUrl = draftMode
-    ? `${getMenuItemUrl(pageItem)}&context=edit`
-    : getMenuItemUrl(pageItem);
+  const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
   const pageRes = await safeFetch(pageUrl, authOptions);
   const pageError = checkResponseForSSR(pageRes);
   if (pageError) return pageError;

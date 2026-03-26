@@ -18,9 +18,28 @@
  *   post_type     — WP post type (e.g. "post", "page")
  *   redirect_path — front-end path to redirect to (e.g. "/news/my-draft")
  */
-/** Returns true only for relative paths like "/news/foo" — rejects "//evil.com" etc. */
-function isSafeRedirectPath(path) {
-  return typeof path === "string" && path.startsWith("/") && !path.startsWith("//");
+
+/**
+ * Parses a user-supplied redirect value into a safe relative path, or returns
+ * null if the value is not a valid relative path.
+ *
+ * Using new URL() to reconstruct the path breaks the taint chain for static
+ * analysis while also correctly rejecting protocol-relative ("//evil.com") and
+ * absolute ("https://evil.com") values.
+ *
+ * @param {unknown} value
+ * @returns {string|null}
+ */
+function parseSafeRedirectPath(value) {
+  if (typeof value !== "string" || !value.startsWith("/") || value.startsWith("//")) {
+    return null;
+  }
+  try {
+    const url = new URL(value, "http://placeholder");
+    return url.pathname + url.search + url.hash;
+  } catch {
+    return null;
+  }
 }
 
 export default function handler(req, res) {
@@ -30,11 +49,11 @@ export default function handler(req, res) {
     return res.status(401).json({ message: "Invalid preview token" });
   }
 
-  // Must be a relative path (starts with "/" but not "//") to prevent open-redirect
-  if (!isSafeRedirectPath(redirect_path)) {
+  const safePath = parseSafeRedirectPath(redirect_path);
+  if (!safePath) {
     return res.status(400).json({ message: "Invalid redirect_path" });
   }
 
   res.setDraftMode({ enable: true });
-  res.redirect(redirect_path);
+  res.redirect(safePath);
 }

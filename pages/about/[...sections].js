@@ -25,7 +25,7 @@ import {
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -92,6 +92,7 @@ export const getServerSideProps = async (context) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await safeFetch(API_SETTINGS_ENDPOINT);
+  if (!settingsRes?.ok) return { notFound: true };
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
@@ -100,6 +101,7 @@ export const getServerSideProps = async (context) => {
   const subsection = sections?.[1];
   const pageSlug = subsection || section || "about-us";
   const response = await safeFetch(ABOUT_MENU_ENDPOINT);
+  if (!response?.ok) return { notFound: true };
   const json = await response.json();
   const pageItem = json.items.find((item) => item.post_name === pageSlug);
   const guidesPageItem = json.items.find((item) => item.url === endpoint);
@@ -140,11 +142,10 @@ export const getServerSideProps = async (context) => {
   }
 
   // to support hand-made links we check to see if it is pointed to a wp page id
-  const url = draftMode
-    ? `${getMenuItemUrl(pageItem)}&context=edit`
-    : getMenuItemUrl(pageItem);
+  const url = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
 
   const pageRes = await safeFetch(url, authOptions);
+  if (!pageRes?.ok) return { notFound: true };
   const pageJson = await pageRes.json();
   let pageDescription = "";
   if (pageJson.excerpt && pageJson.excerpt.rendered) {

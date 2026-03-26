@@ -209,7 +209,7 @@ async function proMenuUrls() {
   );
   if (!res) {
     console.warn("generate-pages-sitemap: could not fetch pro-site menu, falling back to SECTIONS list");
-    return [PRO_BASE, ...SECTIONS.map((s) => `${PRO_BASE}/${s.slug}`)];
+    return [PRO_BASE, ...SECTIONS.map((s) => `${PRO_BASE}/${s.slug}`), `${PRO_BASE}/hubs`];
   }
 
   const menu = await res.json();

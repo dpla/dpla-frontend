@@ -20,7 +20,7 @@ import {
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 
 function Home({
   sourceSets,
@@ -70,7 +70,7 @@ export async function getServerSideProps(context) {
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
-  const endpoint = draftMode ? `${baseEndpoint}&context=edit` : baseEndpoint;
+  const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   // 3. fetch it (safeFetch is used here for consistent error handling)
   const homeRes = await safeFetch(endpoint, authOptions);

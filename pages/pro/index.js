@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 
 function Home({ news, content }) {
   return (
@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
 
   // fetch home content (depends on settings for endpoint)
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
-  const endpoint = draftMode ? `${baseEndpoint}&context=edit` : baseEndpoint;
+  const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const homeRes = await safeFetch(endpoint, authOptions);
   const homeError = checkResponseForSSR(homeRes);
   if (homeError) return homeError;
