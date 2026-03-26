@@ -50,6 +50,7 @@ PROVIDER_HUBS = {
 # Tag-based hubs: hub_id → tag value for DPLA API
 TAG_HUBS = {
     "aviation": "aviation",
+    "bws": "blackwomensuffrage",
     "nwdh": "nwdh",
     "texas": "texas",
 }
