@@ -188,6 +188,8 @@ def iter_ids_from_api(hub_id):
         while True:
             extra = f"page={page}&page_size={page_size}&fields=id{provider_param}"
             data = _api_get(api_url, api_key, tag, extra)
+            if page == 1:
+                print(f"  {hub_id}: provider count={data.get('count', '?')}", flush=True)
             docs = data.get("docs", [])
             if not docs:
                 break
