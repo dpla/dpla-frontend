@@ -18,6 +18,7 @@ function MainLayout({
   pageTitle,
   pageImage,
   pageDescription,
+  canonicalUrl,
   seoType,
 }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
@@ -34,6 +35,7 @@ function MainLayout({
         pageImage={pageImage}
         seoType={seoType}
         pageDescription={pageDescription}
+        canonicalUrl={canonicalUrl}
       />
       <SkipToContent />
       <SmallScreenHeader isSearchPage={isSearchPage} isHome={isHome} />

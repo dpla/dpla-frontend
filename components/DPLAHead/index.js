@@ -38,6 +38,7 @@ class DPLAHead extends React.Component {
 
     const {
       additionalLinks,
+      canonicalUrl,
       seoType,
       pageTitle,
       pageImage,
@@ -136,6 +137,9 @@ class DPLAHead extends React.Component {
             />,
             <link key="manifest" rel="manifest" href="/manifest.json" />,
           ]}
+          {canonicalUrl && (
+            <link rel="canonical" href={canonicalUrl} />
+          )}
           {additionalLinks}
           <title>{getMetaPageTitle(pageTitle)}</title>
         </Head>

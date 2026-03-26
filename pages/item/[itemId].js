@@ -22,10 +22,10 @@ import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-export default function ItemDetail({ item, randomItemId, isQA }) {
+export default function ItemDetail({ item, randomItemId, isQA, pageDescription, canonicalUrl }) {
   if (!item) return null;
   return (
-    <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl}>
+    <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
       <BreadcrumbsModule
         breadcrumbs={[
           {
@@ -123,6 +123,15 @@ export async function getServerSideProps(context) {
   const strippedDoc = { ...doc, originalRecord: "" };
   delete strippedDoc.originalRecord;
 
+  const descriptionText = joinIfArray(doc.sourceResource.description, " ");
+  const pageDescription = descriptionText
+    ? truncateString(descriptionText, 155)
+    : truncateString(
+        `${joinIfArray(doc.sourceResource.title, ", ")}, a ${joinIfArray(doc.sourceResource.type, ", ")} from ${doc.provider.name}`,
+        155
+      );
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_USER_BASE_URL}/item/${doc.id}`;
+
   const props = washObject({
     item: {
       ...doc.sourceResource,
@@ -143,6 +152,8 @@ export async function getServerSideProps(context) {
     },
     randomItemId,
     isQA,
+    pageDescription,
+    canonicalUrl,
   });
 
   return {
