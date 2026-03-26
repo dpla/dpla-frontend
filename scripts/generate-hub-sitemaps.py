@@ -25,6 +25,7 @@ import gzip
 import json
 import os
 import sys
+import time
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -115,8 +116,8 @@ def iter_ids_from_s3(s3_client, hub_id):
                     print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
 
 
-def _api_get(api_url, api_key, tag, extra_params, timeout=30):
-    """Make a single DPLA API request and return parsed JSON."""
+def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
+    """Make a single DPLA API request and return parsed JSON, with retries."""
     url = (
         f"{api_url}/v2/items"
         f"?api_key={api_key}"
@@ -124,8 +125,15 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30):
         f"&{extra_params}"
     )
     req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
-    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
-        return json.loads(resp.read())
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+                return json.loads(resp.read())
+        except urllib.error.HTTPError as exc:
+            if exc.code in (500, 502, 503, 504) and attempt < retries - 1:
+                time.sleep(5 * (attempt + 1))
+                continue
+            raise
 
 
 def iter_ids_from_api(hub_id):
