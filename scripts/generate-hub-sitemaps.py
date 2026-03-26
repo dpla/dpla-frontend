@@ -206,22 +206,22 @@ def iter_ids_from_api(hub_id):
                 api_url, api_key, tag, provider_param, page_size, seen, provider or "all"
             )
         else:
-            # Provider exceeds the ES window. Use bi-directional pagination:
-            # one pass sorted ascending by ID, one pass sorted descending.
-            # The dedup set handles the overlap. This covers all items as long
-            # as provider_count < 2 × MAX_API_WINDOW (~98K).
+            # Provider exceeds the ES window (50K). Split by the first hex
+            # character of the DPLA item ID (0-9, a-f). IDs are 32-char hex
+            # strings with uniform distribution, so each bucket holds ~1/16
+            # of the items — well under 50K for any realistic hub.
             print(
                 f"  {hub_id}: {provider!r} too large ({provider_count}), "
-                f"using bi-directional pagination",
+                f"splitting by ID prefix (hex)",
                 flush=True,
             )
-            for sort_order in ("asc", "desc"):
-                sort_param = f"&sort_by=id&sort_order={sort_order}"
+            for hex_char in "0123456789abcdef":
+                id_prefix_param = f"&q=id:{hex_char}*"
                 yield from _paginate_segment(
                     api_url, api_key, tag,
-                    f"{provider_param}{sort_param}",
+                    f"{provider_param}{id_prefix_param}",
                     page_size, seen,
-                    f"{provider}/{sort_order}",
+                    f"{provider}/id:{hex_char}*",
                 )
 
 
