@@ -152,15 +152,19 @@ def iter_ids_from_api(hub_id):
     page_size = 500
 
     # Get total count (and provider facets for large hubs).
-    data = _api_get(api_url, api_key, tag, "page_size=0&facets=provider.name&facet_size=200")
+    # page_size=1 so the API returns a valid count (page_size=0 may return count=0).
+    data = _api_get(api_url, api_key, tag, "page_size=1&facets=provider.name&facet_size=200")
     total = data.get("count", 0)
+    print(f"  {hub_id}: {total} total items in API", flush=True)
 
     if total <= MAX_API_WINDOW:
         # Small enough to paginate flat — no provider segmentation needed.
         providers = [None]
+        print(f"  {hub_id}: using flat pagination", flush=True)
     else:
         facet_entries = data.get("facets", {}).get("provider.name", {}).get("terms", [])
         providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
+        print(f"  {hub_id}: segmenting by {len(providers)} providers", flush=True)
         if not providers:
             providers = [None]
 
