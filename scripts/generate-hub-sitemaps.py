@@ -206,27 +206,22 @@ def iter_ids_from_api(hub_id):
                 api_url, api_key, tag, provider_param, page_size, seen, provider or "all"
             )
         else:
-            # Provider exceeds window — sub-segment by year.
-            print(f"  {hub_id}: {provider!r} too large ({provider_count}), sub-segmenting by year", flush=True)
-            year_data = _api_get(
-                api_url, api_key, tag,
-                f"page_size=1&{provider_param}&facets=sourceResource.date.begin&facet_size=300",
+            # Provider exceeds the ES window. Use bi-directional pagination:
+            # one pass sorted ascending by ID, one pass sorted descending.
+            # The dedup set handles the overlap. This covers all items as long
+            # as provider_count < 2 × MAX_API_WINDOW (~98K).
+            print(
+                f"  {hub_id}: {provider!r} too large ({provider_count}), "
+                f"using bi-directional pagination",
+                flush=True,
             )
-            year_entries = (
-                year_data.get("facets", {}).get("sourceResource.date.begin", {}).get("terms", [])
-            )
-            years = [e["term"] for e in year_entries if e.get("count", 0) > 0]
-            years.append("")  # catch items with no date
-            for year in years:
-                year_param = (
-                    f"&sourceResource.date.begin={urllib.parse.quote(year, safe='')}"
-                    if year else ""
-                )
+            for sort_order in ("asc", "desc"):
+                sort_param = f"&sort_by=id&sort_order={sort_order}"
                 yield from _paginate_segment(
                     api_url, api_key, tag,
-                    f"{provider_param}{year_param}",
+                    f"{provider_param}{sort_param}",
                     page_size, seen,
-                    f"{provider}/{year or 'no-date'}",
+                    f"{provider}/{sort_order}",
                 )
 
 
