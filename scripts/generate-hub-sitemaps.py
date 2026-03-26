@@ -25,6 +25,7 @@ import gzip
 import json
 import os
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
@@ -114,35 +115,62 @@ def iter_ids_from_s3(s3_client, hub_id):
                     print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
 
 
+def _api_get(api_url, api_key, tag, extra_params, timeout=30):
+    """Make a single DPLA API request and return parsed JSON."""
+    url = (
+        f"{api_url}/v2/items"
+        f"?api_key={api_key}"
+        f"&tags={tag}"
+        f"&{extra_params}"
+    )
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
+    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+        return json.loads(resp.read())
+
+
 def iter_ids_from_api(hub_id):
-    """Yield item IDs from the DPLA API for tag-based hubs."""
+    """Yield item IDs from the DPLA API for tag-based hubs.
+
+    Segments by provider to stay under the ES max_result_window (~100K).
+    First fetches all contributing providers via facets, then paginates
+    within each provider where per-provider counts are well below the limit.
+    """
     api_key = os.environ.get("API_KEY", "")
     api_url = os.environ.get("API_URL", "https://api.dp.la")
     tag = TAG_HUBS[hub_id]
-    page = 1
     page_size = 500
-    while True:
-        url = (
-            f"{api_url}/v2/items"
-            f"?api_key={api_key}"
-            f"&tags={tag}"
-            f"&page={page}"
-            f"&page_size={page_size}"
-            f"&fields=id"
-        )
-        req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
-        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
-            data = json.loads(resp.read())
-        docs = data.get("docs", [])
-        if not docs:
-            break
-        for doc in docs:
-            item_id = doc.get("id") or doc.get("_id")
-            if item_id:
-                yield item_id
-        if len(docs) < page_size:
-            break
-        page += 1
+
+    # Step 1: get all providers contributing items with this tag.
+    data = _api_get(api_url, api_key, tag, "page_size=0&facets=provider.name&facet_size=200")
+    facet_entries = (
+        data.get("facets", {}).get("provider.name", {}).get("terms", [])
+    )
+    providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
+    if not providers:
+        # Fallback: no facets returned, try single flat pagination (≤100K items).
+        providers = [None]
+
+    seen = set()
+    for provider in providers:
+        page = 1
+        if provider is not None:
+            provider_param = f"&provider.name={urllib.parse.quote(provider)}"
+        else:
+            provider_param = ""
+        while True:
+            extra = f"page={page}&page_size={page_size}&fields=id{provider_param}"
+            data = _api_get(api_url, api_key, tag, extra)
+            docs = data.get("docs", [])
+            if not docs:
+                break
+            for doc in docs:
+                item_id = doc.get("id") or doc.get("_id")
+                if item_id and item_id not in seen:
+                    seen.add(item_id)
+                    yield item_id
+            if len(docs) < page_size:
+                break
+            page += 1
 
 
 def build_shard(urls, timestamp):
