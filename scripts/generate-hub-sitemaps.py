@@ -45,14 +45,14 @@ PROVIDER_HUBS = {
     "vermont": "vt",
     "oklahoma": "oklahoma",
     "njde": "njde",
+    "nwdh": "northwest-heritage",
+    "texas": "texas",
 }
 
 # Tag-based hubs: hub_id → tag value for DPLA API
 TAG_HUBS = {
     "aviation": "aviation",
     "bws": "blackwomensuffrage",
-    "nwdh": "nwdh",
-    "texas": "texas",
 }
 
 ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
