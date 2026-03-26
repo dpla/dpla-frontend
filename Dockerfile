@@ -54,6 +54,7 @@ COPY exhibitions-data ./exhibitions-data
 COPY lib ./lib
 COPY pages ./pages
 COPY public ./public
+COPY --from=builder /opt/dpla-frontend/public/sitemap-pages.xml ./public/sitemap-pages.xml
 COPY stylesheets ./stylesheets
 COPY *.js ./
 COPY package.json ./
