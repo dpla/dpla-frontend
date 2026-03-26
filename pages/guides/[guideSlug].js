@@ -15,7 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
 
 class Guides extends React.Component {
   refreshExternalLinks() {
@@ -70,6 +70,8 @@ class Guides extends React.Component {
 }
 
 export async function getServerSideProps(context) {
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
   const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
   const menuError = checkResponseForSSR(menuItemsRes);
   if (menuError) return menuError;
@@ -81,7 +83,10 @@ export async function getServerSideProps(context) {
   if (!guide) {
     return { notFound: true };
   }
-  const guideRes = await safeFetch(getMenuItemUrl(guide));
+  const guideUrl = draftMode
+    ? `${getMenuItemUrl(guide)}&context=edit`
+    : getMenuItemUrl(guide);
+  const guideRes = await safeFetch(guideUrl, authOptions);
   const guideError = checkResponseForSSR(guideRes);
   if (guideError) return guideError;
   const guideJson = await guideRes.json();

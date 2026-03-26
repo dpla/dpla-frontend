@@ -20,7 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
@@ -130,12 +130,16 @@ class PostPage extends React.Component {
 export async function getServerSideProps(context) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
 
   // fetch sidebar menu and post in parallel (independent)
   const slug = context.params?.slug;
+  // In draft mode, include unpublished posts and authenticate the request
+  const postParams = draftMode ? `?slug=${slug}&status=any&context=edit` : `?slug=${slug}`;
   const [menuResponse, postRes] = await Promise.all([
     safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
-    safeFetch(`${NEWS_ENDPOINT}?slug=${slug}`),
+    safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
   ]);
 
   const menuError = checkResponseForSSR(menuResponse);

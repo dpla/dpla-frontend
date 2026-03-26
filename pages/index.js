@@ -20,7 +20,7 @@ import {
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions } from "lib/safeFetch";
 
 function Home({
   sourceSets,
@@ -50,12 +50,15 @@ function Home({
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   if (process.env.NEXT_PUBLIC_SITE_ENV === "local") {
     return {
       notFound: true,
     };
   }
+
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
 
   try {
   // fetch home info
@@ -66,11 +69,12 @@ export async function getServerSideProps() {
   }
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
+  const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
+  const endpoint = draftMode ? `${baseEndpoint}&context=edit` : baseEndpoint;
   const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-  // 3. fetch it
-  const homeRes = await fetch(endpoint);
-  if (!homeRes.ok) {
+  // 3. fetch it (safeFetch is used here for consistent error handling)
+  const homeRes = await safeFetch(endpoint, authOptions);
+  if (!homeRes?.ok) {
     return { notFound: true };
   }
   const homepageJson = await homeRes.json();

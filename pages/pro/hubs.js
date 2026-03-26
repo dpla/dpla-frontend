@@ -7,6 +7,7 @@ import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 
 import { wordpressLinks } from "lib/index";
+import { safeFetch, wpAuthFetchOptions } from "lib/safeFetch";
 
 import {
   NEWS_PRO_ENDPOINT,
@@ -102,9 +103,12 @@ class HubsPage extends React.Component {
   }
 }
 
-export async function getServerSideProps() {
-  const hubRes = await fetch(PAGES_ENDPOINT + "?slug=hubs");
-  if (!hubRes.ok) {
+export async function getServerSideProps(context) {
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
+  const hubParams = draftMode ? "?slug=hubs&status=any&context=edit" : "?slug=hubs";
+  const hubRes = await safeFetch(PAGES_ENDPOINT + hubParams, authOptions);
+  if (!hubRes?.ok) {
     return { notFound: true };
   }
   const hubJson = await hubRes.json();
@@ -114,9 +118,9 @@ export async function getServerSideProps() {
   }
 
   // fetch news posts
-  const newsRes = await fetch(NEWS_PRO_ENDPOINT);
+  const newsRes = await safeFetch(NEWS_PRO_ENDPOINT);
 
-  const newsItems = newsRes.ok ? await newsRes.json() : [];
+  const newsItems = newsRes?.ok ? await newsRes.json() : [];
 
   const props = washObject({
     page: hubItem,

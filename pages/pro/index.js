@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
 
 function Home({ news, content }) {
   return (
@@ -18,7 +18,9 @@ function Home({ news, content }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
   // fetch settings and news in parallel (news is independent of home content)
   const [settingsRes, newsRes] = await Promise.all([
     safeFetch(API_SETTINGS_ENDPOINT),
@@ -29,8 +31,9 @@ export async function getServerSideProps() {
   const settingsJson = await settingsRes.json();
 
   // fetch home content (depends on settings for endpoint)
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
-  const homeRes = await safeFetch(endpoint);
+  const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
+  const endpoint = draftMode ? `${baseEndpoint}&context=edit` : baseEndpoint;
+  const homeRes = await safeFetch(endpoint, authOptions);
   const homeError = checkResponseForSSR(homeRes);
   if (homeError) return homeError;
   const [homeJson, newsItems] = await Promise.all([
