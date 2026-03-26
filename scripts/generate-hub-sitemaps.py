@@ -51,20 +51,13 @@ PROVIDER_HUBS = {
     "texas": "texas",
 }
 
-# Tag-based hubs using DPLA API: hub_id → tag value
-# Use only for small collections (< ~350 API calls total across the run).
+# Tag-based hubs: hub_id → tag value for DPLA API
 TAG_HUBS = {
     "aviation": "aviation",
-}
-
-# Tag-based hubs using S3 full-scan: hub_id → tag value
-# Used for large collections where the API rate limit is a constraint.
-# Scans all hub prefixes in dpla-master-dataset and filters by tag.
-S3_TAG_HUBS = {
     "bws": "blackwomensuffrage",
 }
 
-ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS) + list(S3_TAG_HUBS)
+ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
 
 
 def iter_ids_from_s3(s3_client, hub_id):
@@ -242,8 +235,15 @@ def iter_ids_from_s3_by_tag(s3_client, tag):
 API_CALL_DELAY = 0.5  # seconds between API calls to respect rate limits
 
 
+class RateLimitError(Exception):
+    """Raised when the DPLA API returns 403, indicating a rate limit."""
+
+
 def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
-    """Make a single DPLA API request and return parsed JSON, with retries."""
+    """Make a single DPLA API request and return parsed JSON, with retries.
+
+    Raises RateLimitError on HTTP 403 so callers can stop gracefully.
+    """
     url = (
         f"{api_url}/v2/items"
         f"?api_key={api_key}"
@@ -258,6 +258,8 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
             time.sleep(API_CALL_DELAY)
             return data
         except urllib.error.HTTPError as exc:
+            if exc.code == 403:
+                raise RateLimitError(f"API rate limit reached (HTTP 403): {exc.url}") from exc
             if exc.code in (500, 502, 503, 504) and attempt < retries - 1:
                 time.sleep(5 * (attempt + 1))
                 continue
@@ -401,8 +403,6 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
     print(f"  {hub_id}: collecting IDs...", flush=True)
     if hub_id in PROVIDER_HUBS:
         id_iter = iter_ids_from_s3(s3_client, hub_id)
-    elif hub_id in S3_TAG_HUBS:
-        id_iter = iter_ids_from_s3_by_tag(s3_client, S3_TAG_HUBS[hub_id])
     else:
         id_iter = iter_ids_from_api(hub_id)
 
@@ -411,16 +411,22 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
     shard_buf = []
     total = 0
     n = 0
+    rate_limited = False
 
-    for item_id in id_iter:
-        shard_buf.append(f"{ITEM_BASE}/{item_id}")
-        total += 1
-        if len(shard_buf) == SHARD_SIZE:
-            n += 1
-            key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
-            shard_keys.append(key)
-            upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
-            shard_buf = []
+    try:
+        for item_id in id_iter:
+            shard_buf.append(f"{ITEM_BASE}/{item_id}")
+            total += 1
+            if len(shard_buf) == SHARD_SIZE:
+                n += 1
+                key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
+                shard_keys.append(key)
+                upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
+                shard_buf = []
+    except RateLimitError as exc:
+        rate_limited = True
+        print(f"  WARNING: {hub_id}: API rate limit hit after {total} IDs — uploading partial sitemap", flush=True)
+        print(f"  {exc}", flush=True)
 
     if shard_buf:
         n += 1
@@ -428,8 +434,12 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
         shard_keys.append(key)
         upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
 
-    print(f"  {hub_id}: {total} IDs", flush=True)
+    coverage = f" (partial — rate limited)" if rate_limited else ""
+    print(f"  {hub_id}: {total} IDs{coverage}", flush=True)
     if not shard_keys:
+        if rate_limited:
+            print(f"  WARNING: {hub_id}: rate limited before any IDs collected — no sitemap written", flush=True)
+            return
         raise RuntimeError(f"{hub_id}: no IDs found — source data may be missing or empty")
 
     index_xml = build_index(shard_keys, timestamp)
