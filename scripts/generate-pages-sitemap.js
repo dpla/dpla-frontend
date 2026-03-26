@@ -7,7 +7,7 @@
  *
  * Environments:
  *   user  — dp.la exhibitions, PSS, topics, news, guides, about, static pages
- *   pro   — pro.dp.la sections and news
+ *   pro   — pro.dp.la pages from the WordPress pro-site menu
  *   local — local hub static pages (from constants/local.js)
  *   cqa   — skipped (empty sitemap)
  */
@@ -200,26 +200,78 @@ async function aboutUrls() {
 
 // --- Pro site URL collectors ---
 
-function proStaticUrls() {
+async function proMenuUrls() {
   const { SECTIONS } = require("../constants/pro.js");
-  return [PRO_BASE, ...SECTIONS.map((s) => `${PRO_BASE}/${s.slug}`)];
-}
+  const urls = [PRO_BASE];
 
-async function proNewsUrls() {
-  // Fetch the pro category ID from WP then get its posts
-  const catRes = await safeFetch(
-    `${WP_URL}/wp-json/wp/v2/categories?slug=pro`,
+  const res = await safeFetch(
+    `${WP_URL}/wp-json/menus/v1/menus/pro-site`,
   );
-  let categoryId = null;
-  if (catRes) {
-    const cats = await catRes.json();
-    if (cats.length) categoryId = cats[0].id;
+  if (!res) {
+    console.warn("generate-pages-sitemap: could not fetch pro-site menu, falling back to SECTIONS list");
+    return [PRO_BASE, ...SECTIONS.map((s) => `${PRO_BASE}/${s.slug}`)];
   }
-  if (!categoryId) {
-    console.warn("generate-pages-sitemap: could not resolve WordPress 'pro' category");
-    return [];
+
+  const menu = await res.json();
+  const items = menu.items || [];
+
+  // Build ID → item lookup for ancestor traversal, and collect all slugs in one pass
+  const byId = {};
+  const allMenuSlugs = new Set();
+  for (const item of items) {
+    byId[String(item.ID)] = item;
+    if (item.post_name) allMenuSlugs.add(item.post_name);
   }
-  return wpPostUrls(PRO_BASE, categoryId);
+
+  // Walk up to find the top-level (root) ancestor's slug
+  function topLevelSlug(item) {
+    let cur = item;
+    while (String(cur.menu_item_parent) !== "0") {
+      const parent = byId[String(cur.menu_item_parent)];
+      if (!parent) break;
+      cur = parent;
+    }
+    return cur.post_name;
+  }
+
+  // Slugs with rewrites on pro: all SECTIONS + hubs (its own route)
+  const routableSlugs = new Set([...SECTIONS.map((s) => s.slug), "hubs"]);
+
+  const added = new Set([PRO_BASE]);
+
+  for (const item of items) {
+    const slug = item.post_name;
+    if (!slug) continue;
+
+    const topSlug = topLevelSlug(item);
+    if (topSlug === "news") continue; // /news redirects to dp.la
+
+    if (String(item.menu_item_parent) === "0") {
+      // Top-level item
+      if (!routableSlugs.has(slug)) continue;
+      const url = `${PRO_BASE}/${slug}`;
+      if (!added.has(url)) { urls.push(url); added.add(url); }
+    } else {
+      // Nested item at any depth — reachable as /<top-ancestor>/<slug>
+      // (next.config.js rewrites /:section/:subsection → pro/wp, and
+      //  getServerSideProps matches by post_name regardless of menu depth)
+      if (!routableSlugs.has(topSlug)) continue;
+      const url = `${PRO_BASE}/${topSlug}/${slug}`;
+      if (!added.has(url)) { urls.push(url); added.add(url); }
+    }
+  }
+
+  // Some SECTIONS slugs (e.g. "ebooks") are nested under "news" in the menu
+  // but route correctly at /<slug> via next.config.js SECTIONS rewrites.
+  // Include them if they appear anywhere in the menu but weren't added above.
+  for (const section of SECTIONS) {
+    const url = `${PRO_BASE}/${section.slug}`;
+    if (allMenuSlugs.has(section.slug) && !added.has(url)) {
+      urls.push(url);
+    }
+  }
+
+  return urls;
 }
 
 // --- Local hub URL collector ---
@@ -282,11 +334,7 @@ async function main() {
       ]);
     urls = [...static_, ...exhibitions, ...pss, ...topics, ...news, ...guides, ...about];
   } else if (SITE_ENV === "pro") {
-    const [static_, news] = await Promise.all([
-      Promise.resolve(proStaticUrls()),
-      proNewsUrls(),
-    ]);
-    urls = [...static_, ...news];
+    urls = await proMenuUrls();
   } else if (SITE_ENV === "local") {
     urls = localUrls();
   }
