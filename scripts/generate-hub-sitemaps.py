@@ -51,13 +51,20 @@ PROVIDER_HUBS = {
     "texas": "texas",
 }
 
-# Tag-based hubs: hub_id → tag value for DPLA API
+# Tag-based hubs using DPLA API: hub_id → tag value
+# Use only for small collections (< ~350 API calls total across the run).
 TAG_HUBS = {
     "aviation": "aviation",
+}
+
+# Tag-based hubs using S3 full-scan: hub_id → tag value
+# Used for large collections where the API rate limit is a constraint.
+# Scans all hub prefixes in dpla-master-dataset and filters by tag.
+S3_TAG_HUBS = {
     "bws": "blackwomensuffrage",
 }
 
-ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
+ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS) + list(S3_TAG_HUBS)
 
 
 def iter_ids_from_s3(s3_client, hub_id):
@@ -114,6 +121,114 @@ def iter_ids_from_s3(s3_client, hub_id):
                         yield item_id
                 except json.JSONDecodeError as exc:
                     print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
+
+
+# Prefixes in dpla-master-dataset that don't contain item records.
+_S3_SKIP_PREFIXES = {"tmp", "florida-staging", "txdl"}
+
+
+def _iter_s3_hub_prefix(s3_client, prefix):
+    """Yield parsed _source dicts from the latest snapshot under a hub prefix."""
+    base_prefix = f"{prefix}/jsonl/"
+    resp = s3_client.list_objects_v2(Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/")
+    snapshots = sorted(cp["Prefix"] for cp in resp.get("CommonPrefixes", []))
+    if not snapshots:
+        return
+    latest = snapshots[-1]
+    paginator = s3_client.get_paginator("list_objects_v2")
+    for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=latest):
+        for obj in page.get("Contents", []):
+            key = obj["Key"]
+            basename = key.split("/")[-1]
+            if obj["Size"] == 0 or basename.startswith(".") or basename.startswith("_"):
+                continue
+            is_gz = key.endswith(".gz")
+            if not (is_gz or key.endswith(".json")):
+                continue
+            response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=key)
+            raw = response["Body"].read()
+            text = gzip.decompress(raw).decode("utf-8") if is_gz else raw.decode("utf-8")
+            for line in text.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                    yield record.get("_source", record)
+                except json.JSONDecodeError:
+                    pass
+
+
+def iter_ids_from_s3_by_tag(s3_client, tag):
+    """Yield item IDs from all dpla-master-dataset hubs whose records include tag.
+
+    Scans every hub prefix that has a jsonl/ directory.  For each hub, reads
+    the first data file as a probe; if no matching records are found there, the
+    hub is skipped entirely.  This avoids reading large hubs (Internet Archive,
+    Library of Congress, etc.) that have no records with the target tag.
+    """
+    resp = s3_client.list_objects_v2(Bucket=SOURCE_BUCKET, Delimiter="/")
+    hub_prefixes = sorted(
+        cp["Prefix"].rstrip("/")
+        for cp in resp.get("CommonPrefixes", [])
+        if cp["Prefix"].rstrip("/") not in _S3_SKIP_PREFIXES
+    )
+    print(f"  Probing {len(hub_prefixes)} hub prefixes for tag={tag!r}", flush=True)
+
+    for hub_prefix in hub_prefixes:
+        base_prefix = f"{hub_prefix}/jsonl/"
+        resp2 = s3_client.list_objects_v2(
+            Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/"
+        )
+        snapshots = sorted(cp["Prefix"] for cp in resp2.get("CommonPrefixes", []))
+        if not snapshots:
+            continue
+        latest = snapshots[-1]
+
+        # Probe: read first data file to see if this hub has any matching records.
+        paginator = s3_client.get_paginator("list_objects_v2")
+        first_key = None
+        for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=latest):
+            for obj in page.get("Contents", []):
+                key = obj["Key"]
+                basename = key.split("/")[-1]
+                if (
+                    obj["Size"] > 0
+                    and not basename.startswith(".")
+                    and not basename.startswith("_")
+                    and (key.endswith(".gz") or key.endswith(".json"))
+                ):
+                    first_key = key
+                    break
+            if first_key:
+                break
+        if not first_key:
+            continue
+
+        response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=first_key)
+        raw = response["Body"].read()
+        text = (
+            gzip.decompress(raw).decode("utf-8")
+            if first_key.endswith(".gz")
+            else raw.decode("utf-8")
+        )
+        probe_hit = any(
+            tag in json.loads(line.strip()).get("_source", json.loads(line.strip())).get("tags", [])
+            for line in text.splitlines()
+            if line.strip()
+        )
+        if not probe_hit:
+            continue
+
+        # Full scan of this hub.
+        hub_count = 0
+        for src in _iter_s3_hub_prefix(s3_client, hub_prefix):
+            if tag in src.get("tags", []):
+                item_id = src.get("id")
+                if item_id:
+                    hub_count += 1
+                    yield item_id
+        print(f"  {hub_prefix}: {hub_count} {tag!r} items", flush=True)
 
 
 API_CALL_DELAY = 0.5  # seconds between API calls to respect rate limits
@@ -278,6 +393,8 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
     print(f"  {hub_id}: collecting IDs...", flush=True)
     if hub_id in PROVIDER_HUBS:
         id_iter = iter_ids_from_s3(s3_client, hub_id)
+    elif hub_id in S3_TAG_HUBS:
+        id_iter = iter_ids_from_s3_by_tag(s3_client, S3_TAG_HUBS[hub_id])
     else:
         id_iter = iter_ids_from_api(hub_id)
 
