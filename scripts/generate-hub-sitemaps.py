@@ -136,35 +136,42 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
             raise
 
 
+MAX_API_WINDOW = 90_000  # stay under ES max_result_window (~100K)
+
+
 def iter_ids_from_api(hub_id):
     """Yield item IDs from the DPLA API for tag-based hubs.
 
-    Segments by provider to stay under the ES max_result_window (~100K).
-    First fetches all contributing providers via facets, then paginates
-    within each provider where per-provider counts are well below the limit.
+    For hubs with ≤90K items, paginates the API directly (flat).
+    For larger hubs, segments by provider to stay under the ES
+    max_result_window limit, then paginates within each provider.
     """
     api_key = os.environ.get("API_KEY", "")
     api_url = os.environ.get("API_URL", "https://api.dp.la")
     tag = TAG_HUBS[hub_id]
     page_size = 500
 
-    # Step 1: get all providers contributing items with this tag.
+    # Get total count (and provider facets for large hubs).
     data = _api_get(api_url, api_key, tag, "page_size=0&facets=provider.name&facet_size=200")
-    facet_entries = (
-        data.get("facets", {}).get("provider.name", {}).get("terms", [])
-    )
-    providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
-    if not providers:
-        # Fallback: no facets returned, try single flat pagination (≤100K items).
+    total = data.get("count", 0)
+
+    if total <= MAX_API_WINDOW:
+        # Small enough to paginate flat — no provider segmentation needed.
         providers = [None]
+    else:
+        facet_entries = data.get("facets", {}).get("provider.name", {}).get("terms", [])
+        providers = [entry["term"] for entry in facet_entries if entry.get("count", 0) > 0]
+        if not providers:
+            providers = [None]
 
     seen = set()
     for provider in providers:
         page = 1
-        if provider is not None:
-            provider_param = f"&provider.name={urllib.parse.quote(provider)}"
-        else:
-            provider_param = ""
+        provider_param = (
+            f"&provider.name={urllib.parse.quote(provider)}"
+            if provider is not None
+            else ""
+        )
         while True:
             extra = f"page={page}&page_size={page_size}&fields=id{provider_param}"
             data = _api_get(api_url, api_key, tag, extra)
