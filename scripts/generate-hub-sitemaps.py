@@ -5,7 +5,7 @@ Generate per-hub item sitemaps for DPLA local hub subdomains.
 Provider-based hubs read the latest snapshot from s3://dpla-master-dataset/<hub>/jsonl/
 and extract the DPLA item ID from each record's _source.id field.
 
-Tag-based hubs (aviation, nwdh, texas) paginate the DPLA API using a tag filter.
+Tag-based hubs (aviation, bws) paginate the DPLA API using a tag filter.
 
 Sitemaps are written (gzip-compressed, ≤50,000 URLs/shard) to:
   s3://sitemaps.dp.la/sitemap/<hub>/all_item_urls_N.xml.gz
@@ -78,9 +78,7 @@ def iter_ids_from_s3(s3_client, hub_id):
     resp = s3_client.list_objects_v2(
         Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/"
     )
-    snapshots = sorted(
-        cp["Prefix"] for cp in resp.get("CommonPrefixes", [])
-    )
+    snapshots = sorted(cp["Prefix"] for cp in resp.get("CommonPrefixes", []))
     if not snapshots:
         return
     latest = snapshots[-1]
@@ -100,7 +98,9 @@ def iter_ids_from_s3(s3_client, hub_id):
 
             response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=key)
             raw = response["Body"].read()
-            text = gzip.decompress(raw).decode("utf-8") if is_gz else raw.decode("utf-8")
+            text = (
+                gzip.decompress(raw).decode("utf-8") if is_gz else raw.decode("utf-8")
+            )
 
             for line_no, line in enumerate(text.splitlines(), start=1):
                 line = line.strip()
@@ -113,123 +113,10 @@ def iter_ids_from_s3(s3_client, hub_id):
                     if item_id:
                         yield item_id
                 except json.JSONDecodeError as exc:
-                    print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
-
-
-# Prefixes in dpla-master-dataset that don't contain item records.
-_S3_SKIP_PREFIXES = {"tmp", "florida-staging", "txdl"}
-
-
-def _iter_s3_hub_prefix(s3_client, prefix):
-    """Yield parsed _source dicts from the latest snapshot under a hub prefix."""
-    base_prefix = f"{prefix}/jsonl/"
-    resp = s3_client.list_objects_v2(Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/")
-    snapshots = sorted(cp["Prefix"] for cp in resp.get("CommonPrefixes", []))
-    if not snapshots:
-        return
-    latest = snapshots[-1]
-    paginator = s3_client.get_paginator("list_objects_v2")
-    for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=latest):
-        for obj in page.get("Contents", []):
-            key = obj["Key"]
-            basename = key.split("/")[-1]
-            if obj["Size"] == 0 or basename.startswith(".") or basename.startswith("_"):
-                continue
-            is_gz = key.endswith(".gz")
-            if not (is_gz or key.endswith(".json")):
-                continue
-            response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=key)
-            raw = response["Body"].read()
-            text = gzip.decompress(raw).decode("utf-8") if is_gz else raw.decode("utf-8")
-            for line in text.splitlines():
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    record = json.loads(line)
-                    yield record.get("_source", record)
-                except json.JSONDecodeError:
-                    pass
-
-
-def iter_ids_from_s3_by_tag(s3_client, tag):
-    """Yield item IDs from all dpla-master-dataset hubs whose records include tag.
-
-    Scans every hub prefix that has a jsonl/ directory.  For each hub, reads
-    the first data file as a probe; if no matching records are found there, the
-    hub is skipped entirely.  This avoids reading large hubs (Internet Archive,
-    Library of Congress, etc.) that have no records with the target tag.
-    """
-    resp = s3_client.list_objects_v2(Bucket=SOURCE_BUCKET, Delimiter="/")
-    hub_prefixes = sorted(
-        cp["Prefix"].rstrip("/")
-        for cp in resp.get("CommonPrefixes", [])
-        if cp["Prefix"].rstrip("/") not in _S3_SKIP_PREFIXES
-    )
-    print(f"  Probing {len(hub_prefixes)} hub prefixes for tag={tag!r}", flush=True)
-
-    for hub_prefix in hub_prefixes:
-        base_prefix = f"{hub_prefix}/jsonl/"
-        resp2 = s3_client.list_objects_v2(
-            Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/"
-        )
-        snapshots = sorted(cp["Prefix"] for cp in resp2.get("CommonPrefixes", []))
-        if not snapshots:
-            continue
-        latest = snapshots[-1]
-
-        # Probe: read first data file to see if this hub has any matching records.
-        paginator = s3_client.get_paginator("list_objects_v2")
-        first_key = None
-        for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=latest):
-            for obj in page.get("Contents", []):
-                key = obj["Key"]
-                basename = key.split("/")[-1]
-                if (
-                    obj["Size"] > 0
-                    and not basename.startswith(".")
-                    and not basename.startswith("_")
-                    and (key.endswith(".gz") or key.endswith(".json"))
-                ):
-                    first_key = key
-                    break
-            if first_key:
-                break
-        if not first_key:
-            continue
-
-        response = s3_client.get_object(Bucket=SOURCE_BUCKET, Key=first_key)
-        raw = response["Body"].read()
-        text = (
-            gzip.decompress(raw).decode("utf-8")
-            if first_key.endswith(".gz")
-            else raw.decode("utf-8")
-        )
-        probe_hit = False
-        for line in text.splitlines():
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                rec = json.loads(line)
-                src = rec.get("_source", rec)
-                if tag in src.get("tags", []):
-                    probe_hit = True
-                    break
-            except json.JSONDecodeError:
-                pass
-        if not probe_hit:
-            continue
-
-        # Full scan of this hub.
-        hub_count = 0
-        for src in _iter_s3_hub_prefix(s3_client, hub_prefix):
-            if tag in src.get("tags", []):
-                item_id = src.get("id")
-                if item_id:
-                    hub_count += 1
-                    yield item_id
-        print(f"  {hub_prefix}: {hub_count} {tag!r} items", flush=True)
+                    print(
+                        f"  Warning: malformed JSONL in {key} line {line_no}: {exc}",
+                        file=sys.stderr,
+                    )
 
 
 API_CALL_DELAY = 0.5  # seconds between API calls to respect rate limits
@@ -239,17 +126,12 @@ class RateLimitError(Exception):
     """Raised when the DPLA API returns 403, indicating a rate limit."""
 
 
-def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
+def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
     """Make a single DPLA API request and return parsed JSON, with retries.
 
     Raises RateLimitError on HTTP 403 so callers can stop gracefully.
     """
-    url = (
-        f"{api_url}/v2/items"
-        f"?api_key={api_key}"
-        f"&tags={tag}"
-        f"&{extra_params}"
-    )
+    url = f"{api_url}/v2/items?api_key={api_key}&tags={tag}&{extra_params}"
     req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
     for attempt in range(retries):
         try:
@@ -259,14 +141,16 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
             return data
         except urllib.error.HTTPError as exc:
             if exc.code == 403:
-                raise RateLimitError(f"API rate limit reached (HTTP 403): {exc.url}") from exc
+                raise RateLimitError(
+                    f"API rate limit reached (HTTP 403): {exc.url}"
+                ) from exc
             if exc.code in (500, 502, 503, 504) and attempt < retries - 1:
                 time.sleep(5 * (attempt + 1))
                 continue
             raise
 
 
-MAX_API_WINDOW = 49_000  # ES max_result_window is 50K; stay safely under it
+MAX_API_WINDOW = 49_800  # ES max_result_window is 50K; stay safely under it
 
 
 def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label):
@@ -303,12 +187,16 @@ def iter_ids_from_api(hub_id):
     page_size = 500
 
     # Get total count and dataProvider facets.
-    data = _api_get(api_url, api_key, tag, "page_size=1&facets=dataProvider&facet_size=500")
+    data = _api_get(
+        api_url, api_key, tag, "page_size=1&facets=dataProvider&facet_size=500"
+    )
     total = data.get("count", 0)
     print(f"  {hub_id}: {total} total items in API", flush=True)
 
     facet_entries = data.get("facets", {}).get("dataProvider", {}).get("terms", [])
-    providers = [(e["term"], e["count"]) for e in facet_entries if e.get("count", 0) > 0]
+    providers = [
+        (e["term"], e["count"]) for e in facet_entries if e.get("count", 0) > 0
+    ]
 
     if total <= MAX_API_WINDOW:
         print(f"  {hub_id}: using flat pagination", flush=True)
@@ -322,13 +210,22 @@ def iter_ids_from_api(hub_id):
     for provider, provider_count in providers:
         if provider is not None:
             provider_param = f"dataProvider={urllib.parse.quote(provider, safe='')}"
-            print(f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)", flush=True)
+            print(
+                f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
+                flush=True,
+            )
         else:
             provider_param = ""
 
         if provider_count <= MAX_API_WINDOW:
             yield from _paginate_segment(
-                api_url, api_key, tag, provider_param, page_size, seen, provider or "all"
+                api_url,
+                api_key,
+                tag,
+                provider_param,
+                page_size,
+                seen,
+                provider or "all",
             )
         else:
             # Provider exceeds the ES window (50K). Split by the first hex
@@ -343,9 +240,12 @@ def iter_ids_from_api(hub_id):
             for hex_char in "0123456789abcdef":
                 id_prefix_param = f"&q=id:{hex_char}*"
                 yield from _paginate_segment(
-                    api_url, api_key, tag,
+                    api_url,
+                    api_key,
+                    tag,
                     f"{provider_param}{id_prefix_param}",
-                    page_size, seen,
+                    page_size,
+                    seen,
                     f"{provider}/id:{hex_char}*",
                 )
 
@@ -421,26 +321,42 @@ def generate_hub(hub_id, s3_client, dry_run, timestamp):
                 n += 1
                 key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
                 shard_keys.append(key)
-                upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
+                upload_shard(
+                    s3_client,
+                    key,
+                    build_shard(shard_buf, timestamp),
+                    dry_run,
+                    shard_buf,
+                )
                 shard_buf = []
     except RateLimitError as exc:
         rate_limited = True
-        print(f"  WARNING: {hub_id}: API rate limit hit after {total} IDs — uploading partial sitemap", flush=True)
+        print(
+            f"  WARNING: {hub_id}: API rate limit hit after {total} IDs — uploading partial sitemap",
+            flush=True,
+        )
         print(f"  {exc}", flush=True)
 
     if shard_buf:
         n += 1
         key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
         shard_keys.append(key)
-        upload_shard(s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf)
+        upload_shard(
+            s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf
+        )
 
-    coverage = f" (partial — rate limited)" if rate_limited else ""
+    coverage = " (partial — rate limited)" if rate_limited else ""
     print(f"  {hub_id}: {total} IDs{coverage}", flush=True)
     if not shard_keys:
         if rate_limited:
-            print(f"  WARNING: {hub_id}: rate limited before any IDs collected — no sitemap written", flush=True)
+            print(
+                f"  WARNING: {hub_id}: rate limited before any IDs collected — no sitemap written",
+                flush=True,
+            )
             return
-        raise RuntimeError(f"{hub_id}: no IDs found — source data may be missing or empty")
+        raise RuntimeError(
+            f"{hub_id}: no IDs found — source data may be missing or empty"
+        )
 
     index_xml = build_index(shard_keys, timestamp)
     index_key = f"sitemap/{hub_id}/all_item_urls.xml"
@@ -479,7 +395,9 @@ def main():
     s3_client = boto3.client("s3")
     timestamp = datetime.now(timezone.utc)
 
-    print(f"generate-hub-sitemaps: {'dry-run ' if args.dry_run else ''}generating for: {', '.join(hubs)}")
+    print(
+        f"generate-hub-sitemaps: {'dry-run ' if args.dry_run else ''}generating for: {', '.join(hubs)}"
+    )
     for hub_id in hubs:
         generate_hub(hub_id, s3_client, args.dry_run, timestamp)
 
