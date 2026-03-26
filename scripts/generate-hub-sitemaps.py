@@ -116,6 +116,9 @@ def iter_ids_from_s3(s3_client, hub_id):
                     print(f"  Warning: malformed JSONL in {key} line {line_no}: {exc}", file=sys.stderr)
 
 
+API_CALL_DELAY = 0.5  # seconds between API calls to respect rate limits
+
+
 def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
     """Make a single DPLA API request and return parsed JSON, with retries."""
     url = (
@@ -128,7 +131,9 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=3):
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
-                return json.loads(resp.read())
+                data = json.loads(resp.read())
+            time.sleep(API_CALL_DELAY)
+            return data
         except urllib.error.HTTPError as exc:
             if exc.code in (500, 502, 503, 504) and attempt < retries - 1:
                 time.sleep(5 * (attempt + 1))
