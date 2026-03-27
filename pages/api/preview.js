@@ -55,13 +55,15 @@ export default function handler(req, res) {
   }
 
   // Draft posts have no slug in WordPress, so the mu-plugin sends just the
-  // archive base path (e.g. "/news/"). If post_id is present and the path has
-  // no slug segment, append the post_id so the page can look it up by ID.
+  // archive base path (e.g. "/news/"). If post_id is present, numeric, and the
+  // path is exactly "/news/", append the post_id so the page can look it up by ID.
   const pathSegments = safePath.replace(/\/$/, "").split("/").filter(Boolean);
+  const numericPostId =
+    typeof post_id === "string" && /^\d+$/.test(post_id) ? post_id : null;
+  const isNewsArchivePath =
+    pathSegments.length === 1 && pathSegments[0] === "news";
   const finalPath =
-    post_id && pathSegments.length === 1
-      ? `/${pathSegments[0]}/${post_id}`
-      : safePath;
+    numericPostId && isNewsArchivePath ? `/news/${numericPostId}` : safePath;
 
   res.setDraftMode({ enable: true });
   res.redirect(finalPath);
