@@ -135,8 +135,13 @@ export async function getServerSideProps(context) {
 
   // fetch sidebar menu and post in parallel (independent)
   const slug = context.params?.slug;
-  // In draft mode, include unpublished posts and authenticate the request
-  const postParams = draftMode ? `?slug=${slug}&status=any&context=edit` : `?slug=${slug}`;
+  // In draft mode, include unpublished posts and authenticate the request.
+  // Numeric slugs are post IDs (drafts have no slug) — look up by include= instead of slug=.
+  const postParams = draftMode
+    ? /^\d+$/.test(slug)
+      ? `?include=${slug}&status=any&context=edit`
+      : `?slug=${slug}&status=any&context=edit`
+    : `?slug=${slug}`;
   const [menuResponse, postRes] = await Promise.all([
     safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),

@@ -43,7 +43,7 @@ function parseSafeRedirectPath(value) {
 }
 
 export default function handler(req, res) {
-  const { secret, redirect_path } = req.query;
+  const { secret, redirect_path, post_id } = req.query;
 
   if (!secret || secret !== process.env.WP_PREVIEW_SECRET) {
     return res.status(401).json({ message: "Invalid preview token" });
@@ -54,6 +54,15 @@ export default function handler(req, res) {
     return res.status(400).json({ message: "Invalid redirect_path" });
   }
 
+  // Draft posts have no slug in WordPress, so the mu-plugin sends just the
+  // archive base path (e.g. "/news/"). If post_id is present and the path has
+  // no slug segment, append the post_id so the page can look it up by ID.
+  const pathSegments = safePath.replace(/\/$/, "").split("/").filter(Boolean);
+  const finalPath =
+    post_id && pathSegments.length === 1
+      ? `/${pathSegments[0]}/${post_id}`
+      : safePath;
+
   res.setDraftMode({ enable: true });
-  res.redirect(safePath);
+  res.redirect(finalPath);
 }
