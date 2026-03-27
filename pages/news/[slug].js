@@ -135,8 +135,12 @@ export async function getServerSideProps(context) {
 
   // fetch sidebar menu and post in parallel (independent)
   const slug = context.params?.slug;
-  // In draft mode, include unpublished posts and authenticate the request
-  const postParams = draftMode ? `?slug=${slug}&status=any&context=edit` : `?slug=${slug}`;
+  // In draft mode, include unpublished posts and authenticate the request.
+  // Always try slug lookup first; fall back to ID lookup for numeric slugs
+  // only if the slug query returns no results (drafts have no slug in WP).
+  const postParams = draftMode
+    ? `?slug=${slug}&status=any&context=edit`
+    : `?slug=${slug}`;
   const [menuResponse, postRes] = await Promise.all([
     safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
@@ -147,10 +151,24 @@ export async function getServerSideProps(context) {
   const postError = checkResponseForSSR(postRes);
   if (postError) return postError;
 
-  const [menuJson, postJson] = await Promise.all([
+  const [menuJson, initialPostJson] = await Promise.all([
     menuResponse.json(),
     postRes.json(),
   ]);
+
+  // If slug lookup returned nothing and the slug is numeric, try ID lookup —
+  // this handles draft posts which have no slug yet in WordPress.
+  let postJson = initialPostJson;
+  if (postJson.length === 0 && draftMode && /^\d+$/.test(slug)) {
+    const byIdRes = await safeFetch(
+      `${NEWS_ENDPOINT}?include=${slug}&status=any&context=edit`,
+      authOptions,
+    );
+    const byIdError = checkResponseForSSR(byIdRes);
+    if (byIdError) return byIdError;
+    postJson = await byIdRes.json();
+  }
+
   if (postJson.length === 0) {
     return {
       notFound: true,
