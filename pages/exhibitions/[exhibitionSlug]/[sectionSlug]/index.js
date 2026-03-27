@@ -46,12 +46,14 @@ export async function getServerSideProps(context) {
         sectionSlug: previousSection.slug,
         subsectionSlug: previousSectionFinalSubsection.slug,
       });
-    } else {
+    } else if (previousSection) {
       // some sections don't have subsections
       Object.assign(previousQueryParams, {
         exhibitionSlug: exhibit.slug,
         sectionSlug: previousSection.slug,
       });
+    } else {
+      previousQueryParams = null;
     }
   } else {
     previousQueryParams = null;
