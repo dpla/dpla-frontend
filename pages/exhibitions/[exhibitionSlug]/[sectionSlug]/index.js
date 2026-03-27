@@ -33,7 +33,9 @@ export async function getServerSideProps(context) {
   const nextQueryParamsAndTitle = {};
 
   if (!isFirstSection) {
-    const previousSection = sections.find((s) => s.order === section.order - 1);
+    const currentSectionIndex = sections.findIndex((s) => s.slug === section.slug);
+    const previousSection =
+      currentSectionIndex > 0 ? sections[currentSectionIndex - 1] : null;
     const previousSectionSubsections = exhibitPageSubpages(
       exhibit,
       previousSection,
