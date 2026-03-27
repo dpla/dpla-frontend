@@ -33,7 +33,9 @@ export async function getServerSideProps(context) {
   const nextQueryParamsAndTitle = {};
 
   if (!isFirstSection) {
-    const previousSection = sections.find((s) => s.order === section.order - 1);
+    const currentSectionIndex = sections.findIndex((s) => s.slug === section.slug);
+    const previousSection =
+      currentSectionIndex > 0 ? sections[currentSectionIndex - 1] : null;
     const previousSectionSubsections = exhibitPageSubpages(
       exhibit,
       previousSection,
@@ -46,12 +48,14 @@ export async function getServerSideProps(context) {
         sectionSlug: previousSection.slug,
         subsectionSlug: previousSectionFinalSubsection.slug,
       });
-    } else {
+    } else if (previousSection) {
       // some sections don't have subsections
       Object.assign(previousQueryParams, {
         exhibitionSlug: exhibit.slug,
         sectionSlug: previousSection.slug,
       });
+    } else {
+      previousQueryParams = null;
     }
   } else {
     previousQueryParams = null;
