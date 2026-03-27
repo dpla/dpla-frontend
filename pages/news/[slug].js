@@ -141,20 +141,31 @@ export async function getServerSideProps(context) {
   const postParams = draftMode
     ? `?slug=${slug}&status=any&context=edit`
     : `?slug=${slug}`;
+
+  // DEBUG: log preview state (remove after diagnosis)
+  console.error(`[preview-debug] slug=${slug} draftMode=${draftMode} hasAuth=${!!authOptions} postParams=${postParams}`);
+
   const [menuResponse, postRes] = await Promise.all([
     safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
   ]);
 
+  console.error(`[preview-debug] postRes status=${postRes?.status} ok=${postRes?.ok}`);
+
   const menuError = checkResponseForSSR(menuResponse);
   if (menuError) return menuError;
   const postError = checkResponseForSSR(postRes);
-  if (postError) return postError;
+  if (postError) {
+    console.error(`[preview-debug] postError returned notFound for slug=${slug}`);
+    return postError;
+  }
 
   const [menuJson, initialPostJson] = await Promise.all([
     menuResponse.json(),
     postRes.json(),
   ]);
+
+  console.error(`[preview-debug] initialPostJson.length=${initialPostJson.length}`);
 
   // If slug lookup returned nothing and the slug is numeric, try ID lookup —
   // this handles draft posts which have no slug yet in WordPress.
@@ -164,12 +175,18 @@ export async function getServerSideProps(context) {
       `${NEWS_ENDPOINT}?include=${slug}&status=any&context=edit`,
       authOptions,
     );
+    console.error(`[preview-debug] byId fallback status=${byIdRes?.status} ok=${byIdRes?.ok}`);
     const byIdError = checkResponseForSSR(byIdRes);
-    if (byIdError) return byIdError;
+    if (byIdError) {
+      console.error(`[preview-debug] byId fallback returned notFound for slug=${slug}`);
+      return byIdError;
+    }
     postJson = await byIdRes.json();
+    console.error(`[preview-debug] byId fallback postJson.length=${postJson.length}`);
   }
 
   if (postJson.length === 0) {
+    console.error(`[preview-debug] final notFound for slug=${slug} draftMode=${draftMode}`);
     return {
       notFound: true,
     };
