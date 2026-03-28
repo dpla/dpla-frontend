@@ -8,17 +8,27 @@ export async function register() {
     const internalAccessToken = process.env.DPLA_INTERNAL_ACCESS;
     const apiUrlPrefix = process.env.API_URL;
     if (internalAccessToken && apiUrlPrefix) {
+      const apiBase = new URL(apiUrlPrefix);
+      const apiBasePath = apiBase.pathname.endsWith("/")
+        ? apiBase.pathname
+        : `${apiBase.pathname}/`;
       const _originalFetch = globalThis.fetch;
       globalThis.fetch = (url, init) => {
-        const urlStr = typeof url === "string" ? url : url.toString();
-        if (urlStr.startsWith(apiUrlPrefix)) {
-          init = {
-            ...init,
-            headers: {
-              ...init?.headers,
-              "DPLA-INTERNAL-ACCESS": internalAccessToken,
-            },
-          };
+        try {
+          const target = new URL(
+            typeof url === "string" ? url : url.toString(),
+          );
+          if (
+            target.origin === apiBase.origin &&
+            (target.pathname === apiBase.pathname ||
+              target.pathname.startsWith(apiBasePath))
+          ) {
+            const headers = new Headers(init?.headers);
+            headers.set("DPLA-INTERNAL-ACCESS", internalAccessToken);
+            init = { ...init, headers };
+          }
+        } catch {
+          // Unparseable URL — pass through unmodified
         }
         return _originalFetch(url, init);
       };
