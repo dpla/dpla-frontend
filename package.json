@@ -54,7 +54,8 @@
   "resolutions": {
     "rollup": "3.30.0",
     "qs": "6.14.2",
-    "picomatch": "^2.3.2"
+    "picomatch": "^2.3.2",
+    "brace-expansion": "^2.0.3"
   },
   "lint-staged": {
     "*": "next lint"
