@@ -12,5 +12,17 @@ Sentry.init({
   tracesSampleRate: 1,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false
+  debug: false,
+
+  beforeSend(event, hint) {
+    // Stale JS chunks after a deploy cause Next.js to attempt a hard navigation
+    // to the current URL, throwing this invariant. _app.js already handles it
+    // with a window.location.reload(). Suppress the Sentry noise.
+    const ex = hint?.originalException;
+    const msg = (typeof ex === "string" ? ex : ex?.message) ?? "";
+    if (msg.startsWith("Invariant: attempted to hard navigate to the same URL")) {
+      return null;
+    }
+    return event;
+  },
 });
