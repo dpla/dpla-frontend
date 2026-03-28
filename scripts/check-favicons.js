@@ -9,7 +9,11 @@ let failed = false;
 
 for (const [localId, config] of Object.entries(LOCALS)) {
   const { favicon } = config;
-  if (!favicon) continue;
+  if (!favicon || typeof favicon !== "string") {
+    console.error(`✗ ${localId}: missing/invalid favicon in constants/local.js`);
+    failed = true;
+    continue;
+  }
   const filePath = path.join(root, "public", "static", "local", localId, favicon);
   if (!fs.existsSync(filePath)) {
     console.error(`✗ ${localId}: favicon "${favicon}" not found at ${filePath}`);
