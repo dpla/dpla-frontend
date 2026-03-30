@@ -40,7 +40,7 @@ class Exhibition extends React.Component {
     return (
       <MainLayout
         pageImage={thumbnailUrl}
-        pageTitle={title.replace(/\*/g, "")}
+        pageTitle={title?.replace(/\*/g, "")}
         seoType={SEO_TYPE}
       >
         <BreadcrumbsModule
