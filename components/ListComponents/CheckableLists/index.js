@@ -24,18 +24,23 @@ function CheckableLists({itemId}) {
 
   useEffect(() => {
     async function init() {
-      const lists = await getLocalForageLists();
-      lists.sort((a, b) => b.createdAt - a.createdAt);
-      const checkedLists = [];
-      lists.forEach((l) => {
-        if (l.selectedHash[itemId]) checkedLists.push(l.uuid);
-      });
-      setState((prevState) => ({
-        ...prevState,
-        lists: lists,
-        checkedLists: checkedLists,
-        initialized: true,
-      }));
+      try {
+        const lists = await getLocalForageLists();
+        lists.sort((a, b) => b.createdAt - a.createdAt);
+        const checkedLists = [];
+        lists.forEach((l) => {
+          if (l.selectedHash[itemId]) checkedLists.push(l.uuid);
+        });
+        setState((prevState) => ({
+          ...prevState,
+          lists: lists,
+          checkedLists: checkedLists,
+          initialized: true,
+        }));
+      } catch (err) {
+        console.error("[CheckableLists] init error", err);
+        setState((prevState) => ({ ...prevState, lists: [], checkedLists: [], initialized: true }));
+      }
     }
     init();
   }, [itemId])
