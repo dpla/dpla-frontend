@@ -4,7 +4,7 @@ import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 
 import {
   subjectOptions,
@@ -47,7 +47,7 @@ export async function getServerSideProps({query}) {
   }
   const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
   const res = await safeFetch(url);
-  const resError = checkResponseForSSR(res);
+  const resError = checkResponseForSSRSafe(res, "PSS sets");
   if (resError) return resError;
   const json = await res.json();
   const props = washObject({
