@@ -39,7 +39,7 @@ function CheckableLists({itemId}) {
         }));
       } catch (err) {
         console.error("[CheckableLists] init error", err);
-        setState((prevState) => ({ ...prevState, initialized: true }));
+        setState((prevState) => ({ ...prevState, lists: [], checkedLists: [], initialized: true }));
       }
     }
     init();
