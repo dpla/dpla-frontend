@@ -15,6 +15,7 @@ import {
 
 function SetsList({ sets }) {
   const router = useRouter();
+  if (!sets?.itemListElement) return null;
   return (
     <div className={`${css.setsWrapper} ${utils.siteMaxWidth}`}>
       <ul className={utils.row}>
