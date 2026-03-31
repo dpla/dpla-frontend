@@ -28,6 +28,7 @@ function mapPartnersToComponents(partners) {
 }
 
 function PartnerBrowseContent({partners}) {
+    if (!partners) return null;
     return (<div className={`${utils.container} ${css.partnerBrowse}`}>
         <div className={utils.row}>
             <ul className={`${css.partners} ${utils.colXs12}`}>
