@@ -130,6 +130,7 @@ function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
 function Sidebar({ className, activeItemId, items }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const router = useRouter();
+  if (!Array.isArray(items)) return null;
   // figure out if the current branch is open
   // but since the WP _post_ id does not match the _menu_ id
   // we need to find that first
