@@ -33,6 +33,7 @@ class Guides extends React.Component {
 
   render() {
     const { sidebarItems, breadcrumbs, guide } = this.props;
+    if (!guide) return null;
     return (
       <MainLayout pageTitle={guide.title} seoType={SEO_TYPE}>
         <BreadcrumbsModule breadcrumbs={breadcrumbs} />
