@@ -5,6 +5,7 @@ import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
 import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
+import { safeFetch } from "lib/safeFetch";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -78,9 +79,9 @@ export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const subtopicSlug = context.params?.subtopicSlug;
 
-  const topicsRes = await fetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
+  const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  if (!topicsRes.ok) {
+  if (!topicsRes?.ok) {
     return { notFound: true };
   }
 
@@ -92,11 +93,11 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const subtopicsRes = await fetch(
+  const subtopicsRes = await safeFetch(
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
 
-  if (!subtopicsRes.ok) {
+  if (!subtopicsRes?.ok) {
     return { notFound: true };
   }
 
@@ -125,11 +126,11 @@ export const getServerSideProps = async (context) => {
   const nextSubtopicIdx =
     currentSubtopicIdx + 1 < subtopics.length && currentSubtopicIdx + 1;
 
-  const itemsRes = await fetch(
+  const itemsRes = await safeFetch(
     `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
   );
 
-  if (!itemsRes.ok) {
+  if (!itemsRes?.ok) {
     return { notFound: true };
   }
 
@@ -141,8 +142,8 @@ export const getServerSideProps = async (context) => {
       const itemUrl =
         `${process.env.API_URL}/items/${itemDplaId}` +
         `?api_key=${process.env.API_KEY}`;
-      const itemRes = await fetch(itemUrl);
-      if (!itemRes.ok) {
+      const itemRes = await safeFetch(itemUrl);
+      if (!itemRes?.ok) {
         return null;
       }
       const itemJson = await itemRes.json();
