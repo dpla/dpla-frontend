@@ -16,7 +16,7 @@ export async function register() {
       globalThis.fetch = (url, init) => {
         try {
           const target = new URL(
-            typeof url === "string" ? url : url.toString(),
+            url instanceof Request ? url.url : url.toString(),
           );
           if (
             target.origin === apiBase.origin &&
