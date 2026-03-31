@@ -7,6 +7,7 @@ import {
   TITLE,
 } from "constants/topicBrowse";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 function TopicBrowse(props) {
   const { topics } = props;
@@ -22,8 +23,8 @@ function TopicBrowse(props) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
-  if (!res.ok) {
+  const res = await safeFetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
+  if (!res?.ok) {
     return { notFound: true };
   }
   const json = await res.json();
