@@ -26,7 +26,40 @@ function redirect(source, dest, permanent = true) {
   };
 }
 
+// CSP is set here rather than in the CloudFront response headers policy.
+// CloudFront applies its policy to ALL responses, including AWS WAF challenge
+// pages. WAF challenge pages contain per-request dynamic inline scripts whose
+// hashes change on every request and cannot be statically whitelisted. By
+// setting the CSP at the app layer, it only applies to origin responses; WAF
+// challenge pages are served directly by CloudFront and never reach the origin.
+//
+// The script-src hashes must match the inline bootstrap script Next.js injects
+// into the HTML. Update them after any deployment that changes client-side JS.
+// TODO: migrate to nonce-based CSP via Next.js middleware to eliminate manual
+// hash updates.
+const CLOUDFRONT_MEDIA = "https://d2jf00asb0fe6y.cloudfront.net";
+const CSP = [
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+  "default-src 'self'",
+  "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://cdn.polyfill.io https://*.awswaf.com",
+  "img-src 'self' http: https:",
+  `connect-src 'self' https://dp.la https://*.dp.la ${CLOUDFRONT_MEDIA} *.google-analytics.com *.analytics.google.com *.sentry.io https://*.awswaf.com`,
+  "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
+  "font-src 'self' https://cdnjs.cloudflare.com",
+  `media-src 'self' *.dp.la ${CLOUDFRONT_MEDIA}`,
+  "frame-src 'self' https://www.youtube.com",
+].join("; ");
+
 let config = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "Content-Security-Policy", value: CSP }],
+      },
+    ];
+  },
   async redirects() {
     if (siteEnv === "local") {
       return [];
