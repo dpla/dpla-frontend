@@ -25,7 +25,9 @@ import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -33,8 +35,10 @@ class PostPage extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.content !== this.props.content) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {

@@ -25,15 +25,19 @@ import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.page !== this.props.page) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {

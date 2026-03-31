@@ -20,7 +20,9 @@ import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class Guides extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -28,8 +30,10 @@ class Guides extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.guide !== this.props.guide) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {
