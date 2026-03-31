@@ -144,22 +144,26 @@ export const getServerSideProps = async (context) => {
       return null;
     }
     const itemJson = await itemRes.json();
-    const dataProvider = getDataProviderName(itemJson.docs[0].dataProvider);
+    const doc = itemJson.docs?.[0];
+    if (!doc) {
+      return null;
+    }
+    const dataProvider = getDataProviderName(doc.dataProvider);
     return {
       ...item,
       title: decodeHTMLEntities(item.title.rendered),
       linkHref: `/item/${itemDplaId}`,
       linkAs: `/item/${itemDplaId}`,
-      type: itemJson.docs[0].sourceResource.type,
-      thumbnailUrl: getItemThumbnail(itemJson.docs[0]),
-      sourceUrl: itemJson.docs[0].isShownAt,
-      date: itemJson.docs[0].sourceResource.date,
-      creator: itemJson.docs[0].sourceResource.creator,
-      description: itemJson.docs[0].sourceResource.description,
+      type: doc.sourceResource?.type,
+      thumbnailUrl: getItemThumbnail(doc),
+      sourceUrl: doc.isShownAt,
+      date: doc.sourceResource?.date,
+      creator: doc.sourceResource?.creator,
+      description: doc.sourceResource?.description,
       dataProvider: dataProvider,
-      useDefaultImage: !itemJson.docs[0].object,
+      useDefaultImage: !doc.object,
       itemDplaId: itemDplaId,
-      provider: itemJson.docs[0]?.provider?.name,
+      provider: doc.provider?.name,
     };
   };
 
