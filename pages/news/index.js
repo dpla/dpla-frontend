@@ -42,7 +42,6 @@ function NewsPage({
     `${currentTag ? " under " + currentTag.name : ""}` +
     `${keywords ? " with keywords “" + keywords + "”" : ""}`;
 
-  if (!pageItem) return null;
   return (
     <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
       <FeatureHeader title={TITLE} description={DESCRIPTION} />
@@ -150,6 +149,7 @@ export async function getServerSideProps({ query }) {
   const pageItem = menuJson.items.find(
     (item) => item.post_name.indexOf("news") === 0,
   );
+  if (!pageItem) return { notFound: true };
 
   let authorJson = null;
   if (authorId !== "") {
