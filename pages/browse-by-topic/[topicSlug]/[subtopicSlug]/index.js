@@ -120,11 +120,9 @@ export const getServerSideProps = async (context) => {
     (topic) => topic.term_id === currentSubtopic.term_id,
   );
 
-  // TODO: add support going to next/previous topic
-  const previousSubtopicIdx =
-    currentSubtopicIdx - 1 >= 0 && currentSubtopicIdx - 1;
-  const nextSubtopicIdx =
-    currentSubtopicIdx + 1 < subtopics.length && currentSubtopicIdx + 1;
+  // TODO: add support for cross-topic navigation (advancing past the last/first subtopic into the adjacent topic)
+  const previousSubtopicIdx = currentSubtopicIdx > 0 ? currentSubtopicIdx - 1 : null;
+  const nextSubtopicIdx = currentSubtopicIdx + 1 < subtopics.length ? currentSubtopicIdx + 1 : null;
 
   const itemsRes = await safeFetch(
     `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
@@ -136,43 +134,45 @@ export const getServerSideProps = async (context) => {
 
   const itemsJson = await itemsRes.json();
 
-  const items = await Promise.all(
-    itemsJson.map(async (item) => {
-      const itemDplaId = extractItemId(item.acf.dpla_url);
-      const itemUrl =
-        `${process.env.API_URL}/items/${itemDplaId}` +
-        `?api_key=${process.env.API_KEY}`;
-      const itemRes = await safeFetch(itemUrl);
-      if (!itemRes?.ok) {
-        return null;
-      }
-      const itemJson = await itemRes.json();
-      const dataProvider = getDataProviderName(itemJson.docs[0].dataProvider);
+  const fetchItem = async (item) => {
+    const itemDplaId = extractItemId(item.acf.dpla_url);
+    const itemUrl =
+      `${process.env.API_URL}/items/${itemDplaId}` +
+      `?api_key=${process.env.API_KEY}`;
+    const itemRes = await safeFetch(itemUrl);
+    if (!itemRes?.ok) {
+      return null;
+    }
+    const itemJson = await itemRes.json();
+    const dataProvider = getDataProviderName(itemJson.docs[0].dataProvider);
+    return {
+      ...item,
+      title: decodeHTMLEntities(item.title.rendered),
+      linkHref: `/item/${itemDplaId}`,
+      linkAs: `/item/${itemDplaId}`,
+      type: itemJson.docs[0].sourceResource.type,
+      thumbnailUrl: getItemThumbnail(itemJson.docs[0]),
+      sourceUrl: itemJson.docs[0].isShownAt,
+      date: itemJson.docs[0].sourceResource.date,
+      creator: itemJson.docs[0].sourceResource.creator,
+      description: itemJson.docs[0].sourceResource.description,
+      dataProvider: dataProvider,
+      useDefaultImage: !itemJson.docs[0].object,
+      itemDplaId: itemDplaId,
+      provider: itemJson.docs[0]?.provider?.name,
+    };
+  };
 
-      return {
-        ...item,
-        title: decodeHTMLEntities(item.title.rendered),
-        linkHref: `/item/${itemDplaId}`,
-        linkAs: `/item/${itemDplaId}`,
-        type: itemJson.docs[0].sourceResource.type,
-        thumbnailUrl: getItemThumbnail(itemJson.docs[0]),
-        sourceUrl: itemJson.docs[0].isShownAt,
-        date: itemJson.docs[0].sourceResource.date,
-        creator: itemJson.docs[0].sourceResource.creator,
-        description: itemJson.docs[0].sourceResource.description,
-        dataProvider: dataProvider,
-        useDefaultImage: !itemJson.docs[0].object,
-        itemDplaId: itemDplaId,
-        provider:
-          itemJson.docs &&
-          itemJson.docs[0] &&
-          itemJson.docs[0].provider &&
-          itemJson.docs[0].provider.name,
-      };
-    }),
-  );
+  // Fetch in batches of 20 to avoid saturating the ES concurrency pool.
+  // The DPLA API has no multi-ID endpoint, so individual fetches are required.
+  const BATCH_SIZE = 20;
+  const allItems = [];
+  for (let i = 0; i < itemsJson.length; i += BATCH_SIZE) {
+    const batch = await Promise.all(itemsJson.slice(i, i + BATCH_SIZE).map(fetchItem));
+    allItems.push(...batch);
+  }
 
-  const filteredItems = items.filter((item) => item);
+  const filteredItems = allItems.filter((item) => item);
 
   const props = washObject({
     topic: currentTopic,
