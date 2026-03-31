@@ -44,6 +44,7 @@ class AboutMenuPage extends React.Component {
   render() {
     const { router, content, items, breadcrumbs, pageTitle, pageDescription } =
       this.props;
+    if (!breadcrumbs || !content) return null;
 
     return (
       <MainLayout
