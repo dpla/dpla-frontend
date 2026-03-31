@@ -9,7 +9,7 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSR, checkResponseForSSRSafe } from "lib/safeFetch";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
 import {
@@ -40,7 +40,7 @@ function NewsPage({
   const resultSummary =
     `${author ? " by " + author.name : ""}` +
     `${currentTag ? " under " + currentTag.name : ""}` +
-    `${keywords ? " with keywords “" + keywords + "”" : ""}`;
+    `${keywords ? " with keywords "" + keywords + """ : ""}`;
 
   return (
     <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
@@ -143,7 +143,7 @@ export async function getServerSideProps({ query }) {
       : Promise.resolve(null),
   ]);
 
-  const menuError = checkResponseForSSR(menuResponse);
+  const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
   if (menuError) return menuError;
   const menuJson = await menuResponse.json();
   const pageItem = menuJson.items.find(
@@ -152,7 +152,7 @@ export async function getServerSideProps({ query }) {
 
   let authorJson = null;
   if (authorId !== "") {
-    const authorError = checkResponseForSSR(authorRes);
+    const authorError = checkResponseForSSRSafe(authorRes, "news author");
     if (authorError) return authorError;
     authorJson = await authorRes.json();
   }
