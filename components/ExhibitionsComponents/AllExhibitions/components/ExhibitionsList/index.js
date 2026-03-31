@@ -28,6 +28,7 @@ function Exhibition({exhibition}) {
 }
 
 function ExhibitionsList({exhibitions}) {
+    if (!Array.isArray(exhibitions)) return null;
     return (
         <div className={`${css.wrapper} ${utils.siteMaxWidth}`}>
             <div className={css.row}>
