@@ -16,6 +16,7 @@ import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class Guides extends React.Component {
   refreshExternalLinks() {
@@ -109,7 +110,7 @@ export async function getServerSideProps(context) {
       title: guideJson.title.rendered,
       color: guideJson.acf.color,
       bannerImage: guideJson.acf.banner_image,
-      content: guideJson.content.rendered,
+      content: upgradeWordPressUrls(guideJson.content.rendered),
     },
   });
 

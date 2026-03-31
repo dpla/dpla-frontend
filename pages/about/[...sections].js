@@ -26,6 +26,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -155,7 +156,13 @@ export const getServerSideProps = async (context) => {
   }
 
   const props = washObject({
-    content: pageJson,
+    content: {
+      ...pageJson,
+      content: {
+        ...pageJson.content,
+        rendered: upgradeWordPressUrls(pageJson.content?.rendered),
+      },
+    },
     items: json.items,
     breadcrumbs: breadcrumbs,
     pageTitle: pageItem.title,

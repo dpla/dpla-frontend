@@ -21,6 +21,7 @@ import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
+import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -163,7 +164,13 @@ export async function getServerSideProps(context) {
   }
 
   const props = washObject({
-    page: pageJson,
+    page: {
+      ...pageJson,
+      content: {
+        ...pageJson.content,
+        rendered: upgradeWordPressUrls(pageJson.content?.rendered),
+      },
+    },
     items: menuItems,
     pageTitle: pageItem.title,
     pageDescription: pageDescription,
