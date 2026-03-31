@@ -5,6 +5,7 @@ import css from "./Topics.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
 function Topics({ topics }) {
+  if (!Array.isArray(topics)) return null;
   return (
     <div className={`${css.topicsWrapper} ${utils.container}`}>
       <p className={css.topicsIntro}>
