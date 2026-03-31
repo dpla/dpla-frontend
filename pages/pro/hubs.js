@@ -35,6 +35,7 @@ class HubsPage extends React.Component {
 
   render() {
     const { page, pageTitle, news } = this.props;
+    if (!page?.acf) return null;
     return (
       <MainLayout pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main">
@@ -60,7 +61,7 @@ class HubsPage extends React.Component {
               className={`${css.tileSectionWrapper} ${utils.siteMaxWidth}`}
             >
               <ul className={css.sectionList}>
-                {page.acf.sections.map((section, index) => {
+                {Array.isArray(page.acf.sections) && page.acf.sections.map((section, index) => {
                   return (
                     <li key={index} className={css.section}>
                       <h2 className={css.sectionTitle}>

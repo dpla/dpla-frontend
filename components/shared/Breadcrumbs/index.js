@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import css from "./Breadcrumbs.module.scss";
 
 function Breadcrumbs({ breadcrumbs }) {
+  if (!Array.isArray(breadcrumbs)) return null;
   return (
     <div className={css.breadcrumbs}>
       {breadcrumbs.map((breadcrumb, idx) => {

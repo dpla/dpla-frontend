@@ -10,9 +10,9 @@ class Accordion extends React.Component {
   constructor(props) {
     super(props);
     // first save the original items
-    const originalItems = props.items.map((item) => {
-      return { ...item, active: true };
-    });
+    const originalItems = Array.isArray(props.items)
+      ? props.items.map((item) => ({ ...item, active: true }))
+      : [];
     // activate all of them
     this.state = { items: originalItems };
   }
@@ -23,11 +23,11 @@ class Accordion extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.items !== this.props.items) {
+    if (prevProps.items !== this.props.items && Array.isArray(this.props.items)) {
       this.setState({
         items: this.props.items.map((item, i) => ({
           ...item,
-          active: prevState.items[i].active,
+          active: prevState.items[i]?.active ?? true,
         })),
       });
     }

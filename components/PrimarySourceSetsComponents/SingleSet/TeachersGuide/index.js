@@ -20,6 +20,7 @@ class TeachersGuide extends React.Component {
 
   render() {
     const { router, teachingGuide, isPrintable, setName } = this.props;
+    if (!teachingGuide) return null;
     return (
       <div
         className={css.wrapper}
@@ -40,9 +41,10 @@ class TeachersGuide extends React.Component {
                     }}
                   >
                     {
-                      teachingGuide.hasPart.find(
-                        (item) => item.name === "Questions",
-                      ).text
+                      Array.isArray(teachingGuide.hasPart) &&
+                        teachingGuide.hasPart.find(
+                          (item) => item.name === "Questions",
+                        )?.text
                     }
                   </Markdown>
                   <h3>Classroom activities</h3>
@@ -54,9 +56,10 @@ class TeachersGuide extends React.Component {
                     }}
                   >
                     {
-                      teachingGuide.hasPart.find(
-                        (item) => item.name === "Activity",
-                      ).text
+                      Array.isArray(teachingGuide.hasPart) &&
+                        teachingGuide.hasPart.find(
+                          (item) => item.name === "Activity",
+                        )?.text
                     }
                   </Markdown>
                 </div>
@@ -91,7 +94,7 @@ class TeachersGuide extends React.Component {
             <div className={`${utils.colXs12} ${utils.colMd4} ${css.sidebar}`}>
               <div className={`${css.teacherTools} ${css.sidebarSection}`}>
                 <h3 className={css.sidebarHeader}>Created By</h3>
-                {teachingGuide.author.map((author) => (
+                {Array.isArray(teachingGuide.author) && teachingGuide.author.map((author) => (
                   <Markdown
                     key={author.name}
                     className={css.sidebarSection}

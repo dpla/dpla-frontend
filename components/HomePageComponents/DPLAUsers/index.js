@@ -8,6 +8,7 @@ import css from "./DPLAUsers.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
 function DPLAUsers({ guides }) {
+  if (!Array.isArray(guides)) return null;
   return (
     <div className={css.wrapper} data-cy="guides">
       <div className={`${css.DPLAUsers} ${utils.siteMaxWidth}`}>

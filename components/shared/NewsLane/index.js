@@ -9,6 +9,7 @@ import utils from "stylesheets/utils.module.scss";
 import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
 function NewsLane({ title, items }) {
+  if (!Array.isArray(items)) return null;
   return (
     <div className={css.wrapper} data-cy="news">
       <div className={`${css.content} ${utils.siteMaxWidth}`}>

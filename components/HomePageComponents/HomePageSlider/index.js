@@ -18,6 +18,7 @@ function HomePageSlider({
   title,
   theme,
 }) {
+  if (!Array.isArray(items)) return null;
   return (
     <div
       className={`${css.wrapper} ${theme === "blue" ? css.theme_blue : ""} `}

@@ -17,6 +17,7 @@ import { washObject } from "lib/washObject";
 
 function Guides(props) {
   const { guides, sidebarItems, activeItemId } = props;
+  if (!Array.isArray(guides)) return null;
   return (
     <MainLayout pageTitle={TITLE}>
       <div

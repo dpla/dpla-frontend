@@ -108,7 +108,8 @@ class Viewer extends React.Component {
     if (fullPath !== this.lastTrackedPath) {
       // track exhibit item view event.
       const subsection = this.props.subsection;
-      const pageBlocks = subsection.page_blocks;
+      const pageBlocks = subsection?.page_blocks;
+      if (!Array.isArray(pageBlocks)) return;
       const activeBlockIndex = pageBlocks.findIndex((block) => block.isActive);
       const activeBlock = pageBlocks[activeBlockIndex];
 
@@ -130,6 +131,7 @@ class Viewer extends React.Component {
 
   render() {
     const { subsection, router } = this.props;
+    if (!subsection || !Array.isArray(subsection.page_blocks)) return null;
     const pageBlocks = subsection.page_blocks;
     const pageWithText = pageBlocks.find((block) => block.text);
     const text = pageWithText ? pageWithText.text : "";
