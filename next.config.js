@@ -42,7 +42,7 @@ const CSP = [
   "frame-ancestors 'self'",
   "form-action 'self'",
   "default-src 'self'",
-  "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://cdn.polyfill.io https://*.awswaf.com",
+  "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://*.awswaf.com",
   "img-src 'self' http: https:",
   `connect-src 'self' https://dp.la https://*.dp.la ${CLOUDFRONT_MEDIA} *.google-analytics.com *.analytics.google.com *.sentry.io https://*.awswaf.com`,
   "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
@@ -53,6 +53,9 @@ const CSP = [
 
 let config = {
   async headers() {
+    if (process.env.NODE_ENV !== "production") {
+      return [];
+    }
     return [
       {
         source: "/:path*",
