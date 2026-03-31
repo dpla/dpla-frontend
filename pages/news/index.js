@@ -9,6 +9,7 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
+import { safeFetch, checkResponseForSSR, checkResponseForSSRSafe } from "lib/safeFetch";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
 import {
@@ -130,30 +131,29 @@ export async function getServerSideProps({ query }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
-  // sidebar menu fetch
-  const menuResponse = await fetch(
-    siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
-  );
-  if (!menuResponse.ok) {
-    return { notFound: true };
-  }
+  const authorId =
+    query.author && /[0-9]+/.test(query.author) ? query.author : "";
+  const authorFilter = authorId !== "" ? `&author=${authorId}` : "";
+
+  // fetch menu and optional author info in parallel (independent requests)
+  const [menuResponse, authorRes] = await Promise.all([
+    safeFetch(siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT),
+    authorId !== ""
+      ? safeFetch(`${wordPressUrl}/wp-json/wp/v2/users/${authorId}`)
+      : Promise.resolve(null),
+  ]);
+
+  const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
+  if (menuError) return menuError;
   const menuJson = await menuResponse.json();
   const pageItem = menuJson.items.find(
     (item) => item.post_name.indexOf("news") === 0,
   );
 
-  // get author info
-  const authorId =
-    query.author && /[0-9]+/.test(query.author) ? query.author : "";
-  const authorFilter = authorId !== "" ? `&author=${authorId}` : "";
   let authorJson = null;
   if (authorId !== "") {
-    const authorRes = await fetch(
-      `${wordPressUrl}/wp-json/wp/v2/users/${authorId}`,
-    );
-    if (!authorRes.ok) {
-      return { notFound: true };
-    }
+    const authorError = checkResponseForSSRSafe(authorRes, "news author");
+    if (authorError) return authorError;
     authorJson = await authorRes.json();
   }
 
@@ -174,7 +174,11 @@ export async function getServerSideProps({ query }) {
   while (error && retries < maxRetries) {
     const tagFilter = tag ? `&tags=${tag.id}` : "";
     const url = `${NEWS_ENDPOINT}?per_page=${DEFAULT_PAGE_SIZE}&page=${page}${tagFilter}${keywords}${authorFilter}`;
-    const newsRes = await fetch(url);
+    const newsRes = await safeFetch(url);
+    // Only guard against network errors here — WP returns HTTP 400 for invalid
+    // page numbers with a parseable JSON body, which the retry loop handles by
+    // resetting to page 1. checkResponseForSSR would short-circuit to notFound.
+    if (!newsRes) throw new Error("Upstream fetch failed: network error");
     newsItems = await newsRes.json();
     newsCount = newsRes.headers.get("X-WP-Total");
     newsPageCount = newsRes.headers.get("X-WP-TotalPages");
