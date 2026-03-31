@@ -40,7 +40,7 @@ function NewsPage({
   const resultSummary =
     `${author ? " by " + author.name : ""}` +
     `${currentTag ? " under " + currentTag.name : ""}` +
-    `${keywords ? " with keywords "" + keywords + """ : ""}`;
+    `${keywords ? " with keywords “" + keywords + "”" : ""}`;
 
   return (
     <MainLayout pageTitle={pageItem.title} seoType={SEO_TYPE}>
