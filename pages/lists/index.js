@@ -17,10 +17,15 @@ const ListsPage = () => {
 
   useEffect( () => {
     const fetchLists = async () => {
-      const fetchedLists = await getLocalForageLists();
-      fetchedLists.sort((a, b) => b.createdAt - a.createdAt);
-      setLists(fetchedLists);
-      setInitialized(true);
+      try {
+        const fetchedLists = await getLocalForageLists();
+        fetchedLists.sort((a, b) => b.createdAt - a.createdAt);
+        setLists(fetchedLists);
+      } catch (err) {
+        console.error("fetchLists error", err);
+      } finally {
+        setInitialized(true);
+      }
     };
 
     if (!initialized) fetchLists();
