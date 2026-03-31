@@ -39,6 +39,8 @@ function redirect(source, dest, permanent = true) {
 // hash updates.
 const CLOUDFRONT_MEDIA = "https://d2jf00asb0fe6y.cloudfront.net";
 const CSP = [
+  "base-uri 'self'",
+  "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self'",
   "default-src 'self'",
