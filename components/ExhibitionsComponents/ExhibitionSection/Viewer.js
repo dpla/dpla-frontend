@@ -110,8 +110,8 @@ class Viewer extends React.Component {
       const subsection = this.props.subsection;
       const pageBlocks = subsection?.page_blocks;
       if (!Array.isArray(pageBlocks)) return;
-      const activeBlockIndex = pageBlocks.findIndex((block) => block.isActive);
-      const activeBlock = pageBlocks[activeBlockIndex];
+      const activeBlock = pageBlocks.find((block) => block?.isActive);
+      if (!activeBlock) return;
 
       const dplaItemJson = activeBlock.dplaItemJson;
       const dplaItem = parseDplaItemRecord(dplaItemJson);
@@ -137,6 +137,7 @@ class Viewer extends React.Component {
     const text = pageWithText ? pageWithText.text : "";
     const activeBlockIndex = pageBlocks.findIndex((block) => block.isActive);
     const activeBlock = pageBlocks[activeBlockIndex];
+    if (!activeBlock) return null;
     const previousBlock =
       activeBlockIndex - 1 >= 0 ? pageBlocks[activeBlockIndex - 1] : null;
     const nextBlock =

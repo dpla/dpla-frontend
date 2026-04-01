@@ -92,15 +92,17 @@ class HubsPage extends React.Component {
               </ul>
             </section>
           </div>
-          <FullPageWidthBlock
-            className={css.sectionWrapper}
-            title={page.acf.call_to_action.title}
-            text={page.acf.call_to_action.text}
-            buttonText={page.acf.call_to_action.button_text}
-            buttonUrl={page.acf.call_to_action.button_url}
-            imageSrc={page.acf.call_to_action.image}
-            imageCaption={page.acf.call_to_action.image_credit}
-          />
+          {page.acf.call_to_action && (
+            <FullPageWidthBlock
+              className={css.sectionWrapper}
+              title={page.acf.call_to_action.title}
+              text={page.acf.call_to_action.text}
+              buttonText={page.acf.call_to_action.button_text}
+              buttonUrl={page.acf.call_to_action.button_url}
+              imageSrc={page.acf.call_to_action.image}
+              imageCaption={page.acf.call_to_action.image_credit}
+            />
+          )}
           {news && <NewsLane title="Member News" items={news} />}
         </div>
       </MainLayout>
