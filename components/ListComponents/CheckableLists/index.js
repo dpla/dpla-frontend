@@ -58,7 +58,6 @@ function CheckableLists({itemId}) {
       isCreatingRef.current = true;
       const uuid = createUUID();
       const createdAt = Date.now();
-      const newLists = structuredClone(state.lists);
       const newList = {
         uuid: uuid,
         name: listName,
@@ -68,19 +67,19 @@ function CheckableLists({itemId}) {
         updatedAt: createdAt
       };
       await setLocalForageItem(uuid, newList);
-      newLists.push(newList);
-      newLists.sort((a, b) => b.createdAt - a.createdAt);
-      const checkedLists = [...state.checkedLists, uuid];
-      setState((prevState) => ({
-        ...prevState,
-        showMessage: "List created and item added",
-        checkedLists: checkedLists,
-        lists: newLists,
-      }));
+      setState((prevState) => {
+        const lists = [...prevState.lists, newList].sort((a, b) => b.createdAt - a.createdAt);
+        return {
+          ...prevState,
+          showMessage: "List created and item added",
+          checkedLists: [...prevState.checkedLists, uuid],
+          lists,
+        };
+      });
     } finally {
       isCreatingRef.current = false;
     }
-  }, [state.checkedLists, state.lists, itemId]);
+  }, [itemId]);
 
   const onCheckList = async (e) => {
     const element = e.target;
@@ -120,6 +119,7 @@ function CheckableLists({itemId}) {
       lists.push(list);
       lists.sort((a, b) => b.createdAt - a.createdAt);
       return {
+        ...prevState,
         checkedLists: checkedListsUpdater(prevState.checkedLists),
         lists,
         showMessage: message,
