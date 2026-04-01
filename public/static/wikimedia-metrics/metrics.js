@@ -50,6 +50,11 @@ function initMetrics() {
     loadingBanner.textContent = 'Loading category data…';
     wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
 
+    // Disable form buttons so native submission cannot fire while event
+    // handlers are not yet attached (they are wired inside .then()).
+    const formButtons = wrapper.querySelectorAll('form button');
+    formButtons.forEach(btn => { btn.disabled = true; });
+
     fetch(ALLOW_LIST_URL)
         .then(response => {
             if (!response.ok) throw new Error(`GitLab API returned HTTP ${response.status}`);
@@ -294,7 +299,8 @@ function initMetrics() {
                 institutions.forEach(inst => { addPanel(inst, false); });
             }
 
-            // All event listeners attached — safe to remove the loading banner.
+            // All event listeners attached — re-enable forms and remove the loading banner.
+            formButtons.forEach(btn => { btn.disabled = false; });
             loadingBanner.remove();
 
             // ── Dispatch ─────────────────────────────────────────────────────────────

@@ -56,7 +56,7 @@ function parseCsp(cspString) {
 
 // ── 2. Match a hostname against CSP source patterns ─────────────────────────
 
-function hostnameAllowed(hostname, patterns) {
+function hostnameAllowed(hostname, scheme, patterns) {
   for (const pat of patterns) {
     // Skip keyword tokens and hash/nonce values
     if (
@@ -67,12 +67,29 @@ function hostnameAllowed(hostname, patterns) {
     )
       continue;
 
-    // Normalise: strip scheme to get the host pattern
-    const hostPat = pat.replace(/^https?:\/\//, "");
+    // Detect explicit scheme in the pattern and split it off.
+    let patternScheme = null;
+    let hostPat = pat;
+    if (pat.startsWith("https://")) {
+      patternScheme = "https";
+      hostPat = pat.slice(8);
+    } else if (pat.startsWith("http://")) {
+      patternScheme = "http";
+      hostPat = pat.slice(7);
+    }
+
+    // When the pattern carries an explicit scheme, enforce it.
+    // https:// patterns accept both https and http (upgrade-insecure-requests
+    // environments); http:// patterns are strict and only match http.
+    if (patternScheme !== null) {
+      if (patternScheme === "http" && scheme !== "http") continue;
+      // patternScheme === "https" accepts both — no continue needed
+    }
 
     if (hostPat.startsWith("*.")) {
+      // *.example.com matches only subdomains, not the apex domain itself.
       const base = hostPat.slice(2);
-      if (hostname === base || hostname.endsWith("." + base)) return true;
+      if (hostname.endsWith("." + base)) return true;
     } else {
       if (hostname === hostPat) return true;
     }
@@ -162,9 +179,11 @@ const findings = scanFiles();
 // Deduplicate by directive+hostname so each domain is reported once.
 const seen = new Map();
 for (const { file, line, url, directive } of findings) {
-  let hostname;
+  let hostname, scheme;
   try {
-    hostname = new URL(url).hostname;
+    const parsed = new URL(url);
+    hostname = parsed.hostname;
+    scheme = parsed.protocol.replace(":", ""); // "https" or "http"
   } catch {
     continue;
   }
@@ -174,6 +193,7 @@ for (const { file, line, url, directive } of findings) {
 
   const allowed = hostnameAllowed(
     hostname,
+    scheme,
     directives.get(directive) ?? new Set()
   );
   seen.set(key, allowed);
