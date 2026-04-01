@@ -59,6 +59,7 @@ export default function ListView({
     lists: [],
     checkboxShown: false,
     showMessage: "",
+    isUpdating: false,
   });
 
   const [state, setState] = useState(initialState());
@@ -189,7 +190,7 @@ export default function ListView({
       .map((item) => {
         const realId = item.itemDplaId || item.id;
         const thumbnailUrl =
-          !item.thumbnailUrl.includes("placeholderImages")
+          !item.thumbnailUrl?.includes("placeholderImages")
             ? item.thumbnailUrl
             : "";
         const title = item.title
@@ -293,9 +294,13 @@ export default function ListView({
     if (hash[id]) return;
     hash[id] = id;
     isUpdatingRef.current = true;
+    setState((prev) => ({ ...prev, isUpdating: true }));
     updateList(state.currentList, hash, "Item added")
       .catch((e) => console.error("Error updating list", e))
-      .finally(() => { isUpdatingRef.current = false; });
+      .finally(() => {
+        isUpdatingRef.current = false;
+        setState((prev) => ({ ...prev, isUpdating: false }));
+      });
   };
 
   const removeCell = (id) => {
@@ -306,9 +311,13 @@ export default function ListView({
       ? "Item removed. Uncheck to undo."
       : "Item removed";
     isUpdatingRef.current = true;
+    setState((prev) => ({ ...prev, isUpdating: true }));
     updateList(state.currentList, hash, message)
       .catch((err) => console.error("Error updating list:", err))
-      .finally(() => { isUpdatingRef.current = false; });
+      .finally(() => {
+        isUpdatingRef.current = false;
+        setState((prev) => ({ ...prev, isUpdating: false }));
+      });
   };
 
   const listCount = state.lists.length;
@@ -456,7 +465,7 @@ export default function ListView({
                     checked={
                       state?.currentList?.selectedHash?.[realId] !== undefined
                     }
-                    disabled={shouldDisable}
+                    disabled={shouldDisable || state.isUpdating}
                     key={`checkbox-${realId}`}
                     id={`checkbox-${realId}`}
                   />
@@ -479,6 +488,7 @@ export default function ListView({
                     checked={
                       state?.currentList?.selectedHash[realId] === undefined
                     }
+                    disabled={state.isUpdating}
                     key={`checkbox-remove-${realId}`}
                     id={`checkbox-remove-${realId}`}
                   />{" "}
