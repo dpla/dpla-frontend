@@ -18,6 +18,7 @@ function CheckableLists({itemId}) {
     checkedLists: [],
     lists: [],
     initialized: false,
+    updatingLists: {},
   })
   const [state, setState] = React.useState(initialState());
   const isCreatingRef = useRef(false);
@@ -101,11 +102,17 @@ function CheckableLists({itemId}) {
       if (!theList) return;
       if (theList.selectedHash[itemId]) return;
       theList.selectedHash[itemId] = itemId;
+      setState((prev) => ({ ...prev, updatingLists: { ...prev.updatingLists, [id]: true } }));
       await updateList(id, theList,
         (prev) => prev.includes(id) ? prev : [...prev, id],
         "Item added");
     } finally {
       updatingListsRef.current.delete(id);
+      setState((prev) => {
+        const updatingLists = { ...prev.updatingLists };
+        delete updatingLists[id];
+        return { ...prev, updatingLists };
+      });
     }
   }
 
@@ -117,11 +124,17 @@ function CheckableLists({itemId}) {
       if (!theList) return;
       if (!theList.selectedHash[itemId]) return;
       delete theList.selectedHash[itemId];
+      setState((prev) => ({ ...prev, updatingLists: { ...prev.updatingLists, [id]: true } }));
       await updateList(id, theList,
         (prev) => { const i = prev.indexOf(id); return i === -1 ? prev : [...prev.slice(0, i), ...prev.slice(i + 1)]; },
         "Item removed");
     } finally {
       updatingListsRef.current.delete(id);
+      setState((prev) => {
+        const updatingLists = { ...prev.updatingLists };
+        delete updatingLists[id];
+        return { ...prev, updatingLists };
+      });
     }
   }
 
@@ -146,7 +159,7 @@ function CheckableLists({itemId}) {
       <ul className={css.listOfLists}>
         {state.lists.map((l) => {
           const isChecked = state.checkedLists.indexOf(l.uuid) !== -1;
-          const shouldDisable = l.count > 50 && !isChecked;
+          const shouldDisable = (l.count > 50 && !isChecked) || !!state.updatingLists[l.uuid];
           return (
             <ListCheckbox
               key={`l_${l.uuid}`}
@@ -175,3 +188,4 @@ function CheckableLists({itemId}) {
 }
 
 export default CheckableLists;
+
