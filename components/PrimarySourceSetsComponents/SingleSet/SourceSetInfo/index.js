@@ -174,7 +174,7 @@ class SourceSetInfo extends React.Component {
                 <div className={css.citeButton}>
                   <CiteButton
                     creator={authorList}
-                    displayDate={set.dateCreated ? new Date(set.dateCreated).getFullYear() : null}
+                    displayDate={set.dateCreated ? new Date(set.dateCreated).getUTCFullYear() : null}
                     sourceUrl={currentFullUrl}
                     className={css.citeButton}
                     toCiteText="set"

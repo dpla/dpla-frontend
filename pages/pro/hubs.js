@@ -72,7 +72,7 @@ class HubsPage extends React.Component {
                         <a href={`${section.url}`}>{section.title}</a>
                       </h2>
                       <p className={css.sectionText}>{section.text}</p>
-                      {section.quicklinks && (
+                      {Array.isArray(section.quicklinks) && section.quicklinks.length > 0 && (
                         <ul className={css.sectionQuicklinks}>
                           {section.quicklinks.map((link, idx) => {
                             return (
