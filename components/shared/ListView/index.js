@@ -8,7 +8,6 @@ import Alert from "shared/Alert";
 import {
   bindLinkEvent,
   createUUID,
-  deepCopyObject,
   joinIfArray,
   truncateString,
 } from "lib";
@@ -91,7 +90,7 @@ export default function ListView({
         const str = link.href;
         const item = items.filter((i) => {
           const suffix = i.linkAs;
-          return str.indexOf(suffix, str.length - suffix.length) !== -1;
+          return str.endsWith(suffix);
         })[0];
         if (item) {
           const gaEvent = {
@@ -151,7 +150,7 @@ export default function ListView({
           isCreatingRef.current = true;
           const uuid = createUUID();
           const createdAt = Date.now();
-          const newLists = deepCopyObject(state.lists);
+          const newLists = structuredClone(state.lists);
           const newList = {
             uuid,
             name: listName,
@@ -187,7 +186,7 @@ export default function ListView({
       .map((item) => {
         const realId = item.itemDplaId || item.id;
         const thumbnailUrl =
-          item.thumbnailUrl.indexOf("placeholderImages") === -1
+          !item.thumbnailUrl.includes("placeholderImages")
             ? item.thumbnailUrl
             : "";
         const title = item.title
@@ -242,7 +241,6 @@ export default function ListView({
       setState((prevState) => ({
         ...prevState,
         currentList: null,
-        //selectedHash: {},
         checkboxShown: false,
       }));
     } else {
@@ -253,7 +251,6 @@ export default function ListView({
         return {
           ...prevState,
           currentList: currentList,
-          //selectedHash: currentList.selectedHash,
           checkboxShown: true,
         };
       });
@@ -261,13 +258,12 @@ export default function ListView({
   }, []);
 
   const updateList = async (hash, message) => {
-    const prevList = deepCopyObject(state.currentList);
     const newList = {
-      ...prevList,
+      ...state.currentList,
       updatedAt: Date.now(),
       selectedHash: hash,
     };
-    const newLists = deepCopyObject(state.lists).filter(
+    const newLists = state.lists.filter(
       (list) => list.uuid !== newList.uuid,
     );
     newLists.push(newList);
@@ -295,8 +291,8 @@ export default function ListView({
   };
 
   const addCell = (id) => {
-    const hash = deepCopyObject(state.currentList.selectedHash);
-    if (hash[id]) return; // check if item already selected
+    const hash = { ...state.currentList.selectedHash };
+    if (hash[id]) return;
     hash[id] = id;
     updateList(hash, "Item added").catch((e) =>
       console.error("Error updating list", e),
@@ -304,7 +300,7 @@ export default function ListView({
   };
 
   const removeCell = (id) => {
-    const hash = deepCopyObject(state.currentList.selectedHash);
+    const hash = { ...state.currentList.selectedHash };
     delete hash[id];
     const message = state.readOnly
       ? "Item removed. Uncheck to undo."
