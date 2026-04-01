@@ -17,6 +17,7 @@ function HomeUser({
   news,
   content,
 }) {
+  if (!content?.acf) return null;
   return (
     <div className={css.wrapper}>
       <HomeHero

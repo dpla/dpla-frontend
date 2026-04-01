@@ -26,10 +26,13 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -37,13 +40,16 @@ class AboutMenuPage extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.content !== this.props.content) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {
     const { router, content, items, breadcrumbs, pageTitle, pageDescription } =
       this.props;
+    if (!breadcrumbs || !content) return null;
 
     return (
       <MainLayout
@@ -155,7 +161,13 @@ export const getServerSideProps = async (context) => {
   }
 
   const props = washObject({
-    content: pageJson,
+    content: {
+      ...pageJson,
+      content: {
+        ...pageJson.content,
+        rendered: upgradeWordPressUrls(pageJson.content?.rendered),
+      },
+    },
     items: json.items,
     breadcrumbs: breadcrumbs,
     pageTitle: pageItem.title,
