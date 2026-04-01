@@ -95,34 +95,33 @@ function CheckableLists({itemId}) {
 
   const addItemToList = async (id) => {
     const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-    const checkedLists = [...state.checkedLists];
-    if (checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
-    checkedLists.push(id);
+    if (state.checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
     theList.selectedHash[itemId] = itemId;
-    await updateList(id, theList, checkedLists, "Item added");
+    await updateList(id, theList,
+      (prev) => prev.includes(id) ? prev : [...prev, id],
+      "Item added");
   }
 
   const removeItemFromList = async (id) => {
     const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-    const checkedLists = [...state.checkedLists];
-    if (checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
-    checkedLists.splice(checkedLists.indexOf(id), 1);
+    if (state.checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
     delete theList.selectedHash[itemId];
-    await updateList(id, theList, checkedLists, "Item removed");
+    await updateList(id, theList,
+      (prev) => { const i = prev.indexOf(id); return i === -1 ? prev : [...prev.slice(0, i), ...prev.slice(i + 1)]; },
+      "Item removed");
   }
 
-  const updateList = async (uuid, list, checkedLists, message) => {
+  const updateList = async (uuid, list, checkedListsUpdater, message) => {
     list.updatedAt = Date.now();
     list.count = Object.keys(list.selectedHash).length;
     await setLocalForageItem(uuid, list);
-
     setState((prevState) => {
       const lists = prevState.lists.filter((l) => l.uuid !== uuid);
       lists.push(list);
       lists.sort((a, b) => b.createdAt - a.createdAt);
       return {
-        checkedLists: checkedLists,
-        lists: lists,
+        checkedLists: checkedListsUpdater(prevState.checkedLists),
+        lists,
         showMessage: message,
       };
     });
