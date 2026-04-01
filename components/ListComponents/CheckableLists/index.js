@@ -21,6 +21,7 @@ function CheckableLists({itemId}) {
   })
   const [state, setState] = React.useState(initialState());
   const isCreatingRef = useRef(false);
+  const updatingListsRef = useRef(new Set());
 
   useEffect(() => {
     async function init() {
@@ -93,21 +94,33 @@ function CheckableLists({itemId}) {
   };
 
   const addItemToList = async (id) => {
-    const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-    if (state.checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
-    theList.selectedHash[itemId] = itemId;
-    await updateList(id, theList,
-      (prev) => prev.includes(id) ? prev : [...prev, id],
-      "Item added");
+    if (updatingListsRef.current.has(id)) return;
+    try {
+      updatingListsRef.current.add(id);
+      const theList = structuredClone(state.lists.find((l) => l.uuid === id));
+      if (state.checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
+      theList.selectedHash[itemId] = itemId;
+      await updateList(id, theList,
+        (prev) => prev.includes(id) ? prev : [...prev, id],
+        "Item added");
+    } finally {
+      updatingListsRef.current.delete(id);
+    }
   }
 
   const removeItemFromList = async (id) => {
-    const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-    if (state.checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
-    delete theList.selectedHash[itemId];
-    await updateList(id, theList,
-      (prev) => { const i = prev.indexOf(id); return i === -1 ? prev : [...prev.slice(0, i), ...prev.slice(i + 1)]; },
-      "Item removed");
+    if (updatingListsRef.current.has(id)) return;
+    try {
+      updatingListsRef.current.add(id);
+      const theList = structuredClone(state.lists.find((l) => l.uuid === id));
+      if (state.checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
+      delete theList.selectedHash[itemId];
+      await updateList(id, theList,
+        (prev) => { const i = prev.indexOf(id); return i === -1 ? prev : [...prev.slice(0, i), ...prev.slice(i + 1)]; },
+        "Item removed");
+    } finally {
+      updatingListsRef.current.delete(id);
+    }
   }
 
   const updateList = async (uuid, list, checkedListsUpdater, message) => {
