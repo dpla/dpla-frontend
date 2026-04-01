@@ -124,7 +124,7 @@ function scanFiles() {
     },
     // <Script src="https://..." (Next.js Script component)
     {
-      re: /<Script[^>]+\bsrc=["'{]+(https?:\/\/[^'"`}\s>]+)/g,
+      re: /<Script[^>]+\bsrc=["'](https?:\/\/[^'"`}\s>]+)/g,
       directive: "script-src",
     },
     // <script src="https://..."
