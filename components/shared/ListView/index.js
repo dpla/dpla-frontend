@@ -261,25 +261,16 @@ export default function ListView({
   }, []);
 
   const updateList = async (hash, message) => {
-    const newList = {
-      ...state.currentList,
-      updatedAt: Date.now(),
-      selectedHash: hash,
-      count: Object.keys(hash).length,
-    };
-    await setLocalForageItem(newList.uuid, newList);
+    const { uuid } = state.currentList;
+    const updatedAt = Date.now();
+    const count = Object.keys(hash).length;
+    await setLocalForageItem(uuid, { ...state.currentList, updatedAt, selectedHash: hash, count });
     setState((prevState) => {
-      const newLists = prevState.lists.filter(
-        (list) => list.uuid !== newList.uuid,
-      );
+      const newList = { ...prevState.currentList, updatedAt, selectedHash: hash, count };
+      const newLists = prevState.lists.filter((list) => list.uuid !== uuid);
       newLists.push(newList);
       newLists.sort((a, b) => b.createdAt - a.createdAt);
-      return {
-        ...prevState,
-        currentList: newList,
-        lists: newLists,
-        showMessage: message,
-      };
+      return { ...prevState, currentList: newList, lists: newLists, showMessage: message };
     });
   };
   // used for adding an item to a list in search and browse
