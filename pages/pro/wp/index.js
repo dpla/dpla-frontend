@@ -21,18 +21,23 @@ import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
+import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class ProMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
   componentDidMount() {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.page !== this.props.page) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {
@@ -163,7 +168,13 @@ export async function getServerSideProps(context) {
   }
 
   const props = washObject({
-    page: pageJson,
+    page: {
+      ...pageJson,
+      content: {
+        ...pageJson.content,
+        rendered: upgradeWordPressUrls(pageJson.content?.rendered),
+      },
+    },
     items: menuItems,
     pageTitle: pageItem.title,
     pageDescription: pageDescription,
