@@ -124,11 +124,6 @@ export default function ListView({
   useEffect(() => {
     async function getLists() {
       const lists = await getLocalForageLists();
-      lists.forEach((list) => {
-        if (list.selectedHash === undefined) {
-          list.selectedHash = {};
-        }
-      });
       lists.sort((a, b) => b.createdAt - a.createdAt);
       setState((prevState) => ({
         ...prevState,
