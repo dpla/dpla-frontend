@@ -63,6 +63,7 @@ export default function ListView({
 
   const [state, setState] = useState(initialState());
   const isCreatingRef = React.useRef(false);
+  const isUpdatingRef = React.useRef(false);
 
   // Analytics for click through events.
   useEffect(() => {
@@ -150,7 +151,6 @@ export default function ListView({
           isCreatingRef.current = true;
           const uuid = createUUID();
           const createdAt = Date.now();
-          const newLists = structuredClone(state.lists);
           const newList = {
             uuid,
             name: listName,
@@ -159,22 +159,25 @@ export default function ListView({
             createdAt,
           };
           await setLocalForageItem(uuid, newList);
-          newLists.push(newList);
-          newLists.sort((a, b) => b.createdAt - a.createdAt);
-          setState((prev) => ({
-            ...prev,
-            currentList: newList,
-            lists: newLists,
-            checkboxShown: true,
-            showMessage: "List created.",
-          }));
+          setState((prev) => {
+            const newLists = [...prev.lists, newList].sort(
+              (a, b) => b.createdAt - a.createdAt,
+            );
+            return {
+              ...prev,
+              currentList: newList,
+              lists: newLists,
+              checkboxShown: true,
+              showMessage: "List created.",
+            };
+          });
         } finally {
           isCreatingRef.current = false;
         }
       };
       createList(value).catch((e) => console.error("Error creating list", e));
     },
-    [state.lists],
+    [],
   );
 
   const downloadCSV = () => {
@@ -294,23 +297,27 @@ export default function ListView({
   };
 
   const addCell = (id) => {
+    if (isUpdatingRef.current) return;
     const hash = { ...state.currentList.selectedHash };
     if (hash[id]) return;
     hash[id] = id;
-    updateList(hash, "Item added").catch((e) =>
-      console.error("Error updating list", e),
-    );
+    isUpdatingRef.current = true;
+    updateList(hash, "Item added")
+      .catch((e) => console.error("Error updating list", e))
+      .finally(() => { isUpdatingRef.current = false; });
   };
 
   const removeCell = (id) => {
+    if (isUpdatingRef.current) return;
     const hash = { ...state.currentList.selectedHash };
     delete hash[id];
     const message = state.readOnly
       ? "Item removed. Uncheck to undo."
       : "Item removed";
-    updateList(hash, message).catch((err) => {
-      console.error("Error updating list:", err);
-    });
+    isUpdatingRef.current = true;
+    updateList(hash, message)
+      .catch((err) => console.error("Error updating list:", err))
+      .finally(() => { isUpdatingRef.current = false; });
   };
 
   const listCount = state.lists.length;
