@@ -102,6 +102,10 @@ function hostnameAllowed(hostname, scheme, patterns) {
 function scanFiles() {
   const results = [];
   const dirs = ["pages", "components", "lib", path.join("public", "static")];
+  // `constants/` is intentionally excluded: its files contain navigation link
+  // URLs (href values, externalLink, imageHref) that are not fetch/script
+  // targets. Including it would produce false connect-src positives for URLs
+  // like PayPal and Google Classroom that are only ever used as anchor hrefs.
 
   const patterns = [
     // fetch('https://...') — literal URL argument
