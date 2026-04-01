@@ -114,7 +114,7 @@ export async function getServerSideProps(context) {
       title: guideJson.title.rendered,
       color: guideJson.acf.color,
       bannerImage: guideJson.acf.banner_image,
-      content: upgradeWordPressUrls(guideJson.content.rendered),
+      content: upgradeWordPressUrls(guideJson.content?.rendered),
     },
   });
 

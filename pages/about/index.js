@@ -30,7 +30,9 @@ import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -38,13 +40,16 @@ class AboutMenuPage extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.content !== this.props.content) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {
     const { router, content, items, breadcrumbs, pageTitle, pageDescription } =
       this.props;
+    if (!breadcrumbs || !content) return null;
 
     return (
       <MainLayout
