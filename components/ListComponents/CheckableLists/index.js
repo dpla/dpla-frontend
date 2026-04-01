@@ -98,7 +98,8 @@ function CheckableLists({itemId}) {
     try {
       updatingListsRef.current.add(id);
       const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-      if (state.checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
+      if (!theList) return;
+      if (theList.selectedHash[itemId]) return;
       theList.selectedHash[itemId] = itemId;
       await updateList(id, theList,
         (prev) => prev.includes(id) ? prev : [...prev, id],
@@ -113,7 +114,8 @@ function CheckableLists({itemId}) {
     try {
       updatingListsRef.current.add(id);
       const theList = structuredClone(state.lists.find((l) => l.uuid === id));
-      if (state.checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
+      if (!theList) return;
+      if (!theList.selectedHash[itemId]) return;
       delete theList.selectedHash[itemId];
       await updateList(id, theList,
         (prev) => { const i = prev.indexOf(id); return i === -1 ? prev : [...prev.slice(0, i), ...prev.slice(i + 1)]; },
