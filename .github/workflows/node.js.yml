@@ -18,6 +18,16 @@ jobs:
       - name: Verify favicon assets exist for all local sites
         run: node scripts/check-favicons.js
 
+  check-csp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+      - name: Verify all external URLs are covered by the CSP
+        run: node scripts/check-csp.js
+
   build:
     strategy:
       matrix:
