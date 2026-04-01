@@ -5,6 +5,7 @@ import Breadcrumbs from "shared/Breadcrumbs";
 import utils from "stylesheets/utils.module.scss"
 
 function BreadcrumbsModule({breadcrumbs}) {
+  if (!Array.isArray(breadcrumbs)) return null;
     return <div className={utils.breadcrumbsWrapper}>
         <div className={`${utils.container} ${utils.breadcrumbsModule}`}>
             <Breadcrumbs

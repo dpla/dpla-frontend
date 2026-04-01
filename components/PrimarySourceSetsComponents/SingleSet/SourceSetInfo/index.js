@@ -42,7 +42,10 @@ class SourceSetInfo extends React.Component {
 
   render() {
     const { set, currentFullUrl } = this.props;
-    const authorList = set.author.map((author) => author.name);
+    if (!set) return null;
+    const authorList = Array.isArray(set.author)
+      ? set.author.map((author) => author.name)
+      : [];
     return (
       <div id="main" role="main" className={css.wrapper} data-cy={"pss-main"}>
         <div className={`${css.sourceSetInfo} ${utils.container}`}>
@@ -80,7 +83,7 @@ class SourceSetInfo extends React.Component {
                   },
                 }}
               >
-                {set.hasPart.find((item) => item.name === "Overview").text}
+                {Array.isArray(set.hasPart) && set.hasPart.find((item) => item.name === "Overview")?.text}
               </Markdown>
               <div
                 id="dpla-showmore"
@@ -105,7 +108,7 @@ class SourceSetInfo extends React.Component {
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>Created By</h2>
                     <ul>
-                      {set.author.map((author) => (
+                      {Array.isArray(set.author) && set.author.map((author) => (
                         <li key={author.name}>
                           <Markdown
                             allowedElements={["emphasis", "text"]}
@@ -120,7 +123,7 @@ class SourceSetInfo extends React.Component {
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>Time Period</h2>
                     <ul>
-                      {extractTimePeriod(set.about).map((period) => (
+                      {Array.isArray(set.about) && extractTimePeriod(set.about).map((period) => (
                         <li key={period}>
                           <Link
                             href={{
@@ -145,7 +148,7 @@ class SourceSetInfo extends React.Component {
                   <div className={css.metadatum}>
                     <h2 className={css.metadataHeader}>Subjects</h2>
                     <ul>
-                      {extractSubjects(set.about).map((subject) => (
+                      {Array.isArray(set.about) && extractSubjects(set.about).map((subject) => (
                         <li key={subject}>
                           <Link
                             href={{
@@ -171,7 +174,7 @@ class SourceSetInfo extends React.Component {
                 <div className={css.citeButton}>
                   <CiteButton
                     creator={authorList}
-                    displayDate={new Date(set.dateCreated).getFullYear()}
+                    displayDate={set.dateCreated ? new Date(set.dateCreated).getUTCFullYear() : null}
                     sourceUrl={currentFullUrl}
                     className={css.citeButton}
                     toCiteText="set"

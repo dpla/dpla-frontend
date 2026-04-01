@@ -33,10 +33,22 @@ function redirect(source, dest, permanent = true) {
 // setting the CSP at the app layer, it only applies to origin responses; WAF
 // challenge pages are served directly by CloudFront and never reach the origin.
 //
-// The script-src hashes must match the inline bootstrap script Next.js injects
-// into the HTML. Update them after any deployment that changes client-side JS.
-// TODO: migrate to nonce-based CSP via Next.js middleware to eliminate manual
-// hash updates.
+// IMPORTANT — CSP HASH MAINTENANCE:
+// The two sha256 hashes in script-src below cover the fixed inline bootstrap
+// scripts that Next.js injects into every page. They do NOT cover __NEXT_DATA__
+// (which is dynamic and excluded from hashing). The hashes are stable across
+// normal code deploys, but WILL change when Next.js itself is upgraded, because
+// the bootstrap scripts are part of the Next.js package.
+//
+// Whenever a Next.js version bump is part of a PR:
+//   1. Do a production build locally: `npm run build && npm start`
+//   2. Load any page in a browser with DevTools open
+//   3. Check the Console for CSP violations ("Refused to execute inline script")
+//   4. If violations appear, extract the correct hash from the browser's error
+//      message and update the sha256 values below before merging.
+//
+// Failure to do this will block all JavaScript on dp.la immediately on deploy.
+// TODO: migrate to nonce-based CSP via Next.js middleware to eliminate this.
 const CLOUDFRONT_MEDIA = "https://d2jf00asb0fe6y.cloudfront.net";
 const CSP = [
   "base-uri 'self'",

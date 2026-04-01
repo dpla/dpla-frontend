@@ -21,7 +21,9 @@ import { washObject } from "lib/washObject";
 
 class HubsPage extends React.Component {
   refreshExternalLinks() {
-    const links = document.getElementById("main").getElementsByTagName("a");
+    const main = document.getElementById("main");
+    if (!main) return;
+    const links = main.getElementsByTagName("a");
     wordpressLinks(links);
   }
 
@@ -29,12 +31,15 @@ class HubsPage extends React.Component {
     this.refreshExternalLinks();
   }
 
-  componentDidUpdate() {
-    this.refreshExternalLinks();
+  componentDidUpdate(prevProps) {
+    if (prevProps.page !== this.props.page) {
+      this.refreshExternalLinks();
+    }
   }
 
   render() {
     const { page, pageTitle, news } = this.props;
+    if (!page?.acf) return null;
     return (
       <MainLayout pageTitle={pageTitle} seoType={SEO_TYPE}>
         <div id="main" role="main">
@@ -60,14 +65,14 @@ class HubsPage extends React.Component {
               className={`${css.tileSectionWrapper} ${utils.siteMaxWidth}`}
             >
               <ul className={css.sectionList}>
-                {page.acf.sections.map((section, index) => {
+                {Array.isArray(page.acf.sections) && page.acf.sections.map((section, index) => {
                   return (
                     <li key={index} className={css.section}>
                       <h2 className={css.sectionTitle}>
                         <a href={`${section.url}`}>{section.title}</a>
                       </h2>
                       <p className={css.sectionText}>{section.text}</p>
-                      {section.quicklinks && (
+                      {Array.isArray(section.quicklinks) && section.quicklinks.length > 0 && (
                         <ul className={css.sectionQuicklinks}>
                           {section.quicklinks.map((link, idx) => {
                             return (
@@ -87,15 +92,17 @@ class HubsPage extends React.Component {
               </ul>
             </section>
           </div>
-          <FullPageWidthBlock
-            className={css.sectionWrapper}
-            title={page.acf.call_to_action.title}
-            text={page.acf.call_to_action.text}
-            buttonText={page.acf.call_to_action.button_text}
-            buttonUrl={page.acf.call_to_action.button_url}
-            imageSrc={page.acf.call_to_action.image}
-            imageCaption={page.acf.call_to_action.image_credit}
-          />
+          {page.acf.call_to_action && (
+            <FullPageWidthBlock
+              className={css.sectionWrapper}
+              title={page.acf.call_to_action.title}
+              text={page.acf.call_to_action.text}
+              buttonText={page.acf.call_to_action.button_text}
+              buttonUrl={page.acf.call_to_action.button_url}
+              imageSrc={page.acf.call_to_action.image}
+              imageCaption={page.acf.call_to_action.image_credit}
+            />
+          )}
           {news && <NewsLane title="Member News" items={news} />}
         </div>
       </MainLayout>
