@@ -4,7 +4,7 @@ import Alert from "shared/Alert";
 import ListNameModal from "components/ListComponents/ListNameModal";
 import {ListCheckbox} from "components/ListComponents";
 
-import {createUUID, deepCopyObject} from "lib";
+import {createUUID} from "lib";
 import {getLocalForageLists, setLocalForageItem} from "lib/localForage";
 
 import {MESSAGE_DELAY} from "constants/site";
@@ -58,7 +58,7 @@ function CheckableLists({itemId}) {
       isCreatingRef.current = true;
       const uuid = createUUID();
       const createdAt = Date.now();
-      const newLists = deepCopyObject(state.lists);
+      const newLists = structuredClone(state.lists);
       const newList = {
         uuid: uuid,
         name: listName,
@@ -70,8 +70,7 @@ function CheckableLists({itemId}) {
       await setLocalForageItem(uuid, newList);
       newLists.push(newList);
       newLists.sort((a, b) => b.createdAt - a.createdAt);
-      const checkedLists = deepCopyObject(state.checkedLists);
-      checkedLists.push(uuid);
+      const checkedLists = [...state.checkedLists, uuid];
       setState((prevState) => ({
         ...prevState,
         showMessage: "List created and item added",
@@ -95,24 +94,18 @@ function CheckableLists({itemId}) {
   };
 
   const addItemToList = async (id) => {
-    const theList = deepCopyObject(
-      state.lists.filter((l) => l.uuid === id)[0],
-    );
-    const checkedLists = deepCopyObject(state.checkedLists);
-    if (checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return; // check if item already selected
+    const theList = structuredClone(state.lists.find((l) => l.uuid === id));
+    const checkedLists = [...state.checkedLists];
+    if (checkedLists.indexOf(id) !== -1 && theList.selectedHash[itemId]) return;
     checkedLists.push(id);
     theList.selectedHash[itemId] = itemId;
     await updateList(id, theList, checkedLists, "Item added");
   }
 
   const removeItemFromList = async (id) => {
-    const theList = deepCopyObject(
-      state.lists.filter((l) => l.uuid === id)[0],
-    );
-    const checkedLists = deepCopyObject(state.checkedLists);
-    if (
-      checkedLists.indexOf(id) === -1 &&
-      !theList.selectedHash[itemId]) return; // check if item not selected
+    const theList = structuredClone(state.lists.find((l) => l.uuid === id));
+    const checkedLists = [...state.checkedLists];
+    if (checkedLists.indexOf(id) === -1 && !theList.selectedHash[itemId]) return;
     checkedLists.splice(checkedLists.indexOf(id), 1);
     delete theList.selectedHash[itemId];
     await updateList(id, theList, checkedLists, "Item removed");
@@ -124,9 +117,7 @@ function CheckableLists({itemId}) {
     await setLocalForageItem(uuid, list);
 
     setState((prevState) => {
-      const lists = deepCopyObject(
-        prevState.lists.filter((l) => l.uuid !== uuid),
-      );
+      const lists = prevState.lists.filter((l) => l.uuid !== uuid);
       lists.push(list);
       lists.sort((a, b) => b.createdAt - a.createdAt);
       return {
