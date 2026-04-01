@@ -126,12 +126,11 @@ function CheckableLists({itemId}) {
   }
 
   const updateList = async (uuid, list, checkedListsUpdater, message) => {
-    list.updatedAt = Date.now();
-    list.count = Object.keys(list.selectedHash).length;
-    await setLocalForageItem(uuid, list);
+    const updatedList = { ...list, updatedAt: Date.now(), count: Object.keys(list.selectedHash).length };
+    await setLocalForageItem(uuid, updatedList);
     setState((prevState) => {
       const lists = prevState.lists.filter((l) => l.uuid !== uuid);
-      lists.push(list);
+      lists.push(updatedList);
       lists.sort((a, b) => b.createdAt - a.createdAt);
       return {
         ...prevState,
