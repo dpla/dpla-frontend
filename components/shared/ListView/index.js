@@ -8,7 +8,6 @@ import Alert from "shared/Alert";
 import {
   bindLinkEvent,
   createUUID,
-  deepCopyObject,
   joinIfArray,
   truncateString,
 } from "lib";
@@ -60,10 +59,12 @@ export default function ListView({
     lists: [],
     checkboxShown: false,
     showMessage: "",
+    isUpdating: false,
   });
 
   const [state, setState] = useState(initialState());
   const isCreatingRef = React.useRef(false);
+  const isUpdatingRef = React.useRef(false);
 
   // Analytics for click through events.
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function ListView({
         const str = link.href;
         const item = items.filter((i) => {
           const suffix = i.linkAs;
-          return str.indexOf(suffix, str.length - suffix.length) !== -1;
+          return str.endsWith(suffix);
         })[0];
         if (item) {
           const gaEvent = {
@@ -151,7 +152,6 @@ export default function ListView({
           isCreatingRef.current = true;
           const uuid = createUUID();
           const createdAt = Date.now();
-          const newLists = deepCopyObject(state.lists);
           const newList = {
             uuid,
             name: listName,
@@ -160,22 +160,25 @@ export default function ListView({
             createdAt,
           };
           await setLocalForageItem(uuid, newList);
-          newLists.push(newList);
-          newLists.sort((a, b) => b.createdAt - a.createdAt);
-          setState((prev) => ({
-            ...prev,
-            currentList: newList,
-            lists: newLists,
-            checkboxShown: true,
-            showMessage: "List created.",
-          }));
+          setState((prev) => {
+            const newLists = [...prev.lists, newList].sort(
+              (a, b) => b.createdAt - a.createdAt,
+            );
+            return {
+              ...prev,
+              currentList: newList,
+              lists: newLists,
+              checkboxShown: true,
+              showMessage: "List created.",
+            };
+          });
         } finally {
           isCreatingRef.current = false;
         }
       };
       createList(value).catch((e) => console.error("Error creating list", e));
     },
-    [state.lists],
+    [],
   );
 
   const downloadCSV = () => {
@@ -187,7 +190,7 @@ export default function ListView({
       .map((item) => {
         const realId = item.itemDplaId || item.id;
         const thumbnailUrl =
-          item.thumbnailUrl.indexOf("placeholderImages") === -1
+          item.thumbnailUrl && !item.thumbnailUrl.includes("placeholderImages")
             ? item.thumbnailUrl
             : "";
         const title = item.title
@@ -242,7 +245,6 @@ export default function ListView({
       setState((prevState) => ({
         ...prevState,
         currentList: null,
-        //selectedHash: {},
         checkboxShown: false,
       }));
     } else {
@@ -253,32 +255,25 @@ export default function ListView({
         return {
           ...prevState,
           currentList: currentList,
-          //selectedHash: currentList.selectedHash,
           checkboxShown: true,
         };
       });
     }
   }, []);
 
-  const updateList = async (hash, message) => {
-    const prevList = deepCopyObject(state.currentList);
-    const newList = {
-      ...prevList,
-      updatedAt: Date.now(),
-      selectedHash: hash,
-    };
-    const newLists = deepCopyObject(state.lists).filter(
-      (list) => list.uuid !== newList.uuid,
-    );
-    newLists.push(newList);
-    newLists.sort((a, b) => b.createdAt - a.createdAt);
-    await setLocalForageItem(newList.uuid, newList);
-    setState((prevState) => ({
-      ...prevState,
-      currentList: newList,
-      lists: newLists,
-      message,
-    }));
+  const updateList = async (currentList, hash, message) => {
+    const updatedAt = Date.now();
+    const count = Object.keys(hash).length;
+    await setLocalForageItem(currentList.uuid, { ...currentList, updatedAt, selectedHash: hash, count });
+    setState((prevState) => {
+      const newList = { ...currentList, updatedAt, selectedHash: hash, count };
+      const newLists = prevState.lists.filter((list) => list.uuid !== currentList.uuid);
+      newLists.push(newList);
+      newLists.sort((a, b) => b.createdAt - a.createdAt);
+      const newCurrentList =
+        prevState.currentList?.uuid === currentList.uuid ? newList : prevState.currentList;
+      return { ...prevState, currentList: newCurrentList, lists: newLists, showMessage: message };
+    });
   };
   // used for adding an item to a list in search and browse
   const onCheckItem = (e) => {
@@ -295,23 +290,35 @@ export default function ListView({
   };
 
   const addCell = (id) => {
-    const hash = deepCopyObject(state.currentList.selectedHash);
-    if (hash[id]) return; // check if item already selected
+    if (isUpdatingRef.current || !state.currentList) return;
+    const hash = { ...state.currentList.selectedHash };
+    if (hash[id]) return;
     hash[id] = id;
-    updateList(hash, "Item added").catch((e) =>
-      console.error("Error updating list", e),
-    );
+    isUpdatingRef.current = true;
+    setState((prev) => ({ ...prev, isUpdating: true }));
+    updateList(state.currentList, hash, "Item added")
+      .catch((e) => console.error("Error updating list", e))
+      .finally(() => {
+        isUpdatingRef.current = false;
+        setState((prev) => ({ ...prev, isUpdating: false }));
+      });
   };
 
   const removeCell = (id) => {
-    const hash = deepCopyObject(state.currentList.selectedHash);
+    if (isUpdatingRef.current || !state.currentList) return;
+    const hash = { ...state.currentList.selectedHash };
     delete hash[id];
     const message = state.readOnly
       ? "Item removed. Uncheck to undo."
       : "Item removed";
-    updateList(hash, message).catch((err) => {
-      console.error("Error updating list:", err);
-    });
+    isUpdatingRef.current = true;
+    setState((prev) => ({ ...prev, isUpdating: true }));
+    updateList(state.currentList, hash, message)
+      .catch((err) => console.error("Error updating list:", err))
+      .finally(() => {
+        isUpdatingRef.current = false;
+        setState((prev) => ({ ...prev, isUpdating: false }));
+      });
   };
 
   const listCount = state.lists.length;
@@ -459,7 +466,7 @@ export default function ListView({
                     checked={
                       state?.currentList?.selectedHash?.[realId] !== undefined
                     }
-                    disabled={shouldDisable}
+                    disabled={shouldDisable || state.isUpdating}
                     key={`checkbox-${realId}`}
                     id={`checkbox-${realId}`}
                   />
@@ -482,6 +489,7 @@ export default function ListView({
                     checked={
                       state?.currentList?.selectedHash[realId] === undefined
                     }
+                    disabled={state.isUpdating}
                     key={`checkbox-remove-${realId}`}
                     id={`checkbox-remove-${realId}`}
                   />{" "}
@@ -495,3 +503,4 @@ export default function ListView({
     </div>
   );
 }
+
