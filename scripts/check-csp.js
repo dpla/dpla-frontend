@@ -29,6 +29,11 @@ function extractCsp() {
 
   const cfMedia =
     src.match(/const CLOUDFRONT_MEDIA\s*=\s*"([^"]+)"/)?.[1] ?? "";
+  if (!cfMedia) {
+    console.warn(
+      "Warning: CLOUDFRONT_MEDIA not found in next.config.js; ${CLOUDFRONT_MEDIA} substitutions will produce empty strings"
+    );
+  }
 
   const block = src.match(/const CSP\s*=\s*\[([\s\S]*?)\]\.join/)?.[1];
   if (!block) throw new Error("CSP array not found in next.config.js");
@@ -217,3 +222,4 @@ if (failed) {
   process.exit(1);
 }
 console.log("\nAll external URLs are covered by the CSP.");
+
