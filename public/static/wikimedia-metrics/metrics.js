@@ -37,12 +37,22 @@ function initMetrics() {
     // directly from the canonical source via the GitLab REST API.
     const ALLOW_LIST_URL = 'https://gitlab.wikimedia.org/api/v4/projects/repos%2Fdata-engineering%2Fairflow-dags/repository/files/main%2Fdags%2Fcommons%2Fcommons_category_allow_list.tsv/raw?ref=main';
 
+    // Show a loading indicator in the wrapper while the allow-list fetch is in flight.
+    // This gives the user feedback and prevents interacting with uninitialized forms.
+    const wrapper = document.querySelector('.wikimedia-metrics-wrapper');
+    const loadingBanner = document.createElement('p');
+    loadingBanner.id = 'metrics-loading-banner';
+    loadingBanner.className = 'metrics-status-banner';
+    loadingBanner.textContent = 'Loading category data…';
+    wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
+
     fetch(ALLOW_LIST_URL)
         .then(response => {
             if (!response.ok) throw new Error(`GitLab API returned HTTP ${response.status}`);
             return response.text();
         })
         .then(data => {
+            loadingBanner.remove();
             const allLines = data.split('\n').filter(line => line.trim() !== '');
 
             // Always populate the autocomplete datalist with every available
@@ -350,7 +360,13 @@ function initMetrics() {
         })
         .catch(error => {
             console.error('Error fetching allow list:', error);
-            document.getElementById('sections-container').innerHTML = '<p>Error loading categories.</p>';
+            // Replace the loading banner with a visible error so users know the
+            // tool is unavailable, rather than seeing unresponsive buttons.
+            const banner = document.getElementById('metrics-loading-banner');
+            if (banner) {
+                banner.className = 'metrics-status-banner metrics-status-error';
+                banner.textContent = 'Unable to load category data — the Wikimedia allow-list API is currently unreachable. Please try refreshing the page.';
+            }
         });
 }
 
