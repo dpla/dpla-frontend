@@ -76,7 +76,7 @@ class Search extends React.Component {
           <FiltersList
             showFilters={this.state.showSidebar}
             onClickToggleFilters={this.toggleFilters}
-            facets={results?.facets}
+            facets={results?.facets ?? {}}
           />
         )}
         {fetchError && (
@@ -92,8 +92,8 @@ class Search extends React.Component {
               pageSize: pageSize || DEFAULT_PAGE_SIZE,
               currentPage: currentPage,
             }}
-            facets={results?.facets}
-            results={results?.docs}
+            facets={results?.facets ?? {}}
+            results={results?.docs ?? []}
             aboutness={aboutness}
           />
         )}
