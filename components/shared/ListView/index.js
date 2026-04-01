@@ -266,12 +266,13 @@ export default function ListView({
     const count = Object.keys(hash).length;
     await setLocalForageItem(currentList.uuid, { ...currentList, updatedAt, selectedHash: hash, count });
     setState((prevState) => {
-      if (!prevState.currentList) return prevState;
-      const newList = { ...prevState.currentList, updatedAt, selectedHash: hash, count };
-      const newLists = prevState.lists.filter((list) => list.uuid !== prevState.currentList.uuid);
+      const newList = { ...currentList, updatedAt, selectedHash: hash, count };
+      const newLists = prevState.lists.filter((list) => list.uuid !== currentList.uuid);
       newLists.push(newList);
       newLists.sort((a, b) => b.createdAt - a.createdAt);
-      return { ...prevState, currentList: newList, lists: newLists, showMessage: message };
+      const newCurrentList =
+        prevState.currentList?.uuid === currentList.uuid ? newList : prevState.currentList;
+      return { ...prevState, currentList: newCurrentList, lists: newLists, showMessage: message };
     });
   };
   // used for adding an item to a list in search and browse
@@ -502,3 +503,4 @@ export default function ListView({
     </div>
   );
 }
+
