@@ -262,19 +262,22 @@ export default function ListView({
       ...state.currentList,
       updatedAt: Date.now(),
       selectedHash: hash,
+      count: Object.keys(hash).length,
     };
-    const newLists = state.lists.filter(
-      (list) => list.uuid !== newList.uuid,
-    );
-    newLists.push(newList);
-    newLists.sort((a, b) => b.createdAt - a.createdAt);
     await setLocalForageItem(newList.uuid, newList);
-    setState((prevState) => ({
-      ...prevState,
-      currentList: newList,
-      lists: newLists,
-      message,
-    }));
+    setState((prevState) => {
+      const newLists = prevState.lists.filter(
+        (list) => list.uuid !== newList.uuid,
+      );
+      newLists.push(newList);
+      newLists.sort((a, b) => b.createdAt - a.createdAt);
+      return {
+        ...prevState,
+        currentList: newList,
+        lists: newLists,
+        showMessage: message,
+      };
+    });
   };
   // used for adding an item to a list in search and browse
   const onCheckItem = (e) => {
