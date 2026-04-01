@@ -60,10 +60,10 @@ class DPLAHead extends React.Component {
             content={pageDescription || defaultDescription}
           />
           <meta
-            name="og:description"
+            property="og:description"
             content={pageDescription || defaultDescription}
           />
-          <meta name="og:site_name" content={defaultPageTitle} />
+          <meta property="og:site_name" content={defaultPageTitle} />
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@dpla" />
           <meta name="twitter:creator" content="@dpla" />
@@ -72,12 +72,15 @@ class DPLAHead extends React.Component {
             <meta name="twitter:image:alt" content={pageImageCaption} />
           )}
           <meta
-            name="og:image"
+            property="og:image"
             itemProp="image"
             content={pageImage || defaultImageUrl}
           />
-          <meta name="og:title" content={pageTitle || defaultPageTitle} />
-          <meta name="og:type" content={seoType || "website"} />
+          <meta property="og:title" content={pageTitle || defaultPageTitle} />
+          <meta property="og:type" content={seoType || "website"} />
+          {canonicalUrl && (
+            <meta property="og:url" content={canonicalUrl} />
+          )}
           <meta name="theme-color" content="#ffffff" />
           {siteEnv !== "local" && [
             <link
