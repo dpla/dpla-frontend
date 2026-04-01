@@ -40,6 +40,10 @@ function initMetrics() {
     // Show a loading indicator in the wrapper while the allow-list fetch is in flight.
     // This gives the user feedback and prevents interacting with uninitialized forms.
     const wrapper = document.querySelector('.wikimedia-metrics-wrapper');
+    if (!wrapper) {
+        console.error('metrics.js: .wikimedia-metrics-wrapper not found');
+        return;
+    }
     const loadingBanner = document.createElement('p');
     loadingBanner.id = 'metrics-loading-banner';
     loadingBanner.className = 'metrics-status-banner';
@@ -52,7 +56,6 @@ function initMetrics() {
             return response.text();
         })
         .then(data => {
-            loadingBanner.remove();
             const allLines = data.split('\n').filter(line => line.trim() !== '');
 
             // Always populate the autocomplete datalist with every available
@@ -291,6 +294,9 @@ function initMetrics() {
                 institutions.forEach(inst => { addPanel(inst, false); });
             }
 
+            // All event listeners attached — safe to remove the loading banner.
+            loadingBanner.remove();
+
             // ── Dispatch ─────────────────────────────────────────────────────────────
 
             if (hubParam) {
@@ -360,13 +366,13 @@ function initMetrics() {
         })
         .catch(error => {
             console.error('Error fetching allow list:', error);
-            // Replace the loading banner with a visible error so users know the
-            // tool is unavailable, rather than seeing unresponsive buttons.
-            const banner = document.getElementById('metrics-loading-banner');
-            if (banner) {
-                banner.className = 'metrics-status-banner metrics-status-error';
-                banner.textContent = 'Unable to load category data — the Wikimedia allow-list API is currently unreachable. Please try refreshing the page.';
+            // Use the closure reference (not getElementById) so the banner can be
+            // updated even if loadingBanner.remove() was already called mid-.then().
+            if (!loadingBanner.parentNode) {
+                wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
             }
+            loadingBanner.className = 'metrics-status-banner metrics-status-error';
+            loadingBanner.textContent = 'Unable to load category data — the Wikimedia allow-list API is currently unreachable. Please try refreshing the page.';
         });
 }
 

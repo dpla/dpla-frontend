@@ -8,6 +8,10 @@
  *
  * Run:  node scripts/check-csp.js
  * CI:   included in the "Node.js CI" GitHub Actions workflow
+ *
+ * Scanned directories: pages, components, lib, public/static
+ * If external URLs are introduced in other directories, add them to the
+ * `dirs` array in the scanFiles() function below.
  */
 
 "use strict";
@@ -88,8 +92,11 @@ function scanFiles() {
       re: /\bfetch\(\s*['"`](https?:\/\/[^'"`\s)]+)/g,
       directive: "connect-src",
     },
-    // const FOO = 'https://...' — URL stored in a variable then passed to fetch
-    // Catches the common pattern of named API endpoint constants
+    // const FOO = 'https://...' — URL stored in a variable then passed to fetch.
+    // Catches the common pattern of named API endpoint constants.
+    // Heuristic: assumes connect-src. May produce false positives if the constant
+    // is used for images, fonts, etc. rather than fetch() — add to the skip-list
+    // or adjust the directive manually if that occurs.
     {
       re: /(?:const|let|var)\s+\w+\s*=\s*['"`](https?:\/\/[^'"`\s]+)/g,
       directive: "connect-src",
