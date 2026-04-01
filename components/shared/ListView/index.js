@@ -260,12 +260,10 @@ export default function ListView({
     }
   }, []);
 
-  const updateList = async (hash, message) => {
-    if (!state.currentList) return;
-    const { uuid } = state.currentList;
+  const updateList = async (currentList, hash, message) => {
     const updatedAt = Date.now();
     const count = Object.keys(hash).length;
-    await setLocalForageItem(uuid, { ...state.currentList, updatedAt, selectedHash: hash, count });
+    await setLocalForageItem(currentList.uuid, { ...currentList, updatedAt, selectedHash: hash, count });
     setState((prevState) => {
       if (!prevState.currentList) return prevState;
       const newList = { ...prevState.currentList, updatedAt, selectedHash: hash, count };
@@ -295,7 +293,7 @@ export default function ListView({
     if (hash[id]) return;
     hash[id] = id;
     isUpdatingRef.current = true;
-    updateList(hash, "Item added")
+    updateList(state.currentList, hash, "Item added")
       .catch((e) => console.error("Error updating list", e))
       .finally(() => { isUpdatingRef.current = false; });
   };
@@ -308,7 +306,7 @@ export default function ListView({
       ? "Item removed. Uncheck to undo."
       : "Item removed";
     isUpdatingRef.current = true;
-    updateList(hash, message)
+    updateList(state.currentList, hash, message)
       .catch((err) => console.error("Error updating list:", err))
       .finally(() => { isUpdatingRef.current = false; });
   };
