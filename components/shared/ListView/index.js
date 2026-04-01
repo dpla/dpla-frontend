@@ -261,13 +261,15 @@ export default function ListView({
   }, []);
 
   const updateList = async (hash, message) => {
+    if (!state.currentList) return;
     const { uuid } = state.currentList;
     const updatedAt = Date.now();
     const count = Object.keys(hash).length;
     await setLocalForageItem(uuid, { ...state.currentList, updatedAt, selectedHash: hash, count });
     setState((prevState) => {
+      if (!prevState.currentList) return prevState;
       const newList = { ...prevState.currentList, updatedAt, selectedHash: hash, count };
-      const newLists = prevState.lists.filter((list) => list.uuid !== uuid);
+      const newLists = prevState.lists.filter((list) => list.uuid !== prevState.currentList.uuid);
       newLists.push(newList);
       newLists.sort((a, b) => b.createdAt - a.createdAt);
       return { ...prevState, currentList: newList, lists: newLists, showMessage: message };
@@ -288,7 +290,7 @@ export default function ListView({
   };
 
   const addCell = (id) => {
-    if (isUpdatingRef.current) return;
+    if (isUpdatingRef.current || !state.currentList) return;
     const hash = { ...state.currentList.selectedHash };
     if (hash[id]) return;
     hash[id] = id;
@@ -299,7 +301,7 @@ export default function ListView({
   };
 
   const removeCell = (id) => {
-    if (isUpdatingRef.current) return;
+    if (isUpdatingRef.current || !state.currentList) return;
     const hash = { ...state.currentList.selectedHash };
     delete hash[id];
     const message = state.readOnly
