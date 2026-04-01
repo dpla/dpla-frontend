@@ -93,7 +93,7 @@ class Search extends React.Component {
               currentPage: currentPage,
             }}
             facets={results?.facets}
-            results={results.docs}
+            results={results?.docs}
             aboutness={aboutness}
           />
         )}

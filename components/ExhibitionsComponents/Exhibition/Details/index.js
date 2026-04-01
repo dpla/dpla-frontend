@@ -37,7 +37,7 @@ class Details extends React.Component {
 
   render() {
     const { slug, sections, description, title, text, credits } = this.props;
-    if (!Array.isArray(sections)) return null;
+    if (!Array.isArray(sections) || sections.length === 0) return null;
     return (
       <div className={css.wrapper}>
         <div className={`${utils.container} ${css.details}`}>
