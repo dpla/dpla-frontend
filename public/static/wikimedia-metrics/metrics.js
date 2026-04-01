@@ -37,6 +37,24 @@ function initMetrics() {
     // directly from the canonical source via the GitLab REST API.
     const ALLOW_LIST_URL = 'https://gitlab.wikimedia.org/api/v4/projects/repos%2Fdata-engineering%2Fairflow-dags/repository/files/main%2Fdags%2Fcommons%2Fcommons_category_allow_list.tsv/raw?ref=main';
 
+    // Show a loading indicator in the wrapper while the allow-list fetch is in flight.
+    // This gives the user feedback and prevents interacting with uninitialized forms.
+    const wrapper = document.querySelector('.wikimedia-metrics-wrapper');
+    if (!wrapper) {
+        console.error('metrics.js: .wikimedia-metrics-wrapper not found');
+        return;
+    }
+    const loadingBanner = document.createElement('p');
+    loadingBanner.id = 'metrics-loading-banner';
+    loadingBanner.className = 'metrics-status-banner';
+    loadingBanner.textContent = 'Loading category data…';
+    wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
+
+    // Disable form buttons so native submission cannot fire while event
+    // handlers are not yet attached (they are wired inside .then()).
+    const formButtons = wrapper.querySelectorAll('form button');
+    formButtons.forEach(btn => { btn.disabled = true; });
+
     fetch(ALLOW_LIST_URL)
         .then(response => {
             if (!response.ok) throw new Error(`GitLab API returned HTTP ${response.status}`);
@@ -281,6 +299,10 @@ function initMetrics() {
                 institutions.forEach(inst => { addPanel(inst, false); });
             }
 
+            // All event listeners attached — re-enable forms and remove the loading banner.
+            formButtons.forEach(btn => { btn.disabled = false; });
+            loadingBanner.remove();
+
             // ── Dispatch ─────────────────────────────────────────────────────────────
 
             if (hubParam) {
@@ -350,7 +372,13 @@ function initMetrics() {
         })
         .catch(error => {
             console.error('Error fetching allow list:', error);
-            document.getElementById('sections-container').innerHTML = '<p>Error loading categories.</p>';
+            // Use the closure reference (not getElementById) so the banner can be
+            // updated even if loadingBanner.remove() was already called mid-.then().
+            if (!loadingBanner.parentNode) {
+                wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
+            }
+            loadingBanner.className = 'metrics-status-banner metrics-status-error';
+            loadingBanner.textContent = 'Unable to load category data — the Wikimedia allow-list API is currently unreachable. Please try refreshing the page.';
         });
 }
 

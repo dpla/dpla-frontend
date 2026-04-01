@@ -316,3 +316,21 @@
 .wikimedia-metrics-wrapper form + form {
     margin-top: -5px;
 }
+
+/* ── Status banners (loading / error) ────────────────────── */
+
+.wikimedia-metrics-wrapper .metrics-status-banner {
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #f0f4f8;
+    color: #486581;
+    border: 1px solid #d9e2ec;
+}
+
+.wikimedia-metrics-wrapper .metrics-status-error {
+    background: #fff5f5;
+    color: #c53030;
+    border-color: #fed7d7;
+}
