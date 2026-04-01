@@ -190,7 +190,7 @@ export default function ListView({
       .map((item) => {
         const realId = item.itemDplaId || item.id;
         const thumbnailUrl =
-          !item.thumbnailUrl?.includes("placeholderImages")
+          item.thumbnailUrl && !item.thumbnailUrl.includes("placeholderImages")
             ? item.thumbnailUrl
             : "";
         const title = item.title
