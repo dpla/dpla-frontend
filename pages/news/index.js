@@ -149,6 +149,7 @@ export async function getServerSideProps({ query }) {
   const pageItem = menuJson.items.find(
     (item) => item.post_name.indexOf("news") === 0,
   );
+  if (!pageItem) return { notFound: true };
 
   let authorJson = null;
   if (authorId !== "") {

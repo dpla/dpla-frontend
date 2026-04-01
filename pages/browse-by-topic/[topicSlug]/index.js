@@ -25,6 +25,7 @@ const sanitizeSourceSetId = (id) => {
 
 function Topic(props) {
   const { topic, suggestions } = props;
+  if (!topic) return null;
   return (
     <MainLayout pageTitle={topic.name}>
       <BreadcrumbsAndNav

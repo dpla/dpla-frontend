@@ -19,6 +19,7 @@ import { washObject } from "lib/washObject";
 
 function SubtopicItemsList(props) {
   const { topic, subtopic, previousSubtopic, nextSubtopic, items } = props;
+  if (!topic || !subtopic) return null;
   return (
     <MainLayout pageTitle={subtopic.name} pageImage={subtopic.thumbnailUrl}>
       <BreadcrumbsAndNav
