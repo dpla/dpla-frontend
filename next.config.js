@@ -59,7 +59,7 @@ const CSP = [
   "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://*.awswaf.com https://www.gstatic.com",
   "img-src 'self' http: https:",
   `connect-src 'self' https://dp.la https://*.dp.la ${CLOUDFRONT_MEDIA} *.google-analytics.com *.analytics.google.com *.sentry.io https://*.awswaf.com https://gitlab.wikimedia.org https://commons.wikimedia.org https://wikimedia.org`,
-  "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
+  "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.gstatic.com",
   "font-src 'self' https://cdnjs.cloudflare.com",
   `media-src 'self' *.dp.la ${CLOUDFRONT_MEDIA}`,
   "frame-src 'self' https://www.youtube.com",
