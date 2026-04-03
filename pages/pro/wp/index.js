@@ -15,6 +15,7 @@ import {
   wordpressLinks,
 } from "lib";
 import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { cachedSafeFetch } from "lib/wpCache";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -115,7 +116,7 @@ export async function getServerSideProps(context) {
   const pageName = subsection || section;
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
-  const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
+  const menuResponse = await cachedSafeFetch(PRO_MENU_ENDPOINT);
   const menuError = checkResponseForSSR(menuResponse);
   if (menuError) return menuError;
   const menuJson = await menuResponse.json();
