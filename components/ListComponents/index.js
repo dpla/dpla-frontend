@@ -174,18 +174,20 @@ export function ListsContent({ initialized, lists, onCreateList, storageUnavaila
       <div className={`${utils.row} ${css.wrapper}`}>
         {!initialized && <ListLoading />}
         {initialized && storageUnavailable && <ListsUnavailable />}
-        {initialized && !storageUnavailable && lists.length > 0 && <ListNote />}
-        {initialized && !storageUnavailable && lists.length === 0 && <ListsEmpty />}
         {initialized && !storageUnavailable && (
-          <ListNameModal
-            className={css.createList}
-            type="create"
-            value=""
-            onChange={onCreateList}
-            name="Create new list"
-          />
+          <>
+            {lists.length > 0 && <ListNote />}
+            {lists.length === 0 && <ListsEmpty />}
+            <ListNameModal
+              className={css.createList}
+              type="create"
+              value=""
+              onChange={onCreateList}
+              name="Create new list"
+            />
+            {lists.length > 0 && <Lists lists={lists} />}
+          </>
         )}
-        {lists.length > 0 && <Lists lists={lists} />}
       </div>
     </div>
   );
