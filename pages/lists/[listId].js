@@ -13,11 +13,11 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
-import { ListLoading, ListEmpty } from "components/ListComponents";
+import { ListLoading, ListEmpty, ListsUnavailable } from "components/ListComponents";
 
 import { addLinkInfoToResults, getDataProviderName, getItemThumbnail } from "lib";
 
-import { setLocalForageItem, removeLocalForageItem } from "lib/localForage";
+import { setLocalForageItem, removeLocalForageItem, STORAGE_UNAVAILABLE_ERROR } from "lib/localForage";
 
 import utils from "stylesheets/utils.module.scss";
 import css from "components/ListComponents/ListComponents.module.scss";
@@ -34,6 +34,7 @@ const List = () => {
   const [list, setList] = useState(null);
   const [items, setItems] = useState([]);
   const [initialized, setInitialized] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
 
   useEffect(() => {
@@ -42,7 +43,17 @@ const List = () => {
         return;
       }
 
-      const list = await localforage.getItem(listId);
+      let list;
+      try {
+        list = await localforage.getItem(listId);
+      } catch (err) {
+        console.error("fetchList error", err);
+        if (err.message === STORAGE_UNAVAILABLE_ERROR) {
+          setStorageUnavailable(true);
+        }
+        setInitialized(true);
+        return;
+      }
 
       if (!list) {
         setInitialized(true);
@@ -129,6 +140,16 @@ const List = () => {
       query: "",
     });
   }, [listId]);
+
+  if (initialized && storageUnavailable) {
+    return (
+      <MainLayout pageTitle={LISTS_TITLE}>
+        <div id="main" role="main" className={`${utils.container} ${css.listDetailWrapper}`}>
+          <ListsUnavailable />
+        </div>
+      </MainLayout>
+    );
+  }
 
   if (initialized && !list) {
     return <Error statusCode={404} />;

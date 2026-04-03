@@ -155,23 +155,39 @@ export function ListLoading() {
   );
 }
 
-export function ListsContent({ initialized, lists, onCreateList }) {
+export function ListsUnavailable() {
+  return (
+    <div className={`${css.empty} ${utils.colXs12}`}>
+      <h2 className={css.contentTitle}>Lists aren&apos;t available</h2>
+      <p>
+        Lists require browser storage, which isn&apos;t available in private or
+        incognito browsing mode. To use lists, open this page in a regular
+        browser window.
+      </p>
+    </div>
+  );
+}
+
+export function ListsContent({ initialized, lists, onCreateList, storageUnavailable }) {
   return (
     <div className={utils.container}>
       <div className={`${utils.row} ${css.wrapper}`}>
         {!initialized && <ListLoading />}
-        {initialized && lists.length > 0 && <ListNote />}
-        {initialized && lists.length === 0 && <ListsEmpty />}
-        {initialized && (
-          <ListNameModal
-            className={css.createList}
-            type="create"
-            value=""
-            onChange={onCreateList}
-            name="Create new list"
-          />
+        {initialized && storageUnavailable && <ListsUnavailable />}
+        {initialized && !storageUnavailable && (
+          <>
+            {lists.length > 0 && <ListNote />}
+            {lists.length === 0 && <ListsEmpty />}
+            <ListNameModal
+              className={css.createList}
+              type="create"
+              value=""
+              onChange={onCreateList}
+              name="Create new list"
+            />
+            {lists.length > 0 && <Lists lists={lists} />}
+          </>
         )}
-        {lists.length > 0 && <Lists lists={lists} />}
       </div>
     </div>
   );

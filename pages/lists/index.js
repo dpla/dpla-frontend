@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import { ListsContent } from "components/ListComponents";
 import FeatureHeader from "shared/FeatureHeader";
 
-import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
+import { getLocalForageLists, setLocalForageItem, STORAGE_UNAVAILABLE_ERROR } from "lib/localForage";
 import { LISTS_TITLE } from "constants/lists";
 import {createUUID} from "lib/index";
 
@@ -13,6 +13,7 @@ const ListsPage = () => {
 
   const [lists, setLists] = useState([]);
   const [initialized, setInitialized] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isCreatingRef = React.useRef(false);
 
   useEffect( () => {
@@ -23,6 +24,9 @@ const ListsPage = () => {
         setLists(fetchedLists);
       } catch (err) {
         console.error("fetchLists error", err);
+        if (err.message === STORAGE_UNAVAILABLE_ERROR) {
+          setStorageUnavailable(true);
+        }
       } finally {
         setInitialized(true);
       }
@@ -76,6 +80,7 @@ const ListsPage = () => {
           lists={lists}
           initialized={initialized}
           onCreateList={onCreateList}
+          storageUnavailable={storageUnavailable}
         />
       </div>
     </MainLayout>
