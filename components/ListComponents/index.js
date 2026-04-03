@@ -155,14 +155,28 @@ export function ListLoading() {
   );
 }
 
-export function ListsContent({ initialized, lists, onCreateList }) {
+export function ListsUnavailable() {
+  return (
+    <div className={`${css.empty} ${utils.colXs12}`}>
+      <h2 className={css.contentTitle}>Lists aren&apos;t available</h2>
+      <p>
+        Lists require browser storage, which isn&apos;t available in private or
+        incognito browsing mode. To use lists, open this page in a regular
+        browser window.
+      </p>
+    </div>
+  );
+}
+
+export function ListsContent({ initialized, lists, onCreateList, storageUnavailable }) {
   return (
     <div className={utils.container}>
       <div className={`${utils.row} ${css.wrapper}`}>
         {!initialized && <ListLoading />}
-        {initialized && lists.length > 0 && <ListNote />}
-        {initialized && lists.length === 0 && <ListsEmpty />}
-        {initialized && (
+        {initialized && storageUnavailable && <ListsUnavailable />}
+        {initialized && !storageUnavailable && lists.length > 0 && <ListNote />}
+        {initialized && !storageUnavailable && lists.length === 0 && <ListsEmpty />}
+        {initialized && !storageUnavailable && (
           <ListNameModal
             className={css.createList}
             type="create"
