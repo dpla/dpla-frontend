@@ -272,6 +272,7 @@ config = withSentryConfig(config, {
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
   org: "dpla",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
   project: "dpla-frontend",
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
