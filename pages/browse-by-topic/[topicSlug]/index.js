@@ -13,7 +13,7 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -53,7 +53,7 @@ export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  const topicsError = checkResponseForSSR(topicsRes);
+  const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
   if (topicsError) return topicsError;
 
   const topicsJson = await topicsRes.json();
@@ -65,11 +65,12 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const subtopicsRes = await safeFetch(
-    API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
-  );
+  const [subtopicsRes, exhibitions] = await Promise.all([
+    safeFetch(API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id),
+    loadExhibitionList(),
+  ]);
 
-  const subtopicsError = checkResponseForSSR(subtopicsRes);
+  const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");
   if (subtopicsError) return subtopicsError;
 
   const subtopicsJson = await subtopicsRes.json();
@@ -77,8 +78,6 @@ export const getServerSideProps = async (context) => {
     ...subtopic,
     thumbnailUrl: subtopic.acf.category_image,
   }));
-
-  const exhibitions = await loadExhibitionList();
 
   const suggestions = !currentTopic.acf.related_content
     ? []

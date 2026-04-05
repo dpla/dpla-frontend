@@ -15,7 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class Guides extends React.Component {
@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
-  const menuError = checkResponseForSSR(menuItemsRes);
+  const menuError = checkResponseForSSRSafe(menuItemsRes, "Guides menu");
   if (menuError) return menuError;
   const menuItemsJson = await menuItemsRes.json();
   const guideSlug = context.params.guideSlug;
@@ -91,7 +91,7 @@ export async function getServerSideProps(context) {
   }
   const guideUrl = draftMode ? wpDraftUrl(getMenuItemUrl(guide)) : getMenuItemUrl(guide);
   const guideRes = await safeFetch(guideUrl, authOptions);
-  const guideError = checkResponseForSSR(guideRes);
+  const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
   if (guideError) return guideError;
   const guideJson = await guideRes.json();
 

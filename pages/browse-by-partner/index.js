@@ -9,7 +9,7 @@ import { LOCALS } from "constants/local";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 
 function PartnerBrowse({ partners }) {
   return (
@@ -54,7 +54,7 @@ export const getServerSideProps = async () => {
   }
 
   const res = await safeFetch(apiQuery);
-  const resError = checkResponseForSSR(res);
+  const resError = checkResponseForSSRSafe(res, "Partner browse");
   if (resError) return resError;
   const json = await res.json();
   const terms = json?.facets?.[facetName]?.terms;

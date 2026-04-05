@@ -20,7 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class PostPage extends React.Component {
@@ -151,9 +151,9 @@ export async function getServerSideProps(context) {
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
   ]);
 
-  const menuError = checkResponseForSSR(menuResponse);
+  const menuError = checkResponseForSSRSafe(menuResponse, "News menu");
   if (menuError) return menuError;
-  const postError = checkResponseForSSR(postRes);
+  const postError = checkResponseForSSRSafe(postRes, "News post");
   if (postError) return postError;
 
   const [menuJson, initialPostJson] = await Promise.all([
@@ -169,7 +169,7 @@ export async function getServerSideProps(context) {
       `${NEWS_ENDPOINT}?include=${slug}&status=any&context=edit`,
       authOptions,
     );
-    const byIdError = checkResponseForSSR(byIdRes);
+    const byIdError = checkResponseForSSRSafe(byIdRes, "News post by ID");
     if (byIdError) return byIdError;
     postJson = await byIdRes.json();
   }
@@ -185,7 +185,7 @@ export async function getServerSideProps(context) {
     `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
-  const authorError = checkResponseForSSR(authorRes);
+  const authorError = checkResponseForSSRSafe(authorRes, "News post author");
   if (authorError) return authorError;
 
   const authorJson = await authorRes.json();
