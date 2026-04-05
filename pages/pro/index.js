@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 
 function Home({ news, content }) {
@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
-  const settingsError = checkResponseForSSR(settingsRes);
+  const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;
   const settingsJson = await settingsRes.json();
 
@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
   const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const homeRes = await cachedSafeFetch(endpoint, authOptions);
-  const homeError = checkResponseForSSR(homeRes);
+  const homeError = checkResponseForSSRSafe(homeRes, "Pro homepage");
   if (homeError) return homeError;
   const [homeJson, newsItems] = await Promise.all([
     homeRes.json(),

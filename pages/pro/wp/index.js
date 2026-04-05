@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSR, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
@@ -117,7 +117,7 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuResponse = await cachedSafeFetch(PRO_MENU_ENDPOINT);
-  const menuError = checkResponseForSSR(menuResponse);
+  const menuError = checkResponseForSSRSafe(menuResponse, "Pro menu");
   if (menuError) return menuError;
   const menuJson = await menuResponse.json();
   const menuItems = menuJson.items;
@@ -128,7 +128,7 @@ export async function getServerSideProps(context) {
   // In draft mode, append context=edit so WP returns draft content
   const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
   const pageRes = await safeFetch(pageUrl, authOptions);
-  const pageError = checkResponseForSSR(pageRes);
+  const pageError = checkResponseForSSRSafe(pageRes, "Pro page");
   if (pageError) return pageError;
   const pageJson = await pageRes.json();
 

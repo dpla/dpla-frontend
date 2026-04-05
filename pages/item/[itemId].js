@@ -19,7 +19,7 @@ import {
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSR } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, randomItemId, isQA, pageDescription, canonicalUrl }) {
@@ -95,7 +95,7 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
-  const errorResult = checkResponseForSSR(res);
+  const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
   let data;
   try {

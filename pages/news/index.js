@@ -9,7 +9,7 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
-import { safeFetch, checkResponseForSSR, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
 import {
