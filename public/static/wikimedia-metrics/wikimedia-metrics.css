@@ -291,7 +291,7 @@
 }
 
 .wikimedia-metrics-wrapper .chart_div.open {
-    padding: 18px 20px;
+    padding: 0; /* Google Charts offsets tooltips by any CSS padding on this element */
     border: 1px solid #e2e8f0;
     border-top-right-radius: 50px;
     overflow: visible;
