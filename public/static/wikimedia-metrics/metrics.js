@@ -48,7 +48,8 @@ function initMetrics() {
     loadingBanner.id = 'metrics-loading-banner';
     loadingBanner.className = 'metrics-status-banner';
     loadingBanner.textContent = 'Loading category data…';
-    wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
+    // Do not insert the banner on initial load — disabled buttons already signal
+    // "not ready". The banner is only inserted in the error path below.
 
     // Disable form buttons so native submission cannot fire while event
     // handlers are not yet attached (they are wired inside .then()).
@@ -435,7 +436,9 @@ function fetchData(content, category, chartDiv) {
 
                 new google.visualization.LineChart(chartDiv).draw(chartData, {
                     hAxis: { title: 'Time' },
-                    vAxis: { title: 'Views' }
+                    vAxis: { title: 'Views' },
+                    focusTarget: 'category',
+                    lineWidth: 3,
                 });
 
                 // Build the monthly list for the text panel.

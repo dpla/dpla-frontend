@@ -294,7 +294,7 @@
     padding: 18px 20px;
     border: 1px solid #e2e8f0;
     border-top-right-radius: 50px;
-    overflow: auto;
+    overflow: visible;
     min-height: 350px;
 }
 
