@@ -37,8 +37,9 @@ function initMetrics() {
     // directly from the canonical source via the GitLab REST API.
     const ALLOW_LIST_URL = 'https://gitlab.wikimedia.org/api/v4/projects/repos%2Fdata-engineering%2Fairflow-dags/repository/files/main%2Fdags%2Fcommons%2Fcommons_category_allow_list.tsv/raw?ref=main';
 
-    // Show a loading indicator in the wrapper while the allow-list fetch is in flight.
-    // This gives the user feedback and prevents interacting with uninitialized forms.
+    // Prepare a reusable status banner element.
+    // Initial load relies on disabled form buttons as the "not ready" signal.
+    // The banner is inserted only in the allow-list fetch error path below.
     const wrapper = document.querySelector('.wikimedia-metrics-wrapper');
     if (!wrapper) {
         console.error('metrics.js: .wikimedia-metrics-wrapper not found');
@@ -48,7 +49,8 @@ function initMetrics() {
     loadingBanner.id = 'metrics-loading-banner';
     loadingBanner.className = 'metrics-status-banner';
     loadingBanner.textContent = 'Loading category data…';
-    wrapper.insertBefore(loadingBanner, wrapper.querySelector('#showDpla'));
+    // Do not insert the banner on initial load — disabled buttons already signal
+    // "not ready". The banner is only inserted in the error path below.
 
     // Disable form buttons so native submission cannot fire while event
     // handlers are not yet attached (they are wired inside .then()).
@@ -435,7 +437,9 @@ function fetchData(content, category, chartDiv) {
 
                 new google.visualization.LineChart(chartDiv).draw(chartData, {
                     hAxis: { title: 'Time' },
-                    vAxis: { title: 'Views' }
+                    vAxis: { title: 'Views' },
+                    focusTarget: 'category',
+                    lineWidth: 3,
                 });
 
                 // Build the monthly list for the text panel.
