@@ -37,8 +37,9 @@ function initMetrics() {
     // directly from the canonical source via the GitLab REST API.
     const ALLOW_LIST_URL = 'https://gitlab.wikimedia.org/api/v4/projects/repos%2Fdata-engineering%2Fairflow-dags/repository/files/main%2Fdags%2Fcommons%2Fcommons_category_allow_list.tsv/raw?ref=main';
 
-    // Show a loading indicator in the wrapper while the allow-list fetch is in flight.
-    // This gives the user feedback and prevents interacting with uninitialized forms.
+    // Prepare a reusable status banner element.
+    // Initial load relies on disabled form buttons as the "not ready" signal.
+    // The banner is inserted only in the allow-list fetch error path below.
     const wrapper = document.querySelector('.wikimedia-metrics-wrapper');
     if (!wrapper) {
         console.error('metrics.js: .wikimedia-metrics-wrapper not found');
