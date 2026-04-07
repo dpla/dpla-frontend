@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
@@ -18,11 +18,46 @@ import {
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import donateCss from "stylesheets/donate.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-export default function ItemDetail({ item, randomItemId, isQA, pageDescription, canonicalUrl }) {
+export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
+  useEffect(() => {
+    if (!temporarilyUnavailable) return;
+    const timer = setTimeout(() => window.location.reload(), 10000);
+    return () => clearTimeout(timer);
+  }, [temporarilyUnavailable]);
+
+  if (temporarilyUnavailable) {
+    return (
+      <MainLayout>
+        <div className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}>
+          <div className="row">
+            <div className={`${utils.colMd2} ${utils.colXs12}`} />
+            <main
+              id="main"
+              role="main"
+              className={`${contentCss.content} ${donateCss.thankYou} ${utils.colMd8} ${utils.colXs12}`}
+            >
+              <h1>This item is temporarily unavailable.</h1>
+              <p>
+                We&rsquo;re having a brief issue loading this item. The page will
+                refresh automatically in a few seconds, or you can{" "}
+                <button onClick={() => window.location.reload()}>
+                  try again now
+                </button>
+                .
+              </p>
+            </main>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
+
   if (!item) return null;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
@@ -95,6 +130,9 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
+  if (res?.status === 503) {
+    return { props: { temporarilyUnavailable: true } };
+  }
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
   let data;
