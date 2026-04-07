@@ -27,12 +27,16 @@ import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
   useEffect(() => {
-    if (!temporarilyUnavailable) return;
+    const storageKey = `503-reload-attempts:${window.location.pathname}`;
+    if (!temporarilyUnavailable) {
+      // Clear the counter so future outages on the same path auto-refresh again.
+      try { sessionStorage.removeItem(storageKey); } catch {}
+      return;
+    }
     // sessionStorage can throw in private-browsing or restricted environments;
     // fall back to a plain reload rather than crashing the component.
     let timer;
     try {
-      const storageKey = `503-reload-attempts:${window.location.pathname}`;
       const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
       if (attempts >= 3) return;
       timer = setTimeout(() => {
@@ -145,6 +149,8 @@ export async function getServerSideProps(context) {
   const res = await safeFetch(itemUrl);
   if (res?.status === 503) {
     console.warn(`[SSR] Item ${itemId} returned 503 after retry`);
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
     return { props: { temporarilyUnavailable: true } };
   }
   const errorResult = checkResponseForSSRSafe(res, "Item");
