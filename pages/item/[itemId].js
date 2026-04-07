@@ -28,13 +28,20 @@ import { DPLA_ITEM_ID_REGEX } from "constants/items";
 export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
   useEffect(() => {
     if (!temporarilyUnavailable) return;
-    const storageKey = `503-reload-attempts:${window.location.pathname}`;
-    const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
-    if (attempts >= 3) return;
-    const timer = setTimeout(() => {
-      sessionStorage.setItem(storageKey, String(attempts + 1));
-      window.location.reload();
-    }, 10000);
+    // sessionStorage can throw in private-browsing or restricted environments;
+    // fall back to a plain reload rather than crashing the component.
+    let timer;
+    try {
+      const storageKey = `503-reload-attempts:${window.location.pathname}`;
+      const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
+      if (attempts >= 3) return;
+      timer = setTimeout(() => {
+        sessionStorage.setItem(storageKey, String(attempts + 1));
+        window.location.reload();
+      }, 10000);
+    } catch {
+      timer = setTimeout(() => window.location.reload(), 10000);
+    }
     return () => clearTimeout(timer);
   }, [temporarilyUnavailable]);
 
