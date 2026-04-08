@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
@@ -18,11 +19,64 @@ import {
 
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.scss";
+import donateCss from "stylesheets/donate.module.scss";
+import Button from "components/shared/Button";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-export default function ItemDetail({ item, randomItemId, isQA, pageDescription, canonicalUrl }) {
+export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
+  const { query } = useRouter();
+  useEffect(() => {
+    const storageKey = `503-reload-attempts:${window.location.pathname}`;
+    if (!temporarilyUnavailable) {
+      // Clear the counter so future outages on the same path auto-refresh again.
+      try { sessionStorage.removeItem(storageKey); } catch {}
+      return;
+    }
+    // sessionStorage can throw in private-browsing or restricted environments;
+    // skip auto-reload rather than retrying without a cap.
+    let timer;
+    try {
+      const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
+      if (attempts >= 3) return;
+      timer = setTimeout(() => {
+        sessionStorage.setItem(storageKey, String(attempts + 1));
+        window.location.reload();
+      }, 10000);
+    } catch {
+      // sessionStorage unavailable — auto-reload skipped to avoid an uncapped loop.
+    }
+    return () => clearTimeout(timer);
+  }, [temporarilyUnavailable, query.itemId]);
+
+  if (temporarilyUnavailable) {
+    return (
+      <MainLayout>
+        <div className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}>
+          <div className="row">
+            <div className={`${utils.colMd2} ${utils.colXs12}`} />
+            <main
+              id="main"
+              role="main"
+              className={`${contentCss.content} ${donateCss.thankYou} ${utils.colMd8} ${utils.colXs12}`}
+            >
+              <h1>This item is temporarily unavailable.</h1>
+              <p>
+                We&rsquo;re having a brief issue loading this item. This page may
+                refresh automatically a few times.
+              </p>
+              <Button type="primary" onClick={() => window.location.reload()}>
+                Try again now
+              </Button>
+            </main>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
+
   if (!item) return null;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
@@ -95,6 +149,13 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
+  if (res?.status === 503) {
+    console.warn(`[SSR] Item ${itemId} returned 503 after retry`);
+    await res.body?.cancel();
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: { temporarilyUnavailable: true } };
+  }
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
   let data;
