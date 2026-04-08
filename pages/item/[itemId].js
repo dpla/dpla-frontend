@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
 import CiteButton from "components/shared/CiteButton";
@@ -26,6 +27,7 @@ import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
+  const { query } = useRouter();
   useEffect(() => {
     const storageKey = `503-reload-attempts:${window.location.pathname}`;
     if (!temporarilyUnavailable) {
@@ -34,7 +36,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
       return;
     }
     // sessionStorage can throw in private-browsing or restricted environments;
-    // fall back to a plain reload rather than crashing the component.
+    // skip auto-reload rather than retrying without a cap.
     let timer;
     try {
       const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
@@ -44,10 +46,10 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
         window.location.reload();
       }, 10000);
     } catch {
-      timer = setTimeout(() => window.location.reload(), 10000);
+      // sessionStorage unavailable — auto-reload skipped to avoid an uncapped loop.
     }
     return () => clearTimeout(timer);
-  }, [temporarilyUnavailable]);
+  }, [temporarilyUnavailable, query.itemId]);
 
   if (temporarilyUnavailable) {
     return (
