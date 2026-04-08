@@ -64,8 +64,8 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
             >
               <h1>This item is temporarily unavailable.</h1>
               <p>
-                We&rsquo;re having a brief issue loading this item. The page will
-                refresh automatically in a few seconds.
+                We&rsquo;re having a brief issue loading this item. This page may
+                refresh automatically a few times.
               </p>
               <Button type="primary" onClick={() => window.location.reload()}>
                 Try again now
@@ -151,6 +151,7 @@ export async function getServerSideProps(context) {
   const res = await safeFetch(itemUrl);
   if (res?.status === 503) {
     console.warn(`[SSR] Item ${itemId} returned 503 after retry`);
+    await res.body?.cancel();
     context.res.statusCode = 503;
     context.res.setHeader("Retry-After", "10");
     return { props: { temporarilyUnavailable: true } };
