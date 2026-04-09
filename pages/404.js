@@ -1,13 +1,11 @@
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
-import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
-import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
+import ErrorLinks from "components/ErrorComponents/ErrorLinks";
 import MainLayout from "components/MainLayout";
 import React from "react";
 
 export default function Custom404() {
-  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MainLayout>
       <div
@@ -27,10 +25,7 @@ export default function Custom404() {
                 Instead, try one of these:
               </p>
             </div>
-            <div>
-              {siteEnv === "user" && <ErrorLinksUser />}
-              {siteEnv === "pro" && <ErrorLinksPro />}
-            </div>
+            <ErrorLinks />
           </div>
         </div>
       </div>

@@ -97,26 +97,10 @@ const LOCALS = {
         isTopLevel: true,
         category: "About"
       },
-      "/about/governance": {
-        parentDir: "/about",
-        path: "governance.md",
-        title: "Governance",
-        description: "",
-        isTopLevel: false,
-        category: "About"
-      },
       "/about/usage-terms": {
         parentDir: "/about",
         path: "usage-terms.md",
         title: "Copyright and Usage",
-        description: "",
-        isTopLevel: false,
-        category: "About"
-      },
-      "/about/outreach": {
-        parentDir: "/about",
-        path: "outreach-materials.md",
-        title: "Outreach Materials",
         description: "",
         isTopLevel: false,
         category: "About"

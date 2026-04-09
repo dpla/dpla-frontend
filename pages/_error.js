@@ -4,8 +4,7 @@ import React from "react";
 import { withRouter } from "next/router";
 
 import MainLayout from "components/MainLayout";
-import ErrorLinksUser from "components/ErrorComponents/ErrorLinksUser";
-import ErrorLinksPro from "components/ErrorComponents/ErrorLinksPro";
+import ErrorLinks from "components/ErrorComponents/ErrorLinks";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
@@ -33,7 +32,6 @@ class Error extends React.Component {
   }
 
   render() {
-    const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     return (
       <MainLayout>
         <div
@@ -62,10 +60,7 @@ class Error extends React.Component {
                   </p>
                 </div>
               )}
-              <div>
-                {siteEnv === "user" && <ErrorLinksUser />}
-                {siteEnv === "pro" && <ErrorLinksPro />}
-              </div>
+              <ErrorLinks />
             </main>
           </div>
         </div>
