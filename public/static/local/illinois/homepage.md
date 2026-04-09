@@ -178,7 +178,7 @@ The Illinois Digital Heritage Hub brings together unique digital cultural herita
 
 Check out the IDHH Highlights blog for posts highlighting new contributors and collections as well as items relevant to certain holidays and current or historical events.
 
-- ###
+
 ## [IDHH Exhibits Site](https://omeka-s.library.illinois.edu/s/idhh/page/welcome)
 
 Check out the IDHH Exhibits site for digital exhibits that dig into topics important to Illinois History and relevant to current and historical events, featuring items curated from our collections that are immense in volume and rich in historical detail.
