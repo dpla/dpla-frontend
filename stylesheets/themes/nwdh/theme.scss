@@ -1,22 +1,22 @@
 @import "stylesheets/colors";
 
 :root.nwdh {
-  --theme-link-color: #bc6128;
+  --theme-link-color: #004827;
   --theme-background-color: #efefef;
-  --theme-dark-color: rgb(15.5842105263, 8.0407894737, 3.3157894737);
+  --theme-dark-color: rgb(3, 16, 9);
   --theme-main-color: rgb(0, 72.4, 39.3631067961);
   --theme-warmer-tint: rgb(255, 255, 244.8);
   --theme-colder-tint: rgb(232.453125, 251.546875, 232.453125);
-  --heroBackgroundColor: rgb(32.4052631579, 16.7197368421, 6.8947368421) !important;
+  --heroBackgroundColor: rgb(0, 32, 17) !important;
 
-  --linkHoverColor: rgb(214.4736842105, 122.2763157895, 64.5263157895) !important;
-  --visitedLinkColor: rgb(145.9473684211, 75.3026315789, 31.0526315789) !important;
+  --linkHoverColor: rgb(0, 96, 52) !important;
+  --visitedLinkColor: rgb(0, 43, 23) !important;
   --mobileNavColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
-  --mobileNavMenuButtonOpen: rgb(36.6105263158, 18.8894736842, 7.7894736842) !important;
+  --mobileNavMenuButtonOpen: rgb(0, 37, 20) !important;
   --darkSecondaryButtonColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
   --warmerBackgroundColor: rgb(247, 247, 241.9) !important;
   --colderBackgroundColor: rgb(237.36328125, 242.13671875, 237.36328125) !important;
-  --subLinkHoverColor: rgb(145.9473684211, 75.3026315789, 31.0526315789) !important;
+  --subLinkHoverColor: rgb(0, 52, 28) !important;
   --footerDarkColor: rgb(0, 52, 28.2718446602) !important;
   --linkColor: var(--theme-link-color) !important;
   --paginationLinkColor: var(--linkColor) !important;
