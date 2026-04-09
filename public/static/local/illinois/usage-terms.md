@@ -16,6 +16,6 @@ Properly citing materials provides credit to the creators of primary source work
 
 ![Animated GIF showing how to cite IDHH items](/static/local/illinois/cite-item.gif "How to cite IDHH items")
 
-Learn more about how you can use the collection as an educator, developer, or researcher from the [DPLA](https://dp.la/guides).
+Learn more about how you can use the collection as an educator, developer, or researcher from the [DPLA Guides](https://dp.la/guides).
 
 This guide was created by Kaylen Dwyer, graduate assistant at Scholarly Communications and Publishing of the University of Illinois, Urbana-Champaign, June 2019.

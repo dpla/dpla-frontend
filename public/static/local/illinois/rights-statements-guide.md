@@ -1,8 +1,5 @@
 # Rights Statements Guide
 
-[![Click to watch a video introducing standardized rights statements on Vimeo](/static/local/illinois/standardized-rights-video.png "Click to watch a video introducing standardized rights statements")](https://vimeo.com/391276209)
-_[IDHH Standardized Rights](https://vimeo.com/391276209) from [Illinois Digital Heritage Hub](https://vimeo.com/user64994398) on [Vimeo](https://vimeo.com/)._
-
 Standardized rights statements are highly recommended by the DPLA and are important for the discoverability and usability of your organization’s digital objects. Currently, there are more than 1,000 different rights statements in the IDHH alone and 1,000s in the DPLA’s entire record set. This can be quite overwhelming to users and generate a great deal of uncertainty on if and how digital material can be used.
 
 Fortunately, there is a solution: standardized rights statements. Currently, there are two options that simply describe how items may or may not be reused. One is [rightsstatements.org](https://rightsstatements.org/en/). This resource boils down just about all intellectual property information into one of [twelve short statements](https://rightsstatements.org/page/1.0/). If your materials already have accurate rights statements, you are more than halfway there to deploying standardized rights.
@@ -24,10 +21,8 @@ _Europeana catalog search results provide a facet by rights statements made poss
 
 Standardized rights statements or Creative Commons licenses can be implemented by first mapping your existing rights statements to standardized rights statements or, if your institution owns the copyright, Creative Commons licenses. This can be accomplished first by examining IDHH’s assessments of your collections’ metadata. In each assessment, we provide recommendations of standardized rights statements we believe will work for your collections. If you’re not sure where to start, from finding your metadata assessments to uncertainty on which statement to deploy, fear not! You have some options.
 
-- There are several flowcharts that can help you determine the right standardized rights statement for your collections, created by other DPLA hubs.
+- There are flowcharts that can help you determine the right standardized rights statement for your collections, created by other DPLA hubs.
     - [PA Digital](http://bit.ly/RightsTool) \[PDF download\]
-    - [Minnesota Digital Library](http://hdl.handle.net/11299/210229)
-- This [poster](https://scholarlyrepository.miami.edu/cgi/viewcontent.cgi?article=1001&context=librarypapers) \[PDF download\] details the University of Miami’s successful effort of migrating their free text rights statements to standardized rights.
 - If you have done your due diligence in trying to determine an item’s copyright status and are still unsure, you may use the _Copyright Undetermined_ option.
 - Last but not least, [contact the IDHH Metadata Manager](/about/contact) if you can’t find a solution above.
 

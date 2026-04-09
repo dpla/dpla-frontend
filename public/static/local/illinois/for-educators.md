@@ -19,4 +19,3 @@
 ## More Resources
 
 - [Illinois History Day](https://presidentlincoln.illinois.gov/learn/educators/illinois-history-day/)
-- [Enhance Your Classroom (Illinois State University)](https://education.illinoisstate.edu/alumni/enhance_your_classroom/)

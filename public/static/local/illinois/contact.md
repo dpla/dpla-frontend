@@ -1,24 +1,19 @@
 # Contact Us
-If you are a contributor or if you would like to learn more about the Illinois Digital Heritage Hub, get in touch with one of our staff members.
+If you are a contributor or if you would like to learn more about the Illinois Digital Heritage Hub, please [email us](mailto:idhh@carli.illinois.edu).
 
 Please do not contact the IDHH for permissions to use images or other material in the IDHH collections, but rather reach out to the institution that has contributed the item or items you wish to use. See also the [Copyright and Usage Guide](/about/usage-terms).
 
 ## Current IDHH Staff                                           
 
-### [Anne Craig](mailto:abcraig@uillinois.edu)
-**IDHH Coordinator**  
-Senior Director  
-Consortium of Academic and Research Libraries in Illinois
-
-### [Megan N Pearson](mailto:megannp4@uillinois.edu)
+### Megan Pearson
 **IDHH Project Coordinator**  
 Library Services Coordinator  
-Consortium for Academic and Research Libraries in Illinois
+Consortium of Academic and Research Libraries in Illinois
 
-### [Jessica Gibson](mailto:oram@uillinois.edu)
+### Jessica Gibson
 **IDHH Harvesting Manager**  
 Senior Application Support Coordinator  
-Consortium for Academic and Research Libraries in Illinois
+Consortium of Academic and Research Libraries in Illinois
 
 ## Former Staff and Students
 
