@@ -8,7 +8,7 @@ function ErrorLinks() {
   if (siteEnv === "user") return <ErrorLinksUser />;
   if (siteEnv === "pro") return <ErrorLinksPro />;
   if (siteEnv === "local") return <ErrorLinksLocal />;
-  return null;
+  return <ErrorLinksUser />;
 }
 
 export default ErrorLinks;
