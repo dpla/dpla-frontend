@@ -67,6 +67,14 @@ function App({ Component, pageProps }) {
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
         onLoad={() => {
+          // Fallback: define gtag here in case the inline script above was
+          // blocked by CSP (which requires a matching sha256 hash for inline scripts).
+          window.dataLayer = window.dataLayer || [];
+          window.gtag =
+            window.gtag ||
+            function () {
+              window.dataLayer.push(arguments);
+            };
           window.gtag("js", new Date());
           window.gtag("config", gaTrackingId, {
             page_path: window.location.pathname,
