@@ -20,7 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
