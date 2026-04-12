@@ -88,6 +88,8 @@ export const getServerSideProps = async (context) => {
     thumbnailUrl: subtopic.acf.category_image,
   }));
 
+  // Use try-catch with a sentinel error because returning from getServerSideProps
+  // isn't possible inside a Promise.all callback — the outer catch converts it.
   let suggestions;
   try {
     suggestions = !currentTopic.acf.related_content

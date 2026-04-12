@@ -148,6 +148,7 @@ export async function getServerSideProps({ query, res }) {
 
   if (isUpstreamUnavailable(menuResponse)) {
     await menuResponse?.body?.cancel();
+    await authorRes?.body?.cancel();
     return upstreamUnavailable(res);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "news menu");

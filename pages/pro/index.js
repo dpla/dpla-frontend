@@ -29,12 +29,7 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
-  if (isUpstreamUnavailable(newsRes)) {
-    await settingsRes?.body?.cancel();
-    await newsRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
-  }
-  if (isUpstreamUnavailable(settingsRes)) {
+  if (isUpstreamUnavailable(newsRes) || isUpstreamUnavailable(settingsRes)) {
     await newsRes?.body?.cancel();
     await settingsRes?.body?.cancel();
     return upstreamUnavailable(context.res);
