@@ -29,8 +29,11 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
-  if (isUpstreamUnavailable(newsRes) || isUpstreamUnavailable(settingsRes)) {
-    return upstreamUnavailable(context.res, newsRes, settingsRes);
+  if (isUpstreamUnavailable(settingsRes)) {
+    return upstreamUnavailable(context.res, settingsRes, newsRes);
+  }
+  if (isUpstreamUnavailable(newsRes)) {
+    await newsRes?.body?.cancel();
   }
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;

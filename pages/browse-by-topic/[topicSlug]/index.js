@@ -86,61 +86,52 @@ export const getServerSideProps = async (context) => {
     thumbnailUrl: subtopic.acf.category_image,
   }));
 
-  // Use try-catch with a sentinel error because returning from getServerSideProps
-  // isn't possible inside a Promise.all callback — the outer catch converts it.
-  let suggestions;
-  try {
-    suggestions = !currentTopic.acf.related_content
-      ? []
-      : await Promise.all(
-          currentTopic.acf.related_content.map(async (item) => {
-            if (item.related_content_type === "Exhibition") {
-              // load exhibit
-              const exhibition = exhibitions.exhibitions.find(
-                (exhibition) => exhibition.slug === item.exhibition_id,
-              );
-              // skip a nil exhibit
-              if (!exhibition) return;
-              const href = `/exhibitions/${exhibition.slug}`;
-              const as = `/exhibitions/${exhibition.slug}`;
-              return {
-                title: exhibition.title,
-                thumbnailUrl: exhibition.thumbnailUrl,
-                as,
-                href,
-                type: "Exhibition",
-              };
-            } else if (item.related_content_type === "Primary Source Set") {
-              if (!item.primary_source_set_id) return null;
-              const setId = sanitizeSourceSetId(item.primary_source_set_id);
-              const sourceSetRes = await safeFetch(
-                `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
-              );
-              if (isUpstreamUnavailable(sourceSetRes)) {
-                await sourceSetRes?.body?.cancel();
-                throw new Error("UPSTREAM_UNAVAILABLE");
-              }
-              if (!sourceSetRes?.ok) return null;
-              const sourceSetJson = await sourceSetRes.json();
-              const slug = extractSourceSetSlug(sourceSetJson["@id"]);
-              if (!slug) return null;
-              return {
-                title: sourceSetJson.name,
-                thumbnailUrl: sourceSetJson.thumbnailUrl,
-                href: `/primary-source-sets/${slug}`,
-                type: "Primary Source Set",
-              };
-            } else {
+  const suggestions = !currentTopic.acf.related_content
+    ? []
+    : await Promise.all(
+        currentTopic.acf.related_content.map(async (item) => {
+          if (item.related_content_type === "Exhibition") {
+            // load exhibit
+            const exhibition = exhibitions.exhibitions.find(
+              (exhibition) => exhibition.slug === item.exhibition_id,
+            );
+            // skip a nil exhibit
+            if (!exhibition) return;
+            const href = `/exhibitions/${exhibition.slug}`;
+            const as = `/exhibitions/${exhibition.slug}`;
+            return {
+              title: exhibition.title,
+              thumbnailUrl: exhibition.thumbnailUrl,
+              as,
+              href,
+              type: "Exhibition",
+            };
+          } else if (item.related_content_type === "Primary Source Set") {
+            if (!item.primary_source_set_id) return null;
+            const setId = sanitizeSourceSetId(item.primary_source_set_id);
+            const sourceSetRes = await safeFetch(
+              `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
+            );
+            // treat upstream unavailability as a skipped suggestion — a missing
+            // sidebar card is not worth failing the whole topic page
+            if (!sourceSetRes?.ok) {
+              await sourceSetRes?.body?.cancel();
               return null;
             }
-          }),
-        );
-  } catch (err) {
-    if (err.message === "UPSTREAM_UNAVAILABLE") {
-      return upstreamUnavailable(context.res);
-    }
-    throw err;
-  }
+            const sourceSetJson = await sourceSetRes.json();
+            const slug = extractSourceSetSlug(sourceSetJson["@id"]);
+            if (!slug) return null;
+            return {
+              title: sourceSetJson.name,
+              thumbnailUrl: sourceSetJson.thumbnailUrl,
+              href: `/primary-source-sets/${slug}`,
+              type: "Primary Source Set",
+            };
+          } else {
+            return null;
+          }
+        }),
+      );
 
   const props = washObject({
     topic: { ...currentTopic, subtopics },
