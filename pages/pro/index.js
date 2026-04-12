@@ -29,7 +29,13 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
+  if (isUpstreamUnavailable(newsRes)) {
+    await settingsRes?.body?.cancel();
+    await newsRes?.body?.cancel();
+    return upstreamUnavailable(context.res);
+  }
   if (isUpstreamUnavailable(settingsRes)) {
+    await newsRes?.body?.cancel();
     await settingsRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
@@ -42,6 +48,7 @@ export async function getServerSideProps(context) {
   const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const homeRes = await cachedSafeFetch(endpoint, authOptions);
   if (isUpstreamUnavailable(homeRes)) {
+    await newsRes?.body?.cancel();
     await homeRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }

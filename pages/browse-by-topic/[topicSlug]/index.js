@@ -88,47 +88,59 @@ export const getServerSideProps = async (context) => {
     thumbnailUrl: subtopic.acf.category_image,
   }));
 
-  const suggestions = !currentTopic.acf.related_content
-    ? []
-    : await Promise.all(
-        currentTopic.acf.related_content.map(async (item) => {
-          if (item.related_content_type === "Exhibition") {
-            // load exhibit
-            const exhibition = exhibitions.exhibitions.find(
-              (exhibition) => exhibition.slug === item.exhibition_id,
-            );
-            // skip a nil exhibit
-            if (!exhibition) return;
-            const href = `/exhibitions/${exhibition.slug}`;
-            const as = `/exhibitions/${exhibition.slug}`;
-            return {
-              title: exhibition.title,
-              thumbnailUrl: exhibition.thumbnailUrl,
-              as,
-              href,
-              type: "Exhibition",
-            };
-          } else if (item.related_content_type === "Primary Source Set") {
-            if (!item.primary_source_set_id) return null;
-            const setId = sanitizeSourceSetId(item.primary_source_set_id);
-            const sourceSetRes = await safeFetch(
-              `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
-            );
-            if (!sourceSetRes?.ok) return null;
-            const sourceSetJson = await sourceSetRes.json();
-            const slug = extractSourceSetSlug(sourceSetJson["@id"]);
-            if (!slug) return null;
-            return {
-              title: sourceSetJson.name,
-              thumbnailUrl: sourceSetJson.thumbnailUrl,
-              href: `/primary-source-sets/${slug}`,
-              type: "Primary Source Set",
-            };
-          } else {
-            return null;
-          }
-        }),
-      );
+  let suggestions;
+  try {
+    suggestions = !currentTopic.acf.related_content
+      ? []
+      : await Promise.all(
+          currentTopic.acf.related_content.map(async (item) => {
+            if (item.related_content_type === "Exhibition") {
+              // load exhibit
+              const exhibition = exhibitions.exhibitions.find(
+                (exhibition) => exhibition.slug === item.exhibition_id,
+              );
+              // skip a nil exhibit
+              if (!exhibition) return;
+              const href = `/exhibitions/${exhibition.slug}`;
+              const as = `/exhibitions/${exhibition.slug}`;
+              return {
+                title: exhibition.title,
+                thumbnailUrl: exhibition.thumbnailUrl,
+                as,
+                href,
+                type: "Exhibition",
+              };
+            } else if (item.related_content_type === "Primary Source Set") {
+              if (!item.primary_source_set_id) return null;
+              const setId = sanitizeSourceSetId(item.primary_source_set_id);
+              const sourceSetRes = await safeFetch(
+                `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
+              );
+              if (isUpstreamUnavailable(sourceSetRes)) {
+                await sourceSetRes?.body?.cancel();
+                throw new Error("UPSTREAM_UNAVAILABLE");
+              }
+              if (!sourceSetRes?.ok) return null;
+              const sourceSetJson = await sourceSetRes.json();
+              const slug = extractSourceSetSlug(sourceSetJson["@id"]);
+              if (!slug) return null;
+              return {
+                title: sourceSetJson.name,
+                thumbnailUrl: sourceSetJson.thumbnailUrl,
+                href: `/primary-source-sets/${slug}`,
+                type: "Primary Source Set",
+              };
+            } else {
+              return null;
+            }
+          }),
+        );
+  } catch (err) {
+    if (err.message === "UPSTREAM_UNAVAILABLE") {
+      return upstreamUnavailable(context.res);
+    }
+    throw err;
+  }
 
   const props = washObject({
     topic: { ...currentTopic, subtopics },
