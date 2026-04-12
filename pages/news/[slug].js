@@ -22,6 +22,7 @@ import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 class PostPage extends React.Component {
   refreshExternalLinks() {
@@ -42,7 +43,8 @@ class PostPage extends React.Component {
   }
 
   render() {
-    const { content, menuItems, author, pageDescription } = this.props;
+    const { content, menuItems, author, pageDescription, temporarilyUnavailable } = this.props;
+    if (temporarilyUnavailable) return <ServiceUnavailable />;
     let hasTags = false;
     NEWS_TAGS.forEach((tag) => {
       if (content.tags.indexOf(tag.id) !== -1) {
@@ -151,6 +153,9 @@ export async function getServerSideProps(context) {
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
   ]);
 
+  if (!menuResponse || !postRes) {
+    return upstreamUnavailable(context.res);
+  }
   const menuError = checkResponseForSSRSafe(menuResponse, "News menu");
   if (menuError) return menuError;
   const postError = checkResponseForSSRSafe(postRes, "News post");
@@ -169,6 +174,9 @@ export async function getServerSideProps(context) {
       `${NEWS_ENDPOINT}?include=${slug}&status=any&context=edit`,
       authOptions,
     );
+    if (!byIdRes) {
+      return upstreamUnavailable(context.res);
+    }
     const byIdError = checkResponseForSSRSafe(byIdRes, "News post by ID");
     if (byIdError) return byIdError;
     postJson = await byIdRes.json();
@@ -185,6 +193,9 @@ export async function getServerSideProps(context) {
     `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
+  if (!authorRes) {
+    return upstreamUnavailable(context.res);
+  }
   const authorError = checkResponseForSSRSafe(authorRes, "News post author");
   if (authorError) return authorError;
 

@@ -14,8 +14,9 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { PRO_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -49,7 +50,9 @@ class ProMenuPage extends React.Component {
       pageTitle,
       pageDescription,
       illustration,
+      temporarilyUnavailable,
     } = this.props;
+    if (temporarilyUnavailable) return <ServiceUnavailable />;
     return (
       <MainLayout
         pageTitle={pageTitle}
@@ -117,6 +120,9 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuResponse = await cachedSafeFetch(PRO_MENU_ENDPOINT);
+  if (!menuResponse) {
+    return upstreamUnavailable(context.res);
+  }
   const menuError = checkResponseForSSRSafe(menuResponse, "Pro menu");
   if (menuError) return menuError;
   const menuJson = await menuResponse.json();
@@ -128,6 +134,9 @@ export async function getServerSideProps(context) {
   // In draft mode, append context=edit so WP returns draft content
   const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
   const pageRes = await safeFetch(pageUrl, authOptions);
+  if (!pageRes) {
+    return upstreamUnavailable(context.res);
+  }
   const pageError = checkResponseForSSRSafe(pageRes, "Pro page");
   if (pageError) return pageError;
   const pageJson = await pageRes.json();

@@ -4,7 +4,8 @@ import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
   subjectOptions,
@@ -12,8 +13,8 @@ import {
   TITLE,
 } from "constants/primarySourceSets";
 
-function PrimarySourceSets(props) {
-  const {sets} = props;
+function PrimarySourceSets({ sets, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
@@ -26,7 +27,7 @@ function PrimarySourceSets(props) {
   );
 }
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query, res }) {
   const findTimePeriod = query.timePeriod && query.timePeriod !== "all-time-periods" ? timePeriodOptions.find(
     (option) => option.value === query.timePeriod,
   ) : null;
@@ -46,10 +47,13 @@ export async function getServerSideProps({query}) {
     filter = `&filter=about.name:${encodeURIComponent(subject)}`;
   }
   const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
-  const res = await safeFetch(url);
-  const resError = checkResponseForSSRSafe(res, "PSS sets");
+  const fetchRes = await safeFetch(url);
+  if (!fetchRes) {
+    return upstreamUnavailable(res);
+  }
+  const resError = checkResponseForSSRSafe(fetchRes, "PSS sets");
   if (resError) return resError;
-  const json = await res.json();
+  const json = await fetchRes.json();
   const props = washObject({
     sets: json,
   });

@@ -7,8 +7,9 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 class Printable extends React.Component {
   componentDidMount() {
@@ -16,7 +17,8 @@ class Printable extends React.Component {
   }
 
   render() {
-    const { set, teachingGuide } = this.props;
+    const { set, teachingGuide, temporarilyUnavailable } = this.props;
+    if (temporarilyUnavailable) return <ServiceUnavailable />;
     if (!set) return null;
     return (
       <MinimalLayout route={this.props.router} isPrintable={true}>
@@ -38,10 +40,13 @@ class Printable extends React.Component {
   }
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, res }) {
   if (!isValidPSSSlug(query.set)) return { notFound: true };
   const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
   const setRes = await safeFetch(url);
+  if (!setRes) {
+    return upstreamUnavailable(res);
+  }
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;
   const set = await setRes.json();

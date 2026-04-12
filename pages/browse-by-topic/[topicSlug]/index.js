@@ -13,7 +13,8 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -24,7 +25,8 @@ const sanitizeSourceSetId = (id) => {
 };
 
 function Topic(props) {
-  const { topic, suggestions } = props;
+  const { topic, suggestions, temporarilyUnavailable } = props;
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!topic) return null;
   return (
     <MainLayout pageTitle={topic.name}>
@@ -52,7 +54,9 @@ function Topic(props) {
 export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
-
+  if (!topicsRes) {
+    return upstreamUnavailable(context.res);
+  }
   const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
   if (topicsError) return topicsError;
 
@@ -70,6 +74,9 @@ export const getServerSideProps = async (context) => {
     loadExhibitionList(),
   ]);
 
+  if (!subtopicsRes) {
+    return upstreamUnavailable(context.res);
+  }
   const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");
   if (subtopicsError) return subtopicsError;
 

@@ -6,10 +6,12 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
-function Home({ news, content }) {
+function Home({ news, content, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   return (
     <MainLayout hidePageHeader={false} hideSearchBar={true}>
       <div id="main" role="main">
@@ -27,6 +29,9 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
+  if (!settingsRes) {
+    return upstreamUnavailable(context.res);
+  }
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;
   const settingsJson = await settingsRes.json();
@@ -35,6 +40,9 @@ export async function getServerSideProps(context) {
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
   const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const homeRes = await cachedSafeFetch(endpoint, authOptions);
+  if (!homeRes) {
+    return upstreamUnavailable(context.res);
+  }
   const homeError = checkResponseForSSRSafe(homeRes, "Pro homepage");
   if (homeError) return homeError;
   const [homeJson, newsItems] = await Promise.all([

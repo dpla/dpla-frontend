@@ -9,9 +9,11 @@ import { LOCALS } from "constants/local";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
-function PartnerBrowse({ partners }) {
+function PartnerBrowse({ partners, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
@@ -28,7 +30,7 @@ function PartnerBrowse({ partners }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ res }) => {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
@@ -53,10 +55,13 @@ export const getServerSideProps = async () => {
     linkParam = "partner";
   }
 
-  const res = await safeFetch(apiQuery);
-  const resError = checkResponseForSSRSafe(res, "Partner browse");
+  const fetchRes = await safeFetch(apiQuery);
+  if (!fetchRes) {
+    return upstreamUnavailable(res);
+  }
+  const resError = checkResponseForSSRSafe(fetchRes, "Partner browse");
   if (resError) return resError;
-  const json = await res.json();
+  const json = await fetchRes.json();
   const terms = json?.facets?.[facetName]?.terms;
   if (!Array.isArray(terms)) {
     return { notFound: true };

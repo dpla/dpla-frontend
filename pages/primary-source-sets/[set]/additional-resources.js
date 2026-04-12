@@ -14,10 +14,12 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
-function SingleSet({router, set, currentFullUrl}) {
+function SingleSet({ router, set, currentFullUrl, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!set) return null;
   return (
     <MainLayout
@@ -62,12 +64,15 @@ function SingleSet({router, set, currentFullUrl}) {
   );
 }
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query, res }) {
   if (!isValidPSSSlug(query.set)) return { notFound: true };
   const currentFullUrl = `${process.env.BASE_URL}/primary-source-sets/${query.set}`;
   const setRes = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
+  if (!setRes) {
+    return upstreamUnavailable(res);
+  }
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;
   const set = await setRes.json();

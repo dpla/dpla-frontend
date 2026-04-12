@@ -9,7 +9,8 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
 import {
@@ -36,7 +37,9 @@ function NewsPage({
   currentTag,
   keywords,
   author,
+  temporarilyUnavailable,
 }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   const resultSummary =
     `${author ? " by " + author.name : ""}` +
     `${currentTag ? " under " + currentTag.name : ""}` +
@@ -127,7 +130,7 @@ function NewsPage({
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, res }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
@@ -143,6 +146,9 @@ export async function getServerSideProps({ query }) {
       : Promise.resolve(null),
   ]);
 
+  if (!menuResponse) {
+    return upstreamUnavailable(res);
+  }
   const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
   if (menuError) return menuError;
   const menuJson = await menuResponse.json();
@@ -153,6 +159,9 @@ export async function getServerSideProps({ query }) {
 
   let authorJson = null;
   if (authorId !== "") {
+    if (!authorRes) {
+      return upstreamUnavailable(res);
+    }
     const authorError = checkResponseForSSRSafe(authorRes, "news author");
     if (authorError) return authorError;
     authorJson = await authorRes.json();
@@ -179,7 +188,9 @@ export async function getServerSideProps({ query }) {
     // Only guard against network errors here — WP returns HTTP 400 for invalid
     // page numbers with a parseable JSON body, which the retry loop handles by
     // resetting to page 1. checkResponseForSSR would short-circuit to notFound.
-    if (!newsRes) throw new Error("Upstream fetch failed: network error");
+    if (!newsRes) {
+      return upstreamUnavailable(res);
+    }
     newsItems = await newsRes.json();
     newsCount = newsRes.headers.get("X-WP-Total");
     newsPageCount = newsRes.headers.get("X-WP-TotalPages");

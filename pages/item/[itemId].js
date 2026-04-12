@@ -23,7 +23,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import donateCss from "stylesheets/donate.module.scss";
 import Button from "components/shared/Button";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
@@ -149,12 +149,14 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
+  if (!res) {
+    console.warn(`[SSR] Item ${itemId} fetch returned null (network error)`);
+    return upstreamUnavailable(context.res);
+  }
   if (res?.status === 503) {
     console.warn(`[SSR] Item ${itemId} returned 503 after retry`);
     await res.body?.cancel();
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
-    return { props: { temporarilyUnavailable: true } };
+    return upstreamUnavailable(context.res);
   }
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
