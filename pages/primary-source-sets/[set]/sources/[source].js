@@ -9,7 +9,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -62,7 +62,9 @@ export async function getServerSideProps(context) {
     safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
     safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
   ]);
-  if (!sourceRes || !setRes) {
+  if (isUpstreamUnavailable(sourceRes) || isUpstreamUnavailable(setRes)) {
+    await sourceRes?.body?.cancel();
+    await setRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const sourceError = checkResponseForSSRSafe(sourceRes, `source "${source}"`);

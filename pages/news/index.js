@@ -9,7 +9,7 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
@@ -146,7 +146,8 @@ export async function getServerSideProps({ query, res }) {
       : Promise.resolve(null),
   ]);
 
-  if (!menuResponse) {
+  if (isUpstreamUnavailable(menuResponse)) {
+    await menuResponse?.body?.cancel();
     return upstreamUnavailable(res);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
@@ -159,7 +160,8 @@ export async function getServerSideProps({ query, res }) {
 
   let authorJson = null;
   if (authorId !== "") {
-    if (!authorRes) {
+    if (isUpstreamUnavailable(authorRes)) {
+      await authorRes?.body?.cancel();
       return upstreamUnavailable(res);
     }
     const authorError = checkResponseForSSRSafe(authorRes, "news author");
@@ -188,7 +190,8 @@ export async function getServerSideProps({ query, res }) {
     // Only guard against network errors here — WP returns HTTP 400 for invalid
     // page numbers with a parseable JSON body, which the retry loop handles by
     // resetting to page 1. checkResponseForSSR would short-circuit to notFound.
-    if (!newsRes) {
+    if (isUpstreamUnavailable(newsRes)) {
+      await newsRes?.body?.cancel();
       return upstreamUnavailable(res);
     }
     newsItems = await newsRes.json();

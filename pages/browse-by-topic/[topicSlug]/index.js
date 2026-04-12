@@ -13,7 +13,7 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const sanitizeSourceSetId = (id) => {
@@ -54,7 +54,8 @@ function Topic(props) {
 export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
-  if (!topicsRes) {
+  if (isUpstreamUnavailable(topicsRes)) {
+    await topicsRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
@@ -74,7 +75,8 @@ export const getServerSideProps = async (context) => {
     loadExhibitionList(),
   ]);
 
-  if (!subtopicsRes) {
+  if (isUpstreamUnavailable(subtopicsRes)) {
+    await subtopicsRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");

@@ -7,13 +7,13 @@ import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/Teac
 
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 class Printable extends React.Component {
   componentDidMount() {
-    window.print();
+    if (!this.props.temporarilyUnavailable) window.print();
   }
 
   render() {
@@ -44,7 +44,8 @@ export async function getServerSideProps({ query, res }) {
   if (!isValidPSSSlug(query.set)) return { notFound: true };
   const url = `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`;
   const setRes = await safeFetch(url);
-  if (!setRes) {
+  if (isUpstreamUnavailable(setRes)) {
+    await setRes?.body?.cancel();
     return upstreamUnavailable(res);
   }
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);

@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable } from "lib/safeFetch";
+import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -29,7 +29,8 @@ export async function getServerSideProps(context) {
     cachedSafeFetch(API_SETTINGS_ENDPOINT),
     cachedSafeFetch(NEWS_PRO_ENDPOINT),
   ]);
-  if (!settingsRes) {
+  if (isUpstreamUnavailable(settingsRes)) {
+    await settingsRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
@@ -40,7 +41,8 @@ export async function getServerSideProps(context) {
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
   const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
   const homeRes = await cachedSafeFetch(endpoint, authOptions);
-  if (!homeRes) {
+  if (isUpstreamUnavailable(homeRes)) {
+    await homeRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const homeError = checkResponseForSSRSafe(homeRes, "Pro homepage");

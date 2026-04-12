@@ -20,7 +20,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -153,7 +153,9 @@ export async function getServerSideProps(context) {
     safeFetch(`${NEWS_ENDPOINT}${postParams}`, authOptions),
   ]);
 
-  if (!menuResponse || !postRes) {
+  if (isUpstreamUnavailable(menuResponse) || isUpstreamUnavailable(postRes)) {
+    await menuResponse?.body?.cancel();
+    await postRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "News menu");
@@ -174,7 +176,8 @@ export async function getServerSideProps(context) {
       `${NEWS_ENDPOINT}?include=${slug}&status=any&context=edit`,
       authOptions,
     );
-    if (!byIdRes) {
+    if (isUpstreamUnavailable(byIdRes)) {
+      await byIdRes?.body?.cancel();
       return upstreamUnavailable(context.res);
     }
     const byIdError = checkResponseForSSRSafe(byIdRes, "News post by ID");
@@ -193,7 +196,8 @@ export async function getServerSideProps(context) {
     `${wordpressUrl}/wp-json/wp/v2/users/${postJson[0].author}`,
   );
 
-  if (!authorRes) {
+  if (isUpstreamUnavailable(authorRes)) {
+    await authorRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const authorError = checkResponseForSSRSafe(authorRes, "News post author");

@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -120,7 +120,8 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuResponse = await cachedSafeFetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse) {
+  if (isUpstreamUnavailable(menuResponse)) {
+    await menuResponse?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "Pro menu");
@@ -134,7 +135,8 @@ export async function getServerSideProps(context) {
   // In draft mode, append context=edit so WP returns draft content
   const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
   const pageRes = await safeFetch(pageUrl, authOptions);
-  if (!pageRes) {
+  if (isUpstreamUnavailable(pageRes)) {
+    await pageRes?.body?.cancel();
     return upstreamUnavailable(context.res);
   }
   const pageError = checkResponseForSSRSafe(pageRes, "Pro page");

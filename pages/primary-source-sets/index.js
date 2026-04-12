@@ -4,7 +4,7 @@ import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
@@ -48,7 +48,8 @@ export async function getServerSideProps({ query, res }) {
   }
   const url = `${process.env.API_URL}/pss/sets?api_key=${process.env.API_KEY}${filter}`;
   const fetchRes = await safeFetch(url);
-  if (!fetchRes) {
+  if (isUpstreamUnavailable(fetchRes)) {
+    await fetchRes?.body?.cancel();
     return upstreamUnavailable(res);
   }
   const resError = checkResponseForSSRSafe(fetchRes, "PSS sets");
