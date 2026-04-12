@@ -82,8 +82,7 @@ export async function getServerSideProps(context) {
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
   if (isUpstreamUnavailable(menuItemsRes)) {
-    await menuItemsRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, menuItemsRes);
   }
   const menuError = checkResponseForSSRSafe(menuItemsRes, "Guides menu");
   if (menuError) return menuError;
@@ -98,8 +97,7 @@ export async function getServerSideProps(context) {
   const guideUrl = draftMode ? wpDraftUrl(getMenuItemUrl(guide)) : getMenuItemUrl(guide);
   const guideRes = await safeFetch(guideUrl, authOptions);
   if (isUpstreamUnavailable(guideRes)) {
-    await guideRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, guideRes);
   }
   const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
   if (guideError) return guideError;

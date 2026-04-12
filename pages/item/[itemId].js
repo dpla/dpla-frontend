@@ -151,8 +151,7 @@ export async function getServerSideProps(context) {
   const res = await safeFetch(itemUrl);
   if (isUpstreamUnavailable(res)) {
     console.warn(`[SSR] Item ${itemId}: ${!res ? "network error" : "503 after retry"}`);
-    await res?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, res);
   }
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;

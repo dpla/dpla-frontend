@@ -57,8 +57,7 @@ export const getServerSideProps = async ({ res }) => {
 
   const fetchRes = await safeFetch(apiQuery);
   if (isUpstreamUnavailable(fetchRes)) {
-    await fetchRes?.body?.cancel();
-    return upstreamUnavailable(res);
+    return upstreamUnavailable(res, fetchRes);
   }
   const resError = checkResponseForSSRSafe(fetchRes, "Partner browse");
   if (resError) return resError;

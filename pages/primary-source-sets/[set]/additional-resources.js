@@ -71,8 +71,7 @@ export async function getServerSideProps({ query, res }) {
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(query.set)}?api_key=${process.env.API_KEY}`,
   );
   if (isUpstreamUnavailable(setRes)) {
-    await setRes?.body?.cancel();
-    return upstreamUnavailable(res);
+    return upstreamUnavailable(res, setRes);
   }
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;

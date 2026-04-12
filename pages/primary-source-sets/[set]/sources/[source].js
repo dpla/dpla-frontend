@@ -63,9 +63,7 @@ export async function getServerSideProps(context) {
     safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
   ]);
   if (isUpstreamUnavailable(sourceRes) || isUpstreamUnavailable(setRes)) {
-    await sourceRes?.body?.cancel();
-    await setRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, sourceRes, setRes);
   }
   const sourceError = checkResponseForSSRSafe(sourceRes, `source "${source}"`);
   if (sourceError) return sourceError;

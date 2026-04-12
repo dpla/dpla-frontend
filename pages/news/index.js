@@ -147,9 +147,7 @@ export async function getServerSideProps({ query, res }) {
   ]);
 
   if (isUpstreamUnavailable(menuResponse)) {
-    await menuResponse?.body?.cancel();
-    await authorRes?.body?.cancel();
-    return upstreamUnavailable(res);
+    return upstreamUnavailable(res, menuResponse, authorRes);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
   if (menuError) return menuError;
@@ -162,8 +160,7 @@ export async function getServerSideProps({ query, res }) {
   let authorJson = null;
   if (authorId !== "") {
     if (isUpstreamUnavailable(authorRes)) {
-      await authorRes?.body?.cancel();
-      return upstreamUnavailable(res);
+      return upstreamUnavailable(res, authorRes);
     }
     const authorError = checkResponseForSSRSafe(authorRes, "news author");
     if (authorError) return authorError;
@@ -192,8 +189,7 @@ export async function getServerSideProps({ query, res }) {
     // page numbers with a parseable JSON body, which the retry loop handles by
     // resetting to page 1. checkResponseForSSR would short-circuit to notFound.
     if (isUpstreamUnavailable(newsRes)) {
-      await newsRes?.body?.cancel();
-      return upstreamUnavailable(res);
+      return upstreamUnavailable(res, newsRes);
     }
     newsItems = await newsRes.json();
     newsCount = newsRes.headers.get("X-WP-Total");

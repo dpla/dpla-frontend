@@ -55,8 +55,7 @@ export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
   if (isUpstreamUnavailable(topicsRes)) {
-    await topicsRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, topicsRes);
   }
   const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
   if (topicsError) return topicsError;
@@ -76,8 +75,7 @@ export const getServerSideProps = async (context) => {
   ]);
 
   if (isUpstreamUnavailable(subtopicsRes)) {
-    await subtopicsRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, subtopicsRes);
   }
   const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");
   if (subtopicsError) return subtopicsError;

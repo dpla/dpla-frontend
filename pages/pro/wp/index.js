@@ -121,8 +121,7 @@ export async function getServerSideProps(context) {
   const authOptions = wpAuthFetchOptions(draftMode);
   const menuResponse = await cachedSafeFetch(PRO_MENU_ENDPOINT);
   if (isUpstreamUnavailable(menuResponse)) {
-    await menuResponse?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, menuResponse);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "Pro menu");
   if (menuError) return menuError;
@@ -136,8 +135,7 @@ export async function getServerSideProps(context) {
   const pageUrl = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
   const pageRes = await safeFetch(pageUrl, authOptions);
   if (isUpstreamUnavailable(pageRes)) {
-    await pageRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, pageRes);
   }
   const pageError = checkResponseForSSRSafe(pageRes, "Pro page");
   if (pageError) return pageError;

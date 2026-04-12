@@ -154,9 +154,7 @@ export async function getServerSideProps(context) {
   ]);
 
   if (isUpstreamUnavailable(menuResponse) || isUpstreamUnavailable(postRes)) {
-    await menuResponse?.body?.cancel();
-    await postRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, menuResponse, postRes);
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "News menu");
   if (menuError) return menuError;
@@ -177,8 +175,7 @@ export async function getServerSideProps(context) {
       authOptions,
     );
     if (isUpstreamUnavailable(byIdRes)) {
-      await byIdRes?.body?.cancel();
-      return upstreamUnavailable(context.res);
+      return upstreamUnavailable(context.res, byIdRes);
     }
     const byIdError = checkResponseForSSRSafe(byIdRes, "News post by ID");
     if (byIdError) return byIdError;
@@ -197,8 +194,7 @@ export async function getServerSideProps(context) {
   );
 
   if (isUpstreamUnavailable(authorRes)) {
-    await authorRes?.body?.cancel();
-    return upstreamUnavailable(context.res);
+    return upstreamUnavailable(context.res, authorRes);
   }
   const authorError = checkResponseForSSRSafe(authorRes, "News post author");
   if (authorError) return authorError;
