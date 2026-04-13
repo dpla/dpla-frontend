@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { serialize } from 'cookie';
+import { setCookie } from 'lib/setCookie';
 
 const CLIENT_ID = process.env.WIKIMEDIA_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.WIKIMEDIA_OAUTH_CLIENT_SECRET;
@@ -41,13 +41,11 @@ export default async function handler(req, res) {
 function handleLogin(req, res) {
   const state = crypto.randomBytes(16).toString('hex');
 
-  res.setHeader('Set-Cookie', serialize(STATE_COOKIE, state, { // lgtm[js/clear-text-storage-of-sensitive-data]
-    httpOnly: true,
-    secure: true,
-    sameSite: 'Lax',
-    path: '/',
-    maxAge: 300
-  }));
+  setCookie(res, [{
+    name: STATE_COOKIE,
+    value: state,
+    options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 300 }
+  }]);
 
   const params = new URLSearchParams({
     response_type: 'code',
@@ -100,21 +98,17 @@ async function handleCallback(req, res) {
       return res.status(502).json({ error: 'No access token received' });
     }
 
-    res.setHeader('Set-Cookie', [ // lgtm[js/clear-text-storage-of-sensitive-data]
-      serialize(TOKEN_COOKIE, accessToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'Strict',
-        path: '/',
-        maxAge: 60 * 60 * 4
-      }),
-      serialize(STATE_COOKIE, '', {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'Lax',
-        path: '/',
-        maxAge: 0
-      })
+    setCookie(res, [
+      {
+        name: TOKEN_COOKIE,
+        value: accessToken,
+        options: { httpOnly: true, secure: true, sameSite: 'Strict', path: '/', maxAge: 60 * 60 * 4 }
+      },
+      {
+        name: STATE_COOKIE,
+        value: '',
+        options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 0 }
+      }
     ]);
 
     res.redirect(302, '/projects/dpla-wikimedia/depictassist');
@@ -156,13 +150,11 @@ async function handleWhoAmI(req, res) {
 }
 
 function handleLogout(req, res) {
-  res.setHeader('Set-Cookie', serialize(TOKEN_COOKIE, '', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'Strict',
-    path: '/',
-    maxAge: 0
-  }));
+  setCookie(res, [{
+    name: TOKEN_COOKIE,
+    value: '',
+    options: { httpOnly: true, secure: true, sameSite: 'Strict', path: '/', maxAge: 0 }
+  }]);
 
   return res.status(200).json({ ok: true });
 }
