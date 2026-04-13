@@ -41,9 +41,7 @@ export default async function handler(req, res) {
 function handleLogin(req, res) {
   const state = crypto.randomBytes(16).toString('hex');
 
-  // Server-side httpOnly CSRF nonce — acceptable in a cookie per OWASP guidelines.
-  // codeql[js/clear-text-storage-of-sensitive-data]
-  res.setHeader('Set-Cookie', serialize(STATE_COOKIE, state, {
+  res.setHeader('Set-Cookie', serialize(STATE_COOKIE, state, { // lgtm[js/clear-text-storage-of-sensitive-data]
     httpOnly: true,
     secure: true,
     sameSite: 'Lax',
@@ -102,10 +100,7 @@ async function handleCallback(req, res) {
       return res.status(502).json({ error: 'No access token received' });
     }
 
-    // httpOnly + Secure + SameSite=Strict cookie; token is only read server-side
-    // by the /api/wikimedia/commons proxy. Not accessible to client JS.
-    // codeql[js/clear-text-storage-of-sensitive-data]
-    res.setHeader('Set-Cookie', [
+    res.setHeader('Set-Cookie', [ // lgtm[js/clear-text-storage-of-sensitive-data]
       serialize(TOKEN_COOKIE, accessToken, {
         httpOnly: true,
         secure: true,
