@@ -115,7 +115,7 @@ export const getServerSideProps = async (context) => {
             // treat upstream unavailability as a skipped suggestion — a missing
             // sidebar card is not worth failing the whole topic page
             if (!sourceSetRes?.ok) {
-              await sourceSetRes?.body?.cancel();
+              await sourceSetRes?.body?.cancel?.().catch(() => {});
               return null;
             }
             const sourceSetJson = await sourceSetRes.json();

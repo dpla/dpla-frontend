@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
     return upstreamUnavailable(context.res, settingsRes, newsRes);
   }
   if (isUpstreamUnavailable(newsRes)) {
-    await newsRes?.body?.cancel();
+    await Promise.allSettled([newsRes?.body?.cancel?.()]);
   }
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;
