@@ -13,7 +13,8 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const sanitizeSourceSetId = (id) => {
   let sanitized = id.replace(" ", "");
@@ -24,7 +25,8 @@ const sanitizeSourceSetId = (id) => {
 };
 
 function Topic(props) {
-  const { topic, suggestions } = props;
+  const { topic, suggestions, temporarilyUnavailable } = props;
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!topic) return null;
   return (
     <MainLayout pageTitle={topic.name}>
@@ -52,7 +54,9 @@ function Topic(props) {
 export const getServerSideProps = async (context) => {
   const topicSlug = context.params?.topicSlug;
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
-
+  if (isUpstreamUnavailable(topicsRes)) {
+    return upstreamUnavailable(context.res, topicsRes);
+  }
   const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
   if (topicsError) return topicsError;
 
@@ -70,6 +74,9 @@ export const getServerSideProps = async (context) => {
     loadExhibitionList(),
   ]);
 
+  if (isUpstreamUnavailable(subtopicsRes)) {
+    return upstreamUnavailable(context.res, subtopicsRes);
+  }
   const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");
   if (subtopicsError) return subtopicsError;
 
@@ -105,7 +112,12 @@ export const getServerSideProps = async (context) => {
             const sourceSetRes = await safeFetch(
               `${process.env.API_URL}/pss/sets/${setId}?api_key=${process.env.API_KEY}`,
             );
-            if (!sourceSetRes?.ok) return null;
+            // treat upstream unavailability as a skipped suggestion — a missing
+            // sidebar card is not worth failing the whole topic page
+            if (!sourceSetRes?.ok) {
+              await sourceSetRes?.body?.cancel?.().catch(() => {});
+              return null;
+            }
             const sourceSetJson = await sourceSetRes.json();
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
             if (!slug) return null;

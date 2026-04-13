@@ -9,14 +9,16 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function Source({ source, set, currentSourceIdx }) {
+function Source({ source, set, currentSourceIdx, temporarilyUnavailable }) {
   const router = useRouter();
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!source || !set) return null;
   return (
     <MainLayout pageTitle={source.name} pageImage={source.thumbnailUrl}>
@@ -60,6 +62,9 @@ export async function getServerSideProps(context) {
     safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
     safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
   ]);
+  if (isUpstreamUnavailable(sourceRes) || isUpstreamUnavailable(setRes)) {
+    return upstreamUnavailable(context.res, sourceRes, setRes);
+  }
   const sourceError = checkResponseForSSRSafe(sourceRes, `source "${source}"`);
   if (sourceError) return sourceError;
   const setError = checkResponseForSSRSafe(setRes, `set "${set}"`);

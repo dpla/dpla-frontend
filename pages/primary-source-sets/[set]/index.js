@@ -11,14 +11,16 @@ import SourceSetSources from "components/PrimarySourceSetsComponents/SingleSet/S
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function SingleSet({ set }) {
+function SingleSet({ set, temporarilyUnavailable }) {
   const router = useRouter();
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!set) return null;
   return (
     <MainLayout
@@ -57,6 +59,9 @@ export async function getServerSideProps(context) {
   const api = await safeFetch(
     `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
   );
+  if (isUpstreamUnavailable(api)) {
+    return upstreamUnavailable(context.res, api);
+  }
   const apiError = checkResponseForSSRSafe(api, `set "${set}"`);
   if (apiError) return apiError;
 
