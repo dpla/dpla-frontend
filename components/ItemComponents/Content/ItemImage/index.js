@@ -10,9 +10,13 @@ class ItemImage extends React.Component {
   };
 
   componentDidMount() {
-    probeImage(this.props.url, () => {
+    this._cancelProbe = probeImage(this.props.url, () => {
       this.setState({ updateToDefaultImage: true });
     });
+  }
+
+  componentWillUnmount() {
+    if (this._cancelProbe) this._cancelProbe();
   }
 
   render() {

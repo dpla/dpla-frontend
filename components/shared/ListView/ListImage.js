@@ -17,14 +17,22 @@ class ListImage extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url) {
+      if (this._cancelProbe) this._cancelProbe();
       this.setState({ updateToDefaultImage: false });
       this.updateImage();
     }
   }
 
+  componentWillUnmount() {
+    if (this._cancelProbe) this._cancelProbe();
+  }
+
   updateImage() {
-    probeImage(this.props.url, () => {
-      this.setState({ updateToDefaultImage: true });
+    const probedUrl = this.props.url;
+    this._cancelProbe = probeImage(probedUrl, () => {
+      if (this.props.url === probedUrl) {
+        this.setState({ updateToDefaultImage: true });
+      }
     });
   }
 
