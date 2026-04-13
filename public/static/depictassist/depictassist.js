@@ -349,6 +349,9 @@
 
   // ── Queue management ─────────────────────────────────────
   function addToQueue(mid, prop, qid, label, filename) {
+    if (queue.some(item => item.mid === mid && item.prop === prop && item.qid === qid)) {
+      return;
+    }
     queue.push({ mid, prop, qid, label, filename });
     renderQueue();
   }
@@ -464,9 +467,11 @@
     $batchBtn.textContent = 'Submitting...';
 
     try {
+      const currentOrigin = window.location.origin;
+
       // Get CSRF token
       const tokenResp = await fetch(
-        COMMONS_API + '?action=query&meta=tokens&format=json&origin=https://pro.dp.la',
+        COMMONS_API + '?action=query&meta=tokens&format=json&origin=' + encodeURIComponent(currentOrigin),
         { headers: { 'Authorization': 'Bearer ' + accessToken } }
       );
       if (!tokenResp.ok) throw new Error('Failed to get CSRF token');
@@ -485,6 +490,7 @@
       }
 
       const diffs = [];
+      const succeededMids = new Set();
       for (const [mid, items] of byMid) {
         const claims = items.map(item => ({
           mainsnak: {
@@ -525,7 +531,7 @@
           summary: 'Added depicts (P180) claim via DepictAssist (DPLA) \u2014 https://pro.dp.la/projects/dpla-wikimedia/depictassist'
         });
 
-        const editResp = await fetch(COMMONS_API + '?origin=https://pro.dp.la', {
+        const editResp = await fetch(COMMONS_API + '?origin=' + encodeURIComponent(currentOrigin), {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + accessToken },
           body: body
@@ -538,6 +544,7 @@
 
         if (editData.entity?.lastrevid) {
           diffs.push({ id: editData.entity.id, revid: editData.entity.lastrevid });
+          succeededMids.add(mid);
         } else if (editData.error) {
           console.error('DepictAssist: edit error', editData.error);
         }
@@ -557,7 +564,7 @@
         $results.style.display = 'block';
       }
 
-      queue = [];
+      queue = queue.filter(item => !succeededMids.has(item.mid));
       renderQueue();
     } catch (err) {
       console.error('DepictAssist: batch submit error', err);

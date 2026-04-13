@@ -89,8 +89,13 @@ export default function DepictAssistPage({ items }) {
                     </div>
                     <div className="da-image-content">
                       <div className="da-image-col">
-                        <a id="da-image-link" target="_blank" rel="noopener noreferrer">
-                          <img id="da-image-img" alt="" aria-hidden="true" />
+                        <a
+                          id="da-image-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Open full-size image in a new tab"
+                        >
+                          <img id="da-image-img" alt="" />
                         </a>
                         <p className="da-image-meta">
                           <a id="da-image-commons-link" target="_blank" rel="noopener noreferrer">
@@ -160,7 +165,10 @@ export async function getServerSideProps(context) {
   try {
     const menuResponse = await fetch(PRO_MENU_ENDPOINT);
     if (!menuResponse.ok) {
-      return { notFound: true };
+      if (menuResponse.status === 404) {
+        return { notFound: true };
+      }
+      throw new Error(`PRO menu fetch failed with ${menuResponse.status}`);
     }
     const menuJson = await menuResponse.json();
 
