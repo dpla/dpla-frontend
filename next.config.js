@@ -34,11 +34,12 @@ function redirect(source, dest, permanent = true) {
 // challenge pages are served directly by CloudFront and never reach the origin.
 //
 // IMPORTANT — CSP HASH MAINTENANCE:
-// The two sha256 hashes in script-src below cover the fixed inline bootstrap
-// scripts that Next.js injects into every page. They do NOT cover __NEXT_DATA__
-// (which is dynamic and excluded from hashing). The hashes are stable across
-// normal code deploys, but WILL change when Next.js itself is upgraded, because
-// the bootstrap scripts are part of the Next.js package.
+// The sha256 hashes in script-src below cover fixed inline scripts in every page:
+//   - Two hashes for the Next.js bootstrap scripts (injected by the framework)
+//   - One hash for the gtag dataLayer/window.gtag stub in pages/_app.js
+// They do NOT cover __NEXT_DATA__ (dynamic, excluded from hashing). The Next.js
+// hashes are stable across normal deploys but WILL change on Next.js upgrades.
+// The gtag hash must be updated whenever the inline script in pages/_app.js changes.
 //
 // Whenever a Next.js version bump is part of a PR:
 //   1. Do a production build locally: `npm run build && npm start`
@@ -56,7 +57,7 @@ const CSP = [
   "frame-ancestors 'self'",
   "form-action 'self'",
   "default-src 'self'",
-  "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://*.awswaf.com https://www.gstatic.com",
+  "script-src 'self' 'sha256-sYQvVdNrbb2ldJRpproLbB3h5LhCcbCA1SUM1wTfomI=' 'sha256-uZYgrdXqFswjbPEZxW2e6bv+djcz8D4kcJKjWyznRmk=' 'sha256-R7BycX6lCwOq9x3CZpytPnOyYvDNpLs38i6qKfpCcVY=' *.google-analytics.com *.googletagmanager.com *.sentry.io https://*.awswaf.com https://www.gstatic.com",
   "img-src 'self' http: https:",
   `connect-src 'self' https://dp.la https://*.dp.la ${CLOUDFRONT_MEDIA} *.google-analytics.com *.analytics.google.com *.sentry.io https://*.awswaf.com https://gitlab.wikimedia.org https://commons.wikimedia.org https://wikimedia.org`,
   "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.gstatic.com",
