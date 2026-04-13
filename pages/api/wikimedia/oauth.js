@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import { serialize } from 'cookie';
 
 const CLIENT_ID = process.env.WIKIMEDIA_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.WIKIMEDIA_OAUTH_CLIENT_SECRET;
@@ -161,14 +162,4 @@ function handleLogout(req, res) {
   }));
 
   return res.status(200).json({ ok: true });
-}
-
-function serialize(name, value, options) {
-  let cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
-  if (options.maxAge != null) cookie += '; Max-Age=' + options.maxAge;
-  if (options.path) cookie += '; Path=' + options.path;
-  if (options.httpOnly) cookie += '; HttpOnly';
-  if (options.secure) cookie += '; Secure';
-  if (options.sameSite) cookie += '; SameSite=' + options.sameSite;
-  return cookie;
 }
