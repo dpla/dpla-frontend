@@ -22,6 +22,7 @@ images contributed by DPLA institutions. Hosted at
 | `README.md` | This file |
 | `../../../pages/projects/dpla-wikimedia/depictassist.js` | Next.js page component |
 | `../../../pages/api/wikimedia/oauth.js` | OAuth 2.0 token exchange API route |
+| `../../../pages/api/wikimedia/commons.js` | Server-side proxy for authenticated Commons API calls |
 
 ## External APIs
 
@@ -59,8 +60,8 @@ The OAuth flow:
 - After approval, callback exchanges the authorization code for an access token
 - Token is stored in an httpOnly secure cookie — never exposed to client-side JS
 - Authenticated Commons API calls (CSRF tokens, edits) go through
-  `/api/wikimedia/commons`, which decrypts the token server-side and
-  forwards requests with Bearer auth
+  `/api/wikimedia/commons`, which reads the token from the httpOnly cookie
+  and forwards requests to Commons with Bearer auth
 
 ## URL parameters
 

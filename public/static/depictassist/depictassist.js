@@ -22,7 +22,8 @@
   // ── DOM refs (populated in init) ─────────────────────────
   let $select, $findBtn, $imageArea, $loading, $imageDisplay,
       $noImages, $fetchError, $batch, $queueList, $batchBtn,
-      $batchLoginMsg, $results, $diffLinks, $loginBtn, $userInfo,
+      $batchLoginMsg, $results, $diffLinks, $batchError, $batchErrorMsg,
+      $loginBtn, $userInfo,
       $username, $logoutBtn, $imageTitle, $imageDescription,
       $imageImg, $imageLink, $commonsLink, $subjectHeading,
       $tagSuggestions, $skipBtn;
@@ -73,6 +74,8 @@
     $batchLoginMsg   = document.getElementById('da-batch-login-msg');
     $results         = document.getElementById('da-results');
     $diffLinks       = document.getElementById('da-diff-links');
+    $batchError      = document.getElementById('da-batch-error');
+    $batchErrorMsg   = document.getElementById('da-batch-error-msg');
     $loginBtn        = document.getElementById('da-login-btn');
     $userInfo        = document.getElementById('da-user-info');
     $username        = document.getElementById('da-username');
@@ -473,6 +476,7 @@
     $batchBtn.textContent = 'Submitting...';
     $results.style.display = 'none';
     $diffLinks.replaceChildren();
+    $batchError.style.display = 'none';
 
     try {
       // Get CSRF token via server-side proxy (token is in httpOnly cookie)
@@ -493,6 +497,7 @@
       }
 
       const diffs = [];
+      const failures = [];
       const succeededMids = new Set();
       for (const [mid, items] of byMid) {
         const claims = items.map(item => ({
@@ -540,7 +545,7 @@
           body: body
         });
         if (!editResp.ok) {
-          console.error('DepictAssist: edit request failed', editResp.status);
+          failures.push(mid);
           continue;
         }
         const editData = await editResp.json();
@@ -549,7 +554,7 @@
           diffs.push({ id: editData.entity.id, revid: editData.entity.lastrevid });
           succeededMids.add(mid);
         } else if (editData.error) {
-          console.error('DepictAssist: edit error', editData.error);
+          failures.push(mid);
         }
       }
 
@@ -566,11 +571,20 @@
         $results.style.display = 'block';
       }
 
+      if (failures.length > 0) {
+        const count = failures.length;
+        $batchErrorMsg.textContent = count === 1
+          ? '1 edit failed. The item remains in your queue — try again.'
+          : count + ' edits failed. Those items remain in your queue — try again.';
+        $batchError.style.display = 'block';
+      }
+
       queue = queue.filter(item => !succeededMids.has(item.mid));
       renderQueue();
     } catch (err) {
       console.error('DepictAssist: batch submit error', err);
-      alert('Error submitting edits: ' + err.message);
+      $batchErrorMsg.textContent = 'Error submitting edits: ' + err.message;
+      $batchError.style.display = 'block';
     } finally {
       submittingBatch = false;
       $batchBtn.textContent = 'Submit batch';

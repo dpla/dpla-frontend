@@ -145,6 +145,9 @@ export default function DepictAssistPage({ items }) {
                     <span id="da-diff-links" />
                   </p>
                 </div>
+                <div id="da-batch-error" style={{ display: "none" }} className="da-error">
+                  <p id="da-batch-error-msg" />
+                </div>
               </div>
             </div>
           </div>
