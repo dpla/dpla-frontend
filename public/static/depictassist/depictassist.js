@@ -409,6 +409,13 @@
   async function loadAuth() {
     try {
       const resp = await fetch(OAUTH_BASE + '?action=whoami');
+
+      // 500 means OAuth is not configured on the server — hide login entirely
+      if (resp.status === 500) {
+        showOAuthUnavailable();
+        return;
+      }
+
       if (!resp.ok) throw new Error('Auth check failed');
       const data = await resp.json();
 
@@ -421,6 +428,15 @@
     } catch {
       showLoggedOut();
     }
+  }
+
+  function showOAuthUnavailable() {
+    isAuthenticated = false;
+    $loginBtn.style.display = 'none';
+    $userInfo.style.display = 'none';
+    $batchBtn.disabled = true;
+    $batchLoginMsg.textContent = 'Wikimedia login is not available at this time.';
+    $batchLoginMsg.style.display = 'block';
   }
 
   function showLoggedIn(username) {
