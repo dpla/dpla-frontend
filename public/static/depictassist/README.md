@@ -55,10 +55,13 @@ DepictAssist uses Wikimedia OAuth 2.0. To configure:
    - `WIKIMEDIA_OAUTH_CLIENT_SECRET` — from consumer registration (server-only, never exposed to client)
 
 The OAuth flow:
-- User clicks "Log in with Wikimedia" -> redirects to meta.wikimedia.org
+- User clicks "Log in with Wikimedia" → redirects to meta.wikimedia.org
 - After approval, callback exchanges the authorization code for an access token
-- Token is stored in a secure cookie (readable by JS for direct API calls)
-- All edits to Commons use the user's own Bearer token
+- Token is encrypted (AES-256-GCM, keyed from the client secret) and stored in
+  an httpOnly secure cookie — never exposed to client-side JS
+- Authenticated Commons API calls (CSRF tokens, edits) go through
+  `/api/wikimedia/commons`, which decrypts the token server-side and
+  forwards requests with Bearer auth
 
 ## URL parameters
 

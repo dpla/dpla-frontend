@@ -166,7 +166,9 @@ export default function DepictAssistPage({ items }) {
 
 export async function getServerSideProps(context) {
   try {
-    const menuResponse = await fetch(PRO_MENU_ENDPOINT);
+    const menuResponse = await fetch(PRO_MENU_ENDPOINT, {
+      signal: AbortSignal.timeout(5000),
+    });
     if (!menuResponse.ok) {
       if (menuResponse.status === 404) {
         return { notFound: true };

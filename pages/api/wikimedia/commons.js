@@ -1,13 +1,14 @@
 // Server-side proxy for authenticated Wikimedia Commons API calls.
-// The OAuth access token is stored in an httpOnly cookie (never exposed to
-// client JS). This route reads the token and forwards requests to Commons
-// with Bearer auth, avoiding clear-text token storage on the client.
+// The OAuth access token is stored encrypted in an httpOnly cookie.
+// This route decrypts the token and forwards requests to Commons with
+// Bearer auth.
+
+import { decryptTokenCookie } from './oauth';
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
-const TOKEN_COOKIE = 'wm_access_token';
 
 export default async function handler(req, res) {
-  const token = req.cookies?.[TOKEN_COOKIE];
+  const token = decryptTokenCookie(req);
   if (!token) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
@@ -36,7 +37,7 @@ async function handleGet(req, res, token, origin) {
       headers: { Authorization: 'Bearer ' + token }
     });
     const data = await apiResp.json();
-    return res.status(apiResp.ok ? 200 : 502).json(data);
+    return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
   } catch (err) {
     console.error('Commons proxy GET error:', err);
     return res.status(502).json({ error: 'Commons API request failed' });
@@ -54,7 +55,7 @@ async function handlePost(req, res, token, origin) {
       body: typeof req.body === 'string' ? req.body : new URLSearchParams(req.body).toString()
     });
     const data = await apiResp.json();
-    return res.status(apiResp.ok ? 200 : 502).json(data);
+    return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
   } catch (err) {
     console.error('Commons proxy POST error:', err);
     return res.status(502).json({ error: 'Commons API request failed' });

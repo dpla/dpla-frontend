@@ -9,6 +9,36 @@ const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const TOKEN_COOKIE = 'wm_access_token';
 const STATE_COOKIE = 'wm_oauth_state';
 
+// Derive a stable 256-bit encryption key from the OAuth client secret.
+// Used to encrypt cookie values so sensitive tokens are never stored as clear text.
+const ENCRYPTION_KEY = CLIENT_SECRET
+  ? crypto.createHash('sha256').update(CLIENT_SECRET).digest()
+  : null;
+
+function encrypt(plaintext) {
+  const iv = crypto.randomBytes(12);
+  const cipher = crypto.createCipheriv('aes-256-gcm', ENCRYPTION_KEY, iv);
+  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);
+  const tag = cipher.getAuthTag();
+  return iv.toString('base64') + '.' + encrypted.toString('base64') + '.' + tag.toString('base64');
+}
+
+function decrypt(ciphertext) {
+  const [ivB64, dataB64, tagB64] = ciphertext.split('.');
+  if (!ivB64 || !dataB64 || !tagB64) return null;
+  try {
+    const decipher = crypto.createDecipheriv(
+      'aes-256-gcm',
+      ENCRYPTION_KEY,
+      Buffer.from(ivB64, 'base64')
+    );
+    decipher.setAuthTag(Buffer.from(tagB64, 'base64'));
+    return decipher.update(Buffer.from(dataB64, 'base64'), null, 'utf8') + decipher.final('utf8');
+  } catch {
+    return null;
+  }
+}
+
 function getCallbackUrl(req) {
   const proto = req.headers['x-forwarded-proto'] || 'https';
   const host = req.headers['x-forwarded-host'] || req.headers.host;
@@ -40,7 +70,7 @@ export default async function handler(req, res) {
 function handleLogin(req, res) {
   const state = crypto.randomBytes(16).toString('hex');
 
-  res.setHeader('Set-Cookie', serialize(STATE_COOKIE, state, {
+  res.setHeader('Set-Cookie', serialize(STATE_COOKIE, encrypt(state), {
     httpOnly: true,
     secure: true,
     sameSite: 'Lax',
@@ -65,7 +95,8 @@ async function handleCallback(req, res) {
     return res.status(400).json({ error: 'Missing authorization code' });
   }
 
-  const expectedState = req.cookies?.[STATE_COOKIE];
+  const encryptedState = req.cookies?.[STATE_COOKIE];
+  const expectedState = encryptedState ? decrypt(encryptedState) : null;
   if (!state || !expectedState || state !== expectedState) {
     return res.status(403).json({ error: 'Invalid OAuth state' });
   }
@@ -99,7 +130,7 @@ async function handleCallback(req, res) {
     }
 
     res.setHeader('Set-Cookie', [
-      serialize(TOKEN_COOKIE, accessToken, {
+      serialize(TOKEN_COOKIE, encrypt(accessToken), {
         httpOnly: true,
         secure: true,
         sameSite: 'Strict',
@@ -123,7 +154,7 @@ async function handleCallback(req, res) {
 }
 
 async function handleWhoAmI(req, res) {
-  const token = req.cookies?.[TOKEN_COOKIE];
+  const token = decryptTokenCookie(req);
 
   if (!token) {
     return res.status(200).json({ username: null });
@@ -162,4 +193,11 @@ function handleLogout(req, res) {
   }));
 
   return res.status(200).json({ ok: true });
+}
+
+/** Read and decrypt the access token from the cookie, or return null. */
+export function decryptTokenCookie(req) {
+  const raw = req.cookies?.[TOKEN_COOKIE];
+  if (!raw) return null;
+  return decrypt(raw);
 }
