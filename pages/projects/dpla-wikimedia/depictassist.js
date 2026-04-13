@@ -118,6 +118,9 @@ export default function DepictAssistPage({ items }) {
                   <div id="da-no-images" style={{ display: "none" }}>
                     <p>No untagged images found for this institution. Try another.</p>
                   </div>
+                  <div id="da-fetch-error" className="da-error" style={{ display: "none" }}>
+                    <p>Something went wrong loading images. Please try again.</p>
+                  </div>
                 </div>
 
                 <div id="da-batch" style={{ display: "none" }} className="da-card">

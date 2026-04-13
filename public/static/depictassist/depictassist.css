@@ -315,3 +315,14 @@
     color: #047857;
     font-weight: 500;
 }
+
+/* ── Error State ────────────────────────────────────────── */
+
+.depictassist-wrapper .da-error {
+    background: #fef2f2;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #991b1b;
+}

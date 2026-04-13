@@ -1,7 +1,3 @@
-// DepictAssist — client-side application logic
-// Adds P180 (depicts) structured data claims to Wikimedia Commons images
-// contributed by DPLA institutions.
-
 (function () {
   'use strict';
 
@@ -13,6 +9,8 @@
   const OAUTH_BASE = '/api/wikimedia/oauth';
   const TOKEN_COOKIE = 'wm_access_token';
   const MAX_SUGGESTIONS = 6;
+  // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
+  const BASED_ON_HEURISTIC_QID = 114065533;
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename }[]
@@ -20,21 +18,32 @@
   let accessToken = null;
   let fetchingImages = false;
   let submittingBatch = false;
-  let initialized = false;
 
   // ── DOM refs (populated in init) ─────────────────────────
   let $select, $findBtn, $imageArea, $loading, $imageDisplay,
-      $noImages, $batch, $queueList, $batchBtn, $batchLoginMsg,
-      $results, $diffLinks, $loginBtn, $userInfo, $username,
-      $logoutBtn, $imageTitle, $imageDescription, $imageImg,
-      $imageLink, $commonsLink, $subjectHeading, $tagSuggestions,
-      $skipBtn;
+      $noImages, $fetchError, $batch, $queueList, $batchBtn,
+      $batchLoginMsg, $results, $diffLinks, $loginBtn, $userInfo,
+      $username, $logoutBtn, $imageTitle, $imageDescription,
+      $imageImg, $imageLink, $commonsLink, $subjectHeading,
+      $tagSuggestions, $skipBtn;
+
+  // Track the wrapper element we've initialized on, so we can detect
+  // SPA re-navigation (new DOM nodes) vs. duplicate calls on the same mount.
+  let boundWrapper = null;
 
   // ── Entry point ──────────────────────────────────────────
   window.initDepictAssist = function () {
-    // Prevent double initialization (script load + onReady race)
-    if (initialized) return;
-    initialized = true;
+    const wrapper = document.querySelector('.depictassist-wrapper');
+    if (!wrapper) return;
+
+    // Same mount — skip (prevents script-load + onReady double-fire)
+    if (wrapper === boundWrapper) return;
+
+    boundWrapper = wrapper;
+    queue = [];
+    accessToken = null;
+    fetchingImages = false;
+    submittingBatch = false;
 
     cacheDom();
     bindEvents();
@@ -57,6 +66,7 @@
     $loading         = document.getElementById('da-loading');
     $imageDisplay    = document.getElementById('da-image-display');
     $noImages        = document.getElementById('da-no-images');
+    $fetchError      = document.getElementById('da-fetch-error');
     $batch           = document.getElementById('da-batch');
     $queueList       = document.getElementById('da-queue-list');
     $batchBtn        = document.getElementById('da-batch-btn');
@@ -169,7 +179,7 @@
     $findBtn.disabled = true;
     $skipBtn.disabled = true;
     updateUrl(qid);
-    showLoading();
+    showImageState('loading');
 
     try {
       // Step 1: Get total hits to pick a random offset
@@ -181,7 +191,7 @@
       const totalHits = totalData.query?.searchinfo?.totalhits ?? 0;
 
       if (totalHits === 0) {
-        showNoImages();
+        showImageState('empty');
         return;
       }
 
@@ -194,10 +204,10 @@
       const searchData = await searchResp.json();
 
       const pages = searchData.query?.pages;
-      if (!pages) { showNoImages(); return; }
+      if (!pages) { showImageState('empty'); return; }
 
       const pageId = Object.keys(pages)[0];
-      if (!pageId || pageId === '-1') { showNoImages(); return; }
+      if (!pageId || pageId === '-1') { showImageState('empty'); return; }
 
       const page = pages[pageId];
       const mid = 'M' + pageId;
@@ -213,7 +223,7 @@
       if (!entityResp.ok) throw new Error('Entity data fetch failed');
       const entityData = await entityResp.json();
       const entity = entityData.entities?.[mid];
-      if (!entity) { showNoImages(); return; }
+      if (!entity) { showImageState('empty'); return; }
 
       const stmts = entity.statements || {};
       const titleText = stmts.P1476?.[0]?.mainsnak?.datavalue?.value?.text || pageTitle;
@@ -248,7 +258,7 @@
       });
     } catch (err) {
       console.error('DepictAssist: error fetching image', err);
-      showNoImages();
+      showImageState('error');
     } finally {
       fetchingImages = false;
       $findBtn.disabled = false;
@@ -279,32 +289,24 @@
   }
 
   // ── Display ──────────────────────────────────────────────
-  function showLoading() {
+  function showImageState(state) {
     $imageArea.style.display = 'block';
-    $loading.style.display = 'block';
-    $imageDisplay.style.display = 'none';
-    $noImages.style.display = 'none';
+    $loading.style.display = state === 'loading' ? 'block' : 'none';
+    $imageDisplay.style.display = state === 'image' ? 'block' : 'none';
+    $noImages.style.display = state === 'empty' ? 'block' : 'none';
+    $fetchError.style.display = state === 'error' ? 'block' : 'none';
     $results.style.display = 'none';
   }
 
-  function showNoImages() {
-    $loading.style.display = 'none';
-    $imageDisplay.style.display = 'none';
-    $noImages.style.display = 'block';
-  }
-
   function displayImage({ mid, imgUrl, title, filename, description, subjectName, tagSuggestions }) {
-    $loading.style.display = 'none';
-    $noImages.style.display = 'none';
-    $imageDisplay.style.display = 'block';
+    showImageState('image');
 
     $imageTitle.textContent = title;
     $imageDescription.textContent = description || '(No description provided)';
     $imageImg.src = imgUrl;
     $imageLink.href = imgUrl;
 
-    const commonsUrl = 'https://commons.wikimedia.org/wiki/Special:EntityData/' + mid;
-    $commonsLink.href = commonsUrl;
+    $commonsLink.href = 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(filename);
     $commonsLink.textContent = filename;
 
     $subjectHeading.textContent = 'Subject: \u201c' + subjectName + '\u201d';
@@ -340,7 +342,6 @@
         addToQueue(mid, 'P180', tag.qid, tag.label, filename);
         chip.classList.add('da-tag-selected');
         chip.disabled = true;
-        onFindImages();
       });
 
       $tagSuggestions.appendChild(chip);
@@ -382,7 +383,8 @@
       removeBtn.setAttribute('aria-label', 'Remove ' + item.label + ' from queue');
       removeBtn.textContent = '\u2715';
       removeBtn.addEventListener('click', function () {
-        queue.splice(i, 1);
+        const idx = queue.indexOf(item);
+        if (idx !== -1) queue.splice(idx, 1);
         renderQueue();
       });
       li.appendChild(removeBtn);
@@ -465,6 +467,8 @@
     submittingBatch = true;
     $batchBtn.disabled = true;
     $batchBtn.textContent = 'Submitting...';
+    $results.style.display = 'none';
+    $diffLinks.replaceChildren();
 
     try {
       const currentOrigin = window.location.origin;
@@ -514,7 +518,7 @@
                 snaktype: 'value',
                 property: 'P887',
                 datavalue: {
-                  value: { 'entity-type': 'item', 'numeric-id': 114065533 },
+                  value: { 'entity-type': 'item', 'numeric-id': BASED_ON_HEURISTIC_QID },
                   type: 'wikibase-entityid'
                 }
               }]
@@ -551,7 +555,6 @@
       }
 
       if (diffs.length > 0) {
-        $diffLinks.innerHTML = '';
         for (const d of diffs) {
           const a = document.createElement('a');
           a.href = 'https://commons.wikimedia.org/w/index.php?diff=' + d.revid;
