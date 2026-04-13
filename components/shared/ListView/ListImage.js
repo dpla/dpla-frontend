@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { getDefaultThumbnail } from "lib";
+import { getDefaultThumbnail, probeImage } from "lib";
 
 import css from "./ListView.module.scss";
 
@@ -23,12 +23,9 @@ class ListImage extends React.Component {
   }
 
   updateImage() {
-    // Check for images that error so we can replace them with a default image
-    const _img = document.createElement("img");
-    _img.src = this.props.url;
-    _img.onerror = () => {
+    probeImage(this.props.url, () => {
       this.setState({ updateToDefaultImage: true });
-    };
+    });
   }
 
   render() {

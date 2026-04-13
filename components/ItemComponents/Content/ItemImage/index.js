@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getDefaultThumbnail } from "lib";
+import { getDefaultThumbnail, probeImage } from "lib";
 
 import css from "./ItemImage.module.scss";
 
@@ -10,12 +10,9 @@ class ItemImage extends React.Component {
   };
 
   componentDidMount() {
-    // Check for images that error so we can replace them with a default image
-    const _img = document.createElement("img");
-    _img.src = this.props.url;
-    _img.onerror = () => {
+    probeImage(this.props.url, () => {
       this.setState({ updateToDefaultImage: true });
-    };
+    });
   }
 
   render() {
