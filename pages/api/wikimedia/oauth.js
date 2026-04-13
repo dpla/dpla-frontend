@@ -97,10 +97,9 @@ async function handleCallback(req, res) {
       return res.status(502).json({ error: 'No access token received' });
     }
 
-    // JS-readable cookie so client can send Bearer auth to Commons directly
     res.setHeader('Set-Cookie', [
       serialize(TOKEN_COOKIE, accessToken, {
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: 'Strict',
         path: '/',
@@ -154,7 +153,7 @@ async function handleWhoAmI(req, res) {
 
 function handleLogout(req, res) {
   res.setHeader('Set-Cookie', serialize(TOKEN_COOKIE, '', {
-    httpOnly: false,
+    httpOnly: true,
     secure: true,
     sameSite: 'Strict',
     path: '/',

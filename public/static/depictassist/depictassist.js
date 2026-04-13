@@ -5,9 +5,9 @@
   const INSTITUTIONS_URL =
     'https://raw.githubusercontent.com/dpla/ingestion3/main/src/main/resources/wiki/institutions_v2.json';
   const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
+  const COMMONS_PROXY = '/api/wikimedia/commons';
   const RECONCILIATION_API = 'https://wikidata.reconci.link/en/api';
   const OAUTH_BASE = '/api/wikimedia/oauth';
-  const TOKEN_COOKIE = 'wm_access_token';
   const MAX_SUGGESTIONS = 6;
   // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
   const BASED_ON_HEURISTIC_QID = 114065533;
@@ -15,7 +15,7 @@
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename }[]
   let pendingQid = null;    // QID from URL, awaiting institution load
-  let accessToken = null;
+  let isAuthenticated = false;
   let fetchingImages = false;
   let submittingBatch = false;
 
@@ -41,7 +41,7 @@
 
     boundWrapper = wrapper;
     queue = [];
-    accessToken = null;
+    isAuthenticated = false;
     fetchingImages = false;
     submittingBatch = false;
 
@@ -396,7 +396,7 @@
   }
 
   function updateBatchButton() {
-    if (accessToken) {
+    if (isAuthenticated) {
       $batchBtn.disabled = false;
       $batchLoginMsg.style.display = 'none';
     } else {
@@ -406,25 +406,14 @@
   }
 
   // ── Auth ─────────────────────────────────────────────────
-  function getCookie(name) {
-    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-    return match ? decodeURIComponent(match[1]) : null;
-  }
-
   async function loadAuth() {
-    const token = getCookie(TOKEN_COOKIE);
-    if (!token) {
-      showLoggedOut();
-      return;
-    }
-
     try {
       const resp = await fetch(OAUTH_BASE + '?action=whoami');
       if (!resp.ok) throw new Error('Auth check failed');
       const data = await resp.json();
 
       if (data.username) {
-        accessToken = token;
+        isAuthenticated = true;
         showLoggedIn(data.username);
       } else {
         showLoggedOut();
@@ -442,7 +431,7 @@
   }
 
   function showLoggedOut() {
-    accessToken = null;
+    isAuthenticated = false;
     $loginBtn.style.display = 'inline-block';
     $userInfo.style.display = 'none';
     updateBatchButton();
@@ -456,13 +445,12 @@
     try {
       await fetch(OAUTH_BASE + '?action=logout');
     } catch { /* ignore */ }
-    document.cookie = TOKEN_COOKIE + '=; Max-Age=0; path=/; SameSite=Strict; Secure';
     showLoggedOut();
   }
 
   // ── Batch submit (Commons writes) ────────────────────────
   async function onSubmitBatch() {
-    if (!accessToken || queue.length === 0 || submittingBatch) return;
+    if (!isAuthenticated || queue.length === 0 || submittingBatch) return;
 
     submittingBatch = true;
     $batchBtn.disabled = true;
@@ -471,13 +459,8 @@
     $diffLinks.replaceChildren();
 
     try {
-      const currentOrigin = window.location.origin;
-
-      // Get CSRF token
-      const tokenResp = await fetch(
-        COMMONS_API + '?action=query&meta=tokens&format=json&origin=' + encodeURIComponent(currentOrigin),
-        { headers: { 'Authorization': 'Bearer ' + accessToken } }
-      );
+      // Get CSRF token via server-side proxy (token is in httpOnly cookie)
+      const tokenResp = await fetch(COMMONS_PROXY + '?action=query&meta=tokens');
       if (!tokenResp.ok) throw new Error('Failed to get CSRF token');
       const tokenData = await tokenResp.json();
       const csrfToken = tokenData.query?.tokens?.csrftoken;
@@ -535,9 +518,9 @@
           summary: 'Added depicts (P180) claim via DepictAssist (DPLA) \u2014 https://pro.dp.la/projects/dpla-wikimedia/depictassist'
         });
 
-        const editResp = await fetch(COMMONS_API + '?origin=' + encodeURIComponent(currentOrigin), {
+        const editResp = await fetch(COMMONS_PROXY, {
           method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + accessToken },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: body
         });
         if (!editResp.ok) {
