@@ -13,7 +13,7 @@
     "docker:run": "docker run -p 3000:3000 -d --name dpla-frontend dpla-frontend:latest",
     "docker:logs": "docker logs -f dpla-frontend",
     "analyze": "yarn && ANALYZE=true yarn build",
-    "test": "node scripts/check-favicons.js",
+    "test": "node --test lib/*.test.mjs && node scripts/check-favicons.js",
     "lint": "next lint",
     "prepare": "husky"
   },
