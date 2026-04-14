@@ -10,13 +10,28 @@ class ItemImage extends React.Component {
   };
 
   componentDidMount() {
-    this._cancelProbe = probeImage(this.props.url, () => {
-      this.setState({ updateToDefaultImage: true });
-    });
+    this.updateImage();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      if (this._cancelProbe) this._cancelProbe();
+      this.setState({ updateToDefaultImage: false });
+      this.updateImage();
+    }
   }
 
   componentWillUnmount() {
     if (this._cancelProbe) this._cancelProbe();
+  }
+
+  updateImage() {
+    const probedUrl = this.props.url;
+    this._cancelProbe = probeImage(probedUrl, () => {
+      if (this.props.url === probedUrl) {
+        this.setState({ updateToDefaultImage: true });
+      }
+    });
   }
 
   render() {
