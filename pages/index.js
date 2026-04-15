@@ -123,9 +123,9 @@ export async function getServerSideProps(context) {
   // fetch item count
   let headerDescription = homepageJson.acf.header_description;
   const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
-  const itemsRes = await fetch(apiUrl);
+  const itemsRes = await safeFetch(apiUrl);
   let itemCount = 0; // default handles unexpected error
-  if (itemsRes.ok) {
+  if (itemsRes?.ok) {
     const itemsJson = await itemsRes.json();
 
     if ("count" in itemsJson) {
@@ -148,9 +148,9 @@ export async function getServerSideProps(context) {
 
   // fetch user guides data
   let guides = [];
-  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
-  if (!aboutMenuRes.ok) {
-    console.log("Unable to load user guides.", aboutMenuRes.status);
+  const aboutMenuRes = await safeFetch(ABOUT_MENU_ENDPOINT);
+  if (!aboutMenuRes?.ok) {
+    console.log("Unable to load user guides.", aboutMenuRes?.status);
   } else {
     const aboutMenuJson = await aboutMenuRes.json();
     const indexPageItem = aboutMenuJson.items.find(
@@ -186,9 +186,9 @@ export async function getServerSideProps(context) {
 
   // fetch news posts
   let newsItems = [];
-  const newsRes = await fetch(NEWS_USER_ENDPOINT);
-  if (!newsRes.ok) {
-    console.log("Unable to load news posts.", newsRes.status);
+  const newsRes = await safeFetch(NEWS_USER_ENDPOINT);
+  if (!newsRes?.ok) {
+    console.log("Unable to load news posts.", newsRes?.status);
   } else {
     newsItems = await newsRes.json();
   }

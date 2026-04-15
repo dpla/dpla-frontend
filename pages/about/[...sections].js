@@ -27,6 +27,7 @@ import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 class AboutMenuPage extends React.Component {
   refreshExternalLinks() {
@@ -47,8 +48,9 @@ class AboutMenuPage extends React.Component {
   }
 
   render() {
-    const { router, content, items, breadcrumbs, pageTitle, pageDescription } =
+    const { router, content, items, breadcrumbs, pageTitle, pageDescription, temporarilyUnavailable } =
       this.props;
+    if (temporarilyUnavailable) return <ServiceUnavailable />;
     if (!breadcrumbs || !content) return null;
 
     return (
