@@ -64,7 +64,9 @@ const ListsPage = () => {
       });
 
       // Redirect to the new list
-      await Router.push({ pathname: `/lists/${uuid}` });
+      try {
+        await Router.push({ pathname: `/lists/${uuid}` });
+      } catch {}
 
     } finally {
       isCreatingRef.current = false;

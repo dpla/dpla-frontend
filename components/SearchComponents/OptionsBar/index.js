@@ -53,28 +53,23 @@ class OptionsBar extends React.Component {
     }
   }
 
-  onPageSizeChange = async (val) => {
-    await Router.push({
-      pathname: "/search",
-      query: {
-        ...this.props.router.query,
-        page_size: val.target.value,
-        page: 1,
-      },
-    });
+  _navigateToSearch = async (queryUpdates) => {
+    try {
+      await Router.push({
+        pathname: "/search",
+        query: { ...this.props.router.query, ...queryUpdates, page: 1 },
+      });
+    } catch {}
   };
 
-  onSortChange = async (val) => {
-    await Router.push({
-      pathname: "/search",
-      query: {
-        ...this.props.router.query,
-        sort_by: mapSortOptionsToParams[val.target.value].sort_by,
-        sort_order: mapSortOptionsToParams[val.target.value].sort_order,
-        page: 1,
-      },
+  onPageSizeChange = (val) =>
+    this._navigateToSearch({ page_size: val.target.value });
+
+  onSortChange = (val) =>
+    this._navigateToSearch({
+      sort_by: mapSortOptionsToParams[val.target.value].sort_by,
+      sort_order: mapSortOptionsToParams[val.target.value].sort_order,
     });
-  };
 
   render() {
     const {
