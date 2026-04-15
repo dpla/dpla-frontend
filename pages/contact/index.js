@@ -17,6 +17,7 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 function Contact(props) {
   const { sidebarItems } = props;
@@ -50,12 +51,12 @@ function Contact(props) {
 
 export const getServerSideProps = async (context) => {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
-  const aboutMenuRes = await fetch(
+  const aboutMenuRes = await safeFetch(
     siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
-  if (!aboutMenuRes.ok) {
-    if (aboutMenuRes.status >= 500) {
+  if (!aboutMenuRes?.ok) {
+    if (!aboutMenuRes || aboutMenuRes.status >= 500) {
       // Sidebar nav is non-critical — render page without it and signal 503
       context.res.statusCode = 503;
       context.res.setHeader("Retry-After", "10");

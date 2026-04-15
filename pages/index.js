@@ -207,7 +207,13 @@ export async function getServerSideProps(context) {
   };
   } catch (e) {
     console.error("[SSR] getServerSideProps failed:", e);
-    return upstreamUnavailable(context.res);
+    // Only treat network-level fetch failures (TypeError with a cause set by
+    // undici) as upstream unavailability. All other errors (shape mismatches,
+    // app bugs) surface as 500s so they don't get silently masked as 503.
+    if (e instanceof TypeError && e.cause) {
+      return upstreamUnavailable(context.res);
+    }
+    throw e;
   }
 }
 

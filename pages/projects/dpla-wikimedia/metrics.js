@@ -11,6 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
+import { safeFetch } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -120,9 +121,9 @@ export async function getServerSideProps(context) {
   const { show, hub } = context.query;
   const isFilterView = !!(show || hub);
 
-  const menuResponse = await fetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse.ok) {
-    if (menuResponse.status >= 500) {
+  const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
+  if (!menuResponse?.ok) {
+    if (!menuResponse || menuResponse.status >= 500) {
       // Sidebar nav is non-critical — render page without it and signal 503
       context.res.statusCode = 503;
       context.res.setHeader("Retry-After", "10");
