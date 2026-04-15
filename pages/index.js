@@ -2,6 +2,7 @@ import React from "react";
 
 import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { exhibitHomePage, loadExhibition } from "lib/exhibitionsStatic";
 
@@ -20,7 +21,7 @@ import {
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 
 function Home({
   sourceSets,
@@ -29,7 +30,9 @@ function Home({
   headerDescription,
   news,
   content,
+  temporarilyUnavailable,
 }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MainLayout
@@ -65,6 +68,7 @@ export async function getServerSideProps(context) {
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   if (!settingsRes.ok) {
+    if (settingsRes.status >= 500) return upstreamUnavailable(context.res, settingsRes);
     return { notFound: true };
   }
   const settingsJson = await settingsRes.json();
@@ -74,6 +78,7 @@ export async function getServerSideProps(context) {
   const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   // 3. fetch it (safeFetch is used here for consistent error handling)
   const homeRes = await safeFetch(endpoint, authOptions);
+  if (isUpstreamUnavailable(homeRes)) return upstreamUnavailable(context.res, homeRes);
   if (!homeRes?.ok) {
     return { notFound: true };
   }
@@ -118,9 +123,9 @@ export async function getServerSideProps(context) {
   // fetch item count
   let headerDescription = homepageJson.acf.header_description;
   const apiUrl = `${process.env.API_URL}/items?page_size=0&api_key=${process.env.API_KEY}`;
-  const itemsRes = await fetch(apiUrl);
+  const itemsRes = await safeFetch(apiUrl);
   let itemCount = 0; // default handles unexpected error
-  if (itemsRes.ok) {
+  if (itemsRes?.ok) {
     const itemsJson = await itemsRes.json();
 
     if ("count" in itemsJson) {
@@ -143,9 +148,9 @@ export async function getServerSideProps(context) {
 
   // fetch user guides data
   let guides = [];
-  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
-  if (!aboutMenuRes.ok) {
-    console.log("Unable to load user guides.", aboutMenuRes.status);
+  const aboutMenuRes = await safeFetch(ABOUT_MENU_ENDPOINT);
+  if (!aboutMenuRes?.ok) {
+    console.log("Unable to load user guides.", aboutMenuRes?.status);
   } else {
     const aboutMenuJson = await aboutMenuRes.json();
     const indexPageItem = aboutMenuJson.items.find(
@@ -181,9 +186,9 @@ export async function getServerSideProps(context) {
 
   // fetch news posts
   let newsItems = [];
-  const newsRes = await fetch(NEWS_USER_ENDPOINT);
-  if (!newsRes.ok) {
-    console.log("Unable to load news posts.", newsRes.status);
+  const newsRes = await safeFetch(NEWS_USER_ENDPOINT);
+  if (!newsRes?.ok) {
+    console.log("Unable to load news posts.", newsRes?.status);
   } else {
     newsItems = await newsRes.json();
   }
@@ -201,7 +206,14 @@ export async function getServerSideProps(context) {
     props: props,
   };
   } catch (e) {
-    return { notFound: true };
+    console.error("[SSR] getServerSideProps failed:", e);
+    // Only treat network-level fetch failures (TypeError with a cause set by
+    // undici) as upstream unavailability. All other errors (shape mismatches,
+    // app bugs) surface as 500s so they don't get silently masked as 503.
+    if (e instanceof TypeError && e.cause) {
+      return upstreamUnavailable(context.res);
+    }
+    throw e;
   }
 }
 

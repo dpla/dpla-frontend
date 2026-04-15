@@ -7,7 +7,8 @@ import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 
 import { wordpressLinks } from "lib/index";
-import { safeFetch, wpAuthFetchOptions } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
   NEWS_PRO_ENDPOINT,
@@ -38,7 +39,8 @@ class HubsPage extends React.Component {
   }
 
   render() {
-    const { page, pageTitle, news } = this.props;
+    const { page, pageTitle, news, temporarilyUnavailable } = this.props;
+    if (temporarilyUnavailable) return <ServiceUnavailable />;
     if (!page?.acf) return null;
     return (
       <MainLayout pageTitle={pageTitle} seoType={SEO_TYPE}>
@@ -115,6 +117,7 @@ export async function getServerSideProps(context) {
   const authOptions = wpAuthFetchOptions(draftMode);
   const hubParams = draftMode ? "?slug=hubs&status=any&context=edit" : "?slug=hubs";
   const hubRes = await safeFetch(PAGES_ENDPOINT + hubParams, authOptions);
+  if (isUpstreamUnavailable(hubRes)) return upstreamUnavailable(context.res, hubRes);
   if (!hubRes?.ok) {
     return { notFound: true };
   }

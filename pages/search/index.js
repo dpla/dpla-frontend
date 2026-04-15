@@ -294,6 +294,7 @@ export async function getServerSideProps(context) {
   }
 
   if (page > MAX_PAGE_SIZE) {
+    context.res.statusCode = 400;
     return {
       props: {
         maxPageError: true,
@@ -325,12 +326,16 @@ export async function getServerSideProps(context) {
     const fetchErrorProps = { props: washObject({ fetchError: true, results: { docs: [], facets: {} } }) };
 
     const res = await safeFetch(url);
-    if (!res?.ok) return fetchErrorProps;
+    if (!res?.ok) {
+      context.res.statusCode = res ? res.status : 503;
+      return fetchErrorProps;
+    }
 
     let json;
     try {
       json = await res.json();
     } catch {
+      context.res.statusCode = 503;
       return fetchErrorProps;
     }
 

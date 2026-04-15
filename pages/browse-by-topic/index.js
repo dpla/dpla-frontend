@@ -2,15 +2,16 @@ import React from "react";
 
 import MainLayout from "components/MainLayout";
 import TopicsList from "components/TopicBrowseComponents/TopicsList";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 import {
   API_ENDPOINT_ALL_TOPICS_100_PER_PAGE,
   TITLE,
 } from "constants/topicBrowse";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 
-function TopicBrowse(props) {
-  const { topics } = props;
+function TopicBrowse({ topics, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   return (
     <div>
       <MainLayout pageTitle={TITLE}>
@@ -22,8 +23,9 @@ function TopicBrowse(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
   const res = await safeFetch(API_ENDPOINT_ALL_TOPICS_100_PER_PAGE);
+  if (isUpstreamUnavailable(res)) return upstreamUnavailable(context.res, res);
   if (!res?.ok) {
     return { notFound: true };
   }
