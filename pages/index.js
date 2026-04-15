@@ -166,7 +166,7 @@ export async function getServerSideProps(context) {
               const guideJson = await guideRes.json();
               return {
                 ...guide,
-                slug: guide.post_name,
+                slug: guideJson.slug ?? guide.post_name,
                 summary: guideJson.acf.summary,
                 title: guideJson.title.rendered,
                 displayTitle: guideJson.acf.display_title,
