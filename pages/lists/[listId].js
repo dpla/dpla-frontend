@@ -135,10 +135,12 @@ const List = () => {
 
   const handleConfirmDelete = useCallback(async () => {
     await removeLocalForageItem(listId);
-    await Router.push({
-      pathname: "/lists",
-      query: "",
-    });
+    try {
+      await Router.push({
+        pathname: "/lists",
+        query: "",
+      });
+    } catch {}
   }, [listId]);
 
   if (initialized && storageUnavailable) {

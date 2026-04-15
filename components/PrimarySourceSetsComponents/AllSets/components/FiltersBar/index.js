@@ -29,28 +29,25 @@ class FiltersBar extends React.Component {
     }
   }
 
-  onSubjectChange = async (val) => {
-    await Router.push({
-      pathname: "/primary-source-sets",
-      query: { ...this.props.router.query, subject: val.target.value },
-    });
+  _navigateToPSS = async (query) => {
+    try {
+      await Router.push({ pathname: "/primary-source-sets", query });
+    } catch {}
   };
 
-  onTimePeriodChange = async (val) => {
-    await Router.push({
-      pathname: "/primary-source-sets",
-      query: {
-        ...this.props.router.query,
-        timePeriod: val.target.value,
-      },
+  onSubjectChange = (val) =>
+    this._navigateToPSS({
+      ...this.props.router.query,
+      subject: val.target.value,
     });
-  };
 
-  onClearFilters = async () => {
-    await Router.push({
-      pathname: "/primary-source-sets",
+  onTimePeriodChange = (val) =>
+    this._navigateToPSS({
+      ...this.props.router.query,
+      timePeriod: val.target.value,
     });
-  };
+
+  onClearFilters = () => this._navigateToPSS({});
 
   render() {
     const timePeriod = this.props.router.query.timePeriod;

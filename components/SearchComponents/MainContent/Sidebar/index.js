@@ -147,23 +147,25 @@ class DateFacet extends React.Component {
     });
   };
 
-  async handleKeyDown(e) {
+  handleKeyDown(e) {
     if (e.keyCode === 13) {
-      await this.handleDateSubmit(e);
+      this.handleDateSubmit(e);
     }
   }
 
   async handleDateSubmit(e) {
     e.preventDefault();
     const dateProps = this.getDateProps();
-    await Router.push({
-      pathname: this.props.router.pathname,
-      query: {
-        ...removeQueryParams(this.props.router.query, ["after", "before"]),
-        ...dateProps,
-        page: 1,
-      },
-    });
+    try {
+      await Router.push({
+        pathname: this.props.router.pathname,
+        query: {
+          ...removeQueryParams(this.props.router.query, ["after", "before"]),
+          ...dateProps,
+          page: 1,
+        },
+      });
+    } catch {}
   }
 
   getDateProps() {
