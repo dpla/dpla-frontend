@@ -2,6 +2,7 @@ import React from "react";
 
 import MainLayout from "components/MainLayout";
 import HomeUser from "components/HomePageComponents/HomeUser";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { exhibitHomePage, loadExhibition } from "lib/exhibitionsStatic";
 
@@ -20,7 +21,7 @@ import {
 
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 
 function Home({
   sourceSets,
@@ -29,7 +30,9 @@ function Home({
   headerDescription,
   news,
   content,
+  temporarilyUnavailable,
 }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MainLayout
@@ -65,6 +68,7 @@ export async function getServerSideProps(context) {
   // 1. fetch the settings from WP
   const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
   if (!settingsRes.ok) {
+    if (settingsRes.status >= 500) return upstreamUnavailable(context.res, settingsRes);
     return { notFound: true };
   }
   const settingsJson = await settingsRes.json();
@@ -74,6 +78,7 @@ export async function getServerSideProps(context) {
   const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   // 3. fetch it (safeFetch is used here for consistent error handling)
   const homeRes = await safeFetch(endpoint, authOptions);
+  if (isUpstreamUnavailable(homeRes)) return upstreamUnavailable(context.res, homeRes);
   if (!homeRes?.ok) {
     return { notFound: true };
   }
@@ -201,7 +206,8 @@ export async function getServerSideProps(context) {
     props: props,
   };
   } catch (e) {
-    return { notFound: true };
+    console.error("[SSR] getServerSideProps failed:", e);
+    return upstreamUnavailable(context.res);
   }
 }
 

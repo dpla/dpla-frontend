@@ -25,7 +25,7 @@ import {
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, wpAuthFetchOptions, wpDraftUrl } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 
 class AboutMenuPage extends React.Component {
@@ -98,6 +98,7 @@ export const getServerSideProps = async (context) => {
   // fetch settings info
   // 1. fetch the settings from WP
   const settingsRes = await safeFetch(API_SETTINGS_ENDPOINT);
+  if (isUpstreamUnavailable(settingsRes)) return upstreamUnavailable(context.res, settingsRes);
   if (!settingsRes?.ok) return { notFound: true };
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
@@ -107,6 +108,7 @@ export const getServerSideProps = async (context) => {
   const subsection = sections?.[1];
   const pageSlug = subsection || section || "about-us";
   const response = await safeFetch(ABOUT_MENU_ENDPOINT);
+  if (isUpstreamUnavailable(response)) return upstreamUnavailable(context.res, response);
   if (!response?.ok) return { notFound: true };
   const json = await response.json();
   const pageItem = json.items.find((item) => item.post_name === pageSlug);
@@ -151,6 +153,7 @@ export const getServerSideProps = async (context) => {
   const url = draftMode ? wpDraftUrl(getMenuItemUrl(pageItem)) : getMenuItemUrl(pageItem);
 
   const pageRes = await safeFetch(url, authOptions);
+  if (isUpstreamUnavailable(pageRes)) return upstreamUnavailable(context.res, pageRes);
   if (!pageRes?.ok) return { notFound: true };
   const pageJson = await pageRes.json();
   let pageDescription = "";

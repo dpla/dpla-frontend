@@ -48,13 +48,19 @@ function Contact(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const aboutMenuRes = await fetch(
     siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
   if (!aboutMenuRes.ok) {
+    if (aboutMenuRes.status >= 500) {
+      // Sidebar nav is non-critical — render page without it and signal 503
+      context.res.statusCode = 503;
+      context.res.setHeader("Retry-After", "10");
+      return { props: washObject({ sidebarItems: [] }) };
+    }
     return { notFound: true };
   }
 

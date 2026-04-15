@@ -122,6 +122,12 @@ export async function getServerSideProps(context) {
 
   const menuResponse = await fetch(PRO_MENU_ENDPOINT);
   if (!menuResponse.ok) {
+    if (menuResponse.status >= 500) {
+      // Sidebar nav is non-critical — render page without it and signal 503
+      context.res.statusCode = 503;
+      context.res.setHeader("Retry-After", "10");
+      return { props: washObject({ items: [], isFilterView }) };
+    }
     return { notFound: true };
   }
   const menuJson = await menuResponse.json();
