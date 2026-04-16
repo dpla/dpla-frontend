@@ -3,6 +3,7 @@ import React from "react";
 import MainLayout from "components/MainLayout";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import GuideLink from "shared/GuideLink";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { getMenuItemUrl } from "lib";
 
@@ -14,9 +15,18 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
+import {
+  safeFetch,
+  wpAuthFetchOptions,
+  wpDraftUrl,
+  isUpstreamUnavailable,
+  upstreamUnavailable,
+} from "lib/safeFetch";
+import { cachedSafeFetch } from "lib/wpCache";
 
 function Guides(props) {
-  const { guides, sidebarItems, activeItemId } = props;
+  const { guides, sidebarItems, activeItemId, temporarilyUnavailable } = props;
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!Array.isArray(guides)) return null;
   return (
     <MainLayout pageTitle={TITLE}>
@@ -55,37 +65,47 @@ function Guides(props) {
   );
 }
 
-export async function getServerSideProps() {
-  // fetch page info
-  // 1. fetch the settings from WP
-  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
-  if (!settingsRes.ok) {
-    return { notFound: true };
-  }
-  const settingsJson = await settingsRes.json();
-  // 2. get the corresponding value
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
+export async function getServerSideProps(context) {
+  const { draftMode } = context;
+  const authOptions = wpAuthFetchOptions(draftMode);
 
-  const aboutMenuRes = await fetch(ABOUT_MENU_ENDPOINT);
-  if (!aboutMenuRes.ok) {
+  const [settingsRes, aboutMenuRes] = await Promise.all([
+    cachedSafeFetch(API_SETTINGS_ENDPOINT),
+    cachedSafeFetch(ABOUT_MENU_ENDPOINT),
+  ]);
+
+  if (isUpstreamUnavailable(settingsRes) || isUpstreamUnavailable(aboutMenuRes)) {
+    return upstreamUnavailable(context.res, settingsRes, aboutMenuRes);
+  }
+  if (!settingsRes.ok || !aboutMenuRes.ok) {
     return { notFound: true };
   }
+
+  const settingsJson = await settingsRes.json();
+  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   const aboutMenuJson = await aboutMenuRes.json();
   const indexPageItem = aboutMenuJson.items.find(
     (item) => item.url === endpoint,
   );
+
+  if (!indexPageItem) {
+    return { notFound: true };
+  }
 
   const guides = (
     await Promise.all(
       aboutMenuJson.items
         .filter((item) => item.menu_item_parent === indexPageItem.object_id)
         .map(async (guide) => {
-          const guideRes = await fetch(getMenuItemUrl(guide));
-          if (!guideRes.ok) return null;
+          const guideUrl = draftMode
+            ? wpDraftUrl(getMenuItemUrl(guide))
+            : getMenuItemUrl(guide);
+          const guideRes = await safeFetch(guideUrl, authOptions);
+          if (!guideRes?.ok) return null;
           const guideJson = await guideRes.json();
           return {
             ...guide,
-            slug: guide.post_name,
+            slug: guideJson.slug ?? guide.post_name,
             summary: guideJson.acf.summary,
             title: guideJson.title.rendered,
             displayTitle: guideJson.acf.display_title,
