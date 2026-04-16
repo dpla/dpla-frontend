@@ -88,6 +88,10 @@ export async function getServerSideProps(context) {
     (item) => item.url === endpoint,
   );
 
+  if (!indexPageItem) {
+    return { notFound: true };
+  }
+
   const guides = (
     await Promise.all(
       aboutMenuJson.items
