@@ -188,6 +188,7 @@ let config = {
           fourOhFour("/local/markdown"),
           fourOhFour("/projects/dpla-wikimedia/:slugs*"),
         ],
+        fallback: [fourOhFour("/:slugs*")],
       };
     } else if (siteEnv === "cqa") {
       return {
