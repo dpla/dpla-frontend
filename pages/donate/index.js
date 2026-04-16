@@ -70,18 +70,6 @@ function Donate() {
                     institutions across the country.
                   </li>
                   <li>
-                    Growing the{" "}
-                    <a
-                      className={css.whiteLink}
-                      href="https://palacebookshelf.dp.la/palace_bookshelf"
-                    >
-                      Palace Bookshelf
-                    </a>{" "}
-                    collection of more than 15,000 open-access ebooks, which are
-                    always free to libraries and readers and are available to
-                    download 24 hours a day, 7 days a week.
-                  </li>
-                  <li>
                     Making possible DPLA&apos;s collaborative work with
                     libraries and archives nationwide to share knowledge and
                     ideas and improve our work, ultimately making it easier to
