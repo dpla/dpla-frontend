@@ -49,6 +49,6 @@ export default async function handler(req, res) {
 
     } catch (err) {
         console.log("Error proxying request to DPLA API.", err);
-        res.status(404).json({ error: "Not found." });
+        res.status(502).json({ error: "Upstream service error." });
     }
 }
