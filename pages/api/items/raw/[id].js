@@ -9,13 +9,21 @@ export default async function handler(req, res) {
     return;
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   try {
     const url = new URL(`${process.env.API_URL}/items/${id}`);
     url.searchParams.set("api_key", process.env.API_KEY);
-    const fetchRes = await fetch(url);
+    const fetchRes = await fetch(url, { signal: controller.signal });
 
     if (!fetchRes.ok) {
-      res.status(404).send("Not found.");
+      fetchRes.body?.cancel?.().catch(() => {});
+      if (fetchRes.status === 404) {
+        res.status(404).send("Not found.");
+      } else {
+        res.status(fetchRes.status).send("Upstream error.");
+      }
       return;
     }
 
@@ -45,7 +53,13 @@ export default async function handler(req, res) {
       res.status(200).send(formatted);
     }
   } catch (err) {
+    if (err?.name === "AbortError") {
+      res.status(504).send("Upstream timeout.");
+      return;
+    }
     console.log("Error fetching raw item record.", err);
-    res.status(404).json({});
+    res.status(502).send("Upstream error.");
+  } finally {
+    clearTimeout(timeout);
   }
 }
