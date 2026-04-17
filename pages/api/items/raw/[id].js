@@ -37,6 +37,11 @@ export default async function handler(req, res) {
 
     const trimmed = stringValue.trim();
 
+    if (!trimmed) {
+      res.status(404).send("Not found.");
+      return;
+    }
+
     if (trimmed.startsWith("<")) {
       const formatted = xmlFormat(trimmed, {
         indentation: "  ",
