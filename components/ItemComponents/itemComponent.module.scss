@@ -29,6 +29,35 @@
   background-color: var(--colderBackgroundColor);
 }
 
+.metadataLinks {
+  background-color: var(--colderBackgroundColor);
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  ul {
+    font-size: 0.9rem;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  a, a:visited {
+    color: var(--subLinkColor);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--subLinkColorHover);
+  }
+}
+
 .notFound {
   margin: 0 0 3rem;
 }
