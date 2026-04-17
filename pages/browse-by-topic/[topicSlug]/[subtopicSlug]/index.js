@@ -12,6 +12,7 @@ import {
   API_ENDPOINT_ALL_TOPICS,
   API_ENDPOINT_SUBTOPICS_FOR_TOPIC,
 } from "constants/topicBrowse";
+import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
 import utils from "stylesheets/utils.module.scss";
@@ -137,6 +138,7 @@ export const getServerSideProps = async (context) => {
 
   const fetchItem = async (item) => {
     const itemDplaId = extractItemId(item.acf.dpla_url);
+    if (!itemDplaId || !DPLA_ITEM_ID_REGEX.test(itemDplaId)) return null;
     const itemUrl =
       `${process.env.API_URL}/items/${itemDplaId}` +
       `?api_key=${process.env.API_KEY}`;
