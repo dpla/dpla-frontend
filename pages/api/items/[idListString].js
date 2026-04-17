@@ -4,14 +4,19 @@ import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
 
 export default async function handler(req, res) {
+    if (req.method !== "GET") {
+        res.setHeader("Allow", "GET");
+        res.status(405).json({ error: "Method not allowed" });
+        return;
+    }
 
-    const { idListString } = req.query
+    const { idListString, single } = req.query
     const idList = idListString ? idListString.split(",") : []
     const validIds = idList.filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
     if (validIds.length === 0) {
         console.log("Zero valid ids");
-        res.status(404).json({});
+        res.status(404).json({ error: "Not found." });
         return
     }
 
@@ -21,17 +26,33 @@ export default async function handler(req, res) {
         baseUrl.pathname += validIds.join(",");
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
-            const contentType = fetchRes.headers.get("Content-Type") || "application/json";
-            res.setHeader("Content-Type", contentType);
-            res.status(200);
-            await pipeline(Readable.fromWeb(fetchRes.body), res);
-
+            if (single === "1") {
+                const data = await fetchRes.json();
+                const doc = data?.docs?.[0];
+                if (!doc) {
+                    res.status(404).json({ error: "Not found." });
+                    return;
+                }
+                res.setHeader("Cache-Control", "public, max-age=86400");
+                res.status(200).json(doc);
+            } else {
+                const contentType = fetchRes.headers.get("Content-Type") || "application/json; charset=utf-8";
+                res.setHeader("Cache-Control", "public, max-age=86400");
+                res.setHeader("Content-Type", contentType);
+                res.status(200);
+                await pipeline(Readable.fromWeb(fetchRes.body), res);
+            }
         } else {
-            res.status(404).send("Not found.");
+            fetchRes.body?.cancel?.().catch(() => {});
+            if (fetchRes.status === 404) {
+                res.status(404).json({ error: "Not found." });
+            } else {
+                res.status(fetchRes.status).json({ error: "Upstream service error." });
+            }
         }
 
     } catch (err) {
         console.log("Error proxying request to DPLA API.", err);
-        res.status(404).json({});
+        res.status(502).json({ error: "Upstream service error." });
     }
 }
