@@ -2,6 +2,12 @@ import xmlFormat from "xml-formatter";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    res.setHeader("Allow", "GET");
+    res.status(405).send("Method not allowed.");
+    return;
+  }
+
   const { id } = req.query;
 
   if (!id || !DPLA_ITEM_ID_REGEX.test(id)) {
@@ -62,7 +68,7 @@ export default async function handler(req, res) {
       res.status(504).send("Upstream timeout.");
       return;
     }
-    console.log("Error fetching raw item record.", err);
+    console.error("Error fetching raw item record.", { id, name: err?.name, message: err?.message });
     res.status(502).send("Upstream error.");
   } finally {
     clearTimeout(timeout);
