@@ -180,6 +180,7 @@ let config = {
     } else if (siteEnv === "user") {
       return {
         beforeFiles: [
+          rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id"),
           fourOhFour("/qa"),
           fourOhFour("/pro"),
           fourOhFour("/pro/hubs"),
@@ -193,6 +194,7 @@ let config = {
     } else if (siteEnv === "cqa") {
       return {
         beforeFiles: [
+          rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id"),
           rewrite("/", "/qa"),
           fourOhFour("/about"),
           fourOhFour("/about/:slugs*"),

@@ -23,6 +23,7 @@ export default async function handler(req, res) {
         if (fetchRes.ok) {
             const contentType = fetchRes.headers.get("Content-Type") || "application/json";
             res.setHeader("Content-Type", contentType);
+            res.setHeader("Cache-Control", "public, max-age=86400");
             res.status(200);
             await pipeline(Readable.fromWeb(fetchRes.body), res);
 
