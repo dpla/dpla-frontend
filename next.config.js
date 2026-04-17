@@ -106,6 +106,7 @@ let config = {
       const local = LOCALS[localId];
       const results = [
         rewrite("/", "/local"),
+        rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id?single=1"),
         fourOhFour("/qa"),
         fourOhFour("/exhibitions"),
         fourOhFour("/exhibitions/:slugs*"),
