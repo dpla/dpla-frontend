@@ -48,21 +48,21 @@ export default async function handler(req, res) {
       return;
     }
 
+    let contentType, formatted;
     if (trimmed.startsWith("<")) {
-      const formatted = xmlFormat(trimmed, {
+      contentType = "text/xml; charset=utf-8";
+      formatted = xmlFormat(trimmed, {
         indentation: "  ",
         collapseContent: true,
         lineSeparator: "\n",
       });
-      res.setHeader("Content-Type", "text/xml; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=86400");
-      res.status(200).send(formatted);
     } else {
-      const formatted = JSON.stringify(JSON.parse(trimmed), null, 2);
-      res.setHeader("Content-Type", "application/json; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=86400");
-      res.status(200).send(formatted);
+      contentType = "application/json; charset=utf-8";
+      formatted = JSON.stringify(JSON.parse(trimmed), null, 2);
     }
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.status(200).send(formatted);
   } catch (err) {
     if (err?.name === "AbortError") {
       res.status(504).send("Upstream timeout.");
