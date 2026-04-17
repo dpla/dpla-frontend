@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   if (!id || !DPLA_ITEM_ID_REGEX.test(id)) {
-    res.status(404).json({});
+    res.status(404).send("Not found.");
     return;
   }
 
