@@ -113,6 +113,13 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
       >
         <Content item={item} />
         <div className={css.faveAndCiteButtons}>
+          <div className={css.metadataLinks}>
+            <h2>Metadata</h2>
+            <ul>
+              <li><a href={`/item/${item.id}.raw`}>Original record</a></li>
+              <li><a href={`/item/${item.id}.json`}>Enriched JSON-LD</a></li>
+            </ul>
+          </div>
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
