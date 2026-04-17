@@ -33,8 +33,9 @@ export default async function handler(req, res) {
                     res.status(404).json({ error: "Not found." });
                     return;
                 }
+                res.setHeader("Content-Type", "application/json; charset=utf-8");
                 res.setHeader("Cache-Control", "public, max-age=86400");
-                res.status(200).json(doc);
+                res.status(200).send(JSON.stringify(doc, null, 2));
             } else {
                 const contentType = fetchRes.headers.get("Content-Type") || "application/json; charset=utf-8";
                 res.setHeader("Cache-Control", "public, max-age=86400");
