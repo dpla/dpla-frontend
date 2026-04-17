@@ -51,6 +51,11 @@
   a, a:visited {
     color: var(--subLinkColor);
   }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--subLinkColorHover);
+  }
 }
 
 .notFound {
