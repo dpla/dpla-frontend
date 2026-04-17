@@ -5,7 +5,7 @@ import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
 export default async function handler(req, res) {
 
-    const { idListString } = req.query
+    const { idListString, single } = req.query
     const idList = idListString ? idListString.split(",") : []
     const validIds = idList.filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
@@ -21,12 +21,21 @@ export default async function handler(req, res) {
         baseUrl.pathname += validIds.join(",");
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
-            const contentType = fetchRes.headers.get("Content-Type") || "application/json";
-            res.setHeader("Content-Type", contentType);
             res.setHeader("Cache-Control", "public, max-age=86400");
-            res.status(200);
-            await pipeline(Readable.fromWeb(fetchRes.body), res);
-
+            if (single === "1") {
+                const data = await fetchRes.json();
+                const doc = data?.docs?.[0];
+                if (!doc) {
+                    res.status(404).send("Not found.");
+                    return;
+                }
+                res.status(200).json(doc);
+            } else {
+                const contentType = fetchRes.headers.get("Content-Type") || "application/json; charset=utf-8";
+                res.setHeader("Content-Type", contentType);
+                res.status(200);
+                await pipeline(Readable.fromWeb(fetchRes.body), res);
+            }
         } else {
             res.status(404).send("Not found.");
         }
