@@ -40,7 +40,8 @@
     "rehype-raw": "^7.0.0",
     "sass": "^1.83.4",
     "slick-carousel": "^1.8.1",
-    "striptags": "^3.2.0"
+    "striptags": "^3.2.0",
+    "xml-formatter": "^3.7.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.1",

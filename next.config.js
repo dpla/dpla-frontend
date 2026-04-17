@@ -107,6 +107,7 @@ let config = {
       const results = [
         rewrite("/", "/local"),
         rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id?single=1"),
+        rewrite("/item/:id([0-9a-f]{32}).raw", "/api/items/raw/:id"),
         fourOhFour("/qa"),
         fourOhFour("/exhibitions"),
         fourOhFour("/exhibitions/:slugs*"),
@@ -182,6 +183,7 @@ let config = {
       return {
         beforeFiles: [
           rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id?single=1"),
+          rewrite("/item/:id([0-9a-f]{32}).raw", "/api/items/raw/:id"),
           fourOhFour("/qa"),
           fourOhFour("/pro"),
           fourOhFour("/pro/hubs"),
@@ -196,6 +198,7 @@ let config = {
       return {
         beforeFiles: [
           rewrite("/item/:id([0-9a-f]{32}).json", "/api/items/:id?single=1"),
+          rewrite("/item/:id([0-9a-f]{32}).raw", "/api/items/raw/:id"),
           rewrite("/", "/qa"),
           fourOhFour("/about"),
           fourOhFour("/about/:slugs*"),
