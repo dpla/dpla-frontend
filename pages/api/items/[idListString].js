@@ -10,14 +10,16 @@ export default async function handler(req, res) {
         return;
     }
 
-    const { idListString, single } = req.query
-    const idList = idListString ? idListString.split(",") : []
-    const validIds = idList.filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
+    const { idListString, single } = req.query;
+    if (typeof idListString !== "string") {
+        res.status(404).json({ error: "Not found." });
+        return;
+    }
+    const validIds = idListString.split(",").filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
     if (validIds.length === 0) {
-        console.log("Zero valid ids");
         res.status(404).json({ error: "Not found." });
-        return
+        return;
     }
 
     try {
