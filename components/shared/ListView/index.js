@@ -19,7 +19,7 @@ import { MAX_LIST_ITEMS, MESSAGE_DELAY, UNTITLED_TEXT } from "constants/site";
 import css from "./ListView.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-const SOURCE_RESOURCE_ITEM_ID = SOURCE_RESOURCE_ITEM_ID;
+const SOURCE_RESOURCE_ITEM_ID = "http://dp.la/api/items/#sourceResource";
 
 function joinTruncate(str) {
   return truncateString(joinIfArray(str));

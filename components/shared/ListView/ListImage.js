@@ -41,7 +41,8 @@ class ListImage extends React.Component {
     const { type, url, useDefaultImage, item, title, className } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
-    const imageSrc = updateToDefaultImage ? getDefaultThumbnail(type) : url;
+    const imageSrc = useDefaultWrapper ? getDefaultThumbnail(type) : url;
+    const itemId = item.itemDplaId || item.id;
 
     return (
       <div
@@ -49,7 +50,7 @@ class ListImage extends React.Component {
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}
-        {item.id !== SOURCE_RESOURCE_ITEM_ID && (
+        {itemId !== SOURCE_RESOURCE_ITEM_ID && (
           <Link
             href={item.linkHref}
             className={`${css.listItemImageLink} internalItemLink`}
@@ -63,7 +64,7 @@ class ListImage extends React.Component {
           </Link>
         )}
         {/* see issue #869 for details on this hack */}
-        {item.id === SOURCE_RESOURCE_ITEM_ID && (
+        {itemId === SOURCE_RESOURCE_ITEM_ID && (
           <span className={css.listItemImageLink}>
             <img
               src={imageSrc}
