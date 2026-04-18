@@ -143,12 +143,11 @@ async function topicUrls() {
   return urls;
 }
 
-async function wpPostUrls(base, categoryId = null) {
+async function wpPostUrls(base) {
   const urls = [];
   let page = 1;
   while (true) {
-    let endpoint = `${WP_URL}/wp-json/wp/v2/posts?per_page=100&status=publish&page=${page}`;
-    if (categoryId) endpoint += `&categories=${categoryId}`;
+    const endpoint = `${WP_URL}/wp-json/wp/v2/posts?per_page=100&status=publish&page=${page}`;
     const res = await safeFetch(endpoint);
     if (!res) break;
     const posts = await res.json();

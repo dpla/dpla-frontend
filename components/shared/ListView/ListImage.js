@@ -5,6 +5,8 @@ import { getDefaultThumbnail, probeImage } from "lib";
 
 import css from "./ListView.module.scss";
 
+const SOURCE_RESOURCE_ITEM_ID = "http://dp.la/api/items/#sourceResource";
+
 class ListImage extends React.Component {
   state = {
     updateToDefaultImage: false,
@@ -39,6 +41,7 @@ class ListImage extends React.Component {
     const { type, url, useDefaultImage, item, title, className } = this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
+    const imageSrc = updateToDefaultImage ? getDefaultThumbnail(type) : url;
 
     return (
       <div
@@ -46,24 +49,24 @@ class ListImage extends React.Component {
           ${useDefaultWrapper && css.defaultImageWrapper}`}
       >
         {/* see issue #869 for details on this hack */}
-        {item.id !== "http://dp.la/api/items/#sourceResource" && (
+        {item.id !== SOURCE_RESOURCE_ITEM_ID && (
           <Link
             href={item.linkHref}
             className={`${css.listItemImageLink} internalItemLink`}
             title={title}
           >
             <img
-              src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
+              src={imageSrc}
               alt=""
               className={css.image}
             />
           </Link>
         )}
         {/* see issue #869 for details on this hack */}
-        {item.id === "http://dp.la/api/items/#sourceResource" && (
+        {item.id === SOURCE_RESOURCE_ITEM_ID && (
           <span className={css.listItemImageLink}>
             <img
-              src={updateToDefaultImage ? getDefaultThumbnail(type) : url}
+              src={imageSrc}
               alt=""
               className={css.image}
             />

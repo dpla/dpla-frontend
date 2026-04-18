@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import Markdown from "react-markdown";
 
-import { extractSourceSetSlug, removeQueryParams } from "lib";
+import { extractSourceSetSlug } from "lib";
 
 import css from "./SetsList.module.scss";
 import utils from "stylesheets/utils.module.scss";

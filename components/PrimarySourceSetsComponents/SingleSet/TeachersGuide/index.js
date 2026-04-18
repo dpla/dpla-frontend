@@ -3,7 +3,7 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import { withRouter } from "next/router";
 
-import { removeQueryParams, markdownLinks } from "lib";
+import { markdownLinks } from "lib";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "./TeachersGuide.module.scss";

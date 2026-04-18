@@ -24,14 +24,15 @@ class Accordion extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if (prevProps.items !== this.props.items && Array.isArray(this.props.items)) {
-      this.setState({
-        items: this.props.items.map((item, i) => ({
+      const newItems = this.props.items;
+      this.setState((prevState) => ({
+        items: newItems.map((item, i) => ({
           ...item,
           active: prevState.items[i]?.active ?? true,
         })),
-      });
+      }));
     }
   }
 

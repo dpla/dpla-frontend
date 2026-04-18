@@ -13,3 +13,5 @@ function Video(props) {
     </svg>
   );
 }
+
+export default Video;

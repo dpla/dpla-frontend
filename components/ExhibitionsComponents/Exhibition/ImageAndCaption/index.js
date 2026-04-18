@@ -5,10 +5,7 @@ import Button from "shared/Button";
 
 import css from "./ImageAndCaption.module.scss";
 import utils from "stylesheets/utils.module.scss";
-import { useRouter } from "next/router";
-
 function ImageAndCaption({ title, thumbnailUrl, sectionSlug, slug, caption }) {
-  const router = useRouter();
   return (
     <figure className={css.wrapper}>
       <div className={`${utils.container} ${css.imageAndCaption}`}>

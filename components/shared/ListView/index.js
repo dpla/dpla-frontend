@@ -19,6 +19,8 @@ import { MAX_LIST_ITEMS, MESSAGE_DELAY, UNTITLED_TEXT } from "constants/site";
 import css from "./ListView.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
+const SOURCE_RESOURCE_ITEM_ID = SOURCE_RESOURCE_ITEM_ID;
+
 function joinTruncate(str) {
   return truncateString(joinIfArray(str));
 }
@@ -381,7 +383,7 @@ export default function ListView({
             state?.currentList?.selectedHash?.[realId] !== undefined;
           const shouldDisable =
             (!checked && listCount > MAX_LIST_ITEMS) ||
-            realId === "http://dp.la/api/items/#sourceResource";
+            realId === SOURCE_RESOURCE_ITEM_ID;
           const disabledMessage = `Maximum ${MAX_LIST_ITEMS} items per list.`;
           let itemLinkText = "View Full Item";
           if (item.type === "image") itemLinkText = "View Full Image";
@@ -403,7 +405,7 @@ export default function ListView({
               <div className={css.itemInfo}>
                 <h2 className={`${utils.hoverUnderline} ${css.itemTitle}`}>
                   {/* see issue #869 for details on this hack */}
-                  {realId !== "http://dp.la/api/items/#sourceResource" && (
+                  {realId !== SOURCE_RESOURCE_ITEM_ID && (
                     <Link href={item.linkHref} className={"internalItemLink"}>
                       {item.title
                         ? truncateString(joinIfArray(item.title, ", "), 150)
@@ -411,7 +413,7 @@ export default function ListView({
                     </Link>
                   )}
                   {/* see issue #869 for details on this hack */}
-                  {realId === "http://dp.la/api/items/#sourceResource" && (
+                  {realId === SOURCE_RESOURCE_ITEM_ID && (
                     <span>
                       {item.title
                         ? truncateString(item.title, 150)
