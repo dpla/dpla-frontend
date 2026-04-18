@@ -6,7 +6,7 @@ import Markdown from "react-markdown";
 
 import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
-import { extractSourceId, removeQueryParams } from "lib";
+import { extractSourceId } from "lib";
 
 import css from "./SourceCarousel.module.scss";
 

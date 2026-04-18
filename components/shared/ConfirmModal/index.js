@@ -5,27 +5,14 @@ import Button from "shared/Button";
 
 const DEFAULT_CONFIRM_TEXT = "Are you sure?";
 const DEFAULT_BUTTON_TEXT = "Delete";
-const DEFAULT_CONFIRM_BUTTON_TEXT = "Delete";
 
 import utils from "stylesheets/utils.module.scss"
 
 class ConfirmModal extends React.Component {
   state = {
-    confirmText: DEFAULT_CONFIRM_TEXT,
-    buttonText: DEFAULT_BUTTON_TEXT,
-    confirmButtonText: DEFAULT_CONFIRM_BUTTON_TEXT,
-    onConfirm: null,
+    active: false,
     timestamp: null,
   };
-
-  componentDidMount() {
-    this.setState({
-      confirmText: this.props.text || DEFAULT_CONFIRM_TEXT,
-      buttonText: this.props.buttonText || DEFAULT_BUTTON_TEXT,
-      confirmButtonText: this.props.buttonText || DEFAULT_CONFIRM_BUTTON_TEXT,
-      onConfirm: this.props.onConfirm
-    });
-  }
 
   openConfirm = e => {
     e.preventDefault();
@@ -35,7 +22,7 @@ class ConfirmModal extends React.Component {
     });
   };
 
-  closeConfirm = e => {
+  closeConfirm = () => {
     this.setState({
       active: false
     });
@@ -43,12 +30,16 @@ class ConfirmModal extends React.Component {
 
   handleConfirm = e => {
     e.preventDefault();
-    this.state.onConfirm(e);
+    if (typeof this.props.onConfirm === "function") {
+      this.props.onConfirm(e);
+    }
   };
 
   render() {
-    const { active, confirmButtonText, buttonText, confirmText } = this.state;
-    const { className } = this.props;
+    const { active } = this.state;
+    const { className, text, buttonText: buttonTextProp } = this.props;
+    const confirmText = text || DEFAULT_CONFIRM_TEXT;
+    const buttonText = buttonTextProp || DEFAULT_BUTTON_TEXT;
     const modal = active
       ? <AriaModal
           titleText={confirmText}
@@ -81,7 +72,7 @@ class ConfirmModal extends React.Component {
                 mustSubmit={true}
                 className={utils.modalContinueButton}
               >
-                {confirmButtonText}
+                {buttonText}
               </Button>
             </div>
           </form>

@@ -7,7 +7,6 @@ import BreadcrumbsModule from "components/PrimarySourceSetsComponents/Breadcrumb
 import ContentAndMetadata from "components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
 
-import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
