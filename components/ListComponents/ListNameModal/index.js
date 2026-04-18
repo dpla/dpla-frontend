@@ -24,6 +24,7 @@ class ListNameModal extends React.Component {
     this.setState({
       active: true,
       timestamp: Date.now(),
+      value: this.props.value,
     });
   };
 
