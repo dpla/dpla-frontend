@@ -4,7 +4,7 @@ import Markdown from "react-markdown";
 
 import Link from "next/link";
 
-import { removeQueryParams, extractSourceId } from "lib";
+import { extractSourceId } from "lib";
 
 import css from "./SourceSetSources.module.scss";
 import utils from "stylesheets/utils.module.scss";

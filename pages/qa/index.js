@@ -6,7 +6,6 @@ import HomeHero from "components/HomePageComponents/HomeHero";
 import WebsiteFeature from "shared/WebsiteFeature";
 
 function QA() {
-  const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   return (
     <MainLayout hidePageHeader={true} hideSearchBar={true}>
       <div id="main" role="main">

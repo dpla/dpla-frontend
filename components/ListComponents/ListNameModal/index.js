@@ -21,11 +21,11 @@ class ListNameModal extends React.Component {
 
   openForm = (e) => {
     e.preventDefault();
-    this.setState({
+    this.setState((_prevState, props) => ({
       active: true,
       timestamp: Date.now(),
-      value: this.props.value,
-    });
+      value: props.value,
+    }));
   };
 
   closeForm = (e) => {

@@ -21,11 +21,10 @@ class FiltersBar extends React.Component {
         prevProps.router.query.timePeriod ||
       this.props.router.query.subject !== prevProps.router.query.subject
     ) {
-      this.setState({
-        timePeriodValue:
-          this.props.router.query.timePeriod || "all-time-periods",
-        subjectValue: this.props.router.query.subject || "all-subjects",
-      });
+      this.setState((_prevState, props) => ({
+        timePeriodValue: props.router.query.timePeriod || "all-time-periods",
+        subjectValue: props.router.query.subject || "all-subjects",
+      }));
     }
   }
 
