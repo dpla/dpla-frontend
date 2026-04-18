@@ -15,7 +15,7 @@ class ListNameModal extends React.Component {
     this.state = {
       active: false,
       value: props.value,
-      onChange: props.onChange,
+      timestamp: null,
     };
   }
 
@@ -23,6 +23,7 @@ class ListNameModal extends React.Component {
     e.preventDefault();
     this.setState({
       active: true,
+      timestamp: Date.now(),
     });
   };
 

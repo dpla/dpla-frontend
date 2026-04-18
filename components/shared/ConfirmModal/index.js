@@ -14,7 +14,8 @@ class ConfirmModal extends React.Component {
     confirmText: DEFAULT_CONFIRM_TEXT,
     buttonText: DEFAULT_BUTTON_TEXT,
     confirmButtonText: DEFAULT_CONFIRM_BUTTON_TEXT,
-    onConfirm: null
+    onConfirm: null,
+    timestamp: null,
   };
 
   componentDidMount() {
@@ -29,7 +30,8 @@ class ConfirmModal extends React.Component {
   openConfirm = e => {
     e.preventDefault();
     this.setState({
-      active: true
+      active: true,
+      timestamp: Date.now(),
     });
   };
 
@@ -64,7 +66,7 @@ class ConfirmModal extends React.Component {
             <h2 className={utils.modalTitle}>
               {confirmText}
             </h2>
-            <div className={'.modalContinueCancelButtons'}>
+            <div className={utils.modalContinueCancelButtons}>
               <Button
                 className={utils.modalCancelButton}
                 type="ghost"
