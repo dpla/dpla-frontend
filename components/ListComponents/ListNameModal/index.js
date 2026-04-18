@@ -42,15 +42,13 @@ class ListNameModal extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    this.setState(async (prevState) => {
-      let tempName = prevState.value.trim();
-      if (tempName === "") {
-        tempName = DEFAULT_NAME;
-      }
+    let tempName = this.state.value.trim();
+    if (tempName === "") {
+      tempName = DEFAULT_NAME;
+    }
+    this.setState({ value: tempName, active: false }, () => {
       this.props.onChange(tempName);
-      return { value: tempName, active: false };
     });
-    this.closeForm();
   };
 
   render() {
