@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
     try {
         const baseUrl = new URL(apiUrl);
-        baseUrl.pathname = `/items/${validIds.join(",")}`;
+        baseUrl.pathname = baseUrl.pathname.replace(/\/$/, "") + `/items/${validIds.join(",")}`;
         baseUrl.searchParams.set("api_key", apiKey);
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {

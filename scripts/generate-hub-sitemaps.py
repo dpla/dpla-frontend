@@ -151,7 +151,9 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
                     time.sleep(5 * (attempt + 1))
                 continue
             raise
-    raise last_exc  # retries exhausted on transient server error
+    if last_exc is not None:
+        raise last_exc  # retries exhausted on transient server error
+    raise RuntimeError("retries exhausted without a captured exception")
 
 
 MAX_API_WINDOW = 49_800  # ES max_result_window is 50K; stay safely under it

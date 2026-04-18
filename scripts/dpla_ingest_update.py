@@ -46,7 +46,11 @@ for provider in providernames:
             "fields": "ingestDate",
         },
     )
-    ingestdates[provider["term"]] = data["docs"][0]["ingestDate"][:10]
+    docs = data.get("docs", [])
+    if not docs:
+        print(f"Warning: no docs returned for provider {provider['term']!r}")
+        continue
+    ingestdates[provider["term"]] = docs[0]["ingestDate"][:10]
 
 # --- Sort into 4 groups ---
 g30, g90, g365, gold = {}, {}, {}, {}
@@ -140,7 +144,8 @@ if yesterday_hubs:
     lines = [f"*DPLA hubs ingested on {yesterday}:*"]
     for hub in sorted(yesterday_hubs, key=yesterday_hubs.get, reverse=True):
         lines.append(f"• {hub}: {yesterday_hubs[hub]}")
-    requests.post(SLACK_URL, json={"text": "\n".join(lines)}, timeout=10)
+    slack_resp = requests.post(SLACK_URL, json={"text": "\n".join(lines)}, timeout=10)
+    slack_resp.raise_for_status()
     print(f"Slack alert sent for {len(yesterday_hubs)} hub(s).")
 else:
     print(f"No hubs ingested on {yesterday}. No Slack alert sent.")
