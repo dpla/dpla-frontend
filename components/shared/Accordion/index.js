@@ -19,9 +19,9 @@ class Accordion extends React.Component {
 
   componentDidMount() {
     // now collapse accordions for realz
-    if (Array.isArray(this.props.items)) {
-      this.setState({ items: this.props.items });
-    }
+    this.setState((_prevState, props) =>
+      Array.isArray(props.items) ? { items: props.items } : null
+    );
   }
 
   componentDidUpdate(prevProps) {

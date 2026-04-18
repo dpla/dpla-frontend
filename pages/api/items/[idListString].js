@@ -28,10 +28,18 @@ export default async function handler(req, res) {
         return;
     }
 
+    const apiUrl = process.env.API_URL;
+    const apiKey = process.env.API_KEY;
+    if (!apiUrl || !apiKey) {
+        console.error("API configuration missing: API_URL or API_KEY not set");
+        res.status(500).json({ error: "Server configuration error." });
+        return;
+    }
+
     try {
-        const baseUrl = new URL(`${process.env.API_URL}/items/`);
-        baseUrl.searchParams.set('api_key', process.env.API_KEY);
-        baseUrl.pathname += validIds.join(",");
+        const baseUrl = new URL(apiUrl);
+        baseUrl.pathname = baseUrl.pathname.replace(/\/$/, "") + `/items/${validIds.join(",")}`;
+        baseUrl.searchParams.set("api_key", apiKey);
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
             if (isSingle) {

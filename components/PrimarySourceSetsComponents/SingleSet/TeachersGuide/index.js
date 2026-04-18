@@ -15,7 +15,7 @@ class TeachersGuide extends React.Component {
   state = { routePath: null };
 
   componentDidMount() {
-    this.setState({ routePath: this.props.router.asPath });
+    this.setState((_prevState, props) => ({ routePath: props.router.asPath }));
   }
 
   render() {

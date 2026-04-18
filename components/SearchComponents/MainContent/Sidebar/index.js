@@ -89,10 +89,10 @@ class DateFacet extends React.Component {
       this.props.after !== prevProps.after ||
       this.props.before !== prevProps.before
     ) {
-      this.setState({
-        after: this.props.after || "",
-        before: this.props.before || "",
-      });
+      this.setState((_prevState, props) => ({
+        after: props.after || "",
+        before: props.before || "",
+      }));
     }
   }
 

@@ -133,6 +133,7 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
     """
     url = f"{api_url}/v2/items?api_key={api_key}&tags={tag}&{extra_params}"
     req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
+    last_exc = None
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
@@ -144,10 +145,15 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
                 raise RateLimitError(
                     f"API rate limit reached (HTTP 403): {exc.url}"
                 ) from exc
-            if exc.code in (500, 502, 503, 504) and attempt < retries - 1:
-                time.sleep(5 * (attempt + 1))
+            if exc.code in (500, 502, 503, 504):
+                last_exc = exc
+                if attempt < retries - 1:
+                    time.sleep(5 * (attempt + 1))
                 continue
             raise
+    if last_exc is not None:
+        raise last_exc  # retries exhausted on transient server error
+    raise RuntimeError("retries exhausted without a captured exception")
 
 
 MAX_API_WINDOW = 49_800  # ES max_result_window is 50K; stay safely under it
