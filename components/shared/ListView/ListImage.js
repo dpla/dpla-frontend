@@ -8,7 +8,6 @@ import css from "./ListView.module.scss";
 class ListImage extends React.Component {
   state = {
     updateToDefaultImage: false,
-    item: this.props.item,
   };
 
   componentDidMount() {
