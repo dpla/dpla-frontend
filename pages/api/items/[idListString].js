@@ -2,6 +2,11 @@ import { pipeline } from "stream/promises";
 import { Readable } from "stream";
 import {DPLA_ITEM_ID_REGEX} from "constants/items";
 
+function getErrorMessage(err) {
+    if (err instanceof Error) return err.message;
+    if (typeof err === "string") return err;
+    return "Unknown error";
+}
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -15,6 +20,7 @@ export default async function handler(req, res) {
         res.status(404).json({ error: "Not found." });
         return;
     }
+    const isSingle = single === "1";
     const validIds = idListString.split(",").filter(id => !!id && DPLA_ITEM_ID_REGEX.test(id));
 
     if (validIds.length === 0) {
@@ -28,7 +34,7 @@ export default async function handler(req, res) {
         baseUrl.pathname += validIds.join(",");
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
-            if (single === "1") {
+            if (isSingle) {
                 const data = await fetchRes.json();
                 const doc = data?.docs?.[0];
                 if (!doc) {
@@ -43,7 +49,15 @@ export default async function handler(req, res) {
                 res.setHeader("Cache-Control", "public, max-age=86400");
                 res.setHeader("Content-Type", contentType);
                 res.status(200);
-                await pipeline(Readable.fromWeb(fetchRes.body), res);
+                try {
+                    await pipeline(Readable.fromWeb(fetchRes.body), res);
+                } catch (err) {
+                    console.error("Error streaming upstream response.", { message: getErrorMessage(err) });
+                    if (!res.headersSent) {
+                        res.removeHeader("Cache-Control");
+                        res.status(502).json({ error: "Upstream service error." });
+                    }
+                }
             }
         } else {
             fetchRes.body?.cancel?.().catch(() => {});
@@ -55,7 +69,9 @@ export default async function handler(req, res) {
         }
 
     } catch (err) {
-        console.log("Error proxying request to DPLA API.", err);
-        res.status(502).json({ error: "Upstream service error." });
+        console.error("Error proxying request to DPLA API.", { message: getErrorMessage(err) });
+        if (!res.headersSent) {
+            res.status(502).json({ error: "Upstream service error." });
+        }
     }
 }
