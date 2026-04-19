@@ -329,6 +329,8 @@
       chip.type = 'button';
       chip.className = 'da-tag-chip';
       chip.setAttribute('aria-label', 'Add depicts tag: ' + tag.label);
+      chip.dataset.mid = mid;
+      chip.dataset.qid = tag.qid;
 
       const labelSpan = document.createElement('span');
       labelSpan.textContent = tag.label;
@@ -388,6 +390,11 @@
       removeBtn.addEventListener('click', function () {
         const idx = queue.indexOf(item);
         if (idx !== -1) queue.splice(idx, 1);
+        const chip = $tagSuggestions.querySelector('[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]');
+        if (chip) {
+          chip.classList.remove('da-tag-selected');
+          chip.disabled = false;
+        }
         renderQueue();
       });
       li.appendChild(removeBtn);
