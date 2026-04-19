@@ -10,11 +10,14 @@ const COMMONS_API = `${COMMONS_BASE}/api.php`;
 const TOKEN_COOKIE = 'wm_access_token';
 const STATE_COOKIE = 'wm_oauth_state';
 const FETCH_TIMEOUT_MS = 5000;
+const CALLBACK_PATH = '/api/wikimedia/oauth?action=callback';
+const REDIRECT_BASE = process.env.WIKIMEDIA_OAUTH_REDIRECT_BASE;
 
 function getCallbackUrl(req) {
+  if (REDIRECT_BASE) return REDIRECT_BASE + CALLBACK_PATH;
   const proto = req.headers['x-forwarded-proto'] || 'https';
   const host = req.headers['x-forwarded-host'] || req.headers.host;
-  return proto + '://' + host + '/api/wikimedia/oauth?action=callback';
+  return proto + '://' + host + CALLBACK_PATH;
 }
 
 export default async function handler(req, res) {
