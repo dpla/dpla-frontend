@@ -17,20 +17,16 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
 
-  const origin = req.headers['x-forwarded-proto']
-    ? req.headers['x-forwarded-proto'] + '://' + (req.headers['x-forwarded-host'] || req.headers.host)
-    : 'https://' + req.headers.host;
-
   if (req.method === 'GET') {
-    return handleGet(req, res, token, origin);
+    return handleGet(req, res, token);
   }
   if (req.method === 'POST') {
-    return handlePost(req, res, token, origin);
+    return handlePost(req, res, token);
   }
   return res.status(405).json({ error: 'Method not allowed' });
 }
 
-async function handleGet(req, res, token, origin) {
+async function handleGet(req, res, token) {
   const { _proxy, ...params } = req.query;
 
   if (!ALLOWED_GET_ACTIONS.has(params.action)) {
@@ -39,7 +35,6 @@ async function handleGet(req, res, token, origin) {
 
   const qs = new URLSearchParams(params);
   qs.set('format', 'json');
-  qs.set('origin', origin);
 
   try {
     const apiResp = await fetch(COMMONS_API + '?' + qs.toString(), {
@@ -54,7 +49,7 @@ async function handleGet(req, res, token, origin) {
   }
 }
 
-async function handlePost(req, res, token, origin) {
+async function handlePost(req, res, token) {
   const bodyParams = typeof req.body === 'string'
     ? Object.fromEntries(new URLSearchParams(req.body))
     : req.body;
@@ -64,7 +59,7 @@ async function handlePost(req, res, token, origin) {
   }
 
   try {
-    const apiResp = await fetch(COMMONS_API + '?origin=' + encodeURIComponent(origin), {
+    const apiResp = await fetch(COMMONS_API, {
       method: 'POST',
       headers: {
         Authorization: 'Bearer ' + token,
