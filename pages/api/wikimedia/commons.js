@@ -41,8 +41,7 @@ async function handleGet(req, res, token) {
       headers: { Authorization: 'Bearer ' + token },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
     });
-    const data = await apiResp.json();
-    return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
+    return await forwardCommonsResponse(apiResp, res);
   } catch (err) {
     console.error('Commons proxy GET error:', err);
     return res.status(502).json({ error: 'Commons API request failed' });
@@ -68,10 +67,20 @@ async function handlePost(req, res, token) {
       body: new URLSearchParams(bodyParams).toString(),
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
     });
-    const data = await apiResp.json();
-    return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
+    return await forwardCommonsResponse(apiResp, res);
   } catch (err) {
     console.error('Commons proxy POST error:', err);
     return res.status(502).json({ error: 'Commons API request failed' });
   }
+}
+
+async function forwardCommonsResponse(apiResp, res) {
+  const contentType = apiResp.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) {
+    const data = await apiResp.json();
+    return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
+  }
+  const text = await apiResp.text();
+  console.error('Commons API returned non-JSON response:', apiResp.status, text.slice(0, 200));
+  return res.status(apiResp.status).json({ error: 'Commons API returned non-JSON response' });
 }
