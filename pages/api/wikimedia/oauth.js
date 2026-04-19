@@ -3,9 +3,10 @@ import { setCookie } from 'lib/setCookie';
 
 const CLIENT_ID = process.env.WIKIMEDIA_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.WIKIMEDIA_OAUTH_CLIENT_SECRET;
-const AUTH_ENDPOINT = 'https://meta.wikimedia.org/w/rest.php/oauth2/authorize';
-const TOKEN_ENDPOINT = 'https://meta.wikimedia.org/w/rest.php/oauth2/access_token';
-const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
+const COMMONS_BASE = 'https://commons.wikimedia.org/w';
+const AUTH_ENDPOINT = `${COMMONS_BASE}/rest.php/oauth2/authorize`;
+const TOKEN_ENDPOINT = `${COMMONS_BASE}/rest.php/oauth2/access_token`;
+const COMMONS_API = `${COMMONS_BASE}/api.php`;
 const TOKEN_COOKIE = 'wm_access_token';
 const STATE_COOKIE = 'wm_oauth_state';
 const FETCH_TIMEOUT_MS = 5000;
