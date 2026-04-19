@@ -11,7 +11,7 @@ const TOKEN_COOKIE = 'wm_access_token';
 const STATE_COOKIE = 'wm_oauth_state';
 const FETCH_TIMEOUT_MS = 5000;
 const CALLBACK_PATH = '/api/wikimedia/oauth?action=callback';
-const REDIRECT_BASE = process.env.WIKIMEDIA_OAUTH_REDIRECT_BASE;
+const REDIRECT_BASE = process.env.WIKIMEDIA_OAUTH_REDIRECT_BASE?.trim().replace(/\/+$/, '');
 
 function getCallbackUrl(req) {
   if (REDIRECT_BASE) return REDIRECT_BASE + CALLBACK_PATH;
