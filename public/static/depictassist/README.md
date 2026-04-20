@@ -188,9 +188,11 @@ The proxy strips the internal `_proxy` query parameter (added by client code to
 avoid caching) before forwarding. It does not forward the `origin` parameter,
 which Commons rejects on OAuth Bearer requests.
 
-Errors from Commons are always HTTP 200 with an `error` field in the JSON body
-(MediaWiki never returns 4xx/5xx for API-level errors). The proxy logs these to
-ECS stdout so they appear in CloudWatch.
+MediaWiki API-level errors (bad token, permission denied, invalid entity) are
+returned as HTTP 200 with an `error` field in the JSON body; the proxy logs
+these via `console.warn`. HTTP-level errors (rate limiting, server faults) are
+forwarded with their original status code and logged via `console.error`. Both
+appear in CloudWatch via ECS stdout.
 
 ## Institution data
 
