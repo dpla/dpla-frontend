@@ -3,6 +3,8 @@
 // client JS). This route reads the token and forwards requests to Commons
 // with Bearer auth.
 
+import { WIKIMEDIA_USER_AGENT } from 'lib/wikimediaUserAgent';
+
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const TOKEN_COOKIE = 'wm_access_token';
 const FETCH_TIMEOUT_MS = 10000;
@@ -40,7 +42,7 @@ async function handleGet(req, res, token) {
 
   try {
     const apiResp = await fetch(COMMONS_API + '?' + qs.toString(), {
-      headers: { Authorization: 'Bearer ' + token },
+      headers: { Authorization: 'Bearer ' + token, 'User-Agent': WIKIMEDIA_USER_AGENT },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
     });
     return await forwardCommonsResponse(apiResp, res);
@@ -64,7 +66,8 @@ async function handlePost(req, res, token) {
       method: 'POST',
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': WIKIMEDIA_USER_AGENT
       },
       body: new URLSearchParams(bodyParams).toString(),
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
