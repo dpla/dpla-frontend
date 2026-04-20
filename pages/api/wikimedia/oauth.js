@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { setCookie } from 'lib/setCookie';
+import { WIKIMEDIA_USER_AGENT } from 'lib/wikimediaUserAgent';
 
 const CLIENT_ID = process.env.WIKIMEDIA_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.WIKIMEDIA_OAUTH_CLIENT_SECRET;
@@ -84,7 +85,7 @@ async function handleCallback(req, res) {
 
     const tokenResp = await fetch(TOKEN_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': WIKIMEDIA_USER_AGENT },
       body: body.toString(),
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
     });
@@ -132,7 +133,7 @@ async function handleWhoAmI(req, res) {
   try {
     const apiUrl = COMMONS_API + '?action=query&meta=userinfo&format=json';
     const apiResp = await fetch(apiUrl, {
-      headers: { 'Authorization': 'Bearer ' + token },
+      headers: { 'Authorization': 'Bearer ' + token, 'User-Agent': WIKIMEDIA_USER_AGENT },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
     });
 
