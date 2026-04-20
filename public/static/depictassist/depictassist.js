@@ -329,6 +329,8 @@
       chip.type = 'button';
       chip.className = 'da-tag-chip';
       chip.setAttribute('aria-label', 'Add depicts tag: ' + tag.label);
+      chip.dataset.mid = mid;
+      chip.dataset.qid = tag.qid;
 
       const labelSpan = document.createElement('span');
       labelSpan.textContent = tag.label;
@@ -388,6 +390,11 @@
       removeBtn.addEventListener('click', function () {
         const idx = queue.indexOf(item);
         if (idx !== -1) queue.splice(idx, 1);
+        const chip = $tagSuggestions.querySelector('[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]');
+        if (chip) {
+          chip.classList.remove('da-tag-selected');
+          chip.disabled = false;
+        }
         renderQueue();
       });
       li.appendChild(removeBtn);
@@ -485,7 +492,8 @@
       const tokenData = await tokenResp.json();
       const csrfToken = tokenData.query?.tokens?.csrftoken;
 
-      if (!csrfToken || csrfToken === '+\\') {
+      // +\ is the valid OAuth 2.0 pseudotoken — do not reject it
+      if (!csrfToken) {
         throw new Error('Failed to obtain CSRF token. Please log in again.');
       }
 
@@ -583,7 +591,7 @@
       renderQueue();
     } catch (err) {
       console.error('DepictAssist: batch submit error', err);
-      $batchErrorMsg.textContent = 'Error submitting edits: ' + err.message;
+      $batchErrorMsg.textContent = 'Error submitting edits: ' + String(err?.message ?? err);
       $batchError.style.display = 'block';
     } finally {
       submittingBatch = false;

@@ -55,6 +55,7 @@ function handleLogin(req, res) {
     response_type: 'code',
     client_id: CLIENT_ID,
     redirect_uri: getCallbackUrl(req),
+    scope: 'editpage',
     state: state
   });
 

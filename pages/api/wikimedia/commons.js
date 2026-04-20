@@ -78,6 +78,11 @@ async function forwardCommonsResponse(apiResp, res) {
   const contentType = apiResp.headers.get('content-type') || '';
   if (contentType.includes('application/json')) {
     const data = await apiResp.json();
+    if (!apiResp.ok) {
+      console.error('Commons API error response:', apiResp.status, JSON.stringify(data).slice(0, 500));
+    } else if (data.error) {
+      console.warn('Commons API returned error in body:', JSON.stringify(data.error).slice(0, 500));
+    }
     return res.status(apiResp.ok ? 200 : apiResp.status).json(data);
   }
   const text = await apiResp.text();
