@@ -52,24 +52,18 @@ class PostPage extends React.Component {
         hasTags = true;
       }
     });
+    const breadcrumbs = [
+      { title: "News", url: "/news" },
+      { title: content.title.rendered },
+    ];
     return (
       <MainLayout
         pageTitle={content.title.rendered}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
-        <BreadcrumbsModule
-          breadcrumbs={[
-            { title: "News", url: "/news" },
-            { title: content.title.rendered },
-          ]}
-        />
-        <BreadcrumbJsonLd
-          breadcrumbs={[
-            { title: "News", url: "/news" },
-            { title: content.title.rendered },
-          ]}
-        />
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} />
+        <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >

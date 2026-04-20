@@ -9,7 +9,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_USER_BASE_URL || "";
  */
 function resolveUrl(url) {
   if (!url) return null;
-  if (typeof url === "string") return url ? BASE_URL + url : null;
+  if (typeof url === "string") return BASE_URL + url;
   if (url.pathname) return BASE_URL + url.pathname;
   return null;
 }
@@ -44,7 +44,7 @@ function BreadcrumbJsonLd({ breadcrumbs }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }}
     />
   );
 }

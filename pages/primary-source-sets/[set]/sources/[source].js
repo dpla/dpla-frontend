@@ -94,18 +94,17 @@ export async function getServerSideProps(context) {
     (s) => s["@id"] === sourceId,
   );
 
-  // Compute prev/next URLs from the ordered list of sources only.
   const sources = setJson.hasPart.filter(
     (p) => p.disambiguatingDescription === "source",
   );
   const currentInSourcesIdx = sources.findIndex((s) => s["@id"] === sourceId);
-  const baseUrl = process.env.NEXT_PUBLIC_USER_BASE_URL || "";
+  const baseUrl = (process.env.NEXT_PUBLIC_USER_BASE_URL || "").replace(/\/+$/, "");
   const prevSourceUrl =
     currentInSourcesIdx > 0
       ? `${baseUrl}/primary-source-sets/${set}/sources/${extractSourceId(sources[currentInSourcesIdx - 1]["@id"])}`
       : null;
   const nextSourceUrl =
-    currentInSourcesIdx < sources.length - 1
+    currentInSourcesIdx !== -1 && currentInSourcesIdx < sources.length - 1
       ? `${baseUrl}/primary-source-sets/${set}/sources/${extractSourceId(sources[currentInSourcesIdx + 1]["@id"])}`
       : null;
 

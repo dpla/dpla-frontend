@@ -103,14 +103,16 @@ export async function getServerSideProps(context) {
       slug: "",
     },
   ].concat(subsections.map(pageMap));
-  const baseUrl = process.env.NEXT_PUBLIC_USER_BASE_URL || "";
-  const prevUrl = previousQueryParams
-    ? `${baseUrl}/exhibitions/${previousQueryParams.exhibitionSlug}/${previousQueryParams.sectionSlug}${previousQueryParams.subsectionSlug ? `/${previousQueryParams.subsectionSlug}` : ""}`
-    : null;
+  const baseUrl = (process.env.NEXT_PUBLIC_USER_BASE_URL || "").replace(/\/+$/, "");
+  const prevUrl =
+    baseUrl && previousQueryParams
+      ? `${baseUrl}/exhibitions/${previousQueryParams.exhibitionSlug}/${previousQueryParams.sectionSlug}${previousQueryParams.subsectionSlug ? `/${previousQueryParams.subsectionSlug}` : ""}`
+      : null;
   const nextQueryParams = nextQueryParamsAndTitle?.queryParams;
-  const nextUrl = nextQueryParams
-    ? `${baseUrl}/exhibitions/${nextQueryParams.exhibitionSlug}/${nextQueryParams.sectionSlug}${nextQueryParams.subsectionSlug ? `/${nextQueryParams.subsectionSlug}` : ""}`
-    : null;
+  const nextUrl =
+    baseUrl && nextQueryParams
+      ? `${baseUrl}/exhibitions/${nextQueryParams.exhibitionSlug}/${nextQueryParams.sectionSlug}${nextQueryParams.subsectionSlug ? `/${nextQueryParams.subsectionSlug}` : ""}`
+      : null;
 
   const props = washObject({
     exhibitionTitle: exhibit.title,
