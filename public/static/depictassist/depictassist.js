@@ -14,6 +14,7 @@
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename }[]
+  let currentMid = null;    // MID of the image currently displayed
   let pendingQid = null;    // QID from URL, awaiting institution load
   let isAuthenticated = false;
   let fetchingImages = false;
@@ -42,6 +43,7 @@
 
     boundWrapper = wrapper;
     queue = [];
+    currentMid = null;
     isAuthenticated = false;
     fetchingImages = false;
     submittingBatch = false;
@@ -179,7 +181,9 @@
     if (!qid || fetchingImages) return;
 
     fetchingImages = true;
+    currentMid = null;
     $findBtn.disabled = true;
+    $skipBtn.blur();
     $skipBtn.disabled = true;
     updateUrl(qid);
     showImageState('loading');
@@ -302,6 +306,8 @@
   }
 
   function displayImage({ mid, imgUrl, title, filename, description, subjectName, tagSuggestions }) {
+    currentMid = mid;
+    updateSkipButton();
     showImageState('image');
 
     $imageTitle.textContent = title;
@@ -403,6 +409,20 @@
     }
 
     updateBatchButton();
+    updateSkipButton();
+  }
+
+  function updateSkipButton() {
+    const hasTagsForCurrent = currentMid !== null && queue.some(item => item.mid === currentMid);
+    if (hasTagsForCurrent) {
+      $skipBtn.textContent = 'Next';
+      $skipBtn.classList.remove('da-btn-secondary');
+      $skipBtn.classList.add('da-btn-primary');
+    } else {
+      $skipBtn.textContent = 'Skip';
+      $skipBtn.classList.remove('da-btn-primary');
+      $skipBtn.classList.add('da-btn-secondary');
+    }
   }
 
   function updateBatchButton() {
