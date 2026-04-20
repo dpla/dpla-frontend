@@ -255,6 +255,15 @@ Every P180 claim added by DepictAssist includes a reference: P887 (basis of
 knowledge) = Q114065533 (based on heuristic). This flags the claim as
 algorithmically suggested so other editors know it warrants human review.
 
+### Suggestion chips carry data attributes for queue management
+
+Each tag chip element is stamped with `data-mid` (the Commons M-ID, e.g. `M12345`)
+and `data-qid` (the Wikidata Q-ID, e.g. `Q67890`) when it is created. When the user
+clicks X on a queued item, the remove handler queries `$tagSuggestions` for a chip
+matching both attributes and re-enables it — restoring the visual selected state and
+allowing the tag to be re-added. Without the attributes the handler would have no
+way to find the right chip after the DOM has been rebuilt by `renderQueue()`.
+
 ### SPA re-navigation guard
 
 `depictassist.js` is loaded as a static `<script>` tag. Next.js SPA navigation can
