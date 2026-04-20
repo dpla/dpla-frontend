@@ -71,17 +71,18 @@ and register a new consumer with these settings:
 |---------|-------|
 | Version | OAuth 2.0 |
 | Project | `commons.wikimedia.org` |
-| Grants | `editpage` |
+| Grants | Whatever grants the consumer was registered with (e.g. `editpage`) |
 | Callback URL | `https://pro.dp.la/api/wikimedia/oauth?action=callback` |
 | Consumer type | Confidential (server-side) |
 
 The callback URL must match exactly including the `?action=callback` query string.
 Wikimedia will provide a **Client ID** and a **Client Secret**.
 
-> **Re-authentication note:** If users encounter permission errors after the
-> `editpage` grant was added, they need to log out and log back in. Existing
-> tokens issued before the scope was requested will lack write permission and
-> cannot be upgraded in place.
+The authorization request does **not** send a `scope` parameter — the token
+inherits whatever grants the consumer was registered with on Wikimedia. Do not
+add a `scope` parameter to the authorization URL unless you have confirmed it
+exactly matches the consumer's registered grants; a mismatch causes Wikimedia to
+reject the authorization code exchange.
 
 ### 2. Set environment variables
 
