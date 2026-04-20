@@ -81,14 +81,14 @@ Wikimedia will provide a **Client ID** and a **Client Secret**.
 
 Add to the server environment (not committed to git):
 
-```
+```bash
 WIKIMEDIA_OAUTH_CLIENT_ID=<from Wikimedia registration>
 WIKIMEDIA_OAUTH_CLIENT_SECRET=<from Wikimedia registration>
 ```
 
 Optional override if the server cannot detect its own public hostname:
 
-```
+```bash
 WIKIMEDIA_OAUTH_REDIRECT_BASE=https://pro.dp.la
 ```
 
@@ -112,7 +112,7 @@ authenticated request returns 401.
 
 ## The OAuth flow, step by step
 
-```
+```text
 User                 pro.dp.la (Next.js)          Commons (Wikimedia)
  |                         |                              |
  |-- click "Log in" ------>|                              |
@@ -191,7 +191,7 @@ ECS stdout so they appear in CloudWatch.
 
 Fetched at runtime from:
 
-```
+```text
 https://raw.githubusercontent.com/dpla/ingestion3/main/src/main/resources/wiki/institutions_v2.json
 ```
 
