@@ -84,7 +84,7 @@ function follower() {
       expressApp.post("/g/feedback", feedback());
     }
 
-    expressApp.get("*", catchall(handle));
+    expressApp.all("*", catchall(handle));
 
     const server = expressApp.listen(PORT, (err) => {
       if (err) throw err;
