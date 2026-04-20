@@ -371,6 +371,7 @@
   function renderQueue() {
     if (queue.length === 0) {
       $batch.style.display = 'none';
+      updateSkipButton();
       return;
     }
 
