@@ -15,7 +15,7 @@ import ServiceUnavailable from "components/shared/ServiceUnavailable";
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function Source({ source, set, currentSourceIdx, temporarilyUnavailable }) {
+function Source({ source, set, sources, currentInSourcesIdx, temporarilyUnavailable }) {
   const router = useRouter();
   if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!source || !set) return null;
@@ -42,10 +42,8 @@ function Source({ source, set, currentSourceIdx, temporarilyUnavailable }) {
         <ContentAndMetadata source={source} />
       </div>
       <SourceCarousel
-        sources={set.hasPart.filter(
-          (item) => item.disambiguatingDescription === "source",
-        )}
-        currentSourceIdx={currentSourceIdx}
+        sources={sources}
+        currentSourceIdx={currentInSourcesIdx}
         set={set}
       />
       <PSSFooter />
@@ -87,14 +85,17 @@ export async function getServerSideProps(context) {
   });
 
   const sourceId = sanitizedSourceJson["@id"];
-  const currentSourceIdx = setJson.hasPart.findIndex(
-    (source) => source["@id"] === sourceId,
+  const sources = parts.filter(
+    (p) => p.disambiguatingDescription === "source",
   );
+  const currentInSourcesIdx = sources.findIndex((s) => s["@id"] === sourceId);
+  if (currentInSourcesIdx === -1) return { notFound: true };
 
   const props = washObject({
     source: sanitizedSourceJson,
     set: { ...setJson, hasPart: parts },
-    currentSourceIdx,
+    sources,
+    currentInSourcesIdx,
   });
 
   return { props };
