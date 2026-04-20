@@ -17,6 +17,8 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
 
+  console.log(`Commons proxy: ${req.method}`);
+
   if (req.method === 'GET') {
     return handleGet(req, res, token);
   }

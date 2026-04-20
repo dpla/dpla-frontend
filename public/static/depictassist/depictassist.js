@@ -486,10 +486,17 @@
     $batchError.style.display = 'none';
 
     try {
-      // Get CSRF token via server-side proxy (token is in httpOnly cookie)
-      const tokenResp = await fetch(COMMONS_PROXY + '?action=query&meta=tokens');
-      if (!tokenResp.ok) throw new Error('Failed to get CSRF token');
-      const tokenData = await tokenResp.json();
+      // _proxy=<timestamp> makes each URL unique so CloudFront never serves a
+      // stale cached response; the proxy strips the parameter before forwarding.
+      const tokenResp = await fetch(COMMONS_PROXY + '?action=query&meta=tokens&_proxy=' + Date.now());
+      if (!tokenResp.ok) throw new Error('Failed to get CSRF token (HTTP ' + tokenResp.status + ')');
+      const tokenText = await tokenResp.text();
+      let tokenData;
+      try {
+        tokenData = JSON.parse(tokenText);
+      } catch {
+        throw new Error('CSRF token response was not valid JSON (HTTP ' + tokenResp.status + '): "' + tokenText.slice(0, 200) + '"');
+      }
       const csrfToken = tokenData.query?.tokens?.csrftoken;
 
       // +\ is the valid OAuth 2.0 pseudotoken — do not reject it
@@ -556,13 +563,24 @@
           failures.push(mid);
           continue;
         }
-        const editData = await editResp.json();
+        const editText = await editResp.text();
+        let editData;
+        try {
+          editData = JSON.parse(editText);
+        } catch {
+          console.warn('DepictAssist: edit response not JSON for', mid, ':', editText.slice(0, 200));
+          failures.push(mid);
+          continue;
+        }
 
         if (editData.entity?.lastrevid) {
           diffs.push({ id: editData.entity.id, revid: editData.entity.lastrevid });
           succeededMids.add(mid);
-        } else if (editData.error) {
+        } else {
           failures.push(mid);
+          if (editData.error) {
+            console.warn('DepictAssist: edit API error for', mid, ':', JSON.stringify(editData.error).slice(0, 200));
+          }
         }
       }
 
