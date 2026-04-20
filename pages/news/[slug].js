@@ -4,6 +4,7 @@ import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 
 import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
@@ -59,10 +60,13 @@ class PostPage extends React.Component {
       >
         <BreadcrumbsModule
           breadcrumbs={[
-            {
-              title: "News",
-              url: "/news",
-            },
+            { title: "News", url: "/news" },
+            { title: content.title.rendered },
+          ]}
+        />
+        <BreadcrumbJsonLd
+          breadcrumbs={[
+            { title: "News", url: "/news" },
             { title: content.title.rendered },
           ]}
         />

@@ -103,6 +103,15 @@ export async function getServerSideProps(context) {
       slug: "",
     },
   ].concat(subsections.map(pageMap));
+  const baseUrl = process.env.NEXT_PUBLIC_USER_BASE_URL || "";
+  const prevUrl = previousQueryParams
+    ? `${baseUrl}/exhibitions/${previousQueryParams.exhibitionSlug}/${previousQueryParams.sectionSlug}${previousQueryParams.subsectionSlug ? `/${previousQueryParams.subsectionSlug}` : ""}`
+    : null;
+  const nextQueryParams = nextQueryParamsAndTitle?.queryParams;
+  const nextUrl = nextQueryParams
+    ? `${baseUrl}/exhibitions/${nextQueryParams.exhibitionSlug}/${nextQueryParams.sectionSlug}${nextQueryParams.subsectionSlug ? `/${nextQueryParams.subsectionSlug}` : ""}`
+    : null;
+
   const props = washObject({
     exhibitionTitle: exhibit.title,
     section,
@@ -110,9 +119,11 @@ export async function getServerSideProps(context) {
     sectionMap,
     subsectionMap,
     exhibitionSlug: exhibit.slug,
-    nextQueryParams: nextQueryParamsAndTitle?.queryParams,
+    nextQueryParams,
     nextSubsectionTitle: nextQueryParamsAndTitle?.title,
     previousQueryParams: previousQueryParams,
+    prevUrl,
+    nextUrl,
   });
 
   return { props };

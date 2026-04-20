@@ -9,6 +9,7 @@ import {
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "components/PrimarySourceSetsComponents/BreadcrumbsModule";
+import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 import ImageAndCaption from "components/ExhibitionsComponents/Exhibition/ImageAndCaption";
 import Details from "components/ExhibitionsComponents/Exhibition/Details";
 
@@ -37,21 +38,18 @@ class Exhibition extends React.Component {
       text,
       credits,
     } = this.props;
+    const breadcrumbs = [
+      { title: "Exhibitions", url: "/exhibitions" },
+      { title, search: "" },
+    ];
     return (
       <MainLayout
         pageImage={thumbnailUrl}
         pageTitle={title?.replace(/\*/g, "")}
         seoType={SEO_TYPE}
       >
-        <BreadcrumbsModule
-          breadcrumbs={[
-            {
-              title: "Exhibitions",
-              url: "/exhibitions",
-            },
-            { title, search: "" },
-          ]}
-        />
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} />
+        <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
         <div id="main" role="main" data-cy="exhibition-home">
           <ImageAndCaption
             title={title}
