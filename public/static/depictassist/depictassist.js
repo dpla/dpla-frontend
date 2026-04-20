@@ -13,7 +13,8 @@
   const BASED_ON_HEURISTIC_QID = 114065533;
 
   // ── State ────────────────────────────────────────────────
-  let queue = [];           // { mid, prop, qid, label, filename }[]
+  let queue = [];           // { mid, prop, qid, label, filename, subjectTerm, dplaUrl }[]
+  let currentMid = null;    // MID of the image currently displayed
   let pendingQid = null;    // QID from URL, awaiting institution load
   let isAuthenticated = false;
   let fetchingImages = false;
@@ -42,6 +43,7 @@
 
     boundWrapper = wrapper;
     queue = [];
+    currentMid = null;
     isAuthenticated = false;
     fetchingImages = false;
     submittingBatch = false;
@@ -179,7 +181,9 @@
     if (!qid || fetchingImages) return;
 
     fetchingImages = true;
+    currentMid = null;
     $findBtn.disabled = true;
+    $skipBtn.blur();
     $skipBtn.disabled = true;
     updateUrl(qid);
     showImageState('loading');
@@ -232,6 +236,8 @@
       const titleText = stmts.P1476?.[0]?.mainsnak?.datavalue?.value?.text || pageTitle;
       const descText = stmts.P10358?.[0]?.mainsnak?.datavalue?.value?.text || '';
       const subjects = stmts.P4272 || [];
+      const dplaId = stmts.P760?.[0]?.mainsnak?.datavalue?.value;
+      const dplaUrl = dplaId ? 'https://dp.la/item/' + dplaId : null;
 
       // Fetch tag suggestions from reconciliation API
       let tagSuggestions = [];
@@ -257,7 +263,7 @@
 
       displayImage({
         mid, imgUrl, title: titleText, filename: pageTitle,
-        description: descText, subjectName, tagSuggestions
+        description: descText, subjectName, dplaUrl, tagSuggestions
       });
     } catch (err) {
       console.error('DepictAssist: error fetching image', err);
@@ -301,7 +307,9 @@
     $results.style.display = 'none';
   }
 
-  function displayImage({ mid, imgUrl, title, filename, description, subjectName, tagSuggestions }) {
+  function displayImage({ mid, imgUrl, title, filename, description, subjectName, dplaUrl, tagSuggestions }) {
+    currentMid = mid;
+    updateSkipButton();
     showImageState('image');
 
     $imageTitle.textContent = title;
@@ -344,7 +352,7 @@
       }
 
       chip.addEventListener('click', function () {
-        addToQueue(mid, 'P180', tag.qid, tag.label, filename);
+        addToQueue(mid, 'P180', tag.qid, tag.label, filename, subjectName, dplaUrl);
         chip.classList.add('da-tag-selected');
         chip.disabled = true;
       });
@@ -354,17 +362,18 @@
   }
 
   // ── Queue management ─────────────────────────────────────
-  function addToQueue(mid, prop, qid, label, filename) {
+  function addToQueue(mid, prop, qid, label, filename, subjectTerm, dplaUrl) {
     if (queue.some(item => item.mid === mid && item.prop === prop && item.qid === qid)) {
       return;
     }
-    queue.push({ mid, prop, qid, label, filename });
+    queue.push({ mid, prop, qid, label, filename, subjectTerm, dplaUrl });
     renderQueue();
   }
 
   function renderQueue() {
     if (queue.length === 0) {
       $batch.style.display = 'none';
+      updateSkipButton();
       return;
     }
 
@@ -403,6 +412,20 @@
     }
 
     updateBatchButton();
+    updateSkipButton();
+  }
+
+  function updateSkipButton() {
+    const hasTagsForCurrent = currentMid !== null && queue.some(item => item.mid === currentMid);
+    if (hasTagsForCurrent) {
+      $skipBtn.textContent = 'Next';
+      $skipBtn.classList.remove('da-btn-secondary');
+      $skipBtn.classList.add('da-btn-primary');
+    } else {
+      $skipBtn.textContent = 'Skip';
+      $skipBtn.classList.remove('da-btn-primary');
+      $skipBtn.classList.add('da-btn-secondary');
+    }
   }
 
   function updateBatchButton() {
@@ -511,39 +534,81 @@
         byMid.get(item.mid).push(item);
       }
 
+      const today = new Date().toISOString().slice(0, 10);
       const diffs = [];
       const failures = [];
       const succeededMids = new Set();
       for (const [mid, items] of byMid) {
-        const claims = items.map(item => ({
-          mainsnak: {
-            snaktype: 'value',
-            property: item.prop,
-            datavalue: {
-              value: {
-                'entity-type': 'item',
-                'numeric-id': parseInt(item.qid.replace('Q', ''), 10),
-                id: item.qid
+        const claims = items.map(item => {
+          const snaks = {
+            P887: [{
+              snaktype: 'value',
+              property: 'P887',
+              datavalue: {
+                value: { 'entity-type': 'item', 'numeric-id': BASED_ON_HEURISTIC_QID },
+                type: 'wikibase-entityid'
+              }
+            }],
+            P123: [{
+              snaktype: 'value',
+              property: 'P123',
+              datavalue: {
+                value: { 'entity-type': 'item', 'numeric-id': 2944483, id: 'Q2944483' },
+                type: 'wikibase-entityid'
+              }
+            }],
+            P813: [{
+              snaktype: 'value',
+              property: 'P813',
+              datavalue: {
+                value: {
+                  time: '+' + today + 'T00:00:00Z',
+                  timezone: 0, before: 0, after: 0, precision: 11,
+                  calendarmodel: 'http://www.wikidata.org/entity/Q1985727'
+                },
+                type: 'time'
+              }
+            }]
+          };
+          const snaksOrder = ['P887', 'P123', 'P813'];
+
+          if (item.subjectTerm) {
+            snaks.P5997 = [{
+              snaktype: 'value',
+              property: 'P5997',
+              datavalue: { value: item.subjectTerm, type: 'string' }
+            }];
+            snaksOrder.splice(1, 0, 'P5997');
+          }
+
+          if (item.dplaUrl) {
+            snaks.P854 = [{
+              snaktype: 'value',
+              property: 'P854',
+              datavalue: { value: item.dplaUrl, type: 'string' }
+            }];
+            snaksOrder.splice(snaksOrder.indexOf('P123'), 0, 'P854');
+          }
+
+          return {
+            mainsnak: {
+              snaktype: 'value',
+              property: item.prop,
+              datavalue: {
+                value: {
+                  'entity-type': 'item',
+                  'numeric-id': parseInt(item.qid.replace('Q', ''), 10),
+                  id: item.qid
+                },
+                type: 'wikibase-entityid'
               },
-              type: 'wikibase-entityid'
+              datatype: 'wikibase-item'
             },
-            datatype: 'wikibase-item'
-          },
-          type: 'statement',
-          rank: 'normal',
-          references: [{
-            snaks: {
-              P887: [{
-                snaktype: 'value',
-                property: 'P887',
-                datavalue: {
-                  value: { 'entity-type': 'item', 'numeric-id': BASED_ON_HEURISTIC_QID },
-                  type: 'wikibase-entityid'
-                }
-              }]
-            }
-          }]
-        }));
+            type: 'statement',
+            rank: 'normal',
+            references: [{ snaks, 'snaks-order': snaksOrder }]
+          };
+        });
 
         const body = new URLSearchParams({
           action: 'wbeditentity',
