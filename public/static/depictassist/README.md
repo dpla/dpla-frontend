@@ -77,6 +77,11 @@ and register a new consumer with these settings:
 The callback URL must match exactly including the `?action=callback` query string.
 Wikimedia will provide a **Client ID** and a **Client Secret**.
 
+> **Re-authentication note:** If users encounter permission errors after the
+> `editpage` grant was added, they need to log out and log back in. Existing
+> tokens issued before the scope was requested will lack write permission and
+> cannot be upgraded in place.
+
 ### 2. Set environment variables
 
 Add to the server environment (not committed to git):
