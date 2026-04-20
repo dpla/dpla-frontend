@@ -89,6 +89,7 @@ export async function getServerSideProps(context) {
     (p) => p.disambiguatingDescription === "source",
   );
   const currentInSourcesIdx = sources.findIndex((s) => s["@id"] === sourceId);
+  if (currentInSourcesIdx === -1) return { notFound: true };
 
   const props = washObject({
     source: sanitizedSourceJson,
