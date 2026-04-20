@@ -52,7 +52,8 @@ This also avoids CORS problems: server-to-server calls do not need a Commons COR
 | Wikimedia Commons Action API | **Client** (unauthenticated) | None | CirrusSearch for images, image info |
 | Wikidata Reconciliation API (`wikidata.reconci.link/en/api`) | **Client** | None | Tag suggestions from subject text |
 | GitHub Raw (`raw.githubusercontent.com`) | **Client** | None | Institution list (`institutions_v2.json`) |
-| Wikimedia OAuth 2.0 (`commons.wikimedia.org/w/rest.php/oauth2/*`) | **Server** | Client secret | Authorization code exchange |
+| Wikimedia OAuth 2.0 authorize (`/w/rest.php/oauth2/authorize`) | **Client** (browser redirect) | None | User login + consent UI |
+| Wikimedia OAuth 2.0 token (`/w/rest.php/oauth2/access_token`) | **Server** | Client secret | Authorization code → access token exchange |
 
 Note: the unauthenticated Commons calls (image search, image info) are made
 directly from the browser, not through the proxy, because they don't need the token
