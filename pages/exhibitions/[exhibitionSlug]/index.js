@@ -40,7 +40,7 @@ class Exhibition extends React.Component {
     } = this.props;
     const breadcrumbs = [
       { title: "Exhibitions", url: "/exhibitions" },
-      { title, search: "" },
+      { title },
     ];
     return (
       <MainLayout

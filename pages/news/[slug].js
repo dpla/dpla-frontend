@@ -52,9 +52,10 @@ class PostPage extends React.Component {
         hasTags = true;
       }
     });
+    const breadcrumbTitle = decodeHTMLEntities(striptags(content.title.rendered));
     const breadcrumbs = [
       { title: "News", url: "/news" },
-      { title: content.title.rendered },
+      { title: breadcrumbTitle },
     ];
     return (
       <MainLayout
