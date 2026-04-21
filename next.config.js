@@ -51,7 +51,7 @@ function redirect(source, dest, permanent = true) {
 // Failure to do this will block all JavaScript on dp.la immediately on deploy.
 // TODO: migrate to nonce-based CSP via Next.js middleware to eliminate this.
 const CLOUDFRONT_MEDIA = "https://d2jf00asb0fe6y.cloudfront.net";
-const CSP = [
+const CSP_DIRECTIVES = [
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'self'",
@@ -64,7 +64,14 @@ const CSP = [
   "font-src 'self' https://cdnjs.cloudflare.com",
   `media-src 'self' *.dp.la ${CLOUDFRONT_MEDIA}`,
   "frame-src 'self' https://www.youtube.com",
-].join("; ");
+];
+const CSP = CSP_DIRECTIVES.join("; ");
+
+// PDF.js 2.5.5 needs 'unsafe-eval' for Type3/custom font compilation. Scoped to
+// /static/pdfjs/* only so the rest of the app keeps the stricter policy.
+const CSP_PDFJS = CSP_DIRECTIVES.map((d) =>
+  d.startsWith("script-src ") ? `${d} 'unsafe-eval'` : d
+).join("; ");
 
 let config = {
   async headers() {
@@ -73,8 +80,14 @@ let config = {
     }
     return [
       {
-        source: "/:path*",
+        // Negative lookahead keeps this from also matching /static/pdfjs/*;
+        // browsers AND-combine multiple CSP headers, so both rules must not fire.
+        source: "/((?!static/pdfjs/).*)",
         headers: [{ key: "Content-Security-Policy", value: CSP }],
+      },
+      {
+        source: "/static/pdfjs/:path*",
+        headers: [{ key: "Content-Security-Policy", value: CSP_PDFJS }],
       },
     ];
   },
