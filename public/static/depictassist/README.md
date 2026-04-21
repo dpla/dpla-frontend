@@ -8,12 +8,12 @@ Wikimedia Commons images contributed by DPLA institutions. Hosted at
 
 1. A volunteer selects a DPLA contributing institution from the dropdown
 2. The tool finds a random Commons image from that institution that has subject
-   terms (P4272) but no depicts claims (P180) yet; images that produce no tag
-   suggestions are silently skipped and a new image is tried automatically
+   terms (P4272) but no depicts claims (P180) yet
 3. Those subject terms are sent to the Wikidata Reconciliation API to generate
-   tag suggestions
-4. The volunteer clicks tags to queue P180 claims; clicking a selected tag
-   deselects it, or the volunteer can use the × button in the queue list
+   tag suggestions; images where reconciliation produces no matches show a
+   "No tag suggestions available" hint but are still displayed
+4. The volunteer clicks tags to queue P180 claims; use the × button in the
+   queue list to remove a queued claim
 5. Edits are posted to Commons under the volunteer's own Wikimedia account via
    OAuth 2.0, with each claim citing "based on heuristic" (P887 = Q114065533) as
    its reference
@@ -261,41 +261,37 @@ Every P180 claim added by DepictAssist includes a reference: P887 (basis of
 knowledge) = Q114065533 (based on heuristic). This flags the claim as
 algorithmically suggested so other editors know it warrants human review.
 
-### Suggestion chips: toggle selection via CSS class
+### Suggestion chips: selection via CSS class and disabled property
 
 Each tag chip is stamped with `data-mid` (Commons M-ID, e.g. `M12345`) and
 `data-qid` (Wikidata Q-ID, e.g. `Q67890`) when it is created. Selection state is
-tracked with the `da-tag-selected` CSS class (not the `disabled` property). Clicking
-a chip toggles it: if selected, the chip is removed from the queue, the class is
-removed, and `aria-label` is reset to "Add depicts tag: …"; if not selected, it is
-added to the queue and the class is applied. A `×` badge (`.da-tag-remove`) is
-rendered inside every chip and shown via CSS only when `da-tag-selected` is present,
-giving the volunteer a visible affordance for deselection.
+tracked with the `da-tag-selected` CSS class; `chip.disabled` is also set to `true`
+at the same time for form control state management. Clicking a chip calls
+`addToQueue()`, adds the `da-tag-selected` class, and disables the button — chips
+cannot be deselected by clicking them again. To remove a queued claim, use the
+× button in the batch list.
 
 When the volunteer clicks × on a queued item in the batch list, the remove handler
-uses `data-mid` and `data-qid` to find the corresponding chip in `$tagSuggestions`
-and removes `da-tag-selected` from it. Without those attributes the handler would
-have no way to identify the right chip after `renderQueue()` has rebuilt the list.
+uses `data-mid` and `data-qid` to find the corresponding chip in `$tagSuggestions`,
+removes `da-tag-selected`, and re-enables it (`chip.disabled = false`). Without those
+attributes the handler would have no way to identify the right chip after
+`renderQueue()` has rebuilt the list.
 
-Chip clicks are silently ignored while `submittingBatch` is `true`, preventing queue
-mutations from racing with the in-flight Commons API calls.
+### Handling images with no tag suggestions
 
-### Auto-skip of images with no tag suggestions
+Image selection runs inside a retry loop (`maxAttempts = 10`, tracked by an
+`attempts` counter). The loop retries only for invalid data — missing pages, invalid
+page IDs, or no entity data — not for empty tag suggestions.
 
-The reconciliation step (Step 3 above) runs for each randomly selected image inside
-a retry loop (`maxAttempts = 10`). If the subject terms produce no Wikidata matches,
-`tagSuggestions.length === 0` and the loop `continue`s to the next random image
-without displaying anything. A `noSuggestionSkips` counter tracks how many of the
-attempts were skipped for this reason. When the loop exhausts all attempts:
+When reconciliation returns no matches (`tagSuggestions.length === 0`), the image is
+still displayed: `displayImage()` is called and renders a "No tag suggestions
+available for this subject." hint in place of chips. The loop only retries when:
+- The Commons search returns no pages, an invalid page ID, or no entity data →
+  `showImageState('empty')` is called and the function returns immediately
+- Reconciliation times out three consecutive times → an error is thrown
 
-- If `noSuggestionSkips >= maxAttempts`, every retry was a no-suggestion skip — the
-  institution simply has no taggable images in the current sample window, so the
-  empty state is shown ("No untagged images found").
-- Otherwise, failures were due to network or API problems and the error state is
-  shown instead.
-
-Without this distinction, institutions with many tagged or suggestion-free images
-would always surface a generic error rather than the correct "nothing to tag" message.
+If `attempts` exceeds `maxAttempts`, an error is thrown and the error state is
+displayed. All other unhandled errors also fall through to `showImageState('error')`.
 
 ### Image lightbox and progressive load
 
