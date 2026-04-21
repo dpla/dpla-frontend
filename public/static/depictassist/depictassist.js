@@ -5,10 +5,8 @@
   const INSTITUTIONS_URL =
     'https://raw.githubusercontent.com/dpla/ingestion3/main/src/main/resources/wiki/institutions_v2.json';
   const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
-  // Toolforge proxy — runs on Wikimedia-trusted IPs, forwards requests to Commons api.php
   const TOOLFORGE_PROXY = 'https://depictassist.toolforge.org/api';
   const RECONCILIATION_API = 'https://wikidata.reconci.link/en/api';
-  // Wikimedia OAuth 2.0 PKCE — public consumer, token lives in browser only
   const WIKIMEDIA_CLIENT_ID = 'a46cd7bde5376cce96e454d80fb7d809';
   const WIKIMEDIA_AUTH_ENDPOINT = 'https://commons.wikimedia.org/w/rest.php/oauth2/authorize';
   const WIKIMEDIA_TOKEN_ENDPOINT = 'https://commons.wikimedia.org/w/rest.php/oauth2/access_token';
@@ -63,8 +61,6 @@
     cacheDom();
     bindEvents();
 
-    // When returning from Wikimedia OAuth the URL contains ?code=...&state=...
-    // handleOAuthCallback takes over the full init sequence in that case.
     const urlParams = new URLSearchParams(window.location.search);
     const oauthCode = urlParams.get('code');
     if (oauthCode) {
@@ -145,6 +141,8 @@
     if (!saved || (!saved.imageData && (!Array.isArray(saved.queue) || !saved.queue.length))) return false;
 
     queue = Array.isArray(saved.queue) ? saved.queue : [];
+
+    if (saved.institutionQid) pendingQid = saved.institutionQid;
 
     if (saved.imageData) {
       displayImage(saved.imageData);
@@ -584,6 +582,11 @@
 
   // ── Auth — PKCE OAuth 2.0 (token lives in browser only) ──
 
+  function clearSession() {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    showLoggedOut();
+  }
+
   function toUrlSafeBase64(bytes) {
     return btoa(String.fromCharCode.apply(null, bytes))
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
@@ -593,7 +596,6 @@
     return window.location.origin + window.location.pathname.replace(/\/$/, '');
   }
 
-  // Generates a PKCE code_verifier / code_challenge pair using SHA-256.
   async function generatePkce() {
     const array = new Uint8Array(32);
     crypto.getRandomValues(array);
@@ -632,8 +634,6 @@
     if (!restored) restoreFromUrl();
   }
 
-  // Called on page load when ?code=...&state=... are present in the URL
-  // (the browser has just returned from Wikimedia's authorization page).
   async function handleOAuthCallback(code, urlState) {
     let pkceData;
     try {
@@ -711,8 +711,8 @@
       });
 
       if (!resp.ok) {
-        if (resp.status === 401) localStorage.removeItem(ACCESS_TOKEN_KEY);
-        showLoggedOut();
+        if (resp.status === 401) clearSession();
+        else showLoggedOut();
         return;
       }
 
@@ -722,8 +722,7 @@
         isAuthenticated = true;
         showLoggedIn(userinfo.name);
       } else {
-        localStorage.removeItem(ACCESS_TOKEN_KEY);
-        showLoggedOut();
+        clearSession();
       }
     } catch {
       showLoggedOut();
@@ -749,6 +748,7 @@
       sessionStorage.setItem(LOGIN_STATE_KEY, JSON.stringify({
         queue,
         imageData: currentImageData,
+        institutionQid: $select.value || null,
       }));
     } catch { /* ignore — storage may be unavailable */ }
 
@@ -778,8 +778,7 @@
   }
 
   function onLogout() {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    showLoggedOut();
+    clearSession();
   }
 
   function isIpBlocked(apiError) {
@@ -790,10 +789,8 @@
   async function onSubmitBatch() {
     if (!isAuthenticated || queue.length === 0 || submittingBatch) return;
 
-    // Guard against token expiry between page load and submit
     const accessToken = getStoredToken();
     if (!accessToken) {
-      isAuthenticated = false;
       showLoggedOut();
       return;
     }
@@ -811,9 +808,7 @@
         headers: { 'Authorization': 'Bearer ' + accessToken }
       });
       if (tokenResp.status === 401) {
-        localStorage.removeItem(ACCESS_TOKEN_KEY);
-        isAuthenticated = false;
-        showLoggedOut();
+        clearSession();
         $batchErrorMsg.textContent = 'Your session expired. Please log in again.';
         $batchError.style.display = 'block';
         return;
@@ -845,6 +840,7 @@
       const diffs = [];
       const failures = [];
       const succeededMids = new Set();
+      let sessionExpired = false;
       for (const [mid, items] of byMid) {
         const claims = items.map(item => {
           const snaks = {
@@ -935,12 +931,9 @@
           body: body
         });
         if (editResp.status === 401) {
-          localStorage.removeItem(ACCESS_TOKEN_KEY);
-          isAuthenticated = false;
-          showLoggedOut();
-          $batchErrorMsg.textContent = 'Your session expired. Please log in again.';
-          $batchError.style.display = 'block';
-          return;
+          clearSession();
+          sessionExpired = true;
+          break;
         }
         if (!editResp.ok) {
           failures.push(mid);
@@ -981,7 +974,10 @@
         $results.style.display = 'block';
       }
 
-      if (failures.length > 0) {
+      if (sessionExpired) {
+        $batchErrorMsg.textContent = 'Your session expired. Please log in again.';
+        $batchError.style.display = 'block';
+      } else if (failures.length > 0) {
         const count = failures.length;
         if (ipBlockDetected) {
           $batchErrorMsg.textContent = IP_BLOCK_MSG;
