@@ -205,6 +205,7 @@
 
       const cap = Math.min(totalHits, 10000);
       let reconTimeouts = 0;
+      let reconErrors = 0;
       let noSuggestionSkips = 0;
       let attempts = 0;
       const maxAttempts = 10;
@@ -267,6 +268,7 @@
               : (() => { const c = new AbortController(); setTimeout(() => c.abort(), 8000); return c.signal; })();
             const reconResp = await fetch(reconUrl, { signal: reconSignal });
             if (reconResp.ok) {
+              reconErrors = 0;
               const reconData = await reconResp.json();
               const results = reconData.q1?.result || [];
               tagSuggestions = results.slice(0, MAX_SUGGESTIONS).map(r => ({
@@ -274,6 +276,10 @@
                 label: r.name || '',
                 description: r.description || ''
               }));
+            } else {
+              reconErrors++;
+              if (reconErrors >= 3) throw new Error('Reconciliation API unavailable');
+              continue;
             }
           } catch (reconErr) {
             if (reconErr.name === 'TimeoutError' || reconErr.name === 'AbortError') {
