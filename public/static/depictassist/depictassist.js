@@ -286,6 +286,8 @@
           continue;
         }
 
+        if (tagSuggestions.length === 0) continue;
+
         displayImage({
           mid, imgUrl, title: titleText, filename: pageTitle,
           description: descText, subjectName, dplaUrl, tagSuggestions
