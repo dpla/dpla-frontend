@@ -32,7 +32,7 @@ Wikimedia Commons images contributed by DPLA institutions. Hosted at
 The Toolforge proxy is a separate Node.js service at
 `https://depictassist.toolforge.org/api` maintained in the
 [toolforge-repos/depictassist](https://gitlab.wikimedia.org/toolforge-repos/depictassist)
-repository. See `~/.claude/notes/toolforge-depictassist.md` for deploy instructions.
+repository for source and deploy instructions.
 
 ## Architecture
 
@@ -170,8 +170,9 @@ CORS is restricted to `https://pro.dp.la`. The proxy adds
 `Access-Control-Allow-Origin: https://pro.dp.la` to every response, including
 OPTIONS preflight responses.
 
-Source lives at `~/github/toolforge-depictassist/`. To deploy updates, see
-`~/.claude/notes/toolforge-depictassist.md`.
+Source and deploy instructions are in the
+[toolforge-repos/depictassist](https://gitlab.wikimedia.org/toolforge-repos/depictassist)
+GitLab repository.
 
 ### CSRF tokens and the OAuth pseudotoken
 

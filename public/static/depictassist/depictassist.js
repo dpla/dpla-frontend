@@ -929,6 +929,14 @@
           },
           body: body
         });
+        if (editResp.status === 401) {
+          localStorage.removeItem(ACCESS_TOKEN_KEY);
+          isAuthenticated = false;
+          showLoggedOut();
+          $batchErrorMsg.textContent = 'Your session expired. Please log in again.';
+          $batchError.style.display = 'block';
+          return;
+        }
         if (!editResp.ok) {
           failures.push(mid);
           continue;
