@@ -10,9 +10,17 @@ const TOKEN_ENDPOINT = `${COMMONS_BASE}/rest.php/oauth2/access_token`;
 const COMMONS_API = `${COMMONS_BASE}/api.php`;
 const TOKEN_COOKIE = 'wm_access_token';
 const STATE_COOKIE = 'wm_oauth_state';
+const RETURN_TO_COOKIE = 'wm_return_to';
+const DEPICTASSIST_PATH = '/projects/dpla-wikimedia/depictassist';
 const FETCH_TIMEOUT_MS = 5000;
 const CALLBACK_PATH = '/api/wikimedia/oauth?action=callback';
 const REDIRECT_BASE = process.env.WIKIMEDIA_OAUTH_REDIRECT_BASE?.trim().replace(/\/+$/, '');
+
+function isAllowedReturnTo(path) {
+  return typeof path === 'string' &&
+    path.startsWith(DEPICTASSIST_PATH) &&
+    (path.length === DEPICTASSIST_PATH.length || path[DEPICTASSIST_PATH.length] === '?');
+}
 
 function getCallbackUrl(req) {
   if (REDIRECT_BASE) return REDIRECT_BASE + CALLBACK_PATH;
@@ -45,12 +53,21 @@ export default async function handler(req, res) {
 
 function handleLogin(req, res) {
   const state = crypto.randomBytes(16).toString('hex');
+  const rawReturnTo = typeof req.query.returnTo === 'string' ? req.query.returnTo : '';
+  const safeReturnTo = isAllowedReturnTo(rawReturnTo) ? rawReturnTo : DEPICTASSIST_PATH;
 
-  setCookie(res, [{
-    name: STATE_COOKIE,
-    value: state,
-    options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 300 }
-  }]);
+  setCookie(res, [
+    {
+      name: STATE_COOKIE,
+      value: state,
+      options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 300 }
+    },
+    {
+      name: RETURN_TO_COOKIE,
+      value: safeReturnTo,
+      options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 300 }
+    }
+  ]);
 
   const params = new URLSearchParams({
     response_type: 'code',
@@ -73,6 +90,9 @@ async function handleCallback(req, res) {
   if (!state || !expectedState || state !== expectedState) {
     return res.status(403).json({ error: 'Invalid OAuth state' });
   }
+
+  const rawReturnTo = req.cookies?.[RETURN_TO_COOKIE] || '';
+  const returnTo = isAllowedReturnTo(rawReturnTo) ? rawReturnTo : DEPICTASSIST_PATH;
 
   try {
     const body = new URLSearchParams({
@@ -113,10 +133,15 @@ async function handleCallback(req, res) {
         name: STATE_COOKIE,
         value: '',
         options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 0 }
+      },
+      {
+        name: RETURN_TO_COOKIE,
+        value: '',
+        options: { httpOnly: true, secure: true, sameSite: 'Lax', path: '/', maxAge: 0 }
       }
     ]);
 
-    res.redirect(302, '/projects/dpla-wikimedia/depictassist');
+    res.redirect(302, returnTo);
   } catch (err) {
     console.error('OAuth callback error:', err);
     return res.status(502).json({ error: 'Token exchange failed' });
