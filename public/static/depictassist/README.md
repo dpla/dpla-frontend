@@ -26,178 +26,177 @@ Wikimedia Commons images contributed by DPLA institutions. Hosted at
 | `depictassist.css` | Scoped styles (all selectors under `.depictassist-wrapper`) |
 | `README.md` | This file |
 | `pages/projects/dpla-wikimedia/depictassist.js` | Next.js page component — HTML shell, server-side menu fetch |
-| `pages/api/wikimedia/oauth.js` | OAuth 2.0 server route — login, callback, whoami, logout |
-| `pages/api/wikimedia/commons.js` | Server-side proxy for authenticated Commons API calls |
-| `lib/setCookie.js` | Shared cookie-serialization utility used by the OAuth route |
+| `pages/api/wikimedia/oauth.js` | Legacy server OAuth routes — superseded by client-side PKCE; pending removal |
+| `pages/api/wikimedia/commons.js` | Legacy server Commons proxy — superseded by Toolforge proxy; pending removal |
 
-## Architecture: why the proxy exists
+The Toolforge proxy is a separate Node.js service at
+`https://depictassist.toolforge.org/api` maintained in the
+[toolforge-repos/depictassist](https://gitlab.wikimedia.org/toolforge-repos/depictassist)
+repository for source and deploy instructions.
 
-Browser JavaScript cannot hold OAuth tokens safely — anything in JS is readable by
-XSS. Instead:
+## Architecture
 
-- The server exchanges the OAuth code for an access token and stores it in an
-  **httpOnly** cookie (`wm_access_token`). Browser JS never sees the token value.
-- All authenticated Commons API calls (fetching CSRF tokens, submitting edits) go
-  through `/api/wikimedia/commons`, a Next.js API route that reads the token from
-  the cookie and forwards requests to Commons with `Authorization: Bearer <token>`.
-- The client only ever talks to its own origin (`pro.dp.la`); Commons is contacted
-  only from the server.
+The DPLA pro site runs on AWS (ECS). The `98.94.0.0/16` AWS IP range is blocked by
+Wikimedia's global range block, which prevents the server from making authenticated
+Commons API calls on behalf of volunteers.
 
-This also avoids CORS problems: server-to-server calls do not need a Commons CORS
-`origin` parameter (which Commons rejects on authenticated OAuth requests anyway).
+The solution has two parts:
+
+1. **Client-side PKCE OAuth 2.0**: The browser handles the OAuth flow directly
+   using the [PKCE](https://www.rfc-editor.org/rfc/rfc7636) extension for public
+   clients. There is no `client_secret` and the access token is stored in
+   `localStorage` (never sent to the DPLA server).
+
+2. **Toolforge proxy**: Browser requests that need a Commons API call go through
+   `https://depictassist.toolforge.org/api`, a small Express app running on
+   [Toolforge](https://wikitech.wikimedia.org/wiki/Portal:Toolforge) — Wikimedia's
+   own hosting platform, whose IPs are explicitly exempt from range blocks. The
+   browser sends its Bearer token in an `Authorization` header; the proxy forwards
+   it to `commons.wikimedia.org/w/api.php`.
+
+Unauthenticated read calls (image search, entity data, reconciliation) continue to
+be made directly from the browser as before — they do not need the token.
 
 ## External APIs
 
 | API | Called from | Auth | Purpose |
 |-----|-------------|------|---------|
-| Wikimedia Commons Action API (`commons.wikimedia.org/w/api.php`) | **Server** (via proxy) | Bearer token | CSRF tokens, `wbeditentity` edits |
-| Wikimedia Commons Action API | **Client** (unauthenticated) | None | CirrusSearch for images, image info |
+| Toolforge proxy (`depictassist.toolforge.org/api`) | **Client** | Bearer token | CSRF tokens, `wbeditentity` edits |
+| Wikimedia Commons Action API (`commons.wikimedia.org/w/api.php`) | **Client** (unauthenticated) | None | CirrusSearch for images, image info |
 | Wikidata Reconciliation API (`wikidata.reconci.link/en/api`) | **Client** | None | Tag suggestions from subject text |
 | GitHub Raw (`raw.githubusercontent.com`) | **Client** | None | Institution list (`institutions_v2.json`) |
-| Wikimedia OAuth 2.0 authorize (`/w/rest.php/oauth2/authorize`) | **Client** (browser redirect) | None | User login + consent UI |
-| Wikimedia OAuth 2.0 token (`/w/rest.php/oauth2/access_token`) | **Server** | Client secret | Authorization code → access token exchange |
-
-Note: the unauthenticated Commons calls (image search, image info) are made
-directly from the browser, not through the proxy, because they don't need the token
-and are read-only.
+| Wikimedia OAuth 2.0 authorize (`/w/rest.php/oauth2/authorize`) | **Client** (browser redirect) | — | User login + consent UI |
+| Wikimedia OAuth 2.0 token (`/w/rest.php/oauth2/access_token`) | **Client** (PKCE exchange) | PKCE verifier | Authorization code → access token |
 
 ## OAuth setup
 
-### 1. Register a Wikimedia OAuth consumer
+### 1. Register a Wikimedia OAuth 2.0 consumer
 
 Go to
 [meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration](https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration)
-and register a new consumer with these settings:
+and register a **public** consumer with these settings:
 
 | Setting | Value |
 |---------|-------|
 | Version | OAuth 2.0 |
 | Project | `commons.wikimedia.org` |
-| Grants | Whatever grants the consumer was registered with (e.g. `editpage`) |
-| Callback URL | `https://pro.dp.la/api/wikimedia/oauth?action=callback` |
-| Consumer type | Confidential (server-side) |
+| Consumer type | **Public** (PKCE — no client secret) |
+| Grants | "Edit existing pages" |
+| Callback URL | `https://pro.dp.la/projects/dpla-wikimedia/depictassist` |
 
-The callback URL must match exactly including the `?action=callback` query string.
-Wikimedia will provide a **Client ID** and a **Client Secret**.
+The callback URL must match exactly. Wikimedia will provide a **Client ID** only
+(public consumers have no secret). Update the `WIKIMEDIA_CLIENT_ID` constant in
+`depictassist.js` with the registered ID. The consumer requires steward approval
+before it becomes usable.
 
-The authorization request does **not** send a `scope` parameter — the token
-inherits whatever grants the consumer was registered with on Wikimedia. Do not
-add a `scope` parameter to the authorization URL unless you have confirmed it
-exactly matches the consumer's registered grants; a mismatch causes Wikimedia to
-reject the authorization code exchange.
+### 2. No server environment variables required
 
-### 2. Set environment variables
+Because the token exchange happens in the browser (PKCE) and authenticated API
+calls go through the Toolforge proxy, no Wikimedia credentials need to be stored
+on the DPLA server. The `WIKIMEDIA_OAUTH_CLIENT_ID` and `WIKIMEDIA_OAUTH_CLIENT_SECRET`
+environment variables used by the legacy `oauth.js` route are no longer needed.
 
-Add to the server environment (not committed to git):
+### 3. CloudFront cookie forwarding no longer needed for DepictAssist
 
-```bash
-WIKIMEDIA_OAUTH_CLIENT_ID=<from Wikimedia registration>
-WIKIMEDIA_OAUTH_CLIENT_SECRET=<from Wikimedia registration>
-```
-
-Optional override if the server cannot detect its own public hostname:
-
-```bash
-WIKIMEDIA_OAUTH_REDIRECT_BASE=https://pro.dp.la
-```
-
-If `WIKIMEDIA_OAUTH_REDIRECT_BASE` is not set, the callback URL is inferred from
-the incoming request's `x-forwarded-proto` and `x-forwarded-host` headers. This
-works correctly behind the CloudFront + ALB setup, but if it ever breaks (e.g.
-staging or local dev), set the explicit override.
-
-### 3. CloudFront cookie forwarding
-
-CloudFront's default cache behavior strips cookies before forwarding requests to
-the origin. The `/api/wikimedia/*` paths must have a custom cache behavior that:
-
-- **Whitelists these cookies for forwarding**: `wm_access_token`, `wm_oauth_state`, `wm_return_to`
-- **Allows all HTTP methods** (HEAD, GET, DELETE, POST, PUT, PATCH, OPTIONS)
-- **Disables caching** (MinTTL = DefaultTTL = MaxTTL = 0)
-- **Forwards the query string** (needed by the OAuth and commons proxy routes)
-
-Without this, the Next.js API routes receive empty `req.cookies` and every
-authenticated request returns 401.
+The previous architecture required the `/api/wikimedia/*` paths to have a custom
+CloudFront cache behavior that forwarded `wm_access_token`, `wm_oauth_state`, and
+`wm_return_to` cookies. That is no longer needed — the token lives in `localStorage`
+and never touches the DPLA server.
 
 ## The OAuth flow, step by step
 
 ```text
-User                 pro.dp.la (Next.js)          Commons (Wikimedia)
- |                         |                              |
- |-- click "Log in" ------>|                              |
- |                         |-- generate state, set -----> |
- |                         |   wm_oauth_state cookie      |
- |<-- 302 redirect --------|                              |
- |                         |                              |
- |-- GET /w/rest.php/oauth2/authorize ----------------->  |
- |<-- Wikimedia login + approve dialog ----------------   |
- |-- approve ------------------------------------------>  |
- |<-- 302 redirect to /api/wikimedia/oauth?action=callback&code=X&state=Y
- |                         |                              |
- |-- GET callback -------->|                              |
- |                         |-- validate state vs cookie   |
- |                         |-- POST /oauth2/access_token->|
- |                         |<-- { access_token: "..." } --|
- |                         |-- set wm_access_token cookie |
- |                         |-- clear wm_oauth_state cookie|
- |<-- 302 to /depictassist-|                              |
- |                         |                              |
- |-- submit batch -------->|                              |
- |   POST /api/wikimedia/commons                          |
- |   (cookie sent automatically)                          |
- |                         |-- read wm_access_token cookie|
- |                         |-- POST wbeditentity -------> |
- |                         |<-- edit result --------------|
- |<-- edit result (JSON) --|                              |
+User (browser)              Wikimedia                  Toolforge proxy
+      |                         |                              |
+      |-- click "Log in"        |                              |
+      |   generatePkce()        |                              |
+      |   store verifier in     |                              |
+      |   sessionStorage        |                              |
+      |                         |                              |
+      |-- GET /oauth2/authorize?code_challenge=… -->           |
+      |<-- Wikimedia login + approve dialog ------             |
+      |-- approve ------------------------------------>        |
+      |<-- 302 to /depictassist?code=X&state=Y ----            |
+      |                         |                              |
+      |   handleOAuthCallback() |                              |
+      |   validate state        |                              |
+      |-- POST /oauth2/access_token?code_verifier=… -------->  |  (direct to Wikimedia)
+      |<-- { access_token: "..." } ----------------------      |
+      |   store token in localStorage                          |
+      |                         |                              |
+      |-- submit batch          |                              |
+      |-- GET /api?action=query&meta=tokens                --> |
+      |   Authorization: Bearer <token>                        |
+      |                         |         -- GET api.php -->   |
+      |                         |         <-- CSRF token --    |
+      |<-- CSRF token ---------------------------------------- |
+      |                         |                              |
+      |-- POST /api (wbeditentity)                         --> |
+      |   Authorization: Bearer <token>                        |
+      |                         |         -- POST api.php --> |
+      |                         |         <-- edit result --  |
+      |<-- edit result (JSON) ----------------------------     |
 ```
 
-### Cookies
+## Token storage
 
-| Cookie | httpOnly | Secure | SameSite | Max-Age | Purpose |
-|--------|----------|--------|----------|---------|---------|
-| `wm_oauth_state` | ✓ | ✓ | Lax | 300 s | CSRF protection for the OAuth callback |
-| `wm_return_to` | ✓ | ✓ | Lax | 300 s | Post-login redirect path (must be in CloudFront forwarding list) |
-| `wm_access_token` | ✓ | ✓ | Strict | 4 hours | Bearer token for authenticated API calls |
+The access token is stored in `localStorage` under the key `da_access_token` as a
+JSON object:
 
-`SameSite=Lax` on the state cookie is intentional: the OAuth callback is a
-top-level navigation arriving from `commons.wikimedia.org`, and `SameSite=Strict`
-would suppress the cookie on that cross-site redirect, breaking state validation.
+```json
+{ "token": "...", "expiry": 1714000000000 }
+```
 
-`SameSite=Strict` on the token cookie ensures it is never sent in any cross-site
-context — only same-site requests from `pro.dp.la` can use it.
+The expiry is computed from the `expires_in` field in the Wikimedia token response
+(default 4 hours if not provided). `getStoredToken()` returns `null` and removes
+the entry if the token has expired.
+
+PKCE state (verifier + random `state` value) is stored temporarily in
+`sessionStorage` under `da_pkce_state` and removed immediately upon callback.
+
+## The Toolforge proxy in detail
+
+`https://depictassist.toolforge.org/api` is a narrow allowlist proxy:
+
+| Method | Allowed `action` values | What it's used for |
+|--------|------------------------|---------------------|
+| GET | `query` | Fetch CSRF token (`meta=tokens`), check userinfo (`meta=userinfo`) |
+| POST | `wbeditentity` | Add P180 depicts claims to a Commons media file |
+
+Any other `action` value returns HTTP 400. Any request without an
+`Authorization: Bearer <token>` header returns HTTP 401.
+
+CORS is restricted to `https://pro.dp.la`. The proxy adds
+`Access-Control-Allow-Origin: https://pro.dp.la` to every response, including
+OPTIONS preflight responses.
+
+Source and deploy instructions are in the
+[toolforge-repos/depictassist](https://gitlab.wikimedia.org/toolforge-repos/depictassist)
+GitLab repository.
 
 ### CSRF tokens and the OAuth pseudotoken
 
 Wikimedia's MediaWiki Action API requires a CSRF token for writes. To get one, the
-client calls `/api/wikimedia/commons?action=query&meta=tokens` through the proxy.
+client calls the Toolforge proxy with `action=query&meta=tokens&type=csrf`.
 
 For OAuth 2.0 Bearer-authenticated requests, MediaWiki always returns `+\` as the
 CSRF token. This is the **valid pseudotoken for OAuth flows** — it should be
 passed as-is in the `token` field of subsequent write requests. Do not reject it.
-(Earlier code had a check `csrfToken === '+\\'` that wrongly treated this as an
-error; it has been removed.)
 
-## The commons proxy in detail
+## CSP requirements
 
-`pages/api/wikimedia/commons.js` is a narrow allowlist proxy:
+Configured in `next.config.js`. DepictAssist requires these origins in `connect-src`:
 
-| Method | Allowed `action` values | What it's used for |
-|--------|------------------------|---------------------|
-| GET | `query` | Fetch CSRF token (`meta=tokens`), check userinfo |
-| POST | `wbeditentity` | Add P180 depicts claims to a Commons media file |
+- `https://commons.wikimedia.org` — unauthenticated image search and info calls; OAuth authorize redirect
+- `https://wikidata.reconci.link` — tag reconciliation
+- `https://raw.githubusercontent.com` — institution list
+- `https://meta.wikimedia.org` — required by some Wikimedia analytics
+- `https://www.wikidata.org` — entity page links shown in the UI
+- `https://wikimedia.org` — Wikimedia analytics
+- `https://depictassist.toolforge.org` — Toolforge proxy for authenticated Commons API calls
 
-Any other `action` value returns HTTP 400. Any request without a valid
-`wm_access_token` cookie returns HTTP 401.
-
-The proxy strips the internal `_proxy` query parameter (added by client code to
-avoid caching) before forwarding. It does not forward the `origin` parameter,
-which Commons rejects on OAuth Bearer requests.
-
-MediaWiki API-level errors (bad token, permission denied, invalid entity) are
-returned as HTTP 200 with an `error` field in the JSON body; the proxy logs
-these via `console.warn`. HTTP-level errors (rate limiting, server faults) are
-forwarded with their original status code and logged via `console.error`. Both
-appear in CloudWatch via ECS stdout.
+After adding any new external URL to the code, run `node scripts/check-csp.js` to
+verify coverage.
 
 ## Institution data
 
@@ -216,23 +215,6 @@ that institution is auto-selected once the dropdown finishes loading.
 | Parameter | Example | Description |
 |-----------|---------|-------------|
 | `id` | `?id=Q105281139` | Pre-selects an institution by Wikidata QID and starts a search |
-
-## CSP requirements
-
-Configured in `next.config.js`. DepictAssist requires these origins in `connect-src`:
-
-- `https://commons.wikimedia.org` — unauthenticated image search and info calls
-- `https://wikidata.reconci.link` — tag reconciliation
-- `https://raw.githubusercontent.com` — institution list
-- `https://meta.wikimedia.org` — required by some Wikimedia analytics
-- `https://www.wikidata.org` — entity page links shown in the UI
-- `https://wikimedia.org` — Wikimedia analytics
-
-The `form-action` directive must include `https://meta.wikimedia.org` for the OAuth
-authorization redirect (the browser navigates to Wikimedia to show the approval UI).
-
-After adding any new external URL to the code, run `node scripts/check-csp.js` to
-verify coverage.
 
 ## Non-obvious implementation details
 
