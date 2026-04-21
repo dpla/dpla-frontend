@@ -204,8 +204,11 @@
 
       const cap = Math.min(totalHits, 10000);
       let reconTimeouts = 0;
+      let attempts = 0;
+      const maxAttempts = 10;
 
       while (true) {
+        if (++attempts > maxAttempts) throw new Error('Unable to find a valid image after multiple attempts');
         // Step 2: Fetch a random image (with iiurlwidth=800 to avoid a separate image info call)
         const offset = Math.floor(Math.random() * cap);
         const searchUrl = buildSearchUrl(qid, offset, 1);
@@ -254,7 +257,10 @@
           const reconUrl = RECONCILIATION_API + '?queries=' +
             encodeURIComponent(JSON.stringify({ q1: { query: narrow } }));
           try {
-            const reconResp = await fetch(reconUrl, { signal: AbortSignal.timeout(8000) });
+            const reconSignal = typeof AbortSignal.timeout === 'function'
+              ? AbortSignal.timeout(8000)
+              : (() => { const c = new AbortController(); setTimeout(() => c.abort(), 8000); return c.signal; })();
+            const reconResp = await fetch(reconUrl, { signal: reconSignal });
             if (reconResp.ok) {
               const reconData = await reconResp.json();
               const results = reconData.q1?.result || [];
