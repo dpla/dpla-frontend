@@ -205,11 +205,16 @@
 
       const cap = Math.min(totalHits, 10000);
       let reconTimeouts = 0;
+      let reconErrors = 0;
+      let noSuggestionSkips = 0;
       let attempts = 0;
       const maxAttempts = 10;
 
       while (true) {
-        if (++attempts > maxAttempts) throw new Error('Unable to find a valid image after multiple attempts');
+        if (++attempts > maxAttempts) {
+          if (noSuggestionSkips >= maxAttempts) { showImageState('empty'); return; }
+          throw new Error('Unable to find a valid image after multiple attempts');
+        }
         // Step 2: Fetch a random image (with iiurlwidth=800 to avoid a separate image info call)
         const offset = Math.floor(Math.random() * cap);
         const searchUrl = buildSearchUrl(qid, offset, 1);
@@ -263,6 +268,7 @@
               : (() => { const c = new AbortController(); setTimeout(() => c.abort(), 8000); return c.signal; })();
             const reconResp = await fetch(reconUrl, { signal: reconSignal });
             if (reconResp.ok) {
+              reconErrors = 0;
               const reconData = await reconResp.json();
               const results = reconData.q1?.result || [];
               tagSuggestions = results.slice(0, MAX_SUGGESTIONS).map(r => ({
@@ -270,6 +276,10 @@
                 label: r.name || '',
                 description: r.description || ''
               }));
+            } else {
+              reconErrors++;
+              if (reconErrors >= 3) throw new Error('Reconciliation API unavailable');
+              continue;
             }
           } catch (reconErr) {
             if (reconErr.name === 'TimeoutError' || reconErr.name === 'AbortError') {
@@ -285,6 +295,8 @@
           if (reconTimeouts >= 3) throw new Error('Reconciliation API unavailable');
           continue;
         }
+
+        if (tagSuggestions.length === 0) { noSuggestionSkips++; continue; }
 
         displayImage({
           mid, imgUrl, title: titleText, filename: pageTitle,
