@@ -187,6 +187,7 @@
     $skipBtn.disabled = true;
     updateUrl(qid);
     showImageState('loading');
+    $imageArea.scrollIntoView({ block: 'start' });
 
     try {
       // Step 1: Get total hits to pick a random offset (once per button press)
