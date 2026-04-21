@@ -32,7 +32,7 @@ Wikimedia Commons images contributed by DPLA institutions. Hosted at
 The Toolforge proxy is a separate Node.js service at
 `https://depictassist.toolforge.org/api` maintained in the
 [toolforge-repos/depictassist](https://gitlab.wikimedia.org/toolforge-repos/depictassist)
-repository. See [notes/toolforge-depictassist.md] for deploy instructions.
+repository. See `~/.claude/notes/toolforge-depictassist.md` for deploy instructions.
 
 ## Architecture
 

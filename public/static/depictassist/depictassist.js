@@ -590,7 +590,7 @@
   }
 
   function getRedirectUri() {
-    return getRedirectUri();
+    return window.location.origin + window.location.pathname.replace(/\/$/, '');
   }
 
   // Generates a PKCE code_verifier / code_challenge pair using SHA-256.
