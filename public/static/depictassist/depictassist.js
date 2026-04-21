@@ -366,6 +366,7 @@
       chip.setAttribute('aria-label', 'Add depicts tag: ' + tag.label);
       chip.dataset.mid = mid;
       chip.dataset.qid = tag.qid;
+      chip.dataset.label = tag.label;
 
       const labelSpan = document.createElement('span');
       labelSpan.textContent = tag.label;
@@ -383,10 +384,25 @@
       qidSpan.textContent = tag.qid;
       chip.appendChild(qidSpan);
 
+      const removeSpan = document.createElement('span');
+      removeSpan.className = 'da-tag-remove';
+      removeSpan.setAttribute('aria-hidden', 'true');
+      removeSpan.textContent = '\u00d7';
+      chip.appendChild(removeSpan);
+
       chip.addEventListener('click', function () {
-        addToQueue(mid, 'P180', tag.qid, tag.label, filename, subjectName, dplaUrl);
-        chip.classList.add('da-tag-selected');
-        chip.disabled = true;
+        if (submittingBatch) return;
+        if (chip.classList.contains('da-tag-selected')) {
+          const idx = queue.findIndex(item => item.mid === mid && item.prop === 'P180' && item.qid === tag.qid);
+          if (idx !== -1) queue.splice(idx, 1);
+          chip.classList.remove('da-tag-selected');
+          chip.setAttribute('aria-label', 'Add depicts tag: ' + tag.label);
+          renderQueue();
+        } else {
+          addToQueue(mid, 'P180', tag.qid, tag.label, filename, subjectName, dplaUrl);
+          chip.classList.add('da-tag-selected');
+          chip.setAttribute('aria-label', 'Remove depicts tag: ' + tag.label);
+        }
       });
 
       $tagSuggestions.appendChild(chip);
@@ -429,12 +445,13 @@
       removeBtn.setAttribute('aria-label', 'Remove ' + item.label + ' from queue');
       removeBtn.textContent = '\u2715';
       removeBtn.addEventListener('click', function () {
+        if (submittingBatch) return;
         const idx = queue.indexOf(item);
         if (idx !== -1) queue.splice(idx, 1);
         const chip = $tagSuggestions.querySelector('[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]');
         if (chip) {
           chip.classList.remove('da-tag-selected');
-          chip.disabled = false;
+          chip.setAttribute('aria-label', 'Add depicts tag: ' + item.label);
         }
         renderQueue();
       });
@@ -706,7 +723,7 @@
       if (succeededMids.has(currentMid)) {
         for (const chip of $tagSuggestions.querySelectorAll('.da-tag-selected')) {
           chip.classList.remove('da-tag-selected');
-          chip.disabled = false;
+          chip.setAttribute('aria-label', 'Add depicts tag: ' + (chip.dataset.label || ''));
         }
       }
       renderQueue();
