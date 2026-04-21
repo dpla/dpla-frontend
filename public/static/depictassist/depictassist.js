@@ -597,6 +597,9 @@
   }
 
   async function generatePkce() {
+    if (!crypto.subtle) {
+      throw new Error('DepictAssist: PKCE requires a secure context (HTTPS or localhost)');
+    }
     const array = new Uint8Array(32);
     crypto.getRandomValues(array);
     const verifier = toUrlSafeBase64(array);
@@ -685,8 +688,8 @@
     }
 
     const restoredLoginState = restoreLoginState();
+    await loadAuth();
     loadInstitutions();
-    loadAuth();
     if (!restoredLoginState) restoreFromUrl();
   }
 
