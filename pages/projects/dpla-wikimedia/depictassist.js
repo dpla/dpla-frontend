@@ -148,6 +148,13 @@ export default function DepictAssistPage({ items }) {
                 <div id="da-batch-error" style={{ display: "none" }} className="da-error">
                   <p id="da-batch-error-msg" />
                 </div>
+
+                <dialog id="da-lightbox" aria-label="Image viewer">
+                  <button type="button" id="da-lightbox-close" aria-label="Close image viewer">
+                    &times;
+                  </button>
+                  <img id="da-lightbox-img" alt="" />
+                </dialog>
               </div>
             </div>
           </div>
