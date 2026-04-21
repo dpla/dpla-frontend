@@ -205,11 +205,15 @@
 
       const cap = Math.min(totalHits, 10000);
       let reconTimeouts = 0;
+      let noSuggestionSkips = 0;
       let attempts = 0;
       const maxAttempts = 10;
 
       while (true) {
-        if (++attempts > maxAttempts) throw new Error('Unable to find a valid image after multiple attempts');
+        if (++attempts > maxAttempts) {
+          if (noSuggestionSkips >= maxAttempts) { showImageState('empty'); return; }
+          throw new Error('Unable to find a valid image after multiple attempts');
+        }
         // Step 2: Fetch a random image (with iiurlwidth=800 to avoid a separate image info call)
         const offset = Math.floor(Math.random() * cap);
         const searchUrl = buildSearchUrl(qid, offset, 1);
@@ -286,7 +290,7 @@
           continue;
         }
 
-        if (tagSuggestions.length === 0) continue;
+        if (tagSuggestions.length === 0) { noSuggestionSkips++; continue; }
 
         displayImage({
           mid, imgUrl, title: titleText, filename: pageTitle,
