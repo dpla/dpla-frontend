@@ -55,10 +55,10 @@
 
     cacheDom();
     bindEvents();
-    restoreLoginState();
+    const restoredLoginState = restoreLoginState();
     loadAuth();
     loadInstitutions();
-    restoreFromUrl();
+    if (!restoredLoginState) restoreFromUrl();
   };
 
   // If the script loads after the page component has already called onReady,
@@ -126,26 +126,25 @@
       sessionStorage.removeItem(LOGIN_STATE_KEY);
     } catch { return; }
 
-    if (!saved || !Array.isArray(saved.queue) || saved.queue.length === 0) return;
+    if (!saved || (!saved.imageData && (!Array.isArray(saved.queue) || !saved.queue.length))) return false;
 
-    queue = saved.queue;
+    queue = Array.isArray(saved.queue) ? saved.queue : [];
 
     if (saved.imageData) {
       displayImage(saved.imageData);
-      // Re-apply selected state for chips that are in the restored queue
       for (const item of queue) {
         const chip = $tagSuggestions.querySelector(
           '[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]'
         );
         if (chip) {
           chip.classList.add('da-tag-selected');
-          chip.disabled = true;
           chip.setAttribute('aria-label', 'Remove depicts tag: ' + item.label);
         }
       }
     }
 
     renderQueue();
+    return true;
   }
 
   function selectInstitutionByQid(qid) {
