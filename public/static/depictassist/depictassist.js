@@ -12,6 +12,7 @@
   // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
   const BASED_ON_HEURISTIC_QID = 114065533;
   const LOGIN_STATE_KEY = 'da_login_state';
+  const IP_BLOCK_MSG = 'Wikimedia has blocked our server\u2019s IP address and cannot accept edits right now. Your queue has been preserved \u2014 please try again later or contact DPLA at info@dp.la.';
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename, subjectTerm, dplaUrl }[]
@@ -807,7 +808,7 @@
       if (failures.length > 0) {
         const count = failures.length;
         if (ipBlockDetected) {
-          $batchErrorMsg.textContent = 'Wikimedia has blocked our server\u2019s IP address and cannot accept edits right now. Your queue has been preserved \u2014 please try again later or contact DPLA at info@dp.la.';
+          $batchErrorMsg.textContent = IP_BLOCK_MSG;
         } else {
           $batchErrorMsg.textContent = count === 1
             ? '1 edit failed. The item remains in your queue — try again.'
@@ -827,7 +828,7 @@
     } catch (err) {
       if (!ipBlockDetected) console.error('DepictAssist: batch submit error', err);
       $batchErrorMsg.textContent = ipBlockDetected
-        ? 'Wikimedia has blocked our server\u2019s IP address and cannot accept edits right now. Your queue has been preserved \u2014 please try again later or contact DPLA at info@dp.la.'
+        ? IP_BLOCK_MSG
         : 'Error submitting edits: ' + String(err?.message ?? err);
       $batchError.style.display = 'block';
     } finally {
