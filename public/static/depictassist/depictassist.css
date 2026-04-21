@@ -84,6 +84,7 @@
     border-radius: 10px;
     border: 1px solid #d9e2ec;
     background-color: #f9fbfd;
+    background-image: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     appearance: auto;
