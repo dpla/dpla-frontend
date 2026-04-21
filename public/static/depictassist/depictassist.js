@@ -371,6 +371,11 @@
         chip.appendChild(descSpan);
       }
 
+      const qidSpan = document.createElement('span');
+      qidSpan.className = 'da-tag-qid';
+      qidSpan.textContent = tag.qid;
+      chip.appendChild(qidSpan);
+
       chip.addEventListener('click', function () {
         addToQueue(mid, 'P180', tag.qid, tag.label, filename, subjectName, dplaUrl);
         chip.classList.add('da-tag-selected');
@@ -691,6 +696,12 @@
       }
 
       queue = queue.filter(item => !succeededMids.has(item.mid));
+      if (succeededMids.has(currentMid)) {
+        for (const chip of $tagSuggestions.querySelectorAll('.da-tag-selected')) {
+          chip.classList.remove('da-tag-selected');
+          chip.disabled = false;
+        }
+      }
       renderQueue();
     } catch (err) {
       console.error('DepictAssist: batch submit error', err);
