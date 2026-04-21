@@ -35,7 +35,7 @@ function extractCsp() {
     );
   }
 
-  const block = src.match(/const CSP\s*=\s*\[([\s\S]*?)\]\.join/)?.[1];
+  const block = src.match(/const CSP_DIRECTIVES\s*=\s*\[([\s\S]*?)\];/)?.[1];
   if (!block) throw new Error("CSP array not found in next.config.js");
 
   const entries = [];
