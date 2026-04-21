@@ -251,9 +251,6 @@ let config = {
       throw new Error("Invalid site environment");
     }
   },
-  experimental: {
-    instrumentationHook: true,
-  },
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
