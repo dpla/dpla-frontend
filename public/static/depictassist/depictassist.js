@@ -390,6 +390,7 @@
       chip.appendChild(removeSpan);
 
       chip.addEventListener('click', function () {
+        if (submittingBatch) return;
         if (chip.classList.contains('da-tag-selected')) {
           const idx = queue.findIndex(item => item.mid === mid && item.prop === 'P180' && item.qid === tag.qid);
           if (idx !== -1) queue.splice(idx, 1);
