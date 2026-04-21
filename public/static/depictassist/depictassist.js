@@ -121,10 +121,10 @@
     let saved;
     try {
       const raw = sessionStorage.getItem(LOGIN_STATE_KEY);
-      if (!raw) return;
+      if (!raw) return false;
       saved = JSON.parse(raw);
       sessionStorage.removeItem(LOGIN_STATE_KEY);
-    } catch { return; }
+    } catch { return false; }
 
     if (!saved || (!saved.imageData && (!Array.isArray(saved.queue) || !saved.queue.length))) return false;
 

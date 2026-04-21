@@ -16,6 +16,12 @@ const FETCH_TIMEOUT_MS = 5000;
 const CALLBACK_PATH = '/api/wikimedia/oauth?action=callback';
 const REDIRECT_BASE = process.env.WIKIMEDIA_OAUTH_REDIRECT_BASE?.trim().replace(/\/+$/, '');
 
+function isAllowedReturnTo(path) {
+  return typeof path === 'string' &&
+    path.startsWith(DEPICTASSIST_PATH) &&
+    (path.length === DEPICTASSIST_PATH.length || path[DEPICTASSIST_PATH.length] === '?');
+}
+
 function getCallbackUrl(req) {
   if (REDIRECT_BASE) return REDIRECT_BASE + CALLBACK_PATH;
   const proto = req.headers['x-forwarded-proto'] || 'https';
@@ -48,9 +54,7 @@ export default async function handler(req, res) {
 function handleLogin(req, res) {
   const state = crypto.randomBytes(16).toString('hex');
   const rawReturnTo = typeof req.query.returnTo === 'string' ? req.query.returnTo : '';
-  const safeReturnTo = /^\/projects\/dpla-wikimedia\/depictassist(\?|$)/.test(rawReturnTo)
-    ? rawReturnTo
-    : DEPICTASSIST_PATH;
+  const safeReturnTo = isAllowedReturnTo(rawReturnTo) ? rawReturnTo : DEPICTASSIST_PATH;
 
   setCookie(res, [
     {
@@ -87,7 +91,8 @@ async function handleCallback(req, res) {
     return res.status(403).json({ error: 'Invalid OAuth state' });
   }
 
-  const returnTo = req.cookies?.[RETURN_TO_COOKIE] || DEPICTASSIST_PATH;
+  const rawReturnTo = req.cookies?.[RETURN_TO_COOKIE] || '';
+  const returnTo = isAllowedReturnTo(rawReturnTo) ? rawReturnTo : DEPICTASSIST_PATH;
 
   try {
     const body = new URLSearchParams({
