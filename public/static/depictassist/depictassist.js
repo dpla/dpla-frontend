@@ -12,6 +12,7 @@
   // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
   const BASED_ON_HEURISTIC_QID = 114065533;
   const LOGIN_STATE_KEY = 'da_login_state';
+  const IP_BLOCK_MSG = 'Wikimedia has blocked our server\u2019s IP address and cannot accept edits right now. Your queue has been preserved \u2014 please try again later or contact DPLA at info@dp.la.';
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename, subjectTerm, dplaUrl }[]
@@ -632,6 +633,10 @@
     showLoggedOut();
   }
 
+  function isIpBlocked(apiError) {
+    return apiError?.messages?.some(m => m.name === 'globalblocking-blockedtext-range');
+  }
+
   // ── Batch submit (Commons writes) ────────────────────────
   async function onSubmitBatch() {
     if (!isAuthenticated || queue.length === 0 || submittingBatch) return;
@@ -643,6 +648,7 @@
     $diffLinks.replaceChildren();
     $batchError.style.display = 'none';
 
+    let ipBlockDetected = false;
     try {
       // _proxy=<timestamp> makes each URL unique so CloudFront never serves a
       // stale cached response; the proxy strips the parameter before forwarding.
@@ -659,7 +665,8 @@
 
       // +\ is the valid OAuth 2.0 pseudotoken — do not reject it
       if (!csrfToken) {
-        throw new Error('Failed to obtain CSRF token. Please log in again.');
+        if (isIpBlocked(tokenData.error)) ipBlockDetected = true;
+        throw new Error(ipBlockDetected ? 'IP block' : 'Failed to obtain CSRF token. Please log in again.');
       }
 
       // Group claims by MID so multiple depicts on the same entity use one API call
@@ -780,6 +787,7 @@
           failures.push(mid);
           if (editData.error) {
             console.warn('DepictAssist: edit API error for', mid, ':', JSON.stringify(editData.error).slice(0, 200));
+            if (isIpBlocked(editData.error)) ipBlockDetected = true;
           }
         }
       }
@@ -799,9 +807,13 @@
 
       if (failures.length > 0) {
         const count = failures.length;
-        $batchErrorMsg.textContent = count === 1
-          ? '1 edit failed. The item remains in your queue — try again.'
-          : count + ' edits failed. Those items remain in your queue — try again.';
+        if (ipBlockDetected) {
+          $batchErrorMsg.textContent = IP_BLOCK_MSG;
+        } else {
+          $batchErrorMsg.textContent = count === 1
+            ? '1 edit failed. The item remains in your queue — try again.'
+            : count + ' edits failed. Those items remain in your queue — try again.';
+        }
         $batchError.style.display = 'block';
       }
 
@@ -814,8 +826,10 @@
       }
       renderQueue();
     } catch (err) {
-      console.error('DepictAssist: batch submit error', err);
-      $batchErrorMsg.textContent = 'Error submitting edits: ' + String(err?.message ?? err);
+      if (!ipBlockDetected) console.error('DepictAssist: batch submit error', err);
+      $batchErrorMsg.textContent = ipBlockDetected
+        ? IP_BLOCK_MSG
+        : 'Error submitting edits: ' + String(err?.message ?? err);
       $batchError.style.display = 'block';
     } finally {
       submittingBatch = false;
