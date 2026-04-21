@@ -27,7 +27,8 @@
       $loginBtn, $userInfo,
       $username, $logoutBtn, $imageTitle, $imageDescription,
       $imageImg, $imageLink, $commonsLink, $subjectHeading,
-      $tagSuggestions, $skipBtn;
+      $tagSuggestions, $skipBtn,
+      $lightbox, $lightboxImg, $lightboxClose;
 
   // Track the wrapper element we've initialized on, so we can detect
   // SPA re-navigation (new DOM nodes) vs. duplicate calls on the same mount.
@@ -90,6 +91,9 @@
     $subjectHeading  = document.getElementById('da-subject-heading');
     $tagSuggestions  = document.getElementById('da-tag-suggestions');
     $skipBtn         = document.getElementById('da-skip-btn');
+    $lightbox        = document.getElementById('da-lightbox');
+    $lightboxImg     = document.getElementById('da-lightbox-img');
+    $lightboxClose   = document.getElementById('da-lightbox-close');
   }
 
   function bindEvents() {
@@ -98,6 +102,8 @@
     $batchBtn.addEventListener('click', onSubmitBatch);
     $loginBtn.addEventListener('click', onLogin);
     $logoutBtn.addEventListener('click', onLogout);
+    $lightboxClose.addEventListener('click', () => $lightbox.close());
+    $lightbox.addEventListener('click', (e) => { if (e.target === $lightbox) $lightbox.close(); });
   }
 
   // ── URL state ────────────────────────────────────────────
@@ -325,6 +331,22 @@
   }
 
   // ── Display ──────────────────────────────────────────────
+  function getLargeThumbUrl(thumbUrl) {
+    return thumbUrl.replace(/\/\d+px-/, '/1600px-');
+  }
+
+  function openLightbox(imgUrl, altText) {
+    $lightboxImg.src = imgUrl;
+    $lightboxImg.alt = altText;
+    $lightbox.showModal();
+    const largeUrl = getLargeThumbUrl(imgUrl);
+    if (largeUrl !== imgUrl) {
+      const large = new Image();
+      large.onload = function () { if ($lightbox.open) $lightboxImg.src = largeUrl; };
+      large.src = largeUrl;
+    }
+  }
+
   function showImageState(state) {
     $imageArea.style.display = 'block';
     $loading.style.display = state === 'loading' ? 'block' : 'none';
@@ -342,6 +364,8 @@
     $imageTitle.textContent = title;
     $imageDescription.textContent = description || '(No description provided)';
     $imageImg.src = imgUrl;
+    $imageImg.style.cursor = 'zoom-in';
+    $imageImg.onclick = function () { openLightbox(imgUrl, title); };
     $imageLink.href = imgUrl;
 
     $commonsLink.href = 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(filename);
