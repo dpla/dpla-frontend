@@ -82,7 +82,7 @@ let config = {
       {
         // Negative lookahead keeps this from also matching /static/pdfjs/*;
         // browsers AND-combine multiple CSP headers, so both rules must not fire.
-        source: "/((?!static/pdfjs).*)",
+        source: "/((?!static/pdfjs(?:/|$)).*)",
         headers: [{ key: "Content-Security-Policy", value: CSP }],
       },
       {
