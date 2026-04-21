@@ -5,14 +5,20 @@
   const INSTITUTIONS_URL =
     'https://raw.githubusercontent.com/dpla/ingestion3/main/src/main/resources/wiki/institutions_v2.json';
   const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
-  const COMMONS_PROXY = '/api/wikimedia/commons';
+  // Toolforge proxy — runs on Wikimedia-trusted IPs, forwards requests to Commons api.php
+  const TOOLFORGE_PROXY = 'https://depictassist.toolforge.org/api';
   const RECONCILIATION_API = 'https://wikidata.reconci.link/en/api';
-  const OAUTH_BASE = '/api/wikimedia/oauth';
+  // Wikimedia OAuth 2.0 PKCE — public consumer, token lives in browser only
+  const WIKIMEDIA_CLIENT_ID = 'a46cd7bde5376cce96e454d80fb7d809';
+  const WIKIMEDIA_AUTH_ENDPOINT = 'https://commons.wikimedia.org/w/rest.php/oauth2/authorize';
+  const WIKIMEDIA_TOKEN_ENDPOINT = 'https://commons.wikimedia.org/w/rest.php/oauth2/access_token';
   const MAX_SUGGESTIONS = 6;
   // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
   const BASED_ON_HEURISTIC_QID = 114065533;
   const LOGIN_STATE_KEY = 'da_login_state';
-  const IP_BLOCK_MSG = 'Wikimedia has blocked our server\u2019s IP address and cannot accept edits right now. Your queue has been preserved \u2014 please try again later or contact DPLA at info@dp.la.';
+  const PKCE_STATE_KEY = 'da_pkce_state';
+  const ACCESS_TOKEN_KEY = 'da_access_token';
+  const IP_BLOCK_MSG = 'A server error prevented your edits from being submitted. Your queue has been preserved \u2014 please try again or contact DPLA at info@dp.la.';
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename, subjectTerm, dplaUrl }[]
@@ -56,10 +62,19 @@
 
     cacheDom();
     bindEvents();
-    const restoredLoginState = restoreLoginState();
-    loadAuth();
-    loadInstitutions();
-    if (!restoredLoginState) restoreFromUrl();
+
+    // When returning from Wikimedia OAuth the URL contains ?code=...&state=...
+    // handleOAuthCallback takes over the full init sequence in that case.
+    const urlParams = new URLSearchParams(window.location.search);
+    const oauthCode = urlParams.get('code');
+    if (oauthCode) {
+      handleOAuthCallback(oauthCode, urlParams.get('state'));
+    } else {
+      const restoredLoginState = restoreLoginState();
+      loadAuth();
+      loadInstitutions();
+      if (!restoredLoginState) restoreFromUrl();
+    }
   };
 
   // If the script loads after the page component has already called onReady,
@@ -567,38 +582,149 @@
     }
   }
 
-  // ── Auth ─────────────────────────────────────────────────
-  async function loadAuth() {
-    try {
-      const resp = await fetch(OAUTH_BASE + '?action=whoami');
+  // ── Auth — PKCE OAuth 2.0 (token lives in browser only) ──
 
-      // 500 means OAuth is not configured on the server — hide login entirely
-      if (resp.status === 500) {
-        showOAuthUnavailable();
+  function toUrlSafeBase64(bytes) {
+    return btoa(String.fromCharCode.apply(null, bytes))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  }
+
+  function getRedirectUri() {
+    return getRedirectUri();
+  }
+
+  // Generates a PKCE code_verifier / code_challenge pair using SHA-256.
+  async function generatePkce() {
+    const array = new Uint8Array(32);
+    crypto.getRandomValues(array);
+    const verifier = toUrlSafeBase64(array);
+    const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier));
+    const challenge = toUrlSafeBase64(new Uint8Array(digest));
+    return { verifier, challenge };
+  }
+
+  function storeToken(accessToken, expiresIn) {
+    try {
+      localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify({
+        token: accessToken,
+        expiry: Date.now() + (expiresIn || 14400) * 1000
+      }));
+    } catch { /* storage unavailable */ }
+  }
+
+  function getStoredToken() {
+    try {
+      const raw = localStorage.getItem(ACCESS_TOKEN_KEY);
+      if (!raw) return null;
+      const { token, expiry } = JSON.parse(raw);
+      if (Date.now() >= expiry) {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
+        return null;
+      }
+      return token;
+    } catch { return null; }
+  }
+
+  // Called on page load when ?code=...&state=... are present in the URL
+  // (the browser has just returned from Wikimedia's authorization page).
+  async function handleOAuthCallback(code, urlState) {
+    let pkceData;
+    try {
+      pkceData = JSON.parse(sessionStorage.getItem(PKCE_STATE_KEY));
+      sessionStorage.removeItem(PKCE_STATE_KEY);
+    } catch { pkceData = null; }
+
+    // Validate CSRF state before exchanging the code
+    if (!pkceData || !urlState || urlState !== pkceData.state) {
+      console.error('DepictAssist: OAuth state mismatch — possible CSRF');
+      cleanOAuthParams();
+      showLoggedOut();
+      loadInstitutions();
+      return;
+    }
+
+    cleanOAuthParams();
+
+    try {
+      const redirectUri = getRedirectUri();
+      const resp = await fetch(WIKIMEDIA_TOKEN_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          grant_type: 'authorization_code',
+          code,
+          client_id: WIKIMEDIA_CLIENT_ID,
+          redirect_uri: redirectUri,
+          code_verifier: pkceData.verifier
+        })
+      });
+
+      if (!resp.ok) {
+        console.error('DepictAssist: token exchange failed', resp.status);
+        showLoggedOut();
+        loadInstitutions();
         return;
       }
 
-      if (!resp.ok) throw new Error('Auth check failed');
-      const data = await resp.json();
+      const tokenData = await resp.json();
+      if (!tokenData.access_token) {
+        showLoggedOut();
+        loadInstitutions();
+        return;
+      }
 
-      if (data.username) {
+      storeToken(tokenData.access_token, tokenData.expires_in);
+    } catch (err) {
+      console.error('DepictAssist: OAuth callback error', err);
+      showLoggedOut();
+      loadInstitutions();
+      return;
+    }
+
+    const restoredLoginState = restoreLoginState();
+    loadInstitutions();
+    loadAuth();
+    if (!restoredLoginState) restoreFromUrl();
+  }
+
+  // Remove OAuth params from the URL without triggering a navigation
+  function cleanOAuthParams() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('code');
+    url.searchParams.delete('state');
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  async function loadAuth() {
+    const token = getStoredToken();
+    if (!token) {
+      showLoggedOut();
+      return;
+    }
+
+    try {
+      const resp = await fetch(TOOLFORGE_PROXY + '?action=query&meta=userinfo', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+
+      if (!resp.ok) {
+        if (resp.status === 401) localStorage.removeItem(ACCESS_TOKEN_KEY);
+        showLoggedOut();
+        return;
+      }
+
+      const data = await resp.json();
+      const userinfo = data.query?.userinfo;
+      if (userinfo?.name && userinfo.id !== 0) {
         isAuthenticated = true;
-        showLoggedIn(data.username);
+        showLoggedIn(userinfo.name);
       } else {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
         showLoggedOut();
       }
     } catch {
       showLoggedOut();
     }
-  }
-
-  function showOAuthUnavailable() {
-    isAuthenticated = false;
-    $loginBtn.style.display = 'none';
-    $userInfo.style.display = 'none';
-    $batchBtn.disabled = true;
-    $batchLoginMsg.textContent = 'Wikimedia login is not available at this time.';
-    $batchLoginMsg.style.display = 'block';
   }
 
   function showLoggedIn(username) {
@@ -615,21 +741,41 @@
     updateBatchButton();
   }
 
-  function onLogin() {
-    const returnTo = window.location.pathname + window.location.search;
+  async function onLogin() {
     try {
       sessionStorage.setItem(LOGIN_STATE_KEY, JSON.stringify({
         queue,
         imageData: currentImageData,
       }));
     } catch { /* ignore — storage may be unavailable */ }
-    window.location.href = OAUTH_BASE + '?action=login&returnTo=' + encodeURIComponent(returnTo);
+
+    const { verifier, challenge } = await generatePkce();
+    const state = typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : Array.from(crypto.getRandomValues(new Uint8Array(16)))
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+
+    try {
+      sessionStorage.setItem(PKCE_STATE_KEY, JSON.stringify({ verifier, state }));
+    } catch {
+      console.error('DepictAssist: sessionStorage unavailable — cannot start login');
+      return;
+    }
+
+    const redirectUri = getRedirectUri();
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: WIKIMEDIA_CLIENT_ID,
+      redirect_uri: redirectUri,
+      state,
+      code_challenge: challenge,
+      code_challenge_method: 'S256'
+    });
+    window.location.href = WIKIMEDIA_AUTH_ENDPOINT + '?' + params.toString();
   }
 
-  async function onLogout() {
-    try {
-      await fetch(OAUTH_BASE + '?action=logout');
-    } catch { /* ignore */ }
+  function onLogout() {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
     showLoggedOut();
   }
 
@@ -641,6 +787,14 @@
   async function onSubmitBatch() {
     if (!isAuthenticated || queue.length === 0 || submittingBatch) return;
 
+    // Guard against token expiry between page load and submit
+    const accessToken = getStoredToken();
+    if (!accessToken) {
+      isAuthenticated = false;
+      showLoggedOut();
+      return;
+    }
+
     submittingBatch = true;
     $batchBtn.disabled = true;
     $batchBtn.textContent = 'Submitting...';
@@ -650,9 +804,15 @@
 
     let ipBlockDetected = false;
     try {
-      // _proxy=<timestamp> makes each URL unique so CloudFront never serves a
-      // stale cached response; the proxy strips the parameter before forwarding.
-      const tokenResp = await fetch(COMMONS_PROXY + '?action=query&meta=tokens&_proxy=' + Date.now());
+      const tokenResp = await fetch(TOOLFORGE_PROXY + '?action=query&meta=tokens&type=csrf', {
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      });
+      if (tokenResp.status === 401) {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
+        isAuthenticated = false;
+        showLoggedOut();
+        return;
+      }
       if (!tokenResp.ok) throw new Error('Failed to get CSRF token (HTTP ' + tokenResp.status + ')');
       const tokenText = await tokenResp.text();
       let tokenData;
@@ -761,9 +921,12 @@
           summary: 'Added depicts (P180) claim via DepictAssist (DPLA) \u2014 https://pro.dp.la/projects/dpla-wikimedia/depictassist'
         });
 
-        const editResp = await fetch(COMMONS_PROXY, {
+        const editResp = await fetch(TOOLFORGE_PROXY, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer ' + accessToken
+          },
           body: body
         });
         if (!editResp.ok) {
