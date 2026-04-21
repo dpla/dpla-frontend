@@ -366,6 +366,7 @@
       chip.setAttribute('aria-label', 'Add depicts tag: ' + tag.label);
       chip.dataset.mid = mid;
       chip.dataset.qid = tag.qid;
+      chip.dataset.label = tag.label;
 
       const labelSpan = document.createElement('span');
       labelSpan.textContent = tag.label;
@@ -444,6 +445,7 @@
       removeBtn.setAttribute('aria-label', 'Remove ' + item.label + ' from queue');
       removeBtn.textContent = '\u2715';
       removeBtn.addEventListener('click', function () {
+        if (submittingBatch) return;
         const idx = queue.indexOf(item);
         if (idx !== -1) queue.splice(idx, 1);
         const chip = $tagSuggestions.querySelector('[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]');
@@ -721,7 +723,7 @@
       if (succeededMids.has(currentMid)) {
         for (const chip of $tagSuggestions.querySelectorAll('.da-tag-selected')) {
           chip.classList.remove('da-tag-selected');
-          chip.setAttribute('aria-label', 'Add depicts tag: ' + (chip.querySelector('span')?.textContent || ''));
+          chip.setAttribute('aria-label', 'Add depicts tag: ' + (chip.dataset.label || ''));
         }
       }
       renderQueue();
