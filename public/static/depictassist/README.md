@@ -111,7 +111,7 @@ staging or local dev), set the explicit override.
 CloudFront's default cache behavior strips cookies before forwarding requests to
 the origin. The `/api/wikimedia/*` paths must have a custom cache behavior that:
 
-- **Whitelists these cookies for forwarding**: `wm_access_token`, `wm_oauth_state`
+- **Whitelists these cookies for forwarding**: `wm_access_token`, `wm_oauth_state`, `wm_return_to`
 - **Allows all HTTP methods** (HEAD, GET, DELETE, POST, PUT, PATCH, OPTIONS)
 - **Disables caching** (MinTTL = DefaultTTL = MaxTTL = 0)
 - **Forwards the query string** (needed by the OAuth and commons proxy routes)
@@ -156,6 +156,7 @@ User                 pro.dp.la (Next.js)          Commons (Wikimedia)
 | Cookie | httpOnly | Secure | SameSite | Max-Age | Purpose |
 |--------|----------|--------|----------|---------|---------|
 | `wm_oauth_state` | ✓ | ✓ | Lax | 300 s | CSRF protection for the OAuth callback |
+| `wm_return_to` | ✓ | ✓ | Lax | 300 s | Post-login redirect path (must be in CloudFront forwarding list) |
 | `wm_access_token` | ✓ | ✓ | Strict | 4 hours | Bearer token for authenticated API calls |
 
 `SameSite=Lax` on the state cookie is intentional: the OAuth callback is a

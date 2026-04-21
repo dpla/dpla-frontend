@@ -11,10 +11,12 @@
   const MAX_SUGGESTIONS = 6;
   // Wikidata item for "based on heuristic" — used as reference (P887) on depicts claims
   const BASED_ON_HEURISTIC_QID = 114065533;
+  const LOGIN_STATE_KEY = 'da_login_state';
 
   // ── State ────────────────────────────────────────────────
   let queue = [];           // { mid, prop, qid, label, filename, subjectTerm, dplaUrl }[]
   let currentMid = null;    // MID of the image currently displayed
+  let currentImageData = null; // full displayImage() args, saved for post-login restore
   let pendingQid = null;    // QID from URL, awaiting institution load
   let isAuthenticated = false;
   let fetchingImages = false;
@@ -46,12 +48,14 @@
     boundWrapper = wrapper;
     queue = [];
     currentMid = null;
+    currentImageData = null;
     isAuthenticated = false;
     fetchingImages = false;
     submittingBatch = false;
 
     cacheDom();
     bindEvents();
+    restoreLoginState();
     loadAuth();
     loadInstitutions();
     restoreFromUrl();
@@ -111,6 +115,37 @@
   function restoreFromUrl() {
     const qid = new URLSearchParams(window.location.search).get('id');
     if (qid) pendingQid = qid;
+  }
+
+  function restoreLoginState() {
+    let saved;
+    try {
+      const raw = sessionStorage.getItem(LOGIN_STATE_KEY);
+      if (!raw) return;
+      saved = JSON.parse(raw);
+      sessionStorage.removeItem(LOGIN_STATE_KEY);
+    } catch { return; }
+
+    if (!saved || !Array.isArray(saved.queue) || saved.queue.length === 0) return;
+
+    queue = saved.queue;
+
+    if (saved.imageData) {
+      displayImage(saved.imageData);
+      // Re-apply selected state for chips that are in the restored queue
+      for (const item of queue) {
+        const chip = $tagSuggestions.querySelector(
+          '[data-mid="' + item.mid + '"][data-qid="' + item.qid + '"]'
+        );
+        if (chip) {
+          chip.classList.add('da-tag-selected');
+          chip.disabled = true;
+          chip.setAttribute('aria-label', 'Remove depicts tag: ' + item.label);
+        }
+      }
+    }
+
+    renderQueue();
   }
 
   function selectInstitutionByQid(qid) {
@@ -374,6 +409,7 @@
 
   function displayImage({ mid, imgUrl, title, filename, description, subjectName, dplaUrl, tagSuggestions }) {
     currentMid = mid;
+    currentImageData = { mid, imgUrl, title, filename, description, subjectName, dplaUrl, tagSuggestions };
     updateSkipButton();
     showImageState('image');
 
@@ -580,7 +616,14 @@
   }
 
   function onLogin() {
-    window.location.href = OAUTH_BASE + '?action=login';
+    const returnTo = window.location.pathname + window.location.search;
+    try {
+      sessionStorage.setItem(LOGIN_STATE_KEY, JSON.stringify({
+        queue,
+        imageData: currentImageData,
+      }));
+    } catch { /* ignore — storage may be unavailable */ }
+    window.location.href = OAUTH_BASE + '?action=login&returnTo=' + encodeURIComponent(returnTo);
   }
 
   async function onLogout() {
