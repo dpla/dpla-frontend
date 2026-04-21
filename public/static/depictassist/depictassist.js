@@ -189,7 +189,7 @@
     showImageState('loading');
 
     try {
-      // Step 1: Get total hits to pick a random offset
+      // Step 1: Get total hits to pick a random offset (once per button press)
       const totalUrl = buildSearchUrl(qid, 0, 0);
       const totalResp = await fetch(totalUrl);
       if (!totalResp.ok) throw new Error('Commons search failed');
@@ -202,69 +202,89 @@
         return;
       }
 
-      // Step 2: Fetch a random image (with iiurlwidth=800 to avoid a separate image info call)
       const cap = Math.min(totalHits, 10000);
-      const offset = Math.floor(Math.random() * cap);
-      const searchUrl = buildSearchUrl(qid, offset, 1);
-      const searchResp = await fetch(searchUrl);
-      if (!searchResp.ok) throw new Error('Commons search failed');
-      const searchData = await searchResp.json();
+      let reconTimeouts = 0;
 
-      const pages = searchData.query?.pages;
-      if (!pages) { showImageState('empty'); return; }
+      while (true) {
+        // Step 2: Fetch a random image (with iiurlwidth=800 to avoid a separate image info call)
+        const offset = Math.floor(Math.random() * cap);
+        const searchUrl = buildSearchUrl(qid, offset, 1);
+        const searchResp = await fetch(searchUrl);
+        if (!searchResp.ok) throw new Error('Commons search failed');
+        const searchData = await searchResp.json();
 
-      const pageId = Object.keys(pages)[0];
-      if (!pageId || pageId === '-1') { showImageState('empty'); return; }
+        const pages = searchData.query?.pages;
+        if (!pages) { showImageState('empty'); return; }
 
-      const page = pages[pageId];
-      const mid = 'M' + pageId;
-      const pageTitle = page.title || '';
+        const pageId = Object.keys(pages)[0];
+        if (!pageId || pageId === '-1') { showImageState('empty'); return; }
 
-      // Extract image URL from the search response (avoids a separate imageinfo call)
-      const imgUrl = page.imageinfo?.[0]?.thumburl ||
-                     page.imageinfo?.[0]?.url || '';
+        const page = pages[pageId];
+        const mid = 'M' + pageId;
+        const pageTitle = page.title || '';
 
-      // Step 3: Fetch entity data and reconciliation in parallel
-      const entityUrl = 'https://commons.wikimedia.org/wiki/Special:EntityData/' + mid + '.json';
-      const entityResp = await fetch(entityUrl);
-      if (!entityResp.ok) throw new Error('Entity data fetch failed');
-      const entityData = await entityResp.json();
-      const entity = entityData.entities?.[mid];
-      if (!entity) { showImageState('empty'); return; }
+        // Extract image URL from the search response (avoids a separate imageinfo call)
+        const imgUrl = page.imageinfo?.[0]?.thumburl ||
+                       page.imageinfo?.[0]?.url || '';
 
-      const stmts = entity.statements || {};
-      const titleText = stmts.P1476?.[0]?.mainsnak?.datavalue?.value?.text || pageTitle;
-      const descText = stmts.P10358?.[0]?.mainsnak?.datavalue?.value?.text || '';
-      const subjects = stmts.P4272 || [];
-      const dplaId = stmts.P760?.[0]?.mainsnak?.datavalue?.value;
-      const dplaUrl = dplaId ? 'https://dp.la/item/' + dplaId : null;
+        // Step 3: Fetch entity data
+        const entityUrl = 'https://commons.wikimedia.org/wiki/Special:EntityData/' + mid + '.json';
+        const entityResp = await fetch(entityUrl);
+        if (!entityResp.ok) throw new Error('Entity data fetch failed');
+        const entityData = await entityResp.json();
+        const entity = entityData.entities?.[mid];
+        if (!entity) { showImageState('empty'); return; }
 
-      // Fetch tag suggestions from reconciliation API
-      let tagSuggestions = [];
-      let subjectName = '(no subject)';
+        const stmts = entity.statements || {};
+        const titleText = stmts.P1476?.[0]?.mainsnak?.datavalue?.value?.text || pageTitle;
+        const descText = stmts.P10358?.[0]?.mainsnak?.datavalue?.value?.text || '';
+        const subjects = stmts.P4272 || [];
+        const dplaId = stmts.P760?.[0]?.mainsnak?.datavalue?.value;
+        const dplaUrl = dplaId ? 'https://dp.la/item/' + dplaId : null;
 
-      if (subjects.length > 0) {
-        subjectName = subjects[0].mainsnak?.datavalue?.value || '';
-        const narrow = subjectName.replace(/^.*--\s*/, '');
+        // Step 4: Fetch tag suggestions — 8s timeout; on timeout try a different image,
+        // but give up and show an error after 3 consecutive timeouts (API is down)
+        let tagSuggestions = [];
+        let subjectName = '(no subject)';
+        let reconTimedOut = false;
 
-        const reconUrl = RECONCILIATION_API + '?queries=' +
-          encodeURIComponent(JSON.stringify({ q1: { query: narrow } }));
-        const reconResp = await fetch(reconUrl);
-        if (reconResp.ok) {
-          const reconData = await reconResp.json();
-          const results = reconData.q1?.result || [];
-          tagSuggestions = results.slice(0, MAX_SUGGESTIONS).map(r => ({
-            qid: r.id,
-            label: r.name || '',
-            description: r.description || ''
-          }));
+        if (subjects.length > 0) {
+          subjectName = subjects[0].mainsnak?.datavalue?.value || '';
+          const narrow = subjectName.replace(/^.*--\s*/, '');
+          const reconUrl = RECONCILIATION_API + '?queries=' +
+            encodeURIComponent(JSON.stringify({ q1: { query: narrow } }));
+          try {
+            const reconResp = await fetch(reconUrl, { signal: AbortSignal.timeout(8000) });
+            if (reconResp.ok) {
+              const reconData = await reconResp.json();
+              const results = reconData.q1?.result || [];
+              tagSuggestions = results.slice(0, MAX_SUGGESTIONS).map(r => ({
+                qid: r.id,
+                label: r.name || '',
+                description: r.description || ''
+              }));
+            }
+          } catch (reconErr) {
+            if (reconErr.name === 'TimeoutError' || reconErr.name === 'AbortError') {
+              reconTimedOut = true;
+            } else {
+              throw reconErr;
+            }
+          }
         }
-      }
 
-      displayImage({
-        mid, imgUrl, title: titleText, filename: pageTitle,
-        description: descText, subjectName, dplaUrl, tagSuggestions
-      });
+        if (reconTimedOut) {
+          reconTimeouts++;
+          if (reconTimeouts >= 3) throw new Error('Reconciliation API unavailable');
+          continue;
+        }
+
+        displayImage({
+          mid, imgUrl, title: titleText, filename: pageTitle,
+          description: descText, subjectName, dplaUrl, tagSuggestions
+        });
+        break;
+      }
     } catch (err) {
       console.error('DepictAssist: error fetching image', err);
       showImageState('error');
