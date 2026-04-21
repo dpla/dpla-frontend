@@ -625,6 +625,13 @@
     } catch { return null; }
   }
 
+  function handleOAuthCallbackError() {
+    showLoggedOut();
+    const restored = restoreLoginState();
+    loadInstitutions();
+    if (!restored) restoreFromUrl();
+  }
+
   // Called on page load when ?code=...&state=... are present in the URL
   // (the browser has just returned from Wikimedia's authorization page).
   async function handleOAuthCallback(code, urlState) {
@@ -638,8 +645,7 @@
     if (!pkceData || !urlState || urlState !== pkceData.state) {
       console.error('DepictAssist: OAuth state mismatch — possible CSRF');
       cleanOAuthParams();
-      showLoggedOut();
-      loadInstitutions();
+      handleOAuthCallbackError();
       return;
     }
 
@@ -661,23 +667,20 @@
 
       if (!resp.ok) {
         console.error('DepictAssist: token exchange failed', resp.status);
-        showLoggedOut();
-        loadInstitutions();
+        handleOAuthCallbackError();
         return;
       }
 
       const tokenData = await resp.json();
       if (!tokenData.access_token) {
-        showLoggedOut();
-        loadInstitutions();
+        handleOAuthCallbackError();
         return;
       }
 
       storeToken(tokenData.access_token, tokenData.expires_in);
     } catch (err) {
       console.error('DepictAssist: OAuth callback error', err);
-      showLoggedOut();
-      loadInstitutions();
+      handleOAuthCallbackError();
       return;
     }
 
@@ -811,6 +814,8 @@
         localStorage.removeItem(ACCESS_TOKEN_KEY);
         isAuthenticated = false;
         showLoggedOut();
+        $batchErrorMsg.textContent = 'Your session expired. Please log in again.';
+        $batchError.style.display = 'block';
         return;
       }
       if (!tokenResp.ok) throw new Error('Failed to get CSRF token (HTTP ' + tokenResp.status + ')');
