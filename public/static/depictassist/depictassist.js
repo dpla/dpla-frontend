@@ -19,6 +19,7 @@
   let isAuthenticated = false;
   let fetchingImages = false;
   let submittingBatch = false;
+  let lightboxOpenToken = 0;
 
   // ── DOM refs (populated in init) ─────────────────────────
   let $select, $findBtn, $imageArea, $loading, $imageDisplay,
@@ -336,13 +337,16 @@
   }
 
   function openLightbox(imgUrl, altText) {
+    const token = ++lightboxOpenToken;
     $lightboxImg.src = imgUrl;
     $lightboxImg.alt = altText;
     $lightbox.showModal();
     const largeUrl = getLargeThumbUrl(imgUrl);
     if (largeUrl !== imgUrl) {
       const large = new Image();
-      large.onload = function () { if ($lightbox.open) $lightboxImg.src = largeUrl; };
+      large.onload = function () {
+        if ($lightbox.open && token === lightboxOpenToken) $lightboxImg.src = largeUrl;
+      };
       large.src = largeUrl;
     }
   }
@@ -365,8 +369,12 @@
     $imageDescription.textContent = description || '(No description provided)';
     $imageImg.src = imgUrl;
     $imageImg.style.cursor = 'zoom-in';
-    $imageImg.onclick = function () { openLightbox(imgUrl, title); };
     $imageLink.href = imgUrl;
+    $imageLink.setAttribute('aria-label', 'View larger image');
+    $imageLink.onclick = function (e) {
+      e.preventDefault();
+      openLightbox(imgUrl, title);
+    };
 
     $commonsLink.href = 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(filename);
     $commonsLink.textContent = filename;

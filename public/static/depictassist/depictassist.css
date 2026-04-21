@@ -376,6 +376,12 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
+.depictassist-wrapper #da-lightbox-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
 /* ── Error State ────────────────────────────────────────── */
 
 .depictassist-wrapper .da-error {
