@@ -8,10 +8,12 @@ Wikimedia Commons images contributed by DPLA institutions. Hosted at
 
 1. A volunteer selects a DPLA contributing institution from the dropdown
 2. The tool finds a random Commons image from that institution that has subject
-   terms (P4272) but no depicts claims (P180) yet
+   terms (P4272) but no depicts claims (P180) yet; images that produce no tag
+   suggestions are silently skipped and a new image is tried automatically
 3. Those subject terms are sent to the Wikidata Reconciliation API to generate
    tag suggestions
-4. The volunteer clicks tags to queue P180 claims, then submits the batch
+4. The volunteer clicks tags to queue P180 claims; clicking a selected tag
+   deselects it, or the volunteer can use the × button in the queue list
 5. Edits are posted to Commons under the volunteer's own Wikimedia account via
    OAuth 2.0, with each claim citing "based on heuristic" (P887 = Q114065533) as
    its reference
@@ -259,14 +261,64 @@ Every P180 claim added by DepictAssist includes a reference: P887 (basis of
 knowledge) = Q114065533 (based on heuristic). This flags the claim as
 algorithmically suggested so other editors know it warrants human review.
 
-### Suggestion chips carry data attributes for queue management
+### Suggestion chips: toggle selection via CSS class
 
-Each tag chip element is stamped with `data-mid` (the Commons M-ID, e.g. `M12345`)
-and `data-qid` (the Wikidata Q-ID, e.g. `Q67890`) when it is created. When the user
-clicks X on a queued item, the remove handler queries `$tagSuggestions` for a chip
-matching both attributes and re-enables it — restoring the visual selected state and
-allowing the tag to be re-added. Without the attributes the handler would have no
-way to find the right chip after the DOM has been rebuilt by `renderQueue()`.
+Each tag chip is stamped with `data-mid` (Commons M-ID, e.g. `M12345`) and
+`data-qid` (Wikidata Q-ID, e.g. `Q67890`) when it is created. Selection state is
+tracked with the `da-tag-selected` CSS class (not the `disabled` property). Clicking
+a chip toggles it: if selected, the chip is removed from the queue, the class is
+removed, and `aria-label` is reset to "Add depicts tag: …"; if not selected, it is
+added to the queue and the class is applied. A `×` badge (`.da-tag-remove`) is
+rendered inside every chip and shown via CSS only when `da-tag-selected` is present,
+giving the volunteer a visible affordance for deselection.
+
+When the volunteer clicks × on a queued item in the batch list, the remove handler
+uses `data-mid` and `data-qid` to find the corresponding chip in `$tagSuggestions`
+and removes `da-tag-selected` from it. Without those attributes the handler would
+have no way to identify the right chip after `renderQueue()` has rebuilt the list.
+
+Chip clicks are silently ignored while `submittingBatch` is `true`, preventing queue
+mutations from racing with the in-flight Commons API calls.
+
+### Auto-skip of images with no tag suggestions
+
+The reconciliation step (Step 3 above) runs for each randomly selected image inside
+a retry loop (`maxAttempts = 10`). If the subject terms produce no Wikidata matches,
+`tagSuggestions.length === 0` and the loop `continue`s to the next random image
+without displaying anything. A `noSuggestionSkips` counter tracks how many of the
+attempts were skipped for this reason. When the loop exhausts all attempts:
+
+- If `noSuggestionSkips >= maxAttempts`, every retry was a no-suggestion skip — the
+  institution simply has no taggable images in the current sample window, so the
+  empty state is shown ("No untagged images found").
+- Otherwise, failures were due to network or API problems and the error state is
+  shown instead.
+
+Without this distinction, institutions with many tagged or suggestion-free images
+would always surface a generic error rather than the correct "nothing to tag" message.
+
+### Image lightbox and progressive load
+
+Clicking the thumbnail image opens a native `<dialog>` modal (`showModal()`). The
+800 px thumbnail that is already loaded for the main view is set as the lightbox
+`src` immediately so the modal appears without delay. A `new Image()` object then
+fetches the 1 600 px version in the background; when it loads, `$lightboxImg.src`
+is swapped — but only if `$lightbox.open` is still `true`, preventing an invisible
+write to a dialog the volunteer has already closed.
+
+The 1 600 px URL is derived from the existing thumb URL with a regex replace
+(`/\/\d+px-/` → `/1600px-`). Wikimedia serves thumbnails as JPEG or PNG regardless
+of the original file format, so there is no risk of fetching a raw TIFF. Requesting
+a width wider than the original is safe: Wikimedia returns the original resolution
+rather than upscaling or erroring.
+
+### Dropdown arrow CSS conflict
+
+`global.scss` applies `appearance: none` and a custom SVG `background-image` to all
+`<select>` elements site-wide, replacing the native browser arrow. The institution
+dropdown overrides both (`background-image: none; appearance: auto`) to restore the
+native arrow, because leaving the global override in place causes the browser's
+native arrow and the SVG arrow to render on top of each other.
 
 ### SPA re-navigation guard
 
