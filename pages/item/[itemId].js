@@ -17,6 +17,8 @@ import {
   truncateString,
 } from "lib";
 
+import SearchResultsNav from "components/ItemComponents/SearchResultsNav";
+
 import css from "components/ItemComponents/itemComponent.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -81,6 +83,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
   const metadataBase = `/item/${item.id}`;
   return (
     <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
+      <SearchResultsNav />
       <BreadcrumbsModule
         breadcrumbs={[
           {

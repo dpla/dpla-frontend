@@ -1,0 +1,50 @@
+@import "stylesheets/breakpoints.module";
+
+.searchNav {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  @media (min-width: $smallRem) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.backLink,
+.prevLink,
+.nextLink {
+  color: var(--linkColor);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+.prevNext {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backArrow,
+.prevArrow {
+  height: 9px;
+  flex-shrink: 0;
+  transform: rotate(180deg);
+}
+
+.nextArrow {
+  height: 9px;
+  flex-shrink: 0;
+}
