@@ -1,0 +1,25 @@
+.searchError {
+  margin-bottom: 10rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.searchError h1 {
+  padding-bottom: 0.8rem;
+}
+
+.statusLink {
+  margin-top: 1.5rem;
+}
+
+.alternativeLinks {
+  display: inline-block;
+  list-style: none;
+  margin-top: 0.5rem;
+  padding: 0;
+  text-align: left;
+}
+
+.alternativeLinks li::before {
+  content: "→ ";
+}

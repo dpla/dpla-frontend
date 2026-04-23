@@ -24,6 +24,7 @@ import { LOCALS } from "constants/local";
 import MaxPageError from "components/SearchComponents/MaxPageError";
 import { washObject } from "lib/washObject";
 import FilterQueryError from "components/SearchComponents/FilterQueryError";
+import SearchError from "components/SearchComponents/SearchError";
 
 class Search extends React.Component {
   state = {
@@ -79,11 +80,7 @@ class Search extends React.Component {
             facets={results?.facets ?? {}}
           />
         )}
-        {fetchError && (
-          <p style={{ textAlign: "center", padding: "2rem" }}>
-            Search results couldn&apos;t be loaded. Please try again.
-          </p>
-        )}
+        {fetchError && <SearchError />}
         {!fetchError && currentPage <= MAX_PAGE_SIZE && (
           <MainContent
             hideSidebar={!this.state.showSidebar}
