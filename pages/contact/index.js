@@ -17,12 +17,10 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
-import ServiceUnavailable from "components/shared/ServiceUnavailable";
+import { safeFetch, isUpstreamUnavailable } from "lib/safeFetch";
 
 function Contact(props) {
-  const { sidebarItems, temporarilyUnavailable } = props;
-  if (temporarilyUnavailable) return <ServiceUnavailable />;
+  const { sidebarItems } = props;
   return (
     <MainLayout pageTitle={TITLE} seoType={SEO_TYPE}>
       <FeatureHeader title={TITLE} description={""} />
@@ -57,7 +55,12 @@ export const getServerSideProps = async (context) => {
     siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
-  if (isUpstreamUnavailable(aboutMenuRes)) return upstreamUnavailable(context.res, aboutMenuRes);
+  if (isUpstreamUnavailable(aboutMenuRes)) {
+    await Promise.allSettled([aboutMenuRes?.body?.cancel?.()]);
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: washObject({ sidebarItems: [] }) };
+  }
   if (!aboutMenuRes?.ok) return { notFound: true };
 
   const aboutMenuJson = await aboutMenuRes.json();

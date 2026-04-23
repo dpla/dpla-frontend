@@ -11,8 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
-import ServiceUnavailable from "components/shared/ServiceUnavailable";
+import { safeFetch, isUpstreamUnavailable } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -20,8 +19,7 @@ const BREADCRUMBS = [
   { title: "Wikimedia Page Views" },
 ];
 
-export default function WikimetricsPage({ items, isFilterView, temporarilyUnavailable }) {
-  if (temporarilyUnavailable) return <ServiceUnavailable />;
+export default function WikimetricsPage({ items, isFilterView }) {
   const wrapperClass = `wikimedia-metrics-wrapper${isFilterView ? " filter-view" : ""}`;
 
   return (
@@ -124,7 +122,12 @@ export async function getServerSideProps(context) {
   const isFilterView = !!(show || hub);
 
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
-  if (isUpstreamUnavailable(menuResponse)) return upstreamUnavailable(context.res, menuResponse);
+  if (isUpstreamUnavailable(menuResponse)) {
+    await Promise.allSettled([menuResponse?.body?.cancel?.()]);
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: washObject({ items: [], isFilterView }) };
+  }
   if (!menuResponse?.ok) return { notFound: true };
   const menuJson = await menuResponse.json();
 
