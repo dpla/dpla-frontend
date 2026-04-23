@@ -11,7 +11,8 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -19,7 +20,8 @@ const BREADCRUMBS = [
   { title: "Wikimedia Page Views" },
 ];
 
-export default function WikimetricsPage({ items, isFilterView }) {
+export default function WikimetricsPage({ items, isFilterView, temporarilyUnavailable }) {
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   const wrapperClass = `wikimedia-metrics-wrapper${isFilterView ? " filter-view" : ""}`;
 
   return (
@@ -122,15 +124,8 @@ export async function getServerSideProps(context) {
   const isFilterView = !!(show || hub);
 
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse?.ok) {
-    if (!menuResponse || menuResponse.status >= 500) {
-      // Sidebar nav is non-critical — render page without it and signal 503
-      context.res.statusCode = 503;
-      context.res.setHeader("Retry-After", "10");
-      return { props: washObject({ items: [], isFilterView }) };
-    }
-    return { notFound: true };
-  }
+  if (isUpstreamUnavailable(menuResponse)) return upstreamUnavailable(context.res, menuResponse);
+  if (!menuResponse?.ok) return { notFound: true };
   const menuJson = await menuResponse.json();
 
   return {
