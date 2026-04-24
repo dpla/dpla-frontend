@@ -8,7 +8,8 @@ import { BACK_URI_PARAM, NEXT_PARAM, PREV_PARAM } from "constants/searchNav";
 import css from "./SearchResultsNav.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
-const ITEM_PATH_RE = new RegExp(`^/item/${DPLA_ITEM_ID_REGEX.source}$`);
+const ITEM_ID_SOURCE = DPLA_ITEM_ID_REGEX.source.replace(/^\^|\$$/g, "");
+const ITEM_PATH_RE = new RegExp(`^/item/${ITEM_ID_SOURCE}$`);
 
 function SearchResultsNav() {
   const { query } = useRouter();
