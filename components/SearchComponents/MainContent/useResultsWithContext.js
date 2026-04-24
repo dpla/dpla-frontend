@@ -44,15 +44,30 @@ export function useResultsWithContext(results) {
 
   // Persist the ordered item paths so SearchResultsNav can derive prev/next
   // even when the user arrived via a neighbour link (which only carries back_uri).
+  // A timestamp is stored alongside paths so stale entries can be evicted.
   useEffect(() => {
     const paths = itemsWithContext
       .map((item) => item.linkHref?.pathname)
       .filter(Boolean);
     if (paths.length === 0) return;
     try {
+      const now = Date.now();
+      const ttl = 24 * 60 * 60 * 1000; // 24 hours
+
+      // Evict entries older than the TTL before writing the new one.
+      for (const key of Object.keys(localStorage)) {
+        if (!key.startsWith(SEARCH_RESULTS_STORAGE_KEY_PREFIX)) continue;
+        try {
+          const entry = JSON.parse(localStorage.getItem(key));
+          if (now - entry.ts > ttl) localStorage.removeItem(key);
+        } catch {
+          localStorage.removeItem(key);
+        }
+      }
+
       localStorage.setItem(
         SEARCH_RESULTS_STORAGE_KEY_PREFIX + asPath,
-        JSON.stringify(paths)
+        JSON.stringify({ paths, ts: now })
       );
     } catch {
       // localStorage unavailable

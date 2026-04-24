@@ -54,7 +54,7 @@ function SearchResultsNav() {
         SEARCH_RESULTS_STORAGE_KEY_PREFIX + backUri
       );
       if (!stored) return;
-      const paths = JSON.parse(stored);
+      const { paths } = JSON.parse(stored);
       const idx = paths.indexOf(currentPath);
       if (idx === -1) return;
 
