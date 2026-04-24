@@ -6,7 +6,7 @@ import Pagination from "shared/Pagination";
 import Sidebar from "./Sidebar";
 import AboutLocal from "./AboutLocal";
 
-import { addLinkInfoToResults } from "lib";
+import { useResultsWithContext } from "./useResultsWithContext";
 
 import css from "./MainContent.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
@@ -21,6 +21,8 @@ function MainContent({
 }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const router = useRouter();
+  const itemsWithContext = useResultsWithContext(results);
+
   return (
     <div className={css.wrapper}>
       <div className={`${utils.container} ${css.mainContent}`}>
@@ -32,7 +34,7 @@ function MainContent({
         <main id="main" role="main" className={css.resultsAndPagination}>
           {results.length > 0 && (
             <ListView
-              items={addLinkInfoToResults(results)}
+              items={itemsWithContext}
               viewMode={router.query.list_view}
               behavior={"search"}
             />
