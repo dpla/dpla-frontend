@@ -1,18 +1,28 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { addLinkInfoToResults } from "lib";
-import { BACK_URI_PARAM, NEXT_PARAM, PREV_PARAM } from "constants/searchNav";
+import {
+  BACK_URI_PARAM,
+  NEXT_PARAM,
+  PREV_PARAM,
+  SEARCH_RESULTS_STORAGE_KEY_PREFIX,
+} from "constants/searchNav";
 
 /**
  * Returns search results augmented with back_uri / prev / next query params so
  * the item page can render "Back to results" and neighbour navigation.
  * Memoised on [results, router.asPath] to avoid rebuilding the array on every
  * parent render.
+ *
+ * Also persists the ordered list of item paths to localStorage so that
+ * prev/next links continue to work after the user navigates to a neighbour
+ * item (which won't have its own prev/next URL params).
  */
 export function useResultsWithContext(results) {
   const { asPath } = useRouter();
-  return useMemo(() => {
+
+  const itemsWithContext = useMemo(() => {
     const base = addLinkInfoToResults(results);
     return base.map((item, i) => {
       if (!item.linkHref) return item;
@@ -31,4 +41,23 @@ export function useResultsWithContext(results) {
       };
     });
   }, [results, asPath]);
+
+  // Persist the ordered item paths so SearchResultsNav can derive prev/next
+  // even when the user arrived via a neighbour link (which only carries back_uri).
+  useEffect(() => {
+    const paths = itemsWithContext
+      .map((item) => item.linkHref?.pathname)
+      .filter(Boolean);
+    if (paths.length === 0) return;
+    try {
+      localStorage.setItem(
+        SEARCH_RESULTS_STORAGE_KEY_PREFIX + asPath,
+        JSON.stringify(paths)
+      );
+    } catch {
+      // localStorage unavailable
+    }
+  }, [itemsWithContext, asPath]);
+
+  return itemsWithContext;
 }
