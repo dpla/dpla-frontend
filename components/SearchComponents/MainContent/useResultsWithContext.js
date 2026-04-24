@@ -53,16 +53,29 @@ export function useResultsWithContext(results) {
     try {
       const now = Date.now();
       const ttl = 24 * 60 * 60 * 1000; // 24 hours
+      const maxEntries = 10;
 
-      // Evict entries older than the TTL before writing the new one.
+      // Collect all existing entries and evicting those past the TTL.
+      const surviving = [];
       for (const key of Object.keys(localStorage)) {
         if (!key.startsWith(SEARCH_RESULTS_STORAGE_KEY_PREFIX)) continue;
         try {
           const entry = JSON.parse(localStorage.getItem(key));
-          if (now - entry.ts > ttl) localStorage.removeItem(key);
+          if (now - entry.ts > ttl) {
+            localStorage.removeItem(key);
+          } else {
+            surviving.push({ key, ts: entry.ts });
+          }
         } catch {
           localStorage.removeItem(key);
         }
+      }
+
+      // If we're still at the entries limit,
+      // evict the oldest entry to make room.
+      if (surviving.length >= maxEntries) {
+        surviving.sort((a, b) => a.ts - b.ts);
+        localStorage.removeItem(surviving[0].key);
       }
 
       localStorage.setItem(
