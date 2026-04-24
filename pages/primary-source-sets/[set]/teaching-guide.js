@@ -8,6 +8,8 @@ import SourceSetInfo from "components/PrimarySourceSetsComponents/SingleSet/Sour
 import ResourcesTabs from "components/PrimarySourceSetsComponents/SingleSet/ResourcesTabs";
 import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
+import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
+
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
@@ -17,23 +19,17 @@ import ServiceUnavailable from "components/shared/ServiceUnavailable";
 function SingleSet({ router, set, teachingGuide, currentFullUrl, temporarilyUnavailable }) {
   if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!set) return null;
+  const breadcrumbs = [
+    { title: "Primary Source Sets", url: { pathname: "/primary-source-sets", query: removeQueryParams(router.query, ["set"]) } },
+    { title: set.name, search: "" },
+  ];
   return (
     <MainLayout
       pageTitle={set.name.replace(/\*/g, "")}
       pageImage={set.repImageUrl || set.thumbnailUrl}
     >
-      <BreadcrumbsModule
-        breadcrumbs={[
-          {
-            title: "Primary Source Sets",
-            url: {
-              pathname: "/primary-source-sets",
-              query: removeQueryParams(router.query, ["set"]),
-            },
-          },
-          { title: set.name, search: "" },
-        ]}
-      />
+      <BreadcrumbsModule breadcrumbs={breadcrumbs} />
+      <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
       <SourceSetInfo set={set} currentFullUrl={currentFullUrl} />
       <ResourcesTabs currentTab="teachingGuide" set={set}>
         <TeachersGuide teachingGuide={teachingGuide} setName={set.name} />

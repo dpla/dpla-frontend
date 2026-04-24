@@ -4,6 +4,7 @@ import striptags from "striptags";
 
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 import ContentPagesSidebar from "shared/ContentPagesSidebar";
 
 import { formatDate, decodeHTMLEntities, wordpressLinks } from "lib";
@@ -51,21 +52,19 @@ class PostPage extends React.Component {
         hasTags = true;
       }
     });
+    const breadcrumbTitle = decodeHTMLEntities(striptags(content.title.rendered));
+    const breadcrumbs = [
+      { title: "News", url: "/news" },
+      { title: breadcrumbTitle },
+    ];
     return (
       <MainLayout
         pageTitle={content.title.rendered}
         seoType={SEO_TYPE}
         pageDescription={pageDescription}
       >
-        <BreadcrumbsModule
-          breadcrumbs={[
-            {
-              title: "News",
-              url: "/news",
-            },
-            { title: content.title.rendered },
-          ]}
-        />
+        <BreadcrumbsModule breadcrumbs={breadcrumbs} />
+        <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
         <div
           className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}
         >

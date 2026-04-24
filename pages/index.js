@@ -23,6 +23,24 @@ import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
 import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 
+const USER_BASE_URL = process.env.NEXT_PUBLIC_USER_BASE_URL?.replace(/\/$/, "");
+const WEBSITE_JSON_LD =
+  process.env.NEXT_PUBLIC_SITE_ENV === "user" && USER_BASE_URL
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        url: USER_BASE_URL,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${USER_BASE_URL}/search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      })
+    : null;
+
 function Home({
   sourceSets,
   guides,
@@ -39,6 +57,12 @@ function Home({
       hidePageHeader={siteEnv === "user"}
       hideSearchBar={siteEnv === "pro"}
     >
+      {WEBSITE_JSON_LD && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: WEBSITE_JSON_LD }}
+        />
+      )}
       <div id="main" role="main">
         <HomeUser
           sourceSets={sourceSets}
