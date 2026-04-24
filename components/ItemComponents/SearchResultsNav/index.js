@@ -41,7 +41,7 @@ function SearchResultsNav() {
   const currentPath = asPath.split("?")[0];
 
   // navContext shape: { forPath, prev, next, prevQuery, nextQuery }
-  // Populated client-side from sessionStorage. Provides:
+  // Populated client-side from localStorage. Provides:
   //   - prev/next paths when not in the URL (user arrived via a neighbor link)
   //   - outgoing queries including second-level neighbors
   // Initialized to null; the effect below fills it in.
