@@ -90,11 +90,9 @@ export async function getServerSideProps(context) {
   try {
   // fetch home info
   // 1. fetch the settings from WP
-  const settingsRes = await fetch(API_SETTINGS_ENDPOINT);
-  if (!settingsRes.ok) {
-    if (settingsRes.status >= 500) return upstreamUnavailable(context.res, settingsRes);
-    return { notFound: true };
-  }
+  const settingsRes = await safeFetch(API_SETTINGS_ENDPOINT);
+  if (isUpstreamUnavailable(settingsRes)) return upstreamUnavailable(context.res, settingsRes);
+  if (!settingsRes?.ok) return { notFound: true };
   const settingsJson = await settingsRes.json();
   // 2. get the corresponding value
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
@@ -217,17 +215,15 @@ export async function getServerSideProps(context) {
     newsItems = await newsRes.json();
   }
 
-  const props = washObject({
-    sourceSets,
-    guides,
-    exhibitions: featuredExhibits,
-    headerDescription,
-    news: newsItems,
-    content: homepageJson,
-  });
-
   return {
-    props: props,
+    props: washObject({
+      sourceSets,
+      guides,
+      exhibitions: featuredExhibits,
+      headerDescription,
+      news: newsItems,
+      content: homepageJson,
+    }),
   };
   } catch (e) {
     console.error("[SSR] getServerSideProps failed:", e);

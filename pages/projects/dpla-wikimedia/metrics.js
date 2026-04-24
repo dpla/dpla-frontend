@@ -11,7 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -122,15 +122,13 @@ export async function getServerSideProps(context) {
   const isFilterView = !!(show || hub);
 
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
-  if (!menuResponse?.ok) {
-    if (!menuResponse || menuResponse.status >= 500) {
-      // Sidebar nav is non-critical — render page without it and signal 503
-      context.res.statusCode = 503;
-      context.res.setHeader("Retry-After", "10");
-      return { props: washObject({ items: [], isFilterView }) };
-    }
-    return { notFound: true };
+  if (isUpstreamUnavailable(menuResponse)) {
+    await Promise.allSettled([menuResponse?.body?.cancel?.()]);
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: washObject({ items: [], isFilterView }) };
   }
+  if (!menuResponse?.ok) return { notFound: true };
   const menuJson = await menuResponse.json();
 
   return {

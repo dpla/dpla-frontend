@@ -17,7 +17,7 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable } from "lib/safeFetch";
 
 function Contact(props) {
   const { sidebarItems } = props;
@@ -55,22 +55,17 @@ export const getServerSideProps = async (context) => {
     siteEnv === "user" ? ABOUT_MENU_ENDPOINT : PRO_MENU_ENDPOINT,
   );
 
-  if (!aboutMenuRes?.ok) {
-    if (!aboutMenuRes || aboutMenuRes.status >= 500) {
-      // Sidebar nav is non-critical — render page without it and signal 503
-      context.res.statusCode = 503;
-      context.res.setHeader("Retry-After", "10");
-      return { props: washObject({ sidebarItems: [] }) };
-    }
-    return { notFound: true };
+  if (isUpstreamUnavailable(aboutMenuRes)) {
+    await Promise.allSettled([aboutMenuRes?.body?.cancel?.()]);
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: washObject({ sidebarItems: [] }) };
   }
+  if (!aboutMenuRes?.ok) return { notFound: true };
 
   const aboutMenuJson = await aboutMenuRes.json();
-  const props = washObject({ sidebarItems: aboutMenuJson.items });
 
-  return {
-    props: props,
-  };
+  return { props: washObject({ sidebarItems: aboutMenuJson.items }) };
 };
 
 export default Contact;
