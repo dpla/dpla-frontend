@@ -71,11 +71,13 @@ export function useResultsWithContext(results) {
         }
       }
 
-      // If we're still at the entries limit,
-      // evict the oldest entry to make room.
+      // If we're at entries limit, evict oldest entries.
       if (surviving.length >= maxEntries) {
         surviving.sort((a, b) => a.ts - b.ts);
-        localStorage.removeItem(surviving[0].key);
+        const toEvict = surviving.length - maxEntries + 1;
+        for (let i = 0; i < toEvict; i++) {
+          localStorage.removeItem(surviving[i].key);
+        }
       }
 
       localStorage.setItem(
