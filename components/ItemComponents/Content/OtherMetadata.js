@@ -9,6 +9,7 @@ import css from "./Content.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
 function OtherMetadata({ item }) {
+  const rights = item.edmRights ? readMyRights(item.edmRights) : null;
   return (
     <div className={css.otherMetadata}>
       <dl className={css.contentDL}>
@@ -67,9 +68,9 @@ function OtherMetadata({ item }) {
         )}
         {item.subject && (
           <ItemTermValuePair className={css.subjects} heading="Subjects">
-            {item.subject.map((subj) => (
-              <span key={subj.name}>
-                <FacetLink facet="subject" value={subj.name} />
+            {item.subject.map((subj, i) => (
+              <span key={subj?.name ?? i}>
+                <FacetLink facet="subject" value={subj?.name} />
                 <br />
               </span>
             ))}
@@ -78,14 +79,14 @@ function OtherMetadata({ item }) {
         {item.spatial && (
           <ItemTermValuePair heading="Location">
             {Array.isArray(item.spatial) ? (
-              item.spatial.map((spatial) => (
-                <span key={spatial.name}>
-                  <FacetLink facet="location" value={spatial.name} />
+              item.spatial.map((spatial, i) => (
+                <span key={spatial?.name ?? i}>
+                  <FacetLink facet="location" value={spatial?.name} />
                   <br />
                 </span>
               ))
             ) : (
-              <FacetLink facet="location" value={item.spatial.name} />
+              <FacetLink facet="location" value={item.spatial?.name} />
             )}
           </ItemTermValuePair>
         )}
@@ -127,20 +128,20 @@ function OtherMetadata({ item }) {
             </a>
           </ItemTermValuePair>
         )}
-        {item.edmRights && readMyRights(item.edmRights) && (
+        {rights && (
           <ItemTermValuePair heading="Standardized Rights Statement">
-            {readMyRights(item.edmRights).label && (
+            {rights.label && (
               <a
                 href={item.edmRights}
                 rel="noopener noreferrer"
                 className={`${css.label} ${utils.link} external`}
                 target="_blank"
               >
-                {readMyRights(item.edmRights).label}:
+                {rights.label}:
               </a>
             )}
-            {readMyRights(item.edmRights).description}
-            {readMyRights(item.edmRights).description !== "" && <br />}
+            {rights.description}
+            {rights.description !== "" && <br />}
           </ItemTermValuePair>
         )}
         {item.rights && (
