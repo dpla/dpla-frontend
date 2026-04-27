@@ -2,9 +2,9 @@
 
 This repository contains the frontend for all websites operated by the [Digital Public Library of America](https://dp.la). A single Next.js 15 codebase, backed by a custom Express server, serves **12 distinct sites** across three site types — the main public search portal, a professionals portal, and ten regional hub sites for DPLA's partner network.
 
-Multi-tenancy is handled entirely through environment variables (`NEXT_PUBLIC_SITE_ENV`, `NEXT_PUBLIC_LOCAL_ID`) and Next.js routing rules. There are code forks nor separate deployments per site type.
+Multi-tenancy is handled entirely through environment variables (`NEXT_PUBLIC_SITE_ENV`, `NEXT_PUBLIC_LOCAL_ID`) and Next.js routing rules. There is a single codebase, but each site is built into its own Docker image — `NEXT_PUBLIC_*` variables are baked into the browser bundle at build time, so a separate image is required per site.
 
-```
+```text
 Browser → AWS WAF → AWS ALB → ECS Fargate (Express + Next.js)
                                      │
                      ┌───────────────┼────────────────┐
