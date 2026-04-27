@@ -2,7 +2,7 @@
 
 This repository contains the frontend for all websites operated by the [Digital Public Library of America](https://dp.la). A single Next.js 15 codebase, backed by a custom Express server, serves **12 distinct sites** across three site types — the main public search portal, a professionals portal, and ten regional hub sites for DPLA's partner network.
 
-Multi-tenancy is handled entirely through environment variables (`NEXT_PUBLIC_SITE_ENV`, `NEXT_PUBLIC_LOCAL_ID`) and Next.js routing rules. There are no code forks and no separate deployments per site type.
+Multi-tenancy is handled entirely through environment variables (`NEXT_PUBLIC_SITE_ENV`, `NEXT_PUBLIC_LOCAL_ID`) and Next.js routing rules. There are code forks nor separate deployments per site type.
 
 ```
 Browser → AWS WAF → AWS ALB → ECS Fargate (Express + Next.js)
@@ -42,7 +42,7 @@ The application is a **Next.js 15** app wrapped in a custom **Express** server. 
 
 - Multi-CPU clustering (always on in production)
 - Custom routes: `GET /healthcheck`, `GET /robots.txt`, `POST /mailchimp`, `POST /g/contact`, `POST /g/feedback`, `GET /wp-content/*` (redirects to WordPress)
-- All other requests are delegated to the Next.js handler
+- All other requests are passed through to Next.js
 
 **Key architectural decisions:**
 
@@ -225,7 +225,7 @@ WordPress responses are cached in-memory with a **90-second TTL**. If WordPress 
 
 ### Mailchimp
 
-Newsletter signups are handled by `POST /mailchimp` on the Express server. Requires `MAILCHIMP_KEY` and `MAILCHIMP_PREFIX`. List ID: `4c517f4bd0`. Interest groups: `NEWS`, `EDUCATION`, `GENEALOGY`.
+Newsletter signups are handled by `POST /mailchimp` on the Express server. The route requires `MAILCHIMP_KEY` and `MAILCHIMP_PREFIX`. The list ID is `4c517f4bd0`, with interest groups for `NEWS`, `EDUCATION`, and `GENEALOGY`.
 
 ### Google Analytics
 
@@ -269,7 +269,7 @@ ECS clusters:
 
 ### GitHub Actions
 
-Seventeen workflows are defined in `.github/workflows/`:
+There are seventeen workflows in `.github/workflows/`:
 
 | Workflow | Trigger | Purpose |
 |---|---|---|
@@ -310,9 +310,9 @@ Draft posts and pages can be previewed before publishing. Requires the `dpla-pre
 
 | Site | Behavior |
 |---|---|
-| `user` (dp.la) | Allows general crawlers; disallows `/search` and `/qa` |
+| `user` (dp.la) | Disallows `/search` and `/qa`; sets a crawl delay; specific spiders may be explicitly allowed |
 | `pro` (pro.dp.la) | Allows all crawlers; sets a 2-second crawl delay |
-| `local` (hub sites) | Disallows `/search`; includes the hub's sitemap URL |
+| `local` (hub sites) | Disallows `/search`; sets a crawl delay; includes the hub's sitemap URLs |
 | `cqa` (staging) | Disallows all crawlers |
 
 AI crawlers are blocked on all sites: GPTBot, ClaudeBot, anthropic-ai, CCBot, Google-Extended, Amazonbot, Bytespider, PerplexityBot, meta-external-agent, AhrefsBot, SemrushBot, MJ12bot, DotBot.
@@ -337,7 +337,7 @@ Contact forms and newsletter signups include a honeypot field (`i_prefer_usps_ma
 
 ### Internal API Header
 
-Production deployments set a `DPLA_INTERNAL_ACCESS` environment variable. The `instrumentation.js` Next.js lifecycle hook injects this value as a header on requests to `api-internal.dp.la`, matching a rule on the ALB listener that restricts access to the internal VPC endpoint. This value is never exposed to the browser.
+Production deployments set a `DPLA_INTERNAL_ACCESS` environment variable. The `instrumentation.js` Next.js lifecycle hook injects this value as a request header when calling `api-internal.dp.la`. An ALB listener rule checks for this header to gate access to the internal VPC endpoint. This value is never exposed to the browser.
 
 ---
 
