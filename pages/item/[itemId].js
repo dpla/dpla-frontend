@@ -192,10 +192,11 @@ export async function getServerSideProps(context) {
   const { originalRecord, ...strippedDoc } = doc;
 
   const descriptionText = joinIfArray(doc.sourceResource.description, " ");
+  const providerText = doc.provider?.name ? ` from ${doc.provider.name}` : "";
   const pageDescription = descriptionText
     ? truncateString(descriptionText, 155)
     : truncateString(
-        `${joinIfArray(doc.sourceResource.title, ", ")}, a ${joinIfArray(doc.sourceResource.type, ", ")} from ${doc.provider?.name}`,
+        `${joinIfArray(doc.sourceResource.title, ", ")}, a ${joinIfArray(doc.sourceResource.type, ", ")}${providerText}`,
         155
       );
   const canonicalUrl = `${process.env.NEXT_PUBLIC_USER_BASE_URL}/item/${doc.id}`;
