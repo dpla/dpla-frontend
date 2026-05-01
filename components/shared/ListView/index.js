@@ -400,6 +400,7 @@ export default function ListView({
                 title={item.title}
                 type={item.type}
                 url={item.thumbnailUrl}
+                provider={item.provider}
                 useDefaultImage={item.useDefaultImage}
               />
               <div className={css.itemInfo}>
