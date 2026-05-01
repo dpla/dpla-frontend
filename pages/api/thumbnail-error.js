@@ -1,5 +1,6 @@
 const MAX_URL_LENGTH = 2048;
 const MAX_PROVIDER_LENGTH = 256;
+const MAX_SOURCE_URL_LENGTH = 2048;
 const WINDOW_MS = 60_000; // 1 minute window for rate limiting
 const LIMIT = 60; // Rate limit: Max requests per window
 const ipWindows = new Map(); // ip -> { count, windowStart }
@@ -45,11 +46,15 @@ export default function handler(req, res) {
     typeof req.body?.provider === "string"
       ? req.body.provider.slice(0, MAX_PROVIDER_LENGTH)
       : "";
+  const sourceUrl =
+    typeof req.body?.sourceUrl === "string"
+      ? req.body.sourceUrl.slice(0, MAX_SOURCE_URL_LENGTH)
+      : "";
 
   if (!url) {
     return res.status(400).end();
   }
 
-  console.log(JSON.stringify({ event: "thumbnail_error", url, provider }));
+  console.log(JSON.stringify({ event: "thumbnail_error", url, provider, sourceUrl }));
   return res.status(204).end();
 }

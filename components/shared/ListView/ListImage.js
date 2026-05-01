@@ -30,7 +30,7 @@ class ListImage extends React.Component {
 
   updateImage() {
     const probedUrl = this.props.url;
-    const { provider } = this.props;
+    const { provider, thumbnailSourceUrl } = this.props;
     this._cancelProbe = probeImage(
       probedUrl,
       () => {
@@ -39,6 +39,7 @@ class ListImage extends React.Component {
         }
       },
       provider,
+      thumbnailSourceUrl,
     );
   }
 

@@ -86,6 +86,7 @@ class MainMetadata extends React.Component {
                 type={item.type}
                 url={item.thumbnailUrl}
                 provider={item.partner}
+                thumbnailSourceUrl={item.thumbnailSourceUrl}
                 defaultImageClass={css.defaultItemImage}
                 useDefaultImage={item.useDefaultImage}
               />
