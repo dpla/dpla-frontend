@@ -27,11 +27,17 @@ class ItemImage extends React.Component {
 
   updateImage() {
     const probedUrl = this.props.url;
-    this._cancelProbe = probeImage(probedUrl, () => {
-      if (this.props.url === probedUrl) {
-        this.setState({ updateToDefaultImage: true });
-      }
-    });
+    const { provider, thumbnailSourceUrl } = this.props;
+    this._cancelProbe = probeImage(
+      probedUrl,
+      () => {
+        if (this.props.url === probedUrl) {
+          this.setState({ updateToDefaultImage: true });
+        }
+      },
+      provider,
+      thumbnailSourceUrl,
+    );
   }
 
   render() {
