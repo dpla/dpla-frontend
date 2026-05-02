@@ -55,6 +55,10 @@ export default function handler(req, res) {
     return res.status(400).end();
   }
 
-  console.log(JSON.stringify({ event: "thumbnail_error", url, provider, sourceUrl }));
+  // Strip query strings and hashes before logging
+  const redactedUrl = url.split(/[?#]/)[0];
+  const redactedSourceUrl = sourceUrl ? sourceUrl.split(/[?#]/)[0] : "";
+
+  console.log(JSON.stringify({ event: "thumbnail_error", url: redactedUrl, provider, sourceUrl: redactedSourceUrl }));
   return res.status(204).end();
 }
