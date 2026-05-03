@@ -15,7 +15,7 @@ import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -86,7 +86,8 @@ export async function getServerSideProps(context) {
   }
   const menuError = checkResponseForSSRSafe(menuItemsRes, "Guides menu");
   if (menuError) return menuError;
-  const menuItemsJson = await menuItemsRes.json();
+  const menuItemsJson = await safeJson(menuItemsRes);
+  if (menuItemsJson === null) return upstreamUnavailable(context.res, menuItemsRes);
   const guideSlug = context.params.guideSlug;
   const guide = menuItemsJson.items.find(
     (item) => item.post_name === guideSlug,
@@ -101,7 +102,8 @@ export async function getServerSideProps(context) {
   }
   const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
   if (guideError) return guideError;
-  const guideJson = await guideRes.json();
+  const guideJson = await safeJson(guideRes);
+  if (guideJson === null) return upstreamUnavailable(context.res, guideRes);
 
   let breadcrumbs = [];
 

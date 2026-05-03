@@ -17,7 +17,7 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 function Contact(props) {
   const { sidebarItems } = props;
@@ -63,7 +63,12 @@ export const getServerSideProps = async (context) => {
   }
   if (!aboutMenuRes?.ok) return { notFound: true };
 
-  const aboutMenuJson = await aboutMenuRes.json();
+  const aboutMenuJson = await safeJson(aboutMenuRes);
+  if (aboutMenuJson === null) {
+    context.res.statusCode = 503;
+    context.res.setHeader("Retry-After", "10");
+    return { props: washObject({ sidebarItems: [] }) };
+  }
 
   return { props: washObject({ sidebarItems: aboutMenuJson.items }) };
 };

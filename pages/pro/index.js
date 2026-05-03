@@ -6,7 +6,7 @@ import HomePro from "components/HomePageComponents/HomePro";
 import { NEWS_PRO_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
-import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -37,7 +37,8 @@ export async function getServerSideProps(context) {
   }
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;
-  const settingsJson = await settingsRes.json();
+  const settingsJson = await safeJson(settingsRes);
+  if (settingsJson === null) return upstreamUnavailable(context.res);
 
   // fetch home content (depends on settings for endpoint)
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;
@@ -49,12 +50,13 @@ export async function getServerSideProps(context) {
   const homeError = checkResponseForSSRSafe(homeRes, "Pro homepage");
   if (homeError) return homeError;
   const [homeJson, newsItems] = await Promise.all([
-    homeRes.json(),
-    newsRes?.ok ? newsRes.json() : Promise.resolve([]),
+    safeJson(homeRes),
+    newsRes?.ok ? safeJson(newsRes) : Promise.resolve([]),
   ]);
+  if (homeJson === null) return upstreamUnavailable(context.res);
 
   const props = washObject({
-    news: newsItems,
+    news: newsItems ?? [],
     content: homeJson,
   });
 

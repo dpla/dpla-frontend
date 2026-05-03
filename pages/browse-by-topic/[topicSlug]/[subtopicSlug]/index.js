@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
 import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, safeJson } from "lib/safeFetch";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -87,7 +87,8 @@ export const getServerSideProps = async (context) => {
     return { notFound: true };
   }
 
-  const topicsJson = await topicsRes.json();
+  const topicsJson = await safeJson(topicsRes);
+  if (topicsJson === null) return { notFound: true };
   const currentTopic = topicsJson[0];
   if (!currentTopic) {
     return {
@@ -103,7 +104,8 @@ export const getServerSideProps = async (context) => {
     return { notFound: true };
   }
 
-  const subtopicsJson = await subtopicsRes.json();
+  const subtopicsJson = await safeJson(subtopicsRes);
+  if (subtopicsJson === null) return { notFound: true };
   const subtopics = subtopicsJson.map((subtopic) => ({
     ...subtopic,
     thumbnailUrl: subtopic.acf.category_image,
@@ -134,7 +136,8 @@ export const getServerSideProps = async (context) => {
     return { notFound: true };
   }
 
-  const itemsJson = await itemsRes.json();
+  const itemsJson = await safeJson(itemsRes);
+  if (itemsJson === null) return { notFound: true };
 
   const fetchItem = async (item) => {
     const itemDplaId = extractItemId(item.acf.dpla_url);
@@ -146,8 +149,8 @@ export const getServerSideProps = async (context) => {
     if (!itemRes?.ok) {
       return null;
     }
-    const itemJson = await itemRes.json();
-    const doc = itemJson.docs?.[0];
+    const itemJson = await safeJson(itemRes);
+    const doc = itemJson?.docs?.[0];
     if (!doc) {
       return null;
     }

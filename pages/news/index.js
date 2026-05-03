@@ -9,7 +9,7 @@ import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
 import { formatDate } from "lib";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { DESCRIPTION, NEWS_TAGS, TITLE } from "constants/news";
@@ -151,7 +151,8 @@ export async function getServerSideProps({ query, res }) {
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "news menu");
   if (menuError) return menuError;
-  const menuJson = await menuResponse.json();
+  const menuJson = await safeJson(menuResponse);
+  if (menuJson === null) return upstreamUnavailable(res, authorRes);
   const pageItem = menuJson.items.find(
     (item) => item.post_name.indexOf("news") === 0,
   );
@@ -164,7 +165,8 @@ export async function getServerSideProps({ query, res }) {
     }
     const authorError = checkResponseForSSRSafe(authorRes, "news author");
     if (authorError) return authorError;
-    authorJson = await authorRes.json();
+    authorJson = await safeJson(authorRes);
+    if (authorJson === null) return upstreamUnavailable(res, authorRes);
   }
 
   // fetch news
@@ -191,7 +193,8 @@ export async function getServerSideProps({ query, res }) {
     if (isUpstreamUnavailable(newsRes)) {
       return upstreamUnavailable(res, newsRes);
     }
-    newsItems = await newsRes.json();
+    newsItems = await safeJson(newsRes);
+    if (newsItems === null) return upstreamUnavailable(res, newsRes);
     newsCount = newsRes.headers.get("X-WP-Total");
     newsPageCount = newsRes.headers.get("X-WP-TotalPages");
     error = newsItems.code !== undefined;

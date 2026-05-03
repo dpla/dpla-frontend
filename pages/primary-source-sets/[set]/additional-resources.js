@@ -16,7 +16,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -71,7 +71,8 @@ export async function getServerSideProps({ query, res }) {
   }
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;
-  const set = await setRes.json();
+  const set = await safeJson(setRes);
+  if (set === null) return upstreamUnavailable(context.res);
   const props = washObject({
     set,
     currentFullUrl,

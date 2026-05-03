@@ -4,7 +4,7 @@ import MainLayout from "components/MainLayout";
 import AllSets from "components/PrimarySourceSetsComponents/AllSets";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import {washObject} from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
@@ -53,7 +53,8 @@ export async function getServerSideProps({ query, res }) {
   }
   const resError = checkResponseForSSRSafe(fetchRes, "PSS sets");
   if (resError) return resError;
-  const json = await fetchRes.json();
+  const json = await safeJson(fetchRes);
+  if (json === null) return upstreamUnavailable(context.res);
   const props = washObject({
     sets: json,
   });

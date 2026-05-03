@@ -21,6 +21,7 @@ import {
   wpDraftUrl,
   isUpstreamUnavailable,
   upstreamUnavailable,
+  safeJson,
 } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 
@@ -81,9 +82,11 @@ export async function getServerSideProps(context) {
     return { notFound: true };
   }
 
-  const settingsJson = await settingsRes.json();
+  const settingsJson = await safeJson(settingsRes);
+  if (settingsJson === null) return upstreamUnavailable(context.res, aboutMenuRes);
   const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-  const aboutMenuJson = await aboutMenuRes.json();
+  const aboutMenuJson = await safeJson(aboutMenuRes);
+  if (aboutMenuJson === null) return upstreamUnavailable(context.res, aboutMenuRes);
   const indexPageItem = aboutMenuJson.items.find(
     (item) => item.url === endpoint,
   );
@@ -102,7 +105,7 @@ export async function getServerSideProps(context) {
             : getMenuItemUrl(guide);
           const guideRes = await safeFetch(guideUrl, authOptions);
           if (!guideRes?.ok) return null;
-          const guideJson = await guideRes.json();
+          const guideJson = await safeJson(guideRes);
           return {
             ...guide,
             slug: guideJson.slug ?? guide.post_name,
