@@ -54,7 +54,7 @@ export async function getServerSideProps({ query, res }) {
   const resError = checkResponseForSSRSafe(fetchRes, "PSS sets");
   if (resError) return resError;
   const json = await safeJson(fetchRes);
-  if (json === null) return upstreamUnavailable(context.res);
+  if (json === null) return upstreamUnavailable(res);
   const props = washObject({
     sets: json,
   });

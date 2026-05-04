@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
   const settingsError = checkResponseForSSRSafe(settingsRes, "Pro settings");
   if (settingsError) return settingsError;
   const settingsJson = await safeJson(settingsRes);
-  if (settingsJson === null) return upstreamUnavailable(context.res);
+  if (settingsJson === null) return upstreamUnavailable(context.res, newsRes);
 
   // fetch home content (depends on settings for endpoint)
   const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.pro_homepage_endpoint}`;

@@ -106,6 +106,7 @@ export async function getServerSideProps(context) {
           const guideRes = await safeFetch(guideUrl, authOptions);
           if (!guideRes?.ok) return null;
           const guideJson = await safeJson(guideRes);
+          if (guideJson === null) return null;
           return {
             ...guide,
             slug: guideJson.slug ?? guide.post_name,

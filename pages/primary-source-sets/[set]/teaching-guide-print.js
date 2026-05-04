@@ -50,7 +50,7 @@ export async function getServerSideProps({ query, res }) {
   const setError = checkResponseForSSRSafe(setRes, `set "${query.set}"`);
   if (setError) return setError;
   const set = await safeJson(setRes);
-  if (set === null) return upstreamUnavailable(context.res);
+  if (set === null) return upstreamUnavailable(res);
   const teachingGuide = set.hasPart.find(
     (item) => item.disambiguatingDescription === "guide",
   );

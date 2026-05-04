@@ -62,7 +62,7 @@ export const getServerSideProps = async ({ res }) => {
   const resError = checkResponseForSSRSafe(fetchRes, "Partner browse");
   if (resError) return resError;
   const json = await safeJson(fetchRes);
-  if (json === null) return upstreamUnavailable(context.res);
+  if (json === null) return upstreamUnavailable(res);
   const terms = json?.facets?.[facetName]?.terms;
   if (!Array.isArray(terms)) {
     return { notFound: true };
