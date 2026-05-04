@@ -9,7 +9,7 @@ import { LOCALS } from "constants/local";
 
 import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 function PartnerBrowse({ partners, temporarilyUnavailable }) {
@@ -61,7 +61,8 @@ export const getServerSideProps = async ({ res }) => {
   }
   const resError = checkResponseForSSRSafe(fetchRes, "Partner browse");
   if (resError) return resError;
-  const json = await fetchRes.json();
+  const json = await safeJson(fetchRes);
+  if (json === null) return upstreamUnavailable(res);
   const terms = json?.facets?.[facetName]?.terms;
   if (!Array.isArray(terms)) {
     return { notFound: true };

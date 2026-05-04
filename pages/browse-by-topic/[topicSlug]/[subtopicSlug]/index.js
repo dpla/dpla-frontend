@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
 import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, safeJson, checkResponseForSSRSafe, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -83,11 +83,14 @@ export const getServerSideProps = async (context) => {
 
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  if (!topicsRes?.ok) {
-    return { notFound: true };
+  if (isUpstreamUnavailable(topicsRes)) {
+    return upstreamUnavailable(context.res, topicsRes);
   }
+  const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
+  if (topicsError) return topicsError;
 
-  const topicsJson = await topicsRes.json();
+  const topicsJson = await safeJson(topicsRes);
+  if (topicsJson === null) return upstreamUnavailable(context.res);
   const currentTopic = topicsJson[0];
   if (!currentTopic) {
     return {
@@ -99,11 +102,14 @@ export const getServerSideProps = async (context) => {
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
 
-  if (!subtopicsRes?.ok) {
-    return { notFound: true };
+  if (isUpstreamUnavailable(subtopicsRes)) {
+    return upstreamUnavailable(context.res, subtopicsRes);
   }
+  const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Subtopics");
+  if (subtopicsError) return subtopicsError;
 
-  const subtopicsJson = await subtopicsRes.json();
+  const subtopicsJson = await safeJson(subtopicsRes);
+  if (subtopicsJson === null) return upstreamUnavailable(context.res);
   const subtopics = subtopicsJson.map((subtopic) => ({
     ...subtopic,
     thumbnailUrl: subtopic.acf.category_image,
@@ -130,11 +136,14 @@ export const getServerSideProps = async (context) => {
     `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
   );
 
-  if (!itemsRes?.ok) {
-    return { notFound: true };
+  if (isUpstreamUnavailable(itemsRes)) {
+    return upstreamUnavailable(context.res, itemsRes);
   }
+  const itemsError = checkResponseForSSRSafe(itemsRes, "Subtopic items");
+  if (itemsError) return itemsError;
 
-  const itemsJson = await itemsRes.json();
+  const itemsJson = await safeJson(itemsRes);
+  if (itemsJson === null) return upstreamUnavailable(context.res);
 
   const fetchItem = async (item) => {
     const itemDplaId = extractItemId(item.acf.dpla_url);
@@ -146,8 +155,8 @@ export const getServerSideProps = async (context) => {
     if (!itemRes?.ok) {
       return null;
     }
-    const itemJson = await itemRes.json();
-    const doc = itemJson.docs?.[0];
+    const itemJson = await safeJson(itemRes);
+    const doc = itemJson?.docs?.[0];
     if (!doc) {
       return null;
     }
