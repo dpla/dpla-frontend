@@ -101,7 +101,7 @@ export async function getStaticProps(context) {
   const homeFile = homePage.page_blocks[0].attachments[0].files[0];
   const thumbnailUrl = homeFile.file_urls.fullsize;
   const dplaItemId = getDplaItemIdFromExhibit(item);
-  const dplaItemJson = loadDplaItem(dplaItemId);
+  const dplaItemJson = await loadDplaItem(dplaItemId);
 
   const props = washObject({
     thumbnailUrl,
