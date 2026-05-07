@@ -82,7 +82,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
   if (!item) return null;
   const metadataBase = `/item/${item.id}`;
   return (
-    <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
+    <MainLayout pageTitle={joinIfArray(item.title, ", ")} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
       <SearchResultsNav />
       <BreadcrumbsModule
         breadcrumbs={[
