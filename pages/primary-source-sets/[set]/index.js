@@ -13,7 +13,7 @@ import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 
 import { removeQueryParams } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -61,7 +61,8 @@ export async function getServerSideProps(context) {
   const apiError = checkResponseForSSRSafe(api, `set "${set}"`);
   if (apiError) return apiError;
 
-  const json = await api.json();
+  const json = await safeJson(api);
+  if (json === null) return upstreamUnavailable(context.res);
 
   const parts = json.hasPart.map((part) => {
     let thumbnailUrl = part.thumbnailUrl;

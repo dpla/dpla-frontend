@@ -14,7 +14,7 @@ import {
   decodeHTMLEntities,
   wordpressLinks,
 } from "lib";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -125,7 +125,8 @@ export async function getServerSideProps(context) {
   }
   const menuError = checkResponseForSSRSafe(menuResponse, "Pro menu");
   if (menuError) return menuError;
-  const menuJson = await menuResponse.json();
+  const menuJson = await safeJson(menuResponse);
+  if (menuJson === null) return upstreamUnavailable(context.res, menuResponse);
   const menuItems = menuJson.items;
   const pageItem = menuItems.find((item) => item.post_name === pageName);
   if (!pageItem) {
@@ -139,7 +140,8 @@ export async function getServerSideProps(context) {
   }
   const pageError = checkResponseForSSRSafe(pageRes, "Pro page");
   if (pageError) return pageError;
-  const pageJson = await pageRes.json();
+  const pageJson = await safeJson(pageRes);
+  if (pageJson === null) return upstreamUnavailable(context.res, pageRes);
 
   // for the breadcrumbs
   const breadcrumbObject = getBreadcrumbs({

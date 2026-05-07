@@ -10,7 +10,7 @@ import SourceCarousel from "components/PrimarySourceSetsComponents/Source/compon
 
 import { extractSourceId } from "lib";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -70,8 +70,18 @@ export async function getServerSideProps(context) {
   const setError = checkResponseForSSRSafe(setRes, `set "${set}"`);
   if (setError) return setError;
 
-  const [sourceText, setJson] = await Promise.all([sourceRes.text(), setRes.json()]);
-  const sanitizedSourceJson = JSON.parse(sourceText.replace(/\r\n/gi, ""));
+  const [sourceText, setJson] = await Promise.all([sourceRes.text(), safeJson(setRes)]);
+  if (setJson === null) return upstreamUnavailable(context.res);
+  let sanitizedSourceJson;
+  try {
+    sanitizedSourceJson = JSON.parse(sourceText.replace(/\r\n/gi, ""));
+  } catch (err) {
+    console.warn(
+      `[SSR] PSS source body is not valid JSON for source "${source}" (Content-Type: ${sourceRes.headers?.get("content-type") ?? "unknown"}):`,
+      err.message,
+    );
+    return upstreamUnavailable(context.res);
+  }
   const parts = setJson.hasPart.map((part) => {
     let thumbnailUrl = part.thumbnailUrl;
     let useDefaultImage = false;
