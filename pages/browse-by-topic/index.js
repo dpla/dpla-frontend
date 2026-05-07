@@ -8,7 +8,7 @@ import {
   TITLE,
 } from "constants/topicBrowse";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, upstreamUnavailable, safeJson } from "lib/safeFetch";
 
 function TopicBrowse({ topics, temporarilyUnavailable }) {
   if (temporarilyUnavailable) return <ServiceUnavailable />;
@@ -29,7 +29,8 @@ export const getServerSideProps = async (context) => {
   if (!res?.ok) {
     return { notFound: true };
   }
-  const json = await res.json();
+  const json = await safeJson(res);
+  if (json === null) return upstreamUnavailable(context.res);
   const topics = washObject(
     json.filter((topic) => !topic.parent && topic.name !== "Uncategorized"),
   );

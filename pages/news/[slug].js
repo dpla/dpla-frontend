@@ -21,7 +21,7 @@ import utils from "stylesheets/utils.module.scss";
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/news.module.scss";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -161,9 +161,12 @@ export async function getServerSideProps(context) {
   if (postError) return postError;
 
   const [menuJson, initialPostJson] = await Promise.all([
-    menuResponse.json(),
-    postRes.json(),
+    safeJson(menuResponse),
+    safeJson(postRes),
   ]);
+  if (menuJson === null || initialPostJson === null) {
+    return upstreamUnavailable(context.res);
+  }
 
   // If slug lookup returned nothing and the slug is numeric, try ID lookup —
   // this handles draft posts which have no slug yet in WordPress.
@@ -178,7 +181,8 @@ export async function getServerSideProps(context) {
     }
     const byIdError = checkResponseForSSRSafe(byIdRes, "News post by ID");
     if (byIdError) return byIdError;
-    postJson = await byIdRes.json();
+    postJson = await safeJson(byIdRes);
+    if (postJson === null) return upstreamUnavailable(context.res, byIdRes);
   }
 
   if (postJson.length === 0) {
@@ -198,7 +202,8 @@ export async function getServerSideProps(context) {
   const authorError = checkResponseForSSRSafe(authorRes, "News post author");
   if (authorError) return authorError;
 
-  const authorJson = await authorRes.json();
+  const authorJson = await safeJson(authorRes);
+  if (authorJson === null) return upstreamUnavailable(context.res, authorRes);
 
   let pageDescription = "";
   if (postJson[0].excerpt && postJson[0].excerpt.rendered) {
