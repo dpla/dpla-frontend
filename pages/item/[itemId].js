@@ -184,9 +184,7 @@ export async function getServerSideProps(context) {
       : doc.sourceResource.date;
   const language =
     doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
-      ? doc.sourceResource.language.map((lang) => {
-          return lang?.name;
-        })
+      ? doc.sourceResource.language.map((lang) => lang?.name).filter(Boolean)
       : doc.sourceResource.language;
   const dataProvider = getDataProviderName(doc.dataProvider);
   const { originalRecord, ...strippedDoc } = doc;
