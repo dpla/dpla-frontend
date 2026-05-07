@@ -127,7 +127,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
-            spatialName={item.spatial?.name}
+            spatialName={Array.isArray(item.spatial) ? item.spatial.map((s) => s?.name).filter(Boolean).join(", ") : item.spatial?.name}
             sourceUrl={item.sourceUrl}
             className={css.citeButton}
             toCiteText="item"
