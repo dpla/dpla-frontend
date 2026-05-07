@@ -127,7 +127,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
-            spatialName={Array.isArray(item.spatial) ? item.spatial.map((s) => s?.name).filter(Boolean).join(", ") : item.spatial?.name}
+            spatialName={item.spatialName}
             sourceUrl={item.sourceUrl}
             className={css.citeButton}
             toCiteText="item"
@@ -186,6 +186,9 @@ export async function getServerSideProps(context) {
     doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
       ? doc.sourceResource.language.map((lang) => lang?.name).filter(Boolean)
       : doc.sourceResource.language;
+  const spatialName = Array.isArray(doc.sourceResource.spatial)
+    ? doc.sourceResource.spatial.map((s) => s?.name).filter(Boolean).join(", ")
+    : doc.sourceResource.spatial?.name;
   const dataProvider = getDataProviderName(doc.dataProvider);
   const { originalRecord, ...strippedDoc } = doc;
 
@@ -212,6 +215,7 @@ export async function getServerSideProps(context) {
       partner: doc.provider?.name ?? "",
       sourceUrl: doc.isShownAt,
       useDefaultImage: !doc.object,
+      spatialName,
       edmRights: doc.rights,
       doc: strippedDoc,
       originalRecord,
