@@ -65,7 +65,7 @@ export const getServerSideProps = async ({ res }) => {
   if (json === null) return upstreamUnavailable(res);
   const terms = json?.facets?.[facetName]?.terms;
   if (!Array.isArray(terms)) {
-    return { notFound: true };
+    return upstreamUnavailable(res);
   }
 
   const partners = washObject(

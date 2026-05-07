@@ -6,6 +6,7 @@ import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar"
 
 import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
 import { safeFetch, safeJson, checkResponseForSSRSafe, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -19,7 +20,8 @@ import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 
 function SubtopicItemsList(props) {
-  const { topic, subtopic, previousSubtopic, nextSubtopic, items } = props;
+  const { topic, subtopic, previousSubtopic, nextSubtopic, items, temporarilyUnavailable } = props;
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!topic || !subtopic) return null;
   return (
     <MainLayout pageTitle={subtopic.name} pageImage={subtopic.thumbnailUrl}>
