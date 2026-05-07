@@ -5,7 +5,8 @@ import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
 import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
-import { safeFetch } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
   API_ENDPOINT_ALL_ITEMS_100_PER_PAGE,
@@ -19,7 +20,8 @@ import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 
 function SubtopicItemsList(props) {
-  const { topic, subtopic, previousSubtopic, nextSubtopic, items } = props;
+  const { topic, subtopic, previousSubtopic, nextSubtopic, items, temporarilyUnavailable } = props;
+  if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!topic || !subtopic) return null;
   return (
     <MainLayout pageTitle={subtopic.name} pageImage={subtopic.thumbnailUrl}>
@@ -83,9 +85,8 @@ export const getServerSideProps = async (context) => {
 
   const topicsRes = await safeFetch(API_ENDPOINT_ALL_TOPICS + "?slug=" + topicSlug);
 
-  if (!topicsRes?.ok) {
-    return { notFound: true };
-  }
+  if (isUpstreamUnavailable(topicsRes)) return upstreamUnavailable(context.res, topicsRes);
+  if (!topicsRes?.ok) return { notFound: true };
 
   const topicsJson = await topicsRes.json();
   const currentTopic = topicsJson[0];
@@ -99,9 +100,8 @@ export const getServerSideProps = async (context) => {
     API_ENDPOINT_SUBTOPICS_FOR_TOPIC + "?parent=" + currentTopic.term_id,
   );
 
-  if (!subtopicsRes?.ok) {
-    return { notFound: true };
-  }
+  if (isUpstreamUnavailable(subtopicsRes)) return upstreamUnavailable(context.res, subtopicsRes);
+  if (!subtopicsRes?.ok) return { notFound: true };
 
   const subtopicsJson = await subtopicsRes.json();
   const subtopics = subtopicsJson.map((subtopic) => ({
@@ -130,9 +130,8 @@ export const getServerSideProps = async (context) => {
     `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
   );
 
-  if (!itemsRes?.ok) {
-    return { notFound: true };
-  }
+  if (isUpstreamUnavailable(itemsRes)) return upstreamUnavailable(context.res, itemsRes);
+  if (!itemsRes?.ok) return { notFound: true };
 
   const itemsJson = await itemsRes.json();
 
