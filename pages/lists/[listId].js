@@ -95,6 +95,7 @@ const List = () => {
             return {
               ...result.sourceResource,
               thumbnailUrl,
+              thumbnailSourceUrl: result.object,
               id: result.id ? result.id : result.sourceResource["@id"],
               sourceUrl: result.isShownAt,
               provider: result.provider && result.provider.name,

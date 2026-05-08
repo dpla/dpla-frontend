@@ -207,6 +207,7 @@ export async function getServerSideProps(context) {
       ...doc.sourceResource,
       id: doc.id,
       thumbnailUrl,
+      thumbnailSourceUrl: doc.object,
       contributor: dataProvider,
       intermediateProvider: doc.intermediateProvider,
       date: date,
