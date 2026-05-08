@@ -154,11 +154,11 @@ function OtherMetadata({ item }) {
         )}
         {item.rights && (
           <ItemTermValuePair heading="Rights">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: joinIfArray(item.rights, "<br />"),
-              }}
-            />
+            {!Array.isArray(item.rights) ? (
+              <div>{item.rights}</div>
+            ) : (
+              item.rights.map((right, i) => <div key={i}>{right}</div>)
+            )}
           </ItemTermValuePair>
         )}
       </dl>
