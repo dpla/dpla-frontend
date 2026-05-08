@@ -77,8 +77,7 @@ export async function getServerSideProps(context) {
     sanitizedSourceJson = JSON.parse(sourceText.replace(/\r\n/gi, ""));
   } catch (err) {
     console.warn(
-      `[SSR] PSS source body is not valid JSON for source "${source}" (Content-Type: ${sourceRes.headers?.get("content-type") ?? "unknown"}):`,
-      err.message,
+      `[SSR] PSS source body is not valid JSON for source "${source}" (Content-Type: ${sourceRes.headers?.get("content-type") ?? "unknown"}): ${err.message}`,
     );
     return upstreamUnavailable(context.res);
   }
