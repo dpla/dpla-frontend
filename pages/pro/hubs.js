@@ -7,7 +7,7 @@ import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 
 import { wordpressLinks } from "lib/index";
-import { safeFetch, wpAuthFetchOptions, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, isUpstreamUnavailable, upstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
@@ -121,7 +121,8 @@ export async function getServerSideProps(context) {
   if (!hubRes?.ok) {
     return { notFound: true };
   }
-  const hubJson = await hubRes.json();
+  const hubJson = await safeJson(hubRes);
+  if (hubJson === null) return upstreamUnavailable(context.res, hubRes);
   const hubItem = hubJson[0];
   if (!hubItem) {
     return { notFound: true };
@@ -130,7 +131,7 @@ export async function getServerSideProps(context) {
   // fetch news posts
   const newsRes = await safeFetch(NEWS_PRO_ENDPOINT);
 
-  const newsItems = newsRes?.ok ? await newsRes.json() : [];
+  const newsItems = newsRes?.ok ? (await safeJson(newsRes) ?? []) : [];
 
   const props = washObject({
     page: hubItem,

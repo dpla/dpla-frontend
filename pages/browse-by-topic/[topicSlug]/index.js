@@ -13,7 +13,7 @@ import {
 } from "constants/topicBrowse";
 
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const sanitizeSourceSetId = (id) => {
@@ -60,7 +60,8 @@ export const getServerSideProps = async (context) => {
   const topicsError = checkResponseForSSRSafe(topicsRes, "Topic");
   if (topicsError) return topicsError;
 
-  const topicsJson = await topicsRes.json();
+  const topicsJson = await safeJson(topicsRes);
+  if (topicsJson === null) return upstreamUnavailable(context.res);
   const currentTopic = topicsJson[0];
 
   if (!currentTopic) {
@@ -80,7 +81,8 @@ export const getServerSideProps = async (context) => {
   const subtopicsError = checkResponseForSSRSafe(subtopicsRes, "Topic subtopics");
   if (subtopicsError) return subtopicsError;
 
-  const subtopicsJson = await subtopicsRes.json();
+  const subtopicsJson = await safeJson(subtopicsRes);
+  if (subtopicsJson === null) return upstreamUnavailable(context.res);
   const subtopics = subtopicsJson.map((subtopic) => ({
     ...subtopic,
     thumbnailUrl: subtopic.acf.category_image,
@@ -118,7 +120,8 @@ export const getServerSideProps = async (context) => {
               await sourceSetRes?.body?.cancel?.().catch(() => {});
               return null;
             }
-            const sourceSetJson = await sourceSetRes.json();
+            const sourceSetJson = await safeJson(sourceSetRes);
+            if (!sourceSetJson) return null;
             const slug = extractSourceSetSlug(sourceSetJson["@id"]);
             if (!slug) return null;
             return {
