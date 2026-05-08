@@ -29,9 +29,8 @@ export default function handler(req, res) {
     return res.status(405).end();
   }
 
-  // Use the rightmost X-Forwarded-For value for remote address
   const ip =
-    (req.headers["x-forwarded-for"] || "").split(",").at(-1)?.trim() ||
+    (req.headers["x-forwarded-for"] || "").split(",")[0]?.trim() ||
     req.socket?.remoteAddress ||
     "unknown";
   if (isRateLimited(ip)) {
