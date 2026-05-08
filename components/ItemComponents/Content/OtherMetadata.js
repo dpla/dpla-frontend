@@ -9,6 +9,7 @@ import css from "./Content.module.scss";
 import utils from "stylesheets/utils.module.scss";
 
 function OtherMetadata({ item }) {
+  const rights = item.edmRights ? readMyRights(item.edmRights) : null;
   return (
     <div className={css.otherMetadata}>
       <dl className={css.contentDL}>
@@ -65,27 +66,35 @@ function OtherMetadata({ item }) {
             {joinIfArray(item.publisher)}
           </ItemTermValuePair>
         )}
-        {item.subject && (
+        {Array.isArray(item.subject) && (
           <ItemTermValuePair className={css.subjects} heading="Subjects">
-            {item.subject.map((subj) => (
-              <span key={subj.name}>
-                <FacetLink facet="subject" value={subj.name} />
-                <br />
-              </span>
-            ))}
+            {item.subject
+              .map((subj) => subj?.name)
+              .filter((name) => name)
+              .map((name, i) => (
+                <span key={name ?? i}>
+                  <FacetLink facet="subject" value={name} />
+                  <br />
+                </span>
+              ))}
           </ItemTermValuePair>
         )}
         {item.spatial && (
           <ItemTermValuePair heading="Location">
             {Array.isArray(item.spatial) ? (
-              item.spatial.map((spatial) => (
-                <span key={spatial.name}>
-                  <FacetLink facet="location" value={spatial.name} />
-                  <br />
-                </span>
-              ))
+              item.spatial
+                .map((spatial) => spatial?.name)
+                .filter((name) => name)
+                .map((name, i) => (
+                  <span key={name ?? i}>
+                    <FacetLink facet="location" value={name} />
+                    <br />
+                  </span>
+                ))
             ) : (
-              <FacetLink facet="location" value={item.spatial.name} />
+              item.spatial?.name && (
+                <FacetLink facet="location" value={item.spatial.name} />
+              )
             )}
           </ItemTermValuePair>
         )}
@@ -127,29 +136,29 @@ function OtherMetadata({ item }) {
             </a>
           </ItemTermValuePair>
         )}
-        {item.edmRights && readMyRights(item.edmRights) && (
+        {rights && (
           <ItemTermValuePair heading="Standardized Rights Statement">
-            {readMyRights(item.edmRights).label && (
+            {rights.label && (
               <a
-                href={item.edmRights}
+                href={rights.url}
                 rel="noopener noreferrer"
                 className={`${css.label} ${utils.link} external`}
                 target="_blank"
               >
-                {readMyRights(item.edmRights).label}:
+                {rights.label}:
               </a>
             )}
-            {readMyRights(item.edmRights).description}
-            {readMyRights(item.edmRights).description !== "" && <br />}
+            {rights.description}
+            {rights.description !== "" && <br />}
           </ItemTermValuePair>
         )}
         {item.rights && (
           <ItemTermValuePair heading="Rights">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: joinIfArray(item.rights, "<br />"),
-              }}
-            />
+            {!Array.isArray(item.rights) ? (
+              <div>{item.rights}</div>
+            ) : (
+              item.rights.map((right, i) => <div key={i}>{right}</div>)
+            )}
           </ItemTermValuePair>
         )}
       </dl>

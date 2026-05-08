@@ -82,7 +82,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
   if (!item) return null;
   const metadataBase = `/item/${item.id}`;
   return (
-    <MainLayout pageTitle={item.title} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
+    <MainLayout pageTitle={joinIfArray(item.title, ", ")} pageImage={item.thumbnailUrl} pageDescription={pageDescription} canonicalUrl={canonicalUrl}>
       <SearchResultsNav />
       <BreadcrumbsModule
         breadcrumbs={[
@@ -127,7 +127,7 @@ export default function ItemDetail({ item, temporarilyUnavailable, randomItemId,
           <CiteButton
             creator={item.creator}
             displayDate={item.date ? item.date.displayDate : item.date}
-            spatialName={item.spatial ? item.spatial.name : item.spatial}
+            spatialName={item.spatialName}
             sourceUrl={item.sourceUrl}
             className={css.citeButton}
             toCiteText="item"
@@ -149,10 +149,10 @@ export async function getServerSideProps(context) {
     return notFound;
   }
   const isQA = process.env.NEXT_PUBLIC_SITE_ENV === "cqa";
-  const randomItemId = isQA ? await getRandomItemIdAsync() : null;
   if (!DPLA_ITEM_ID_REGEX.test(itemId)) {
     return notFound;
   }
+  const randomItemId = isQA ? await getRandomItemIdAsync() : null;
 
   const itemUrl = new URL(process.env.API_URL);
   itemUrl.pathname += "/items/";
@@ -184,19 +184,20 @@ export async function getServerSideProps(context) {
       : doc.sourceResource.date;
   const language =
     doc.sourceResource.language && Array.isArray(doc.sourceResource.language)
-      ? doc.sourceResource.language.map((lang) => {
-          return lang.name;
-        })
+      ? doc.sourceResource.language.map((lang) => lang?.name).filter(Boolean)
       : doc.sourceResource.language;
+  const spatialName = Array.isArray(doc.sourceResource.spatial)
+    ? doc.sourceResource.spatial.map((s) => s?.name).filter(Boolean).join(", ")
+    : doc.sourceResource.spatial?.name;
   const dataProvider = getDataProviderName(doc.dataProvider);
-  const strippedDoc = { ...doc, originalRecord: "" };
-  delete strippedDoc.originalRecord;
+  const { originalRecord, ...strippedDoc } = doc;
 
   const descriptionText = joinIfArray(doc.sourceResource.description, " ");
+  const providerText = doc.provider?.name ? ` from ${doc.provider.name}` : "";
   const pageDescription = descriptionText
     ? truncateString(descriptionText, 155)
     : truncateString(
-        `${joinIfArray(doc.sourceResource.title, ", ")}, a ${joinIfArray(doc.sourceResource.type, ", ")} from ${doc.provider.name}`,
+        `${joinIfArray(doc.sourceResource.title, ", ")}, a ${joinIfArray(doc.sourceResource.type, ", ")}${providerText}`,
         155
       );
   const canonicalUrl = `${process.env.NEXT_PUBLIC_USER_BASE_URL}/item/${doc.id}`;
@@ -212,12 +213,13 @@ export async function getServerSideProps(context) {
       date: date,
       language: language,
       contributingInstitution: dataProvider,
-      partner: doc.provider.name,
+      partner: doc.provider?.name ?? "",
       sourceUrl: doc.isShownAt,
       useDefaultImage: !doc.object,
+      spatialName,
       edmRights: doc.rights,
       doc: strippedDoc,
-      originalRecord: doc.originalRecord,
+      originalRecord,
       filecoin: doc.filecoin,
     },
     randomItemId,
