@@ -26,7 +26,8 @@ function isRateLimited(ip) {
 export default function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).end();
+    res.status(405).end();
+    return;
   }
 
   const ip =
@@ -34,7 +35,8 @@ export default function handler(req, res) {
     req.socket?.remoteAddress ||
     "unknown";
   if (isRateLimited(ip)) {
-    return res.status(429).end();
+    res.status(429).end();
+    return;
   }
 
   const url =
@@ -51,7 +53,8 @@ export default function handler(req, res) {
       : "";
 
   if (!url) {
-    return res.status(400).end();
+    res.status(400).end();
+    return;
   }
 
   // Strip query strings and hashes before logging
@@ -59,5 +62,5 @@ export default function handler(req, res) {
   const redactedSourceUrl = sourceUrl ? sourceUrl.split(/[?#]/)[0] : "";
 
   console.log(JSON.stringify({ event: "thumbnail_error", url: redactedUrl, provider, sourceUrl: redactedSourceUrl }));
-  return res.status(204).end();
+  res.status(204).end();
 }
