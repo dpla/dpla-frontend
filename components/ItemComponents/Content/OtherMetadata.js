@@ -140,7 +140,7 @@ function OtherMetadata({ item }) {
           <ItemTermValuePair heading="Standardized Rights Statement">
             {rights.label && (
               <a
-                href={item.edmRights}
+                href={rights.url}
                 rel="noopener noreferrer"
                 className={`${css.label} ${utils.link} external`}
                 target="_blank"
