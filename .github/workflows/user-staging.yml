@@ -54,6 +54,7 @@ jobs:
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           GA_TRACKING_ID: ${{ env.GA_TRACKING_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           docker build \
           --platform linux/amd64 \
