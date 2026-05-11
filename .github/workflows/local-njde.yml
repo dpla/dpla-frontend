@@ -54,6 +54,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           docker build \
           --platform linux/amd64 \
