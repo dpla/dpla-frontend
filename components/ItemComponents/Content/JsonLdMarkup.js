@@ -61,9 +61,7 @@ function JsonLdMarkup({ item }) {
       url: "https://dp.la/"
     };
 
-    return all.map(x => {
-      return { "@type": "Organization", name: x };
-    }).push(dpla);
+    return [...all.map(x => ({ "@type": "Organization", name: x })), dpla];
   };
 
   /**
@@ -173,8 +171,9 @@ function JsonLdMarkup({ item }) {
       let lon = null;
       let coordinates = joinIfArray(x.coordinates);
       if (coordinates !== undefined) {
-        lat = Number(coordinates.split(",")[0]);
-        lon = Number(coordinates.split(",")[1].trim());
+        const [latStr, lonStr] = coordinates.split(",");
+        lat = Number(latStr);
+        lon = Number(lonStr.trim());
       }
       return {
         "@type": "Place",
