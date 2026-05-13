@@ -9,7 +9,7 @@ function JsonLdMarkup({ item }) {
     */
   function definedAndFlattened(values) {
     const defined = values.filter(function(x) {
-      return x !== undefined;
+      return x !== undefined && x !== null;
     });
     return [].concat(...defined);
   }
@@ -169,11 +169,19 @@ function JsonLdMarkup({ item }) {
     return all.map(x => {
       let lat = null;
       let lon = null;
-      let coordinates = joinIfArray(x.coordinates);
-      if (coordinates !== undefined) {
-        const [latStr, lonStr] = coordinates.split(",");
-        lat = Number(latStr);
-        lon = Number(lonStr.trim());
+      const coordinates = joinIfArray(x.coordinates);
+      if (typeof coordinates === "string") {
+        const [latStr, lonStr, ...rest] = coordinates
+          .split(",")
+          .map(value => value.trim());
+        if (latStr && lonStr && rest.length === 0) {
+          const parsedLat = Number(latStr);
+          const parsedLon = Number(lonStr);
+          if (Number.isFinite(parsedLat) && Number.isFinite(parsedLon)) {
+            lat = parsedLat;
+            lon = parsedLon;
+          }
+        }
       }
       return {
         "@type": "Place",
