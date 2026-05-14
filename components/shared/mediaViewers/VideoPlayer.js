@@ -5,7 +5,7 @@ import css from "./mediaViewers.module.scss";
 function VideoPlayer({ pathToFile, fileFormat }) {
   return (
     <div className={css.videoPlayerWrapper}>
-      <video className={css.videoPlayer} controls controlsList="nodownload">
+      <video className={css.videoPlayer} controls controlsList="nodownload" disablePictureInPicture>
         <source src={pathToFile} />
       </video>
     </div>
