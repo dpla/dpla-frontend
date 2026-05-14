@@ -9,7 +9,7 @@ function JsonLdMarkup({ item }) {
     */
   function definedAndFlattened(values) {
     const defined = values.filter(function(x) {
-      return x !== undefined;
+      return x !== undefined && x !== null;
     });
     return [].concat(...defined);
   }
@@ -61,9 +61,7 @@ function JsonLdMarkup({ item }) {
       url: "https://dp.la/"
     };
 
-    return all.map(x => {
-      return { "@type": "Organization", name: x };
-    }).push(dpla);
+    return [...all.map(x => ({ "@type": "Organization", name: x })), dpla];
   };
 
   /**
@@ -171,10 +169,19 @@ function JsonLdMarkup({ item }) {
     return all.map(x => {
       let lat = null;
       let lon = null;
-      let coordinates = joinIfArray(x.coordinates);
-      if (coordinates !== undefined) {
-        lat = Number(coordinates.split(",")[0]);
-        lon = Number(coordinates.split(",")[1].trim());
+      const coordinates = joinIfArray(x.coordinates);
+      if (typeof coordinates === "string") {
+        const [latStr, lonStr, ...rest] = coordinates
+          .split(",")
+          .map(value => value.trim());
+        if (latStr && lonStr && rest.length === 0) {
+          const parsedLat = Number(latStr);
+          const parsedLon = Number(lonStr);
+          if (Number.isFinite(parsedLat) && Number.isFinite(parsedLon)) {
+            lat = parsedLat;
+            lon = parsedLon;
+          }
+        }
       }
       return {
         "@type": "Place",
