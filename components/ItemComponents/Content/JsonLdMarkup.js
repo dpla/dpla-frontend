@@ -20,7 +20,8 @@ function JsonLdMarkup({ item }) {
     * @return String, date range in ISO 8601 format
    */
   function dateRange(begin, end) {
-    return `${begin}/${end}`;
+    if (begin && end) return `${begin}/${end}`;
+    return begin || end || null;
   }
 
   /**
@@ -101,14 +102,12 @@ function JsonLdMarkup({ item }) {
     */
   const collection = () => {
     const all = definedAndFlattened([item.collection]);
-    return all.map(x => {
-      return {
-        "@type": "Collection",
-        "@id": x["@id"],
-        name: x.title,
-        description: x.description
-      };
-    });
+    return all.map(x => ({
+      "@type": "Collection",
+      "@id": x["@id"],
+      name: x.title,
+      description: x.description
+    }));
   };
 
   /**
@@ -116,7 +115,7 @@ function JsonLdMarkup({ item }) {
     */
   const contributor = () => {
     return definedAndFlattened([item.contributor])
-        .map(x => {return { "@type": "Thing", name: x }});
+        .map(x => ({ "@type": "Thing", name: x }));
   };
 
   /**
@@ -124,7 +123,7 @@ function JsonLdMarkup({ item }) {
     */
   const creator = () => {
     return definedAndFlattened([item.creator])
-        .map(x => {return { "@type": "Thing", name: x }});
+        .map(x => ({ "@type": "Thing", name: x }));
   };
 
   /**
@@ -142,9 +141,7 @@ function JsonLdMarkup({ item }) {
     */
   const date = () => {
     const all = definedAndFlattened([item.date]);
-    return all.map(x => {
-      return dateRange(x.begin, x.end);
-    });
+    return all.map(x => dateRange(x.begin, x.end)).filter(Boolean);
   };
 
   /**
@@ -153,12 +150,10 @@ function JsonLdMarkup({ item }) {
     * the ISO label.
     */
   const language = () => {
-    return definedAndFlattened([item.language]).map(x => {
-      return {
-        "@type": "Language",
-        name: x
-      };
-    });
+    return definedAndFlattened([item.language]).map(x => ({
+      "@type": "Language",
+      name: x
+    }));
   };
 
   /**
@@ -201,9 +196,7 @@ function JsonLdMarkup({ item }) {
     */
   const publisher = () => {
     const all = definedAndFlattened([item.publisher]);
-    return all.map(x => {
-      return { "@type": "Organization", name: x };
-    });
+    return all.map(x => ({ "@type": "Organization", name: x }));
   };
 
   /**
@@ -211,9 +204,7 @@ function JsonLdMarkup({ item }) {
     */
   const subject = () => {
     const all = definedAndFlattened([item.subject]);
-    return all.map(x => {
-      return { "@type": "Thing", name: x.name };
-    });
+    return all.map(x => ({ "@type": "Thing", name: x.name }));
   };
 
   /**
@@ -221,9 +212,7 @@ function JsonLdMarkup({ item }) {
     */
   const temporal = () => {
     const all = definedAndFlattened([item.temporal]);
-    return all.map(x => {
-      return dateRange(x.begin, x.end);
-    });
+    return all.map(x => dateRange(x.begin, x.end)).filter(Boolean);
   };
 
   /**
@@ -262,4 +251,4 @@ function JsonLdMarkup({ item }) {
   );
 }
 
-export default JsonLdMarkup;
+export default React.memo(JsonLdMarkup);
