@@ -215,7 +215,9 @@ def iter_ids_from_api(hub_id):
     seen = set()
     for provider, provider_count in providers:
         if provider is not None:
-            provider_param = f"dataProvider={urllib.parse.quote(provider, safe='')}"
+            # Wrap provider in double quotes to prevent parsing errors (e.g. HTTP 400 with '/')
+            quoted_provider = '"' + provider.replace('"', '\\"') + '"'
+            provider_param = f"dataProvider={urllib.parse.quote(quoted_provider, safe='')}"
             print(
                 f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
                 flush=True,
