@@ -70,27 +70,37 @@ class Accordion extends React.Component {
                 key={item.name}
                 className={item.active ? css.active : css.inactive}
               >
-                <button
-                  className={css.itemHeader}
-                  aria-controls={`facets_${i}`}
-                  aria-expanded={item.active}
+                <div
+                  className={css.itemHeaderRow}
                   onClick={() => this.onClickItem(i)}
                 >
-                  <h3>
-                    {item.name}
+                  <h3 className={css.itemTitle}>
+                    <button
+                      type="button"
+                      className={css.titleButton}
+                      aria-controls={`facets_${i}`}
+                      aria-expanded={item.active}
+                      onClick={(e) => { e.stopPropagation(); this.onClickItem(i); }}
+                    >
+                      {item.name}
+                    </button>
                     {item.name === "How Can I Use It?" && (
                       <a
                         href={"https://dp.la/about/rights-categories"}
                         title={facetLabel}
                         aria-label={facetLabel}
+                        className={css.infoLink}
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <InformationIcon className={css.informationIcon} />
+                        <InformationIcon className={css.informationIcon} aria-hidden="true" />
                       </a>
                     )}
                   </h3>
-                  {item.active && <SubtractIcon className={css.subtractIcon} />}
-                  {!item.active && <AddIcon className={css.addIcon} />}
-                </button>
+                  <div className={css.iconWrapper} aria-hidden="true">
+                    {item.active && <SubtractIcon className={css.subtractIcon} aria-hidden="true" />}
+                    {!item.active && <AddIcon className={css.addIcon} aria-hidden="true" />}
+                  </div>
+                </div>
                 {item.type === "term" && (
                   <ul id={`facets_${i}`} className={css.subitems}>
                     {item.subitems.map((subitem, index) => (
