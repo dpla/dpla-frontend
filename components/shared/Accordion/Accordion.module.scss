@@ -37,10 +37,15 @@
   padding: 10px 11px;
 }
 
-.itemTitle {
+.titleAndInfo {
   align-items: center;
   display: flex;
   flex: 1;
+}
+
+.itemTitle {
+  align-items: center;
+  display: flex;
   font-size: 0.9375rem;
   font-weight: 600;
 

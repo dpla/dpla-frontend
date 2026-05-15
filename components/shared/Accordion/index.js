@@ -74,16 +74,18 @@ class Accordion extends React.Component {
                   className={css.itemHeaderRow}
                   onClick={() => this.onClickItem(i)}
                 >
-                  <h3 className={css.itemTitle}>
-                    <button
-                      type="button"
-                      className={css.titleButton}
-                      aria-controls={`facets_${i}`}
-                      aria-expanded={item.active}
-                      onClick={(e) => { e.stopPropagation(); this.onClickItem(i); }}
-                    >
-                      {item.name}
-                    </button>
+                  <div className={css.titleAndInfo}>
+                    <h3 className={css.itemTitle}>
+                      <button
+                        type="button"
+                        className={css.titleButton}
+                        aria-controls={`facets_${i}`}
+                        aria-expanded={item.active}
+                        onClick={(e) => { e.stopPropagation(); this.onClickItem(i); }}
+                      >
+                        {item.name}
+                      </button>
+                    </h3>
                     {item.name === "How Can I Use It?" && (
                       <a
                         href={"https://dp.la/about/rights-categories"}
@@ -95,7 +97,7 @@ class Accordion extends React.Component {
                         <InformationIcon className={css.informationIcon} aria-hidden="true" />
                       </a>
                     )}
-                  </h3>
+                  </div>
                   <div className={css.iconWrapper} aria-hidden="true">
                     {item.active && <SubtractIcon className={css.subtractIcon} aria-hidden="true" />}
                     {!item.active && <AddIcon className={css.addIcon} aria-hidden="true" />}
