@@ -9,7 +9,7 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
 import { getMenuItemUrl, wordpressLinks } from "lib/index";
 
-import { ABOUT_MENU_ENDPOINT, SEO_TYPE } from "constants/content-pages";
+import { ABOUT_MENU_ENDPOINT, PAGES_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
 import contentCss from "stylesheets/content-pages.module.scss";
 import css from "stylesheets/guides.module.scss";
@@ -89,21 +89,36 @@ export async function getServerSideProps(context) {
   const menuItemsJson = await safeJson(menuItemsRes);
   if (menuItemsJson === null) return upstreamUnavailable(context.res, menuItemsRes);
   const guideSlug = context.params.guideSlug;
-  const guide = menuItemsJson.items.find(
-    (item) => item.post_name === guideSlug,
-  );
-  if (!guide) {
-    return { notFound: true };
+
+  // Falls back to a WP slug query when post_name diverges from the page slug (e.g. WP page was renamed).
+  let guide = menuItemsJson.items.find((item) => item.post_name === guideSlug);
+  let guideJson;
+
+  if (guide) {
+    const guideUrl = draftMode ? wpDraftUrl(getMenuItemUrl(guide)) : getMenuItemUrl(guide);
+    const guideRes = await safeFetch(guideUrl, authOptions);
+    if (isUpstreamUnavailable(guideRes)) return upstreamUnavailable(context.res, guideRes);
+    const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
+    if (guideError) return guideError;
+    guideJson = await safeJson(guideRes);
+    if (guideJson === null) return upstreamUnavailable(context.res, guideRes);
+  } else {
+    const slugUrl = `${PAGES_ENDPOINT}?slug=${encodeURIComponent(guideSlug)}`;
+    const slugRes = await safeFetch(
+      draftMode ? wpDraftUrl(slugUrl) : slugUrl,
+      authOptions,
+    );
+    if (isUpstreamUnavailable(slugRes)) return upstreamUnavailable(context.res, slugRes);
+    if (!slugRes?.ok) return { notFound: true };
+    const pages = await safeJson(slugRes);
+    if (pages === null) return upstreamUnavailable(context.res, slugRes);
+    if (!pages.length) return { notFound: true };
+    guideJson = pages[0];
+    guide = menuItemsJson.items.find(
+      (item) => item.url === `${PAGES_ENDPOINT}/${guideJson.id}`,
+    );
+    if (!guide) return { notFound: true };
   }
-  const guideUrl = draftMode ? wpDraftUrl(getMenuItemUrl(guide)) : getMenuItemUrl(guide);
-  const guideRes = await safeFetch(guideUrl, authOptions);
-  if (isUpstreamUnavailable(guideRes)) {
-    return upstreamUnavailable(context.res, guideRes);
-  }
-  const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
-  if (guideError) return guideError;
-  const guideJson = await safeJson(guideRes);
-  if (guideJson === null) return upstreamUnavailable(context.res, guideRes);
 
   let breadcrumbs = [];
 
