@@ -16,6 +16,7 @@ import css from "stylesheets/guides.module.scss";
 import utils from "stylesheets/utils.module.scss";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
+import { cachedSafeFetch } from "lib/wpCache";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -60,11 +61,13 @@ class Guides extends React.Component {
                 role="main"
                 className={`${css.content} ${contentCss.content}`}
               >
-                <img
-                  src={guide.bannerImage}
-                  alt=""
-                  className={css.bannerImage}
-                />
+                {guide.bannerImage && (
+                  <img
+                    src={guide.bannerImage}
+                    alt=""
+                    className={css.bannerImage}
+                  />
+                )}
                 <h1 className={css.guideTitle}>{guide.title}</h1>
                 <HeadingRule />
                 <div dangerouslySetInnerHTML={{ __html: guide.content }} />
@@ -82,7 +85,7 @@ export async function getServerSideProps(context) {
   const guideSlug = context.params.guideSlug;
   const authOptions = wpAuthFetchOptions(draftMode);
 
-  const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
+  const menuItemsRes = await cachedSafeFetch(ABOUT_MENU_ENDPOINT);
   if (isUpstreamUnavailable(menuItemsRes)) {
     return upstreamUnavailable(context.res, menuItemsRes);
   }
@@ -127,14 +130,13 @@ export async function getServerSideProps(context) {
     if (!guide) return { notFound: true };
   }
 
-  let breadcrumbs = [];
-
-  breadcrumbs.push({
-    title: "Guides",
-    url: "/guides",
-  });
-
-  breadcrumbs.push({ title: guideJson.title.rendered });
+  const breadcrumbs = [
+    {
+      title: "Guides",
+      url: "/guides",
+    },
+    { title: guideJson.title.rendered },
+  ];
 
   const props = washObject({
     sidebarItems: menuItemsJson.items,
@@ -142,10 +144,10 @@ export async function getServerSideProps(context) {
     guide: {
       ...guideJson,
       slug: guide.url,
-      summary: guideJson.acf.summary,
+      summary: guideJson.acf?.summary,
       title: guideJson.title.rendered,
-      color: guideJson.acf.color,
-      bannerImage: guideJson.acf.banner_image,
+      color: guideJson.acf?.color,
+      bannerImage: guideJson.acf?.banner_image,
       content: upgradeWordPressUrls(guideJson.content?.rendered),
     },
   });
