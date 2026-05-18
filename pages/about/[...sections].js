@@ -16,7 +16,6 @@ import {
 
 import {
   getBreadcrumbs,
-  getItemWithId,
   wordpressLinks,
   getMenuItemUrl,
   decodeHTMLEntities,
@@ -120,7 +119,7 @@ export const getServerSideProps = async (context) => {
   if (
     !pageItem ||
     pageItem === guidesPageItem ||
-    pageItem?.menu_item_parent === guidesPageItem.object_id
+    pageItem?.menu_item_parent === guidesPageItem?.object_id
   ) {
     return { notFound: true };
   }
@@ -135,19 +134,18 @@ export const getServerSideProps = async (context) => {
 
   if (JSON.stringify(breadcrumbObject) !== "{}") {
     Object.values(breadcrumbObject).forEach((crumb) => {
-      let slug = "/";
-      // if this is a child item the url is /:topsection/:thisitem
-      if (crumb.menu_item_parent !== "0") {
-        const parent = getItemWithId({
-          items: json.items,
-          id: crumb.menu_item_parent,
-        });
-        slug = slug + parent.post_name + "/";
+      let url;
+      if (String(crumb.object_id) === String(guidesPageItem?.object_id)) {
+        // Link to guides index
+        url = "/guides";
+      } else if (String(crumb.menu_item_parent) === String(guidesPageItem?.object_id)) {
+        // Guide pages (direct children of the guides landing) live at /guides/:slug
+        url = `/guides/${crumb.post_name}`;
+      } else {
+        // All other about-section pages use a flat /about/:post_name URL
+        url = `/about/${crumb.post_name}`;
       }
-      breadcrumbs.push({
-        title: crumb.title,
-        url: slug + crumb.post_name,
-      });
+      breadcrumbs.push({ title: crumb.title, url });
     });
     breadcrumbs.push({ title: pageItem.title });
   }
