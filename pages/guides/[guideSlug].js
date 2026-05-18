@@ -79,7 +79,9 @@ class Guides extends React.Component {
 
 export async function getServerSideProps(context) {
   const { draftMode } = context;
+  const guideSlug = context.params.guideSlug;
   const authOptions = wpAuthFetchOptions(draftMode);
+
   const menuItemsRes = await safeFetch(ABOUT_MENU_ENDPOINT);
   if (isUpstreamUnavailable(menuItemsRes)) {
     return upstreamUnavailable(context.res, menuItemsRes);
@@ -88,7 +90,6 @@ export async function getServerSideProps(context) {
   if (menuError) return menuError;
   const menuItemsJson = await safeJson(menuItemsRes);
   if (menuItemsJson === null) return upstreamUnavailable(context.res, menuItemsRes);
-  const guideSlug = context.params.guideSlug;
 
   // Falls back to a WP slug query when post_name diverges from the page slug (e.g. WP page was renamed).
   let guide = menuItemsJson.items.find((item) => item.post_name === guideSlug);
@@ -115,7 +116,13 @@ export async function getServerSideProps(context) {
     if (!pages.length) return { notFound: true };
     guideJson = pages[0];
     guide = menuItemsJson.items.find(
-      (item) => item.url === `${PAGES_ENDPOINT}/${guideJson.id}`,
+      (item) => {
+        const menuItemUrl = getMenuItemUrl(item);
+        return (
+          String(item.object_id) === String(guideJson.id) ||
+          menuItemUrl.endsWith(`/${guideJson.id}`)
+        );
+      },
     );
     if (!guide) return { notFound: true };
   }
