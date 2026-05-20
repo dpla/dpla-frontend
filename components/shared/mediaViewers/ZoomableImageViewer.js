@@ -3,8 +3,6 @@ import ReactDOM from "react-dom/server";
 
 import css from "./mediaViewers.module.scss";
 
-const viewerId = "openseadragon1";
-
 function Noscript({ children }) {
   const staticMarkup = ReactDOM.renderToStaticMarkup(children);
   return <noscript dangerouslySetInnerHTML={{ __html: staticMarkup }} />;
@@ -16,16 +14,17 @@ export default class ZoomableImageViewer extends React.Component {
     super(props);
     this.viewer = null;
     this.loading = false;
+    this.containerRef = React.createRef();
   }
 
   componentDidMount() {
-    if (!this.viewer && !this.loading) {
+    if (!this.viewer && !this.loading && this.containerRef.current) {
       this.loading = true;
       try {
         const OpenSeaDragon = require("openseadragon");
         const url = this.props.pathToFile;
         this.viewer = new OpenSeaDragon({
-          id: viewerId,
+          element: this.containerRef.current,
           tileSources: {type: "image", url},
           prefixUrl: "/static/images/openseadragon/",
         });
@@ -36,20 +35,21 @@ export default class ZoomableImageViewer extends React.Component {
   }
 
   componentWillUnmount() {
+    if (this.viewer) {
+      this.viewer.destroy();
+    }
     this.viewer = null;
-    document.getElementById(viewerId).innerHTML = "";
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.pathToFile !== prevProps.pathToFile) {
-      // this works locally. might be necessary to preload the image like in: https://jsfiddle.net/ashraffayad/074navyp/
+    if (this.props.pathToFile !== prevProps.pathToFile && this.viewer) {
       this.viewer.open({ type: "image", url: this.props.pathToFile });
     }
   }
 
   render() {
     return (
-      <div id={viewerId} className={css.zoomableImageViewer}>
+      <div ref={this.containerRef} className={css.zoomableImageViewer}>
         <Noscript>
           <div className={css.noscriptContainer}>
             <img
