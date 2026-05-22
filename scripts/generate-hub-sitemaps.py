@@ -131,7 +131,10 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
 
     Raises RateLimitError on HTTP 403 so callers can stop gracefully.
     """
-    url = f"{api_url}/v2/items?api_key={api_key}&tags={tag}&{extra_params}"
+    params = {"api_key": api_key, "tags": tag}
+    params.update(extra_params)
+    query = urllib.parse.urlencode(params)
+    url = f"{api_url}/v2/items?{query}"
     req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
     last_exc = None
     for attempt in range(retries):
@@ -163,7 +166,8 @@ def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label)
     """Paginate a single (provider [+ date]) segment, yielding unseen IDs."""
     page = 1
     while True:
-        extra = f"page={page}&page_size={page_size}&fields=id&{extra_base}"
+        extra = {"page": page, "page_size": page_size, "fields": "id"}
+        extra.update(extra_base)
         data = _api_get(api_url, api_key, tag, extra)
         if page == 1:
             print(f"    {label}: count={data.get('count', '?')}", flush=True)
@@ -194,7 +198,10 @@ def iter_ids_from_api(hub_id):
 
     # Get total count and dataProvider facets.
     data = _api_get(
-        api_url, api_key, tag, "page_size=1&facets=dataProvider&facet_size=500"
+        api_url,
+        api_key,
+        tag,
+        {"page_size": 1, "facets": "dataProvider", "facet_size": 500},
     )
     total = data.get("count", 0)
     print(f"  {hub_id}: {total} total items in API", flush=True)
@@ -215,15 +222,13 @@ def iter_ids_from_api(hub_id):
     seen = set()
     for provider, provider_count in providers:
         if provider is not None:
-            # Wrap provider in double quotes to prevent parsing errors (e.g. HTTP 400 with '/')
-            quoted_provider = '"' + provider.replace('"', '\\"') + '"'
-            provider_param = f"dataProvider={urllib.parse.quote(quoted_provider, safe='')}"
+            provider_param = {"dataProvider": provider}
             print(
                 f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
                 flush=True,
             )
         else:
-            provider_param = ""
+            provider_param = {}
 
         if provider_count <= MAX_API_WINDOW:
             yield from _paginate_segment(
@@ -246,12 +251,13 @@ def iter_ids_from_api(hub_id):
                 flush=True,
             )
             for hex_char in "0123456789abcdef":
-                id_prefix_param = f"&q=id:{hex_char}*"
+                segment_params = dict(provider_param)
+                segment_params["q"] = f"id:{hex_char}*"
                 yield from _paginate_segment(
                     api_url,
                     api_key,
                     tag,
-                    f"{provider_param}{id_prefix_param}",
+                    segment_params,
                     page_size,
                     seen,
                     f"{provider}/id:{hex_char}*",
