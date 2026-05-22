@@ -133,7 +133,7 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
     """
     params = {"api_key": api_key, "tags": tag}
     params.update(extra_params)
-    query = urllib.parse.urlencode(params)
+    query = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
     url = f"{api_url}/v2/items?{query}"
     req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
     last_exc = None
@@ -222,7 +222,9 @@ def iter_ids_from_api(hub_id):
     seen = set()
     for provider, provider_count in providers:
         if provider is not None:
-            provider_param = {"dataProvider": provider}
+            # Quote as a phrase to avoid query-parser errors on punctuation
+            quoted_provider = '"' + provider.replace('"', '\\"') + '"'
+            provider_param = {"dataProvider": quoted_provider}
             print(
                 f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
                 flush=True,
