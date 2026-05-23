@@ -165,16 +165,23 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
                 ) from exc
             if exc.code == 429:
                 last_exc = exc
-                # Use Retry-After header when present
-                # or otherwise use escalating backoff
                 retry_after = exc.headers.get("Retry-After") if exc.headers else None
+                backoff = 30 * (attempt + 1)
                 try:
-                    wait = max(int(retry_after), 30 * (attempt + 1)) if retry_after else 30 * (attempt + 1)
+                    header_secs = int(retry_after) if retry_after else None
                 except (ValueError, TypeError):
-                    wait = 30 * (attempt + 1)
+                    header_secs = None
+                if header_secs is not None:
+                    wait = max(header_secs, backoff)
+                    wait_method = f"Retry-After={header_secs}s, backoff={backoff}s → {wait}s"
+                else:
+                    wait = backoff
+                    wait_method = f"backoff={wait}s"
+                    if retry_after:
+                        wait_method += f" (Retry-After header unparseable: {retry_after!r})"
                 print(
                     f"  Warning: HTTP 429 rate limit (attempt {attempt + 1}/{retries}), "
-                    f"waiting {wait}s before retry…",
+                    f"waiting {wait_method}…",
                     file=sys.stderr,
                 )
                 if attempt < retries - 1:
@@ -374,7 +381,8 @@ def upload_shard(s3_client, key, xml, dry_run, shard_urls):
         print(f"  uploaded s3://{SITEMAP_BUCKET}/{key}")
 
 
-def generate_hub(hub_id, s3_client, dry_run, timestamp):
+def generate_hub(hub_id, dry_run, timestamp):
+    s3_client = boto3.client("s3")
     print(f"  {hub_id}: collecting IDs...", flush=True)
     if hub_id in PROVIDER_HUBS:
         id_iter = iter_ids_from_s3(s3_client, hub_id)
@@ -466,8 +474,6 @@ def main():
         print(f"Valid hubs: {', '.join(ALL_HUBS)}", file=sys.stderr)
         sys.exit(1)
 
-    # Always create s3_client — provider hubs need S3 read access even in dry-run.
-    s3_client = boto3.client("s3")
     timestamp = datetime.now(timezone.utc)
 
     print(
@@ -476,7 +482,7 @@ def main():
     failed = []
     for hub_id in hubs:
         try:
-            generate_hub(hub_id, s3_client, args.dry_run, timestamp)
+            generate_hub(hub_id, args.dry_run, timestamp)
         except Exception as exc:
             failed.append(hub_id)
             print(f"  ERROR: {hub_id}: {exc}", file=sys.stderr)
