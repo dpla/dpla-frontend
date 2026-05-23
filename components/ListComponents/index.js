@@ -64,6 +64,7 @@ export function ListEmpty() {
       >
         <source src="/static/video/list-add.mp4" type="video/mp4" />
         <source src="/static/video/list-add.ogv" type="video/ogg" />
+        <track kind="captions" src="/static/video/list-add.vtt" srclang="en" label="English" default />
         <p>
           Your browser doesn&apos;t support HTML5 video. Here is a{" "}
           <a href="/static/video/list-add.mp4">link to the video</a> instead.
@@ -108,6 +109,7 @@ export function ListsEmpty() {
       >
         <source src="/static/video/list-new.mp4" type="video/mp4" />
         <source src="/static/video/list-new.ogv" type="video/ogg" />
+        <track kind="captions" src="/static/video/list-new.vtt" srclang="en" label="English" default />
         <p>
           Your browser doesn&apos;t support HTML5 video. Here is a{" "}
           <a href="/static/video/list-new.mp4">link to the video</a> instead.
@@ -130,6 +132,7 @@ export function ListsEmpty() {
       >
         <source src="/static/video/list-download.mp4" type="video/mp4" />
         <source src="/static/video/list-download.ogv" type="video/ogg" />
+        <track kind="captions" src="/static/video/list-download.vtt" srclang="en" label="English" default />
         <p>
           Your browser doesn&apos;t support HTML5 video. Here is a{" "}
           <a href="/static/video/list-download.mp4">link to the video</a>{" "}
