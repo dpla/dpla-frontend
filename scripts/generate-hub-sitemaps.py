@@ -26,6 +26,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -75,10 +76,16 @@ def iter_ids_from_s3(s3_client, hub_id):
     base_prefix = f"{prefix}/jsonl/"
 
     # Find the latest snapshot subdirectory.
-    resp = s3_client.list_objects_v2(
+    # Paginate to handle hubs with more than 1000 snapshot dirs.
+    snapshot_paginator = s3_client.get_paginator("list_objects_v2")
+    snapshot_pages = snapshot_paginator.paginate(
         Bucket=SOURCE_BUCKET, Prefix=base_prefix, Delimiter="/"
     )
-    snapshots = sorted(cp["Prefix"] for cp in resp.get("CommonPrefixes", []))
+    snapshots = sorted(
+        cp["Prefix"]
+        for page in snapshot_pages
+        for cp in page.get("CommonPrefixes", [])
+    )
     if not snapshots:
         return
     latest = snapshots[-1]
@@ -119,41 +126,79 @@ def iter_ids_from_s3(s3_client, hub_id):
                     )
 
 
-API_CALL_DELAY = 0.5  # seconds between API calls to respect rate limits
+API_CALL_DELAY = 1.0  # seconds between API calls to respect rate limits
 
 
 class RateLimitError(Exception):
-    """Raised when the DPLA API returns 403, indicating a rate limit."""
+    """Raised when the DPLA API returns 403 or 429 (rate limit exhausted)."""
+
+
+def _redact_url(url):
+    """Strip the api_key query parameter from a URL before logging."""
+    parsed = urllib.parse.urlparse(url)
+    params = urllib.parse.parse_qs(parsed.query, keep_blank_values=True)
+    params.pop("api_key", None)
+    return urllib.parse.urlunparse(parsed._replace(query=urllib.parse.urlencode(params, doseq=True)))
 
 
 def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
     """Make a single DPLA API request and return parsed JSON, with retries.
 
-    Raises RateLimitError on HTTP 403 so callers can stop gracefully.
+    Raises RateLimitError on HTTP 403 or HTTP 429.
     """
     params = {"api_key": api_key, "tags": tag}
     params.update(extra_params)
     query = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
     url = f"{api_url}/v2/items?{query}"
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})
     last_exc = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
                 data = json.loads(resp.read())
             time.sleep(API_CALL_DELAY)
             return data
         except urllib.error.HTTPError as exc:
             if exc.code == 403:
                 raise RateLimitError(
-                    f"API rate limit reached (HTTP 403): {exc.url}"
+                    f"API rate limit reached (HTTP 403): {_redact_url(exc.url)}"
                 ) from exc
+            if exc.code == 429:
+                last_exc = exc
+                # Use Retry-After header when present
+                # or otherwise use escalating backoff
+                retry_after = exc.headers.get("Retry-After") if exc.headers else None
+                try:
+                    wait = max(int(retry_after), 30 * (attempt + 1)) if retry_after else 30 * (attempt + 1)
+                except (ValueError, TypeError):
+                    wait = 30 * (attempt + 1)
+                print(
+                    f"  Warning: HTTP 429 rate limit (attempt {attempt + 1}/{retries}), "
+                    f"waiting {wait}s before retry…",
+                    file=sys.stderr,
+                )
+                if attempt < retries - 1:
+                    time.sleep(wait)
+                continue
             if exc.code in (500, 502, 503, 504):
                 last_exc = exc
                 if attempt < retries - 1:
                     time.sleep(5 * (attempt + 1))
                 continue
             raise
+        except urllib.error.URLError as exc:
+            last_exc = exc
+            print(
+                f"  Warning: network error (attempt {attempt + 1}/{retries}): {exc.reason}",
+                file=sys.stderr,
+            )
+            if attempt < retries - 1:
+                time.sleep(5 * (attempt + 1))
+            continue
+    if last_exc is not None and getattr(last_exc, "code", None) == 429:
+        raise RateLimitError(
+            f"API rate limit reached (HTTP 429) after {retries} retries: {_redact_url(last_exc.url)}"
+        ) from last_exc
     if last_exc is not None:
         raise last_exc  # retries exhausted on transient server error
     raise RuntimeError("retries exhausted without a captured exception")
@@ -164,6 +209,7 @@ MAX_API_WINDOW = 49_800  # ES max_result_window is 50K; stay safely under it
 
 def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label):
     """Paginate a single (provider [+ date]) segment, yielding unseen IDs."""
+    max_pages = MAX_API_WINDOW // page_size
     page = 1
     while True:
         extra = {"page": page, "page_size": page_size, "fields": "id"}
@@ -181,6 +227,13 @@ def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label)
                 yield item_id
         if len(docs) < page_size:
             break
+        if page >= max_pages:
+            print(
+                f"  Warning: {label}: reached ES window limit at page {page} — "
+                f"segment may be incomplete; consider finer segmentation",
+                file=sys.stderr,
+            )
+            break
         page += 1
 
 
@@ -192,6 +245,11 @@ def iter_ids_from_api(hub_id):
     sourceResource.date.begin year.
     """
     api_key = os.environ.get("API_KEY", "")
+    if not api_key:
+        print(
+            "  Warning: API_KEY environment variable is not set",
+            file=sys.stderr,
+        )
     api_url = os.environ.get("API_URL", "https://api.dp.la")
     tag = TAG_HUBS[hub_id]
     page_size = 500
@@ -415,8 +473,20 @@ def main():
     print(
         f"generate-hub-sitemaps: {'dry-run ' if args.dry_run else ''}generating for: {', '.join(hubs)}"
     )
+    failed = []
     for hub_id in hubs:
-        generate_hub(hub_id, s3_client, args.dry_run, timestamp)
+        try:
+            generate_hub(hub_id, s3_client, args.dry_run, timestamp)
+        except Exception as exc:
+            failed.append(hub_id)
+            print(f"  ERROR: {hub_id}: {exc}", file=sys.stderr)
+
+    if failed:
+        print(
+            f"generate-hub-sitemaps: {len(failed)} hub(s) failed: {', '.join(failed)}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     print("generate-hub-sitemaps: done")
 
