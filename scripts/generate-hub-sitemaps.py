@@ -223,7 +223,8 @@ def iter_ids_from_api(hub_id):
     for provider, provider_count in providers:
         if provider is not None:
             # Quote as a phrase to avoid query-parser errors on punctuation
-            quoted_provider = '"' + provider.replace('"', '\\"') + '"'
+            # (e.g., slash in provider names).
+            quoted_provider = '"' + provider.replace("/", "\\/").replace('"', '\\"') + '"'
             provider_param = {"dataProvider": quoted_provider}
             print(
                 f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
