@@ -150,11 +150,11 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
     params.update(extra_params)
     query = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
     url = f"{api_url}/v2/items?{query}"
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})  # noqa: S310
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})
     last_exc = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
                 data = json.loads(resp.read())
             time.sleep(API_CALL_DELAY)
             return data
@@ -187,7 +187,7 @@ def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
                 continue
             raise
         except urllib.error.URLError as exc:
-            last_exc = exc  #
+            last_exc = exc
             print(
                 f"  Warning: network error (attempt {attempt + 1}/{retries}): {exc.reason}",
                 file=sys.stderr,
