@@ -31,6 +31,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::283408157088:role/github-actions-hub-sitemaps
+          role-duration-seconds: 10800
           aws-region: us-east-1
 
       - name: Generate hub sitemaps
