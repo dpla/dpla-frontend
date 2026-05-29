@@ -36,7 +36,7 @@ function Sidebar({
                     ].join(" ")}
                   >
                     <Link
-                      href={`/exhibitions/${exhibitionSlug}/${section.slug}/${subsection.slug !== section.slug ? subsection.slug : ""}`}
+                      href={`/exhibitions/${exhibitionSlug}/${section.slug}${subsection.slug ? "/" + subsection.slug : ""}`}
                     >
                       {subsection.title}
                     </Link>
