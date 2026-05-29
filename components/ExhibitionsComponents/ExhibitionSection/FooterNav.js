@@ -14,7 +14,7 @@ function NavButton({queryParams, nextOrPrevious = "next"}) {
     if (queryParams) {
         return (
             <Link
-                href={["/exhibitions/", queryParams.exhibitionSlug, "/", queryParams.sectionSlug, "/", queryParams.subsectionSlug ? queryParams.subsectionSlug : ""].join("")}
+                href={["/exhibitions/", queryParams.exhibitionSlug, "/", queryParams.sectionSlug, queryParams.subsectionSlug ? "/" + queryParams.subsectionSlug : ""].join("")}
                 className={nextOrPrevious === "next" ? css.nextButton : css.prevButton}
             >
                 {nextOrPrevious === "previous" && <BlackChevron className={css.previousChevron} alt=""/>}

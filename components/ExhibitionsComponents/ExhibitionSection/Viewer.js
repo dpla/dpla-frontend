@@ -158,8 +158,7 @@ class Viewer extends React.Component {
                     router.query.exhibitionSlug,
                     "/",
                     router.query.sectionSlug,
-                    "/",
-                    router.query.subsectionSlug,
+                    router.query.subsectionSlug ? "/" + router.query.subsectionSlug : "",
                     "?item=",
                     previousBlock.id,
                   ].join("")}
@@ -182,8 +181,7 @@ class Viewer extends React.Component {
                     router.query.exhibitionSlug,
                     "/",
                     router.query.sectionSlug,
-                    "/",
-                    router.query.subsectionSlug,
+                    router.query.subsectionSlug ? "/" + router.query.subsectionSlug : "",
                     "?item=",
                     nextBlock.id,
                   ].join("")}
