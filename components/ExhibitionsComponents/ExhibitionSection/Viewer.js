@@ -211,12 +211,14 @@ class Viewer extends React.Component {
                 View item information
               </Link>
             )}
-            <div
-              className={css.caption}
-              dangerouslySetInnerHTML={{
-                __html: activeBlock.attachments[0].caption,
-              }}
-            />
+            {activeBlock.attachments?.[0]?.caption && (
+              <div
+                className={css.caption}
+                dangerouslySetInnerHTML={{
+                  __html: activeBlock.attachments[0].caption,
+                }}
+              />
+            )}
           </div>
           {text && (
             <div
