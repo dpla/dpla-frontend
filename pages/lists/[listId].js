@@ -35,9 +35,13 @@ const List = () => {
   const [items, setItems] = useState([]);
   const [initialized, setInitialized] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
+  const [itemsFetchError, setItemsFetchError] = useState(false);
   const isRenamingRef = useRef(false);
 
   useEffect(() => {
+    let cancelled = false;
+    const controller = new AbortController();
+
     const fetchList = async () => {
       if (!listId) {
         return;
@@ -47,6 +51,7 @@ const List = () => {
       try {
         list = await localforage.getItem(listId);
       } catch (err) {
+        if (cancelled) return;
         console.error("fetchList error", err);
         if (err.message === STORAGE_UNAVAILABLE_ERROR) {
           setStorageUnavailable(true);
@@ -54,6 +59,8 @@ const List = () => {
         setInitialized(true);
         return;
       }
+
+      if (cancelled) return;
 
       if (!list) {
         setInitialized(true);
@@ -72,21 +79,34 @@ const List = () => {
 
       const ids = itemIds.join(",");
 
-      const url = `/api/items/${ids}`;
-      const res = await fetch(url);
+      let res;
+      try {
+        res = await fetch(`/api/items/${ids}`, { signal: controller.signal });
+      } catch (err) {
+        if (cancelled) return;
+        console.error("Failed to fetch list items:", err);
+        setInitialized(true);
+        setList(list);
+        setItems([]);
+        setItemsFetchError(true);
+        return;
+      }
+
+      if (cancelled) return;
+
       if (!res.ok) {
-        if (res.status === 404) {
-          setInitialized(true);
-          setList(list);
-          setItems([]);
-          return;
-        }
-        throw new Error("Couldn't load items.");
+        console.error("Failed to fetch list items:", res.status);
+        setInitialized(true);
+        setList(list);
+        setItems([]);
+        setItemsFetchError(true);
+        return;
       }
 
       try {
         const json = await res.json();
-        const items = json.docs
+        if (cancelled) return;
+        const items = (json.docs ?? [])
           .filter((result) => result.error === undefined)
           .map((result) => {
             const thumbnailUrl = getItemThumbnail(result);
@@ -107,13 +127,20 @@ const List = () => {
         setList(list);
         setItems(items);
       } catch {
+        if (cancelled) return;
         setInitialized(true);
         setList(list);
         setItems([]);
+        setItemsFetchError(true);
       }
     };
 
     fetchList();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
   }, [listId]);
 
   const onNameChange = useCallback(
@@ -207,7 +234,11 @@ const List = () => {
                 viewingList={listId}
               />
             )}
-            {items.length === 0 && <ListEmpty />}
+            {items.length === 0 && (
+              itemsFetchError
+                ? <p className={css.listItemsError}>We couldn&apos;t load your saved items right now. Please try again later.</p>
+                : <ListEmpty />
+            )}
             {list.name && (
               <ConfirmModal
                 className={css.listDeleteConfirm}
