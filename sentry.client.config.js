@@ -15,14 +15,27 @@ Sentry.init({
   debug: false,
 
   beforeSend(event, hint) {
+    const ex = hint?.originalException;
+    const rawMsg = typeof ex === "string" ? ex : ex?.message;
+    const msg = typeof rawMsg === "string" ? rawMsg : "";
+
     // Stale JS chunks after a deploy cause Next.js to attempt a hard navigation
     // to the current URL, throwing this invariant. _app.js already handles it
     // with a window.location.reload(). Suppress the Sentry noise.
-    const ex = hint?.originalException;
-    const msg = (typeof ex === "string" ? ex : ex?.message) ?? "";
     if (msg.startsWith("Invariant: attempted to hard navigate to the same URL")) {
       return null;
     }
+
+    // Sentry Replay serialises <img> elements by drawing them to a 2D canvas.
+    // On iOS WebKit, drawing an SVG data-URI to canvas throws an unhandled
+    // rejection with this message. The rejection is from Sentry's own
+    // infrastructure, not from application code, and is not actionable.
+    // The prefix covers both base64 (data:image/svg+xml;base64,...) and
+    // URL-encoded (data:image/svg+xml,...) SVG data-URI forms.
+    if (msg.startsWith("Unable to load image data:image/svg+xml")) {
+      return null;
+    }
+
     return event;
   },
 });
