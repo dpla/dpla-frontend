@@ -40,6 +40,7 @@ const List = () => {
   const [initialized, setInitialized] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
 
@@ -50,6 +51,7 @@ const List = () => {
       }
 
       setIsPageLoading(true);
+      setFetchError(false);
       try {
         let list;
         try {
@@ -89,7 +91,11 @@ const List = () => {
             setItems([]);
             return;
           }
-          throw new Error("Couldn't load items.");
+          setInitialized(true);
+          setList(list);
+          setItems([]);
+          setFetchError(true);
+          return;
         }
 
         try {
@@ -307,7 +313,10 @@ const List = () => {
                 )}
               </div>
             )}
-            {items.length === 0 && <ListEmpty />}
+            {fetchError && (
+              <p>There was a problem loading this list. Please try refreshing the page.</p>
+            )}
+            {!fetchError && items.length === 0 && <ListEmpty />}
           </div>
         )}
       </div>
