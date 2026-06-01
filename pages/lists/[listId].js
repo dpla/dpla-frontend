@@ -177,27 +177,23 @@ const List = () => {
           });
       }
 
+      const Q = '\x22';
+      const csvField = (value) => Q + value.replace(/\x22/g, Q + Q) + Q;
       const rows = allItems.map((item) => {
         const thumbnailUrl =
-          item.thumbnailUrl && !item.thumbnailUrl.includes("placeholderImages")
+          item.thumbnailUrl && !item.thumbnailUrl.includes('placeholderImages')
             ? item.thumbnailUrl
-            : "";
-        const title = item.title
-          ? `"${truncateString(joinIfArray(item.title), 150).replace(/"/g, "“")}"`
-          : UNTITLED_TEXT;
-        const date = item?.date?.displayDate
-          ? `"${item.date.displayDate.replace(/"/g, "“")}"`
-          : "";
-        const creator = item.creator
-          ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "“")}"`
-          : "";
+            : '';
+        const title = csvField(
+          item.title ? truncateString(joinIfArray(item.title), 150) : UNTITLED_TEXT
+        );
+        const date = item?.date?.displayDate ? csvField(item.date.displayDate) : csvField('');
+        const creator = item.creator ? csvField(joinIfArray(item.creator, ', ')) : csvField('');
         const description = item.description
-          ? `"${truncateString(joinIfArray(item.description)).replace(/"/g, "“")}"`
-          : "";
-        const provider = item.dataProvider
-          ? `"${joinIfArray(item.dataProvider).replace(/"/g, "“")}"`
-          : "";
-        return `${item.id},${title},${date},${creator},${description},${provider},${thumbnailUrl},${item.sourceUrl}`;
+          ? csvField(truncateString(joinIfArray(item.description)))
+          : csvField('');
+        const provider = item.dataProvider ? csvField(joinIfArray(item.dataProvider)) : csvField('');
+        return [item.id, title, date, creator, description, provider, csvField(thumbnailUrl), csvField(item.sourceUrl || '')].join(',');
       });
 
       const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join("\r\n")}`;
