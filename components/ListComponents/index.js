@@ -79,7 +79,7 @@ export function ListNote() {
     <div className={`${css.note} ${utils.colXs12}`}>
       <p>
         <strong>Note:</strong> Your lists are stored locally in your browser.
-        You won't see lists created in another browser here. If you want to save a list long-term, you may wish to use the "download list" feature to export your lists as CSV files.
+        You won&apos;t see lists created in another browser here. If you want to save a list long-term, you may wish to use the &quot;download list&quot; feature to export your lists as CSV files.
       </p>
     </div>
   );
