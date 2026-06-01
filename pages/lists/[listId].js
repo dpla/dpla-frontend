@@ -37,6 +37,7 @@ const List = () => {
   const [items, setItems] = useState([]);
   const [totalItemCount, setTotalItemCount] = useState(0);
   const [initialized, setInitialized] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
 
@@ -46,73 +47,78 @@ const List = () => {
         return;
       }
 
-      let list;
+      setIsPageLoading(true);
       try {
-        list = await localforage.getItem(listId);
-      } catch (err) {
-        console.error("fetchList error", err);
-        if (err.message === STORAGE_UNAVAILABLE_ERROR) {
-          setStorageUnavailable(true);
+        let list;
+        try {
+          list = await localforage.getItem(listId);
+        } catch (err) {
+          console.error("fetchList error", err);
+          if (err.message === STORAGE_UNAVAILABLE_ERROR) {
+            setStorageUnavailable(true);
+          }
+          setInitialized(true);
+          return;
         }
-        setInitialized(true);
-        return;
-      }
 
-      if (!list) {
-        setInitialized(true);
-        setItems([]);
-        return;
-      }
+        if (!list) {
+          setInitialized(true);
+          setItems([]);
+          return;
+        }
 
-      const allItemIds = list?.selectedHash ? Object.keys(list.selectedHash) : [];
-      setTotalItemCount(allItemIds.length);
+        const allItemIds = list?.selectedHash ? Object.keys(list.selectedHash) : [];
+        setTotalItemCount(allItemIds.length);
 
-      if (allItemIds.length === 0) {
-        setInitialized(true);
-        setList(list);
-        setItems([]);
-        return;
-      }
-
-      const pageIds = allItemIds.slice((page - 1) * LIST_PAGE_SIZE, page * LIST_PAGE_SIZE);
-      const url = `/api/items/${pageIds.join(",")}`;
-      const res = await fetch(url);
-      if (!res.ok) {
-        if (res.status === 404) {
+        if (allItemIds.length === 0) {
           setInitialized(true);
           setList(list);
           setItems([]);
           return;
         }
-        throw new Error("Couldn't load items.");
-      }
 
-      try {
-        const json = await res.json();
-        const items = json.docs
-          .filter((result) => result.error === undefined)
-          .map((result) => {
-            const thumbnailUrl = getItemThumbnail(result);
-            const dataProvider = getDataProviderName(result.dataProvider);
+        const pageIds = allItemIds.slice((page - 1) * LIST_PAGE_SIZE, page * LIST_PAGE_SIZE);
+        const url = `/api/items/${pageIds.join(",")}`;
+        const res = await fetch(url);
+        if (!res.ok) {
+          if (res.status === 404) {
+            setInitialized(true);
+            setList(list);
+            setItems([]);
+            return;
+          }
+          throw new Error("Couldn't load items.");
+        }
 
-            return {
-              ...result.sourceResource,
-              thumbnailUrl,
-              thumbnailSourceUrl: result.object,
-              id: result.id ? result.id : result.sourceResource["@id"],
-              sourceUrl: result.isShownAt,
-              provider: result.provider && result.provider.name,
-              dataProvider: dataProvider,
-              useDefaultImage: !result.object,
-            };
-          });
-        setInitialized(true);
-        setList(list);
-        setItems(items);
-      } catch {
-        setInitialized(true);
-        setList(list);
-        setItems([]);
+        try {
+          const json = await res.json();
+          const items = json.docs
+            .filter((result) => result.error === undefined)
+            .map((result) => {
+              const thumbnailUrl = getItemThumbnail(result);
+              const dataProvider = getDataProviderName(result.dataProvider);
+
+              return {
+                ...result.sourceResource,
+                thumbnailUrl,
+                thumbnailSourceUrl: result.object,
+                id: result.id ? result.id : result.sourceResource["@id"],
+                sourceUrl: result.isShownAt,
+                provider: result.provider && result.provider.name,
+                dataProvider: dataProvider,
+                useDefaultImage: !result.object,
+              };
+            });
+          setInitialized(true);
+          setList(list);
+          setItems(items);
+        } catch {
+          setInitialized(true);
+          setList(list);
+          setItems([]);
+        }
+      } finally {
+        setIsPageLoading(false);
       }
     };
 
@@ -206,7 +212,7 @@ const List = () => {
               someone else or in another browser.
             </p>
             {items && listId && (
-              <>
+              <div style={isPageLoading ? { opacity: 0.4, pointerEvents: "none" } : undefined}>
                 <ListView
                   name={list.name}
                   exportable={true}
@@ -217,7 +223,7 @@ const List = () => {
                 {pageCount > 1 && (
                   <Pagination currentPage={page} pageCount={pageCount} />
                 )}
-              </>
+              </div>
             )}
             {items.length === 0 && <ListEmpty />}
             {list.name && (
