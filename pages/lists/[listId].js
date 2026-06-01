@@ -13,9 +13,10 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import ListView from "shared/ListView";
 import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
+import Pagination from "shared/Pagination";
 import { ListLoading, ListEmpty, ListsUnavailable } from "components/ListComponents";
 
-import { addLinkInfoToResults, getDataProviderName, getItemThumbnail } from "lib";
+import { addCommasToNumber, addLinkInfoToResults, getDataProviderName, getItemThumbnail } from "lib";
 
 import { setLocalForageItem, removeLocalForageItem, STORAGE_UNAVAILABLE_ERROR } from "lib/localForage";
 
@@ -23,16 +24,18 @@ import utils from "stylesheets/utils.module.scss";
 import css from "components/ListComponents/ListComponents.module.scss";
 
 import { LISTS_TITLE } from "constants/lists";
-import { UNTITLED_TEXT } from "constants/site";
+import { UNTITLED_TEXT, LIST_PAGE_SIZE } from "constants/site";
 
 const List = () => {
   const router = useRouter();
   const listId = Array.isArray(router.query?.listId)
     ? router.query.listId[0]
     : router.query?.listId;
+  const page = Math.max(1, parseInt(router.query?.page || "1", 10) || 1);
 
   const [list, setList] = useState(null);
   const [items, setItems] = useState([]);
+  const [totalItemCount, setTotalItemCount] = useState(0);
   const [initialized, setInitialized] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
@@ -61,18 +64,18 @@ const List = () => {
         return;
       }
 
-      const itemIds = list?.selectedHash ? Object.keys(list?.selectedHash) : [];
+      const allItemIds = list?.selectedHash ? Object.keys(list.selectedHash) : [];
+      setTotalItemCount(allItemIds.length);
 
-      if (itemIds.length === 0) {
+      if (allItemIds.length === 0) {
         setInitialized(true);
         setList(list);
         setItems([]);
         return;
       }
 
-      const ids = itemIds.join(",");
-
-      const url = `/api/items/${ids}`;
+      const pageIds = allItemIds.slice((page - 1) * LIST_PAGE_SIZE, page * LIST_PAGE_SIZE);
+      const url = `/api/items/${pageIds.join(",")}`;
       const res = await fetch(url);
       if (!res.ok) {
         if (res.status === 404) {
@@ -114,7 +117,7 @@ const List = () => {
     };
 
     fetchList();
-  }, [listId]);
+  }, [listId, page]);
 
   const onNameChange = useCallback(
     async (value) => {
@@ -158,6 +161,8 @@ const List = () => {
     return <Error statusCode={404} />;
   }
 
+  const pageCount = Math.ceil(totalItemCount / LIST_PAGE_SIZE);
+
   return (
     <MainLayout pageTitle={list ? list.name : LISTS_TITLE}>
       <BreadcrumbsModule
@@ -189,9 +194,11 @@ const List = () => {
                 />
               </h1>
             )}
-            {list.createdAt && (
+            {(list.createdAt || initialized) && (
               <p className={css.listDate}>
-                Created {dayjs(list.createdAt, "x").fromNow()}
+                {list.createdAt && <>Created {dayjs(list.createdAt, "x").fromNow()}</>}
+                {list.createdAt && initialized && <> · </>}
+                {initialized && <>{addCommasToNumber(totalItemCount)} {totalItemCount === 1 ? "item" : "items"}</>}
               </p>
             )}
             <p>
@@ -199,13 +206,18 @@ const List = () => {
               someone else or in another browser.
             </p>
             {items && listId && (
-              <ListView
-                name={list.name}
-                exportable={true}
-                items={addLinkInfoToResults(items)}
-                behavior={"list"}
-                viewingList={listId}
-              />
+              <>
+                <ListView
+                  name={list.name}
+                  exportable={true}
+                  items={addLinkInfoToResults(items)}
+                  behavior={"list"}
+                  viewingList={listId}
+                />
+                {pageCount > 1 && (
+                  <Pagination currentPage={page} pageCount={pageCount} />
+                )}
+              </>
             )}
             {items.length === 0 && <ListEmpty />}
             {list.name && (

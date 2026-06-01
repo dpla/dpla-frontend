@@ -53,7 +53,7 @@ export function ListEmpty() {
     <div className={`${css.empty}`}>
       <p>This list is empty.</p>
       <p>
-        Add up to 50 items from our <Link href="/browse-by-topic">topics</Link>{" "}
+        Add up to {MAX_LIST_ITEMS} items from our <Link href="/browse-by-topic">topics</Link>{" "}
         or <Link href="/search">search results</Link>:
       </p>
       <video
@@ -98,7 +98,7 @@ export function ListsEmpty() {
             our <Link href="/browse-by-topic">topics</Link> or{" "}
           </>
         )}
-        <Link href="/search">search results</Link> (up to 50 items in each
+        <Link href="/search">search results</Link> (up to {MAX_LIST_ITEMS} items in each
         list):
       </p>
       <video

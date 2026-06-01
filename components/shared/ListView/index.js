@@ -318,7 +318,7 @@ export default function ListView({
       });
   };
 
-  const listCount = state.lists.length;
+  const currentItemCount = Object.keys(state.currentList?.selectedHash || {}).length;
   return (
     <div>
       {state.listsInitialized && !viewingList && (
@@ -382,7 +382,7 @@ export default function ListView({
           const checked =
             state?.currentList?.selectedHash?.[realId] !== undefined;
           const shouldDisable =
-            (!checked && listCount > MAX_LIST_ITEMS) ||
+            (!checked && currentItemCount >= MAX_LIST_ITEMS) ||
             realId === SOURCE_RESOURCE_ITEM_ID;
           const disabledMessage = `Maximum ${MAX_LIST_ITEMS} items per list.`;
           let itemLinkText = "View Full Item";
@@ -457,7 +457,7 @@ export default function ListView({
                   title={shouldDisable ? disabledMessage : ""}
                 >
                   <input
-                    className={`${css.checkboxInput} ${!checked && listCount >= MAX_LIST_ITEMS ? css.disabled : ""}`}
+                    className={`${css.checkboxInput} ${!checked && currentItemCount >= MAX_LIST_ITEMS ? css.disabled : ""}`}
                     type="checkbox"
                     title={shouldDisable ? disabledMessage : ""}
                     data-id={realId}
@@ -469,7 +469,7 @@ export default function ListView({
                     key={`checkbox-${realId}`}
                     id={`checkbox-${realId}`}
                   />
-                  {!checked && listCount >= MAX_LIST_ITEMS
+                  {!checked && currentItemCount >= MAX_LIST_ITEMS
                     ? "Can’t add more"
                     : "Add to list"}
                 </label>
