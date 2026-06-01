@@ -10,13 +10,14 @@ dayjs.extend(relativeTime);
 import Error from "pages/_error";
 import MainLayout from "components/MainLayout";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
+import Button from "shared/Button";
 import ListView from "shared/ListView";
 import ListNameModal from "components/ListComponents/ListNameModal";
 import ConfirmModal from "shared/ConfirmModal";
 import Pagination from "shared/Pagination";
 import { ListLoading, ListEmpty, ListsUnavailable } from "components/ListComponents";
 
-import { addCommasToNumber, addLinkInfoToResults, getDataProviderName, getItemThumbnail } from "lib";
+import { addCommasToNumber, addLinkInfoToResults, getDataProviderName, getItemThumbnail, joinIfArray, truncateString } from "lib";
 
 import { setLocalForageItem, removeLocalForageItem, STORAGE_UNAVAILABLE_ERROR } from "lib/localForage";
 
@@ -38,6 +39,7 @@ const List = () => {
   const [totalItemCount, setTotalItemCount] = useState(0);
   const [initialized, setInitialized] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
 
@@ -143,6 +145,71 @@ const List = () => {
     [list, listId],
   );
 
+  const handleExport = useCallback(async () => {
+    if (isExporting || !list) return;
+    setIsExporting(true);
+    try {
+      const allItemIds = Object.keys(list.selectedHash || {});
+      if (allItemIds.length === 0) return;
+
+      const allItems = [];
+      for (let i = 0; i < allItemIds.length; i += LIST_PAGE_SIZE) {
+        const batchIds = allItemIds.slice(i, i + LIST_PAGE_SIZE);
+        const res = await fetch(`/api/items/${batchIds.join(",")}`);
+        if (!res.ok) continue;
+        const json = await res.json();
+        json.docs
+          .filter((result) => result.error === undefined)
+          .forEach((result) => {
+            allItems.push({
+              ...result.sourceResource,
+              id: result.id ?? result.sourceResource["@id"],
+              sourceUrl: result.isShownAt,
+              dataProvider: getDataProviderName(result.dataProvider),
+              thumbnailUrl: getItemThumbnail(result),
+            });
+          });
+      }
+
+      const rows = allItems.map((item) => {
+        const thumbnailUrl =
+          item.thumbnailUrl && !item.thumbnailUrl.includes("placeholderImages")
+            ? item.thumbnailUrl
+            : "";
+        const title = item.title
+          ? `"${truncateString(joinIfArray(item.title), 150).replace(/"/g, "“")}"`
+          : UNTITLED_TEXT;
+        const date = item?.date?.displayDate
+          ? `"${item.date.displayDate.replace(/"/g, "“")}"`
+          : "";
+        const creator = item.creator
+          ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "“")}"`
+          : "";
+        const description = item.description
+          ? `"${truncateString(joinIfArray(item.description)).replace(/"/g, "“")}"`
+          : "";
+        const provider = item.dataProvider
+          ? `"${joinIfArray(item.dataProvider).replace(/"/g, "“")}"`
+          : "";
+        return `${item.id},${title},${date},${creator},${description},${provider},${thumbnailUrl},${item.sourceUrl}`;
+      });
+
+      const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join("\r\n")}`;
+      const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `DPLA User List - ${list.name || "list"}.csv`);
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } finally {
+      setIsExporting(false);
+    }
+  }, [isExporting, list]);
+
   const handleConfirmDelete = useCallback(async () => {
     await removeLocalForageItem(listId);
     try {
@@ -174,7 +241,7 @@ const List = () => {
       <BreadcrumbsModule
         breadcrumbs={[
           {
-            title: "My Lists",
+            title: LISTS_TITLE,
             url: "/lists",
           },
           { title: list ? list.name : UNTITLED_TEXT },
@@ -190,14 +257,31 @@ const List = () => {
           <div>
             {list.name && (
               <h1 className={css.listDetailName}>
-                {list.name}
-                <ListNameModal
-                  name="Rename"
-                  type="rename"
-                  className={css.listRenameButton}
-                  value={list.name}
-                  onChange={onNameChange}
-                />
+                <span className={css.listNameText}>{list.name}</span>
+                <span className={css.listHeaderActions}>
+                  <ListNameModal
+                    name="Rename"
+                    type="rename"
+                    className={css.listRenameButton}
+                    value={list.name}
+                    onChange={onNameChange}
+                  />
+                  <Button
+                    type="secondary"
+                    className={css.listDownloadButton}
+                    onClick={handleExport}
+                    disabled={isExporting}
+                  >
+                    {isExporting ? "Preparing download…" : "Download list"}
+                  </Button>
+                  <ConfirmModal
+                    className={css.listDeleteConfirm}
+                    buttonText="Delete list"
+                    text="Delete list?"
+                    confirmButtonText="Delete"
+                    onConfirm={handleConfirmDelete}
+                  />
+                </span>
               </h1>
             )}
             {(list.createdAt || initialized) && (
@@ -211,11 +295,9 @@ const List = () => {
               <strong>Note:</strong> The link to this list won&apos;t work for
               someone else or in another browser.
             </p>
-            {items && listId && (
+            {items.length > 0 && listId && (
               <div style={isPageLoading ? { opacity: 0.4, pointerEvents: "none" } : undefined}>
                 <ListView
-                  name={list.name}
-                  exportable={true}
                   items={addLinkInfoToResults(items)}
                   behavior={"list"}
                   viewingList={listId}
@@ -226,15 +308,6 @@ const List = () => {
               </div>
             )}
             {items.length === 0 && <ListEmpty />}
-            {list.name && (
-              <ConfirmModal
-                className={css.listDeleteConfirm}
-                buttonText="Delete list"
-                confirmText="Delete list?"
-                confirmButtonText="Delete"
-                onConfirm={handleConfirmDelete}
-              />
-            )}
           </div>
         )}
       </div>

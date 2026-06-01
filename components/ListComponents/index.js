@@ -53,7 +53,7 @@ export function ListEmpty() {
     <div className={`${css.empty}`}>
       <p>This list is empty.</p>
       <p>
-        Add up to {MAX_LIST_ITEMS} items from our <Link href="/browse-by-topic">topics</Link>{" "}
+        Add up to {addCommasToNumber(MAX_LIST_ITEMS)} items from our <Link href="/browse-by-topic">topics</Link>{" "}
         or <Link href="/search">search results</Link>:
       </p>
       <video
@@ -78,9 +78,8 @@ export function ListNote() {
   return (
     <div className={`${css.note} ${utils.colXs12}`}>
       <p>
-        <strong>Note:</strong> You won&apos;t see lists created in another
-        browser here. To view those lists, open the browser you used when
-        creating them.
+        <strong>Note:</strong> Your lists are stored locally in your browser.
+        You won't see lists created in another browser here. If you want to save a list long-term, you may wish to use the "download list" feature to export your lists as CSV files.
       </p>
     </div>
   );
@@ -98,7 +97,7 @@ export function ListsEmpty() {
             our <Link href="/browse-by-topic">topics</Link> or{" "}
           </>
         )}
-        <Link href="/search">search results</Link> (up to {MAX_LIST_ITEMS} items in each
+        <Link href="/search">search results</Link> (up to {addCommasToNumber(MAX_LIST_ITEMS)} items in each
         list):
       </p>
       <video
@@ -181,13 +180,18 @@ export function ListsContent({ initialized, lists, onCreateList, storageUnavaila
           <>
             {lists.length > 0 && <ListNote />}
             {lists.length === 0 && <ListsEmpty />}
-            <ListNameModal
-              className={css.createList}
-              type="create"
-              value=""
-              onChange={onCreateList}
-              name="Create new list"
-            />
+            <div className={`${utils.colXs12} ${css.listActions}`}>
+              <ListNameModal
+                className={css.createList}
+                type="create"
+                value=""
+                onChange={onCreateList}
+                name="Create new list"
+              />
+              <Link href="/lists/import" className={css.importLabel}>
+                Import list from CSV
+              </Link>
+            </div>
             {lists.length > 0 && <Lists lists={lists} />}
           </>
         )}

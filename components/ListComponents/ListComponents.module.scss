@@ -25,7 +25,65 @@
 }
 
 .createList {
+  flex-shrink: 0;
+}
+
+.listActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.importPageActions {
+  margin: 1.5rem 0;
+  max-width: 14rem;
+}
+
+.importLabel {
+  color: var(--linkColor);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.importInput {
+  display: none;
+}
+
+.importNameField {
   margin-bottom: 1rem;
+}
+
+.importNameLabel {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.importNameInput {
+  border: 0.1rem solid var(--grayBorderColor);
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  width: 100%;
+  max-width: 30rem;
+
+  &:focus {
+    border-color: var(--linkColor);
+    outline: none;
+  }
+}
+
+.importError {
+  color: var(--errorColor);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  max-width: 60ch;
 }
 
 .listDetailWrapper {
@@ -34,18 +92,43 @@
 }
 
 .listDetailName {
+  align-items: center;
   display: flex;
+  flex-wrap: wrap;
   font-size: 1.625rem;
   font-weight: 600;
+  gap: 0.75rem;
   margin-bottom: 1rem;
 }
 
+.listNameText {
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.listHeaderActions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+
+  @media (max-width: $mediumRem) {
+    flex-basis: 100%;
+  }
+}
+
 .listRenameButton {
-  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.listDownloadButton {
+  flex-shrink: 0;
 }
 
 .listDeleteConfirm {
   display: flex;
+  flex-shrink: 0;
 }
 
 .lists {

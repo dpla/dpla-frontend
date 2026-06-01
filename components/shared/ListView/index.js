@@ -40,7 +40,6 @@ function ItemDescription({ description }) {
 /**
  *
  * @param items Array of items to display (not necessarily those in the list, may be search results or a browse topic).
- * @param exportable Whether or not to show the CSV download link
  * @param viewMode "list" or "grid" for search view
  * @param viewingList contains list id if viewing in /lists/[uuid]
  * @param behavior "search," "browse," or "list" for different behavior depending on where this is used.
@@ -49,7 +48,6 @@ function ItemDescription({ description }) {
  */
 export default function ListView({
   items,
-  exportable,
   viewMode,
   viewingList,
   behavior,
@@ -178,64 +176,6 @@ export default function ListView({
     [],
   );
 
-  const downloadCSV = () => {
-    const rows = items
-      .filter((item) => {
-        const realId = item.itemDplaId || item.id;
-        return state.currentList.selectedHash[realId] !== undefined;
-      })
-      .map((item) => {
-        const realId = item.itemDplaId || item.id;
-        const thumbnailUrl =
-          item.thumbnailUrl && !item.thumbnailUrl.includes("placeholderImages")
-            ? item.thumbnailUrl
-            : "";
-        const title = item.title
-          ? `"${truncateString(item.title, 150).replace(/"/g, "”")}"`
-          : UNTITLED_TEXT;
-        const date = item?.date?.displayDate
-          ? `"${item.date.displayDate.replace(/"/g, "”")}"`
-          : "";
-        const creator = item.creator
-          ? `"${joinIfArray(item.creator, ", ").replace(/"/g, "”")}"`
-          : "";
-        const description = item.description
-          ? `"${joinTruncate(item.description).replace(/"/g, "”")}"`
-          : "";
-        const provider = item.dataProvider
-          ? `"${joinIfArray(item.dataProvider).replace(/"/g, "”")}"`
-          : "";
-        const url = item.sourceUrl;
-        return `${realId},${title},${date},${creator},${description},${provider},${thumbnailUrl},${url}`;
-      });
-    const csvData = `id,Title,Date,Creator,Description,Provider,Thumbnail,URL\r\n${rows.join("\r\n",)}`;
-    const filename = `${state?.currentList?.name || "list"}.csv`;
-    const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
-    if (navigator?.msSaveBlob) {
-      // IE 10+
-      navigator.msSaveBlob(blob, filename);
-    } else {
-      const link = document.createElement("a");
-      if (link.download !== undefined) {
-        // feature detection
-        // Browsers that support HTML5 download attribute
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", filename);
-        link.style.visibility = "hidden";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        const reader = new FileReader();
-        reader.onload = function () {
-          window.location.href = reader.result;
-        };
-        reader.readAsDataURL(blob);
-      }
-    }
-  };
-
   const listSelectChange = useCallback((e) => {
     const listUUID = e.target.value;
     if (listUUID === "") {
@@ -360,7 +300,7 @@ export default function ListView({
                   const listSize = Object.keys(list.selectedHash).length;
                   return (
                     <option key={list.uuid} value={list.uuid}>
-                      {list.name} ({listSize})
+                      {list.name} ({listSize}
                       {listSize !== 1 ? " items" : " item"})
                     </option>
                   );
@@ -371,11 +311,6 @@ export default function ListView({
         </div>
       )}
       <Alert showMessage={state.showMessage} />
-      {exportable && items.length > 0 && (
-        <div className={css.downloadLink}>
-          <a onClick={downloadCSV}>Download list</a>
-        </div>
-      )}
       <ul className={`${css.listView} ${viewMode === "grid" ? css.grid : ""}`}>
         {items.map((item) => {
           const realId = item.itemDplaId || item.id;

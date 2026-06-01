@@ -13,30 +13,6 @@
   margin-right: 0.5rem;
 }
 
-.downloadLink {
-  display: flex;
-  margin: 0.5rem 0;
-
-  & a {
-    cursor: pointer;
-  }
-}
-
-.csvExplainer {
-  color: var(--dimmedTextColor);
-  font-size: 0.8rem;
-  font-style: italic;
-}
-
-.preformatted {
-  font-family: var(--monoFont), monospace;
-  white-space: pre-wrap;
-}
-
-.listAddToList {
-  display: flex;
-}
-
 .listSelectLabel {
   display: none;
 

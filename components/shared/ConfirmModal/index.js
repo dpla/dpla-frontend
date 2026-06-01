@@ -37,9 +37,10 @@ class ConfirmModal extends React.Component {
 
   render() {
     const { active } = this.state;
-    const { className, text, buttonText: buttonTextProp } = this.props;
+    const { className, text, buttonText: buttonTextProp, confirmButtonText } = this.props;
     const confirmText = text || DEFAULT_CONFIRM_TEXT;
     const buttonText = buttonTextProp || DEFAULT_BUTTON_TEXT;
+    const confirmBtnText = confirmButtonText || buttonText;
     const modal = active
       ? <AriaModal
           titleText={confirmText}
@@ -72,7 +73,7 @@ class ConfirmModal extends React.Component {
                 mustSubmit={true}
                 className={utils.modalContinueButton}
               >
-                {buttonText}
+                {confirmBtnText}
               </Button>
             </div>
           </form>
