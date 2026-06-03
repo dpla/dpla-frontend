@@ -113,7 +113,14 @@ const List = () => {
       try {
         const json = await res.json();
         if (cancelled) return;
-        const items = (json.docs ?? [])
+        if (!Array.isArray(json.docs)) {
+          setInitialized(true);
+          setList(list);
+          setItems([]);
+          setItemsFetchError(true);
+          return;
+        }
+        const items = json.docs
           .filter((result) => result.error === undefined)
           .map((result) => {
             const thumbnailUrl = getItemThumbnail(result);
