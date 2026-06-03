@@ -47,6 +47,9 @@ const List = () => {
         return;
       }
 
+      // Clear stale fetch errors when a new load starts
+      setItemsFetchError(false);
+
       let list;
       try {
         list = await localforage.getItem(listId);
@@ -65,6 +68,7 @@ const List = () => {
       if (!list) {
         setInitialized(true);
         setItems([]);
+        setItemsFetchError(false);
         return;
       }
 
@@ -74,6 +78,7 @@ const List = () => {
         setInitialized(true);
         setList(list);
         setItems([]);
+        setItemsFetchError(false);
         return;
       }
 
@@ -126,6 +131,7 @@ const List = () => {
         setInitialized(true);
         setList(list);
         setItems(items);
+        setItemsFetchError(false);
       } catch {
         if (cancelled) return;
         setInitialized(true);
