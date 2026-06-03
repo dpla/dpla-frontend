@@ -47,7 +47,11 @@ const List = () => {
         return;
       }
 
-      // Clear stale fetch errors when a new load starts
+      // Reset state for a new load
+      setInitialized(false);
+      setList(null);
+      setItems([]);
+      setStorageUnavailable(false);
       setItemsFetchError(false);
 
       let list;
@@ -68,17 +72,15 @@ const List = () => {
       if (!list) {
         setInitialized(true);
         setItems([]);
-        setItemsFetchError(false);
         return;
       }
 
-      const itemIds = list?.selectedHash ? Object.keys(list?.selectedHash) : [];
+      const itemIds = list.selectedHash ? Object.keys(list.selectedHash) : [];
 
       if (itemIds.length === 0) {
         setInitialized(true);
         setList(list);
         setItems([]);
-        setItemsFetchError(false);
         return;
       }
 
@@ -131,7 +133,6 @@ const List = () => {
         setInitialized(true);
         setList(list);
         setItems(items);
-        setItemsFetchError(false);
       } catch {
         if (cancelled) return;
         setInitialized(true);
@@ -231,7 +232,7 @@ const List = () => {
               <strong>Note:</strong> The link to this list won&apos;t work for
               someone else or in another browser.
             </p>
-            {items && listId && (
+            {items.length > 0 && listId && (
               <ListView
                 name={list.name}
                 exportable={true}
