@@ -250,7 +250,7 @@ const List = () => {
             )}
             {items.length === 0 && (
               itemsFetchError
-                ? <p className={css.listItemsError}>We couldn&apos;t load your saved items right now. Please try again later.</p>
+                ? <p role="alert" className={css.listItemsError}>We couldn&apos;t load your saved items right now. Please try again later.</p>
                 : <ListEmpty />
             )}
             {list.name && (
