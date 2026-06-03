@@ -95,8 +95,9 @@ On success, the route passes through the raw DPLA Search API response:
 | Condition | Status | Body |
 |-----------|--------|------|
 | Zero valid IDs after filtering | 404 | `{}` |
-| Upstream DPLA API error | 404 | `Not found.` (text) |
-| Exception during fetch | 404 | `{}` |
+| Upstream DPLA API returned 404 | 404 | `{ "error": "Not found." }` |
+| Upstream DPLA API error (non-404) | 502 | `{ "error": "Upstream service error." }` |
+| Exception during fetch or stream | 502 | `{ "error": "Upstream service error." }` |
 
 Errors are logged to the server console but not surfaced in the response body.
 
