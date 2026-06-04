@@ -122,7 +122,7 @@ It then maps the returned `docs` array into display-ready items, extracting:
 
 | Constraint | Value | Defined In |
 |-----------|-------|-----------|
-| Max items per list (UI-enforced) | 50 | `MAX_LIST_ITEMS` in `constants/site.js` |
+| Max items per list (UI-enforced) | 1000 | `MAX_LIST_ITEMS` in `constants/site.js` |
 | ID format | 32-char hex | `DPLA_ITEM_ID_REGEX` in `constants/items.js` |
 | HTTP methods | GET only | — |
 

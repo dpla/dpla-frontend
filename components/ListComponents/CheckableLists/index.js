@@ -7,7 +7,7 @@ import {ListCheckbox} from "components/ListComponents";
 import {createUUID} from "lib";
 import {getLocalForageLists, setLocalForageItem} from "lib/localForage";
 
-import {MESSAGE_DELAY} from "constants/site";
+import {MAX_LIST_ITEMS, MESSAGE_DELAY} from "constants/site";
 
 import css from "../ListComponents.module.scss";
 
@@ -159,7 +159,7 @@ function CheckableLists({itemId}) {
       <ul className={css.listOfLists}>
         {state.lists.map((l) => {
           const isChecked = state.checkedLists.indexOf(l.uuid) !== -1;
-          const shouldDisable = (l.count > 50 && !isChecked) || !!state.updatingLists[l.uuid];
+          const shouldDisable = (l.count >= MAX_LIST_ITEMS && !isChecked) || !!state.updatingLists[l.uuid];
           return (
             <ListCheckbox
               key={`l_${l.uuid}`}

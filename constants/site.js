@@ -21,7 +21,8 @@ export const UNTITLED_TEXT = "Untitled";
 
 export const MESSAGE_DELAY = 5000;
 
-export const MAX_LIST_ITEMS = 50;
+export const MAX_LIST_ITEMS = 1000;
+export const LIST_PAGE_SIZE = 50;
 
 export const resourceTypes = {
   TEXT: "text",

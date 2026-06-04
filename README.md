@@ -288,7 +288,7 @@ There are seventeen workflows in `.github/workflows/`:
 
 ### Lists
 
-Users can save items to named lists stored locally in the browser via `localforage` (IndexedDB). Lists are capped at **50 items** (`MAX_LIST_ITEMS` in `constants/site.js`). When viewing a list, the page fetches full item metadata from `GET /api/items/{ids}` at runtime — only IDs are stored locally, not metadata. There is no server-side list storage or user account system.
+Users can save items to named lists stored locally in the browser via `localforage` (IndexedDB). Lists are capped at **1,000 items** (`MAX_LIST_ITEMS` in `constants/site.js`). When viewing a list, the page fetches full item metadata from `GET /api/items/{ids}` at runtime — only IDs are stored locally, not metadata. There is no server-side list storage or user account system.
 
 See [`pages/api/items/ITEMS-API.md`](pages/api/items/ITEMS-API.md) for the full API route specification.
 
