@@ -45,18 +45,28 @@ const List = () => {
   const isRenamingRef = useRef(false);
 
   useEffect(() => {
+    let cancelled = false;
+    const controller = new AbortController();
+
     const fetchList = async () => {
       if (!listId) {
         return;
       }
 
-      setIsPageLoading(true);
+      // Reset state for a new load
+      setInitialized(false);
+      setList(null);
+      setItems([]);
+      setStorageUnavailable(false);
       setFetchError(false);
+      setIsPageLoading(true);
+
       try {
         let list;
         try {
           list = await localforage.getItem(listId);
         } catch (err) {
+          if (cancelled) return;
           console.error("fetchList error", err);
           if (err.message === STORAGE_UNAVAILABLE_ERROR) {
             setStorageUnavailable(true);
@@ -65,13 +75,15 @@ const List = () => {
           return;
         }
 
+        if (cancelled) return;
+
         if (!list) {
           setInitialized(true);
           setItems([]);
           return;
         }
 
-        const allItemIds = list?.selectedHash ? Object.keys(list.selectedHash) : [];
+        const allItemIds = list.selectedHash ? Object.keys(list.selectedHash) : [];
         setTotalItemCount(allItemIds.length);
 
         if (allItemIds.length === 0) {
@@ -82,15 +94,25 @@ const List = () => {
         }
 
         const pageIds = allItemIds.slice((page - 1) * LIST_PAGE_SIZE, page * LIST_PAGE_SIZE);
-        const url = `/api/items/${pageIds.join(",")}`;
-        const res = await fetch(url);
+        const ids = pageIds.join(",");
+
+        let res;
+        try {
+          res = await fetch(`/api/items/${ids}`, { signal: controller.signal });
+        } catch (err) {
+          if (cancelled) return;
+          console.error("Failed to fetch list items:", err);
+          setInitialized(true);
+          setList(list);
+          setItems([]);
+          setFetchError(true);
+          return;
+        }
+
+        if (cancelled) return;
+
         if (!res.ok) {
-          if (res.status === 404) {
-            setInitialized(true);
-            setList(list);
-            setItems([]);
-            return;
-          }
+          console.error("Failed to fetch list items:", res.status);
           setInitialized(true);
           setList(list);
           setItems([]);
@@ -100,6 +122,14 @@ const List = () => {
 
         try {
           const json = await res.json();
+          if (cancelled) return;
+          if (!Array.isArray(json.docs)) {
+            setInitialized(true);
+            setList(list);
+            setItems([]);
+            setFetchError(true);
+            return;
+          }
           const items = json.docs
             .filter((result) => result.error === undefined)
             .map((result) => {
@@ -121,16 +151,25 @@ const List = () => {
           setList(list);
           setItems(items);
         } catch {
+          if (cancelled) return;
           setInitialized(true);
           setList(list);
           setItems([]);
+          setFetchError(true);
         }
       } finally {
-        setIsPageLoading(false);
+        if (!cancelled) {
+          setIsPageLoading(false);
+        }
       }
     };
 
     fetchList();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
   }, [listId, page]);
 
   const onNameChange = useCallback(
@@ -309,10 +348,11 @@ const List = () => {
                 )}
               </div>
             )}
-            {fetchError && (
-              <p>There was a problem loading this list. Please try refreshing the page.</p>
+            {items.length === 0 && (
+              fetchError
+                ? <p role="alert" className={css.listItemsError}>We couldn&apos;t load your saved items right now. Please try again later.</p>
+                : <ListEmpty />
             )}
-            {!fetchError && items.length === 0 && <ListEmpty />}
           </div>
         )}
       </div>
