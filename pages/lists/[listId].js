@@ -40,6 +40,7 @@ const List = () => {
   const [initialized, setInitialized] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [exportError, setExportError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
   const isRenamingRef = useRef(false);
@@ -202,6 +203,7 @@ const List = () => {
   const handleExport = useCallback(async () => {
     if (isExporting || !list) return;
     setIsExporting(true);
+    setExportError(false);
     try {
       const allItemIds = Object.keys(list.selectedHash || {});
       if (allItemIds.length === 0) return;
@@ -209,8 +211,15 @@ const List = () => {
       const allItems = [];
       for (let i = 0; i < allItemIds.length; i += LIST_PAGE_SIZE) {
         const batchIds = allItemIds.slice(i, i + LIST_PAGE_SIZE);
-        const res = await fetch(`/api/items/${batchIds.join(",")}`);
-        if (!res.ok) continue;
+        let res;
+        try {
+          res = await fetch(`/api/items/${batchIds.join(",")}`);
+        } catch {
+          throw new Error("Network error while fetching items for export");
+        }
+        if (!res.ok) {
+          throw new Error(`Failed to fetch items (HTTP ${res.status})`);
+        }
         const json = await res.json();
         json.docs
           .filter((result) => result.error === undefined)
@@ -255,6 +264,8 @@ const List = () => {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
+    } catch {
+      setExportError(true);
     } finally {
       setIsExporting(false);
     }
@@ -324,6 +335,11 @@ const List = () => {
                   >
                     {isExporting ? "Preparing download…" : "Download list"}
                   </Button>
+                  {exportError && (
+                    <p role="alert" className={css.listItemsError}>
+                      We couldn&apos;t export your list. Please try again.
+                    </p>
+                  )}
                   <ConfirmModal
                     className={css.listDeleteConfirm}
                     buttonText="Delete list"
