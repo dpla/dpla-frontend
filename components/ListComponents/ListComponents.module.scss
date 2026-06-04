@@ -104,7 +104,7 @@
 .listNameText {
   flex: 1 1 auto;
   min-width: 0;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .listHeaderActions {
