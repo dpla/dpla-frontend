@@ -93,7 +93,7 @@ Items can be added from three places:
 ### From Search Results (`/search`) or Browse by Topic
 - The **`ListView`** component (with `behavior="search"` or `behavior="browse"`) shows an "Add to:" dropdown and checkboxes next to items
 - Selecting a list and checking items calls `addCell(itemId)`, updating the list in localForage
-- A maximum of **50 items** per list is enforced (`MAX_LIST_ITEMS` in `constants/site.js`)
+- A maximum of **1000 items** per list is enforced (`MAX_LIST_ITEMS` in `constants/site.js`)
 
 ### From a List Page (removing)
 - With `behavior="list"`, ListView shows checkboxes to remove items
