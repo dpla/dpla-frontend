@@ -94,6 +94,15 @@ const List = () => {
         }
 
         const pageIds = allItemIds.slice((page - 1) * LIST_PAGE_SIZE, page * LIST_PAGE_SIZE);
+
+        // Check if page is out of range
+        if (pageIds.length === 0) {
+          // Redirect to the last valid page
+          const lastPage = Math.ceil(allItemIds.length / LIST_PAGE_SIZE);
+          Router.replace({ pathname: `/lists/${listId}`, query: { page: lastPage } });
+          return;
+        }
+
         const ids = pageIds.join(",");
 
         let res;
