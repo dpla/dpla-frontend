@@ -79,13 +79,18 @@ export default function ImportList() {
       const uuid = createUUID();
       const createdAt = Date.now();
       const selectedHash = Object.fromEntries(ids.map((id) => [id, id]));
-      await setLocalForageItem(uuid, {
-        uuid,
-        name,
-        selectedHash,
-        count: ids.length,
-        createdAt,
-      });
+      try {
+        await setLocalForageItem(uuid, {
+          uuid,
+          name,
+          selectedHash,
+          count: ids.length,
+          createdAt,
+        });
+      } catch {
+        setError("Could not save the list. Your browser storage may be full or unavailable.");
+        return;
+      }
       await Router.push({ pathname: `/lists/${uuid}` });
     } finally {
       setIsImporting(false);
