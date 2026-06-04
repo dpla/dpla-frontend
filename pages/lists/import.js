@@ -59,7 +59,7 @@ export default function ImportList() {
       const lines = text.split(/\r?\n/);
       const seen = new Set();
       const ids = [];
-      for (let i = 1; i < lines.length; i++) {
+      for (let i = 0; i < lines.length; i++) {
         const id = lines[i].split(",")[0].trim().toLowerCase();
         if (DPLA_ITEM_ID_REGEX.test(id) && !seen.has(id)) {
           seen.add(id);
