@@ -35,18 +35,30 @@ const List = () => {
   const [items, setItems] = useState([]);
   const [initialized, setInitialized] = useState(false);
   const [storageUnavailable, setStorageUnavailable] = useState(false);
+  const [itemsFetchError, setItemsFetchError] = useState(false);
   const isRenamingRef = useRef(false);
 
   useEffect(() => {
+    let cancelled = false;
+    const controller = new AbortController();
+
     const fetchList = async () => {
       if (!listId) {
         return;
       }
 
+      // Reset state for a new load
+      setInitialized(false);
+      setList(null);
+      setItems([]);
+      setStorageUnavailable(false);
+      setItemsFetchError(false);
+
       let list;
       try {
         list = await localforage.getItem(listId);
       } catch (err) {
+        if (cancelled) return;
         console.error("fetchList error", err);
         if (err.message === STORAGE_UNAVAILABLE_ERROR) {
           setStorageUnavailable(true);
@@ -55,13 +67,15 @@ const List = () => {
         return;
       }
 
+      if (cancelled) return;
+
       if (!list) {
         setInitialized(true);
         setItems([]);
         return;
       }
 
-      const itemIds = list?.selectedHash ? Object.keys(list?.selectedHash) : [];
+      const itemIds = list.selectedHash ? Object.keys(list.selectedHash) : [];
 
       if (itemIds.length === 0) {
         setInitialized(true);
@@ -72,20 +86,40 @@ const List = () => {
 
       const ids = itemIds.join(",");
 
-      const url = `/api/items/${ids}`;
-      const res = await fetch(url);
+      let res;
+      try {
+        res = await fetch(`/api/items/${ids}`, { signal: controller.signal });
+      } catch (err) {
+        if (cancelled) return;
+        console.error("Failed to fetch list items:", err);
+        setInitialized(true);
+        setList(list);
+        setItems([]);
+        setItemsFetchError(true);
+        return;
+      }
+
+      if (cancelled) return;
+
       if (!res.ok) {
-        if (res.status === 404) {
-          setInitialized(true);
-          setList(list);
-          setItems([]);
-          return;
-        }
-        throw new Error("Couldn't load items.");
+        console.error("Failed to fetch list items:", res.status);
+        setInitialized(true);
+        setList(list);
+        setItems([]);
+        setItemsFetchError(true);
+        return;
       }
 
       try {
         const json = await res.json();
+        if (cancelled) return;
+        if (!Array.isArray(json.docs)) {
+          setInitialized(true);
+          setList(list);
+          setItems([]);
+          setItemsFetchError(true);
+          return;
+        }
         const items = json.docs
           .filter((result) => result.error === undefined)
           .map((result) => {
@@ -107,13 +141,20 @@ const List = () => {
         setList(list);
         setItems(items);
       } catch {
+        if (cancelled) return;
         setInitialized(true);
         setList(list);
         setItems([]);
+        setItemsFetchError(true);
       }
     };
 
     fetchList();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
   }, [listId]);
 
   const onNameChange = useCallback(
@@ -198,7 +239,7 @@ const List = () => {
               <strong>Note:</strong> The link to this list won&apos;t work for
               someone else or in another browser.
             </p>
-            {items && listId && (
+            {items.length > 0 && listId && (
               <ListView
                 name={list.name}
                 exportable={true}
@@ -207,7 +248,11 @@ const List = () => {
                 viewingList={listId}
               />
             )}
-            {items.length === 0 && <ListEmpty />}
+            {items.length === 0 && (
+              itemsFetchError
+                ? <p role="alert" className={css.listItemsError}>We couldn&apos;t load your saved items right now. Please try again later.</p>
+                : <ListEmpty />
+            )}
             {list.name && (
               <ConfirmModal
                 className={css.listDeleteConfirm}

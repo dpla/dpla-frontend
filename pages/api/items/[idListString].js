@@ -72,7 +72,7 @@ export default async function handler(req, res) {
             if (fetchRes.status === 404) {
                 res.status(404).json({ error: "Not found." });
             } else {
-                res.status(fetchRes.status).json({ error: "Upstream service error." });
+                res.status(502).json({ error: "Upstream service error." });
             }
         }
 
