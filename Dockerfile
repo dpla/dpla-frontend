@@ -1,4 +1,4 @@
-FROM node:22-slim AS builder
+FROM node:24-slim AS builder
 
 
 ARG SITE_ENV="user"
@@ -45,7 +45,7 @@ RUN --mount=type=secret,id=sentry_auth \
     SENTRY_AUTH_TOKEN=$(cat /run/secrets/sentry_auth 2>/dev/null || true) \
     yarn run build
 
-FROM node:22-slim AS dpla-frontend
+FROM node:24-slim AS dpla-frontend
 RUN apt-get update && apt-get --no-install-recommends install -y tini curl && apt clean
 WORKDIR /opt/dpla-frontend/
 COPY components ./components
