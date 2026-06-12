@@ -273,7 +273,7 @@ function doContact() {
         "info@dp.la",
         `DPLA Site Contact: ${subject}`,
         email_message,
-      );
+      ).catch(error => console.error("Contact email failed", error));
 
       // send the response back
       res.sendStatus(200);
