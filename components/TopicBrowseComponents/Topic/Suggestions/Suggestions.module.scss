@@ -10,11 +10,11 @@
   padding-bottom: 45px;
 
   /* overrides for react-slick css*/
-  & :global .slick-prev:before, & :global .slick-next:before {
+  :global(.slick-prev):before, :global(.slick-next):before {
     content: none;
   }
 
-  & :global .slick-disabled {
+  :global(.slick-disabled) {
     display: none;
   }
 }

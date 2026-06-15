@@ -205,17 +205,17 @@
 
 .content {
   @media (min-width: $largeRem) {
-    & :global .slick-list {
+    :global(.slick-list) {
       /* Offset for the featuredTag */
       padding-left: 0.25rem;
     }
   }
 
-  & :global .slick-prev:before, & :global .slick-next:before {
+  :global(.slick-prev):before, :global(.slick-next):before {
     content: none;
   }
 
-  :global .slick-disabled {
+  :global(.slick-disabled) {
     display: none;
   }
 }

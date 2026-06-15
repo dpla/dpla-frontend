@@ -497,14 +497,14 @@ $sidebarMargin: 1.25rem;
     outline: 0.25rem solid var(--outlineColor);
   }
 
-  & :global(#openseadragon1) {
+  :global(#openseadragon1) {
     height: 15rem;
   }
 
   @media (min-width: $smallRem) {
     margin-bottom: 1.25rem;
 
-    & :global(#openseadragon1) {
+    :global(#openseadragon1) {
       height: 24rem;
     }
   }

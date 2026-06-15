@@ -4,7 +4,7 @@
   margin: -0.2rem auto 1rem;
 
   /* Overwrite flexbox-grid with a thinner gutter */
-  & :global .row {
+  :global(.row) {
     margin-left: -0.1rem;
     margin-right: -0.1rem;
 
@@ -14,7 +14,7 @@
     }
   }
 
-  & :global .col-xs-6, & :global .col-md-4 {
+  :global(.col-xs-6), :global(.col-md-4) {
     padding-left: 0.1rem;
     padding-right: 0.1rem;
 

@@ -285,38 +285,38 @@ $borderColor: rgba(0, 0, 0, 0.75);
     height: auto;
   }
 
-  & :global .alignright, & :global .alignleft, & :global .wp-caption {
+  :global(.alignright), :global(.alignleft), :global(.wp-caption) {
     margin-bottom: 0.5rem;
   }
 
-  & :global .alignleft {
+  :global(.alignleft) {
     float: left;
     margin-right: 0.75rem;
   }
 
-  & :global .aligncenter {
+  :global(.aligncenter) {
     margin-left: auto;
     margin-right: auto;
     display: block;
   }
 
-  & :global .alignright {
+  :global(.alignright) {
     float: right;
     margin-left: 0.75rem;
   }
 
-  & :global .wp-caption-text {
+  :global(.wp-caption-text) {
     font-size: 0.875rem;
     font-weight: 600;
     margin-top: 0.5rem;
     margin-bottom: 0;
   }
 
-  & :global .wp-caption {
+  :global(.wp-caption) {
     max-width: 100%;
   }
 
-  :global .btn, :global .btn:visited {
+  :global(.btn), :global(.btn):visited {
     display: block;
     max-width: 18rem;
     background-color: var(--linkColor);
@@ -327,11 +327,11 @@ $borderColor: rgba(0, 0, 0, 0.75);
     text-align: center;
     border-radius: 0.25rem;
     transition: background-color 0.15s ease-out;
+  }
 
-    &:hover {
-      background-color: var(--linkHoverColor);
-      text-decoration: none;
-    }
+  :global(.btn):hover {
+    background-color: var(--linkHoverColor);
+    text-decoration: none;
   }
 }
 
