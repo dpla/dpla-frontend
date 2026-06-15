@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "ignoreDeprecations": "5.0",
     "target": "ES6",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "lib/*": [
         "./lib/*"
