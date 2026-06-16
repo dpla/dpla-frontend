@@ -79,8 +79,6 @@
 }
 
 
-a {
-  &.external {
-    background-image: none;
-  }
+.external {
+  background-image: none;
 }
