@@ -15,14 +15,14 @@ These are the main areas relevant to any Local instance:
 
 ## Static File Folder
 
-Static files belonging to each Local need to be placed in a subfolder of the `public/static/local` folder. The subfolder needs to be named with the `LOCAL_ID` (for example `static/wisconsin/` for Recollection Wisconsin). Files that go in this folder are:
+Static files belonging to each Local need to be placed in a subfolder of the `public/static/local` folder. The subfolder needs to be named with the `LOCAL_ID` (for example `public/static/local/wisconsin/` for Recollection Wisconsin). Files that go in this folder are:
 
 - Local favicon file displayed in browser tabs (filename defined in the Constants file below)
 - Local logo file displayed in the header and footer (filename defined in the Constants file below)
 - `about.md` containing the text for the about page
 - `homepage.md` containing the text for the home page
 - `terms.md` containing the text for the terms and conditions page
-- `home-hero-bg.jpg` with the hero image shown in the home page
+- Hero image shown on the home page (filename configured via the `background` field in the Constants file below)
 - `manifest.json` with a manifest of files
 
 ## CSS Theme
@@ -33,13 +33,23 @@ Locals use a theming system that allows basic color customization. This customiz
 
 Since all Local instances share the same codebase, there is a [`constants/local.js`](constants/local.js) file that contains the necessary configuration variables for an instance:
 
-- `theme`: name of the CSS file that contains the theme (should preferrably be the same as the `LOCAL_ID` for consistency)
+- `theme`: identifier used as the theme key/class at runtime (should preferably be the same as the `LOCAL_ID` for consistency)
 - `name`: name of the Local, appearing throughout the site
-- `favicon`: filename for the Local's `favicon` displayed in browser tabs
-- `logo`: filename Local's logo shown in header and footer
+- `favicon`: filename for the Local's favicon displayed in browser tabs
+- `logo`: filename for the Local's logo shown in header and footer
+- `heroLogo`: filename for a larger logo variant shown in the hero section (optional)
+- `background`: filename for the hero image shown on the home page
 - `description`: used in the `description` metadata field, sometimes displayed by search engines in their results
-- `provider`: URL-encoded value used to restrict the search interface results to items belonging only to the specified `provider` (for example `%22Recollection%20Wisconsin%22` for Recollection Wisconsin)
+- `filters`: array of URL-encoded filter strings used to restrict search results to this Local's content (for example `[“provider.@id:http%3A//dp.la/api/contributor/wisconsin”]` for Recollection Wisconsin); use `tags` instead when filtering by tag
+- `tags`: array of tag strings used to restrict search results to this Local's content (alternative to `filters` for tag-based locals, for example `[“aviation”]`)
 - `locationFacet`: URL-encoded value used to restrict the search interface results to items with the specified `sourceResource.spatial.name` (for example `%22Wisconsin%22` for Recollection Wisconsin)
 - `subjectFacet`: URL-encoded value used to restrict the search interface results to items with the specified `sourceResource.subject.name` (for example `%22Wisconsin%22` for Recollection Wisconsin)
-- `hasAbout`: determines whether to show (`true`) or not (`false`) the “About” link in the hero section on the homepage under the search box.
-- `externalLink`: URL for the top navigation link with the Local's `name`
+- `externalLink`: URL for the top navigation link with the Local's `name` (optional)
+- `hasAbout`: determines whether to show (`true`) or not (`false`) the “About” link in the hero section on the homepage under the search box
+- `hasSidebar`: determines whether to show (`true`) or not (`false`) a sidebar in the search results
+- `hasBrowseByPartner`: determines whether to show (`true`) or not (`false`) the “Browse by Partner” section
+- `hasBrowseAll`: determines whether to show (`true`) or not (`false`) the “Browse All” section
+- `hasTerms`: determines whether to show (`true`) or not (`false`) the terms and conditions page
+- `hasContact`: determines whether to show (`true`) or not (`false`) a contact link (optional)
+- `contactLink`: URL for the contact page (optional)
+- `routes`: object defining the Local's content pages and navigation structure (optional)
