@@ -51,9 +51,6 @@
     position: relative;
     top: 0;
     padding: 0 0.7rem;
-
-    @media (min-width: 40em) {
-    }
   }
 }
 

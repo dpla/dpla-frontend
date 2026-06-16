@@ -171,12 +171,6 @@
 
   & p, & ul, & ol {
     font-weight: normal;
-
-    @media (min-width: 52em) {
-    }
-
-    @media (min-width: 72em) {
-    }
   }
 
   & ul, & ol {
@@ -253,18 +247,12 @@
     width: 100%;
   }
 
-  & td:not(:first-child) {
-  }
-
   & th, & td {
     padding: 1rem;
   }
 
   & td p:last-child {
     margin-bottom: 0;
-  }
-
-  & tr:not(:last-child) {
   }
 
   & hr {

@@ -58,9 +58,6 @@
   margin-bottom: 9px;
   position: relative;
   height: 180px;
-
-  @media (min-width: 40em) {
-  }
 }
 
 .defaultImageWrapper {

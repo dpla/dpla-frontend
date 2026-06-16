@@ -54,7 +54,4 @@
     visibility: visible;
     overflow: visible;
   }
-
-  @media (min-width: 52em) {
-  }
 }

@@ -58,9 +58,6 @@
 
 .options {
   display: flex;
-
-  @media (min-width: 40em) {
-  }
 }
 
 .optionWrapper {
