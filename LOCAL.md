@@ -4,7 +4,7 @@ These are the main areas relevant to any Local instance:
 
 - Environment Variables
 - Static File Folder
-- SCSS Theme
+- CSS Theme
 - Local Constants File
 
 ## Environment Variables
@@ -25,15 +25,15 @@ Static files belonging to each Local need to be placed in a subfolder of the `pu
 - `home-hero-bg.jpg` with the hero image shown in the home page
 - `manifest.json` with a manifest of files
 
-## SCSS Theme
+## CSS Theme
 
-Locals use a theming system that allows basic color customization. This customization must follow [WCAG contrast and color requirements](https://webaim.org/articles/contrast/). Theme files follow a similar structure as the static file folder above but in the `stylesheets/themes/` folder and contain a single `theme.scss` file (for example `stylesheets/themes/wisconsin/theme.scss` for Recollection Wisconsin). The file itself contains the necessary color customizations for the Local.
+Locals use a theming system that allows basic color customization. This customization must follow [WCAG contrast and color requirements](https://webaim.org/articles/contrast/). Theme files follow a similar structure as the static file folder above but in the `stylesheets/themes/` folder and contain a single `theme.css` file (for example `stylesheets/themes/wisconsin/theme.css` for Recollection Wisconsin). The file itself contains the necessary color customizations for the Local.
 
 ## Local Constants File
 
 Since all Local instances share the same codebase, there is a [`constants/local.js`](constants/local.js) file that contains the necessary configuration variables for an instance:
 
-- `theme`: name of the SCSS file that contains the theme (should preferrably be the same as the `LOCAL_ID` for consistency)
+- `theme`: name of the CSS file that contains the theme (should preferrably be the same as the `LOCAL_ID` for consistency)
 - `name`: name of the Local, appearing throughout the site
 - `favicon`: filename for the Local's `favicon` displayed in browser tabs
 - `logo`: filename Local's logo shown in header and footer

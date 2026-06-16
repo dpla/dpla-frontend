@@ -1,0 +1,10 @@
+
+.rule {
+  border-top: 0.25rem solid;
+  width: 2.5rem;
+  margin: 1rem auto;
+
+  @media (min-width: 40em) {
+    width: 3rem;
+  }
+}

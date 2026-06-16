@@ -1,0 +1,86 @@
+
+.sourceSetSources {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+
+  @media (min-width: 72em) {
+    margin-top: 3rem;
+  }
+}
+
+.set {
+  flex-basis: calc(50% - 0.25rem);
+  margin-right: 0.25rem;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  margin-bottom: 28px;
+
+  @media (min-width: 30em) {
+    flex-basis: calc(33% - 15px);
+    margin-right: 29px;
+
+    &:nth-child(2n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+
+  @media (min-width: 40em) {
+    flex-basis: calc(25% - 15px);
+    margin-right: 20px;
+
+    &:nth-child(2n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.imageWrapper {
+  background-color: var(--warmerBackgroundColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 9px;
+  position: relative;
+  height: 180px;
+
+  @media (min-width: 40em) {
+  }
+}
+
+.defaultImageWrapper {
+  & img {
+    height: auto;
+  }
+}
+
+.image {
+  margin: 0.5rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.title {
+  font-size: 0.75rem;
+
+  @media (min-width: 40em) {
+    font-size: 0.875rem;
+  }
+}
+
+.wrapper {}

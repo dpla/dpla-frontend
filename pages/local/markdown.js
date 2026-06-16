@@ -10,8 +10,8 @@ import { join } from "path";
 
 import { LOCALS } from "constants/local";
 
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
 import { washObject } from "lib/washObject";
 import rehypeRaw from "rehype-raw";
 

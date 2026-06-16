@@ -9,7 +9,7 @@ import {getLocalForageLists, setLocalForageItem} from "lib/localForage";
 
 import {MAX_LIST_ITEMS, MESSAGE_DELAY} from "constants/site";
 
-import css from "../ListComponents.module.scss";
+import css from "../ListComponents.module.css";
 
 function CheckableLists({itemId}) {
 

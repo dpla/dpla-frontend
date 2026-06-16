@@ -3,7 +3,7 @@ import Button from "components/shared/Button";
 
 import { joinIfArray, removeEndPunctuation, formatDate } from "lib";
 
-import css from "./CiteButton.module.scss";
+import css from "./CiteButton.module.css";
 
 class CiteButton extends React.Component {
   constructor(props) {

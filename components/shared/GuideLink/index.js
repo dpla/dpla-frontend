@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./GuideLink.module.scss";
+import css from "./GuideLink.module.css";
 
 function GuideLink({ guide }) {
   return (

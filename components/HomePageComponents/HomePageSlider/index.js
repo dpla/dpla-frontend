@@ -5,8 +5,8 @@ import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import css from "./HomePageSlider.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./HomePageSlider.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
@@ -73,13 +73,14 @@ function HomePageSlider({
                       }}
                     />
                   </div>
-                  <Markdown
-                    className={css.itemText}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
-                  >
-                    {name}
-                  </Markdown>
+                  <span className={css.itemText}>
+                    <Markdown
+                      allowedElements={["emphasis", "text"]}
+                      unwrapDisallowed
+                    >
+                      {name}
+                    </Markdown>
+                  </span>
                 </Link>
               </div>
             ),

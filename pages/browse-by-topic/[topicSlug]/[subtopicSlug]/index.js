@@ -15,8 +15,8 @@ import {
 } from "constants/topicBrowse";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "components/TopicBrowseComponents/SubtopicItemsList/SubtopicItemsList.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 
 function SubtopicItemsList(props) {

@@ -3,9 +3,9 @@ import Button from "shared/Button";
 
 import { PAYPAL_DONATE_SINGLE, PAYPAL_DONATE_MONTHLY } from "constants/site.js";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/donate.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/donate.module.css";
+import utils from "stylesheets/utils.module.css";
 
 const frequencyMap = [
   { v: "once", k: "Give Once" },

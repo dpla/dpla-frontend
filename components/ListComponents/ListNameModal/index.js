@@ -7,7 +7,7 @@ const DEFAULT_NAME = "Untitled list";
 const DEFAULT_TYPE = "create";
 const NAME_CHAR_LIMIT = 64;
 
-import utils from "stylesheets/utils.module.scss";
+import utils from "stylesheets/utils.module.css";
 
 class ListNameModal extends React.Component {
   constructor(props) {

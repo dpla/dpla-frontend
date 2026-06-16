@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./mediaViewers.module.scss";
+import css from "./mediaViewers.module.css";
 
 function PDFViewer({ pathToFile, height = "650px" }) {
   return (

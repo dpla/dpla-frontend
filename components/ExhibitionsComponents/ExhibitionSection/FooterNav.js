@@ -5,8 +5,8 @@ import BlackChevron from "components/svg/ChevronThickBlack";
 import Chevron from "components/svg/ChevronThickWhite";
 import DplaLogoBlack from "components/svg/DplaLogoBlack";
 
-import css from "./ExhibitionSection.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./ExhibitionSection.module.css";
+import utils from "stylesheets/utils.module.css"
 
 
 function NavButton({queryParams, nextOrPrevious = "next"}) {

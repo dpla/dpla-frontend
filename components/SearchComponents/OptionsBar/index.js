@@ -11,8 +11,8 @@ import {
   DEFAULT_PAGE_SIZE,
 } from "constants/search";
 
-import css from "./OptionsBar.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./OptionsBar.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import GridViewIcon from "components/svg/GridViewIcon";
 import ListViewIcon from "components/svg/ListViewIcon";

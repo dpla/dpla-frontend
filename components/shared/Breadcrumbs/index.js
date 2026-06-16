@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
-import css from "./Breadcrumbs.module.scss";
+import css from "./Breadcrumbs.module.css";
 
 function Breadcrumbs({ breadcrumbs }) {
   if (!Array.isArray(breadcrumbs)) return null;
@@ -13,26 +13,27 @@ function Breadcrumbs({ breadcrumbs }) {
           return (
             <div className={css.breadcrumbLinkWrapper} key={breadcrumb.title}>
               <Link href={breadcrumb.url} title={breadcrumb.title}>
-                <Markdown
-                  className={css.breadcrumbLink}
-                  allowedElements={["emphasis", "text"]}
-                  unwrapDisallowed
-                >
-                  {breadcrumb.title}
-                </Markdown>
+                <span className={css.breadcrumbLink}>
+                  <Markdown
+                    allowedElements={["emphasis", "text"]}
+                    unwrapDisallowed
+                  >
+                    {breadcrumb.title}
+                  </Markdown>
+                </span>
               </Link>
             </div>
           );
         } else {
           return (
-            <Markdown
-              className={css.activeBreadcrumb}
-              allowedElements={["emphasis", "text"]}
-              unwrapDisallowed
-              key={breadcrumb.title}
-            >
-              {breadcrumb.title}
-            </Markdown>
+            <span className={css.activeBreadcrumb} key={breadcrumb.title}>
+              <Markdown
+                allowedElements={["emphasis", "text"]}
+                unwrapDisallowed
+              >
+                {breadcrumb.title}
+              </Markdown>
+            </span>
           );
         }
       })}

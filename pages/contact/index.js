@@ -14,8 +14,8 @@ import {
 
 import { TITLE } from "constants/contact";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 

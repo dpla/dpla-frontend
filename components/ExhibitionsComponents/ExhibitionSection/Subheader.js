@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./ExhibitionSection.module.scss";
+import css from "./ExhibitionSection.module.css";
 
 function Subheader({ subsectionTitle, onClickMenuButton, isMenuOpen }) {
   return (

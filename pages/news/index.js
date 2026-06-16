@@ -22,9 +22,9 @@ import {
 
 import { DEFAULT_PAGE_SIZE } from "constants/search";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/news.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/news.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 
 function NewsPage({

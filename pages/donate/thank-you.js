@@ -4,9 +4,9 @@ import MainLayout from "components/MainLayout";
 
 import { SEO_TITLE } from "constants/donate";
 
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/donate.module.scss";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/donate.module.css";
 
 function DonateThankYou() {
   return (

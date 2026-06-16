@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import css from "./ResourcesTabs.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ResourcesTabs.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function ResourcesTabs({ currentTab, children }) {
   const router = useRouter();

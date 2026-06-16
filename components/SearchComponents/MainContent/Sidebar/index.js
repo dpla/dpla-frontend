@@ -15,7 +15,7 @@ import {
 } from "constants/search";
 import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
 
-import css from "./Sidebar.module.scss";
+import css from "./Sidebar.module.css";
 
 function FacetLink({ queryKey, termObject, disabled, isTooltip }) {
   const router = useRouter();

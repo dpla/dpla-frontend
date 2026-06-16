@@ -5,7 +5,7 @@ import MinimalLayout from "components/MainLayout/components/MinimalLayout";
 import PSSFooter from "components/PrimarySourceSetsComponents/PSSFooter";
 import TeachersGuide from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide";
 
-import utils from "stylesheets/utils.module.scss";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import {addCommasToNumber} from "lib";
 
-import css from "./PartnerBrowseContent.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./PartnerBrowseContent.module.css";
+import utils from "stylesheets/utils.module.css"
 
 function Partner({name, itemCount, facetName}) {
     return (<Link href={`/search?${facetName}="${encodeURIComponent(name)}"`} className={css.partnerLink}>

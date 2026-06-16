@@ -10,8 +10,8 @@ import {
 } from "constants/search";
 import { joinIfArray } from "lib";
 
-import css from "./FiltersList.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./FiltersList.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import CloseIcon from "components/svg/Close";
 import ClearFiltersIcon from "components/svg/ClearFiltersIcon";

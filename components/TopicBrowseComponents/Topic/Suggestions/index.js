@@ -5,8 +5,8 @@ import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import css from "./Suggestions.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Suggestions.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function mapTypeToClass(type) {
   if (type === "Exhibition") {

@@ -1,8 +1,8 @@
 import React from "react";
 import MainLayout from "components/MainLayout";
 import Button from "components/shared/Button";
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
 
 /**
  * Generic "temporarily unavailable" page rendered when an upstream API call

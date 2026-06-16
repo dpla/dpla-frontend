@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { formatDate } from "lib";
 
-import css from "./NewsLane.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./NewsLane.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import ChevronThickOrange from "components/svg/ChevronThickOrange";
 

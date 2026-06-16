@@ -6,8 +6,8 @@ import Link from "next/link";
 
 import { extractSourceId } from "lib";
 
-import css from "./SourceSetSources.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SourceSetSources.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function SourceSetSources({ sources }) {
   const router = useRouter();
@@ -26,13 +26,14 @@ function SourceSetSources({ sources }) {
             >
               <img alt="" src={thumbnailUrl} className={css.image} />
             </div>
-            <Markdown
-              className={css.title}
-              allowedElements={["emphasis", "text"]}
-              unwrapDisallowed
-            >
-              {name}
-            </Markdown>
+            <span className={css.title}>
+              <Markdown
+                allowedElements={["emphasis", "text"]}
+                unwrapDisallowed
+              >
+                {name}
+              </Markdown>
+            </span>
           </Link>
         </li>
       );

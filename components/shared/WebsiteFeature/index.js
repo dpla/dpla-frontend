@@ -1,8 +1,8 @@
 import "react";
 import "next/link";
 
-import css from "./WebsiteFeature.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./WebsiteFeature.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function WebsiteFeature({ className, title, text, imageSrc, buttonText, buttonUrl }) {
   return (

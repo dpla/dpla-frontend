@@ -8,9 +8,9 @@ import AboutLocal from "./AboutLocal";
 
 import { useResultsWithContext } from "./useResultsWithContext";
 
-import css from "./MainContent.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./MainContent.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function MainContent({
   results,

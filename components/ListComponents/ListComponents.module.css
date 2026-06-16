@@ -1,0 +1,260 @@
+
+.wrapper {
+  margin: 1rem 0 2rem;
+}
+
+.note {
+  margin: 1rem 0;
+}
+
+.loading {
+  margin: 3rem 0;
+}
+
+.empty p {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  max-width: 60ch;
+}
+
+.contentTitle {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.createList {
+  flex-shrink: 0;
+}
+
+.listActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.importPageActions {
+  margin: 1.5rem 0;
+  max-width: 14rem;
+}
+
+.importLabel {
+  color: var(--linkColor);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.importInput {
+  display: none;
+}
+
+.importNameField {
+  margin-bottom: 1rem;
+}
+
+.importNameLabel {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.importNameInput {
+  border: 0.1rem solid var(--grayBorderColor);
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  width: 100%;
+  max-width: 30rem;
+
+  &:focus {
+    border-color: var(--linkColor);
+    outline: none;
+  }
+}
+
+.importError {
+  color: var(--errorColor);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  max-width: 60ch;
+}
+
+.listDetailWrapper {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.listDetailName {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.625rem;
+  font-weight: 600;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.listNameText {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.listHeaderActions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+
+  @media (max-width: 52em) {
+    flex-basis: 100%;
+  }
+}
+
+.listRenameButton {
+  flex-shrink: 0;
+}
+
+.listDownloadButton {
+  flex-shrink: 0;
+}
+
+.listDeleteConfirm {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.lists {
+  display: grid;
+  grid-gap: 1rem 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.listItem {
+  align-items: baseline;
+  border-bottom: 0.075rem solid var(--grayBorderColor);
+  display: grid;
+  grid-template: "name count" auto "date date" 1.5rem / 3fr 1fr;
+  height: 100%;
+  padding-bottom: 0.5rem;
+
+  &:hover {
+    border-bottom-color: var(--linkColor);
+    text-decoration: none;
+  }
+
+  @media (max-width: 52em) {
+    display: block;
+  }
+}
+
+.listName {
+  font-family: var(--serifFont), serif;
+  font-weight: normal;
+  grid-area: name;
+}
+
+.listCount {
+  color: var(--dimmedTextColor);
+  grid-area: count;
+  margin-left: auto;
+}
+
+.listDate {
+  color: var(--dimmedTextColor);
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  grid-area: date;
+  margin-bottom: 1rem;
+}
+
+.listOfLists {
+  margin-top: 1rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9rem;
+  margin: 0 0.5rem 0.5rem;
+
+  &.disabled {
+    color: var(--dimmedTextColor);
+  }
+
+  @media (max-width: 52em) {
+    margin: 1.5rem 0.5rem;
+  }
+}
+
+.checkbox {
+  appearance: none;
+  border: 0.125rem solid var(--subLinkColor);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  min-width: 1.2rem;
+  position: relative;
+
+  &[disabled] {
+    border-color: var(--dimmedTextColor);
+  }
+
+  &:checked {
+    background-color: var(--subLinkColor);
+    border-color: var(--subLinkColor);
+  }
+
+&:checked:after {
+    border: 0.2rem solid white;
+    border-top: none;
+    border-right: none;
+    color: white;
+    content: "";
+    height: 0.3rem;
+    left: 0.1rem;
+    position: absolute;
+    top: 0.1rem;
+    transform: rotate(-45deg);
+    width: 0.6rem;
+  }
+}
+
+.listCount {
+  color: var(--dimmedTextColor);
+  white-space: nowrap;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.newListModal {
+  margin: 0.5rem 0;
+}
+
+.listVideo {
+  border-radius: 0.5rem;
+  display: inline-block;
+  margin: 2rem 0;
+  max-width: 600px;
+  width: 100%;
+}
+
+.code {
+  background-color: var(--colderBackgroundColor);
+  font-family: var(--monoFont), monospace;
+  font-size: 0.85rem;
+  padding: 0.125rem 0.25rem;
+}

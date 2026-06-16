@@ -17,9 +17,9 @@ import {
   SEO_TYPE,
 } from "constants/content-pages";
 
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/news.module.scss";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/news.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";

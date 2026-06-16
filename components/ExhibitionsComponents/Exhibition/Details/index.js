@@ -6,8 +6,8 @@ import CiteButton from "shared/CiteButton";
 
 import { getFullPath, joinIfArray, parseDplaItemRecord, gtag } from "lib";
 
-import css from "./Details.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Details.module.css";
+import utils from "stylesheets/utils.module.css";
 
 class Details extends React.Component {
   // Google Analytics tracking for exhibit home view event

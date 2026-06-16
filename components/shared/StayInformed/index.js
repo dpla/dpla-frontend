@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import css from "./StayInformed.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./StayInformed.module.css";
+import utils from "stylesheets/utils.module.css";
 import Alert from "shared/Alert";
 
 function StayInformed() {

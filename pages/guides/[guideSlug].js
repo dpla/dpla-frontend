@@ -11,9 +11,9 @@ import { getMenuItemUrl, wordpressLinks } from "lib/index";
 
 import { ABOUT_MENU_ENDPOINT, PAGES_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/guides.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/guides.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";

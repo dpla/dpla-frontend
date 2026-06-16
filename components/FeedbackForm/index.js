@@ -5,7 +5,7 @@ import { withRouter } from "next/router";
 
 import Button from "components/shared/Button";
 
-import css from "./FeedbackForm.module.scss";
+import css from "./FeedbackForm.module.css";
 
 class FeedbackForm extends React.Component {
   state = {

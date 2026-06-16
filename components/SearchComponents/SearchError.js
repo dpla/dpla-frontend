@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Button from "components/shared/Button";
-import css from "./SearchError.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SearchError.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function SearchError() {
   return (

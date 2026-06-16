@@ -8,7 +8,7 @@ import { withRouter } from "next/router";
 import { bindLinkEvent, getFullPath, joinIfArray, gtag } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
-import css from "./Content.module.scss";
+import css from "./Content.module.css";
 
 class Content extends React.Component {
   // items track the clickthroughs and the view for the partner

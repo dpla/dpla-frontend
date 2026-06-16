@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Content.module.scss";
+import css from "./Content.module.css";
 
 function ItemTermValuePair({ heading, children, className }) {
   return children ? (

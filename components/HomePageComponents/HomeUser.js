@@ -7,7 +7,7 @@ import NewsLane from "shared/NewsLane";
 import StayInformed from "shared/StayInformed";
 import WebsiteFeature from "shared/WebsiteFeature";
 
-import css from "./HomeUser.module.scss";
+import css from "./HomeUser.module.css";
 
 function HomeUser({
   sourceSets,

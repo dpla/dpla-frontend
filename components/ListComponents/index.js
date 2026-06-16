@@ -12,8 +12,8 @@ import { addCommasToNumber } from "lib";
 
 import { MAX_LIST_ITEMS } from "constants/site";
 
-import css from "./ListComponents.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ListComponents.module.css";
+import utils from "stylesheets/utils.module.css";
 
 export function List({ uuid, name, itemCount, createdAt }) {
   return (

@@ -16,8 +16,8 @@ import { getLocalForageLists, setLocalForageItem } from "lib/localForage";
 
 import { MAX_LIST_ITEMS, MESSAGE_DELAY, UNTITLED_TEXT } from "constants/site";
 
-import css from "./ListView.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ListView.module.css";
+import utils from "stylesheets/utils.module.css";
 
 const SOURCE_RESOURCE_ITEM_ID = "http://dp.la/api/items/#sourceResource";
 

@@ -1,0 +1,73 @@
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.activeBreadcrumb {
+  display: inline-block;
+  max-width: 30rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @media (max-width: 40em) {
+    display: inline;
+    white-space: normal;
+    max-width: none;
+  }
+
+  @media (min-width: 40em) {
+    font-size: 1rem;
+  }
+}
+
+.breadcrumbLink {
+  display: block;
+  max-width: 17.125rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @media (min-width: 40em) {
+    font-size: 1rem;
+  }
+}
+
+.breadcrumbLinkWrapper {
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/static/images/chevron-thick-orange.svg");
+    height: 0.7rem;
+    position: relative;
+    top: 0;
+    padding: 0 0.7rem;
+
+    @media (min-width: 40em) {
+    }
+  }
+}
+
+.breadcrumbLink p, .activeBreadcrumb p {
+  max-width: 7rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @media (min-width: 30em) {
+    max-width: 9rem;
+  }
+
+  @media (min-width: 40em) {
+    max-width: 13.5rem;
+  }
+}

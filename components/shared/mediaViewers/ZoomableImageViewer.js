@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/server";
 
-import css from "./mediaViewers.module.scss";
+import css from "./mediaViewers.module.css";
 
 function Noscript({ children }) {
   const staticMarkup = ReactDOM.renderToStaticMarkup(children);

@@ -1,0 +1,94 @@
+
+html {
+  font-size: 16px;
+
+  @media (max-width: 40em) {
+    font-size: 18px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.25;
+}
+
+body {
+  font-family: var(--sansFont), sans-serif;
+}
+
+button, input, select, label, textarea {
+  font-family: var(--sansFont), sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+p, ul, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+button, input, optgroup, select, textarea {
+  font-size: 100%;
+  margin: 0;
+}
+
+a, button, input, optgroup, select, textarea {
+  &:focus {
+    outline: 0.25rem solid var(--outlineColor);
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+html,
+body,
+div,
+article,
+section,
+main,
+footer,
+header,
+form,
+fieldset,
+legend,
+pre,
+code,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+textarea,
+table,
+td,
+th,
+tr,
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="tel"],
+input[type="text"],
+input[type="url"] {
+  box-sizing: border-box;
+}

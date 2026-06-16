@@ -3,8 +3,8 @@ import Router, { withRouter } from "next/router";
 
 import { subjectOptions, timePeriodOptions } from "constants/primarySourceSets";
 
-import css from "components/PrimarySourceSetsComponents/AllSets/components/FiltersBar/FiltersBar.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "components/PrimarySourceSetsComponents/AllSets/components/FiltersBar/FiltersBar.module.css";
+import utils from "stylesheets/utils.module.css";
 
 class FiltersBar extends React.Component {
   constructor(props) {

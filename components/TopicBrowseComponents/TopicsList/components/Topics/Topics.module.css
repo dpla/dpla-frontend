@@ -1,0 +1,45 @@
+
+.topicsWrapper {
+  margin-top: 1rem;
+
+  @media (min-width: 52em) {
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 52em) {
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+  }
+}
+
+.topicsIntro {
+  font-weight: normal;
+  font-size: 0.9rem;
+  font-style: italic;
+  font-family: var(--serifFont), serif;
+  color: var(--dimmedTextColor);
+
+  @media (min-width: 52em) {
+    font-size: 1.3rem;
+  }
+}
+
+.topic {
+  position: relative;
+  display: block;
+  margin-top: 1rem;
+
+  @media (min-width: 52em) {
+    margin-top: 1.5rem;
+  }
+}
+
+.image {
+  border-radius: 3px;
+  width: 100%;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}

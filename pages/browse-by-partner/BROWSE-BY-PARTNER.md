@@ -43,7 +43,7 @@ This means a hub site gets a "Browse by Partner" page listing **its own contribu
 |------|-------|
 | Page title & description | `constants/browse-by-partner.js` — edit `TITLE` and `DESCRIPTION` constants |
 | Partner list & item counts | Automatic — sourced live from the DPLA API; no editing needed |
-| Layout / card styling | `components/PartnerBrowseComponents/PartnerBrowseContent.module.scss` |
+| Layout / card styling | `components/PartnerBrowseComponents/PartnerBrowseContent.module.css` |
 | Card/link rendering logic | `components/PartnerBrowseComponents/index.js` |
 | API endpoint / key | Environment variables `API_URL` and `API_KEY` |
 | Show/hide in local hub nav | `hasBrowseByPartner: true/false` in the hub's entry in `constants/local.js` |

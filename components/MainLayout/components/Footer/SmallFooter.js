@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Footer.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Footer.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import DplaLogo from "components/svg/DplaLogo";
 import Facebook from "components/svg/Facebook";

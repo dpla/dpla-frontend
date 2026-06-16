@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { getDefaultThumbnail, probeImage } from "lib";
 
-import css from "./ListView.module.scss";
+import css from "./ListView.module.css";
 
 const SOURCE_RESOURCE_ITEM_ID = "http://dp.la/api/items/#sourceResource";
 

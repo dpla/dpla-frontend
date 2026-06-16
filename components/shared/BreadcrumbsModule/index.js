@@ -2,7 +2,7 @@ import React from "react";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.css"
 
 function BreadcrumbsModule({breadcrumbs}) {
   if (!Array.isArray(breadcrumbs)) return null;

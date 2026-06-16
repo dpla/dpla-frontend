@@ -1,0 +1,56 @@
+
+.header {
+  font-family: var(--serifFont), serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+}
+
+.contentTable {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  background-color: var(--colderBackgroundColor);
+
+  @media (min-width: 52em) {
+    padding: 2rem 3rem;
+  }
+}
+
+.tableHeading {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--dimmedTextColor);
+  font-weight: 600;
+  vertical-align: baseline;
+
+  @media (min-width: 52em) {
+    font-size: 1rem;
+  }
+}
+
+.tableItem {
+  vertical-align: baseline;
+  font-family: var(--serifFont), serif;
+  line-height: 1.25;
+  margin-top: 0.5rem;
+
+  @media (min-width: 40em) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 52em) {
+    font-size: 1.25rem;
+  }
+}
+
+.paddedRow {
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 52em) {
+    margin-bottom: 2rem;
+  }
+}
+
+.mailToLink {
+  padding-bottom: 0.25rem;
+}

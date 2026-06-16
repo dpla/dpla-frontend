@@ -4,8 +4,8 @@ import GuideLink from "components/shared/GuideLink";
 import HeadingRule from "components/shared/HeadingRule";
 import Button from "components/shared/Button";
 
-import css from "./DPLAUsers.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./DPLAUsers.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function DPLAUsers({ guides }) {
   if (!Array.isArray(guides)) return null;

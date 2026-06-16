@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./HeadingRule.module.scss";
+import css from "./HeadingRule.module.css";
 
 function HeadingRule({ color }) {
   return (

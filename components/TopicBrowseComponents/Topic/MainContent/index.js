@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import HeadingRule from "shared/HeadingRule";
 
-import css from "./MainContent.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./MainContent.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function MainContent({ topic }) {
   return (

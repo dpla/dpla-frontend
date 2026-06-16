@@ -1,0 +1,94 @@
+
+.wrapper {
+  background-color: white;
+}
+
+.container {
+  @media (min-width: 40em) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 40em) {
+    padding-bottom: 6rem;
+  }
+}
+
+.header {
+  text-align: center;
+  font-size: 3rem;
+  font-family: var(--serifFont), serif;
+  font-weight: normal;
+
+  @media (min-width: 40em) {
+    font-size: 4rem;
+  }
+}
+
+.topicDescription {
+  border-top: 0.2rem solid var(--lightLinkColor); 
+  color: var(--dimmedTextColor);
+  font-family: var(--serifFont), serif;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.subtopic {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.subtopicAnchor, .subtopicAnchor:visited {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--warmerBackgroundColor);
+  color: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+
+  &, &:hover {
+    text-decoration: none;
+  }
+
+  &:hover .image {
+    transform: scale(1.04);
+  }
+}
+
+.subtopic:nth-child(3n) {
+  margin-right: 0;
+}
+
+.image {
+  transition: transform 0.45s ease-in-out;
+  width: 100%;
+  height: 14rem;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.textWrapper {
+  border-top: 0.25rem solid var(--lightLinkColor);
+  padding-top: 1rem;
+  z-index: 1;
+  background-color: var(--warmerBackgroundColor);
+}
+
+.subtopicTitle {
+  color: var(--dimmedTextColor);
+  font-family: var(--serifFont), serif;
+  font-size: 1.75rem;
+  font-weight: normal;
+  line-height: 1.2;
+  padding: 0 2rem;
+}
+
+.subtopicDescription {
+  padding: 1rem 2rem 2rem;
+  font-size: 1rem;
+  flex: 1;
+  text-decoration: none;
+}

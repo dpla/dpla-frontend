@@ -21,8 +21,8 @@ import {
 
 import * as gtag from "lib/gtag";
 
-import utils from "stylesheets/utils.module.scss";
-import css from "./ContentAndMetadata.module.scss";
+import utils from "stylesheets/utils.module.css";
+import css from "./ContentAndMetadata.module.css";
 
 import LinkIcon from "components/svg/LinkIcon";
 import ExternalLink from "components/svg/ExternalLink";
@@ -158,17 +158,20 @@ class ContentAndMetadata extends React.Component {
                 {viewerComponent}
               </div>
               {source.text && (
-                <Markdown
+                <div
                   id="dpla-description"
                   className={`${css.description} ${descriptionIsLong ? css.longDescription : ""} ${this.state.isOpen ? css.open : ""}`}
-                  components={{
-                    a(props) {
-                      return markdownLinks(props);
-                    },
-                  }}
                 >
-                  {source.text.replace(/<br\/?>/g, "\n\n")}
-                </Markdown>
+                  <Markdown
+                    components={{
+                      a(props) {
+                        return markdownLinks(props);
+                      },
+                    }}
+                  >
+                    {source.text.replace(/<br\/?>/g, "\n\n")}
+                  </Markdown>
+                </div>
               )}
               {descriptionIsLong && (
                 <div
@@ -202,32 +205,35 @@ class ContentAndMetadata extends React.Component {
                   )}
                 </div>
                 {getSourceCitation(source, "credits") && (
-                  <Markdown
-                    className={css.courtesyOf}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
-                  >
-                    {joinIfArray(getSourceCitation(source, "credits"))}
-                  </Markdown>
-                )}
-                {source.mainEntity[0]["dct:provenance"] && (
-                  <Markdown
-                    className={css.courtesyOf}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
-                  >
-                    {source.mainEntity[0]["dct:provenance"].name}
-                  </Markdown>
-                )}
-                {source.copyright && (
-                  <div className={css.copyrightInfo}>
+                  <span className={css.courtesyOf}>
                     <Markdown
-                      className={css.copyrightText}
                       allowedElements={["emphasis", "text"]}
                       unwrapDisallowed
                     >
-                      {source.copyright}
+                      {joinIfArray(getSourceCitation(source, "credits"))}
                     </Markdown>
+                  </span>
+                )}
+                {source.mainEntity[0]["dct:provenance"] && (
+                  <span className={css.courtesyOf}>
+                    <Markdown
+                      allowedElements={["emphasis", "text"]}
+                      unwrapDisallowed
+                    >
+                      {source.mainEntity[0]["dct:provenance"].name}
+                    </Markdown>
+                  </span>
+                )}
+                {source.copyright && (
+                  <div className={css.copyrightInfo}>
+                    <span className={css.copyrightText}>
+                      <Markdown
+                        allowedElements={["emphasis", "text"]}
+                        unwrapDisallowed
+                      >
+                        {source.copyright}
+                      </Markdown>
+                    </span>
                   </div>
                 )}
                 {source.mainEntity[0]["dct:references"] && (

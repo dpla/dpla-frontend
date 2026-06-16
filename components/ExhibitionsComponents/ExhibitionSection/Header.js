@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
-import css from "./ExhibitionSection.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ExhibitionSection.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function Header({title}) {
   const router = useRouter();

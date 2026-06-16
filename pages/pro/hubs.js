@@ -16,8 +16,8 @@ import {
   SEO_TYPE,
 } from "constants/content-pages";
 
-import css from "stylesheets/hubs.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "stylesheets/hubs.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 
 class HubsPage extends React.Component {

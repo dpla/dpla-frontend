@@ -293,7 +293,7 @@ rather than upscaling or erroring.
 
 ### Dropdown arrow CSS conflict
 
-`global.scss` applies `appearance: none` and a custom SVG `background-image` to all
+`global.css` applies `appearance: none` and a custom SVG `background-image` to all
 `<select>` elements site-wide, replacing the native browser arrow. The institution
 dropdown overrides both (`background-image: none; appearance: auto`) to restore the
 native arrow, because leaving the global override in place causes the browser's

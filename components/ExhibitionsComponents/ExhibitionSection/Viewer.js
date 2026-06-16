@@ -22,7 +22,7 @@ import {
 import { ITEM_TYPES } from "constants/exhibitions";
 import { resourceTypes } from "constants/site";
 
-import css from "./ExhibitionSection.module.scss";
+import css from "./ExhibitionSection.module.css";
 
 import ChevronThickBlack from "components/svg/ChevronThickBlack";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
