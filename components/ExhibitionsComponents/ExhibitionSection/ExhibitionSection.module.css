@@ -9,9 +9,6 @@
   background-color: var(--warmerBackgroundColor);
 }
 
-.exhibitionsLinkAndTitle {
-}
-
 .exhibitionsLink, .exhibitionsLink:visited {
   color: var(--lightLinkColor);
   text-decoration: underline;

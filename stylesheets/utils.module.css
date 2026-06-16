@@ -1,9 +1,5 @@
 /* Flexbox grid, adapted from https://github.com/kristoferjoseph/flexboxgrid */
 
-
-
-.homeSearchForm {}
-
 .siteMaxWidth {
   max-width: 64rem;
 }
@@ -21,13 +17,8 @@
   }
 }
 
-
 .underline {
   text-decoration: underline;
-}
-
-.hoverUnderline:hover {
-  /* text-decoration: none; */
 }
 
 /* Used for locking scrolls on <body> when overlays are active */
@@ -114,8 +105,6 @@
   background-color: var(--warmerBackgroundColor);
   padding: 0.5rem 0;
   box-shadow: inset 0 -0.075rem 0.075rem 0 rgba(0, 0, 0, 0.03);
-
-  
 
   @media (min-width: 40em) {
     padding: 0.75rem 0;
@@ -344,33 +333,6 @@
   order: 1;
 }
 
-.colSm,
-.colSm1,
-.colSm2,
-.colSm3,
-.colSm4,
-.colSm5,
-.colSm6,
-.colSm7,
-.colSm8,
-.colSm9,
-.colSm10,
-.colSm11,
-.colSm12,
-.colSmOffset0,
-.colSmOffset1,
-.colSmOffset2,
-.colSmOffset3,
-.colSmOffset4,
-.colSmOffset5,
-.colSmOffset6,
-.colSmOffset7,
-.colSmOffset8,
-.colSmOffset9,
-.colSmOffset10,
-.colSmOffset11,
-.colSmOffset12 {}
-
 @media (min-width: 40em) {
   .colSm,
   .colSm1,
@@ -562,33 +524,6 @@
   }
 }
 
-.colMd,
-.colMd1,
-.colMd2,
-.colMd3,
-.colMd4,
-.colMd5,
-.colMd6,
-.colMd7,
-.colMd8,
-.colMd9,
-.colMd10,
-.colMd11,
-.colMd12,
-.colMdOffset0,
-.colMdOffset1,
-.colMdOffset2,
-.colMdOffset3,
-.colMdOffset4,
-.colMdOffset5,
-.colMdOffset6,
-.colMdOffset7,
-.colMdOffset8,
-.colMdOffset9,
-.colMdOffset10,
-.colMdOffset11,
-.colMdOffset12 {}
-
 @media (min-width: 52em) {
   .colMd,
   .colMd1,
@@ -779,33 +714,6 @@
     order: 1;
   }
 }
-
-.colLg,
-.colLg1,
-.colLg2,
-.colLg3,
-.colLg4,
-.colLg5,
-.colLg6,
-.colLg7,
-.colLg8,
-.colLg9,
-.colLg10,
-.colLg11,
-.colLg12,
-.colLgOffset0,
-.colLgOffset1,
-.colLgOffset2,
-.colLgOffset3,
-.colLgOffset4,
-.colLgOffset5,
-.colLgOffset6,
-.colLgOffset7,
-.colLgOffset8,
-.colLgOffset9,
-.colLgOffset10,
-.colLgOffset11,
-.colLgOffset12 { }
 
 @media (min-width: 72em) {
   .colLg,
