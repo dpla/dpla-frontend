@@ -20,7 +20,6 @@ if (process.env.MAILCHIMP_KEY) {
 
 const express = require("express");
 const next = require("next");
-const bodyParser = require("body-parser");
 const cluster = require("node:cluster");
 const crypto = require("crypto");
 const numCPUs =
@@ -68,8 +67,8 @@ function follower() {
     const expressApp = express();
     Sentry.setupExpressErrorHandler(expressApp);
     expressApp.disable("x-powered-by");
-    expressApp.use(bodyParser.urlencoded({ extended: true }));
-    expressApp.use(bodyParser.json());
+    expressApp.use(express.urlencoded({ extended: true }));
+    expressApp.use(express.json());
     expressApp.get("/healthcheck", healthcheck());
     expressApp.get("/robots.txt", robotsTxt());
 
@@ -78,19 +77,20 @@ function follower() {
       process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
-      expressApp.get("/wp-content/*", wpContent());
+      expressApp.get("/wp-content/*path", wpContent());
       expressApp.post("/mailchimp", doMailchimp());
       expressApp.post("/g/contact", doContact());
       expressApp.post("/g/feedback", feedback());
     }
 
-    expressApp.all("*", catchall(handle));
+    expressApp.all("*path", catchall(handle));
 
     const server = expressApp.listen(PORT, (err) => {
       if (err) throw err;
       console.log("> Ready on http://localhost:" + PORT);
     });
 
+    server.on("upgrade", nextApp.getUpgradeHandler());
     registerHandlers(server);
   });
 }
