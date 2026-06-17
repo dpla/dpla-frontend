@@ -26,6 +26,17 @@ Sentry.init({
       return null;
     }
 
+    // iOS translation engines (Google App, Chrome Mobile iOS on WKWebView) inject
+    // scripts that recursively traverse the DOM and can overflow the call stack on
+    // complex pages. The crash is in the injected script, not our code — all frames
+    // resolve to "undefined" (no file path). This is not fixable from our end.
+    if (msg.startsWith("Maximum call stack size exceeded")) {
+      const frames = event?.exception?.values?.[0]?.stacktrace?.frames ?? [];
+      if (frames.length > 0 && frames.every((f) => !f.filename || f.filename === "undefined")) {
+        return null;
+      }
+    }
+
     return event;
   },
 });
