@@ -73,14 +73,13 @@ function HomePageSlider({
                       }}
                     />
                   </div>
-                  <span className={css.itemText}>
-                    <Markdown
-                      allowedElements={["emphasis", "text"]}
-                      unwrapDisallowed
-                    >
-                      {name}
-                    </Markdown>
-                  </span>
+                  <Markdown
+                    className={css.itemText}
+                    allowedElements={["emphasis", "text"]}
+                    unwrapDisallowed
+                  >
+                    {name}
+                  </Markdown>
                 </Link>
               </div>
             ),
