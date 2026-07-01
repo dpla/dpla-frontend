@@ -31,7 +31,7 @@
   box-sizing: content-box;
 
   & .faveAndCiteButtonsWrapper {
-    @media (max-width: 40em) {
+    @media (max-width: 39.9375em) {
       display: none;
     }
   }
