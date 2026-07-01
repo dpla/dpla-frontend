@@ -49,7 +49,7 @@ export default class ZoomableImageViewer extends React.Component {
 
   render() {
     return (
-      <div ref={this.containerRef} className={css.zoomableImageViewer}>
+      <div ref={this.containerRef} className={css.zoomableImageViewer} translate="no">
         <Noscript>
           <div className={css.noscriptContainer}>
             <img
