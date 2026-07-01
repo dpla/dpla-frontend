@@ -1,4 +1,3 @@
-
 .wrapper {
   background-color: white;
 }
@@ -26,7 +25,7 @@
 }
 
 .topicDescription {
-  border-top: 0.2rem solid var(--lightLinkColor); 
+  border-top: 0.2rem solid var(--lightLinkColor);
   color: var(--dimmedTextColor);
   font-family: var(--serifFont), serif;
   font-size: 1.25rem;
@@ -40,7 +39,8 @@
   position: relative;
 }
 
-.subtopicAnchor, .subtopicAnchor:visited {
+.subtopicAnchor,
+.subtopicAnchor:visited {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,8 @@
   color: rgba(0, 0, 0, 0.75);
   overflow: hidden;
 
-  &, &:hover {
+  &,
+  &:hover {
     text-decoration: none;
   }
 

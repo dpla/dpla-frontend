@@ -1,4 +1,3 @@
-
 .suggestionsWrapper {
   width: 100%;
   background-color: var(--warmerBackgroundColor);
@@ -9,7 +8,8 @@
   padding-bottom: 45px;
 
   /* overrides for react-slick css*/
-  :global(.slick-prev):before, :global(.slick-next):before {
+  :global(.slick-prev):before,
+  :global(.slick-next):before {
     content: none;
   }
 

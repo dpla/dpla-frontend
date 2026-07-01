@@ -1,6 +1,5 @@
-.btn, .btn:visited {
-  
-
+.btn,
+.btn:visited {
   width: 15rem;
   background-color: var(--linkColor);
   color: white;
@@ -15,7 +14,6 @@
     background-color: var(--linkHoverColor);
     text-decoration: none;
   }
-
 }
 
 .qaDiv {

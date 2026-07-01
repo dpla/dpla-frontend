@@ -1,4 +1,3 @@
-
 :root.nwdh {
   --theme-link-color: #004827;
   --theme-background-color: #efefef;
@@ -12,9 +11,17 @@
   --visitedLinkColor: rgb(0, 43, 23) !important;
   --mobileNavColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
   --mobileNavMenuButtonOpen: rgb(0, 37, 20) !important;
-  --darkSecondaryButtonColor: rgb(7.7921052632, 40.2203947368, 21.3394481349) !important;
+  --darkSecondaryButtonColor: rgb(
+    7.7921052632,
+    40.2203947368,
+    21.3394481349
+  ) !important;
   --warmerBackgroundColor: rgb(247, 247, 241.9) !important;
-  --colderBackgroundColor: rgb(237.36328125, 242.13671875, 237.36328125) !important;
+  --colderBackgroundColor: rgb(
+    237.36328125,
+    242.13671875,
+    237.36328125
+  ) !important;
   --subLinkHoverColor: rgb(0, 52, 28) !important;
   --footerDarkColor: rgb(0, 52, 28.2718446602) !important;
   --linkColor: var(--theme-link-color) !important;
@@ -28,7 +35,7 @@
   --secondaryBulletColor: var(--linkColor) !important;
   --darkBorderColor: var(--theme-main-color) !important;
   --subLinkColor: var(--linkColor) !important;
-  --subLinkColorHover: hsl(from var(--linkColor) h s calc(l * .9)) !important; 
+  --subLinkColorHover: hsl(from var(--linkColor) h s calc(l * 0.9)) !important;
   --donateFormButtonColor: var(--theme-dark-color) !important;
   --formLabelColor: var(--theme-dark-color) !important;
   --errorColor: var(--linkColor) !important;

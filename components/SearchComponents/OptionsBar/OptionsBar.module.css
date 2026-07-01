@@ -1,4 +1,3 @@
-
 .wrapper {
   width: 100%;
   background-color: var(--warmerBackgroundColor);
@@ -87,7 +86,8 @@
   display: flex;
 }
 
-.gridViewButton, .listViewButton {
+.gridViewButton,
+.listViewButton {
   background-color: white;
   padding: 0.6rem 0.6rem 0.4rem;
 

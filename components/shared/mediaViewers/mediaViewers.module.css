@@ -1,4 +1,3 @@
-
 .zoomableImageViewer {
   width: 100%;
   height: 28rem;
@@ -14,7 +13,9 @@
     width: 35px;
   }
 
-  &:focus, & canvas:focus, & div:focus {
+  &:focus,
+  & canvas:focus,
+  & div:focus {
     outline: 0.25rem solid var(--outlineColor);
   }
 }
@@ -89,7 +90,8 @@
     margin: 0 0.5rem;
   }
 
-  .pdfNextChevron, .pdfPrevChevron {
+  .pdfNextChevron,
+  .pdfPrevChevron {
     height: 0.75rem;
   }
 

@@ -1,4 +1,3 @@
-
 .sidebar {
   background-color: var(--warmerBackgroundColor);
   padding: 1rem 1.5rem;
@@ -72,4 +71,5 @@
   }
 }
 
-.links {}
+.links {
+}

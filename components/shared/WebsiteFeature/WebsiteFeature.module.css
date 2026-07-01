@@ -1,4 +1,3 @@
-
 .wrapper {
   margin: 0 auto;
   background-color: var(--featureBackgroundColor);
@@ -16,7 +15,6 @@
   min-width: 15rem;
   align-self: stretch;
   background-size: cover;
-  
 
   @media (max-width: 52em) {
     display: none;
@@ -32,7 +30,8 @@
   }
 
   @media (max-width: 52em) {
-    &, &.noImage {
+    &,
+    &.noImage {
       padding: 1rem 1rem 1.5rem;
     }
   }
@@ -50,7 +49,8 @@
   }
 }
 
-.text, .button {
+.text,
+.button {
   font-size: 1.125rem;
 
   @media (max-width: 52em) {
@@ -58,7 +58,8 @@
   }
 }
 
-.button, .button:visited {
+.button,
+.button:visited {
   color: white;
   background-color: var(--secondaryButtonColor);
   font-weight: normal;

@@ -1,4 +1,3 @@
-
 .wrapper {
   background-color: var(--warmerBackgroundColor);
 }
@@ -36,7 +35,8 @@
   }
 }
 
-.long {}
+.long {
+}
 
 .description {
   color: var(--dimmedTextColor);

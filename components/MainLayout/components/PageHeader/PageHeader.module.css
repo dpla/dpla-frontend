@@ -1,4 +1,3 @@
-
 .headerSearchBar {
   background-color: var(--userSiteColor);
   width: 100%;
@@ -96,10 +95,11 @@
 }
 
 .local {
-
 }
 
-.logo, .logo:visited, .logo:hover {
+.logo,
+.logo:visited,
+.logo:hover {
   display: none; /* hide logo in small screens */
   line-height: 0;
   padding: 0.5rem 0;

@@ -1,7 +1,4 @@
-
-
 .collapsed {
-
   list-style-type: none;
 
   & li {
@@ -21,7 +18,6 @@
     padding-left: 0;
   }
 }
-
 
 .backgroundTint {
   background-color: var(--warmerBackgroundColor);
@@ -96,7 +92,12 @@
     margin-top: 0;
   }
 
-  & h1, & h2, & h3, & h4, & h5, & h6 {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
     line-height: 1.15;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -150,7 +151,8 @@
     margin-bottom: 1rem;
   }
 
-  & code, & pre {
+  & code,
+  & pre {
     background-color: var(--colderBackgroundColor);
     font-family: var(--monoFont), monospace;
     font-size: 0.85rem;
@@ -169,11 +171,14 @@
     margin-bottom: 1rem;
   }
 
-  & p, & ul, & ol {
+  & p,
+  & ul,
+  & ol {
     font-weight: normal;
   }
 
-  & ul, & ol {
+  & ul,
+  & ol {
     padding-left: 1.5em;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -189,14 +194,15 @@
     margin-left: 1rem;
   }
 
-  & ol li, & ul li {
+  & ol li,
+  & ul li {
     list-style-type: none;
     position: relative;
     counter-increment: start-from;
   }
 
   & li {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   & li::before {
@@ -227,7 +233,8 @@
     list-style-type: disc;
   }
 
-  & blockquote, & blockquote p {
+  & blockquote,
+  & blockquote p {
     font-weight: 400;
     font-style: italic;
   }
@@ -247,7 +254,8 @@
     width: 100%;
   }
 
-  & th, & td {
+  & th,
+  & td {
     padding: 1rem;
   }
 
@@ -271,7 +279,9 @@
     height: auto;
   }
 
-  :global(.alignright), :global(.alignleft), :global(.wp-caption) {
+  :global(.alignright),
+  :global(.alignleft),
+  :global(.wp-caption) {
     margin-bottom: 0.5rem;
   }
 
@@ -302,7 +312,8 @@
     max-width: 100%;
   }
 
-  :global(.btn), :global(.btn):visited {
+  :global(.btn),
+  :global(.btn):visited {
     display: block;
     max-width: 18rem;
     background-color: var(--linkColor);
@@ -320,5 +331,3 @@
     text-decoration: none;
   }
 }
-
-

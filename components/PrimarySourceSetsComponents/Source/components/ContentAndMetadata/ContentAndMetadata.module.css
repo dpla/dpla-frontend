@@ -1,4 +1,3 @@
-
 .contentAndMetadata {
   padding-top: 1rem;
 }
@@ -141,7 +140,8 @@
   margin-bottom: 17px;
 }
 
-.copyrightText {}
+.copyrightText {
+}
 
 .copyrightInfo {
   font-size: 1rem;
@@ -162,7 +162,8 @@
   margin-bottom: 0;
 }
 
-.sourceLink, .sourceLink:visited {
+.sourceLink,
+.sourceLink:visited {
   color: var(--subLinkColor);
   font-weight: 600;
   display: flex;
@@ -240,5 +241,5 @@
   color: var(--linkColor);
 }
 
-.wrapper {}
-
+.wrapper {
+}

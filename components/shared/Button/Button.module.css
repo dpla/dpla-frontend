@@ -1,5 +1,3 @@
-
-
 .buttonBase {
   border-radius: 0.3rem;
   cursor: pointer;
@@ -18,7 +16,8 @@
 
 /* Types */
 
-.buttonPrimary, .buttonPrimary:visited {
+.buttonPrimary,
+.buttonPrimary:visited {
   color: white;
   background-color: var(--linkColor);
 
@@ -27,7 +26,8 @@
   }
 }
 
-.buttonSecondary, .buttonSecondary:visited {
+.buttonSecondary,
+.buttonSecondary:visited {
   color: white;
   background-color: var(--secondaryButtonColor);
 
@@ -59,7 +59,8 @@
     font-size: 1rem;
   }
 
-  &.active, &:hover {
+  &.active,
+  &:hover {
     background-color: var(--donateFormButtonColor);
     color: var(--colderBackgroundColor);
   }

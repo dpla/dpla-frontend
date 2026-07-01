@@ -1,4 +1,3 @@
-
 .donateBackground {
   background-color: var(--warmerBackgroundColor);
   background-image: url("/static/images/collage_light.jpg");
@@ -27,7 +26,6 @@
     box-shadow: none;
     margin: 0 -1rem;
   }
-
 }
 
 .testimonial {
@@ -35,7 +33,6 @@
     font-weight: normal;
     font-size: 1.6rem !important;
   }
-
 }
 
 .donateForm {
@@ -56,7 +53,8 @@
   }
 }
 
-.byPaypal, .byMail {
+.byPaypal,
+.byMail {
   padding: 2.5rem 2rem;
 
   @media (max-width: 40em) {

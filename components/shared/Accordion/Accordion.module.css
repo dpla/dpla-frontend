@@ -18,7 +18,8 @@
   max-height: 0;
 }
 
-.inactive, .active {
+.inactive,
+.active {
   position: relative;
 }
 
@@ -81,7 +82,8 @@
   margin-left: 0.25rem;
 }
 
-.addIcon, .subtractIcon {
+.addIcon,
+.subtractIcon {
   align-self: center;
 }
 
@@ -98,8 +100,9 @@
 .informationIcon {
   width: 15px;
   height: 15px;
-  margin: 0 .4em;
+  margin: 0 0.4em;
   padding: 0;
   vertical-align: bottom;
-  filter: invert(61%) sepia(24%) saturate(666%) hue-rotate(153deg) brightness(90%) contrast(84%);
+  filter: invert(61%) sepia(24%) saturate(666%) hue-rotate(153deg)
+    brightness(90%) contrast(84%);
 }
