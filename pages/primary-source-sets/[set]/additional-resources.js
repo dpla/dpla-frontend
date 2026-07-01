@@ -42,16 +42,17 @@ function SingleSet({ router, set, currentFullUrl, temporarilyUnavailable }) {
             role="tabpanel"
             aria-labelledby="tab-additionalresources"
           >
-            <Markdown
-              className={`${contentCss.content} ${utils.container}`}
-              components={{
-                a(reference) {
-                  return markdownLinks(reference);
-                },
-              }}
-            >
-              {set.hasPart.find((item) => item.name === "Resources").text}
-            </Markdown>
+            <div className={`${contentCss.content} ${utils.container}`}>
+              <Markdown
+                components={{
+                  a(reference) {
+                    return markdownLinks(reference);
+                  },
+                }}
+              >
+                {set.hasPart.find((item) => item.name === "Resources").text}
+              </Markdown>
+            </div>
           </div>
         </div>
       </ResourcesTabs>
