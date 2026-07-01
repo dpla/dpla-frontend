@@ -94,7 +94,7 @@
     color: var(--subLinkColor);
   }
 
-  @media (52em) {
+  @media (min-width: 52em) {
     font-size: 1.25rem;
   }
 }
