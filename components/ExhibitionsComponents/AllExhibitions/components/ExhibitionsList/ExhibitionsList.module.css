@@ -95,8 +95,6 @@
 }
 
 .exhibitionList {
-  display: flex; 
-  flex-direction: column; 
   display: grid;
   grid-column-gap: 0.5rem;
   grid-template-columns: 1fr;
@@ -108,7 +106,6 @@
 
 .exhibition {
   background-color: var(--colderBackgroundColor);
-  display: flex; 
   display: grid;
   grid-template-columns: 1fr 2fr;
   line-height: 1.25;
