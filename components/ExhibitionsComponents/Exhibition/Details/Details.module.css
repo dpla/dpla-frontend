@@ -7,7 +7,7 @@
   padding-bottom: 6rem;
   margin-top: 2rem;
 
-  @media (min-width: 40em) {
+  @media (width >= 40em) {
     flex-direction: row;
   }
 }
@@ -16,7 +16,7 @@
   width: 100%;
   margin-bottom: 1.5rem;
 
-  @media (min-width: 40em) {
+  @media (width >= 40em) {
     width: 285px;
     margin-right: 32px;
     margin-bottom: 1.5rem;
@@ -31,7 +31,7 @@
   box-sizing: content-box;
 
   & .faveAndCiteButtonsWrapper {
-    @media (max-width: 39.9375em) {
+    @media (width < 40em) {
       display: none;
     }
   }
@@ -96,12 +96,12 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 40em) {
+  @media (width >= 40em) {
     display: block;
   }
 
   & .faveAndCiteButtonsWrapper {
-    @media (min-width: 40em) {
+    @media (width >= 40em) {
       display: none;
     }
   }
