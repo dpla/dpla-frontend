@@ -2,8 +2,8 @@ import React from "react";
 
 import Button from "shared/Button";
 
-import css from "./ContactForm.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ContactForm.module.css";
+import utils from "stylesheets/utils.module.css";
 
 const selectOptions = [
   { value: "General inquiry", label: "General inquiry" },

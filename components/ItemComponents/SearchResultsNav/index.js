@@ -10,8 +10,8 @@ import {
   PREV_PARAM,
   SEARCH_RESULTS_STORAGE_KEY_PREFIX,
 } from "constants/searchNav";
-import css from "./SearchResultsNav.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SearchResultsNav.module.css";
+import utils from "stylesheets/utils.module.css";
 
 const ITEM_ID_SOURCE = DPLA_ITEM_ID_REGEX.source.replace(/^\^|\$$/g, "");
 const ITEM_PATH_RE = new RegExp(`^/item/${ITEM_ID_SOURCE}$`);

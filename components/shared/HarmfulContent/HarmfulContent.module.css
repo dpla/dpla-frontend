@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100%;
+  background-color: var(--merinoWhite);
+}
+
+.harmfulContent {
+  padding: 3px 0 3px 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: 0.9rem !important;
+  font-family: var(--sansFont), sans-serif;
+  color: var(--dimmedTextColor);
+
+  @media (min-width: 52em) {
+    font-size: 1.3rem;
+  }
+}

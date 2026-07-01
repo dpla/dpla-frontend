@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./Button.module.scss";
+import css from "./Button.module.css";
 
 function Button({
   id,

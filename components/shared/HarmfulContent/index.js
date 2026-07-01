@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./HarmfulContent.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./HarmfulContent.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import { LOCALS } from "constants/local";
 

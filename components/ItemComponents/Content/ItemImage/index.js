@@ -2,7 +2,7 @@ import React from "react";
 
 import { getDefaultThumbnail, probeImage } from "lib";
 
-import css from "./ItemImage.module.scss";
+import css from "./ItemImage.module.css";
 
 class ItemImage extends React.Component {
   state = {

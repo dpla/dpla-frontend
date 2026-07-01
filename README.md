@@ -391,7 +391,7 @@ No formal accessibility statement is published on dp.la or pro.dp.la.
 ## Adding a New Local Hub Site
 
 1. Add a new entry to [`constants/local.js`](constants/local.js) with the hub's ID, name, filters, facets, routes, and feature flags.
-2. Create `stylesheets/themes/{id}/theme.scss` with the hub's color variables (follow WCAG contrast requirements).
+2. Create `stylesheets/themes/{id}/theme.css` with the hub's color variables (follow WCAG contrast requirements).
 3. Add static content to `public/static/local/{id}/` — logo, favicon, hero image, and any Markdown page files referenced by `routes` in step 1.
 4. Add the subdomain mapping to `LOCAL_SUBDOMAINS` in `constants/local.js`.
 5. Update `next.config.js` rewrites if the hub needs any non-standard routing.
@@ -406,7 +406,7 @@ See [LOCAL.md](LOCAL.md) for detailed instructions on steps 1–4.
 
 | Document | Contents |
 |---|---|
-| [LOCAL.md](LOCAL.md) | How to configure a new Local hub instance: env vars, static files, SCSS theming, `constants/local.js` |
+| [LOCAL.md](LOCAL.md) | How to configure a new Local hub instance: env vars, static files, CSS theming, `constants/local.js` |
 | [pages/api/items/ITEMS-API.md](pages/api/items/ITEMS-API.md) | Items proxy API route: URL structure, authentication, response shape, use in the Lists feature |
 | [accessibility/vpat-dpla.md](accessibility/vpat-dpla.md) | VPAT 2.4 draft for dp.la (AI-generated, unreviewed) |
 | [accessibility/vpat-pro-dpla.md](accessibility/vpat-pro-dpla.md) | VPAT 2.4 draft for pro.dp.la (AI-generated, unreviewed) |

@@ -11,9 +11,9 @@ import { ABOUT_MENU_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
 import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { TITLE } from "constants/guides";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "stylesheets/guides.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "stylesheets/guides.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 import {
   safeFetch,

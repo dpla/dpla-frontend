@@ -305,11 +305,11 @@ config = withSentryConfig(config, {
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
 
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: false,
+  webpack: {
+    // Enables automatic instrumentation of Vercel Cron Monitors.
+    // https://docs.sentry.io/product/crons/
+    automaticVercelMonitors: false,
+  },
 });
 
 module.exports = config;

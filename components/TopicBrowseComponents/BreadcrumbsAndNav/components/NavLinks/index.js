@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./NavArrows.module.scss";
+import css from "./NavArrows.module.css";
 
 import Chevron from "components/svg/ChevronThickOrange";
 

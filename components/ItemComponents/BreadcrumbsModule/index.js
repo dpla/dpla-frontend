@@ -4,7 +4,7 @@ import Breadcrumbs from "shared/Breadcrumbs";
 
 import { UNTITLED_TEXT } from "constants/site";
 
-import utils from "stylesheets/utils.module.scss";
+import utils from "stylesheets/utils.module.css";
 
 function BreadcrumbsModule({ breadcrumbs }) {
   return (

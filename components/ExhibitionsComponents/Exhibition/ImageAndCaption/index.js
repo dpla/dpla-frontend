@@ -3,8 +3,8 @@ import React from "react";
 import HeadingRule from "shared/HeadingRule";
 import Button from "shared/Button";
 
-import css from "./ImageAndCaption.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./ImageAndCaption.module.css";
+import utils from "stylesheets/utils.module.css";
 function ImageAndCaption({ title, thumbnailUrl, sectionSlug, slug, caption }) {
   return (
     <figure className={css.wrapper}>

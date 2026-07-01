@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Alert.module.scss";
+import css from "./Alert.module.css";
 
 function Alert({showMessage}) {
   const className = `${css.alert} ${showMessage === "" ? "" : css.open}`

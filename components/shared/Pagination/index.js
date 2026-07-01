@@ -6,7 +6,7 @@ import ChevronThick from "components/svg/ChevronThick";
 
 import addCommasToNumber from "lib/addCommasToNumber";
 
-import css from "./Pagination.module.scss";
+import css from "./Pagination.module.css";
 
 /**
  * @param current current page number

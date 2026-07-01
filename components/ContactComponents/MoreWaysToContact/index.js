@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./MoreWaysToContact.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./MoreWaysToContact.module.css";
+import utils from "stylesheets/utils.module.css"
 
 function MoreWaysToContact() {
     return <div>

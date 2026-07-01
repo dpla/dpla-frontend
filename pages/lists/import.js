@@ -12,8 +12,8 @@ import { LISTS_TITLE } from "constants/lists";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 import { MAX_LIST_ITEMS } from "constants/site";
 
-import utils from "stylesheets/utils.module.scss";
-import css from "components/ListComponents/ListComponents.module.scss";
+import utils from "stylesheets/utils.module.css";
+import css from "components/ListComponents/ListComponents.module.css";
 
 const PAGE_TITLE = "Import a list";
 const NAME_CHAR_LIMIT = 64;

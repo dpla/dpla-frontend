@@ -21,8 +21,8 @@ import {
   decodeHTMLEntities,
 } from "lib";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, wpAuthFetchOptions, wpDraftUrl, isUpstreamUnavailable, upstreamUnavailable, safeJson } from "lib/safeFetch";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";

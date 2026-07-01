@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./Footer.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Footer.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function OtherInfo() {
   return (

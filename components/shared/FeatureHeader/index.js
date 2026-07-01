@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./FeatureHeader.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./FeatureHeader.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function FeatureHeader({ title, description, titleClassName }) {
   return (

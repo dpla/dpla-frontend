@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import { gtag } from "../lib";
 import { patchDOMForGoogleTranslate } from "../lib/patchDOMForGoogleTranslate";
 
-import "stylesheets/colors.scss";
-import "stylesheets/themes/themes.scss";
-import "stylesheets/typography.scss";
-import "stylesheets/local.scss";
-import "stylesheets/reset.scss";
-import "stylesheets/global.scss";
+import "stylesheets/colors.css";
+import "stylesheets/themes/themes.css";
+import "stylesheets/typography.css";
+import "stylesheets/local.css";
+import "stylesheets/reset.css";
+import "stylesheets/global.css";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

@@ -11,8 +11,8 @@ import {
   endsWith,
 } from "lib";
 
-import css from "./Sidebar.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Sidebar.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function SidebarLink({ isCurrentLink, linkObject, title }) {
   return (

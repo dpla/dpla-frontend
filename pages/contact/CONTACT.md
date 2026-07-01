@@ -71,4 +71,4 @@ The sidebar is populated from the WordPress **About Us menu** (user site) or **P
 | Form subject options | `components/ContactComponents/ContactForm/index.js` — `selectOptions` array |
 | Email routing logic | `server.js` — `doContact()` function |
 | Contact details table (phone, email, address, socials, lists) | `components/ContactComponents/MoreWaysToContact/index.js` |
-| Form layout/styles | `components/ContactComponents/ContactForm/ContactForm.module.scss` |
+| Form layout/styles | `components/ContactComponents/ContactForm/ContactForm.module.css` |

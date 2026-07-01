@@ -5,8 +5,8 @@ import Button from "components/shared/Button";
 
 import { LOCALS } from "constants/local";
 
-import css from "./HomeHero.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./HomeHero.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function getHeroLogo() {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;

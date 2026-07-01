@@ -12,9 +12,9 @@ import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 
 import {removeQueryParams, markdownLinks} from "lib";
 
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.scss";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "components/PrimarySourceSetsComponents/SingleSet/TeachersGuide/TeachersGuide.module.css";
 import {washObject} from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
@@ -42,16 +42,17 @@ function SingleSet({ router, set, currentFullUrl, temporarilyUnavailable }) {
             role="tabpanel"
             aria-labelledby="tab-additionalresources"
           >
-            <Markdown
-              className={`${contentCss.content} ${utils.container}`}
-              components={{
-                a(reference) {
-                  return markdownLinks(reference);
-                },
-              }}
-            >
-              {set.hasPart.find((item) => item.name === "Resources").text}
-            </Markdown>
+            <div className={`${contentCss.content} ${utils.container}`}>
+              <Markdown
+                components={{
+                  a(reference) {
+                    return markdownLinks(reference);
+                  },
+                }}
+              >
+                {set.hasPart.find((item) => item.name === "Resources").text}
+              </Markdown>
+            </div>
           </div>
         </div>
       </ResourcesTabs>

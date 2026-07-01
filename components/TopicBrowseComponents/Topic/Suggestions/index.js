@@ -5,8 +5,8 @@ import Markdown from "react-markdown";
 
 import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
-import css from "./Suggestions.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Suggestions.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function mapTypeToClass(type) {
   if (type === "Exhibition") {
@@ -66,13 +66,14 @@ function Suggestions({ suggestions }) {
                   <div className={css.gradientBackground}>
                     <div className={css.typeAndTitle}>
                       <p className={css.resourceType}>{suggestion.type}</p>
-                      <Markdown
-                        className={css.suggestionTitle}
-                        allowedElements={["emphasis", "text"]}
-                        unwrapDisallowed
-                      >
-                        {suggestion.title}
-                      </Markdown>
+                      <div className={css.suggestionTitle}>
+                        <Markdown
+                          allowedElements={["emphasis", "text"]}
+                          unwrapDisallowed
+                        >
+                          {suggestion.title}
+                        </Markdown>
+                      </div>
                     </div>
                   </div>
                 </Link>

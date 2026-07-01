@@ -5,7 +5,7 @@ import FooterUser from "./FooterUser";
 import SmallFooterLocal from "./SmallFooterLocal";
 import SmallFooter from "./SmallFooter";
 
-import css from "./Footer.module.scss";
+import css from "./Footer.module.css";
 
 function Footer() {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;

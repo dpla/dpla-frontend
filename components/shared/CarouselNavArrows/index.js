@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./CarouselNavArrows.module.scss";
+import css from "./CarouselNavArrows.module.css";
 
 import LargeChevron from "components/svg/ChevronThin";
 

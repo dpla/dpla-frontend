@@ -32,7 +32,7 @@ The form validates that the amount is a positive finite number before navigating
 | Pitch copy (headline, bullet points, sidebar text) | `pages/donate/index.js` — hardcoded JSX |
 | Mailing address | `pages/donate/index.js` — hardcoded JSX |
 | Thank-you page copy | `pages/donate/thank-you.js` — hardcoded JSX |
-| Page styles | `stylesheets/donate.module.scss` |
+| Page styles | `stylesheets/donate.module.css` |
 
 ## Hardcoded Content on the Donate Page
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import {NEWS_TAGS} from "constants/news";
 
-import css from "stylesheets/content-pages.module.scss"
+import css from "stylesheets/content-pages.module.css"
 import {useRouter} from "next/router";
 
 function TagList({currentTag, keywords, author}) {

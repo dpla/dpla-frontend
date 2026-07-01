@@ -6,7 +6,7 @@ import Button from "shared/Button";
 const DEFAULT_CONFIRM_TEXT = "Are you sure?";
 const DEFAULT_BUTTON_TEXT = "Delete";
 
-import utils from "stylesheets/utils.module.scss"
+import utils from "stylesheets/utils.module.css"
 
 class ConfirmModal extends React.Component {
   state = {

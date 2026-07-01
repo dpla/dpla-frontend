@@ -6,8 +6,8 @@ import CiteButton from "components/shared/CiteButton";
 import { GOOGLE_CLASSROOMS_SHARE_URL } from "constants/site";
 import { markdownLinks } from "lib";
 
-import css from "./SourceSetInfo.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SourceSetInfo.module.css";
+import utils from "stylesheets/utils.module.css";
 import {
   mapSubjectNameToSlug,
   mapTimePeriodNameToSlug,
@@ -72,19 +72,22 @@ class SourceSetInfo extends React.Component {
                   </h1>
                 </div>
               </div>
-              <Markdown
+              <div
                 id="dpla-description"
                 className={`${css.description} ${css.description} ${
                   this.state.isOpen ? css.open : ""
                 }`}
-                components={{
-                  a(props) {
-                    return markdownLinks(props);
-                  },
-                }}
               >
-                {Array.isArray(set.hasPart) && set.hasPart.find((item) => item.name === "Overview")?.text}
-              </Markdown>
+                <Markdown
+                  components={{
+                    a(props) {
+                      return markdownLinks(props);
+                    },
+                  }}
+                >
+                  {Array.isArray(set.hasPart) && set.hasPart.find((item) => item.name === "Overview")?.text}
+                </Markdown>
+              </div>
               <div
                 id="dpla-showmore"
                 aria-hidden="true"

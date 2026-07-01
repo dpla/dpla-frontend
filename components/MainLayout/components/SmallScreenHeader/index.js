@@ -5,8 +5,8 @@ import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 import NavigationLocal from "../shared/NavigationLocal";
 
-import css from "./SmallScreenStyles.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SmallScreenStyles.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import { LOCALS } from "constants/local";
 

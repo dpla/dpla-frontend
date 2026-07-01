@@ -7,8 +7,8 @@ import { NextArrow, PrevArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceSetSlug } from "lib";
 
-import css from "./RelatedSets.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./RelatedSets.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function RelatedSets({ sets }) {
   const setChildren = sets.map((set, index) => (
@@ -22,13 +22,14 @@ function RelatedSets({ sets }) {
           src={set.repImageUrl || set.thumbnailUrl}
           className={css.setImage}
         />
-        <Markdown
-          className={css.title}
-          allowedElements={["emphasis", "text"]}
-          unwrapDisallowed
-        >
-          {set.name}
-        </Markdown>
+        <span className={css.title}>
+          <Markdown
+            allowedElements={["emphasis", "text"]}
+            unwrapDisallowed
+          >
+            {set.name}
+          </Markdown>
+        </span>
       </Link>
     </div>
   ));

@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./SkipToContent.module.scss";
+import css from "./SkipToContent.module.css";
 
 function SkipToContent() {
   return (

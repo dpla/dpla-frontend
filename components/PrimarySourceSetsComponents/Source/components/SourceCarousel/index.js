@@ -8,8 +8,8 @@ import ChevronThickOrange from "components/svg/ChevronThickOrange";
 
 import { extractSourceId, removeQueryParams } from "lib";
 
-import css from "./SourceCarousel.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SourceCarousel.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function SourceCarousel({ sources, set, currentSourceIdx }) {
   const router = useRouter();

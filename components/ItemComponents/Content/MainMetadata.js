@@ -5,7 +5,7 @@ import ItemTermValuePair from "./ItemTermValuePair";
 
 import { joinIfArray, readMyRights } from "lib";
 
-import css from "./Content.module.scss";
+import css from "./Content.module.css";
 
 /**
  * @param url, url to check for rights info

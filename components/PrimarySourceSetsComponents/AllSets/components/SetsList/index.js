@@ -6,8 +6,8 @@ import Markdown from "react-markdown";
 
 import { extractSourceSetSlug } from "lib";
 
-import css from "./SetsList.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./SetsList.module.css";
+import utils from "stylesheets/utils.module.css";
 import {
   mapSubjectNameToSlug,
   mapTimePeriodNameToSlug,

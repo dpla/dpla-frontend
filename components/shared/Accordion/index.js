@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Accordion.module.scss";
+import css from "./Accordion.module.css";
 
 import AddIcon from "components/svg/Add";
 import SubtractIcon from "components/svg/Subtract";

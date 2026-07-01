@@ -5,9 +5,9 @@ import { withRouter } from "next/router";
 
 import { markdownLinks } from "lib";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import css from "./TeachersGuide.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import css from "./TeachersGuide.module.css";
+import utils from "stylesheets/utils.module.css";
 
 import Printer from "components/svg/Printer";
 
@@ -95,14 +95,14 @@ class TeachersGuide extends React.Component {
               <div className={`${css.teacherTools} ${css.sidebarSection}`}>
                 <h3 className={css.sidebarHeader}>Created By</h3>
                 {Array.isArray(teachingGuide.author) && teachingGuide.author.map((author) => (
-                  <Markdown
-                    key={author.name}
-                    className={css.sidebarSection}
-                    allowedElements={["emphasis", "text"]}
-                    unwrapDisallowed
-                  >
-                    {author.name + ", " + author.affiliation.name}
-                  </Markdown>
+                  <span key={author.name} className={css.sidebarSection}>
+                    <Markdown
+                      allowedElements={["emphasis", "text"]}
+                      unwrapDisallowed
+                    >
+                      {author.name + ", " + author.affiliation.name}
+                    </Markdown>
+                  </span>
                 ))}
                 {isPrintable !== true && (
                   <h3 className={css.sidebarHeader}>Teacher Tools</h3>

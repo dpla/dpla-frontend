@@ -1,0 +1,52 @@
+h2 {
+  margin: 1rem 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+select {
+  appearance: none;
+  background: white url("/static/images/chevron-thick-black-down.svg") no-repeat
+    calc(100% - 0.5rem) center;
+  background-size: 0.9em;
+  border: 0.075rem solid var(--formLabelColor);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem 0.5rem 0.25rem;
+  width: 100%;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+a {
+  color: var(--linkColor);
+  text-decoration: none;
+
+  &:visited {
+    color: var(--visitedLinkColor);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.external::after {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 0.3em;
+  vertical-align: middle;
+  background-color: currentcolor;
+  -webkit-mask-image: url("/static/images/external-link-black.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url("/static/images/external-link-black.svg");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}

@@ -4,8 +4,8 @@ import Sidebar from "./Sidebar";
 import Viewer from "./Viewer";
 import Subheader from "./Subheader";
 
-import css from "./ExhibitionSection.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./ExhibitionSection.module.css";
+import utils from "stylesheets/utils.module.css"
 
 class Body extends React.Component {
     state = {isMenuOpen: false};

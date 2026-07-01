@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./FilterQueryError.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./FilterQueryError.module.css";
+import utils from "stylesheets/utils.module.css";
 import Link from "next/link";
 
 function FilterQueryError() {

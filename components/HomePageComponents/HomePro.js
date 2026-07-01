@@ -6,8 +6,8 @@ import NewsLane from "shared/NewsLane";
 import WebsiteFeature from "shared/WebsiteFeature";
 import StayInformed from "shared/StayInformed";
 
-import css from "./HomePro.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./HomePro.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function HomePro({ news, content }) {
   return (

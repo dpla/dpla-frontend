@@ -6,9 +6,9 @@ import { withRouter } from "next/router";
 import MainLayout from "components/MainLayout";
 import ErrorLinks from "components/ErrorComponents/ErrorLinks";
 
-import contentCss from "stylesheets/content-pages.module.scss";
-import donateCss from "stylesheets/donate.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import contentCss from "stylesheets/content-pages.module.css";
+import donateCss from "stylesheets/donate.module.css";
+import utils from "stylesheets/utils.module.css";
 
 class Error extends React.Component {
   static async getInitialProps(context) {

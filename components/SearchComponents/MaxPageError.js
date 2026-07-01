@@ -1,7 +1,7 @@
 import React from "react";
 
-import css from "./MaxPageError.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./MaxPageError.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function MaxPageError({ maxPage, requestedPage }) {
   return (

@@ -1,0 +1,62 @@
+.faveAndCiteButtons {
+  align-self: baseline;
+  flex-shrink: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media (min-width: 40em) {
+    width: 225px;
+  }
+}
+
+.contentWrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 40em) {
+    margin-top: 2rem;
+    flex-direction: row;
+  }
+}
+
+.citeButton {
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+  background-color: var(--colderBackgroundColor);
+}
+
+.metadataLinks {
+  background-color: var(--colderBackgroundColor);
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  ul {
+    font-size: 0.9rem;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  a,
+  a:visited {
+    color: var(--subLinkColor);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--subLinkColorHover);
+  }
+}
+
+.notFound {
+  margin: 0 0 3rem;
+}

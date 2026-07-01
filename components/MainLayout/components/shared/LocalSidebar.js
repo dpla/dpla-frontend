@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "shared/ContentPagesSidebar/Sidebar.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "shared/ContentPagesSidebar/Sidebar.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function SidebarLink({ route, isActive, title }) {
   return (

@@ -4,8 +4,8 @@ import NavigationUser from "../shared/NavigationUser";
 import NavigationPro from "../shared/NavigationPro";
 import NavigationLocal from "../shared/NavigationLocal";
 
-import css from "../shared/DesktopStyles.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "../shared/DesktopStyles.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function GlobalHeader({ isHome }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import {PSS_NHD_URL} from "constants/site";
 
-import css from "./PSSFooter.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./PSSFooter.module.css";
+import utils from "stylesheets/utils.module.css"
 
 function OtherInfo() {
   return (

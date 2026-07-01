@@ -2,8 +2,8 @@ import React from "react";
 
 import Breadcrumbs from "shared/Breadcrumbs";
 import NavArrows from "./components/NavLinks";
-import css from "./BreadcrumbsAndNav.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./BreadcrumbsAndNav.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function BreadcrumbsAndNav({ breadcrumbs, previousSubtopic, nextSubtopic, topic }) {
   return (

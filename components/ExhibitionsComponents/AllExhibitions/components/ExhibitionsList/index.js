@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./ExhibitionsList.module.scss";
-import utils from "stylesheets/utils.module.scss"
+import css from "./ExhibitionsList.module.css";
+import utils from "stylesheets/utils.module.css"
 
 function Exhibition({exhibition}) {
     return exhibition

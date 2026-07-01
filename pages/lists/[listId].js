@@ -21,8 +21,8 @@ import { addCommasToNumber, addLinkInfoToResults, getDataProviderName, getItemTh
 
 import { setLocalForageItem, removeLocalForageItem, STORAGE_UNAVAILABLE_ERROR } from "lib/localForage";
 
-import utils from "stylesheets/utils.module.scss";
-import css from "components/ListComponents/ListComponents.module.scss";
+import utils from "stylesheets/utils.module.css";
+import css from "components/ListComponents/ListComponents.module.css";
 
 import { LISTS_TITLE } from "constants/lists";
 import { UNTITLED_TEXT, LIST_PAGE_SIZE } from "constants/site";

@@ -5,8 +5,8 @@ import FacetLink from "./FacetLink";
 
 import { joinIfArray, readMyRights } from "lib";
 
-import css from "./Content.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Content.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function OtherMetadata({ item }) {
   const rights = item.edmRights ? readMyRights(item.edmRights) : null;

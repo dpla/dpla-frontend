@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
-import css from "stylesheets/qa.module.scss";
+import css from "stylesheets/qa.module.css";
 
 function QA({ item, randomItemId }) {
   const [collapsed, setCollapsed] = useState(false);

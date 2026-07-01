@@ -19,10 +19,10 @@ import {
 
 import SearchResultsNav from "components/ItemComponents/SearchResultsNav";
 
-import css from "components/ItemComponents/itemComponent.module.scss";
-import utils from "stylesheets/utils.module.scss";
-import contentCss from "stylesheets/content-pages.module.scss";
-import donateCss from "stylesheets/donate.module.scss";
+import css from "components/ItemComponents/itemComponent.module.css";
+import utils from "stylesheets/utils.module.css";
+import contentCss from "stylesheets/content-pages.module.css";
+import donateCss from "stylesheets/donate.module.css";
 import Button from "components/shared/Button";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import css from "./ExhibitionSection.module.scss";
+import css from "./ExhibitionSection.module.css";
 
 function Sidebar({
   currentSubsection,

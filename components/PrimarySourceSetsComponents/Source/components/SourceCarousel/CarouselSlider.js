@@ -8,7 +8,7 @@ import { PrevArrow, NextArrow } from "components/shared/CarouselNavArrows";
 
 import { extractSourceId } from "lib";
 
-import css from "./SourceCarousel.module.scss";
+import css from "./SourceCarousel.module.css";
 
 function CarouselSlider({ currentSourceIdx, sources }) {
   const router = useRouter();
@@ -30,13 +30,14 @@ function CarouselSlider({ currentSourceIdx, sources }) {
           >
             <img alt="" src={thumbnailUrl} className={css.itemImg} />
           </div>
-          <Markdown
-            className={css.itemText}
-            allowedElements={["emphasis", "text"]}
-            unwrapDisallowed
-          >
-            {name}
-          </Markdown>
+          <span className={css.itemText}>
+            <Markdown
+              allowedElements={["emphasis", "text"]}
+              unwrapDisallowed
+            >
+              {name}
+            </Markdown>
+          </span>
         </Link>
       </div>
     ),

@@ -4,8 +4,8 @@ import Link from "next/link";
 import Button from "components/shared/Button";
 import FeedbackForm from "components/FeedbackForm";
 
-import css from "./Footer.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./Footer.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function FooterPro() {
   const userBaseUrl = process.env.NEXT_PUBLIC_USER_BASE_URL;

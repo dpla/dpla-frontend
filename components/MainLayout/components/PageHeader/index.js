@@ -6,8 +6,8 @@ import DplaLogoWhite from "components/svg/DplaLogoWhite";
 
 import { LOCALS } from "constants/local";
 
-import css from "./PageHeader.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./PageHeader.module.css";
+import utils from "stylesheets/utils.module.css";
 
 function PageHeader({ hideSearchBar }) {
   const router = useRouter();

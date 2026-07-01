@@ -1,7 +1,7 @@
 import React from "react";
 
 import Button from "components/shared/Button";
-import css from "./Callout.module.scss";
+import css from "./Callout.module.css";
 
 function Callout() {
   return (

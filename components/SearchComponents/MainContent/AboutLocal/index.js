@@ -7,8 +7,8 @@ import { joinIfArray, removeQueryParams, truncateString } from "lib";
 
 import { LOCALS } from "constants/local";
 
-import css from "./AboutLocal.module.scss";
-import utils from "stylesheets/utils.module.scss";
+import css from "./AboutLocal.module.css";
+import utils from "stylesheets/utils.module.css";
 import { UNTITLED_TEXT } from "constants/site";
 
 const dplaLink = (query) => {

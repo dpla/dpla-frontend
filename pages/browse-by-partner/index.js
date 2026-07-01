@@ -7,7 +7,7 @@ import PartnerBrowseContent from "components/PartnerBrowseComponents";
 import { DESCRIPTION, TITLE } from "constants/browse-by-partner";
 import { LOCALS } from "constants/local";
 
-import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.scss";
+import css from "components/PartnerBrowseComponents/PartnerBrowseContent.module.css";
 import { washObject } from "lib/washObject";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
