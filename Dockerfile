@@ -39,7 +39,7 @@ COPY *.js ./
 COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
-COPY .eslintrc.json ./
+COPY eslint.config.mjs ./
 RUN yarn install --ignore-scripts --immutable --prod
 RUN --mount=type=secret,id=sentry_auth \
     SENTRY_AUTH_TOKEN=$(cat /run/secrets/sentry_auth 2>/dev/null || true) \
@@ -60,7 +60,7 @@ COPY *.js ./
 COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
-COPY .eslintrc.json ./
+COPY eslint.config.mjs ./
 COPY --chown=node:node --from=builder /opt/dpla-frontend/.next /opt/dpla-frontend/.next
 COPY --from=builder /opt/dpla-frontend/node_modules /opt/dpla-frontend/node_modules
 USER node
