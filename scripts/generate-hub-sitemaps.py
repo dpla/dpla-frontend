@@ -5,7 +5,9 @@ Generate per-hub item sitemaps for DPLA local hub subdomains.
 Provider-based hubs read the latest snapshot from s3://dpla-master-dataset/<hub>/jsonl/
 and extract the DPLA item ID from each record's _source.id field.
 
-Tag-based hubs (aviation, bws) paginate the DPLA API using a tag filter.
+Tag-based hubs (aviation, bws) delegate to the ingest EC2 via SSM, where
+ingestion3/scripts/generate_tag_sitemap.py queries Elasticsearch directly using
+PIT + search_after pagination (no max_result_window ceiling, no public API load).
 
 Sitemaps are written (gzip-compressed, ≤50,000 URLs/shard) to:
   s3://sitemaps.dp.la/sitemap/<hub>/all_item_urls_N.xml.gz
@@ -18,17 +20,18 @@ Run:
 
   --hub HUB   Generate only for this hub (default: all hubs)
   --dry-run   Skip S3 uploads and print shard URL previews plus full index XML
+
+Environment (tag-based hubs via SSM):
+  INGEST_INSTANCE_ID  EC2 instance ID of the ingest box (required for aviation/bws)
 """
 
 import argparse
+import base64
 import gzip
 import json
 import os
 import sys
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
 
@@ -59,6 +62,11 @@ TAG_HUBS = {
 }
 
 ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
+
+# Path to the tag-sitemap script on the ingest EC2
+EC2_SCRIPT  = "/home/ec2-user/ingestion3/scripts/generate_tag_sitemap.py"
+EC2_PYTHON  = "/home/ec2-user/ingestion3/venv/bin/python3"
+SSM_TIMEOUT = 1800  # 30 min; aviation/bws are large but ES is fast inside VPC
 
 
 def iter_ids_from_s3(s3_client, hub_id):
@@ -126,210 +134,80 @@ def iter_ids_from_s3(s3_client, hub_id):
                     )
 
 
-API_CALL_DELAY = 1.0  # seconds between API calls to respect rate limits
+# ── SSM delegation for tag-based hubs ────────────────────────────────────────
 
-
-class RateLimitError(Exception):
-    """Raised when the DPLA API returns 403 or 429 (rate limit exhausted)."""
-
-
-def _redact_url(url):
-    """Strip the api_key query parameter from a URL before logging."""
-    parsed = urllib.parse.urlparse(url)
-    params = urllib.parse.parse_qs(parsed.query, keep_blank_values=True)
-    params.pop("api_key", None)
-    return urllib.parse.urlunparse(parsed._replace(query=urllib.parse.urlencode(params, doseq=True)))
-
-
-def _api_get(api_url, api_key, tag, extra_params, timeout=30, retries=5):
-    """Make a single DPLA API request and return parsed JSON, with retries.
-
-    Raises RateLimitError on HTTP 403 or HTTP 429.
-    """
-    params = {"api_key": api_key, "tags": tag}
-    params.update(extra_params)
-    query = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
-    url = f"{api_url}/v2/items?{query}"
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
-    last_exc = None
-    for attempt in range(retries):
-        try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                data = json.loads(resp.read())
-            time.sleep(API_CALL_DELAY)
-            return data
-        except urllib.error.HTTPError as exc:
-            if exc.code == 403:
-                raise RateLimitError(
-                    f"API rate limit reached (HTTP 403): {_redact_url(exc.url)}"
-                ) from exc
-            if exc.code == 429:
-                last_exc = exc
-                retry_after = exc.headers.get("Retry-After") if exc.headers else None
-                backoff = 30 * (attempt + 1)
-                try:
-                    header_secs = int(retry_after) if retry_after else None
-                except (ValueError, TypeError):
-                    header_secs = None
-                if header_secs is not None:
-                    wait = max(header_secs, backoff)
-                    wait_method = f"Retry-After={header_secs}s, backoff={backoff}s → {wait}s"
-                else:
-                    wait = backoff
-                    wait_method = f"backoff={wait}s"
-                    if retry_after:
-                        wait_method += f" (Retry-After header unparseable: {retry_after!r})"
-                print(
-                    f"  Warning: HTTP 429 rate limit (attempt {attempt + 1}/{retries}), "
-                    f"waiting {wait_method}…",
-                    file=sys.stderr,
-                )
-                if attempt < retries - 1:
-                    time.sleep(wait)
-                continue
-            if exc.code in (500, 502, 503, 504):
-                last_exc = exc
-                if attempt < retries - 1:
-                    time.sleep(5 * (attempt + 1))
-                continue
-            raise
-        except urllib.error.URLError as exc:
-            last_exc = exc
-            print(
-                f"  Warning: network error (attempt {attempt + 1}/{retries}): {exc.reason}",
-                file=sys.stderr,
-            )
-            if attempt < retries - 1:
-                time.sleep(5 * (attempt + 1))
-            continue
-    if last_exc is not None and getattr(last_exc, "code", None) == 429:
-        raise RateLimitError(
-            f"API rate limit reached (HTTP 429) after {retries} retries: {_redact_url(last_exc.url)}"
-        ) from last_exc
-    if last_exc is not None:
-        raise last_exc  # retries exhausted on transient server error
-    raise RuntimeError("retries exhausted without a captured exception")
-
-
-MAX_API_WINDOW = 49_800  # ES max_result_window is 50K; stay safely under it
-
-
-def _paginate_segment(api_url, api_key, tag, extra_base, page_size, seen, label):
-    """Paginate a single (provider [+ date]) segment, yielding unseen IDs."""
-    max_pages = MAX_API_WINDOW // page_size
-    page = 1
-    while True:
-        extra = {"page": page, "page_size": page_size, "fields": "id"}
-        extra.update(extra_base)
-        data = _api_get(api_url, api_key, tag, extra)
-        if page == 1:
-            print(f"    {label}: count={data.get('count', '?')}", flush=True)
-        docs = data.get("docs", [])
-        if not docs:
-            break
-        for doc in docs:
-            item_id = doc.get("id") or doc.get("_id")
-            if item_id and item_id not in seen:
-                seen.add(item_id)
-                yield item_id
-        if len(docs) < page_size:
-            break
-        if page >= max_pages:
-            print(
-                f"  Warning: {label}: reached ES window limit at page {page} — "
-                f"segment may be incomplete; consider finer segmentation",
-                file=sys.stderr,
-            )
-            break
-        page += 1
-
-
-def iter_ids_from_api(hub_id):
-    """Yield item IDs from the DPLA API for tag-based hubs.
-
-    Segments by dataProvider to stay under the ES max_result_window (50K).
-    For any provider that itself exceeds the window, further segments by
-    sourceResource.date.begin year.
-    """
-    api_key = os.environ.get("API_KEY", "")
-    if not api_key:
-        print(
-            "  Warning: API_KEY environment variable is not set",
-            file=sys.stderr,
-        )
-    api_url = os.environ.get("API_URL", "https://api.dp.la")
-    tag = TAG_HUBS[hub_id]
-    page_size = 500
-
-    # Get total count and dataProvider facets.
-    data = _api_get(
-        api_url,
-        api_key,
-        tag,
-        {"page_size": 1, "facets": "dataProvider", "facet_size": 500},
+def _ssm_send_command(ssm, instance_id: str, shell_cmd: str, timeout: int) -> str:
+    """Send a shell command to EC2 via SSM and return the command ID."""
+    encoded = base64.b64encode(shell_cmd.encode()).decode("ascii")
+    wrapped = f"sudo -u ec2-user bash -lc 'echo {encoded} | base64 -d | bash'"
+    resp = ssm.send_command(
+        InstanceIds=[instance_id],
+        DocumentName="AWS-RunShellScript",
+        Parameters={"commands": [wrapped]},
+        TimeoutSeconds=timeout,
     )
-    total = data.get("count", 0)
-    print(f"  {hub_id}: {total} total items in API", flush=True)
+    return resp["Command"]["CommandId"]
 
-    facet_entries = data.get("facets", {}).get("dataProvider", {}).get("terms", [])
-    providers = [
-        (e["term"], e["count"]) for e in facet_entries if e.get("count", 0) > 0
-    ]
 
-    if total <= MAX_API_WINDOW:
-        print(f"  {hub_id}: using flat pagination", flush=True)
-        providers = [(None, total)]
-    else:
-        print(f"  {hub_id}: segmenting by {len(providers)} dataProviders", flush=True)
-        if not providers:
-            providers = [(None, total)]
-
-    seen = set()
-    for provider, provider_count in providers:
-        if provider is not None:
-            # Quote as a phrase to avoid query-parser errors on punctuation
-            # (e.g., slash in provider names).
-            quoted_provider = '"' + provider.replace("\\", "\\\\").replace("/", "\\/").replace('"', '\\"') + '"'
-            provider_param = {"dataProvider": quoted_provider}
-            print(
-                f"  {hub_id}: dataProvider={provider!r} ({provider_count} items)",
-                flush=True,
+def _ssm_wait(ssm, instance_id: str, command_id: str, timeout: int) -> dict:
+    """Poll until the SSM command finishes or times out. Returns invocation dict."""
+    deadline = time.monotonic() + timeout
+    poll = 10
+    while True:
+        time.sleep(poll)
+        inv = ssm.get_command_invocation(
+            CommandId=command_id, InstanceId=instance_id
+        )
+        status = inv["Status"]
+        if status not in ("Pending", "InProgress", "Delayed"):
+            return inv
+        if time.monotonic() > deadline:
+            raise TimeoutError(
+                f"SSM command {command_id} still {status!r} after {timeout}s"
             )
-        else:
-            provider_param = {}
+        poll = min(poll * 1.5, 60)  # back off up to 60s
 
-        if provider_count <= MAX_API_WINDOW:
-            yield from _paginate_segment(
-                api_url,
-                api_key,
-                tag,
-                provider_param,
-                page_size,
-                seen,
-                provider or "all",
-            )
-        else:
-            # Provider exceeds the ES window (50K). Split by the first hex
-            # character of the DPLA item ID (0-9, a-f). IDs are 32-char hex
-            # strings with uniform distribution, so each bucket holds ~1/16
-            # of the items — well under 50K for any realistic hub.
-            print(
-                f"  {hub_id}: {provider!r} too large ({provider_count}), "
-                f"splitting by ID prefix (hex)",
-                flush=True,
-            )
-            for hex_char in "0123456789abcdef":
-                segment_params = dict(provider_param)
-                segment_params["q"] = f"id:{hex_char}*"
-                yield from _paginate_segment(
-                    api_url,
-                    api_key,
-                    tag,
-                    segment_params,
-                    page_size,
-                    seen,
-                    f"{provider}/id:{hex_char}*",
-                )
+
+def generate_tag_hub_via_ssm(hub_id: str, dry_run: bool):
+    """Delegate aviation/bws sitemap generation to the ingest EC2 via SSM.
+
+    The EC2 script (ingestion3/scripts/generate_tag_sitemap.py) queries ES
+    directly using PIT + search_after and writes sitemaps to S3 via the
+    instance role.
+    """
+    instance_id = os.environ.get("INGEST_INSTANCE_ID", "").strip()
+    if not instance_id:
+        raise RuntimeError(
+            f"{hub_id}: INGEST_INSTANCE_ID is not set — "
+            "add it as a secret in the GitHub repo and expose it in the workflow env"
+        )
+
+    cmd = f"{EC2_PYTHON} {EC2_SCRIPT} --hub {hub_id}"
+    if dry_run:
+        cmd += " --dry-run"
+
+    print(f"  {hub_id}: sending SSM command to {instance_id}…", flush=True)
+    ssm = boto3.client("ssm", region_name="us-east-1")
+    command_id = _ssm_send_command(ssm, instance_id, cmd, SSM_TIMEOUT)
+    print(f"  {hub_id}: SSM command {command_id}", flush=True)
+
+    inv = _ssm_wait(ssm, instance_id, command_id, SSM_TIMEOUT)
+    stdout = inv.get("StandardOutputContent", "").strip()
+    stderr = inv.get("StandardErrorContent", "").strip()
+
+    if stdout:
+        for line in stdout.splitlines():
+            print(f"  [ec2] {line}")
+    if stderr:
+        for line in stderr.splitlines():
+            print(f"  [ec2:stderr] {line}", file=sys.stderr)
+
+    if inv["Status"] != "Success":
+        raise RuntimeError(
+            f"{hub_id}: EC2 script failed with SSM status={inv['Status']!r}"
+        )
+
+    print(f"  {hub_id}: EC2 script completed successfully", flush=True)
 
 
 def build_shard(urls, timestamp):
@@ -382,43 +260,38 @@ def upload_shard(s3_client, key, xml, dry_run, shard_urls):
 
 
 def generate_hub(hub_id, dry_run, timestamp):
+    # Tag-based hubs delegate to the ingest EC2 entirely — it handles ES
+    # queries, shard writing, and S3 upload via PIT + search_after.
+    if hub_id in TAG_HUBS:
+        generate_tag_hub_via_ssm(hub_id, dry_run)
+        return
+
+    # Provider-based hubs: read S3 JSONL, generate sitemaps here.
     s3_client = boto3.client("s3")
-    print(f"  {hub_id}: collecting IDs...", flush=True)
-    if hub_id in PROVIDER_HUBS:
-        id_iter = iter_ids_from_s3(s3_client, hub_id)
-    else:
-        id_iter = iter_ids_from_api(hub_id)
+    print(f"  {hub_id}: collecting IDs from S3…", flush=True)
+    id_iter = iter_ids_from_s3(s3_client, hub_id)
 
     ts_str = timestamp.strftime("%Y%m%d-%H%M%S")
     shard_keys = []
     shard_buf = []
     total = 0
     n = 0
-    rate_limited = False
 
-    try:
-        for item_id in id_iter:
-            shard_buf.append(f"{ITEM_BASE}/{item_id}")
-            total += 1
-            if len(shard_buf) == SHARD_SIZE:
-                n += 1
-                key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
-                shard_keys.append(key)
-                upload_shard(
-                    s3_client,
-                    key,
-                    build_shard(shard_buf, timestamp),
-                    dry_run,
-                    shard_buf,
-                )
-                shard_buf = []
-    except RateLimitError as exc:
-        rate_limited = True
-        print(
-            f"  WARNING: {hub_id}: API rate limit hit after {total} IDs — uploading partial sitemap",
-            flush=True,
-        )
-        print(f"  {exc}", flush=True)
+    for item_id in id_iter:
+        shard_buf.append(f"{ITEM_BASE}/{item_id}")
+        total += 1
+        if len(shard_buf) == SHARD_SIZE:
+            n += 1
+            key = f"sitemap/{hub_id}/{ts_str}/all_item_urls_{n}.xml.gz"
+            shard_keys.append(key)
+            upload_shard(
+                s3_client,
+                key,
+                build_shard(shard_buf, timestamp),
+                dry_run,
+                shard_buf,
+            )
+            shard_buf = []
 
     if shard_buf:
         n += 1
@@ -428,15 +301,8 @@ def generate_hub(hub_id, dry_run, timestamp):
             s3_client, key, build_shard(shard_buf, timestamp), dry_run, shard_buf
         )
 
-    coverage = " (partial — rate limited)" if rate_limited else ""
-    print(f"  {hub_id}: {total} IDs{coverage}", flush=True)
+    print(f"  {hub_id}: {total} IDs", flush=True)
     if not shard_keys:
-        if rate_limited:
-            print(
-                f"  WARNING: {hub_id}: rate limited before any IDs collected — no sitemap written",
-                flush=True,
-            )
-            return
         raise RuntimeError(
             f"{hub_id}: no IDs found — source data may be missing or empty"
         )
