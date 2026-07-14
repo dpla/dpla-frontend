@@ -155,9 +155,18 @@ def _ssm_wait(ssm, instance_id: str, command_id: str, timeout: int) -> dict:
     poll = 10
     while True:
         time.sleep(poll)
-        inv = ssm.get_command_invocation(
-            CommandId=command_id, InstanceId=instance_id
-        )
+        try:
+            inv = ssm.get_command_invocation(
+                CommandId=command_id, InstanceId=instance_id
+            )
+        except ssm.exceptions.InvocationDoesNotExist:
+            # SSM hasn't registered the invocation yet — keep polling.
+            if time.monotonic() > deadline:
+                raise TimeoutError(
+                    f"SSM command {command_id} never appeared after {timeout}s"
+                )
+            poll = min(poll * 1.5, 60)
+            continue
         status = inv["Status"]
         if status not in ("Pending", "InProgress", "Delayed"):
             return inv
