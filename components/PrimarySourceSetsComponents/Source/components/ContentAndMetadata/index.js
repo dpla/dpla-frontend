@@ -10,6 +10,8 @@ import {
 import CiteButton from "components/shared/CiteButton";
 
 import {
+  buildGaEvent,
+  clickThroughLinkProps,
   getFullPath,
   joinIfArray,
   getItemId,
@@ -57,31 +59,12 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 const getDomainFromThumbnail = (thumbnailUrl) =>
   /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
-// TODO: Make this a utilFunction and use in all Click Through events.
-const trackClickThrough = (e, source, target = "_blank") => {
-  const href = getSourceLink(source);
-
-  const gaEvent = {
-    type: "Click Through",
-    itemId: getItemId(source),
-    title: joinIfArray(getTitle(source)),
-    partner: joinIfArray(getPartner(source)),
-    contributor: joinIfArray(getContributor(source)),
-  };
-
-  // e is a React synthetic event
-  e.preventDefault();
-
-  try {
-    // Try tracking a Google Analytics event.
-    gtag.event(gaEvent);
-  } catch (error) {
-    console.error("Error tracking Google Analytics event.", error);
-  } finally {
-    // Open the link, even if the Google Analytics event tracking failed.
-    window.open(href, target);
-  }
-};
+const sourceEventFields = (source) => ({
+  itemId: getItemId(source),
+  title: getTitle(source),
+  partner: getPartner(source),
+  contributor: getContributor(source),
+});
 
 class ContentAndMetadata extends React.Component {
   state = { isOpen: true }; // show it if js is disabled
@@ -107,14 +90,7 @@ class ContentAndMetadata extends React.Component {
     const source = this.props.source;
 
     if (fullPath !== this.lastTrackedPath) {
-      const gaEvent = {
-        type: "View Primary Source",
-        itemId: getItemId(source),
-        title: joinIfArray(getTitle(source)),
-        partner: joinIfArray(getPartner(source)),
-        contributor: joinIfArray(getContributor(source)),
-      };
-      gtag.event(gaEvent);
+      gtag.event(buildGaEvent("View Primary Source", sourceEventFields(source)));
       this.lastTrackedPath = fullPath;
     }
   }
@@ -254,8 +230,9 @@ class ContentAndMetadata extends React.Component {
                       <a
                         href={getSourceLink(source)}
                         className={css.sourceLink}
-                        onClick={(e) => trackClickThrough(e, source)}
-                        rel="noopener"
+                        {...clickThroughLinkProps(
+                          buildGaEvent("Click Through", sourceEventFields(source)),
+                        )}
                       >
                         <ExternalLink className={css.externalIcon} />
                         <span className={css.linkText}>

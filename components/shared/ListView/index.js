@@ -6,9 +6,11 @@ import ListNameModal from "components/ListComponents/ListNameModal";
 import Alert from "shared/Alert";
 
 import {
-  bindLinkEvent,
+  buildGaEvent,
+  clickThroughLinkProps,
   createUUID,
   joinIfArray,
+  trackLinkClicks,
   truncateString,
 } from "lib";
 
@@ -65,48 +67,6 @@ export default function ListView({
   const [state, setState] = useState(initialState());
   const isCreatingRef = React.useRef(false);
   const isUpdatingRef = React.useRef(false);
-
-  // Analytics for click through events.
-  useEffect(() => {
-    const links = document.getElementsByClassName("clickThrough");
-    Array.from(links).forEach(function (link) {
-      const item = items.filter((i) => i.sourceUrl === link.href)[0];
-      if (item) {
-        const gaEvent = {
-          type: "Click Through",
-          itemId: item.id,
-          title: joinIfArray(item.title),
-          partner: joinIfArray(item.provider),
-          contributor: joinIfArray(item.dataProvider),
-        };
-        bindLinkEvent(gaEvent, [link]);
-      }
-    });
-  }, [items]);
-
-  // Analytics for Topic Browse events.
-  useEffect(() => {
-    if (behavior === "browse") {
-      const links = document.getElementsByClassName("internalItemLink");
-      Array.from(links).forEach(function (link) {
-        const str = link.href;
-        const item = items.filter((i) => {
-          const suffix = i.linkAs;
-          return str.endsWith(suffix);
-        })[0];
-        if (item) {
-          const gaEvent = {
-            type: "Browse Item",
-            itemId: item.id,
-            title: joinIfArray(item.title),
-            partner: joinIfArray(item.provider),
-            contributor: joinIfArray(item.dataProvider),
-          };
-          bindLinkEvent(gaEvent, [link], "_self");
-        }
-      });
-    }
-  }, [items, behavior]);
 
   // "Flash" message effect. Runs whenever the showMessage state updates.
   useEffect(() => {
@@ -325,6 +285,16 @@ export default function ListView({
           else if (item.type === "text") {
             itemLinkText = "View Full Text";
           }
+          const gaItemFields = {
+            itemId: item.id,
+            title: item.title,
+            partner: item.provider,
+            contributor: item.dataProvider,
+          };
+          const browseLinkProps =
+            behavior === "browse"
+              ? trackLinkClicks(buildGaEvent("Browse Item", gaItemFields))
+              : undefined;
           return (
             <li
               key={item.id}
@@ -338,12 +308,17 @@ export default function ListView({
                 provider={item.provider}
                 thumbnailSourceUrl={item.thumbnailSourceUrl}
                 useDefaultImage={item.useDefaultImage}
+                linkProps={browseLinkProps}
               />
               <div className={css.itemInfo}>
                 <h2 className={`${utils.hoverUnderline} ${css.itemTitle}`}>
                   {/* see issue #869 for details on this hack */}
                   {realId !== SOURCE_RESOURCE_ITEM_ID && (
-                    <Link href={item.linkHref} className={"internalItemLink"}>
+                    <Link
+                      href={item.linkHref}
+                      className={"internalItemLink"}
+                      {...browseLinkProps}
+                    >
                       {item.title
                         ? truncateString(joinIfArray(item.title, ", "), 150)
                         : UNTITLED_TEXT}
@@ -374,8 +349,12 @@ export default function ListView({
                 <ItemDescription description={item.description} />
                 <a
                   href={item.sourceUrl}
-                  rel="noopener"
                   className={`clickThrough external ${css.itemSource}`}
+                  {...(item.sourceUrl
+                    ? clickThroughLinkProps(
+                        buildGaEvent("Click Through", gaItemFields),
+                      )
+                    : {})}
                 >
                   {itemLinkText}
                 </a>
