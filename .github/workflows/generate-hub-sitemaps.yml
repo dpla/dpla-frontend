@@ -38,8 +38,7 @@ jobs:
 
       - name: Generate hub sitemaps
         env:
-          API_KEY: ${{ secrets.DPLA_API_KEY }}
-          API_URL: https://api.dp.la
+          INGEST_INSTANCE_ID: ${{ secrets.INGEST_INSTANCE_ID }}
         run: |
           HUB="${{ github.event.inputs.hub }}"
           if [ -n "$HUB" ]; then
