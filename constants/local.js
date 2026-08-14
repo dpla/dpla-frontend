@@ -270,6 +270,31 @@ const LOCALS = {
       }
     }
   },
+  transcribe: {
+    theme: "transcribe",
+    name: "DPLA Transcribe",
+    favicon: "aviation-logo.png",
+    logo: "aviation-logo.png",
+    background: "aviation-banner.jpg",
+    description: "",
+    hasAbout: true,
+    hasBrowseByPartner: true,
+    hasBrowseAll: true,
+    hasSidebar: false,
+    tags: [
+      "aviation"
+    ],
+    routes: {
+      "/about" : {
+        parentDir: "/about",
+        path: "about.md",
+        title: "About",
+        description: "",
+        isTopLevel: true,
+        category: "About"
+      }
+    }
+  },
   vermont: {
     theme: "vermont",
     filters: [
@@ -460,6 +485,7 @@ const LOCAL_SUBDOMAINS = {
   illinois: "idhh.dp.la",
   florida: "ssdn.dp.la",
   aviation: "aviation.dp.la",
+  transcribe: "transcribe.dp.la",
   vermont: "vt.dp.la",
   oklahoma: "oklahoma.dp.la",
   nwdh: "nwdh.dp.la",
