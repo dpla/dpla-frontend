@@ -1,6 +1,7 @@
 import React from "react";
 
 import ItemImage from "./ItemImage";
+import IIIFViewer from "./IIIFViewer";
 import ItemTermValuePair from "./ItemTermValuePair";
 
 import { joinIfArray, readMyRights } from "lib";
@@ -58,6 +59,10 @@ class MainMetadata extends React.Component {
   render() {
     const { isOpen } = this.state;
     const { item } = this.props;
+    // On the Transcribe local, items that carry a IIIF manifest get the full
+    // page viewer in place of the thumbnail; everywhere else is unchanged.
+    const showIiifViewer =
+      process.env.NEXT_PUBLIC_LOCAL_ID === "transcribe" && !!item.iiifManifest;
     const maxDescriptionLength = 600; //characters
     const descriptionIsLong = item.description
       ? joinIfArray(item.description).length > maxDescriptionLength
@@ -81,15 +86,19 @@ class MainMetadata extends React.Component {
           <div className={css.termValuePair}>
             <dt className={`${css.term} ${css.imageLabel}`}>Image</dt>
             <dd className={css.value}>
-              <ItemImage
-                title=""
-                type={item.type}
-                url={item.thumbnailUrl}
-                provider={item.partner}
-                thumbnailSourceUrl={item.thumbnailSourceUrl}
-                defaultImageClass={css.defaultItemImage}
-                useDefaultImage={item.useDefaultImage}
-              />
+              {showIiifViewer ? (
+                <IIIFViewer itemId={item.id} />
+              ) : (
+                <ItemImage
+                  title=""
+                  type={item.type}
+                  url={item.thumbnailUrl}
+                  provider={item.partner}
+                  thumbnailSourceUrl={item.thumbnailSourceUrl}
+                  defaultImageClass={css.defaultItemImage}
+                  useDefaultImage={item.useDefaultImage}
+                />
+              )}
               {item.sourceUrl && (
                 <a
                   rel="noopener"

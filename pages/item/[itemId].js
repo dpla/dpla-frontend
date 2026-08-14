@@ -221,6 +221,7 @@ export async function getServerSideProps(context) {
       doc: strippedDoc,
       originalRecord,
       filecoin: doc.filecoin,
+      iiifManifest: doc.iiifManifest,
     },
     randomItemId,
     isQA,

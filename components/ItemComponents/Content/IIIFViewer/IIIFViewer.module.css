@@ -1,0 +1,96 @@
+.iiifViewer {
+  width: 100%;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: #1b1b1b;
+  border: 1px solid var(--darkBorderColor, #d4d4d4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.osdContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.pageBarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.pageBar {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  padding: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.pageButton {
+  flex: 0 0 auto;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--darkBorderColor, #ccc);
+  border-radius: 2px;
+  background: var(--warmerBackgroundColor, #fff);
+  color: var(--linkColor, #2b67ac);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.pageButton:hover {
+  border-color: var(--linkColor, #2b67ac);
+}
+
+.pageButtonActive,
+.pageButtonActive:hover {
+  background: var(--linkColor, #2b67ac);
+  border-color: var(--linkColor, #2b67ac);
+  color: #fff;
+  font-weight: 600;
+}
+
+.pageArrow {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--darkBorderColor, #ccc);
+  border-radius: 2px;
+  background: var(--warmerBackgroundColor, #fff);
+  color: var(--linkColor, #2b67ac);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pageArrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pageStatus {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--headingColor, #333);
+}
