@@ -16,6 +16,7 @@ export default class IIIFViewer extends React.Component {
     this.containerRef = React.createRef();
     this.viewer = null;
     this._mounted = false;
+    this._loadToken = 0;
   }
 
   componentDidMount() {
@@ -31,23 +32,43 @@ export default class IIIFViewer extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    // The item page reuses this component across client-side navigation, so a new
+    // itemId must tear down the old viewer and load the new manifest.
+    if (prevProps.itemId !== this.props.itemId) {
+      if (this.viewer) {
+        this.viewer.destroy();
+        this.viewer = null;
+      }
+      this.setState({ status: "loading", canvases: [], currentPage: 0 });
+      this.loadManifest();
+    }
+  }
+
   async loadManifest() {
+    // Guard against a stale in-flight response replacing state after the itemId
+    // has changed (or the component unmounted).
+    const token = ++this._loadToken;
     try {
       const res = await fetch(
         `/api/iiif-manifest/${encodeURIComponent(this.props.itemId)}`,
       );
       if (!res.ok) throw new Error(`manifest request failed: ${res.status}`);
       const data = await res.json();
-      if (!this._mounted) return;
+      if (!this._mounted || token !== this._loadToken) return;
       const canvases = Array.isArray(data.canvases) ? data.canvases : [];
       if (canvases.length === 0) {
         this.setState({ status: "empty" });
         return;
       }
-      this.setState({ status: "ready", canvases }, () => this.initViewer(canvases));
+      this.setState({ status: "ready", canvases }, () => {
+        if (token === this._loadToken) this.initViewer(canvases);
+      });
     } catch (err) {
       console.warn("IIIF viewer: could not load manifest.", err?.message ?? err);
-      if (this._mounted) this.setState({ status: "error" });
+      if (this._mounted && token === this._loadToken) {
+        this.setState({ status: "error" });
+      }
     }
   }
 
