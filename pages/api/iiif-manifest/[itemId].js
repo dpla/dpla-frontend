@@ -20,6 +20,14 @@ function getErrorMessage(err) {
   return "Unknown error";
 }
 
+class UpstreamHttpError extends Error {
+  constructor(status) {
+    super(`Upstream responded ${status}`);
+    this.name = "UpstreamHttpError";
+    this.status = status;
+  }
+}
+
 // First-layer SSRF guard: block manifest URLs whose host is an internal DPLA
 // endpoint or a private / loopback / link-local IP literal. This checks the literal
 // host only; hostnames that *resolve* into private space (DNS rebinding) and
@@ -49,11 +57,20 @@ function isBlockedManifestHost(hostname) {
   return false;
 }
 
-async function fetchWithTimeout(input, init) {
+// Fetch JSON under a single deadline covering BOTH the response headers and the body
+// read: fetch() resolves once headers arrive, so decoding the body outside the timeout
+// would leave a stalled body with no deadline. Throws UpstreamHttpError on non-OK, or
+// the fetch AbortError on timeout.
+async function fetchJsonWithTimeout(input, init) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
-    return await fetch(input, { ...init, signal: controller.signal });
+    const response = await fetch(input, { ...init, signal: controller.signal });
+    if (!response.ok) {
+      response.body?.cancel?.().catch(() => {});
+      throw new UpstreamHttpError(response.status);
+    }
+    return await response.json();
   } finally {
     clearTimeout(timeout);
   }
@@ -86,21 +103,19 @@ export default async function handler(req, res) {
     const itemUrl = new URL(apiUrl);
     itemUrl.pathname = itemUrl.pathname.replace(/\/$/, "") + `/items/${itemId}`;
     itemUrl.searchParams.set("api_key", apiKey);
-    const itemRes = await fetchWithTimeout(itemUrl);
-    if (!itemRes.ok) {
-      itemRes.body?.cancel?.().catch(() => {});
-      res.status(itemRes.status === 404 ? 404 : 502).json({
-        error: itemRes.status === 404 ? "Not found." : "Upstream service error.",
-      });
-      return;
-    }
-    const data = await itemRes.json();
+    const data = await fetchJsonWithTimeout(itemUrl);
     manifestUrl = data?.docs?.[0]?.iiifManifest;
   } catch (err) {
+    if (err instanceof UpstreamHttpError && err.status === 404) {
+      res.status(404).json({ error: "Not found." });
+      return;
+    }
+    const aborted = err?.name === "AbortError";
     console.error("Error resolving item for IIIF manifest.", {
       message: getErrorMessage(err),
+      aborted,
     });
-    res.status(502).json({ error: "Upstream service error." });
+    res.status(aborted ? 504 : 502).json({ error: "Upstream service error." });
     return;
   }
 
@@ -127,18 +142,12 @@ export default async function handler(req, res) {
     return;
   }
 
-  // 2. Fetch the manifest server-side with a timeout.
+  // 2. Fetch the manifest server-side (timeout covers headers + body decode).
   let manifest;
   try {
-    const manifestRes = await fetchWithTimeout(parsedUrl, {
+    manifest = await fetchJsonWithTimeout(parsedUrl, {
       headers: { Accept: "application/json, application/ld+json" },
     });
-    if (!manifestRes.ok) {
-      manifestRes.body?.cancel?.().catch(() => {});
-      res.status(502).json({ error: "Could not load IIIF manifest." });
-      return;
-    }
-    manifest = await manifestRes.json();
   } catch (err) {
     const aborted = err?.name === "AbortError";
     console.error("Error fetching IIIF manifest.", {
