@@ -101,6 +101,13 @@ export async function getServerSideProps(context) {
   const asPath = subsection ? `/${section}/${subsection}` : `/${section}`;
   const routes = local["routes"];
   const pageData = routes[asPath];
+  // `/local/markdown` is only meant to be reached via the section rewrites in
+  // next.config.js. A direct hit (e.g. an internal health check) arrives with
+  // no `section`, so asPath won't match a route and pageData is undefined —
+  // return a 404 instead of throwing a 500 on pageData.path below.
+  if (!pageData) {
+    return { notFound: true };
+  }
   const markdownPath = join(
     process.cwd(),
     "public",
