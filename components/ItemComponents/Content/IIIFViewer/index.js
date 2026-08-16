@@ -78,6 +78,13 @@ export default class IIIFViewer extends React.Component {
     this.viewer = new OpenSeaDragon({
       element: this.containerRef.current,
       prefixUrl: "/static/images/openseadragon/",
+      // Use the canvas drawer, not OSD 6's default WebGL drawer. WebGL textures
+      // require CORS-clean images, but provider images are cross-origin, so the
+      // default fails ("Error creating texture in WebGL") and renders blank until
+      // an interaction forces a redraw. The canvas drawer renders cross-origin
+      // images regardless of CORS, so it works across all providers — not just
+      // CORS-compliant ones — and perf is a non-issue for a single web-sized page.
+      drawer: "canvas",
       tileSources: canvases.map((c) => ({ type: "image", url: c.imageUrl })),
       sequenceMode: true,
       showSequenceControl: false, // we render our own page bar
