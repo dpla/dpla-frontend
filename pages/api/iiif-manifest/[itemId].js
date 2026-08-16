@@ -13,6 +13,11 @@ import { parseIiifManifest } from "lib/parseIiifManifest";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
 const FETCH_TIMEOUT_MS = 10000;
+// Cap how many bytes we buffer from an upstream response. `.json()` reads the whole
+// body into memory, so a large or slow-chunked response could exhaust memory/CPU; this
+// bounds the size (the timeout only bounds duration). Generous for IIIF manifests,
+// which are JSON documents, not media.
+const MAX_UPSTREAM_BODY_BYTES = 5 * 1024 * 1024;
 
 function getErrorMessage(err) {
   if (err instanceof Error) return err.message;
@@ -57,6 +62,34 @@ function isBlockedManifestHost(hostname) {
   return false;
 }
 
+// Read a JSON response body while enforcing a maximum byte size, so a large or
+// slow-chunked upstream can't buffer unbounded data into memory. Streams and counts
+// bytes rather than trusting a (possibly absent or wrong) Content-Length; the fetch
+// AbortSignal still bounds total time.
+async function readJsonWithLimit(response, maxBytes) {
+  const declaredLength = Number(response.headers.get("content-length"));
+  if (Number.isFinite(declaredLength) && declaredLength > maxBytes) {
+    response.body?.cancel?.().catch(() => {});
+    throw new Error(`Upstream body exceeds ${maxBytes} bytes`);
+  }
+  const reader = response.body?.getReader?.();
+  if (!reader) return response.json(); // no readable stream; let fetch parse
+  const chunks = [];
+  let total = 0;
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > maxBytes) throw new Error(`Upstream body exceeds ${maxBytes} bytes`);
+      chunks.push(value);
+    }
+    return JSON.parse(Buffer.concat(chunks).toString("utf-8"));
+  } finally {
+    reader.cancel?.().catch(() => {});
+  }
+}
+
 // Fetch JSON under a single deadline covering BOTH the response headers and the body
 // read: fetch() resolves once headers arrive, so decoding the body outside the timeout
 // would leave a stalled body with no deadline. Throws UpstreamHttpError on non-OK, or
@@ -70,7 +103,7 @@ async function fetchJsonWithTimeout(input, init) {
       response.body?.cancel?.().catch(() => {});
       throw new UpstreamHttpError(response.status);
     }
-    return await response.json();
+    return await readJsonWithLimit(response, MAX_UPSTREAM_BODY_BYTES);
   } finally {
     clearTimeout(timeout);
   }
