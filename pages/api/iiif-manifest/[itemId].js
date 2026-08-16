@@ -18,6 +18,8 @@ const FETCH_TIMEOUT_MS = 10000;
 // bounds the size (the timeout only bounds duration). Generous for IIIF manifests,
 // which are JSON documents, not media.
 const MAX_UPSTREAM_BODY_BYTES = 5 * 1024 * 1024;
+// Manifest hosts often redirect (e.g. ARK resolvers); cap the chain we'll follow.
+const MAX_MANIFEST_REDIRECTS = 5;
 
 function getErrorMessage(err) {
   if (err instanceof Error) return err.message;
@@ -33,10 +35,16 @@ class UpstreamHttpError extends Error {
   }
 }
 
-// First-layer SSRF guard: block manifest URLs whose host is an internal DPLA
-// endpoint or a private / loopback / link-local IP literal. This checks the literal
-// host only; hostnames that *resolve* into private space (DNS rebinding) and
-// redirect hops are a documented follow-up hardening item.
+class BlockedManifestUrlError extends Error {
+  constructor(reason) {
+    super(reason);
+    this.name = "BlockedManifestUrlError";
+  }
+}
+
+// SSRF guard: reject a manifest host that is an internal DPLA endpoint or a private /
+// loopback / link-local IP literal. This checks the literal host; hostnames that
+// *resolve* into private space (DNS rebinding) are still a documented follow-up.
 function isBlockedManifestHost(hostname) {
   const host = hostname.toLowerCase().replace(/^\[|\]$/g, "");
   if (host === "localhost" || host.endsWith(".localhost") || host === "::1") {
@@ -60,6 +68,17 @@ function isBlockedManifestHost(hostname) {
     if (a === 100 && b >= 64 && b <= 127) return true; // CGNAT
   }
   return false;
+}
+
+// Throw unless `url` is a fetchable public manifest target (web scheme + non-internal
+// host). Applied to the initial manifest URL AND to every redirect hop.
+function assertAllowedManifestUrl(url) {
+  if (url.protocol !== "https:" && url.protocol !== "http:") {
+    throw new BlockedManifestUrlError(`Unsupported scheme: ${url.protocol}`);
+  }
+  if (isBlockedManifestHost(url.hostname)) {
+    throw new BlockedManifestUrlError(`Blocked host: ${url.hostname}`);
+  }
 }
 
 // Read a JSON response body while enforcing a maximum byte size, so a large or
@@ -93,7 +112,8 @@ async function readJsonWithLimit(response, maxBytes) {
 // Fetch JSON under a single deadline covering BOTH the response headers and the body
 // read: fetch() resolves once headers arrive, so decoding the body outside the timeout
 // would leave a stalled body with no deadline. Throws UpstreamHttpError on non-OK, or
-// the fetch AbortError on timeout.
+// the fetch AbortError on timeout. Used for the trusted DPLA API call (redirects are
+// followed normally; the manifest fetch uses fetchManifestJson instead).
 async function fetchJsonWithTimeout(input, init) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -104,6 +124,48 @@ async function fetchJsonWithTimeout(input, init) {
       throw new UpstreamHttpError(response.status);
     }
     return await readJsonWithLimit(response, MAX_UPSTREAM_BODY_BYTES);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+// Fetch a manifest, following redirects MANUALLY so every hop's target host is
+// validated before we follow it (undici exposes Location for redirect:"manual").
+// This stops a public manifest URL from redirecting the server into an internal or
+// private host. Requests */* because some IIIF hosts (e.g. Digital Commonwealth's ARK
+// resolver) content-negotiate and 404 a JSON-specific Accept, redirecting to the real
+// manifest only for */*. The AbortSignal bounds total time across all hops; the body
+// read is size-capped.
+async function fetchManifestJson(startUrl) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    let url = startUrl;
+    for (let hop = 0; hop <= MAX_MANIFEST_REDIRECTS; hop++) {
+      const response = await fetch(url, {
+        redirect: "manual",
+        signal: controller.signal,
+        headers: {
+          Accept: "*/*",
+          "User-Agent": "DPLA-Transcribe/1.0 (+https://dp.la)",
+        },
+      });
+      if (response.status >= 300 && response.status < 400) {
+        const location = response.headers.get("location");
+        response.body?.cancel?.().catch(() => {});
+        if (!location) throw new Error("Redirect response had no Location header");
+        const next = new URL(location, url); // resolve relative redirects
+        assertAllowedManifestUrl(next); // validate BEFORE following
+        url = next;
+        continue;
+      }
+      if (!response.ok) {
+        response.body?.cancel?.().catch(() => {});
+        throw new UpstreamHttpError(response.status);
+      }
+      return await readJsonWithLimit(response, MAX_UPSTREAM_BODY_BYTES);
+    }
+    throw new Error(`Exceeded ${MAX_MANIFEST_REDIRECTS} manifest redirects`);
   } finally {
     clearTimeout(timeout);
   }
@@ -157,38 +219,34 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Validate the (index-supplied) manifest URL: web schemes only, non-internal host.
+  // Validate the (index-supplied) manifest URL before fetching it.
   let parsedUrl;
   try {
     parsedUrl = new URL(manifestUrl);
-  } catch {
+    assertAllowedManifestUrl(parsedUrl);
+  } catch (err) {
+    if (err instanceof BlockedManifestUrlError) {
+      console.error("Blocked IIIF manifest URL.", { message: getErrorMessage(err) });
+      res.status(502).json({ error: "Manifest URL not allowed." });
+      return;
+    }
     res.status(502).json({ error: "Malformed manifest URL." });
     return;
   }
-  if (parsedUrl.protocol !== "https:" && parsedUrl.protocol !== "http:") {
-    res.status(502).json({ error: "Unsupported manifest URL scheme." });
-    return;
-  }
-  if (isBlockedManifestHost(parsedUrl.hostname)) {
-    console.error("Blocked IIIF manifest host.", { host: parsedUrl.hostname });
-    res.status(502).json({ error: "Manifest host not allowed." });
-    return;
-  }
 
-  // 2. Fetch the manifest server-side (timeout covers headers + body decode).
+  // 2. Fetch the manifest server-side (manual redirects, per-hop host validation,
+  //    size cap, timeout).
   let manifest;
   try {
-    manifest = await fetchJsonWithTimeout(parsedUrl, {
-      // Request broadly rather than a JSON-specific Accept: some IIIF hosts (e.g.
-      // Digital Commonwealth's ARK resolver) content-negotiate and 404 an
-      // `application/json` Accept, only redirecting to the real manifest for */*.
-      // A descriptive User-Agent also avoids library-UA blocks on some providers.
-      headers: {
-        Accept: "*/*",
-        "User-Agent": "DPLA-Transcribe/1.0 (+https://dp.la)",
-      },
-    });
+    manifest = await fetchManifestJson(parsedUrl);
   } catch (err) {
+    if (err instanceof BlockedManifestUrlError) {
+      console.error("Blocked IIIF manifest redirect target.", {
+        message: getErrorMessage(err),
+      });
+      res.status(502).json({ error: "Manifest redirect not allowed." });
+      return;
+    }
     const aborted = err?.name === "AbortError";
     console.error("Error fetching IIIF manifest.", {
       message: getErrorMessage(err),
