@@ -179,7 +179,14 @@ export default async function handler(req, res) {
   let manifest;
   try {
     manifest = await fetchJsonWithTimeout(parsedUrl, {
-      headers: { Accept: "application/json, application/ld+json" },
+      // Request broadly rather than a JSON-specific Accept: some IIIF hosts (e.g.
+      // Digital Commonwealth's ARK resolver) content-negotiate and 404 an
+      // `application/json` Accept, only redirecting to the real manifest for */*.
+      // A descriptive User-Agent also avoids library-UA blocks on some providers.
+      headers: {
+        Accept: "*/*",
+        "User-Agent": "DPLA-Transcribe/1.0 (+https://dp.la)",
+      },
     });
   } catch (err) {
     const aborted = err?.name === "AbortError";
