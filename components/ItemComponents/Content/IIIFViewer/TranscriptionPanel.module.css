@@ -1,0 +1,160 @@
+.panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--darkBorderColor, #d4d4d4);
+  border-radius: 2px;
+  background: var(--warmerBackgroundColor, #fafafa);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.heading {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--headingColor, #333);
+}
+
+.pageRef {
+  font-size: 0.85rem;
+  color: var(--headingColor, #555);
+  opacity: 0.8;
+}
+
+.help {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--headingColor, #555);
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--headingColor, #333);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 12rem;
+  padding: 0.6rem;
+  border: 1px solid var(--darkBorderColor, #ccc);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--headingColor, #222);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: 2px solid var(--linkColor, #2b67ac);
+  outline-offset: 1px;
+}
+
+.textarea:disabled {
+  background: #f2f2f2;
+  color: #888;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.statusField {
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  min-width: 12rem;
+  height: 2.25rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--darkBorderColor, #ccc);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--headingColor, #222);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.saveButton {
+  height: 2.25rem;
+  padding: 0 1.25rem;
+  border: 1px solid var(--linkColor, #2b67ac);
+  border-radius: 2px;
+  background: var(--linkColor, #2b67ac);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveButton:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.saveStatus {
+  font-size: 0.85rem;
+  color: var(--headingColor, #555);
+}
+
+.saveStatusSaved {
+  color: #1a7f37;
+  font-weight: 600;
+}
+
+.saveStatusError {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--headingColor, #666);
+}
+
+.count {
+  color: var(--headingColor, #666);
+}
+
+.countOver {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.updatedAt {
+  color: var(--headingColor, #666);
+}
+
+.note {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--headingColor, #555);
+}
+
+.noteError {
+  color: #b3261e;
+}

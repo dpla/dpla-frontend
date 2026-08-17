@@ -11,6 +11,17 @@ export const TRANSCRIPT_STATUSES = [
   "illegible",
 ];
 
+// Human-readable labels for the status picker. Keyed by the enum values above.
+export const TRANSCRIPT_STATUS_LABELS = {
+  in_progress: "In progress",
+  complete: "Complete",
+  nothing_to_transcribe: "Nothing to transcribe",
+  illegible: "Illegible / can't read",
+};
+
+// The status a freshly-opened (not-yet-saved) page defaults to in the picker.
+export const DEFAULT_TRANSCRIPT_STATUS = "in_progress";
+
 // Max transcript size, measured in UTF-8 *bytes* (not characters) since that is what
 // DynamoDB's 400 KB per-item limit counts. Kept below 400 KB to leave headroom for the
 // item's other attributes (keys, status, timestamps, canvas_id).
