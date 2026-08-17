@@ -1,5 +1,7 @@
 import React from "react";
 
+import TranscriptionPanel from "./TranscriptionPanel";
+
 import css from "./IIIFViewer.module.css";
 
 // Full-image page viewer for items that carry a IIIF manifest. Fetches the parsed
@@ -159,6 +161,13 @@ export default class IIIFViewer extends React.Component {
           <p className={css.pageStatus}>
             Page {currentPage + 1} of {canvases.length}
           </p>
+        )}
+
+        {status === "ready" && canvases[currentPage] && (
+          <TranscriptionPanel
+            itemId={this.props.itemId}
+            canvas={canvases[currentPage]}
+          />
         )}
       </div>
     );
