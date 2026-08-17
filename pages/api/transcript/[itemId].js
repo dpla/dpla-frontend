@@ -25,9 +25,9 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const units = await getTranscriptsForItem(itemId);
+      const { units, itemStatus } = await getTranscriptsForItem(itemId);
       res.setHeader("Cache-Control", "no-store");
-      res.status(200).json({ itemId, units });
+      res.status(200).json({ itemId, units, itemStatus });
     } catch (err) {
       console.error("Error loading transcripts.", { message: getErrorMessage(err) });
       res.status(502).json({ error: "Could not load transcripts." });
