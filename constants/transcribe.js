@@ -11,6 +11,8 @@ export const TRANSCRIPT_STATUSES = [
   "illegible",
 ];
 
-// Well under DynamoDB's 400 KB item limit.
-export const MAX_TRANSCRIPT_TEXT_CHARS = 100000;
+// Max transcript size, measured in UTF-8 *bytes* (not characters) since that is what
+// DynamoDB's 400 KB per-item limit counts. Kept below 400 KB to leave headroom for the
+// item's other attributes (keys, status, timestamps, canvas_id).
+export const MAX_TRANSCRIPT_TEXT_BYTES = 380_000;
 export const MAX_CANVAS_ID_CHARS = 2048;

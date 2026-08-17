@@ -5,7 +5,7 @@
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 import {
   TRANSCRIPT_STATUSES,
-  MAX_TRANSCRIPT_TEXT_CHARS,
+  MAX_TRANSCRIPT_TEXT_BYTES,
   MAX_CANVAS_ID_CHARS,
 } from "constants/transcribe";
 import { getTranscriptsForItem, putCanvasTranscript } from "lib/transcriptStore";
@@ -49,10 +49,10 @@ export default async function handler(req, res) {
       res.status(400).json({ error: "text must be a string." });
       return;
     }
-    if (text.length > MAX_TRANSCRIPT_TEXT_CHARS) {
+    if (Buffer.byteLength(text, "utf8") > MAX_TRANSCRIPT_TEXT_BYTES) {
       res
         .status(413)
-        .json({ error: `text exceeds ${MAX_TRANSCRIPT_TEXT_CHARS} characters.` });
+        .json({ error: `text exceeds ${MAX_TRANSCRIPT_TEXT_BYTES} bytes.` });
       return;
     }
     if (!TRANSCRIPT_STATUSES.includes(status)) {

@@ -50,22 +50,25 @@ writers.
 
 | Case | `unit_key` pattern | Status |
 |---|---|---|
-| **v1 image page** (whole canvas) | `canvas#{encodedCanvasId}` | **now** |
-| Region within a canvas | `canvas#{encodedCanvasId}#region#{id}` | future |
-| Timed audio/video segment | `av#{encodedAssetId}#{startMs zero-padded}` | future |
-| PDF sub-page (single-asset) | `pdf#{encodedAssetId}#page#{n zero-padded}` | future |
+| **v1 image page** (whole canvas) | `canvas#{sha256(canvasId)}` | **now** |
+| Region within a canvas | `canvas#{sha256(canvasId)}#region#{id}` | future |
+| Timed audio/video segment | `av#{sha256(assetId)}#{startMs zero-padded}` | future |
+| PDF sub-page (single-asset) | `pdf#{sha256(assetId)}#page#{n zero-padded}` | future |
 
-`begins_with` queries scope reads to a canvas/asset (e.g. `begins_with av#{id}#`
-returns a clip's segments **in time order**, because start-ms is zero-padded). The
-embedded id is encoded so a `#` inside a canvas `@id` (IIIF fragment selectors) can't
-collide with the structural `#` delimiter. Adding finer units later is **just more
-rows** — the v1 `canvas#…` records never need re-keying.
+The id is **hashed** into the key so the sort key can never exceed DynamoDB's
+**1024-byte** limit regardless of id length, and so a `#` inside a canvas `@id` (IIIF
+fragment selectors) can't collide with the structural `#` delimiter. The raw id is kept
+in a `canvas_id` attribute for retrieval. `begins_with` still scopes reads to a
+canvas/asset (e.g. `begins_with av#{hash}#` returns a clip's segments **in time order**,
+because start-ms is zero-padded and the hash is deterministic per id). Adding finer
+units later is **just more rows** — the v1 `canvas#…` records never need re-keying.
 
 **Attributes (non-key — all extensible without migration):**
 
 | Attribute | Type | v1 | Notes |
 |---|---|---|---|
 | `unit_type` | S | `canvas` | `av_segment` \| `pdf_page` \| `region` … later |
+| `canvas_id` | S | ✓ | raw canvas `@id` (the SK is a hash of it) |
 | `transcript_text` | S | ✓ | verbatim; rendered as **text** in the UI (no HTML) |
 | `status` | S | ✓ | enum below |
 | `updated_at` | S | ✓ | ISO-8601 UTC |
@@ -83,15 +86,17 @@ The app authenticates to DynamoDB via the **ECS task role** — no keys in the a
 the browser.
 
 ### `GET /api/transcript/{itemId}` — hydrate an item on open
-Query by `PK = itemId`; return a **list of unit records** (not a map keyed by canvas)
-so it can represent many units per asset without a breaking change later:
+Query by `PK = itemId` (paginating `LastEvaluatedKey` so items with many units aren't
+truncated at DynamoDB's 1 MB per-Query limit); return a **list of unit records** (not a
+map keyed by canvas) so it can represent many units per asset without a breaking change
+later:
 ```json
 {
   "itemId": "0123…",
   "units": [
-    { "unitKey": "canvas#https%3A…%2Fcanvas%2F1", "unitType": "canvas",
+    { "unitKey": "canvas#3b1f…", "unitType": "canvas",
       "canvasId": "https://…/canvas/1", "text": "…", "status": "complete",    "updatedAt": "2026-…" },
-    { "unitKey": "canvas#https%3A…%2Fcanvas%2F2", "unitType": "canvas",
+    { "unitKey": "canvas#9a04…", "unitType": "canvas",
       "canvasId": "https://…/canvas/2", "text": "…", "status": "in_progress", "updatedAt": "2026-…" }
   ]
 }
@@ -101,8 +106,9 @@ fields — additive only.)
 
 ### `PUT /api/transcript/{itemId}` — save one unit
 v1 body: `{ "canvasId": "https://…/canvas/2", "text": "…", "status": "in_progress" }`
-→ server derives `unit_key = canvas#{encoded canvasId}`, `unit_type = canvas`, upserts
-one item, returns `{ "unitKey": "…", "status": "…", "updatedAt": "…" }`. Later the
+→ server derives `unit_key = canvas#{sha256 of canvasId}`, stores the raw id in
+`canvas_id`, sets `unit_type = canvas`, upserts one item, and returns
+`{ "unitKey": "…", "canvasId": "…", "status": "…", "updatedAt": "…" }`. Later the
 body gains optional `unitType` / `startMs` / `endMs` / `page` fields to address finer
 units — additive, non-breaking.
 
@@ -122,7 +128,7 @@ Enforced server-side in the `PUT` handler:
 - `itemId` matches the DPLA id regex; else 404.
 - `canvasId` non-empty string ≤ 2048 chars; else 400.
 - `status` ∈ the enum; else 400.
-- `text` ≤ 100 000 chars (well under DynamoDB's 400 KB item limit); else 413.
+- `text` ≤ 380 000 **UTF-8 bytes** (`Buffer.byteLength`, not char count — headroom under DynamoDB's 400 KB item limit); else 413.
 - Text stored **verbatim** and rendered as text in the UI → no HTML/JS injection surface.
 
 **Rate limiting is deferred** — the alpha is header-gated, so abuse exposure is low.
