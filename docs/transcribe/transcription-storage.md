@@ -79,6 +79,36 @@ units later is **just more rows** — the v1 `canvas#…` records never need re-
 **Status enum:** `in_progress | complete | nothing_to_transcribe | illegible`.
 `not_started` is **implicit** — the absence of a record for that unit.
 
+### Item rollup row (per-status counters)
+
+Alongside an item's unit rows sits **one rollup row** — same PK, reserved
+`unit_key = #item` (it sorts before the `canvas#…` unit keys and can't collide with a
+hashed one). It carries a **counter per status**, so an item's **status set** (the
+distinct statuses it has ≥1 unit in) is a single read — the basis for an item-level
+status facet, since search returns items, not units.
+
+| Attribute | Type | Notes |
+|---|---|---|
+| `record_type` | S | `item_rollup` (distinguishes it from unit rows) |
+| `n_{status}` | N | count of the item's units currently in `{status}` (e.g. `n_complete`) |
+| `updated_at` | S | ISO-8601 UTC of the last write |
+| `schema_version` | N | `1` |
+
+**Maintained on every unit write, not recomputed.** The `PUT` upserts the unit row with
+`ReturnValues=ALL_OLD` to learn the status it replaced, then applies just that delta to
+the rollup with atomic `ADD` (`+new`, `−old`) — so concurrent writes to *different* units
+of the same item compose correctly, and re-saving the same status is a no-op. The unit
+rows are the source of truth; the rollup is a derived aggregate that
+`scripts/backfill-transcript-rollups.mjs` can rebuild from them at any time (it also does
+the one-time backfill).
+
+**Rollup rows exist only for *touched* items.** `not_started` / "untranscribed" is still
+the absence of any row for the item — its **count** is `iiif-corpus total (from ES) −
+touched items (from DynamoDB)`, and a work-queue can hand out untranscribed items by
+sampling the corpus; neither needs a per-item placeholder. (Materializing an
+`untranscribed` default per corpus item is possible but is a near-whole-corpus copy —
+deferred.)
+
 ## API contract
 
 Two same-origin Next API routes on the Transcribe app (behind the alpha header gate).
@@ -93,6 +123,7 @@ later:
 ```json
 {
   "itemId": "0123…",
+  "itemStatus": ["complete", "in_progress"],
   "units": [
     { "unitKey": "canvas#3b1f…", "unitType": "canvas",
       "canvasId": "https://…/canvas/1", "text": "…", "status": "complete",    "updatedAt": "2026-…" },
@@ -101,16 +132,17 @@ later:
   ]
 }
 ```
-(Future timed/region units appear in the same list with `startMs`/`endMs` or `region`
-fields — additive only.)
+`itemStatus` is the item's status set (from the rollup row, which is filtered out of
+`units`). Future timed/region units appear in the same list with `startMs`/`endMs` or
+`region` fields — additive only.
 
 ### `PUT /api/transcript/{itemId}` — save one unit
 v1 body: `{ "canvasId": "https://…/canvas/2", "text": "…", "status": "in_progress" }`
 → server derives `unit_key = canvas#{sha256 of canvasId}`, stores the raw id in
-`canvas_id`, sets `unit_type = canvas`, upserts one item, and returns
-`{ "unitKey": "…", "canvasId": "…", "status": "…", "updatedAt": "…" }`. Later the
-body gains optional `unitType` / `startMs` / `endMs` / `page` fields to address finer
-units — additive, non-breaking.
+`canvas_id`, sets `unit_type = canvas`, upserts one unit, updates the item rollup, and
+returns `{ "unitKey": "…", "canvasId": "…", "status": "…", "updatedAt": "…",
+"itemStatus": ["…"] }`. Later the body gains optional `unitType` / `startMs` / `endMs` /
+`page` fields to address finer units — additive, non-breaking.
 
 ## How future media types map on (no migration, no breaking change)
 
@@ -119,8 +151,10 @@ units — additive, non-breaking.
   time order — exactly what WebVTT/caption export needs. Just new rows + attributes.
 - **PDF sub-pages / regions:** N unit-records per asset (`pdf#…#page#…`,
   `canvas#…#region#…`), region geometry (`xywh`) as an attribute. One asset, many units.
-- **Per-unit vs asset-level status:** each unit carries its own `status`; an
-  asset-level "done" rollup can be computed or stored under a reserved unit_key later.
+- **Per-unit vs asset-level status:** each unit carries its own `status`; the
+  **item-level** rollup row (above) aggregates them into per-status counters under the
+  reserved `#item` key. A finer asset-level rollup (per PDF, per A/V file) can slot in
+  the same way later.
 
 ## Write-path guards (v1)
 
@@ -138,7 +172,8 @@ A per-IP / token limiter is required **before any public exposure**.
 
 1. DynamoDB table `transcribe-transcripts` (keys above, on-demand).
 2. An IAM policy on the ECS task role (`ecs-tasks-execution-role`) granting
-   `dynamodb:GetItem`, `PutItem`, and `Query` scoped to that table's ARN.
+   `dynamodb:GetItem`, `PutItem`, `UpdateItem`, and `Query` scoped to that table's ARN
+   (`UpdateItem` maintains the rollup counters).
 3. Task-def env: `TRANSCRIBE_TABLE_NAME=transcribe-transcripts`.
 
 ## Deferred / follow-up (tracked on the PR, not the issue tracker)
