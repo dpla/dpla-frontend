@@ -5,8 +5,16 @@
 // derives everything from the unit rows, so it doubles as a repair tool if an
 // incremental rollup update was ever lost mid-write.
 //
-// Uses the AWS CLI (default profile credentials), not the app's SigV4 client, so it can
-// run locally. Read-only against unit rows; only writes "#item" rollup rows.
+// Principal & permissions: run as an operator, locally, via the AWS CLI's default
+// profile — NOT the ECS task role. It needs dynamodb:Scan + PutItem on the table; the
+// task role deliberately does not get Scan (the app only Query/Get/Put/Update), so the
+// backfill's broad read stays out of the runtime least-privilege policy.
+//
+// Run with writes quiesced: it recomputes from a point-in-time scan and overwrites each
+// rollup unconditionally, so a transcript write landing mid-run could be overwritten
+// with a slightly stale count. It is idempotent, so the remedy is simply to re-run it
+// once writes are idle — no fencing / change-replay needed for this coordinated
+// maintenance task on a low-traffic alpha table.
 //
 //   node scripts/backfill-transcript-rollups.mjs
 //
@@ -29,37 +37,39 @@ function aws(args) {
   const out = execFileSync(
     "aws",
     [...args, "--region", REGION, "--output", "json"],
-    { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 },
+    { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
   );
   return out.trim() ? JSON.parse(out) : {};
 }
 
-// 1. Scan every row (paginated).
-const rows = [];
+// Scan the table one page at a time and group unit rows by item as we go, so we never
+// hold more than a single ~1 MB page in memory. `--no-paginate` is required: without it
+// the AWS CLI auto-paginates and returns the entire table in one response (which can
+// blow the maxBuffer and makes the LastEvaluatedKey loop dead code). Rollup rows are
+// skipped — only transcribable unit rows feed the counts.
+const byItem = new Map();
+let scanned = 0;
 let startKey = null;
 do {
-  const args = ["dynamodb", "scan", "--table-name", TABLE];
+  const args = ["dynamodb", "scan", "--table-name", TABLE, "--no-paginate"];
   if (startKey) args.push("--exclusive-start-key", JSON.stringify(startKey));
   const page = aws(args);
-  rows.push(...(page.Items || []));
+  for (const row of page.Items || []) {
+    scanned += 1;
+    if (row.unit_key?.S === ITEM_ROLLUP_SORT_KEY) continue;
+    const itemId = row.dpla_item_id?.S;
+    const status = row.status?.S;
+    const updatedAt = row.updated_at?.S ?? "";
+    if (!itemId || !status) continue;
+    if (!byItem.has(itemId)) byItem.set(itemId, { counts: {}, latest: "" });
+    const rec = byItem.get(itemId);
+    rec.counts[status] = (rec.counts[status] || 0) + 1;
+    if (updatedAt > rec.latest) rec.latest = updatedAt;
+  }
   startKey = page.LastEvaluatedKey || null;
 } while (startKey);
 
-// 2. Group unit rows by item and count statuses (skip existing rollup rows).
-const byItem = new Map();
-for (const row of rows) {
-  if (row.unit_key?.S === ITEM_ROLLUP_SORT_KEY) continue;
-  const itemId = row.dpla_item_id?.S;
-  const status = row.status?.S;
-  const updatedAt = row.updated_at?.S ?? "";
-  if (!itemId || !status) continue;
-  if (!byItem.has(itemId)) byItem.set(itemId, { counts: {}, latest: "" });
-  const rec = byItem.get(itemId);
-  rec.counts[status] = (rec.counts[status] || 0) + 1;
-  if (updatedAt > rec.latest) rec.latest = updatedAt;
-}
-
-// 3. Overwrite each item's rollup row from the recomputed counts.
+// Overwrite each item's rollup row from the recomputed counts.
 let written = 0;
 for (const [itemId, { counts, latest }] of byItem) {
   const item = {
@@ -78,5 +88,5 @@ for (const [itemId, { counts, latest }] of byItem) {
 }
 
 console.log(
-  `Backfilled ${written} item rollup row(s) from ${rows.length} scanned row(s) in ${TABLE}.`,
+  `Backfilled ${written} item rollup row(s) from ${scanned} scanned row(s) in ${TABLE}.`,
 );

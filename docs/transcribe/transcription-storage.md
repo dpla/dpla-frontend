@@ -176,6 +176,14 @@ A per-IP / token limiter is required **before any public exposure**.
    (`UpdateItem` maintains the rollup counters).
 3. Task-def env: `TRANSCRIBE_TABLE_NAME=transcribe-transcripts`.
 
+The **backfill script** (`scripts/backfill-transcript-rollups.mjs`) runs separately — as
+an operator, locally, via the AWS CLI's default profile, **not** the task role — and needs
+`dynamodb:Scan` + `PutItem` on the table. The task role deliberately does **not** get
+`Scan`: the app only Query/Get/Put/Update, so keeping `Scan` out preserves least
+privilege. Run the backfill with transcript writes **quiesced** (it recomputes from a
+point-in-time scan and overwrites rollups unconditionally); it is idempotent, so simply
+re-run it if a write landed mid-run.
+
 ## Deferred / follow-up (tracked on the PR, not the issue tracker)
 
 Sub-canvas + timed-media units (schema is ready; logic deferred); rate limiting +
