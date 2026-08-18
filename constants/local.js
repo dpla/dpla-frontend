@@ -273,7 +273,7 @@ const LOCALS = {
   transcribe: {
     theme: "transcribe",
     name: "DPLA Transcribe",
-    favicon: "transcribe-logo.png",
+    favicon: "transcribe-favicon.png",
     logo: "transcribe-logo.png",
     background: "transcribe-banner.jpg",
     description:

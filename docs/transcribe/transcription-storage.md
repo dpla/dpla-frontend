@@ -172,8 +172,20 @@ A per-IP / token limiter is required **before any public exposure**.
 
 1. DynamoDB table `transcribe-transcripts` (keys above, on-demand).
 2. An IAM policy on the ECS task role (`ecs-tasks-execution-role`) granting
-   `dynamodb:GetItem`, `PutItem`, `UpdateItem`, and `Query` scoped to that table's ARN
-   (`UpdateItem` maintains the rollup counters).
+   `dynamodb:GetItem`, `PutItem`, `UpdateItem`, `Query`, and `Scan` scoped to that
+   table's ARN (`UpdateItem` maintains the rollup counters; `Scan` backs the home-page
+   status browse — see below).
+
+**Home "browse by transcription status".** The grid tiles link to
+`/search?transcription_status=<value>`; `pages/search/index.js` (gated to the transcribe
+local) serves those. For an explicit status it Scans the item rollup rows for
+`n_<status> > 0`, then hydrates the matching ids via the DPLA API multi-fetch
+(`/items/{id,…}`) and renders them like normal results. `untranscribed` is the absence of
+a record, so it runs the normal browse and excludes touched item ids (and subtracts them
+from the total). That exclusion is applied to the already-paginated page, so a page can be
+slightly short and deep-page counts approximate; excluding *before* pagination — so the
+untranscribed set is exact — needs the transcribe-local index. The alpha `Scan` is fine at
+this size; a GSI keyed on status is the scale replacement.
 3. Task-def env: `TRANSCRIBE_TABLE_NAME=transcribe-transcripts`.
 
 The **backfill script** (`scripts/backfill-transcript-rollups.mjs`) runs separately — as

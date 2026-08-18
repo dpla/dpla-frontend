@@ -45,3 +45,10 @@
   --footerDarkColor: var(--mobileNavColor) !important;
   --outgoingLinkColor: var(--subLinkColor) !important;
 }
+
+/* Suppress the home hero logo for now — the recolored mark reads poorly over the
+   handwriting banner. Header/footer/favicon (which use the .localLogo class, not this
+   id) are unaffected. */
+:root.transcribe #transcribe-localLogo {
+  display: none;
+}
