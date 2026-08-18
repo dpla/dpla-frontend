@@ -275,7 +275,6 @@ const LOCALS = {
     name: "DPLA Transcribe",
     favicon: "transcribe-favicon.png",
     logo: "transcribe-logo.png",
-    heroLogo: "transcribe-hero-logo.png",
     background: "transcribe-banner.jpg",
     description:
       "Help transcribe historical documents from across the Digital Public Library of America.",

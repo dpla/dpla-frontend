@@ -181,8 +181,11 @@ A per-IP / token limiter is required **before any public exposure**.
 local) serves those. For an explicit status it Scans the item rollup rows for
 `n_<status> > 0`, then hydrates the matching ids via the DPLA API multi-fetch
 (`/items/{id,…}`) and renders them like normal results. `untranscribed` is the absence of
-a record, so it runs the normal browse and excludes touched item ids. The alpha `Scan` is
-fine at this size; a GSI keyed on status is the scale replacement.
+a record, so it runs the normal browse and excludes touched item ids (and subtracts them
+from the total). That exclusion is applied to the already-paginated page, so a page can be
+slightly short and deep-page counts approximate; excluding *before* pagination — so the
+untranscribed set is exact — needs the transcribe-local index. The alpha `Scan` is fine at
+this size; a GSI keyed on status is the scale replacement.
 3. Task-def env: `TRANSCRIBE_TABLE_NAME=transcribe-transcripts`.
 
 The **backfill script** (`scripts/backfill-transcript-rollups.mjs`) runs separately — as

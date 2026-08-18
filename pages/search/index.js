@@ -53,18 +53,20 @@ async function transcriptionStatusResults(status, page, pageSize) {
   const ids = await getItemIdsWithStatus(status);
   const count = ids.length;
   const pageIds = ids.slice((page - 1) * pageSize, page * pageSize);
-  let docs = [];
-  if (pageIds.length) {
-    const url =
-      `${process.env.API_URL}/items/${pageIds.join(",")}` +
-      `?api_key=${process.env.API_KEY}`;
-    const res = await safeFetch(url);
-    if (res?.ok) {
-      const json = await res.json();
-      docs = (json.docs || []).map(formatItemDoc);
-    }
+  if (!pageIds.length) return { docs: [], count };
+
+  const url =
+    `${process.env.API_URL}/items/${pageIds.join(",")}` +
+    `?api_key=${process.env.API_KEY}`;
+  const res = await safeFetch(url);
+  if (!res?.ok) return { fetchError: true };
+  try {
+    const json = await res.json();
+    return { docs: (json.docs || []).map(formatItemDoc), count };
+  } catch {
+    // A malformed hydration response is a search failure, not an empty result set.
+    return { fetchError: true };
   }
-  return { docs, count };
 }
 
 class Search extends React.Component {
@@ -256,13 +258,26 @@ export async function getServerSideProps(context) {
 
   const facetQueries = queryArray.join("&");
 
+  // Transcribe "browse by transcription status": derive the requested status up front so
+  // a valid status browse isn't rejected as an "unfiltered" query below (it would be if
+  // the local ever carried no tags/filters).
+  const rawStatus = Array.isArray(query.transcription_status)
+    ? query.transcription_status[0]
+    : query.transcription_status;
+  const transcriptionStatus =
+    isLocal && localId === "transcribe" && rawStatus ? rawStatus : null;
+  const isStatusBrowse =
+    !!transcriptionStatus &&
+    (TRANSCRIPT_STATUSES.includes(transcriptionStatus) ||
+      transcriptionStatus === "untranscribed");
+
   const isUnfilteredQuery =
     (!q || q.length < 2) &&
     filters.length === 0 &&
     tags.length === 0 &&
     !facetQueries;
 
-  if (isUnfilteredQuery) {
+  if (isUnfilteredQuery && !isStatusBrowse) {
     return {
       props: {
         filterQueryError: true,
@@ -287,26 +302,30 @@ export async function getServerSideProps(context) {
 
   let page = query.page || 1;
 
-  // Transcribe "browse by transcription status": for an explicit status, serve the
-  // matching items from DynamoDB (hydrated via the API multi-fetch) rather than ES.
-  // "untranscribed" is the absence of a record, handled by exclusion in the ES path.
-  const rawStatus = Array.isArray(query.transcription_status)
-    ? query.transcription_status[0]
-    : query.transcription_status;
-  const transcriptionStatus =
-    isLocal && localId === "transcribe" && rawStatus ? rawStatus : null;
+  // For an explicit status, serve the matching items from DynamoDB (hydrated via the API
+  // multi-fetch). "untranscribed" is the absence of a record, handled by exclusion in the
+  // ES path below.
   if (transcriptionStatus && TRANSCRIPT_STATUSES.includes(transcriptionStatus)) {
-    const { docs, count } = await transcriptionStatusResults(
+    const result = await transcriptionStatusResults(
       transcriptionStatus,
       Number(page),
       Number(page_size),
     );
+    if (result.fetchError) {
+      context.res.statusCode = 502;
+      return {
+        props: washObject({
+          fetchError: true,
+          results: { docs: [], facets: {} },
+        }),
+      };
+    }
     return {
       props: washObject({
-        results: { docs, count, facets: {} },
+        results: { docs: result.docs, count: result.count, facets: {} },
         numberOfActiveFacets: 0,
         currentPage: Number(page),
-        pageCount: count,
+        pageCount: result.count,
         pageSize: page_size,
         aboutness: { docs: [], count: 0 },
         filterQueryError: false,
@@ -397,10 +416,15 @@ export async function getServerSideProps(context) {
     let docs = json.docs.map(formatItemDoc);
 
     // Transcribe "untranscribed" browse: drop items that already have any transcription
-    // (untranscribed is the absence of a record, so it can't be a positive DynamoDB set).
+    // (untranscribed is the absence of a record, so it can't be a positive DynamoDB set)
+    // and reduce the reported total by the touched count. NOTE: this excludes touched ids
+    // from the already-paginated page, so a page can be slightly short; excluding *before*
+    // pagination needs the transcribe-local index (deferred — see the storage doc). Fine
+    // at alpha scale, where the touched set is a tiny fraction of the corpus.
     if (transcriptionStatus === "untranscribed") {
       const touched = new Set(await getTouchedItemIds());
       docs = docs.filter((doc) => !touched.has(doc.id));
+      json.count = Math.max(0, json.count - touched.size);
     }
 
     // order facets per ui requirements
