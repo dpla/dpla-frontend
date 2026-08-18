@@ -4,7 +4,7 @@ Help unlock historical documents. DPLA Transcribe invites volunteers to read and
 
 Pick a page, type what you see, and mark its status. Every transcription makes these materials more discoverable.
 
-Browse by transcription status:
+## Browse by transcription status
 
 - ### [Untranscribed](/search?transcription_status=untranscribed)
     Pages that are waiting for a first transcription — a great place to start.
