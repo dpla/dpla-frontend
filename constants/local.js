@@ -273,10 +273,11 @@ const LOCALS = {
   transcribe: {
     theme: "transcribe",
     name: "DPLA Transcribe",
-    favicon: "aviation-logo.png",
-    logo: "aviation-logo.png",
-    background: "aviation-banner.jpg",
-    description: "",
+    favicon: "transcribe-logo.png",
+    logo: "transcribe-logo.png",
+    background: "transcribe-banner.jpg",
+    description:
+      "Help transcribe historical documents from across the Digital Public Library of America.",
     hasAbout: true,
     hasBrowseByPartner: true,
     hasBrowseAll: true,
