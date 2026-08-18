@@ -20,11 +20,52 @@ import {
 } from "constants/search";
 
 import { LOCALS } from "constants/local";
+import {
+  getItemIdsWithStatus,
+  getTouchedItemIds,
+} from "lib/transcriptStore";
+import { TRANSCRIPT_STATUSES } from "constants/transcribe";
 
 import MaxPageError from "components/SearchComponents/MaxPageError";
 import { washObject } from "lib/washObject";
 import FilterQueryError from "components/SearchComponents/FilterQueryError";
 import SearchError from "components/SearchComponents/SearchError";
+
+// Format a raw DPLA API item into the shape the search results UI expects. Shared by the
+// normal ES path and the transcription-status browse (the API multi-fetch returns the
+// same item shape).
+function formatItemDoc(result) {
+  return {
+    ...result.sourceResource,
+    thumbnailUrl: getItemThumbnail(result),
+    thumbnailSourceUrl: result.object,
+    id: result.id ? result.id : result.sourceResource["@id"],
+    sourceUrl: result.isShownAt,
+    provider: result.provider && result.provider.name,
+    dataProvider: getDataProviderName(result.dataProvider),
+    useDefaultImage: !result.object,
+  };
+}
+
+// Results for one explicit transcription status: item ids from DynamoDB, hydrated via the
+// DPLA API multi-fetch (/items/{id,id,...}), paginated over the id list.
+async function transcriptionStatusResults(status, page, pageSize) {
+  const ids = await getItemIdsWithStatus(status);
+  const count = ids.length;
+  const pageIds = ids.slice((page - 1) * pageSize, page * pageSize);
+  let docs = [];
+  if (pageIds.length) {
+    const url =
+      `${process.env.API_URL}/items/${pageIds.join(",")}` +
+      `?api_key=${process.env.API_KEY}`;
+    const res = await safeFetch(url);
+    if (res?.ok) {
+      const json = await res.json();
+      docs = (json.docs || []).map(formatItemDoc);
+    }
+  }
+  return { docs, count };
+}
 
 class Search extends React.Component {
   state = {
@@ -246,6 +287,33 @@ export async function getServerSideProps(context) {
 
   let page = query.page || 1;
 
+  // Transcribe "browse by transcription status": for an explicit status, serve the
+  // matching items from DynamoDB (hydrated via the API multi-fetch) rather than ES.
+  // "untranscribed" is the absence of a record, handled by exclusion in the ES path.
+  const rawStatus = Array.isArray(query.transcription_status)
+    ? query.transcription_status[0]
+    : query.transcription_status;
+  const transcriptionStatus =
+    isLocal && localId === "transcribe" && rawStatus ? rawStatus : null;
+  if (transcriptionStatus && TRANSCRIPT_STATUSES.includes(transcriptionStatus)) {
+    const { docs, count } = await transcriptionStatusResults(
+      transcriptionStatus,
+      Number(page),
+      Number(page_size),
+    );
+    return {
+      props: washObject({
+        results: { docs, count, facets: {} },
+        numberOfActiveFacets: 0,
+        currentPage: Number(page),
+        pageCount: count,
+        pageSize: page_size,
+        aboutness: { docs: [], count: 0 },
+        filterQueryError: false,
+      }),
+    };
+  }
+
   // get the aboutness links
   let aboutness = {};
   if (isLocal && q.length > 2) {
@@ -273,19 +341,7 @@ export async function getServerSideProps(context) {
     }
 
     const aboutnessDocs = aboutnessJson.docs
-      .map((result) => {
-        const thumbnailUrl = getItemThumbnail(result);
-        return {
-          ...result.sourceResource,
-          thumbnailUrl,
-          thumbnailSourceUrl: result.object,
-          id: result.id ? result.id : result.sourceResource["@id"],
-          sourceUrl: result.isShownAt,
-          provider: result.provider && result.provider.name,
-          dataProvider: getDataProviderName(result.dataProvider),
-          useDefaultImage: !result.object,
-        };
-      })
+      .map(formatItemDoc)
       .splice(0, aboutness_max);
     const aboutnessCount = aboutnessJson.count;
     aboutness = { docs: aboutnessDocs, count: aboutnessCount };
@@ -338,21 +394,14 @@ export async function getServerSideProps(context) {
     }
 
     // api response for facets
-    const docs = json.docs.map((result) => {
-      const thumbnailUrl = getItemThumbnail(result);
-      const dataProvider = getDataProviderName(result.dataProvider);
+    let docs = json.docs.map(formatItemDoc);
 
-      return {
-        ...result.sourceResource,
-        thumbnailUrl,
-        thumbnailSourceUrl: result.object,
-        id: result.id ? result.id : result.sourceResource["@id"],
-        sourceUrl: result.isShownAt,
-        provider: result.provider && result.provider.name,
-        dataProvider: dataProvider,
-        useDefaultImage: !result.object,
-      };
-    });
+    // Transcribe "untranscribed" browse: drop items that already have any transcription
+    // (untranscribed is the absence of a record, so it can't be a positive DynamoDB set).
+    if (transcriptionStatus === "untranscribed") {
+      const touched = new Set(await getTouchedItemIds());
+      docs = docs.filter((doc) => !touched.has(doc.id));
+    }
 
     // order facets per ui requirements
     const newFacets = {};
