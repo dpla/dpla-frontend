@@ -1,11 +1,17 @@
-Cleared for Takeoff: Explore Commercial Aviation features Pan American World Airways, Inc., materials digitized from collections at the University of Miami, HistoryMiami Museum, and Duke University alongside commercial aviation resources from DPLA’s partner network. The portal aims to enable students, teachers, scholars, and other researchers to easily discover and build connections across aviation collections nationwide.
+DPLA Transcribe is a crowdsourcing project of the Digital Public Library of America. It invites anyone to help transcribe historical documents — handwritten letters, ledgers, diaries, printed pages, and more — drawn from DPLA's national partner network. Transcriptions turn images of text into words that can be read by everyone and, in time, searched across the collection.
 
-Pan Am was an iconic and groundbreaking airline beloved by travelers worldwide.  In operation from 1927 until 1991, Pan Am was a leader in globalizing commercial aviation and shaping public perceptions of air travel, and its impact on global affairs, corporate culture, and social history are still relevant today. The airline pioneered the first transatlantic and transpacific commercial air routes and influenced the development of aviation technology and commercial passenger service all while capturing the imagination of travelers on a global scale.
+## How it works
 
-This project was made possible by a 2018 Digitizing Hidden Collections grant from the [Council on Library and Information Resources](https://www.clir.org/)  (CLIR), with funding from The Andrew W. Mellon Foundation. As part of the grant project, the University of Miami digitized archival records from the [Pan American World Airways, Inc. Records](https://merrick.library.miami.edu/specialCollections/asm0341/), [HistoryMiami Museum](https://www.historymiami.org/) digitized Pan Am objects from its collections, and Duke University digitized Pan Am advertisements from collections at the [Hartman Center for Sales, Advertising & Marketing History](https://library.duke.edu/rubenstein/hartman). This partnership with DPLA serves as an innovative model for bringing together disparate collections to foster discovery and access.
+Open an item that has page images, read a page, and type what you see into the transcription box beneath it. When you're done with a page, mark its status so others know where it stands:
 
-Browse Pan Am materials digitized by each of the project partners.
+- **Untranscribed** — no one has transcribed the page yet.
+- **In progress** — someone has started a transcription but hasn't finished.
+- **Transcribed** — the page has been transcribed and marked complete.
+- **Not transcribable** — the page is blank or image-only, with no text to transcribe.
+- **Illegible** — the page is too damaged or unclear to read.
 
-* [Duke University](/search?provider=%22Duke%20University%20Libraries%22)
-* [HistoryMiami Museum](/search?provider=%22HistoryMiami%20Museum%22)
-* [University of Miami](/search?provider=%22University%20of%20Miami%20Libraries%22)
+You can browse pages by any of these statuses from the [home page](/).
+
+## A note on this early release
+
+DPLA Transcribe is an experimental, early-stage project. Transcriptions are public and are not yet tied to individual accounts, and the data may change as the project develops. Thank you for helping us test it and for contributing to the shared record.

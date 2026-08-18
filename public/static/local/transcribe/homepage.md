@@ -1,20 +1,18 @@
-# Cleared for Takeoff: Explore Commercial Aviation
+# DPLA Transcribe
 
-Discover documents, photographs, advertisements, objects, reports, timetables, magazines, brochures, and more about the history of commercial aviation. 
+Help unlock historical documents. DPLA Transcribe invites volunteers to read and transcribe handwritten and printed pages from across the Digital Public Library of America — letters, ledgers, diaries, and more — so their words can be searched, read by everyone, and preserved for the future.
 
-Cleared for Takeoff: Explore Commercial Aviation features Pan American World Airways materials from the collections at the University of Miami, HistoryMiami Museum, and Duke University alongside commercial aviation resources from DPLA’s partner network. This project is supported by a Digitizing Hidden Collections grant from the [Council on Library and Information Resources](https://www.clir.org/) (CLIR) with funding from The Andrew W. Mellon Foundation.
+Pick a page, type what you see, and mark its status. Every transcription makes these materials more discoverable.
 
-Below are some suggested topics to browse. 
+## Browse by transcription status
 
-- ### [Aircraft](/search?q=aircraft*%20OR%20%22douglas%20DC%22%20OR%20boeing%20OR%20lockheed%20OR%20fokker%20OR%20fairchild%20OR%20sikorsky%20NOT%20pin%20NOT%20insignia)
-    ![aircraft](/static/local/aviation/airplane1_hmm0001_48.jpg "Aircraft")
-- ### [Airports](/search?q=airport*)
-    ![airports](/static/local/aviation/airport_asm0299_678.jpg "Airports")
-- ### [Advertising](/search?q=advertising+OR+advertisement*+OR+poster*+OR+brochure*+OR+promotional)
-    ![ads](/static/local/aviation/Ads4_DukeD.jpg "Advertising")
-- ### [Pan American World Airways](/search?q=+%22pan+american+world%22+OR+%22pan+american+airways%22+OR+%22pan+am%22)
-    ![panam](/static/local/aviation/Pan_Am1_hmm0001_301.jpg "Pan American World Airways")
-- ### [Pilots and Flight Attendants](/search?q=pilot+OR+pilots+OR+stewardess+OR+stewardesses+OR+steward+OR+%22flight+attendant%22+OR+%22flight+attendants%22)
-    ![pilots](/static/local/aviation/flight_attendant1_asm0341_67067.jpg "Pilots and Flight Attendants")
-- ### [Early Commercial Aviation](/search?before=1945) 
-    ![early](/static/local/aviation/early_aviation1_asm0341_126581.jpg "Early Commercial Aviation")
+- ### [Untranscribed](/search?transcription_status=untranscribed)
+    Pages that are waiting for a first transcription — a great place to start.
+- ### [In progress](/search?transcription_status=in_progress)
+    Pages a volunteer has started but not yet finished.
+- ### [Transcribed](/search?transcription_status=complete)
+    Pages that have been transcribed and marked complete.
+- ### [Not transcribable](/search?transcription_status=nothing_to_transcribe)
+    Blank or image-only pages with no text to transcribe.
+- ### [Illegible](/search?transcription_status=illegible)
+    Pages flagged as too damaged or unclear to read.
