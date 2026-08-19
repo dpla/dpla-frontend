@@ -44,7 +44,8 @@ class ListImage extends React.Component {
   }
 
   render() {
-    const { type, url, useDefaultImage, item, title, className } = this.props;
+    const { type, url, useDefaultImage, item, title, className, linkProps } =
+      this.props;
     const { updateToDefaultImage } = this.state;
     const useDefaultWrapper = updateToDefaultImage || useDefaultImage;
     const imageSrc = useDefaultWrapper ? getDefaultThumbnail(type) : url;
@@ -61,6 +62,7 @@ class ListImage extends React.Component {
             href={item.linkHref}
             className={`${css.listItemImageLink} internalItemLink`}
             title={title}
+            {...linkProps}
           >
             <img
               src={imageSrc}

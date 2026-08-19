@@ -20,11 +20,54 @@ import {
 } from "constants/search";
 
 import { LOCALS } from "constants/local";
+import {
+  getItemIdsWithStatus,
+  getTouchedItemIds,
+} from "lib/transcriptStore";
+import { TRANSCRIPT_STATUSES } from "constants/transcribe";
 
 import MaxPageError from "components/SearchComponents/MaxPageError";
 import { washObject } from "lib/washObject";
 import FilterQueryError from "components/SearchComponents/FilterQueryError";
 import SearchError from "components/SearchComponents/SearchError";
+
+// Format a raw DPLA API item into the shape the search results UI expects. Shared by the
+// normal ES path and the transcription-status browse (the API multi-fetch returns the
+// same item shape).
+function formatItemDoc(result) {
+  return {
+    ...result.sourceResource,
+    thumbnailUrl: getItemThumbnail(result),
+    thumbnailSourceUrl: result.object,
+    id: result.id ? result.id : result.sourceResource["@id"],
+    sourceUrl: result.isShownAt,
+    provider: result.provider && result.provider.name,
+    dataProvider: getDataProviderName(result.dataProvider),
+    useDefaultImage: !result.object,
+  };
+}
+
+// Results for one explicit transcription status: item ids from DynamoDB, hydrated via the
+// DPLA API multi-fetch (/items/{id,id,...}), paginated over the id list.
+async function transcriptionStatusResults(status, page, pageSize) {
+  const ids = await getItemIdsWithStatus(status);
+  const count = ids.length;
+  const pageIds = ids.slice((page - 1) * pageSize, page * pageSize);
+  if (!pageIds.length) return { docs: [], count };
+
+  const url =
+    `${process.env.API_URL}/items/${pageIds.join(",")}` +
+    `?api_key=${process.env.API_KEY}`;
+  const res = await safeFetch(url);
+  if (!res?.ok) return { fetchError: true };
+  try {
+    const json = await res.json();
+    return { docs: (json.docs || []).map(formatItemDoc), count };
+  } catch {
+    // A malformed hydration response is a search failure, not an empty result set.
+    return { fetchError: true };
+  }
+}
 
 class Search extends React.Component {
   state = {
@@ -215,13 +258,26 @@ export async function getServerSideProps(context) {
 
   const facetQueries = queryArray.join("&");
 
+  // Transcribe "browse by transcription status": derive the requested status up front so
+  // a valid status browse isn't rejected as an "unfiltered" query below (it would be if
+  // the local ever carried no tags/filters).
+  const rawStatus = Array.isArray(query.transcription_status)
+    ? query.transcription_status[0]
+    : query.transcription_status;
+  const transcriptionStatus =
+    isLocal && localId === "transcribe" && rawStatus ? rawStatus : null;
+  const isStatusBrowse =
+    !!transcriptionStatus &&
+    (TRANSCRIPT_STATUSES.includes(transcriptionStatus) ||
+      transcriptionStatus === "untranscribed");
+
   const isUnfilteredQuery =
     (!q || q.length < 2) &&
     filters.length === 0 &&
     tags.length === 0 &&
     !facetQueries;
 
-  if (isUnfilteredQuery) {
+  if (isUnfilteredQuery && !isStatusBrowse) {
     return {
       props: {
         filterQueryError: true,
@@ -245,6 +301,37 @@ export async function getServerSideProps(context) {
   }
 
   let page = query.page || 1;
+
+  // For an explicit status, serve the matching items from DynamoDB (hydrated via the API
+  // multi-fetch). "untranscribed" is the absence of a record, handled by exclusion in the
+  // ES path below.
+  if (transcriptionStatus && TRANSCRIPT_STATUSES.includes(transcriptionStatus)) {
+    const result = await transcriptionStatusResults(
+      transcriptionStatus,
+      Number(page),
+      Number(page_size),
+    );
+    if (result.fetchError) {
+      context.res.statusCode = 502;
+      return {
+        props: washObject({
+          fetchError: true,
+          results: { docs: [], facets: {} },
+        }),
+      };
+    }
+    return {
+      props: washObject({
+        results: { docs: result.docs, count: result.count, facets: {} },
+        numberOfActiveFacets: 0,
+        currentPage: Number(page),
+        pageCount: result.count,
+        pageSize: page_size,
+        aboutness: { docs: [], count: 0 },
+        filterQueryError: false,
+      }),
+    };
+  }
 
   // get the aboutness links
   let aboutness = {};
@@ -273,19 +360,7 @@ export async function getServerSideProps(context) {
     }
 
     const aboutnessDocs = aboutnessJson.docs
-      .map((result) => {
-        const thumbnailUrl = getItemThumbnail(result);
-        return {
-          ...result.sourceResource,
-          thumbnailUrl,
-          thumbnailSourceUrl: result.object,
-          id: result.id ? result.id : result.sourceResource["@id"],
-          sourceUrl: result.isShownAt,
-          provider: result.provider && result.provider.name,
-          dataProvider: getDataProviderName(result.dataProvider),
-          useDefaultImage: !result.object,
-        };
-      })
+      .map(formatItemDoc)
       .splice(0, aboutness_max);
     const aboutnessCount = aboutnessJson.count;
     aboutness = { docs: aboutnessDocs, count: aboutnessCount };
@@ -338,21 +413,19 @@ export async function getServerSideProps(context) {
     }
 
     // api response for facets
-    const docs = json.docs.map((result) => {
-      const thumbnailUrl = getItemThumbnail(result);
-      const dataProvider = getDataProviderName(result.dataProvider);
+    let docs = json.docs.map(formatItemDoc);
 
-      return {
-        ...result.sourceResource,
-        thumbnailUrl,
-        thumbnailSourceUrl: result.object,
-        id: result.id ? result.id : result.sourceResource["@id"],
-        sourceUrl: result.isShownAt,
-        provider: result.provider && result.provider.name,
-        dataProvider: dataProvider,
-        useDefaultImage: !result.object,
-      };
-    });
+    // Transcribe "untranscribed" browse: drop items that already have any transcription
+    // (untranscribed is the absence of a record, so it can't be a positive DynamoDB set)
+    // and reduce the reported total by the touched count. NOTE: this excludes touched ids
+    // from the already-paginated page, so a page can be slightly short; excluding *before*
+    // pagination needs the transcribe-local index (deferred — see the storage doc). Fine
+    // at alpha scale, where the touched set is a tiny fraction of the corpus.
+    if (transcriptionStatus === "untranscribed") {
+      const touched = new Set(await getTouchedItemIds());
+      docs = docs.filter((doc) => !touched.has(doc.id));
+      json.count = Math.max(0, json.count - touched.size);
+    }
 
     // order facets per ui requirements
     const newFacets = {};

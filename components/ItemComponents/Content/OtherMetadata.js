@@ -2,8 +2,9 @@ import React from "react";
 
 import ItemTermValuePair from "./ItemTermValuePair";
 import FacetLink from "./FacetLink";
+import clickThroughEvent from "./clickThroughEvent";
 
-import { joinIfArray, readMyRights } from "lib";
+import { clickThroughLinkProps, joinIfArray, readMyRights } from "lib";
 
 import css from "./Content.module.css";
 import utils from "stylesheets/utils.module.css";
@@ -131,7 +132,11 @@ function OtherMetadata({ item }) {
         )}
         {item.sourceUrl && (
           <ItemTermValuePair heading="URL">
-            <a className="link clickThrough external" href={item.sourceUrl}>
+            <a
+              className="link clickThrough external"
+              href={item.sourceUrl}
+              {...clickThroughLinkProps(clickThroughEvent(item))}
+            >
               {item.sourceUrl}
             </a>
           </ItemTermValuePair>
