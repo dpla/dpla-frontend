@@ -12,7 +12,6 @@ class FeedbackForm extends React.Component {
     timestamp: Date.now(),
     isSending: false,
     isSent: false,
-    url: JSON.stringify(this.props.router),
     modalActive: false,
     type: "comment",
     step: 1,
@@ -25,7 +24,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: false,
       isSent: false,
-      url: prevState.url,
       modalActive: false,
       type: "comment",
       step: 1,
@@ -40,7 +38,6 @@ class FeedbackForm extends React.Component {
       timestamp: Date.now(),
       isSending: false,
       isSent: false,
-      url: prevState.url,
       modalActive: true,
       type: "comment",
       step: 1,
@@ -54,7 +51,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: prevState.isSending,
       isSent: prevState.isSent,
-      url: prevState.url,
       modalActive: prevState.modalActive,
       type: e.target.value,
       step: prevState.step,
@@ -68,7 +64,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: prevState.isSending,
       isSent: prevState.isSent,
-      url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
       step: prevState.step,
@@ -82,7 +77,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: prevState.isSending,
       isSent: prevState.isSent,
-      url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
       step: prevState.step,
@@ -96,7 +90,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: prevState.isSending,
       isSent: prevState.isSent,
-      url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
       step: prevState.step,
@@ -121,7 +114,6 @@ class FeedbackForm extends React.Component {
       timestamp: prevState.timestamp,
       isSending: true,
       isSent: false,
-      url: prevState.url,
       modalActive: prevState.modalActive,
       type: prevState.type,
       step: prevState.step,
@@ -129,7 +121,7 @@ class FeedbackForm extends React.Component {
       message: prevState.message,
     }));
 
-    const url = this.state.url;
+    const url = this.props.router?.asPath ?? "";
     const message = this.state.message;
     const type = this.state.type;
     const email = this.state.email;
@@ -155,7 +147,6 @@ class FeedbackForm extends React.Component {
         timestamp: prevState.timestamp,
         isSending: false,
         isSent: true,
-        url: prevState.url,
         modalActive: prevState.modalActive,
         type: prevState.type,
         step: 2,
@@ -175,7 +166,7 @@ class FeedbackForm extends React.Component {
   render() {
     const charLimit = 400;
     const step = this.state.step;
-    const url = this.state.url;
+    const url = this.props.router?.asPath ?? "";
     const modalActive = this.state.modalActive;
     const isSending = this.state.isSending;
     const type = this.state.type;
