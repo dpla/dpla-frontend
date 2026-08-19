@@ -35,7 +35,7 @@ Disallow: /
 User-agent: PerplexityBot
 Disallow: /
 
-User-agent: meta-external-agent
+User-agent: meta-externalagent
 Disallow: /
 
 # Aggressive SEO scrapers
