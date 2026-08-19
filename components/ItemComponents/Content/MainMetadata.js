@@ -3,8 +3,9 @@ import React from "react";
 import ItemImage from "./ItemImage";
 import IIIFViewer from "./IIIFViewer";
 import ItemTermValuePair from "./ItemTermValuePair";
+import clickThroughEvent from "./clickThroughEvent";
 
-import { joinIfArray, readMyRights } from "lib";
+import { clickThroughLinkProps, joinIfArray, readMyRights } from "lib";
 
 import css from "./Content.module.css";
 
@@ -101,18 +102,20 @@ class MainMetadata extends React.Component {
               )}
               {item.sourceUrl && (
                 <a
-                  rel="noopener"
                   className={`${css.sourceLink} clickThrough external white`}
                   href={item.sourceUrl}
+                  {...clickThroughLinkProps(clickThroughEvent(item))}
                 >
                   <span className={css.sourceLinkText}>{viewFullItemText}</span>
                 </a>
               )}
               {item.filecoin && (
                 <div style={{ paddingTop: "10px" }}>
+                  {/* Not a partner link; untracked */}
                   <a
                     rel="noopener"
-                    className={`${css.sourceLink} clickThrough external white`}
+                    target="_blank"
+                    className={`${css.sourceLink} external white`}
                     href={item.filecoin}
                   >
                     <span className={css.sourceLinkText}>

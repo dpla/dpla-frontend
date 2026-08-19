@@ -5,56 +5,38 @@ import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
 import { withRouter } from "next/router";
 
-import { bindLinkEvent, getFullPath, joinIfArray, gtag } from "lib";
+import { buildGaEvent, joinIfArray, gtag } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./Content.module.css";
 
 class Content extends React.Component {
-  // items track the clickthroughs and the view for the partner
   componentDidMount() {
     this.trackItemView();
-    this.bindClickThroughEvent();
+  }
+
+  // Prev/next item nav re-renders without remounting
+  componentDidUpdate() {
+    this.trackItemView();
   }
 
   trackItemView() {
-    const fullPath = getFullPath();
-    const itemId = this.props.router.query.itemId;
-    const title = joinIfArray(this.props.item.title, ", ");
-    const contributor = joinIfArray(this.props.item.contributor, ", ");
-    const partner = joinIfArray(this.props.item.partner, ", ");
+    // asPath commits with props; window.location can be ahead of them
+    // during back/forward
+    const fullPath = this.props.router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
-      const gaEvent = {
-        type: "View Item",
-        itemId: itemId,
-        title: title,
-        partner: partner,
-        contributor: contributor,
-      };
-
-      gtag.event(gaEvent);
-
+      const { item, router } = this.props;
+      gtag.event(
+        buildGaEvent("View Item", {
+          itemId: router.query.itemId,
+          title: item.title,
+          partner: item.partner,
+          contributor: item.contributor,
+        }),
+      );
       this.lastTrackedPath = fullPath;
     }
-  }
-
-  bindClickThroughEvent() {
-    const links = document.getElementsByClassName("clickThrough");
-    const itemId = this.props.router.query.itemId;
-    const title = joinIfArray(this.props.item.title, ", ");
-    const contributor = joinIfArray(this.props.item.contributor, ", ");
-    const partner = joinIfArray(this.props.item.partner, ", ");
-
-    const gaEvent = {
-      type: "Click Through",
-      itemId: itemId,
-      title: title,
-      partner: partner,
-      contributor: contributor,
-    };
-
-    bindLinkEvent(gaEvent, links);
   }
 
   render() {
