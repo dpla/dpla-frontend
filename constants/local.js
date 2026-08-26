@@ -282,8 +282,10 @@ const LOCALS = {
     hasBrowseByPartner: true,
     hasBrowseAll: true,
     hasSidebar: false,
+    // Scope to items with a transcribable IIIF manifest. The `iiif` tag is added at
+    // index time by sparkindexer (ingestion3#763), so it populates on the next reindex.
     tags: [
-      "aviation"
+      "iiif"
     ],
     routes: {
       "/about" : {
