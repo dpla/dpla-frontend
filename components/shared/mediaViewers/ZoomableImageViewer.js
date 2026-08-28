@@ -25,6 +25,10 @@ export default class ZoomableImageViewer extends React.Component {
         const url = this.props.pathToFile;
         this.viewer = new OpenSeaDragon({
           element: this.containerRef.current,
+          // OSD 6's default WebGL drawer renders blank (until an interaction
+          // forces a redraw) for cross-origin images served without CORS
+          // headers, as these are — see IIIFViewer for the full rationale.
+          drawer: "canvas",
           tileSources: {type: "image", url},
           prefixUrl: "/static/images/openseadragon/",
         });
