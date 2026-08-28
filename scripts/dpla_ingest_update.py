@@ -56,17 +56,18 @@ for provider in providernames:
 # (max age in days, label); None catches everything older than the last cutoff
 BUCKETS = [(45, "45 days"), (105, "105 days"), (365, "365 days"), (None, "Older")]
 
+today = now.date()
 groups = [{} for _ in BUCKETS]
 for hub, date in ingestdates.items():
-    dt = datetime.strptime(date, "%Y-%m-%d")
-    for group, (days, _) in zip(groups, BUCKETS):
-        if days is None or dt > now - timedelta(days=days):
+    dt = datetime.strptime(date, "%Y-%m-%d").date()
+    for group, (days, _) in zip(groups, BUCKETS, strict=True):
+        if days is None or dt >= today - timedelta(days=days):
             group[hub] = date
             break
 
 groups = [dict(sorted(g.items(), key=lambda x: x[1], reverse=True)) for g in groups]
 
-for (_, label), group in zip(BUCKETS, groups):
+for (_, label), group in zip(BUCKETS, groups, strict=True):
     print(f"{label}: {len(group)} hubs")
 
 
