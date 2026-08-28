@@ -33,17 +33,17 @@ function NavigationUser({ isHome, className, css }) {
             Primary Source Sets
           </Link>
         </li>
-        <li>
-          <Link href="/lists" data-cy="my-lists">
-            My Lists
-          </Link>
-        </li>
       </ul>
       <span className={css.divider} />
       <ul className={`${css.links} ${css.secondaryLinks}`}>
         <li>
           <Link href="/about" data-cy="about-dpla">
             About DPLA
+          </Link>
+        </li>
+        <li>
+          <Link href="/about/our-partners" data-cy="our-partners">
+            Our Partners
           </Link>
         </li>
         <li>
