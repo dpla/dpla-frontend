@@ -52,28 +52,23 @@ for provider in providernames:
         continue
     ingestdates[provider["term"]] = docs[0]["ingestDate"][:10]
 
-# --- Sort into 4 groups ---
-g30, g90, g365, gold = {}, {}, {}, {}
+# --- Sort into groups; order must match the table blocks on the WP page ---
+# (max age in days, label); None catches everything older than the last cutoff
+BUCKETS = [(45, "45 days"), (105, "105 days"), (365, "365 days"), (None, "Older")]
+
+today = now.date()
+groups = [{} for _ in BUCKETS]
 for hub, date in ingestdates.items():
-    dt = datetime.strptime(date, "%Y-%m-%d")
-    if dt > now - timedelta(days=30):
-        g30[hub] = date
-    elif dt > now - timedelta(days=90):
-        g90[hub] = date
-    elif dt > now - timedelta(days=365):
-        g365[hub] = date
-    else:
-        gold[hub] = date
+    dt = datetime.strptime(date, "%Y-%m-%d").date()
+    for group, (days, _) in zip(groups, BUCKETS, strict=True):
+        if days is None or dt >= today - timedelta(days=days):
+            group[hub] = date
+            break
 
-g30 = dict(sorted(g30.items(), key=lambda x: x[1], reverse=True))
-g90 = dict(sorted(g90.items(), key=lambda x: x[1], reverse=True))
-g365 = dict(sorted(g365.items(), key=lambda x: x[1], reverse=True))
-gold = dict(sorted(gold.items(), key=lambda x: x[1], reverse=True))
+groups = [dict(sorted(g.items(), key=lambda x: x[1], reverse=True)) for g in groups]
 
-print(f"30 days:  {len(g30)} hubs")
-print(f"90 days:  {len(g90)} hubs")
-print(f"365 days: {len(g365)} hubs")
-print(f"Older:    {len(gold)} hubs")
+for (_, label), group in zip(BUCKETS, groups, strict=True):
+    print(f"{label}: {len(group)} hubs")
 
 
 # --- Generate table blocks ---
@@ -90,10 +85,7 @@ def make_table(hubs):
     )
 
 
-table_30 = make_table(g30)
-table_90 = make_table(g90)
-table_365 = make_table(g365)
-table_old = make_table(gold)
+new_tables = [make_table(group) for group in groups]
 
 # --- Fetch current page raw content ---
 resp = requests.get(
@@ -108,7 +100,6 @@ content = resp.json()["content"]["raw"]
 # --- Only publish if data has changed ---
 table_pattern = re.compile(r"<!-- wp:table -->.*?<!-- /wp:table -->", re.DOTALL)
 existing_tables = table_pattern.findall(content)
-new_tables = [table_30, table_90, table_365, table_old]
 
 if existing_tables == new_tables:
     print("No changes detected. WordPress update skipped.")

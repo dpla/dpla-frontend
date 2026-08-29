@@ -24,6 +24,9 @@ function NavigationPro({ isHome, className, css }) {
           <Link href="/about-dpla-pro">About</Link>
         </li>
         <li>
+          <Link href="/hubs/our-partners">Our Partners</Link>
+        </li>
+        <li>
           <Link href="/events">Events</Link>
         </li>
       </ul>
