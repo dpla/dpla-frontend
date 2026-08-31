@@ -8,23 +8,42 @@ import BreadcrumbJsonLd from "components/shared/BreadcrumbJsonLd";
 import ContentAndMetadata from "components/PrimarySourceSetsComponents/Source/components/ContentAndMetadata";
 import SourceCarousel from "components/PrimarySourceSetsComponents/Source/components/SourceCarousel";
 
-import { extractSourceId } from "lib";
+import { extractSourceId, getItemId, parseDplaItemRecord } from "lib";
+import { DPLA_ITEM_ID_REGEX } from "constants/items";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
+import {
+  safeFetch,
+  checkResponseForSSRSafe,
+  upstreamUnavailable,
+  isUpstreamUnavailable,
+  safeJson,
+} from "lib/safeFetch";
 import isValidPSSSlug from "lib/isValidPSSSlug";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 const videoIcon = "/static/placeholderImages/Video.svg";
 const audioIcon = "/static/placeholderImages/Sound.svg";
 
-function Source({ source, set, sources, currentSourceIdx, prevSourceUrl, nextSourceUrl, temporarilyUnavailable }) {
+function Source({
+  source,
+  set,
+  sources,
+  currentSourceIdx,
+  prevSourceUrl,
+  nextSourceUrl,
+  dplaItem,
+  temporarilyUnavailable,
+}) {
   const router = useRouter();
   if (temporarilyUnavailable) return <ServiceUnavailable />;
   if (!source || !set) return null;
 
   const breadcrumbs = [
     { title: "Primary Source Sets", url: { pathname: "/primary-source-sets" } },
-    { title: set.name, url: { pathname: `/primary-source-sets/${router.query.set}` } },
+    {
+      title: set.name,
+      url: { pathname: `/primary-source-sets/${router.query.set}` },
+    },
     { title: source.name, url: "" },
   ];
 
@@ -42,7 +61,7 @@ function Source({ source, set, sources, currentSourceIdx, prevSourceUrl, nextSou
       <BreadcrumbsModule breadcrumbs={breadcrumbs} />
       <BreadcrumbJsonLd breadcrumbs={breadcrumbs} />
       <div id="main" role="main">
-        <ContentAndMetadata source={source} />
+        <ContentAndMetadata source={source} dplaItem={dplaItem} />
       </div>
       <SourceCarousel
         sources={sources}
@@ -57,10 +76,15 @@ function Source({ source, set, sources, currentSourceIdx, prevSourceUrl, nextSou
 export async function getServerSideProps(context) {
   const set = context.params?.set;
   const source = context.params?.source;
-  if (!isValidPSSSlug(set) || !isValidPSSSlug(source)) return { notFound: true };
+  if (!isValidPSSSlug(set) || !isValidPSSSlug(source))
+    return { notFound: true };
   const [sourceRes, setRes] = await Promise.all([
-    safeFetch(`${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`),
-    safeFetch(`${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`),
+    safeFetch(
+      `${process.env.API_URL}/pss/sources/${encodeURIComponent(source)}?api_key=${process.env.API_KEY}`,
+    ),
+    safeFetch(
+      `${process.env.API_URL}/pss/sets/${encodeURIComponent(set)}?api_key=${process.env.API_KEY}`,
+    ),
   ]);
   if (isUpstreamUnavailable(sourceRes) || isUpstreamUnavailable(setRes)) {
     return upstreamUnavailable(context.res, sourceRes, setRes);
@@ -70,7 +94,10 @@ export async function getServerSideProps(context) {
   const setError = checkResponseForSSRSafe(setRes, `set "${set}"`);
   if (setError) return setError;
 
-  const [sourceText, setJson] = await Promise.all([sourceRes.text(), safeJson(setRes)]);
+  const [sourceText, setJson] = await Promise.all([
+    sourceRes.text(),
+    safeJson(setRes),
+  ]);
   if (setJson === null) return upstreamUnavailable(context.res);
   let sanitizedSourceJson;
   try {
@@ -96,12 +123,33 @@ export async function getServerSideProps(context) {
     return { ...part, thumbnailUrl, useDefaultImage };
   });
 
+  // PSS records often lack provider entries.
+  // Fetch the DPLA record (like exhibitions do) and let its fields fill the events.
+  const dplaItemId = getItemId(sanitizedSourceJson);
+  let dplaItem = null;
+  if (DPLA_ITEM_ID_REGEX.test(dplaItemId)) {
+    const itemRes = await safeFetch(
+      `${process.env.API_URL}/items/${dplaItemId}?api_key=${process.env.API_KEY}`,
+    );
+    const itemJson = itemRes?.ok ? await safeJson(itemRes) : null;
+    if (itemJson?.docs?.length) {
+      const record = parseDplaItemRecord(itemJson);
+      dplaItem = {
+        itemId: dplaItemId,
+        partner: record.partner,
+        contributor: record.contributor,
+        collection: record.collection,
+      };
+    }
+  }
+
   const sourceId = sanitizedSourceJson["@id"];
-  const sources = parts.filter(
-    (p) => p.disambiguatingDescription === "source",
-  );
+  const sources = parts.filter((p) => p.disambiguatingDescription === "source");
   const currentSourceIdx = sources.findIndex((s) => s["@id"] === sourceId);
-  const baseUrl = (process.env.NEXT_PUBLIC_USER_BASE_URL || "").replace(/\/+$/, "");
+  const baseUrl = (process.env.NEXT_PUBLIC_USER_BASE_URL || "").replace(
+    /\/+$/,
+    "",
+  );
   const prevSourceUrl =
     currentSourceIdx > 0
       ? `${baseUrl}/primary-source-sets/${set}/sources/${extractSourceId(sources[currentSourceIdx - 1]["@id"])}`
@@ -113,6 +161,7 @@ export async function getServerSideProps(context) {
 
   const props = washObject({
     source: sanitizedSourceJson,
+    dplaItem,
     set: { ...setJson, hasPart: parts },
     sources,
     currentSourceIdx,

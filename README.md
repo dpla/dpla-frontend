@@ -253,7 +253,7 @@ Every event carries the parameters below, each cut to GA4's 100-character limit.
 | `item_title` | Item title. On Browse by Topic, the curated WordPress title |
 | `partner` | Hub (`provider.name`) |
 | `contributor` | Contributing institution (`dataProvider`) |
-| `collection` | `sourceResource.collection` title(s), when the record has one. Never on primary source pages, whose records have no collection field |
+| `collection` | `sourceResource.collection` title(s), when the record has one |
 | `site` | `user`, `pro`, `cqa`, or the local hub ID (such as `nwdh`) |
 | `exhibition`, `exhibition_section` | Exhibition slug and section path (`home` for the landing page). Exhibition pages only |
 | `source_set` | Primary source set slug. On every event from a primary source page |
@@ -261,7 +261,7 @@ Every event carries the parameters below, each cut to GA4's 100-character limit.
 
 GA4 shows a parameter in reports only after you register it as an event-scoped custom dimension (Admin → Custom definitions, 50 per property). Register the ones you need. The dp.la property has had the legacy `event_category` and `event_label` dimensions since July 18, 2025. `dpla_id` and `item_title` have millions of distinct values, so standard reports fold most of them into `(other)`. Use Explorations or the BigQuery export for per-item questions.
 
-**Legacy event.** With each event above, `lib/gtag.js` also sends the old shape. The event *name* is the contributing institution. `event_category` is `"View Item : {partner}"` (or `Click Through`, `Browse Item`, `View Exhibition Item`, `View Primary Source`). `event_label` is `"{dpla_id} : {title}"`. This matches what shipped before, with one fix: on Browse by Topic, `event_label` now carries the DPLA item id, not the WordPress post id. The old shape has limits. GA4 cuts the event name at 40 characters, names with spaces break its rules, and it drops labels past 100 characters. The new events fix all three. Two systems read the old shape from the dp.la property: the [analytics dashboard](https://analytics-dashboard.dp.la) (`dpla/dashboard-analytics`) and ingestion3's `generate_hub_stats.py`. Move both to the new events first. Then set `GA_LEGACY_EVENTS: "false"` in a site's deploy workflow to stop sending it.
+**Legacy event.** With each event above, `lib/gtag.js` also sends the old shape. The event *name* is the contributing institution. `event_category` is `"View Item : {partner}"` (or `Click Through`, `Browse Item`, `View Exhibition Item`, `View Primary Source`). `event_label` is `"{dpla_id} : {title}"`. This matches what shipped before, with two fixes. On Browse by Topic, `event_label` now carries the DPLA item id instead of the WordPress post id. On primary source pages, the events now carry the real hub and institution, looked up from the item record. The PSS data often left them unknown. The old shape has limits. GA4 cuts the event name at 40 characters, names with spaces break its rules, and it drops labels past 100 characters. The new events fix all three. Two systems read the old shape from the dp.la property: the [analytics dashboard](https://analytics-dashboard.dp.la) (`dpla/dashboard-analytics`) and ingestion3's `generate_hub_stats.py`. Move both to the new events first. Then set `GA_LEGACY_EVENTS: "false"` in a site's deploy workflow to stop sending it.
 
 ### Sentry
 

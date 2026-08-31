@@ -60,11 +60,13 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 const getDomainFromThumbnail = (thumbnailUrl) =>
   /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
-const sourceEventFields = (source, setSlug) => ({
-  itemId: getItemId(source),
+// GA fields for a source
+const sourceEventFields = (source, setSlug, dplaItem) => ({
+  itemId: dplaItem?.itemId || getItemId(source),
   title: getTitle(source),
-  partner: getPartner(source),
-  contributor: getContributor(source),
+  partner: dplaItem?.partner || getPartner(source),
+  contributor: dplaItem?.contributor || getContributor(source),
+  collection: dplaItem?.collection,
   source_set: setSlug,
 });
 
@@ -90,14 +92,14 @@ class ContentAndMetadata extends React.Component {
   trackSourceView() {
     // asPath commits with props.
     // window.location can run ahead of them on back and forward navigation.
-    const { source, router } = this.props;
+    const { source, router, dplaItem } = this.props;
     const fullPath = router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
       gtag.event(
         buildGaEvent(
           GA_EVENTS.PRIMARY_SOURCE_VIEW,
-          sourceEventFields(source, router.query.set),
+          sourceEventFields(source, router.query.set, dplaItem),
         ),
       );
       this.lastTrackedPath = fullPath;
@@ -105,7 +107,7 @@ class ContentAndMetadata extends React.Component {
   }
 
   render() {
-    const { source, router } = this.props;
+    const { source, router, dplaItem } = this.props;
     const setSlug = router.query.set;
     const type = source.mainEntity[0]["@type"];
     const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
@@ -243,7 +245,7 @@ class ContentAndMetadata extends React.Component {
                         {...clickThroughLinkProps(
                           buildGaEvent(
                             GA_EVENTS.CLICK_THROUGH,
-                            sourceEventFields(source, setSlug),
+                            sourceEventFields(source, setSlug, dplaItem),
                           ),
                         )}
                       >
