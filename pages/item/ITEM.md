@@ -157,12 +157,14 @@ Typical fields included:
 
 ## Analytics
 
-Two Google Analytics events are fired on item pages:
+Item pages fire two Google Analytics 4 events and send each one again in the legacy contributor-named shape that existing reports use. The root README ("Google Analytics") lists the parameters and the custom dimensions to register in GA4.
 
-| Event | Trigger | Data sent |
-|-------|---------|-----------|
-| `View Item` | Page load | Item ID, partner, type |
-| `Click Through` | User clicks the "URL at Partner" link | Item ID, destination URL |
+| Event | Trigger | Parameters |
+|-------|---------|------------|
+| `item_view` | Page load, and again on prev/next navigation | `dpla_id`, `item_title`, `partner`, `contributor`, `collection`, `site` |
+| `click_through` | Click or middle-click on the "URL at Partner" link (the button and the URL row) | same as `item_view` |
+
+`components/ItemComponents/Content/itemEvents.js` builds both events from the item; `lib/buildGaEvent.js` owns the event shape and `lib/gtag.js` sends it.
 
 ---
 
@@ -189,6 +191,9 @@ Item page content is **entirely determined by data in the DPLA Search API** — 
 | `components/ItemComponents/Content/MainMetadata.js` | Title, thumbnail, date, description, creator |
 | `components/ItemComponents/Content/OtherMetadata.js` | All secondary metadata fields |
 | `components/ItemComponents/Content/JsonLdMarkup.js` | Schema.org JSON-LD structured data |
+| `components/ItemComponents/Content/itemEvents.js` | Builds the `item_view` and `click_through` GA events |
+| `lib/buildGaEvent.js` | Owns the GA item-event shape |
+| `lib/gtag.js` | Sends GA events (GA4 shape plus the legacy one) |
 | `lib/readMyRights.js` | Maps rights URIs to labels/descriptions/icons |
 | `constants/rights.js` | 650+ rights URI → label mappings |
 | `lib/getItemThumbnail.js` | Resolves thumbnail URL or placeholder |

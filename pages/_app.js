@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { gtag } from "../lib";
+import { trackingIds } from "../lib/gtag";
 import { patchDOMForGoogleTranslate } from "../lib/patchDOMForGoogleTranslate";
 
 import "stylesheets/colors.css";
@@ -17,7 +18,7 @@ import "slick-carousel/slick/slick-theme.css";
 patchDOMForGoogleTranslate();
 
 function App({ Component, pageProps }) {
-  const gaTrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+  const gaTrackingIds = trackingIds();
 
   const router = useRouter();
   useEffect(() => {
@@ -41,7 +42,7 @@ function App({ Component, pageProps }) {
     const handleStaleChunkError = (event) => {
       if (
         event.reason?.message?.startsWith(
-          "Invariant: attempted to hard navigate to the same URL "
+          "Invariant: attempted to hard navigate to the same URL ",
         )
       ) {
         event.preventDefault();
@@ -55,32 +56,39 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      {/* Define window.gtag synchronously so calls during hydration are queued,
-          not dropped. The external script below processes the queue on load. */}
-      <script
-        id="gtag-init"
-        dangerouslySetInnerHTML={{
-          __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`,
-        }}
-      />
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
-        onLoad={() => {
-          // Fallback: define gtag here in case the inline script above was
-          // blocked by CSP (which requires a matching sha256 hash for inline scripts).
-          window.dataLayer = window.dataLayer || [];
-          window.gtag =
-            window.gtag ||
-            function () {
-              window.dataLayer.push(arguments);
-            };
-          window.gtag("js", new Date());
-          window.gtag("config", gaTrackingId, {
-            page_path: window.location.pathname,
-          });
-        }}
-      />
+      {/* Builds with no measurement ID (some local hubs) load no GA at all. */}
+      {gaTrackingIds.length > 0 && (
+        <>
+          {/* Define window.gtag synchronously so calls during hydration are queued,
+              not dropped. The external script below processes the queue on load. */}
+          <script
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`,
+            }}
+          />
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingIds[0]}`}
+            onLoad={() => {
+              // Fallback: define gtag here in case the inline script above was
+              // blocked by CSP (which requires a matching sha256 hash for inline scripts).
+              window.dataLayer = window.dataLayer || [];
+              window.gtag =
+                window.gtag ||
+                function () {
+                  window.dataLayer.push(arguments);
+                };
+              window.gtag("js", new Date());
+              // One config per property.
+              // That is the site's own, plus the network one if set.
+              // Each config sends the first page_view itself.
+              // Route changes send page_view events (lib/gtag.js).
+              for (const id of gaTrackingIds) window.gtag("config", id);
+            }}
+          />
+        </>
+      )}
       <Component {...pageProps} />
     </>
   );

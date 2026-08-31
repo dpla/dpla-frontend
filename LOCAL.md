@@ -9,9 +9,15 @@ These are the main areas relevant to any Local instance:
 
 ## Environment Variables
 
-- `SITE_ENV` is the variable that determines if the instance is a Local, if it has a value of `local`. This variable also needs to be set up in `constants/env.js`.
+- `SITE_ENV` is the variable that determines if the instance is a Local, if it has a value of `local`. The hub's deploy workflow (`.github/workflows/local-{id}.yml`) passes it to the Docker build.
 
-- `LOCAL_ID` determines what Local will be loaded in the given instance, since all Locals share the same codebase. Each Local must have a descriptive and unique ID (with no spaces, for example: `wisconsin` for Recollection Wisconsin). This variable also needs to be set up in `constants/env.js`.
+- `LOCAL_ID` determines what Local will be loaded in the given instance, since all Locals share the same codebase. Each Local must have a descriptive and unique ID (with no spaces, for example: `wisconsin` for Recollection Wisconsin). The deploy workflow passes it to the Docker build too.
+
+- `GA_TRACKING_ID` is the hub's Google Analytics measurement ID (`G-…`), set in the same workflow. Leave it empty and the hub sends nothing to GA unless `GA_NETWORK_ID` is set.
+
+- `GA_NETWORK_ID` is the network-wide GA4 property, if DPLA runs one; set it to the same value on every site.
+
+- `GA_LEGACY_EVENTS` set to `"false"` stops the legacy GA event once the hub's reports have moved; see the root README, "Google Analytics".
 
 ## Static File Folder
 

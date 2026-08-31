@@ -110,6 +110,8 @@ On load:
 4. If found → item IDs are extracted from `selectedHash` and sent to the internal API proxy (`/api/items/[idListString]`), which fetches full item metadata from the DPLA Search API in a single batched request
 5. Items are displayed using ListView with full metadata (title, thumbnail, date, creator, provider, etc.)
 
+Clicking an item's source link fires a `click_through` Google Analytics event; see the root README, "Google Analytics".
+
 The page shows:
 - Breadcrumb: My Lists → [List Name]
 - List name as `<h1>` with a rename (pencil) button

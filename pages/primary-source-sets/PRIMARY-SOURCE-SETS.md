@@ -237,6 +237,8 @@ citation                Citation[]
 └───────────────────────────────────────────────────────────┘
 ```
 
+**Analytics.** The source page fires a Google Analytics `primary_source_view` event on load and `click_through` on the "View in {Partner}" link. Both carry `source_set` (the set slug from the route) and the item's `dpla_id`, `partner`, and `contributor`; `collection` is never sent, since PSS records have no DPLA collection field. The root README ("Google Analytics") lists the parameters.
+
 ---
 
 ## Media Types & Viewers

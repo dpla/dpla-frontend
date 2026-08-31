@@ -12,9 +12,9 @@ import {
 } from "components/shared/mediaViewers";
 
 import {
+  buildGaEvent,
+  GA_EVENTS,
   getDefaultThumbnail,
-  getFullPath,
-  joinIfArray,
   parseDplaItemRecord,
   gtag,
 } from "lib";
@@ -103,7 +103,9 @@ class Viewer extends React.Component {
   }
 
   trackItemView() {
-    const fullPath = getFullPath();
+    // asPath commits with props.
+    // window.location can run ahead of them on back and forward navigation.
+    const fullPath = this.props.router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
       // track exhibit item view event.
@@ -113,18 +115,19 @@ class Viewer extends React.Component {
       const activeBlock = pageBlocks.find((block) => block?.isActive);
       if (!activeBlock) return;
 
-      const dplaItemJson = activeBlock.dplaItemJson;
-      const dplaItem = parseDplaItemRecord(dplaItemJson);
+      const { exhibitionSlug, sectionSlug, subsectionSlug } =
+        this.props.router.query;
 
-      const gaEvent = {
-        type: "View Exhibition Item",
-        itemId: activeBlock.dplaItemId,
-        title: joinIfArray(dplaItem.title, ", "),
-        partner: joinIfArray(dplaItem.partner, ", "),
-        contributor: joinIfArray(dplaItem.dataProvider, ", "),
-      };
-
-      gtag.event(gaEvent);
+      gtag.event(
+        buildGaEvent(GA_EVENTS.EXHIBITION_ITEM_VIEW, {
+          itemId: activeBlock.dplaItemId,
+          ...parseDplaItemRecord(activeBlock.dplaItemJson),
+          exhibition: exhibitionSlug,
+          exhibition_section: [sectionSlug, subsectionSlug]
+            .filter(Boolean)
+            .join("/"),
+        }),
+      );
       this.lastTrackedPath = fullPath;
     }
   }
