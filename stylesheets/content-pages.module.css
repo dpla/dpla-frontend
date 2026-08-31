@@ -98,14 +98,22 @@
   & h4,
   & h5,
   & h6 {
+    font-weight: normal;
     line-height: 1.15;
     margin-bottom: 1rem;
     margin-top: 1rem;
   }
 
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    font-family: var(--sansFont), sans-serif;
+  }
+
   & h1 {
     font-family: var(--serifFont), serif;
-    font-weight: normal;
     font-size: 2rem;
     margin-bottom: 1rem;
     margin-top: 0;
@@ -121,30 +129,25 @@
   }
 
   & h2 {
-    font-family: var(--sansFont), sans-serif;
     font-size: 1.75rem;
-    font-weight: normal;
     margin-top: 2.5rem;
   }
 
   & h3 {
     font-size: 1.25rem;
-    font-weight: normal;
-    font-family: var(--sansFont), sans-serif;
   }
 
   & h4 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
 
   & h5 {
-    font-size: 1.125rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    font-weight: normal;
   }
 
   & h6 {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   & p {
