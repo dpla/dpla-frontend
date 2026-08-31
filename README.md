@@ -231,7 +231,7 @@ Newsletter signups are handled by `POST /mailchimp` on the Express server. The r
 
 ### Google Analytics
 
-**Properties.** Each site has its own GA4 property. Its `G-` measurement ID is the `GA_TRACKING_ID` value in the site's workflow under `.github/workflows/`. Six hubs leave it empty and send nothing: aviation, njde, oklahoma, texas, transcribe, vermont. A second ID, `GA_NETWORK_ID`, adds a shared property. Set the same value on every site and that one property sees the whole network, with the `site` parameter telling sites apart. This covers hub reports that span dp.la and the hub's own site, and it covers the six hubs with no property. A build with neither ID loads no GA script. The Content Security Policy already allows `google-analytics.com` and `googletagmanager.com`.
+**Properties.** Each site has its own GA4 property. Its `G-` measurement ID is the `GA_TRACKING_ID` value in the site's workflow under `.github/workflows/`. Six hubs leave it empty: aviation, njde, oklahoma, texas, transcribe, vermont. With `GA_NETWORK_ID` also empty, they send nothing. A second ID, `GA_NETWORK_ID`, adds a shared property. Set the same value on every site and that one property sees the whole network, with the `site` parameter telling sites apart. This covers hub reports that span dp.la and the hub's own site, and it covers the six hubs with no property. A build with neither ID loads no GA script. The Content Security Policy already allows `google-analytics.com` and `googletagmanager.com`.
 
 **Page views.** The `config` call on load sends the first page view. After that, `lib/gtag.js` sends one `page_view` event per client-side navigation, with the new title and URL. GA4's Enhanced Measurement can also send a page view on every history change. Turn that off in each property (Admin → Data streams → Enhanced measurement → "Page changes based on browser history events"), or each navigation counts twice. Leave "Site search" on: the analytics dashboard reads its `view_search_results` events. After the change, confirm in DebugView that a search still produces `view_search_results`.
 
@@ -425,7 +425,7 @@ No formal accessibility statement is published on dp.la or pro.dp.la.
 3. Add static content to `public/static/local/{id}/` — logo, favicon, hero image, and any Markdown page files referenced by `routes` in step 1.
 4. Add the subdomain mapping to `LOCAL_SUBDOMAINS` in `constants/local.js`.
 5. Update `next.config.js` rewrites if the hub needs any non-standard routing.
-6. Add a GitHub Actions workflow at `.github/workflows/local-{id}.yml` (copy an existing one and set `GA_TRACKING_ID`, or leave it empty to send nothing).
+6. Add a GitHub Actions workflow at `.github/workflows/local-{id}.yml` (copy an existing one and set `GA_TRACKING_ID`, or leave it empty to skip the site property).
 7. Provision an ECS cluster, ECR repository, CodePipeline, and CodeDeploy deployment group in AWS.
 
 See [LOCAL.md](LOCAL.md) for detailed instructions on steps 1–4.
