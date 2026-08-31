@@ -104,7 +104,7 @@ const AI_BOT_RULES = [
   "Amazonbot",
   "Bytespider",
   "PerplexityBot",
-  "meta-external-agent",
+  "meta-externalagent",
   "AhrefsBot",
   "SemrushBot",
   "MJ12bot",

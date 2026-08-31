@@ -315,7 +315,7 @@ Draft posts and pages can be previewed before publishing. Requires the `dpla-pre
 | `local` (hub sites) | Disallows `/search`; sets a crawl delay; includes the hub's sitemap URLs |
 | `cqa` (staging) | Disallows all crawlers |
 
-AI crawlers are blocked on all sites: GPTBot, ClaudeBot, anthropic-ai, CCBot, Google-Extended, Amazonbot, Bytespider, PerplexityBot, meta-external-agent, AhrefsBot, SemrushBot, MJ12bot, DotBot.
+AI crawlers are blocked on all sites: GPTBot, ClaudeBot, anthropic-ai, CCBot, Google-Extended, Amazonbot, Bytespider, PerplexityBot, meta-externalagent, AhrefsBot, SemrushBot, MJ12bot, DotBot.
 
 ---
 
