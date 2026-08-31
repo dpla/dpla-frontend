@@ -12,6 +12,18 @@
   }
 }
 
+/*
+  The user-site nav needs ~995px to sit on one line, but .header switches on at
+  52em (832px). Hold it back to 64em for that site only; the small-screen header
+  covers the gap via .wrapperUserBreakpoint. Pro and local navs are shorter and
+  keep the 52em switch.
+*/
+.headerUserBreakpoint {
+  @media (min-width: 52em) and (max-width: 63.999em) {
+    display: none;
+  }
+}
+
 .linksContainer {
   margin: auto;
   display: flex;
@@ -52,6 +64,64 @@
 .tertiaryLinks {
   margin-left: auto;
   opacity: 0.7;
+}
+
+/*
+  ---- user-site header refinements -------------------------------------------
+  Opt-in classes. SmallScreenStyles.module.css does not define them, so the
+  stacked small-screen menu is unaffected.
+*/
+.navList {
+  /* a label added later must overflow visibly in review, not silently wrap */
+  white-space: nowrap;
+
+  & > li:last-child {
+    margin-right: 0;
+  }
+
+  /* middot between adjacent links within a group */
+  & > li + li::before {
+    content: "\00B7";
+    display: inline-block;
+    color: currentColor;
+    opacity: 0.6;
+    margin: 0 0.375rem 0 -0.5rem;
+  }
+
+  /* "Browse by:" already ends in a colon; no middot after it */
+  & > li.navLabel + li::before {
+    content: none;
+    margin: 0;
+  }
+}
+
+/*
+  The shared rule above styles `> li > a` and `> li > button` only, so this
+  non-link label needs the same vertical padding to share their baseline.
+*/
+.navLabel {
+  padding: 0.5rem 0;
+}
+
+/* symmetric spacing either side, unlike the shared 0/1rem */
+.divider.navDivider {
+  /* .divider sets margin-right in a nested @media; match its specificity to win */
+  margin: 0 0.875rem;
+}
+
+/*
+  Equal auto margins: the divider centres itself in whatever space is left over,
+  and everything after it lands flush against the right edge of the 64rem column.
+  Must follow .navDivider so the auto margins win.
+*/
+.divider.navSplit {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .navSplit handles the alignment now */
+.navList.tertiaryLinks {
+  margin-left: 0;
 }
 
 .divider {

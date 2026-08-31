@@ -27,7 +27,14 @@ class SmallScreenHeader extends Component {
     const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
     const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
     return (
-      <div className={css.wrapper} data-cy="small-screen-header">
+      <div
+        className={
+          siteEnv === "user"
+            ? `${css.wrapper} ${css.wrapperUserBreakpoint}`
+            : css.wrapper
+        }
+        data-cy="small-screen-header"
+      >
         <div className={css.header}>
           {(siteEnv === "user" || siteEnv === "pro") && (
             <Link href="/" className={css.logo}>

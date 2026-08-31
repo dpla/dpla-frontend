@@ -12,6 +12,17 @@
   }
 }
 
+/*
+  Companion to .headerUserBreakpoint in DesktopStyles.module.css: the user-site
+  desktop nav does not fit on one line below 64em, so keep this stacked menu up
+  to that width for that site. Pro and local switch at 52em as before.
+*/
+.wrapperUserBreakpoint {
+  @media (min-width: 52em) and (max-width: 63.999em) {
+    display: block;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
