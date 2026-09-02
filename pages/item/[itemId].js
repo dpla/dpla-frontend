@@ -205,7 +205,7 @@ export async function getServerSideProps(context) {
   const props = washObject({
     item: {
       ...doc.sourceResource,
-      id: doc.id,
+      id: doc.id ?? itemId,
       thumbnailUrl,
       thumbnailSourceUrl: doc.object,
       contributor: dataProvider,

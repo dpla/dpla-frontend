@@ -4,7 +4,13 @@ import ItemList from "components/TopicBrowseComponents/SubtopicItemsList/ItemLis
 import MainLayout from "components/MainLayout";
 import Sidebar from "components/TopicBrowseComponents/SubtopicItemsList/Sidebar";
 
-import { decodeHTMLEntities, extractItemId, getDataProviderName, getItemThumbnail } from "lib";
+import {
+  collectionTitles,
+  decodeHTMLEntities,
+  extractItemId,
+  getDataProviderName,
+  getItemThumbnail,
+} from "lib";
 import { safeFetch, safeJson, checkResponseForSSRSafe, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -54,7 +60,10 @@ function SubtopicItemsList(props) {
           description={subtopic.description}
           image={subtopic.thumbnailUrl}
         />
-        <ItemList items={items} />
+        <ItemList
+          items={items}
+          gaContext={{ topic: topic.slug, subtopic: subtopic.slug }}
+        />
       </div>
       <BreadcrumbsAndNav
         breadcrumbs={[
@@ -174,6 +183,7 @@ export const getServerSideProps = async (context) => {
       date: doc.sourceResource?.date,
       creator: doc.sourceResource?.creator,
       description: doc.sourceResource?.description,
+      collection: collectionTitles(doc.sourceResource?.collection),
       dataProvider: dataProvider,
       useDefaultImage: !doc.object,
       itemDplaId: itemDplaId,

@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 import Button from "shared/Button";
 import CiteButton from "shared/CiteButton";
 
-import { getFullPath, joinIfArray, parseDplaItemRecord, gtag } from "lib";
+import { buildGaEvent, GA_EVENTS, parseDplaItemRecord, gtag } from "lib";
 
 import css from "./Details.module.css";
 import utils from "stylesheets/utils.module.css";
@@ -16,21 +17,24 @@ class Details extends React.Component {
   }
 
   trackEvent() {
-    const fullPath = getFullPath();
+    // asPath commits with props.
+    // window.location can run ahead of them on back and forward navigation.
+    const fullPath = this.props.router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
-      const dplaItemJson = this.props.dplaItemJson;
-      const dplaItem = parseDplaItemRecord(dplaItemJson);
+      const { dplaItemId, dplaItemJson, slug } = this.props;
 
-      const gaEvent = {
-        type: "View Exhibition Item",
-        itemId: this.props.dplaItemId,
-        title: joinIfArray(dplaItem.title, ", "),
-        partner: joinIfArray(dplaItem.partner, ", "),
-        contributor: joinIfArray(dplaItem.dataProvider, ", "),
-      };
-
-      gtag.event(gaEvent);
+      // The home page shows one item as its hero image.
+      // That counts as an exhibition item view.
+      // The exhibition_section value "home" lets reports split it out.
+      gtag.event(
+        buildGaEvent(GA_EVENTS.EXHIBITION_ITEM_VIEW, {
+          itemId: dplaItemId,
+          ...parseDplaItemRecord(dplaItemJson),
+          exhibition: slug,
+          exhibition_section: "home",
+        }),
+      );
       this.lastTrackedPath = fullPath;
     }
   }
@@ -100,4 +104,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default withRouter(Details);

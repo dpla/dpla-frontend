@@ -11,6 +11,8 @@ env:
   LOCAL_ID:       "nwdh"
   ECR_REPOSITORY: "dpla-local-nwdh"
   GA_TRACKING_ID: "G-64QXSW0Q5K"
+  GA_LEGACY_EVENTS: "true"
+  GA_NETWORK_ID: ""
 
 jobs:
   ecr:
@@ -64,6 +66,8 @@ jobs:
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
           --secret id=sentry_auth,env=SENTRY_AUTH_TOKEN \
           --build-arg GA_TRACKING_ID=${{ env.GA_TRACKING_ID }} \
+          --build-arg GA_LEGACY_EVENTS=${{ env.GA_LEGACY_EVENTS }} \
+          --build-arg GA_NETWORK_ID=${{ env.GA_NETWORK_ID }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \

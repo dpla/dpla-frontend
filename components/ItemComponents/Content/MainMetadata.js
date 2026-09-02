@@ -3,7 +3,7 @@ import React from "react";
 import ItemImage from "./ItemImage";
 import IIIFViewer from "./IIIFViewer";
 import ItemTermValuePair from "./ItemTermValuePair";
-import clickThroughEvent from "./clickThroughEvent";
+import { clickThroughEvent } from "./itemEvents";
 
 import { clickThroughLinkProps, joinIfArray, readMyRights } from "lib";
 

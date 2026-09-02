@@ -7,6 +7,7 @@ import Alert from "shared/Alert";
 
 import {
   buildGaEvent,
+  GA_EVENTS,
   clickThroughLinkProps,
   createUUID,
   joinIfArray,
@@ -45,6 +46,7 @@ function ItemDescription({ description }) {
  * @param viewMode "list" or "grid" for search view
  * @param viewingList contains list id if viewing in /lists/[uuid]
  * @param behavior "search," "browse," or "list" for different behavior depending on where this is used.
+ * @param gaContext Extra GA event parameters for every item, such as { topic, subtopic } on topic browse.
  * @returns {JSX.Element}
  * @constructor
  */
@@ -53,6 +55,7 @@ export default function ListView({
   viewMode,
   viewingList,
   behavior,
+  gaContext,
 }) {
   const initialState = () => ({
     readOnly: false,
@@ -285,15 +288,20 @@ export default function ListView({
           else if (item.type === "text") {
             itemLinkText = "View Full Text";
           }
+          // Context first, so an item's own fields always win
           const gaItemFields = {
-            itemId: item.id,
+            ...gaContext,
+            itemId: realId,
             title: item.title,
             partner: item.provider,
             contributor: item.dataProvider,
+            collection: item.collection,
           };
           const browseLinkProps =
             behavior === "browse"
-              ? trackLinkClicks(buildGaEvent("Browse Item", gaItemFields))
+              ? trackLinkClicks(
+                  buildGaEvent(GA_EVENTS.BROWSE_ITEM, gaItemFields),
+                )
               : undefined;
           return (
             <li
@@ -352,7 +360,7 @@ export default function ListView({
                   className={`clickThrough external ${css.itemSource}`}
                   {...(item.sourceUrl
                     ? clickThroughLinkProps(
-                        buildGaEvent("Click Through", gaItemFields),
+                        buildGaEvent(GA_EVENTS.CLICK_THROUGH, gaItemFields),
                       )
                     : {})}
                 >

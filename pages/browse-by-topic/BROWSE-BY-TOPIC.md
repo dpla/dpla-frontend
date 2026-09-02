@@ -134,6 +134,7 @@ At request time, the frontend calls `/items/{id}` for every item in the subtopic
 - Data provider (contributing institution)
 - Hub (provider)
 - Link to the source item (`isShownAt`)
+- Collection title(s), sent as the `collection` Google Analytics parameter
 
 Items that fail the DPLA API fetch are silently filtered out.
 
