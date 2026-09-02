@@ -83,7 +83,7 @@
   & > li + li::before {
     content: "\00B7";
     display: inline-block;
-    color: currentColor;
+    color: currentcolor;
     opacity: 0.6;
     margin: 0 0.375rem 0 -0.5rem;
   }
