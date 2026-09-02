@@ -11,8 +11,8 @@ import CiteButton from "components/shared/CiteButton";
 
 import {
   buildGaEvent,
+  GA_EVENTS,
   clickThroughLinkProps,
-  getFullPath,
   joinIfArray,
   getItemId,
   getPartner,
@@ -29,6 +29,7 @@ import css from "./ContentAndMetadata.module.css";
 import LinkIcon from "components/svg/LinkIcon";
 import ExternalLink from "components/svg/ExternalLink";
 import Link from "next/link";
+import { withRouter } from "next/router";
 
 const getSourceLink = (source) =>
   source.mainEntity[0]["dct:references"].filter(
@@ -59,11 +60,14 @@ const getViewerComponent = (fileFormat, type, pathToFile) => {
 const getDomainFromThumbnail = (thumbnailUrl) =>
   /^(?:https?:)?(\/\/[\w.]+\/)/.exec(thumbnailUrl)[1];
 
-const sourceEventFields = (source) => ({
-  itemId: getItemId(source),
+// GA fields for a source
+const sourceEventFields = (source, setSlug, dplaItem) => ({
+  itemId: dplaItem?.itemId || getItemId(source),
   title: getTitle(source),
-  partner: getPartner(source),
-  contributor: getContributor(source),
+  partner: dplaItem?.partner || getPartner(source),
+  contributor: dplaItem?.contributor || getContributor(source),
+  collection: dplaItem?.collection,
+  source_set: setSlug,
 });
 
 class ContentAndMetadata extends React.Component {
@@ -86,17 +90,25 @@ class ContentAndMetadata extends React.Component {
   }
 
   trackSourceView() {
-    const fullPath = getFullPath();
-    const source = this.props.source;
+    // asPath commits with props.
+    // window.location can run ahead of them on back and forward navigation.
+    const { source, router, dplaItem } = this.props;
+    const fullPath = router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
-      gtag.event(buildGaEvent("View Primary Source", sourceEventFields(source)));
+      gtag.event(
+        buildGaEvent(
+          GA_EVENTS.PRIMARY_SOURCE_VIEW,
+          sourceEventFields(source, router.query.set, dplaItem),
+        ),
+      );
       this.lastTrackedPath = fullPath;
     }
   }
 
   render() {
-    const { source } = this.props;
+    const { source, router, dplaItem } = this.props;
+    const setSlug = router.query.set;
     const type = source.mainEntity[0]["@type"];
     const { fileFormat, contentUrl } = source.mainEntity[0].associatedMedia[0];
     // some file types aren't stored with full domain
@@ -231,7 +243,10 @@ class ContentAndMetadata extends React.Component {
                         href={getSourceLink(source)}
                         className={css.sourceLink}
                         {...clickThroughLinkProps(
-                          buildGaEvent("Click Through", sourceEventFields(source)),
+                          buildGaEvent(
+                            GA_EVENTS.CLICK_THROUGH,
+                            sourceEventFields(source, setSlug, dplaItem),
+                          ),
                         )}
                       >
                         <ExternalLink className={css.externalIcon} />
@@ -261,4 +276,4 @@ class ContentAndMetadata extends React.Component {
   }
 }
 
-export default ContentAndMetadata;
+export default withRouter(ContentAndMetadata);

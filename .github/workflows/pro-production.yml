@@ -11,6 +11,8 @@ env:
   LOCAL_ID:       ""
   ECR_REPOSITORY: "frontend-pro"
   GA_TRACKING_ID: "G-M9E1L42WT8"
+  GA_LEGACY_EVENTS: "true"
+  GA_NETWORK_ID: ""
 
 jobs:
   ecr:
@@ -64,6 +66,8 @@ jobs:
           --build-arg LOCAL_ID=${{ env.LOCAL_ID }} \
           --secret id=sentry_auth,env=SENTRY_AUTH_TOKEN \
           --build-arg GA_TRACKING_ID=${{ env.GA_TRACKING_ID }} \
+          --build-arg GA_LEGACY_EVENTS=${{ env.GA_LEGACY_EVENTS }} \
+          --build-arg GA_NETWORK_ID=${{ env.GA_NETWORK_ID }} \
           --build-arg MAILCHIMP_KEY=${{ secrets.MAILCHIMP_KEY }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \

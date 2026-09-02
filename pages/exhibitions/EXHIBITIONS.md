@@ -415,6 +415,12 @@ After editing any file in `exhibitions-data/`:
 
 ---
 
+## Analytics
+
+Every item shown in the viewer, and the hero item on the exhibition home page, fires a Google Analytics `exhibition_item_view` event with `exhibition` (the exhibition slug) and `exhibition_section` (`section` or `section/subsection`, or `home` for the landing page). Renaming a slug renames the value GA reports. The root README ("Google Analytics") lists the other parameters.
+
+---
+
 ## Key Files
 
 | File / Directory | Purpose |
@@ -428,7 +434,8 @@ After editing any file in `exhibitions-data/`:
 | `lib/exhibitionsStatic.js` | All data-loading functions (`loadExhibition`, `processPageBlocks`, etc.) |
 | `lib/getDplaItemIdFromExhibit.js` | Extracts DPLA item ID from the `element_texts` array |
 | `components/ExhibitionsComponents/` | All UI components for exhibitions |
-| `components/ExhibitionsComponents/ExhibitionSection/Viewer.js` | Media viewer + gallery + media type dispatch |
+| `components/ExhibitionsComponents/ExhibitionSection/Viewer.js` | Media viewer + gallery + media type dispatch; fires `exhibition_item_view` |
+| `components/ExhibitionsComponents/Exhibition/Details/index.js` | Exhibition home body; fires the home page's `exhibition_item_view` |
 | `components/ExhibitionsComponents/ExhibitionSection/Sidebar.js` | Section/subsection navigation tree |
 | `components/ExhibitionsComponents/ExhibitionSection/FooterNav.js` | Prev/next navigation |
 | `constants/exhibitions.js` | Site-wide exhibition constants (title, description, media type names) |

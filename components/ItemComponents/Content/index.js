@@ -3,9 +3,10 @@ import React from "react";
 import MainMetadata from "./MainMetadata";
 import OtherMetadata from "./OtherMetadata";
 import JsonLdMarkup from "./JsonLdMarkup";
+import { itemViewEvent } from "./itemEvents";
 import { withRouter } from "next/router";
 
-import { buildGaEvent, joinIfArray, gtag } from "lib";
+import { joinIfArray, gtag } from "lib";
 import { UNTITLED_TEXT } from "constants/site";
 
 import css from "./Content.module.css";
@@ -21,20 +22,12 @@ class Content extends React.Component {
   }
 
   trackItemView() {
-    // asPath commits with props; window.location can be ahead of them
-    // during back/forward
+    // asPath commits with props.
+    // window.location can run ahead of them on back and forward navigation.
     const fullPath = this.props.router.asPath;
 
     if (fullPath !== this.lastTrackedPath) {
-      const { item, router } = this.props;
-      gtag.event(
-        buildGaEvent("View Item", {
-          itemId: router.query.itemId,
-          title: item.title,
-          partner: item.partner,
-          contributor: item.contributor,
-        }),
-      );
+      gtag.event(itemViewEvent(this.props.item));
       this.lastTrackedPath = fullPath;
     }
   }
