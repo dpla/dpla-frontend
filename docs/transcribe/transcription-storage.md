@@ -167,9 +167,13 @@ Enforced server-side in the `PUT` handler:
 
 Outside the handler, the request body itself is capped at `MAX_TRANSCRIPT_REQUEST_BYTES`
 via the route's `config.api.bodyParser.sizeLimit`. That constant is **derived** as
-`MAX_TRANSCRIPT_TEXT_BYTES * 2` — twice the text cap is the worst case for ordinary text
-once JSON-escaped — so raising the text cap can't silently leave the parser as the
-binding constraint. The headroom matters: an over-long transcript must be rejected by the
+`MAX_TRANSCRIPT_TEXT_BYTES * 2 + 8_192` — twice the text cap is the worst case for
+ordinary text once JSON-escaped (a newline, quote or backslash each cost two bytes on the
+wire), and the extra 8 KB covers the envelope: keys, quoting, a max-length `canvasId` and
+the status. Deriving it means raising the text cap can't silently leave the parser as the
+binding constraint. Next statically analyses `export const config`, so the route repeats
+the number as a literal; `lib/transcriptRequestLimit.test.mjs` asserts the two match and
+covers the newline-heavy worst case. The headroom matters: an over-long transcript must be rejected by the
 `text` guard above, which returns a clear JSON 413, not by the body parser, whose 413
 carries no explanation.
 
