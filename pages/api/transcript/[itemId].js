@@ -6,9 +6,16 @@ import { DPLA_ITEM_ID_REGEX } from "constants/items";
 import {
   TRANSCRIPT_STATUSES,
   MAX_TRANSCRIPT_TEXT_BYTES,
+  MAX_TRANSCRIPT_REQUEST_BYTES,
   MAX_CANVAS_ID_CHARS,
 } from "constants/transcribe";
 import { getTranscriptsForItem, putCanvasTranscript } from "lib/transcriptStore";
+
+// Narrows Next's 1mb default to what this route actually accepts. Only has any effect
+// because server.js mounts no app-level body parser — see the comment there.
+export const config = {
+  api: { bodyParser: { sizeLimit: MAX_TRANSCRIPT_REQUEST_BYTES } },
+};
 
 function getErrorMessage(err) {
   if (err instanceof Error) return err.message;

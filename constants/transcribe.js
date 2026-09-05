@@ -27,3 +27,12 @@ export const DEFAULT_TRANSCRIPT_STATUS = "in_progress";
 // item's other attributes (keys, status, timestamps, canvas_id).
 export const MAX_TRANSCRIPT_TEXT_BYTES = 380_000;
 export const MAX_CANVAS_ID_CHARS = 2048;
+
+// Wire-size ceiling for a transcript PUT body (the route's bodyParser sizeLimit). Twice
+// the text cap, because that is the worst case for ordinary text once JSON-escaped — a
+// newline, quote or backslash each cost two bytes on the wire — plus room for the
+// canvasId and status fields. Derived rather than hardcoded so that raising the text cap
+// can't leave the parser as the binding constraint: the text cap must stay enforced by
+// the route's own byte check, which returns a clear JSON 413, not by the parser, whose
+// 413 carries no explanation.
+export const MAX_TRANSCRIPT_REQUEST_BYTES = MAX_TRANSCRIPT_TEXT_BYTES * 2;

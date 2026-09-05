@@ -165,6 +165,20 @@ Enforced server-side in the `PUT` handler:
 - `text` ≤ 380 000 **UTF-8 bytes** (`Buffer.byteLength`, not char count — headroom under DynamoDB's 400 KB item limit); else 413.
 - Text stored **verbatim** and rendered as text in the UI → no HTML/JS injection surface.
 
+Outside the handler, the request body itself is capped at `MAX_TRANSCRIPT_REQUEST_BYTES`
+via the route's `config.api.bodyParser.sizeLimit`. That constant is **derived** as
+`MAX_TRANSCRIPT_TEXT_BYTES * 2` — twice the text cap is the worst case for ordinary text
+once JSON-escaped — so raising the text cap can't silently leave the parser as the
+binding constraint. The headroom matters: an over-long transcript must be rejected by the
+`text` guard above, which returns a clear JSON 413, not by the body parser, whose 413
+carries no explanation.
+
+This only works because `server.js` mounts **no app-level body parser**. An app-level
+parser consumes the request stream before the Next.js catchall runs, so its limit (100 KB
+by default) would silently become the ceiling for this route — and Next would then skip
+its own parsing entirely, since `req.body` is already set. See the comment above
+`expressApp.get("/healthcheck", ...)` in `server.js` before adding one.
+
 **Rate limiting is deferred** — the alpha is header-gated, so abuse exposure is low.
 A per-IP / token limiter is required **before any public exposure**.
 

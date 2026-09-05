@@ -1,3 +1,9 @@
+// Public unauthenticated POST. The field caps below total well under 8kb, and the rate
+// limiter can't help here — Next parses the body before the handler runs, so even a
+// request that gets a 429 has already been buffered. Numeric so raw-body skips a
+// bytes.parse per request. Without this the route would inherit Next's 1mb default.
+export const config = { api: { bodyParser: { sizeLimit: 8 * 1024 } } };
+
 const MAX_URL_LENGTH = 2048;
 const MAX_PROVIDER_LENGTH = 256;
 const MAX_SOURCE_URL_LENGTH = 2048;
