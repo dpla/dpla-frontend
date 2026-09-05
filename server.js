@@ -59,6 +59,16 @@ function leader() {
   }
 }
 
+// Parsers for the handful of express routes below that read req.body. Shared across
+// routes: body-parser does all its setup in the factory, so the returned middleware is
+// stateless. 64kb is far more than these form fields need and less than the 100kb they
+// used to get from the app-level parser.
+const FORM_BODY_LIMIT = 64 * 1024;
+const formBody = [
+  express.urlencoded({ extended: true, limit: FORM_BODY_LIMIT }),
+  express.json({ limit: FORM_BODY_LIMIT }),
+];
+
 function follower() {
   const nextApp = next({ dev });
   const handle = nextApp.getRequestHandler();
@@ -67,8 +77,12 @@ function follower() {
     const expressApp = express();
     Sentry.setupExpressErrorHandler(expressApp);
     expressApp.disable("x-powered-by");
-    expressApp.use(express.urlencoded({ extended: true }));
-    expressApp.use(express.json());
+    // Do NOT mount a body parser app-wide. It would consume the request stream before the
+    // Next.js catchall below, so its limit (100kb by default) would silently become the
+    // ceiling for every Next API route, and Next would skip its own parsing because
+    // req.body is already set — which also makes a parser on the catchall dead code.
+    // Express routes that read req.body attach `formBody` themselves; everything under
+    // the catchall is parsed by Next, where each API route sets its own sizeLimit.
     expressApp.get("/healthcheck", healthcheck());
     expressApp.get("/robots.txt", robotsTxt());
 
@@ -78,9 +92,9 @@ function follower() {
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
       expressApp.get("/wp-content/*path", wpContent());
-      expressApp.post("/mailchimp", doMailchimp());
-      expressApp.post("/g/contact", doContact());
-      expressApp.post("/g/feedback", feedback());
+      expressApp.post("/mailchimp", formBody, doMailchimp());
+      expressApp.post("/g/contact", formBody, doContact());
+      expressApp.post("/g/feedback", formBody, feedback());
     }
 
     expressApp.all("*path", catchall(handle));

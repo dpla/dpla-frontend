@@ -162,8 +162,38 @@ Enforced server-side in the `PUT` handler:
 - `itemId` matches the DPLA id regex; else 404.
 - `canvasId` non-empty string ≤ 2048 chars; else 400.
 - `status` ∈ the enum; else 400.
-- `text` ≤ 380 000 **UTF-8 bytes** (`Buffer.byteLength`, not char count — headroom under DynamoDB's 400 KB item limit); else 413.
+- `text` ≤ 380 000 **UTF-8 bytes** (`Buffer.byteLength`, not char count — headroom under DynamoDB's 400 KB item limit); else 413. Subject to the wire-size ceiling below, which binds first for text that JSON-escapes to more than about twice its size.
 - Text stored **verbatim** and rendered as text in the UI → no HTML/JS injection surface.
+
+Outside the handler, the request body itself is capped at `MAX_TRANSCRIPT_REQUEST_BYTES`
+via the route's `config.api.bodyParser.sizeLimit`. That constant is **derived** as
+`MAX_TRANSCRIPT_TEXT_BYTES * 2 + 8_192` — twice the text cap is the worst case for
+ordinary text once JSON-escaped (a newline, quote or backslash each cost two bytes on the
+wire), and the extra 8 KB covers the envelope: keys, quoting, a max-length `canvasId` and
+the status. Deriving it means raising the text cap can't silently leave the parser as the
+binding constraint. Next statically analyses `export const config`, so the route repeats
+the number as a literal; `lib/transcriptRequestLimit.test.mjs` asserts the two match and
+covers the newline-heavy worst case. The headroom matters: an over-long transcript must be
+rejected by the `text` guard above, which returns a clear JSON 413, not by the body
+parser, whose 413 carries no explanation.
+
+**Known boundary.** The 2× multiplier covers ordinary text, where the only characters that
+escape are newlines, quotes and backslashes, at two bytes each. It does **not** cover text
+made largely of control characters, which JSON-escape to `\u00XX` at six bytes each: 380 000
+NUL bytes serialise to 2 280 081 wire bytes, well over the ceiling, so such a request is
+rejected by the parser with a generic 413 rather than by the `text` guard. This is
+deliberate. Covering it would require a ~2.3 MB ceiling, roughly tripling peak per-request
+memory on a route that has no rate limiting or admission control (see **Rate limiting is
+deferred** below), to accommodate input that is not plausible transcription text. Nothing is
+lost or corrupted in that case — the request is refused either way; only the error message
+is less specific. If the handler ever starts rejecting control characters outright, this
+boundary disappears and the contract above becomes exact.
+
+This only works because `server.js` mounts **no app-level body parser**. An app-level
+parser consumes the request stream before the Next.js catchall runs, so its limit (100 KB
+by default) would silently become the ceiling for this route — and Next would then skip
+its own parsing entirely, since `req.body` is already set. See the comment above
+`expressApp.get("/healthcheck", ...)` in `server.js` before adding one.
 
 **Rate limiting is deferred** — the alpha is header-gated, so abuse exposure is low.
 A per-IP / token limiter is required **before any public exposure**.

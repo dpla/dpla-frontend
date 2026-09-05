@@ -10,6 +10,15 @@ import {
 } from "constants/transcribe";
 import { getTranscriptsForItem, putCanvasTranscript } from "lib/transcriptStore";
 
+// Narrows Next's 1mb default to what this route actually accepts. Next statically
+// analyses this export, so the value has to be a literal and cannot reference
+// MAX_TRANSCRIPT_REQUEST_BYTES in constants/transcribe — lib/transcriptRequestLimit.test.mjs
+// asserts the two match. Only has any effect because server.js mounts no app-level body
+// parser — see the comment there.
+export const config = {
+  api: { bodyParser: { sizeLimit: 768192 } },
+};
+
 function getErrorMessage(err) {
   if (err instanceof Error) return err.message;
   if (typeof err === "string") return err;

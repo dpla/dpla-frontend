@@ -5,6 +5,10 @@
 
 import { WIKIMEDIA_USER_AGENT } from 'lib/wikimediaUserAgent';
 
+// wbeditentity payloads can be sizeable, so keep the 100kb ceiling this route had from
+// the app-level parser that server.js used to mount, rather than inheriting Next's 1mb.
+export const config = { api: { bodyParser: { sizeLimit: 102400 } } };
+
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
 const TOKEN_COOKIE = 'wm_access_token';
 const FETCH_TIMEOUT_MS = 10000;
