@@ -11,6 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.css";
 import contentCss from "stylesheets/content-pages.module.css";
 import { washObject } from "lib/washObject";
+import { markUpstreamUnavailable } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -193,8 +194,7 @@ export async function getServerSideProps(context) {
       }),
     };
   } catch {
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
+    await markUpstreamUnavailable(context.res);
     return { props: { items: [] } };
   }
 }

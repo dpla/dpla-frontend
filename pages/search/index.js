@@ -7,7 +7,13 @@ import FiltersList from "components/SearchComponents/FiltersList";
 import MainContent from "components/SearchComponents/MainContent";
 
 import { getDataProviderName, getItemThumbnail, getSearchPageTitle, isBalanced } from "lib";
-import { safeFetch } from "lib/safeFetch";
+import {
+  safeFetch,
+  isUpstreamUnavailable,
+  markUpstreamUnavailable,
+  cancelBodies,
+  safeJson,
+} from "lib/safeFetch";
 
 import {
   possibleFacets,
@@ -47,6 +53,17 @@ function formatItemDoc(result) {
   };
 }
 
+// Props for SearchError. `retryAfter` turns on auto-retry; leave it null after a 4xx.
+function fetchErrorProps(retryAfter = null) {
+  return {
+    props: washObject({
+      fetchError: true,
+      retryAfter,
+      results: { docs: [], facets: {} },
+    }),
+  };
+}
+
 // Results for one explicit transcription status: item ids from DynamoDB, hydrated via the
 // DPLA API multi-fetch (/items/{id,id,...}), paginated over the id list.
 async function transcriptionStatusResults(status, page, pageSize) {
@@ -59,14 +76,11 @@ async function transcriptionStatusResults(status, page, pageSize) {
     `${process.env.API_URL}/items/${pageIds.join(",")}` +
     `?api_key=${process.env.API_KEY}`;
   const res = await safeFetch(url);
-  if (!res?.ok) return { fetchError: true };
-  try {
-    const json = await res.json();
-    return { docs: (json.docs || []).map(formatItemDoc), count };
-  } catch {
-    // A malformed hydration response is a search failure, not an empty result set.
-    return { fetchError: true };
-  }
+  if (isUpstreamUnavailable(res)) return { unavailable: true, res };
+  if (!res.ok) return { fetchError: true, res };
+  const json = await safeJson(res);
+  if (!json || !Array.isArray(json.docs)) return { unavailable: true, res };
+  return { docs: json.docs.map(formatItemDoc), count };
 }
 
 class Search extends React.Component {
@@ -90,6 +104,7 @@ class Search extends React.Component {
       filterQueryError,
       maxPageError,
       fetchError,
+      retryAfter,
     } = this.props;
 
     let itemCount = 0; // default handles unexpected error
@@ -123,7 +138,7 @@ class Search extends React.Component {
             facets={results?.facets ?? {}}
           />
         )}
-        {fetchError && <SearchError />}
+        {fetchError && <SearchError retryAfter={retryAfter} />}
         {!fetchError && currentPage <= MAX_PAGE_SIZE && (
           <MainContent
             hideSidebar={!this.state.showSidebar}
@@ -311,14 +326,15 @@ export async function getServerSideProps(context) {
       Number(page),
       Number(page_size),
     );
+    if (result.unavailable) {
+      return fetchErrorProps(
+        await markUpstreamUnavailable(context.res, result.res),
+      );
+    }
     if (result.fetchError) {
+      await cancelBodies(result.res);
       context.res.statusCode = 502;
-      return {
-        props: washObject({
-          fetchError: true,
-          results: { docs: [], facets: {} },
-        }),
-      };
+      return fetchErrorProps();
     }
     return {
       props: washObject({
@@ -396,20 +412,20 @@ export async function getServerSideProps(context) {
       filtersParam +
       tagsParam;
 
-    const fetchErrorProps = { props: washObject({ fetchError: true, results: { docs: [], facets: {} } }) };
-
     const res = await safeFetch(url);
-    if (!res?.ok) {
-      context.res.statusCode = res ? res.status : 503;
-      return fetchErrorProps;
+    if (isUpstreamUnavailable(res)) {
+      return fetchErrorProps(await markUpstreamUnavailable(context.res, res));
+    }
+    if (!res.ok) {
+      // A 4xx is not a capacity problem. Keep its status.
+      await cancelBodies(res);
+      context.res.statusCode = res.status;
+      return fetchErrorProps();
     }
 
-    let json;
-    try {
-      json = await res.json();
-    } catch {
-      context.res.statusCode = 503;
-      return fetchErrorProps;
+    const json = await safeJson(res);
+    if (!json || !Array.isArray(json.docs)) {
+      return fetchErrorProps(await markUpstreamUnavailable(context.res, res));
     }
 
     // api response for facets
@@ -428,9 +444,10 @@ export async function getServerSideProps(context) {
     }
 
     // order facets per ui requirements
+    const apiFacets = json.facets ?? {};
     const newFacets = {};
     theseFacets.forEach((facet) => {
-      if (json.facets[facet]) newFacets[facet] = json.facets[facet];
+      if (apiFacets[facet]) newFacets[facet] = apiFacets[facet];
     });
 
     if (tags) {

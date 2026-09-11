@@ -11,7 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.css";
 import contentCss from "stylesheets/content-pages.module.css";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -123,16 +123,13 @@ export async function getServerSideProps(context) {
 
   const menuResponse = await safeFetch(PRO_MENU_ENDPOINT);
   if (isUpstreamUnavailable(menuResponse)) {
-    await Promise.allSettled([menuResponse?.body?.cancel?.()]);
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
+    await markUpstreamUnavailable(context.res, menuResponse);
     return { props: washObject({ items: [], isFilterView }) };
   }
   if (!menuResponse?.ok) return { notFound: true };
   const menuJson = await safeJson(menuResponse);
   if (menuJson === null) {
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
+    await markUpstreamUnavailable(context.res);
     return { props: washObject({ items: [], isFilterView }) };
   }
 

@@ -1,18 +1,20 @@
 import React from "react";
 import MainLayout from "components/MainLayout";
 import Button from "components/shared/Button";
+import AutoRetryNotice from "components/shared/AutoRetryNotice";
 import utils from "stylesheets/utils.module.css";
 import contentCss from "stylesheets/content-pages.module.css";
 
 /**
- * Generic "temporarily unavailable" page rendered when an upstream API call
- * fails at the network level (connection timeout, DNS failure, etc.).
- *
- * The HTTP response is set to 503 + Retry-After in getServerSideProps before
- * returning { props: { temporarilyUnavailable: true } }, so crawlers know to
- * retry rather than treating the page as gone.
+ * Branded 503 page.
+ * Pair with upstreamUnavailable() in getServerSideProps.
+ * Pass "retryAfter" to make the page reload itself.
  */
-export default function ServiceUnavailable() {
+export default function ServiceUnavailable({
+  heading = "This page is temporarily unavailable.",
+  message = "We’re having a brief issue loading this page. Please try again in a moment.",
+  retryAfter,
+}) {
   return (
     <MainLayout>
       <main
@@ -20,11 +22,9 @@ export default function ServiceUnavailable() {
         role="main"
         className={`${utils.container} ${contentCss.content}`}
       >
-        <h1>This page is temporarily unavailable.</h1>
-        <p>
-          We&rsquo;re having a brief issue loading this page. Please try again
-          in a moment.
-        </p>
+        <h1>{heading}</h1>
+        <p>{message}</p>
+        {retryAfter != null && <AutoRetryNotice retryAfter={retryAfter} />}
         <Button type="primary" onClick={() => window.location.reload()}>
           Try again now
         </Button>

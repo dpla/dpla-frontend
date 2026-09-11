@@ -46,7 +46,7 @@ https://dp.la/api/items/777f28be51fcbd39120f1c17bc9b2d2d,5a0e0c52dfb724c957a123e
    GET {API_URL}/items/{id1},{id2},...?api_key={API_KEY}
    ```
 5. Stream the DPLA response body directly to the client (no buffering) — preserving the upstream `Content-Type`
-6. If the upstream call fails → return `404 "Not found."` or `404 {}` on exception
+6. If the upstream returns 404 → `404`. If it returns 5xx or cannot be reached → `503` with a `Retry-After` header. Any other failure → `502`.
 
 The streaming implementation uses Node.js `Readable.fromWeb().pipe(res)` to forward the response efficiently without loading the full payload into memory.
 
@@ -96,7 +96,8 @@ On success, the route passes through the raw DPLA Search API response:
 |-----------|--------|------|
 | Zero valid IDs after filtering | 404 | `{}` |
 | Upstream DPLA API returned 404 | 404 | `{ "error": "Not found." }` |
-| Upstream DPLA API error (non-404) | 502 | `{ "error": "Upstream service error." }` |
+| Upstream DPLA API 5xx or unreachable | 503 + `Retry-After` | `{ "error": "Upstream service unavailable." }` |
+| Other upstream error (non-404 4xx, bad JSON) | 502 | `{ "error": "Upstream service error." }` |
 | Exception during fetch or stream | 502 | `{ "error": "Upstream service error." }` |
 
 Errors are logged to the server console but not surfaced in the response body.

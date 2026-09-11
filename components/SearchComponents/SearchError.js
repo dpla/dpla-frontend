@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Button from "components/shared/Button";
+import AutoRetryNotice from "components/shared/AutoRetryNotice";
 import css from "./SearchError.module.css";
 import utils from "stylesheets/utils.module.css";
 
-function SearchError() {
+// retryAfter is set when the API is unavailable
+function SearchError({ retryAfter }) {
   return (
     <div className={`${utils.container} ${css.searchError}`}>
       <h1>Search is temporarily unavailable.</h1>
@@ -12,6 +14,7 @@ function SearchError() {
         We&rsquo;re having trouble connecting to our search service &mdash; this
         is on our end, not yours.
       </p>
+      {retryAfter != null && <AutoRetryNotice retryAfter={retryAfter} />}
       <Button type="primary" onClick={() => window.location.reload()}>
         Try again
       </Button>
