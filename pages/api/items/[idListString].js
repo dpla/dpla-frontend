@@ -1,6 +1,7 @@
 import { pipeline } from "stream/promises";
 import { Readable } from "stream";
 import {DPLA_ITEM_ID_REGEX} from "constants/items";
+import { cancelBodies, isNetworkError, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 function getErrorMessage(err) {
     if (err instanceof Error) return err.message;
@@ -43,8 +44,13 @@ export default async function handler(req, res) {
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
             if (isSingle) {
-                const data = await fetchRes.json();
-                const doc = data?.docs?.[0];
+                const data = await safeJson(fetchRes);
+                if (!Array.isArray(data?.docs)) {
+                    await markUpstreamUnavailable(res, fetchRes);
+                    res.json({ error: "Upstream service unavailable." });
+                    return;
+                }
+                const doc = data.docs[0];
                 if (!doc) {
                     res.status(404).json({ error: "Not found." });
                     return;
@@ -67,18 +73,28 @@ export default async function handler(req, res) {
                     }
                 }
             }
+        } else if (fetchRes.status === 404) {
+            await cancelBodies(fetchRes);
+            res.status(404).json({ error: "Not found." });
+        } else if (fetchRes.status >= 500) {
+            await markUpstreamUnavailable(res, fetchRes);
+            res.json({ error: "Upstream service unavailable." });
+        } else if (fetchRes.status === 400) {
+            // API rejects more than 500 ids per request
+            await cancelBodies(fetchRes);
+            res.status(400).json({ error: "Bad request." });
         } else {
-            fetchRes.body?.cancel?.().catch(() => {});
-            if (fetchRes.status === 404) {
-                res.status(404).json({ error: "Not found." });
-            } else {
-                res.status(502).json({ error: "Upstream service error." });
-            }
+            await cancelBodies(fetchRes);
+            res.status(502).json({ error: "Upstream service error." });
         }
 
     } catch (err) {
         console.error("Error proxying request to DPLA API.", { message: getErrorMessage(err) });
-        if (!res.headersSent) {
+        if (res.headersSent) return;
+        if (isNetworkError(err)) {
+            await markUpstreamUnavailable(res, null);
+            res.json({ error: "Upstream service unavailable." });
+        } else {
             res.status(502).json({ error: "Upstream service error." });
         }
     }

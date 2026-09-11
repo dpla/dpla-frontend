@@ -17,7 +17,7 @@ import { TITLE } from "constants/contact";
 import contentCss from "stylesheets/content-pages.module.css";
 import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
-import { safeFetch, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 function Contact(props) {
   const { sidebarItems } = props;
@@ -56,17 +56,14 @@ export const getServerSideProps = async (context) => {
   );
 
   if (isUpstreamUnavailable(aboutMenuRes)) {
-    await Promise.allSettled([aboutMenuRes?.body?.cancel?.()]);
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
+    await markUpstreamUnavailable(context.res, aboutMenuRes);
     return { props: washObject({ sidebarItems: [] }) };
   }
   if (!aboutMenuRes?.ok) return { notFound: true };
 
   const aboutMenuJson = await safeJson(aboutMenuRes);
   if (aboutMenuJson === null) {
-    context.res.statusCode = 503;
-    context.res.setHeader("Retry-After", "10");
+    await markUpstreamUnavailable(context.res);
     return { props: washObject({ sidebarItems: [] }) };
   }
 

@@ -22,6 +22,10 @@ class Error extends React.Component {
         "Cache-Control",
         "max-age=0, private, no-cache, no-store, must-revalidate",
       );
+      if (statusCode >= 500) {
+        const path = context.asPath?.split("?")[0] ?? "-";
+        console.error(`[unhandled-error] ${statusCode} ${path}`);
+      }
     } else if (context?.err) {
       statusCode = context.err.statusCode;
     } else {

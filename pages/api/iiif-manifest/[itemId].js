@@ -11,6 +11,7 @@
 
 import { parseIiifManifest } from "lib/parseIiifManifest";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
+import { isNetworkError, markUpstreamUnavailable } from "lib/safeFetch";
 
 const FETCH_TIMEOUT_MS = 10000;
 // Cap how many bytes we buffer from an upstream response. `.json()` reads the whole
@@ -205,12 +206,19 @@ export default async function handler(req, res) {
       res.status(404).json({ error: "Not found." });
       return;
     }
-    const aborted = err?.name === "AbortError";
-    console.error("Error resolving item for IIIF manifest.", {
-      message: getErrorMessage(err),
-      aborted,
-    });
-    res.status(aborted ? 504 : 502).json({ error: "Upstream service error." });
+    if (err instanceof UpstreamHttpError && err.status >= 500) {
+      // Response body already cancelled
+      await markUpstreamUnavailable(res, { status: err.status });
+      res.json({ error: "Upstream service unavailable." });
+      return;
+    }
+    if (isNetworkError(err)) {
+      await markUpstreamUnavailable(res, null);
+      res.json({ error: "Upstream service unavailable." });
+      return;
+    }
+    console.error("Error resolving item for IIIF manifest.", { message: getErrorMessage(err) });
+    res.status(502).json({ error: "Upstream service error." });
     return;
   }
 

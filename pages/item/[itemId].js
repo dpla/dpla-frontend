@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 
 import MainLayout from "components/MainLayout";
+import ServiceUnavailable from "components/shared/ServiceUnavailable";
 import CiteButton from "components/shared/CiteButton";
 import BreadcrumbsModule from "components/ItemComponents/BreadcrumbsModule";
 import HarmfulContent from "components/shared/HarmfulContent";
@@ -21,61 +21,18 @@ import SearchResultsNav from "components/ItemComponents/SearchResultsNav";
 
 import css from "components/ItemComponents/itemComponent.module.css";
 import utils from "stylesheets/utils.module.css";
-import contentCss from "stylesheets/content-pages.module.css";
-import donateCss from "stylesheets/donate.module.css";
-import Button from "components/shared/Button";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
 
-export default function ItemDetail({ item, temporarilyUnavailable, randomItemId, isQA, pageDescription, canonicalUrl }) {
-  const { query } = useRouter();
-  useEffect(() => {
-    const storageKey = `503-reload-attempts:${window.location.pathname}`;
-    if (!temporarilyUnavailable) {
-      // Clear the counter so future outages on the same path auto-refresh again.
-      try { sessionStorage.removeItem(storageKey); } catch {}
-      return;
-    }
-    // sessionStorage can throw in private-browsing or restricted environments;
-    // skip auto-reload rather than retrying without a cap.
-    let timer;
-    try {
-      const attempts = parseInt(sessionStorage.getItem(storageKey) || "0", 10);
-      if (attempts >= 3) return;
-      timer = setTimeout(() => {
-        sessionStorage.setItem(storageKey, String(attempts + 1));
-        window.location.reload();
-      }, 10000);
-    } catch {
-      // sessionStorage unavailable — auto-reload skipped to avoid an uncapped loop.
-    }
-    return () => clearTimeout(timer);
-  }, [temporarilyUnavailable, query.itemId]);
-
+export default function ItemDetail({ item, temporarilyUnavailable, retryAfter, randomItemId, isQA, pageDescription, canonicalUrl }) {
   if (temporarilyUnavailable) {
     return (
-      <MainLayout>
-        <div className={`${utils.container} ${contentCss.sidebarAndContentWrapper}`}>
-          <div className="row">
-            <div className={`${utils.colMd2} ${utils.colXs12}`} />
-            <main
-              id="main"
-              role="main"
-              className={`${contentCss.content} ${donateCss.thankYou} ${utils.colMd8} ${utils.colXs12}`}
-            >
-              <h1>This item is temporarily unavailable.</h1>
-              <p>
-                We&rsquo;re having a brief issue loading this item. This page may
-                refresh automatically a few times.
-              </p>
-              <Button type="primary" onClick={() => window.location.reload()}>
-                Try again now
-              </Button>
-            </main>
-          </div>
-        </div>
-      </MainLayout>
+      <ServiceUnavailable
+        heading="This item is temporarily unavailable."
+        message="We’re having a brief issue loading this item. Please try again in a moment."
+        retryAfter={retryAfter}
+      />
     );
   }
 
@@ -160,21 +117,12 @@ export async function getServerSideProps(context) {
   itemUrl.searchParams.set("api_key", process.env.API_KEY);
 
   const res = await safeFetch(itemUrl);
-  if (isUpstreamUnavailable(res)) {
-    console.warn(`[SSR] Item ${itemId}: ${!res ? "network error" : "503 after retry"}`);
-    return upstreamUnavailable(context.res, res);
-  }
+  if (isUpstreamUnavailable(res)) return upstreamUnavailable(context.res, res);
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
-  let data;
-  try {
-    data = await res.json();
-  } catch {
-    return notFound;
-  }
-  if (!("docs" in data) || data.docs.length < 1) {
-    return notFound;
-  }
+  const data = await safeJson(res);
+  if (!Array.isArray(data?.docs)) return upstreamUnavailable(context.res, res);
+  if (data.docs.length < 1) return notFound;
 
   const doc = data.docs[0];
   const thumbnailUrl = getItemThumbnail(doc);

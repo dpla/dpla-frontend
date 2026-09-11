@@ -1,5 +1,6 @@
 import xmlFormat from "xml-formatter";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
+import { cancelBodies, isNetworkError, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -24,17 +25,26 @@ export default async function handler(req, res) {
     const fetchRes = await fetch(url, { signal: controller.signal });
 
     if (!fetchRes.ok) {
-      fetchRes.body?.cancel?.().catch(() => {});
       if (fetchRes.status === 404) {
+        await cancelBodies(fetchRes);
         res.status(404).send("Not found.");
+      } else if (fetchRes.status >= 500) {
+        await markUpstreamUnavailable(res, fetchRes);
+        res.send("Upstream unavailable.");
       } else {
+        await cancelBodies(fetchRes);
         res.status(fetchRes.status).send("Upstream error.");
       }
       return;
     }
 
-    const data = await fetchRes.json();
-    const stringValue = data?.docs?.[0]?.originalRecord?.stringValue;
+    const data = await safeJson(fetchRes);
+    if (!Array.isArray(data?.docs)) {
+      await markUpstreamUnavailable(res, fetchRes);
+      res.send("Upstream unavailable.");
+      return;
+    }
+    const stringValue = data.docs[0]?.originalRecord?.stringValue;
 
     if (!stringValue) {
       res.status(404).send("Not found.");
@@ -64,8 +74,9 @@ export default async function handler(req, res) {
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.status(200).send(formatted);
   } catch (err) {
-    if (err?.name === "AbortError") {
-      res.status(504).send("Upstream timeout.");
+    if (isNetworkError(err)) {
+      await markUpstreamUnavailable(res, null);
+      res.send("Upstream unavailable.");
       return;
     }
     console.error("Error fetching raw item record.", { id, name: err?.name, message: err?.message });
