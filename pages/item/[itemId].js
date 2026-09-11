@@ -120,12 +120,9 @@ export async function getServerSideProps(context) {
   if (isUpstreamUnavailable(res)) return upstreamUnavailable(context.res, res);
   const errorResult = checkResponseForSSRSafe(res, "Item");
   if (errorResult) return errorResult;
-  // A non-JSON body is a degraded upstream, not a missing item. Don't 404.
   const data = await safeJson(res);
-  if (data === null) return upstreamUnavailable(context.res, res);
-  if (!Array.isArray(data.docs) || data.docs.length < 1) {
-    return notFound;
-  }
+  if (!Array.isArray(data?.docs)) return upstreamUnavailable(context.res, res);
+  if (data.docs.length < 1) return notFound;
 
   const doc = data.docs[0];
   const thumbnailUrl = getItemThumbnail(doc);
