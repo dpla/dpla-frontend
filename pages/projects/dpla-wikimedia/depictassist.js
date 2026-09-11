@@ -11,7 +11,7 @@ import { PRO_MENU_ENDPOINT } from "constants/content-pages";
 import utils from "stylesheets/utils.module.css";
 import contentCss from "stylesheets/content-pages.module.css";
 import { washObject } from "lib/washObject";
-import { markUpstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, isUpstreamUnavailable, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 const BREADCRUMBS = [
   { title: "Projects", url: "/projects" },
@@ -176,25 +176,23 @@ export default function DepictAssistPage({ items }) {
 }
 
 export async function getServerSideProps(context) {
-  try {
-    const menuResponse = await fetch(PRO_MENU_ENDPOINT, {
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!menuResponse.ok) {
-      if (menuResponse.status === 404) {
-        return { notFound: true };
-      }
-      throw new Error(`PRO menu fetch failed with ${menuResponse.status}`);
-    }
-    const menuJson = await menuResponse.json();
-
-    return {
-      props: washObject({
-        items: menuJson.items,
-      }),
-    };
-  } catch {
-    await markUpstreamUnavailable(context.res);
+  const menuResponse = await safeFetch(PRO_MENU_ENDPOINT, {
+    signal: AbortSignal.timeout(5000),
+  });
+  if (isUpstreamUnavailable(menuResponse)) {
+    await markUpstreamUnavailable(context.res, menuResponse);
     return { props: { items: [] } };
   }
+  if (!menuResponse.ok) return { notFound: true };
+  const menuJson = await safeJson(menuResponse);
+  if (menuJson === null) {
+    await markUpstreamUnavailable(context.res, menuResponse);
+    return { props: { items: [] } };
+  }
+
+  return {
+    props: washObject({
+      items: menuJson.items,
+    }),
+  };
 }
