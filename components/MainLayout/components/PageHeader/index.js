@@ -19,6 +19,15 @@ function PageHeader({ hideSearchBar }) {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
   const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
 
+  // Send navigation through /_next/data instead of full /search load
+  function handleSubmit(e) {
+    e.preventDefault();
+    const q = e.currentTarget.elements.q.value;
+    const { page, ...facets } =
+      router.pathname === "/search" ? router.query : {};
+    router.push({ pathname: "/search", query: { ...facets, q } });
+  }
+
   return (
     <div
       className={`${css.headerSearchBar} ${siteEnv === "pro" ? css.pro : ""}`}
@@ -50,7 +59,11 @@ function PageHeader({ hideSearchBar }) {
           </Link>
         )}
         {!hideSearchBar && siteEnv !== "pro" && (
-          <form action="/search" className={css.searchBar}>
+          <form
+            action="/search"
+            className={css.searchBar}
+            onSubmit={handleSubmit}
+          >
             <input
               key={searchQuery}
               className={css.searchInput}
