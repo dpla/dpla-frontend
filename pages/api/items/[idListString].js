@@ -74,6 +74,10 @@ export default async function handler(req, res) {
         } else if (fetchRes.status >= 500) {
             await markUpstreamUnavailable(res, fetchRes);
             res.json({ error: "Upstream service unavailable." });
+        } else if (fetchRes.status === 400) {
+            // API rejects more than 500 ids per request
+            await cancelBodies(fetchRes);
+            res.status(400).json({ error: "Bad request." });
         } else {
             await cancelBodies(fetchRes);
             res.status(502).json({ error: "Upstream service error." });
