@@ -1,6 +1,6 @@
 import xmlFormat from "xml-formatter";
 import { DPLA_ITEM_ID_REGEX } from "constants/items";
-import { cancelBodies, isNetworkError, markUpstreamUnavailable } from "lib/safeFetch";
+import { cancelBodies, isNetworkError, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -38,8 +38,13 @@ export default async function handler(req, res) {
       return;
     }
 
-    const data = await fetchRes.json();
-    const stringValue = data?.docs?.[0]?.originalRecord?.stringValue;
+    const data = await safeJson(fetchRes);
+    if (data === null) {
+      await markUpstreamUnavailable(res, fetchRes);
+      res.send("Upstream unavailable.");
+      return;
+    }
+    const stringValue = data.docs?.[0]?.originalRecord?.stringValue;
 
     if (!stringValue) {
       res.status(404).send("Not found.");
