@@ -30,7 +30,7 @@ https://api.dp.la/v2/items/{itemId}?api_key={DPLA_API_KEY}
 
 No data is cached — every page load hits the live API. If the API returns no docs or the item is not found, the page renders a 404.
 
-If the API is unreachable, answers 5xx, or returns a non-JSON body, the page responds 503 with a `Retry-After` header and renders the shared `ServiceUnavailable` component, which reloads itself with backoff. See `lib/retryPolicy.js` for timing.
+If the API is unreachable, answers 5xx, or returns a body that is not its JSON shape, the page responds 503 with a `Retry-After` header and renders the shared `ServiceUnavailable` component, which reloads itself with backoff. See `lib/retryPolicy.js` for timing.
 
 ---
 
