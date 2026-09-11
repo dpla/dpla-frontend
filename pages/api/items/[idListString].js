@@ -1,7 +1,7 @@
 import { pipeline } from "stream/promises";
 import { Readable } from "stream";
 import {DPLA_ITEM_ID_REGEX} from "constants/items";
-import { cancelBodies, isNetworkError, markUpstreamUnavailable } from "lib/safeFetch";
+import { cancelBodies, isNetworkError, markUpstreamUnavailable, safeJson } from "lib/safeFetch";
 
 function getErrorMessage(err) {
     if (err instanceof Error) return err.message;
@@ -44,8 +44,13 @@ export default async function handler(req, res) {
         const fetchRes = await fetch(baseUrl);
         if (fetchRes.ok) {
             if (isSingle) {
-                const data = await fetchRes.json();
-                const doc = data?.docs?.[0];
+                const data = await safeJson(fetchRes);
+                if (!Array.isArray(data?.docs)) {
+                    await markUpstreamUnavailable(res, fetchRes);
+                    res.json({ error: "Upstream service unavailable." });
+                    return;
+                }
+                const doc = data.docs[0];
                 if (!doc) {
                     res.status(404).json({ error: "Not found." });
                     return;

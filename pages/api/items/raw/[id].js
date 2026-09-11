@@ -39,12 +39,12 @@ export default async function handler(req, res) {
     }
 
     const data = await safeJson(fetchRes);
-    if (data === null) {
+    if (!Array.isArray(data?.docs)) {
       await markUpstreamUnavailable(res, fetchRes);
       res.send("Upstream unavailable.");
       return;
     }
-    const stringValue = data.docs?.[0]?.originalRecord?.stringValue;
+    const stringValue = data.docs[0]?.originalRecord?.stringValue;
 
     if (!stringValue) {
       res.status(404).send("Not found.");
