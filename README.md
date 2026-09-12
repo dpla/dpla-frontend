@@ -223,6 +223,8 @@ Item thumbnails are served through CloudFront CDN. The thumbnail URL for any ite
 
 Editorial content — news and blog posts, Primary Source Sets copy, about pages, and home page features — is managed in a hosted WordPress instance at `https://dpla.wpengine.com`.
 
+Menus come from the `dpla/v2/menus/<menu-slug>` route in the DPLA mu-plugin on that host, not from a menu plugin. The user site reads the `user-site` menu and the pro site reads `pro-site`.
+
 Custom fields arrive through ACF's built-in REST support, so every field group the site reads must have "Show in REST API" turned on. Requests that read the `acf` key pass `acf_format=standard` (see `wpAcfUrl` in `lib/safeFetch.js`) so image fields come back as URLs or objects instead of attachment IDs. The home, pro home, and guides page IDs live in `constants/content-pages.js`.
 
 WordPress responses are cached in-memory with a **90-second TTL**. If WordPress is unreachable (e.g. during WP Engine's hourly maintenance windows), the server falls back to the last cached response and logs a warning. External links in WordPress content are tagged with a `.external` CSS class.
