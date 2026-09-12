@@ -10,6 +10,8 @@ import BreadcrumbsModule from "shared/BreadcrumbsModule";
 import {
   getBreadcrumbs,
   getItemWithId,
+  flattenMenuItems,
+  getMenuItemSlug,
   getMenuItemUrl,
   decodeHTMLEntities,
   wordpressLinks,
@@ -127,8 +129,8 @@ export async function getServerSideProps(context) {
   if (menuError) return menuError;
   const menuJson = await safeJson(menuResponse);
   if (menuJson === null) return upstreamUnavailable(context.res, menuResponse);
-  const menuItems = menuJson.items;
-  const pageItem = menuItems.find((item) => item.post_name === pageName);
+  const menuItems = flattenMenuItems(menuJson.items);
+  const pageItem = menuItems.find((item) => getMenuItemSlug(item) === pageName);
   if (!pageItem) {
     return { notFound: true };
   }
@@ -161,13 +163,13 @@ export async function getServerSideProps(context) {
           items: menuItems,
           id: crumb.menu_item_parent,
         });
-        if (parent?.post_name) slug = slug + parent.post_name + "/";
+        if (getMenuItemSlug(parent)) slug = slug + getMenuItemSlug(parent) + "/";
       }
       // hubs homepage has different template
 
       breadcrumbs.push({
         title: crumb.title,
-        url: slug + crumb.post_name,
+        url: slug + getMenuItemSlug(crumb),
       });
     });
     breadcrumbs.push({ title: pageItem.title });

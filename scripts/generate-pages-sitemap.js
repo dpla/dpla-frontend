@@ -212,14 +212,18 @@ async function proMenuUrls() {
   }
 
   const menu = await res.json();
-  const items = menu.items || [];
+  // WP menus plugin nests children under child_items
+  const flatten = (list = []) =>
+    list.flatMap(({ child_items: children, ...item }) => [item, ...flatten(children)]);
+  const slugOf = (item) => item.slug || item.post_name;
+  const items = flatten(menu.items);
 
   // Build ID → item lookup for ancestor traversal, and collect all slugs in one pass
   const byId = {};
   const allMenuSlugs = new Set();
   for (const item of items) {
     byId[String(item.ID)] = item;
-    if (item.post_name) allMenuSlugs.add(item.post_name);
+    if (slugOf(item)) allMenuSlugs.add(slugOf(item));
   }
 
   // Walk up to find the top-level (root) ancestor's slug
@@ -230,7 +234,7 @@ async function proMenuUrls() {
       if (!parent) break;
       cur = parent;
     }
-    return cur.post_name;
+    return slugOf(cur);
   }
 
   // Slugs with rewrites on pro: all SECTIONS + hubs (its own route)
@@ -239,7 +243,7 @@ async function proMenuUrls() {
   const added = new Set([PRO_BASE]);
 
   for (const item of items) {
-    const slug = item.post_name;
+    const slug = slugOf(item);
     if (!slug) continue;
 
     const topSlug = topLevelSlug(item);

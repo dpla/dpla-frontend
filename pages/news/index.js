@@ -8,7 +8,7 @@ import Pagination from "shared/Pagination";
 import TagList from "components/NewsComponents/TagList";
 import Button from "shared/Button";
 
-import { formatDate } from "lib";
+import { flattenMenuItems, formatDate, getMenuItemSlug } from "lib";
 import { safeFetch, checkResponseForSSRSafe, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
@@ -153,8 +153,8 @@ export async function getServerSideProps({ query, res }) {
   if (menuError) return menuError;
   const menuJson = await safeJson(menuResponse);
   if (menuJson === null) return upstreamUnavailable(res, authorRes);
-  const pageItem = menuJson.items.find(
-    (item) => item.post_name.indexOf("news") === 0,
+  const pageItem = flattenMenuItems(menuJson.items).find(
+    (item) => getMenuItemSlug(item)?.indexOf("news") === 0,
   );
   if (!pageItem) return { notFound: true };
 

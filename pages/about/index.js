@@ -17,7 +17,10 @@ import {
   getBreadcrumbs,
   getItemWithId,
   wordpressLinks,
+  flattenMenuItems,
+  getMenuItemSlug,
   getMenuItemUrl,
+  isMenuChildOf,
   decodeHTMLEntities,
 } from "lib";
 
@@ -102,12 +105,13 @@ export const getServerSideProps = async (context) => {
   if (!response?.ok) return { notFound: true };
   const json = await safeJson(response);
   if (json === null) return upstreamUnavailable(context.res, response);
-  const pageItem = json.items.find((item) => item.post_name === pageName);
+  json.items = flattenMenuItems(json.items);
+  const pageItem = json.items.find((item) => getMenuItemSlug(item) === pageName);
   const guidesPageItem = json.items.find((item) => item.url === GUIDES_ENDPOINT);
   if (
     !pageItem ||
     pageItem === guidesPageItem ||
-    pageItem?.menu_item_parent === guidesPageItem.object_id
+    isMenuChildOf(pageItem, guidesPageItem)
   ) {
     return { notFound: true };
   }
@@ -129,11 +133,11 @@ export const getServerSideProps = async (context) => {
           items: json.items,
           id: crumb.menu_item_parent,
         });
-        slug = slug + parent.post_name + "/";
+        slug = slug + getMenuItemSlug(parent) + "/";
       }
       breadcrumbs.push({
         title: crumb.title,
-        url: slug + crumb.post_name,
+        url: slug + getMenuItemSlug(crumb),
       });
     });
     breadcrumbs.push({ title: pageItem.title });
