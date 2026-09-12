@@ -6,7 +6,7 @@ import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { exhibitHomePage, loadExhibition } from "lib/exhibitionsStatic";
 
-import { addCommasToNumber, flattenMenuItems, getMenuItemSlug, getMenuItemUrl } from "lib";
+import { addCommasToNumber, flattenMenuItems, getMenuItemSlug, getMenuItemUrl, isMenuChildOf } from "lib";
 
 import {
   HEADER_DESCRIPTION_TOKEN,
@@ -188,7 +188,7 @@ export async function getServerSideProps(context) {
             await Promise.all(
               aboutMenuJson.items
                 .filter(
-                  (item) => item.menu_item_parent === indexPageItem.object_id,
+                  (item) => isMenuChildOf(item, indexPageItem),
                 )
                 .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
                 .map(async (guide) => {

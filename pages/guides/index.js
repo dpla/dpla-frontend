@@ -5,7 +5,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import GuideLink from "shared/GuideLink";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
-import { flattenMenuItems, getMenuItemSlug, getMenuItemUrl } from "lib";
+import { flattenMenuItems, getMenuItemSlug, getMenuItemUrl, isMenuChildOf } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import { TITLE } from "constants/guides";
@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
   const guides = (
     await Promise.all(
       aboutMenuJson.items
-        .filter((item) => item.menu_item_parent === indexPageItem.object_id)
+        .filter((item) => isMenuChildOf(item, indexPageItem))
         .map(async (guide) => {
           const menuUrl = wpAcfUrl(getMenuItemUrl(guide));
           const guideUrl = draftMode ? wpDraftUrl(menuUrl) : menuUrl;

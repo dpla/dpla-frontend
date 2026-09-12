@@ -20,6 +20,7 @@ import {
   flattenMenuItems,
   getMenuItemSlug,
   getMenuItemUrl,
+  isMenuChildOf,
   decodeHTMLEntities,
 } from "lib";
 
@@ -110,7 +111,7 @@ export const getServerSideProps = async (context) => {
   if (
     !pageItem ||
     pageItem === guidesPageItem ||
-    pageItem?.menu_item_parent === guidesPageItem.object_id
+    isMenuChildOf(pageItem, guidesPageItem)
   ) {
     return { notFound: true };
   }
