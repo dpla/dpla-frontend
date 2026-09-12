@@ -11,7 +11,7 @@ import {
   getDataProviderName,
   getItemThumbnail,
 } from "lib";
-import { safeFetch, safeJson, checkResponseForSSRSafe, isUpstreamUnavailable, upstreamUnavailable } from "lib/safeFetch";
+import { safeFetch, safeJson, checkResponseForSSRSafe, isUpstreamUnavailable, upstreamUnavailable, wpAcfUrl } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
@@ -144,7 +144,7 @@ export const getServerSideProps = async (context) => {
   const nextSubtopicIdx = currentSubtopicIdx + 1 < subtopics.length ? currentSubtopicIdx + 1 : null;
 
   const itemsRes = await safeFetch(
-    `${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`,
+    wpAcfUrl(`${API_ENDPOINT_ALL_ITEMS_100_PER_PAGE}&categories=${currentSubtopic.term_id}`),
   );
 
   if (isUpstreamUnavailable(itemsRes)) {

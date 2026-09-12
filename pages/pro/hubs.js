@@ -7,7 +7,7 @@ import FullPageWidthBlock from "shared/FullPageWidthBlock";
 import WebsiteFeature from "shared/WebsiteFeature";
 
 import { wordpressLinks } from "lib/index";
-import { safeFetch, wpAuthFetchOptions, isUpstreamUnavailable, upstreamUnavailable, safeJson } from "lib/safeFetch";
+import { safeFetch, wpAuthFetchOptions, wpAcfUrl, isUpstreamUnavailable, upstreamUnavailable, safeJson } from "lib/safeFetch";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import {
@@ -116,7 +116,7 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
   const hubParams = draftMode ? "?slug=hubs&status=any&context=edit" : "?slug=hubs";
-  const hubRes = await safeFetch(PAGES_ENDPOINT + hubParams, authOptions);
+  const hubRes = await safeFetch(wpAcfUrl(PAGES_ENDPOINT + hubParams), authOptions);
   if (isUpstreamUnavailable(hubRes)) return upstreamUnavailable(context.res, hubRes);
   if (!hubRes?.ok) {
     return { notFound: true };
@@ -129,7 +129,7 @@ export async function getServerSideProps(context) {
   }
 
   // fetch news posts
-  const newsRes = await safeFetch(NEWS_PRO_ENDPOINT);
+  const newsRes = await safeFetch(wpAcfUrl(NEWS_PRO_ENDPOINT));
 
   const newsItems = newsRes?.ok ? (await safeJson(newsRes) ?? []) : [];
 

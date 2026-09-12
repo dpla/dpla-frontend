@@ -7,10 +7,9 @@ import ContentPagesSidebar from "components/shared/ContentPagesSidebar";
 import FeatureHeader from "shared/FeatureHeader";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
-import { API_SETTINGS_ENDPOINT } from "constants/site";
 import {
   ABOUT_MENU_ENDPOINT,
-  PAGES_ENDPOINT,
+  GUIDES_ENDPOINT,
   SEO_TYPE,
 } from "constants/content-pages";
 
@@ -97,15 +96,6 @@ class AboutMenuPage extends React.Component {
 export const getServerSideProps = async (context) => {
   const { query, draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
-  // fetch settings info
-  // 1. fetch the settings from WP
-  const settingsRes = await safeFetch(API_SETTINGS_ENDPOINT);
-  if (isUpstreamUnavailable(settingsRes)) return upstreamUnavailable(context.res, settingsRes);
-  if (!settingsRes?.ok) return { notFound: true };
-  const settingsJson = await safeJson(settingsRes);
-  if (settingsJson === null) return upstreamUnavailable(context.res, settingsRes);
-  // 2. get the corresponding value
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   const pageName = query.subsection || query.section || "about-us";
   const response = await safeFetch(ABOUT_MENU_ENDPOINT);
   if (isUpstreamUnavailable(response)) return upstreamUnavailable(context.res, response);
@@ -113,7 +103,7 @@ export const getServerSideProps = async (context) => {
   const json = await safeJson(response);
   if (json === null) return upstreamUnavailable(context.res, response);
   const pageItem = json.items.find((item) => item.post_name === pageName);
-  const guidesPageItem = json.items.find((item) => item.url === endpoint);
+  const guidesPageItem = json.items.find((item) => item.url === GUIDES_ENDPOINT);
   if (
     !pageItem ||
     pageItem === guidesPageItem ||

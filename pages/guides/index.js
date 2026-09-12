@@ -7,8 +7,7 @@ import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { getMenuItemUrl } from "lib";
 
-import { ABOUT_MENU_ENDPOINT, PAGES_ENDPOINT } from "constants/content-pages";
-import { API_SETTINGS_ENDPOINT } from "constants/site";
+import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import { TITLE } from "constants/guides";
 
 import contentCss from "stylesheets/content-pages.module.css";
@@ -18,6 +17,7 @@ import { washObject } from "lib/washObject";
 import {
   safeFetch,
   wpAuthFetchOptions,
+  wpAcfUrl,
   wpDraftUrl,
   isUpstreamUnavailable,
   upstreamUnavailable,
@@ -70,25 +70,19 @@ export async function getServerSideProps(context) {
   const { draftMode } = context;
   const authOptions = wpAuthFetchOptions(draftMode);
 
-  const [settingsRes, aboutMenuRes] = await Promise.all([
-    cachedSafeFetch(API_SETTINGS_ENDPOINT),
-    cachedSafeFetch(ABOUT_MENU_ENDPOINT),
-  ]);
+  const aboutMenuRes = await cachedSafeFetch(ABOUT_MENU_ENDPOINT);
 
-  if (isUpstreamUnavailable(settingsRes) || isUpstreamUnavailable(aboutMenuRes)) {
-    return upstreamUnavailable(context.res, settingsRes, aboutMenuRes);
+  if (isUpstreamUnavailable(aboutMenuRes)) {
+    return upstreamUnavailable(context.res, aboutMenuRes);
   }
-  if (!settingsRes.ok || !aboutMenuRes.ok) {
+  if (!aboutMenuRes.ok) {
     return { notFound: true };
   }
 
-  const settingsJson = await safeJson(settingsRes);
-  if (settingsJson === null) return upstreamUnavailable(context.res, aboutMenuRes);
-  const endpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
   const aboutMenuJson = await safeJson(aboutMenuRes);
   if (aboutMenuJson === null) return upstreamUnavailable(context.res, aboutMenuRes);
   const indexPageItem = aboutMenuJson.items.find(
-    (item) => item.url === endpoint,
+    (item) => item.url === GUIDES_ENDPOINT,
   );
 
   if (!indexPageItem) {
@@ -100,9 +94,8 @@ export async function getServerSideProps(context) {
       aboutMenuJson.items
         .filter((item) => item.menu_item_parent === indexPageItem.object_id)
         .map(async (guide) => {
-          const guideUrl = draftMode
-            ? wpDraftUrl(getMenuItemUrl(guide))
-            : getMenuItemUrl(guide);
+          const menuUrl = wpAcfUrl(getMenuItemUrl(guide));
+          const guideUrl = draftMode ? wpDraftUrl(menuUrl) : menuUrl;
           const guideRes = await safeFetch(guideUrl, authOptions);
           if (!guideRes?.ok) return null;
           const guideJson = await safeJson(guideRes);

@@ -1,6 +1,3 @@
-const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
-export const API_SETTINGS_ENDPOINT = `${wordpressUrl}/wp-json/acf/v3/options/dpla-api-settings`;
-
 export const PAYPAL_DONATE_SINGLE =
   "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40dp%2ela&item_name=One%20time%20donation%20to%20DPLA&amount={amount}&currency_code=USD&no_note=1&return={returnUrl}";
 export const PAYPAL_DONATE_MONTHLY =

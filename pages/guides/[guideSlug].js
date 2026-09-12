@@ -15,7 +15,7 @@ import contentCss from "stylesheets/content-pages.module.css";
 import css from "stylesheets/guides.module.css";
 import utils from "stylesheets/utils.module.css";
 import { washObject } from "lib/washObject";
-import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
+import { safeFetch, checkResponseForSSRSafe, wpAuthFetchOptions, wpAcfUrl, wpDraftUrl, upstreamUnavailable, isUpstreamUnavailable, safeJson } from "lib/safeFetch";
 import { cachedSafeFetch } from "lib/wpCache";
 import { upgradeWordPressUrls } from "lib/upgradeWordPressUrls";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
@@ -99,7 +99,8 @@ export async function getServerSideProps(context) {
   let guideJson;
 
   if (guide) {
-    const guideUrl = draftMode ? wpDraftUrl(getMenuItemUrl(guide)) : getMenuItemUrl(guide);
+    const menuUrl = wpAcfUrl(getMenuItemUrl(guide));
+    const guideUrl = draftMode ? wpDraftUrl(menuUrl) : menuUrl;
     const guideRes = await safeFetch(guideUrl, authOptions);
     if (isUpstreamUnavailable(guideRes)) return upstreamUnavailable(context.res, guideRes);
     const guideError = checkResponseForSSRSafe(guideRes, "Guide page");
@@ -107,7 +108,7 @@ export async function getServerSideProps(context) {
     guideJson = await safeJson(guideRes);
     if (guideJson === null) return upstreamUnavailable(context.res, guideRes);
   } else {
-    const slugUrl = `${PAGES_ENDPOINT}?slug=${encodeURIComponent(guideSlug)}`;
+    const slugUrl = wpAcfUrl(`${PAGES_ENDPOINT}?slug=${encodeURIComponent(guideSlug)}`);
     const slugRes = await safeFetch(
       draftMode ? wpDraftUrl(slugUrl) : slugUrl,
       authOptions,
