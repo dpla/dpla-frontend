@@ -15,15 +15,17 @@ import {
 
 import {
   ABOUT_MENU_ENDPOINT,
+  GUIDES_ENDPOINT,
+  HOMEPAGE_ID,
   NEWS_USER_ENDPOINT,
   PAGES_ENDPOINT,
 } from "constants/content-pages";
 
-import { API_SETTINGS_ENDPOINT } from "constants/site";
 import { washObject } from "lib/washObject";
 import {
   safeFetch,
   wpAuthFetchOptions,
+  wpAcfUrl,
   wpDraftUrl,
   isUpstreamUnavailable,
   upstreamUnavailable,
@@ -96,19 +98,8 @@ export async function getServerSideProps(context) {
 
   try {
     // fetch home info
-    // 1. fetch the settings from WP
-    const settingsRes = await safeFetch(API_SETTINGS_ENDPOINT);
-    if (isUpstreamUnavailable(settingsRes))
-      return upstreamUnavailable(context.res, settingsRes);
-    if (!settingsRes?.ok) return { notFound: true };
-    const settingsJson = await safeJson(settingsRes);
-    if (settingsJson === null)
-      return upstreamUnavailable(context.res, settingsRes);
-    // 2. get the corresponding value
-    const baseEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.homepage_endpoint}`;
+    const baseEndpoint = wpAcfUrl(`${PAGES_ENDPOINT}/${HOMEPAGE_ID}`);
     const endpoint = draftMode ? wpDraftUrl(baseEndpoint) : baseEndpoint;
-    const guidesEndpoint = `${PAGES_ENDPOINT}/${settingsJson.acf.guides_endpoint}`;
-    // 3. fetch it (safeFetch is used here for consistent error handling)
     const homeRes = await safeFetch(endpoint, authOptions);
     if (isUpstreamUnavailable(homeRes))
       return upstreamUnavailable(context.res, homeRes);
@@ -189,7 +180,7 @@ export async function getServerSideProps(context) {
       const aboutMenuJson = await safeJson(aboutMenuRes);
       if (aboutMenuJson !== null) {
         const indexPageItem = aboutMenuJson.items.find(
-          (item) => item.url === guidesEndpoint,
+          (item) => item.url === GUIDES_ENDPOINT,
         );
         if (indexPageItem) {
           guides = (
@@ -200,7 +191,9 @@ export async function getServerSideProps(context) {
                 )
                 .slice(0, NUMBER_OF_USER_GUIDES_TO_SHOW)
                 .map(async (guide) => {
-                  const guideRes = await safeFetch(getMenuItemUrl(guide));
+                  const guideRes = await safeFetch(
+                    wpAcfUrl(getMenuItemUrl(guide)),
+                  );
                   if (!guideRes?.ok) {
                     console.log(
                       "Unable to load guide.",
@@ -229,7 +222,7 @@ export async function getServerSideProps(context) {
 
     // fetch news posts
     let newsItems = [];
-    const newsRes = await safeFetch(NEWS_USER_ENDPOINT);
+    const newsRes = await safeFetch(wpAcfUrl(NEWS_USER_ENDPOINT));
     if (!newsRes?.ok) {
       console.log("Unable to load news posts.", newsRes?.status);
     } else {
