@@ -7,7 +7,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import HeadingRule from "shared/HeadingRule";
 import BreadcrumbsModule from "shared/BreadcrumbsModule";
 
-import { getMenuItemUrl, wordpressLinks } from "lib/index";
+import { flattenMenuItems, getMenuItemSlug, getMenuItemUrl, wordpressLinks } from "lib/index";
 
 import { ABOUT_MENU_ENDPOINT, PAGES_ENDPOINT, SEO_TYPE } from "constants/content-pages";
 
@@ -93,9 +93,10 @@ export async function getServerSideProps(context) {
   if (menuError) return menuError;
   const menuItemsJson = await safeJson(menuItemsRes);
   if (menuItemsJson === null) return upstreamUnavailable(context.res, menuItemsRes);
+  menuItemsJson.items = flattenMenuItems(menuItemsJson.items);
 
   // Falls back to a WP slug query when post_name diverges from the page slug (e.g. WP page was renamed).
-  let guide = menuItemsJson.items.find((item) => item.post_name === guideSlug);
+  let guide = menuItemsJson.items.find((item) => getMenuItemSlug(item) === guideSlug);
   let guideJson;
 
   if (guide) {

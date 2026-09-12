@@ -8,6 +8,7 @@ import {
   getBreadcrumbs,
   getItemWithId,
   getItemWithName,
+  getMenuItemSlug,
   endsWith,
 } from "lib";
 
@@ -62,29 +63,29 @@ function NestedSidebarLinks({ item, items, activeItemId, breadcrumbs }) {
     };
   } else if (isGuide) {
     linkObject = {
-      href: "/guides/" + item.post_name,
+      href: "/guides/" + getMenuItemSlug(item),
     };
-  } else if (item.post_name === "hubs") {
+  } else if (getMenuItemSlug(item) === "hubs") {
     linkObject = {
       href: "/hubs",
     };
-  } else if (item.post_name === "ebooks") {
+  } else if (getMenuItemSlug(item) === "ebooks") {
     linkObject = {
       href: "/ebooks",
     };
   } else if (siteEnv === "user") {
     linkObject = {
-      href: "/about/" + item.post_name,
+      href: "/about/" + getMenuItemSlug(item),
     };
   } else if (siteEnv === "pro") {
     let slug = "/";
     // if this is a child item the url is /:topsection/:thisitem
     if (item.menu_item_parent !== "0") {
-      slug = slug + parent.post_name + "/";
+      slug = slug + getMenuItemSlug(parent) + "/";
     }
 
     linkObject = {
-      href: slug + item.post_name,
+      href: slug + getMenuItemSlug(item),
     };
   }
 
@@ -146,7 +147,7 @@ function Sidebar({ className, activeItemId, items }) {
   if (menuItem) {
     // find the menu tree
     let breadcrumb = {};
-    breadcrumb[menuItem.object_id] = menuItem.post_name;
+    breadcrumb[menuItem.object_id] = getMenuItemSlug(menuItem);
     breadcrumbs = getBreadcrumbs({
       items: items,
       leafId: menuItem.object_id,
@@ -191,7 +192,7 @@ function Sidebar({ className, activeItemId, items }) {
             .filter(
               (item) =>
                 item.menu_item_parent === "0" &&
-                excludeNames.indexOf(item.post_name) === -1,
+                excludeNames.indexOf(getMenuItemSlug(item)) === -1,
             )
             .map((item) => {
               return (

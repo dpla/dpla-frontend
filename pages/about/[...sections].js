@@ -16,6 +16,8 @@ import {
 import {
   getBreadcrumbs,
   wordpressLinks,
+  flattenMenuItems,
+  getMenuItemSlug,
   getMenuItemUrl,
   decodeHTMLEntities,
 } from "lib";
@@ -104,7 +106,8 @@ export const getServerSideProps = async (context) => {
   if (!response?.ok) return { notFound: true };
   const json = await safeJson(response);
   if (json === null) return upstreamUnavailable(context.res, response);
-  const pageItem = json.items.find((item) => item.post_name === pageSlug);
+  json.items = flattenMenuItems(json.items);
+  const pageItem = json.items.find((item) => getMenuItemSlug(item) === pageSlug);
   const guidesPageItem = json.items.find((item) => item.url === GUIDES_ENDPOINT);
   if (
     !pageItem ||
@@ -130,10 +133,10 @@ export const getServerSideProps = async (context) => {
         url = "/guides";
       } else if (String(crumb.menu_item_parent) === String(guidesPageItem?.object_id)) {
         // Guide pages (direct children of the guides landing) live at /guides/:slug
-        url = `/guides/${crumb.post_name}`;
+        url = `/guides/${getMenuItemSlug(crumb)}`;
       } else {
-        // All other about-section pages use a flat /about/:post_name URL
-        url = `/about/${crumb.post_name}`;
+        // All other about-section pages use a flat /about/:slug URL
+        url = `/about/${getMenuItemSlug(crumb)}`;
       }
       breadcrumbs.push({ title: crumb.title, url });
     });

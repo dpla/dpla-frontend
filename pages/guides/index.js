@@ -5,7 +5,7 @@ import ContentPagesSidebar from "shared/ContentPagesSidebar";
 import GuideLink from "shared/GuideLink";
 import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
-import { getMenuItemUrl } from "lib";
+import { flattenMenuItems, getMenuItemSlug, getMenuItemUrl } from "lib";
 
 import { ABOUT_MENU_ENDPOINT, GUIDES_ENDPOINT } from "constants/content-pages";
 import { TITLE } from "constants/guides";
@@ -81,6 +81,7 @@ export async function getServerSideProps(context) {
 
   const aboutMenuJson = await safeJson(aboutMenuRes);
   if (aboutMenuJson === null) return upstreamUnavailable(context.res, aboutMenuRes);
+  aboutMenuJson.items = flattenMenuItems(aboutMenuJson.items);
   const indexPageItem = aboutMenuJson.items.find(
     (item) => item.url === GUIDES_ENDPOINT,
   );
@@ -102,7 +103,7 @@ export async function getServerSideProps(context) {
           if (guideJson === null) return null;
           return {
             ...guide,
-            slug: guideJson.slug ?? guide.post_name,
+            slug: guideJson.slug ?? getMenuItemSlug(guide),
             summary: guideJson.acf.summary,
             title: guideJson.title.rendered,
             displayTitle: guideJson.acf.display_title,

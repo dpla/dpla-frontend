@@ -6,7 +6,7 @@ import ServiceUnavailable from "components/shared/ServiceUnavailable";
 
 import { exhibitHomePage, loadExhibition } from "lib/exhibitionsStatic";
 
-import { addCommasToNumber, getMenuItemUrl } from "lib";
+import { addCommasToNumber, flattenMenuItems, getMenuItemSlug, getMenuItemUrl } from "lib";
 
 import {
   HEADER_DESCRIPTION_TOKEN,
@@ -179,6 +179,7 @@ export async function getServerSideProps(context) {
     } else {
       const aboutMenuJson = await safeJson(aboutMenuRes);
       if (aboutMenuJson !== null) {
+        aboutMenuJson.items = flattenMenuItems(aboutMenuJson.items);
         const indexPageItem = aboutMenuJson.items.find(
           (item) => item.url === GUIDES_ENDPOINT,
         );
@@ -197,7 +198,7 @@ export async function getServerSideProps(context) {
                   if (!guideRes?.ok) {
                     console.log(
                       "Unable to load guide.",
-                      guide.post_name,
+                      getMenuItemSlug(guide),
                       guideRes?.status,
                     );
                     return null;
@@ -206,7 +207,7 @@ export async function getServerSideProps(context) {
                   if (guideJson === null) return null;
                   return {
                     ...guide,
-                    slug: guideJson.slug ?? guide.post_name,
+                    slug: guideJson.slug ?? getMenuItemSlug(guide),
                     summary: guideJson.acf.summary,
                     title: guideJson.title.rendered,
                     displayTitle: guideJson.acf.display_title,
