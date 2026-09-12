@@ -16,8 +16,8 @@ Both files render the same `AboutMenuPage` class component. The index route exis
 
 All pages are **server-side rendered on every request** using `getServerSideProps`. On each load:
 
-1. The WordPress **site settings** ACF field (`guides_endpoint`) is fetched to identify the Guides parent menu item — that item and all its children are **excluded** from this section (they belong to `/guides`).
-2. The full **About Us menu** is fetched from the WP REST API (`/wp-json/menus/v1/menus/about-us`).
+1. The full **About Us menu** (`user-site`) is fetched from the `dpla/v2/menus/user-site` route in the DPLA mu-plugin.
+2. The Guides parent menu item (the one whose URL is `GUIDES_ENDPOINT` in `constants/content-pages.js`) and all its children are **excluded** from this section (they belong to `/guides`).
 3. The page slug is resolved from the URL (or query params on the index route).
 4. The matching menu item's WordPress page content is fetched by its page ID or URL.
 5. Breadcrumbs are built from the menu hierarchy for sub-pages.

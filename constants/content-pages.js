@@ -6,8 +6,8 @@ import {
 
 const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
-export const ABOUT_MENU_ENDPOINT = `${wordPressUrl}/wp-json/menus/v1/menus/about-us`;
-export const PRO_MENU_ENDPOINT = `${wordPressUrl}/wp-json/menus/v1/menus/pro-site`;
+export const ABOUT_MENU_ENDPOINT = `${wordPressUrl}/wp-json/dpla/v2/menus/user-site`;
+export const PRO_MENU_ENDPOINT = `${wordPressUrl}/wp-json/dpla/v2/menus/pro-site`;
 export const NEWS_ENDPOINT = `${wordPressUrl}/wp-json/wp/v2/posts`;
 export const TAGS_ENDPOINT = `${wordPressUrl}/wp-json/wp/v2/tags?per_page=100`;
 export const PAGES_ENDPOINT = `${wordPressUrl}/wp-json/wp/v2/pages`;

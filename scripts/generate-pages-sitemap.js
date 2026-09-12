@@ -25,6 +25,12 @@ const API_KEY = process.env.API_KEY || "";
 const USER_BASE = "https://dp.la";
 const PRO_BASE = "https://pro.dp.la";
 
+// Menus come from the dpla/v2/menus route in the DPLA WordPress mu-plugin
+const menuUrl = (slug) => `${WP_URL}/wp-json/dpla/v2/menus/${slug}`;
+// Page items carry the page slug in `slug`
+// Custom links only have post_name
+const slugOf = (item) => item.slug || item.post_name;
+
 function sanitizeUrl(url) {
   return url.replace(/([?&]api_key=)[^&]+/i, "$1[REDACTED]");
 }
@@ -163,14 +169,16 @@ async function wpPostUrls(base) {
 }
 
 async function guideUrls() {
-  const res = await safeFetch(
-    `${WP_URL}/wp-json/menus/v1/menus/user-guides`,
-  );
+  const { GUIDES_ENDPOINT } = require("../constants/content-pages.js");
+  const res = await safeFetch(menuUrl("user-site"));
   if (!res) return [];
   const menu = await res.json();
-  return (menu.items || [])
-    .filter((item) => item.slug)
-    .map((item) => `${USER_BASE}/guides/${item.slug}`);
+  const items = menu.items || [];
+  const guidesItem = items.find((item) => item.url === GUIDES_ENDPOINT);
+  if (!guidesItem) return [];
+  return items
+    .filter((item) => String(item.menu_item_parent) === String(guidesItem.ID))
+    .map((item) => `${USER_BASE}/guides/${slugOf(item)}`);
 }
 
 async function aboutUrls() {
@@ -203,20 +211,14 @@ async function proMenuUrls() {
   const { SECTIONS } = require("../constants/pro.js");
   const urls = [PRO_BASE];
 
-  const res = await safeFetch(
-    `${WP_URL}/wp-json/menus/v1/menus/pro-site`,
-  );
+  const res = await safeFetch(menuUrl("pro-site"));
   if (!res) {
     console.warn("generate-pages-sitemap: could not fetch pro-site menu, falling back to SECTIONS list");
     return [PRO_BASE, ...SECTIONS.map((s) => `${PRO_BASE}/${s.slug}`), `${PRO_BASE}/hubs`];
   }
 
   const menu = await res.json();
-  // WP menus plugin nests children under child_items
-  const flatten = (list = []) =>
-    list.flatMap(({ child_items: children, ...item }) => [item, ...flatten(children)]);
-  const slugOf = (item) => item.slug || item.post_name;
-  const items = flatten(menu.items);
+  const items = menu.items || [];
 
   // Build ID → item lookup for ancestor traversal, and collect all slugs in one pass
   const byId = {};
