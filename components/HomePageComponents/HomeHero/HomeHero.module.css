@@ -218,12 +218,38 @@
     margin: 0.75rem 1rem 0;
     color: white;
     text-decoration: underline;
-    background-color: rgba(0, 0, 0, 0.65);
-    border-radius: 3px;
-    padding: 0.25rem 0.75rem;
 
     &:hover {
       text-decoration: none;
     }
   }
+}
+
+.maintainer {
+  font-family: var(--serifFont), serif;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.35;
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+/*
+  Local hub heroes each use their own background photo, some of them pale, so
+  the line needs a backing to stay readable. The user site's hero art is fixed
+  and dark, and the rest of its hero text is plain white.
+*/
+.maintainerBacked {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The dark backing, shared with the hub "Learn more about..." link. */
+.localLinks a,
+.localLinks a:visited,
+.maintainerBacked {
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 3px;
+  padding: 0.25rem 0.75rem;
 }

@@ -4,6 +4,7 @@ import css from "./HarmfulContent.module.css";
 import utils from "stylesheets/utils.module.css";
 
 import { LOCALS } from "constants/local";
+import { MAINTAINER_STATEMENT } from "constants/site";
 
 function HarmfulContent() {
   const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
@@ -27,6 +28,7 @@ function HarmfulContent() {
     <div className={css.wrapper}>
       <div className={utils.container}>
         <p className={css.harmfulContent}>{hlsLink}</p>
+        <p className={css.maintainer}>{MAINTAINER_STATEMENT}</p>
       </div>
     </div>
   );
