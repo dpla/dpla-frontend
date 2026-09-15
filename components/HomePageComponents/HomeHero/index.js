@@ -4,6 +4,7 @@ import Link from "next/link";
 import Button from "components/shared/Button";
 
 import { LOCALS } from "constants/local";
+import { MAINTAINER_STATEMENT } from "constants/site";
 
 import css from "./HomeHero.module.css";
 import utils from "stylesheets/utils.module.css";
@@ -90,6 +91,11 @@ function HomeHero({ headerDescription, feature }) {
             </button>
           </div>
         </form>
+        <p
+          className={`${css.maintainer} ${siteEnv === "local" ? css.maintainerBacked : ""}`}
+        >
+          {MAINTAINER_STATEMENT}
+        </p>
         {siteEnv === "user" && (
           <div className={css.links}>
             <Link href="/browse-by-topic">Browse by Topic</Link>
