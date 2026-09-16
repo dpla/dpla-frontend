@@ -271,6 +271,8 @@ GA4 shows a parameter in reports only after you register it as an event-scoped c
 
 Client, server, and edge runtimes are all instrumented with `@sentry/nextjs`. Set `SENTRY_DSN` to enable. Sentry org: `dpla`, project: `dpla-frontend`. Source maps are uploaded at build time when `SENTRY_AUTH_TOKEN` is present and are not exposed to the browser (`hideSourceMaps: true`). Request profiling is enabled at 100% (`profilesSampleRate: 1.0`).
 
+The browser side drops some events before they reach Sentry, namely scripts we did not ship (e.g. iOS translation engines, userscript managers, browser extensions). These filters live in `lib/sentryClientFilters.js`.
+
 ---
 
 ## Deployment
