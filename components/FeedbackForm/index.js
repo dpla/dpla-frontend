@@ -1,9 +1,8 @@
 import React from "react";
 import AriaModal from "react-aria-modal";
 
-import { withRouter } from "next/router";
-
 import Button from "components/shared/Button";
+import { getCurrentFullUrl } from "lib";
 
 import css from "./FeedbackForm.module.css";
 
@@ -121,13 +120,15 @@ class FeedbackForm extends React.Component {
       message: prevState.message,
     }));
 
-    const url = this.props.router?.asPath ?? "";
+    const url = getCurrentFullUrl();
+    const browser = navigator.userAgent;
     const message = this.state.message;
     const type = this.state.type;
     const email = this.state.email;
     const miel = e.target.elements.i_prefer_usps_mail.value;
     const body = JSON.stringify({
       url: url,
+      browser: browser,
       type: type,
       message: message,
       email: email,
@@ -166,7 +167,6 @@ class FeedbackForm extends React.Component {
   render() {
     const charLimit = 400;
     const step = this.state.step;
-    const url = this.props.router?.asPath ?? "";
     const modalActive = this.state.modalActive;
     const isSending = this.state.isSending;
     const type = this.state.type;
@@ -199,7 +199,6 @@ class FeedbackForm extends React.Component {
             tabIndex="-1"
             autoComplete="off"
           />
-          <input name="frompage" value={url} type="hidden" />
           <h2 className={css.title}>
             {step === 1 && <span>Feedback</span>}
             {step === 2 && <span>Thank you!</span>}
@@ -325,4 +324,4 @@ class FeedbackForm extends React.Component {
   }
 }
 
-export default withRouter(FeedbackForm);
+export default FeedbackForm;

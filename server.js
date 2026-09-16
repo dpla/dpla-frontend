@@ -26,6 +26,7 @@ const numCPUs =
   Number(process.env.PS_COUNT) || require("node:os").availableParallelism();
 
 const serverFunctions = require("./lib/serverFunctions");
+const { FEEDBACK_TYPES, feedbackEmailBody } = require("./lib/feedbackEmail");
 const { MAILCHIMP_GROUP_IDS, MAILCHIMP_LIST_ID } = require("./constants/site");
 const { LOCAL_SUBDOMAINS } = require("./constants/local");
 
@@ -304,10 +305,10 @@ function feedback() {
     if (req.body.i_prefer_usps_mail && req.body.i_prefer_usps_mail === "1")
       return res.sendStatus(400);
 
-    const email = req.body.email || "";
-    const type = req.body.type || ""; // comment | correction | bug
-    const message = req.body.message || ""; // body
-    const url = req.body.url || ""; // url of page
+    // type goes into the subject line
+    const type = req.body.type;
+    if (!FEEDBACK_TYPES.includes(type)) return res.sendStatus(400);
+
     const options = {
       month: "numeric",
       day: "numeric",
@@ -317,19 +318,18 @@ function feedback() {
       hour12: false,
       timeZone: "America/New_York",
     };
-
     const date = Intl.DateTimeFormat("en-US", options).format(new Date());
-    const browser = req.get("User-Agent");
-    const emailFields = [
-      `Email:\n${email}`,
-      `Type:\n${type}`,
-      `Message:\n${message}`,
-      `URL:\n${url}`,
-      `Date:\n${date}`,
-      `Browser:\n${browser}`,
-    ];
 
-    const emailMessage = emailFields.join("\n\n");
+    // Client sends the browser string
+    // CloudFront replaces the User-Agent header with its own, so we don't use
+    const emailMessage = feedbackEmailBody({
+      email: req.body.email,
+      type,
+      message: req.body.message,
+      url: req.body.url,
+      browser: req.body.browser,
+      date,
+    });
 
     try {
       await serverFunctions.sendEmail(
@@ -341,6 +341,7 @@ function feedback() {
 
       res.sendStatus(200);
     } catch (error) {
+      console.error("Feedback email failed", error);
       res.sendStatus(500);
     }
   };
