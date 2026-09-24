@@ -19,6 +19,9 @@ ARG SENTRY_DSN=""
 ENV NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
 ARG SENTRY_ENVIRONMENT=""
 ENV NEXT_PUBLIC_SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT}
+# Sentry project that gets the source maps.
+ARG SENTRY_PROJECT=""
+ENV SENTRY_PROJECT=${SENTRY_PROJECT}
 ENV API_KEY=""
 ENV MAILCHIMP_KEY=""
 # Server-side Sentry stays off during the build. ECS sets these at runtime.

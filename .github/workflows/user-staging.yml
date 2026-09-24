@@ -15,6 +15,7 @@ env:
   GA_NETWORK_ID: ""
   SENTRY_DSN: "https://b549f72678bb320f5c30e46aa8a967e2@o4508229092769792.ingest.us.sentry.io/4511377446928384"
   SENTRY_ENVIRONMENT: "staging"
+  SENTRY_PROJECT: "dpla-frontend-staging"
 
 jobs:
   ecr:
@@ -72,6 +73,7 @@ jobs:
           --build-arg GA_NETWORK_ID=${{ env.GA_NETWORK_ID }} \
           --build-arg SENTRY_DSN=${{ env.SENTRY_DSN }} \
           --build-arg SENTRY_ENVIRONMENT=${{ env.SENTRY_ENVIRONMENT }} \
+          --build-arg SENTRY_PROJECT=${{ env.SENTRY_PROJECT }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
