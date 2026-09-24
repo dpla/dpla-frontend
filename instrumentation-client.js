@@ -6,8 +6,8 @@ import { filterClientEvent } from "./lib/sentryClientFilters";
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
 
 Sentry.init({
-  dsn:
-    "https://9a96f55c94d9e0f332251d903fbb60aa@o4508229092769792.ingest.us.sentry.io/4508229094080512",
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || "development",
 
   // Sample rate for performance traces (1 = 100%)
   tracesSampleRate: 1,

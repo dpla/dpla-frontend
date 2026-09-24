@@ -13,6 +13,8 @@ env:
   GA_TRACKING_ID: "G-QFVBHC4JBB"
   GA_LEGACY_EVENTS: "true"
   GA_NETWORK_ID: ""
+  SENTRY_DSN: "https://b549f72678bb320f5c30e46aa8a967e2@o4508229092769792.ingest.us.sentry.io/4511377446928384"
+  SENTRY_ENVIRONMENT: "pro-staging"
 
 jobs:
   ecr:
@@ -73,6 +75,8 @@ jobs:
           --build-arg GA_TRACKING_ID=${{ env.GA_TRACKING_ID }} \
           --build-arg GA_LEGACY_EVENTS=${{ env.GA_LEGACY_EVENTS }} \
           --build-arg GA_NETWORK_ID=${{ env.GA_NETWORK_ID }} \
+          --build-arg SENTRY_DSN=${{ env.SENTRY_DSN }} \
+          --build-arg SENTRY_ENVIRONMENT=${{ env.SENTRY_ENVIRONMENT }} \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$BRANCH_NAME \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
