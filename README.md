@@ -167,9 +167,12 @@ See `package.json` for additional `docker:*` helper scripts.
 | `NEXT_PUBLIC_GA_TRACKING_ID` | The site's own GA4 measurement ID (`G-…`) *(optional)* |
 | `NEXT_PUBLIC_GA_NETWORK_ID` | Shared GA4 measurement ID that every site also reports to *(optional)* |
 | `NEXT_PUBLIC_GA_LEGACY_EVENTS` | Set to `false` to stop the legacy GA event. On by default. Set through the `GA_LEGACY_EVENTS` build arg *(optional)* |
-| `SENTRY_DSN` | Sentry DSN for error tracking *(optional)* |
+| `SENTRY_DSN` | Server-side Sentry DSN. Set by the ECS task *(optional)* |
+| `SENTRY_ENVIRONMENT` | Server-side environment tag, default `development`. Set by the ECS task *(optional)* |
+| `NEXT_PUBLIC_SENTRY_DSN` | Browser-side Sentry DSN. Set through the `SENTRY_DSN` build arg *(optional)* |
+| `NEXT_PUBLIC_SENTRY_ENVIRONMENT` | Browser-side environment tag, default `development`. Set through the `SENTRY_ENVIRONMENT` build arg *(optional)* |
 | `SENTRY_AUTH_TOKEN` | Sentry auth token for source map upload at build time *(optional)* |
-| `SENTRY_ENVIRONMENT` | Sentry environment tag (defaults to `development`) *(optional)* |
+| `SENTRY_PROJECT` | Sentry project the source maps go to, default `dpla-frontend`. Build-time only. Set through the `SENTRY_PROJECT` build arg *(optional)* |
 
 ### Integrations
 
@@ -269,7 +272,11 @@ GA4 shows a parameter in reports only after you register it as an event-scoped c
 
 ### Sentry
 
-Client, server, and edge runtimes are all instrumented with `@sentry/nextjs`. Set `SENTRY_DSN` to enable. Sentry org: `dpla`, project: `dpla-frontend`. Source maps are uploaded at build time when `SENTRY_AUTH_TOKEN` is present and are not exposed to the browser (`hideSourceMaps: true`). Request profiling is enabled at 100% (`profilesSampleRate: 1.0`).
+Client, server, and edge runtimes are all instrumented with `@sentry/nextjs`. Sentry org: `dpla`. Source maps are uploaded at build time when `SENTRY_AUTH_TOKEN` is present and are not exposed to the browser (`hideSourceMaps: true`). Request profiling is enabled at 100% (`profilesSampleRate: 1.0`).
+
+The server reads `SENTRY_DSN` and `SENTRY_ENVIRONMENT` from the ECS task at start. The browser bundle is fixed at build time, so it takes the same two values from the `SENTRY_DSN` and `SENTRY_ENVIRONMENT` build args, which each deploy workflow passes and the Dockerfile exposes as `NEXT_PUBLIC_SENTRY_DSN` and `NEXT_PUBLIC_SENTRY_ENVIRONMENT`. Keep the workflow values in step with the ECS task, or a site's browser and server events land under different labels. Without a DSN the SDK sends nothing, so local dev and CI builds stay out of Sentry.
+
+Two Sentry projects take events. `dpla-frontend-staging` takes the `staging` and `pro-staging` labels; `dpla-frontend` takes `production`, `pro-production`, and the hub id (`texas`, `illinois`, …) for each local hub. Source maps must go to the project that gets the events, or its stack traces stay minified. A build uploads to `dpla-frontend` unless `SENTRY_PROJECT` names another project, which the two staging workflows do. Change a workflow's DSN and you change its `SENTRY_PROJECT` too.
 
 The browser side drops some events before they reach Sentry, namely scripts we did not ship (e.g. iOS translation engines, userscript managers, browser extensions). These filters live in `lib/sentryClientFilters.js`.
 

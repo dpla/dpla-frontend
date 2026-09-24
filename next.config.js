@@ -291,7 +291,9 @@ config = withSentryConfig(config, {
 
   org: "dpla",
   authToken: process.env.SENTRY_AUTH_TOKEN,
-  project: "dpla-frontend",
+
+  // Staging sends its events to a separate Sentry project
+  project: process.env.SENTRY_PROJECT || "dpla-frontend",
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
