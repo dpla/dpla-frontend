@@ -10,8 +10,9 @@ The Lists feature lets users build temporary, named collections of DPLA items as
 |-----|------|---------|
 | `/lists` | `pages/lists/index.js` | All lists ("My Lists" landing page) |
 | `/lists/[listId]` | `pages/lists/[listId].js` | Individual list detail and item view |
+| `/lists/import` | `pages/lists/import.js` | Import a list from a CSV (e.g. one previously downloaded from a list page) |
 
-Both pages are **client-side only** — `getServerSideProps` is not used. List data is loaded from localForage after the component mounts.
+All three pages are **client-side only** — `getServerSideProps` is not used. List data is loaded from localForage after the component mounts.
 
 ---
 
@@ -107,7 +108,7 @@ On load:
 1. The UUID is read from the URL
 2. The list is fetched from localForage
 3. If not found → 404
-4. If found → item IDs are extracted from `selectedHash` and sent to the internal API proxy (`/api/items/[idListString]`), which fetches full item metadata from the DPLA Search API in a single batched request
+4. If found → item IDs are extracted from `selectedHash` and sent to the internal API proxy (`/api/items/[idListString]`), which fetches full item metadata from the DPLA Search API, one page at a time (`LIST_PAGE_SIZE` IDs per request)
 5. Items are displayed using ListView with full metadata (title, thumbnail, date, creator, provider, etc.)
 
 Clicking an item's source link fires a `click_through` Google Analytics event; see the root README, "Google Analytics".
@@ -132,12 +133,22 @@ The page shows:
 
 ## User Flow: Downloading a List
 
-The ListView component generates a **CSV export** when `exportable={true}` and `behavior="list"`:
+The **"Download list"** button on the list detail page (`handleExport` in `pages/lists/[listId].js`) generates a **CSV export**:
 
+- Fetches metadata for every item in the list, in `LIST_PAGE_SIZE` batches, then builds the CSV client-side with the Blob API
 - Columns: `id`, `Title`, `Date`, `Creator`, `Description`, `Provider`, `Thumbnail`, `URL`
-- File name: `[ListName].csv`
-- Only items currently in the list are exported
-- Uses the Blob API (with `navigator.msSaveBlob` fallback for IE10+)
+- File name: `DPLA User List - [ListName].csv`
+
+---
+
+## User Flow: Importing a List
+
+`/lists/import` (`pages/lists/import.js`) creates a new list from a CSV — typically one produced by "Download list":
+
+- Reads the first column of each row and keeps values matching `DPLA_ITEM_ID_REGEX` (so a header row is skipped); IDs are lowercased and deduplicated
+- Stops silently at `MAX_LIST_ITEMS` IDs
+- The list name defaults to the file name with `.csv` and the `DPLA User List - ` prefix removed
+- Saves as a new list in localForage and redirects to `/lists/[uuid]`
 
 ---
 
@@ -170,7 +181,7 @@ Lists themselves are never written to or read from any server.
 
 | Constraint | Value | Source |
 |------------|-------|--------|
-| Max items per list | 50 | `MAX_LIST_ITEMS` in `constants/site.js` |
+| Max items per list | 1000 | `MAX_LIST_ITEMS` in `constants/site.js` |
 | Max list name length | 64 characters | `NAME_CHAR_LIMIT` in `ListNameModal` |
 | Storage scope | Current browser only | localForage (IndexedDB) |
 | Shareable via URL | No | Stored locally; URL returns 404 in another browser |
@@ -189,5 +200,7 @@ Lists themselves are never written to or read from any server.
 | Success message display duration | `constants/site.js` — `MESSAGE_DELAY` |
 | Landing page copy and tutorial videos | `components/ListComponents/index.js` — `ListsEmpty` component |
 | "You won't see lists from another browser" note | `components/ListComponents/index.js` — `ListNote` component |
-| CSV export column definitions | `components/shared/ListView/index.js` — `downloadCSV()` function |
+| Items fetched per page / export batch | `constants/site.js` — `LIST_PAGE_SIZE` |
+| CSV export column definitions | `pages/lists/[listId].js` — `handleExport` |
+| CSV import parsing | `pages/lists/import.js` — `handleImport` |
 | localForage read/write logic | `lib/localForage/index.js` |
