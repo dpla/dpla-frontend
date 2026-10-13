@@ -107,7 +107,7 @@ Errors are logged to the server console but not surfaced in the response body.
 
 ## Use in the Lists Feature
 
-`pages/lists/[listId].js` is the only internal caller. The list page collects stored item IDs from localForage, joins them into a comma-separated string, and fetches:
+`pages/lists/[listId].js` is the only internal caller. The list page collects stored item IDs from localForage and fetches them one page at a time (`LIST_PAGE_SIZE` IDs per request, joined into a comma-separated string). The CSV export fetches every page the same way:
 
 ```javascript
 const res = await fetch(`/api/items/${ids}`);
@@ -144,4 +144,4 @@ This is the **only API route** in the entire `pages/api/` directory. There are n
 | `pages/lists/[listId].js` | Lists feature caller |
 | `constants/items.js` | `DPLA_ITEM_ID_REGEX` validation pattern |
 | `lib/getItemThumbnail.js` | Thumbnail URL resolution used by the Lists caller |
-| `constants/site.js` | `MAX_LIST_ITEMS` (50) cap on list size |
+| `constants/site.js` | `MAX_LIST_ITEMS` and `LIST_PAGE_SIZE` list constants |
