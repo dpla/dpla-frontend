@@ -20,7 +20,7 @@
   "dependencies": {
     "@aws-sdk/client-ses": "^3.1077.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "@sentry/nextjs": "^10.62.0",
+    "@sentry/nextjs": "^10.75.2",
     "@sentry/node": "^10.62.0",
     "@sentry/profiling-node": "^10.62.0",
     "@types/mailchimp__mailchimp_marketing": "^3.0.22",
