@@ -169,10 +169,13 @@ let config = {
         redirect("/info/get-involved/dplafest/:path+", proUrl + "/events/past-dplafests"),
         redirect("/info/get-involved/groups/:path*", proUrl),
         redirect("/info/get-involved/workshops/:path*", proUrl + "/events/workshops"),
+        redirect("/info/gif-it-up/:path*", proUrl + "/about-dpla-pro/historical-materials"),
 
         // About DPLA Pro
         redirect("/info/contact/jobs/:path*", proUrl + "/about-dpla-pro/jobs"),
-        redirect("/info/about/projects", proUrl + "/projects"),
+        redirect("/info/about/projects/:path*", proUrl + "/projects"),
+        redirect("/info/about/funding/:path*", proUrl + "/about-dpla-pro"),
+        redirect("/info/about/values/:path*", proUrl + "/about-dpla-pro"),
         redirect("/info/about/history", proUrl + "/about-dpla-pro/history"),
         redirect(
           "/info/about/history/materials",
