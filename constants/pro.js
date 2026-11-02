@@ -1,5 +1,4 @@
 const SECTIONS = [
-  { slug: "community-reps", name: "Community Reps" },
   { slug: "prospective-hubs", name: "Prospective Hubs" },
   { slug: "about-dpla-pro", name: "About DPLA Pro" },
   { slug: "developers", name: "Developers" },

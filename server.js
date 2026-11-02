@@ -87,6 +87,10 @@ function follower() {
     expressApp.get("/healthcheck", healthcheck());
     expressApp.get("/robots.txt", robotsTxt());
 
+    if (process.env.NEXT_PUBLIC_SITE_ENV === "user") {
+      expressApp.use(legacyRoutes());
+    }
+
     // routes that are common to user and pro sites
     if (
       process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
@@ -183,6 +187,32 @@ function robotsTxt() {
 function catchall(handle) {
   return (req, res) => {
     return handle(req, res);
+  };
+}
+
+// Redirects for pre-2017 dp.la URLs.
+// primary-source-sets redirects live in a JSON map.
+const PSS_REDIRECTS = require("./constants/pss-redirects.json");
+const GONE_PREFIXES = [
+  "/info/help/accounts",
+  "/info/help/glossary",
+  "/info/author",
+  "/users/sign", // sign_in and sign_up
+];
+
+function legacyRoutes() {
+  return (req, res, next) => {
+    let path = req.path;
+    if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+    if (GONE_PREFIXES.some((prefix) => path.startsWith(prefix))) {
+      return res.sendStatus(410);
+    }
+    if (Object.hasOwn(PSS_REDIRECTS, path)) {
+      const queryStart = req.url.indexOf("?");
+      const query = queryStart === -1 ? "" : req.url.slice(queryStart);
+      return res.redirect(301, PSS_REDIRECTS[path] + query);
+    }
+    next();
   };
 }
 
