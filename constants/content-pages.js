@@ -1,8 +1,4 @@
-import {
-  ANNOUNCEMENTS_TAG_ID,
-  CONTENT_SHOWCASE_TAG_ID,
-  EBOOKS_TAG_ID,
-} from "./news.js";
+import { ANNOUNCEMENTS_TAG_ID, CONTENT_SHOWCASE_TAG_ID } from "./news.js";
 
 const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
@@ -13,7 +9,6 @@ export const TAGS_ENDPOINT = `${wordPressUrl}/wp-json/wp/v2/tags?per_page=100`;
 export const PAGES_ENDPOINT = `${wordPressUrl}/wp-json/wp/v2/pages`;
 export const NEWS_USER_ENDPOINT = `${NEWS_ENDPOINT}?per_page=3&tags=${ANNOUNCEMENTS_TAG_ID},${CONTENT_SHOWCASE_TAG_ID}`;
 export const NEWS_PRO_ENDPOINT = `${NEWS_ENDPOINT}?per_page=3`;
-export const NEWS_EBOOKS_ENDPOINT = `${NEWS_ENDPOINT}?per_page=3&tags=${EBOOKS_TAG_ID}`;
 // WordPress page IDs
 export const HOMEPAGE_ID = 3777; // "homepage"
 export const PRO_HOMEPAGE_ID = 6870; // "pro-site"
