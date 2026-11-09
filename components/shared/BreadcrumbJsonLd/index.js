@@ -1,5 +1,7 @@
 import React from "react";
 
+import serializeJsonLd from "lib/serializeJsonLd";
+
 const BASE_URL = process.env.NEXT_PUBLIC_USER_BASE_URL || "";
 
 /**
@@ -44,7 +46,7 @@ function BreadcrumbJsonLd({ breadcrumbs }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(ld) }}
     />
   );
 }
