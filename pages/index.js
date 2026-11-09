@@ -22,6 +22,7 @@ import {
 } from "constants/content-pages";
 
 import { washObject } from "lib/washObject";
+import serializeJsonLd from "lib/serializeJsonLd";
 import {
   safeFetch,
   wpAuthFetchOptions,
@@ -35,7 +36,7 @@ import {
 const USER_BASE_URL = process.env.NEXT_PUBLIC_USER_BASE_URL?.replace(/\/$/, "");
 const WEBSITE_JSON_LD =
   process.env.NEXT_PUBLIC_SITE_ENV === "user" && USER_BASE_URL
-    ? JSON.stringify({
+    ? serializeJsonLd({
         "@context": "https://schema.org",
         "@type": "WebSite",
         url: USER_BASE_URL,

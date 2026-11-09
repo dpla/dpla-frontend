@@ -148,6 +148,8 @@ class Viewer extends React.Component {
         ? pageBlocks[activeBlockIndex + 1]
         : null;
     const itemId = activeBlock?.dplaItemId;
+    // Check for active DPLA ID (otherwise 404s)
+    const itemFound = activeBlock.dplaItemJson?.docs?.length > 0;
     return (
       <div className={css.viewer}>
         <h2 className={css.titleSubsection}>{subsection.title}</h2>
@@ -207,7 +209,7 @@ class Viewer extends React.Component {
                 </li>
               ))}
             </ul>
-            {itemId && DPLA_ITEM_ID_REGEX.test(itemId) && (
+            {itemFound && DPLA_ITEM_ID_REGEX.test(itemId) && (
               <Link href={`/item/${itemId}`} className={css.viewItemLink}>
                 View item information
               </Link>
