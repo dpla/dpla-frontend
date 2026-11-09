@@ -102,11 +102,145 @@ let config = {
         redirect("/news/:slug", userUrl + "/news/:slug"),
         redirect("/search", userUrl + "/search"),
         redirect("/about", "/about-dpla-pro"),
+        // /ebooks still renders;
+        // only its retired sub-pages redirect
+        redirect("/ebooks/:path+", "/ebooks"),
       ];
     } else if (siteEnv === "user") {
+      const proUrl = process.env.NEXT_PUBLIC_PRO_BASE_URL;
       return [
         redirect("/about-us", "/about"),
         redirect("/contact-us", "/contact"),
+
+        // Pre-2017 dp.la URLs, first match wins.
+        // primary-source-sets paths are in constants/pss-redirects.json.
+
+        // Community Reps (retired)
+        redirect("/reps/:path*", proUrl + "/about-dpla-pro/historical-materials"),
+        redirect(
+          "/info/get-involved/reps/:path*",
+          proUrl + "/about-dpla-pro/historical-materials",
+        ),
+
+        // Hubs
+        redirect("/info/hubs", proUrl + "/hubs"),
+        redirect("/info/hubs/become-a-hub", proUrl + "/prospective-hubs/become-a-hub"),
+        redirect("/info/hubs/hub-network-members", proUrl + "/hubs/our-hubs"),
+        redirect("/info/hubs/membership-program", proUrl + "/hubs/membership-program"),
+        // 2018 membership meeting and its sub-pages → the summit that replaced it
+        redirect(
+          "/info/hubs/membership-program/2018-annual-dpla-network-membership-meeting/:path*",
+          proUrl + "/events/dpla-network-summit",
+        ),
+
+        // Metadata Application Profile
+        redirect("/about/map/:path*", proUrl + "/hubs/metadata-application-profile"),
+        redirect("/about/schema/:path*", proUrl + "/hubs/metadata-application-profile"),
+        redirect("/info/map/:path*", proUrl + "/hubs/metadata-application-profile"),
+        redirect(
+          "/info/developers/map/:path*",
+          proUrl + "/hubs/metadata-application-profile",
+        ),
+
+        // Developers
+        redirect("/platform", proUrl + "/developers/api-codex"),
+        redirect("/info/developers/codex/:path*", proUrl + "/developers/api-codex"),
+        redirect("/info/developers/download/:path*", proUrl + "/developers/bulk-download"),
+        redirect("/info/developers/ideas-and-projects/:path*", proUrl + "/developers"),
+        redirect(
+          "/info/developers/sample-code-and-libraries/:path*",
+          proUrl + "/developers/sample-code-libraries",
+        ),
+        redirect("/info/developers", proUrl + "/developers"),
+
+        // Education
+        redirect(
+          "/info/education/national-history-day/:path*",
+          proUrl + "/education/national-history-day",
+        ),
+        redirect("/info/education/:path*", proUrl + "/education"),
+        redirect("/education/:path*", proUrl + "/education"),
+
+        // Ebooks (retired)
+        redirect("/info/get-involved/dpla-ebooks/:path*", proUrl + "/ebooks"),
+
+        // Events
+        redirect("/info/get-involved/dplafest", proUrl + "/events/dplafest"),
+        redirect("/info/get-involved/dplafest/:path+", proUrl + "/events/past-dplafests"),
+        redirect("/info/get-involved/groups/:path*", proUrl),
+        redirect("/info/get-involved/workshops/:path*", proUrl + "/events/workshops"),
+        redirect("/info/gif-it-up/:path*", proUrl + "/about-dpla-pro/historical-materials"),
+
+        // About DPLA Pro
+        redirect("/info/contact/jobs/:path*", proUrl + "/about-dpla-pro/jobs"),
+        redirect("/info/about/projects/:path*", proUrl + "/projects"),
+        redirect("/info/about/funding/:path*", proUrl + "/about-dpla-pro"),
+        redirect("/info/about/values/:path*", proUrl + "/about-dpla-pro"),
+        redirect("/info/about/history", proUrl + "/about-dpla-pro/history"),
+        redirect(
+          "/info/about/history/materials",
+          proUrl + "/about-dpla-pro/historical-materials",
+        ),
+        redirect("/staff", proUrl + "/about-dpla-pro/staff"),
+        redirect("/info/about/staff/:path*", proUrl + "/about-dpla-pro/staff"),
+        redirect(
+          "/info/about/strategic-plan/:path*",
+          proUrl + "/about-dpla-pro/strategic-plan",
+        ),
+        redirect("/info/get-involved", proUrl),
+        redirect(
+          "/info/get-involved/events/oct2011plenary/:path*",
+          proUrl + "/about-dpla-pro/historical-materials",
+        ),
+        redirect("/info/about/board", proUrl + "/about-dpla-pro/board"),
+        redirect(
+          "/info/beta-sprint/submissions/:path*",
+          proUrl + "/about-dpla-pro/historical-materials",
+        ),
+        redirect("/info/entries/:path*", proUrl + "/about-dpla-pro/historical-materials"),
+
+        // Pages that moved within dp.la
+        redirect("/info/get-involved/follow/:path*", "/contact"),
+        redirect("/info/about/awards/:path*", "/"),
+        redirect("/info/contact/:path*", "/contact"),
+        redirect("/info/about/leadership-transition/:path*", "/news"),
+        redirect("/info/about/policies/:path*", "/about/terms-conditions"),
+        redirect("/info/donate/:path*", "/donate"),
+        redirect("/info/get-involved/shop/:path*", "/"),
+        redirect("/info/help/browse", "/browse-by-topic"),
+        redirect(
+          "/info/help/family-research-at-dpla/:path*",
+          "/guides/the-family-research-guide-to-dpla",
+        ),
+        redirect("/info/help/faq", "/about/frequently-asked-questions"),
+        redirect("/info/help/search", "/about/frequently-asked-questions/search-tips"),
+        redirect("/info/help", "/guides"),
+        redirect("/info/news", "/news"),
+        redirect("/info/news/press/:path*", "/news"),
+        // /info/2016/04/12/some-post → /news/some-post
+        redirect("/info/:year(\\d+)/:month(\\d+)/:day(\\d+)/:slug*", "/news/:slug*"),
+        redirect("/info/terms", "/about/terms-conditions"),
+        redirect("/info/terms/privacy/:path*", "/about/privacy-policy"),
+        redirect("/info/tag/:path*", "/news"),
+        redirect("/info", "/about"),
+        redirect("/map/:path*", "/"),
+        redirect("/partners/:path*", "/browse-by-partner"),
+        redirect("/subjects/:path*", "/"),
+        redirect("/timeline/:path*", "/"),
+
+        // Omeka exhibitions. radio-homefront reused a slug; keep it first.
+        redirect(
+          "/exhibitions/exhibits/show/radio-golden-age/radio-frontlines/radio-homefront",
+          "/exhibitions/radio-golden-age/radio-frontlines/radio-homefront-wwii",
+        ),
+        redirect("/exhibitions/exhibits/show/:path+", "/exhibitions/:path+"),
+
+        // Primary source sets (per-source and per-guide paths are in the JSON map)
+        redirect("/primary-source-sets/sets", "/primary-source-sets"),
+        redirect(
+          "/primary-source-sets/sets/:slug([0-9a-z-]+)/:rest*",
+          "/primary-source-sets/:slug",
+        ),
       ];
     } else if (siteEnv === "cqa") {
       return [];
