@@ -2,12 +2,11 @@
 """
 Generate per-hub item sitemaps for DPLA local hub subdomains.
 
-Provider-based hubs read the latest snapshot from s3://dpla-master-dataset/<hub>/jsonl/
-and extract the DPLA item ID from each record's _source.id field.
+Each hub reads the latest snapshot from s3://dpla-master-dataset/<hub>/jsonl/
+and extracts the DPLA item ID from each record's _source.id field.
 
-Tag-based hubs (aviation, bws) delegate to the ingest EC2 via SSM, where
-ingestion3/scripts/generate_tag_sitemap.py queries Elasticsearch directly using
-PIT + search_after pagination (no max_result_window ceiling, no public API load).
+Tag-based hubs (aviation, bws) need ES access, so ingestion3's post_indexer.py
+builds them on the ingest EC2.
 
 Sitemaps are written (gzip-compressed, ≤50,000 URLs/shard) to:
   s3://sitemaps.dp.la/sitemap/<hub>/all_item_urls_N.xml.gz
@@ -20,18 +19,12 @@ Run:
 
   --hub HUB   Generate only for this hub (default: all hubs)
   --dry-run   Skip S3 uploads and print shard URL previews plus full index XML
-
-Environment (tag-based hubs via SSM):
-  INGEST_INSTANCE_ID  EC2 instance ID of the ingest box (required for aviation/bws)
 """
 
 import argparse
-import base64
 import gzip
 import json
-import os
 import sys
-import time
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
 
@@ -42,7 +35,7 @@ SOURCE_BUCKET = "dpla-master-dataset"
 SITEMAP_BUCKET = "sitemaps.dp.la"
 SHARD_SIZE = 50_000
 
-# Provider-based hubs: hub_id → S3 prefix under dpla-master-dataset
+# hub_id → S3 prefix under dpla-master-dataset
 PROVIDER_HUBS = {
     "plains2peaks": "p2p",
     "wisconsin": "wisconsin",
@@ -55,22 +48,11 @@ PROVIDER_HUBS = {
     "texas": "texas",
 }
 
-# Tag-based hubs: hub_id → tag value for DPLA API
-TAG_HUBS = {
-    "aviation": "aviation",
-    "bws": "blackwomensuffrage",
-}
-
-ALL_HUBS = list(PROVIDER_HUBS) + list(TAG_HUBS)
-
-# Path to the tag-sitemap script on the ingest EC2
-EC2_SCRIPT  = "/home/ec2-user/ingestion3/scripts/generate_tag_sitemap.py"
-EC2_PYTHON  = "/home/ec2-user/ingestion3/venv/bin/python3"
-SSM_TIMEOUT = 1800  # 30 min; aviation/bws are large but ES is fast inside VPC
+ALL_HUBS = list(PROVIDER_HUBS)
 
 
 def iter_ids_from_s3(s3_client, hub_id):
-    """Yield item IDs from S3 JSONL files for provider-based hubs.
+    """Yield item IDs from S3 JSONL files for a hub.
 
     Reads only the latest snapshot under <prefix>/jsonl/.  Snapshots are
     date-stamped subdirectories (e.g. 20260211_064914-p2p-.../); the most
@@ -134,91 +116,6 @@ def iter_ids_from_s3(s3_client, hub_id):
                     )
 
 
-# ── SSM delegation for tag-based hubs ────────────────────────────────────────
-
-def _ssm_send_command(ssm, instance_id: str, shell_cmd: str, timeout: int) -> str:
-    """Send a shell command to EC2 via SSM and return the command ID."""
-    encoded = base64.b64encode(shell_cmd.encode()).decode("ascii")
-    wrapped = f"sudo -u ec2-user bash -lc 'echo {encoded} | base64 -d | bash'"
-    resp = ssm.send_command(
-        InstanceIds=[instance_id],
-        DocumentName="AWS-RunShellScript",
-        Parameters={"commands": [wrapped]},
-        TimeoutSeconds=timeout,
-    )
-    return resp["Command"]["CommandId"]
-
-
-def _ssm_wait(ssm, instance_id: str, command_id: str, timeout: int) -> dict:
-    """Poll until the SSM command finishes or times out. Returns invocation dict."""
-    deadline = time.monotonic() + timeout
-    poll = 10
-    while True:
-        time.sleep(poll)
-        try:
-            inv = ssm.get_command_invocation(
-                CommandId=command_id, InstanceId=instance_id
-            )
-        except ssm.exceptions.InvocationDoesNotExist:
-            # SSM hasn't registered the invocation yet — keep polling.
-            if time.monotonic() > deadline:
-                raise TimeoutError(
-                    f"SSM command {command_id} never appeared after {timeout}s"
-                )
-            poll = min(poll * 1.5, 60)
-            continue
-        status = inv["Status"]
-        if status not in ("Pending", "InProgress", "Delayed"):
-            return inv
-        if time.monotonic() > deadline:
-            raise TimeoutError(
-                f"SSM command {command_id} still {status!r} after {timeout}s"
-            )
-        poll = min(poll * 1.5, 60)  # back off up to 60s
-
-
-def generate_tag_hub_via_ssm(hub_id: str, dry_run: bool):
-    """Delegate aviation/bws sitemap generation to the ingest EC2 via SSM.
-
-    The EC2 script (ingestion3/scripts/generate_tag_sitemap.py) queries ES
-    directly using PIT + search_after and writes sitemaps to S3 via the
-    instance role.
-    """
-    instance_id = os.environ.get("INGEST_INSTANCE_ID", "").strip()
-    if not instance_id:
-        raise RuntimeError(
-            f"{hub_id}: INGEST_INSTANCE_ID is not set — "
-            "add it as a secret in the GitHub repo and expose it in the workflow env"
-        )
-
-    cmd = f"{EC2_PYTHON} {EC2_SCRIPT} --hub {hub_id}"
-    if dry_run:
-        cmd += " --dry-run"
-
-    print(f"  {hub_id}: sending SSM command to {instance_id}…", flush=True)
-    ssm = boto3.client("ssm", region_name="us-east-1")
-    command_id = _ssm_send_command(ssm, instance_id, cmd, SSM_TIMEOUT)
-    print(f"  {hub_id}: SSM command {command_id}", flush=True)
-
-    inv = _ssm_wait(ssm, instance_id, command_id, SSM_TIMEOUT)
-    stdout = inv.get("StandardOutputContent", "").strip()
-    stderr = inv.get("StandardErrorContent", "").strip()
-
-    if stdout:
-        for line in stdout.splitlines():
-            print(f"  [ec2] {line}")
-    if stderr:
-        for line in stderr.splitlines():
-            print(f"  [ec2:stderr] {line}", file=sys.stderr)
-
-    if inv["Status"] != "Success":
-        raise RuntimeError(
-            f"{hub_id}: EC2 script failed with SSM status={inv['Status']!r}"
-        )
-
-    print(f"  {hub_id}: EC2 script completed successfully", flush=True)
-
-
 def build_shard(urls, timestamp):
     now = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
     entries = "\n".join(
@@ -269,13 +166,6 @@ def upload_shard(s3_client, key, xml, dry_run, shard_urls):
 
 
 def generate_hub(hub_id, dry_run, timestamp):
-    # Tag-based hubs delegate to the ingest EC2 entirely — it handles ES
-    # queries, shard writing, and S3 upload via PIT + search_after.
-    if hub_id in TAG_HUBS:
-        generate_tag_hub_via_ssm(hub_id, dry_run)
-        return
-
-    # Provider-based hubs: read S3 JSONL, generate sitemaps here.
     s3_client = boto3.client("s3")
     print(f"  {hub_id}: collecting IDs from S3…", flush=True)
     id_iter = iter_ids_from_s3(s3_client, hub_id)
