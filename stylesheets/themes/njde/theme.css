@@ -17,7 +17,6 @@
   --warmerBackgroundColor: rgb(240.2, 237.8786407767, 246.5) !important;
   --colderBackgroundColor: rgb(240.2, 246.3786407767, 255) !important;
   --subLinkColorHover: rgb(162.5, 76.8305439331, 0) !important;
-  --outlineColor: rgb(255, 125.5732217573, 9.5) !important;
   --linkColor: var(--theme-link-color) !important;
   --paginationLinkColor: var(--linkColor) !important;
   --headingColor: var(--theme-dark-color) !important;

@@ -93,10 +93,8 @@
 }
 
 .depictassist-wrapper select:focus {
-  outline: none;
   background-color: #ffffff;
   border-color: #163f51;
-  box-shadow: 0 0 0 3px rgba(22, 63, 81, 0.15);
 }
 
 .depictassist-wrapper select:disabled {

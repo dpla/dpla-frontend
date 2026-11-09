@@ -118,7 +118,8 @@ transforms are complicated (color spaces, algorithms, etc).
   --outgoingLinkColor: var(--subLinkColor);
   --dimmedTextColor: var(--dimmerGray);
   --donateFormButtonColor: var(--cascadeBlue);
-  --outlineColor: var(--casablancaOrange);
+  --focusRingColor: var(--tiberBlue);
+  --focusRingHalo: var(--white);
   --formLabelColor: var(--cascadeBlue);
   --errorColor: var(--linkColor);
   --radioButtonColor: var(--gainsboroGray);

@@ -147,10 +147,6 @@
     }
   }
 
-  &:focus {
-    outline: 0.25rem solid var(--outlineColor);
-  }
-
   & img {
     width: 0.9rem;
 
