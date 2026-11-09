@@ -82,8 +82,10 @@
     cursor: pointer;
   }
 
-  & input[type="radio"]:focus + label {
-    outline: 0.25rem solid var(--outlineColor);
+  & input[type="radio"]:focus-visible + label {
+    outline: 0.125rem solid var(--focusRingColor);
+    outline-offset: 0.125rem;
+    box-shadow: 0 0 0 0.375rem var(--focusRingHalo);
   }
 
   & label:before {

@@ -494,10 +494,6 @@
   background-color: #e4e2db;
   margin-bottom: 0.5rem;
 
-  &:focus {
-    outline: 0.25rem solid var(--outlineColor);
-  }
-
   :global(#openseadragon1) {
     height: 15rem;
   }

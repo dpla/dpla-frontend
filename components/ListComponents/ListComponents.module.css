@@ -73,7 +73,6 @@
 
   &:focus {
     border-color: var(--linkColor);
-    outline: none;
   }
 }
 

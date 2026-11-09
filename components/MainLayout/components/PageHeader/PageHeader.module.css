@@ -67,6 +67,11 @@
   &:focus::placeholder {
     opacity: 0.25;
   }
+
+  &:focus-visible {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .searchInput::placeholder {
