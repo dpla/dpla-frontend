@@ -1,6 +1,7 @@
 import React from "react";
 
 import {joinIfArray} from "lib";
+import serializeJsonLd from "lib/serializeJsonLd";
 
 function JsonLdMarkup({ item }) {
   /**
@@ -246,7 +247,7 @@ function JsonLdMarkup({ item }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(JsonLd) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(JsonLd) }}
     />
   );
 }
