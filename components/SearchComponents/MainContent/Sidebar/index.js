@@ -13,7 +13,12 @@ import {
   prettifiedFacetMap,
   tooltips,
 } from "constants/search";
-import { addCommasToNumber, escapeForRegex, removeQueryParams } from "lib";
+import {
+  addCommasToNumber,
+  escapeForRegex,
+  isValidFacetQuery,
+  removeQueryParams,
+} from "lib";
 
 import css from "./Sidebar.module.css";
 
@@ -41,13 +46,28 @@ function FacetLink({ queryKey, termObject, disabled, isTooltip }) {
     );
   }
 
+  // some facet names have spaces, and we need to wrap them in " "
+  const facetQuery = router.query[queryKey]
+    ? [`${router.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
+    : `"${termObject.term}"`;
+
+  // A term the API would reject as a filter is shown without a link.
+  if (!isValidFacetQuery(facetQuery)) {
+    return (
+      <span className={css.facet}>
+        <span className={css.facetName}>{`${termLabel} `}</span>
+        <span className={css.facetCount}>
+          {addCommasToNumber(termObject.count)}
+        </span>
+      </span>
+    );
+  }
+
   const href = {
     pathname: router.pathname,
     query: {
-      ...router.query, // some facet names have spaces, and we need to wrap them in " "
-      [queryKey]: router.query[queryKey]
-        ? [`${router.query[queryKey]}`, `"${[termObject.term]}"`].join("|")
-        : `"${termObject.term}"`,
+      ...router.query,
+      [queryKey]: facetQuery,
       page: 1,
     },
   };
