@@ -40,6 +40,8 @@ function redirect(source, dest, permanent = true) {
 // They do NOT cover __NEXT_DATA__ (dynamic, excluded from hashing). The Next.js
 // hashes are stable across normal deploys but WILL change on Next.js upgrades.
 // The gtag hash must be updated whenever the inline script in pages/_app.js changes.
+// `yarn build` uses --webpack: Turbopack production builds inline a per-page
+// bootstrap script that static hashes cannot cover.
 //
 // Whenever a Next.js version bump is part of a PR:
 //   1. Do a production build locally: `npm run build && npm start`
