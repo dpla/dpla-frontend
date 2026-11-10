@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "yarn && node server.js --trace-deprecation",
     "clean": "rm -rf .next ./build ./coverage ./node_modules",
-    "build": "yarn && NODE_ENV=production next build",
+    "build": "yarn && NODE_ENV=production next build --webpack",
     "postbuild": "node scripts/generate-pages-sitemap.js",
     "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t dpla-frontend .",
@@ -18,17 +18,17 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.1077.0",
+    "@aws-sdk/client-ses": "^3.1165.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@sentry/nextjs": "^10.75.2",
     "@sentry/node": "^10.62.0",
     "@sentry/profiling-node": "^10.62.0",
     "@types/mailchimp__mailchimp_marketing": "^3.0.22",
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.23",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "localforage": "^1.10.0",
-    "next": "^16.4.1",
+    "next": "^16.4.6",
     "openseadragon": "^6.0.2",
     "prop-types": "^15.8.1",
     "react": "^19.2.7",
@@ -48,7 +48,7 @@
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.10",
     "typescript": "^6.0.3"
   },
   "resolutions": {
