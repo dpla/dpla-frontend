@@ -163,6 +163,27 @@ export default class IIIFViewer extends React.Component {
           </p>
         )}
 
+        {status === "ready" && (
+          <div style={{ textAlign: "center", margin: "18px 0 6px" }}>
+            <a
+              href={`/ftp/dpla_import?item_id=${encodeURIComponent(
+                this.props.itemId,
+              )}`}
+              style={{
+                display: "inline-block",
+                background: "#c83e14",
+                color: "#fff",
+                fontWeight: 600,
+                padding: "0.62rem 1.35rem",
+                borderRadius: "6px",
+                textDecoration: "none",
+              }}
+            >
+              Transcribe this item in FromThePage &rarr;
+            </a>
+          </div>
+        )}
+
         {status === "ready" && canvases[currentPage] && (
           <TranscriptionPanel
             itemId={this.props.itemId}
