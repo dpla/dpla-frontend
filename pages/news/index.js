@@ -117,9 +117,7 @@ function NewsPage({
                   </article>
                 ))}
               <Pagination
-                itemsPerPage={DEFAULT_PAGE_SIZE}
                 currentPage={parseInt(currentPage, 10)}
-                totalItems={newsCount}
                 pageCount={newsPageCount}
               />
             </div>
