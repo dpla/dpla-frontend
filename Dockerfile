@@ -59,7 +59,10 @@ RUN --mount=type=secret,id=sentry_auth \
     yarn run build
 
 FROM node:24-slim AS dpla-frontend
-RUN apt-get update && apt-get --no-install-recommends install -y tini curl && apt clean
+RUN apt-get update \
+    && apt-get --no-install-recommends install -y tini curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/dpla-frontend/
 COPY components ./components
 COPY constants ./constants
