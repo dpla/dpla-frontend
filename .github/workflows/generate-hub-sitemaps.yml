@@ -37,8 +37,6 @@ jobs:
           aws-region: us-east-1
 
       - name: Generate hub sitemaps
-        env:
-          INGEST_INSTANCE_ID: ${{ secrets.INGEST_INSTANCE_ID }}
         run: |
           HUB="${{ github.event.inputs.hub }}"
           if [ -n "$HUB" ]; then

@@ -324,7 +324,7 @@ There are seventeen workflows in `.github/workflows/`:
 | `pro-production.yml` | Manual | Build ECR image for pro.dp.la |
 | `pro-staging.yml` | Manual | Build ECR image for pro staging |
 | `local-{hub}.yml` × 10 | Manual | Build ECR image for each local hub |
-| `generate-hub-sitemaps.yml` | Scheduled | Generate XML sitemaps for all hubs |
+| `generate-hub-sitemaps.yml` | Scheduled | Generate XML sitemaps for provider-based hubs (aviation and bws are built by ingestion3's `post_indexer.py`) |
 | `dpla-ingest-update.yml` | External trigger | Notify on DPLA data ingest completion |
 
 ---
