@@ -47,6 +47,7 @@ function ItemDescription({ description }) {
  * @param viewingList contains list id if viewing in /lists/[uuid]
  * @param behavior "search," "browse," or "list" for different behavior depending on where this is used.
  * @param gaContext Extra GA event parameters for every item, such as { topic, subtopic } on topic browse.
+ * @param onItemClick Called when an item link is clicked.
  * @returns {JSX.Element}
  * @constructor
  */
@@ -56,6 +57,7 @@ export default function ListView({
   viewingList,
   behavior,
   gaContext,
+  onItemClick,
 }) {
   const initialState = () => ({
     readOnly: false,
@@ -297,12 +299,12 @@ export default function ListView({
             contributor: item.dataProvider,
             collection: item.collection,
           };
-          const browseLinkProps =
+          const itemLinkProps =
             behavior === "browse"
               ? trackLinkClicks(
                   buildGaEvent(GA_EVENTS.BROWSE_ITEM, gaItemFields),
                 )
-              : undefined;
+              : { onClick: onItemClick, onAuxClick: onItemClick };
           return (
             <li
               key={item.id}
@@ -316,7 +318,7 @@ export default function ListView({
                 provider={item.provider}
                 thumbnailSourceUrl={item.thumbnailSourceUrl}
                 useDefaultImage={item.useDefaultImage}
-                linkProps={browseLinkProps}
+                linkProps={itemLinkProps}
               />
               <div className={css.itemInfo}>
                 <h2 className={`${utils.hoverUnderline} ${css.itemTitle}`}>
@@ -325,7 +327,7 @@ export default function ListView({
                     <Link
                       href={item.linkHref}
                       className={"internalItemLink"}
-                      {...browseLinkProps}
+                      {...itemLinkProps}
                     >
                       {item.title
                         ? truncateString(joinIfArray(item.title, ", "), 150)
