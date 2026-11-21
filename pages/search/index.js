@@ -99,7 +99,6 @@ class Search extends React.Component {
       numberOfActiveFacets,
       pageCount,
       currentPage,
-      pageSize,
       aboutness,
       filterQueryError,
       maxPageError,
@@ -144,7 +143,6 @@ class Search extends React.Component {
             hideSidebar={!this.state.showSidebar}
             paginationInfo={{
               pageCount: pageCount,
-              pageSize: pageSize || DEFAULT_PAGE_SIZE,
               currentPage: currentPage,
             }}
             facets={results?.facets ?? {}}
@@ -341,8 +339,7 @@ export async function getServerSideProps(context) {
         results: { docs: result.docs, count: result.count, facets: {} },
         numberOfActiveFacets: 0,
         currentPage: Number(page),
-        pageCount: result.count,
-        pageSize: page_size,
+        pageCount: Math.ceil(result.count / page_size),
         aboutness: { docs: [], count: 0 },
         filterQueryError: false,
       }),
@@ -459,15 +456,16 @@ export async function getServerSideProps(context) {
 
     json.facets = newFacets;
 
-    const maxResults = MAX_PAGE_SIZE * page_size;
-    const pageCount = json.count > maxResults ? maxResults : json.count;
+    const pageCount = Math.min(
+      Math.ceil(json.count / page_size),
+      MAX_PAGE_SIZE,
+    );
 
     const props = washObject({
       results: { ...json, docs },
       numberOfActiveFacets,
       currentPage: page,
       pageCount,
-      pageSize: page_size,
       aboutness: aboutness,
       filterQueryError: false,
     });

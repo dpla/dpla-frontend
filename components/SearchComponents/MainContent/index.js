@@ -53,12 +53,8 @@ function MainContent({
             </div>
           )}
           <Pagination
-            itemsPerPage={paginationInfo.pageSize}
             currentPage={parseInt(paginationInfo.currentPage, 10)}
-            totalItems={paginationInfo.pageCount}
-            pageCount={Math.ceil(
-              paginationInfo.pageCount / paginationInfo.pageSize,
-            )}
+            pageCount={paginationInfo.pageCount}
           />
         </main>
       </div>
