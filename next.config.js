@@ -3,6 +3,7 @@ const SECTIONS = require("./constants/pro").SECTIONS;
 
 const siteEnv = process.env.NEXT_PUBLIC_SITE_ENV;
 const localId = process.env.NEXT_PUBLIC_LOCAL_ID;
+const wordPressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
 function fourOhFour(source) {
   return {
@@ -107,12 +108,14 @@ let config = {
         // /ebooks still renders;
         // only its retired sub-pages redirect
         redirect("/ebooks/:path+", "/ebooks"),
+        redirect("/wp-content/:path+", wordPressUrl + "/wp-content/:path+", false),
       ];
     } else if (siteEnv === "user") {
       const proUrl = process.env.NEXT_PUBLIC_PRO_BASE_URL;
       return [
         redirect("/about-us", "/about"),
         redirect("/contact-us", "/contact"),
+        redirect("/wp-content/:path+", wordPressUrl + "/wp-content/:path+", false),
 
         // Pre-2017 dp.la URLs, first match wins.
         // primary-source-sets paths are in constants/pss-redirects.json.

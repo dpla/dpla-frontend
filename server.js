@@ -96,7 +96,6 @@ function follower() {
       process.env.NEXT_PUBLIC_SITE_ENV === "user" ||
       process.env.NEXT_PUBLIC_SITE_ENV === "pro"
     ) {
-      expressApp.get("/wp-content/*path", wpContent());
       expressApp.post("/mailchimp", formBody, doMailchimp());
       expressApp.post("/g/contact", formBody, doContact());
       expressApp.post("/g/feedback", formBody, feedback());
@@ -227,15 +226,6 @@ function healthcheck() {
   return (req, res) => {
     console.log("healthcheck");
     res.send("OK");
-  };
-}
-
-function wpContent() {
-  return (req, res) => {
-    const contentStart = req.url.indexOf("/wp-content");
-    const newPath =
-      process.env.NEXT_ENV_WORDPRESS_URL + req.url.substring(contentStart);
-    res.redirect(newPath);
   };
 }
 

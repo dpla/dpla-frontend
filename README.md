@@ -41,7 +41,7 @@ Browser → AWS WAF → AWS ALB → ECS Fargate (Express + Next.js)
 The application is a **Next.js 15** app wrapped in a custom **Express** server. The Express layer handles:
 
 - Multi-CPU clustering (always on in production)
-- Custom routes: `GET /healthcheck`, `GET /robots.txt`, `POST /mailchimp`, `POST /g/contact`, `POST /g/feedback`, `GET /wp-content/*` (redirects to WordPress)
+- Custom routes: `GET /healthcheck`, `GET /robots.txt`, `POST /mailchimp`, `POST /g/contact`, `POST /g/feedback`
 - All other requests are passed through to Next.js
 
 **Key architectural decisions:**
