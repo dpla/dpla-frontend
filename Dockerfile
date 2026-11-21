@@ -53,7 +53,7 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY jsconfig.json ./
 COPY eslint.config.mjs ./
-RUN yarn install --ignore-scripts --immutable --prod
+RUN yarn install --ignore-scripts --frozen-lockfile --prod
 RUN --mount=type=secret,id=sentry_auth \
     SENTRY_AUTH_TOKEN=$(cat /run/secrets/sentry_auth 2>/dev/null || true) \
     yarn run build
