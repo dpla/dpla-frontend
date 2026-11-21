@@ -20,7 +20,6 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-let failed = false;
 
 // ── 1. Extract and parse the CSP from next.config.js ───────────────────────
 
@@ -175,51 +174,60 @@ function scanFiles() {
 
 // ── 4. Main ──────────────────────────────────────────────────────────────────
 
-let directives;
-try {
-  directives = parseCsp(extractCsp());
-} catch (e) {
-  console.error("✗ Failed to parse CSP from next.config.js:", e.message);
-  process.exit(1);
-}
+function main() {
+  let failed = false;
 
-const findings = scanFiles();
-
-// Deduplicate by directive+hostname so each domain is reported once.
-const seen = new Map();
-for (const { file, line, url, directive } of findings) {
-  let hostname, scheme;
+  let directives;
   try {
-    const parsed = new URL(url);
-    hostname = parsed.hostname;
-    scheme = parsed.protocol.replace(":", ""); // "https" or "http"
-  } catch {
-    continue;
+    directives = parseCsp(extractCsp());
+  } catch (e) {
+    console.error("✗ Failed to parse CSP from next.config.js:", e.message);
+    process.exit(1);
   }
 
-  const key = `${directive}:${hostname}`;
-  if (seen.has(key)) continue;
+  const findings = scanFiles();
 
-  const allowed = hostnameAllowed(
-    hostname,
-    scheme,
-    directives.get(directive) ?? new Set()
-  );
-  seen.set(key, allowed);
+  // Deduplicate by directive+hostname so each domain is reported once.
+  const seen = new Map();
+  for (const { file, line, url, directive } of findings) {
+    let hostname, scheme;
+    try {
+      const parsed = new URL(url);
+      hostname = parsed.hostname;
+      scheme = parsed.protocol.replace(":", ""); // "https" or "http"
+    } catch {
+      continue;
+    }
 
-  if (allowed) {
-    console.log(`✓ ${directive}: ${hostname}  (${file}:${line})`);
-  } else {
-    console.error(
-      `✗ ${directive}: ${hostname} not in CSP  (${file}:${line})\n` +
-        `  Add it to the "${directive}" directive in next.config.js`
+    const key = `${directive}:${hostname}`;
+    if (seen.has(key)) continue;
+
+    const allowed = hostnameAllowed(
+      hostname,
+      scheme,
+      directives.get(directive) ?? new Set()
     );
-    failed = true;
+    seen.set(key, allowed);
+
+    if (allowed) {
+      console.log(`✓ ${directive}: ${hostname}  (${file}:${line})`);
+    } else {
+      console.error(
+        `✗ ${directive}: ${hostname} not in CSP  (${file}:${line})\n` +
+          `  Add it to the "${directive}" directive in next.config.js`
+      );
+      failed = true;
+    }
   }
+
+  if (failed) {
+    process.exit(1);
+  }
+  console.log("\nAll external URLs are covered by the CSP.");
 }
 
-if (failed) {
-  process.exit(1);
+if (require.main === module) {
+  main();
 }
-console.log("\nAll external URLs are covered by the CSP.");
 
+module.exports = { extractCsp, parseCsp, hostnameAllowed };

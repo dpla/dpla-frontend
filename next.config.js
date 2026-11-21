@@ -66,7 +66,7 @@ const CSP_DIRECTIVES = [
   "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.gstatic.com",
   "font-src 'self' https://cdnjs.cloudflare.com",
   `media-src 'self' *.dp.la ${CLOUDFRONT_MEDIA}`,
-  "frame-src 'self' https://www.youtube.com",
+  "frame-src 'self' https://www.youtube.com https://giphy.com https://player.vimeo.com",
 ];
 const CSP = CSP_DIRECTIVES.join("; ");
 

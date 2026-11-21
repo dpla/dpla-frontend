@@ -372,9 +372,11 @@ CSP is enforced via HTTP response headers (not `<meta>` tags) to avoid conflicti
 
 **Important maintenance note:** The `sha256` hashes in `next.config.js` are tied to the exact content of Next.js's bootstrap scripts and **must be updated manually whenever the Next.js version is bumped**. The hashes are in the `script-src` directive. There is an open TODO to migrate to nonce-based CSP via Next.js middleware, which would eliminate this maintenance burden.
 
-The CSP allows: Google Analytics/Tag Manager, Sentry, AWS WAF, Wikimedia, YouTube iframes, and the CloudFront CDN for fonts and media. Exception: `/static/pdfjs/*` paths are served with `'unsafe-eval'` in `script-src` due to PDF.js requiring it for Type3 font compilation.
+The CSP allows: Google Analytics/Tag Manager, Sentry, AWS WAF, Wikimedia, iframes from YouTube, Giphy and Vimeo, and the CloudFront CDN for fonts and media. Exception: `/static/pdfjs/*` paths are served with `'unsafe-eval'` in `script-src` due to PDF.js requiring it for Type3 font compilation.
 
 To verify that a new external URL is covered by the CSP before shipping, run `node scripts/check-csp.js`.
+
+WordPress page HTML is rendered as-is, so its embeds are subject to the same CSP. `node scripts/check-wp-embeds.js` reports `<iframe>` and `<script>` hosts in WordPress content that the CSP blocks, and fails on any blocked embed that no `KNOWN_BLOCKED` entry matches. The weekly "Check WordPress Embeds" workflow runs and opens an issue for each missing host.
 
 ### Bot and Spam Blocking
 
