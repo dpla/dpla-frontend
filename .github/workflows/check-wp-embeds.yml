@@ -1,0 +1,73 @@
+name: Check WordPress Embeds
+
+# Scheduled script to check for embedded WordPress content that needs to be allowed in CSP
+
+on:
+  schedule:
+    - cron: "0 12 * * 1" # Mondays at 12:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version-file: ".node-version"
+
+      # Exit codes:
+      # 0 = ok
+      # 1 = blocked hosts outside KNOWN_BLOCKED
+      # 2 = WordPress API or CSP unreadable
+      - name: Check WordPress embeds against the CSP
+        id: check
+        env:
+          NEXT_PUBLIC_WORDPRESS_URL: "https://dpla.wpengine.com"
+        run: |
+          set +e
+          node scripts/check-wp-embeds.js --json new-hosts.json
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -gt 1 ]; then exit "$status"; fi
+
+      # Open one issue per blocked host
+      - name: Open issues for blocked hosts outside KNOWN_BLOCKED
+        if: steps.check.outputs.status == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          jq -c '.[]' new-hosts.json | while read -r entry; do
+            directive=$(jq -r '.directive' <<< "$entry")
+            source=$(jq -r '.source' <<< "$entry")
+            title="WordPress embed blocked by the CSP: $directive $source"
+
+            open_count=$(gh issue list --state open --search "in:title \"$title\"" --json title \
+              | jq --arg title "$title" 'map(select(.title == $title)) | length')
+            if [ "$open_count" -gt 0 ]; then
+              echo "Open issue exists: $title"
+              continue
+            fi
+
+            {
+              echo "WordPress content embeds \`$source\`, which the \`$directive\` directive in next.config.js blocks. Browsers do not load these embeds."
+              echo
+              echo "Either allow the host in next.config.js, or add it to \`KNOWN_BLOCKED\` in scripts/check-wp-embeds.js."
+              echo
+              echo "$(jq -r '.count' <<< "$entry") embeds in these posts and pages:"
+              echo
+              jq -r '.links[] | "- " + .' <<< "$entry"
+              echo
+              echo "Found by $RUN_URL"
+            } > body.md
+            gh issue create --title "$title" --body-file body.md
+          done
