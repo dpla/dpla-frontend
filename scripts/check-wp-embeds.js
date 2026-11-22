@@ -46,7 +46,7 @@ const KNOWN_BLOCKED = [
   { directive: "script-src", url: "embedr.flickr.com/", reason: "Flickr embed script; falls back to a linked image" },
 ];
 
-const EMBED_RE = /<(iframe|script)\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi;
+const EMBED_RE = /<(iframe|script)\b[^>]*?\ssrc\s*=\s*["']([^"']+)["']/gi;
 const DIRECTIVE_FOR_TAG = { iframe: "frame-src", script: "script-src" };
 
 async function fetchAll(type) {
