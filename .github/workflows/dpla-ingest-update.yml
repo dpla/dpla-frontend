@@ -29,4 +29,5 @@ jobs:
           DPLA_WP_USER:        ${{ secrets.DPLA_WP_USER }}
           DPLA_WP_APP_PASSWORD: ${{ secrets.DPLA_WP_APP_PASSWORD }}
           DPLA_SLACK_WEBHOOK:  ${{ secrets.DPLA_SLACK_WEBHOOK }}
+          DPLA_SLACK_MIRROR_WEBHOOK: ${{ secrets.DPLA_SLACK_MIRROR_WEBHOOK }}
         run: python scripts/dpla_ingest_update.py

@@ -9,6 +9,8 @@ WP_USER = os.environ["DPLA_WP_USER"]
 WP_PASSWORD = os.environ["DPLA_WP_APP_PASSWORD"]
 DPLA_KEY = os.environ["DPLA_API_KEY"]
 SLACK_URL = os.environ["DPLA_SLACK_WEBHOOK"]
+# Optional: Incoming Webhook for a second workspace that gets a copy of the alert.
+SLACK_MIRROR_URL = os.environ.get("DPLA_SLACK_MIRROR_WEBHOOK", "").strip()
 
 auth = (WP_USER, WP_PASSWORD)
 headers = {
@@ -135,8 +137,16 @@ if yesterday_hubs:
     lines = [f"*DPLA hubs ingested on {yesterday}:*"]
     for hub in sorted(yesterday_hubs, key=yesterday_hubs.get, reverse=True):
         lines.append(f"• {hub}: {yesterday_hubs[hub]}")
-    slack_resp = requests.post(SLACK_URL, json={"text": "\n".join(lines)}, timeout=10)
+    payload = {"text": "\n".join(lines)}
+    slack_resp = requests.post(SLACK_URL, json=payload, timeout=10)
     slack_resp.raise_for_status()
     print(f"Slack alert sent for {len(yesterday_hubs)} hub(s).")
+    if SLACK_MIRROR_URL:
+        # Best-effort: a mirror failure must not fail the job.
+        try:
+            requests.post(SLACK_MIRROR_URL, json=payload, timeout=10).raise_for_status()
+            print("Slack mirror alert sent.")
+        except requests.RequestException as e:
+            print(f"Warning: Slack mirror alert failed: {type(e).__name__}")
 else:
     print(f"No hubs ingested on {yesterday}. No Slack alert sent.")
